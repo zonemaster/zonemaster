@@ -172,12 +172,12 @@ Currently there is no other requirements other than to implement the test cases 
 TODO: do we need a separate requirements document?
 
 #### DNSCheck
-These are the current documented test cases from DNSCheck:
-https://github.com/dotse/dnscheck/wiki/Tests
+These are the current documented test cases from DNSCheck:  
+https://github.com/dotse/dnscheck/wiki/Tests  
 https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages
 
 #### Zonecheck
-The current implemented tests in Zonecheck are described here:
+The current implemented tests in Zonecheck are described here:  
 http://www.zonecheck.fr/features.shtml
 
 #### RFCs
