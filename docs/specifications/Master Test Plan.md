@@ -24,11 +24,6 @@ Document Control
 |            |         |                    |                       |
 
 
-Table of Contents
------------------
-* auto-gen TOC:
-{:toc}
-
 Introduction
 ------------
 This section gives a brief introduction to the New DNSCheck.
