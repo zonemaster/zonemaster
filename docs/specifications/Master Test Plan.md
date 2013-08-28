@@ -47,8 +47,8 @@ Only the current test cases derived from the current versions of DNSCheck and Zo
 
 ### References
 #### External
-The current implemented tests in DNSCheck are described here:
-https://github.com/dotse/dnscheck/wiki/Tests
+The current implemented tests in DNSCheck are described here:  
+https://github.com/dotse/dnscheck/wiki/Tests  
 https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages
 
 The current implemented tests in Zonecheck are described here:
