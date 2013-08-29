@@ -20,8 +20,7 @@ Document Control
 
 | Date       | Version | Name               | Description           |
 |:-----------|:--------|:-------------------|:----------------------|
-| 2013-08-27 | PA1     | Patrik Wallström   | First draft           |
-|            |         |                    |                       |
+| 2013-08-28 | PA1     | Patrik Wallström   | First draft           |
 
 
 Introduction
