@@ -83,7 +83,7 @@ A test is run on any machine where the New DNSCheck software is available. The t
 #### Master test schedule
 A test is run as soon as the software is scheduled to run, often immediately upon execution.
 #### Integrity level schema
-An integrity level schema is used for illustrating relative importance of a software component. The effect of a failing component can range from negligible to catastrophic. A component with a high integrity level needs to be tested more thoroughly than a component with a low level. There is, however, no guidance in the requirements that indicate the relative importance of different areas. Each area is thus considered equally important. However, one of the main objectives is to ensure the stability of DNS.
+An integrity level schema is used for illustrating relative importance of a software component. The effect of a failing component can range from negligible to catastrophic. A component with a high integrity level needs to be tested more thoroughly than a component with a lower level. There is, however, no guidance in the requirements that indicate the relative importance of different areas. Each area is thus considered equally important. However, one of the main objectives is to ensure the stability of DNS.
 #### Resources summary
 TODO: Briefly describe the neessary resources to run a test.
 #### Responsibilites
@@ -199,6 +199,7 @@ This section contains the glossary and document change procedures for all of the
 | LTL            | Level Test Log                           |
 | LTP            | Level Test Plan                          |
 | LTR            | Level Test Report                        |
+| AR             | Anomaly Report                           |
 
 ### Document change procedures
 The overall change procedures are defined by the project and the change management. However, there are some steps to take into consideration when changing the test documents.
