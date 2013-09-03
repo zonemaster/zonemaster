@@ -67,6 +67,7 @@ No internal requirements.
 ### System overview and key features
 A domain will be tested for the quality of the delegation in the DNS hierarchy. Some of the high level properties that will be tested include:
 
+* Basic (initial tests)
 * Delegation properties (parent and child name servers)  
 * Consistency (all name have consistend answers)
 * DNSSEC properties (algorithms, secure delegation)  
@@ -101,6 +102,7 @@ The goal of these documents is to describe the test cases and how the DNS is tes
 ### Definition of test levels
 There can be different types of tests, e.g. unit, system, and acceptance tests. This test environment will only focus on acceptance testing, thus only one test level. Multiple areas have however been identified within the system requirements:
 
+* Basic
 * Delegation
 * Consistency
 * DNSSEC
