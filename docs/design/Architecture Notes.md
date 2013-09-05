@@ -6,6 +6,24 @@ Conceptually, the library is divided into three layers: objects that model the u
 
 A certain amount of global state is kept (in order to make sure the zone and nameserver object caches are complete). If more than one test is run in the same process, it may or may not be desirable to clear the cache between tests.
 
+## Design Goals
+
+Our experience with earlier designs of tools for testing and verification of DNS leads us to consider the following attributes important in such a system.
+
+1. Accuracy
+
+    The results reported by a testing tool must accurately reflect the reality the tool sees. This may at times make reported results difficult to interpret, and it is tempting to have the system do automated interpretation. It is useful to have a layer that helps a non-technical users understand what is being reported, but such a layer must be a high level and it must be possible for an expert user to get an unfiltered view of the results. For the results to be consistently accurate, it is also important that the tests be well defined and the software well tested.
+
+2. Repeatability
+
+    To the largest extent possible, immediately successive probes of the same target should give the same results. Perfect repeatability cannot be achieved since the reality of the Internet is complex and changes constantly, but no randomness or unpredictability should be added by the testing tool itself.
+
+3. Traceability
+
+    It must be possible to tell exactly what sequence of DNS responses led to a certain result being reported by the tool. The ingenuity of humans is endless, and there will always be excentric, unusual and/or faulty configurations and servers out there that we haven't seen before. When we encounter a new thing for the first time, it should be possible to examine it in detail.
+
+Notably *not* on this list is performance. It is of course important that tests be executed as quickly as possible, but speed must not come at the cost of any of the listed characteristics. Experience also tells us that DNS testing software spends the vast majority of its time waiting for responses from nameservers, and that thus the most useful thing we can do to speed tests up is to reduce the number of questions we send to the absolute minimum. Which, conveniently enough, usually also helps make the results accurate, repeatable and traceable.
+
 ## DNS-Modeling Layer
 
 This layer has two main types of objects.
