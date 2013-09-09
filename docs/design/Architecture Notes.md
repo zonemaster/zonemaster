@@ -38,7 +38,7 @@ A nameserver is identified by its name and IP address, and like for zone objects
 
 ## Testing Layer
 
-This layer holds the main entry point to the testing system, where as the most basic case one can enter a domain name and run all available tests. There is a top-level object for every test run, holding information such as the times when the test was started and ended, as well as the results of all performed tests.
+This layer holds the main entry point to the testing system, where as the most basic case one can enter a domain name and run all available tests. There is a single top-level object for every complete set of tests run, holding information such as the times when the test was started and ended, as well as the results of all performed subtests.
 
 The function of the top-level testing object is:
 
@@ -46,6 +46,7 @@ The function of the top-level testing object is:
 2. To perform basic tests on the zone to determine if it is possible to perform more complex tests (basically checking that the zone exists and has nameservers).
 3. Load all available test modules.
 4. Run requested tests in the loaded modules (by default, all tests in all modules).
+5. Provide a way for tests in one loaded module to execute tests in other modules if they're available.
 
 The tests themselves are, as indicated above, implemented as plugin modules. The modules must provide some specified methods, providing metadata about their function as well as the ability to have tests executed and their results returned.
 
