@@ -66,3 +66,7 @@ Object used to collect Log Entry Objects from a test run, assign severity levels
 ### Configuration Object
 
 Read configuration from suitable sources and make it available to the rest of the system.
+
+### Information Object
+
+An object through which a user can read meta-information about the system. This should include (but not necessarily be limited to) information on which tests are available, which messages can be emitted, which translations are available and the message-to-severity mapping policy in effect.
