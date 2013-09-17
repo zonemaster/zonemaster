@@ -80,7 +80,7 @@ A domain can be given to the testing system and all DNS information will be retr
 ### Test overview
 The test organization, test schedule, integrity level scheme, test resources, responsibilities, tools, techniques, and methods are necessary to perform the testing.
 #### Organization
-A test is run on any machine where the New DNSCheck software is available. The tests ordinarily needs access to the global public DNS hierarchy to be performed.
+A test is run on any machine where the New DNSCheck software is available. The tests ordinarily needs access to a complete DNS hierarchy to be performed.
 #### Master test schedule
 A test is run as soon as the software is scheduled to run, often immediately upon execution.
 #### Integrity level schema
