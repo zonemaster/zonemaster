@@ -3,7 +3,6 @@ Summary of the DNSCheck user survey
 
 Background and methodology
 --------------------------
-Purpose: TODO  
 The user survey was performed between 2012-05-24 and 2012-06-23, a period of almost 30 days.
 
 The survey was performed by showing a questionnaire for a small portion of users going to the web page [dnscheck.iis.se](http://dnscheck.iis.se/), thus it was aimed at users of the web service.
