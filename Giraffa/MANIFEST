@@ -1,0 +1,18 @@
+Build.PL
+Changes
+lib/Giraffa.pm
+lib/Giraffa/Config.pm
+lib/Giraffa/DNSName.pm
+lib/Giraffa/Logger.pm
+lib/Giraffa/Logger/Entry.pm
+lib/Giraffa/Nameserver.pm
+lib/Giraffa/Util.pm
+MANIFEST			This list of files
+README
+t/00-load.t
+t/config.t
+t/giraffa.t
+t/dnsname.t
+t/logger.t
+t/manifest.t
+t/nameserver.t
