@@ -99,7 +99,7 @@ sub _query {
         $self->dns->$flag( $flags{$flag} );
     }
 
-    my $res = $self->dns->send( "$name", $type, $href->{class} );
+    my $res = eval { $self->dns->send( "$name", $type, $href->{class} ) };
 
     foreach my $flag ( keys %defaults ) {
         $self->dns->$flag( $defaults{$flag} );
