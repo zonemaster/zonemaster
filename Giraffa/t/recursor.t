@@ -31,4 +31,9 @@ sub is_parent {
     is( $pn, $pname, "parent for $name is $pn" );
 }
 
+my ($name, $packet) = Giraffa::Recursor->parent( 'www.iis.se');
+isa_ok($packet, 'Giraffa::Packet');
+is($name, 'iis.se', 'name ok');
+ok($packet->no_such_record, 'expected packet content');
+
 done_testing;

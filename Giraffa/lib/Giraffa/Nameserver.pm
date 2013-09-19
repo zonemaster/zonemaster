@@ -75,7 +75,7 @@ sub query {
     my ( $self, $name, $type, $href ) = @_;
     $type //= 'A';
 
-    Giraffa->logger->add( 'query', { name => $name, type => $type, flags => $href } );
+    Giraffa->logger->add( 'query', { name => "$name", type => $type, flags => $href, ip => $self->address->short } );
 
     return $self->cache->{$name}{$type}{ $href->{class} // 'IN' }{ $href->{dnssec}
           // $defaults{dnssec} }{ $href->{usevc} // $defaults{usevc} }{ $href->{recurse} // $defaults{recurse} } //=
@@ -88,6 +88,8 @@ sub _query {
 
     $type //= 'A';
     $href->{class} //= 'IN';
+
+    Giraffa->logger->add( 'external_query', { name => "$name", type => $type, flags => $href, ip => $self->address->short } );
 
     foreach my $flag ( keys %defaults ) {
         $flags{$flag} = $href->{$flag} // $defaults{$flag};
