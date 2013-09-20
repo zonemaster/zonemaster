@@ -5,18 +5,15 @@ use strict;
 use warnings;
 
 use Moose;
-use Moose::Util::TypeConstraints;
 use Carp;
 
 use Giraffa::DNSName;
 use Giraffa::Recursor;
 
-subtype 'Giraffa::Type::Address', as 'Object', where { $_->isa( 'Net::DNS::RR::A' or $_->isa('Net::DNS::RR::AAAA') ) };
-
 has 'name' => ( is => 'ro', isa => 'Giraffa::DNSName', required => 1, coerce => 1 );
 has 'parent' => ( is => 'ro', isa => 'Giraffa::Zone', lazy_build => 1);
 has ['ns', 'glue'] => ( is => 'ro', isa => 'ArrayRef[Giraffa::Nameserver]', lazy_build => 1);
-has 'glue_addresses' => ( is => 'ro', isa => 'ArrayRef[Giraffa::Type::Address]', lazy_build => 1);
+has 'glue_addresses' => ( is => 'ro', isa => 'ArrayRef[Net::DNS::RR]', lazy_build => 1);
 
 ###
 ### Builders
@@ -71,6 +68,7 @@ sub _build_glue_addresses {
 sub query_one {
     my ( $self, $name, $type, $class ) = @_;
 
+    # Return response from the first server that gives one
     foreach my $ns ( @{$self->ns}) {
         my $p = $ns->query( $name, $type, $class );
         return $p if defined($p);
