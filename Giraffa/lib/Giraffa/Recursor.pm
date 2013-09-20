@@ -53,17 +53,19 @@ sub _recurse {
     while ( my $ns = pop @{ $state->{ns} } ) {
         my $p = $ns->query( $name, $type, { class => $class} );
 
-        next if not $p;
-        next if $p->header->rcode eq 'REFUSED';
-        next if $p->header->rcode eq 'SERVFAIL';
+        next if not $p; # Ask next server if no response
+        next if $p->header->rcode eq 'REFUSED'; # Ask next if REFUSED
+        next if $p->header->rcode eq 'SERVFAIL'; # Ask next if SERVFAIL
 
-        return ( $p, $state ) if $p->no_such_record;
-        return ( $p, $state ) if $p->no_such_name;
-        return ( $p, $state ) if $self->is_answer( $p, $name, $type, $class );
+        return ( $p, $state ) if $p->no_such_record; # Node exists, but not record
+        return ( $p, $state ) if $p->no_such_name; # Node does not exist
+        return ( $p, $state ) if $self->is_answer( $p, $name, $type, $class ); # Return answer
+
+        # So it's not an error, not an empty response and not an answer
 
         if ( $p->is_redirect ) {
+            # Looks like a redirect
             my $zname = ($p->get_records( 'ns' ) )[0]->name;
-
             next if $state->{seen}{$zname}; # We followed this redirect before
 
             $state->{seen}{$zname} = 1;
@@ -86,14 +88,13 @@ sub _recurse {
 sub get_ns_from {
     my ( $self, $p, $state ) = @_;
     my @new;
-    my %glue;
 
     my @names = sort map { name( $_->nsdname ) } $p->get_records( 'ns' );
-    $glue{$_->name}{$_->address} = 1 for ( $p->get_records( 'a' ), $p->get_records( 'aaaa' ) );
+    $state->{glue}{$_->name}{$_->address} = 1 for ( $p->get_records( 'a' ), $p->get_records( 'aaaa' ) );
 
     foreach my $name ( @names ) {
-        if ( $glue{$name} ) {
-            push @new, ns( $name, $_ ) for keys %{$glue{$name}};
+        if ( $state->{glue}{$name} ) {
+            push @new, ns( $name, $_ ) for keys %{$state->{glue}{$name}};
         }
         else {
             foreach my $a ( $self->get_addresses_for($name, $state) ) {
@@ -110,8 +111,11 @@ sub get_addresses_for {
     my @res;
     $state //= { ns => [@root_servers], count => 0, common => 0, seen => {} };
 
-    my ($pa)    = $self->_recurse( "$name", 'A', 'IN', $state );
-    my ($paaaa) = $self->_recurse( "$name", 'AAAA', 'IN', $state );
+    return if $state->{name_seen}{"$name"};
+    $state->{name_seen}{"$name"} = 1;
+
+    my ($pa)    = $self->_recurse( "$name", 'A', 'IN', { ns => [@root_servers], count => $state->{count}, common => 0, name_seen => { $name => 1}, glue => $state->{glue} } );
+    my ($paaaa) = $self->_recurse( "$name", 'AAAA', 'IN', { ns => [@root_servers], count => $state->{count}, common => 0, name_seen => { $name => 1}, glue => $state->{glue} } );
 
     my @rrs;
     push @rrs, $pa->get_records( 'a' ) if $pa;
