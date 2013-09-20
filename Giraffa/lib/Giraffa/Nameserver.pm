@@ -13,6 +13,7 @@ use Net::IP;
 use Time::HiRes qw[time];
 use Storable qw[nstore retrieve];
 use Module::Find qw[useall];
+use Carp;
 
 subtype 'Giraffa::Net::IP', as 'Object', where { $_->isa( 'Net::IP' ) };
 coerce 'Giraffa::Net::IP', from 'Str', via { Net::IP->new( $_ ) };
@@ -84,6 +85,10 @@ sub _query {
 
     $type //= 'A';
     $href->{class} //= 'IN';
+
+    if (Giraffa->config->get->{no_network}) {
+        croak 'External query attempted while running with no_network'
+    }
 
     Giraffa->logger->add( 'external_query', { name => "$name", type => $type, flags => $href, ip => $self->address->short } );
 

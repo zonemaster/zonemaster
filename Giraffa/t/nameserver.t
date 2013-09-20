@@ -2,6 +2,7 @@ use Test::More;
 
 BEGIN { use_ok( 'Giraffa::Nameserver' ); }
 use Giraffa;
+use Giraffa::Util;
 
 my $nsv6 = new_ok( 'Giraffa::Nameserver' => [ { name => 'ns.nic.se', address => '2a00:801:f0:53::53' } ] );
 my $nsv4 = new_ok( 'Giraffa::Nameserver' => [ { name => 'ns.nic.se', address => '212.247.7.228' } ] );
@@ -46,5 +47,11 @@ SKIP: {
 my $broken = new_ok( 'Giraffa::Nameserver' => [ { name => 'ns.not.existing', address => '192.0.2.17' } ] );
 my $p = $broken->query( 'www.iis.se' );
 ok( !$p, 'no response from broken server' );
+
+my $googlens = ns('ns1.google.com','216.239.32.10');
+config->{no_network} = 1;
+eval { $googlens->query('www.google.com','TXT')};
+like($@, qr/External query attempted while running with no_network/);
+config->{no_network} = undef;
 
 done_testing;
