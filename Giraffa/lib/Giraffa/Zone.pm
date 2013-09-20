@@ -26,7 +26,9 @@ sub _build_parent {
         return $self;
     }
 
-    return __PACKAGE__->new({ name => scalar Giraffa::Recursor->parent( ''.$self->name )});
+    my $pname = Giraffa::Recursor->parent( ''.$self->name );
+    croak "failed to find parent" if not $pname;
+    return __PACKAGE__->new({ name => $pname });
 }
 
 sub _build_glue {

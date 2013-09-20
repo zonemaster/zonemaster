@@ -20,7 +20,7 @@ sub recurse {
     $class //= 'IN';
 
     my ( $p, $state ) =
-      $self->_recurse( { qname => $name, qtype => $type, qclass => $class, ns => [@root_servers], count => 0 } );
+      $self->_recurse( $name, $type, $class, { ns => [@root_servers], count => 0, common => 0, seen => {} } );
 
     return $p;
 }
@@ -28,8 +28,9 @@ sub recurse {
 sub parent {
     my ( $self, $name ) = @_;
 
-    my ( $p, $state ) =
-      $self->_recurse( { qname => $name, qtype => 'SOA', qclass => 'IN', ns => [@root_servers], count => 0 } );
+    my ( $p, $state ) = $self->_recurse( $name, 'SOA', 'IN', { ns => [@root_servers], count => 0, common => 0, seen => {} } );
+
+    return if not $p;
 
     my $pname;
     if ( name( $state->{trace}[0] ) eq name( $name ) ) {
@@ -47,10 +48,10 @@ sub parent {
 }
 
 sub _recurse {
-    my ( $self, $state ) = @_;
+    my ( $self, $name, $type, $class, $state ) = @_;
 
     while ( my $ns = pop @{ $state->{ns} } ) {
-        my $p = $ns->query( $state->{qname}, $state->{qtype}, { class => $state->{qclass} } );
+        my $p = $ns->query( $name, $type, { class => $class} );
 
         next if not $p;
         next if $p->header->rcode eq 'REFUSED';
@@ -58,12 +59,22 @@ sub _recurse {
 
         return ( $p, $state ) if $p->no_such_record;
         return ( $p, $state ) if $p->no_such_name;
-        return ( $p, $state ) if $self->is_answer( $p, $state->{qname}, $state->{qtype}, $state->{qclass} );
+        return ( $p, $state ) if $self->is_answer( $p, $name, $type, $class );
 
         if ( $p->is_redirect ) {
-            $state->{ns} = $self->get_ns_from( $p ); # Follow redirect
-            $state->{counter} += 1;
-            unshift @{ $state->{trace} }, ( $p->get_records( 'ns' ) )[0]->name;
+            my $zname = ($p->get_records( 'ns' ) )[0]->name;
+
+            next if $state->{seen}{$zname}; # We followed this redirect before
+
+            $state->{seen}{$zname} = 1;
+            my $common = name($zname)->common(name($state->{qname}));
+
+            next if $common < $state->{common}; # Redirect going up the hierarchy is not OK
+
+            $state->{common} = $common;
+            $state->{ns} = $self->get_ns_from( $p, $state ); # Follow redirect
+            $state->{count} += 1;
+            unshift @{ $state->{trace} }, $zname ;
         }
 
         return if $state->{count} > 20;    # Loop protection
@@ -73,7 +84,7 @@ sub _recurse {
 }
 
 sub get_ns_from {
-    my ( $self, $p ) = @_;
+    my ( $self, $p, $state ) = @_;
     my @new;
     my %glue;
 
@@ -85,7 +96,7 @@ sub get_ns_from {
             push @new, ns( $name, $_ ) for keys %{$glue{$name}};
         }
         else {
-            foreach my $a ( $self->get_addresses_for($name) ) {
+            foreach my $a ( $self->get_addresses_for($name, $state) ) {
                 push @new, ns( $name, $a->short );
             }
         }
@@ -95,13 +106,17 @@ sub get_ns_from {
 }
 
 sub get_addresses_for {
-    my ( $self, $name ) = @_;
+    my ( $self, $name, $state ) = @_;
     my @res;
+    $state //= { ns => [@root_servers], count => 0, common => 0, seen => {} };
 
-    my $pa    = $self->recurse( "$name", 'A' );
-    my $paaaa = $self->recurse( "$name", 'AAAA' );
+    my ($pa)    = $self->_recurse( "$name", 'A', 'IN', $state );
+    my ($paaaa) = $self->_recurse( "$name", 'AAAA', 'IN', $state );
 
-    foreach my $rr ( sort {$a->address cmp $b->address} grep { $_->name eq $name } ( $pa->get_records( 'a' ), $paaaa->get_records( 'aaaa' ) ) ) {
+    my @rrs;
+    push @rrs, $pa->get_records( 'a' ) if $pa;
+    push @rrs, $paaaa->get_records( 'aaaa' ) if $paaaa;
+    foreach my $rr ( sort {$a->address cmp $b->address} grep { $_->name eq $name } @rrs ) {
         push @res, Net::IP->new($rr->address);
     }
 
@@ -123,7 +138,7 @@ sub is_answer {
             and $rr->type eq 'CNAME' )
         {
             my $new_packet = $self->recurse( $rr->cname, $type, $class );
-            $packet->unique_push( answer => $new_packet->answer );
+            $packet->unique_push( answer => $new_packet->answer ) if $new_packet;
             return 1;
         }
     }

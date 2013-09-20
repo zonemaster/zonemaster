@@ -14,6 +14,7 @@ sub no_such_record {
     my ( $self ) = @_;
 
     if (    scalar( $self->packet->answer ) == 0
+        and $self->packet->header->rcode eq 'NOERROR'
         and scalar( grep { $_->type eq 'SOA' } $self->packet->authority ) == 1
         and $self->packet->header->aa )
     {
