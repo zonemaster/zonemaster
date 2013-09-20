@@ -4,8 +4,8 @@ Test requirements
 Source documents
 ----------------
 
-Source document for Zonecheck: http://www.zonecheck.fr/features.shtml
-Source document for DNSCheck: https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages
+ * Source document for Zonecheck: [features.shtml](http://www.zonecheck.fr/features.shtml)  
+ * Source document for DNSCheck: [Detailes list of all possible DNSCheck messages](https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages)
 
 
 Discarded test cases
