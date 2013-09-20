@@ -23,7 +23,7 @@ is_parent( 'pp.se',                                                             
 is_parent( 'sno.pp.se',                                                                'se' );
 is_parent( '2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4.9.5.0.7.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa', '0.7.4.0.1.0.0.2.ip6.arpa' );
 is_parent( '.',                                                                        '.' );
-is_parent( 'foo.bar.baz.example.org', 'example.org');
+is_parent( 'foo.bar.baz.example.org',                                                  'example.org' );
 
 sub is_parent {
     my ( $name, $pname ) = @_;
@@ -32,14 +32,14 @@ sub is_parent {
     is( $pn, $pname, "parent for $name is $pn" );
 }
 
-my ($name, $packet) = Giraffa::Recursor->parent( 'www.iis.se');
-isa_ok($packet, 'Giraffa::Packet');
-is($name, 'iis.se', 'name ok');
-ok($packet->no_such_record, 'expected packet content');
+my ( $name, $packet ) = Giraffa::Recursor->parent( 'www.iis.se' );
+isa_ok( $packet, 'Giraffa::Packet' );
+is( $name, 'iis.se', 'name ok' );
+ok( $packet->no_such_record, 'expected packet content' );
 
 my @addr = Giraffa::Recursor->get_addresses_for( 'ns.nic.se' );
-isa_ok($_, 'Net::IP') for @addr;
-is($addr[0]->short, '212.247.7.228', 'expected address');
-is($addr[1]->short, '2a00:801:f0:53::53', 'expected address');
+isa_ok( $_, 'Net::IP' ) for @addr;
+is( $addr[0]->short, '212.247.7.228',      'expected address' );
+is( $addr[1]->short, '2a00:801:f0:53::53', 'expected address' );
 
 done_testing;
