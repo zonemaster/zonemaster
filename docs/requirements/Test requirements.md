@@ -30,11 +30,12 @@ To be defined
  * root servers addresses identical to ICANN
  * coherence between NS and ANY records
  * coherence between SOA and ANY records
+ * coherence between MX and ANY records
+ 
 
 
-Tests to implement (mapped from Zonecheck to DNSCheck)
+Tests to implement from Zonecheck (mapped to DNSCheck)
 ------------------------------------------------------
-
 
 | Zonecheck                                  | DNSCheck                                    |
 |:-------------------------------------------|:--------------------------------------------|
@@ -77,21 +78,26 @@ Tests to implement (mapped from Zonecheck to DNSCheck)
 |loopback delegation                         | __not implemented__?                        |
 |loopback is resolvable                      | __not implemented__?                        |
 |hostmaster MX is not an alias               | ?                                           |
-|nameserver IP reverse
-|nameserver IP reverse matching nameserver name
-|check if server is really recursive
-|nameserver doesn't allow recursion
-|given primary nameserver is primary
-|correctness of given nameserver list
-|test if server is recursive
-|MX record present
-|MX authoritative answer
-|MX syntax is valid for an hostname
-|MX is not an alias
-|absence of wildcard MX
-|MX can be resolved
-|coherence between MX and ANY records
-|behaviour against AAAA query
-|nameservers belong all to the same AS
-|address shouldn't be part of a bogon prefix
-|And much more such as DNSSEC checks...
+|nameserver IP reverse                       | ADDRESS:PTR_NOT_FOUND                       |
+|nameserver IP reverse matching nameserver name | __not implemented__?                     |
+|check if server is really recursive         | NAMESERVER:RECURSIVE                        |
+|nameserver doesn't allow recursion          | NAMESERVER:RECURSIVE __dup__?               |
+|given primary nameserver is primary         | DNS:NOT_AUTH ?                              |
+|correctness of given nameserver list        | CONSISTENCY:NS_SETS_OK ?                    |
+|test if server is recursive                 | NAMESERVER:RECURSIVE __dup__?               |
+|MX record present                           | MAIL:ALL_MX_IN_ZONE                         |
+|MX authoritative answer                     | MAIL:ALL_MX_IN_ZONE                         |
+|MX syntax is valid for an hostname          | MAIL:HOST_ERROR                             |
+|MX is not an alias                          | __not implemented__?                        |
+|absence of wildcard MX                      | __not implemented__?                        |
+|MX can be resolved                          | MAIL:ALL_MX_IN_ZONE __dup__?                |
+|behaviour against AAAA query                | ?                                           |
+|nameservers belong all to the same AS       | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |
+|address shouldn't be part of a bogon prefix | __not implemented__?                        |
+|And much more such as DNSSEC checks...      | ...                                         |
+
+Tests to implement from DNSCheck
+--------------------------------
+
+Although the list of [ll DNSCheck Messages](https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages)
+is comprehensive, it is not a list of tests as such. It is a list of messages emitted by DNSCheck. However, it can be used as a list of tests to be implemented, so we will not repeat the list here.
