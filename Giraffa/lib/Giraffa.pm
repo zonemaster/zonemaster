@@ -6,6 +6,7 @@ use Moose;
 use Giraffa::Nameserver;
 use Giraffa::Logger;
 use Giraffa::Config;
+use Giraffa::Zone;
 
 our $logger;
 our $config;
@@ -22,6 +23,12 @@ sub ns {
     my ( $class, $name, $address ) = @_;
 
     return Giraffa::Nameserver->new( { name => $name, address => $address } );
+}
+
+sub zone {
+    my ( $class, $name ) = @_;
+
+    return Giraffa::Zone->new({ name => $name });
 }
 
 =head1 NAME
