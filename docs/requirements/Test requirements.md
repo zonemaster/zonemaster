@@ -99,5 +99,5 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 Tests to implement from DNSCheck
 --------------------------------
 
-Although the list of [ll DNSCheck Messages](https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages)
+Although the list of [All DNSCheck Messages](https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages)
 is comprehensive, it is not a list of tests as such. It is a list of messages emitted by DNSCheck. However, it can be used as a list of tests to be implemented, so we will not repeat the list here.
