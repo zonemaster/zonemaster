@@ -11,7 +11,7 @@ INIT {
     local $/;
     my $json = <DATA>;
     my $href = decode_json $json;
-    @root_servers = map { ns( $_->{name}, $_->{address} ) } @{ $href->{'.'} };
+    @root_servers = map { Giraffa::Util::ns( $_->{name}, $_->{address} ) } @{ $href->{'.'} };
 }
 
 sub recurse {
@@ -75,13 +75,14 @@ sub _recurse {
 sub get_ns_from {
     my ( $self, $p ) = @_;
     my @new;
+    my %glue;
 
     my @names = sort map { name( $_->nsdname ) } $p->get_records( 'ns' );
-    my %glue = map { name( $_->name ) => $_->address } ( $p->get_records( 'a' ), $p->get_records( 'aaaa' ) );
+    $glue{$_->name}{$_->address} = 1 for ( $p->get_records( 'a' ), $p->get_records( 'aaaa' ) );
 
     foreach my $name ( @names ) {
         if ( $glue{$name} ) {
-            push @new, ns( $name, $glue{$name} );
+            push @new, ns( $name, $_ ) for keys %{$glue{$name}};
         }
         else {
             foreach my $a ( $self->get_addresses_for($name) ) {
