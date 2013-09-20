@@ -27,12 +27,6 @@ has 'cache' => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
 ### Variables
 ###
 
-my %defaults;
-
-INIT {
-    %defaults = %{ Giraffa->config->get->{resolver}{defaults} };
-}
-
 our %object_cache;
 
 ###
@@ -60,6 +54,7 @@ sub _build_dns {
         dnsrch      => 0,
     );
 
+    my %defaults = %{ Giraffa->config->get->{resolver}{defaults} };
     foreach my $flag ( keys %defaults ) {
         $res->$flag( $defaults{$flag} );
     }
@@ -77,6 +72,7 @@ sub query {
 
     Giraffa->logger->add( 'query', { name => "$name", type => $type, flags => $href, ip => $self->address->short } );
 
+    my %defaults = %{ Giraffa->config->get->{resolver}{defaults} };
     return $self->cache->{$name}{$type}{ $href->{class} // 'IN' }{ $href->{dnssec}
           // $defaults{dnssec} }{ $href->{usevc} // $defaults{usevc} }{ $href->{recurse} // $defaults{recurse} } //=
       $self->_query( $name, $type, $href );
@@ -90,6 +86,8 @@ sub _query {
     $href->{class} //= 'IN';
 
     Giraffa->logger->add( 'external_query', { name => "$name", type => $type, flags => $href, ip => $self->address->short } );
+
+    my %defaults = %{ Giraffa->config->get->{resolver}{defaults} };
 
     foreach my $flag ( keys %defaults ) {
         $flags{$flag} = $href->{$flag} // $defaults{$flag};
