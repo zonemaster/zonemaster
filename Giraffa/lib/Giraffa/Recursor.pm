@@ -31,11 +31,18 @@ sub parent {
     my ( $p, $state ) =
       $self->_recurse( { qname => $name, qtype => 'SOA', qclass => 'IN', ns => [@root_servers], count => 0 } );
 
+    my $pname;
     if ( name( $state->{trace}[0] ) eq name( $name ) ) {
-        return name( $state->{trace}[1] );
+        $pname = name( $state->{trace}[1] );
     }
     else {
-        return name( $state->{trace}[0] );
+        $pname = name( $state->{trace}[0] );
+    }
+
+    if (wantarray()) {
+        return ($pname, $p);
+    } else {
+        return $pname;
     }
 }
 
@@ -54,7 +61,7 @@ sub _recurse {
         return ( $p, $state ) if $self->is_answer( $p, $state->{qname}, $state->{qtype}, $state->{qclass} );
 
         if ( $p->is_redirect ) {
-            $state->{ns} = $self->follow_redirect( $p );
+            $state->{ns} = $self->get_ns_from( $p ); # Follow redirect
             $state->{counter} += 1;
             unshift @{ $state->{trace} }, ( $p->get_records( 'ns' ) )[0]->name;
         }
@@ -65,11 +72,11 @@ sub _recurse {
     return;
 }
 
-sub follow_redirect {
+sub get_ns_from {
     my ( $self, $p ) = @_;
     my @new;
 
-    my @names = map { name( $_->nsdname ) } $p->get_records( 'ns' );
+    my @names = sort map { name( $_->nsdname ) } $p->get_records( 'ns' );
     my %glue = map { name( $_->name ) => $_->address } ( $p->get_records( 'a' ), $p->get_records( 'aaaa' ) );
 
     foreach my $name ( @names ) {
@@ -77,16 +84,27 @@ sub follow_redirect {
             push @new, ns( $name, $glue{$name} );
         }
         else {
-            my $pa    = $self->recurse( $name, 'A' );
-            my $paaaa = $self->recurse( $name, 'AAAA' );
-
-            foreach my $rr ( grep { $_->name eq $name } ( $pa->get_records( 'a' ), $paaaa->get_records( 'aaaa' ) ) ) {
-                push @new, ns( $name, $rr->address );
+            foreach my $a ( $self->get_addresses_for($name) ) {
+                push @new, ns( $name, $a->short );
             }
         }
     }
 
     return \@new;
+}
+
+sub get_addresses_for {
+    my ( $self, $name ) = @_;
+    my @res;
+
+    my $pa    = $self->recurse( "$name", 'A' );
+    my $paaaa = $self->recurse( "$name", 'AAAA' );
+
+    foreach my $rr ( sort {$a->address cmp $b->address} grep { $_->name eq $name } ( $pa->get_records( 'a' ), $paaaa->get_records( 'aaaa' ) ) ) {
+        push @res, Net::IP->new($rr->address);
+    }
+
+    return @res;
 }
 
 sub is_answer {
@@ -118,6 +136,10 @@ sub is_answer {
     }
 
     return;
+}
+
+sub root_servers {
+    return @root_servers;
 }
 
 1;
