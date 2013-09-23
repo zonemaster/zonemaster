@@ -116,6 +116,12 @@ sub _query {
     }
 }
 
+sub string {
+    my ( $self ) = @_;
+
+    return $self->name->string . '/' . $self->address->short;
+}
+
 sub save {
     my ( $class, $filename ) = @_;
 
