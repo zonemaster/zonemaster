@@ -12,7 +12,17 @@ sub all {
     my ( $class, $zone ) = @_;
     my @results;
 
-    push @results, $class->basic1($zone);
+    push @results, $class->basic1( $zone );
+
+    # Perform BASIC2 if BASIC1 passed
+    if ( grep { $_->tag eq 'HAS_GLUE' } @results ) {
+        push @results, $class->basic2( $zone );
+    }
+
+    # Perform BASIC3 if BASIC2 failed
+    if ( not grep { $_->tag eq 'HAS_NAMESERVERS' } @results ) {
+        push @results, $class->basic3( $zone );
+    }
 
     return @results;
 }
@@ -25,15 +35,9 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        basic1 => [
-            qw[
-              DELEGATION
-              NO_NAMESERVERS
-              NO_DOMAIN
-              ]
-        ],
-        basic2 => [],
-        basic3 => [],
+        basic1 => [qw(HAS_GLUE NO_GLUE NO_DOMAIN)],
+        basic2 => [qw(NS_FAILED NS_NO_RESPONSE HAS_NAMESERVERS)],
+        basic3 => [qw(HAS_A_RECORDS)],
     };
 }
 
@@ -48,16 +52,22 @@ sub basic1 {
     my $parent = $zone->parent;
     my $p = $parent->query_one( $zone->name, 'NS' );
 
+    if ( not $p ) {
+        push @results, info( NO_PARENT_RESPONSE => { parent => $parent->name->string } );
+        return @results;
+    }
+
     if ( $p->header->rcode eq 'NXDOMAIN' ) {
-        push @results, info( 'NO_DOMAIN', { parent => ''.$parent->name } );
+        push @results, info( 'NO_DOMAIN', { parent => $parent->name->string } );
     }
     else {
         my @ns = grep { $_->name eq $zone->name } $p->get_records( 'ns' );
         if ( @ns > 0 ) {
-            push @results, info( 'DELEGATION', { parent => ''.$parent->name, ns => join(',', sort map {$_->nsdname} @ns) } );
+            push @results,
+              info( 'HAS_GLUE', { parent => $parent->name->string, ns => join( ',', sort map { $_->nsdname } @ns ) } );
         }
         else {
-            push @results, info( 'NO_NAMESERVERS', { parent => ''.$parent->name, rcode => $p->header->rcode } );
+            push @results, info( 'NO_GLUE', { parent => $parent->name->string, rcode => $p->header->rcode } );
         }
     }
 
@@ -68,12 +78,39 @@ sub basic2 {
     my ( $class, $zone ) = @_;
     my @results;
 
+    foreach my $ns ( @{ $zone->glue } ) {
+        my $p = $ns->query( $zone->name, 'NS' );
+        if ( $p ) {
+            my @ns = grep { $_->name eq $zone->name } $p->get_records( 'ns' );
+            if ( @ns > 0 ) {
+                push @results,
+                  info( HAS_NAMESERVERS => { ns => join( ',', sort map { $_->nsdname } @ns ), source => $ns->string } );
+            }
+            else {
+                push @results, info( NS_FAILED => { source => '' . $ns->string } );
+            }
+        }
+        else {
+            push @results, info( NS_NO_RESPONSE => { source => '' . $ns->string } );
+        }
+    }
+
     return @results;
 }
 
 sub basic3 {
     my ( $class, $zone ) = @_;
     my @results;
+
+    my $name = 'www.' . $zone->name;
+    foreach my $ns ( @{ $zone->glue } ) {
+        my $p = $ns->query( $name, 'A' );
+        next if not $p;
+        my @a = grep { $_->name eq $name } $p->get_records( 'a' );
+        if ( @a > 0 ) {
+            push @results, info( HAS_A_RECORDS => { source => $ns->string } );
+        }
+    }
 
     return @results;
 }
