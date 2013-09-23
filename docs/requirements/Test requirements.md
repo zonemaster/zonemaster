@@ -88,13 +88,15 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |MX record present                           | MAIL:ALL_MX_IN_ZONE                         |
 |MX authoritative answer                     | MAIL:ALL_MX_IN_ZONE                         |
 |MX syntax is valid for an hostname          | MAIL:HOST_ERROR                             |
-|MX is not an alias                          | __not implemented__?                        |
+|MX is not an alias                          | MAIL:HOST_ERROR                             |
 |absence of wildcard MX                      | __not implemented__?                        |
 |MX can be resolved                          | MAIL:ALL_MX_IN_ZONE __dup__?                |
 |behaviour against AAAA query                | ?                                           |
 |nameservers belong all to the same AS       | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |
-|address shouldn't be part of a bogon prefix | __not implemented__?                        |
+|address shouldn't be part of a bogon prefix | Partly implemented                          |
 |And much more such as DNSSEC checks...      | ...                                         |
+
+Comment regarding addresses in bogon prefixes: DNSCheck implements checks against invalid addresses defined in RFCs. Since all of IPv4 space has been delegated to the RIRs, that is the whole of the low-volatility bogon space. The high-voltility bogon list would require daily (or even more frequent) updates, which is not practical in a standalone library.
 
 Tests to implement from DNSCheck
 --------------------------------
