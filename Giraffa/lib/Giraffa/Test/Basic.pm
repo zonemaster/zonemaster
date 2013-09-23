@@ -58,16 +58,20 @@ sub basic1 {
     }
 
     if ( $p->header->rcode eq 'NXDOMAIN' ) {
-        push @results, info( 'NO_DOMAIN', { parent => $parent->name->string } );
+        push @results, info( NO_DOMAIN => { parent => $parent->name->string } );
     }
     else {
-        my @ns = grep { $_->name eq $zone->name } $p->get_records( 'ns' );
-        if ( @ns > 0 ) {
+        if ( $p->has_rrs_of_type_for_name( 'ns', $zone->name ) ) {
             push @results,
-              info( 'HAS_GLUE', { parent => $parent->name->string, ns => join( ',', sort map { $_->nsdname } @ns ) } );
+              info(
+                HAS_GLUE => {
+                    parent => $parent->name->string,
+                    ns     => join( ',', sort map { $_->nsdname } $p->get_records_for_name( 'ns', $zone->name ) )
+                }
+              );
         }
         else {
-            push @results, info( 'NO_GLUE', { parent => $parent->name->string, rcode => $p->header->rcode } );
+            push @results, info( NO_GLUE => { parent => $parent->name->string, rcode => $p->header->rcode } );
         }
     }
 
@@ -81,17 +85,21 @@ sub basic2 {
     foreach my $ns ( @{ $zone->glue } ) {
         my $p = $ns->query( $zone->name, 'NS' );
         if ( $p ) {
-            my @ns = grep { $_->name eq $zone->name } $p->get_records( 'ns' );
-            if ( @ns > 0 ) {
+            if ( $p->has_rrs_of_type_for_name( 'ns', $zone->name ) ) {
                 push @results,
-                  info( HAS_NAMESERVERS => { ns => join( ',', sort map { $_->nsdname } @ns ), source => $ns->string } );
+                  info(
+                    HAS_NAMESERVERS => {
+                        ns     => join( ',', sort map { $_->nsdname } $p->get_records_for_name( 'ns', $zone->name ) ),
+                        source => $ns->string
+                    }
+                  );
             }
             else {
-                push @results, info( NS_FAILED => { source => '' . $ns->string } );
+                push @results, info( NS_FAILED => { source => $ns->string } );
             }
         }
         else {
-            push @results, info( NS_NO_RESPONSE => { source => '' . $ns->string } );
+            push @results, info( NS_NO_RESPONSE => { source => $ns->string } );
         }
     }
 
@@ -106,8 +114,7 @@ sub basic3 {
     foreach my $ns ( @{ $zone->glue } ) {
         my $p = $ns->query( $name, 'A' );
         next if not $p;
-        my @a = grep { $_->name eq $name } $p->get_records( 'a' );
-        if ( @a > 0 ) {
+        if ( $p->has_rrs_of_type_for_name( 'a', $name ) ) {
             push @results, info( HAS_A_RECORDS => { source => $ns->string } );
         }
     }

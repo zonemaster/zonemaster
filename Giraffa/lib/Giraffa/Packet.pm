@@ -73,4 +73,16 @@ sub get_records {
     return @raw;
 }
 
+sub get_records_for_name {
+    my ( $self, $type, $name ) = @_;
+
+    return grep { $_->name eq $name } $self->get_records( $type );
+}
+
+sub has_rrs_of_type_for_name {
+    my ( $self, $type, $name ) = @_;
+
+    return ( grep { $_->name eq $name } $self->get_records( $type ) ) > 0;
+}
+
 1;
