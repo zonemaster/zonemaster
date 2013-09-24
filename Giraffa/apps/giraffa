@@ -1,0 +1,20 @@
+#!/usr/bin/env perl
+
+use 5.14.2;
+use strict;
+use warnings;
+
+use Giraffa;
+use Getopt::Long;
+
+my $debug = 0;
+
+GetOptions(
+    'debug|d' => \$debug,
+);
+
+my $zname = shift(@ARGV);
+
+my @results = Giraffa->test_zone($zname);
+
+say "$_" for @results;
