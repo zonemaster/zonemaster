@@ -29,3 +29,37 @@ sub name {
 }
 
 1;
+
+=head1 NAME
+
+Giraffa::Util - utility functions for other Giraffa modules
+
+=head1 SYNOPSIS
+
+    use Giraffa::Util;
+    info(TAG => { some => 'argument'});
+    my $ns = ns($name, $address);
+    config->{resolver}{defaults}{tcp_timeout} = 4711;
+    my $name = name('whatever.example.org');
+
+=head1 EXPORTED FUNCTIONS
+
+=over
+
+=item info($tag, $href)
+
+Creates and returns a L<Giraffa::Logger::Entry> object. The object is also added to the global logger object's list of entries.
+
+=item ns($name, $address)
+
+Creates and returns a nameserver object with the given name and address.
+
+=item config()
+
+Returns the global L<Giraffa::Config> object.
+
+=item name($string)
+
+Creates and returns a L<Giraffa::DNSName> object for the given string.
+
+=back

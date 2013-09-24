@@ -86,3 +86,59 @@ sub query_all {
 }
 
 1;
+
+=head1 NAME
+
+Giraffa::Zone - Object representing a DNS zone
+
+=head1 SYNOPSIS
+
+    my $zone = Giraffa::Zone->new({ name => 'nic.se' });
+    my $packet = $zone->parent->query_one($zone->name, 'NS');
+
+=head1 ATTRIBUTES
+
+=over
+
+=item name
+
+A L<Giraffa::DNSName> object representing the name of the zone.
+
+=item parent
+
+A L<Giraffa::Zone> object for this domain's parent domain.
+
+=item ns
+
+A reference to an array of L<Giraffa::Nameserver> objects for the domain. The list is based on the NS records returned from a query to the first
+listed glue server for the domain.
+
+=item glue
+
+A reference to an array of L<Giraffa::Nameserver> objects for the domain. The list is based on the NS records returned from a query to the first
+listed nameserver for the parent domain.
+
+=item glue_addresses
+
+A list of L<Net::DNS::RR::A> and L<Net::DNS::RR::AAAA> records returned in the Additional section of an NS query to the first listed nameserver
+for the parent domain.
+
+=back
+
+=head1 METHODS
+
+=over 
+
+=item query_one($name[, $type[, $class]])
+
+Sends (or retrieves from cache) a query for the given name, type and class sent to the first nameserver in the zone's ns list. If there is a
+response, it will be returned in a L<Giraffa::Packet> object. If the type and/or class arguments aren't given, they default to 'A' and 'IN'.
+
+=item query_all($name, $type, $class)
+
+Sends (or retrieves from cache) queries to all the nameservers listed in the zone's ns list, and returns a reference to an array with the
+responses. The responses can be either L<Giraffa::Packet> objects or C<undef> values.
+
+=back
+
+=cut

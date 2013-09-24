@@ -40,21 +40,37 @@ sub test_zone {
 
 =head1 NAME
 
-Giraffa - The great new Giraffa!
-
-=head1 VERSION
-
-Version 0.1
-
-=cut
+Giraffa - A tool to check the quality of a DNS zone
 
 =head1 SYNOPSIS
 
-    Giraffa->ns($name, $address)
+    my @results = Giraffa->test_zone('iis.se')
 
-    Giraffa->logger()
+=head1 METHODS
 
-    Giraffa->config()
+=over
+
+=item test_zone($name)
+
+Runs all available tests and returns a list of L<Giraffa::Logger::Entry> objects.
+
+=item zone($name)
+
+Returns a L<Giraffa::Zone> object for the given name.
+
+=item ns($name, $address)
+
+Returns a L<Giraffa::Nameserver> object for the given name and address.
+
+=item config()
+
+Returns the global L<Giraffa::Config> object.
+
+=item logger()
+
+Returns the global L<Giraffa::Logger> object.
+
+=back
 
 =head1 AUTHOR
 

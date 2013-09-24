@@ -86,3 +86,53 @@ sub has_rrs_of_type_for_name {
 }
 
 1;
+
+=head1 NAME
+
+Giraffa::Packet - wrapping object for L<Net::DNS::Packet> objects
+
+=head1 SYNOPSIS
+
+    my $packet = $ns->query('iis.se', 'NS');
+    my @rrs = $packet->get_records('ns');
+
+=head1 ATTRIBUTES
+
+=over
+
+=item packet
+
+Holds the L<Net::DNS::Packet> the object is wrapping.
+
+=back
+
+=head1 METHODS
+
+=over
+
+=item no_such_record
+
+Returns true if the packet represents an existing DNS node lacking any records of the requested type.
+
+=item no_such_name
+
+Returns true if the packet represents a non-existent DNS node.
+
+=item is_redirect
+
+Returns true if the packet is a redirect to another set of nameservers.
+
+=item get_records($type[, $section])
+
+Returns the L<Net::DNS::RR> objects of the requested type in the packet. If the optional C<$section> argument is given, and is one of C<answer>,
+C<authority> and C<additional>, only RRs from that section are returned.
+
+=item get_records_for_name($type, $name)
+
+Returns all L<Net::DNS::RR> objects for the given name in the packet.
+
+=item has_rrs_of_type_for_name($type, $name)
+
+Returns true if the packet holds any RRs of the specified type for the given name.
+
+=back

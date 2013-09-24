@@ -138,3 +138,102 @@ sub restore {
 }
 
 1;
+
+=head1 NAME
+
+Giraffa::Nameserver - object representing a DNS nameserver
+
+=head1 SYNOPSIS
+
+    my $ns = Giraffa::Nameserver->new({ name => 'ns.nic.se', address => '212.247.7.228' });
+    my $p = $ns->query('www.iis.se', 'AAAA');
+
+=head1 ATTRIBUTES
+
+=over
+
+=item name
+
+A L<Giraffa::DNSName> object holding the nameserver's name.
+
+=item address
+
+A L<Net::IP> object holding the nameserver's address.
+
+=item dns
+
+The L<Net::DNS::Resolver> object used to actually send and recieve DNS queries.
+
+=item cache
+
+A reference to a hash holding the cache of sent queries. Not meant for external use.
+
+=back
+
+=head1 METHODS
+
+=over
+
+=item query($name, $type, $flagref)
+
+Send a DNS query to the nameserver the object represents. C<$name> and C<$type> are the name and type that will be queried for (C<$type> defaults
+to 'A' if it's left undefined). C<$flagref> is a reference to a hash, the keys of which are flags and the values are their corresponding values.
+The available flags are as follows. All but the first directly correspond to methods in the L<Net::DNS::Resolver> object.
+
+=over
+
+=item class
+
+Defaults to 'IN' if not set.
+
+=item usevc
+
+Send the query via TCP (only).
+
+=item retrans
+
+The retransmission interval
+
+=item dnssec
+
+Set the DO flag in the query.
+
+=item debug
+
+Set the debug flag in the resolver, producing output on STDERR as the query process proceeds.
+
+=item recurse
+
+Set the RD flag in the query.
+
+=item udp_timeout
+
+Set the UDP timeout for the outgoing UDP socket. May or may not be observed by the underlying network stack.
+
+=item tcp_timeout
+
+Set the TCP timeout for the outgoing TCP socket. May or may not be observed by the underlying network stack.
+
+=item retry
+
+Set the number of times the query is tried.
+
+=item igntc
+
+If set to true, incoming response packets with the TC flag set are not automatically retried over TCP.
+
+=back
+
+=item string()
+
+Returns a string representation of the object. Normally this is just the name and IP address separated by a slash.
+
+=item save($filename)
+
+Save the entire object cache to the given filename, using the byte-order-independent Storable format.
+
+=item restore($filename)
+
+Replace the entire object cache with the contents of the named file.
+
+=back
