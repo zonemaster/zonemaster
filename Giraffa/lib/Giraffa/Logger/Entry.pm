@@ -5,6 +5,8 @@ use Time::HiRes qw[time];
 use JSON::PP;
 use Moose;
 
+use overload '""' => \&string;
+
 our $start_time;
 
 INIT {
@@ -15,7 +17,7 @@ has 'module'    => ( is => 'ro', isa => 'Str',                lazy_build => 1 );
 has 'tag'       => ( is => 'ro', isa => 'Str',                required   => 1 );
 has 'args'      => ( is => 'ro', isa => 'Maybe[HashRef]',     required   => 0 );
 has 'timestamp' => ( is => 'ro', isa => 'Num',                default    => sub { time() - $start_time } );
-has 'trace'     => ( is => 'ro', isa => 'ArrayRef[ArrayRef]', lazy_build => 1 );
+has 'trace'     => ( is => 'ro', isa => 'ArrayRef[ArrayRef]', builder    => '_build_trace' );
 
 sub _build_trace {
     my ( $self ) = @_;
@@ -26,6 +28,7 @@ sub _build_trace {
     #        0          1      2            3         4           5          6            7       8         9         10
     # $package, $filename, $line, $subroutine, $hasargs, $wantarray, $evaltext, $is_require, $hints, $bitmask, $hinthash
     while ( my @line = caller( $i++ ) ) {
+        next unless $line[3] =~ /^Giraffa/;
         push @trace, [ @line[ 0, 3 ] ];
     }
 
@@ -34,9 +37,14 @@ sub _build_trace {
 
 sub _build_module {
     my ( $self ) = @_;
-    my $tmp = ( @{ $self->trace } )[-1][0];
 
-    return uc $tmp;
+    foreach my $e (@{$self->trace}) {
+        if ($e->[1] eq 'Giraffa::Util::info' and $e->[0] =~ /^Giraffa::Test::(.*)$/) {
+            return uc $1;
+        }
+    }
+
+    return 'SYSTEM';
 }
 
 sub string {
