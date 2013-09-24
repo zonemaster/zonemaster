@@ -1,6 +1,9 @@
 package Giraffa::Test::Basic v0.0.1;
 
 use 5.14.2;
+use strict;
+use warnings;
+
 use Giraffa;
 use Giraffa::Util;
 
@@ -27,6 +30,17 @@ sub all {
     return @results;
 }
 
+sub can_continue {
+    my ( $class, @results ) = @_;
+    my %tag = map {$_->tag => 1} @results;
+
+    if ($tag{HAS_GLUE} and $tag{HAS_NAMESERVERS}) {
+        return 1;
+    } else {
+        return;
+    }
+}
+
 ###
 ### Metadata Exposure
 ###
@@ -39,6 +53,10 @@ sub metadata {
         basic2 => [qw(NS_FAILED NS_NO_RESPONSE HAS_NAMESERVERS)],
         basic3 => [qw(HAS_A_RECORDS)],
     };
+}
+
+sub version {
+    return "$Giraffa::Test::Basic::VERSION";
 }
 
 ###

@@ -7,6 +7,7 @@ use Giraffa::Nameserver;
 use Giraffa::Logger;
 use Giraffa::Config;
 use Giraffa::Zone;
+use Giraffa::Test;
 
 our $logger;
 our $config;
@@ -29,6 +30,12 @@ sub zone {
     my ( $class, $name ) = @_;
 
     return Giraffa::Zone->new({ name => $name });
+}
+
+sub test_zone {
+    my ( $class, $zname ) = @_;
+
+    return Giraffa::Test->run_all_for($class->zone($zname));
 }
 
 =head1 NAME
