@@ -4,6 +4,14 @@ BEGIN { use_ok( 'Giraffa::Nameserver' ); }
 use Giraffa;
 use Giraffa::Util;
 
+my $datafile = 't/nameserver.storable';
+
+if (not $ENV{GIRAFFA_RECORD}) {
+    die "Stored data file missing" if not -r $datafile;
+    Giraffa::Nameserver->restore($datafile);
+    config->{no_network} = 1;
+}
+
 my $nsv6 = new_ok( 'Giraffa::Nameserver' => [ { name => 'ns.nic.se', address => '2a00:801:f0:53::53' } ] );
 my $nsv4 = new_ok( 'Giraffa::Nameserver' => [ { name => 'ns.nic.se', address => '212.247.7.228' } ] );
 
@@ -49,9 +57,15 @@ my $p = $broken->query( 'www.iis.se' );
 ok( !$p, 'no response from broken server' );
 
 my $googlens = ns('ns1.google.com','216.239.32.10');
+my $save = config->{no_network};
 config->{no_network} = 1;
+delete($googlens->cache->{'www.google.com'});
 eval { $googlens->query('www.google.com','TXT')};
 like($@, qr/External query attempted while running with no_network/);
-config->{no_network} = undef;
+config->{no_network} = $save;
+
+if ($ENV{GIRAFFA_RECORD}) {
+    Giraffa::Nameserver->save($datafile);
+}
 
 done_testing;

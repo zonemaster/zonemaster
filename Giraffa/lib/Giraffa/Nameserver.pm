@@ -74,9 +74,17 @@ sub query {
     Giraffa->logger->add( 'query', { name => "$name", type => $type, flags => $href, ip => $self->address->short } );
 
     my %defaults = %{ Giraffa->config->get->{resolver}{defaults} };
-    return $self->cache->{$name}{$type}{ $href->{class} // 'IN' }{ $href->{dnssec}
-          // $defaults{dnssec} }{ $href->{usevc} // $defaults{usevc} }{ $href->{recurse} // $defaults{recurse} } //=
-      $self->_query( $name, $type, $href );
+
+    my $class   = $href->{class}   // 'IN';
+    my $dnssec  = $href->{dnssec}  // $defaults{dnssec};
+    my $usevc   = $href->{usevc}   // $defaults{usevc};
+    my $recurse = $href->{recurse} // $defaults{recurse};
+
+    if ( not exists( $self->cache->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse} ) ) {
+        $self->cache->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse} = $self->_query( $name, $type, $href );
+    }
+
+    return $self->cache->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse};
 }
 
 sub _query {
@@ -86,11 +94,12 @@ sub _query {
     $type //= 'A';
     $href->{class} //= 'IN';
 
-    if (Giraffa->config->get->{no_network}) {
-        croak 'External query attempted while running with no_network'
+    if ( Giraffa->config->get->{no_network} ) {
+        croak 'External query attempted while running with no_network';
     }
 
-    Giraffa->logger->add( 'external_query', { name => "$name", type => $type, flags => $href, ip => $self->address->short } );
+    Giraffa->logger->add( 'external_query',
+        { name => "$name", type => $type, flags => $href, ip => $self->address->short } );
 
     my %defaults = %{ Giraffa->config->get->{resolver}{defaults} };
 
@@ -237,3 +246,5 @@ Save the entire object cache to the given filename, using the byte-order-indepen
 Replace the entire object cache with the contents of the named file.
 
 =back
+
+=cut
