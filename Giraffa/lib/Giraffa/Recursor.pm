@@ -184,6 +184,50 @@ sub root_servers {
 }
 
 1;
+
+=head1 NAME
+
+Giraffa::Recursor - recursive resolver for Giraffa
+
+=head1 SYNOPSIS
+
+    my $packet = Giraffa::Recursor->recurse($name, $type, $class);
+    my $pname = Giraffa::Recursor->parent('example.org');
+
+=head1 METHODS
+
+=over
+
+=item recurse($name, $type, $class)
+
+Does a recursive resolution from the root servers down for the given triplet.
+
+=item parent($name)
+
+Does a recursive resolution from the root down for the given name (using type C<SOA> and class C<IN>). If the resolution is successful, it returns
+the domain name of the second-to-last step. If the resolution is unsuccessful, it returns the domain name of the last step.
+
+=item get_ns_from($packet, $state)
+
+Internal method. Takes a packet and a recursion state and returns a list of ns objects. Used to follow redirections.
+
+=item get_addresses_for($name[, $state])
+
+Takes a name and returns a (possibly empty) list of IP addresses for that name. When used internally by the recursor it's passed a recursion state
+as its second argument.
+
+=item is_answer($packet, $name, $type, $class)
+
+Internal method. Returns true if the given packet is an answer for a query for the given triplet.
+
+=item root_servers()
+
+Returns a list of ns objects representing the root servers. The list of root servers is hardcoded into this module.
+
+=back
+
+=cut
+
 __DATA__
 {
    "." : [

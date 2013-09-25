@@ -81,3 +81,56 @@ sub common {
 __PACKAGE__->meta->make_immutable;
 
 1;
+
+=head1 NAME
+
+Giraffa::DNSName - class representing DNS names
+
+=head1 SYNOPSIS
+
+    my $name1 = Giraffa::Name->new('www.example.org');
+    my $name2 = Giraffa::Name->new('ns.example.org');
+    say "Yay!" if $name1->common($name2) == 2;
+
+=head1 ATTRIBUTES
+
+=over
+
+=item labels
+
+A reference to a list of strings, being the labels the DNS name is made up from.
+
+=back
+
+=head1 METHODS
+
+=over
+
+=item new($string) _or_ new({ labels => \@labellist})
+
+The constructor can be called with either a single non-reference argument, which will be split at dot characters to create the label list, or with
+a reference to a hash as in the example above.
+
+=item string()
+
+Returns a string representation of the name. The string representation is created by joining the labels with dots. If there are no labels, a
+single dot is returned. The names created this way do not have a trailing dot.
+
+The stringification operator is overloaded to this function, so it should rarely be necessary to call it directly.
+
+=item str_cmp($other)
+
+Overloads string comparison. Comparison is made after converting the names to upper case, and ignores any trailing dot on the other name.
+
+=item next_higher()
+
+Returns a new L<Giraffa::DNSName> object, representing the name of the called one with the leftmost label removed.
+
+=item common($other)
+
+Returns the number of labels from the rightmost going left that are the same in both names. Used by the recursor to check for redirections going
+up the DNS tree.
+
+=over
+
+=cut
