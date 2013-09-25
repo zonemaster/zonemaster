@@ -61,7 +61,7 @@ my $save = config->{no_network};
 config->{no_network} = 1;
 delete($googlens->cache->{'www.google.com'});
 eval { $googlens->query('www.google.com','TXT')};
-like($@, qr/External query attempted while running with no_network/);
+like($@, qr{External query for www.google.com, TXT attempted to ns1.google.com/216.239.32.10 while running with no_network});
 config->{no_network} = $save;
 
 if ($ENV{GIRAFFA_RECORD}) {

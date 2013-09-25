@@ -5,13 +5,12 @@ use Moose;
 use JSON::PP;
 use Giraffa::Util;
 
-my @root_servers;
+my $seed_data;
 
 INIT {
     local $/;
     my $json = <DATA>;
-    my $href = decode_json $json;
-    @root_servers = map { Giraffa::Util::ns( $_->{name}, $_->{address} ) } @{ $href->{'.'} };
+    $seed_data = decode_json $json;
 }
 
 sub recurse {
@@ -20,7 +19,7 @@ sub recurse {
     $class //= 'IN';
 
     my ( $p, $state ) =
-      $self->_recurse( $name, $type, $class, { ns => [@root_servers], count => 0, common => 0, seen => {} } );
+      $self->_recurse( $name, $type, $class, { ns => [root_servers()], count => 0, common => 0, seen => {} } );
 
     return $p;
 }
@@ -29,7 +28,7 @@ sub parent {
     my ( $self, $name ) = @_;
 
     my ( $p, $state ) =
-      $self->_recurse( $name, 'SOA', 'IN', { ns => [@root_servers], count => 0, common => 0, seen => {} } );
+      $self->_recurse( $name, 'SOA', 'IN', { ns => [root_servers()], count => 0, common => 0, seen => {} } );
 
     return if not $p;
 
@@ -106,13 +105,13 @@ sub get_ns_from {
         }
     }
 
-    return \@new;
+    return [sort {$a->name cmp $b->name or $a->address->ip cmp $b->address->ip} @new];
 }
 
 sub get_addresses_for {
     my ( $self, $name, $state ) = @_;
     my @res;
-    $state //= { ns => [@root_servers], count => 0, common => 0, seen => {} };
+    $state //= { ns => [root_servers()], count => 0, common => 0, seen => {} };
 
     return if $state->{name_seen}{"$name"};
     $state->{name_seen}{"$name"} = 1;
@@ -120,7 +119,7 @@ sub get_addresses_for {
     my ( $pa ) = $self->_recurse(
         "$name", 'A', 'IN',
         {
-            ns        => [@root_servers],
+            ns        => [root_servers()],
             count     => $state->{count},
             common    => 0,
             name_seen => { $name => 1 },
@@ -130,7 +129,7 @@ sub get_addresses_for {
     my ( $paaaa ) = $self->_recurse(
         "$name", 'AAAA', 'IN',
         {
-            ns        => [@root_servers],
+            ns        => [root_servers()],
             count     => $state->{count},
             common    => 0,
             name_seen => { $name => 1 },
@@ -180,7 +179,7 @@ sub is_answer {
 }
 
 sub root_servers {
-    return @root_servers;
+    return map { Giraffa::Util::ns( $_->{name}, $_->{address} ) } @{ $seed_data->{'.'} };
 }
 
 1;

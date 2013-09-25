@@ -39,9 +39,16 @@ around 'new' => sub {
     my $self = shift;
 
     my $obj = $self->$orig( @_ );
-    my $name = '$$$NONAME' // $obj->name;
+    my $name = $obj->name;
+    $name = '$$$NONAME' unless $name;
 
-    return $object_cache{ '' . $name }{ $obj->address->ip } //= $obj;
+    if (not exists $object_cache{ '' . $name }{ $obj->address->ip }) {
+        Giraffa->logger->add(NS_CREATED => {name => "$name", ip => $obj->address->ip});
+        $object_cache{ '' . $name }{ $obj->address->ip } = $obj;
+    }
+
+    Giraffa->logger->add(NS_FETCHED => {name => "$name", ip => $obj->address->ip});
+    return $object_cache{ '' . $name }{ $obj->address->ip };
 };
 
 sub _build_dns {
@@ -95,7 +102,7 @@ sub _query {
     $href->{class} //= 'IN';
 
     if ( Giraffa->config->get->{no_network} ) {
-        croak 'External query attempted while running with no_network';
+        croak sprintf "External query for %s, %s attempted to %s while running with no_network", $name, $type, $self->string;
     }
 
     Giraffa->logger->add( 'external_query',
