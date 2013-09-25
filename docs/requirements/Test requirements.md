@@ -8,8 +8,8 @@ Source documents
  * Source document for DNSCheck: [Detailes list of all possible DNSCheck messages](https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages)
 
 
-Discarded test cases
---------------------
+(Zonecheck) Discarded test cases
+--------------------------------
  
  * ICMP answer
  * serial number of the form YYYYMMDDnn
@@ -22,8 +22,8 @@ Discarded test cases
  
 
  
-To be defined
--------------
+(Zonecheck) To be defined
+-------------------------
 
  * root servers list present
  * root servers list identical to ICANN
