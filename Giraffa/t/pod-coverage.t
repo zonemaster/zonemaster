@@ -26,8 +26,13 @@ find( sub {
 
 foreach my $name (@modules) {
     my $pc = Pod::Coverage->new( package => $name);
-    if ($pc->coverage) {
+    if (defined $pc->coverage) {
         is($pc->coverage, 1.0, $name);
+        if ($pc->coverage < 1.0) {
+            foreach my $name ($pc->uncovered) {
+                diag "Function '$name' not documented"
+            }
+        }
     } else {
         diag $pc->why_unrated . ' for ' . $name;
     }

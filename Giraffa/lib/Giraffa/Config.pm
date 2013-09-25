@@ -15,6 +15,28 @@ sub get {
 }
 
 1;
+
+=head1 NAME
+
+Giraffa::Config - configuration access module for Giraffa
+
+=head1 SYNOPSIS
+
+    my $value = Giraffa::Config->get->{key}{subkey};
+
+=METHODS
+
+=over
+
+=item get()
+
+Returns a reference to a hash with configuration values. As of this writing, this is simply seeded from static values hardcoded into the module.
+This is intended to change.
+
+=back
+
+=cut
+
 __DATA__
 {
     "resolver": {
