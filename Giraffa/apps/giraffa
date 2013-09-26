@@ -15,6 +15,10 @@ GetOptions(
 
 my $zname = shift(@ARGV);
 
-my @results = Giraffa->test_zone($zname);
+Giraffa->logger->callback(sub {
+    my ($e) = @_;
 
-say "$_" for @results;
+    say "$e" if ($debug or $e->module ne 'SYSTEM');
+});
+
+Giraffa->test_zone($zname);

@@ -21,4 +21,16 @@ is( scalar( @{ Giraffa->logger->entries } ), 2, 'expected number of entries' );
 
 like( "$entry", qr/SYSTEM:TEST an=argument/, 'stringification overload' );
 
+my $canary = 0;
+$log->callback(
+    sub {
+        my ( $e ) = @_;
+        isa_ok( $e, 'Giraffa::Logger::Entry' );
+        is( $e->tag, 'CALLBACK', 'expected tag in callback' );
+        $canary = $e->args->{canary};
+    }
+);
+$log->add( CALLBACK => { canary => 1 } );
+ok( $canary, 'canary set' );
+
 done_testing;
