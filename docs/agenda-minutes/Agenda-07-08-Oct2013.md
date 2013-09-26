@@ -28,7 +28,7 @@ Second Session (11h30 - 12h45)
 -----------------------------
 **Deciding on Certain choices**
 <ul>
-<li> 1) Project Name : Any new ideas other than newdnscheck ?</li>
+<li> 1) Project Name : Any new ideas other than newdnscheck ? Suggestion: Competition among .SE and Afnic Staff?</li>
 <li> 2) Development environment </li>
 <li> 3) Implementation environment - Only UNIX like ?</li>
 <li> 4) Versioning and Packaging </li>
