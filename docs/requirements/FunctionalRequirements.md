@@ -22,7 +22,6 @@ Existing Functionalities
 |Sort output by errors or hosts                  |  |
 |Output a list of the tests we can run           |  |
 |Error results clarity                           | Return Codes |
-
 	
 | Others                                     | Explanation                                 |
 |:-------------------------------------------|:--------------------------------------------|
@@ -35,6 +34,9 @@ Existing Functionalities
 |Separate running of tests, evaluation of results and preparing reports |   |
 |Ability to store results in a database                                 |   |
 |Performance - optimization of network as well as system resources when compared to dnscheck and ZoneCheck | |
+|Maintaining Bug report |  |
+|Web User Interface |  |
+|DNS Packet Serialization |  |
 | DNSSEC tests                                                          |   |
 
 
