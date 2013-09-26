@@ -46,11 +46,8 @@ Third Session (14h15 - 15h30)
 **Requirements**
 </ul>
 <li> 1) Test requirements (Discussion on https://github.com/dotse/new-dnscheck/blob/master/docs/requirements/Test%20requirements.md) </li>
-
 <li> 2) Functional requirements (Discussion on https://github.com/dotse/new-dnscheck/blob/master/docs/requirements/FunctionalRequirements.md) </li>
-
 </ul> 
-
 *Outcome of this sub-session :* Discuss/Confirm the set of requirements (both test and functional) that will be implemented for version 1.0
 
 Fourth Session (15h45 - 17h30)
