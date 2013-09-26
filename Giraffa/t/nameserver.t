@@ -5,10 +5,9 @@ use Giraffa;
 use Giraffa::Util;
 
 my $datafile = 't/nameserver.storable';
-
-if (not $ENV{GIRAFFA_RECORD}) {
+if ( not $ENV{GIRAFFA_RECORD} ) {
     die "Stored data file missing" if not -r $datafile;
-    Giraffa::Nameserver->restore($datafile);
+    Giraffa::Nameserver->restore( $datafile );
     config->{no_network} = 1;
 }
 
@@ -56,16 +55,18 @@ my $broken = new_ok( 'Giraffa::Nameserver' => [ { name => 'ns.not.existing', add
 my $p = $broken->query( 'www.iis.se' );
 ok( !$p, 'no response from broken server' );
 
-my $googlens = ns('ns1.google.com','216.239.32.10');
+my $googlens = ns( 'ns1.google.com', '216.239.32.10' );
 my $save = config->{no_network};
 config->{no_network} = 1;
-delete($googlens->cache->{'www.google.com'});
-eval { $googlens->query('www.google.com','TXT')};
-like($@, qr{External query for www.google.com, TXT attempted to ns1.google.com/216.239.32.10 while running with no_network});
+delete( $googlens->cache->{'www.google.com'} );
+eval { $googlens->query( 'www.google.com', 'TXT' ) };
+like( $@,
+    qr{External query for www.google.com, TXT attempted to ns1.google.com/216.239.32.10 while running with no_network}
+);
 config->{no_network} = $save;
 
-if ($ENV{GIRAFFA_RECORD}) {
-    Giraffa::Nameserver->save($datafile);
+if ( $ENV{GIRAFFA_RECORD} ) {
+    Giraffa::Nameserver->save( $datafile );
 }
 
 done_testing;

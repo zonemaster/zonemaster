@@ -11,7 +11,7 @@ use Giraffa::DNSName;
 use Giraffa::Recursor;
 
 has 'name' => ( is => 'ro', isa => 'Giraffa::DNSName', required => 1, coerce => 1 );
-has 'parent' => ( is => 'ro', isa => 'Giraffa::Zone', lazy_build => 1);
+has 'parent' => ( is => 'ro', isa => 'Maybe[Giraffa::Zone]', lazy_build => 1);
 has ['ns', 'glue'] => ( is => 'ro', isa => 'ArrayRef[Giraffa::Nameserver]', lazy_build => 1);
 has 'glue_addresses' => ( is => 'ro', isa => 'ArrayRef[Net::DNS::RR]', lazy_build => 1);
 
@@ -27,7 +27,7 @@ sub _build_parent {
     }
 
     my $pname = Giraffa::Recursor->parent( ''.$self->name );
-    croak "failed to find parent" if not $pname;
+    return if not $pname;
     return __PACKAGE__->new({ name => $pname });
 }
 

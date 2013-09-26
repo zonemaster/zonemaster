@@ -3,6 +3,15 @@ use Test::More;
 use strict;
 use 5.14.2;
 
+use Giraffa;
+use Giraffa::Nameserver;
+my $datafile = 't/zone.storable';
+if ( not $ENV{GIRAFFA_RECORD} ) {
+    die "Stored data file missing" if not -r $datafile;
+    Giraffa::Nameserver->restore( $datafile );
+    Giraffa->config->{no_network} = 1;
+}
+
 BEGIN { use_ok( 'Giraffa::Zone')};
 
 my $zone = new_ok('Giraffa::Zone' => [{ name => 'iis.se'}]);
@@ -39,5 +48,8 @@ foreach my $p (@$ary) {
     is($rrs[0]->address, '91.226.36.46', 'expected address');
 }
 
+if ( $ENV{GIRAFFA_RECORD} ) {
+    Giraffa::Nameserver->save( $datafile );
+}
 
 done_testing;
