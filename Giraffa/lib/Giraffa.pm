@@ -38,6 +38,21 @@ sub test_zone {
     return Giraffa::Test->run_all_for($class->zone($zname));
 }
 
+sub all_tags {
+    my ( $class ) = @_;
+    my @res;
+
+    foreach my $module ('Basic', Giraffa::Test->modules) {
+        my $full = "Giraffa::Test::$module";
+        my $ref = $full->metadata;
+        foreach my $list (values %$ref) {
+            push @res, map {uc($module) . ':' . $_} @$list
+        }
+    }
+
+    return @res;
+}
+
 =head1 NAME
 
 Giraffa - A tool to check the quality of a DNS zone
@@ -69,6 +84,10 @@ Returns the global L<Giraffa::Config> object.
 =item logger()
 
 Returns the global L<Giraffa::Logger> object.
+
+=item all_tags()
+
+Returns a list of all the tags that can be logged for all avilable test modules.
 
 =back
 
