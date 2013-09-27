@@ -8,7 +8,6 @@ MYMETA.*
 _build/
 cover_db/
 blib/
-inc/
 .lwpcookies
 .last_cover_stats
 nytprof.out
