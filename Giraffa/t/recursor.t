@@ -9,7 +9,7 @@ use Giraffa::Nameserver;
 use Giraffa::Util;
 BEGIN { use_ok( 'Giraffa::Recursor' ) }
 
-my $datafile = 't/recursor.storable';
+my $datafile = 't/recursor.yaml';
 if ( not $ENV{GIRAFFA_RECORD} ) {
     die "Stored data file missing" if not -r $datafile;
     Giraffa::Nameserver->restore( $datafile );

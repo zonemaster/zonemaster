@@ -5,7 +5,7 @@ use 5.14.2;
 
 use Giraffa;
 use Giraffa::Nameserver;
-my $datafile = 't/zone.storable';
+my $datafile = 't/zone.yaml';
 if ( not $ENV{GIRAFFA_RECORD} ) {
     die "Stored data file missing" if not -r $datafile;
     Giraffa::Nameserver->restore( $datafile );

@@ -11,7 +11,7 @@ use Giraffa::Packet;
 use Net::DNS;
 use Net::IP;
 use Time::HiRes qw[time];
-use Storable qw[nstore retrieve];
+use YAML::XS qw[DumpFile LoadFile];
 use Module::Find qw[useall];
 use Carp;
 
@@ -141,14 +141,14 @@ sub string {
 sub save {
     my ( $class, $filename ) = @_;
 
-    return nstore \%object_cache, $filename;
+    return DumpFile( $filename, \%object_cache);
 }
 
 sub restore {
     my ( $class, $filename ) = @_;
 
     useall 'Net::DNS::RR';
-    %object_cache = %{ retrieve( $filename ) };
+    %object_cache = %{ LoadFile( $filename ) };
 
     return;
 }

@@ -4,7 +4,7 @@ BEGIN { use_ok( 'Giraffa::Nameserver' ); }
 use Giraffa;
 use Giraffa::Util;
 
-my $datafile = 't/nameserver.storable';
+my $datafile = 't/nameserver.yaml';
 if ( not $ENV{GIRAFFA_RECORD} ) {
     die "Stored data file missing" if not -r $datafile;
     Giraffa::Nameserver->restore( $datafile );
