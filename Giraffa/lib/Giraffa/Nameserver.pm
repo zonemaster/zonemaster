@@ -39,16 +39,16 @@ around 'new' => sub {
     my $self = shift;
 
     my $obj = $self->$orig( @_ );
-    my $name = $obj->name;
+    my $name = uc('' . $obj->name);
     $name = '$$$NONAME' unless $name;
 
-    if (not exists $object_cache{ '' . $name }{ $obj->address->ip }) {
-        Giraffa->logger->add(NS_CREATED => {name => "$name", ip => $obj->address->ip});
-        $object_cache{ '' . $name }{ $obj->address->ip } = $obj;
+    if (not exists $object_cache{ $name }{ $obj->address->ip }) {
+        Giraffa->logger->add(NS_CREATED => {name => $name, ip => $obj->address->ip});
+        $object_cache{ $name }{ $obj->address->ip } = $obj;
     }
 
-    Giraffa->logger->add(NS_FETCHED => {name => "$name", ip => $obj->address->ip});
-    return $object_cache{ '' . $name }{ $obj->address->ip };
+    Giraffa->logger->add(NS_FETCHED => {name => $name, ip => $obj->address->ip});
+    return $object_cache{ $name }{ $obj->address->ip };
 };
 
 sub _build_dns {
