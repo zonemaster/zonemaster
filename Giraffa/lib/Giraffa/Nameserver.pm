@@ -9,6 +9,8 @@ use Giraffa;
 use Giraffa::Packet;
 
 use Net::DNS;
+use Giraffa::FixNetDNS;
+
 use Net::IP;
 use Time::HiRes qw[time];
 use YAML::XS qw[DumpFile LoadFile];

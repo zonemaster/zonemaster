@@ -28,12 +28,16 @@ my $p4 = $nsv4->query( 'iis.se', 'SOA', { dnssec => 1 } );
 
 isa_ok( $p1, 'Giraffa::Packet' );
 isa_ok( $p2, 'Giraffa::Packet' );
-is( scalar( $p1->answer ), 1, 'SOA RR present' );
+my ($soa) = grep {$_->type eq 'SOA'} $p1->answer;
+is( scalar( $p1->answer ), 1, 'one answer RR present' );
+ok($soa, 'it is a SOA RR');
+is($soa->rname, 'hostmaster.iis.se', 'RNAME has expected format');
 is( scalar( $p2->answer ), 2, 'SOA and RRSIG RRs present' );
 is( $nsv6->dns->dnssec,    0, 'dnssec flag still unset' );
 ok( $p3 eq $p2, 'Same packet object returned' );
 ok( $p3 ne $p4, 'Same packet object not returned from other server' );
 ok( $p3 ne $p1, 'Same packet object not returned with other flag' );
+
 
 my $nscopy = Giraffa->ns( 'ns.nic.se.', '2a00:801:f0:53:0000::53' );
 ok( $nsv6 eq $nscopy, 'Same nameserver object returned' );
