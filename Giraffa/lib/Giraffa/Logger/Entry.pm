@@ -18,6 +18,7 @@ has 'tag'       => ( is => 'ro', isa => 'Str',                required   => 1 );
 has 'args'      => ( is => 'ro', isa => 'Maybe[HashRef]',     required   => 0 );
 has 'timestamp' => ( is => 'ro', isa => 'Num',                default    => sub { time() - $start_time } );
 has 'trace'     => ( is => 'ro', isa => 'ArrayRef[ArrayRef]', builder    => '_build_trace' );
+has 'level'     => ( is => 'ro', isa => 'Str',                lazy_build => 1 );
 
 sub _build_trace {
     my ( $self ) = @_;
@@ -45,6 +46,17 @@ sub _build_module {
     }
 
     return 'SYSTEM';
+}
+
+sub _build_level {
+    my ( $self ) = @_;
+
+    my $name = $self->module . ':' . $self->tag;
+    if (Giraffa->config->policy->{$name}) {
+        return Giraffa->config->policy->{$name};
+    } else {
+        return 'DEBUG';
+    }
 }
 
 sub string {

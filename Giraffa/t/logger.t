@@ -21,6 +21,10 @@ is( scalar( @{ Giraffa->logger->entries } ), 2, 'expected number of entries' );
 
 like( "$entry", qr/SYSTEM:TEST an=argument/, 'stringification overload' );
 
+is($entry->level, 'DEBUG', 'right level');
+my $example = Giraffa::Logger::Entry->new({ module => 'BASIC', tag => 'NS_FAILED'});
+is($example->level, 'WARNING', 'expected level');
+
 my $canary = 0;
 $log->callback(
     sub {
