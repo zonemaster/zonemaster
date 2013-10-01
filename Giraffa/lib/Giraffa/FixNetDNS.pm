@@ -7,7 +7,7 @@ no warnings 'redefine';
 use Net::DNS;
 
 BEGIN {
-    if ($Net::DNS::VERSION != 0.72) {
+    if ( $Net::DNS::VERSION != 0.72 ) {
         warn "This module is only tested with Net::DNS v0.72. You have version " . $Net::DNS::VERSION . "\n";
     }
 }
@@ -15,26 +15,30 @@ BEGIN {
 # In version 0.69, Net::DNS changed to a "more user-friendly" version of this
 # function. This new version hides information that we want to be able to show
 # to our users, so we replace the function with one that works as it did before.
-require Net::DNS::Mailbox;
-*Net::DNS::Mailbox::address = sub {
-    return join('.', $_[0]->label);
-};
+if ( $Net::DNS::VERSION >= 0.69 ) {
+    require Net::DNS::Mailbox;
+    *Net::DNS::Mailbox::address = sub {
+        return join( '.', $_[0]->label );
+    };
+}
 
 # The method unique_push in Net::DNS::Package does not work on packets read from
 # the net, only on ones made up from scratch locally. A fix for this bug was
 # rejected by the maintainers, so we have to fix it here.
-require Net::DNS::Packet;
-our $orig = \&Net::DNS::Packet::decode;
-*Net::DNS::Packet::decode = sub {
-    my ($self, $offset) = $orig->(@_);
+if ( $Net::DNS::VERSION <= 0.72 ) {
+    require Net::DNS::Packet;
+    our $orig = \&Net::DNS::Packet::decode;
+    *Net::DNS::Packet::decode = sub {
+        my ( $self, $offset ) = $orig->( @_ );
 
-    foreach my $rr ( @{$self->{answer}}, @{$self->{authority}}, @{$self->{additional}} ) {
-        next if $rr->type eq 'OPT';
-        $self->{seen}->{lc( $rr->name ) . $rr->class . $rr->type . $rr->rdatastr} += 1;
-    }
+        foreach my $rr ( @{ $self->{answer} }, @{ $self->{authority} }, @{ $self->{additional} } ) {
+            next if $rr->type eq 'OPT';
+            $self->{seen}->{ lc( $rr->name ) . $rr->class . $rr->type . $rr->rdatastr } += 1;
+        }
 
-    return wantarray ? ( $self, $offset ) : $self;
-};
+        return wantarray ? ( $self, $offset ) : $self;
+    };
+}
 
 1;
 
@@ -61,4 +65,7 @@ nothing more than the labels joined with C<.> characters.
 =head2 Net::DNS::Packet::unique_push()
 
 In the standard distribution, this method ignores RRs that were added to a packet by decoding it from wire format, thus making it possible for it
-to add duplicate RRs to the packet. This module fixes that problem, making the method reliable for any packet.
+to add duplicate RRs to the packet. This module fixes that problem, making the method reliable for any packet. This problem will hopefully be fixed
+in versions of L<Net::DNS> later than 0.72.
+
+=cut
