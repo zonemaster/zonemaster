@@ -91,16 +91,16 @@ NS.NIC.SE:
                         name: ns.nic.se
                         origin: *2
                       rdlength: 154
-                      sig: 'ZaY07dqT+OmGRSzNFWgPR6LJ5K+5vcNCge4NsQjZSY3Ds5OhyCMdFRkbmx30L5LFRlYLSeq5ckXg
+                      sig: 'KH/zqRpURubESoy0e1uxBbHLVd5pNSuw8saS7f+QprtX4s7ZLqIoBLzFmNouJUnJ2JsfW03qqhWt
 
-                        KNl1H1/fgD1gtzOxZmy9XL+24qIEhy73hNjwTBworOSk2mFWwBhEt9i3ulpOEoTEcansxB782aaI
+                        5Fls8Dx4jZ2IVHqGTZFKJZ9sRGv8lgUj8Js5E3OiCSoFYep4amFKyZdYhb88JTlu7qOJ3v8uNBTA
 
-                        X9/zW1F6CNoF3L1LWB0=
+                        PWYV96HKKM69SuLCAzA=
 
 '
-                      sigbin: "e¦4íÚ\x93øé\x86E,Í\x15h\x0FG¢Éä¯¹½ÃB\x81î\r±\bÙI\x8DÃ³\x93¡È#\x1D\x15\x19\e\x9B\x1Dô/\x92ÅFV\vIê¹rEà(Ùu\x1F_ß\x80=`·3±fl½\\¿¶â¢\x04\x87.÷\x84ØðL\x1C(¬ä¤ÚaVÀ\x18D·Ø·ºZN\x12\x84Äq©ìÄ\x1EüÙ¦\x88_ßó[Qz\bÚ\x05Ü½KX\x1D"
-                      sigexpiration: '20131009132001'
-                      siginception: '20130929132001'
+                      sigbin: "(\x7Fó©\x1ATFæÄJ\x8C´{[±\x05±ËUÞi5+°òÆ\x92íÿ\x90¦»WâÎÙ.¢(\x04¼Å\x98Ú.%IÉØ\x9B\x1F[Mêª\x15­äYlð<x\x8D\x9D\x88Tz\x86M\x91J%\x9FlDkü\x96\x05#ð\x9B9\x13s¢\t*\x05aêxjaJÉ\x97X\N¿<%9nî£\x89Þÿ.4\x14À=f\x15÷¡Ê(Î½JâÂ\x030"
+                      sigexpiration: '20131010132001'
+                      siginception: '20130930132001'
                       signame: nic.se
                       ttl: 3600
                       type: RRSIG
@@ -118,17 +118,17 @@ NS.NIC.SE:
                         name: ns.nic.se
                         origin: *2
                       rdlength: 154
-                      sig: 'OBLaxDm7uOByUCnvS7r3y0Egu0hArvtHY2/CF+CosJ2uzg7l//3LRgZ1sNYWUvncxOQDZT0n8GBW
+                      sig: 'YsH7uEYm9HphsVVXZh4syLL6d8ZQSW2gixbFT8bd3T4kysrukHXSyEPP6tb52m6kClkXNtjPga/w
 
-                        v++Wx6t4GPcbEnSqaj/+Db1SO66KsftPyFKbzKBpoO3r4XxNp6CYz4vhyvYOUmEkJCDOV436xZuJ
+                        HIseIAN7Q46CnljN4Jr38mvjaV1u+OkiKjFtG1cIlz9mC8zG+6yQDFr1DAC74w6XCVUfd+PNvZtZ
 
-                        Z6z0Ubd9AufYIO5kYVg=
+                        Vgrvcy+1hO9Nf2cFF7c=
 
 '
-                      sigbin: "8\x12ÚÄ9»¸àrP)ïKº÷ËA »H@®ûGcoÂ\x17à¨°\x9D®Î\x0EåÿýËF\x06u°Ö\x16RùÜÄä\x03e='ð`V¿ï\x96Ç«x\x18÷\e\x12tªj?þ\r½R;®\x8A±ûOÈR\x9BÌ i íëá|M§ \x98Ï\x8BáÊö\x0ERa$$
-                        ÎW\x8DúÅ\x9B\x89g¬ôQ·}\x02çØ îdaX"
-                      sigexpiration: '20131009132001'
-                      siginception: '20130929132001'
+                      sigbin: "bÁû¸F&ôza±UWf\x1E,È²úwÆPIm \x8B\x16ÅOÆÝÝ>$ÊÊî\x90uÒÈCÏêÖùÚn¤\nY\x176ØÏ\x81¯ð\x1C\x8B\x1E
+                        \x03{C\x8E\x82\x9EXÍà\x9A÷òkãi]nøé\"*1m\eW\b\x97?f\vÌÆû¬\x90\fZõ\f\0»ã\x0E\x97\tU\x1FwãÍ½\x9BYV\nïs/µ\x84ïM\x7Fg\x05\x17·"
+                      sigexpiration: '20131010132001'
+                      siginception: '20130930132001'
                       signame: nic.se
                       ttl: 3600
                       type: RRSIG
@@ -146,17 +146,16 @@ NS.NIC.SE:
                         name: ns3.nic.se
                         origin: *4
                       rdlength: 154
-                      sig: 'vLdtHcBVdiSxjojWtYzb9mDlhR6+KLnazI1dzvL9dS6lPZvDZarfSY6eJTw68hivJrgI7nMYg1i7
+                      sig: 'C5L+LRAR10wRoTp8+1s/45y01GiqoN1VxuoA8EsEOrYacPJwaeU06hY3+u8DWrYkiJFmz4tDSkOn
 
-                        NvnIViaBWyb++OgfI0HrCuQZ1tUsF2496+Hh15W9Xz+d2dwur4XEpYUgbZaM6yoiXOsPRTn8c26P
+                        Vx5NO9pJtPODOx3GXm5buG6J+THeXMnaOmU4gpXep2GSNDXtoavpM5jH/eFBg5LRTjxp1r0TgtGt
 
-                        NKUW74b4tgkQ4nA2uFA=
+                        RQQ0O6DEqKn/rX0RCj8=
 
 '
-                      sigbin: "¼·m\x1DÀUv$±\x8E\x88Öµ\x8CÛö`å\N\x1E¾(¹ÚÌ\x8D]Îòýu.¥=\x9BÃeªßI\x8E\x9E%<:ò\x18¯&¸\bîs\x18\x83X»6ùÈV&\x81[&þøè\x1F#Aë\nä\x19ÖÕ,\x17n=ëáá×\x95½_?\x9DÙÜ.¯\NÄ¥\N
-                        m\x96\x8Cë*\"\\ë\x0FE9üsn\x8F4¥\x16ï\x86ø¶\t\x10âp6¸P"
-                      sigexpiration: '20131009132001'
-                      siginception: '20130929132001'
+                      sigbin: "\v\x92þ-\x10\x11×L\x11¡:|û[?ã\x9C´Ôhª ÝUÆê\0ðK\x04:¶\x1Apòpiå4ê\x167úï\x03Z¶$\x88\x91fÏ\x8BCJC§W\x1EM;ÚI´ó\x83;\x1DÆ^n[¸n\x89ù1Þ\\ÉÚ:e8\x82\x95Þ§a\x9245í¡«é3\x98ÇýáA\x83\x92ÑN<iÖ½\x13\x82Ñ­E\x044; Ä¨©ÿ­}\x11\n?"
+                      sigexpiration: '20131010132001'
+                      siginception: '20130930132001'
                       signame: nic.se
                       ttl: 60
                       type: RRSIG
@@ -174,16 +173,17 @@ NS.NIC.SE:
                         name: ns3.nic.se
                         origin: *4
                       rdlength: 154
-                      sig: 'WLB71BBWaz/SdwgGks+7l6pAdQjDtx8XgXcGbL6GbaUmTD8r6HKWZhHCGZCRkakCo+xvXDVmVO+3
+                      sig: 'DcrWBpUb5JjiJdft7J+P72HNAHdwWVVP2QB7gRBVxYAe4n66vKuoN4Y59gqWKhpQaKr62nnlJaK0
 
-                        Y1+93NtZAsatp0Q9WIxwc9hTlH05edURQlgO/KfkXXxvEzIu/5VCFphXAHUxVBWlvsngljDHNxq+
+                        iChaG9aDpPOhcw7nAyC/JvspOVU8JGYfMCCtoFPLHWT8Ije/naiSTpaibRQwyNqjLzYYBKw5yawv
 
-                        hwMa+PLf4YmKluEIJVI=
+                        wixVmoPKmDHGS3FE098=
 
 '
-                      sigbin: "X°{Ô\x10Vk?Òw\b\x06\x92Ï»\x97ª@u\bÃ·\x1F\x17\x81w\x06l¾\x86m¥&L?+èr\x96f\x11Â\x19\x90\x91\x91©\x02£ìo\\5fTï·c_½ÜÛY\x02Æ­§D=X\x8CpsØS\x94}9yÕ\x11BX\x0Eü§ä]|o\x132.ÿ\x95B\x16\x98W\0u1T\x15¥¾Éà\x960Ç7\x1A¾\x87\x03\x1Aøòßá\x89\x8A\x96á\b%R"
-                      sigexpiration: '20131009132001'
-                      siginception: '20130929132001'
+                      sigbin: "\rÊÖ\x06\x95\eä\x98â%×íì\x9F\x8FïaÍ\0wpYUOÙ\0{\x81\x10UÅ\x80\x1Eâ~º¼«¨7\x869ö\n\x96*\x1APhªúÚyå%¢´\x88(Z\eÖ\x83¤ó¡s\x0Eç\x03
+                        ¿&û)9U<$f\x1F0 ­ SË\x1Ddü\"7¿\x9D¨\x92N\x96¢m\x140ÈÚ£/6\x18\x04¬9É¬/Â,U\x9A\x83Ê\x981ÆKqDÓß"
+                      sigexpiration: '20131010132001'
+                      siginception: '20130930132001'
                       signame: nic.se
                       ttl: 60
                       type: RRSIG
@@ -210,6 +210,7 @@ NS.NIC.SE:
                         label:
                         - ns
                         - nic
+                        name: ns.nic.se
                         origin: *3
                       name: iis.se
                       owner: !!perl/hash:Net::DNS::DomainName1035
@@ -226,8 +227,9 @@ NS.NIC.SE:
                       rname: !!perl/hash:Net::DNS::Mailbox1035
                         label:
                         - hostmaster
+                        name: hostmaster.iis.se
                         origin: *7
-                      serial: 1380464101
+                      serial: 1380627002
                       ttl: 3600
                       type: SOA
                     - !!perl/hash:Net::DNS::RR::RRSIG
@@ -242,16 +244,16 @@ NS.NIC.SE:
                         name: iis.se
                         origin: *7
                       rdlength: 154
-                      sig: 'Z3i/v7r4z7hPKMKAiE0b+UFxh9HjYuSu6N1M81wrSV4WPO0pOiW9msrLU+qhNrYSw/yOYjwao5RD
+                      sig: 'czMmzBC52CRZ1S2q7i7JLnnOMRGc56M7Z+5H5KZh4HmJQ5b6Cc0GZvUemcjoF6+rBaiAhG/B7RFr
 
-                        v9xjqBtYpeMQKF0oBABdznGZS4qEZPYT0DxxJHuBc29qdrqyyZyKu7xF21v+/hVp/DJyPZzMeHtl
+                        j8dQXcNVGqouYYa6BJZ02hbSqD+c/BH7N2HVysMWFWTLglbKrVsHkvarhb0TjeNxjQvxC0rkP/vv
 
-                        YlP7IYpK5yvaV5OEKQI=
+                        ZG9Yvth4eupmZQaeTr0=
 
 '
-                      sigbin: "gx¿¿ºøÏ¸O(Â\x80\x88M\eùAq\x87Ñãbä®èÝLó\\+I^\x16<í):%½\x9AÊËSê¡6¶\x12Ãü\x8Eb<\x1A£\x94C¿Üc¨\eX¥ã\x10(](\x04\0]Îq\x99K\x8A\x84dö\x13Ð<q${\x81sojvº²É\x9C\x8A»¼EÛ[þþ\x15iü2r=\x9CÌx{ebSû!\x8AJç+ÚW\x93\x84)\x02"
-                      sigexpiration: '20131009131501'
-                      siginception: '20130929131501'
+                      sigbin: "s3&Ì\x10¹Ø$YÕ-ªî.É.yÎ1\x11\x9Cç£;gîGä¦aày\x89C\x96ú\tÍ\x06fõ\x1E\x99Èè\x17¯«\x05¨\x80\x84oÁí\x11k\x8FÇP]ÃU\x1Aª.a\x86º\x04\x96tÚ\x16Ò¨?\x9Cü\x11û7aÕÊÃ\x16\x15dË\x82VÊ­[\a\x92ö«\N½\x13\x8Dãq\x8D\vñ\vJä?ûïdoX¾Øxzêfe\x06\x9EN½"
+                      sigexpiration: '20131011103002'
+                      siginception: '20131001103002'
                       signame: iis.se
                       ttl: 3600
                       type: RRSIG
@@ -265,11 +267,9 @@ NS.NIC.SE:
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - i
-                        - ns
-                        origin: !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - se
+                        - ns3
+                        name: ns3.nic.se
+                        origin: *5
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
@@ -278,19 +278,7 @@ NS.NIC.SE:
                           - iis
                           - se
                           name: iis.se
-                      rdlength: 7
-                      ttl: 3600
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: iis.se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        origin: *2
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: iis.se
-                        origin: *8
-                      rdlength: 2
+                      rdlength: 6
                       ttl: 3600
                       type: NS
                     - !!perl/hash:Net::DNS::RR::NS
@@ -298,13 +286,32 @@ NS.NIC.SE:
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - ns3
-                        origin: *5
+                        - i
+                        - ns
+                        name: i.ns.se
+                        origin: !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - se
+                          name: se
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
                         origin: *8
-                      rdlength: 6
+                      rdlength: 7
+                      ttl: 3600
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: iis.se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: ns.nic.se
+                        origin: *2
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: iis.se
+                        origin: *8
+                      rdlength: 2
                       ttl: 3600
                       type: NS
                     - !!perl/hash:Net::DNS::RR::RRSIG
@@ -319,16 +326,16 @@ NS.NIC.SE:
                         name: iis.se
                         origin: *8
                       rdlength: 154
-                      sig: 'HkuggUc0JZ8fGUEqvMQIHGTOYpGl79G9CG5tFSwBB8S9b6Bl5j9dxtRPmwyagoV1XyT0NTYJ8gGh
+                      sig: 'qBmaU2ESTtf+EzUctKUtdj5H6ZIO3iqXURxV6B9OaNWivyhqFbLzE32zcNX9aoPG3BG4CoqAJmLH
 
-                        KgdTQsellP3xkl25LNBHqrRb7HrU+pMK0XBXWVrWOd2BAd7gymmSEZA7Uc8tyU/jKjnjElbF423J
+                        /YGySjB2tul5isLlLgUApgSSKZUe6vAaHwuAl1yjgnZs+nGIENPGLlehyw+6z0oJm6QuBiUtH+Fq
 
-                        mlsxB6H0OjR2yJAWZ3w=
+                        JUA1MBVVZmf/OCzMfOM=
 
 '
-                      sigbin: "\x1EK \x81G4%\x9F\x1F\x19A*¼Ä\b\x1CdÎb\x91¥ïÑ½\bnm\x15,\x01\aÄ½o eæ?]ÆÔO\x9B\f\x9A\x82\Nu_$ô56\tò\x01¡*\aSBÇ¥\x94ýñ\x92]¹,ÐGª´[ìzÔú\x93\nÑpWYZÖ9Ý\x81\x01ÞàÊi\x92\x11\x90;QÏ-ÉOã*9ã\x12VÅãmÉ\x9A[1\a¡ô:4vÈ\x90\x16g|"
-                      sigexpiration: '20131009131501'
-                      siginception: '20130929131501'
+                      sigbin: "¨\x19\x9ASa\x12N×þ\x135\x1C´¥-v>Gé\x92\x0EÞ*\x97Q\x1CUè\x1FNhÕ¢¿(j\x15²ó\x13}³pÕýj\x83ÆÜ\x11¸\n\x8A\x80&bÇý\x81²J0v¶éy\x8AÂå.\x05\0¦\x04\x92)\x95\x1Eêð\x1A\x1F\v\x80\x97\\£\x82vlúq\x88\x10ÓÆ.W¡Ë\x0FºÏJ\t\x9B¤.\x06%-\x1Fáj%@50\x15Ufgÿ8,Ì|ã"
+                      sigexpiration: '20131011103002'
+                      siginception: '20131001103002'
                       signame: iis.se
                       ttl: 3600
                       type: RRSIG
@@ -342,7 +349,7 @@ NS.NIC.SE:
                       - 9
                       - 873
                       - 26995
-                      id: 6035
+                      id: 37480
                       status: 33792
                       xbody: *1
                       xtender: *6
@@ -354,6 +361,42 @@ NS.NIC.SE:
                         - iis
                         - se
                       type: 6
+                    seen:
+                      iis.seINNSi.ns.se.: 1
+                      iis.seINNSns.nic.se.: 1
+                      iis.seINNSns3.nic.se.: 1
+                      ? "iis.seINRRSIGNS  5  2  3600  20131011103002 (\n\t\t\t20131001103002
+                        8213  iis.se.\n\t\t\tqBmaU2ESTtf+EzUctKUtdj5H6ZIO3iqXURxV6B9OaNWiv\n\t\t\tyhqFbLzE32zcNX9aoPG3BG4CoqAJmLH/YGySjB2tul5is\n\t\t\tLlLgUApgSSKZUe6vAaHwuAl1yjgnZs+nGIENPGLlehyw+\n\t\t\t6z0oJm6QuBiUtH+FqJUA1MBVVZmf/OCzMfOM=
+                        )"
+                      : 1
+                      ? "iis.seINRRSIGSOA  5  2  3600  20131011103002 (\n\t\t\t20131001103002
+                        8213  iis.se.\n\t\t\tczMmzBC52CRZ1S2q7i7JLnnOMRGc56M7Z+5H5KZh4HmJQ\n\t\t\t5b6Cc0GZvUemcjoF6+rBaiAhG/B7RFrj8dQXcNVGqouYY\n\t\t\ta6BJZ02hbSqD+c/BH7N2HVysMWFWTLglbKrVsHkvarhb0\n\t\t\tTjeNxjQvxC0rkP/vvZG9Yvth4eupmZQaeTr0=
+                        )"
+                      : 1
+                      ? "iis.seINSOAns.nic.se. hostmaster.iis.se. (\n\t\t\t\t1380627002\t;serial\n\t\t\t\t10800
+                        \    \t;refresh\n\t\t\t\t3600      \t;retry\n\t\t\t\t1814400
+                        \  \t;expire\n\t\t\t\t14400  )\t;minimum"
+                      : 1
+                      ns.nic.seINA212.247.7.228: 1
+                      ns.nic.seINAAAA2a00:801:f0:53::53: 1
+                      ? "ns.nic.seINRRSIGA  5  3  3600  20131010132001 (\n\t\t\t20130930132001
+                        13745  nic.se.\n\t\t\tKH/zqRpURubESoy0e1uxBbHLVd5pNSuw8saS7f+QprtX4\n\t\t\ts7ZLqIoBLzFmNouJUnJ2JsfW03qqhWt5Fls8Dx4jZ2IVH\n\t\t\tqGTZFKJZ9sRGv8lgUj8Js5E3OiCSoFYep4amFKyZdYhb8\n\t\t\t8JTlu7qOJ3v8uNBTAPWYV96HKKM69SuLCAzA=
+                        )"
+                      : 1
+                      ? "ns.nic.seINRRSIGAAAA  5  3  3600  20131010132001 (\n\t\t\t20130930132001
+                        13745  nic.se.\n\t\t\tYsH7uEYm9HphsVVXZh4syLL6d8ZQSW2gixbFT8bd3T4ky\n\t\t\tsrukHXSyEPP6tb52m6kClkXNtjPga/wHIseIAN7Q46Cnl\n\t\t\tjN4Jr38mvjaV1u+OkiKjFtG1cIlz9mC8zG+6yQDFr1DAC\n\t\t\t74w6XCVUfd+PNvZtZVgrvcy+1hO9Nf2cFF7c=
+                        )"
+                      : 1
+                      ns3.nic.seINA212.247.8.152: 1
+                      ns3.nic.seINAAAA2a00:801:f0:211::152: 1
+                      ? "ns3.nic.seINRRSIGA  5  3  60  20131010132001 (\n\t\t\t20130930132001
+                        13745  nic.se.\n\t\t\tC5L+LRAR10wRoTp8+1s/45y01GiqoN1VxuoA8EsEOrYac\n\t\t\tPJwaeU06hY3+u8DWrYkiJFmz4tDSkOnVx5NO9pJtPODOx\n\t\t\t3GXm5buG6J+THeXMnaOmU4gpXep2GSNDXtoavpM5jH/eF\n\t\t\tBg5LRTjxp1r0TgtGtRQQ0O6DEqKn/rX0RCj8=
+                        )"
+                      : 1
+                      ? "ns3.nic.seINRRSIGAAAA  5  3  60  20131010132001 (\n\t\t\t20130930132001
+                        13745  nic.se.\n\t\t\tDcrWBpUb5JjiJdft7J+P72HNAHdwWVVP2QB7gRBVxYAe4\n\t\t\tn66vKuoN4Y59gqWKhpQaKr62nnlJaK0iChaG9aDpPOhcw\n\t\t\t7nAyC/JvspOVU8JGYfMCCtoFPLHWT8Ije/naiSTpaibRQ\n\t\t\twyNqjLzYYBKw5yawvwixVmoPKmDHGS3FE098=
+                        )"
+                      : 1
     dns: !!perl/hash:Net::DNS::Resolver
       adflag: 1
       answerfrom: 212.247.7.228
@@ -394,6 +437,8 @@ NS.NIC.SE:
       - ns
       - nic
       - se
+    times:
+    - 0.00313591957092285
   2a00:0801:00f0:0053:0000:0000:0000:0053: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00101010000000000000100000000001000000001111000000000000010100110000000000000000000000000000000000000000000000000000000001010011'
@@ -482,6 +527,7 @@ NS.NIC.SE:
                         label:
                         - ns
                         - nic
+                        name: ns.nic.se
                         origin: *13
                       name: iis.se
                       owner: !!perl/hash:Net::DNS::DomainName1035
@@ -498,8 +544,9 @@ NS.NIC.SE:
                       rname: !!perl/hash:Net::DNS::Mailbox1035
                         label:
                         - hostmaster
+                        name: hostmaster.iis.se
                         origin: *16
-                      serial: 1380464101
+                      serial: 1380627002
                       ttl: 3600
                       type: SOA
                     answerfrom: 2a00:801:f0:53::53
@@ -510,22 +557,9 @@ NS.NIC.SE:
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - ns3
-                        origin: *15
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: iis.se
-                        origin: *16
-                      rdlength: 6
-                      ttl: 3600
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: iis.se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
                         - i
                         - ns
+                        name: i.ns.se
                         origin: *13
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
@@ -538,6 +572,23 @@ NS.NIC.SE:
                       class: IN
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - ns3
+                        name: ns3.nic.se
+                        origin: *15
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: iis.se
+                        origin: *16
+                      rdlength: 6
+                      ttl: 3600
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: iis.se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: ns.nic.se
                         origin: *12
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
@@ -554,7 +605,7 @@ NS.NIC.SE:
                       - 4
                       - 873
                       - 26995
-                      id: 8671
+                      id: 4456
                       status: 33792
                       xbody: *11
                       xtender: !!perl/hash:Net::DNS::RR::OPT
@@ -572,6 +623,18 @@ NS.NIC.SE:
                         - iis
                         - se
                       type: 6
+                    seen:
+                      iis.seINNSi.ns.se.: 1
+                      iis.seINNSns.nic.se.: 1
+                      iis.seINNSns3.nic.se.: 1
+                      ? "iis.seINSOAns.nic.se. hostmaster.iis.se. (\n\t\t\t\t1380627002\t;serial\n\t\t\t\t10800
+                        \    \t;refresh\n\t\t\t\t3600      \t;retry\n\t\t\t\t1814400
+                        \  \t;expire\n\t\t\t\t14400  )\t;minimum"
+                      : 1
+                      ns.nic.seINA212.247.7.228: 1
+                      ns.nic.seINAAAA2a00:801:f0:53::53: 1
+                      ns3.nic.seINA212.247.8.152: 1
+                      ns3.nic.seINAAAA2a00:801:f0:211::152: 1
             '1':
               '0':
                 '0': !!perl/hash:Giraffa::Packet
@@ -649,16 +712,16 @@ NS.NIC.SE:
                         name: ns.nic.se
                         origin: *18
                       rdlength: 154
-                      sig: 'ZaY07dqT+OmGRSzNFWgPR6LJ5K+5vcNCge4NsQjZSY3Ds5OhyCMdFRkbmx30L5LFRlYLSeq5ckXg
+                      sig: 'KH/zqRpURubESoy0e1uxBbHLVd5pNSuw8saS7f+QprtX4s7ZLqIoBLzFmNouJUnJ2JsfW03qqhWt
 
-                        KNl1H1/fgD1gtzOxZmy9XL+24qIEhy73hNjwTBworOSk2mFWwBhEt9i3ulpOEoTEcansxB782aaI
+                        5Fls8Dx4jZ2IVHqGTZFKJZ9sRGv8lgUj8Js5E3OiCSoFYep4amFKyZdYhb88JTlu7qOJ3v8uNBTA
 
-                        X9/zW1F6CNoF3L1LWB0=
+                        PWYV96HKKM69SuLCAzA=
 
 '
-                      sigbin: "e¦4íÚ\x93øé\x86E,Í\x15h\x0FG¢Éä¯¹½ÃB\x81î\r±\bÙI\x8DÃ³\x93¡È#\x1D\x15\x19\e\x9B\x1Dô/\x92ÅFV\vIê¹rEà(Ùu\x1F_ß\x80=`·3±fl½\\¿¶â¢\x04\x87.÷\x84ØðL\x1C(¬ä¤ÚaVÀ\x18D·Ø·ºZN\x12\x84Äq©ìÄ\x1EüÙ¦\x88_ßó[Qz\bÚ\x05Ü½KX\x1D"
-                      sigexpiration: '20131009132001'
-                      siginception: '20130929132001'
+                      sigbin: "(\x7Fó©\x1ATFæÄJ\x8C´{[±\x05±ËUÞi5+°òÆ\x92íÿ\x90¦»WâÎÙ.¢(\x04¼Å\x98Ú.%IÉØ\x9B\x1F[Mêª\x15­äYlð<x\x8D\x9D\x88Tz\x86M\x91J%\x9FlDkü\x96\x05#ð\x9B9\x13s¢\t*\x05aêxjaJÉ\x97X\N¿<%9nî£\x89Þÿ.4\x14À=f\x15÷¡Ê(Î½JâÂ\x030"
+                      sigexpiration: '20131010132001'
+                      siginception: '20130930132001'
                       signame: nic.se
                       ttl: 3600
                       type: RRSIG
@@ -676,17 +739,17 @@ NS.NIC.SE:
                         name: ns.nic.se
                         origin: *18
                       rdlength: 154
-                      sig: 'OBLaxDm7uOByUCnvS7r3y0Egu0hArvtHY2/CF+CosJ2uzg7l//3LRgZ1sNYWUvncxOQDZT0n8GBW
+                      sig: 'YsH7uEYm9HphsVVXZh4syLL6d8ZQSW2gixbFT8bd3T4kysrukHXSyEPP6tb52m6kClkXNtjPga/w
 
-                        v++Wx6t4GPcbEnSqaj/+Db1SO66KsftPyFKbzKBpoO3r4XxNp6CYz4vhyvYOUmEkJCDOV436xZuJ
+                        HIseIAN7Q46CnljN4Jr38mvjaV1u+OkiKjFtG1cIlz9mC8zG+6yQDFr1DAC74w6XCVUfd+PNvZtZ
 
-                        Z6z0Ubd9AufYIO5kYVg=
+                        Vgrvcy+1hO9Nf2cFF7c=
 
 '
-                      sigbin: "8\x12ÚÄ9»¸àrP)ïKº÷ËA »H@®ûGcoÂ\x17à¨°\x9D®Î\x0EåÿýËF\x06u°Ö\x16RùÜÄä\x03e='ð`V¿ï\x96Ç«x\x18÷\e\x12tªj?þ\r½R;®\x8A±ûOÈR\x9BÌ i íëá|M§ \x98Ï\x8BáÊö\x0ERa$$
-                        ÎW\x8DúÅ\x9B\x89g¬ôQ·}\x02çØ îdaX"
-                      sigexpiration: '20131009132001'
-                      siginception: '20130929132001'
+                      sigbin: "bÁû¸F&ôza±UWf\x1E,È²úwÆPIm \x8B\x16ÅOÆÝÝ>$ÊÊî\x90uÒÈCÏêÖùÚn¤\nY\x176ØÏ\x81¯ð\x1C\x8B\x1E
+                        \x03{C\x8E\x82\x9EXÍà\x9A÷òkãi]nøé\"*1m\eW\b\x97?f\vÌÆû¬\x90\fZõ\f\0»ã\x0E\x97\tU\x1FwãÍ½\x9BYV\nïs/µ\x84ïM\x7Fg\x05\x17·"
+                      sigexpiration: '20131010132001'
+                      siginception: '20130930132001'
                       signame: nic.se
                       ttl: 3600
                       type: RRSIG
@@ -704,17 +767,16 @@ NS.NIC.SE:
                         name: ns3.nic.se
                         origin: *20
                       rdlength: 154
-                      sig: 'vLdtHcBVdiSxjojWtYzb9mDlhR6+KLnazI1dzvL9dS6lPZvDZarfSY6eJTw68hivJrgI7nMYg1i7
+                      sig: 'C5L+LRAR10wRoTp8+1s/45y01GiqoN1VxuoA8EsEOrYacPJwaeU06hY3+u8DWrYkiJFmz4tDSkOn
 
-                        NvnIViaBWyb++OgfI0HrCuQZ1tUsF2496+Hh15W9Xz+d2dwur4XEpYUgbZaM6yoiXOsPRTn8c26P
+                        Vx5NO9pJtPODOx3GXm5buG6J+THeXMnaOmU4gpXep2GSNDXtoavpM5jH/eFBg5LRTjxp1r0TgtGt
 
-                        NKUW74b4tgkQ4nA2uFA=
+                        RQQ0O6DEqKn/rX0RCj8=
 
 '
-                      sigbin: "¼·m\x1DÀUv$±\x8E\x88Öµ\x8CÛö`å\N\x1E¾(¹ÚÌ\x8D]Îòýu.¥=\x9BÃeªßI\x8E\x9E%<:ò\x18¯&¸\bîs\x18\x83X»6ùÈV&\x81[&þøè\x1F#Aë\nä\x19ÖÕ,\x17n=ëáá×\x95½_?\x9DÙÜ.¯\NÄ¥\N
-                        m\x96\x8Cë*\"\\ë\x0FE9üsn\x8F4¥\x16ï\x86ø¶\t\x10âp6¸P"
-                      sigexpiration: '20131009132001'
-                      siginception: '20130929132001'
+                      sigbin: "\v\x92þ-\x10\x11×L\x11¡:|û[?ã\x9C´Ôhª ÝUÆê\0ðK\x04:¶\x1Apòpiå4ê\x167úï\x03Z¶$\x88\x91fÏ\x8BCJC§W\x1EM;ÚI´ó\x83;\x1DÆ^n[¸n\x89ù1Þ\\ÉÚ:e8\x82\x95Þ§a\x9245í¡«é3\x98ÇýáA\x83\x92ÑN<iÖ½\x13\x82Ñ­E\x044; Ä¨©ÿ­}\x11\n?"
+                      sigexpiration: '20131010132001'
+                      siginception: '20130930132001'
                       signame: nic.se
                       ttl: 60
                       type: RRSIG
@@ -732,16 +794,17 @@ NS.NIC.SE:
                         name: ns3.nic.se
                         origin: *20
                       rdlength: 154
-                      sig: 'WLB71BBWaz/SdwgGks+7l6pAdQjDtx8XgXcGbL6GbaUmTD8r6HKWZhHCGZCRkakCo+xvXDVmVO+3
+                      sig: 'DcrWBpUb5JjiJdft7J+P72HNAHdwWVVP2QB7gRBVxYAe4n66vKuoN4Y59gqWKhpQaKr62nnlJaK0
 
-                        Y1+93NtZAsatp0Q9WIxwc9hTlH05edURQlgO/KfkXXxvEzIu/5VCFphXAHUxVBWlvsngljDHNxq+
+                        iChaG9aDpPOhcw7nAyC/JvspOVU8JGYfMCCtoFPLHWT8Ije/naiSTpaibRQwyNqjLzYYBKw5yawv
 
-                        hwMa+PLf4YmKluEIJVI=
+                        wixVmoPKmDHGS3FE098=
 
 '
-                      sigbin: "X°{Ô\x10Vk?Òw\b\x06\x92Ï»\x97ª@u\bÃ·\x1F\x17\x81w\x06l¾\x86m¥&L?+èr\x96f\x11Â\x19\x90\x91\x91©\x02£ìo\\5fTï·c_½ÜÛY\x02Æ­§D=X\x8CpsØS\x94}9yÕ\x11BX\x0Eü§ä]|o\x132.ÿ\x95B\x16\x98W\0u1T\x15¥¾Éà\x960Ç7\x1A¾\x87\x03\x1Aøòßá\x89\x8A\x96á\b%R"
-                      sigexpiration: '20131009132001'
-                      siginception: '20130929132001'
+                      sigbin: "\rÊÖ\x06\x95\eä\x98â%×íì\x9F\x8FïaÍ\0wpYUOÙ\0{\x81\x10UÅ\x80\x1Eâ~º¼«¨7\x869ö\n\x96*\x1APhªúÚyå%¢´\x88(Z\eÖ\x83¤ó¡s\x0Eç\x03
+                        ¿&û)9U<$f\x1F0 ­ SË\x1Ddü\"7¿\x9D¨\x92N\x96¢m\x140ÈÚ£/6\x18\x04¬9É¬/Â,U\x9A\x83Ê\x981ÆKqDÓß"
+                      sigexpiration: '20131010132001'
+                      siginception: '20130930132001'
                       signame: nic.se
                       ttl: 60
                       type: RRSIG
@@ -768,6 +831,7 @@ NS.NIC.SE:
                         label:
                         - ns
                         - nic
+                        name: ns.nic.se
                         origin: *19
                       name: iis.se
                       owner: !!perl/hash:Net::DNS::DomainName1035
@@ -784,8 +848,9 @@ NS.NIC.SE:
                       rname: !!perl/hash:Net::DNS::Mailbox1035
                         label:
                         - hostmaster
+                        name: hostmaster.iis.se
                         origin: *23
-                      serial: 1380464101
+                      serial: 1380627002
                       ttl: 3600
                       type: SOA
                     - !!perl/hash:Net::DNS::RR::RRSIG
@@ -800,16 +865,16 @@ NS.NIC.SE:
                         name: iis.se
                         origin: *23
                       rdlength: 154
-                      sig: 'Z3i/v7r4z7hPKMKAiE0b+UFxh9HjYuSu6N1M81wrSV4WPO0pOiW9msrLU+qhNrYSw/yOYjwao5RD
+                      sig: 'czMmzBC52CRZ1S2q7i7JLnnOMRGc56M7Z+5H5KZh4HmJQ5b6Cc0GZvUemcjoF6+rBaiAhG/B7RFr
 
-                        v9xjqBtYpeMQKF0oBABdznGZS4qEZPYT0DxxJHuBc29qdrqyyZyKu7xF21v+/hVp/DJyPZzMeHtl
+                        j8dQXcNVGqouYYa6BJZ02hbSqD+c/BH7N2HVysMWFWTLglbKrVsHkvarhb0TjeNxjQvxC0rkP/vv
 
-                        YlP7IYpK5yvaV5OEKQI=
+                        ZG9Yvth4eupmZQaeTr0=
 
 '
-                      sigbin: "gx¿¿ºøÏ¸O(Â\x80\x88M\eùAq\x87Ñãbä®èÝLó\\+I^\x16<í):%½\x9AÊËSê¡6¶\x12Ãü\x8Eb<\x1A£\x94C¿Üc¨\eX¥ã\x10(](\x04\0]Îq\x99K\x8A\x84dö\x13Ð<q${\x81sojvº²É\x9C\x8A»¼EÛ[þþ\x15iü2r=\x9CÌx{ebSû!\x8AJç+ÚW\x93\x84)\x02"
-                      sigexpiration: '20131009131501'
-                      siginception: '20130929131501'
+                      sigbin: "s3&Ì\x10¹Ø$YÕ-ªî.É.yÎ1\x11\x9Cç£;gîGä¦aày\x89C\x96ú\tÍ\x06fõ\x1E\x99Èè\x17¯«\x05¨\x80\x84oÁí\x11k\x8FÇP]ÃU\x1Aª.a\x86º\x04\x96tÚ\x16Ò¨?\x9Cü\x11û7aÕÊÃ\x16\x15dË\x82VÊ­[\a\x92ö«\N½\x13\x8Dãq\x8D\vñ\vJä?ûïdoX¾Øxzêfe\x06\x9EN½"
+                      sigexpiration: '20131011103002'
+                      siginception: '20131001103002'
                       signame: iis.se
                       ttl: 3600
                       type: RRSIG
@@ -824,6 +889,7 @@ NS.NIC.SE:
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
                         - ns3
+                        name: ns3.nic.se
                         origin: *21
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
@@ -840,29 +906,33 @@ NS.NIC.SE:
                       class: IN
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        origin: *18
+                        label:
+                        - i
+                        - ns
+                        name: i.ns.se
+                        origin: !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - se
+                          name: se
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
                         origin: *24
-                      rdlength: 2
+                      rdlength: 7
                       ttl: 3600
                       type: NS
                     - !!perl/hash:Net::DNS::RR::NS
                       class: IN
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - i
-                        - ns
-                        origin: !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - se
+                        label: []
+                        name: ns.nic.se
+                        origin: *18
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
                         origin: *24
-                      rdlength: 7
+                      rdlength: 2
                       ttl: 3600
                       type: NS
                     - !!perl/hash:Net::DNS::RR::RRSIG
@@ -877,16 +947,16 @@ NS.NIC.SE:
                         name: iis.se
                         origin: *24
                       rdlength: 154
-                      sig: 'HkuggUc0JZ8fGUEqvMQIHGTOYpGl79G9CG5tFSwBB8S9b6Bl5j9dxtRPmwyagoV1XyT0NTYJ8gGh
+                      sig: 'qBmaU2ESTtf+EzUctKUtdj5H6ZIO3iqXURxV6B9OaNWivyhqFbLzE32zcNX9aoPG3BG4CoqAJmLH
 
-                        KgdTQsellP3xkl25LNBHqrRb7HrU+pMK0XBXWVrWOd2BAd7gymmSEZA7Uc8tyU/jKjnjElbF423J
+                        /YGySjB2tul5isLlLgUApgSSKZUe6vAaHwuAl1yjgnZs+nGIENPGLlehyw+6z0oJm6QuBiUtH+Fq
 
-                        mlsxB6H0OjR2yJAWZ3w=
+                        JUA1MBVVZmf/OCzMfOM=
 
 '
-                      sigbin: "\x1EK \x81G4%\x9F\x1F\x19A*¼Ä\b\x1CdÎb\x91¥ïÑ½\bnm\x15,\x01\aÄ½o eæ?]ÆÔO\x9B\f\x9A\x82\Nu_$ô56\tò\x01¡*\aSBÇ¥\x94ýñ\x92]¹,ÐGª´[ìzÔú\x93\nÑpWYZÖ9Ý\x81\x01ÞàÊi\x92\x11\x90;QÏ-ÉOã*9ã\x12VÅãmÉ\x9A[1\a¡ô:4vÈ\x90\x16g|"
-                      sigexpiration: '20131009131501'
-                      siginception: '20130929131501'
+                      sigbin: "¨\x19\x9ASa\x12N×þ\x135\x1C´¥-v>Gé\x92\x0EÞ*\x97Q\x1CUè\x1FNhÕ¢¿(j\x15²ó\x13}³pÕýj\x83ÆÜ\x11¸\n\x8A\x80&bÇý\x81²J0v¶éy\x8AÂå.\x05\0¦\x04\x92)\x95\x1Eêð\x1A\x1F\v\x80\x97\\£\x82vlúq\x88\x10ÓÆ.W¡Ë\x0FºÏJ\t\x9B¤.\x06%-\x1Fáj%@50\x15Ufgÿ8,Ì|ã"
+                      sigexpiration: '20131011103002'
+                      siginception: '20131001103002'
                       signame: iis.se
                       ttl: 3600
                       type: RRSIG
@@ -900,7 +970,7 @@ NS.NIC.SE:
                       - 9
                       - 873
                       - 26995
-                      id: 12440
+                      id: 13048
                       status: 33792
                       xbody: *17
                       xtender: *22
@@ -912,6 +982,42 @@ NS.NIC.SE:
                         - iis
                         - se
                       type: 6
+                    seen:
+                      iis.seINNSi.ns.se.: 1
+                      iis.seINNSns.nic.se.: 1
+                      iis.seINNSns3.nic.se.: 1
+                      ? "iis.seINRRSIGNS  5  2  3600  20131011103002 (\n\t\t\t20131001103002
+                        8213  iis.se.\n\t\t\tqBmaU2ESTtf+EzUctKUtdj5H6ZIO3iqXURxV6B9OaNWiv\n\t\t\tyhqFbLzE32zcNX9aoPG3BG4CoqAJmLH/YGySjB2tul5is\n\t\t\tLlLgUApgSSKZUe6vAaHwuAl1yjgnZs+nGIENPGLlehyw+\n\t\t\t6z0oJm6QuBiUtH+FqJUA1MBVVZmf/OCzMfOM=
+                        )"
+                      : 1
+                      ? "iis.seINRRSIGSOA  5  2  3600  20131011103002 (\n\t\t\t20131001103002
+                        8213  iis.se.\n\t\t\tczMmzBC52CRZ1S2q7i7JLnnOMRGc56M7Z+5H5KZh4HmJQ\n\t\t\t5b6Cc0GZvUemcjoF6+rBaiAhG/B7RFrj8dQXcNVGqouYY\n\t\t\ta6BJZ02hbSqD+c/BH7N2HVysMWFWTLglbKrVsHkvarhb0\n\t\t\tTjeNxjQvxC0rkP/vvZG9Yvth4eupmZQaeTr0=
+                        )"
+                      : 1
+                      ? "iis.seINSOAns.nic.se. hostmaster.iis.se. (\n\t\t\t\t1380627002\t;serial\n\t\t\t\t10800
+                        \    \t;refresh\n\t\t\t\t3600      \t;retry\n\t\t\t\t1814400
+                        \  \t;expire\n\t\t\t\t14400  )\t;minimum"
+                      : 1
+                      ns.nic.seINA212.247.7.228: 1
+                      ns.nic.seINAAAA2a00:801:f0:53::53: 1
+                      ? "ns.nic.seINRRSIGA  5  3  3600  20131010132001 (\n\t\t\t20130930132001
+                        13745  nic.se.\n\t\t\tKH/zqRpURubESoy0e1uxBbHLVd5pNSuw8saS7f+QprtX4\n\t\t\ts7ZLqIoBLzFmNouJUnJ2JsfW03qqhWt5Fls8Dx4jZ2IVH\n\t\t\tqGTZFKJZ9sRGv8lgUj8Js5E3OiCSoFYep4amFKyZdYhb8\n\t\t\t8JTlu7qOJ3v8uNBTAPWYV96HKKM69SuLCAzA=
+                        )"
+                      : 1
+                      ? "ns.nic.seINRRSIGAAAA  5  3  3600  20131010132001 (\n\t\t\t20130930132001
+                        13745  nic.se.\n\t\t\tYsH7uEYm9HphsVVXZh4syLL6d8ZQSW2gixbFT8bd3T4ky\n\t\t\tsrukHXSyEPP6tb52m6kClkXNtjPga/wHIseIAN7Q46Cnl\n\t\t\tjN4Jr38mvjaV1u+OkiKjFtG1cIlz9mC8zG+6yQDFr1DAC\n\t\t\t74w6XCVUfd+PNvZtZVgrvcy+1hO9Nf2cFF7c=
+                        )"
+                      : 1
+                      ns3.nic.seINA212.247.8.152: 1
+                      ns3.nic.seINAAAA2a00:801:f0:211::152: 1
+                      ? "ns3.nic.seINRRSIGA  5  3  60  20131010132001 (\n\t\t\t20130930132001
+                        13745  nic.se.\n\t\t\tC5L+LRAR10wRoTp8+1s/45y01GiqoN1VxuoA8EsEOrYac\n\t\t\tPJwaeU06hY3+u8DWrYkiJFmz4tDSkOnVx5NO9pJtPODOx\n\t\t\t3GXm5buG6J+THeXMnaOmU4gpXep2GSNDXtoavpM5jH/eF\n\t\t\tBg5LRTjxp1r0TgtGtRQQ0O6DEqKn/rX0RCj8=
+                        )"
+                      : 1
+                      ? "ns3.nic.seINRRSIGAAAA  5  3  60  20131010132001 (\n\t\t\t20130930132001
+                        13745  nic.se.\n\t\t\tDcrWBpUb5JjiJdft7J+P72HNAHdwWVVP2QB7gRBVxYAe4\n\t\t\tn66vKuoN4Y59gqWKhpQaKr62nnlJaK0iChaG9aDpPOhcw\n\t\t\t7nAyC/JvspOVU8JGYfMCCtoFPLHWT8Ije/naiSTpaibRQ\n\t\t\twyNqjLzYYBKw5yawvwixVmoPKmDHGS3FE098=
+                        )"
+                      : 1
     dns: !!perl/hash:Net::DNS::Resolver
       adflag: 1
       answerfrom: 2a00:801:f0:53::53
@@ -951,6 +1057,9 @@ NS.NIC.SE:
       - ns
       - nic
       - se
+    times:
+    - 0.00996994972229004
+    - 0.00590395927429199
 NS.NOT.EXISTING:
   192.0.2.17: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -1009,6 +1118,8 @@ NS.NOT.EXISTING:
       - ns
       - not
       - existing
+    times:
+    - 4.00247287750244
 NS1.GOOGLE.COM:
   216.239.32.10: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -1031,3 +1142,4 @@ NS1.GOOGLE.COM:
       - ns1
       - google
       - com
+    times: []

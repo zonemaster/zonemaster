@@ -179,7 +179,7 @@ sub is_answer {
 }
 
 sub root_servers {
-    return map { Giraffa::Util::ns( $_->{name}, $_->{address} ) } @{ $seed_data->{'.'} };
+    return map { Giraffa::Util::ns( $_->{name}, $_->{address} ) } sort {$a->{name} cmp $b->{name}} @{ $seed_data->{'.'} };
 }
 
 1;

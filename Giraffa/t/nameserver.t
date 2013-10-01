@@ -69,6 +69,26 @@ like( $@,
 );
 config->{no_network} = $save;
 
+is(scalar(@{$nsv6->times}), 2, 'two times');
+is($nsv6->max_time, 0.00996994972229004, 'max');
+is($nsv6->min_time, 0.00590395927429199, 'min');
+is($nsv6->sum_time, 0.015873908996582, 'sum');
+is($nsv6->average_time, 0.00793695449829102, 'average');
+is($nsv6->median_time, 0.00793695449829102, 'median');
+is($nsv6->stddev_time, 0.00203299522399903, 'stddev');
+
+is(scalar(@{$nsv4->times}), 1, 'one time');
+is($nsv4->median_time, $nsv4->times->[0], 'median');
+
+@{$nsv6->times} = (qw[2 4 4 4 5 5 7 9]);
+is($nsv6->stddev_time, 2, 'known value check');
+is($nsv6->average_time, 5);
+is($nsv6->median_time, 4.5);
+
+foreach my $ns (Giraffa::Nameserver->all_known_nameservers) {
+    isa_ok($ns, 'Giraffa::Nameserver');
+}
+
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );
 }

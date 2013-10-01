@@ -16,6 +16,7 @@ use Time::HiRes qw[time];
 use YAML::XS qw[DumpFile LoadFile];
 use Module::Find qw[useall];
 use Carp;
+use List::Util qw[max min sum];
 
 subtype 'Giraffa::Net::IP', as 'Object', where { $_->isa( 'Net::IP' ) };
 coerce 'Giraffa::Net::IP', from 'Str', via { Net::IP->new( $_ ) };
@@ -25,6 +26,7 @@ has 'address' => ( is => 'ro', isa => 'Giraffa::Net::IP', coerce => 1, required 
 
 has 'dns' => ( is => 'ro', isa => 'Net::DNS::Resolver', lazy_build => 1 );
 has 'cache' => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
+has 'times' => ( is => 'ro', isa => 'ArrayRef', default => sub {[]});
 
 ###
 ### Variables
@@ -120,7 +122,9 @@ sub _query {
         $self->dns->$flag( $flags{$flag} );
     }
 
+    my $before = time();
     my $res = eval { $self->dns->send( "$name", $type, $href->{class} ) };
+    push @{$self->times}, (time() - $before);
 
     foreach my $flag ( keys %defaults ) {
         $self->dns->$flag( $defaults{$flag} );
@@ -155,6 +159,65 @@ sub restore {
     return;
 }
 
+sub max_time {
+    my ( $self ) = @_;
+
+    return max(@{$self->times}) // 0;
+}
+
+sub min_time {
+    my ( $self ) = @_;
+
+    return min(@{$self->times}) // 0;
+}
+
+sub sum_time {
+    my ( $self ) = @_;
+
+    return sum(@{$self->times}) // 0;
+}
+
+sub average_time {
+    my ( $self ) = @_;
+
+    return 0 if @{$self->times} == 0;
+
+    return ($self->sum_time/scalar(@{$self->times}));
+}
+
+sub median_time {
+    my ( $self ) = @_;
+
+    my @t = sort {$a <=> $b} @{$self->times};
+    my $c = scalar(@t);
+    if ($c % 2 == 0) {
+        return ($t[$c/2] + $t[($c/2)-1])/2;
+    } else {
+        return $t[int($c/2)];
+    }
+}
+
+sub stddev_time {
+    my ( $self ) = @_;
+
+    my $avg = $self->average_time;
+    my $c = scalar(@{$self->times});
+
+    return 0 if $c == 0;
+
+    return sqrt( sum( map {($_-$avg)**2} @{$self->times} )/$c );
+}
+
+sub all_known_nameservers {
+    my @res;
+
+    foreach my $n (values %object_cache) {
+        push @res, values %$n
+    }
+
+    return @res;
+}
+
 1;
 
 =head1 NAME
@@ -185,6 +248,10 @@ The L<Net::DNS::Resolver> object used to actually send and recieve DNS queries.
 =item cache
 
 A reference to a hash holding the cache of sent queries. Not meant for external use.
+
+=item times
+
+A reference to a list with elapsed time values for the queries made through this nameserver.
 
 =back
 
@@ -253,6 +320,34 @@ Save the entire object cache to the given filename, using the byte-order-indepen
 =item restore($filename)
 
 Replace the entire object cache with the contents of the named file.
+
+=item sum_time()
+
+Returns the total time spent sending queries and waiting for responses.
+
+=item min_time()
+
+Returns the shortest time spent on a query.
+
+=item max_time()
+
+Returns the longest time spent on a query.
+
+=item average_time()
+
+Returns the average time spent on queries.
+
+=item median_time()
+
+Returns the median query time.
+
+=item stddev_time()
+
+Returns the standard deviation for the whole set of query times.
+
+=item all_known_nameservers()
+
+Class method that returns a list of all nameserver objects in the global cache.
 
 =back
 

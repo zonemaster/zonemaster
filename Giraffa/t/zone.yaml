@@ -59,9 +59,12 @@ A.NS.SE:
                         origin: &4 !!perl/hash:Net::DNS::DomainName
                           label:
                           - ns
-                          - nic
                           name: ns.nic.se
-                          origin: *3
+                          origin: &5 !!perl/hash:Net::DNS::DomainName
+                            label:
+                            - nic
+                            name: nic.se
+                            origin: *3
                       rdlength: 4
                       ttl: 86400
                       type: A
@@ -83,15 +86,12 @@ A.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns3.nic.se
-                        origin: &5 !!perl/hash:Net::DNS::DomainName
+                        origin: &6 !!perl/hash:Net::DNS::DomainName
                           label:
                           - ns3
+                          - nic
                           name: ns3.nic.se
-                          origin: &6 !!perl/hash:Net::DNS::DomainName
-                            label:
-                            - nic
-                            name: nic.se
-                            origin: *3
+                          origin: *3
                       rdlength: 4
                       ttl: 86400
                       type: A
@@ -102,7 +102,7 @@ A.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns3.nic.se
-                        origin: *5
+                        origin: *6
                       rdlength: 16
                       ttl: 86400
                       type: AAAA
@@ -115,9 +115,9 @@ A.NS.SE:
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - ns
+                        - ns3
                         - nic
-                        name: ns.nic.se
+                        name: ns3.nic.se
                         origin: *3
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
@@ -127,7 +127,7 @@ A.NS.SE:
                           - iis
                           - se
                           name: iis.se
-                      rdlength: 9
+                      rdlength: 10
                       ttl: 86400
                       type: NS
                     - !!perl/hash:Net::DNS::RR::NS
@@ -135,14 +135,14 @@ A.NS.SE:
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - ns3
-                        name: ns3.nic.se
-                        origin: *6
+                        - ns
+                        name: ns.nic.se
+                        origin: *5
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
                         origin: *7
-                      rdlength: 6
+                      rdlength: 5
                       ttl: 86400
                       type: NS
                     - !!perl/hash:Net::DNS::RR::NS
@@ -169,7 +169,7 @@ A.NS.SE:
                       - 6
                       - 873
                       - 26995
-                      id: 1092
+                      id: 49731
                       status: 32768
                       xbody: *1
                       xtender: !!perl/hash:Net::DNS::RR::OPT
@@ -187,6 +187,16 @@ A.NS.SE:
                         - iis
                         - se
                       type: 2
+                    seen:
+                      i.ns.seINA194.146.106.22: 1
+                      i.ns.seINAAAA2001:67c:1010:5::53: 1
+                      iis.seINNSi.ns.se.: 1
+                      iis.seINNSns.nic.se.: 1
+                      iis.seINNSns3.nic.se.: 1
+                      ns.nic.seINA212.247.7.228: 1
+                      ns.nic.seINAAAA2a00:801:f0:53::53: 1
+                      ns3.nic.seINA212.247.8.152: 1
+                      ns3.nic.seINAAAA2a00:801:f0:211::152: 1
       se:
         NS:
           IN:
@@ -205,12 +215,15 @@ A.NS.SE:
                         origin: &9 !!perl/hash:Net::DNS::DomainName
                           label:
                           - a
-                          - ns
                           name: a.ns.se
                           origin: &10 !!perl/hash:Net::DNS::DomainName
                             label:
-                            - se
-                            name: se
+                            - ns
+                            name: ns.se
+                            origin: &11 !!perl/hash:Net::DNS::DomainName
+                              label:
+                              - se
+                              name: se
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -232,15 +245,11 @@ A.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: b.ns.se
-                        origin: &11 !!perl/hash:Net::DNS::DomainName
+                        origin: &12 !!perl/hash:Net::DNS::DomainName
                           label:
                           - b
                           name: b.ns.se
-                          origin: &12 !!perl/hash:Net::DNS::DomainName
-                            label:
-                            - ns
-                            name: ns.se
-                            origin: *10
+                          origin: *10
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -251,7 +260,7 @@ A.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: b.ns.se
-                        origin: *11
+                        origin: *12
                       rdlength: 16
                       ttl: 172800
                       type: AAAA
@@ -266,7 +275,7 @@ A.NS.SE:
                           label:
                           - c
                           name: c.ns.se
-                          origin: *12
+                          origin: *10
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -292,7 +301,7 @@ A.NS.SE:
                           label:
                           - d
                           name: d.ns.se
-                          origin: *12
+                          origin: *10
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -309,7 +318,7 @@ A.NS.SE:
                           label:
                           - e
                           name: e.ns.se
-                          origin: *12
+                          origin: *10
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -324,7 +333,7 @@ A.NS.SE:
                           label:
                           - f
                           name: f.ns.se
-                          origin: *12
+                          origin: *10
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -350,7 +359,7 @@ A.NS.SE:
                           label:
                           - g
                           name: g.ns.se
-                          origin: *12
+                          origin: *10
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -375,8 +384,9 @@ A.NS.SE:
                         origin: &16 !!perl/hash:Net::DNS::DomainName
                           label:
                           - i
+                          - ns
                           name: i.ns.se
-                          origin: *12
+                          origin: *11
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -402,7 +412,7 @@ A.NS.SE:
                           label:
                           - j
                           name: j.ns.se
-                          origin: *12
+                          origin: *10
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -423,14 +433,14 @@ A.NS.SE:
                       name: se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - a
+                        - i
                         - ns
-                        name: a.ns.se
-                        origin: *10
+                        name: i.ns.se
+                        origin: *11
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
-                        origin: *10
+                        origin: *11
                       rdlength: 7
                       ttl: 172800
                       type: NS
@@ -439,13 +449,13 @@ A.NS.SE:
                       name: se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - g
-                        name: g.ns.se
-                        origin: *12
+                        - d
+                        name: d.ns.se
+                        origin: *10
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
-                        origin: *10
+                        origin: *11
                       rdlength: 4
                       ttl: 172800
                       type: NS
@@ -456,11 +466,26 @@ A.NS.SE:
                         label:
                         - f
                         name: f.ns.se
-                        origin: *12
+                        origin: *10
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
+                        origin: *11
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - g
+                        name: g.ns.se
                         origin: *10
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *11
                       rdlength: 4
                       ttl: 172800
                       type: NS
@@ -471,11 +496,26 @@ A.NS.SE:
                         label:
                         - b
                         name: b.ns.se
-                        origin: *12
+                        origin: *10
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
+                        origin: *11
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - a
+                        name: a.ns.se
                         origin: *10
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *11
                       rdlength: 4
                       ttl: 172800
                       type: NS
@@ -486,56 +526,11 @@ A.NS.SE:
                         label:
                         - j
                         name: j.ns.se
-                        origin: *12
+                        origin: *10
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
-                        origin: *10
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - e
-                        name: e.ns.se
-                        origin: *12
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *10
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - d
-                        name: d.ns.se
-                        origin: *12
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *10
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - i
-                        name: i.ns.se
-                        origin: *12
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *10
+                        origin: *11
                       rdlength: 4
                       ttl: 172800
                       type: NS
@@ -546,11 +541,26 @@ A.NS.SE:
                         label:
                         - c
                         name: c.ns.se
-                        origin: *12
+                        origin: *10
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
+                        origin: *11
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - e
+                        name: e.ns.se
                         origin: *10
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *11
                       rdlength: 4
                       ttl: 172800
                       type: NS
@@ -565,7 +575,7 @@ A.NS.SE:
                       - 16
                       - 627
                       - 25856
-                      id: 10889
+                      id: 43517
                       status: 33792
                       xbody: *8
                       xtender: !!perl/hash:Net::DNS::RR::OPT
@@ -582,6 +592,32 @@ A.NS.SE:
                         label:
                         - se
                       type: 2
+                    seen:
+                      a.ns.seINA192.36.144.107: 1
+                      a.ns.seINAAAA2a01:3f0:0:301::53: 1
+                      b.ns.seINA192.36.133.107: 1
+                      b.ns.seINAAAA2001:67c:254c:301::53: 1
+                      c.ns.seINA192.36.135.107: 1
+                      c.ns.seINAAAA2001:67c:2554:301::53: 1
+                      d.ns.seINA81.228.8.16: 1
+                      e.ns.seINA81.228.10.57: 1
+                      f.ns.seINA192.71.53.53: 1
+                      f.ns.seINAAAA2a01:3f0:0:305::53: 1
+                      g.ns.seINA130.239.5.114: 1
+                      g.ns.seINAAAA2001:6b0:e:3::1: 1
+                      i.ns.seINA194.146.106.22: 1
+                      i.ns.seINAAAA2001:67c:1010:5::53: 1
+                      j.ns.seINA199.254.63.1: 1
+                      j.ns.seINAAAA2001:500:2c::1: 1
+                      seINNSa.ns.se.: 1
+                      seINNSb.ns.se.: 1
+                      seINNSc.ns.se.: 1
+                      seINNSd.ns.se.: 1
+                      seINNSe.ns.se.: 1
+                      seINNSf.ns.se.: 1
+                      seINNSg.ns.se.: 1
+                      seINNSi.ns.se.: 1
+                      seINNSj.ns.se.: 1
     dns: !!perl/hash:Net::DNS::Resolver
       adflag: 1
       answerfrom: 192.36.144.107
@@ -622,6 +658,9 @@ A.NS.SE:
       - a
       - ns
       - se
+    times:
+    - 0.00550603866577148
+    - 0.00332784652709961
   2a01:03f0:0000:0301:0000:0000:0000:0053: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00101010000000010000001111110000000000000000000000000011000000010000000000000000000000000000000000000000000000000000000001010011'
@@ -634,6 +673,7 @@ A.NS.SE:
       prefixlen: '128'
     cache: {}
     name: *20
+    times: []
 A.ROOT-SERVERS.NET:
   198.41.0.4: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -645,12 +685,469 @@ A.ROOT-SERVERS.NET:
       last_bin: '11000110001010010000000000000100'
       last_ip: 198.41.0.4
       prefixlen: '32'
-    cache: {}
+    cache:
+      se:
+        NS:
+          IN:
+            '0':
+              '0':
+                '0': !!perl/hash:Giraffa::Packet
+                  packet: &21 !!perl/hash:Net::DNS::Packet
+                    additional:
+                    - !!perl/hash:Net::DNS::RR::AAAA
+                      address: "*\x01\x03ð\0\0\x03\x01\0\0\0\0\0\0\0S"
+                      class: IN
+                      name: a.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: a.ns.se
+                        origin: &22 !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - a
+                          - ns
+                          name: a.ns.se
+                          origin: &23 !!perl/hash:Net::DNS::DomainName
+                            label:
+                            - se
+                            name: se
+                      rdlength: 16
+                      ttl: 172800
+                      type: AAAA
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: "À$\x90k"
+                      class: IN
+                      name: a.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: a.ns.se
+                        origin: *22
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::AAAA
+                      address: " \x01\x06|%L\x03\x01\0\0\0\0\0\0\0S"
+                      class: IN
+                      name: b.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: b.ns.se
+                        origin: &24 !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - b
+                          name: b.ns.se
+                          origin: &25 !!perl/hash:Net::DNS::DomainName
+                            label:
+                            - ns
+                            name: ns.se
+                            origin: *23
+                      rdlength: 16
+                      ttl: 172800
+                      type: AAAA
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: "À$\Nk"
+                      class: IN
+                      name: b.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: b.ns.se
+                        origin: *24
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::AAAA
+                      address: " \x01\x06|%T\x03\x01\0\0\0\0\0\0\0S"
+                      class: IN
+                      name: c.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: c.ns.se
+                        origin: &26 !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - c
+                          name: c.ns.se
+                          origin: *25
+                      rdlength: 16
+                      ttl: 172800
+                      type: AAAA
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: "À$\x87k"
+                      class: IN
+                      name: c.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: c.ns.se
+                        origin: *26
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: "Qä\b\x10"
+                      class: IN
+                      name: d.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: d.ns.se
+                        origin: !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - d
+                          name: d.ns.se
+                          origin: *25
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: 'Qä
+
+                        9'
+                      class: IN
+                      name: e.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: e.ns.se
+                        origin: !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - e
+                          name: e.ns.se
+                          origin: *25
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::AAAA
+                      address: "*\x01\x03ð\0\0\x03\x05\0\0\0\0\0\0\0S"
+                      class: IN
+                      name: f.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: f.ns.se
+                        origin: &27 !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - f
+                          name: f.ns.se
+                          origin: *25
+                      rdlength: 16
+                      ttl: 172800
+                      type: AAAA
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: ÀG55
+                      class: IN
+                      name: f.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: f.ns.se
+                        origin: *27
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::AAAA
+                      address: " \x01\x06°\0\x0E\0\x03\0\0\0\0\0\0\0\x01"
+                      class: IN
+                      name: g.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: g.ns.se
+                        origin: &28 !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - g
+                          name: g.ns.se
+                          origin: *25
+                      rdlength: 16
+                      ttl: 172800
+                      type: AAAA
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: "\x82ï\x05r"
+                      class: IN
+                      name: g.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: g.ns.se
+                        origin: *28
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::AAAA
+                      address: " \x01\x06|\x10\x10\0\x05\0\0\0\0\0\0\0S"
+                      class: IN
+                      name: i.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: i.ns.se
+                        origin: &29 !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - i
+                          name: i.ns.se
+                          origin: *25
+                      rdlength: 16
+                      ttl: 172800
+                      type: AAAA
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: "Â\x92j\x16"
+                      class: IN
+                      name: i.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: i.ns.se
+                        origin: *29
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::AAAA
+                      address: " \x01\x05\0\0,\0\0\0\0\0\0\0\0\0\x01"
+                      class: IN
+                      name: j.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: j.ns.se
+                        origin: &30 !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - j
+                          name: j.ns.se
+                          origin: *25
+                      rdlength: 16
+                      ttl: 172800
+                      type: AAAA
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: "Çþ?\x01"
+                      class: IN
+                      name: j.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: j.ns.se
+                        origin: *30
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    answer: []
+                    answerfrom: 198.41.0.4
+                    answersize: 507
+                    authority:
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - a
+                        - ns
+                        name: a.ns.se
+                        origin: *23
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *23
+                      rdlength: 7
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - b
+                        name: b.ns.se
+                        origin: *25
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *23
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - c
+                        name: c.ns.se
+                        origin: *25
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *23
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - d
+                        name: d.ns.se
+                        origin: *25
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *23
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - e
+                        name: e.ns.se
+                        origin: *25
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *23
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - f
+                        name: f.ns.se
+                        origin: *25
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *23
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - g
+                        name: g.ns.se
+                        origin: *25
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *23
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - i
+                        name: i.ns.se
+                        origin: *25
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *23
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - j
+                        name: j.ns.se
+                        origin: *25
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *23
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    header: !!perl/hash:Net::DNS::Header
+                      count:
+                      - 1
+                      - 0
+                      - 9
+                      - 16
+                      - 627
+                      - 25856
+                      id: 43964
+                      status: 32768
+                      xbody: *21
+                      xtender: !!perl/hash:Net::DNS::RR::OPT
+                        class: 1
+                        name: .
+                        owner: !!perl/hash:Net::DNS::DomainName1035
+                          label: []
+                          name: .
+                        type: OPT
+                    question:
+                    - !!perl/hash:Net::DNS::Question
+                      class: 1
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - se
+                      type: 2
+                    seen:
+                      a.ns.seINA192.36.144.107: 1
+                      a.ns.seINAAAA2a01:3f0:0:301::53: 1
+                      b.ns.seINA192.36.133.107: 1
+                      b.ns.seINAAAA2001:67c:254c:301::53: 1
+                      c.ns.seINA192.36.135.107: 1
+                      c.ns.seINAAAA2001:67c:2554:301::53: 1
+                      d.ns.seINA81.228.8.16: 1
+                      e.ns.seINA81.228.10.57: 1
+                      f.ns.seINA192.71.53.53: 1
+                      f.ns.seINAAAA2a01:3f0:0:305::53: 1
+                      g.ns.seINA130.239.5.114: 1
+                      g.ns.seINAAAA2001:6b0:e:3::1: 1
+                      i.ns.seINA194.146.106.22: 1
+                      i.ns.seINAAAA2001:67c:1010:5::53: 1
+                      j.ns.seINA199.254.63.1: 1
+                      j.ns.seINAAAA2001:500:2c::1: 1
+                      seINNSa.ns.se.: 1
+                      seINNSb.ns.se.: 1
+                      seINNSc.ns.se.: 1
+                      seINNSd.ns.se.: 1
+                      seINNSe.ns.se.: 1
+                      seINNSf.ns.se.: 1
+                      seINNSg.ns.se.: 1
+                      seINNSi.ns.se.: 1
+                      seINNSj.ns.se.: 1
+    dns: !!perl/hash:Net::DNS::Resolver
+      adflag: 1
+      answerfrom: 198.41.0.4
+      axfr_rr: *18
+      axfr_sel: ~
+      axfr_soa_count: 0
+      cdflag: 0
+      debug: 0
+      defnames: 0
+      dnsrch: 0
+      dnssec: 0
+      domain: office.nic.se
+      errorstring: NOERROR
+      force_v4: 0
+      ignqrid: 0
+      igntc: 0
+      nameservers:
+      - 198.41.0.4
+      persistent_tcp: 0
+      persistent_udp: 0
+      port: 53
+      querytime: ~
+      recurse: 0
+      retrans: 2
+      retry: 1
+      searchlist: *19
+      srcaddr: 0.0.0.0
+      srcport: 0
+      stayopen: 0
+      tcp_timeout: 15
+      tsig_rr: ~
+      udp_timeout: 15
+      udppacketsize: 0
+      usevc: 0
     name: !!perl/hash:Giraffa::DNSName
       labels:
       - a
       - root-servers
       - net
+    times:
+    - 0.0343821048736572
   2001:0503:ba3e:0000:0000:0000:0002:0030: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00100000000000010000010100000011101110100011111000000000000000000000000000000000000000000000000000000000000000100000000000110000'
@@ -667,6 +1164,7 @@ A.ROOT-SERVERS.NET:
       - a
       - root-servers
       - net
+    times: []
 B.NS.SE:
   192.36.133.107: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -679,11 +1177,12 @@ B.NS.SE:
       last_ip: 192.36.133.107
       prefixlen: '32'
     cache: {}
-    name: &21 !!perl/hash:Giraffa::DNSName
+    name: &31 !!perl/hash:Giraffa::DNSName
       labels:
       - b
       - ns
       - se
+    times: []
   2001:067c:254c:0301:0000:0000:0000:0053: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00100000000000010000011001111100001001010100110000000011000000010000000000000000000000000000000000000000000000000000000001010011'
@@ -695,7 +1194,8 @@ B.NS.SE:
       last_ip: 2001:067c:254c:0301:0000:0000:0000:0053
       prefixlen: '128'
     cache: {}
-    name: *21
+    name: *31
+    times: []
 B.ROOT-SERVERS.NET:
   192.228.79.201: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -713,6 +1213,7 @@ B.ROOT-SERVERS.NET:
       - b
       - root-servers
       - net
+    times: []
 C.NS.SE:
   192.36.135.107: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -725,11 +1226,12 @@ C.NS.SE:
       last_ip: 192.36.135.107
       prefixlen: '32'
     cache: {}
-    name: &22 !!perl/hash:Giraffa::DNSName
+    name: &32 !!perl/hash:Giraffa::DNSName
       labels:
       - c
       - ns
       - se
+    times: []
   2001:067c:2554:0301:0000:0000:0000:0053: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00100000000000010000011001111100001001010101010000000011000000010000000000000000000000000000000000000000000000000000000001010011'
@@ -741,7 +1243,8 @@ C.NS.SE:
       last_ip: 2001:067c:2554:0301:0000:0000:0000:0053
       prefixlen: '128'
     cache: {}
-    name: *22
+    name: *32
+    times: []
 C.ROOT-SERVERS.NET:
   192.33.4.12: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -759,6 +1262,7 @@ C.ROOT-SERVERS.NET:
       - c
       - root-servers
       - net
+    times: []
 D.NS.SE:
   81.228.8.16: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -776,6 +1280,7 @@ D.NS.SE:
       - d
       - ns
       - se
+    times: []
 D.ROOT-SERVERS.NET:
   199.7.91.13: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -793,6 +1298,7 @@ D.ROOT-SERVERS.NET:
       - d
       - root-servers
       - net
+    times: []
   2001:0500:002d:0000:0000:0000:0000:000d: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00100000000000010000010100000000000000000010110100000000000000000000000000000000000000000000000000000000000000000000000000001101'
@@ -809,6 +1315,7 @@ D.ROOT-SERVERS.NET:
       - d
       - root-servers
       - net
+    times: []
 E.NS.SE:
   81.228.10.57: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -826,6 +1333,7 @@ E.NS.SE:
       - e
       - ns
       - se
+    times: []
 E.ROOT-SERVERS.NET:
   192.203.230.10: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -843,6 +1351,7 @@ E.ROOT-SERVERS.NET:
       - e
       - root-servers
       - net
+    times: []
 F.NS.SE:
   192.71.53.53: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -855,11 +1364,12 @@ F.NS.SE:
       last_ip: 192.71.53.53
       prefixlen: '32'
     cache: {}
-    name: &23 !!perl/hash:Giraffa::DNSName
+    name: &33 !!perl/hash:Giraffa::DNSName
       labels:
       - f
       - ns
       - se
+    times: []
   2a01:03f0:0000:0305:0000:0000:0000:0053: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00101010000000010000001111110000000000000000000000000011000001010000000000000000000000000000000000000000000000000000000001010011'
@@ -871,7 +1381,8 @@ F.NS.SE:
       last_ip: 2a01:03f0:0000:0305:0000:0000:0000:0053
       prefixlen: '128'
     cache: {}
-    name: *23
+    name: *33
+    times: []
 F.ROOT-SERVERS.NET:
   192.5.5.241: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -889,6 +1400,7 @@ F.ROOT-SERVERS.NET:
       - f
       - root-servers
       - net
+    times: []
   2001:0500:002f:0000:0000:0000:0000:000f: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00100000000000010000010100000000000000000010111100000000000000000000000000000000000000000000000000000000000000000000000000001111'
@@ -905,6 +1417,7 @@ F.ROOT-SERVERS.NET:
       - f
       - root-servers
       - net
+    times: []
 G.NS.SE:
   130.239.5.114: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -917,11 +1430,12 @@ G.NS.SE:
       last_ip: 130.239.5.114
       prefixlen: '32'
     cache: {}
-    name: &24 !!perl/hash:Giraffa::DNSName
+    name: &34 !!perl/hash:Giraffa::DNSName
       labels:
       - g
       - ns
       - se
+    times: []
   2001:06b0:000e:0003:0000:0000:0000:0001: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00100000000000010000011010110000000000000000111000000000000000110000000000000000000000000000000000000000000000000000000000000001'
@@ -933,7 +1447,8 @@ G.NS.SE:
       last_ip: 2001:06b0:000e:0003:0000:0000:0000:0001
       prefixlen: '128'
     cache: {}
-    name: *24
+    name: *34
+    times: []
 G.ROOT-SERVERS.NET:
   192.112.36.4: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -951,6 +1466,7 @@ G.ROOT-SERVERS.NET:
       - g
       - root-servers
       - net
+    times: []
 H.ROOT-SERVERS.NET:
   128.63.2.53: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -968,6 +1484,7 @@ H.ROOT-SERVERS.NET:
       - h
       - root-servers
       - net
+    times: []
   2001:0500:0001:0000:0000:0000:803f:0235: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00100000000000010000010100000000000000000000000100000000000000000000000000000000000000000000000010000000001111110000001000110101'
@@ -984,6 +1501,7 @@ H.ROOT-SERVERS.NET:
       - h
       - root-servers
       - net
+    times: []
 I.NS.SE:
   194.146.106.22: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -1002,7 +1520,7 @@ I.NS.SE:
             '0':
               '0':
                 '0': !!perl/hash:Giraffa::Packet
-                  packet: &25 !!perl/hash:Net::DNS::Packet
+                  packet: &35 !!perl/hash:Net::DNS::Packet
                     additional:
                     - !!perl/hash:Net::DNS::RR::A
                       address: "Â\x92j\x16"
@@ -1011,12 +1529,12 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: i.ns.se
-                        origin: &26 !!perl/hash:Net::DNS::DomainName
+                        origin: &36 !!perl/hash:Net::DNS::DomainName
                           label:
                           - i
                           - ns
                           name: i.ns.se
-                          origin: &27 !!perl/hash:Net::DNS::DomainName
+                          origin: &37 !!perl/hash:Net::DNS::DomainName
                             label:
                             - se
                             name: se
@@ -1030,7 +1548,7 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: i.ns.se
-                        origin: *26
+                        origin: *36
                       rdlength: 16
                       ttl: 172800
                       type: AAAA
@@ -1041,15 +1559,12 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns.nic.se
-                        origin: &28 !!perl/hash:Net::DNS::DomainName
+                        origin: &38 !!perl/hash:Net::DNS::DomainName
                           label:
                           - ns
+                          - nic
                           name: ns.nic.se
-                          origin: &29 !!perl/hash:Net::DNS::DomainName
-                            label:
-                            - nic
-                            name: nic.se
-                            origin: *27
+                          origin: *37
                       rdlength: 4
                       ttl: 3600
                       type: A
@@ -1060,7 +1575,7 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns.nic.se
-                        origin: *28
+                        origin: *38
                       rdlength: 16
                       ttl: 3600
                       type: AAAA
@@ -1071,12 +1586,15 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns3.nic.se
-                        origin: &30 !!perl/hash:Net::DNS::DomainName
+                        origin: &39 !!perl/hash:Net::DNS::DomainName
                           label:
                           - ns3
-                          - nic
                           name: ns3.nic.se
-                          origin: *27
+                          origin: &40 !!perl/hash:Net::DNS::DomainName
+                            label:
+                            - nic
+                            name: nic.se
+                            origin: *37
                       rdlength: 4
                       ttl: 60
                       type: A
@@ -1087,7 +1605,7 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns3.nic.se
-                        origin: *30
+                        origin: *39
                       rdlength: 16
                       ttl: 60
                       type: AAAA
@@ -1097,19 +1615,19 @@ I.NS.SE:
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - i
                         - ns
-                        name: i.ns.se
-                        origin: *27
+                        - nic
+                        name: ns.nic.se
+                        origin: *37
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
-                        origin: &31 !!perl/hash:Net::DNS::DomainName
+                        origin: &41 !!perl/hash:Net::DNS::DomainName
                           label:
                           - iis
                           - se
                           name: iis.se
-                      rdlength: 7
+                      rdlength: 9
                       ttl: 3600
                       type: NS
                     - !!perl/hash:Net::DNS::RR::NS
@@ -1118,14 +1636,13 @@ I.NS.SE:
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
                         - ns3
-                        - nic
                         name: ns3.nic.se
-                        origin: *27
+                        origin: *40
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
-                        origin: *31
-                      rdlength: 10
+                        origin: *41
+                      rdlength: 6
                       ttl: 3600
                       type: NS
                     - !!perl/hash:Net::DNS::RR::NS
@@ -1133,14 +1650,15 @@ I.NS.SE:
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
+                        - i
                         - ns
-                        name: ns.nic.se
-                        origin: *29
+                        name: i.ns.se
+                        origin: *37
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
-                        origin: *31
-                      rdlength: 5
+                        origin: *41
+                      rdlength: 7
                       ttl: 3600
                       type: NS
                     answerfrom: 194.146.106.22
@@ -1154,9 +1672,9 @@ I.NS.SE:
                       - 6
                       - 873
                       - 26995
-                      id: 41686
+                      id: 30723
                       status: 33792
-                      xbody: *25
+                      xbody: *35
                       xtender: !!perl/hash:Net::DNS::RR::OPT
                         class: 1
                         name: .
@@ -1172,13 +1690,23 @@ I.NS.SE:
                         - iis
                         - se
                       type: 2
+                    seen:
+                      i.ns.seINA194.146.106.22: 1
+                      i.ns.seINAAAA2001:67c:1010:5::53: 1
+                      iis.seINNSi.ns.se.: 1
+                      iis.seINNSns.nic.se.: 1
+                      iis.seINNSns3.nic.se.: 1
+                      ns.nic.seINA212.247.7.228: 1
+                      ns.nic.seINAAAA2a00:801:f0:53::53: 1
+                      ns3.nic.seINA212.247.8.152: 1
+                      ns3.nic.seINAAAA2a00:801:f0:211::152: 1
       www.iis.se:
         A:
           IN:
             '0':
               '0':
                 '0': !!perl/hash:Giraffa::Packet
-                  packet: &32 !!perl/hash:Net::DNS::Packet
+                  packet: &42 !!perl/hash:Net::DNS::Packet
                     additional:
                     - !!perl/hash:Net::DNS::RR::A
                       address: "Â\x92j\x16"
@@ -1187,12 +1715,12 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: i.ns.se
-                        origin: &33 !!perl/hash:Net::DNS::DomainName
+                        origin: &43 !!perl/hash:Net::DNS::DomainName
                           label:
                           - i
                           - ns
                           name: i.ns.se
-                          origin: &34 !!perl/hash:Net::DNS::DomainName
+                          origin: &44 !!perl/hash:Net::DNS::DomainName
                             label:
                             - se
                             name: se
@@ -1206,7 +1734,7 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: i.ns.se
-                        origin: *33
+                        origin: *43
                       rdlength: 16
                       ttl: 172800
                       type: AAAA
@@ -1217,15 +1745,12 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns.nic.se
-                        origin: &35 !!perl/hash:Net::DNS::DomainName
+                        origin: &45 !!perl/hash:Net::DNS::DomainName
                           label:
                           - ns
+                          - nic
                           name: ns.nic.se
-                          origin: &36 !!perl/hash:Net::DNS::DomainName
-                            label:
-                            - nic
-                            name: nic.se
-                            origin: *34
+                          origin: *44
                       rdlength: 4
                       ttl: 3600
                       type: A
@@ -1236,7 +1761,7 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns.nic.se
-                        origin: *35
+                        origin: *45
                       rdlength: 16
                       ttl: 3600
                       type: AAAA
@@ -1247,12 +1772,15 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns3.nic.se
-                        origin: &37 !!perl/hash:Net::DNS::DomainName
+                        origin: &46 !!perl/hash:Net::DNS::DomainName
                           label:
                           - ns3
-                          - nic
                           name: ns3.nic.se
-                          origin: *34
+                          origin: &47 !!perl/hash:Net::DNS::DomainName
+                            label:
+                            - nic
+                            name: nic.se
+                            origin: *44
                       rdlength: 4
                       ttl: 60
                       type: A
@@ -1263,7 +1791,7 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns3.nic.se
-                        origin: *37
+                        origin: *46
                       rdlength: 16
                       ttl: 60
                       type: AAAA
@@ -1292,32 +1820,19 @@ I.NS.SE:
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - ns3
+                        - ns
                         - nic
-                        origin: *34
+                        name: ns.nic.se
+                        origin: *44
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
-                        origin: &38 !!perl/hash:Net::DNS::DomainName
+                        origin: &48 !!perl/hash:Net::DNS::DomainName
                           label:
                           - iis
                           - se
                           name: iis.se
-                      rdlength: 10
-                      ttl: 3600
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: iis.se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - ns
-                        origin: *36
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: iis.se
-                        origin: *38
-                      rdlength: 5
+                      rdlength: 9
                       ttl: 3600
                       type: NS
                     - !!perl/hash:Net::DNS::RR::NS
@@ -1327,12 +1842,28 @@ I.NS.SE:
                         label:
                         - i
                         - ns
-                        origin: *34
+                        name: i.ns.se
+                        origin: *44
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
-                        origin: *38
+                        origin: *48
                       rdlength: 7
+                      ttl: 3600
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: iis.se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - ns3
+                        name: ns3.nic.se
+                        origin: *47
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: iis.se
+                        origin: *48
+                      rdlength: 6
                       ttl: 3600
                       type: NS
                     header: !!perl/hash:Net::DNS::Header
@@ -1343,9 +1874,9 @@ I.NS.SE:
                       - 6
                       - 887
                       - 30583
-                      id: 40361
+                      id: 30935
                       status: 33792
-                      xbody: *32
+                      xbody: *42
                       xtender: !!perl/hash:Net::DNS::RR::OPT
                         class: 1
                         name: .
@@ -1362,6 +1893,17 @@ I.NS.SE:
                         - iis
                         - se
                       type: 1
+                    seen:
+                      i.ns.seINA194.146.106.22: 1
+                      i.ns.seINAAAA2001:67c:1010:5::53: 1
+                      iis.seINNSi.ns.se.: 1
+                      iis.seINNSns.nic.se.: 1
+                      iis.seINNSns3.nic.se.: 1
+                      ns.nic.seINA212.247.7.228: 1
+                      ns.nic.seINAAAA2a00:801:f0:53::53: 1
+                      ns3.nic.seINA212.247.8.152: 1
+                      ns3.nic.seINAAAA2a00:801:f0:211::152: 1
+                      www.iis.seINA91.226.36.46: 1
     dns: !!perl/hash:Net::DNS::Resolver
       adflag: 1
       answerfrom: 194.146.106.22
@@ -1396,11 +1938,14 @@ I.NS.SE:
       udp_timeout: 15
       udppacketsize: 0
       usevc: 0
-    name: &39 !!perl/hash:Giraffa::DNSName
+    name: &49 !!perl/hash:Giraffa::DNSName
       labels:
       - i
       - ns
       - se
+    times:
+    - 0.00366306304931641
+    - 0.00329804420471191
   2001:067c:1010:0005:0000:0000:0000:0053: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00100000000000010000011001111100000100000001000000000000000001010000000000000000000000000000000000000000000000000000000001010011'
@@ -1418,7 +1963,7 @@ I.NS.SE:
             '0':
               '0':
                 '0': !!perl/hash:Giraffa::Packet
-                  packet: &40 !!perl/hash:Net::DNS::Packet
+                  packet: &50 !!perl/hash:Net::DNS::Packet
                     additional:
                     - !!perl/hash:Net::DNS::RR::A
                       address: "Â\x92j\x16"
@@ -1427,12 +1972,12 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: i.ns.se
-                        origin: &41 !!perl/hash:Net::DNS::DomainName
+                        origin: &51 !!perl/hash:Net::DNS::DomainName
                           label:
                           - i
                           - ns
                           name: i.ns.se
-                          origin: &42 !!perl/hash:Net::DNS::DomainName
+                          origin: &52 !!perl/hash:Net::DNS::DomainName
                             label:
                             - se
                             name: se
@@ -1446,7 +1991,7 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: i.ns.se
-                        origin: *41
+                        origin: *51
                       rdlength: 16
                       ttl: 172800
                       type: AAAA
@@ -1457,12 +2002,12 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns.nic.se
-                        origin: &43 !!perl/hash:Net::DNS::DomainName
+                        origin: &53 !!perl/hash:Net::DNS::DomainName
                           label:
                           - ns
                           - nic
                           name: ns.nic.se
-                          origin: *42
+                          origin: *52
                       rdlength: 4
                       ttl: 3600
                       type: A
@@ -1473,7 +2018,7 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns.nic.se
-                        origin: *43
+                        origin: *53
                       rdlength: 16
                       ttl: 3600
                       type: AAAA
@@ -1484,15 +2029,15 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns3.nic.se
-                        origin: &44 !!perl/hash:Net::DNS::DomainName
+                        origin: &54 !!perl/hash:Net::DNS::DomainName
                           label:
                           - ns3
                           name: ns3.nic.se
-                          origin: &45 !!perl/hash:Net::DNS::DomainName
+                          origin: &55 !!perl/hash:Net::DNS::DomainName
                             label:
                             - nic
                             name: nic.se
-                            origin: *42
+                            origin: *52
                       rdlength: 4
                       ttl: 60
                       type: A
@@ -1503,7 +2048,7 @@ I.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns3.nic.se
-                        origin: *44
+                        origin: *54
                       rdlength: 16
                       ttl: 60
                       type: AAAA
@@ -1534,11 +2079,12 @@ I.NS.SE:
                         label:
                         - i
                         - ns
-                        origin: *42
+                        name: i.ns.se
+                        origin: *52
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
-                        origin: &46 !!perl/hash:Net::DNS::DomainName
+                        origin: &56 !!perl/hash:Net::DNS::DomainName
                           label:
                           - iis
                           - se
@@ -1553,11 +2099,12 @@ I.NS.SE:
                         label:
                         - ns
                         - nic
-                        origin: *42
+                        name: ns.nic.se
+                        origin: *52
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
-                        origin: *46
+                        origin: *56
                       rdlength: 9
                       ttl: 3600
                       type: NS
@@ -1567,11 +2114,12 @@ I.NS.SE:
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
                         - ns3
-                        origin: *45
+                        name: ns3.nic.se
+                        origin: *55
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
-                        origin: *46
+                        origin: *56
                       rdlength: 6
                       ttl: 3600
                       type: NS
@@ -1583,9 +2131,9 @@ I.NS.SE:
                       - 6
                       - 887
                       - 30583
-                      id: 15243
+                      id: 26867
                       status: 33792
-                      xbody: *40
+                      xbody: *50
                       xtender: !!perl/hash:Net::DNS::RR::OPT
                         class: 1
                         name: .
@@ -1602,6 +2150,17 @@ I.NS.SE:
                         - iis
                         - se
                       type: 1
+                    seen:
+                      i.ns.seINA194.146.106.22: 1
+                      i.ns.seINAAAA2001:67c:1010:5::53: 1
+                      iis.seINNSi.ns.se.: 1
+                      iis.seINNSns.nic.se.: 1
+                      iis.seINNSns3.nic.se.: 1
+                      ns.nic.seINA212.247.7.228: 1
+                      ns.nic.seINAAAA2a00:801:f0:53::53: 1
+                      ns3.nic.seINA212.247.8.152: 1
+                      ns3.nic.seINAAAA2a00:801:f0:211::152: 1
+                      www.iis.seINA91.226.36.46: 1
     dns: !!perl/hash:Net::DNS::Resolver
       adflag: 1
       answerfrom: 2001:67c:1010:5::53
@@ -1636,7 +2195,9 @@ I.NS.SE:
       udp_timeout: 15
       udppacketsize: 0
       usevc: 0
-    name: *39
+    name: *49
+    times:
+    - 0.0045619010925293
 I.ROOT-SERVERS.NET:
   192.36.148.17: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -1654,6 +2215,7 @@ I.ROOT-SERVERS.NET:
       - i
       - root-servers
       - net
+    times: []
   2001:07fe:0000:0000:0000:0000:0000:0053: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00100000000000010000011111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001010011'
@@ -1664,837 +2226,13 @@ I.ROOT-SERVERS.NET:
       last_bin: '00100000000000010000011111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001010011'
       last_ip: 2001:07fe:0000:0000:0000:0000:0000:0053
       prefixlen: '128'
-    cache:
-      iis.se:
-        SOA:
-          IN:
-            '0':
-              '0':
-                '0': !!perl/hash:Giraffa::Packet
-                  packet: &47 !!perl/hash:Net::DNS::Packet
-                    additional:
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: "À$\x90k"
-                      class: IN
-                      name: a.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: a.ns.se
-                        origin: &48 !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - a
-                          name: a.ns.se
-                          origin: &49 !!perl/hash:Net::DNS::DomainName
-                            label:
-                            - ns
-                            name: ns.se
-                            origin: &50 !!perl/hash:Net::DNS::DomainName
-                              label:
-                              - se
-                              name: se
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::AAAA
-                      address: "*\x01\x03ð\0\0\x03\x01\0\0\0\0\0\0\0S"
-                      class: IN
-                      name: a.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: a.ns.se
-                        origin: *48
-                      rdlength: 16
-                      ttl: 172800
-                      type: AAAA
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: "À$\Nk"
-                      class: IN
-                      name: b.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: b.ns.se
-                        origin: &51 !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - b
-                          name: b.ns.se
-                          origin: *49
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::AAAA
-                      address: " \x01\x06|%L\x03\x01\0\0\0\0\0\0\0S"
-                      class: IN
-                      name: b.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: b.ns.se
-                        origin: *51
-                      rdlength: 16
-                      ttl: 172800
-                      type: AAAA
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: "À$\x87k"
-                      class: IN
-                      name: c.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: c.ns.se
-                        origin: &52 !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - c
-                          name: c.ns.se
-                          origin: *49
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::AAAA
-                      address: " \x01\x06|%T\x03\x01\0\0\0\0\0\0\0S"
-                      class: IN
-                      name: c.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: c.ns.se
-                        origin: *52
-                      rdlength: 16
-                      ttl: 172800
-                      type: AAAA
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: "Qä\b\x10"
-                      class: IN
-                      name: d.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: d.ns.se
-                        origin: !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - d
-                          - ns
-                          name: d.ns.se
-                          origin: *50
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: 'Qä
-
-                        9'
-                      class: IN
-                      name: e.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: e.ns.se
-                        origin: !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - e
-                          name: e.ns.se
-                          origin: *49
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: ÀG55
-                      class: IN
-                      name: f.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: f.ns.se
-                        origin: &53 !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - f
-                          name: f.ns.se
-                          origin: *49
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::AAAA
-                      address: "*\x01\x03ð\0\0\x03\x05\0\0\0\0\0\0\0S"
-                      class: IN
-                      name: f.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: f.ns.se
-                        origin: *53
-                      rdlength: 16
-                      ttl: 172800
-                      type: AAAA
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: "\x82ï\x05r"
-                      class: IN
-                      name: g.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: g.ns.se
-                        origin: &54 !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - g
-                          name: g.ns.se
-                          origin: *49
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::AAAA
-                      address: " \x01\x06°\0\x0E\0\x03\0\0\0\0\0\0\0\x01"
-                      class: IN
-                      name: g.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: g.ns.se
-                        origin: *54
-                      rdlength: 16
-                      ttl: 172800
-                      type: AAAA
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: "Â\x92j\x16"
-                      class: IN
-                      name: i.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: i.ns.se
-                        origin: &55 !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - i
-                          name: i.ns.se
-                          origin: *49
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::AAAA
-                      address: " \x01\x06|\x10\x10\0\x05\0\0\0\0\0\0\0S"
-                      class: IN
-                      name: i.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: i.ns.se
-                        origin: *55
-                      rdlength: 16
-                      ttl: 172800
-                      type: AAAA
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: "Çþ?\x01"
-                      class: IN
-                      name: j.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: j.ns.se
-                        origin: &56 !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - j
-                          name: j.ns.se
-                          origin: *49
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::AAAA
-                      address: " \x01\x05\0\0,\0\0\0\0\0\0\0\0\0\x01"
-                      class: IN
-                      name: j.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: j.ns.se
-                        origin: *56
-                      rdlength: 16
-                      ttl: 172800
-                      type: AAAA
-                    answer: []
-                    answerfrom: 2001:7fe::53
-                    answersize: 511
-                    authority:
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - d
-                        - ns
-                        name: d.ns.se
-                        origin: *50
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *50
-                      rdlength: 7
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - c
-                        name: c.ns.se
-                        origin: *49
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *50
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - e
-                        name: e.ns.se
-                        origin: *49
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *50
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - b
-                        name: b.ns.se
-                        origin: *49
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *50
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - g
-                        name: g.ns.se
-                        origin: *49
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *50
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - a
-                        name: a.ns.se
-                        origin: *49
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *50
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - j
-                        name: j.ns.se
-                        origin: *49
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *50
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - i
-                        name: i.ns.se
-                        origin: *49
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *50
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - f
-                        name: f.ns.se
-                        origin: *49
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *50
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    header: !!perl/hash:Net::DNS::Header
-                      count:
-                      - 1
-                      - 0
-                      - 9
-                      - 16
-                      - 873
-                      - 26995
-                      id: 1292
-                      status: 32768
-                      xbody: *47
-                      xtender: !!perl/hash:Net::DNS::RR::OPT
-                        class: 1
-                        name: .
-                        owner: !!perl/hash:Net::DNS::DomainName1035
-                          label: []
-                          name: .
-                        type: OPT
-                    question:
-                    - !!perl/hash:Net::DNS::Question
-                      class: 1
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - iis
-                        - se
-                      type: 6
-      se:
-        SOA:
-          IN:
-            '0':
-              '0':
-                '0': !!perl/hash:Giraffa::Packet
-                  packet: &57 !!perl/hash:Net::DNS::Packet
-                    additional:
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: "À$\x90k"
-                      class: IN
-                      name: a.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: a.ns.se
-                        origin: &58 !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - a
-                          name: a.ns.se
-                          origin: &59 !!perl/hash:Net::DNS::DomainName
-                            label:
-                            - ns
-                            name: ns.se
-                            origin: &60 !!perl/hash:Net::DNS::DomainName
-                              label:
-                              - se
-                              name: se
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::AAAA
-                      address: "*\x01\x03ð\0\0\x03\x01\0\0\0\0\0\0\0S"
-                      class: IN
-                      name: a.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: a.ns.se
-                        origin: *58
-                      rdlength: 16
-                      ttl: 172800
-                      type: AAAA
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: "À$\Nk"
-                      class: IN
-                      name: b.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: b.ns.se
-                        origin: &61 !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - b
-                          name: b.ns.se
-                          origin: *59
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::AAAA
-                      address: " \x01\x06|%L\x03\x01\0\0\0\0\0\0\0S"
-                      class: IN
-                      name: b.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: b.ns.se
-                        origin: *61
-                      rdlength: 16
-                      ttl: 172800
-                      type: AAAA
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: "À$\x87k"
-                      class: IN
-                      name: c.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: c.ns.se
-                        origin: &62 !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - c
-                          name: c.ns.se
-                          origin: *59
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::AAAA
-                      address: " \x01\x06|%T\x03\x01\0\0\0\0\0\0\0S"
-                      class: IN
-                      name: c.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: c.ns.se
-                        origin: *62
-                      rdlength: 16
-                      ttl: 172800
-                      type: AAAA
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: "Qä\b\x10"
-                      class: IN
-                      name: d.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: d.ns.se
-                        origin: !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - d
-                          name: d.ns.se
-                          origin: *59
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: 'Qä
-
-                        9'
-                      class: IN
-                      name: e.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: e.ns.se
-                        origin: !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - e
-                          name: e.ns.se
-                          origin: *59
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: ÀG55
-                      class: IN
-                      name: f.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: f.ns.se
-                        origin: &63 !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - f
-                          name: f.ns.se
-                          origin: *59
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::AAAA
-                      address: "*\x01\x03ð\0\0\x03\x05\0\0\0\0\0\0\0S"
-                      class: IN
-                      name: f.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: f.ns.se
-                        origin: *63
-                      rdlength: 16
-                      ttl: 172800
-                      type: AAAA
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: "\x82ï\x05r"
-                      class: IN
-                      name: g.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: g.ns.se
-                        origin: &64 !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - g
-                          - ns
-                          name: g.ns.se
-                          origin: *60
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::AAAA
-                      address: " \x01\x06°\0\x0E\0\x03\0\0\0\0\0\0\0\x01"
-                      class: IN
-                      name: g.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: g.ns.se
-                        origin: *64
-                      rdlength: 16
-                      ttl: 172800
-                      type: AAAA
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: "Â\x92j\x16"
-                      class: IN
-                      name: i.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: i.ns.se
-                        origin: &65 !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - i
-                          name: i.ns.se
-                          origin: *59
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::AAAA
-                      address: " \x01\x06|\x10\x10\0\x05\0\0\0\0\0\0\0S"
-                      class: IN
-                      name: i.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: i.ns.se
-                        origin: *65
-                      rdlength: 16
-                      ttl: 172800
-                      type: AAAA
-                    - !!perl/hash:Net::DNS::RR::A
-                      address: "Çþ?\x01"
-                      class: IN
-                      name: j.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: j.ns.se
-                        origin: &66 !!perl/hash:Net::DNS::DomainName
-                          label:
-                          - j
-                          name: j.ns.se
-                          origin: *59
-                      rdlength: 4
-                      ttl: 172800
-                      type: A
-                    - !!perl/hash:Net::DNS::RR::AAAA
-                      address: " \x01\x05\0\0,\0\0\0\0\0\0\0\0\0\x01"
-                      class: IN
-                      name: j.ns.se
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: j.ns.se
-                        origin: *66
-                      rdlength: 16
-                      ttl: 172800
-                      type: AAAA
-                    answer: []
-                    answerfrom: 2001:7fe::53
-                    answersize: 507
-                    authority:
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - g
-                        - ns
-                        name: g.ns.se
-                        origin: *60
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *60
-                      rdlength: 7
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - d
-                        name: d.ns.se
-                        origin: *59
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *60
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - b
-                        name: b.ns.se
-                        origin: *59
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *60
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - i
-                        name: i.ns.se
-                        origin: *59
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *60
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - j
-                        name: j.ns.se
-                        origin: *59
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *60
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - f
-                        name: f.ns.se
-                        origin: *59
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *60
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - a
-                        name: a.ns.se
-                        origin: *59
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *60
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - e
-                        name: e.ns.se
-                        origin: *59
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *60
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - c
-                        name: c.ns.se
-                        origin: *59
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *60
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    header: !!perl/hash:Net::DNS::Header
-                      count:
-                      - 1
-                      - 0
-                      - 9
-                      - 16
-                      - 627
-                      - 25856
-                      id: 48850
-                      status: 32768
-                      xbody: *57
-                      xtender: !!perl/hash:Net::DNS::RR::OPT
-                        class: 1
-                        name: .
-                        owner: !!perl/hash:Net::DNS::DomainName1035
-                          label: []
-                          name: .
-                        type: OPT
-                    question:
-                    - !!perl/hash:Net::DNS::Question
-                      class: 1
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - se
-                      type: 6
-    dns: !!perl/hash:Net::DNS::Resolver
-      adflag: 1
-      answerfrom: 2001:7fe::53
-      axfr_rr: *18
-      axfr_sel: ~
-      axfr_soa_count: 0
-      cdflag: 0
-      debug: 0
-      defnames: 0
-      dnsrch: 0
-      dnssec: 0
-      domain: office.nic.se
-      errorstring: NOERROR
-      force_v4: 0
-      ignqrid: 0
-      igntc: 0
-      nameservers:
-      - 2001:07fe:0000:0000:0000:0000:0000:0053
-      persistent_tcp: 0
-      persistent_udp: 0
-      port: 53
-      querytime: ~
-      recurse: 0
-      retrans: 2
-      retry: 1
-      searchlist: *19
-      srcaddr: 0.0.0.0
-      srcport: 0
-      stayopen: 0
-      tcp_timeout: 15
-      tsig_rr: ~
-      udp_timeout: 15
-      udppacketsize: 0
-      usevc: 0
+    cache: {}
     name: !!perl/hash:Giraffa::DNSName
       labels:
       - i
       - root-servers
       - net
+    times: []
 J.NS.SE:
   199.254.63.1: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -2507,11 +2245,12 @@ J.NS.SE:
       last_ip: 199.254.63.1
       prefixlen: '32'
     cache: {}
-    name: &67 !!perl/hash:Giraffa::DNSName
+    name: &57 !!perl/hash:Giraffa::DNSName
       labels:
       - j
       - ns
       - se
+    times: []
   2001:0500:002c:0000:0000:0000:0000:0001: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00100000000000010000010100000000000000000010110000000000000000000000000000000000000000000000000000000000000000000000000000000001'
@@ -2529,7 +2268,7 @@ J.NS.SE:
             '0':
               '0':
                 '0': !!perl/hash:Giraffa::Packet
-                  packet: &68 !!perl/hash:Net::DNS::Packet
+                  packet: &58 !!perl/hash:Net::DNS::Packet
                     additional:
                     - !!perl/hash:Net::DNS::RR::A
                       address: "Â\x92j\x16"
@@ -2538,12 +2277,12 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: i.ns.se
-                        origin: &69 !!perl/hash:Net::DNS::DomainName
+                        origin: &59 !!perl/hash:Net::DNS::DomainName
                           label:
                           - i
                           - ns
                           name: i.ns.se
-                          origin: &70 !!perl/hash:Net::DNS::DomainName
+                          origin: &60 !!perl/hash:Net::DNS::DomainName
                             label:
                             - se
                             name: se
@@ -2557,7 +2296,7 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: i.ns.se
-                        origin: *69
+                        origin: *59
                       rdlength: 16
                       ttl: 172800
                       type: AAAA
@@ -2568,12 +2307,12 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns.nic.se
-                        origin: &71 !!perl/hash:Net::DNS::DomainName
+                        origin: &61 !!perl/hash:Net::DNS::DomainName
                           label:
                           - ns
                           - nic
                           name: ns.nic.se
-                          origin: *70
+                          origin: *60
                       rdlength: 4
                       ttl: 86400
                       type: A
@@ -2584,7 +2323,7 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns.nic.se
-                        origin: *71
+                        origin: *61
                       rdlength: 16
                       ttl: 86400
                       type: AAAA
@@ -2595,15 +2334,15 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns3.nic.se
-                        origin: &72 !!perl/hash:Net::DNS::DomainName
+                        origin: &62 !!perl/hash:Net::DNS::DomainName
                           label:
                           - ns3
                           name: ns3.nic.se
-                          origin: &73 !!perl/hash:Net::DNS::DomainName
+                          origin: &63 !!perl/hash:Net::DNS::DomainName
                             label:
                             - nic
                             name: nic.se
-                            origin: *70
+                            origin: *60
                       rdlength: 4
                       ttl: 86400
                       type: A
@@ -2614,7 +2353,7 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns3.nic.se
-                        origin: *72
+                        origin: *62
                       rdlength: 16
                       ttl: 86400
                       type: AAAA
@@ -2627,19 +2366,19 @@ J.NS.SE:
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - i
                         - ns
-                        name: i.ns.se
-                        origin: *70
+                        - nic
+                        name: ns.nic.se
+                        origin: *60
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
-                        origin: &74 !!perl/hash:Net::DNS::DomainName
+                        origin: &64 !!perl/hash:Net::DNS::DomainName
                           label:
                           - iis
                           - se
                           name: iis.se
-                      rdlength: 7
+                      rdlength: 9
                       ttl: 86400
                       type: NS
                     - !!perl/hash:Net::DNS::RR::NS
@@ -2647,15 +2386,15 @@ J.NS.SE:
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
+                        - i
                         - ns
-                        - nic
-                        name: ns.nic.se
-                        origin: *70
+                        name: i.ns.se
+                        origin: *60
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
-                        origin: *74
-                      rdlength: 9
+                        origin: *64
+                      rdlength: 7
                       ttl: 86400
                       type: NS
                     - !!perl/hash:Net::DNS::RR::NS
@@ -2665,11 +2404,11 @@ J.NS.SE:
                         label:
                         - ns3
                         name: ns3.nic.se
-                        origin: *73
+                        origin: *63
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
-                        origin: *74
+                        origin: *64
                       rdlength: 6
                       ttl: 86400
                       type: NS
@@ -2681,9 +2420,9 @@ J.NS.SE:
                       - 6
                       - 873
                       - 26995
-                      id: 17723
+                      id: 47447
                       status: 32768
-                      xbody: *68
+                      xbody: *58
                       xtender: !!perl/hash:Net::DNS::RR::OPT
                         class: 1
                         name: .
@@ -2699,13 +2438,23 @@ J.NS.SE:
                         - iis
                         - se
                       type: 6
+                    seen:
+                      i.ns.seINA194.146.106.22: 1
+                      i.ns.seINAAAA2001:67c:1010:5::53: 1
+                      iis.seINNSi.ns.se.: 1
+                      iis.seINNSns.nic.se.: 1
+                      iis.seINNSns3.nic.se.: 1
+                      ns.nic.seINA212.247.7.228: 1
+                      ns.nic.seINAAAA2a00:801:f0:53::53: 1
+                      ns3.nic.seINA212.247.8.152: 1
+                      ns3.nic.seINAAAA2a00:801:f0:211::152: 1
       se:
         SOA:
           IN:
             '0':
               '0':
                 '0': !!perl/hash:Giraffa::Packet
-                  packet: &75 !!perl/hash:Net::DNS::Packet
+                  packet: &65 !!perl/hash:Net::DNS::Packet
                     additional:
                     - !!perl/hash:Net::DNS::RR::A
                       address: "À$\x90k"
@@ -2714,15 +2463,15 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: a.ns.se
-                        origin: &76 !!perl/hash:Net::DNS::DomainName
+                        origin: &66 !!perl/hash:Net::DNS::DomainName
                           label:
                           - a
                           name: a.ns.se
-                          origin: &77 !!perl/hash:Net::DNS::DomainName
+                          origin: &67 !!perl/hash:Net::DNS::DomainName
                             label:
                             - ns
                             name: ns.se
-                            origin: &78 !!perl/hash:Net::DNS::DomainName
+                            origin: &68 !!perl/hash:Net::DNS::DomainName
                               label:
                               - se
                               name: se
@@ -2736,7 +2485,7 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: a.ns.se
-                        origin: *76
+                        origin: *66
                       rdlength: 16
                       ttl: 172800
                       type: AAAA
@@ -2747,11 +2496,11 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: b.ns.se
-                        origin: &79 !!perl/hash:Net::DNS::DomainName
+                        origin: &69 !!perl/hash:Net::DNS::DomainName
                           label:
                           - b
                           name: b.ns.se
-                          origin: *77
+                          origin: *67
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -2762,7 +2511,7 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: b.ns.se
-                        origin: *79
+                        origin: *69
                       rdlength: 16
                       ttl: 172800
                       type: AAAA
@@ -2773,12 +2522,11 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: c.ns.se
-                        origin: &80 !!perl/hash:Net::DNS::DomainName
+                        origin: &70 !!perl/hash:Net::DNS::DomainName
                           label:
                           - c
-                          - ns
                           name: c.ns.se
-                          origin: *78
+                          origin: *67
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -2789,7 +2537,7 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: c.ns.se
-                        origin: *80
+                        origin: *70
                       rdlength: 16
                       ttl: 172800
                       type: AAAA
@@ -2804,7 +2552,7 @@ J.NS.SE:
                           label:
                           - d
                           name: d.ns.se
-                          origin: *77
+                          origin: *67
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -2821,7 +2569,7 @@ J.NS.SE:
                           label:
                           - e
                           name: e.ns.se
-                          origin: *77
+                          origin: *67
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -2832,11 +2580,11 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: f.ns.se
-                        origin: &81 !!perl/hash:Net::DNS::DomainName
+                        origin: &71 !!perl/hash:Net::DNS::DomainName
                           label:
                           - f
                           name: f.ns.se
-                          origin: *77
+                          origin: *67
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -2847,7 +2595,7 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: f.ns.se
-                        origin: *81
+                        origin: *71
                       rdlength: 16
                       ttl: 172800
                       type: AAAA
@@ -2858,11 +2606,12 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: g.ns.se
-                        origin: &82 !!perl/hash:Net::DNS::DomainName
+                        origin: &72 !!perl/hash:Net::DNS::DomainName
                           label:
                           - g
+                          - ns
                           name: g.ns.se
-                          origin: *77
+                          origin: *68
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -2873,7 +2622,7 @@ J.NS.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: g.ns.se
-                        origin: *82
+                        origin: *72
                       rdlength: 16
                       ttl: 172800
                       type: AAAA
@@ -2888,7 +2637,7 @@ J.NS.SE:
                           label:
                           - i
                           name: i.ns.se
-                          origin: *77
+                          origin: *67
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -2901,23 +2650,26 @@ J.NS.SE:
                         label:
                         - catcher-in-the-rye
                         - nic
-                        origin: *78
+                        name: catcher-in-the-rye.nic.se
+                        origin: *68
                       name: se
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
-                        origin: *78
+                        origin: *68
                       rdlength: 64
                       refresh: 1800
                       retry: 1800
                       rname: !!perl/hash:Net::DNS::Mailbox1035
                         label:
                         - registry-default
+                        name: registry-default.nic.se
                         origin: !!perl/hash:Net::DNS::DomainName
                           label:
                           - nic
-                          origin: *78
-                      serial: 2013093003
+                          name: nic.se
+                          origin: *68
+                      serial: 2013100105
                       ttl: 172800
                       type: SOA
                     answerfrom: 2001:500:2c::1
@@ -2928,13 +2680,14 @@ J.NS.SE:
                       name: se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - c
+                        - g
                         - ns
-                        origin: *78
+                        name: g.ns.se
+                        origin: *68
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
-                        origin: *78
+                        origin: *68
                       rdlength: 7
                       ttl: 172800
                       type: NS
@@ -2943,26 +2696,13 @@ J.NS.SE:
                       name: se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - e
-                        origin: *77
+                        - c
+                        name: c.ns.se
+                        origin: *67
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
-                        origin: *78
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - f
-                        origin: *77
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *78
+                        origin: *68
                       rdlength: 4
                       ttl: 172800
                       type: NS
@@ -2972,11 +2712,42 @@ J.NS.SE:
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
                         - b
-                        origin: *77
+                        name: b.ns.se
+                        origin: *67
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
-                        origin: *78
+                        origin: *68
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - f
+                        name: f.ns.se
+                        origin: *67
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *68
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - e
+                        name: e.ns.se
+                        origin: *67
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *68
                       rdlength: 4
                       ttl: 172800
                       type: NS
@@ -2986,25 +2757,12 @@ J.NS.SE:
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
                         - j
-                        origin: *77
+                        name: j.ns.se
+                        origin: *67
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
-                        origin: *78
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - g
-                        origin: *77
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *78
+                        origin: *68
                       rdlength: 4
                       ttl: 172800
                       type: NS
@@ -3014,11 +2772,12 @@ J.NS.SE:
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
                         - i
-                        origin: *77
+                        name: i.ns.se
+                        origin: *67
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
-                        origin: *78
+                        origin: *68
                       rdlength: 4
                       ttl: 172800
                       type: NS
@@ -3028,11 +2787,12 @@ J.NS.SE:
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
                         - d
-                        origin: *77
+                        name: d.ns.se
+                        origin: *67
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
-                        origin: *78
+                        origin: *68
                       rdlength: 4
                       ttl: 172800
                       type: NS
@@ -3042,11 +2802,12 @@ J.NS.SE:
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
                         - a
-                        origin: *77
+                        name: a.ns.se
+                        origin: *67
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
-                        origin: *78
+                        origin: *68
                       rdlength: 4
                       ttl: 172800
                       type: NS
@@ -3058,9 +2819,9 @@ J.NS.SE:
                       - 13
                       - 627
                       - 25856
-                      id: 36962
+                      id: 3377
                       status: 33792
-                      xbody: *75
+                      xbody: *65
                       xtender: !!perl/hash:Net::DNS::RR::OPT
                         class: 1
                         name: .
@@ -3075,6 +2836,34 @@ J.NS.SE:
                         label:
                         - se
                       type: 6
+                    seen:
+                      a.ns.seINA192.36.144.107: 1
+                      a.ns.seINAAAA2a01:3f0:0:301::53: 1
+                      b.ns.seINA192.36.133.107: 1
+                      b.ns.seINAAAA2001:67c:254c:301::53: 1
+                      c.ns.seINA192.36.135.107: 1
+                      c.ns.seINAAAA2001:67c:2554:301::53: 1
+                      d.ns.seINA81.228.8.16: 1
+                      e.ns.seINA81.228.10.57: 1
+                      f.ns.seINA192.71.53.53: 1
+                      f.ns.seINAAAA2a01:3f0:0:305::53: 1
+                      g.ns.seINA130.239.5.114: 1
+                      g.ns.seINAAAA2001:6b0:e:3::1: 1
+                      i.ns.seINA194.146.106.22: 1
+                      seINNSa.ns.se.: 1
+                      seINNSb.ns.se.: 1
+                      seINNSc.ns.se.: 1
+                      seINNSd.ns.se.: 1
+                      seINNSe.ns.se.: 1
+                      seINNSf.ns.se.: 1
+                      seINNSg.ns.se.: 1
+                      seINNSi.ns.se.: 1
+                      seINNSj.ns.se.: 1
+                      ? "seINSOAcatcher-in-the-rye.nic.se. registry-default.nic.se.
+                        (\n\t\t\t\t2013100105\t;serial\n\t\t\t\t1800      \t;refresh\n\t\t\t\t1800
+                        \     \t;retry\n\t\t\t\t864000    \t;expire\n\t\t\t\t7200
+                        \  )\t;minimum"
+                      : 1
     dns: !!perl/hash:Net::DNS::Resolver
       adflag: 1
       answerfrom: 2001:500:2c::1
@@ -3109,7 +2898,10 @@ J.NS.SE:
       udp_timeout: 15
       udppacketsize: 0
       usevc: 0
-    name: *67
+    name: *57
+    times:
+    - 0.0301918983459473
+    - 0.0318970680236816
 J.ROOT-SERVERS.NET:
   192.58.128.30: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -3127,6 +2919,7 @@ J.ROOT-SERVERS.NET:
       - j
       - root-servers
       - net
+    times: []
   2001:0503:0c27:0000:0000:0000:0002:0030: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00100000000000010000010100000011000011000010011100000000000000000000000000000000000000000000000000000000000000100000000000110000'
@@ -3143,6 +2936,7 @@ J.ROOT-SERVERS.NET:
       - j
       - root-servers
       - net
+    times: []
 K.ROOT-SERVERS.NET:
   193.0.14.129: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -3160,6 +2954,7 @@ K.ROOT-SERVERS.NET:
       - k
       - root-servers
       - net
+    times: []
   2001:07fd:0000:0000:0000:0000:0000:0001: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00100000000000010000011111111101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001'
@@ -3176,6 +2971,7 @@ K.ROOT-SERVERS.NET:
       - k
       - root-servers
       - net
+    times: []
 L.ROOT-SERVERS.NET:
   199.7.83.42: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -3193,6 +2989,7 @@ L.ROOT-SERVERS.NET:
       - l
       - root-servers
       - net
+    times: []
   2001:0500:0003:0000:0000:0000:0000:0042: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00100000000000010000010100000000000000000000001100000000000000000000000000000000000000000000000000000000000000000000000001000010'
@@ -3209,6 +3006,7 @@ L.ROOT-SERVERS.NET:
       - l
       - root-servers
       - net
+    times: []
 M.ROOT-SERVERS.NET:
   2001:0dc3:0000:0000:0000:0000:0000:0035: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -3220,30 +3018,14 @@ M.ROOT-SERVERS.NET:
       last_bin: '00100000000000010000110111000011000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000110101'
       last_ip: 2001:0dc3:0000:0000:0000:0000:0000:0035
       prefixlen: '128'
-    cache: {}
-    name: !!perl/hash:Giraffa::DNSName
-      labels:
-      - m
-      - root-servers
-      - net
-  202.12.27.33: !!perl/hash:Giraffa::Nameserver
-    address: !!perl/hash:Net::IP
-      binip: '11001010000011000001101100100001'
-      binmask: '11111111111111111111111111111111'
-      ip: 202.12.27.33
-      ipversion: '4'
-      is_prefix: 1
-      last_bin: '11001010000011000001101100100001'
-      last_ip: 202.12.27.33
-      prefixlen: '32'
     cache:
-      se:
-        NS:
+      iis.se:
+        SOA:
           IN:
             '0':
               '0':
                 '0': !!perl/hash:Giraffa::Packet
-                  packet: &83 !!perl/hash:Net::DNS::Packet
+                  packet: &73 !!perl/hash:Net::DNS::Packet
                     additional:
                     - !!perl/hash:Net::DNS::RR::A
                       address: "À$\x90k"
@@ -3252,15 +3034,15 @@ M.ROOT-SERVERS.NET:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: a.ns.se
-                        origin: &84 !!perl/hash:Net::DNS::DomainName
+                        origin: &74 !!perl/hash:Net::DNS::DomainName
                           label:
                           - a
                           name: a.ns.se
-                          origin: &85 !!perl/hash:Net::DNS::DomainName
+                          origin: &75 !!perl/hash:Net::DNS::DomainName
                             label:
                             - ns
                             name: ns.se
-                            origin: &86 !!perl/hash:Net::DNS::DomainName
+                            origin: &76 !!perl/hash:Net::DNS::DomainName
                               label:
                               - se
                               name: se
@@ -3274,11 +3056,11 @@ M.ROOT-SERVERS.NET:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: b.ns.se
-                        origin: &87 !!perl/hash:Net::DNS::DomainName
+                        origin: &77 !!perl/hash:Net::DNS::DomainName
                           label:
                           - b
                           name: b.ns.se
-                          origin: *85
+                          origin: *75
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -3289,11 +3071,11 @@ M.ROOT-SERVERS.NET:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: c.ns.se
-                        origin: &88 !!perl/hash:Net::DNS::DomainName
+                        origin: &78 !!perl/hash:Net::DNS::DomainName
                           label:
                           - c
                           name: c.ns.se
-                          origin: *85
+                          origin: *75
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -3308,7 +3090,7 @@ M.ROOT-SERVERS.NET:
                           label:
                           - d
                           name: d.ns.se
-                          origin: *85
+                          origin: *75
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -3325,7 +3107,430 @@ M.ROOT-SERVERS.NET:
                           label:
                           - e
                           name: e.ns.se
-                          origin: *85
+                          origin: *75
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: ÀG55
+                      class: IN
+                      name: f.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: f.ns.se
+                        origin: &79 !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - f
+                          name: f.ns.se
+                          origin: *75
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: "\x82ï\x05r"
+                      class: IN
+                      name: g.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: g.ns.se
+                        origin: &80 !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - g
+                          name: g.ns.se
+                          origin: *75
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: "Â\x92j\x16"
+                      class: IN
+                      name: i.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: i.ns.se
+                        origin: &81 !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - i
+                          name: i.ns.se
+                          origin: *75
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: "Çþ?\x01"
+                      class: IN
+                      name: j.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: j.ns.se
+                        origin: &82 !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - j
+                          - ns
+                          name: j.ns.se
+                          origin: *76
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::AAAA
+                      address: "*\x01\x03ð\0\0\x03\x01\0\0\0\0\0\0\0S"
+                      class: IN
+                      name: a.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: a.ns.se
+                        origin: *74
+                      rdlength: 16
+                      ttl: 172800
+                      type: AAAA
+                    - !!perl/hash:Net::DNS::RR::AAAA
+                      address: " \x01\x06|%L\x03\x01\0\0\0\0\0\0\0S"
+                      class: IN
+                      name: b.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: b.ns.se
+                        origin: *77
+                      rdlength: 16
+                      ttl: 172800
+                      type: AAAA
+                    - !!perl/hash:Net::DNS::RR::AAAA
+                      address: " \x01\x06|%T\x03\x01\0\0\0\0\0\0\0S"
+                      class: IN
+                      name: c.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: c.ns.se
+                        origin: *78
+                      rdlength: 16
+                      ttl: 172800
+                      type: AAAA
+                    - !!perl/hash:Net::DNS::RR::AAAA
+                      address: "*\x01\x03ð\0\0\x03\x05\0\0\0\0\0\0\0S"
+                      class: IN
+                      name: f.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: f.ns.se
+                        origin: *79
+                      rdlength: 16
+                      ttl: 172800
+                      type: AAAA
+                    - !!perl/hash:Net::DNS::RR::AAAA
+                      address: " \x01\x06°\0\x0E\0\x03\0\0\0\0\0\0\0\x01"
+                      class: IN
+                      name: g.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: g.ns.se
+                        origin: *80
+                      rdlength: 16
+                      ttl: 172800
+                      type: AAAA
+                    - !!perl/hash:Net::DNS::RR::AAAA
+                      address: " \x01\x06|\x10\x10\0\x05\0\0\0\0\0\0\0S"
+                      class: IN
+                      name: i.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: i.ns.se
+                        origin: *81
+                      rdlength: 16
+                      ttl: 172800
+                      type: AAAA
+                    - !!perl/hash:Net::DNS::RR::AAAA
+                      address: " \x01\x05\0\0,\0\0\0\0\0\0\0\0\0\x01"
+                      class: IN
+                      name: j.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: j.ns.se
+                        origin: *82
+                      rdlength: 16
+                      ttl: 172800
+                      type: AAAA
+                    answer: []
+                    answerfrom: 2001:dc3::35
+                    answersize: 511
+                    authority:
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - j
+                        - ns
+                        name: j.ns.se
+                        origin: *76
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *76
+                      rdlength: 7
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - f
+                        name: f.ns.se
+                        origin: *75
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *76
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - e
+                        name: e.ns.se
+                        origin: *75
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *76
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - g
+                        name: g.ns.se
+                        origin: *75
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *76
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - d
+                        name: d.ns.se
+                        origin: *75
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *76
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - c
+                        name: c.ns.se
+                        origin: *75
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *76
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - i
+                        name: i.ns.se
+                        origin: *75
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *76
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - b
+                        name: b.ns.se
+                        origin: *75
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *76
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - a
+                        name: a.ns.se
+                        origin: *75
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *76
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    header: !!perl/hash:Net::DNS::Header
+                      count:
+                      - 1
+                      - 0
+                      - 9
+                      - 16
+                      - 873
+                      - 26995
+                      id: 33778
+                      status: 32768
+                      xbody: *73
+                      xtender: !!perl/hash:Net::DNS::RR::OPT
+                        class: 1
+                        name: .
+                        owner: !!perl/hash:Net::DNS::DomainName1035
+                          label: []
+                          name: .
+                        type: OPT
+                    question:
+                    - !!perl/hash:Net::DNS::Question
+                      class: 1
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - iis
+                        - se
+                      type: 6
+                    seen:
+                      a.ns.seINA192.36.144.107: 1
+                      a.ns.seINAAAA2a01:3f0:0:301::53: 1
+                      b.ns.seINA192.36.133.107: 1
+                      b.ns.seINAAAA2001:67c:254c:301::53: 1
+                      c.ns.seINA192.36.135.107: 1
+                      c.ns.seINAAAA2001:67c:2554:301::53: 1
+                      d.ns.seINA81.228.8.16: 1
+                      e.ns.seINA81.228.10.57: 1
+                      f.ns.seINA192.71.53.53: 1
+                      f.ns.seINAAAA2a01:3f0:0:305::53: 1
+                      g.ns.seINA130.239.5.114: 1
+                      g.ns.seINAAAA2001:6b0:e:3::1: 1
+                      i.ns.seINA194.146.106.22: 1
+                      i.ns.seINAAAA2001:67c:1010:5::53: 1
+                      j.ns.seINA199.254.63.1: 1
+                      j.ns.seINAAAA2001:500:2c::1: 1
+                      seINNSa.ns.se.: 1
+                      seINNSb.ns.se.: 1
+                      seINNSc.ns.se.: 1
+                      seINNSd.ns.se.: 1
+                      seINNSe.ns.se.: 1
+                      seINNSf.ns.se.: 1
+                      seINNSg.ns.se.: 1
+                      seINNSi.ns.se.: 1
+                      seINNSj.ns.se.: 1
+      se:
+        SOA:
+          IN:
+            '0':
+              '0':
+                '0': !!perl/hash:Giraffa::Packet
+                  packet: &83 !!perl/hash:Net::DNS::Packet
+                    additional:
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: "À$\x90k"
+                      class: IN
+                      name: a.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: a.ns.se
+                        origin: &84 !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - a
+                          - ns
+                          name: a.ns.se
+                          origin: &85 !!perl/hash:Net::DNS::DomainName
+                            label:
+                            - se
+                            name: se
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: "À$\Nk"
+                      class: IN
+                      name: b.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: b.ns.se
+                        origin: &86 !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - b
+                          name: b.ns.se
+                          origin: &87 !!perl/hash:Net::DNS::DomainName
+                            label:
+                            - ns
+                            name: ns.se
+                            origin: *85
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: "À$\x87k"
+                      class: IN
+                      name: c.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: c.ns.se
+                        origin: &88 !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - c
+                          name: c.ns.se
+                          origin: *87
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: "Qä\b\x10"
+                      class: IN
+                      name: d.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: d.ns.se
+                        origin: !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - d
+                          name: d.ns.se
+                          origin: *87
+                      rdlength: 4
+                      ttl: 172800
+                      type: A
+                    - !!perl/hash:Net::DNS::RR::A
+                      address: 'Qä
+
+                        9'
+                      class: IN
+                      name: e.ns.se
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: e.ns.se
+                        origin: !!perl/hash:Net::DNS::DomainName
+                          label:
+                          - e
+                          name: e.ns.se
+                          origin: *87
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -3340,7 +3545,7 @@ M.ROOT-SERVERS.NET:
                           label:
                           - f
                           name: f.ns.se
-                          origin: *85
+                          origin: *87
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -3355,7 +3560,7 @@ M.ROOT-SERVERS.NET:
                           label:
                           - g
                           name: g.ns.se
-                          origin: *85
+                          origin: *87
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -3369,9 +3574,8 @@ M.ROOT-SERVERS.NET:
                         origin: &91 !!perl/hash:Net::DNS::DomainName
                           label:
                           - i
-                          - ns
                           name: i.ns.se
-                          origin: *86
+                          origin: *87
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -3386,7 +3590,7 @@ M.ROOT-SERVERS.NET:
                           label:
                           - j
                           name: j.ns.se
-                          origin: *85
+                          origin: *87
                       rdlength: 4
                       ttl: 172800
                       type: A
@@ -3408,7 +3612,7 @@ M.ROOT-SERVERS.NET:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: b.ns.se
-                        origin: *87
+                        origin: *86
                       rdlength: 16
                       ttl: 172800
                       type: AAAA
@@ -3468,7 +3672,7 @@ M.ROOT-SERVERS.NET:
                       ttl: 172800
                       type: AAAA
                     answer: []
-                    answerfrom: 202.12.27.33
+                    answerfrom: 2001:dc3::35
                     answersize: 507
                     authority:
                     - !!perl/hash:Net::DNS::RR::NS
@@ -3476,75 +3680,15 @@ M.ROOT-SERVERS.NET:
                       name: se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - i
+                        - a
                         - ns
-                        name: i.ns.se
-                        origin: *86
+                        name: a.ns.se
+                        origin: *85
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
-                        origin: *86
+                        origin: *85
                       rdlength: 7
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - e
-                        name: e.ns.se
-                        origin: *85
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *86
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - j
-                        name: j.ns.se
-                        origin: *85
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *86
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - b
-                        name: b.ns.se
-                        origin: *85
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *86
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - f
-                        name: f.ns.se
-                        origin: *85
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *86
-                      rdlength: 4
                       ttl: 172800
                       type: NS
                     - !!perl/hash:Net::DNS::RR::NS
@@ -3554,41 +3698,11 @@ M.ROOT-SERVERS.NET:
                         label:
                         - d
                         name: d.ns.se
-                        origin: *85
+                        origin: *87
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
-                        origin: *86
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - c
-                        name: c.ns.se
                         origin: *85
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *86
-                      rdlength: 4
-                      ttl: 172800
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - a
-                        name: a.ns.se
-                        origin: *85
-                      owner: !!perl/hash:Net::DNS::DomainName1035
-                        label: []
-                        name: se
-                        origin: *86
                       rdlength: 4
                       ttl: 172800
                       type: NS
@@ -3599,11 +3713,101 @@ M.ROOT-SERVERS.NET:
                         label:
                         - g
                         name: g.ns.se
-                        origin: *85
+                        origin: *87
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: se
-                        origin: *86
+                        origin: *85
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - i
+                        name: i.ns.se
+                        origin: *87
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *85
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - f
+                        name: f.ns.se
+                        origin: *87
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *85
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - e
+                        name: e.ns.se
+                        origin: *87
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *85
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - c
+                        name: c.ns.se
+                        origin: *87
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *85
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - j
+                        name: j.ns.se
+                        origin: *87
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *85
+                      rdlength: 4
+                      ttl: 172800
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - b
+                        name: b.ns.se
+                        origin: *87
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: se
+                        origin: *85
                       rdlength: 4
                       ttl: 172800
                       type: NS
@@ -3615,7 +3819,7 @@ M.ROOT-SERVERS.NET:
                       - 16
                       - 627
                       - 25856
-                      id: 9905
+                      id: 43350
                       status: 32768
                       xbody: *83
                       xtender: !!perl/hash:Net::DNS::RR::OPT
@@ -3631,10 +3835,36 @@ M.ROOT-SERVERS.NET:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label:
                         - se
-                      type: 2
+                      type: 6
+                    seen:
+                      a.ns.seINA192.36.144.107: 1
+                      a.ns.seINAAAA2a01:3f0:0:301::53: 1
+                      b.ns.seINA192.36.133.107: 1
+                      b.ns.seINAAAA2001:67c:254c:301::53: 1
+                      c.ns.seINA192.36.135.107: 1
+                      c.ns.seINAAAA2001:67c:2554:301::53: 1
+                      d.ns.seINA81.228.8.16: 1
+                      e.ns.seINA81.228.10.57: 1
+                      f.ns.seINA192.71.53.53: 1
+                      f.ns.seINAAAA2a01:3f0:0:305::53: 1
+                      g.ns.seINA130.239.5.114: 1
+                      g.ns.seINAAAA2001:6b0:e:3::1: 1
+                      i.ns.seINA194.146.106.22: 1
+                      i.ns.seINAAAA2001:67c:1010:5::53: 1
+                      j.ns.seINA199.254.63.1: 1
+                      j.ns.seINAAAA2001:500:2c::1: 1
+                      seINNSa.ns.se.: 1
+                      seINNSb.ns.se.: 1
+                      seINNSc.ns.se.: 1
+                      seINNSd.ns.se.: 1
+                      seINNSe.ns.se.: 1
+                      seINNSf.ns.se.: 1
+                      seINNSg.ns.se.: 1
+                      seINNSi.ns.se.: 1
+                      seINNSj.ns.se.: 1
     dns: !!perl/hash:Net::DNS::Resolver
       adflag: 1
-      answerfrom: 202.12.27.33
+      answerfrom: 2001:dc3::35
       axfr_rr: *18
       axfr_sel: ~
       axfr_soa_count: 0
@@ -3649,7 +3879,7 @@ M.ROOT-SERVERS.NET:
       ignqrid: 0
       igntc: 0
       nameservers:
-      - 202.12.27.33
+      - 2001:0dc3:0000:0000:0000:0000:0000:0035
       persistent_tcp: 0
       persistent_udp: 0
       port: 53
@@ -3671,6 +3901,26 @@ M.ROOT-SERVERS.NET:
       - m
       - root-servers
       - net
+    times:
+    - 0.187422037124634
+    - 0.178123950958252
+  202.12.27.33: !!perl/hash:Giraffa::Nameserver
+    address: !!perl/hash:Net::IP
+      binip: '11001010000011000001101100100001'
+      binmask: '11111111111111111111111111111111'
+      ip: 202.12.27.33
+      ipversion: '4'
+      is_prefix: 1
+      last_bin: '11001010000011000001101100100001'
+      last_ip: 202.12.27.33
+      prefixlen: '32'
+    cache: {}
+    name: !!perl/hash:Giraffa::DNSName
+      labels:
+      - m
+      - root-servers
+      - net
+    times: []
 NS.NIC.SE:
   212.247.7.228: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -3778,6 +4028,7 @@ NS.NIC.SE:
                         label:
                         - ns3
                         - nic
+                        name: ns3.nic.se
                         origin: *96
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
@@ -3797,6 +4048,7 @@ NS.NIC.SE:
                         label:
                         - i
                         - ns
+                        name: i.ns.se
                         origin: *96
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
@@ -3811,6 +4063,7 @@ NS.NIC.SE:
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
                         - ns
+                        name: ns.nic.se
                         origin: *95
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
@@ -3827,7 +4080,7 @@ NS.NIC.SE:
                       - 4
                       - 887
                       - 30583
-                      id: 33742
+                      id: 50918
                       status: 33792
                       xbody: *93
                       xtender: !!perl/hash:Net::DNS::RR::OPT
@@ -3846,6 +4099,15 @@ NS.NIC.SE:
                         - iis
                         - se
                       type: 1
+                    seen:
+                      iis.seINNSi.ns.se.: 1
+                      iis.seINNSns.nic.se.: 1
+                      iis.seINNSns3.nic.se.: 1
+                      ns.nic.seINA212.247.7.228: 1
+                      ns.nic.seINAAAA2a00:801:f0:53::53: 1
+                      ns3.nic.seINA212.247.8.152: 1
+                      ns3.nic.seINAAAA2a00:801:f0:211::152: 1
+                      www.iis.seINA91.226.36.46: 1
     dns: !!perl/hash:Net::DNS::Resolver
       adflag: 1
       answerfrom: 212.247.7.228
@@ -3885,6 +4147,8 @@ NS.NIC.SE:
       - ns
       - nic
       - se
+    times:
+    - 0.00255799293518066
   2a00:0801:00f0:0053:0000:0000:0000:0053: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00101010000000000000100000000001000000001111000000000000010100110000000000000000000000000000000000000000000000000000000001010011'
@@ -3914,15 +4178,12 @@ NS.NIC.SE:
                         origin: &101 !!perl/hash:Net::DNS::DomainName
                           label:
                           - ns
+                          - nic
                           name: ns.nic.se
                           origin: &102 !!perl/hash:Net::DNS::DomainName
                             label:
-                            - nic
-                            name: nic.se
-                            origin: &103 !!perl/hash:Net::DNS::DomainName
-                              label:
-                              - se
-                              name: se
+                            - se
+                            name: se
                       rdlength: 4
                       ttl: 3600
                       type: A
@@ -3944,12 +4205,15 @@ NS.NIC.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns3.nic.se
-                        origin: &104 !!perl/hash:Net::DNS::DomainName
+                        origin: &103 !!perl/hash:Net::DNS::DomainName
                           label:
                           - ns3
-                          - nic
                           name: ns3.nic.se
-                          origin: *103
+                          origin: &104 !!perl/hash:Net::DNS::DomainName
+                            label:
+                            - nic
+                            name: nic.se
+                            origin: *102
                       rdlength: 4
                       ttl: 60
                       type: A
@@ -3960,7 +4224,7 @@ NS.NIC.SE:
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: ns3.nic.se
-                        origin: *104
+                        origin: *103
                       rdlength: 16
                       ttl: 60
                       type: AAAA
@@ -3989,9 +4253,10 @@ NS.NIC.SE:
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - ns3
+                        - ns
                         - nic
-                        origin: *103
+                        name: ns.nic.se
+                        origin: *102
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
@@ -4000,7 +4265,7 @@ NS.NIC.SE:
                           - iis
                           - se
                           name: iis.se
-                      rdlength: 10
+                      rdlength: 9
                       ttl: 3600
                       type: NS
                     - !!perl/hash:Net::DNS::RR::NS
@@ -4008,13 +4273,14 @@ NS.NIC.SE:
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - ns
-                        origin: *102
+                        - ns3
+                        name: ns3.nic.se
+                        origin: *104
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
                         origin: *105
-                      rdlength: 5
+                      rdlength: 6
                       ttl: 3600
                       type: NS
                     - !!perl/hash:Net::DNS::RR::NS
@@ -4024,7 +4290,8 @@ NS.NIC.SE:
                         label:
                         - i
                         - ns
-                        origin: *103
+                        name: i.ns.se
+                        origin: *102
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
@@ -4040,7 +4307,7 @@ NS.NIC.SE:
                       - 4
                       - 887
                       - 30583
-                      id: 43338
+                      id: 18511
                       status: 33792
                       xbody: *100
                       xtender: !!perl/hash:Net::DNS::RR::OPT
@@ -4059,6 +4326,15 @@ NS.NIC.SE:
                         - iis
                         - se
                       type: 1
+                    seen:
+                      iis.seINNSi.ns.se.: 1
+                      iis.seINNSns.nic.se.: 1
+                      iis.seINNSns3.nic.se.: 1
+                      ns.nic.seINA212.247.7.228: 1
+                      ns.nic.seINAAAA2a00:801:f0:53::53: 1
+                      ns3.nic.seINA212.247.8.152: 1
+                      ns3.nic.seINAAAA2a00:801:f0:211::152: 1
+                      www.iis.seINA91.226.36.46: 1
     dns: !!perl/hash:Net::DNS::Resolver
       adflag: 1
       answerfrom: 2a00:801:f0:53::53
@@ -4094,6 +4370,8 @@ NS.NIC.SE:
       udppacketsize: 0
       usevc: 0
     name: *99
+    times:
+    - 0.00482010841369629
 NS3.NIC.SE:
   212.247.8.152: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
@@ -4201,6 +4479,7 @@ NS3.NIC.SE:
                         label:
                         - ns3
                         - nic
+                        name: ns3.nic.se
                         origin: *109
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
@@ -4218,13 +4497,15 @@ NS3.NIC.SE:
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
+                        - i
                         - ns
-                        origin: *108
+                        name: i.ns.se
+                        origin: *109
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
                         origin: *111
-                      rdlength: 5
+                      rdlength: 7
                       ttl: 3600
                       type: NS
                     - !!perl/hash:Net::DNS::RR::NS
@@ -4232,14 +4513,14 @@ NS3.NIC.SE:
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
-                        - i
                         - ns
-                        origin: *109
+                        name: ns.nic.se
+                        origin: *108
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
                         origin: *111
-                      rdlength: 7
+                      rdlength: 5
                       ttl: 3600
                       type: NS
                     header: !!perl/hash:Net::DNS::Header
@@ -4250,7 +4531,7 @@ NS3.NIC.SE:
                       - 4
                       - 887
                       - 30583
-                      id: 23387
+                      id: 20604
                       status: 33792
                       xbody: *106
                       xtender: !!perl/hash:Net::DNS::RR::OPT
@@ -4269,6 +4550,15 @@ NS3.NIC.SE:
                         - iis
                         - se
                       type: 1
+                    seen:
+                      iis.seINNSi.ns.se.: 1
+                      iis.seINNSns.nic.se.: 1
+                      iis.seINNSns3.nic.se.: 1
+                      ns.nic.seINA212.247.7.228: 1
+                      ns.nic.seINAAAA2a00:801:f0:53::53: 1
+                      ns3.nic.seINA212.247.8.152: 1
+                      ns3.nic.seINAAAA2a00:801:f0:211::152: 1
+                      www.iis.seINA91.226.36.46: 1
     dns: !!perl/hash:Net::DNS::Resolver
       adflag: 1
       answerfrom: 212.247.8.152
@@ -4308,6 +4598,8 @@ NS3.NIC.SE:
       - ns3
       - nic
       - se
+    times:
+    - 0.00329995155334473
   2a00:0801:00f0:0211:0000:0000:0000:0152: !!perl/hash:Giraffa::Nameserver
     address: !!perl/hash:Net::IP
       binip: '00101010000000000000100000000001000000001111000000000010000100010000000000000000000000000000000000000000000000000000000101010010'
@@ -4396,6 +4688,7 @@ NS3.NIC.SE:
                         label:
                         - ns
                         - nic
+                        name: ns.nic.se
                         origin: *115
                       name: iis.se
                       owner: !!perl/hash:Net::DNS::DomainName1035
@@ -4412,8 +4705,9 @@ NS3.NIC.SE:
                       rname: !!perl/hash:Net::DNS::Mailbox1035
                         label:
                         - hostmaster
+                        name: hostmaster.iis.se
                         origin: *118
-                      serial: 1380464101
+                      serial: 1380627002
                       ttl: 3600
                       type: SOA
                     answerfrom: 2a00:801:f0:211::152
@@ -4425,6 +4719,7 @@ NS3.NIC.SE:
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
                         - ns3
+                        name: ns3.nic.se
                         origin: *117
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
@@ -4437,27 +4732,30 @@ NS3.NIC.SE:
                       class: IN
                       name: iis.se
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
-                        label:
-                        - i
-                        - ns
-                        origin: *115
-                      owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
-                        name: iis.se
-                        origin: *118
-                      rdlength: 7
-                      ttl: 3600
-                      type: NS
-                    - !!perl/hash:Net::DNS::RR::NS
-                      class: IN
-                      name: iis.se
-                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        name: ns.nic.se
                         origin: *114
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
                         name: iis.se
                         origin: *118
                       rdlength: 2
+                      ttl: 3600
+                      type: NS
+                    - !!perl/hash:Net::DNS::RR::NS
+                      class: IN
+                      name: iis.se
+                      nsdname: !!perl/hash:Net::DNS::DomainName1035
+                        label:
+                        - i
+                        - ns
+                        name: i.ns.se
+                        origin: *115
+                      owner: !!perl/hash:Net::DNS::DomainName1035
+                        label: []
+                        name: iis.se
+                        origin: *118
+                      rdlength: 7
                       ttl: 3600
                       type: NS
                     header: !!perl/hash:Net::DNS::Header
@@ -4468,7 +4766,7 @@ NS3.NIC.SE:
                       - 4
                       - 873
                       - 26995
-                      id: 16772
+                      id: 62981
                       status: 33792
                       xbody: *113
                       xtender: !!perl/hash:Net::DNS::RR::OPT
@@ -4486,6 +4784,18 @@ NS3.NIC.SE:
                         - iis
                         - se
                       type: 6
+                    seen:
+                      iis.seINNSi.ns.se.: 1
+                      iis.seINNSns.nic.se.: 1
+                      iis.seINNSns3.nic.se.: 1
+                      ? "iis.seINSOAns.nic.se. hostmaster.iis.se. (\n\t\t\t\t1380627002\t;serial\n\t\t\t\t10800
+                        \    \t;refresh\n\t\t\t\t3600      \t;retry\n\t\t\t\t1814400
+                        \  \t;expire\n\t\t\t\t14400  )\t;minimum"
+                      : 1
+                      ns.nic.seINA212.247.7.228: 1
+                      ns.nic.seINAAAA2a00:801:f0:53::53: 1
+                      ns3.nic.seINA212.247.8.152: 1
+                      ns3.nic.seINAAAA2a00:801:f0:211::152: 1
       www.iis.se:
         A:
           IN:
@@ -4581,6 +4891,7 @@ NS3.NIC.SE:
                         label:
                         - ns3
                         - nic
+                        name: ns3.nic.se
                         origin: *122
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
@@ -4600,6 +4911,7 @@ NS3.NIC.SE:
                         label:
                         - i
                         - ns
+                        name: i.ns.se
                         origin: *122
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
@@ -4614,6 +4926,7 @@ NS3.NIC.SE:
                       nsdname: !!perl/hash:Net::DNS::DomainName1035
                         label:
                         - ns
+                        name: ns.nic.se
                         origin: *121
                       owner: !!perl/hash:Net::DNS::DomainName1035
                         label: []
@@ -4630,7 +4943,7 @@ NS3.NIC.SE:
                       - 4
                       - 887
                       - 30583
-                      id: 50802
+                      id: 39530
                       status: 33792
                       xbody: *119
                       xtender: !!perl/hash:Net::DNS::RR::OPT
@@ -4649,6 +4962,15 @@ NS3.NIC.SE:
                         - iis
                         - se
                       type: 1
+                    seen:
+                      iis.seINNSi.ns.se.: 1
+                      iis.seINNSns.nic.se.: 1
+                      iis.seINNSns3.nic.se.: 1
+                      ns.nic.seINA212.247.7.228: 1
+                      ns.nic.seINAAAA2a00:801:f0:53::53: 1
+                      ns3.nic.seINA212.247.8.152: 1
+                      ns3.nic.seINAAAA2a00:801:f0:211::152: 1
+                      www.iis.seINA91.226.36.46: 1
     dns: !!perl/hash:Net::DNS::Resolver
       adflag: 1
       answerfrom: 2a00:801:f0:211::152
@@ -4684,3 +5006,6 @@ NS3.NIC.SE:
       udppacketsize: 0
       usevc: 0
     name: *112
+    times:
+    - 0.0088651180267334
+    - 0.00912809371948242
