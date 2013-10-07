@@ -11,7 +11,6 @@ Source documents
 (Zonecheck) Discarded test cases
 --------------------------------
  
- * ICMP answer
  * delegated domain is not an openrelay
  * domain of the hostmaster email is not an openrelay
  * can deliver email to 'postmaster'
@@ -24,6 +23,7 @@ Source documents
 (Zonecheck) To be defined
 -------------------------
 
+ * ICMP answer
  * root servers list present
  * root servers list identical to ICANN
  * root servers addresses identical to ICANN
