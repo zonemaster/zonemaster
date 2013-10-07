@@ -18,7 +18,7 @@ First Session (10h00 - 11h15)
 </ul>
 <li>   5) Work on specification will be done on equal share between Afnic and .SE (*Has to determine who does what *) </li>
 <li>   6) Resources to be put on the development side should be determined (*Has to determine who does what *) </li>
-<li>   7) License will be free software - Determine the type of license </li>
+<li>   7) License will be free software - Determine the type of license (BSD Clause-3 ?)</li>
 <li>   8) .SE : To confirm - There is no legal issue in developing this new tool in collaboration with Afnic with respect to .SE work on Predelegation testing with ICANN
 </ul>
 </ul>
@@ -28,7 +28,7 @@ Second Session (11h30 - 12h45)
 -----------------------------
 **Deciding on Certain choices**
 <ul>
-<li> 1) Project Name : Any new ideas other than newdnscheck ? Suggestion: Competition among .SE and Afnic Staff?</li>
+<li> 1) Project Name : Any new ideas other than newdnscheck ? Suggestion: Competition among .SE and Afnic Staff? (proper dns, neat dns, valid dns, pedant dns,quality dns, dns examiner, zone examiner) </li>
 <li> 2) Development environment </li>
 <li> 3) Implementation environment - Only UNIX like ?</li>
 <li> 4) Versioning and Packaging </li>
