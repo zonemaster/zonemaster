@@ -53,6 +53,18 @@ sub all_tags {
     return @res;
 }
 
+sub save_cache {
+    my ( $class, $filename ) = @_;
+
+    return Giraffa::Nameserver->save($filename);
+}
+
+sub preload_cache {
+    my ( $class, $filename ) = @_;
+
+    return Giraffa::Nameserver->restore($filename);
+}
+
 =head1 NAME
 
 Giraffa - A tool to check the quality of a DNS zone
@@ -88,6 +100,15 @@ Returns the global L<Giraffa::Logger> object.
 =item all_tags()
 
 Returns a list of all the tags that can be logged for all avilable test modules.
+
+=item save_cache($filename)
+
+After running the tests, save the accumulated cache to a file with the given name.
+
+=item preload_cache($filename)
+
+Before running the tests, load the cache with information from a file with the given name. This file must have the same format as is produced by
+L<save_cache()>.
 
 =back
 

@@ -8,12 +8,31 @@ use Giraffa;
 use Getopt::Long;
 
 my $debug = 0;
+my $verbose = 0;
+my $nonetwork = 0;
+my $outfile;
+my $infile;
+
+sub inform {
+    my @args = @_;
+
+    say @args if $verbose;
+}
 
 GetOptions(
     'debug|d' => \$debug,
+    'verbose|v' => \$verbose,
+    'nonetwork' => \$nonetwork,
+    'restore=s' => \$infile,
+    'save=s' => \$outfile,
 );
 
 my $zname = shift(@ARGV);
+
+if ($debug) {
+    Giraffa->config->get->{resolver}{defaults}{debug} = 1;
+    inform "Debugging turned on for resolvers.";
+}
 
 Giraffa->logger->callback(sub {
     my ($e) = @_;
@@ -21,4 +40,19 @@ Giraffa->logger->callback(sub {
     say "$e" if ($debug or $e->module ne 'SYSTEM');
 });
 
+if ($nonetwork) {
+    Giraffa->config->get->{no_network} = 1;
+    inform "Network traffic forbidden.";
+}
+
+if ($infile) {
+    Giraffa->preload_cache($infile);
+    inform "Preloading cache from $infile." ;
+}
+
 Giraffa->test_zone($zname);
+
+if ($outfile) {
+    Giraffa->save_cache($outfile);
+    inform "Saved cache to $outfile.";
+}
