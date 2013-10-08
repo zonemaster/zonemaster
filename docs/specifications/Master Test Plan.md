@@ -74,6 +74,7 @@ A domain will be tested for the quality of the delegation in the DNS hierarchy. 
 * Address properties (IP addresses)  
 * Name server connectivity  
 * Zone properties (are data controlling the zone sane)
+* (not mandatory) Resolver properties
 
 A domain can be given to the testing system and all DNS information will be retrieved from the public global DNS hierarchy, or a set of pre-delegation data can be given to test a domain not yet published in the global DNS hierarchy. A complete set of DNS queries and answers can also be given as the input to the system for repeat testing.
 
