@@ -1,13 +1,15 @@
 {
-   "BASIC:NS_NO_RESPONSE" : "NOTICE",
-   "BASIC:NO_GLUE" : "CRITICAL",
-   "BASIC:HAS_A_RECORDS" : "DEBUG",
-   "BASIC:HAS_GLUE" : "DEBUG",
-   "BASIC:NO_DOMAIN" : "CRITICAL",
-   "BASIC:HAS_NAMESERVERS" : "DEBUG",
-   "BASIC:NS_FAILED" : "WARNING",
-
-   "EXAMPLE:EXAMPLE_TAG" : "DEBUG"
-
+    "BASIC": {
+        "NS_NO_RESPONSE" : "NOTICE",
+        "NO_GLUE" : "CRITICAL",
+        "HAS_A_RECORDS" : "DEBUG",
+        "HAS_GLUE" : "DEBUG",
+        "NO_DOMAIN" : "CRITICAL",
+        "HAS_NAMESERVERS" : "DEBUG",
+        "NS_FAILED" : "WARNING"
+    },
+   "EXAMPLE": {
+       "EXAMPLE_TAG" : "DEBUG"
+   }
 }
 

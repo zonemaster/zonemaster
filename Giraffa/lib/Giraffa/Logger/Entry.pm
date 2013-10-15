@@ -51,9 +51,8 @@ sub _build_module {
 sub _build_level {
     my ( $self ) = @_;
 
-    my $name = $self->module . ':' . $self->tag;
-    if (Giraffa->config->policy->{$name}) {
-        return Giraffa->config->policy->{$name};
+    if (Giraffa->config->policy->{$self->module}{$self->tag}) {
+        return Giraffa->config->policy->{$self->module}{$self->tag};
     } else {
         return 'DEBUG';
     }
