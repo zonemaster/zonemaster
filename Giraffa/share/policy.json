@@ -9,7 +9,8 @@
         "NS_FAILED" : "WARNING"
     },
    "EXAMPLE": {
-       "EXAMPLE_TAG" : "DEBUG"
+       "EXAMPLE_TAG" : "DEBUG",
+       "DISABLED" : true
    }
 }
 

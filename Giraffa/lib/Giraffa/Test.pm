@@ -10,7 +10,11 @@ use Giraffa::Test::Basic;
 
 use Module::Find qw[useall];
 
-my @all_test_modules = map {s|^Giraffa::Test::||;$_} grep {$_ ne 'Giraffa::Test::Basic'} useall('Giraffa::Test');
+my @all_test_modules;
+
+INIT {
+    @all_test_modules = grep {_policy_allowed($_)} map {s|^Giraffa::Test::||;$_} grep {$_ ne 'Giraffa::Test::Basic'} useall('Giraffa::Test');
+}
 
 sub modules {
     return @all_test_modules;
@@ -31,6 +35,12 @@ sub run_all_for {
     }
 
     return @results;
+}
+
+sub _policy_allowed {
+    my ( $name ) = @_;
+
+    return not Giraffa::Util::policy()->{uc($name)}{DISABLED};
 }
 
 1;
