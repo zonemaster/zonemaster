@@ -10,7 +10,7 @@ Source documents
 
 (Zonecheck) Discarded test cases
 --------------------------------
- 
+ * serial number of the form YYYYMMDDnn 
  * delegated domain is not an openrelay
  * domain of the hostmaster email is not an openrelay
  * can deliver email to 'postmaster'
