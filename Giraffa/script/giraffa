@@ -5,6 +5,7 @@ use strict;
 use warnings;
 
 use Giraffa;
+use Giraffa::Translator;
 use Getopt::Long;
 
 my $debug = 0;
@@ -12,6 +13,7 @@ my $verbose = 0;
 my $nonetwork = 0;
 my $outfile;
 my $infile;
+my $lang = 'tech';
 
 sub inform {
     my @args = @_;
@@ -25,9 +27,12 @@ GetOptions(
     'nonetwork' => \$nonetwork,
     'restore=s' => \$infile,
     'save=s' => \$outfile,
+    'language=s' => \$lang,
 );
 
 my $zname = shift(@ARGV);
+
+my $trans = Giraffa::Translator->new({ lang => $lang });
 
 if ($debug) {
     Giraffa->config->get->{resolver}{defaults}{debug} = 1;
@@ -37,7 +42,7 @@ if ($debug) {
 Giraffa->logger->callback(sub {
     my ($e) = @_;
 
-    say "$e" if ($debug or $e->module ne 'SYSTEM');
+    say $trans->translate($e) if ($debug or $verbose or $e->module ne 'SYSTEM');
 });
 
 if ($nonetwork) {

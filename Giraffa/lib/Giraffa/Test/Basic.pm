@@ -49,7 +49,7 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        basic1 => [qw(HAS_GLUE NO_GLUE NO_DOMAIN)],
+        basic1 => [qw(HAS_GLUE NO_GLUE NO_DOMAIN NO_PARENT_RESPONSE )],
         basic2 => [qw(NS_FAILED NS_NO_RESPONSE HAS_NAMESERVERS)],
         basic3 => [qw(HAS_A_RECORDS)],
     };
@@ -113,7 +113,7 @@ sub basic2 {
                   );
             }
             else {
-                push @results, info( NS_FAILED => { source => $ns->string } );
+                push @results, info( NS_FAILED => { source => $ns->string, rcode => $p->header->rcode } );
             }
         }
         else {
@@ -133,7 +133,7 @@ sub basic3 {
         my $p = $ns->query( $name, 'A' );
         next if not $p;
         if ( $p->has_rrs_of_type_for_name( 'a', $name ) ) {
-            push @results, info( HAS_A_RECORDS => { source => $ns->string } );
+            push @results, info( HAS_A_RECORDS => { source => $ns->string, name => $name } );
         }
     }
 

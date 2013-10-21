@@ -54,4 +54,30 @@ sub load_language {
     return decode_json read_file $self->file;
 }
 
+###
+### Working methods
+###
+
+sub translate {
+    my ( $self, $entry ) = @_;
+
+    my $string = $self->data->{$entry->module}{$entry->tag};
+
+    if (not $string) {
+        return $entry->string;
+    }
+
+    foreach my $arg (keys %{$entry->args}) {
+        if (not $string =~ s/\{$arg\}/$entry->args->{$arg}/e) {
+            warn "Unused entry argument '$arg";
+        }
+    }
+
+    while ($string =~ /\{(\w+)\}/g) {
+        warn "Expected argument $1 not provided";
+    }
+
+    return $string;
+}
+
 1;

@@ -1,11 +1,12 @@
 {
    "BASIC" : {
-      "NS_NO_RESPONSE" : "Placeholder",
-      "NO_GLUE" : "Placeholder",
-      "HAS_A_RECORDS" : "Placeholder",
-      "NS_FAILED" : "Placeholder",
-      "HAS_NAMESERVERS" : "Placeholder",
-      "NO_DOMAIN" : "Placeholder",
-      "HAS_GLUE" : "Placeholder"
+      "NS_NO_RESPONSE" : "Nameserver {source} did not respond to NS query.",
+      "NO_GLUE" : "Nameservers for \"{parent}\" provided no NS records for tested zone. RCODE given was {rcode}.",
+      "HAS_A_RECORDS" : "Nameserver {source} returned A record(s) for {name}",
+      "NS_FAILED" : "Nameserver {source} did not return NS records. RCODE was {rcode}.",
+      "HAS_NAMESERVERS" : "Nameserver {source} listed these servers as glue: {ns}",
+      "NO_DOMAIN" : "Nameserver for zone {parent} responded with NXDOMAIN to query for glue.",
+      "HAS_GLUE" : "Nameserver for zone {parent} listed these nameservers as glue: {ns}",
+      "NO_PARENT_RESPONSE" : "No response from nameserver for zone {parent} when trying to fetch glue."
    }
 }
