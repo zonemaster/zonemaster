@@ -2,10 +2,10 @@
     "BASIC": {
         "NS_NO_RESPONSE" : "NOTICE",
         "NO_GLUE" : "CRITICAL",
-        "HAS_A_RECORDS" : "DEBUG",
-        "HAS_GLUE" : "DEBUG",
+        "HAS_A_RECORDS" : "ERROR",
+        "HAS_GLUE" : "INFO",
         "NO_DOMAIN" : "CRITICAL",
-        "HAS_NAMESERVERS" : "DEBUG",
+        "HAS_NAMESERVERS" : "INFO",
         "NS_FAILED" : "WARNING"
     },
    "EXAMPLE": {

@@ -2,8 +2,9 @@ package Giraffa::Logger::Entry v0.0.1;
 
 use 5.14.2;
 use Time::HiRes qw[time];
-use JSON::PP;
+use JSON;
 use Moose;
+use Giraffa;
 
 use overload '""' => \&string;
 
@@ -68,7 +69,7 @@ sub string {
         sort keys %{ $self->args } )
       if $self->args;
 
-    return sprintf( '%2.2f %s:%s %s', $self->timestamp, $self->module, $self->tag, $argstr );
+    return sprintf( '%7.2f %-7s %s:%s %s', $self->timestamp, $self->level, $self->module, $self->tag, $argstr );
 }
 
 1;

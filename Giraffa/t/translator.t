@@ -21,6 +21,6 @@ ok(!$@, 'no error reading translation data');
 ok(exists $trans->data->{BASIC}{NO_GLUE}, 'expected key exists');
 
 my $entry = Giraffa::Logger::Entry->new({ module => 'BASIC', tag => 'NO_GLUE', args => { parent => 'se', rcode => 'SERVFAIL'} });
-is($trans->translate($entry), 'Nameservers for "se" provided no NS records for tested zone. RCODE given was SERVFAIL.', 'string translated as expected');
+is($trans->translate($entry), '   0.00 CRITICAL Nameservers for "se" provided no NS records for tested zone. RCODE given was SERVFAIL.', 'string translated as expected');
 
 done_testing;
