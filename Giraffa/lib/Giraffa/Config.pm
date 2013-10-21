@@ -56,13 +56,13 @@ __DATA__
         "defaults":
             {
                 "usevc" : 0,
-                "retrans" : 2,
+                "retrans" : 3,
                 "dnssec" : 0,
                 "debug" : 0,
                 "recurse" : 0,
                 "udp_timeout" : 15,
                 "tcp_timeout" : 15,
-                "retry" : 1,
+                "retry" : 2,
                 "igntc" : 0
             }
         }
