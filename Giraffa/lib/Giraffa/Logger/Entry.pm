@@ -40,8 +40,10 @@ sub _build_trace {
 sub _build_module {
     my ( $self ) = @_;
 
-    foreach my $e (@{$self->trace}) {
-        if ($e->[1] eq 'Giraffa::Util::info' and $e->[0] =~ /^Giraffa::Test::(.*)$/) {
+    foreach my $e ( @{ $self->trace } ) {
+        if (    $e->[1] eq 'Giraffa::Util::info'
+            and $e->[0] =~ /^Giraffa::Test::(.*)$/ )
+        {
             return uc $1;
         }
     }
@@ -52,9 +54,10 @@ sub _build_module {
 sub _build_level {
     my ( $self ) = @_;
 
-    if (Giraffa->config->policy->{$self->module}{$self->tag}) {
-        return Giraffa->config->policy->{$self->module}{$self->tag};
-    } else {
+    if ( Giraffa->config->policy->{ $self->module }{ $self->tag } ) {
+        return Giraffa->config->policy->{ $self->module }{ $self->tag };
+    }
+    else {
         return 'DEBUG';
     }
 }

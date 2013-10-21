@@ -32,11 +32,12 @@ sub all {
 
 sub can_continue {
     my ( $class, @results ) = @_;
-    my %tag = map {$_->tag => 1} @results;
+    my %tag = map { $_->tag => 1 } @results;
 
-    if ($tag{HAS_GLUE} and $tag{HAS_NAMESERVERS}) {
+    if ( $tag{HAS_GLUE} and $tag{HAS_NAMESERVERS} ) {
         return 1;
-    } else {
+    }
+    else {
         return;
     }
 }
@@ -89,7 +90,13 @@ sub basic1 {
               );
         }
         else {
-            push @results, info( NO_GLUE => { parent => $parent->name->string, rcode => $p->header->rcode } );
+            push @results,
+              info(
+                NO_GLUE => {
+                    parent => $parent->name->string,
+                    rcode  => $p->header->rcode
+                }
+              );
         }
     }
 

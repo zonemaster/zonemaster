@@ -12,21 +12,22 @@ use File::Slurp;
 use JSON;
 
 # Not necessary if a filename is given
-has 'lang' => ( is => 'ro', isa => 'Str', required => 0);
+has 'lang' => ( is => 'ro', isa => 'Str', required => 0 );
 
 # Can be auto-generated from language code
-has 'file' => ( is => 'ro', isa => 'Maybe[Str]', lazy => 1, builder => 'find_file');
+has 'file' => ( is => 'ro', isa => 'Maybe[Str]', lazy => 1, builder => 'find_file' );
 
 # Loaded from file
-has 'data' => ( is => 'ro', isa => 'HashRef', lazy => 1, builder => 'load_language');
+has 'data' => ( is => 'ro', isa => 'HashRef', lazy => 1, builder => 'load_language' );
 
 around 'new' => sub {
-    my $orig = shift;
+    my $orig  = shift;
     my $class = shift;
 
-    my $obj = $class->$orig(@_);
+    my $obj = $class->$orig( @_ );
 
-    croak 'Must have at least one of lang and file' if not ($obj->lang or $obj->file);
+    croak 'Must have at least one of lang and file'
+      if not( $obj->lang or $obj->file );
 
     return $obj;
 };
@@ -38,10 +39,10 @@ around 'new' => sub {
 sub find_file {
     my ( $self ) = @_;
 
-    return unless defined($self->lang);
+    return unless defined( $self->lang );
 
-    my $filename = sprintf('%s/language_%s.json', dist_dir('Giraffa'), $self->lang);
-    if (not -r $filename) {
+    my $filename = sprintf( '%s/language_%s.json', dist_dir( 'Giraffa' ), $self->lang );
+    if ( not -r $filename ) {
         croak "Cannot read translation file " . $filename . "\n";
     }
 
@@ -61,23 +62,23 @@ sub load_language {
 sub translate {
     my ( $self, $entry ) = @_;
 
-    my $string = $self->data->{$entry->module}{$entry->tag};
+    my $string = $self->data->{ $entry->module }{ $entry->tag };
 
-    if (not $string) {
+    if ( not $string ) {
         return $entry->string;
     }
 
-    foreach my $arg (keys %{$entry->args}) {
-        if (not $string =~ s/\{$arg\}/$entry->args->{$arg}/e) {
+    foreach my $arg ( keys %{ $entry->args } ) {
+        if ( not $string =~ s/\{$arg\}/$entry->args->{$arg}/e ) {
             warn "Unused entry argument '$arg";
         }
     }
 
-    while ($string =~ /\{(\w+)\}/g) {
+    while ( $string =~ /\{(\w+)\}/g ) {
         warn "Expected argument $1 not provided";
     }
 
-    return sprintf("%7.2f %-7s %s", $entry->timestamp, $entry->level, $string);
+    return sprintf( "%7.2f %-7s %s", $entry->timestamp, $entry->level, $string );
 }
 
 1;

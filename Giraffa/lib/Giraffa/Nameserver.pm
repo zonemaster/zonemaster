@@ -24,9 +24,9 @@ coerce 'Giraffa::Net::IP', from 'Str', via { Net::IP->new( $_ ) };
 has 'name'    => ( is => 'ro', isa => 'Giraffa::DNSName', coerce => 1, required => 0 );
 has 'address' => ( is => 'ro', isa => 'Giraffa::Net::IP', coerce => 1, required => 1 );
 
-has 'dns' => ( is => 'ro', isa => 'Net::DNS::Resolver', lazy_build => 1 );
-has 'cache' => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
-has 'times' => ( is => 'ro', isa => 'ArrayRef', default => sub {[]});
+has 'dns'   => ( is => 'ro', isa => 'Net::DNS::Resolver', lazy_build => 1 );
+has 'cache' => ( is => 'ro', isa => 'HashRef',            default    => sub { {} } );
+has 'times' => ( is => 'ro', isa => 'ArrayRef',           default    => sub { [] } );
 
 ###
 ### Variables
@@ -42,17 +42,17 @@ around 'new' => sub {
     my $orig = shift;
     my $self = shift;
 
-    my $obj = $self->$orig( @_ );
-    my $name = uc('' . $obj->name);
+    my $obj  = $self->$orig( @_ );
+    my $name = uc( '' . $obj->name );
     $name = '$$$NONAME' unless $name;
 
-    if (not exists $object_cache{ $name }{ $obj->address->ip }) {
-        Giraffa->logger->add(NS_CREATED => {name => $name, ip => $obj->address->ip});
-        $object_cache{ $name }{ $obj->address->ip } = $obj;
+    if ( not exists $object_cache{$name}{ $obj->address->ip } ) {
+        Giraffa->logger->add( NS_CREATED => { name => $name, ip => $obj->address->ip } );
+        $object_cache{$name}{ $obj->address->ip } = $obj;
     }
 
-    Giraffa->logger->add(NS_FETCHED => {name => $name, ip => $obj->address->ip});
-    return $object_cache{ $name }{ $obj->address->ip };
+    Giraffa->logger->add( NS_FETCHED => { name => $name, ip => $obj->address->ip } );
+    return $object_cache{$name}{ $obj->address->ip };
 };
 
 sub _build_dns {
@@ -82,7 +82,15 @@ sub query {
     my ( $self, $name, $type, $href ) = @_;
     $type //= 'A';
 
-    Giraffa->logger->add( 'query', { name => "$name", type => $type, flags => $href, ip => $self->address->short } );
+    Giraffa->logger->add(
+        'query',
+        {
+            name  => "$name",
+            type  => $type,
+            flags => $href,
+            ip    => $self->address->short
+        }
+    );
 
     my %defaults = %{ Giraffa->config->get->{resolver}{defaults} };
 
@@ -92,7 +100,8 @@ sub query {
     my $recurse = $href->{recurse} // $defaults{recurse};
 
     if ( not exists( $self->cache->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse} ) ) {
-        $self->cache->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse} = $self->_query( $name, $type, $href );
+        $self->cache->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse} =
+          $self->_query( $name, $type, $href );
     }
 
     return $self->cache->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse};
@@ -106,11 +115,20 @@ sub _query {
     $href->{class} //= 'IN';
 
     if ( Giraffa->config->get->{no_network} ) {
-        croak sprintf "External query for %s, %s attempted to %s while running with no_network", $name, $type, $self->string;
+        croak sprintf
+          "External query for %s, %s attempted to %s while running with no_network",
+          $name, $type, $self->string;
     }
 
-    Giraffa->logger->add( 'external_query',
-        { name => "$name", type => $type, flags => $href, ip => $self->address->short } );
+    Giraffa->logger->add(
+        'external_query',
+        {
+            name  => "$name",
+            type  => $type,
+            flags => $href,
+            ip    => $self->address->short
+        }
+    );
 
     my %defaults = %{ Giraffa->config->get->{resolver}{defaults} };
 
@@ -124,7 +142,7 @@ sub _query {
 
     my $before = time();
     my $res = eval { $self->dns->send( "$name", $type, $href->{class} ) };
-    push @{$self->times}, (time() - $before);
+    push @{ $self->times }, ( time() - $before );
 
     foreach my $flag ( keys %defaults ) {
         $self->dns->$flag( $defaults{$flag} );
@@ -147,7 +165,7 @@ sub string {
 sub save {
     my ( $class, $filename ) = @_;
 
-    return DumpFile( $filename, \%object_cache);
+    return DumpFile( $filename, \%object_cache );
 }
 
 sub restore {
@@ -162,38 +180,39 @@ sub restore {
 sub max_time {
     my ( $self ) = @_;
 
-    return max(@{$self->times}) // 0;
+    return max( @{ $self->times } ) // 0;
 }
 
 sub min_time {
     my ( $self ) = @_;
 
-    return min(@{$self->times}) // 0;
+    return min( @{ $self->times } ) // 0;
 }
 
 sub sum_time {
     my ( $self ) = @_;
 
-    return sum(@{$self->times}) // 0;
+    return sum( @{ $self->times } ) // 0;
 }
 
 sub average_time {
     my ( $self ) = @_;
 
-    return 0 if @{$self->times} == 0;
+    return 0 if @{ $self->times } == 0;
 
-    return ($self->sum_time/scalar(@{$self->times}));
+    return ( $self->sum_time / scalar( @{ $self->times } ) );
 }
 
 sub median_time {
     my ( $self ) = @_;
 
-    my @t = sort {$a <=> $b} @{$self->times};
-    my $c = scalar(@t);
-    if ($c % 2 == 0) {
-        return ($t[$c/2] + $t[($c/2)-1])/2;
-    } else {
-        return $t[int($c/2)];
+    my @t = sort { $a <=> $b } @{ $self->times };
+    my $c = scalar( @t );
+    if ( $c % 2 == 0 ) {
+        return ( $t[ $c / 2 ] + $t[ ( $c / 2 ) - 1 ] ) / 2;
+    }
+    else {
+        return $t[ int( $c / 2 ) ];
     }
 }
 
@@ -201,18 +220,18 @@ sub stddev_time {
     my ( $self ) = @_;
 
     my $avg = $self->average_time;
-    my $c = scalar(@{$self->times});
+    my $c   = scalar( @{ $self->times } );
 
     return 0 if $c == 0;
 
-    return sqrt( sum( map {($_-$avg)**2} @{$self->times} )/$c );
+    return sqrt( sum( map { ( $_ - $avg )**2 } @{ $self->times } ) / $c );
 }
 
 sub all_known_nameservers {
     my @res;
 
-    foreach my $n (values %object_cache) {
-        push @res, values %$n
+    foreach my $n ( values %object_cache ) {
+        push @res, values %$n;
     }
 
     return @res;

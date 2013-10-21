@@ -8,20 +8,20 @@ use Giraffa;
 use Giraffa::Translator;
 use Getopt::Long;
 
-my $debug = 0;
-my $verbose = 0;
+my $debug     = 0;
+my $verbose   = 0;
 my $nonetwork = 0;
 my $outfile;
 my $infile;
-my $lang = 'tech';
+my $lang  = 'tech';
 my $level = 'INFO';
 
 our %levels = (
-    DEBUG => 0,
-    INFO => 1,
-    NOTICE => 2,
-    WARNING => 3,
-    ERROR => 4,
+    DEBUG    => 0,
+    INFO     => 1,
+    NOTICE   => 2,
+    WARNING  => 3,
+    ERROR    => 4,
     CRITICAL => 5,
 );
 
@@ -32,52 +32,59 @@ sub inform {
 }
 
 GetOptions(
-    'debug|d' => \$debug,
-    'verbose|v' => \$verbose,
-    'nonetwork' => \$nonetwork,
-    'restore=s' => \$infile,
-    'save=s' => \$outfile,
+    'debug|d'    => \$debug,
+    'verbose|v'  => \$verbose,
+    'nonetwork'  => \$nonetwork,
+    'restore=s'  => \$infile,
+    'save=s'     => \$outfile,
     'language=s' => \$lang,
-    'level=s' => \$level,
+    'level=s'    => \$level,
 );
 
-my $zname = shift(@ARGV);
+my $zname = shift( @ARGV );
 
-my $trans = Giraffa::Translator->new({ lang => $lang });
+my $trans = Giraffa::Translator->new( { lang => $lang } );
 
-$level = uc($level);
-if (not defined $levels{$level}) {
+$level = uc( $level );
+if ( not defined $levels{$level} ) {
     say "Unknown log level: $level";
-    exit(1);
+    exit( 1 );
 }
 
-if ($debug) {
+if ( $debug ) {
     Giraffa->config->get->{resolver}{defaults}{debug} = 1;
     $verbose = 1;
     inform "Debugging turned on for resolvers.";
 }
 
-Giraffa->logger->callback(sub {
-    my ($e) = @_;
+Giraffa->logger->callback(
+    sub {
+        my ( $e ) = @_;
 
-    if ($verbose or ($e->module ne 'SYSTEM' and $levels{$e->level} >= $levels{$level})) {
-        say $trans->translate($e) ;
+        if (
+            $verbose
+            or (    $e->module ne 'SYSTEM'
+                and $levels{ $e->level } >= $levels{$level} )
+          )
+        {
+            say $trans->translate( $e );
+        }
     }
-});
+);
 
-if ($nonetwork) {
+if ( $nonetwork ) {
     Giraffa->config->get->{no_network} = 1;
     inform "Network traffic forbidden.";
 }
 
-if ($infile) {
-    Giraffa->preload_cache($infile);
-    inform "Preloading cache from $infile." ;
+if ( $infile ) {
+    Giraffa->preload_cache( $infile );
+    inform "Preloading cache from $infile.";
 }
 
-Giraffa->test_zone($zname);
+Giraffa->test_zone( $zname );
 
-if ($outfile) {
-    Giraffa->save_cache($outfile);
+if ( $outfile ) {
+    Giraffa->save_cache( $outfile );
     inform "Saved cache to $outfile.";
 }

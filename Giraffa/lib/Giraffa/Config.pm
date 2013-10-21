@@ -9,7 +9,7 @@ use File::Slurp;
 use Giraffa;
 
 our $config = decode_json( join( '', <DATA> ) );
-our $policy = decode_json read_file dist_file('Giraffa', 'policy.json');
+our $policy = decode_json read_file dist_file( 'Giraffa', 'policy.json' );
 
 sub get {
     my ( $class ) = @_;

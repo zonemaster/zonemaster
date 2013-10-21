@@ -7,7 +7,7 @@ has 'packet' => (
     is       => 'ro',
     isa      => 'Net::DNS::Packet',
     required => 1,
-    handles  => [qw(data header question answer authority additional print string answerfrom answersize unique_push)]
+    handles  => [ qw(data header question answer authority additional print string answerfrom answersize unique_push) ]
 );
 
 sub no_such_record {
@@ -28,7 +28,9 @@ sub no_such_record {
 sub no_such_name {
     my ( $self ) = @_;
 
-    if ( $self->packet->header->rcode eq 'NXDOMAIN' and $self->packet->header->aa ) {
+    if (    $self->packet->header->rcode eq 'NXDOMAIN'
+        and $self->packet->header->aa )
+    {
         return 1;
     }
     else {
@@ -39,7 +41,9 @@ sub no_such_name {
 sub is_redirect {
     my ( $self ) = @_;
 
-    if ( scalar( $self->packet->answer ) == 0 and scalar( grep { $_->type eq 'NS' } $self->packet->authority ) > 0 ) {
+    if (    scalar( $self->packet->answer ) == 0
+        and scalar( grep { $_->type eq 'NS' } $self->packet->authority ) > 0 )
+    {
         return 1;
     }
     else {

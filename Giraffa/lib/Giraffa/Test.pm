@@ -13,7 +13,10 @@ use Module::Find qw[useall];
 my @all_test_modules;
 
 INIT {
-    @all_test_modules = grep {_policy_allowed($_)} map {s|^Giraffa::Test::||;$_} grep {$_ ne 'Giraffa::Test::Basic'} useall('Giraffa::Test');
+    @all_test_modules =
+      grep { _policy_allowed( $_ ) }
+      map { s|^Giraffa::Test::||; $_ }
+      grep { $_ ne 'Giraffa::Test::Basic' } useall( 'Giraffa::Test' );
 }
 
 sub modules {
@@ -24,13 +27,18 @@ sub run_all_for {
     my ( $class, $zone ) = @_;
     my @results;
 
-    info( MODULE_VERSION => {module => 'Giraffa::Test::Basic', version => Giraffa::Test::Basic->version});
-    @results = Giraffa::Test::Basic->all($zone);
+    info(
+        MODULE_VERSION => {
+            module  => 'Giraffa::Test::Basic',
+            version => Giraffa::Test::Basic->version
+        }
+    );
+    @results = Giraffa::Test::Basic->all( $zone );
 
-    if (Giraffa::Test::Basic->can_continue(@results)) {
-        foreach my $module (map {"Giraffa::Test::$_"} __PACKAGE__->modules) {
-            info( MODULE_VERSION => {module => $module, version => $module->version});
-            push @results, $module->all($zone);
+    if ( Giraffa::Test::Basic->can_continue( @results ) ) {
+        foreach my $module ( map { "Giraffa::Test::$_" } __PACKAGE__->modules ) {
+            info( MODULE_VERSION => { module => $module, version => $module->version } );
+            push @results, $module->all( $zone );
         }
     }
 
@@ -40,7 +48,7 @@ sub run_all_for {
 sub _policy_allowed {
     my ( $name ) = @_;
 
-    return not Giraffa::Util::policy()->{uc($name)}{DISABLED};
+    return not Giraffa::Util::policy()->{ uc( $name ) }{DISABLED};
 }
 
 1;
