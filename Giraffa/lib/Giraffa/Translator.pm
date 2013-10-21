@@ -15,10 +15,10 @@ use JSON;
 has 'lang' => ( is => 'ro', isa => 'Str', required => 0 );
 
 # Can be auto-generated from language code
-has 'file' => ( is => 'ro', isa => 'Maybe[Str]', lazy => 1, builder => 'find_file' );
+has 'file' => ( is => 'ro', isa => 'Maybe[Str]', lazy => 1, builder => '_find_file' );
 
 # Loaded from file
-has 'data' => ( is => 'ro', isa => 'HashRef', lazy => 1, builder => 'load_language' );
+has 'data' => ( is => 'ro', isa => 'HashRef', lazy => 1, builder => '_load_language' );
 
 around 'new' => sub {
     my $orig  = shift;
@@ -36,7 +36,7 @@ around 'new' => sub {
 ### Builder Methods
 ###
 
-sub find_file {
+sub _find_file {
     my ( $self ) = @_;
 
     return unless defined( $self->lang );
@@ -49,7 +49,7 @@ sub find_file {
     return $filename;
 }
 
-sub load_language {
+sub _load_language {
     my ( $self ) = @_;
 
     return decode_json read_file $self->file;
@@ -82,3 +82,43 @@ sub translate {
 }
 
 1;
+
+=head1 NAME
+
+Giraffa::Translator - translation support for Giraffa
+
+=head1 SYNOPSIS
+
+    my $trans = Giraffa::Translator->new({ lang => 'tech' });
+    say $trans->translate($entry);
+
+=head1 ATTRIBUTES
+
+=over
+
+=item lang
+
+The language code for the language the translator should use. Either this or C<file> must be provided.
+
+=item file
+
+The file from which the translation data will be loaded. If it is not provided but C<lang> is, an attempt will be made to load a file called
+F<language_lang.json> from the Giraffa distribution directory.
+
+=item data
+
+A reference to a hash with translation data.
+
+=back
+
+=head1 METHODS
+
+=over
+
+=item translate($entry)
+
+Takes a L<Giraffa::Logger::Entry> object as its argument and returns a translated string for the message and arguments in the entry.
+
+=back
+
+=cut
