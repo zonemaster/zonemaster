@@ -1,0 +1,11 @@
+{
+   "BASIC" : {
+      "NS_NO_RESPONSE" : "Placeholder",
+      "NO_GLUE" : "Placeholder",
+      "HAS_A_RECORDS" : "Placeholder",
+      "NS_FAILED" : "Placeholder",
+      "HAS_NAMESERVERS" : "Placeholder",
+      "NO_DOMAIN" : "Placeholder",
+      "HAS_GLUE" : "Placeholder"
+   }
+}

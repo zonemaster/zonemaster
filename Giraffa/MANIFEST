@@ -19,6 +19,7 @@ META.yml
 README
 script/giraffa
 share/policy.json
+share/language_tech.json
 t/00-load.t
 t/config.t
 t/dnsname.t

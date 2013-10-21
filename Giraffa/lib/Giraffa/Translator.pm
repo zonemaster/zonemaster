@@ -7,6 +7,10 @@ use warnings;
 use Moose;
 use Carp;
 
+use File::ShareDir qw[dist_dir];
+use File::Slurp;
+use JSON;
+
 # Not necessary if a filename is given
 has 'lang' => ( is => 'ro', isa => 'Str', required => 0);
 
@@ -32,11 +36,22 @@ around 'new' => sub {
 ###
 
 sub find_file {
+    my ( $self ) = @_;
 
+    return unless defined($self->lang);
+
+    my $filename = sprintf('%s/language_%s.json', dist_dir('Giraffa'), $self->lang);
+    if (not -r $filename) {
+        croak "Cannot read translation file " . $filename . "\n";
+    }
+
+    return $filename;
 }
 
 sub load_language {
+    my ( $self ) = @_;
 
+    return decode_json read_file $self->file;
 }
 
 1;
