@@ -1,0 +1,14 @@
+=head1 TRANSLATION
+
+The structure of the translation files is similar to that for the policy file. It's a nested hash, the top-level keys being upper-cased version of
+test module names and the next-level keys are message tags. The values for the tags are translation strings.
+
+The arguments in a log entry is a simple one-level hash. The values in this hash will be substituted into the translation string by their keys. When
+writing the translation string, you indicate where the substitution will happen by writing the key in braces, like this:
+
+    This is a translation string, and the value for the key "here" will be put {here}.
+
+If there are placeholders with no corresponding key, or keys with no corresponding placeholder, warnings will be printed during the translation
+process.
+
+Since they correspond to hash keys, placeholder names must occur exactly once.
