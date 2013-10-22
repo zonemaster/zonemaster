@@ -19,7 +19,7 @@ like( $@, qr/Attribute \(address\) is required/, 'create fails without address.'
 
 isa_ok( $nsv6->address, 'Net::IP' );
 isa_ok( $nsv6->name,    'Giraffa::DNSName' );
-is( $nsv6->dns->retry, 1 );
+is( $nsv6->dns->retry, 2 );
 
 my $p1 = $nsv6->query( 'iis.se', 'SOA' );
 my $p2 = $nsv6->query( 'iis.se', 'SOA', { dnssec => 1 } );
@@ -67,17 +67,6 @@ like( $@,
     qr{External query for www.google.com, TXT attempted to ns1.google.com/216.239.32.10 while running with no_network}
 );
 config->{no_network} = $save;
-
-is( scalar( @{ $nsv6->times } ), 2,                   'two times' );
-is( $nsv6->max_time,             0.00996994972229004, 'max' );
-is( $nsv6->min_time,             0.00590395927429199, 'min' );
-is( $nsv6->sum_time,             0.015873908996582,   'sum' );
-is( $nsv6->average_time,         0.00793695449829102, 'average' );
-is( $nsv6->median_time,          0.00793695449829102, 'median' );
-is( $nsv6->stddev_time,          0.00203299522399903, 'stddev' );
-
-is( scalar( @{ $nsv4->times } ), 1, 'one time' );
-is( $nsv4->median_time, $nsv4->times->[0], 'median' );
 
 @{ $nsv6->times } = ( qw[2 4 4 4 5 5 7 9] );
 is( $nsv6->stddev_time, 2, 'known value check' );
