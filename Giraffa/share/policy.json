@@ -11,6 +11,15 @@
    "EXAMPLE": {
        "EXAMPLE_TAG" : "DEBUG",
        "DISABLED" : true
+   },
+   "HOSTNAME": {
+       "CHECKING_NAME": "DEBUG",
+       "NUMERIC_TOP": "ERROR",
+       "NON_NUMERIC_TOP": "INFO",
+       "DASH_END": "WARNING",
+       "NO_DASH_END": "INFO",
+       "ALPHANUMERIC_START": "INFO",
+       "NON_ALPHANUMERIC_START": "WARNING"
    }
 }
 
