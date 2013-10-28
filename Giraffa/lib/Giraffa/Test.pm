@@ -10,7 +10,14 @@ use Giraffa::Test::Basic;
 
 use Module::Find qw[useall];
 
-my @all_test_modules = map {s|^Giraffa::Test::||;$_} grep {$_ ne 'Giraffa::Test::Basic'} useall('Giraffa::Test');
+my @all_test_modules;
+
+INIT {
+    @all_test_modules =
+      grep { _policy_allowed( $_ ) }
+      map { s|^Giraffa::Test::||; $_ }
+      grep { $_ ne 'Giraffa::Test::Basic' } useall( 'Giraffa::Test' );
+}
 
 sub modules {
     return @all_test_modules;
@@ -20,17 +27,46 @@ sub run_all_for {
     my ( $class, $zone ) = @_;
     my @results;
 
-    info( MODULE_VERSION => {module => 'Giraffa::Test::Basic', version => Giraffa::Test::Basic->version});
-    @results = Giraffa::Test::Basic->all($zone);
+    info(
+        MODULE_VERSION => {
+            module  => 'Giraffa::Test::Basic',
+            version => Giraffa::Test::Basic->version
+        }
+    );
+    @results = Giraffa::Test::Basic->all( $zone );
 
-    if (Giraffa::Test::Basic->can_continue(@results)) {
-        foreach my $module (map {"Giraffa::Test::$_"} __PACKAGE__->modules) {
-            info( MODULE_VERSION => {module => $module, version => $module->version});
-            push @results, $module->all($zone);
+    if ( Giraffa::Test::Basic->can_continue( @results ) ) {
+        foreach my $module ( map { "Giraffa::Test::$_" } __PACKAGE__->modules ) {
+            info( MODULE_VERSION => { module => $module, version => $module->version } );
+            push @results, $module->all( $zone );
         }
     }
 
     return @results;
+}
+
+sub run_one {
+    my ( $class, $module, $test, @arguments ) = @_;
+
+    if (grep {$module eq $_} $class->modules) {
+        my $m = "Giraffa::Test::$module";
+        if ($m->metadata->{$test}) {
+            info( MODULE_CALL => { module => $module, method => $test, version => $m->version } );
+            return $m->$test(@arguments);
+        } else {
+            info( UNKNOWN_METHOD => { module => $m, method => $test });
+        }
+    } else {
+        info( UNKNOWN_MODULE => { module => $module, method => $test});
+    }
+
+    return;
+}
+
+sub _policy_allowed {
+    my ( $name ) = @_;
+
+    return not Giraffa::Util::policy()->{ uc( $name ) }{DISABLED};
 }
 
 1;
@@ -63,6 +99,12 @@ Test modules are defined as modules with names starting with "Giraffa::Test::". 
 C<version>. C<all> will be given a zone object as its only argument, and is epected to return a list of L<Giraffa::Logger::Entry> objects.
 C<version> is called without arguments, and is expected to return a single value indicating the version of the test module. A log entry with this
 version will be included in the global log entry list, but not in the list returned from C<run_all_for>.
+
+=item run_one($module, $method, @arguments)
+
+Run one particular test method in one particular module. The requested module must be in the list of active loaded modules (that is, not the Basic
+module and not a module disabled by the current policy), and the method must be listed in the metadata the module exports. If those requirements
+are fulfilled, the method will be called with the provided arguments.
 
 =back
 

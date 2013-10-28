@@ -19,7 +19,7 @@ like( $@, qr/Attribute \(address\) is required/, 'create fails without address.'
 
 isa_ok( $nsv6->address, 'Net::IP' );
 isa_ok( $nsv6->name,    'Giraffa::DNSName' );
-is( $nsv6->dns->retry, 1 );
+is( $nsv6->dns->retry, 2 );
 
 my $p1 = $nsv6->query( 'iis.se', 'SOA' );
 my $p2 = $nsv6->query( 'iis.se', 'SOA', { dnssec => 1 } );
@@ -28,16 +28,15 @@ my $p4 = $nsv4->query( 'iis.se', 'SOA', { dnssec => 1 } );
 
 isa_ok( $p1, 'Giraffa::Packet' );
 isa_ok( $p2, 'Giraffa::Packet' );
-my ($soa) = grep {$_->type eq 'SOA'} $p1->answer;
+my ( $soa ) = grep { $_->type eq 'SOA' } $p1->answer;
 is( scalar( $p1->answer ), 1, 'one answer RR present' );
-ok($soa, 'it is a SOA RR');
-is($soa->rname, 'hostmaster.iis.se', 'RNAME has expected format');
-is( scalar( $p2->answer ), 2, 'SOA and RRSIG RRs present' );
-is( $nsv6->dns->dnssec,    0, 'dnssec flag still unset' );
+ok( $soa, 'it is a SOA RR' );
+is( $soa->rname,           'hostmaster.iis.se', 'RNAME has expected format' );
+is( scalar( $p2->answer ), 2,                   'SOA and RRSIG RRs present' );
+is( $nsv6->dns->dnssec,    0,                   'dnssec flag still unset' );
 ok( $p3 eq $p2, 'Same packet object returned' );
 ok( $p3 ne $p4, 'Same packet object not returned from other server' );
 ok( $p3 ne $p1, 'Same packet object not returned with other flag' );
-
 
 my $nscopy = Giraffa->ns( 'ns.nic.se.', '2a00:801:f0:53:0000::53' );
 ok( $nsv6 eq $nscopy, 'Same nameserver object returned' );
@@ -69,24 +68,13 @@ like( $@,
 );
 config->{no_network} = $save;
 
-is(scalar(@{$nsv6->times}), 2, 'two times');
-is($nsv6->max_time, 0.00996994972229004, 'max');
-is($nsv6->min_time, 0.00590395927429199, 'min');
-is($nsv6->sum_time, 0.015873908996582, 'sum');
-is($nsv6->average_time, 0.00793695449829102, 'average');
-is($nsv6->median_time, 0.00793695449829102, 'median');
-is($nsv6->stddev_time, 0.00203299522399903, 'stddev');
+@{ $nsv6->times } = ( qw[2 4 4 4 5 5 7 9] );
+is( $nsv6->stddev_time, 2, 'known value check' );
+is( $nsv6->average_time, 5 );
+is( $nsv6->median_time,  4.5 );
 
-is(scalar(@{$nsv4->times}), 1, 'one time');
-is($nsv4->median_time, $nsv4->times->[0], 'median');
-
-@{$nsv6->times} = (qw[2 4 4 4 5 5 7 9]);
-is($nsv6->stddev_time, 2, 'known value check');
-is($nsv6->average_time, 5);
-is($nsv6->median_time, 4.5);
-
-foreach my $ns (Giraffa::Nameserver->all_known_nameservers) {
-    isa_ok($ns, 'Giraffa::Nameserver');
+foreach my $ns ( Giraffa::Nameserver->all_known_nameservers ) {
+    isa_ok( $ns, 'Giraffa::Nameserver' );
 }
 
 if ( $ENV{GIRAFFA_RECORD} ) {

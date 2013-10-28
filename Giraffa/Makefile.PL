@@ -15,6 +15,7 @@ requires 'JSON' => 2.53;
 requires 'YAML::XS' => 0.38;
 requires 'File::ShareDir' => 1.00;
 requires 'File::Slurp' => 0;
+requires 'Net::IP' => 0;
 
 recommends 'JSON::XS' => 2.32;
 

@@ -19,7 +19,7 @@ sub recurse {
     $class //= 'IN';
 
     my ( $p, $state ) =
-      $self->_recurse( $name, $type, $class, { ns => [root_servers()], count => 0, common => 0, seen => {} } );
+      $self->_recurse( $name, $type, $class, { ns => [ root_servers() ], count => 0, common => 0, seen => {} } );
 
     return $p;
 }
@@ -28,7 +28,7 @@ sub parent {
     my ( $self, $name ) = @_;
 
     my ( $p, $state ) =
-      $self->_recurse( $name, 'SOA', 'IN', { ns => [root_servers()], count => 0, common => 0, seen => {} } );
+      $self->_recurse( $name, 'SOA', 'IN', { ns => [ root_servers() ], count => 0, common => 0, seen => {} } );
 
     return if not $p;
 
@@ -58,9 +58,11 @@ sub _recurse {
         next if $p->header->rcode eq 'REFUSED';     # Ask next if REFUSED
         next if $p->header->rcode eq 'SERVFAIL';    # Ask next if SERVFAIL
 
-        return ( $p, $state ) if $p->no_such_record;                              # Node exists, but not record
-        return ( $p, $state ) if $p->no_such_name;                                # Node does not exist
-        return ( $p, $state ) if $self->is_answer( $p, $name, $type, $class );    # Return answer
+        return ( $p, $state )
+          if $p->no_such_record;                    # Node exists, but not record
+        return ( $p, $state ) if $p->no_such_name;  # Node does not exist
+        return ( $p, $state )
+          if $self->is_answer( $p, $name, $type, $class );    # Return answer
 
         # So it's not an error, not an empty response and not an answer
 
@@ -68,12 +70,13 @@ sub _recurse {
 
             # Looks like a redirect
             my $zname = ( $p->get_records( 'ns' ) )[0]->name;
-            next if $state->{seen}{$zname};                                       # We followed this redirect before
+            next if $state->{seen}{$zname};                   # We followed this redirect before
 
             $state->{seen}{$zname} = 1;
             my $common = name( $zname )->common( name( $state->{qname} ) );
 
-            next if $common < $state->{common};    # Redirect going up the hierarchy is not OK
+            next
+              if $common < $state->{common};                  # Redirect going up the hierarchy is not OK
 
             $state->{common} = $common;
             $state->{ns} = $self->get_ns_from( $p, $state );    # Follow redirect
@@ -105,13 +108,14 @@ sub get_ns_from {
         }
     }
 
-    return [sort {$a->name cmp $b->name or $a->address->ip cmp $b->address->ip} @new];
+    return [ sort { $a->name cmp $b->name or $a->address->ip cmp $b->address->ip } @new ];
 }
 
 sub get_addresses_for {
     my ( $self, $name, $state ) = @_;
     my @res;
-    $state //= { ns => [root_servers()], count => 0, common => 0, seen => {} };
+    $state //=
+      { ns => [ root_servers() ], count => 0, common => 0, seen => {} };
 
     return if $state->{name_seen}{"$name"};
     $state->{name_seen}{"$name"} = 1;
@@ -119,7 +123,7 @@ sub get_addresses_for {
     my ( $pa ) = $self->_recurse(
         "$name", 'A', 'IN',
         {
-            ns        => [root_servers()],
+            ns        => [ root_servers() ],
             count     => $state->{count},
             common    => 0,
             name_seen => { $name => 1 },
@@ -129,7 +133,7 @@ sub get_addresses_for {
     my ( $paaaa ) = $self->_recurse(
         "$name", 'AAAA', 'IN',
         {
-            ns        => [root_servers()],
+            ns        => [ root_servers() ],
             count     => $state->{count},
             common    => 0,
             name_seen => { $name => 1 },
@@ -140,7 +144,11 @@ sub get_addresses_for {
     my @rrs;
     push @rrs, $pa->get_records( 'a' )       if $pa;
     push @rrs, $paaaa->get_records( 'aaaa' ) if $paaaa;
-    foreach my $rr ( sort { $a->address cmp $b->address } grep { $_->name eq $name } @rrs ) {
+    foreach my $rr (
+        sort { $a->address cmp $b->address }
+        grep { $_->name eq $name } @rrs
+      )
+    {
         push @res, Net::IP->new( $rr->address );
     }
 
@@ -162,7 +170,8 @@ sub is_answer {
             and $rr->type eq 'CNAME' )
         {
             my $new_packet = $self->recurse( $rr->cname, $type, $class );
-            $packet->unique_push( answer => $new_packet->answer ) if $new_packet;
+            $packet->unique_push( answer => $new_packet->answer )
+              if $new_packet;
             return 1;
         }
     }
@@ -179,7 +188,8 @@ sub is_answer {
 }
 
 sub root_servers {
-    return map { Giraffa::Util::ns( $_->{name}, $_->{address} ) } sort {$a->{name} cmp $b->{name}} @{ $seed_data->{'.'} };
+    return map { Giraffa::Util::ns( $_->{name}, $_->{address} ) }
+      sort { $a->{name} cmp $b->{name} } @{ $seed_data->{'.'} };
 }
 
 1;

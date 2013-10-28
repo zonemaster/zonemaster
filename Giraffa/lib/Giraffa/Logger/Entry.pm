@@ -2,8 +2,9 @@ package Giraffa::Logger::Entry v0.0.1;
 
 use 5.14.2;
 use Time::HiRes qw[time];
-use JSON::PP;
+use JSON;
 use Moose;
+use Giraffa;
 
 use overload '""' => \&string;
 
@@ -39,8 +40,10 @@ sub _build_trace {
 sub _build_module {
     my ( $self ) = @_;
 
-    foreach my $e (@{$self->trace}) {
-        if ($e->[1] eq 'Giraffa::Util::info' and $e->[0] =~ /^Giraffa::Test::(.*)$/) {
+    foreach my $e ( @{ $self->trace } ) {
+        if (    $e->[1] eq 'Giraffa::Util::info'
+            and $e->[0] =~ /^Giraffa::Test::(.*)$/ )
+        {
             return uc $1;
         }
     }
@@ -51,10 +54,10 @@ sub _build_module {
 sub _build_level {
     my ( $self ) = @_;
 
-    my $name = $self->module . ':' . $self->tag;
-    if (Giraffa->config->policy->{$name}) {
-        return Giraffa->config->policy->{$name};
-    } else {
+    if ( Giraffa->config->policy->{ $self->module }{ $self->tag } ) {
+        return Giraffa->config->policy->{ $self->module }{ $self->tag };
+    }
+    else {
         return 'DEBUG';
     }
 }
@@ -69,7 +72,7 @@ sub string {
         sort keys %{ $self->args } )
       if $self->args;
 
-    return sprintf( '%2.2f %s:%s %s', $self->timestamp, $self->module, $self->tag, $argstr );
+    return sprintf( '%7.2f %-7s %s:%s %s', $self->timestamp, $self->level, $self->module, $self->tag, $argstr );
 }
 
 1;

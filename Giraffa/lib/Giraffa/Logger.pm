@@ -5,13 +5,18 @@ use Moose;
 
 use Giraffa::Logger::Entry;
 
-has 'entries' => ( is => 'ro', isa => 'ArrayRef[Giraffa::Logger::Entry]', default => sub { [] } );
+has 'entries' => (
+    is      => 'ro',
+    isa     => 'ArrayRef[Giraffa::Logger::Entry]',
+    default => sub { [] }
+);
 has 'callback' => ( is => 'rw', isa => 'CodeRef', required => 0 );
 
 sub add {
     my ( $self, $tag, $argref ) = @_;
 
-    my $new = Giraffa::Logger::Entry->new( { tag => uc( $tag ), args => $argref } );
+    my $new =
+      Giraffa::Logger::Entry->new( { tag => uc( $tag ), args => $argref } );
     push @{ $self->entries }, $new;
 
     if ( $self->callback and ref( $self->callback ) eq 'CODE' ) {

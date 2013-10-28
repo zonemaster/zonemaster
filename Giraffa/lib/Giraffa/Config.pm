@@ -9,7 +9,7 @@ use File::Slurp;
 use Giraffa;
 
 our $config = decode_json( join( '', <DATA> ) );
-our $policy = decode_json read_file dist_file('Giraffa', 'policy.json');
+our $policy = decode_json read_file dist_file( 'Giraffa', 'policy.json' );
 
 sub get {
     my ( $class ) = @_;
@@ -56,13 +56,13 @@ __DATA__
         "defaults":
             {
                 "usevc" : 0,
-                "retrans" : 2,
+                "retrans" : 3,
                 "dnssec" : 0,
                 "debug" : 0,
                 "recurse" : 0,
                 "udp_timeout" : 15,
                 "tcp_timeout" : 15,
-                "retry" : 1,
+                "retry" : 2,
                 "igntc" : 0
             }
         }

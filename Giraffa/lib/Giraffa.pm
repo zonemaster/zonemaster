@@ -29,24 +29,30 @@ sub ns {
 sub zone {
     my ( $class, $name ) = @_;
 
-    return Giraffa::Zone->new({ name => $name });
+    return Giraffa::Zone->new( { name => $name } );
 }
 
 sub test_zone {
     my ( $class, $zname ) = @_;
 
-    return Giraffa::Test->run_all_for($class->zone($zname));
+    return Giraffa::Test->run_all_for( $class->zone( $zname ) );
+}
+
+sub test_method {
+    my ( $class, $module, $method, @arguments ) = @_;
+
+    return Giraffa::Test->run_one($module, $method, @arguments);
 }
 
 sub all_tags {
     my ( $class ) = @_;
     my @res;
 
-    foreach my $module ('Basic', Giraffa::Test->modules) {
+    foreach my $module ( 'Basic', Giraffa::Test->modules ) {
         my $full = "Giraffa::Test::$module";
-        my $ref = $full->metadata;
-        foreach my $list (values %$ref) {
-            push @res, map {uc($module) . ':' . $_} @$list
+        my $ref  = $full->metadata;
+        foreach my $list ( values %$ref ) {
+            push @res, map { uc( $module ) . ':' . $_ } @$list;
         }
     }
 
@@ -56,13 +62,13 @@ sub all_tags {
 sub save_cache {
     my ( $class, $filename ) = @_;
 
-    return Giraffa::Nameserver->save($filename);
+    return Giraffa::Nameserver->save( $filename );
 }
 
 sub preload_cache {
     my ( $class, $filename ) = @_;
 
-    return Giraffa::Nameserver->restore($filename);
+    return Giraffa::Nameserver->restore( $filename );
 }
 
 =head1 NAME
@@ -80,6 +86,12 @@ Giraffa - A tool to check the quality of a DNS zone
 =item test_zone($name)
 
 Runs all available tests and returns a list of L<Giraffa::Logger::Entry> objects.
+
+=item test_method($module, $method, @arguments)
+
+Run one particular test method in one particular module. The requested module must be in the list of active loaded modules (that is, not the Basic
+module and not a module disabled by the current policy), and the method must be listed in the metadata the module exports. If those requirements
+are fulfilled, the method will be called with the provided arguments.
 
 =item zone($name)
 

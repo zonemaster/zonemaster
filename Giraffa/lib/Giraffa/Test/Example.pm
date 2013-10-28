@@ -31,9 +31,7 @@ sub all {
 sub metadata {
     my ( $class ) = @_;
 
-    return {
-        placeholder => [qw( EXAMPLE_TAG )]
-    };
+    return { placeholder => [qw( EXAMPLE_TAG )] };
 }
 
 sub version {
@@ -48,7 +46,7 @@ sub placeholder {
     my ( $class, $zone ) = @_;
     my @results;
 
-    push @results, info( EXAMPLE_TAG => { example_arg => 'example_value' });
+    push @results, info( EXAMPLE_TAG => { example_arg => 'example_value' } );
 
     return @results;
 }

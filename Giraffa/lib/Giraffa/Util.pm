@@ -6,7 +6,7 @@ use parent 'Exporter';
 use Giraffa;
 use Giraffa::DNSName;
 
-our @EXPORT = qw[ ns info config name ];
+our @EXPORT = qw[ ns info config name policy ];
 
 sub ns {
     return Giraffa->ns( @_ );
@@ -20,6 +20,10 @@ sub info {
 
 sub config {
     return Giraffa->config->get;
+}
+
+sub policy {
+    return Giraffa->config->policy;
 }
 
 sub name {
@@ -57,6 +61,10 @@ Creates and returns a nameserver object with the given name and address.
 =item config()
 
 Returns the global L<Giraffa::Config> object.
+
+=item policy()
+
+Returns a reference to the global policy hash.
 
 =item name($string)
 

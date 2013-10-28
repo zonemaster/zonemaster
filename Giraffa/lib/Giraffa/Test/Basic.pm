@@ -32,11 +32,12 @@ sub all {
 
 sub can_continue {
     my ( $class, @results ) = @_;
-    my %tag = map {$_->tag => 1} @results;
+    my %tag = map { $_->tag => 1 } @results;
 
-    if ($tag{HAS_GLUE} and $tag{HAS_NAMESERVERS}) {
+    if ( $tag{HAS_GLUE} and $tag{HAS_NAMESERVERS} ) {
         return 1;
-    } else {
+    }
+    else {
         return;
     }
 }
@@ -49,7 +50,7 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        basic1 => [qw(HAS_GLUE NO_GLUE NO_DOMAIN)],
+        basic1 => [qw(HAS_GLUE NO_GLUE NO_DOMAIN NO_PARENT_RESPONSE )],
         basic2 => [qw(NS_FAILED NS_NO_RESPONSE HAS_NAMESERVERS)],
         basic3 => [qw(HAS_A_RECORDS)],
     };
@@ -89,7 +90,13 @@ sub basic1 {
               );
         }
         else {
-            push @results, info( NO_GLUE => { parent => $parent->name->string, rcode => $p->header->rcode } );
+            push @results,
+              info(
+                NO_GLUE => {
+                    parent => $parent->name->string,
+                    rcode  => $p->header->rcode
+                }
+              );
         }
     }
 
@@ -113,7 +120,7 @@ sub basic2 {
                   );
             }
             else {
-                push @results, info( NS_FAILED => { source => $ns->string } );
+                push @results, info( NS_FAILED => { source => $ns->string, rcode => $p->header->rcode } );
             }
         }
         else {
@@ -133,7 +140,7 @@ sub basic3 {
         my $p = $ns->query( $name, 'A' );
         next if not $p;
         if ( $p->has_rrs_of_type_for_name( 'a', $name ) ) {
-            push @results, info( HAS_A_RECORDS => { source => $ns->string } );
+            push @results, info( HAS_A_RECORDS => { source => $ns->string, name => $name } );
         }
     }
 
