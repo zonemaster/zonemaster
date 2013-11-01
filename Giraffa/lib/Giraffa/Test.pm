@@ -45,6 +45,22 @@ sub run_all_for {
     return @results;
 }
 
+sub run_module {
+    my ( $class, $module, $zone ) = @_;
+
+    $module = ucfirst($module);
+
+    if (grep {$module eq $_} $class->modules) {
+        my $m = "Giraffa::Test::$module";
+        return $m->all($zone);
+    }
+    else {
+        info( UNKOWN_MODULE => { name => $module, method => 'all' });
+    }
+
+    return;
+}
+
 sub run_one {
     my ( $class, $module, $test, @arguments ) = @_;
 
@@ -99,6 +115,10 @@ Test modules are defined as modules with names starting with "Giraffa::Test::". 
 C<version>. C<all> will be given a zone object as its only argument, and is epected to return a list of L<Giraffa::Logger::Entry> objects.
 C<version> is called without arguments, and is expected to return a single value indicating the version of the test module. A log entry with this
 version will be included in the global log entry list, but not in the list returned from C<run_all_for>.
+
+=item run_module($module, $zone)
+
+Runs all default tests in the named module for the given zone.
 
 =item run_one($module, $method, @arguments)
 

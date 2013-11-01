@@ -15,6 +15,7 @@ my $outfile;
 my $infile;
 my $lang  = 'tech';
 my $level = 'INFO';
+my $module;
 
 our %levels = (
     DEBUG    => 0,
@@ -39,6 +40,7 @@ GetOptions(
     'save=s'     => \$outfile,
     'language=s' => \$lang,
     'level=s'    => \$level,
+    'module=s'   => \$module,
 );
 
 my $zname = shift( @ARGV );
@@ -82,7 +84,12 @@ if ( $infile ) {
     inform "Preloading cache from $infile.";
 }
 
-Giraffa->test_zone( $zname );
+if ($module) {
+    Giraffa->test_module($module, $zname);
+}
+else {
+    Giraffa->test_zone( $zname );
+}
 
 if ( $outfile ) {
     Giraffa->save_cache( $outfile );

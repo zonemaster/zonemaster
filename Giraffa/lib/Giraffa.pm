@@ -38,6 +38,12 @@ sub test_zone {
     return Giraffa::Test->run_all_for( $class->zone( $zname ) );
 }
 
+sub test_module {
+    my ( $class, $module, $zname ) = @_;
+
+    return Giraffa::Test->run_module($module, $class->zone($zname));
+}
+
 sub test_method {
     my ( $class, $module, $method, @arguments ) = @_;
 
@@ -86,6 +92,10 @@ Giraffa - A tool to check the quality of a DNS zone
 =item test_zone($name)
 
 Runs all available tests and returns a list of L<Giraffa::Logger::Entry> objects.
+
+=item test_module($module, $name)
+
+Runs all available tests for the zone with the given name in the specified module.
 
 =item test_method($module, $method, @arguments)
 
