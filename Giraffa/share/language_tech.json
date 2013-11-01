@@ -17,5 +17,25 @@
        "NO_DASH_END": "{name} has no labels ending with dash characters.",
        "ALPHANUMERIC_START": "{name} starts with an alphanumeric character.",
        "NON_ALPHANUMERIC_START": "{name} does not start with an alphanumeric character."
+   },
+   "DELEGATION" : {
+         "REFERRAL_SIZE_LARGE": "The smallest possible legal referral packet is larger than 512 octets (it is {size}).",
+         "REFERRAL_SIZE_OK": "The smallest possible legal referral packet is larger than 512 octets (it is {size}).",
+         "EXTRA_NAME_PARENT": "Parent has nameserver(s) not listed at the child ({extra}).",
+         "EXTRA_NAME_CHILD": "Child has nameserver(s) not listed at parent ({extra}).",
+         "EXTRA_ADDR_PARENT": "Parent has nameserver(s) address that do not exist at the child side ({extra}).",
+         "EXTRA_ADDR_CHILD": "Child has nameserver address(es) that do not exist at the parent side ({extra}).",
+         "TOTAL_NAME_MISMATCH": "None of the nameservers listed at the parent are listed at the child.",
+         "NAMES_MATCH": "All of the nameserver names are listed both at parent and child.",
+         "ADDRESSES_MATCH": "All of the nameserver addresses are listed both at parent and child.",
+         "TOTAL_ADDRESS_MISMATCH": "None of the nameserver addresses listed at the parent are listed at the child.",
+         "ENOUGH_NS_GLUE": "Parent lists enough nameservers ({count}).",
+         "NOT_ENOUGH_NS_GLUE": "Parent does not list enough nameservers ({count}).",
+         "ENOUGH_NS": "Child lists enough nameservers ({count}).",
+         "NOT_ENOUGH_NS": "Child does not list enough nameservers ({count}).",
+         "INZONE_NO_GLUE": "In-zone nameserver {ns} does not have any glue.",
+         "INZONE_HAS_GLUE": "In-zone nameserver {ns} does have glue.",
+         "NOT_IN_ZONE": "Nameserver {ns} is not in-zone."
    }
+
 }

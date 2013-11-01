@@ -1,25 +1,43 @@
 {
-    "BASIC": {
-        "NS_NO_RESPONSE" : "NOTICE",
-        "NO_GLUE" : "CRITICAL",
-        "HAS_A_RECORDS" : "ERROR",
-        "HAS_GLUE" : "INFO",
-        "NO_DOMAIN" : "CRITICAL",
-        "HAS_NAMESERVERS" : "INFO",
-        "NS_FAILED" : "WARNING"
-    },
-   "EXAMPLE": {
-       "EXAMPLE_TAG" : "DEBUG",
-       "DISABLED" : true
+   "BASIC" : {
+      "HAS_GLUE" : "INFO",
+      "NO_DOMAIN" : "CRITICAL",
+      "NS_FAILED" : "WARNING",
+      "NO_GLUE" : "CRITICAL",
+      "HAS_NAMESERVERS" : "INFO",
+      "HAS_A_RECORDS" : "ERROR",
+      "NS_NO_RESPONSE" : "NOTICE"
    },
-   "HOSTNAME": {
-       "CHECKING_NAME": "DEBUG",
-       "NUMERIC_TOP": "ERROR",
-       "NON_NUMERIC_TOP": "INFO",
-       "DASH_END": "WARNING",
-       "NO_DASH_END": "INFO",
-       "ALPHANUMERIC_START": "INFO",
-       "NON_ALPHANUMERIC_START": "WARNING"
+   "HOSTNAME" : {
+      "CHECKING_NAME" : "DEBUG",
+      "NON_ALPHANUMERIC_START" : "WARNING",
+      "NO_DASH_END" : "INFO",
+      "ALPHANUMERIC_START" : "INFO",
+      "NON_NUMERIC_TOP" : "INFO",
+      "DASH_END" : "WARNING",
+      "NUMERIC_TOP" : "ERROR"
+   },
+   "EXAMPLE" : {
+      "EXAMPLE_TAG" : "DEBUG",
+      "DISABLED" : true
+   },
+   "DELEGATION" : {
+         "REFERRAL_SIZE_LARGE": "WARNING",
+         "REFERRAL_SIZE_OK": "INFO",
+         "EXTRA_NAME_PARENT": "WARNING",
+         "EXTRA_NAME_CHILD": "NOTICE",
+         "EXTRA_ADDR_PARENT": "WARNING",
+         "EXTRA_ADDR_CHILD": "INFO",
+         "TOTAL_NAME_MISMATCH": "ERROR",
+         "NAMES_MATCH": "INFO",
+         "ADDRESSES_MATCH": "INFO",
+         "TOTAL_ADDRESS_MISMATCH": "ERROR",
+         "ENOUGH_NS_GLUE": "INFO",
+         "NOT_ENOUGH_NS_GLUE": "WARNING",
+         "ENOUGH_NS": "INFO",
+         "NOT_ENOUGH_NS": "WARNING",
+         "INZONE_NO_GLUE": "ERROR",
+         "INZONE_HAS_GLUE": "INFO",
+         "NOT_IN_ZONE": "DEBUG"
    }
 }
-

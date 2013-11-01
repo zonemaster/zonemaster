@@ -70,7 +70,7 @@ sub translate {
 
     foreach my $arg ( keys %{ $entry->args } ) {
         if ( not $string =~ s/\{$arg\}/$entry->args->{$arg}/e ) {
-            warn "Unused entry argument '$arg";
+            # warn "Unused entry argument '$arg";
         }
     }
 

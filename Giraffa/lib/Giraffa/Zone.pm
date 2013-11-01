@@ -85,6 +85,14 @@ sub query_all {
     return [ map { $_->query( $name, $type, $class ) } @{ $self->ns } ];
 }
 
+sub is_in_zone {
+    my ( $self, $name ) = @_;
+
+    my $p = $self->query_one("$name");
+
+    return not $p->is_redirect;
+}
+
 1;
 
 =head1 NAME
