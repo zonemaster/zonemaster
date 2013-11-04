@@ -52,7 +52,8 @@ ok($zone->is_in_zone('www.iis.se', 'www.iis.se is in zone iis.se'));
 ok(not $zone->is_in_zone('www.google.se','www.google.se is not in zone iis.se'));
 
 my $net = Giraffa::Zone->new({name => 'net'});
-ok(not $net->is_in_zone('k.gtld-servers.net.', 'k.gtld-servers.net is not in zone'));
+ok(not($net->is_in_zone('k.gtld-servers.net.')), 'k.gtld-servers.net is not in zone');
+ok(Giraffa::Zone->new({name => 'gtld-servers.net'})->is_in_zone('k.gtld-servers.net.'), 'k.gtld-servers.net is in zone');
 
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );

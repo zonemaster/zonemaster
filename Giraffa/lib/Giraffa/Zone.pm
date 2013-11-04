@@ -88,9 +88,26 @@ sub query_all {
 sub is_in_zone {
     my ( $self, $name ) = @_;
 
-    my $p = $self->query_one("$name");
+    if (not ref($name) or ref($name) ne 'Giraffa::DNSName') {
+        $name = Giraffa::DNSName->new($name)
+    }
 
-    return not $p->is_redirect;
+    if (scalar(@{$self->name->labels}) != $self->name->common($name) ) {
+        return; # Zone name cannot be a suffix of tested name
+    }
+
+    my $p = $self->query_one("$name", 'SOA');
+
+    if ($p->is_redirect) {
+        return; # Authoritative servers redirect us, so name must be out-of-zone
+    }
+
+    my ($soa) = $p->get_records('SOA');
+    if ($soa->name eq $self->name) {
+        return 1;
+    } else {
+        return;
+    }
 }
 
 1;
@@ -146,6 +163,10 @@ response, it will be returned in a L<Giraffa::Packet> object. If the type and/or
 
 Sends (or retrieves from cache) queries to all the nameservers listed in the zone's ns list, and returns a reference to an array with the
 responses. The responses can be either L<Giraffa::Packet> objects or C<undef> values.
+
+=item is_in_zone($name)
+
+Returns true if the given name is in the zone, false if not.
 
 =back
 
