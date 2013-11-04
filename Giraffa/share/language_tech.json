@@ -20,7 +20,7 @@
    },
    "DELEGATION" : {
          "REFERRAL_SIZE_LARGE": "The smallest possible legal referral packet is larger than 512 octets (it is {size}).",
-         "REFERRAL_SIZE_OK": "The smallest possible legal referral packet is larger than 512 octets (it is {size}).",
+         "REFERRAL_SIZE_OK": "The smallest possible legal referral packet is smaller than 513 octets (it is {size}).",
          "EXTRA_NAME_PARENT": "Parent has nameserver(s) not listed at the child ({extra}).",
          "EXTRA_NAME_CHILD": "Child has nameserver(s) not listed at parent ({extra}).",
          "EXTRA_ADDR_PARENT": "Parent has nameserver(s) address that do not exist at the child side ({extra}).",
