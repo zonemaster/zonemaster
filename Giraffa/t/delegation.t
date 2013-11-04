@@ -21,6 +21,11 @@ ok($res{INZONE_HAS_GLUE}, 'INZONE_HAS_GLUE');
 ok($res{NAMES_MATCH}, 'NAMES_MATCH');
 ok($res{REFERRAL_SIZE_OK}, 'REFERRAL_SIZE_OK');
 
+%res = map {$_->tag => $_} Giraffa->test_module('delegation', 'crystone.se');
+ok($res{EXTRA_NAME_PARENT}, 'EXTRA_NAME_PARENT');
+ok($res{EXTRA_NAME_CHILD}, 'EXTRA_NAME_CHILD');
+ok($res{TOTAL_NAME_MISMATCH}, 'TOTAL_NAME_MISMATCH');
+
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );
 }
