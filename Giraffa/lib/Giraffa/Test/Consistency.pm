@@ -150,9 +150,13 @@ Returns a version string for the module.
 
 =over
 
-=item placeholder($zone)
+=item ns_consistent($zone)
 
-Since this is an Consistency module, this test does nothing except return a single log entry.
+Query all nameservers for NS, and see that they all return the same set of names.
+
+=item soa_consistent($zone)
+
+Query all nameservers for SOA, and see that they all have the same SOA serial number.
 
 =back
 
