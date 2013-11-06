@@ -95,6 +95,7 @@ sub get_ns_from {
     my @new;
 
     my @names = sort map { name( $_->nsdname ) } $p->get_records( 'ns' );
+
     $state->{glue}{ $_->name }{ $_->address } = 1 for ( $p->get_records( 'a' ), $p->get_records( 'aaaa' ) );
 
     foreach my $name ( @names ) {
@@ -126,7 +127,7 @@ sub get_addresses_for {
             ns        => [ root_servers() ],
             count     => $state->{count},
             common    => 0,
-            name_seen => { $name => 1 },
+            name_seen => $state->{name_seen},
             glue      => $state->{glue}
         }
     );
@@ -136,7 +137,7 @@ sub get_addresses_for {
             ns        => [ root_servers() ],
             count     => $state->{count},
             common    => 0,
-            name_seen => { $name => 1 },
+            name_seen => $state->{name_seen},
             glue      => $state->{glue}
         }
     );
