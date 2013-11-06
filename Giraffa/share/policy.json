@@ -43,10 +43,10 @@
    "CONSISTENCY": {
        "NO_RESPONSE": "WARNING",
        "ONE_NS_SET": "INFO",
-       "MULTIPLE_NS_SET": "WARNING",
+       "MULTIPLE_NS_SETS": "WARNING",
        "NS_SET": "INFO",
        "ONE_SOA_SERIAL": "INFO",
-       "MULTIPLE_SOA_SERIAL": "NOTICE",
+       "MULTIPLE_SOA_SERIALS": "NOTICE",
        "SOA_SERIAL": "INFO"
    }
 }

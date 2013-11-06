@@ -36,6 +36,14 @@
          "INZONE_NO_GLUE": "In-zone nameserver {ns} does not have any glue.",
          "INZONE_HAS_GLUE": "In-zone nameserver {ns} does have glue.",
          "NOT_IN_ZONE": "Nameserver {ns} is not in-zone."
+   },
+   "CONSISTENCY": {
+       "NO_RESPONSE": "Nameserver {ns} did not respond.",
+       "ONE_NS_SET": "A single NS set seen ({set}).",
+       "MULTIPLE_NS_SETS": "Saw {count} NS sets.",
+       "NS_SET": "Saw NS set: {set}",
+       "ONE_SOA_SERIAL": "A single SOA serial number was seen ({serial}).",
+       "MULTIPLE_SOA_SERIALS": "Saw {count} SOA serial numbers.",
+       "SOA_SERIAL": "Saw SOA serial number {serial}."
    }
-
 }
