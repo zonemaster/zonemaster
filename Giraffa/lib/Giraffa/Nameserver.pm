@@ -18,6 +18,10 @@ use Module::Find qw[useall];
 use Carp;
 use List::Util qw[max min sum];
 
+use overload
+        '""' => \&string,
+        'cmp' => \&compare;
+
 subtype 'Giraffa::Net::IP', as 'Object', where { $_->isa( 'Net::IP' ) };
 coerce 'Giraffa::Net::IP', from 'Str', via { Net::IP->new( $_ ) };
 
@@ -160,6 +164,12 @@ sub string {
     my ( $self ) = @_;
 
     return $self->name->string . '/' . $self->address->short;
+}
+
+sub compare {
+    my ( $self, $other, $reverse ) = @_;
+
+    return $self->string cmp $other->string;
 }
 
 sub save {
@@ -331,6 +341,10 @@ If set to true, incoming response packets with the TC flag set are not automatic
 =item string()
 
 Returns a string representation of the object. Normally this is just the name and IP address separated by a slash.
+
+=item compare($other)
+
+Used for overloading comparison operators.
 
 =item save($filename)
 
