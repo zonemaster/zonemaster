@@ -39,5 +39,14 @@
          "INZONE_NO_GLUE": "ERROR",
          "INZONE_HAS_GLUE": "INFO",
          "NOT_IN_ZONE": "DEBUG"
+   },
+   "CONSISTENCY": {
+       "NO_RESPONSE": "WARNING",
+       "ONE_NS_SET": "INFO",
+       "MULTIPLE_NS_SET": "WARNING",
+       "NS_SET": "INFO",
+       "ONE_SOA_SERIAL": "INFO",
+       "MULTIPLE_SOA_SERIAL": "NOTICE",
+       "SOA_SERIAL": "INFO"
    }
 }
