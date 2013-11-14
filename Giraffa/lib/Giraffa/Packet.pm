@@ -2,22 +2,25 @@ package Giraffa::Packet v0.0.1;
 
 use 5.14.2;
 use Moose;
+use Giraffa::Util;
 
 has 'packet' => (
     is       => 'ro',
-    isa      => 'Net::DNS::Packet',
+    isa      => 'Net::LDNS::Packet',
     required => 1,
-    handles  => [ qw(data header question answer authority additional print string answerfrom answersize unique_push) ]
+    handles  => [ qw(data rcode aa question answer authority additional print string answerfrom answersize unique_push) ]
 );
 
 sub no_such_record {
     my ( $self ) = @_;
 
     if (    scalar( $self->packet->answer ) == 0
-        and $self->packet->header->rcode eq 'NOERROR'
+        and $self->packet->rcode eq 'NOERROR'
         and scalar( grep { $_->type eq 'SOA' } $self->packet->authority ) == 1
-        and $self->packet->header->aa )
+        and $self->packet->aa )
     {
+        my ($q) = $self->question;
+        info( NO_SUCH_RECORD => {name => $q->name, type => $q->type});
         return 1;
     }
     else {
@@ -28,9 +31,11 @@ sub no_such_record {
 sub no_such_name {
     my ( $self ) = @_;
 
-    if (    $self->packet->header->rcode eq 'NXDOMAIN'
-        and $self->packet->header->aa )
+    if (    $self->packet->rcode eq 'NXDOMAIN'
+        and $self->packet->aa )
     {
+        my ($q) = $self->question;
+        info( NO_SUCH_NAME => {name => $q->name, type => $q->type});
         return 1;
     }
     else {
@@ -44,6 +49,8 @@ sub is_redirect {
     if (    scalar( $self->packet->answer ) == 0
         and scalar( grep { $_->type eq 'NS' } $self->packet->authority ) > 0 )
     {
+        my ($q) = $self->question;
+        info( IS_REDIRECT => {name => $q->name, type => $q->type});
         return 1;
     }
     else {
@@ -93,7 +100,7 @@ sub has_rrs_of_type_for_name {
 
 =head1 NAME
 
-Giraffa::Packet - wrapping object for L<Net::DNS::Packet> objects
+Giraffa::Packet - wrapping object for L<Net::LDNS::Packet> objects
 
 =head1 SYNOPSIS
 
@@ -106,7 +113,7 @@ Giraffa::Packet - wrapping object for L<Net::DNS::Packet> objects
 
 =item packet
 
-Holds the L<Net::DNS::Packet> the object is wrapping.
+Holds the L<Net::LDNS::Packet> the object is wrapping.
 
 =back
 
@@ -128,12 +135,12 @@ Returns true if the packet is a redirect to another set of nameservers.
 
 =item get_records($type[, $section])
 
-Returns the L<Net::DNS::RR> objects of the requested type in the packet. If the optional C<$section> argument is given, and is one of C<answer>,
+Returns the L<Net::LDNS::RR> objects of the requested type in the packet. If the optional C<$section> argument is given, and is one of C<answer>,
 C<authority> and C<additional>, only RRs from that section are returned.
 
 =item get_records_for_name($type, $name)
 
-Returns all L<Net::DNS::RR> objects for the given name in the packet.
+Returns all L<Net::LDNS::RR> objects for the given name in the packet.
 
 =item has_rrs_of_type_for_name($type, $name)
 

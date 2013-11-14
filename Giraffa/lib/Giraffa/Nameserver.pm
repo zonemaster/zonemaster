@@ -8,8 +8,7 @@ use Giraffa::DNSName;
 use Giraffa;
 use Giraffa::Packet;
 
-use Net::DNS;
-use Giraffa::FixNetDNS;
+use Net::LDNS;
 
 use Net::IP;
 use Time::HiRes qw[time];
@@ -28,7 +27,7 @@ coerce 'Giraffa::Net::IP', from 'Str', via { Net::IP->new( $_ ) };
 has 'name'    => ( is => 'ro', isa => 'Giraffa::DNSName', coerce => 1, required => 0 );
 has 'address' => ( is => 'ro', isa => 'Giraffa::Net::IP', coerce => 1, required => 1 );
 
-has 'dns'   => ( is => 'ro', isa => 'Net::DNS::Resolver', lazy_build => 1 );
+has 'dns'   => ( is => 'ro', isa => 'Net::LDNS', lazy_build => 1 );
 has 'cache' => ( is => 'ro', isa => 'HashRef',            default    => sub { {} } );
 has 'times' => ( is => 'ro', isa => 'ArrayRef',           default    => sub { [] } );
 
@@ -62,13 +61,8 @@ around 'new' => sub {
 sub _build_dns {
     my ( $self ) = @_;
 
-    my $res = Net::DNS::Resolver->new(
-        nameservers => [ $self->address->ip ],
-        recurse     => 0,
-        port        => 53,
-        defnames    => 0,
-        dnsrch      => 0,
-    );
+    my $res = Net::LDNS->new( $self->address->ip );
+    $res->recurse(0);
 
     my %defaults = %{ Giraffa->config->get->{resolver}{defaults} };
     foreach my $flag ( keys %defaults ) {
@@ -145,7 +139,7 @@ sub _query {
     }
 
     my $before = time();
-    my $res = eval { $self->dns->send( "$name", $type, $href->{class} ) };
+    my $res = eval { $self->dns->query( "$name", $type, $href->{class} ) };
     push @{ $self->times }, ( time() - $before );
 
     foreach my $flag ( keys %defaults ) {
@@ -181,7 +175,7 @@ sub save {
 sub restore {
     my ( $class, $filename ) = @_;
 
-    useall 'Net::DNS::RR';
+    useall 'Net::LDNS::RR';
     %object_cache = %{ LoadFile( $filename ) };
 
     return;
@@ -272,7 +266,7 @@ A L<Net::IP> object holding the nameserver's address.
 
 =item dns
 
-The L<Net::DNS::Resolver> object used to actually send and recieve DNS queries.
+The L<Net::LDNS::Resolver> object used to actually send and recieve DNS queries.
 
 =item cache
 
@@ -292,7 +286,7 @@ A reference to a list with elapsed time values for the queries made through this
 
 Send a DNS query to the nameserver the object represents. C<$name> and C<$type> are the name and type that will be queried for (C<$type> defaults
 to 'A' if it's left undefined). C<$flagref> is a reference to a hash, the keys of which are flags and the values are their corresponding values.
-The available flags are as follows. All but the first directly correspond to methods in the L<Net::DNS::Resolver> object.
+The available flags are as follows. All but the first directly correspond to methods in the L<Net::LDNS::Resolver> object.
 
 =over
 

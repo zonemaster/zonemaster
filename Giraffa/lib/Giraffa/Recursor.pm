@@ -54,9 +54,9 @@ sub _recurse {
     while ( my $ns = pop @{ $state->{ns} } ) {
         my $p = $ns->query( $name, $type, { class => $class } );
 
-        next if not $p;                             # Ask next server if no response
-        next if $p->header->rcode eq 'REFUSED';     # Ask next if REFUSED
-        next if $p->header->rcode eq 'SERVFAIL';    # Ask next if SERVFAIL
+        next if not $p;                     # Ask next server if no response
+        next if $p->rcode eq 'REFUSED';     # Ask next if REFUSED
+        next if $p->rcode eq 'SERVFAIL';    # Ask next if SERVFAIL
 
         return ( $p, $state )
           if $p->no_such_record;                    # Node exists, but not record
@@ -96,7 +96,7 @@ sub get_ns_from {
 
     my @names = sort map { name( $_->nsdname ) } $p->get_records( 'ns' );
 
-    $state->{glue}{ $_->name }{ $_->address } = 1 for ( $p->get_records( 'a' ), $p->get_records( 'aaaa' ) );
+    $state->{glue}{ name($_->name) }{ $_->address } = 1 for ( $p->get_records( 'a' ), $p->get_records( 'aaaa' ) );
 
     foreach my $name ( @names ) {
         if ( $state->{glue}{$name} ) {
@@ -147,7 +147,7 @@ sub get_addresses_for {
     push @rrs, $paaaa->get_records( 'aaaa' ) if $paaaa;
     foreach my $rr (
         sort { $a->address cmp $b->address }
-        grep { $_->name eq $name } @rrs
+        grep { name($_->name) eq $name } @rrs
       )
     {
         push @res, Net::IP->new( $rr->address );
@@ -160,13 +160,13 @@ sub is_answer {
     my ( $self, $packet, $name, $type, $class ) = @_;
 
     foreach my $rr ( $packet->answer ) {
-        if (    $rr->name eq $name
+        if (    name($rr->name) eq $name
             and ( $rr->class eq $class or $class eq 'ANY' )
             and ( $rr->type eq $type   or $type eq 'ANY' ) )
         {
             return 1;
         }
-        if (    $rr->name eq $name
+        if (    name($rr->name) eq $name
             and ( $rr->class eq $class or $class eq 'ANY' )
             and $rr->type eq 'CNAME' )
         {
@@ -177,7 +177,7 @@ sub is_answer {
         }
     }
     foreach my $rr ( $packet->authority ) {
-        if (    $rr->name eq $name
+        if (    name($rr->name) eq $name
             and ( $rr->class eq $class or $class eq 'ANY' )
             and ( $rr->type eq $type   or $type eq 'ANY' ) )
         {

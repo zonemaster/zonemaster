@@ -76,7 +76,7 @@ sub basic1 {
         return @results;
     }
 
-    if ( $p->header->rcode eq 'NXDOMAIN' ) {
+    if ( $p->rcode eq 'NXDOMAIN' ) {
         push @results, info( NO_DOMAIN => { parent => $parent->name->string } );
     }
     else {
@@ -94,7 +94,7 @@ sub basic1 {
               info(
                 NO_GLUE => {
                     parent => $parent->name->string,
-                    rcode  => $p->header->rcode
+                    rcode  => $p->rcode
                 }
               );
         }
@@ -120,7 +120,7 @@ sub basic2 {
                   );
             }
             else {
-                push @results, info( NS_FAILED => { source => $ns->string, rcode => $p->header->rcode } );
+                push @results, info( NS_FAILED => { source => $ns->string, rcode => $p->rcode } );
             }
         }
         else {

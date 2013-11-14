@@ -6,8 +6,7 @@ name 'Giraffa';
 license 'bsd';
 all_from 'lib/Giraffa.pm';
 
-requires 'Net::DNS' => 0.72;
-requires 'Net::DNS::SEC' => 0.16;
+requires 'Net::LDNS' => 0;
 requires 'IO::Socket::INET6' => 2.69;
 requires 'Moose' => 2.0401;
 requires 'Module::Find' => 0.10;

@@ -60,8 +60,6 @@ __DATA__
                 "dnssec" : 0,
                 "debug" : 0,
                 "recurse" : 0,
-                "udp_timeout" : 15,
-                "tcp_timeout" : 15,
                 "retry" : 2,
                 "igntc" : 0
             }
