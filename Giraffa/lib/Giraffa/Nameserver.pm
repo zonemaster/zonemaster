@@ -12,14 +12,15 @@ use Net::LDNS;
 
 use Net::IP;
 use Time::HiRes qw[time];
-use YAML::XS qw[DumpFile LoadFile];
+use JSON::XS;
+use MIME::Base64;
 use Module::Find qw[useall];
 use Carp;
 use List::Util qw[max min sum];
 
 use overload
-        '""' => \&string,
-        'cmp' => \&compare;
+  '""'  => \&string,
+  'cmp' => \&compare;
 
 subtype 'Giraffa::Net::IP', as 'Object', where { $_->isa( 'Net::IP' ) };
 coerce 'Giraffa::Net::IP', from 'Str', via { Net::IP->new( $_ ) };
@@ -28,8 +29,8 @@ has 'name'    => ( is => 'ro', isa => 'Giraffa::DNSName', coerce => 1, required 
 has 'address' => ( is => 'ro', isa => 'Giraffa::Net::IP', coerce => 1, required => 1 );
 
 has 'dns'   => ( is => 'ro', isa => 'Net::LDNS', lazy_build => 1 );
-has 'cache' => ( is => 'ro', isa => 'HashRef',            default    => sub { {} } );
-has 'times' => ( is => 'ro', isa => 'ArrayRef',           default    => sub { [] } );
+has 'cache' => ( is => 'ro', isa => 'HashRef',   default    => sub { {} } );
+has 'times' => ( is => 'ro', isa => 'ArrayRef',  default    => sub { [] } );
 
 ###
 ### Variables
@@ -62,7 +63,7 @@ sub _build_dns {
     my ( $self ) = @_;
 
     my $res = Net::LDNS->new( $self->address->ip );
-    $res->recurse(0);
+    $res->recurse( 0 );
 
     my %defaults = %{ Giraffa->config->get->{resolver}{defaults} };
     foreach my $flag ( keys %defaults ) {
@@ -169,14 +170,47 @@ sub compare {
 sub save {
     my ( $class, $filename ) = @_;
 
-    return DumpFile( $filename, \%object_cache );
+    my $json = JSON::XS->new->allow_blessed->convert_blessed;
+    open my $fh, '>', $filename or die "Cache save failed: $!";
+    foreach my $name ( keys %object_cache ) {
+        foreach my $addr ( keys %{ $object_cache{$name} } ) {
+            say $fh "$name $addr " . $json->encode( $object_cache{$name}{$addr}->cache );
+        }
+    }
+
+    close $fh or die $!;
+
+    return;
 }
 
 sub restore {
     my ( $class, $filename ) = @_;
 
     useall 'Net::LDNS::RR';
-    %object_cache = %{ LoadFile( $filename ) };
+    my $decode = JSON::XS->new->filter_json_single_key_object(
+        'Net::LDNS::Packet' => sub {
+            my ( $ref ) = @_;
+            my $obj = Net::LDNS::Packet->new_from_wireformat( decode_base64( $ref->{data} ) );
+            $obj->answerfrom( $ref->{answerfrom} );
+            $obj->timestamp( $ref->{timestamp} );
+
+            return $obj;
+        }
+      )->filter_json_single_key_object(
+        'Giraffa::Packet' => sub {
+            my ( $ref ) = @_;
+
+            return Giraffa::Packet->new( { packet => $ref } );
+        }
+      );
+
+    open my $fh, '<', $filename or die "Failed to open restore data file: $!\n";
+    while ( my $line = <$fh> ) {
+        my ( $name, $addr, $data ) = split( / /, $line, 3 );
+        my $ref = $decode->decode( $data );
+        my $ns = Giraffa::Nameserver->new( { name => $name, address => $addr } );
+        $ns->{cache} = $ref;
+    }
 
     return;
 }

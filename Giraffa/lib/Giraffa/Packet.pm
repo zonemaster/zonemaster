@@ -8,7 +8,7 @@ has 'packet' => (
     is       => 'ro',
     isa      => 'Net::LDNS::Packet',
     required => 1,
-    handles  => [ qw(data rcode aa question answer authority additional print string answerfrom answersize unique_push) ]
+    handles  => [qw(data rcode aa question answer authority additional print string answerfrom answersize unique_push)]
 );
 
 sub no_such_record {
@@ -19,8 +19,8 @@ sub no_such_record {
         and scalar( grep { $_->type eq 'SOA' } $self->packet->authority ) == 1
         and $self->packet->aa )
     {
-        my ($q) = $self->question;
-        info( NO_SUCH_RECORD => {name => $q->name, type => $q->type});
+        my ( $q ) = $self->question;
+        info( NO_SUCH_RECORD => { name => $q->name, type => $q->type } );
         return 1;
     }
     else {
@@ -34,8 +34,8 @@ sub no_such_name {
     if (    $self->packet->rcode eq 'NXDOMAIN'
         and $self->packet->aa )
     {
-        my ($q) = $self->question;
-        info( NO_SUCH_NAME => {name => $q->name, type => $q->type});
+        my ( $q ) = $self->question;
+        info( NO_SUCH_NAME => { name => $q->name, type => $q->type } );
         return 1;
     }
     else {
@@ -49,8 +49,8 @@ sub is_redirect {
     if (    scalar( $self->packet->answer ) == 0
         and scalar( grep { $_->type eq 'NS' } $self->packet->authority ) > 0 )
     {
-        my ($q) = $self->question;
-        info( IS_REDIRECT => {name => $q->name, type => $q->type});
+        my ( $q ) = $self->question;
+        info( IS_REDIRECT => { name => $q->name, type => $q->type } );
         return 1;
     }
     else {
@@ -94,6 +94,12 @@ sub has_rrs_of_type_for_name {
     my ( $self, $type, $name ) = @_;
 
     return ( grep { $_->name eq $name } $self->get_records( $type ) ) > 0;
+}
+
+sub TO_JSON {
+    my ( $self ) = @_;
+
+    return { 'Giraffa::Packet' => $self->packet };
 }
 
 1;
