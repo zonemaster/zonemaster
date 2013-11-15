@@ -5,12 +5,12 @@ use 5.14.2;
 
 use Giraffa;
 use Giraffa::Nameserver;
-# my $datafile = 't/zone.yaml';
-# if ( not $ENV{GIRAFFA_RECORD} ) {
-#     die "Stored data file missing" if not -r $datafile;
-#     Giraffa::Nameserver->restore( $datafile );
-#     Giraffa->config->{no_network} = 1;
-# }
+my $datafile = 't/zone.data';
+if ( not $ENV{GIRAFFA_RECORD} ) {
+    die "Stored data file missing" if not -r $datafile;
+    Giraffa::Nameserver->restore( $datafile );
+    Giraffa->config->{no_network} = 1;
+}
 
 BEGIN { use_ok( 'Giraffa::Zone' ) }
 
@@ -55,8 +55,8 @@ my $net = Giraffa::Zone->new({name => 'net'});
 ok(not($net->is_in_zone('k.gtld-servers.net.')), 'k.gtld-servers.net is not in zone');
 ok(Giraffa::Zone->new({name => 'gtld-servers.net'})->is_in_zone('k.gtld-servers.net.'), 'k.gtld-servers.net is in zone');
 
-# if ( $ENV{GIRAFFA_RECORD} ) {
-#     Giraffa::Nameserver->save( $datafile );
-# }
+if ( $ENV{GIRAFFA_RECORD} ) {
+    Giraffa::Nameserver->save( $datafile );
+}
 
 done_testing;

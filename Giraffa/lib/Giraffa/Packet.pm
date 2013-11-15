@@ -152,4 +152,8 @@ Returns all L<Net::LDNS::RR> objects for the given name in the packet.
 
 Returns true if the packet holds any RRs of the specified type for the given name.
 
+=item TO_JSON
+
+Support method for L<JSON> to be able to serialize these objects.
+
 =back
