@@ -5,6 +5,7 @@ Overview
 --------
 The test requirements should list all current tests implemented in both Zonecheck and DNSCheck. This documents lists all current test cases.
 
+
 Source documents
 ----------------
 
@@ -21,7 +22,6 @@ Source documents
  * can deliver email to hostmaster
  * domain able to receive email (delivery using MX, A, AAAA)
  * test if mail delivery possible
- 
 
  
 (Zonecheck) To be defined
@@ -34,7 +34,6 @@ Source documents
  * coherence between NS and ANY records
  * coherence between SOA and ANY records
  * coherence between MX and ANY records
- 
 
 
 Tests to implement from Zonecheck (mapped to DNSCheck)
@@ -60,7 +59,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R16|NS authoritative answer                     | DNS:NOT_AUTH                                |
 |R17|NS name has a valid domain/hostname syntax  | HOST:ILLEGAL_NAME                           |
 |R18|NS is not an alias                          | DELEGATION:NS_IS_CNAME                      |
-|R19|R01|NS can be resolved                          | __not implemented__?                        |
+|R19|NS can be resolved                          | __not implemented__?                        |
 |R20|SOA record present                          | NAMESERVER:AUTH                             |
 |R21|SOA authoritative answer                    | NAMESERVER:AUTH                             |
 |R22|missused '@' characters in SOA contact name | SOA:RNAME_UNDELIVERABLE ?                   |
@@ -101,6 +100,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R57|And much more such as DNSSEC checks...      | ...                                         |
 
 Comment regarding addresses in bogon prefixes: DNSCheck implements checks against invalid addresses defined in RFCs. Since all of IPv4 space has been delegated to the RIRs, that is the whole of the low-volatility bogon space. The high-voltility bogon list would require daily (or even more frequent) updates, which is not practical in a standalone library.
+
 
 Tests to implement from DNSCheck
 --------------------------------
