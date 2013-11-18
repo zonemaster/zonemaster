@@ -42,62 +42,62 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 
 |Req| Zonecheck                                  | DNSCheck                                    | Level       | 
 |:--|:-------------------------------------------|:--------------------------------------------|:------------|
-|R01|UDP connectivity                            | NAMESERVER:NO_UDP                           ||
-|R02|TCP connectivity                            | NAMESERVER:NO_TCP                           ||
-|R03|address in a private network                | ADDRESS:PRIVATE_IPV4                        ||
-|R04|address shouldn't not be part of a bogon prefix | Partly implemented                      ||
-|R05|illegal symbols in domain name              | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ?     ||
-|R06|dash ('-') at start or beginning of domain name | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ? ||
-|R07|double dash in domain name                  | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME       ||
-|R08|one nameserver for the domain               | DELEGATION:TOO_FEW_NS                       ||
-|R09|at least two nameservers for the domain     | DELEGATION:TOO_FEW_NS                       ||
-|R10|identical addresses                         | DELEGATION:TOO_FEW_NS_IPV4 ?                ||
-|R11|nameserver addresses on same subnet         | CONNECTIVITY:TOO_FEW_ASN ?                  ||
-|R12|nameserver addresses are all on the same subnet | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN ||
-|R13|delegation response fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK        ||
-|R14|delegation response with additional fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK ? ||
-|R15|NS record present                           | DELEGATION:NOT_FOUND_AT_CHILD               ||
-|R16|NS authoritative answer                     | DNS:NOT_AUTH                                ||
-|R17|NS name has a valid domain/hostname syntax  | HOST:ILLEGAL_NAME                           ||
-|R18|NS is not an alias                          | DELEGATION:NS_IS_CNAME                      ||
-|R19|NS can be resolved                          | __not implemented__?                        ||
-|R20|SOA record present                          | NAMESERVER:AUTH                             ||
-|R21|SOA authoritative answer                    | NAMESERVER:AUTH                             ||
-|R22|missused '@' characters in SOA contact name | SOA:RNAME_UNDELIVERABLE ?                   ||
-|R23|illegal characters in SOA contact name      | SOA:RNAME_SYNTAX                            ||
-|R24|illegal characters in SOA master nameserver | SOA:MNAME_ERROR                             ||
-|R25|fully qualified master nameserver in SOA    | SOA:MNAME_IS_AUTH                           ||
-|R26|SOA 'refresh' at least 6 hours              | SOA:REFRESH_OK                              ||
-|R27|SOA 'retry' lower than 'refresh'            | SOA:RETRY_VS_REFRESH                        ||
-|R28|SOA 'retry' at least 1 hour                 | SOA:RETRY_OK                                ||
-|R29|SOA 'expire' at least 7 days                | SOA:EXPIRE_OK                               ||
-|R30|SOA 'expire' at least 7 times 'refresh'     | SOA:EXPIRE_VS_REFRESH                       ||
-|R31|SOA 'minimum' less than 1 day               | SOA:MINIMUM_OK                              ||
-|R32|SOA master is not an alias                  | SOA:MNAME_IS_CNAME ?                        ||
-|R33|coherence of serial number with primary nameserver | CONSISTENCY:SOA_SERIAL_CONSISTENT    ||
-|R34|coherence of administrative contact with primary nameserver | CONSISTENCY:SOA_DIGEST_CONSISTENT ||
-|R35|coherence of master with primary nameserver | CONSISTENCY:NS_SETS_OK ?                    ||
-|R36|coherence of SOA with primary nameserver    | CONSISTENCY:SOA_DIGEST_CONSISTENT           ||
-|R37|loopback delegation                         | __not implemented__?                        ||
-|R38|loopback is resolvable                      | __not implemented__?                        ||
-|R39|hostmaster MX is not an alias               | ?                                           ||
-|R40|nameserver IP reverse                       | ADDRESS:PTR_NOT_FOUND                       ||
-|R41|nameserver IP reverse matching nameserver name | __not implemented__?                     ||
-|R42|check if server is really recursive         | NAMESERVER:RECURSIVE                        ||
-|R43|nameserver doesn't allow recursion          | NAMESERVER:RECURSIVE __dup__?               ||
-|R44|given primary nameserver is primary         | DNS:NOT_AUTH ?                              ||
-|R45|correctness of given nameserver list        | CONSISTENCY:NS_SETS_OK ?                    ||
-|R46|test if server is recursive                 | NAMESERVER:RECURSIVE __dup__?               ||
-|R47|MX record present                           | MAIL:ALL_MX_IN_ZONE                         ||
-|R48|MX authoritative answer                     | MAIL:ALL_MX_IN_ZONE                         ||
-|R49|MX syntax is valid for an hostname          | MAIL:HOST_ERROR                             ||
-|R50|MX is not an alias                          | MAIL:HOST_ERROR                             ||
-|R51|absence of wildcard MX                      | __not implemented__?                        ||
-|R52|MX can be resolved                          | MAIL:ALL_MX_IN_ZONE __dup__?                ||
-|R53|behaviour against AAAA query                | ?                                           ||
-|R54|nameservers belong all to the same AS       | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN ||
-|R55|serial number of the form YYYYMMDDnn        | New test to identify serial number scheme   ||
-|R56|And much more such as DNSSEC checks...      | ...                                         ||
+|R01|UDP connectivity                            | NAMESERVER:NO_UDP                           |Connectivity|
+|R02|TCP connectivity                            | NAMESERVER:NO_TCP                           |Connectivity|
+|R03|address in a private network                | ADDRESS:PRIVATE_IPV4                        |Address properties|
+|R04|address shouldn't not be part of a bogon prefix | Partly implemented                      |Address properties|
+|R05|illegal symbols in domain name              | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ?     |Name properties?|
+|R06|dash ('-') at start or beginning of domain name | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ? |Name properties?|
+|R07|double dash in domain name                  | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME       |Name properties?|
+|R08|one nameserver for the domain               | DELEGATION:TOO_FEW_NS                       |Delegation|
+|R09|at least two nameservers for the domain     | DELEGATION:TOO_FEW_NS                       |Delegation|
+|R10|identical addresses                         | DELEGATION:TOO_FEW_NS_IPV4 ?                |Delegation|
+|R11|nameserver addresses on same subnet         | CONNECTIVITY:TOO_FEW_ASN ?                  |Connectivity|
+|R12|nameserver addresses are all on the same subnet | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |Connectivity|
+|R13|delegation response fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK        |Delegation|
+|R14|delegation response with additional fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK ? |Delegation|
+|R15|NS record present                           | DELEGATION:NOT_FOUND_AT_CHILD               |Basic?|
+|R16|NS authoritative answer                     | DNS:NOT_AUTH                                |Delegation|
+|R17|NS name has a valid domain/hostname syntax  | HOST:ILLEGAL_NAME                           |Name properties?|
+|R18|NS is not an alias                          | DELEGATION:NS_IS_CNAME                      |Delegation|
+|R19|NS can be resolved                          | __not implemented__?                        |Name properties|
+|R20|SOA record present                          | NAMESERVER:AUTH                             |Delegation|
+|R21|SOA authoritative answer                    | NAMESERVER:AUTH                             |Delegation|
+|R22|missused '@' characters in SOA contact name | SOA:RNAME_UNDELIVERABLE ?                   |Name properties?|
+|R23|illegal characters in SOA contact name      | SOA:RNAME_SYNTAX                            |Name properties?|
+|R24|illegal characters in SOA master nameserver | SOA:MNAME_ERROR                             |Name properties?|
+|R25|fully qualified master nameserver in SOA    | SOA:MNAME_IS_AUTH                           |Delegation|
+|R26|SOA 'refresh' at least 6 hours              | SOA:REFRESH_OK                              |Delegation|
+|R27|SOA 'retry' lower than 'refresh'            | SOA:RETRY_VS_REFRESH                        |Delegation|
+|R28|SOA 'retry' at least 1 hour                 | SOA:RETRY_OK                                |Delegation|
+|R29|SOA 'expire' at least 7 days                | SOA:EXPIRE_OK                               |Delegation|
+|R30|SOA 'expire' at least 7 times 'refresh'     | SOA:EXPIRE_VS_REFRESH                       |Delegation|
+|R31|SOA 'minimum' less than 1 day               | SOA:MINIMUM_OK                              |Delegation|
+|R32|SOA master is not an alias                  | SOA:MNAME_IS_CNAME ?                        |Delegation|
+|R33|coherence of serial number with primary nameserver | CONSISTENCY:SOA_SERIAL_CONSISTENT    |Consistency|
+|R34|coherence of administrative contact with primary nameserver | CONSISTENCY:SOA_DIGEST_CONSISTENT |Consistency|
+|R35|coherence of master with primary nameserver | CONSISTENCY:NS_SETS_OK ?                    |Consistency|
+|R36|coherence of SOA with primary nameserver    | CONSISTENCY:SOA_DIGEST_CONSISTENT           |Consistency|
+|R37|loopback delegation                         | __not implemented__?                        |?|
+|R38|loopback is resolvable                      | __not implemented__?                        |?|
+|R39|hostmaster MX is not an alias               | ?                                           |Name properties?|
+|R40|nameserver IP reverse                       | ADDRESS:PTR_NOT_FOUND                       |Address properties|
+|R41|nameserver IP reverse matching nameserver name | __not implemented__?                     |Name properties?|
+|R42|check if server is really recursive         | NAMESERVER:RECURSIVE                        |Resolver properties|
+|R43|nameserver doesn't allow recursion          | NAMESERVER:RECURSIVE __dup__?               |?|
+|R44|given primary nameserver is primary         | DNS:NOT_AUTH ?                              |?!|
+|R45|correctness of given nameserver list        | CONSISTENCY:NS_SETS_OK ?                    |Consistency|
+|R46|test if server is recursive                 | NAMESERVER:RECURSIVE __dup__?               |?|
+|R47|MX record present                           | MAIL:ALL_MX_IN_ZONE                         |?|
+|R48|MX authoritative answer                     | MAIL:ALL_MX_IN_ZONE                         |?|
+|R49|MX syntax is valid for an hostname          | MAIL:HOST_ERROR                             |Name properties|
+|R50|MX is not an alias                          | MAIL:HOST_ERROR                             |Name properties|
+|R51|absence of wildcard MX                      | __not implemented__?                        |?|
+|R52|MX can be resolved                          | MAIL:ALL_MX_IN_ZONE __dup__?                |?|
+|R53|behaviour against AAAA query                | ?                                           |?!|
+|R54|nameservers belong all to the same AS       | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |Connectivity|
+|R55|serial number of the form YYYYMMDDnn        | New test to identify serial number scheme   |Delegation|
+|R56|And much more such as DNSSEC checks...      | ...                                         |DNSSEC properties...|
 
 Comment regarding addresses in bogon prefixes: DNSCheck implements checks against invalid addresses defined in RFCs. Since all of IPv4 space has been delegated to the RIRs, that is the whole of the low-volatility bogon space. The high-voltility bogon list would require daily (or even more frequent) updates, which is not practical in a standalone library.
 
@@ -108,17 +108,17 @@ Tests to implement from DNSCheck
 Although the list of [All DNSCheck Messages](https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages)
 is comprehensive, it is not a list of tests as such. It is a list of messages emitted by DNSCheck.
 
-|Req| DNSCheck                                                             |
-|:--|:---------------------------------------------------------------------|
-|R58|Legal values for the DS hash digest algorithm                         |
-|R59|DS must match a DNSKEY in the designated zone                         |
-|R60|Check for too many NSEC3 iterations                                   |
-|R61|Check for too short or too long RRSIG lifetimes                       |
-|R62|Check for invalid DNSKEY algorithms                                   |
-|R63|Verify DNSSEC additional processing                                   |
-|R64|If there exists DNSKEY at child, the parent should have a DS          |
-|R65|RRSIG(DNSKEY) must be valid and created by a valid DNSKEY             |
-|R66|RRSIG(SOA) must be valid and created by a valid DNSKEY                |
-|R67|There must be NS records for the zone being tested on the parent side |
-|R68|The child domain must have at least one working nameserver            |
-|R69|NS records from parent exists, but the child does not have NS but answers for A|
+|Req| DNSCheck                                                             | Level |
+|:--|:---------------------------------------------------------------------|:------|
+|R58|Legal values for the DS hash digest algorithm                         ||
+|R59|DS must match a DNSKEY in the designated zone                         ||
+|R60|Check for too many NSEC3 iterations                                   ||
+|R61|Check for too short or too long RRSIG lifetimes                       ||
+|R62|Check for invalid DNSKEY algorithms                                   ||
+|R63|Verify DNSSEC additional processing                                   ||
+|R64|If there exists DNSKEY at child, the parent should have a DS          ||
+|R65|RRSIG(DNSKEY) must be valid and created by a valid DNSKEY             ||
+|R66|RRSIG(SOA) must be valid and created by a valid DNSKEY                ||
+|R67|There must be NS records for the zone being tested on the parent side ||
+|R68|The child domain must have at least one working nameserver            ||
+|R69|NS records from parent exists, but the child does not have NS but answers for A||
