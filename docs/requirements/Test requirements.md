@@ -45,7 +45,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R01|UDP connectivity                            | NAMESERVER:NO_UDP                           |
 |R02|TCP connectivity                            | NAMESERVER:NO_TCP                           |
 |R03|address in a private network                | ADDRESS:PRIVATE_IPV4                        |
-|R04|address shouldn not be part of a bogon prefix | __not implemented__?                      |
+|R04|address shouldn't not be part of a bogon prefix | Partly implemented                      |
 |R05|illegal symbols in domain name              | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ?     |
 |R06|dash ('-') at start or beginning of domain name | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ? |
 |R07|double dash in domain name                  | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME       |
@@ -96,9 +96,8 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R52|MX can be resolved                          | MAIL:ALL_MX_IN_ZONE __dup__?                |
 |R53|behaviour against AAAA query                | ?                                           |
 |R54|nameservers belong all to the same AS       | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |
-|R55|address shouldn't be part of a bogon prefix | Partly implemented                          |
-|R56|serial number of the form YYYYMMDDnn        | New test to identify serial number scheme   |
-|R57|And much more such as DNSSEC checks...      | ...                                         |
+|R55|serial number of the form YYYYMMDDnn        | New test to identify serial number scheme   |
+|R56|And much more such as DNSSEC checks...      | ...                                         |
 
 Comment regarding addresses in bogon prefixes: DNSCheck implements checks against invalid addresses defined in RFCs. Since all of IPv4 space has been delegated to the RIRs, that is the whole of the low-volatility bogon space. The high-voltility bogon list would require daily (or even more frequent) updates, which is not practical in a standalone library.
 
