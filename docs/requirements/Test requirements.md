@@ -110,15 +110,15 @@ is comprehensive, it is not a list of tests as such. It is a list of messages em
 
 |Req| DNSCheck                                                             | Level |
 |:--|:---------------------------------------------------------------------|:------|
-|R58|Legal values for the DS hash digest algorithm                         ||
-|R59|DS must match a DNSKEY in the designated zone                         ||
-|R60|Check for too many NSEC3 iterations                                   ||
-|R61|Check for too short or too long RRSIG lifetimes                       ||
-|R62|Check for invalid DNSKEY algorithms                                   ||
-|R63|Verify DNSSEC additional processing                                   ||
-|R64|If there exists DNSKEY at child, the parent should have a DS          ||
-|R65|RRSIG(DNSKEY) must be valid and created by a valid DNSKEY             ||
-|R66|RRSIG(SOA) must be valid and created by a valid DNSKEY                ||
-|R67|There must be NS records for the zone being tested on the parent side ||
-|R68|The child domain must have at least one working nameserver            ||
-|R69|NS records from parent exists, but the child does not have NS but answers for A||
+|R58|Legal values for the DS hash digest algorithm                         |DNSSEC|
+|R59|DS must match a DNSKEY in the designated zone                         |DNSSEC|
+|R60|Check for too many NSEC3 iterations                                   |DNSSEC|
+|R61|Check for too short or too long RRSIG lifetimes                       |DNSSEC|
+|R62|Check for invalid DNSKEY algorithms                                   |DNSSEC|
+|R63|Verify DNSSEC additional processing                                   |DNSSEC|
+|R64|If there exists DNSKEY at child, the parent should have a DS          |DNSSEC|
+|R65|RRSIG(DNSKEY) must be valid and created by a valid DNSKEY             |DNSSEC|
+|R66|RRSIG(SOA) must be valid and created by a valid DNSKEY                |DNSSEC|
+|R67|There must be NS records for the zone being tested on the parent side |Basic|
+|R68|The child domain must have at least one working nameserver            |Basic|
+|R69|NS records from parent exists, but the child does not have NS but answers for A|?|
