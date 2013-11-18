@@ -9,7 +9,8 @@ The test requirements should list all current tests implemented in both Zonechec
 Source documents
 ----------------
 
- * Source document for Zonecheck: [features.shtml](http://www.zonecheck.fr/features.shtml)  
+ * Source document for Zonecheck: [features.shtml](http://www.zonecheck.fr/features.shtml)
+ * Policy document for Zonecheck: [tests-policy-2.html](http://www.afnic.fr/en/products-and-services/services/zonecheck/tests-policy-2.html)
  * Source document for DNSCheck: [Detailes list of all possible DNSCheck messages](https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages)
 
 
