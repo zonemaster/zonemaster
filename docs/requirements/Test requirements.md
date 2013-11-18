@@ -102,4 +102,16 @@ Tests to implement from DNSCheck
 --------------------------------
 
 Although the list of [All DNSCheck Messages](https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages)
-is comprehensive, it is not a list of tests as such. It is a list of messages emitted by DNSCheck. However, it can be used as a list of tests to be implemented, so we will not repeat the list here.
+is comprehensive, it is not a list of tests as such. It is a list of messages emitted by DNSCheck.
+
+|Req| DNSCheck                                                    |
+|:--|:------------------------------------------------------------|
+|R58|Legal values for the DS hash digest algorithm                |
+|R59|DS must match a DNSKEY in the designated zone                |
+|R60|Check for too many NSEC3 iterations                          |
+|R61|Check for too short or too long RRSIG lifetimes              |
+|R62|Check for invalid DNSKEY algorithms                          |
+|R63|Verify DNSSEC additional processing                          |
+|R64|If there exists DNSKEY at child, the parent should have a DS |
+|R65|RRSIG(DNSKEY) must be valid and created by a valid DNSKEY    |
+|R66|RRSIG(SOA) must be valid and created by a valid DNSKEY       |
