@@ -51,18 +51,22 @@ http://www.zonecheck.fr/features.shtml
 No internal requirements.
 #### Document hieararchy
 * Master Test Plan  
-    * Level Test Plan x  
-        * Test Case 1  
-        * Test Case 2  
-        * Test Case 3  
-    * Level Test Plan y  
-        * Test Case 4  
-        * Test Case 5  
-        * Test Case 6  
-    * Level Test Plan z  
-        * Test Case 7  
-        * Test Case 8  
-        * Test Case 9  
+    * Basic Test Plan  
+        * Test Case x
+    * Delegation Test Plan
+        * Test Case x
+    * Consistency Test Plan
+        * Test Case x
+    * DNSSEC Test Plan
+        * Test Case x
+    * Address Test Plan
+        * Test Case x
+    * Connectivity Test Plan
+        * Test Case x
+    * Zone Test Plan
+        * Test Case x
+    * Resolver Test Plan
+        * Test Case x
 
 ### System overview and key features
 A domain will be tested for the quality of the delegation in the DNS hierarchy. Some of the high level properties that will be tested include:
