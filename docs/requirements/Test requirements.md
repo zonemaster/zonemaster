@@ -1,6 +1,10 @@
 Test requirements
 =================
 
+Overview
+--------
+The test requirements should list all current tests implemented in both Zonecheck and DNSCheck. This documents lists all current test cases.
+
 Source documents
 ----------------
 
@@ -10,7 +14,7 @@ Source documents
 
 (Zonecheck) Discarded test cases
 --------------------------------
- * serial number of the form YYYYMMDDnn 
+ * serial number of the form YYYYMMDDnn (see R56)
  * delegated domain is not an openrelay
  * domain of the hostmaster email is not an openrelay
  * can deliver email to 'postmaster'
