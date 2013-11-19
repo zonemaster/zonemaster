@@ -79,6 +79,7 @@ A domain will be tested for the quality of the delegation in the DNS hierarchy. 
 * **Name server** properties 
 * Name server **connectivity**
 * **Zone** properties (are data controlling the zone sane)
+* **Syntax** (illegal hostnames and characters)
 * (not mandatory) **Resolver** properties
 
 A domain can be given to the testing system and all DNS information will be retrieved from the public global DNS hierarchy, or a set of pre-delegation data can be given to test a domain not yet published in the global DNS hierarchy. A complete set of DNS queries and answers can also be given as the input to the system for repeat testing.
@@ -116,6 +117,7 @@ There can be different types of tests, e.g. unit, system, and acceptance tests. 
 * Name server
 * Connectivity
 * Zone
+* Syntax
 * Resolver
 
 However, the separation of test levels does not necessarily mean that the levels are separated in the New DNSCheck implementation. The actual test levels might differ from the actual test modules in the code. At this level, the separation is done to make a better overview of all the test cases specified.
