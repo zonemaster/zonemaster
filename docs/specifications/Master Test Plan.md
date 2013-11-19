@@ -113,8 +113,10 @@ There can be different types of tests, e.g. unit, system, and acceptance tests. 
 * Consistency
 * DNSSEC
 * Address
+* Name server
 * Connectivity
 * Zone
+* Resolver
 
 However, the separation of test levels does not necessarily mean that the levels are separated in the New DNSCheck implementation. The actual test levels might differ from the actual test modules in the code. At this level, the separation is done to make a better overview of all the test cases specified.
 
