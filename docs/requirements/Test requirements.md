@@ -52,51 +52,51 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R08|one nameserver for the domain               | DELEGATION:TOO_FEW_NS                       |Delegation|
 |R09|at least two nameservers for the domain     | DELEGATION:TOO_FEW_NS                       |Delegation|
 |R10|identical addresses                         | DELEGATION:TOO_FEW_NS_IPV4 ?                |Delegation|
-|R11|nameserver addresses on same subnet         | CONNECTIVITY:TOO_FEW_ASN ?                  |Connectivity|
+|R11|nameserver addresses on same subnet         | __think we removed this__!?                 |Connectivity|
 |R12|nameserver addresses are all on the same subnet | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |Connectivity|
 |R13|delegation response fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK        |Delegation|
 |R14|delegation response with additional fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK ? |Delegation|
-|R15|NS record present                           | DELEGATION:NOT_FOUND_AT_CHILD               |Basic?|
+|R15|NS record present                           | ZONE:FATAL_NO_CHILD_NS                      |Basic|
 |R16|NS authoritative answer                     | DNS:NOT_AUTH                                |Delegation|
-|R17|NS name has a valid domain/hostname syntax  | HOST:ILLEGAL_NAME                           |Name properties?|
+|R17|NS name has a valid domain/hostname syntax  | HOST:ILLEGAL_NAME                           |Syntax|
 |R18|NS is not an alias                          | DELEGATION:NS_IS_CNAME                      |Delegation|
-|R19|NS can be resolved                          | __not implemented__?                        |Name properties|
+|R19|NS can be resolved                          | DELEGATION:NOT_FOUND_AT_CHILD               |Delegation|
 |R20|SOA record present                          | NAMESERVER:AUTH                             |Delegation|
 |R21|SOA authoritative answer                    | NAMESERVER:AUTH                             |Delegation|
-|R22|missused '@' characters in SOA contact name | SOA:RNAME_UNDELIVERABLE ?                   |Name properties?|
-|R23|illegal characters in SOA contact name      | SOA:RNAME_SYNTAX                            |Name properties?|
-|R24|illegal characters in SOA master nameserver | SOA:MNAME_ERROR                             |Name properties?|
-|R25|fully qualified master nameserver in SOA    | SOA:MNAME_IS_AUTH                           |Delegation|
-|R26|SOA 'refresh' at least 6 hours              | SOA:REFRESH_OK                              |Delegation|
-|R27|SOA 'retry' lower than 'refresh'            | SOA:RETRY_VS_REFRESH                        |Delegation|
-|R28|SOA 'retry' at least 1 hour                 | SOA:RETRY_OK                                |Delegation|
-|R29|SOA 'expire' at least 7 days                | SOA:EXPIRE_OK                               |Delegation|
-|R30|SOA 'expire' at least 7 times 'refresh'     | SOA:EXPIRE_VS_REFRESH                       |Delegation|
-|R31|SOA 'minimum' less than 1 day               | SOA:MINIMUM_OK                              |Delegation|
-|R32|SOA master is not an alias                  | SOA:MNAME_IS_CNAME ?                        |Delegation|
+|R22|missused '@' characters in SOA contact name | SOA:RNAME_SYNTAX                            |Syntax|
+|R23|illegal characters in SOA contact name      | SOA:RNAME_SYNTAX                            |Syntax|
+|R24|illegal characters in SOA master nameserver | SOA:MNAME_ERROR                             |Syntax|
+|R25|fully qualified master nameserver in SOA    | SOA:MNAME_IS_AUTH                           |Zone|
+|R26|SOA 'refresh' at least 6 hours              | SOA:REFRESH_OK                              |Zone|
+|R27|SOA 'retry' lower than 'refresh'            | SOA:RETRY_VS_REFRESH                        |Zone|
+|R28|SOA 'retry' at least 1 hour                 | SOA:RETRY_OK                                |Zone|
+|R29|SOA 'expire' at least 7 days                | SOA:EXPIRE_OK                               |Zone|
+|R30|SOA 'expire' at least 7 times 'refresh'     | SOA:EXPIRE_VS_REFRESH                       |Zone|
+|R31|SOA 'minimum' less than 1 day               | SOA:MINIMUM_OK                              |Zone|
+|R32|SOA master is not an alias                  | SOA:MNAME_IS_CNAME ?                        |Zone|
 |R33|coherence of serial number with primary nameserver | CONSISTENCY:SOA_SERIAL_CONSISTENT    |Consistency|
 |R34|coherence of administrative contact with primary nameserver | CONSISTENCY:SOA_DIGEST_CONSISTENT |Consistency|
 |R35|coherence of master with primary nameserver | CONSISTENCY:NS_SETS_OK ?                    |Consistency|
 |R36|coherence of SOA with primary nameserver    | CONSISTENCY:SOA_DIGEST_CONSISTENT           |Consistency|
 |R37|loopback delegation                         | __not implemented__?                        |?|
 |R38|loopback is resolvable                      | __not implemented__?                        |?|
-|R39|hostmaster MX is not an alias               | ?                                           |Name properties?|
+|R39|hostmaster MX is not an alias               | ?                                           |Syntax|
 |R40|nameserver IP reverse                       | ADDRESS:PTR_NOT_FOUND                       |Address properties|
-|R41|nameserver IP reverse matching nameserver name | __not implemented__?                     |Name properties?|
-|R42|check if server is really recursive         | NAMESERVER:RECURSIVE                        |Resolver properties|
-|R43|nameserver doesn't allow recursion          | NAMESERVER:RECURSIVE __dup__?               |?|
-|R44|given primary nameserver is primary         | DNS:NOT_AUTH ?                              |?!|
+|R41|nameserver IP reverse matching nameserver name | __not implemented__?                     |Address properties|
+|R42|check if server is really recursive         | NAMESERVER:RECURSIVE                        |Name servers|
+|R43|nameserver doesn't allow recursion          | NAMESERVER:RECURSIVE __dup__?               |Name server|
+|R44|given primary nameserver is primary         | DNS:NOT_AUTH ?                              |Zone|
 |R45|correctness of given nameserver list        | CONSISTENCY:NS_SETS_OK ?                    |Consistency|
-|R46|test if server is recursive                 | NAMESERVER:RECURSIVE __dup__?               |?|
+|R46|test if server is recursive                 | NAMESERVER:RECURSIVE __dup__?               |Name server|
 |R47|MX record present                           | MAIL:ALL_MX_IN_ZONE                         |?|
 |R48|MX authoritative answer                     | MAIL:ALL_MX_IN_ZONE                         |?|
-|R49|MX syntax is valid for an hostname          | MAIL:HOST_ERROR                             |Name properties|
-|R50|MX is not an alias                          | MAIL:HOST_ERROR                             |Name properties|
+|R49|MX syntax is valid for an hostname          | MAIL:HOST_ERROR                             |Syntax|
+|R50|MX is not an alias                          | MAIL:HOST_ERROR                             |Syntax|
 |R51|absence of wildcard MX                      | __not implemented__?                        |?|
 |R52|MX can be resolved                          | MAIL:ALL_MX_IN_ZONE __dup__?                |?|
-|R53|behaviour against AAAA query                | ?                                           |?!|
+|R53|behaviour against AAAA query                | ?                                           |Name server|
 |R54|nameservers belong all to the same AS       | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |Connectivity|
-|R55|serial number of the form YYYYMMDDnn        | New test to identify serial number scheme   |Delegation|
+|R55|serial number of the form YYYYMMDDnn        | New test to identify serial number scheme   |Syntax|
 |R56|And much more such as DNSSEC checks...      | ...                                         |DNSSEC properties...|
 
 Comment regarding addresses in bogon prefixes: DNSCheck implements checks against invalid addresses defined in RFCs. Since all of IPv4 space has been delegated to the RIRs, that is the whole of the low-volatility bogon space. The high-voltility bogon list would require daily (or even more frequent) updates, which is not practical in a standalone library.
