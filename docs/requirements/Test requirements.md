@@ -121,4 +121,4 @@ is comprehensive, it is not a list of tests as such. It is a list of messages em
 |R66|RRSIG(SOA) must be valid and created by a valid DNSKEY                |DNSSEC|
 |R67|There must be NS records for the zone being tested on the parent side |Basic|
 |R68|The child domain must have at least one working nameserver            |Basic|
-|R69|NS records from parent exists, but the child does not have NS but answers for A|?|
+|R69|NS records from parent exists, but the child does not have NS but answers for A|Basic|
