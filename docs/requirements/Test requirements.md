@@ -45,7 +45,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R01|UDP connectivity                            | NAMESERVER:NO_UDP                           |Connectivity|
 |R02|TCP connectivity                            | NAMESERVER:NO_TCP                           |Connectivity|
 |R03|address in a private network                | ADDRESS:PRIVATE_IPV4                        |Address|
-|R04|address shouldn't not be part of a bogon prefix | Partly implemented                      |Address|
+|R04|address shouldn't not be part of a bogon prefix | Partly implemented                      |Connectivity|
 |R05|illegal symbols in domain name              | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ?     |Syntax|
 |R06|dash ('-') at start or beginning of domain name | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ? |Syntax|
 |R07|double dash in domain name                  | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME       |Syntax|
@@ -53,7 +53,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R09|at least two nameservers for the domain     | DELEGATION:TOO_FEW_NS                       |Delegation|
 |R10|identical addresses                         | DELEGATION:TOO_FEW_NS_IPV4 ?                |Delegation|
 |R11|nameserver addresses on same subnet         | __think we removed this__!?                 |Connectivity|
-|R12|nameserver addresses are all on the same subnet | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |Connectivity|
+|R12|nameserver addresses are all on the same subnet | __indirectly done through AS checks__!? |Connectivity|
 |R13|delegation response fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK        |Delegation|
 |R14|delegation response with additional fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK |Delegation|
 |R15|NS record present                           | ZONE:FATAL_NO_CHILD_NS                      |Basic|
@@ -73,7 +73,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R29|SOA 'expire' at least 7 days                | SOA:EXPIRE_OK                               |Zone|
 |R30|SOA 'expire' at least 7 times 'refresh'     | SOA:EXPIRE_VS_REFRESH                       |Zone|
 |R31|SOA 'minimum' less than 1 day               | SOA:MINIMUM_OK                              |Zone|
-|R32|SOA master is not an alias                  | SOA:MNAME_IS_CNAME ?                        |Zone|
+|R32|SOA master is not an alias                  | SOA:MNAME_IS_CNAME                          |Zone|
 |R33|coherence of serial number with primary nameserver | CONSISTENCY:SOA_SERIAL_CONSISTENT    |Consistency|
 |R34|coherence of administrative contact with primary nameserver | CONSISTENCY:SOA_DIGEST_CONSISTENT |Consistency|
 |R35|coherence of master with primary nameserver | CONSISTENCY:NS_SETS_OK ?                    |Consistency|
@@ -94,7 +94,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R50|MX is not an alias                          | MAIL:HOST_ERROR                             |Syntax|
 |R51|absence of wildcard MX                      | __not implemented__?                        |?|
 |R52|MX can be resolved                          | MAIL:ALL_MX_IN_ZONE __dup__?                |?|
-|R53|behaviour against AAAA query                | ?                                           |Name server|
+|R53|behaviour against AAAA query                | __not implemented__?                        |Name server|
 |R54|nameservers belong all to the same AS       | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |Connectivity|
 |R55|serial number of the form YYYYMMDDnn        | New test to identify serial number scheme   |Syntax|
 |R56|And much more such as DNSSEC checks...      | ...                                         |DNSSEC|
