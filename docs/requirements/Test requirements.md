@@ -44,18 +44,18 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |:--|:-------------------------------------------|:--------------------------------------------|:------------|
 |R01|UDP connectivity                            | NAMESERVER:NO_UDP                           |Connectivity|
 |R02|TCP connectivity                            | NAMESERVER:NO_TCP                           |Connectivity|
-|R03|address in a private network                | ADDRESS:PRIVATE_IPV4                        |Address properties|
-|R04|address shouldn't not be part of a bogon prefix | Partly implemented                      |Address properties|
-|R05|illegal symbols in domain name              | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ?     |Name properties?|
-|R06|dash ('-') at start or beginning of domain name | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ? |Name properties?|
-|R07|double dash in domain name                  | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME       |Name properties?|
+|R03|address in a private network                | ADDRESS:PRIVATE_IPV4                        |Address|
+|R04|address shouldn't not be part of a bogon prefix | Partly implemented                      |Address|
+|R05|illegal symbols in domain name              | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ?     |Syntax|
+|R06|dash ('-') at start or beginning of domain name | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ? |Syntax|
+|R07|double dash in domain name                  | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME       |Syntax|
 |R08|one nameserver for the domain               | DELEGATION:TOO_FEW_NS                       |Delegation|
 |R09|at least two nameservers for the domain     | DELEGATION:TOO_FEW_NS                       |Delegation|
 |R10|identical addresses                         | DELEGATION:TOO_FEW_NS_IPV4 ?                |Delegation|
 |R11|nameserver addresses on same subnet         | __think we removed this__!?                 |Connectivity|
 |R12|nameserver addresses are all on the same subnet | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |Connectivity|
 |R13|delegation response fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK        |Delegation|
-|R14|delegation response with additional fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK ? |Delegation|
+|R14|delegation response with additional fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK |Delegation|
 |R15|NS record present                           | ZONE:FATAL_NO_CHILD_NS                      |Basic|
 |R16|NS authoritative answer                     | DNS:NOT_AUTH                                |Delegation|
 |R17|NS name has a valid domain/hostname syntax  | HOST:ILLEGAL_NAME                           |Syntax|
@@ -80,10 +80,10 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R36|coherence of SOA with primary nameserver    | CONSISTENCY:SOA_DIGEST_CONSISTENT           |Consistency|
 |R37|loopback delegation                         | __not implemented__?                        |?|
 |R38|loopback is resolvable                      | __not implemented__?                        |?|
-|R39|hostmaster MX is not an alias               | ?                                           |Syntax|
-|R40|nameserver IP reverse                       | ADDRESS:PTR_NOT_FOUND                       |Address properties|
-|R41|nameserver IP reverse matching nameserver name | __not implemented__?                     |Address properties|
-|R42|check if server is really recursive         | NAMESERVER:RECURSIVE                        |Name servers|
+|R39|hostmaster MX is not an alias               | ?                                           |Zone|
+|R40|nameserver IP reverse                       | ADDRESS:PTR_NOT_FOUND                       |Address|
+|R41|nameserver IP reverse matching nameserver name | __not implemented__?                     |Address|
+|R42|check if server is really recursive         | NAMESERVER:RECURSIVE                        |Name server|
 |R43|nameserver doesn't allow recursion          | NAMESERVER:RECURSIVE __dup__?               |Name server|
 |R44|given primary nameserver is primary         | DNS:NOT_AUTH ?                              |Zone|
 |R45|correctness of given nameserver list        | CONSISTENCY:NS_SETS_OK ?                    |Consistency|
@@ -97,7 +97,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R53|behaviour against AAAA query                | ?                                           |Name server|
 |R54|nameservers belong all to the same AS       | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |Connectivity|
 |R55|serial number of the form YYYYMMDDnn        | New test to identify serial number scheme   |Syntax|
-|R56|And much more such as DNSSEC checks...      | ...                                         |DNSSEC properties...|
+|R56|And much more such as DNSSEC checks...      | ...                                         |DNSSEC|
 
 Comment regarding addresses in bogon prefixes: DNSCheck implements checks against invalid addresses defined in RFCs. Since all of IPv4 space has been delegated to the RIRs, that is the whole of the low-volatility bogon space. The high-voltility bogon list would require daily (or even more frequent) updates, which is not practical in a standalone library.
 
