@@ -45,7 +45,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R01|UDP connectivity                            | NAMESERVER:NO_UDP                           |Connectivity|
 |R02|TCP connectivity                            | NAMESERVER:NO_TCP                           |Connectivity|
 |R03|address in a private network                | ADDRESS:PRIVATE_IPV4                        |Address|
-|R04|address shouldn't not be part of a bogon prefix | Partly implemented                      |Connectivity|
+|R04|address should not be part of a bogon prefix | Partly implemented                         |Connectivity|
 |R05|illegal symbols in domain name              | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ?     |Syntax|
 |R06|dash ('-') at start or beginning of domain name | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ? |Syntax|
 |R07|double dash in domain name                  | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME       |Syntax|
@@ -80,7 +80,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R36|coherence of SOA with primary nameserver    | CONSISTENCY:SOA_DIGEST_CONSISTENT           |Consistency|
 |R37|loopback delegation                         | __not implemented__?                        |?|
 |R38|loopback is resolvable                      | __not implemented__?                        |?|
-|R39|hostmaster MX is not an alias               | ?                                           |Zone|
+|R39|hostmaster MX is not an alias               | __dup of R50__                              |Zone|
 |R40|nameserver IP reverse                       | ADDRESS:PTR_NOT_FOUND                       |Address|
 |R41|nameserver IP reverse matching nameserver name | __not implemented__?                     |Address|
 |R42|check if server is really recursive         | NAMESERVER:RECURSIVE                        |Name server|
@@ -88,12 +88,12 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R44|given primary nameserver is primary         | DNS:NOT_AUTH ?                              |Zone|
 |R45|correctness of given nameserver list        | CONSISTENCY:NS_SETS_OK ?                    |Consistency|
 |R46|test if server is recursive                 | NAMESERVER:RECURSIVE __dup__?               |Name server|
-|R47|MX record present                           | MAIL:ALL_MX_IN_ZONE                         |?|
-|R48|MX authoritative answer                     | MAIL:ALL_MX_IN_ZONE                         |?|
+|R47|MX record present                           | MAIL:ALL_MX_IN_ZONE                         |Zone|
+|R48|MX authoritative answer                     | MAIL:ALL_MX_IN_ZONE                         |Zone|
 |R49|MX syntax is valid for an hostname          | MAIL:HOST_ERROR                             |Syntax|
-|R50|MX is not an alias                          | MAIL:HOST_ERROR                             |Syntax|
-|R51|absence of wildcard MX                      | __not implemented__?                        |?|
-|R52|MX can be resolved                          | MAIL:ALL_MX_IN_ZONE __dup__?                |?|
+|R50|MX is not an alias                          | MAIL:HOST_ERROR                             |Zone|
+|R51|absence of wildcard MX                      | __not implemented__?                        |Zone|
+|R52|MX can be resolved                          | MAIL:ALL_MX_IN_ZONE __dup__?                |Zone|
 |R53|behaviour against AAAA query                | __not implemented__?                        |Name server|
 |R54|nameservers belong all to the same AS       | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |Connectivity|
 |R55|serial number of the form YYYYMMDDnn        | New test to identify serial number scheme   |Syntax|
