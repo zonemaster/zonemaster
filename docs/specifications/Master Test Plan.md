@@ -71,16 +71,16 @@ No internal requirements.
 ### System overview and key features
 A domain will be tested for the quality of the delegation in the DNS hierarchy. Some of the high level properties that will be tested include:
 
-* **Basic** (initial tests)
-* **Delegation** properties (parent and child name servers)  
-* **Consistency** (all name have consistend answers)
-* **DNSSEC** properties (algorithms, secure delegation)  
-* **Address** properties (IP addresses)  
-* **Name server** properties 
-* Name server **connectivity**
-* **Zone** properties (are data controlling the zone sane)
-* **Syntax** (illegal hostnames and characters)
-* (not mandatory) **Resolver** properties
+* [**Basic**](Basic-TP/level.md) (initial tests)
+* [**Delegation**](Delegation-TP/level.md) properties (parent and child name servers)  
+* [**Consistency**](Consistency-TP/level.md) (all name have consistend answers)
+* [**DNSSEC**](DNSSEC-TP/level.md) properties (algorithms, secure delegation)  
+* [**Address**](Address-TP/level.md) properties (IP addresses)  
+* [**Name server**](Nameserver-TP/level.md) properties 
+* Name server [**Connectivity**](Connectivity-TP/level.md)
+* [**Zone**](Zone-TP/level.md) properties (are data controlling the zone sane)
+* [**Syntax**](Syntax-TP/level.md) (illegal hostnames and characters)
+* (not mandatory) [**Resolver**](Resolver-TP/level.md) properties
 
 A domain can be given to the testing system and all DNS information will be retrieved from the public global DNS hierarchy, or a set of pre-delegation data can be given to test a domain not yet published in the global DNS hierarchy. A complete set of DNS queries and answers can also be given as the input to the system for repeat testing.
 
