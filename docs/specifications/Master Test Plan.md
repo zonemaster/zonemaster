@@ -51,30 +51,36 @@ http://www.zonecheck.fr/features.shtml
 No internal requirements.
 #### Document hieararchy
 * Master Test Plan  
-    * Level Test Plan x  
-        * Test Case 1  
-        * Test Case 2  
-        * Test Case 3  
-    * Level Test Plan y  
-        * Test Case 4  
-        * Test Case 5  
-        * Test Case 6  
-    * Level Test Plan z  
-        * Test Case 7  
-        * Test Case 8  
-        * Test Case 9  
+    * Basic Test Plan  
+        * Test Case x
+    * Delegation Test Plan
+        * Test Case x
+    * Consistency Test Plan
+        * Test Case x
+    * DNSSEC Test Plan
+        * Test Case x
+    * Address Test Plan
+        * Test Case x
+    * Connectivity Test Plan
+        * Test Case x
+    * Zone Test Plan
+        * Test Case x
+    * Resolver Test Plan
+        * Test Case x
 
 ### System overview and key features
 A domain will be tested for the quality of the delegation in the DNS hierarchy. Some of the high level properties that will be tested include:
 
-* Basic (initial tests)
-* Delegation properties (parent and child name servers)  
-* Consistency (all name have consistend answers)
-* DNSSEC properties (algorithms, secure delegation)  
-* Address properties (IP addresses)  
-* Name server connectivity  
-* Zone properties (are data controlling the zone sane)
-* (not mandatory) Resolver properties
+* [**Basic**](Basic-TP/level.md) (initial tests)
+* [**Delegation**](Delegation-TP/level.md) properties (parent and child name servers)  
+* [**Consistency**](Consistency-TP/level.md) (all name have consistend answers)
+* [**DNSSEC**](DNSSEC-TP/level.md) properties (algorithms, secure delegation)  
+* [**Address**](Address-TP/level.md) properties (IP addresses)  
+* [**Name server**](Nameserver-TP/level.md) properties 
+* Name server [**Connectivity**](Connectivity-TP/level.md)
+* [**Zone**](Zone-TP/level.md) properties (are data controlling the zone sane)
+* [**Syntax**](Syntax-TP/level.md) (illegal hostnames and characters)
+* (not mandatory) [**Resolver**](Resolver-TP/level.md) properties
 
 A domain can be given to the testing system and all DNS information will be retrieved from the public global DNS hierarchy, or a set of pre-delegation data can be given to test a domain not yet published in the global DNS hierarchy. A complete set of DNS queries and answers can also be given as the input to the system for repeat testing.
 
@@ -108,8 +114,11 @@ There can be different types of tests, e.g. unit, system, and acceptance tests. 
 * Consistency
 * DNSSEC
 * Address
+* Name server
 * Connectivity
 * Zone
+* Syntax
+* Resolver
 
 However, the separation of test levels does not necessarily mean that the levels are separated in the New DNSCheck implementation. The actual test levels might differ from the actual test modules in the code. At this level, the separation is done to make a better overview of all the test cases specified.
 

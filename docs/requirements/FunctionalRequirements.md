@@ -38,5 +38,6 @@ Existing Functionalities
 |Web User Interface |  |
 |DNS Packet Serialization |  |
 | DNSSEC tests                                                          |   |
+|Statistics on network performance, RTT: min, max, stddev, avg, per protocol and #queries sent per name server||
 
 
