@@ -11,7 +11,6 @@ requires 'IO::Socket::INET6' => 2.69;
 requires 'Moose' => 2.0401;
 requires 'Module::Find' => 0.10;
 requires 'JSON' => 2.53;
-requires 'YAML::XS' => 0.38;
 requires 'File::ShareDir' => 1.00;
 requires 'File::Slurp' => 0;
 requires 'Net::IP' => 0;
