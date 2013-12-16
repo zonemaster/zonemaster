@@ -128,4 +128,4 @@ is comprehensive, it is not a list of tests as such. It is a list of messages em
 |R73|Test availability of zone transfer (AXFR)|Name server|
 |R74|Answer from name server came from an IP address other than expected (wrong source IP)|Name server|
 |R75|SOA serial may not be zero|Delegation|
-
+|R76|Zone contains NSEC or NSEC3 records                                   |DNSSEC|
