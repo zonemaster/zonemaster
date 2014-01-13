@@ -1,4 +1,4 @@
-package Giraffa v0.0.1;
+package Giraffa v0.0.2;
 
 use 5.014002;
 use Moose;
