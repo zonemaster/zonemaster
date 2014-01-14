@@ -13,7 +13,7 @@ use Giraffa::Recursor;
 has 'name' => ( is => 'ro', isa => 'Giraffa::DNSName', required => 1, coerce => 1 );
 has 'parent' => ( is => 'ro', isa => 'Maybe[Giraffa::Zone]', lazy_build => 1 );
 has [ 'ns', 'glue' ] => ( is => 'ro', isa => 'ArrayRef[Giraffa::Nameserver]', lazy_build => 1 );
-has 'glue_addresses' => ( is => 'ro', isa => 'ArrayRef[Net::DNS::RR]', lazy_build => 1 );
+has 'glue_addresses' => ( is => 'ro', isa => 'ArrayRef[Net::LDNS::RR]', lazy_build => 1 );
 
 ###
 ### Builders
@@ -145,7 +145,7 @@ listed nameserver for the parent domain.
 
 =item glue_addresses
 
-A list of L<Net::DNS::RR::A> and L<Net::DNS::RR::AAAA> records returned in the Additional section of an NS query to the first listed nameserver
+A list of L<Net::LDNS::RR::A> and L<Net::LDNS::RR::AAAA> records returned in the Additional section of an NS query to the first listed nameserver
 for the parent domain.
 
 =back

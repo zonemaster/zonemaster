@@ -3,7 +3,7 @@ use Test::More;
 use Giraffa;
 use Giraffa::Nameserver;
 
-my $datafile = 't/consistency.yaml';
+my $datafile = 't/consistency.data';
 if ( not $ENV{GIRAFFA_RECORD} ) {
     die "Stored data file missing" if not -r $datafile;
     Giraffa::Nameserver->restore( $datafile );

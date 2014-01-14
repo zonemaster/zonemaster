@@ -9,8 +9,8 @@ use Giraffa::Util;
 
 use Net::IP;
 use List::MoreUtils qw[uniq];
-use Net::DNS::Packet;
-use Net::DNS::RR;
+use Net::LDNS::Packet;
+use Net::LDNS::RR;
 
 ###
 ### Entry points
@@ -218,21 +218,22 @@ sub referral_size {
     my @needs_v6_glue = grep { $_->address->version == 6 } @needs_glue;
     my $long_name     = _max_length_name_for( $zone->name );
 
-    my $p = Net::DNS::Packet->new( $long_name, 'NS', 'IN' );
+    my $p = Net::LDNS::Packet->new( $long_name, 'NS', 'IN' );
+
     foreach my $ns ( @nsnames ) {
-        my $rr = Net::DNS::RR->new( sprintf( '%s IN NS %s', $zone->name, $ns ) );
+        my $rr = Net::LDNS::RR->new( sprintf( '%s IN NS %s', $zone->name, $ns ) );
         $p->unique_push( 'authority', $rr );
     }
 
     if ( @needs_v4_glue ) {
         my $ns = $needs_v4_glue[0];
-        my $rr = Net::DNS::RR->new( sprintf( '%s IN A %s', $ns->name, $ns->address->short ) );
+        my $rr = Net::LDNS::RR->new( sprintf( '%s IN A %s', $ns->name, $ns->address->short ) );
         $p->unique_push( 'additional', $rr );
     }
 
     if ( @needs_v6_glue ) {
         my $ns = $needs_v6_glue[0];
-        my $rr = Net::DNS::RR->new( sprintf( '%s IN AAAA %s', $ns->name, $ns->address->short ) );
+        my $rr = Net::LDNS::RR->new( sprintf( '%s IN AAAA %s', $ns->name, $ns->address->short ) );
         $p->unique_push( 'additional', $rr );
     }
 

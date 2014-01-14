@@ -9,7 +9,7 @@ use Giraffa::Nameserver;
 use Giraffa::Util;
 BEGIN { use_ok( 'Giraffa::Recursor' ) }
 
-my $datafile = 't/recursor.yaml';
+my $datafile = 't/recursor.data';
 if ( not $ENV{GIRAFFA_RECORD} ) {
     die "Stored data file missing" if not -r $datafile;
     Giraffa::Nameserver->restore( $datafile );
@@ -20,7 +20,7 @@ my $p = Giraffa::Recursor->recurse( 'www.iis.se' );
 isa_ok( $p, 'Giraffa::Packet' );
 ok( $p->answer > 0, 'answer records' );
 my ( $rr ) = $p->answer;
-is( $rr->name, 'www.iis.se', 'RR name ok' );
+is( name($rr->name), 'www.iis.se', 'RR name ok' );
 
 my $p2 = Giraffa::Recursor->recurse( 'www.wiccainfo.se' );
 isa_ok( $p2, 'Giraffa::Packet' );

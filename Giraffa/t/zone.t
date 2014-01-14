@@ -5,7 +5,7 @@ use 5.14.2;
 
 use Giraffa;
 use Giraffa::Nameserver;
-my $datafile = 't/zone.yaml';
+my $datafile = 't/zone.data';
 if ( not $ENV{GIRAFFA_RECORD} ) {
     die "Stored data file missing" if not -r $datafile;
     Giraffa::Nameserver->restore( $datafile );
@@ -31,7 +31,7 @@ ok( @{ $zone->ns } > 0, 'NS list not empty' );
 isa_ok( $_, 'Giraffa::Nameserver' ) for @{ $zone->ns };
 
 isa_ok( $zone->glue_addresses, 'ARRAY' );
-isa_ok( $_, 'Net::DNS::RR' ) for @{ $zone->glue_addresses };
+isa_ok( $_, 'Net::LDNS::RR' ) for @{ $zone->glue_addresses };
 
 my $p = $zone->query_one( 'www.iis.se', 'A' );
 isa_ok( $p, 'Giraffa::Packet' );

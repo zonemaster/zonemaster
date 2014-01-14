@@ -5,7 +5,7 @@ BEGIN {
     use_ok('Giraffa::Test::Delegation');
 }
 
-my $datafile = 't/delegation.yaml';
+my $datafile = 't/delegation.data';
 if ( not $ENV{GIRAFFA_RECORD} ) {
     die "Stored data file missing" if not -r $datafile;
     Giraffa::Nameserver->restore( $datafile );
