@@ -18,7 +18,8 @@ The domain name to be tested.
 ### Ordered description of steps to be taken to execute the test case
 
 1. Each label of the domain name of the test object is used as the input for the validation.
-2. If any label in the domain name start or ends with a hyphen ('-') this test case fails.
+2. If any label in the domain name start with a hyphen ('-') this test case fails.
+3. If any label in the domain name ends with a hyphen ('-') this test case fails.
 
 ### Outcome(s)
 
