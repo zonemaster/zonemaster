@@ -1,10 +1,10 @@
 # List of Syntax tests
 
-These are tests of the syntax of different labels in DNS, such as domain names and host names.
+These are tests of the syntax of different labels in DNS, such as domain
+names and host names.
 
-This document uses the terminology defined in the Master Test Plan.
-
-/* There is [an example implementation of these tests](https://github.com/dotse/new-dnscheck/blob/master/Giraffa/lib/Giraffa/Test/Basic.pm). */
+This document uses the terminology defined in the
+[Master Test Plan](../Master%20Test%20Plan.md).
 
 ## Mapping from Requirements to Test Case
 
