@@ -1,11 +1,11 @@
-## SYNTAX06: No illegal characters in the SOA MNAME field
+## SYNTAX07: No illegal characters in the SOA MNAME field
 
 ### Test case identifier
-**SYNTAX06** There must be no illegal characters in the SOA MNAME field
+**SYNTAX07** There must be no illegal characters in the SOA MNAME field
 
 ### Objective
 
-The SOA RNAME field is a hostname. Hostnames are valid according to the
+The SOA MNAME field is a hostname. Hostnames are valid according to the
 rules defined in [RFC 952](http://tools.ietf.org/html/rfc952),
 in section 2.1 in [RFC 1123](http://tools.ietf.org/html/rfc1123#section-2.1),
 section 11 in [RFC 2182](http://tools.ietf.org/html/rfc2181#section-11) and
@@ -19,7 +19,7 @@ The domain name to be tested.
 ### Ordered description of steps to be taken to execute the test case
 
 1. Retrieve the SOA record from the zone being tested.
-2. Get the RNAME from the SOA record.
+2. Get the MNAME from the SOA record.
 3. Each label of the hostname of the test object is used as the input
    for the validation.
 4. If any label in the hostname does not contain a-z or 0-9 this test case
