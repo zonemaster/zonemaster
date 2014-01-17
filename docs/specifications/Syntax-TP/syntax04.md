@@ -28,7 +28,7 @@ used, from both the parent and the zone itself.
    fails.
 4. If any label of the hostname is longer than 63 characters, this test case
    fails.
-5. If the hostname is longer than 255 characters including separatiors, this
+5. If the hostname is longer than 255 characters including separators, this
    test case fails.
 6. If the rightmost label (the TLD) contains only digits, this test case
    fails.
