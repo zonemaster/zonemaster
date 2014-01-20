@@ -5,7 +5,7 @@
 
 ### Objective
 
-The SOA RNAME field is a mailbox address. The RNAME field is defined
+The SOA RNAME field is a mailbox address. The SOA RNAME field is defined
 in section 3.3 of [RFC 1034](http://www.ietf.org/rfc/rfc1034.txt) and
 section 2.2 of [RFC 1912](http://www.ietf.org/rfc/rfc1912.txt). The RNAME
 field should follow the rules of an e-mail address also defined in section
@@ -19,8 +19,8 @@ The domain name to be tested.
 
 1. Retrieve the SOA record from the zone being tested.
 2. Get the RNAME from the SOA record.
-3. De-escape the RNAME, converting a "\." to ".".
-4. Convert the first "." to an "@".
+3. Convert the first non-escaped "." to an "@" in the RNAME.
+4. De-escape the RNAME, converting a "\." to ".".
 5. Verify the result from step 3 and 4 according to the Addr-spec
    specification in RFC 2822 section 3.4.1. If this verification fails,
    this test case failes.
