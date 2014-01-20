@@ -37,7 +37,7 @@ The domain name to be tested.
 
 ### Outcome(s)
 
-If the expire value is less than 25200 seconds or if the expire values is
+If the expire value is less than 25200 seconds or if the expire value is
 lower than the refresh value, this test case fails.
 
 ### Special procedural requirements
