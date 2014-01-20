@@ -17,11 +17,6 @@ and clarified in section 2.2 of
 Setting the retry value low will increase the DNS traffic between
 the servers, and also increase the load on the master name server.
 
-The [RIPE-203](http://www.ripe.net/ripe/docs/ripe-203) recommendation
-for the retry value is 2 hours (7200 seconds). Older DNSCheck code
-had a one hour minimum value (3600 seconds), and this is the minimum
-value we recommend.
-
 ### Inputs
 
 The domain name to be tested.
@@ -32,12 +27,11 @@ The domain name to be tested.
    tested.
 2. If the retry value is higher than or equal to the refresh value,
    this test case fails.
-3. If the retry value is less than 3600 seconds, this test case fails.
 
 ### Outcome(s)
 
 If the SOA retry value is higher than or equal to the refresh value,
-or if the retry value is less than 3600 seconds, this test case fails.
+this test case fails.
 
 ### Special procedural requirements
 
