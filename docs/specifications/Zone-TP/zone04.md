@@ -28,7 +28,7 @@ The domain name to be tested.
 
 1. Retrieve the retry value from the SOA record of the domain being
    tested.
-3. If the retry value is less than 3600 seconds, this test case fails.
+2. If the retry value is less than 3600 seconds, this test case fails.
 
 ### Outcome(s)
 
