@@ -20,7 +20,7 @@ the primary name server.
 The [RIPE-203](http://www.ripe.net/ripe/docs/ripe-203) recommendation
 for the expire value is 1000 hours (roughly 41 days). Older DNSCheck code
 had a 7 day minimum value (25200 seconds), and this is the minimum
-value we recommend.
+value we recommend as an absolut minimum.
 
 ### Inputs
 
