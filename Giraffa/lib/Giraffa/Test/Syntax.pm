@@ -71,7 +71,7 @@ sub metadata {
         ],
         soa_date => [
             qw(
-                
+                SERIAL_NOT_DATE
             )
         ]
     };
