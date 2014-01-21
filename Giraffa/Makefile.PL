@@ -14,6 +14,8 @@ requires 'JSON' => 2.53;
 requires 'File::ShareDir' => 1.00;
 requires 'File::Slurp' => 0;
 requires 'Net::IP' => 0;
+requires 'List::MoreUtils' => 0;
+requires 'RFC::RFC822::Address' => 0;
 
 recommends 'JSON::XS' => 2.32;
 
