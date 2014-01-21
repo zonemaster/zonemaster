@@ -1,4 +1,4 @@
-package Giraffa::Test::Hostname v0.0.1;
+package Giraffa::Test::Syntax v0.0.1;
 
 use 5.14.2;
 use strict;
@@ -50,7 +50,7 @@ sub metadata {
 }
 
 sub version {
-    return "$Giraffa::Test::Hostname::VERSION";
+    return "$Giraffa::Test::Syntax::VERSION";
 }
 
 ###
@@ -103,11 +103,11 @@ sub name_syntax {
 
 =head1 NAME
 
-Giraffa::Test::Example - example module showing the expected structure of Giraffa test modules
+Giraffa::Test::Syntax - test validating the syntax of host names and other data
 
 =head1 SYNOPSIS
 
-    my @results = Giraffa::Test::Example->all($zone);
+    my @results = Giraffa::Test::Syntax->all($zone);
 
 =head1 METHODS
 

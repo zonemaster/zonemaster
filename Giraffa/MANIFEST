@@ -15,7 +15,7 @@ lib/Giraffa/Test/Basic.pm
 lib/Giraffa/Test/Consistency.pm
 lib/Giraffa/Test/Delegation.pm
 lib/Giraffa/Test/Example.pm
-lib/Giraffa/Test/Hostname.pm
+lib/Giraffa/Test/Syntax.pm
 lib/Giraffa/Translator.pm
 lib/Giraffa/Util.pm
 lib/Giraffa/Zone.pm
