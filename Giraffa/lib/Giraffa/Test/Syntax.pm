@@ -157,7 +157,6 @@ sub rname_syntax {
     $rname =~ s/\\././g;        # Un-escape dots
     $rname =~ s/\.$//;          # Validator does not like final dots
     if (not valid($rname)) {
-        warn "Invalid: $rname";
         push @results, info( RNAME_RFC822_INVALID => { rname => $rname } );
     }
 
@@ -220,6 +219,14 @@ Returns a version string for the module.
 =item name_syntax($name)
 
 Verifies that the name given conforms to the rules.
+
+=item rname_syntax($rname)
+
+Perform tests on a SOA RNAME.
+
+=item soa_date($serial)
+
+Check if the SOA serial value conforms to the date plus counter format.
 
 =back
 
