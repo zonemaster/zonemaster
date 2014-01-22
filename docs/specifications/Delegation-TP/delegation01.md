@@ -1,7 +1,7 @@
 ## DELEGATION01: Test the presence of atleast one name server 
 
 ### Test case identifier
-**DELEGATION01** Test the presence of atleast one name server 
+**DELEGATION01:** Test the presence of atleast one name server 
 
 ### Objective
 There must be atleast one NS record listed in the delegation

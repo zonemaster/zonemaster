@@ -1,7 +1,7 @@
 ## DELEGATION02: Test the presence of a minimum two name servers 
 
 ### Test case identifier
-**DELEGATION02** Test the presence of a minimum two name servers 
+**DELEGATION02:** Test the presence of a minimum two name servers 
 
 ### Objective
 There must be a minimum of two NS record listed in the delegation

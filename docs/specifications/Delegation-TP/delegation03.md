@@ -1,7 +1,7 @@
 ## DELEGATION03: Verify that the nameservers delegated has distinct IP addresses 
 
 ### Test case identifier
-**DELEGATION03** Verify that the nameservers delegated has distinct IP addresses 
+**DELEGATION03:** Verify that the nameservers delegated has distinct IP addresses 
 
 ### Objective
 The name server hosts must not resolve to the same IP address

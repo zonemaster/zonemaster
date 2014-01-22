@@ -1,7 +1,7 @@
 ## DELEGATION04: Test whether referral response fit into a 512 byte UDP packet
 
 ### Test case identifier
-**DELEGATION04** Test whether referral response fit into a 512 byt
+**DELEGATION04:** Test whether referral response fit into a 512 byt
 e UDP packet
 
 ### Objective
