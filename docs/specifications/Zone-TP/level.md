@@ -18,10 +18,9 @@ This document uses the terminology defined in the
 |R30|SOA 'expire' at least 7 times 'refresh'                                   |[ZONE06](zone06.md)|
 |R31|SOA 'minimum' less than 1 day                                             |[ZONE07](zone07.md)|
 |R32|SOA master is not an alias                                                |[ZONE08](zone08.md)|
-|R39|Hostmaster MX is not an alias                                             |[ZONE09](zone09.md)|
+|R50|MX is not an alias                                                        |[ZONE13](zone09.md)|
 |R44|given primary nameserver is primary                                       |[ZONE10](zone10.md)|
 |R47|MX record present                                                         |[ZONE11](zone11.md)|
 |R48|MX authoritative answer                                                   |[ZONE12](zone12.md)|
-|R50|MX is not an alias                                                        |[ZONE13](zone13.md)|
-|R51|Absence of wildcard MX                                                    |[ZONE14](zone14.md)|
-|R52|MX can be resolved                                                        |[ZONE15](zone15.md)|
+|R51|Absence of wildcard MX                                                    |[ZONE14](zone13.md)|
+|R52|MX can be resolved                                                        |[ZONE15](zone14.md)|

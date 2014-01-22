@@ -80,7 +80,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R36|coherence of SOA with primary nameserver    | CONSISTENCY:SOA_DIGEST_CONSISTENT           |Consistency|
 |R37|loopback delegation                         | __not implemented__?                        |?|
 |R38|loopback is resolvable                      | __not implemented__?                        |?|
-|R39|hostmaster MX is not an alias               | __dup of R50__                              |Zone|
+|R39|hostmaster MX is not an alias               | __not going to implement__                  |N/A|
 |R40|nameserver IP reverse                       | ADDRESS:PTR_NOT_FOUND                       |Address|
 |R41|nameserver IP reverse matching nameserver name | __not implemented__?                     |Address|
 |R42|check if server is really recursive         | NAMESERVER:RECURSIVE                        |Name server|
