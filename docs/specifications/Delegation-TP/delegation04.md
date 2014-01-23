@@ -1,15 +1,13 @@
-## DELEGATION04: Test whether referral response fit into a 512 byte UDP packet
+## DELEGATION04: Test whether referral response at the authoritative section fit into a 512 byte UDP packet
 
 ### Test case identifier
-**DELEGATION04:** Test whether referral response fit into a 512 byt
-e UDP packet
+**DELEGATION04:** Test whether referral response at the authoritative section fit into a 512 byte UDP packet
 
 ### Objective
-Referral response from the zone's name servers must fit into a 512 byte UDP packet.
+The authoritaitve section of the referral response from the domain must fit into a 512 byte UDP packet.
 
 ### Inputs
 1. The FQDN of the authoritative name servers
-2. All IPv4 or IPv6 address for the authoritative name servers
 
 ### Ordered description of steps to be taken to execute the test case
 1. An empty DNS answer packet is generated. 
