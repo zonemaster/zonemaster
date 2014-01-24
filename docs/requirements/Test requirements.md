@@ -85,7 +85,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R41|nameserver IP reverse matching nameserver name | __not implemented__?                     |Address|
 |R42|check if server is really recursive         | NAMESERVER:RECURSIVE                        |Name server|
 |R43|nameserver doesn't allow recursion          | NAMESERVER:RECURSIVE __dup__?               |Name server|
-|R44|given primary nameserver is primary         | DNS:NOT_AUTH ?                              |Zone|
+|R44|given primary nameserver is primary         | __not going to implement__ (part of R25)    |N/A|
 |R45|correctness of given nameserver list        | CONSISTENCY:NS_SETS_OK ?                    |Consistency|
 |R46|test if server is recursive                 | NAMESERVER:RECURSIVE __dup__?               |Name server|
 |R47|MX record present                           | MAIL:ALL_MX_IN_ZONE                         |Zone|
