@@ -6,7 +6,7 @@
 ### Objective
 
 Any NS type record should not be a CNAME. The SOA MNAME should in this
-respect not either be a CNAME.
+respect not be a CNAME.
 
 Quote from 2.4 in [RFC 1912](http://tools.ietf.org/html/rfc1912):
 
