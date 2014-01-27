@@ -21,5 +21,4 @@ This document uses the terminology defined in the
 |R50|MX is not an alias                                                        |[ZONE13](zone09.md)|
 |R47|MX record present                                                         |[ZONE11](zone10.md)|
 |R48|MX authoritative answer                                                   |[ZONE12](zone11.md)|
-|R51|Absence of wildcard MX                                                    |[ZONE14](zone12.md)|
-|R52|MX can be resolved                                                        |[ZONE15](zone13.md)|
+|R52|MX can be resolved                                                        |[ZONE15](zone12.md)|

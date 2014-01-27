@@ -92,7 +92,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R48|MX authoritative answer                     | MAIL:ALL_MX_IN_ZONE                         |Zone|
 |R49|MX syntax is valid for an hostname          | MAIL:HOST_ERROR                             |Syntax|
 |R50|MX is not an alias                          | MAIL:HOST_ERROR                             |Zone|
-|R51|absence of wildcard MX                      | __not implemented__?                        |Zone|
+|R51|absence of wildcard MX                      | __not going to implement__                  |Zone|
 |R52|MX can be resolved                          | MAIL:ALL_MX_IN_ZONE __dup__?                |Zone|
 |R53|behaviour against AAAA query                | __not implemented__?                        |Name server|
 |R54|nameservers belong all to the same AS       | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |Connectivity|
