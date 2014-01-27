@@ -89,7 +89,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R45|correctness of given nameserver list        | CONSISTENCY:NS_SETS_OK ?                    |Consistency|
 |R46|test if server is recursive                 | NAMESERVER:RECURSIVE __dup__?               |Name server|
 |R47|MX record present                           | MAIL:ALL_MX_IN_ZONE                         |Zone|
-|R48|MX authoritative answer                     | MAIL:ALL_MX_IN_ZONE                         |Zone|
+|R48|MX authoritative answer                     | __not going to implement__                  |Zone|
 |R49|MX syntax is valid for an hostname          | MAIL:HOST_ERROR                             |Syntax|
 |R50|MX is not an alias                          | MAIL:HOST_ERROR                             |Zone|
 |R51|absence of wildcard MX                      | __not going to implement__                  |Zone|

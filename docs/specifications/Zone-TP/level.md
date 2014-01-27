@@ -20,5 +20,4 @@ This document uses the terminology defined in the
 |R32|SOA master is not an alias                                                |[ZONE08](zone08.md)|
 |R50|MX is not an alias                                                        |[ZONE09](zone09.md)|
 |R47|MX record present                                                         |[ZONE10](zone10.md)|
-|R48|MX authoritative answer                                                   |[ZONE10](zone10.md)|
 |R52|MX can be resolved                                                        |[ZONE10](zone10.md)|
