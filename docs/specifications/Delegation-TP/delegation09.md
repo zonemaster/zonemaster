@@ -1,7 +1,7 @@
 ## DELEGATION09:Test the existence of SOA record in the zone
 
 ### Test case identifier
-** DELEGATION09: ** Test the existence of SOA record in the zone 
+**DELEGATION09:** Test the existence of SOA record in the zone 
 
 ### Objective
 

@@ -1,7 +1,7 @@
 ## DELEGATION06: Test whether there is an authoritative ANSWER for the nameserver
 
 ### Test case identifier
-** DELEGATION06: ** Test whether there is an authoritative ANSWER for the nameserver 
+**DELEGATION06:** Test whether there is an authoritative ANSWER for the nameserver 
 
 ### Objective
 The nameservers must answer authoritatively for the designated zone. Responses to queries to the name servers for the designated zone must have the "AA" bit set

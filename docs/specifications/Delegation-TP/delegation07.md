@@ -1,7 +1,7 @@
 ## DELEGATION07: Test that the NS record is not pointing to a CNAME alias
 
 ### Test case identifier
-** DELEGATION07: Test that the NS record is not pointing to a CNAME alias **
+**DELEGATION07:** Test that the NS record is not pointing to a CNAME alias 
 
 ### Objective
 NS records pointing to CNAME is forbidden. The objective of this test is to verify that name servers does not point to a CNAME record

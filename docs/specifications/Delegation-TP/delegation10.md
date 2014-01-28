@@ -1,7 +1,7 @@
 ## DELEGATION10:Test whether the ANSWER for SOA is authoritative
 
 ### Test case identifier
-** DELEGATION10: ** Test whether the ANSWER for SOA is authoritative 
+**DELEGATION10:** Test whether the ANSWER for SOA is authoritative 
 
 ### Objective
 

@@ -1,7 +1,7 @@
 ## DELEGATION05: Test whether the referrals response at the authoritative and additional section fit into 512 byte UDP packet
 
 ### Test case identifier
-**DELEGATION05: Test whether the referrals response at the authoritative and additional section fit into 512 byte UDP packet** 
+**DELEGATION05:** Test whether the referrals response at the authoritative and additional section fit into 512 byte UDP packet
 
 ### Objective
 The authoritaitve section of the referral response from the domain must fit into a 512 byte UDP packet.
