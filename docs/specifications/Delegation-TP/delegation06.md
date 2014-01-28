@@ -1,14 +1,13 @@
 ## DELEGATION06: Test whether there is an authoritative ANSWER for the nameserver
 
 ### Test case identifier
-** DELEGATION06: Test whether there is an authoritative ANSWER for the nameserver **
+** DELEGATION06: ** Test whether there is an authoritative ANSWER for the nameserver 
 
 ### Objective
 The nameservers must answer authoritatively for the designated zone. Responses to queries to the name servers for the designated zone must have the "AA" bit set
 
 ### Inputs
 1. The FQDN of the authoritative name servers
-2. All IPv4 and IPv6 addresses for authoritative name servers
 
 ### Ordered description of steps to be taken to execute the test case
 1. All name servers listed are queried for the SOA record over TCP and UDP
