@@ -35,25 +35,27 @@ use File::Basename;
 # command line options
 my $dirloc = '.'; # directory for serching test cases
 my $help;
+my $DEBUG = 0;
 
 # global variables
 my $tcCounter = 0;
 
 sub main {
     GetOptions(
-	'help|?' => \$help,
+	'help|?'  => \$help,
 	'dir|d=s' => \$dirloc,
+	'debug'   => \$DEBUG,
     ) or pod2usage(2);
 
     if ($help) {
 	pod2usage(1);
 	exit;
     }
-
     opendir(my $dir, $dirloc) || die "cannot open directory $dirloc";
     while (readdir $dir) {
+	print "$dirloc/$_\n" if $DEBUG;
 	next if $_ =~ /^\./;
-	if (-d $_) {
+	if (-d "$dirloc/$_") {
 	    tcList("$dirloc/$_");
 	}
     }
