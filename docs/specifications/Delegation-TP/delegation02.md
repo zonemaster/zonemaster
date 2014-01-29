@@ -1,4 +1,4 @@
-## DELEGATION02: Test the presence of a minimum two name servers 
+## DELEGATION02: Test the presence of a minimum two name servers (RFC 2182)
 
 ### Test case identifier
 **DELEGATION02:** Test the presence of a minimum two name servers 
@@ -17,7 +17,6 @@ The FQDN of the domain name to be tested
 If the response contains atleast two name server record for delegated servers, then the test succeeds 
 
 ### Special procedural requirements
-If this test fails, it's impossible to continue and the whole testing process is aborted
 
 ### Intercase dependencies
 None

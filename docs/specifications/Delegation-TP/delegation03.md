@@ -1,4 +1,4 @@
-## DELEGATION03: Verify that the nameservers delegated has distinct IP addresses 
+## DELEGATION03: Verify that the nameservers delegated has distinct IP addresses (RFC 2182)
 
 ### Test case identifier
 **DELEGATION03:** Verify that the nameservers delegated has distinct IP addresses 

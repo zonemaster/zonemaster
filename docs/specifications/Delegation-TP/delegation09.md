@@ -1,4 +1,4 @@
-## DELEGATION09:Test the existence of SOA record in the zone
+## DELEGATION09:Test the existence of SOA record in the zone (RFC 2181 [Subsection 6.1])
 
 ### Test case identifier
 **DELEGATION09:** Test the existence of SOA record in the zone 

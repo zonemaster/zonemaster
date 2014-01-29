@@ -1,4 +1,4 @@
-## DELEGATION07: Test that the NS record is not pointing to a CNAME alias
+## DELEGATION07: Test that the NS record is not pointing to a CNAME alias (RFC 1912 [Page:7])
 
 ### Test case identifier
 **DELEGATION07:** Test that the NS record is not pointing to a CNAME alias 
