@@ -15,9 +15,8 @@ This document uses the terminology defined in the
 |R27|SOA 'retry' lower than 'refresh'                                          |[ZONE03](zone03.md)|
 |R28|SOA 'retry' at least 1 hour                                               |[ZONE04](zone04.md)|
 |R29|SOA 'expire' at least 7 days                                              |[ZONE05](zone05.md)|
-|R30|SOA 'expire' at least 7 times 'refresh'                                   |[ZONE06](zone06.md)|
-|R31|SOA 'minimum' less than 1 day                                             |[ZONE07](zone07.md)|
-|R32|SOA master is not an alias                                                |[ZONE08](zone08.md)|
-|R50|MX is not an alias                                                        |[ZONE09](zone09.md)|
-|R47|MX record present                                                         |[ZONE10](zone10.md)|
-|R52|MX can be resolved                                                        |[ZONE10](zone10.md)|
+|R31|SOA 'minimum' less than 1 day                                             |[ZONE07](zone06.md)|
+|R32|SOA master is not an alias                                                |[ZONE08](zone07.md)|
+|R50|MX is not an alias                                                        |[ZONE09](zone08.md)|
+|R47|MX record present                                                         |[ZONE10](zone09.md)|
+|R52|MX can be resolved                                                        |[ZONE10](zone09.md)|
