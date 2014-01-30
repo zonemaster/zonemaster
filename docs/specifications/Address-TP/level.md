@@ -1,75 +1,31 @@
-Address Test Plan
-=================
+# List of Address tests
 
-Document Control
-----------------
+These tests focuses on the Address specific test cases of the DNS tests.
 
-*Roles*
+This document uses the terminology defined in the
+[Master Test Plan](../Master%20Test%20Plan.md).
 
-| Made By        | Responsible for fact | Responsible for document |
-|:---------------|:---------------------|:-------------------------|
-|Patrik Wallström| Patrik Wallström     | Patrik Wallström         |
+## Mapping from Requirements to Test Case
 
-*Security*
-
-| Security class | File name            |
-|:---------------|:---------------------|
-| External       | Address-TP.md        |
-
-*Revisions  *
-
-| Date       | Version | Name               | Description           |
-|:-----------|:--------|:-------------------|:----------------------|
-| 2013-08-29 | PA1     | Patrik Wallström   | First draft           |
+|Req| Description                                                              | Test Case |
+|:--|:-------------------------------------------------------------------------|:----------|
+|R03| Nameserver address in a private network                                  |[ADDR01](addr01.md)|
+|R40| Reverse DNS entry exist for nameserver IP address                        |[ADDR02](addr02.md)|
+|R41| Reverse DNS entry matches nameserver name                                |[ADDR03](addr03.md)|
 
 
-Introduction
-------------
-This Level Test Plan focuses on the Address specific test cases of the DNS tests.
 
-### Scope
+## TODO / Comments / Other tmp. thoughts
 
-### References
+a) Tests not in "Address Level" in the document "Test requirements.md" :
 
-#### External
+* R37 - loopback delegation //  This test is uncategorized 
+* R38 - loopback is resolvable // same thing
 
-#### Internal
+b) Tests  in "Address Level" in the document "Test requirements.md" :
 
-#### Document hierarchy
-
-### Level in the overall sequence
-
-### Test classes and overall test conditions
+* R03 - Nameserver address in a private network // Could be in "Connectivity level" ? 
 
 
-Details for this level of test plan
------------------------------------
-
-### Test items and their identifiers
-
-#### Requirements
-
-#### DNSCheck
-
-#### Zonecheck
-
-#### RFCs
-
-### Test Traceability Matrix
-TODO: A matrix mapping the requirement to the individual test case.
-
-### Features to be tested
-
-### Features not to be tested
-
-### Approach
-
-### Items pass/fail criteria
-
-### Suspension criteria and resumption requirements
-
-### Test deliverables
 
 
-Test management
----------------
