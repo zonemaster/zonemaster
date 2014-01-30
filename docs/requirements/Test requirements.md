@@ -71,7 +71,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R27|SOA 'retry' lower than 'refresh'            | SOA:RETRY_VS_REFRESH                        |Zone|
 |R28|SOA 'retry' at least 1 hour                 | SOA:RETRY_OK                                |Zone|
 |R29|SOA 'expire' at least 7 days                | SOA:EXPIRE_OK                               |Zone|
-|R30|SOA 'expire' at least 7 times 'refresh'     | SOA:EXPIRE_VS_REFRESH                       |Zone|
+|R30|SOA 'expire' at least 7 times 'refresh'     | __not going to implement__                  |Zone|
 |R31|SOA 'minimum' less than 1 day               | SOA:MINIMUM_OK                              |Zone|
 |R32|SOA master is not an alias                  | SOA:MNAME_IS_CNAME                          |Zone|
 |R33|coherence of serial number with primary nameserver | CONSISTENCY:SOA_SERIAL_CONSISTENT    |Consistency|
@@ -94,7 +94,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R50|MX is not an alias                          | MAIL:HOST_ERROR                             |Zone|
 |R51|absence of wildcard MX                      | __not going to implement__                  |Zone|
 |R52|MX can be resolved                          | MAIL:ALL_MX_IN_ZONE __dup__?                |Zone|
-|R53|behaviour against AAAA query                | __not implemented__?                        |Name server|
+|R53|behaviour against AAAA query                | __implicit in all other tests__             |N/A|
 |R54|nameservers belong all to the same AS       | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |Connectivity|
 |R55|serial number of the form YYYYMMDDnn        | New test to identify serial number scheme   |Syntax|
 |R56|And much more such as DNSSEC checks...      | ...                                         |DNSSEC|
