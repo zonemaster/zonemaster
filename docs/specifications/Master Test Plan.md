@@ -217,13 +217,15 @@ This section contains the glossary and document change procedures for all of the
 
 Since there are some terms relating to DNS that are commonly used with unclear or multiple meanings, we will define here exactly what we mean when we use them in the context of these specifications and these tests. Any uncommon or special terms we use will also be defined here.
 
+_Child Domain_ is the domain being tested.
+
+_Parent Domain_ is the domain that delegates directly to the domain being tested. Differently put, it is the domain whose nameservers delivers the glue records for the child domain.
+
 _Glue Records_ are defined as all NS, A and AAAA records pertaining to the child domain that are delivered by the nameservers for the parent domain.
 
 _Glue Address Records_ are all glue records of type A or AAAA.
 
-_Child Domain_ is the domain being tested.
 
-_Parent Domain_ is the domain that delegates directly to the domain being tested. Differently put, it is the domain whose nameservers delivers the glue records for the child domain.
 
 ### Document change procedures
 The overall change procedures are defined by the project and the change management. However, there are some steps to take into consideration when changing the test documents.
