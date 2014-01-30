@@ -19,12 +19,12 @@ This document uses the terminology defined in the
 
 a) Tests not in "Address Level" in the document "Test requirements.md" :
 
-* R37 - loopback delegation //  This test is uncategorized 
-* R38 - loopback is resolvable // same thing
+* R37 - loopback delegation //  This test is uncategorized  (Issue #10)
+* R38 - loopback is resolvable // same thing                (Issue #10)
 
 b) Tests  in "Address Level" in the document "Test requirements.md" :
 
-* R03 - Nameserver address in a private network // Could be in "Connectivity level" ? 
+* R03 - Nameserver address in a private network // Could be in "Connectivity level" ? (Issue #11)
 
 
 
