@@ -9,8 +9,8 @@ This document uses the terminology defined in the
 
 |Req| Description                                                              | Test Case |
 |:--|:-------------------------------------------------------------------------|:----------|
-|R03| Nameserver address in a private network                                  |[ADDR01](addr01.md)|
-|R40| Reverse DNS entry exist for nameserver IP address                        |[ADDR02](addr02.md)|
+|R03| Nameserver address in  private network                                  |[ADDR01](addr01.md)|
+|R40| Reverse DNS entry exists for nameserver IP address                        |[ADDR02](addr02.md)|
 |R41| Reverse DNS entry matches nameserver name                                |[ADDR03](addr03.md)|
 
 
