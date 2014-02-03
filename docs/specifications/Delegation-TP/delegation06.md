@@ -1,4 +1,4 @@
-## DELEGATION06: Test whether there is an authoritative ANSWER for the nameserver (RFC 2181 [subsection 6.1])
+## DELEGATION06: Test whether there is an authoritative ANSWER for the nameserver
 
 ### Test case identifier
 **DELEGATION06:** Test whether there is an authoritative ANSWER for the nameserver 

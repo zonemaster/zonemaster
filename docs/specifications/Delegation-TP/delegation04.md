@@ -6,7 +6,7 @@
 ### Objective
 The Domain Name System defaults to using UDP for queries and replies with a DNS payload limit of 512 bytes.  Larger replies cause an initial truncation indication leading to a subsequent handling via TCP with substantially higher overhead.  EDNS0 is used to permits larger UDP responses thus reducing the need for use of TCP.
 
-But [IANA][https://www.iana.org/help/nameserver-requirements] still maintains that referrals from the parent zonne name servers must fit into a non-EDNS0 UDP DNS packet. Hence this test is done. 
+But [IANA](https://www.iana.org/help/nameserver-requirements) still maintains that referrals from the parent zonne name servers must fit into a non-EDNS0 UDP DNS packet. Hence this test is done. 
 
 In this test, the authoritaitve section of the referral response from the child domain must fit into a 512 byte UDP packet.
 
