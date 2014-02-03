@@ -1,10 +1,12 @@
-## DELEGATION07: Test that the NS record is not pointing to a CNAME alias (RFC 1912 [Page:7])
+## DELEGATION07: Test that the NS record is not pointing to a CNAME alias
 
 ### Test case identifier
 **DELEGATION07:** Test that the NS record is not pointing to a CNAME alias 
 
 ### Objective
-NS records pointing to CNAME is forbidden. The objective of this test is to verify that name servers does not point to a CNAME record
+[RFC 1912](http://tools.ietf.org/html/rfc1912) mentions that NS records pointing to CNAME is forbidden. 
+
+The objective of this test is to verify that name servers does not point to a CNAME record
 
 ### Inputs
 1. FQDN of the authoritative name servers

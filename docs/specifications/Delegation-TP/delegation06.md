@@ -4,7 +4,7 @@
 **DELEGATION06:** Test whether there is an authoritative ANSWER for the nameserver 
 
 ### Objective
-The nameservers must answer authoritatively for the designated zone. Responses to queries to the name servers for the designated zone must have the "AA" bit set
+Subsection 6.1 of [RFC 2181](http://tools.ietf.org/html/rfc2181) specifies that the nameservers must answer authoritatively for the designated zone. Responses to queries to the name servers for the designated zone must have the "AA" bit set
 
 ### Inputs
 1. The FQDN of the authoritative name servers

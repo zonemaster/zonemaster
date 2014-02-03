@@ -1,10 +1,10 @@
-## DELEGATION01: Test the presence of atleast one name server 
+## DELEGATION01: The child domain must have atleast one name server record listed in its delegation
 
 ### Test case identifier
-**DELEGATION01:** Test the presence of atleast one name server 
+**DELEGATION01:** The child domain must have atleast one name server recordlisted in its delegation
 
 ### Objective
-There must be atleast one NS record listed in the delegation
+The objective of the test is quite basic. Even though [RFC 2182](http://tools.ietf.org/html/rfc2182) specifies that there must be atleast minimum two name servers for a domain, this test is done to verify if there is atleast one NS record listed in the delegation
 
 ### Inputs
 The FQDN of the domain name to be tested

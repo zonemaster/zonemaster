@@ -1,10 +1,11 @@
-## DELEGATION02: Test the presence of a minimum two name servers (RFC 2182)
+## DELEGATION02:The child domain must have a minimum of two name server records listed in its delegation
 
 ### Test case identifier
-**DELEGATION02:** Test the presence of a minimum two name servers 
+**DELEGATION02:** The child domain must have a minimum of two name server records listed in its delegation 
 
 ### Objective
-There must be a minimum of two NS record listed in the delegation
+[RFC 2182](http://tools.ietf.org/html/rfc2182) specifies that there must be atleast minimum two name servers for a domain, one which is primary and the others acting as secondary. This test is done to verify the existence of a minimum of two NS record listed in the delegation
+
 
 ### Inputs
 The FQDN of the domain name to be tested
