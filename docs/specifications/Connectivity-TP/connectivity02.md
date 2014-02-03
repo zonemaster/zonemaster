@@ -10,8 +10,8 @@ The child domain must also answer DNS queries on TCP
 1. The FQDN of the child domain's authoritative name servers
 
 ### Ordered description of steps to be taken to execute the test case
-1. A SOA query is sent over TCPP to all authoritative name servers of the child domain
-2. If any of the query fails to give an answer within a particular time period (the threshhold time should be decided), the test fails
+1. A SOA query is sent over TCP to all authoritative name servers of the child domain
+2. If any of the query fails to give an answer within a particular time period (Should we set a threshhold time for TCP?), the test fails
 
 
 ### Outcome(s)
