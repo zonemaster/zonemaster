@@ -129,3 +129,39 @@ is comprehensive, it is not a list of tests as such. It is a list of messages em
 |R74|Answer from name server came from an IP address other than expected (wrong source IP)|Name server|
 |R75|SOA serial may not be zero|Delegation|
 |R76|Zone contains NSEC or NSEC3 records                                   |DNSSEC|
+
+Requirements on writing test specifications
+-------------------------------------------
+
+These are some requirements for writing specifications for the new project:
+
+ 1. Follow the framework of the IEEE 829-2008.
+ 2. The documents must be in [Markdown Syntax]
+    (http://daringfireball.net/projects/markdown/syntax).
+ 3. Keep the columns in the document below 80, preferrably shorter than 74
+    columns. (Much easier to see changes in documents using the tools
+	available for diffing).
+ 4. Use [normative language]
+   (http://en.wikipedia.org/wiki/Normative#Standards_documents).
+ 5. Refer to any reference that is the rationale for implementing the test
+    case. If there are no reference to any standards, describe the reason
+    for implementing the test. For most references, we use RFCs from IETF.
+ 6. Use well defined terms. Terms such as FQDN and FQHN seems to have dual
+    meanings.
+ 7. The name of the test case might be better than the name of the
+    requirements. Feel free to improve the name of the test case if it is
+    possible to improve on the wording to make the test case clearer for
+    the reader and the user of the software. Text from the test cases
+    probably will be reused in other contexts.
+ 8. Be very clear in what DNS queries are performed, and what answers are
+	expected. If a specific DNS protocol flag has to be set in the query,
+	specify this as well. In general, be closer to describing the DNS
+	protocol actions than to use more generic language.
+ 9. Try to determine the relevance of the test you are writing. Is it
+	really necessary to implement it - or is there any other test in the
+	full list of tests we are implementing that already covers it?
+10. Use the same headers and titles as in all other test cases. Try
+	to use the same style as used in the other tests.
+11. Make sure to write the tests so that any implementer that implements
+    the tests will have the same outcome as any other implementation.
+
