@@ -11,7 +11,8 @@ The child domain must also answer DNS queries on TCP
 
 ### Ordered description of steps to be taken to execute the test case
 1. A SOA query is sent over TCP to all authoritative name servers of the child domain
-2. If any of the query fails to give an answer within a particular time period (Should we set a threshhold time for TCP?), the test fails
+2. If the FQDN has a single address, then the test fails if a query destined to that addresses does not provide an answer within a particular time period (Should we set a threshhold time for TCP?)
+3. If the FQDN has multiple addresses, then the test  fails if none of those addresses provide an answer within the specified threshhold time
 
 
 ### Outcome(s)
