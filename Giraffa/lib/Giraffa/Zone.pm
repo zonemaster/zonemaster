@@ -88,27 +88,28 @@ sub query_all {
 sub is_in_zone {
     my ( $self, $name ) = @_;
 
-    if (not ref($name) or ref($name) ne 'Giraffa::DNSName') {
-        $name = Giraffa::DNSName->new($name)
+    if ( not ref( $name ) or ref( $name ) ne 'Giraffa::DNSName' ) {
+        $name = Giraffa::DNSName->new( $name );
     }
 
-    if (scalar(@{$self->name->labels}) != $self->name->common($name) ) {
-        return; # Zone name cannot be a suffix of tested name
+    if ( scalar( @{ $self->name->labels } ) != $self->name->common( $name ) ) {
+        return;    # Zone name cannot be a suffix of tested name
     }
 
-    my $p = $self->query_one("$name", 'SOA');
+    my $p = $self->query_one( "$name", 'SOA' );
 
-    if ($p->is_redirect) {
-        return; # Authoritative servers redirect us, so name must be out-of-zone
+    if ( $p->is_redirect ) {
+        return;    # Authoritative servers redirect us, so name must be out-of-zone
     }
 
-    my ($soa) = $p->get_records('SOA');
-    if ($soa->name eq $self->name) {
+    my ( $soa ) = $p->get_records( 'SOA' );
+    if ( $soa->name eq $self->name ) {
         return 1;
-    } else {
+    }
+    else {
         return;
     }
-}
+} ## end sub is_in_zone
 
 1;
 

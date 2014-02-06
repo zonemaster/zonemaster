@@ -43,19 +43,19 @@ sub run_all_for {
     }
 
     return @results;
-}
+} ## end sub run_all_for
 
 sub run_module {
     my ( $class, $module, $zone ) = @_;
 
-    $module = ucfirst($module);
+    $module = ucfirst( $module );
 
-    if (grep {$module eq $_} $class->modules) {
+    if ( grep { $module eq $_ } $class->modules ) {
         my $m = "Giraffa::Test::$module";
-        return $m->all($zone);
+        return $m->all( $zone );
     }
     else {
-        info( UNKOWN_MODULE => { name => $module, method => 'all' });
+        info( UNKOWN_MODULE => { name => $module, method => 'all' } );
     }
 
     return;
@@ -64,16 +64,18 @@ sub run_module {
 sub run_one {
     my ( $class, $module, $test, @arguments ) = @_;
 
-    if (grep {$module eq $_} $class->modules) {
+    if ( grep { $module eq $_ } $class->modules ) {
         my $m = "Giraffa::Test::$module";
-        if ($m->metadata->{$test}) {
+        if ( $m->metadata->{$test} ) {
             info( MODULE_CALL => { module => $module, method => $test, version => $m->version } );
-            return $m->$test(@arguments);
-        } else {
-            info( UNKNOWN_METHOD => { module => $m, method => $test });
+            return $m->$test( @arguments );
         }
-    } else {
-        info( UNKNOWN_MODULE => { module => $module, method => $test});
+        else {
+            info( UNKNOWN_METHOD => { module => $m, method => $test } );
+        }
+    }
+    else {
+        info( UNKNOWN_MODULE => { module => $module, method => $test } );
     }
 
     return;

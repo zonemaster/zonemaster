@@ -70,7 +70,7 @@ sub metadata {
               )
         ],
     };
-}
+} ## end sub metadata
 
 sub version {
     return "$Giraffa::Test::Delegation::VERSION";
@@ -107,7 +107,7 @@ sub enough_nameservers {
     }
 
     return @results;
-}
+} ## end sub enough_nameservers
 
 sub parent_child_match {
     my ( $class, $zone ) = @_;
@@ -173,7 +173,7 @@ sub parent_child_match {
     }
 
     return @results;
-}
+} ## end sub parent_child_match
 
 sub inzone_glue {
     my ( $class, $zone ) = @_;
@@ -201,10 +201,10 @@ sub inzone_glue {
         else {
             push @results, info( NOT_IN_ZONE => { ns => $ns->string } );
         }
-    }
+    } ## end foreach my $ns ( @{ $zone->...})
 
     return @results;
-}
+} ## end sub inzone_glue
 
 sub referral_size {
     my ( $class, $zone ) = @_;
@@ -246,7 +246,7 @@ sub referral_size {
     }
 
     return @results;
-}
+} ## end sub referral_size
 
 ###
 ### Helper functions

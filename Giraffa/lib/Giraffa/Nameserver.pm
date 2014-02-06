@@ -104,7 +104,7 @@ sub query {
     }
 
     return $self->cache->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse};
-}
+} ## end sub query
 
 sub _query {
     my ( $self, $name, $type, $href ) = @_;
@@ -153,7 +153,7 @@ sub _query {
     else {
         return;
     }
-}
+} ## end sub _query
 
 sub string {
     my ( $self ) = @_;
@@ -213,7 +213,7 @@ sub restore {
     }
 
     return;
-}
+} ## end sub restore
 
 sub max_time {
     my ( $self ) = @_;

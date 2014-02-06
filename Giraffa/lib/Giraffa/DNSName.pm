@@ -76,7 +76,7 @@ sub common {
     }
 
     return $count;
-}
+} ## end sub common
 
 __PACKAGE__->meta->make_immutable;
 

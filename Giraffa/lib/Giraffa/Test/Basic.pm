@@ -98,10 +98,10 @@ sub basic1 {
                 }
               );
         }
-    }
+    } ## end else [ if ( $p->rcode eq 'NXDOMAIN')]
 
     return @results;
-}
+} ## end sub basic1
 
 sub basic2 {
     my ( $class, $zone ) = @_;
@@ -126,10 +126,10 @@ sub basic2 {
         else {
             push @results, info( NS_NO_RESPONSE => { source => $ns->string } );
         }
-    }
+    } ## end foreach my $ns ( @{ $zone->...})
 
     return @results;
-}
+} ## end sub basic2
 
 sub basic3 {
     my ( $class, $zone ) = @_;
