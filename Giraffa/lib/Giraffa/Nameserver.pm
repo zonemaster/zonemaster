@@ -190,6 +190,7 @@ sub restore {
     my $decode = JSON::XS->new->filter_json_single_key_object(
         'Net::LDNS::Packet' => sub {
             my ( $ref ) = @_;
+            ## no critic (Modules::RequireExplicitInclusion)
             my $obj = Net::LDNS::Packet->new_from_wireformat( decode_base64( $ref->{data} ) );
             $obj->answerfrom( $ref->{answerfrom} );
             $obj->timestamp( $ref->{timestamp} );
@@ -211,6 +212,7 @@ sub restore {
         my $ns = Giraffa::Nameserver->new( { name => $name, address => $addr } );
         $ns->{cache} = $ref;
     }
+    close $fh;
 
     return;
 } ## end sub restore

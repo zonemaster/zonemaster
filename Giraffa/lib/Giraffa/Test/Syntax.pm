@@ -7,6 +7,7 @@ use warnings;
 use Giraffa;
 use Giraffa::Util;
 use Giraffa::Recursor;
+use Giraffa::DNSName;
 
 use List::MoreUtils;
 use RFC::RFC822::Address qw[valid];

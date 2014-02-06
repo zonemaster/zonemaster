@@ -63,9 +63,10 @@ sub _build_level {
 }
 
 sub string {
-    no warnings 'uninitialized';
     my ( $self ) = @_;
     my $argstr = '';
+    ## no critic (TestingAndDebugging::ProhibitNoWarnings)
+    no warnings 'uninitialized';
 
     $argstr = join( ', ',
         map { $_ . '=' . ( ref( $self->args->{$_} ) ? encode_json( $self->args->{$_} ) : $self->args->{$_} ) }

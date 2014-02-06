@@ -4,6 +4,7 @@ use 5.14.2;
 use Moose;
 use JSON::PP;
 use Giraffa::Util;
+use Net::IP;
 
 my $seed_data;
 

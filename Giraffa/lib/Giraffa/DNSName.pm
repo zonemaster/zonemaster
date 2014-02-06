@@ -78,6 +78,7 @@ sub common {
     return $count;
 } ## end sub common
 
+## no critic (Modules::RequireExplicitInclusion)
 __PACKAGE__->meta->make_immutable;
 
 1;

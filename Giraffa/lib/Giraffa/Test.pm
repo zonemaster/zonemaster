@@ -15,7 +15,7 @@ my @all_test_modules;
 INIT {
     @all_test_modules =
       grep { _policy_allowed( $_ ) }
-      map { s|^Giraffa::Test::||; $_ }
+      map { my $f = $_; $f =~ s|^Giraffa::Test::||; $f }
       grep { $_ ne 'Giraffa::Test::Basic' } useall( 'Giraffa::Test' );
 }
 
@@ -36,6 +36,7 @@ sub run_all_for {
     @results = Giraffa::Test::Basic->all( $zone );
 
     if ( Giraffa::Test::Basic->can_continue( @results ) ) {
+        ## no critic (Modules::RequireExplicitInclusion)
         foreach my $module ( map { "Giraffa::Test::$_" } __PACKAGE__->modules ) {
             info( MODULE_VERSION => { module => $module, version => $module->version } );
             push @results, $module->all( $zone );

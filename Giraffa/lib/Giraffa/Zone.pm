@@ -28,6 +28,7 @@ sub _build_parent {
 
     my $pname = Giraffa::Recursor->parent( '' . $self->name );
     return if not $pname;
+    ## no critic (Modules::RequireExplicitInclusion)
     return __PACKAGE__->new( { name => $pname } );
 }
 

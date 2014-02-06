@@ -2,12 +2,15 @@ package Giraffa::Util v0.0.1;
 
 use 5.14.2;
 use parent 'Exporter';
+use warnings;
 
 use Giraffa;
 use Giraffa::DNSName;
 
+## no critic (Modules::ProhibitAutomaticExportation)
 our @EXPORT = qw[ ns info config name policy ];
 
+## no critic (Subroutines::RequireArgUnpacking)
 sub ns {
     return Giraffa->ns( @_ );
 }
