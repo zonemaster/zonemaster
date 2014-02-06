@@ -157,10 +157,7 @@ These are some requirements for writing specifications for the new project:
 	expected. If a specific DNS protocol flag has to be set in the query,
 	specify this as well. In general, be closer to describing the DNS
 	protocol actions than to use more generic language.
- 9. Try to determine the relevance of the test you are writing. Is it
-	really necessary to implement it - or is there any other test in the
-	full list of tests we are implementing that already covers it?
- 10. Use the same headers and titles as in all other test cases. Try
+ 9. Use the same headers and titles as in all other test cases. Try
 	to use the same style as used in the other tests.
- 11. Make sure to write the tests so that any implementer that implements
+ 10. Make sure to write the tests so that any implementer that implements
     the tests will have the same outcome as any other implementation.
