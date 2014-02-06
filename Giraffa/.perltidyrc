@@ -1,17 +1,6 @@
-#
-#  Copyright (c) .SE, The Internet Infrastructure Foundation (2009) <hostmaster@iis.se>
-#
-#  All rights reserved.
-#
-#
-# $Id: perltidyrc 12874 2010-06-04 10:08:52Z Ulrich Wisser $
-# $Date: 2010-06-04 10:08:52 +0000 (Fri, 04 Jun 2010) $
-# $LastChangedBy: Ulrich Wisser $
 -ole=unix
--nst
 -se
 -bext=~
--nw
 -l=120
 -i=4
 -ci=2
@@ -22,4 +11,7 @@
 -bt=1
 -bbt=0
 -sfs
-
+-tso
+-csc
+-csci=20
+-nbbc
