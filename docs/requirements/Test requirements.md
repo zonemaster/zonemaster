@@ -130,6 +130,11 @@ is comprehensive, it is not a list of tests as such. It is a list of messages em
 |R75|SOA serial may not be zero|Delegation|
 |R76|Zone contains NSEC or NSEC3 records                                   |DNSSEC|
 
+Future tests
+------------
+Case insensitivity in a name server, [RFC 4343](http://tools.ietf.org/html/rfc4343).
+
+
 Requirements on writing test specifications
 -------------------------------------------
 
