@@ -82,7 +82,7 @@ sub get_records {
     @raw = grep { $_->type eq uc( $type ) } @raw;
 
     return @raw;
-}
+} ## end sub get_records
 
 sub get_records_for_name {
     my ( $self, $type, $name ) = @_;

@@ -79,7 +79,7 @@ sub translate {
     }
 
     return sprintf( "%7.2f %-7s %s", $entry->timestamp, $entry->level, $string );
-}
+} ## end sub translate
 
 1;
 

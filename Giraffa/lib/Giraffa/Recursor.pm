@@ -4,6 +4,7 @@ use 5.14.2;
 use Moose;
 use JSON::PP;
 use Giraffa::Util;
+use Net::IP;
 
 my $seed_data;
 
@@ -46,7 +47,7 @@ sub parent {
     else {
         return $pname;
     }
-}
+} ## end sub parent
 
 sub _recurse {
     my ( $self, $name, $type, $class, $state ) = @_;
@@ -59,8 +60,8 @@ sub _recurse {
         next if $p->rcode eq 'SERVFAIL';    # Ask next if SERVFAIL
 
         return ( $p, $state )
-          if $p->no_such_record;                    # Node exists, but not record
-        return ( $p, $state ) if $p->no_such_name;  # Node does not exist
+          if $p->no_such_record;            # Node exists, but not record
+        return ( $p, $state ) if $p->no_such_name;    # Node does not exist
         return ( $p, $state )
           if $self->is_answer( $p, $name, $type, $class );    # Return answer
 
@@ -85,10 +86,10 @@ sub _recurse {
         }
 
         return if $state->{count} > 20;    # Loop protection
-    }
+    } ## end while ( my $ns = pop @{ $state...})
 
     return;
-}
+} ## end sub _recurse
 
 sub get_ns_from {
     my ( $self, $p, $state ) = @_;
@@ -96,7 +97,7 @@ sub get_ns_from {
 
     my @names = sort map { name( $_->nsdname ) } $p->get_records( 'ns' );
 
-    $state->{glue}{ name($_->name) }{ $_->address } = 1 for ( $p->get_records( 'a' ), $p->get_records( 'aaaa' ) );
+    $state->{glue}{ name( $_->name ) }{ $_->address } = 1 for ( $p->get_records( 'a' ), $p->get_records( 'aaaa' ) );
 
     foreach my $name ( @names ) {
         if ( $state->{glue}{$name} ) {
@@ -110,7 +111,7 @@ sub get_ns_from {
     }
 
     return [ sort { $a->name cmp $b->name or $a->address->ip cmp $b->address->ip } @new ];
-}
+} ## end sub get_ns_from
 
 sub get_addresses_for {
     my ( $self, $name, $state ) = @_;
@@ -147,26 +148,26 @@ sub get_addresses_for {
     push @rrs, $paaaa->get_records( 'aaaa' ) if $paaaa;
     foreach my $rr (
         sort { $a->address cmp $b->address }
-        grep { name($_->name) eq $name } @rrs
+        grep { name( $_->name ) eq $name } @rrs
       )
     {
         push @res, Net::IP->new( $rr->address );
     }
 
     return @res;
-}
+} ## end sub get_addresses_for
 
 sub is_answer {
     my ( $self, $packet, $name, $type, $class ) = @_;
 
     foreach my $rr ( $packet->answer ) {
-        if (    name($rr->name) eq $name
+        if (    name( $rr->name ) eq $name
             and ( $rr->class eq $class or $class eq 'ANY' )
             and ( $rr->type eq $type   or $type eq 'ANY' ) )
         {
             return 1;
         }
-        if (    name($rr->name) eq $name
+        if (    name( $rr->name ) eq $name
             and ( $rr->class eq $class or $class eq 'ANY' )
             and $rr->type eq 'CNAME' )
         {
@@ -177,7 +178,7 @@ sub is_answer {
         }
     }
     foreach my $rr ( $packet->authority ) {
-        if (    name($rr->name) eq $name
+        if (    name( $rr->name ) eq $name
             and ( $rr->class eq $class or $class eq 'ANY' )
             and ( $rr->type eq $type   or $type eq 'ANY' ) )
         {
@@ -186,7 +187,7 @@ sub is_answer {
     }
 
     return;
-}
+} ## end sub is_answer
 
 sub root_servers {
     return map { Giraffa::Util::ns( $_->{name}, $_->{address} ) }

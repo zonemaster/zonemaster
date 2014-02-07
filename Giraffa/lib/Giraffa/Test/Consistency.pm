@@ -46,7 +46,7 @@ sub metadata {
               )
         ]
     };
-}
+} ## end sub metadata
 
 sub version {
     return "$Giraffa::Test::Consistency::VERSION";
@@ -84,7 +84,7 @@ sub ns_consistent {
     }
 
     return @results;
-}
+} ## end sub ns_consistent
 
 sub soa_consistent {
     my ( $class, $zone ) = @_;
@@ -115,7 +115,7 @@ sub soa_consistent {
     }
 
     return @results;
-}
+} ## end sub soa_consistent
 
 1;
 

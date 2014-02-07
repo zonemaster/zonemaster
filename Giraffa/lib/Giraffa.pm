@@ -41,13 +41,13 @@ sub test_zone {
 sub test_module {
     my ( $class, $module, $zname ) = @_;
 
-    return Giraffa::Test->run_module($module, $class->zone($zname));
+    return Giraffa::Test->run_module( $module, $class->zone( $zname ) );
 }
 
 sub test_method {
     my ( $class, $module, $method, @arguments ) = @_;
 
-    return Giraffa::Test->run_one($module, $method, @arguments);
+    return Giraffa::Test->run_one( $module, $method, @arguments );
 }
 
 sub all_tags {
