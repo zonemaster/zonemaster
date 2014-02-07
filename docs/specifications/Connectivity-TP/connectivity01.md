@@ -22,7 +22,7 @@ The objective for this test is that all the authoritative nameservers for the do
 
 ### Outcome(s)
 
-If there is a response from all the listed nameservers within the threshhold period, then the test succeeds
+If there is a response from the retrieved nameservers and its associated IP addresses within the threshhold period, then the test succeeds
 
 ### Special procedural requirements
 
