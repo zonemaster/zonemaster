@@ -8,9 +8,11 @@ use Giraffa::Logger;
 use Giraffa::Config;
 use Giraffa::Zone;
 use Giraffa::Test;
+use Giraffa::Recursor;
 
 our $logger;
 our $config;
+our $recursor = Giraffa::Recursor->new;
 
 sub logger {
     return $logger //= Giraffa::Logger->new;
@@ -63,6 +65,14 @@ sub all_tags {
     }
 
     return @res;
+}
+
+sub recurse {
+    my ($class, $qname, $qtype, $qclass ) = @_;
+    $qtype //= 'A';
+    $qclass //= 'IN';
+
+    return $recursor->recurse($qname, $qtype, $qclass);
 }
 
 sub save_cache {
@@ -122,6 +132,11 @@ Returns the global L<Giraffa::Logger> object.
 =item all_tags()
 
 Returns a list of all the tags that can be logged for all avilable test modules.
+
+=item recurse($name, $type, $class)
+
+Does a recursive lookup for the given name, type and class, and returns the resulting packet (if any). Simply calls
+L<Giraffa::Recursor::recurse()> on a globally stored object.
 
 =item save_cache($filename)
 
