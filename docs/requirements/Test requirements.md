@@ -132,8 +132,8 @@ is comprehensive, it is not a list of tests as such. It is a list of messages em
 
 Future tests
 ------------
-Case insensitivity in a name server, [RFC 4343](http://tools.ietf.org/html/rfc4343).
-
+ * Case insensitivity in a name server, [RFC 4343](http://tools.ietf.org/html/rfc4343).
+ * More tests of EDNS(0), [RFC 6891](http://tools.ietf.org/search/rfc6891).
 
 Requirements on writing test specifications
 -------------------------------------------
