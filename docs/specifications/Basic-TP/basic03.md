@@ -1,4 +1,4 @@
-## BASIC3: The _Broken but functional_ test
+## BASIC03: The _Broken but functional_ test
 
 ### Test case identifier
 **BASIC03** The _Broken but functional_ test
