@@ -56,8 +56,12 @@ sub _recurse {
         my $p = $ns->query( $name, $type, { class => $class } );
 
         next if not $p;                     # Ask next server if no response
-        next if $p->rcode eq 'REFUSED';     # Ask next if REFUSED
-        next if $p->rcode eq 'SERVFAIL';    # Ask next if SERVFAIL
+
+        if($p->rcode eq 'REFUSED' or $p->rcode eq 'SERVFAIL') {
+            # Respond with these if we can't get a better response
+            $state->{candidate} = $p;
+            next;
+        }
 
         return ( $p, $state )
           if $p->no_such_record;            # Node exists, but not record
@@ -87,6 +91,7 @@ sub _recurse {
 
         return if $state->{count} > 20;    # Loop protection
     } ## end while ( my $ns = pop @{ $state...})
+    return ( $state->{candidate}, $state ) if $state->{candidate};
 
     return;
 } ## end sub _recurse

@@ -10,7 +10,7 @@ use Giraffa::Packet;
 
 use Net::LDNS;
 
-use Net::IP;
+use Net::IP qw(:PROC);
 use Time::HiRes qw[time];
 use JSON::XS;
 use MIME::Base64;
@@ -31,6 +31,8 @@ has 'address' => ( is => 'ro', isa => 'Giraffa::Net::IP', coerce => 1, required 
 has 'dns'   => ( is => 'ro', isa => 'Net::LDNS', lazy_build => 1 );
 has 'cache' => ( is => 'ro', isa => 'HashRef',   default    => sub { {} } );
 has 'times' => ( is => 'ro', isa => 'ArrayRef',  default    => sub { [] } );
+
+has 'fake_delegations' => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
 
 ###
 ### Variables
@@ -98,6 +100,30 @@ sub query {
     my $usevc   = $href->{usevc}   // $defaults{usevc};
     my $recurse = $href->{recurse} // $defaults{recurse};
 
+    foreach my $fname (keys %{$self->fake_delegations}) {
+        if ($name =~ m/(\.|^)\Q$fname\E$/i) {
+            my $p = Net::LDNS::Packet->new($name, $type, $class);
+            while (my ($section, $aref) = each %{$self->fake_delegations->{$fname}}) {
+                $p->unique_push($section, $_) for @$aref;
+            }
+            ## Need to fix Net::LDNS so these can be set
+            # $p->aa(0);
+            # $p->do($dnssec);
+            # $p->rd($recurse);
+            Giraffa->logger->add(
+                'fake_delegation',
+                {
+                    name  => "$name",
+                    type  => $type,
+                    class => $class,
+                    from  => "$self",
+                }
+            );
+
+            return Giraffa::Packet->new( { packet => $p } );
+        }
+    }
+
     if ( not exists( $self->cache->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse} ) ) {
         $self->cache->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse} =
           $self->_query( $name, $type, $href );
@@ -105,6 +131,20 @@ sub query {
 
     return $self->cache->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse};
 } ## end sub query
+
+sub add_fake_delegation {
+    my ( $self, $domain, $href ) = @_;
+    my %delegation;
+
+    foreach my $name (keys %$href) {
+        push @{$delegation{authority}}, Net::LDNS::RR->new(sprintf('%s IN NS %s', $domain, $name));
+        foreach my $ip (@{$href->{$name}}) {
+            push @{$delegation{additional}}, Net::LDNS::RR->new(sprintf('%s IN %s %s',$name, (ip_is_ipv6($ip)?'AAAA':'A'), $ip ));
+        }
+    }
+
+    $self->fake_delegations->{$domain} = \%delegation;
+}
 
 sub _query {
     my ( $self, $name, $type, $href ) = @_;
@@ -411,6 +451,12 @@ Returns the standard deviation for the whole set of query times.
 =item all_known_nameservers()
 
 Class method that returns a list of all nameserver objects in the global cache.
+
+=item add_fake_delegation($domain,$data)
+
+Adds fake delegation information to this specific nameserver object. Takes the same arguments as the similarly named method in L<Giraffa>. This is
+primarily used for internal information, and using it directly will likely give confusing results (but may be useful to model certain kinds of
+misconfigurations).
 
 =back
 

@@ -75,6 +75,17 @@ sub recurse {
     return $recursor->recurse($qname, $qtype, $qclass);
 }
 
+sub add_fake_delegation {
+    my ( $class, $domain, $href ) = @_;
+
+    my $parent = $class->zone($recursor->parent($domain));
+    foreach my $ns (@{$parent->ns}) {
+        $ns->add_fake_delegation($domain => $href);
+    }
+
+    return;
+}
+
 sub save_cache {
     my ( $class, $filename ) = @_;
 
@@ -146,6 +157,21 @@ After running the tests, save the accumulated cache to a file with the given nam
 
 Before running the tests, load the cache with information from a file with the given name. This file must have the same format as is produced by
 L<save_cache()>.
+
+=item add_fake_delegation($domain, $data)
+
+This method adds some fake delegation information to the system. The arguments are a domain name, and a reference to a hash with delegation
+information. The keys in the hash must be nameserver names, and the values references to lists of IP addresses for the corresponding nameserver.
+
+Example:
+
+    Giraffa->add_fake_delegation(
+        'lysator.liu.se' => {
+            'ns.nic.se'  => [ '212.247.7.228',  '2a00:801:f0:53::53' ],
+            'i.ns.se'    => [ '194.146.106.22', '2001:67c:1010:5::53' ],
+            'ns3.nic.se' => [ '212.247.8.152',  '2a00:801:f0:211::152' ]
+        }
+    );
 
 =back
 
