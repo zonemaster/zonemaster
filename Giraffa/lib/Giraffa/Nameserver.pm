@@ -107,9 +107,9 @@ sub query {
                 $p->unique_push($section, $_) for @$aref;
             }
             ## Need to fix Net::LDNS so these can be set
-            # $p->aa(0);
-            # $p->do($dnssec);
-            # $p->rd($recurse);
+            $p->aa(0);
+            $p->do($dnssec);
+            $p->rd($recurse);
             Giraffa->logger->add(
                 'fake_delegation',
                 {
