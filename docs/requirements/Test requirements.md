@@ -122,18 +122,20 @@ is comprehensive, it is not a list of tests as such. It is a list of messages em
 |R67|There must be NS records for the zone being tested on the parent side |Basic|
 |R68|The child domain must have at least one working nameserver            |Basic|
 |R69|NS records from parent exists, but the child does not have NS but answers for A|Basic|
-|R70|Coherence of all other SOA-fields where SOA Serial is the same|Consistency|
+|R70|Coherence of all other SOA-fields where SOA Serial is the same        |Consistency|
 |R71|Total mismatch between child and parent NS records, delegation works due to same IP|Delegation|
-|R72|Test of EDNS0 support|Name server|
-|R73|Test availability of zone transfer (AXFR)|Name server|
+|R72|Test of EDNS0 support                                                 |Name server|
+|R73|Test availability of zone transfer (AXFR)                             |Name server|
 |R74|Answer from name server came from an IP address other than expected (wrong source IP)|Name server|
-|R75|SOA serial may not be zero|Delegation|
+|R75|SOA serial may not be zero                                            |Delegation|
 |R76|Zone contains NSEC or NSEC3 records                                   |DNSSEC|
 
 Future tests
 ------------
  * Case insensitivity in a name server, [RFC 4343](http://tools.ietf.org/html/rfc4343).
  * More tests of EDNS(0), [RFC 6891](http://tools.ietf.org/search/rfc6891).
+ * AXFR is complex, perhaps do more inspection of data coming from AXFR,
+   [RFC 5936](https://tools.ietf.org/html/rfc5936).
 
 Requirements on writing test specifications
 -------------------------------------------
