@@ -1,11 +1,13 @@
-## CONNECTIVITY01: The domain must be accessible over UDP on port 53
+## CONNECTIVITY01: The domain must answer DNS queries over UDP on port 53
 
 ### Test case identifier
-**CONNECTIVITY01:**  The domain must be accessible over UDP on port 53
+**CONNECTIVITY01:**  The domain must answer DNS queries over UDP on port 53
 
 ### Objective
 
-The objective for this test is that all the authoritative nameservers for the domain and its associated IP addresses are accessible over UDP on port 53
+DNS queries are sent using UDP on port 53, as described in section 4.2.1 of [RFC 1035](http://tools.ietf.org/html/rfc1035).
+
+The objective for this test is that all the authoritative nameservers for the domain are accessible over UDP on port 53
 
 ### Inputs
 
@@ -13,18 +15,22 @@ The objective for this test is that all the authoritative nameservers for the do
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Retrieve the list of authoritative nameservers names for the domain (Do we obtain the list from the resolver, parent or the child domain or manually for undelegated domains?)
-2. And the IP addresses corresponding to those names. The IP addresses should (or MAY?) come from glue address records for in-bailiwick nameserver names and from separate recursive queries for out-of-bailiwick nameserver names.
-3. A SOA query is sent over UDP to all the retrieved nameservers
-4. If the nameserver has a single address, then the test fails if a query destined to that addresses does not provide an answer within a particular time period (the threshhold time should be decided)
-5. If the nameserver is associated with multiple addresses, then the test  fails if any one of those addresses does not provide an answer within the specified threshhold time
-
+1. Find the list of all the nameservers used by the domain. This list MUST contain all nameservers from the parent delegation for the domain, and all nameservers in the apex of the domain's zone itself
+2. Find the IP addresses corresponding to the nameservers in step1. In order to do that:
+2.1. Collect all glue records from the parent for the domain
+2.2. Collect all glue records from the child domain (i.e. the domain being tested)
+2.3. Collect all the IP addresses used by out-of-bailwick nameservers
+3. A SOA query is sent to each IP address of each nameserver found in step2
+4. If no answer is received from any query in step3, the test case fails
 
 ### Outcome(s)
 
-If there is a response from the retrieved nameservers and its associated IP addresses within the threshhold period, then the test succeeds
+If there is any nameserver that fails to answer queries over port 53 using UDP, this test case fails
 
-### Special procedural requirements
+### Special procedural requirements	
+
+None
 
 ### Intercase dependencies
+
 None
