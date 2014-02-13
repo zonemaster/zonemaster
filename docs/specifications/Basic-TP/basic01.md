@@ -18,13 +18,13 @@ The label of the domain name to be tested.
 A recursive NS-record lookup for the child domain name starting at the
 root domain should be done, and the steps of the process recorded.
 
-1. If the recursion reaches a nameserver that responds with a redirect
+1. If the recursion reaches a name server that responds with a redirect
    directly to the requested domain, including functional glue, the test
-   succeeds. The domain through which the nameserver was found is
+   succeeds. The domain through which the name server was found is
    considered the parent domain.
-2. If the recursion reaches a nameserver that authoritatively responds
+2. If the recursion reaches a name server that authoritatively responds
    with NXDOMAIN for the child domain, the test succeeds. The domain
-   through which the nameserver was found is considered the parent domain.
+   through which the name server was found is considered the parent domain.
 3. If the recursion reaches a point where the recursion for some reason
    cannot continue before either case 1 or 2 happens, the test fails. 
 

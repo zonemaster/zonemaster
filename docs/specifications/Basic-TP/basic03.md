@@ -11,12 +11,12 @@ be performed if the BASIC02 test has failed.
 
 ### Inputs
 
-1. A list of nameserver names taken from the parent domain
+1. A list of name server names taken from the parent domain
 2. and the IP addresses corresponding to those names.
 
 The addresses should come from glue address records for in-bailiwick
-nameserver names, and from separate recursive queries for out-of-bailiwick
-nameserver names.
+name server names, and from separate recursive queries for out-of-bailiwick
+name server names.
 
 ### Ordered description of steps to be taken to execute the test case
 

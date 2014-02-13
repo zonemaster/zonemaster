@@ -1,21 +1,21 @@
-## BASIC02: The domain must have at least one working nameserver
+## BASIC02: The domain must have at least one working name server
 
 ### Test case identifier
-**BASIC02** The domain must have at least one working nameserver
+**BASIC02** The domain must have at least one working name server
 
 ### Objective
 
-In order for the domain to work, it must have at least one nameserver that
+In order for the domain to work, it must have at least one name server that
 can answer queries about the domain. 
 
 ### Inputs
 
-1. A list of nameserver names taken from the parent domain
+1. A list of name server names taken from the parent domain
 2. and the IP addresses corresponding to those names.
 
 The addresses should come from glue address records for in-bailiwick
-nameserver names and from separate recursive queries for out-of-bailiwick
-nameserver names. 
+name server names and from separate recursive queries for out-of-bailiwick
+name server names. 
 
 ### Ordered description of steps to be taken to execute the test case
 
