@@ -17,9 +17,13 @@ The objective for this test is that all the authoritative nameservers for the do
 
 1. Find the list of all the nameservers used by the domain. This list MUST contain all nameservers from the parent delegation for the domain, and all nameservers in the apex of the domain's zone itself
 2. Find the IP addresses corresponding to the nameservers in step1. In order to do that:
+
 2.1. Collect all glue records from the parent for the domain
+
 2.2. Collect all glue records from the child domain (i.e. the domain being tested)
+
 2.3. Collect all the IP addresses used by out-of-bailwick nameservers
+
 3. A SOA query is sent to each IP address of each nameserver found in step2
 4. If no answer is received from any query in step3, the test case fails
 
