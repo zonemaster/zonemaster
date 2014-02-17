@@ -17,8 +17,8 @@ The objective for this test is that all the authoritative name servers for the d
 ### Ordered description of steps to be taken to execute the test case
 
 1. Find the list of all the name servers used by the domain. This list MUST contain all name servers from the parent delegation for the domain, and all name servers in the apex of the domain's zone itself
-2. Find the IP addresses corresponding to the name servers in step1. In order to do that:
-2.1. Collect all glue records from the parent for the domain
+2. Find the IP addresses corresponding to the name servers in step1. In order to do that: </br>
+2.1. Collect all glue records from the parent for the domain </br>
 2.2. Collect all IP addresses of the name servers, authoritative for the domain from the domain's zone (i.e. the domain being tested)
 2.3. Collect all the IP addresses used by out-of-bailwick name servers
 3. A SOA query is sent over UDP to distinct IP address of each name server found in step2
