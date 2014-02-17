@@ -1,8 +1,8 @@
-## CONNECTIVITY05: Check whether all the IP addresses of the child domain's authoritative nameserver belong to same subnet
+## CONNECTIVITY05: Check whether all the IP addresses of the child domain's authoritative name server belong to same subnet
 
 
 ### Test case identifier
-**CONNECTIVITY05:** Check whether all the IP addresses of the child domain's authoritative nameserver belong to same subnet
+**CONNECTIVITY05:** Check whether all the IP addresses of the child domain's authoritative name server belong to same subnet
 
 ### Objective
 [RFC 2182](http://tools.ietf.org/html/rfc2182), section 3.1 clearly specifies that distinct authoritative name servers for a child domain should be placed in different topological and geographical locations. The objective is to minimise the likelihood of a single failure disabling all of them. 
