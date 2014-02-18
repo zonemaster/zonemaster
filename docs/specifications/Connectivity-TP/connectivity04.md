@@ -22,8 +22,8 @@ The objective in this test is to check that more than one IP addresses of the do
 2.2. Collect all IP addresses of the name servers, authoritative for the domain from the domain's zone (i.e. the domain being tested) <br/>
 2.3. Collect all the IP addresses used by out-of-bailwick name servers <br/>
 3. Create a subnet list from each of the retrieved IP addresses obtained from step2, and define its range. For example, if it is IPv4 then the range is 28 and if it is IPv6, then the range is 64
-4. Check the IP address in the input with the subnet list.
-5. If a distinct IP address falls in the range of more than one subnet in the subnet list, then the test fails   
+4. Check the IP address in the input with the subnet list (obtained from step3)
+5. If a single IP address falls in the range of more than one subnet in the subnet list (obtained from step3), then the test fails   
 
 ### Outcome(s)
 
