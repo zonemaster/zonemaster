@@ -23,7 +23,7 @@ The objective in this test is to check that all IP addresses of the domain's aut
 2.2. Collect all IP addresses of the name servers, authoritative for the domain from the domain's zone (i.e. the domain being tested) <br/>
 2.3. Collect all the IP addresses used by out-of-bailwick name servers <br/>
 3. Make the AS (name) list for each IP address obtained from step2
-4. If all the retrieved AS are same, then the test fails
+4. If all the retrieved AS (obtained from step3) are same, then the test fails
 
 ### Outcome(s)
 
