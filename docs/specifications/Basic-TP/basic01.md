@@ -6,7 +6,7 @@
 ### Objective
 
 In order for a domain to work, it must be delegated to from a domain higher
-up in the DNS hierarchy (a pernt domain). However, note that this
+up in the DNS hierarchy (a parent domain). However, note that this
 requirement does not concern the root domain.
 
 ### Inputs
