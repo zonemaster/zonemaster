@@ -18,3 +18,6 @@ There is [an example implementation of these tests](https://github.com/dotse/new
 |R19|Test whether the nameserver can be resolved |[DELEGATION08](./delegation08.md)|
 |R20|Test the existence of SOA record in the zone |[DELEGATION09](./delegation09.md)|
 |R21|Test whether the ANSWER for SOA is authoritative |[DELEGATION010](./delegation10.md)|
+|R71|Total mismatch between child and parent NS records, delegation works due to same IP|[DELEGATION011](./delegation11.md)|
+|R75|SOA serial may not be zero|[DELEGATION012](./delegation12.md)|
+
