@@ -8,7 +8,7 @@ There is [an example implementation of these tests](https://github.com/dotse/new
 
 |Req| Description                                                          | Test Case |
 |:--|:---------------------------------------------------------------------|:----------|
-|R08|Test the presence of atleast one name server |[DELEGATION01](./delegation01.md)|
+|R08|Test the presence of atleast one name server (*basic01.md does the same*)  |[DELEGATION01](./basic01.md)|
 |R09|Test the presence of a minimum two name servers |[DELEGATION02](./delegation02.md)|
 |R10|Verify that the nameservers delegated has distinct IP addresses |[DELEGATION03](./delegation03.md)|
 |R13|Test whether referral response at the authoritative section fit into a 512 byte UDP packte |[DELEGATION04](./delegation04.md)|
