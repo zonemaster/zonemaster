@@ -1,14 +1,14 @@
-## DELEGATION06: Test that the NS record is not pointing to a CNAME alias
+## DELEGATION07: Test that the authoritative name servers for the domain be accessible over Internet
 
 ### Test case identifier
 
-**DELEGATION06:** Test that the NS record is not pointing to a CNAME alias 
+**DELEGATION07:** Test that the authoritative name servers for the domain be accessible over Internet
 
 ### Objective
 
-[RFC 1912](http://tools.ietf.org/html/rfc1912) mentions that NS records pointing to CNAME is forbidden. 
+The name server must answer DNS queris over both the UDP and TCP over port 53
 
-The objective of this test is to verify that name servers does not point to a CNAME record
+This test case fulfils the requirements 2.3.1 in the "Technical requirements for authoritative name servers" document 
 
 ### Inputs
 
@@ -24,12 +24,12 @@ The objective of this test is to verify that name servers does not point to a CN
 1.6 Record the list of name servers in the answer <br/>
 1.7  Send a query to the domain asking for the list of authoritative name servers <br/>
 1.8 Record the list of authoritative name servers in the answer <br/>
-2. All distinct name servers obtained as the result of step 1.4 and 1.8 are queried for A and AAAA records
-3. If any of the name server queried responded with the resource record type CNAME, then the test fails
+2. A SOA query is sent over UDP and TCP to all distinct name servers obtained as the result of step 1.4 and 1.8 
+3. If any of the name server queried failed to answer, then the test fails
 
 ### Outcome(s)
 
-If none of the response contains the resource record type CNAME then the test succeeds
+If any query is failing to get an answer, then the test case fails
 
 ### Special procedural requirements
 
