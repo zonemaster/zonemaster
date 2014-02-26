@@ -17,7 +17,7 @@ There is [an example implementation of these tests](https://github.com/dotse/new
 |R18|Test that the NS record is not pointing to a CNAME alias |[DELEGATION06](./delegation06.md)|
 |R19|Test whether the nameserver can be resolved |[DELEGATION07](./delegation07.md)|
 |R20|Test the existence of SOA record in the zone |[DELEGATION08](./delegation08.md)|
-|R21|Test whether the ANSWER for SOA is authoritative  |[DELEGATION09](./delegation09.md)|
+|R21|Test whether the ANSWER for SOA is authoritative  |[DELEGATION08](./delegation08.md)|
 |R71|Total mismatch between child and parent NS records, delegation works due to same IP|[DELEGATION010](./delegation10.md)|
 |R75|SOA serial may not be zero|[DELEGATION011](./delegation11.md)|
 
