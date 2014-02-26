@@ -6,7 +6,7 @@
 
 ### Objective
 
-The name server must answer DNS queris over both the UDP and TCP over port 53
+The name server must answer DNS queries over both the UDP and TCP over port 53
 
 This test case fulfils the requirements 2.3.1 in the "Technical requirements for authoritative name servers" document 
 
@@ -25,7 +25,7 @@ This test case fulfils the requirements 2.3.1 in the "Technical requirements for
 1.7  Send a query to the domain asking for the list of authoritative name servers <br/>
 1.8 Record the list of authoritative name servers in the answer <br/>
 2. A SOA query is sent over UDP and TCP to all distinct name servers obtained as the result of step 1.4 and 1.8 
-3. If any of the name server queried failed to answer, then the test fails
+3. If any of the name server fail to give an authoritative answer ("AA-bit" is set in the answer), the test fails 
 
 ### Outcome(s)
 
