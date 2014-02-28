@@ -24,16 +24,18 @@ In this test, the authoritaitve and additional section of the referral response 
 1.1 A recursive NS-record lookup for the domain name starting at the root domain should be done, and the steps of the process recorded <br/>
 1.2 If the recursion reaches a name server that responds with a redirect directly to the requested domain, then the domain through which the name server was found is considered the parent domain <br/>
 1.3 Send a query to the parent domain asking for the list of name server authoritative for the domain that is being tested <br/>
-1.4 Record the list of name servers obtained from the authority section <br/>1.5 A NS query is made to all listed name servers obtained from step 1.4 for the domain <br/>
+1.4 Record the list of name servers obtained from the authority section <br/>
+1.5 A NS query is made to all listed name servers obtained from step 1.4 for the domain <br/>
 1.6 Record the list of name servers in the answer <br/>
 1.7  Send a query to the domain asking for the list of authoritative name servers <br/>
 1.8 Record the list of authoritative name servers in the answer <br/>
-2. Find the IP addresses corresponding to the list of name servers obtained in step1. In order to do that: 
-2.1. Collect all glue records from the parent for the domain 
-2.2. Collect all IP addresses of the name servers, authoritative for the domain from the domain's zone (i.e. the domain being tested) 
-2.3. Collect all the IP addresses used by out-of-bailwick name servers
+2. Find the IP addresses corresponding to the list of name servers obtained in step1. In order to do that: <br/>
+2.1 send an A query to all distinct name servers obtained in step 1.6 and 1.8 <br/>
+2.2 Record the list of IPv4 addreses in the answer section <br/> 
+2.3 send an AAAA query to all distinct name servers obtained in step 1.1.6 and 1.2.3 <br/>
+2.4 Record the list of IPv6 addresses in the answer section
 3. An empty DNS answer packet is generated.
-4. All the data from step 1.4, 1.8, 2.1, 2.2 and 2.3 is added to the packet
+4. All the data from step 2.2 and 2.4 is added to the packet
 5. If the size of the packet is more than 512 bytes, then the test fails
 
 ### Outcome(s)

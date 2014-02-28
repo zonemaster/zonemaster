@@ -22,7 +22,8 @@ In this test, the authoritaitve section of the referral response from the child 
 1.1 A recursive NS-record lookup for the domain name starting at the root domain should be done, and the steps of the process recorded <br/>
 1.2 If the recursion reaches a name server that responds with a redirect directly to the requested domain, then the domain through which the name server was found is considered the parent domain <br/>
 1.3 Send a query to the parent domain asking for the list of name server authoritative for the domain that is being tested <br/>
-1.4 Record the list of name servers obtained from the authority section <br/>1.5 A NS query is made to all listed name servers obtained from step 1.4 for the domain <br/>
+1.4 Record the list of name servers obtained from the authority section <br/>
+1.5 A NS query is made to all listed name servers obtained from step 1.4 for the domain <br/>
 1.6 Record the list of name servers in the answer <br/>
 1.7  Send a query to the domain asking for the list of authoritative name servers <br/>
 1.8 Record the list of authoritative name servers in the answer <br/>

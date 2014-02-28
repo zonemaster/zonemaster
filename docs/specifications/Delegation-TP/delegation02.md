@@ -26,10 +26,10 @@ The label of the domain name to be tested
 1.2.1 Send a query to the domain asking for the list of authoritative name servers<br/>
 1.2.3 Record the list of authoritative name servers in the answer <br/>
 2. Find the IP addresses corresponding to the list of name servers obtained in step1. In order to do that: <br/>
-2.1 send an A query to all distinct name servers obtained in step 1.1.6 and 1.2.3
-2.2 Record the list of IPv4 addreses in the answer section
-2.3 send an AAAA query to all distinct name servers obtained in step 1.1.6 and 1.2.3
-2.4 Record the list of IPv6 addresses in the answer section
+2.1 send an A query to all distinct name servers obtained in step 1.1.6 and 1.2.3<br/>
+2.2 Record the list of IPv4 addreses in the answer section<br/>
+2.3 send an AAAA query to all distinct name servers obtained in step 1.1.6 and 1.2.3 <br/>
+2.4 Record the list of IPv6 addresses in the answer section <br/>
 3. If the list of IP address obtained in step2.2 and step2.4 are not unique, then the test fails
 
 
