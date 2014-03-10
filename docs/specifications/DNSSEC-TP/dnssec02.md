@@ -39,8 +39,8 @@ The domain name to be tested.
 
 ### Outcome(s)
 
-If any of the Digest type values from the DS RR set published in the parent
-zone are not assigned by IANA, this test case fails.
+If none of the DS RR from the parent zone matches any DNSKEY RR from the
+child zone, this test case fails.
 
 ### Special procedural requirements
 
