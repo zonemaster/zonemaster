@@ -32,3 +32,13 @@ This document uses the terminology defined in the
 
 See section 3.2 of [RFC 4035](http://tools.ietf.org/html/rfc4035#section-3.2)
 for a description of the flags used by a recursive name server.
+
+## Key, hash and signature algorithms
+
+There are many algorithms defined for doing DNSSEC, not all of them are
+mandatory to implement. This test case should strive not only to implement
+all mandatory algorithms, but also most of those that are in use on the
+internet today as well.
+
+If any algorithm in a DNSSEC record type is not recognized by the test
+system, the test system should emit a notice about this.
