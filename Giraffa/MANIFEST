@@ -8,6 +8,7 @@ lib/Giraffa/DNSName.pm
 lib/Giraffa/Logger.pm
 lib/Giraffa/Logger/Entry.pm
 lib/Giraffa/Nameserver.pm
+lib/Giraffa/Nameserver/Cache.pm
 lib/Giraffa/Packet.pm
 lib/Giraffa/Recursor.pm
 lib/Giraffa/Test.pm
@@ -34,7 +35,6 @@ t/delegation.t
 t/dnsname.t
 t/giraffa.t
 t/logger.t
-t/manifest.t
 t/nameserver.data
 t/nameserver.t
 t/pod-coverage.t
