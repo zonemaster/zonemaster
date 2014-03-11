@@ -51,6 +51,10 @@ isa_ok( $_, 'Net::IP' ) for @addr;
 is( $addr[0]->short, '212.247.7.228',      'expected address' );
 is( $addr[1]->short, '2a00:801:f0:53::53', 'expected address' );
 
+my $ns_count = Giraffa::Nameserver->all_known_nameservers;
+my $cache_count = keys %Giraffa::Nameserver::Cache::object_cache;
+ok( $cache_count < $ns_count, 'Fewer cache than ns' );
+
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );
 }
