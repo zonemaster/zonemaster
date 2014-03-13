@@ -7,6 +7,7 @@ use Moose::Util::TypeConstraints;
 use Giraffa::DNSName;
 use Giraffa;
 use Giraffa::Packet;
+use Giraffa::Nameserver::Cache;
 
 use Net::LDNS;
 
@@ -28,9 +29,9 @@ coerce 'Giraffa::Net::IP', from 'Str', via { Net::IP->new( $_ ) };
 has 'name'    => ( is => 'ro', isa => 'Giraffa::DNSName', coerce => 1, required => 0 );
 has 'address' => ( is => 'ro', isa => 'Giraffa::Net::IP', coerce => 1, required => 1 );
 
-has 'dns'   => ( is => 'ro', isa => 'Net::LDNS', lazy_build => 1 );
-has 'cache' => ( is => 'ro', isa => 'HashRef',   default    => sub { {} } );
-has 'times' => ( is => 'ro', isa => 'ArrayRef',  default    => sub { [] } );
+has 'dns'   => ( is => 'ro', isa => 'Net::LDNS',                  lazy_build => 1 );
+has 'cache' => ( is => 'ro', isa => 'Giraffa::Nameserver::Cache', lazy_build => 1 );
+has 'times' => ( is => 'ro', isa => 'ArrayRef',                   default    => sub { [] } );
 
 has 'fake_delegations' => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
 
@@ -75,6 +76,12 @@ sub _build_dns {
     return $res;
 }
 
+sub _build_cache {
+    my ( $self ) = @_;
+
+    Giraffa::Nameserver::Cache->new( { address => $self->address } );
+}
+
 ###
 ### Public Methods (and helpers)
 ###
@@ -100,16 +107,16 @@ sub query {
     my $usevc   = $href->{usevc}   // $defaults{usevc};
     my $recurse = $href->{recurse} // $defaults{recurse};
 
-    foreach my $fname (keys %{$self->fake_delegations}) {
-        if ($name =~ m/(\.|^)\Q$fname\E$/i) {
-            my $p = Net::LDNS::Packet->new($name, $type, $class);
-            while (my ($section, $aref) = each %{$self->fake_delegations->{$fname}}) {
-                $p->unique_push($section, $_) for @$aref;
+    foreach my $fname ( keys %{ $self->fake_delegations } ) {
+        if ( $name =~ m/(\.|^)\Q$fname\E$/i ) {
+            my $p = Net::LDNS::Packet->new( $name, $type, $class );
+            while ( my ( $section, $aref ) = each %{ $self->fake_delegations->{$fname} } ) {
+                $p->unique_push( $section, $_ ) for @$aref;
             }
             ## Need to fix Net::LDNS so these can be set
-            $p->aa(0);
-            $p->do($dnssec);
-            $p->rd($recurse);
+            $p->aa( 0 );
+            $p->do( $dnssec );
+            $p->rd( $recurse );
             Giraffa->logger->add(
                 'fake_delegation',
                 {
@@ -121,25 +128,26 @@ sub query {
             );
 
             return Giraffa::Packet->new( { packet => $p } );
-        }
-    }
+        } ## end if ( $name =~ m/(\.|^)\Q$fname\E$/i)
+    } ## end foreach my $fname ( keys %{...})
 
-    if ( not exists( $self->cache->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse} ) ) {
-        $self->cache->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse} =
+    if ( not exists( $self->cache->data->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse} ) ) {
+        $self->cache->data->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse} =
           $self->_query( $name, $type, $href );
     }
 
-    return $self->cache->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse};
+    return $self->cache->data->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse};
 } ## end sub query
 
 sub add_fake_delegation {
     my ( $self, $domain, $href ) = @_;
     my %delegation;
 
-    foreach my $name (keys %$href) {
-        push @{$delegation{authority}}, Net::LDNS::RR->new(sprintf('%s IN NS %s', $domain, $name));
-        foreach my $ip (@{$href->{$name}}) {
-            push @{$delegation{additional}}, Net::LDNS::RR->new(sprintf('%s IN %s %s',$name, (ip_is_ipv6($ip)?'AAAA':'A'), $ip ));
+    foreach my $name ( keys %$href ) {
+        push @{ $delegation{authority} }, Net::LDNS::RR->new( sprintf( '%s IN NS %s', $domain, $name ) );
+        foreach my $ip ( @{ $href->{$name} } ) {
+            push @{ $delegation{additional} },
+              Net::LDNS::RR->new( sprintf( '%s IN %s %s', $name, ( ip_is_ipv6( $ip ) ? 'AAAA' : 'A' ), $ip ) );
         }
     }
 
@@ -214,7 +222,7 @@ sub save {
     open my $fh, '>', $filename or die "Cache save failed: $!";
     foreach my $name ( keys %object_cache ) {
         foreach my $addr ( keys %{ $object_cache{$name} } ) {
-            say $fh "$name $addr " . $json->encode( $object_cache{$name}{$addr}->cache );
+            say $fh "$name $addr " . $json->encode( $object_cache{$name}{$addr}->cache->data );
         }
     }
 
@@ -249,8 +257,13 @@ sub restore {
     while ( my $line = <$fh> ) {
         my ( $name, $addr, $data ) = split( / /, $line, 3 );
         my $ref = $decode->decode( $data );
-        my $ns = Giraffa::Nameserver->new( { name => $name, address => $addr } );
-        $ns->{cache} = $ref;
+        my $ns  = Giraffa::Nameserver->new(
+            {
+                name    => $name,
+                address => $addr,
+                cache   => Giraffa::Nameserver::Cache->new( { data => $ref, address => Net::IP->new( $addr ) } )
+            }
+        );
     }
     close $fh;
 
@@ -346,7 +359,7 @@ The L<Net::LDNS::Resolver> object used to actually send and recieve DNS queries.
 
 =item cache
 
-A reference to a hash holding the cache of sent queries. Not meant for external use.
+A reference to a L<Giraffa::Nameserver::Cache> object holding the cache of sent queries. Not meant for external use.
 
 =item times
 

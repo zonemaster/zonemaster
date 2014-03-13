@@ -77,6 +77,8 @@ foreach my $ns ( Giraffa::Nameserver->all_known_nameservers ) {
     isa_ok( $ns, 'Giraffa::Nameserver' );
 }
 
+is( scalar(keys %Giraffa::Nameserver::Cache::object_cache), 4);
+
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );
 }
