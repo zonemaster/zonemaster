@@ -34,7 +34,7 @@ zone are not assigned by IANA, this test case fails.
 
 ### Special procedural requirements
 
-None.
+Test case is only performed if DS records are found.
 
 ### Intercase dependencies
 
