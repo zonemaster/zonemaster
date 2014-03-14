@@ -5,7 +5,7 @@
 
 ### Objective
 
-The domain should only use DNSKEY RRs that are defined by IANA.
+The domain should only use DNSKEY algorithms that are defined by IANA.
 
 The DNSKEY record is described in section 2 of [RFC 4034]
 (http://tools.ietf.org/html/rfc4034#section-2).
