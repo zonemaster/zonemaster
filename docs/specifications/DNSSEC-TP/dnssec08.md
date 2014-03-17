@@ -9,7 +9,7 @@ The apex DNSKEY RRset should be signed with an RRSIG with a DNSKEY from
 the RRset. This is described in section 2.4 of [RFC 4035](http://tools.ietf.org/html/rfc4035#section-2.4).
 
 (In reality the RRSIG should be created by the DNSKEY matching the DS. All
-algorithms from the DS should have a matching DNSKEY with those algorhtms,
+algorithms from the DS should have a matching DNSKEY with those algorithms,
 and all DNSKEY algorithms should have matching RRSIG with those algorithms.
 Postponed for future tests. See future tests in the requirements document.)
 
