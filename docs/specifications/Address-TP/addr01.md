@@ -26,8 +26,8 @@ The domain name to be tested.
    out-bailwick name servers, separate recursive A queries need to be sent.
 
 3. Each address of each name server has to be checked against the three
-   blocks allocated to private networks : 10/8, 172.16/12 and
-   192.168/16.
+   blocks allocated to private networks : 10.0.0.0/8, 172.16.0.0/12 and
+   192.168.0.0/16.
 
 3. If any address matches one of the private blocks, the test case
    fails.
