@@ -24,10 +24,10 @@ The allowed Digest Algorithms in a DS record published by the parent are
 published by IANA in [Delegation Signer (DS) Resource Record (RR) Type
 Digest Algorithms](https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xhtml). 
 
-(The Key Tag is only an indicator for a resolver or application to enable
+The Key Tag is only an indicator for a resolver or application to enable
 a quicker matching of the keys. This is however not a reliable method for
 identifiying keys. A description of this is found in section 5.2 of
-[RFC 4035](http://tools.ietf.org/html/rfc4035#section-5.2)).
+[RFC 4035](http://tools.ietf.org/html/rfc4035#section-5.2).
 
 ### Inputs
 
@@ -37,6 +37,8 @@ The domain name to be tested.
 
 1. Retrieve the DS RR set from the parent zone.
 2. Retrieve the DNSKEY RR set from the child zone.
+3. If no Key Tag from the DS RR matches any Key Tag from the DNSKEY RR,
+   this test case fails.
 3. Convert the DNSKEY RR set to DS records with the same algorithms as
    those from the parent zone.
 4. If none of the converted DNSKEY RR matches with any of the DS from the
