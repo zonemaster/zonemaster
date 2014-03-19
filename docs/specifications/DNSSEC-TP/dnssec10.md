@@ -8,7 +8,8 @@
 Using DNSSEC, having NSEC or NSEC3 records provides a secure denial of
 existence for records that is not present in the zone. This test case
 verifies that correct NSEC or NSEC3 records with valid signatures are
-returned for a query for an non-existent name.
+returned for a query for an non-existent name, and that they cover the
+queried name.
 
 The use of the NSEC RR type is described in section 3.1.3 of
 [RFC 4035](http://tools.ietf.org/html/rfc4035#section-3.1.3), and
@@ -31,15 +32,18 @@ The domain name to be tested.
    what would we like to do here?).
 3. If the answer is with the RCODE NXDOMAIN, the answer must contain a
    NSEC or NSEC3 RR. If no such RR is present, this test case fails.
-4. The NSEC or NSEC3 RRs must have valid RRSIGs. Match against DNSKEY
+4. The NSEC or NSEC3 RR returned must cover the qname, if they do not,
+   this test case fail.s
+5. The NSEC or NSEC3 RRs must have valid RRSIGs. Match against DNSKEY
    and check that the RRSIG is within the validity period.
-5. If the RRSIG(s) over the NSEC or NSEC3 RRs does not validate, this test
+6. If the RRSIG(s) over the NSEC or NSEC3 RRs does not validate, this test
    case fails.
 
 ### Outcome(s)
 
 If the RCODE from the query is NXDOMAIN and the answer contains NSEC or
-NSEC3 records with valid RRSIGs, this test case pass.
+NSEC3 records that covers the qname, and the RRs also have valid RRSIGs,
+this test case pass.
 
 ### Special procedural requirements
 
