@@ -9,7 +9,8 @@ For an authoritative name server an increased number of NSEC3 iterations
 have a negative impact on performance.
 
 Section 10.3 in [RFC 5155](http://tools.ietf.org/html/rfc5155#section-10.3)
-sets a maximum number of iterations depending on the DNSSEC key size.
+sets a maximum number of iterations depending on the DNSSEC key size -
+regardless of which algorithm is used.
 
 > A zone owner MUST NOT use a value higher than shown in the table
 > below for iterations for the given key size.  A resolver MAY treat a
