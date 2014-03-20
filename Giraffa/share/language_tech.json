@@ -9,6 +9,15 @@
       "HAS_GLUE" : "Nameserver for zone {parent} listed these nameservers as glue: {ns}",
       "NO_PARENT_RESPONSE" : "No response from nameserver for zone {parent} when trying to fetch glue."
    },
+   "CONNECTIVITY" : {
+      "NAMESERVER_HAS_UDP_53" : "Nameserver {ns}/{address} accessible over UDP on port 53.",
+      "NAMESERVER_NO_UDP_53" : "Nameserver {ns}/{address} not accessible over UDP on port 53.",
+      "NAMESERVER_HAS_TCP_53" : "Nameserver {ns}/{address} accessible over TCP on port 53.",
+      "NAMESERVER_NO_TCP_53" : "Nameserver {ns}/{address} not accessible over TCP on port 53.",
+      "NAMESERVER_IPV6_ADDRESS_BOGON" : "Nameserver {ns} IPv6 address {address} is part of a bogon prefix.",
+      "NAMESERVER_IPV6_ADDRESSES_NOT_BOGON" : "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix.",
+      "NAMESERVERS_WITH_UNIQ_AS" : "All nameservers are in the same AS ({asn})"
+   },
    "HOSTNAME": {
        "CHECKING_NAME": "{name} is about to be checked.",
        "NUMERIC_TOP": "{name} has an all-numeric top-level label.",
