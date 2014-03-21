@@ -86,10 +86,16 @@ A domain can be given to the testing system and all DNS information will be retr
 
 ### Test overview
 The test organization, test schedule, integrity level scheme, test resources, responsibilities, tools, techniques, and methods are necessary to perform the testing.
+
 #### Organization
 A test is run on any machine where the New DNSCheck software is available. The tests ordinarily needs access to a complete DNS hierarchy to be performed.
+
 #### Master test schedule
 A test is run as soon as the software is scheduled to run, often immediately upon execution.
+
+The first tests that are supposed to run are those from the Basic test plan. If those
+tests succeeds, the rest of the test plans are run in no specific order.
+
 #### Integrity level schema
 An integrity level schema is used for illustrating relative importance of a software component. The effect of a failing component can range from negligible to catastrophic. A component with a high integrity level needs to be tested more thoroughly than a component with a lower level. There is, however, no guidance in the requirements that indicate the relative importance of different areas. Each area is thus considered equally important. However, one of the main objectives is to ensure the stability of DNS.
 #### Resources summary
@@ -221,9 +227,55 @@ _Child Domain_ is the domain being tested.
 
 _Parent Domain_ is the domain that delegates directly to the domain being tested. Differently put, it is the domain whose nameservers delivers the glue records for the child domain.
 
-_Glue Records_ are defined as all NS, A and AAAA records pertaining to the child domain that are delivered by the nameservers for the parent domain.
+_Glue Name Records_ are defined as all NS, A and AAAA records pertaining to the child domain that are delivered by the nameservers for the parent domain.
 
 _Glue Address Records_ are all glue records of type A or AAAA.
+
+_In bailiwick_
+
+_Out of bailiwick_
+
+#### How to find the parent domain
+A recursive SOA-record lookup for the child domain name starting at the
+root domain should be done, and the steps of the process recorded.
+
+1. If the recursion reaches a name server that responds with a redirect
+   directly to the requested domain, including functional glue, the test
+   succeeds. The domain through which the name server was found is
+   considered the parent domain.
+2. If the recursion reaches a name server that authoritatively responds
+   with NXDOMAIN for the child domain, the test succeeds. The domain
+   through which the name server was found is considered the parent domain.
+3. If the recursion reaches a point where the recursion for some reason
+   cannot continue before either case 1 or 2 happens, a parent domain does
+   not exist.
+
+#### Get the glue name records and glue address records from the parent
+In order to obtain the delegation from the parent, this is the process
+we use for the tests that needs this as an input parameter.
+
+The list of parent name servers are sorted in alphabetic order using the
+NS name as the first and secondarily the IP address.
+
+1. Query the parent name servers for the NS records for the domain. If
+   the first name server does not respond, a query is sent to the next
+   server from the list.
+2. The NS RR set and the corresponding IP addresses are stored in a list
+   and returned.
+
+#### Get the NS records  from the child zone
+Some tests need to have the NS for the domain from the child zone, This
+is the method to find these.
+
+1. A NS query for the domain is sent all name servers present in the parent zone.
+   (See "Get the glue name records and glue address records from the parent").
+2. Return all the unique names from the answers received from the query in step 1.
+
+#### Get the IP address records  from the child zone
+Some tests need to have the IP addresses for the NS records in the child
+zone, This is the method to find these.
+
+TODO
 
 
 
