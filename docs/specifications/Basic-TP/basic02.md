@@ -13,20 +13,20 @@ can answer queries about the domain.
 1. A list of name server names taken from the parent domain
 2. and the IP addresses corresponding to those names.
 
-The addresses should come from glue address records for in-bailiwick
+The addresses should come from glue name address records for in-bailiwick
 name server names and from separate recursive queries for out-of-bailiwick
-name server names. 
+name server names.
 
 ### Ordered description of steps to be taken to execute the test case
 
 1. An NS query for the child domain should be sent to each address.
-2. If there are no DNS answers from any of the name servers, this test
-   case fails.
+2. If there are no DNS valid DNS packets containing the NS answer from any
+   of the name servers, this test case fails.
 
 ### Outcome(s)
 
-If at least one recorded response is a well-formed DNS response holding
-one or more NS records for the child domain, this test succeeds.
+If at least one recorded response is a DNS response holding one or more NS
+records for the child domain, this test succeeds.
 
 ### Special procedural requirements
 
