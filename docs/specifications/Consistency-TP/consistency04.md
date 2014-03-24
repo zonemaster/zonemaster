@@ -5,7 +5,7 @@
 **CONSISTENCY04:**  The RDATA fields "REFRESH", "RETRY" and "EXPIRE" must be consistent between authoritative name servers
 
 ### Objective
-All authoritative name servers must serve the same SOA record for the designated domain. [Technical reference to be provided]. As per section 3.3.13 of [RFC 1035]((http://tools.ietf.org/html/rfc1035),  the field "REFRESH" in the SOA RDATA refers to the 32 bit time interval before the zone should be refereshed. The field "RETRY" refers to the 32 bit interval before a failed refresh should be retried and the the field "EXPIRE" refers to a 32 bit time value that specifies the upper limit on
+All authoritative name servers must serve the same SOA record for the designated domain. [Technical reference to be provided]. As per section 3.3.13 of [RFC 1035](http://tools.ietf.org/html/rfc1035),  the field "REFRESH" in the SOA RDATA refers to the 32 bit time interval before the zone should be refereshed. The field "RETRY" refers to the 32 bit interval before a failed refresh should be retried and the the field "EXPIRE" refers to a 32 bit time value that specifies the upper limit on
 the time interval that can elapse before the zone is no longer authoritative. 
 
 The inconsistency in these different fields for the designated zone (*Got to Verify*) might result in operational inconsistencies.
@@ -30,4 +30,4 @@ None
 
 ### Intercase dependencies
 
-This test is done only when (./consistency01.md) succeeds
+This test is done only when [CONSISTENCY01](./consistency01.md) succeeds
