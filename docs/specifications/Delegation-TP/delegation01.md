@@ -6,7 +6,7 @@
 
 ### Objective
 
-[RFC 2182](http://tools.ietf.org/html/rfc2182) specifies that there must be at least minimum two name servers for a domain. This test is done to verify this condition
+Section 4.1 of [RFC 1034](http://tools.ietf.org/html/rfc1034) specifies that there must be at least minimum two name servers for a domain. This test is done to verify this condition
 
 ### Inputs
 
