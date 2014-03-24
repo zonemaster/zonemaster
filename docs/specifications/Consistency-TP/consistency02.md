@@ -16,7 +16,7 @@ The objective of this test is to verify that the administrative contact is consi
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Retrieve all the authoritative name servers for the fomain
+1. Retrieve all the authoritative name servers for the domain
 2. The SOA record is queried from all the authoritative name servers for the domain. 
 3. If the SOA administrative contact is not the same from all the answers received from step 2, then the test fails
 
