@@ -6,6 +6,11 @@ BEGIN { use_ok( 'Giraffa::Test' ) }
 isa_ok( Giraffa->logger, 'Giraffa::Logger' );
 isa_ok( Giraffa->config, 'Giraffa::Config' );
 
-is_deeply( [ sort Giraffa::Test->modules ], [qw(Consistency Delegation Syntax)] );
+my %module = map { $_ => 1 } Giraffa::Test->modules;
+
+ok($module{Consistency}, 'Consistency');
+ok($module{Delegation}, 'Delegation');
+ok($module{Syntax}, 'Syntax');
+ok($module{Connectivity}, 'Connectivity');
 
 done_testing;
