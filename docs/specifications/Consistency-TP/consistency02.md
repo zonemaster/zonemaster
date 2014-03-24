@@ -6,7 +6,7 @@
 
 ### Objective
 
-All authoritative name servers must serve the same SOA record for the designated domain. [Technical reference to be provided]. As per section 3.3.13 of [RFC 1035]((http://tools.ietf.org/html/rfc1035),  the RDATA field "RNAME" refers to the administrative contact.  The inconsistency in the administrative contact for the designated domain might result in operational failures.
+All authoritative name servers must serve the same SOA record for the designated domain. [Technical reference to be provided]. As per section 3.3.13 of [RFC 1035]((http://tools.ietf.org/html/rfc1035),  the field "RNAME" in the SOA RDATA refers to the administrative contact.  The inconsistency in the administrative contact for the designated domain might result in operational failures being informed to different persons.
 
 The objective of this test is to verify that the administrative contact is consistent between different authoritative name servers.
 
