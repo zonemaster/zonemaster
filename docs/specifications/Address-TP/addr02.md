@@ -6,7 +6,7 @@
 ### Objective
 
 Some anti-spam techniques use reverse DNS lookup to allow incoming traffic.
-In order, to prevent name servers to be blocked or black listed, DNS 
+In order to prevent name servers to be blocked or black listed, DNS 
 administrators should publish PTR records associated to name servers'
 addresses.
 
