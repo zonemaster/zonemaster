@@ -1,12 +1,12 @@
-## ADDR02: Reverse DNS entry exists for nameserver IP address
+## ADDR02: Reverse DNS entry exists for name server IP address
 
 ### Test case identifier
-**ADDR02** Reverse DNS entry should exist for nameserver IP address
+**ADDR02** Reverse DNS entry should exist for name server IP address
 
 ### Objective
 
 Some anti-spam techniques use reverse DNS lookup to allow incoming traffic.
-In order to prevent name servers to be blocked or black listed, DNS 
+In order to prevent name servers to be blocked or blacklisted, DNS 
 administrators should publish PTR records associated to name servers'
 addresses.
 
@@ -27,7 +27,8 @@ The domain name to be tested.
 
 ### Outcome(s)
 
-A list of of address with corresponding PTR records. These are the results of the PTR queries generated.
+A list of of address with corresponding PTR records. These are the 
+results of the PTR queries generated.
 
 ### Special procedural requirements
 
