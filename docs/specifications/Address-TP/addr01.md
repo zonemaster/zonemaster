@@ -17,15 +17,11 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Find all hostnames for all the name servers used by the domain 
-   by sending NS requests to the parent zone and the zone itself name
-   servers.
+1. Find the IP addresses of each name server of the domain checked. 
+   Use the method described in [Master Test Plan](../Master Test Plan.md) 
+   paragraph "Get the IP address records from the child zone".
 
-2. Find all IPv4 addresses for each name server. 
-   For in-bailwick name servers, addresses come from glue records. For 
-   out-bailwick name servers, separate recursive A queries need to be sent.
-
-3. Each address of each name server has to be checked against the three
+3. Each IPv4 address has to be checked against the three
    blocks allocated to private networks : 10.0.0.0/8, 172.16.0.0/12 and
    192.168.0.0/16.
 
