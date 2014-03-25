@@ -1,4 +1,4 @@
-## ADDR01: Nameserver address must not be in private network
+## ADDR01: Name server address must not be in private network
 
 ### Test case identifier
 **ADDR01** A name server address must not be in private network
