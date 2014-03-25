@@ -27,7 +27,7 @@ The domain name to be tested.
 
 ### Outcome(s)
 
-A list of domain names. These are the results of the PTR queries generated.
+A list of of address with corresponding PTR records. These are the results of the PTR queries generated.
 
 ### Special procedural requirements
 
