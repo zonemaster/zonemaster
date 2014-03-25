@@ -136,6 +136,8 @@ Future tests
  * More tests of EDNS(0), [RFC 6891](http://tools.ietf.org/search/rfc6891).
  * AXFR is complex, perhaps do more inspection of data coming from AXFR,
    [RFC 5936](https://tools.ietf.org/html/rfc5936).
+ * Check for algorithm completeness (DS->DNSKEY->RRSIG) as per section 2.2 of
+   [RFC 4035](http://tools.ietf.org/html/rfc4035#section-2.2).
 
 Requirements on writing test specifications
 -------------------------------------------
