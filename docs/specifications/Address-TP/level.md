@@ -12,20 +12,27 @@ This document uses the terminology defined in the
 |R03| Nameserver address must not be in  private network                       |[ADDR01](addr01.md)|
 |R40| Reverse DNS entry exists for nameserver IP address                       |[ADDR02](addr02.md)|
 |R41| Reverse DNS entry matches nameserver name                                |[ADDR03](addr03.md)|
+|X37| IPv4 loopback address is not forward to root name servers                |[ADDR04](addr04.md)|
+|X38| IPv6 loopback address is not forward to root name servers                |[ADDR05](addr05.md)|
 
 
 
-## TODO / Comments / Other tmp. thoughts
+## Comments
 
-a) Tests not in "Address Level" in the document "Test requirements.md" :
+ZoneCheck has two test cases about loopback addresses : it checks if (a) these
+adresses are delegated at the domain name servers (requirement R37) and (b) 
+they are resolvable (requirements R38).
 
-* R37 - loopback delegation //  This test is uncategorized  (Issue #10)
-* R38 - loopback is resolvable // same thing                (Issue #10)
+The reason behind that was not to forward loopback address queries to root name
+servers and to comply with RFC 1912 (section 4.1)
 
-b) Tests  in "Address Level" in the document "Test requirements.md" :
+R37 and R38 have been replaced here by two different requirements : one for the
+IPv4 loopback address and the other for the IPv6 loopback address. The
+requirement here is either a name server is authoritative for these addresses
+or it refuses requests about these addresses.
 
-* R03 - Nameserver address in a private network // Could be in "Connectivity level" ? (Issue #11)
-
-
-
+Moreover and for legacy reasons, for IPv4 loopback addresses we have chosen to
+check, in the case where a name server is not authoritative for the zone 
+127.in-addr.arpa, if it is authoritative for 0.127.in-addr.arpa or 
+0.0.127.in-addr.arpa. 
 
