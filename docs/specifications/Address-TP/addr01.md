@@ -21,7 +21,7 @@ The domain name to be tested.
    Use the method described in [Master Test Plan](../Master Test Plan.md) 
    paragraph "Get the IP address records from the child zone".
 
-3. Each IPv4 address has to be checked against the three
+2. Each IPv4 address has to be checked against the three
    blocks allocated to private networks : 10.0.0.0/8, 172.16.0.0/12 and
    192.168.0.0/16.
 
