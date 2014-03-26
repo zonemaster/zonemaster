@@ -16,13 +16,19 @@ my $zone = Giraffa->zone( 'nic.se' );
 
 my @res = Giraffa->test_method( 'DNSSEC', 'dnssec01', $zone );
 foreach my $msg ( @res ) {
-    is( $msg->tag, 'DS_DIGTYPE_OK' );
+    is( $msg->tag, 'DS_DIGTYPE_OK', 'DS_DIGTYPE_OK' );
 }
 
-$zone = Giraffa->zone( 'seb.se' );
-@res = Giraffa->test_method( 'DNSSEC', 'dnssec01', $zone );
-is( scalar( @res ), 1 );
-is( $res[0]->tag,   'NO_DS' );
+$zone2 = Giraffa->zone( 'seb.se' );
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec01', $zone2 );
+is( scalar( @res ), 1,       'Result count' );
+is( $res[0]->tag,   'NO_DS', 'NO_DS' );
+
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec02', $zone );
+my %tag = map { $_->tag => 1 } @res;
+ok( $tag{DS_MATCHES_DNSKEY},        'DS_MATCHES_DNSKEY' );
+ok( $tag{DS_DOES_NOT_MATCH_DNSKEY}, 'DS_DOES_NOT_MATCH_DNSKEY' );
+ok( $tag{MATCH_FOUND},              'MATCH_FOUND' );
 
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );
