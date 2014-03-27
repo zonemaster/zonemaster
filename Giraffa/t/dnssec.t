@@ -30,6 +30,11 @@ ok( $tag{DS_MATCHES_DNSKEY},        'DS_MATCHES_DNSKEY' );
 ok( $tag{DS_DOES_NOT_MATCH_DNSKEY}, 'DS_DOES_NOT_MATCH_DNSKEY' );
 ok( $tag{MATCH_FOUND},              'MATCH_FOUND' );
 
+my $zone3 = Giraffa->zone( 'com' );
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec03', $zone3 );
+is( scalar( @res ), 1, 'One message' );
+is( $res[0]->tag, 'ITERATIONS_OK', 'ITERATIONS_OK' );
+
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );
 }

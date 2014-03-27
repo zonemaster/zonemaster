@@ -10,6 +10,7 @@ use warnings;
 
 use Giraffa;
 use Giraffa::Util;
+use List::Util qw[min];
 
 ###
 ### Entry points
@@ -21,6 +22,7 @@ sub all {
 
     push @results, $class->dnssec01( $zone );
     push @results, $class->dnssec02( $zone );
+    push @results, $class->dnssec03( $zone );
 
     return @results;
 }
@@ -35,7 +37,8 @@ sub metadata {
     return {
         dnssec01 => [qw( DS_DIGTYPE_OK DS_DIGTYPE_NOT_OK NO_DS )],
         dnssec02 =>
-          [qw( NO_DS NO_DNSKEY_FOR_DS DS_MATCHES_DNSKEY DS_DOES_NOT_MATCH_DNSKEY MATCH_FOUND MATCH_NOT_FOUND )]
+          [qw( NO_DS NO_DNSKEY_FOR_DS DS_MATCHES_DNSKEY DS_DOES_NOT_MATCH_DNSKEY MATCH_FOUND MATCH_NOT_FOUND )],
+        dnssec03 => [qw( NO_NSEC3PARAM MANY_ITERATIONS TOO_MANY_ITERATIONS ITERATIONS_OK  )],
     };
 }
 
@@ -122,6 +125,43 @@ sub dnssec02 {
     return @results;
 } ## end sub dnssec02
 
+sub dnssec03 {
+    my ( $self, $zone ) = @_;
+    my @results;
+
+    my $param_p = $zone->query_one( $zone->name, 'NSEC3PARAM' );
+    die "No response from child zone nameservers" if not $param_p;
+    my @nsec3params = $param_p->get_records( 'NSEC3PARAM', 'answer' );
+
+    my $dk_p = $zone->query_one( $zone->name, 'DNSKEY' );
+    die "No response from child zone nameservers" if not $dk_p;
+    my @dnskey = $dk_p->get_records( 'DNSKEY', 'answer' );
+    my $min_len = min map { $_->keysize } @dnskey;
+
+    if ( @nsec3params == 0 ) {
+        push @results, info( NO_NSEC3PARAM => {} );
+    }
+    else {
+        foreach my $n3p ( @nsec3params ) {
+            my $iter = $n3p->iterations;
+            if ( $iter > 100 ) {
+                push @results, info( MANY_ITERATIONS => { count => $iter } );
+                if (   ( $min_len >= 4096 and $iter > 2500 )
+                    or ( $min_len >= 2048 and $iter > 500 )
+                    or ( $min_len >= 1024 and $iter > 150 ) )
+                {
+                    push @results, info( TOO_MANY_ITERATIONS => { count => $iter, keylength => $min_len } );
+                }
+            }
+            else {
+                push @results, info( ITERATIONS_OK => { count => $iter } );
+            }
+        }
+    }
+
+    return @results;
+} ## end sub dnssec03
+
 1;
 
 =head1 NAME
@@ -162,6 +202,10 @@ Verifies that all DS records have digest types registered with IANA.
 =item dnssec02($zone)
 
 Verifies that all DS records have a matching DNSKEY.
+
+=item dnssec03($zone)
+
+Check iteration counts for NSEC3.
 
 =back
 
