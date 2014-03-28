@@ -23,6 +23,7 @@ sub all {
     push @results, $class->dnssec01( $zone );
     push @results, $class->dnssec02( $zone );
     push @results, $class->dnssec03( $zone );
+    push @results, $class->dnssec04( $zone );
 
     return @results;
 }
@@ -39,6 +40,7 @@ sub metadata {
         dnssec02 =>
           [qw( NO_DS NO_DNSKEY_FOR_DS DS_MATCHES_DNSKEY DS_DOES_NOT_MATCH_DNSKEY MATCH_FOUND MATCH_NOT_FOUND )],
         dnssec03 => [qw( NO_NSEC3PARAM MANY_ITERATIONS TOO_MANY_ITERATIONS ITERATIONS_OK  )],
+        dnssec04 => [qw( DURATION_SHORT DURATION_LONG DURATION_OK )],
     };
 }
 
@@ -162,6 +164,43 @@ sub dnssec03 {
     return @results;
 } ## end sub dnssec03
 
+sub dnssec04 {
+    my ( $self, $zone ) = @_;
+    my @results;
+
+    my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
+    if ( not $key_p ) {
+        die "No response from child nameservers";
+    }
+    my @keys     = $key_p->get_records( 'DNSKEY', 'answer' );
+    my @key_sigs = $key_p->get_records( 'RRSIG',  'answer' );
+
+    my $soa_p = $zone->query_one( $zone->name, 'SOA', { dnssec => 1 } );
+    if ( not $soa_p ) {
+        die "No response from child nameservers";
+    }
+    my @soas     = $soa_p->get_records( 'SOA',   'answer' );
+    my @soa_sigs = $soa_p->get_records( 'RRSIG', 'answer' );
+
+    foreach my $sig ( @key_sigs, @soa_sigs ) {
+        my $duration = $sig->expiration - $sig->inception;
+        if ( $duration < ( 12 * 60 * 60 ) ) {    # 12 hours
+            push @results,
+              info( DURATION_SHORT => { duration => $duration, tag => $sig->keytag, types => $sig->typecovered } );
+        }
+        elsif ( $duration > ( 180 * 24 * 60 * 60 ) ) {    # 180 days
+            push @results,
+              info( DURATION_LONG => { duration => $duration, tag => $sig->keytag, types => $sig->typecovered } );
+        }
+        else {
+            push @results,
+              info( DURATION_OK => { duration => $duration, tag => $sig->keytag, types => $sig->typecovered } );
+        }
+    }
+
+    return @results;
+} ## end sub dnssec04
+
 1;
 
 =head1 NAME
@@ -206,6 +245,10 @@ Verifies that all DS records have a matching DNSKEY.
 =item dnssec03($zone)
 
 Check iteration counts for NSEC3.
+
+=item dnssec04($zone)
+
+Checks the durations of the signatures for the DNSKEY and SOA RRsets.
 
 =back
 

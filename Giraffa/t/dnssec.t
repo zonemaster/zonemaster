@@ -35,6 +35,10 @@ my $zone3 = Giraffa->zone( 'com' );
 is( scalar( @res ), 1, 'One message' );
 is( $res[0]->tag, 'ITERATIONS_OK', 'ITERATIONS_OK' );
 
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec04', $zone );
+%tag = map { $_->tag => 1 } @res;
+ok( $tag{DURATION_OK}, 'DURATION_OK' );
+
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );
 }
