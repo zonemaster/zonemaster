@@ -24,6 +24,7 @@ sub all {
     push @results, $class->dnssec02( $zone );
     push @results, $class->dnssec03( $zone );
     push @results, $class->dnssec04( $zone );
+    push @results, $class->dnssec05( $zone );
 
     return @results;
 }
@@ -41,6 +42,7 @@ sub metadata {
           [qw( NO_DS NO_DNSKEY_FOR_DS DS_MATCHES_DNSKEY DS_DOES_NOT_MATCH_DNSKEY MATCH_FOUND MATCH_NOT_FOUND )],
         dnssec03 => [qw( NO_NSEC3PARAM MANY_ITERATIONS TOO_MANY_ITERATIONS ITERATIONS_OK  )],
         dnssec04 => [qw( DURATION_SHORT DURATION_LONG DURATION_OK )],
+        dnssec05 => [qw( ALGORITHM_DEPRECATED ALGORITHM_RESERVED ALGORITHM_UNASSIGNED ALGORITHM_OK )],
     };
 }
 
@@ -201,6 +203,78 @@ sub dnssec04 {
     return @results;
 } ## end sub dnssec04
 
+### Table fetched from IANA on 2014-03-28
+# 0	        Reserved
+# 1	        RSA/MD5 (deprecated)
+# 2	        Diffie-Hellman
+# 3	        DSA/SHA1
+# 4	        Reserved
+# 5	        RSA/SHA-1
+# 6	        DSA-NSEC3-SHA1
+# 7	        RSASHA1-NSEC3-SHA1
+# 8	        RSA/SHA-256
+# 9	        Reserved
+# 10	    RSA/SHA-512
+# 11	    Reserved
+# 12	    GOST R 34.10-2001
+# 13	    ECDSA Curve P-256 with SHA-256
+# 14	    ECDSA Curve P-384 with SHA-384
+# 15-122	Unassigned
+# 123-251	Reserved
+# 252	    Reserved for Indirect Keys
+# 253	    private algorithm
+# 254	    private algorithm OID
+# 255	    Reserved
+
+our %algo_name = (
+    2  => 'Diffie-Hellman',
+    3  => 'DSA/SHA1',
+    5  => 'RSA/SHA-1',
+    6  => 'DSA-NSEC3-SHA1',
+    7  => 'RSASHA1-NSEC3-SHA1',
+    8  => 'RSA/SHA-256',
+    10 => 'RSA/SHA-512',
+    12 => 'GOST R 34.10-2001',
+    13 => 'ECDSA Curve P-256 with SHA-256',
+    14 => 'ECDSA Curve P-384 with SHA-384',
+);
+
+sub dnssec05 {
+    my ( $self, $zone ) = @_;
+    my @results;
+
+    my $key_p = $zone->query_one( $zone->name, 'DNSKEY' );
+    if ( not $key_p ) {
+        die "No response from child nameservers";
+    }
+    my @keys = $key_p->get_records( 'DNSKEY', 'answer' );
+
+    foreach my $key ( @keys ) {
+        my $algo = $key->algorithm;
+        if ( $algo == 1 ) {
+            push @results, info( ALGORITHM_DEPRECATED => { algorithm => $algo, keytag => $key->keytag } );
+        }
+        elsif (( $algo == 0 )
+            or ( $algo == 4 )
+            or ( $algo == 9 )
+            or ( $algo == 11 )
+            or ( $algo >= 123 and $algo <= 252 )
+            or ( $algo == 255 ) )
+        {
+            push @results, info( ALGORITHM_RESERVED => { algorithm => $algo, keytag => $key->keytag } );
+        }
+        elsif ( $algo >= 15 and $algo <= 122 ) {
+            push @results, info( ALGORITHM_UNASSIGNED => { algorithm => $algo, keytag => $key->keytag } );
+        }
+        else {
+            push @results,
+              info( ALGORITHM_OK => { algorithm => $algo, name => $algo_name{$algo}, keytag => $key->keytag } );
+        }
+    } ## end foreach my $key ( @keys )
+
+    return @results;
+} ## end sub dnssec05
+
 1;
 
 =head1 NAME
@@ -249,6 +323,10 @@ Check iteration counts for NSEC3.
 =item dnssec04($zone)
 
 Checks the durations of the signatures for the DNSKEY and SOA RRsets.
+
+=item dnssec05($zone)
+
+Check DNSKEY algorithms.
 
 =back
 
