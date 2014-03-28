@@ -69,11 +69,11 @@ sub _build_glue_addresses {
 ###
 
 sub query_one {
-    my ( $self, $name, $type, $class ) = @_;
+    my ( $self, $name, $type, $flags ) = @_;
 
     # Return response from the first server that gives one
     foreach my $ns ( @{ $self->ns } ) {
-        my $p = $ns->query( $name, $type, $class );
+        my $p = $ns->query( $name, $type, $flags );
         return $p if defined( $p );
     }
 
@@ -81,9 +81,9 @@ sub query_one {
 }
 
 sub query_all {
-    my ( $self, $name, $type, $class ) = @_;
+    my ( $self, $name, $type, $flags ) = @_;
 
-    return [ map { $_->query( $name, $type, $class ) } @{ $self->ns } ];
+    return [ map { $_->query( $name, $type, $flags ) } @{ $self->ns } ];
 }
 
 sub is_in_zone {
@@ -156,15 +156,15 @@ for the parent domain.
 
 =over 
 
-=item query_one($name[, $type[, $class]])
+=item query_one($name[, $type[, $flags]])
 
-Sends (or retrieves from cache) a query for the given name, type and class sent to the first nameserver in the zone's ns list. If there is a
-response, it will be returned in a L<Giraffa::Packet> object. If the type and/or class arguments aren't given, they default to 'A' and 'IN'.
+Sends (or retrieves from cache) a query for the given name, type and flags sent to the first nameserver in the zone's ns list. If there is a
+response, it will be returned in a L<Giraffa::Packet> object. If the type arguments is not given, it defaults to 'A'. If the flags are not given, they default to C<class> IN and C<dnssec>, C<usevc> and C<recurse> according to configuration (which is by default off on all three).
 
-=item query_all($name, $type, $class)
+=item query_all($name, $type, $flags)
 
 Sends (or retrieves from cache) queries to all the nameservers listed in the zone's ns list, and returns a reference to an array with the
-responses. The responses can be either L<Giraffa::Packet> objects or C<undef> values.
+responses. The responses can be either L<Giraffa::Packet> objects or C<undef> values. The arguments are the same as for L<query_one>.
 
 =item is_in_zone($name)
 

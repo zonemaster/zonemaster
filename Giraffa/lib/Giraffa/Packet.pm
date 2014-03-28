@@ -60,7 +60,7 @@ sub is_redirect {
 
 sub get_records {
     my ( $self, $type, @section ) = @_;
-    my %sec = map { $_ => 1 } @section;
+    my %sec = map { lc($_) => 1 } @section;
     my @raw;
 
     if ( !@section ) {

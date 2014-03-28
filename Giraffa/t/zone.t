@@ -48,6 +48,16 @@ foreach my $p ( @$ary ) {
     is( $rrs[0]->address, '91.226.36.46', 'expected address' );
 }
 
+$ary = $zone->query_all( 'www.iis.se', 'A', { dnssec => 1 } );
+isa_ok( $ary, 'ARRAY' );
+foreach my $p ( @$ary ) {
+    isa_ok( $p, 'Giraffa::Packet' );
+    my @a_rrs = $p->get_records( 'a', 'answer' );
+    is( scalar( @a_rrs ), 1, 'one answer A RR' );
+    my @sigs = $p->get_records( 'RRSIG', 'ANSWER');
+    is( scalar(@sigs), 1, 'one signature for A RR');
+}
+
 ok($zone->is_in_zone('www.iis.se', 'www.iis.se is in zone iis.se'));
 ok(not $zone->is_in_zone('www.google.se','www.google.se is not in zone iis.se'));
 
