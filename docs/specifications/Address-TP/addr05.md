@@ -18,7 +18,7 @@ The list of the checked domain name servers.
 
 1. SOA queries concerning the domain 
    0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa.
-   must be sent to each authoritative name server.
+   must be sent to each authoritative name server that have an IPv6 address.
 
 2. If the domain is delegated at one name server, the test for this name server
 	succeeds.
