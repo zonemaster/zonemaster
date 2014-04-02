@@ -6,9 +6,12 @@ your three letter acronym  for example such as 1: PWA and 2: SBA
 
 | Test   | Category change | Discard | Review/comments                    | Author |
 |:-------|:---------|:--------|:------------------------------------------|:-------|
-| BASIC01 |   No     |   No    | Refer to "how to find the parent domain"
+| BASIC01 |   No     |   No    | Refer to "Method 1"
 method | SBA|
-| BASIC02 | No | No | Input1 : Refer to "how to find the parent domain"    
+| BASIC02 | No | No | Better to have the input as domain name and the
+retrieval of the name servers and the IP address moved to the section
+"ordered description" and referred to the methods | SBA |
+| BASIC03 | No | No | Similar to the comments in BASIC02 | SBA |    
 
 
 
