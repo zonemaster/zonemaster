@@ -348,7 +348,7 @@ _In bailiwick_ TODO
 
 _Out of bailiwick_ TODO
 
-#### How to find the parent domain
+#### Method 1 : How to find the parent domain
 
 A recursive SOA-record lookup for the child domain name starting at
 the root domain should be done, and the steps of the process recorded.
@@ -364,7 +364,7 @@ the root domain should be done, and the steps of the process recorded.
     cannot continue before either case 1 or 2 happens, a parent domain does
     not exist.
 
-#### Get the glue name records and glue address records from the parent
+#### Method 2 : Get the glue name records and glue address records from the parent
 
 In order to obtain the delegation from the parent, this is the process
 we use for the tests that needs this as an input parameter.
@@ -378,7 +378,7 @@ NS name as the first and secondarily the IP address.
  2. The NS RR set and the corresponding IP addresses are stored in a list
     and returned.
 
-#### Get the NS records  from the child zone
+#### Method 3 : Get the NS records  from the child zone
 
 Some tests need to have the NS for the domain from the child zone,
 This is the method to find these.
@@ -389,7 +389,7 @@ This is the method to find these.
  2. Return all the unique names from the answers received from the
     query in step 1.
 
-#### Get the IP address records  from the child zone
+#### Method 4 : Get the IP address records  from the child zone
 
 Some tests need to have the IP addresses for the NS records in the
 child zone, This is the method to find these.

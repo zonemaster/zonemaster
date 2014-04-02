@@ -6,7 +6,9 @@ your three letter acronym  for example such as 1: PWA and 2: SBA
 
 | Test   | Category change | Discard | Review/comments                    | Author |
 |:-------|:---------|:--------|:------------------------------------------|:-------|
-|BASIC01 |   No     |   No    | Refer to how to find the parent domain | SBA| 
+| BASIC01 |   No     |   No    | Refer to "how to find the parent domain"
+method | SBA|
+| BASIC02 | No | No | Input1 : Refer to "how to find the parent domain"    
 
 
 
