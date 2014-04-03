@@ -1,0 +1,58 @@
+1. There are two ways of looking at the test. (a) The test passes only after all the conditions are met. For example, the test passes only when all the authoritative nameservers **AND the associated IP address** respond 
+(b)the test passes even it works once the minimum conditions are met. For example if there are two IP addresses for an authoritative nameserver, the test passes even if only one of them respond
+
+2. Your quote from github review "I suggest that we write exactly how we collect the set of name servers and **its corresponding addresses** in the ordered description of the test." If you could see from the diff, in the "ordered description of test", point (2) added by me was based on the previous quote.
+
+
+-------------
+(01:47:36 PM) sandoche@jabber.org.uk/29636367621392137289661477: patrik
+(01:47:43 PM) sandoche@jabber.org.uk/29636367621392137289661477: yes i have seen it 
+(01:47:50 PM) sandoche@jabber.org.uk/29636367621392137289661477: and i have 2 clarifications
+(01:48:24 PM) sandoche@jabber.org.uk/29636367621392137289661477: 1. There are two ways of looking at the test. (a) The test passes only after all the conditions are met. For example, the test passes only when all the authoritative nameservers **AND the associated IP address** respond 
+(b)the test passes when the minimum conditions are met. For example, if there are two IP addresses for an authoritative nameserver, the test passes even if only one of them respond
+(01:48:49 PM) pawal@iis.se: I think all IP adressess must work, don't you?
+(01:48:53 PM) sandoche@jabber.org.uk/29636367621392137289661477: yes 
+(01:49:13 PM) pawal@iis.se: very good
+(01:49:17 PM) sandoche@jabber.org.uk/29636367621392137289661477: but ur feedback does not seem to represent that view
+(01:49:53 PM) pawal@iis.se: 2. A SOA query is sent to each IP address of each name server found in
+   step 1, to port 53 using UDP.
+3. If no answer is received from any query in step 2, this test case fails.
+
+each IP address would be correct, wouldn't it?
+(01:51:23 PM) sandoche@jabber.org.uk/29636367621392137289661477: @Outcome : (Sandoche) If there is a response from the retrieved nameservers and its associated IP addresses within the threshhold period, then the test succeeds
+
+(01:51:53 PM) sandoche@jabber.org.uk/29636367621392137289661477: @Outcome:(Patrik) If there is any name server that fails to answer queries over port 53 using UDP, this test case fails.
+
+(01:52:41 PM) sandoche@jabber.org.uk/29636367621392137289661477: IF a nameserver has mutliple address
+(01:52:42 PM) pawal@iis.se: Ah, the confusion is the use of the term "name server"? I think the use of that term includes all IP addresses, although it is not clear.
+(01:53:16 PM) sandoche@jabber.org.uk/29636367621392137289661477: I had a prev. feedback from Calle who asked me to specify it
+(01:53:26 PM) sandoche@jabber.org.uk/29636367621392137289661477: it means IP addresses
+(01:53:29 PM) pawal@iis.se: But the "Ordered description" is the real procedure on how to test, the outcome is the summary of what the outcome should be, and thus more generic language.
+(01:53:36 PM) pawal@iis.se: ah, ok
+(01:53:53 PM) sandoche@jabber.org.uk/29636367621392137289661477: Second clarification
+(01:54:05 PM) sandoche@jabber.org.uk/29636367621392137289661477: Your quote from github review "I suggest that we write exactly how we collect the set of name servers and **its corresponding addresses** in the ordered description of the test." If you could see from the diff, in the "ordered description of test", point (2) added by me was based on the previous quote.
+(01:54:25 PM) pawal@iis.se: you're right
+(01:54:45 PM) pawal@iis.se: it should spell it out more explicit
+(01:54:48 PM) sandoche@jabber.org.uk/29636367621392137289661477: So .. do i keep this point 
+(01:54:51 PM) sandoche@jabber.org.uk/29636367621392137289661477:  And the IP addresses corresponding to those names. The IP addresses should (or MAY?) come from glue address records for in-bailiwick nameserver names and from separate recursive queries for out-of-bailiwick nameserver names.
+
+(01:56:43 PM) pawal@iis.se: 1. collect all glue from the parent. 2. collect all glue from the child. 3 collect any resolved ip-addresses used by out-of-bailiwick names.
+(01:57:17 PM) pawal@iis.se: this method should be described in other test cases as well, should we turn it into a macro? ;)
+(01:58:41 PM) pawal@iis.se: In ns03 I use this:
+1. Find all hostnames for all the name servers used by the domain.
+   (This is all the name servers from the parent delegation, and all the
+   name servers in the apex of the zone itself.)
+
+So there are some more tests that needs this clarification.
+(01:58:58 PM) pawal@iis.se: but this one does not check all addresses.
+(01:59:47 PM) sandoche@jabber.org.uk/29636367621392137289661477: For the macro question : It will be easier. But better be explicitly stated in each test specification
+(02:00:20 PM) pawal@iis.se: Yes, so we should have the perfect description of the method now… Are you willing to write it?
+(02:01:09 PM) sandoche@jabber.org.uk/29636367621392137289661477: meaning ... you would want me to add that part in all the existing tests .. which needs this clarification.
+(02:01:42 PM) pawal@iis.se: no, just write the test for connectivity01, and then I can copy it to the specs that I have already written. (minus the IP addresses part in some cases)
+(02:01:55 PM) pawal@iis.se: "the test" = "the method"
+(02:02:02 PM) sandoche@jabber.org.uk/29636367621392137289661477: Ok
+(02:02:06 PM) pawal@iis.se: thanks!
+(02:02:17 PM) sandoche@jabber.org.uk/29636367621392137289661477: That i will do .. and thanks for your time
+
+--------------------------
+

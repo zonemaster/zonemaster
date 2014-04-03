@@ -1,0 +1,273 @@
+--- Master Test Plan.md	2014-03-24 17:04:28.699006654 +0100
++++ sandoche-master.md	2014-03-25 14:27:43.438924091 +0100
+@@ -4,7 +4,7 @@
+ Introduction
+ ------------
+ 
+-This section gives a brief introduction to the New DNSCheck.
++This section gives a brief introduction to the New DNSCheck project.
+ 
+ ### Background
+ 
+@@ -14,7 +14,7 @@
+ rewrite of these software packages, and implement the best parts of
+ both.
+ 
+-### Purpose
++### Purpose of this project
+ 
+ The purpose of the New DNSCheck is to test the quality of a DNS
+ delegation. The core of the software is all the implemented
+@@ -22,20 +22,19 @@
+ tests, and a web interface tailored for use by both basic and advanced
+ users.
+ 
+-### Goals
++### Goal of this document
+ 
+ The goal of this document is to give an overview of the requirements
+ and the test levels. Each of the requirements will be broken down into
+ a set of test procedures. The process of doing this will be done in
+-accordance with the standard IEEE 829-2008.
++accordance with the standard [IEEE 829-2008](http://en.wikipedia.org/wiki/IEEE_829).
+ 
+-### Scope
++### Scope 
+ 
+-Only the current test cases derived from the current versions of
+-DNSCheck and Zonecheck will be described as requirements. These
++For version 1.0 of this project, only the test cases derived from the current versions of DNSCheck and Zonecheck will be described as requirements. [These
+ documents will not describe the functionality of any software
+ implementing the test cases. Some test cases derived from the current
+-software will not be implemented as test cases in the New DNSCheck.
++software will not be implemented as test cases in the New DNSCheck.][Not clear what you intend to convey]
+ 
+ The [current requirements](../requirements/Test%20requirements.md)
+ documents is the base directive on what these test specifications
+@@ -50,25 +49,33 @@
+ 
+ The current implemented tests in Zonecheck are described here:
+ http://www.zonecheck.fr/features.shtml
++
+ #### Internal
+-No internal requirements.
+-#### Document hieararchy
++
++No internal references.
++
++#### Document hieararchy 
++
+ * Master Test Plan  
+-    * Basic Test Plan  
++   * Address Test Plan
+         * Test Case x
+-    * Delegation Test Plan
++   * Basic Test Plan  
+         * Test Case x
+-    * Consistency Test Plan
++   * Connectivity Test Plan
+         * Test Case x
+-    * DNSSEC Test Plan
++   * Consistency Test Plan
+         * Test Case x
+-    * Address Test Plan
++   * Delegation Test Plan
+         * Test Case x
+-    * Connectivity Test Plan
++   * DNSSEC Test Plan
+         * Test Case x
+-    * Zone Test Plan
++   * Nameserver Test Plan
+         * Test Case x
+-    * Resolver Test Plan
++   * Resolver Test Plan
++        * Test Case x
++   * Syntax Test Plan
++        * Test Case x
++   * Zone Test Plan
+         * Test Case x
+ 
+ ### System overview and key features
+@@ -76,27 +83,25 @@
+ A domain will be tested for the quality of the delegation in the DNS
+ hierarchy. Some of the high level properties that will be tested
+ include:
+-
++ * [**Address**](Address-TP/level.md) properties (IP addresses)
+  * [**Basic**](Basic-TP/level.md) (initial tests)
++ * Name server [**Connectivity**](Connectivity-TP/level.md)
++ * [**Consistency**](Consistency-TP/level.md) (all name have consistent
++   answers)
+  * [**Delegation**](Delegation-TP/level.md) properties (parent and child
+    name servers)  
+- * [**Consistency**](Consistency-TP/level.md) (all name have consistend
+-   answers)
+  * [**DNSSEC**](DNSSEC-TP/level.md) properties (algorithms, secure
+    delegation)  
+- * [**Address**](Address-TP/level.md) properties (IP addresses)  
+  * [**Name server**](Nameserver-TP/level.md) properties 
+- * Name server [**Connectivity**](Connectivity-TP/level.md)
++ * (not mandatory) [**Resolver**](Resolver-TP/level.md) properties
++ * [**Syntax**](Syntax-TP/level.md) (illegal hostnames and characters)
+  * [**Zone**](Zone-TP/level.md) properties (are data controlling the zone
+    sane)
+- * [**Syntax**](Syntax-TP/level.md) (illegal hostnames and characters)
+- * (not mandatory) [**Resolver**](Resolver-TP/level.md) properties
+ 
+-A domain can be given to the testing system and all DNS information
+-will be retrieved from the public global DNS hierarchy, or a set of
+-pre-delegation data can be given to test a domain not yet published in
+-the global DNS hierarchy. A complete set of DNS queries and answers
+-can also be given as the input to the system for repeat testing.
++Following process can be follwed to test a domain:
++ * When the input is a domain-name, the tool will retrieve all DNS information pertaining to the domain from the public global DNS hierarchy.
++ * For a domain not yet published in the global DNS hierarchy, the input provided to test the domain is a set of pre-delegation data.
++ * A complete set of DNS queries and answers can also be given as input to the system for repeat testing.
+ 
+ ### Test overview
+ 
+@@ -132,7 +137,7 @@
+ 
+ #### Resources summary
+ 
+-TODO: Briefly describe the neessary resources to run a test.
++TODO: Briefly describe the necessary resources to run a test.
+ 
+ #### Responsibilites
+ 
+@@ -145,13 +150,11 @@
+ Details of the Master Test Plan
+ -------------------------------
+ 
+-The utilization of the IEEE 829-2008 is described in this
+-chapter. There is also a mapping between the test areas and the
+-requirements.
++The utilization of the [IEEE 829-2008](http://en.wikipedia.org/wiki/IEEE_829) is described in this chapter. There is also a mapping between the test areas and the requirements.
+ 
+ ### Test processes
+ 
+-The goal of these documents is to describe the test cases and how the
++The goal of these documents are to describe the test cases and how the
+ DNS is tested. This is a part of a larger project where the goal is to
+ test the quality of the Internet. Processes for Management,
+ Acquisition, Supply, Development, Operation, and Maintenance are not
+@@ -164,16 +167,16 @@
+ testing, thus only one test level. Multiple areas have however been
+ identified within the system requirements:
+ 
++* Address
+ * Basic
+-* Delegation
++* Connectivity
+ * Consistency
++* Delegation
+ * DNSSEC
+-* Address
+ * Name server
+-* Connectivity
+-* Zone
+-* Syntax
+ * Resolver
++* Syntax
++* Zone
+ 
+ However, the separation of test levels does not necessarily mean that
+ the levels are separated in the New DNSCheck implementation. The
+@@ -276,8 +279,7 @@
+ ### System requirements
+ 
+ The initial requirements are derived from the current Zonecheck and
+-DNSCheck documentation and implementations. A basic requirement is to
+-implement all tests that Zonecheck and DNSCheck currently
++DNSCheck documentation and implementations. The requirement for version 1.0 of the project is to implement all tests that Zonecheck and DNSCheck currently
+ implements. However, there is a large overlap between the two
+ implementations, and also several test cases that are no longer
+ applicable.
+@@ -285,9 +287,9 @@
+ Currently there is no other requirements other than to implement the
+ test cases from the current implementations.
+ 
+-TODO: do we need a separate requirements document?
++TODO: do we need a separate requirements document? [Comment : Yes]
+ 
+-#### DNSCheck
++#### DNSCheck [Comment : Except for RFC the below two subsections are repeat of the "References" section above. Shoykd try to merge]
+ 
+ These are the current documented test cases from DNSCheck:  
+ https://github.com/dotse/dnscheck/wiki/Tests  
+@@ -332,23 +334,29 @@
+ when we use them in the context of these specifications and these
+ tests. Any uncommon or special terms we use will also be defined here.
+ 
++_domain-name_ is the domain being tested. [RFC 1035](http://tools.ietf.org/html/rfc1035)
++
+ _Child Domain_ is the domain being tested.
+ 
+ _Parent Domain_ is the domain that delegates directly to the domain
+ being tested. Differently put, it is the domain whose nameservers
+ delivers the glue records for the child domain.
+ 
++_Glue Record_  A glue record is an A or AAAA (address) RR that specifies the address of the server.  Glue records are only needed in the server delegating the domain, not in the domain itself. [RFC 1033](http://tools.ietf.org/html/rfc1033)
++
+ _Glue Name Records_ are defined as all NS, A and AAAA records
+ pertaining to the child domain that are delivered by the nameservers
+-for the parent domain.
++for the parent domain. [Comment : Reference to an RFC]
++
++_Glue Address Records_ are all glue records of type A or AAAA. [Comment : Reference to an RFC]
+ 
+-_Glue Address Records_ are all glue records of type A or AAAA.
++_In bailiwick_ Bailiwick is the scope of authority of any particular domain. If the name servers for a child domain has the same domain hierarchy as that of the domain being queried, then it is called as in-bailiwick [Comment : need to rephrase] 
+ 
+-_In bailiwick_ TODO
++_Out of bailiwick_ If the name servers for the child domain has a different domain hierarchy as that of the domain being queried, then it is called out-of-bailiwick
+ 
+-_Out of bailiwick_ TODO
++[Comment] : Shouldn't it be another document under the title "Methods to be called in the test specifications"
+ 
+-#### How to find the parent domain
++#### Method 1 : How to find the parent domain
+ 
+ A recursive SOA-record lookup for the child domain name starting at
+ the root domain should be done, and the steps of the process recorded.
+@@ -357,20 +365,21 @@
+     directly to the requested domain, including functional glue, the test
+     succeeds. The domain through which the name server was found is
+     considered the parent domain.
++ 1.a The list of name servers in the authority section are recorded
+  2. If the recursion reaches a name server that authoritatively responds
+     with NXDOMAIN for the child domain, the test succeeds. The domain
+     through which the name server was found is considered the parent domain.
++ 2.a The list of name servers in the authority section are recorded
+  3. If the recursion reaches a point where the recursion for some reason
+     cannot continue before either case 1 or 2 happens, a parent domain does
+     not exist.
+ 
+-#### Get the glue name records and glue address records from the parent
++#### Method 2: Get the glue name records [Comment:Isn't that glue records are only A and AAAA records?]  and glue address records from the parent
+ 
+ In order to obtain the delegation from the parent, this is the process
+ we use for the tests that needs this as an input parameter.
+ 
+-The list of parent name servers are sorted in alphabetic order using the
+-NS name as the first and secondarily the IP address.
++The list of parent name servers [obtained from the recorded list of method 1] are sorted in alphabetic order using the NS name as the first and secondarily the IP address.
+ 
+  1. Query the parent name servers for the NS records for the domain. If
+     the first name server does not respond, a query is sent to the next
+@@ -378,13 +387,12 @@
+  2. The NS RR set and the corresponding IP addresses are stored in a list
+     and returned.
+ 
+-#### Get the NS records  from the child zone
++#### Method 3 : Get the NS records  from the child zone
+ 
+ Some tests need to have the NS for the domain from the child zone,
+ This is the method to find these.
+ 
+- 1. A NS query for the domain is sent all name servers present in the
+-    parent zone.  (See "Get the glue name records and glue address
++ 1. A NS query for the domain is sent all name servers [Obtained from method 1] present in the  parent zone.  (See "Get the glue name records and glue address
+     records from the parent").
+  2. Return all the unique names from the answers received from the
+     query in step 1.
