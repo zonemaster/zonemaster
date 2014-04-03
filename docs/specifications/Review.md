@@ -16,6 +16,8 @@ Ext - Refers to external review <br/>
 | [NS02](Nameserver-TP/ns02.md) | No | No | 1. fail or warn? there might be necessary to test more EDNS things. EDNS should be in the answer. | 1. Ext |
 | [NS03](Nameserver-TP/ns03.md) | No | No | 1.  policy issue - fail is not an ERROR - we should have an explicit policy discussion in the Master Test Plan to explain the difference between pass and fail, with any error message levels that comes from a policy defining the error levels. This should probably also be part of the Master Test Plan or somewhere else in the
 document structure. | 1. Ext |
+| [SYNTAX01](Syntax-TP/syntax01.md) | No | No | 1. Step 2 in "Ordered description" -> IDNs <br/> 2. symbols - is this correct terminology? | 1. SBA <br/> 2. Ext |
+| [SYNTAX04](Syntax-TP/syntax04.md) | No | No | 1. generalize the validation of names (we have discussed this already) (same comment for 07 & 08)| 1. Ext |
 
 
 
