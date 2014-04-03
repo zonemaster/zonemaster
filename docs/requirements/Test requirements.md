@@ -108,27 +108,27 @@ Tests to implement from DNSCheck
 Although the list of [All DNSCheck Messages](https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages)
 is comprehensive, it is not a list of tests as such. It is a list of messages emitted by DNSCheck.
 
-|Req| DNSCheck                                                             | Level |
-|:--|:---------------------------------------------------------------------|:------|
-|R58|Legal values for the DS hash digest algorithm                         |DNSSEC|
-|R59|DS must match a DNSKEY in the designated zone                         |DNSSEC|
-|R60|Check for too many NSEC3 iterations                                   |DNSSEC|
-|R61|Check for too short or too long RRSIG lifetimes                       |DNSSEC|
-|R62|Check for invalid DNSKEY algorithms                                   |DNSSEC|
-|R63|Verify DNSSEC additional processing                                   |DNSSEC|
-|R64|If there exists DNSKEY at child, the parent should have a DS          |DNSSEC|
-|R65|RRSIG(DNSKEY) must be valid and created by a valid DNSKEY             |DNSSEC|
+|Req| DNSCheck                                                             | DNSCheck | Level |
+|:--|:---------------------------------------------------------------------|:---------|:------|
+|R58|Legal values for the DS hash digest algorithm                         |Todo      |DNSSEC|
+|R59|DS must match a DNSKEY in the designated zone                         |Todo      |DNSSEC|
+|R60|Check for too many NSEC3 iterations                                   |Todo      |DNSSEC|
+|R61|Check for too short or too long RRSIG lifetimes                       |Todo      |DNSSEC|
+|R62|Check for invalid DNSKEY algorithms                                   |Todo      |DNSSEC|
+|R63|Verify DNSSEC additional processing                                   |Todo      |DNSSEC|
+|R64|If there exists DNSKEY at child, the parent should have a DS          |Todo      |DNSSEC|
+|R65|RRSIG(DNSKEY) must be valid and created by a valid DNSKEY             |Todo      |DNSSEC|
 |R66|RRSIG(SOA) must be valid and created by a valid DNSKEY                |DNSSEC|
-|R67|There must be NS records for the zone being tested on the parent side |Basic|
-|R68|The child domain must have at least one working nameserver            |Basic|
-|R69|NS records from parent exists, but the child does not have NS but answers for A|Basic|
-|R70|Coherence of all other SOA-fields where SOA Serial is the same        |Consistency|
-|R71|Total mismatch between child and parent NS records, delegation works due to same IP|Delegation|
-|R72|Test of EDNS0 support                                                 |Name server|
-|R73|Test availability of zone transfer (AXFR)                             |Name server|
-|R74|Answer from name server came from an IP address other than expected (wrong source IP)|Name server|
-|R75|SOA serial may not be zero                                            |Delegation|
-|R76|Zone contains NSEC or NSEC3 records                                   |DNSSEC|
+|R67|There must be NS records for the zone being tested on the parent side |Todo      |Basic|
+|R68|The child domain must have at least one working nameserver            |Todo      |Basic|
+|R69|NS records from parent exists, but the child does not have NS but answers for A|Todo      |Basic|
+|R70|Coherence of all other SOA-fields where SOA Serial is the same        |Todo      |Consistency|
+|R71|Total mismatch between child and parent NS records, delegation works due to same IP|Todo      |Delegation|
+|R72|Test of EDNS0 support                                                 |Todo      |Name server|
+|R73|Test availability of zone transfer (AXFR)                             |Todo      |Name server|
+|R74|Answer from name server came from an IP address other than expected (wrong source IP)|Todo      |Name server|
+|R75|SOA serial may not be zero                                            |Todo      |Delegation|
+|R76|Zone contains NSEC or NSEC3 records                                   |Todo      |DNSSEC|
 
 Future tests
 ------------
