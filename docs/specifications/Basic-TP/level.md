@@ -14,6 +14,6 @@ There is [an example implementation of these tests]
 
 |Req| Description                                                          | Test Case |
 |:--|:---------------------------------------------------------------------|:----------|
-|R67|There must be NS records for the zone being tested on the parent side |[BASIC01](./basic01.md)|
-|R68|The child domain must have at least one working nameserver            |[BASIC02](./basic02.md)|
-|R69|NS records from parent exists, but the child does not have NS but answers for A|[BASIC03](./basic03.md)|
+|R67|There must be NS records for the zone being tested on the parent side |[BASIC01](basic01.md)|
+|R68|The child domain must have at least one working nameserver            |[BASIC02](basic02.md)|
+|R69|NS records from parent exists, but the child does not have NS but answers for A|[BASIC03](basic03.md)|
