@@ -348,55 +348,6 @@ _In bailiwick_ TODO
 
 _Out of bailiwick_ TODO
 
-#### Method 1 : How to find the parent domain
-
-A recursive SOA-record lookup for the child domain name starting at
-the root domain should be done, and the steps of the process recorded.
-
- 1. If the recursion reaches a name server that responds with a redirect
-    directly to the requested domain, including functional glue, the test
-    succeeds. The domain through which the name server was found is
-    considered the parent domain.
- 2. If the recursion reaches a name server that authoritatively responds
-    with NXDOMAIN for the child domain, the test succeeds. The domain
-    through which the name server was found is considered the parent domain.
- 3. If the recursion reaches a point where the recursion for some reason
-    cannot continue before either case 1 or 2 happens, a parent domain does
-    not exist.
-
-#### Method 2 : Get the glue name records and glue address records from the parent
-
-In order to obtain the delegation from the parent, this is the process
-we use for the tests that needs this as an input parameter.
-
-The list of parent name servers are sorted in alphabetic order using the
-NS name as the first and secondarily the IP address.
-
- 1. Query the parent name servers for the NS records for the domain. If
-    the first name server does not respond, a query is sent to the next
-    server from the list.
- 2. The NS RR set and the corresponding IP addresses are stored in a list
-    and returned.
-
-#### Method 3 : Get the NS records  from the child zone
-
-Some tests need to have the NS for the domain from the child zone,
-This is the method to find these.
-
- 1. A NS query for the domain is sent all name servers present in the
-    parent zone.  (See "Get the glue name records and glue address
-    records from the parent").
- 2. Return all the unique names from the answers received from the
-    query in step 1.
-
-#### Method 4 : Get the IP address records  from the child zone
-
-Some tests need to have the IP addresses for the NS records in the
-child zone, This is the method to find these.
-
-TODO
-
-
 
 ### Document change procedures
 
