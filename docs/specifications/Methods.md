@@ -12,16 +12,14 @@ domain through which the name server was found is considered the parent domain.
 NXDOMAIN for the child domain, the test succeeds. The domain through which the 
 name server was found is considered the parent domain.
 
-### Method 2 : Obtain the name servers authoritative for the domain from its
-parent 
+### Method 2 : Obtain the name servers authoritative for the domain from its parent 
 
 1. Obtain the parent domain as input from "Method 1" 
 2. Send a query to the parent domain asking for the list of name servers 
 authoritative for the domain that is being tested 
 3. Record the list of name servers obtained from the authority section 
 
-### Method 3 : Obtain the name servers authoritative for the domain from the
-child zone
+### Method 3 : Obtain the name servers authoritative for the domain from the child zone
 
 1. A NS query for the domain is made to all listed name servers obtained from
 "Method 2" 
