@@ -60,6 +60,8 @@ sub main {
 	my $reqs   = readRequirements($reqfile);
 	my $levels = readTCLevels($specdir);
 	my $tcHash = readTCFiles($levels);
+	print "## Report on Requirements to Test Case mapping\n\n";
+	outputResult($reqs, $tcHash);
 	
 	# TODO: output complete data set from requirements to specs in good table
 
@@ -74,7 +76,7 @@ sub readRequirements {
 	my $tests  = {}; # level->id->descr
 
 	# read file
-	print "Reading $file\n";
+	print "Reading $file\n" if $DEBUG;
 	open my $rFile, "./$file" or die "Cannot open requirements file $file: $!";
 	my @content = <$rFile>;
 	close $rFile;
@@ -84,7 +86,11 @@ sub readRequirements {
 		if ( $line =~ /^\|(R.*)\|(.*)\|(.*)\|(.*)\|$/ ) {
 			next if $1 eq 'Req';
 			print "$1 ($4): $2\n" if $DEBUG;
-			$reqs->{$1} = $2;
+			my $req  = $1;
+			my $desc = $2;
+			$req  =~ s/\s*$//; # strip whitespace at end of line
+			$desc =~ s/\s*$//; # strip whitespace at end of line
+			$reqs->{$req} = $desc;
 		}
 	}
 
@@ -104,7 +110,7 @@ sub readTCLevels {
 			my $tclevel = $_;
 			my $tcDir = "$specdir/$tclevel";
 		    print "Level $tclevel\n" if $DEBUG;
-			open my $lFile, "$tcDir/level.md" or die "cannot open $!";
+			open my $lFile, "$tcDir/level.md" or die "cannot open $tcDir/level.md: $!";
 			my @content = <$lFile>;
 			close $lFile;
 			$result->{$tclevel} = TCFileFromLevel(\@content);
@@ -134,29 +140,96 @@ sub TCFileFromLevel {
 # given the hash of Rxx and files from all Test Levels, this retrieves each TC
 sub readTCFiles {
 	my $fileinfo = shift;
+	my $result;
 	foreach my $level (keys %{$fileinfo}){
-		print "LEVEL $level\n";
+		print "LEVEL $level\n" if $DEBUG;
 		foreach my $req ( keys $fileinfo->{$level}->{'file'} ) {
 			my $files = $fileinfo->{$level}->{'file'}->{$req};
 			foreach my $file (@$files) {
+				my $tcid;   # test case id
+				my $tcdesc; # test case desc
 				print "LEVEL $level $req $file\n" if $DEBUG;
 
 				my $tcFile = "$specdir/$level/$file";
+				my @content = ();
 				open my $File, "$tcFile" or warn "cannot open $tcFile: $!";
-				my @content = <$File>;
+				@content = <$File>;
 				close $File;
 
-				# TODO: handle warnings from above
+				# TC id and TC desc only on first line of TC file:
+				if ( defined $content[0] and $content[0] =~ /^##\s*(.*)\s*\:\s*(.*)/ ) {
+					$tcid   = $1 || "missing";
+					$tcdesc = $2 || "missing";
+					print "$tcid $tcdesc\n" if $DEBUG;
+				} else {
+					$tcid = "missing";
+					$tcdesc = "missing";
+				}
 				
-				# TODO: read TC id and id text from file
+				### OLD code for keying on the level
+				# stuff the test case in the result hash
+				#if (not defined $result->{$level}->{$req}->{$tcid}) {
+				#	$result->{$level}->{$req}->{$tcid} = [];
+				#}
+				#my $tc = { 'desc' => $tcdesc, 'file' => $tcFile };
+				#push $result->{$level}->{$req}->{$tcid}, $tc;
+
+				# key on the Req
+				# stuff the test case in the result hash
+				if (not defined $result->{$level}->{$req}->{$tcid}) {
+					$result->{$req}->{$tcid} = [];
+				}
+				my $tc = { 'desc' => $tcdesc, 'file' => $tcFile, 'level' => $level };
+				push $result->{$req}->{$tcid}, $tc;
 				
-				# TODO: put all in result hash
 			}
 		}
 	}
-	# TODO: return data set
+	return $result;
 }
 
+sub outputResult {
+	my $reqs = shift;
+	my $tc = shift;
+	
+	my $oReqID;
+	my $oReqText;
+	my $oLevel;
+	my $otcID;
+	my $otcLink;
+	my $otcDesc;
+
+	print "|Req|Requirement desription|Level     |Test Case ID|Test Description|\n";
+	print "|:--|:---------------------|:---------|:-----------|:---------------|\n";
+
+	# list of all requirents
+	foreach my $req ( sort keys %{$reqs} ) {
+		$oReqID   = $req;
+		$oReqText = $reqs->{$req};
+
+		# fetch all test cases for the requirements
+		my $testcount = 0;
+		foreach my $test ( keys %{$tc->{$req}} ) {
+			$otcID = $test;
+			$testcount++;
+		}
+		# if we have a missing testcase, still output info
+		if ($testcount == 0 ) {
+			printf "|%-3s|%23s|%10s|%-10s|%17s|\n",
+					$oReqID,$oReqText,'**missing**','**missing**','**missing**';
+		} else {
+			foreach my $testInfo ( @{$tc->{$req}->{$otcID}} ) {
+				#print Dumper($testInfo);
+				$otcLink = $testInfo->{'file'};
+				$otcDesc = $testInfo->{'desc'};
+				$oLevel  = $testInfo->{'level'};
+				my $linkID = "[$otcID]($otcLink)";
+				printf "|%3s|%23s|%10s|%-10s|%17s|\n",
+						$oReqID,$oReqText,$oLevel,$linkID,$otcDesc;
+			}
+		}
+	}
+}
 
 main();
 
