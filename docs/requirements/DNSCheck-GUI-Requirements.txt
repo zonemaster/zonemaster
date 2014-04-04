@@ -1,5 +1,4 @@
-
-Requirements for the new GUI (taken from DNSCheck 1.*'s webui) for the Giraffa 2.0 project, basically this is what dnscheck has today...
+Requirements for GUI functionality (taken from DNSCheck 1.*'s) for the Giraffa project. This is the functional requirements from the current DNSCheck.
 Link to example: http://dnscheck.iis.se
 Link to code: https://github.com/dotse/dnscheck/tree/master/webui
 
