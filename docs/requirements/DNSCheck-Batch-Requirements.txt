@@ -1,0 +1,22 @@
+Requirements for batch functionality (taken from DNSCheck 1.*'s) for the Giraffa project. This is the functional requirements from the current DNSCheck.
+
+Today we have several users of batch functionality, for example:
+1. The Web interface uses the batch functionality to queue tests and to display history of test results. 
+2. The automatic support emails going out to .SE's Registrars to test and track domains as they change.
+3. To generate DNS delegation quality statistics.
+
+A batch function could be called a user of the new DNSCheck test framework with the ultimate goal of easily accessing stored test results in an efficient way for statistics or reporting purposes.
+One type of batch user: https://github.com/dotse/dnscheck/tree/master/webui
+Another type of batch user: https://github.com/dotse/dnscheck/blob/master/engine/apps/dnscheck-dispatcher
+
+Functions:
+[1.1] A batch function MUST support grouping of test results, thus traceable and unique flagged runs for as few as one but as many as millions of zones (Current DNSCheck terminology: SOURCE).
+ [1.2] The batch function MUST make sure that every single test result has a unique identifier, and the result must be retrievable using the unique identifier, timestamp or test domain (Current DNSCheck terminology: UNIQUE_ID).
+ [1.3] A batch function MUST be able to keep complete history per test run that is linked to what source generated the test as per [1.1] (Current DNSCheck terminology: HISTORY).
+ [1.4] A batch function MUST be able to prioritize test runs based on an extendable (0..n) priority number (not "high/low" or similar) (Current DNSCheck terminology: QUEUE).
+ [1.5] The batch function MUST be handle test results of up to several million tests (SCALABILITY).
+ [1.6] The batch function MUST log when a test was started, when it ended, the complete test result, what source generated the result and at what priority (TRACEABILITY).
+ [1.7] The batch function MUST support a queue system, running tests based on the level of priority as per [1.4].
+
+[ future .SE special re-delegation test ]
+[1.8] The batch function MUST be able to use information (if available) of previously used name servers for any domain being tested (HISTORY #2).
