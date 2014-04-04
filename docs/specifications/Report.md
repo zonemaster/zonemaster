@@ -1,13 +1,5 @@
-Reading docs/requirements/Test Requirements.md
-LEVEL Consistency-TP
-LEVEL Nameserver-TP
-LEVEL Zone-TP
-LEVEL Syntax-TP
-LEVEL Address-TP
-LEVEL Delegation-TP
-LEVEL DNSSEC-TP
-LEVEL Basic-TP
-LEVEL Connectivity-TP
+## Report on Requirements to Test Case mapping
+
 |Req|Requirement desription|Level     |Test Case ID|Test Description|
 |:--|:---------------------|:---------|:-----------|:---------------|
 |R22|missused '@' characters in SOA contact name| Syntax-TP|[SYNTAX05](docs/specifications/Syntax-TP/syntax05.md)|Misuse of '@' character in the SOA RNAME field|
