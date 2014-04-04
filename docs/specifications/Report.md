@@ -16,7 +16,7 @@
 |R12|nameserver addresses are all on the same subnet|Connectivity-TP|[CONNECTIVITY05](./Connectivity-TP/connectivity05.md)|Check whether all the IP addresses of the child domain's authoritative name server is part of the same subnet|
 |R13|delegation response fit in a 512 byte UDP packet|Delegation-TP|[DELEGATION03](./Delegation-TP/delegation03.md)|Test whether referral response at the authoritative section fit into a 512 byte UDP packet|
 |R14|delegation response with additional fit in a 512 byte UDP packet|Delegation-TP|[DELEGATION04](./Delegation-TP/delegation04.md)|Test whether the referrals response at the authoritative and additional section fit into 512 byte UDP packet|
-|R15|      NS record present|   missing|missing   |          missing|
+|R15|      NS record present|**missing**|**missing**|      **missing**|
 |R16|NS authoritative answer|Delegation-TP|[DELEGATION05](./Delegation-TP/delegation05.md)|Test whether there is an authoritative ANSWER for the name server|
 |R17|NS name has a valid domain/hostname syntax| Syntax-TP|[SYNTAX04](./Syntax-TP/syntax04.md)|The NS name must have a valid domain/hostname|
 |R18|     NS is not an alias|Delegation-TP|[DELEGATION06](./Delegation-TP/delegation06.md)|Test that the NS record is not pointing to a CNAME alias|
@@ -31,33 +31,33 @@
 |R27|SOA 'retry' lower than 'refresh'|   Zone-TP|[ZONE03](./Zone-TP/zone03.md)|SOA 'retry' lower than 'refresh'|
 |R28|SOA 'retry' at least 1 hour|   Zone-TP|[ZONE04](./Zone-TP/zone04.md)|SOA 'retry' at least 1 hour|
 |R29|SOA 'expire' at least 7 days|   Zone-TP|[ZONE05](./Zone-TP/zone05.md)|SOA 'expire' minimum value|
-|R30|SOA 'expire' at least 7 times 'refresh'|   missing|missing   |          missing|
+|R30|SOA 'expire' at least 7 times 'refresh'|**missing**|**missing**|      **missing**|
 |R31|SOA 'minimum' less than 1 day|   Zone-TP|[ZONE06](./Zone-TP/zone06.md)|SOA 'minimum' maximum value|
 |R32|SOA master is not an alias|   Zone-TP|[ZONE07](./Zone-TP/zone07.md)|SOA master is not an alias|
 |R33|coherence of serial number with primary nameserver|Consistency-TP|[CONSISTENCY01](./Consistency-TP/consistency01.md)|Serial number must be consistent between authoritative name servers |
 |R34|coherence of administrative contact with primary nameserver|Consistency-TP|[CONSISTENCY02](./Consistency-TP/consistency02.md)|The administrative contact must be consistent between authoritative name servers |
 |R35|coherence of master with primary nameserver|Consistency-TP|[CONSISTENCY03](./Consistency-TP/consistency03.md)|The MNAME (i.e. the primary source of data for the zone) field in the SOA RDATA must be consistent between authoritative name servers |
 |R36|coherence of SOA with primary nameserver|Consistency-TP|[CONSISTENCY04](./Consistency-TP/consistency04.md)|The RDATA fields "REFRESH", "RETRY", "EXPIRE" and "MINIMUM"  must be consistent between authoritative name servers|
-|R37|    loopback delegation|   missing|missing   |          missing|
-|R38| loopback is resolvable|   missing|missing   |          missing|
-|R39|hostmaster MX is not an alias|   missing|missing   |          missing|
+|R37|    loopback delegation|**missing**|**missing**|      **missing**|
+|R38| loopback is resolvable|**missing**|**missing**|      **missing**|
+|R39|hostmaster MX is not an alias|**missing**|**missing**|      **missing**|
 |R40|  nameserver IP reverse|Address-TP|[ADDR02](./Address-TP/addr02.md)|Reverse DNS entry exists for name server IP address|
 |R41|nameserver IP reverse matching nameserver name|Address-TP|[ADDR03](./Address-TP/addr03.md)|Reverse DNS entry matches name server name|
 |R42|check if server is really recursive|Nameserver-TP|[NS01](./Nameserver-TP/ns01.md)|A name server should not be a recursor|
 |R43|nameserver doesn't allow recursion|Nameserver-TP|[NS01](./Nameserver-TP/ns01.md)|A name server should not be a recursor|
-|R44|given primary nameserver is primary|   missing|missing   |          missing|
+|R44|given primary nameserver is primary|**missing**|**missing**|      **missing**|
 |R45|correctness of given nameserver list|Consistency-TP|[DELEGATION09](./Consistency-TP/../Delegation-TP/delegation09.md)|This test is done to verify that the NS records for the domain are same at the parent as well as at the child|
 |R46|test if server is recursive|Nameserver-TP|[NS01](./Nameserver-TP/ns01.md)|A name server should not be a recursor|
 |R47|      MX record present|   Zone-TP|[ZONE09](./Zone-TP/zone09.md)|MX record present|
-|R48|MX authoritative answer|   missing|missing   |          missing|
+|R48|MX authoritative answer|**missing**|**missing**|      **missing**|
 |R49|MX syntax is valid for an hostname| Syntax-TP|[SYNTAX08](./Syntax-TP/syntax08.md)|MX name must have a valid hostname|
 |R50|     MX is not an alias|   Zone-TP|[ZONE08](./Zone-TP/zone08.md)|MX is not an alias|
-|R51| absence of wildcard MX|   missing|missing   |          missing|
+|R51| absence of wildcard MX|**missing**|**missing**|      **missing**|
 |R52|     MX can be resolved|   Zone-TP|[ZONE09](./Zone-TP/zone09.md)|MX record present|
-|R53|behaviour against AAAA query|   missing|missing   |          missing|
+|R53|behaviour against AAAA query|**missing**|**missing**|      **missing**|
 |R54|nameservers belong all to the same AS|Connectivity-TP|[CONNECTIVITY06](./Connectivity-TP/connectivity06.md)|All IP addresses of the domain's authoritative name server should not be part of same AS|
 |R55|serial number of the form YYYYMMDDnn| Syntax-TP|[SYNTAX09](./Syntax-TP/syntax09.md)|The SOA serial number field should be in the YYYYMMDDnn format|
-|R56|And much more such as DNSSEC checks...|   missing|missing   |          missing|
+|R56|And much more such as DNSSEC checks...|**missing**|**missing**|      **missing**|
 |R58|Legal values for the DS hash digest algorithm| DNSSEC-TP|[DNSSEC01](./DNSSEC-TP/dnssec01.md)|Legal values for the DS hash digest algorithm|
 |R59|DS must match a DNSKEY in the designated zone| DNSSEC-TP|[DNSSEC02](./DNSSEC-TP/dnssec02.md)|DS must match a DNSKEY in the designated zone|
 |R60|Check for too many NSEC3 iterations| DNSSEC-TP|[DNSSEC03](./DNSSEC-TP/dnssec03.md)|Check for too many NSEC3 iterations|
