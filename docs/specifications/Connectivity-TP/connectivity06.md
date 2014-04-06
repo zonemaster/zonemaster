@@ -1,6 +1,5 @@
 ## CONNECTIVITY06: All IP addresses of the domain's authoritative name
-server should not be part of same AS
-
+should not be part of same AS
 
 ### Test case identifier
 
