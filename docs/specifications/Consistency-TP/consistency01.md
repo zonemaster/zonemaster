@@ -35,6 +35,7 @@ the domain.
 from step 2, then the test fails
 
 ### Outcome(s)
+
 All authoritative name servers must have consistent serial numbers. If the
 test does not find any inconsistency, then the test succeeds
 
