@@ -26,6 +26,7 @@ Ext - Refers to external review <br/>
 | [Address3](Address-TP/addr03.md) | No | No | 1. Same issue as addr02 | 1.PWA |
 | [Address4](Address-TP/addr04.md) | No | No | 1. More details on exactly what query is sent, and what answer is received - and its evaluation. What are the RCODEs, and what are the DNS packets contents? Cannot parse the first sentence in step 2. | 1.PWA |
 | [Address5](Address-TP/addr05.md) | No | No | 1. Missing reference | 1.PWA |
+| [Connectivity5](Connectivity-TP/connectivity05.md) | yes | No | 1. Similar to connectivity04.md | 1.SBA |
 
 
 

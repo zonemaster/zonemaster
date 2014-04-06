@@ -37,9 +37,9 @@ section (which are the glue records for the domain)
 ### Method 5 : Obtain the IP address records from the child zone
 
 1. Send an A query to all name servers obtained in "Method 3" 
-2. Record the list of IPv4 addreses in the answer section 
+2. Record the list of unique IPv4 addreses in the answer section 
 3. Send an AAAA query to all name servers obtained in "Method 3" 
-4. Record the list of IPv6 addresses in the answer section 
+4. Record the list of unique IPv6 addresses in the answer section 
 
 ### Method 6 : Obtain the SOA record from the child zone
 

@@ -1,14 +1,20 @@
-## CONNECTIVITY04: Each IP address of the domain's authoritative name server should be part of a different subnet
+## CONNECTIVITY04: Each IP address of the domain's authoritative name server
+should be part of a different subnet
 
 ### Test case identifier
 
-**CONNECTIVITY04:** Each IP addresses of the domain's authoritative name servershould be part of a different subnet
+**CONNECTIVITY04:** Each IP addresses of the domain's authoritative name
+servershould be part of a different subnet
 
 ### Objective
 
-[RFC 2182](http://tools.ietf.org/html/rfc2182), section 3.1 clearly specifies that distinct authoritative name servers for a domain should be placed in different topological and geographical locations. The goal is to minimise the likelihood of a single failure disabling all of them. 
+[RFC 2182](http://tools.ietf.org/html/rfc2182), section 3.1 clearly
+specifies that distinct authoritative name servers for a domain should be
+placed in different topological and geographical locations. The goal is to
+minimise the likelihood of a single failure disabling all of them. 
 
-The objective in this test is to check that more than one IP addresses of the domain's authoritative name servers does not belong to the same subnet
+The objective in this test is to check that more than one IP addresses of
+the domain's authoritative name servers does not belong to the same subnet
 
 ### Inputs
 
@@ -16,13 +22,16 @@ The objective in this test is to check that more than one IP addresses of the do
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Find the list of all the name servers used by the domain. This list MUST contain all name servers from the parent delegation for the domain, and all name servers in the apex of the domain's zone itself
-2. Find the IP addresses corresponding to the name servers in step1. In order to do that: <br/>
-2.1. Collect all glue records from the parent for the domain <br/>
-2.2. Collect all IP addresses of the name servers, authoritative for the domain from the domain's zone (i.e. the domain being tested) <br/>
-2.3. Collect all the IP addresses used by out-of-bailwick name servers <br/>
-3. Create a subnet list from each of the retrieved IP addresses obtained from step2, and define its range. For example, if it is IPv4 then the range is 28 and if it is IPv6, then the range is 64
-4. Check the IP address in the input with the subnet list (obtained from step3)
+1. Obtain the list of name servers from [Method2](../Methods.md) and
+[Method3](../Methods.md)
+2. Obtains the IP addresss of the name servers from [Method4](../Methods.md)
+and [Method5](../Methods.md)
+3. Create a subnet list from the retrieved IP addresses in step 2 and define
+its range. 
+3.a if IPv4, then the range is 28
+3.b if IPv6, then the range is 64 
+3.c Record the subnet list (ToDo : Add the formula)
+4. Check the IP address from step2 with the subnet list (obtained from step3)
 5. If a single IP address falls in the range of more than one subnet in the subnet list (obtained from step3), then the test fails   
 
 ### Outcome(s)
