@@ -32,11 +32,13 @@ its range.
 3.b if IPv6, then the range is 64 
 3.c Record the subnet list (ToDo : Add the formula)
 4. Check the IP address from step2 with the subnet list (obtained from step3)
-5. If a single IP address falls in the range of more than one subnet in the subnet list (obtained from step3), then the test fails   
+5. If a single IP address falls in the range of more than one subnet in the
+subnet list (obtained from step3), then the test fails   
 
 ### Outcome(s)
 
-If there is not a single IP address from the input which falls inside the range of more than one subnet, then the test succeeds
+If there is not a single IP address from the input which falls inside the
+range of more than one subnet, then the test succeeds
 
 ### Special procedural requirements
 

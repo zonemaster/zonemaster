@@ -27,8 +27,6 @@ found in step2
 4. If all queries in step 3 receive a DNS answer (bogus response are not
 checked here) then the test case succeed.
 
-[BASIC02](../Basic-TP/basic02.md)
-
 ### Outcome(s)
 
 If there is any name server that fails to answer queries over port 53 using
