@@ -1,5 +1,4 @@
-## CONNECTIVITY03: The IPv6 addresses of the authoritative name servers of
-the domain should not be part of a bogon prefix
+## CONNECTIVITY03: The IPv6 addresses of the authoritative name servers of the domain should not be part of a bogon prefix
 
 ### Test case identifier
 

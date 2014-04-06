@@ -1,12 +1,13 @@
-## CONNECTIVITY06: All IP addresses of the domain's authoritative name
-should not be part of same AS
+## CONNECTIVITY06: All IP addresses of the domain's authoritative name should not be part of same AS
 
 ### Test case identifier
 
 **CONNECTIVITY06:** All IP addresses of the domain's authoritative name
 server should not be part of same AS 
 
-### Objective [RFC 2182](http://tools.ietf.org/html/rfc2182), section 3.1
+### Objective 
+
+[RFC 2182](http://tools.ietf.org/html/rfc2182), section 3.1
 clearly specifies that distinct authoritative name servers for a child
 domain should be placed in different topological and geographical locations.
 The objective is to minimise the likelihood of a single failure disabling

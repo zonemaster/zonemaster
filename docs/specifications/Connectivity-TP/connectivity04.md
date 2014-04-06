@@ -1,5 +1,4 @@
-## CONNECTIVITY04: Each IP address of the domain's authoritative name server
-should be part of a different subnet
+## CONNECTIVITY04: Each IP address of the domain's authoritative name server should be part of a different subnet
 
 ### Test case identifier
 
