@@ -33,10 +33,8 @@ Ext - Refers to external review <br/>
 | [Delegation3](Delegation-TP/delegation03.md) | yes | yes | 1. delegation04 should be enough | 1.SBA |
 | [Delegation6](Delegation-TP/delegation06.md) | No | No | 1. 05 & 06 only relevant if it is actually a glue record? | 1.Ext |
 | [Delegation7](Delegation-TP/delegation07.md) | No | yes | 1. connectivity01 & 2 takes care of this issue | 1.SBA |
-| [Delegation9](Delegation-TP/delegation09.md) | No | No | 1. split into separate tests - it is ok for the child domain
-to have more NS records than the parent domain, but not the opposite | 1.Ext |
-| [Delegation10](Delegation-TP/delegation10.md) | No | yes | 1. is this really relevant 2014? some implementations in the
-1990s might have had problems with this | 1. Ext |
+| [Delegation9](Delegation-TP/delegation09.md) | No | No | 1. split into separate tests - it is ok for the child domain to have more NS records than the parent domain, but not the opposite | 1.Ext |
+| [Delegation10](Delegation-TP/delegation10.md) | No | yes | 1. is this really relevant 2014? some implementations in the 1990s might have had problems with this | 1. Ext |
 
 
 
