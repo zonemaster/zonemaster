@@ -13,30 +13,7 @@ Source documents
  * Policy document for Zonecheck: [tests-policy-2.html](http://www.afnic.fr/en/products-and-services/services/zonecheck/tests-policy-2.html)
  * Source document for DNSCheck: [Detailes list of all possible DNSCheck messages](https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages)
 
-
-(Zonecheck) Discarded test cases
---------------------------------
- * serial number of the form YYYYMMDDnn (see R56)
- * delegated domain is not an openrelay
- * domain of the hostmaster email is not an openrelay
- * can deliver email to 'postmaster'
- * can deliver email to hostmaster
- * domain able to receive email (delivery using MX, A, AAAA)
- * test if mail delivery possible
-
  
-(Zonecheck) To be defined
--------------------------
-
- * ICMP answer
- * root servers list present
- * root servers list identical to ICANN
- * root servers addresses identical to ICANN
- * coherence between NS and ANY records
- * coherence between SOA and ANY records
- * coherence between MX and ANY records
-
-
 Tests to implement from Zonecheck (mapped to DNSCheck)
 ------------------------------------------------------
 
@@ -49,7 +26,6 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R05|illegal symbols in domain name              | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ?     |Syntax|
 |R06|dash ('-') at start or beginning of domain name | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ? |Syntax|
 |R07|double dash in domain name                  | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME       |Syntax|
-|R08|one nameserver for the domain               | DELEGATION:TOO_FEW_NS                       |Delegation|
 |R09|at least two nameservers for the domain     | DELEGATION:TOO_FEW_NS                       |Delegation|
 |R10|identical addresses                         | DELEGATION:TOO_FEW_NS_IPV4 ?                |Delegation|
 |R11|nameserver addresses on same subnet         | __think we removed this__!?                 |Connectivity|
@@ -71,7 +47,6 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R27|SOA 'retry' lower than 'refresh'            | SOA:RETRY_VS_REFRESH                        |Zone|
 |R28|SOA 'retry' at least 1 hour                 | SOA:RETRY_OK                                |Zone|
 |R29|SOA 'expire' at least 7 days                | SOA:EXPIRE_OK                               |Zone|
-|R30|SOA 'expire' at least 7 times 'refresh'     | __not going to implement__                  |Zone|
 |R31|SOA 'minimum' less than 1 day               | SOA:MINIMUM_OK                              |Zone|
 |R32|SOA master is not an alias                  | SOA:MNAME_IS_CNAME                          |Zone|
 |R33|coherence of serial number with primary nameserver | CONSISTENCY:SOA_SERIAL_CONSISTENT    |Consistency|
@@ -80,24 +55,20 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R36|coherence of SOA with primary nameserver    | CONSISTENCY:SOA_DIGEST_CONSISTENT           |Consistency|
 |R37|loopback delegation                         | __not implemented__?                        |?|
 |R38|loopback is resolvable                      | __not implemented__?                        |?|
-|R39|hostmaster MX is not an alias               | __not going to implement__                  |N/A|
 |R40|nameserver IP reverse                       | ADDRESS:PTR_NOT_FOUND                       |Address|
 |R41|nameserver IP reverse matching nameserver name | __not implemented__?                     |Address|
 |R42|check if server is really recursive         | NAMESERVER:RECURSIVE                        |Name server|
 |R43|nameserver doesn't allow recursion          | NAMESERVER:RECURSIVE __dup__?               |Name server|
-|R44|given primary nameserver is primary         | __not going to implement__ (part of R25)    |N/A|
 |R45|correctness of given nameserver list        | CONSISTENCY:NS_SETS_OK ?                    |Consistency|
 |R46|test if server is recursive                 | NAMESERVER:RECURSIVE __dup__?               |Name server|
 |R47|MX record present                           | MAIL:ALL_MX_IN_ZONE                         |Zone|
-|R48|MX authoritative answer                     | __not going to implement__                  |Zone|
 |R49|MX syntax is valid for an hostname          | MAIL:HOST_ERROR                             |Syntax|
 |R50|MX is not an alias                          | MAIL:HOST_ERROR                             |Zone|
-|R51|absence of wildcard MX                      | __not going to implement__                  |Zone|
 |R52|MX can be resolved                          | MAIL:ALL_MX_IN_ZONE __dup__?                |Zone|
-|R53|behaviour against AAAA query                | __implicit in all other tests__             |N/A|
+|R53|behaviour against AAAA query (RFC 4074)     | __implicit in all other tests__             |Name server|
 |R54|nameservers belong all to the same AS       | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |Connectivity|
 |R55|serial number of the form YYYYMMDDnn        | New test to identify serial number scheme   |Syntax|
-|R56|And much more such as DNSSEC checks...      | __implicit in all other DNSSEC tests__      |DNSSEC|
+
 
 Comment regarding addresses in bogon prefixes: DNSCheck implements checks against invalid addresses defined in RFCs. Since all of IPv4 space has been delegated to the RIRs, that is the whole of the low-volatility bogon space. The high-voltility bogon list would require daily (or even more frequent) updates, which is not practical in a standalone library.
 
@@ -120,7 +91,7 @@ is comprehensive, it is not a list of tests as such. It is a list of messages em
 |R65|RRSIG(DNSKEY) must be valid and created by a valid DNSKEY             |Todo      |DNSSEC|
 |R66|RRSIG(SOA) must be valid and created by a valid DNSKEY                |DNSSEC|
 |R67|There must be NS records for the zone being tested on the parent side |Todo      |Basic|
-|R68|The child domain must have at least one working nameserver            |Todo      |Basic|
+|R08|The child domain must have at least one working nameserver            |Todo      |Basic|
 |R69|NS records from parent exists, but the child does not have NS but answers for A|Todo      |Basic|
 |R70|Coherence of all other SOA-fields where SOA Serial is the same        |Todo      |Consistency|
 |R71|Total mismatch between child and parent NS records, delegation works due to same IP|Todo      |Delegation|
@@ -138,6 +109,12 @@ Future tests
    [RFC 5936](https://tools.ietf.org/html/rfc5936).
  * Check for algorithm completeness (DS->DNSKEY->RRSIG) as per section 2.2 of
    [RFC 4035](http://tools.ietf.org/html/rfc4035#section-2.2).
+ * domain of the hostmaster email is not an openrelay
+ * can deliver email to 'postmaster'
+ * can deliver email to hostmaster
+ * domain able to receive email (delivery using MX, A, AAAA)
+ * test if mail delivery possible
+ * ICMP answer
 
 Requirements on writing test specifications
 -------------------------------------------
