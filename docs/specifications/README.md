@@ -1,3 +1,10 @@
+# New DNSCheck Test Specifications
+
+This is the collection of test speifications for the New DNSCheck
+project. All the details are in the [Master Test Plan]
+(MasterTestPlan.md).
+
+
 ##Background
 
 1. The tests that has to be elaborated as test specifications has been
