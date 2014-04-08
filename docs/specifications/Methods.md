@@ -1,47 +1,68 @@
-Methods 
-=======
+# Methods common to many individual Test Specifications
 
-### Method 1 : Obtain the parent domain
+This is a list of generic methods used in many test specifications. The
+test cases that makes use of any of these methods should link directly to
+this text.
 
-1. A recursive SOA-record lookup for the child domain name starting at the root
-domain should be done, and the steps of the process recorded.
-2. If the recursion reaches a name server that responds with a redirect directly 
-to the requested domain, including functional glue, the test succeeds. The 
-domain through which the name server was found is considered the parent domain.  
-3. If the recursion reaches a name server that authoritatively responds with 
-NXDOMAIN for the child domain, the test succeeds. The domain through which the 
-name server was found is considered the parent domain.
+### Method 1: Obtain the parent domain
 
-### Method 2 : Obtain the name servers authoritative for the domain from its parent 
+This metod tries to obain the parent domain from the domain used as input
+to this method.
 
-1. Obtain the parent domain as input from "Method 1" 
-2. Send a query to the parent domain asking for the list of name servers 
-authoritative for the domain that is being tested 
+1. A recursive SOA-record lookup for the child domain name starting at the
+   root domain should be done, and the steps of the process recorded.
+2. If the recursion reaches a name server that responds with a redirect
+   directly to the requested domain, including functional glue, the test
+   succeeds. The domain through which the name server was found is
+   considered the parent domain.  
+3. If the recursion reaches a name server that authoritatively responds
+   with NXDOMAIN for the child domain, the test succeeds. The domain through
+   which the name server was found is considered the parent domain.
+
+### Method 2: Obtain name servers from parent
+
+This method tries to obtain the authoritative name servers from the
+delegation of the parent domain.
+
+1. Obtain the parent domain as input from Method 1.
+2. Send a query to the parent domain asking for the list of name servers
+   authoritative for the domain that is being tested 
 3. Record the list of name servers obtained from the authority section 
 
-### Method 3 : Obtain the name servers authoritative for the domain from the child zone
+### Method 3: Obtain name servers from child
 
-1. A NS query for the domain is made to all listed name servers obtained from
-"Method 2" 
+Just as in Method 2, this method tries to obtain the name servers configured
+for the child zone from the child domain itself.
+
+1. A NS query for the domain is made to all listed name servers obtained
+   from Method 2. 
 2. Record all the unique names from the answers received from the query in 
-step 1
+   step 1.
 
-### Method 4 : Obtain the glue records for the domain from the parent
+### Method 4: Obtain glue address records from parent
 
-1. Order the result of "Method 2" in alphabetical order 
-2. Query the servers in step 1 one-by-one 
-3. Record the unique IP addresses (both A and AAAA) in the additional 
-section (which are the glue records for the domain)
+This method tries to obtain any glue address records from the delegation
+in the parent zone.
 
+1. Sort the result of Method 2 in alphabetical order.
+2. Query the servers in step 1 for A and AAAA addresses of the names.
+3. Record the unique IP addresses from the answers (both A and AAAA) in
+   the additional section, which are the glue address records for the
+   domain.
 
-### Method 5 : Obtain the IP address records from the child zone
+### Method 5: Obtain the name server address records from child
 
-1. Send an A query to all name servers obtained in "Method 3" 
-2. Record the list of unique IPv4 addreses in the answer section 
-3. Send an AAAA query to all name servers obtained in "Method 3" 
-4. Record the list of unique IPv6 addresses in the answer section 
+This method tries to obtain the IP addresses for the name servers used in
+the child zone.
 
-### Method 6 : Obtain the SOA record from the child zone
+1. Send an A query to all name servers obtained in Method 3.
+2. Record the list of unique IPv4 addreses in the answer section.
+3. Send an AAAA query to all name servers obtained in Method 3.
+4. Record the list of unique IPv6 addresses in the answer section.
+
+### Method 6: Obtain SOA from child
+
+This method tries to obtain the SOA record from the child zone.
 
 1. An SOA query is sent using the hostname of the domain 
 2. If there is a response, record the ANSWER section in the response
