@@ -1,0 +1,17 @@
+-ole=unix
+-se
+-bext=~
+-l=120
+-i=4
+-ci=2
+-nsbl
+-cti=0
+-pt=0
+-sbt=1
+-bt=1
+-bbt=0
+-sfs
+-tso
+-csc
+-csci=20
+-nbbc

@@ -8,6 +8,15 @@ use Giraffa;
 
 use overload '""' => \&string;
 
+our %numeric = (
+    DEBUG => 0,
+    INFO => 1,
+    NOTICE => 2,
+    WARNING => 3,
+    ERROR => 4,
+    CRITICAL => 5,
+);
+
 our $start_time;
 
 INIT {
@@ -53,13 +62,30 @@ sub _build_module {
 
 sub _build_level {
     my ( $self ) = @_;
+    my $string;
 
     if ( Giraffa->config->policy->{ $self->module }{ $self->tag } ) {
-        return Giraffa->config->policy->{ $self->module }{ $self->tag };
+        $string = uc Giraffa->config->policy->{ $self->module }{ $self->tag };
     }
     else {
-        return 'DEBUG';
+        $string = 'DEBUG';
     }
+
+    if (defined $numeric{$string}) {
+        return $string;
+    } else {
+        die "Unknown level string: $string";
+    }
+}
+
+sub numeric_level {
+    my ( $self ) = @_;
+
+    return $numeric{$self->level};
+}
+
+sub levels {
+    return %numeric;
 }
 
 sub string {
