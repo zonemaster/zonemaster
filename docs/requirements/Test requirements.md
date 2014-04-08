@@ -115,6 +115,7 @@ Future tests
  * domain able to receive email (delivery using MX, A, AAAA)
  * test if mail delivery possible
  * ICMP answer
+ * Test for referral to root (possible DDoS vector for authoritative name servers)
 
 Requirements on writing test specifications
 -------------------------------------------
