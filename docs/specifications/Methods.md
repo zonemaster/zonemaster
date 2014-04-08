@@ -59,12 +59,3 @@ the child zone.
 2. Record the list of unique IPv4 addreses in the answer section.
 3. Send an AAAA query to all name servers obtained in Method 3.
 4. Record the list of unique IPv6 addresses in the answer section.
-
-### Method 6: Obtain SOA from child
-
-This method tries to obtain the SOA record from the child zone.
-
-1. An SOA query is sent using the hostname of the domain 
-2. If there is a response, record the ANSWER section in the response
-
-
