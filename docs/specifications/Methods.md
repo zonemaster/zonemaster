@@ -1,4 +1,4 @@
-# Methods common to many individual Test Specifications
+# Methods common to Test Specifications
 
 This is a list of generic methods used in many test specifications. The
 test cases that makes use of any of these methods should link directly to
