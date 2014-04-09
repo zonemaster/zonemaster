@@ -51,6 +51,11 @@ ok( $tag{EXTRA_PROCESSING_OK}, 'EXTRA_PROCESSING_OK' );
 %tag = map { $_->tag => 1 } @res;
 ok( $tag{DNSKEY_AND_DS}, 'DNSKEY_AND_DS' );
 
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec08', $zone );
+%tag = map { $_->tag => 1 } @res;
+ok( $tag{SIGNATURE_OK}, 'SIGNATURE_OK' );
+ok( $tag{DNSKEY_SIGNED}, 'DNSKEY_SIGNED' );
+
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );
 }

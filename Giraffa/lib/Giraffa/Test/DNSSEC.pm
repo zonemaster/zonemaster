@@ -338,6 +338,36 @@ sub dnssec08 {
     my ( $self, $zone ) = @_;
     my @results;
 
+    my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1});
+    if (not $key_p) {
+        die "No response from child servers";
+    }
+    my @dnskeys = $key_p->get_records( 'DNSKEY', 'answer');
+    my @sigs    = $key_p->get_records( 'RRSIG',  'answer');
+
+    if (@dnskeys == 0 or @sigs == 0) {
+        push @results, info( NO_KEYS_OR_NO_SIGS => {});
+        return @results;
+    }
+
+    my $ok = 0;
+    foreach my $sig (@sigs) {
+        my $msg = '';
+        my $time = time();
+        if ($sig->verify_time( \@dnskeys, \@dnskeys, $time, $msg )) {
+            push @results, info( SIGNATURE_OK => { signature => $sig->keytag });
+            $ok = $sig->keytag;
+        } else {
+            push @results, info( SIGNATURE_NOT_OK => { signature => $sig->keytag, error => $msg } );
+        }
+    }
+
+    if ($ok) {
+        push @results, info( DNSKEY_SIGNED => { keytag => $ok} );
+    } else {
+        push @results, info( DNSKEY_NOT_SIGNED => { } );
+    }
+
     return @results;
 }
 
