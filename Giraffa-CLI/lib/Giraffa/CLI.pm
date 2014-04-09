@@ -14,8 +14,15 @@ use Giraffa::Translator;
 
 our %numeric = Giraffa::Logger::Entry->levels;
 
-has 'level' => ( is => 'ro', isa => 'Str', required => 0, default => 'NOTICE' );
-has 'lang' => ( is => 'ro', isa => 'Str', required => 0, default => 'tech' );
+has 'level' => (
+    is            => 'ro',
+    isa           => 'Str',
+    required      => 0,
+    default       => 'NOTICE',
+    documentation => 'The minimum severity level to display'
+);
+has 'lang' =>
+  ( is => 'ro', isa => 'Str', required => 0, default => 'tech', documentation => 'The language to show messages in' );
 
 sub run {
     my ( $self ) = @_;
@@ -26,7 +33,17 @@ sub run {
     }
 
     my $translator;
-    $translator = Giraffa::Translator->new({ lang => $self->lang }) unless $self->lang eq 'raw';
+    $translator = Giraffa::Translator->new( { lang => $self->lang } ) unless $self->lang eq 'raw';
+    eval { $translator->data }; # Provoke lazy loading of translation data
+    if ( $@ ) {
+        if ( $@ =~ /Cannot read translation file/ ) {
+            say "Cannot find a translation for language " . $self->lang . ".";
+            exit( 1 );
+        }
+        else {
+            die "Oops: $@";
+        }
+    }
 
     Giraffa->logger->callback(
         sub {
@@ -34,9 +51,10 @@ sub run {
 
             return if $numeric{ uc $entry->level } < $numeric{ uc $self->level };
 
-            if ($translator) {
-                say $translator->translate($entry);
-            } else {
+            if ( $translator ) {
+                say $translator->translate( $entry );
+            }
+            else {
                 say "$entry";
             }
         }
@@ -44,6 +62,6 @@ sub run {
     Giraffa->test_zone( $domain );
 
     return;
-}
+} ## end sub run
 
 1;
