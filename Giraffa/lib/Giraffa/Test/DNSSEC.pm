@@ -25,6 +25,11 @@ sub all {
     push @results, $class->dnssec03( $zone );
     push @results, $class->dnssec04( $zone );
     push @results, $class->dnssec05( $zone );
+    push @results, $class->dnssec06( $zone );
+    push @results, $class->dnssec07( $zone );
+    push @results, $class->dnssec08( $zone );
+    push @results, $class->dnssec09( $zone );
+    push @results, $class->dnssec10( $zone );
 
     return @results;
 }
@@ -43,6 +48,11 @@ sub metadata {
         dnssec03 => [qw( NO_NSEC3PARAM MANY_ITERATIONS TOO_MANY_ITERATIONS ITERATIONS_OK  )],
         dnssec04 => [qw( DURATION_SHORT DURATION_LONG DURATION_OK )],
         dnssec05 => [qw( ALGORITHM_DEPRECATED ALGORITHM_RESERVED ALGORITHM_UNASSIGNED ALGORITHM_OK )],
+        dnssec06 => [qw()],
+        dnssec07 => [qw()],
+        dnssec08 => [qw()],
+        dnssec09 => [qw()],
+        dnssec10 => [qw()],
     };
 }
 
@@ -60,7 +70,7 @@ sub dnssec01 {
 
     my %type = ( 1 => 'SHA-1', 2 => 'SHA-256', 3 => 'GOST R 34.11-94', 4 => 'SHA-384' );
 
-    my $ds_p = $zone->parent->query_one( $zone->name, 'DS' );
+    my $ds_p = $zone->parent->query_one( $zone->name, 'DS', { dnssec => 1 } );
     die "No response from parent nameservers" if not $ds_p;
     my @ds = $ds_p->get_records( 'DS', 'answer' );
 
@@ -85,7 +95,7 @@ sub dnssec02 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    my $ds_p = $zone->parent->query_one( $zone->name, 'DS' );
+    my $ds_p = $zone->parent->query_one( $zone->name, 'DS', { dnssec => 1 } );
     die "No response from parent nameservers" if not $ds_p;
     my @ds = $ds_p->get_records( 'DS', 'answer' );
 
@@ -93,7 +103,7 @@ sub dnssec02 {
         push @results, info( NO_DS => { zone => '' . $zone->name, from => $ds_p->answerfrom } );
     }
     else {
-        my $dnskey_p = $zone->query_one( $zone->name, 'DNSKEY' );
+        my $dnskey_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
         die "No response from child nameservers" if not $dnskey_p;
         my %dnskey = map { $_->keytag => $_ } $dnskey_p->get_records( 'DNSKEY', 'answer' );
         my $match_found = 0;
@@ -133,11 +143,11 @@ sub dnssec03 {
     my ( $self, $zone ) = @_;
     my @results;
 
-    my $param_p = $zone->query_one( $zone->name, 'NSEC3PARAM' );
+    my $param_p = $zone->query_one( $zone->name, 'NSEC3PARAM', { dnssec => 1 } );
     die "No response from child zone nameservers" if not $param_p;
     my @nsec3params = $param_p->get_records( 'NSEC3PARAM', 'answer' );
 
-    my $dk_p = $zone->query_one( $zone->name, 'DNSKEY' );
+    my $dk_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
     die "No response from child zone nameservers" if not $dk_p;
     my @dnskey = $dk_p->get_records( 'DNSKEY', 'answer' );
     my $min_len = min map { $_->keysize } @dnskey;
@@ -243,7 +253,7 @@ sub dnssec05 {
     my ( $self, $zone ) = @_;
     my @results;
 
-    my $key_p = $zone->query_one( $zone->name, 'DNSKEY' );
+    my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
     if ( not $key_p ) {
         die "No response from child nameservers";
     }
@@ -274,6 +284,41 @@ sub dnssec05 {
 
     return @results;
 } ## end sub dnssec05
+
+sub dnssec06 {
+    my ( $self, $zone ) = @_;
+    my @results;
+
+    return @results;
+}
+
+sub dnssec07 {
+    my ( $self, $zone ) = @_;
+    my @results;
+
+    return @results;
+}
+
+sub dnssec08 {
+    my ( $self, $zone ) = @_;
+    my @results;
+
+    return @results;
+}
+
+sub dnssec09 {
+    my ( $self, $zone ) = @_;
+    my @results;
+
+    return @results;
+}
+
+sub dnssec10 {
+    my ( $self, $zone ) = @_;
+    my @results;
+
+    return @results;
+}
 
 1;
 
