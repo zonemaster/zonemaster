@@ -355,10 +355,10 @@ sub dnssec08 {
         my $msg = '';
         my $time = time();
         if ($sig->verify_time( \@dnskeys, \@dnskeys, $time, $msg )) {
-            push @results, info( SIGNATURE_OK => { signature => $sig->keytag });
+            push @results, info( DNSKEY_SIGNATURE_OK => { signature => $sig->keytag });
             $ok = $sig->keytag;
         } else {
-            push @results, info( SIGNATURE_NOT_OK => { signature => $sig->keytag, error => $msg } );
+            push @results, info( DNSKEY_SIGNATURE_NOT_OK => { signature => $sig->keytag, error => $msg } );
         }
     }
 
@@ -374,6 +374,42 @@ sub dnssec08 {
 sub dnssec09 {
     my ( $self, $zone ) = @_;
     my @results;
+
+    my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1});
+    if (not $key_p) {
+        die "No response from child servers for DNSKEY";
+    }
+    my @dnskeys = $key_p->get_records( 'DNSKEY', 'answer');
+
+    my $soa_p = $zone->query_one( $zone->name, 'SOA', { dnssec => 1 } );
+    if (not $soa_p) {
+        die "No response from child servers for SOA";
+    }
+    my @soa  = $soa_p->get_records( 'SOA', 'answer' );
+    my @sigs = $soa_p->get_records( 'RRSIG',  'answer');
+
+    if (@dnskeys == 0 or @sigs == 0 or @soa == 0) {
+        push @results, info( NO_KEYS_OR_NO_SIGS_OR_NO_SOA => {});
+        return @results;
+    }
+
+    my $ok = 0;
+    foreach my $sig (@sigs) {
+        my $msg = '';
+        my $time = time();
+        if ($sig->verify_time( \@soa, \@dnskeys, $time, $msg )) {
+            push @results, info( SOA_SIGNATURE_OK => { signature => $sig->keytag });
+            $ok = $sig->keytag;
+        } else {
+            push @results, info( SOA_SIGNATURE_NOT_OK => { signature => $sig->keytag, error => $msg } );
+        }
+    }
+
+    if ($ok) {
+        push @results, info( SOA_SIGNED => { keytag => $ok} );
+    } else {
+        push @results, info( SOA_NOT_SIGNED => { } );
+    }
 
     return @results;
 }
