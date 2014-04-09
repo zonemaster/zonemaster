@@ -309,6 +309,28 @@ sub dnssec07 {
     my ( $self, $zone ) = @_;
     my @results;
 
+    my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 });
+    if ( not $key_p ) {
+        die "No response from child nameservers";
+    }
+    my ( $dnskey ) = $key_p->get_records( 'DNSKEY', 'answer' );
+
+    my $ds_p = $zone->parent->query_one( $zone->name, 'DS', { dnssec => 1});
+    if ( not $ds_p ) {
+        die "No response from parent nameservers";
+    }
+    my ( $ds ) = $ds_p->get_records( 'DS', 'answer');
+
+    if ($dnskey and not $ds) {
+        push @results, info( DNSKEY_BUT_NOT_DS => { child => $key_p->answerfrom, parent => $ds_p->answerfrom } );
+    } elsif ($dnskey and $ds) {
+        push @results, info( DNSKEY_AND_DS => { child => $key_p->answerfrom, parent => $ds_p->answerfrom } );
+    } elsif (not $dnskey and $ds) {
+        push @results, info( DS_BUT_NOT_DNSKEY => { child => $key_p->answerfrom, parent => $ds_p->answerfrom } );
+    } else {
+        push @results, info( NEITHER_DNSKEY_NOR_DS => { child => $key_p->answerfrom, parent => $ds_p->answerfrom } );
+    }
+
     return @results;
 }
 

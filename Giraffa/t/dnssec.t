@@ -45,7 +45,11 @@ ok( $tag{ALGORITHM_OK}, 'ALGORITHM_OK' );
 
 @res = Giraffa->test_method( 'DNSSEC', 'dnssec06', $zone );
 %tag = map { $_->tag => 1 } @res;
-ok( $tag{EXTRA_PROCESSING}, 'EXTRA_PROCESSING' );
+ok( $tag{EXTRA_PROCESSING_OK}, 'EXTRA_PROCESSING_OK' );
+
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec07', $zone );
+%tag = map { $_->tag => 1 } @res;
+ok( $tag{DNSKEY_AND_DS}, 'DNSKEY_AND_DS' );
 
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );
