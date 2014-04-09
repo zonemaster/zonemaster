@@ -224,8 +224,8 @@ sub outputResult {
 				$otcDesc = $testInfo->{'desc'};
 				$oLevel  = $testInfo->{'level'};
 				my $linkID = "[$otcID]($otcLink)";
-				printf "|%3s|%23s|%10s|%-10s|%17s|\n",
-						$oReqID,$oReqText,$oLevel,$linkID,$otcDesc;
+				printf "|%3s|%23s|[%10s](%s/level.md)|%-10s|%17s|\n",
+						$oReqID,$oReqText,$oLevel,$oLevel,$linkID,$otcDesc;
 			}
 		}
 	}
