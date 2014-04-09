@@ -48,7 +48,7 @@ sub metadata {
         dnssec03 => [qw( NO_NSEC3PARAM MANY_ITERATIONS TOO_MANY_ITERATIONS ITERATIONS_OK  )],
         dnssec04 => [qw( DURATION_SHORT DURATION_LONG DURATION_OK )],
         dnssec05 => [qw( ALGORITHM_DEPRECATED ALGORITHM_RESERVED ALGORITHM_UNASSIGNED ALGORITHM_OK )],
-        dnssec06 => [qw()],
+        dnssec06 => [qw( EXTRA_PROCESSING_OK EXTRA_PROCESSING_BROKEN )],
         dnssec07 => [qw()],
         dnssec08 => [qw()],
         dnssec09 => [qw()],
@@ -288,6 +288,19 @@ sub dnssec05 {
 sub dnssec06 {
     my ( $self, $zone ) = @_;
     my @results;
+
+    my $key_aref = $zone->query_all( $zone->name, 'DNSKEY', { dnssec => 1 });
+    foreach my $key_p (@$key_aref) {
+        next if not $key_p;
+
+        my @keys = $key_p->get_records('DNSKEY', 'answer');
+        my @sigs = $key_p->get_records('RRSIG', 'answer');
+        if (@sigs > 0 and @keys > 0) {
+            push @results, info( EXTRA_PROCESSING_OK => { server => $key_p->answerfrom, keys => scalar(@keys), sigs => scalar(@sigs) });
+        } else {
+            push @results, info( EXTRA_PROCESSING_BROKEN => { server => $key_p->answerfrom, keys => scalar(@keys), sigs => scalar(@sigs) });
+        }
+    }
 
     return @results;
 }

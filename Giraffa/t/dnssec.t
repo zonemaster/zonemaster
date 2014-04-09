@@ -43,6 +43,10 @@ ok( $tag{DURATION_OK}, 'DURATION_OK' );
 %tag = map { $_->tag => 1 } @res;
 ok( $tag{ALGORITHM_OK}, 'ALGORITHM_OK' );
 
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec06', $zone );
+%tag = map { $_->tag => 1 } @res;
+ok( $tag{EXTRA_PROCESSING}, 'EXTRA_PROCESSING' );
+
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );
 }
