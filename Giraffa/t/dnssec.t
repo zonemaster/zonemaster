@@ -61,6 +61,16 @@ ok( $tag{DNSKEY_SIGNED}, 'DNSKEY_SIGNED' );
 ok( $tag{SOA_SIGNATURE_OK}, 'SOA_SIGNATURE_OK' );
 ok( $tag{SOA_SIGNED}, 'SOA_SIGNED' );
 
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec10', $zone );
+%tag = map { $_->tag => 1 } @res;
+ok( $tag{HAS_NSEC}, 'HAS_NSEC' );
+ok( $tag{NSEC_SIGNED}, 'NSEC_SIGNED' );
+
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec10', $zone3 );
+%tag = map { $_->tag => 1 } @res;
+ok( $tag{HAS_NSEC3}, 'HAS_NSEC3' );
+ok( $tag{NSEC3_SIGNED}, 'NSEC3_SIGNED' );
+
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );
 }
