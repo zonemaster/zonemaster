@@ -560,6 +560,26 @@ Checks the durations of the signatures for the DNSKEY and SOA RRsets.
 
 Check DNSKEY algorithms.
 
+=item dnssec06($zone)
+
+Check for DNSSEC extra processing at child nameservers.
+
+=item dnssec07($zone)
+
+Check that both DS and DNSKEY are present.
+
+=item dnssec08($zone)
+
+Check that the DNSKEY RRset is signed.
+
+=item dnssec09($zone)
+
+Check that the SOA RRset is signed.
+
+=item dnssec10($zone)
+
+Check for the presence of either NSEC or NSEC3, with proper coverage and signatures.
+
 =back
 
 =cut
