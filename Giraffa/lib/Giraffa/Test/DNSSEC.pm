@@ -49,12 +49,16 @@ sub metadata {
         dnssec04 => [qw( DURATION_SHORT DURATION_LONG DURATION_OK )],
         dnssec05 => [qw( ALGORITHM_DEPRECATED ALGORITHM_RESERVED ALGORITHM_UNASSIGNED ALGORITHM_OK )],
         dnssec06 => [qw( EXTRA_PROCESSING_OK EXTRA_PROCESSING_BROKEN )],
-        dnssec07 => [qw()],
-        dnssec08 => [qw()],
-        dnssec09 => [qw()],
-        dnssec10 => [qw()],
+        dnssec07 => [qw( DNSKEY_BUT_NOT_DS DNSKEY_AND_DS NEITHER_DNSKEY_NOR_DS DS_BUT_NOT_DNSKEY )],
+        dnssec08 =>
+          [qw( DNSKEY_SIGNATURE_OK DNSKEY_SIGNATURE_NOT_OK DNSKEY_SIGNED DNSKEY_NOT_SIGNED NO_KEYS_OR_NO_SIGS )],
+        dnssec09 =>
+          [qw( NO_KEYS_OR_NO_SIGS_OR_NO_SOA SOA_SIGNATURE_OK SOA_SIGNATURE_NOT_OK SOA_SIGNED SOA_NOT_SIGNED )],
+        dnssec10 => [
+            qw( INVALID_NAME_FOUND INVALID_NAME_RCODE NSEC_COVERS NSEC_COVERS_NOT NSEC_SIG_VERIFY_ERROR NSEC_SIGNED NSEC_NOT_SIGNED HAS_NSEC NSEC3_COVERS NSEC3_COVERS_NOT NSE3C_SIG_VERIFY_ERROR NSEC3_SIGNED NSEC3_NOT_SIGNED HAS_NSEC3 )
+        ],
     };
-}
+} ## end sub metadata
 
 sub version {
     return "$Giraffa::Test::DNSSEC::VERSION";
@@ -454,17 +458,17 @@ sub dnssec10 {
 
     my @nsec = $test_p->get_records( 'NSEC', 'authority' );
     if ( @nsec ) {
-        push @results, info( HAS_NSEC => { } );
+        push @results, info( HAS_NSEC => {} );
         foreach my $nsec ( @nsec ) {
-            push @results, info( CHECKING_NSEC => { name => $nsec->name });
 
-            if ($nsec->covers($name)) {
+            if ( $nsec->covers( $name ) ) {
                 push @results, info( NSEC_COVERS => { name => $name } );
-            } else {
+            }
+            else {
                 push @results, info( NSEC_COVERS_NOT => { name => $name } );
             }
 
-            my @sigs = grep {$_->typecovered eq 'NSEC'} $test_p->get_records_for_name( 'RRSIG', $nsec->name );
+            my @sigs = grep { $_->typecovered eq 'NSEC' } $test_p->get_records_for_name( 'RRSIG', $nsec->name );
             my $ok = 0;
             foreach my $sig ( @sigs ) {
                 my $msg = '';
@@ -490,13 +494,14 @@ sub dnssec10 {
         push @results, info( HAS_NSEC3 => {} );
         foreach my $nsec3 ( @nsec3 ) {
 
-            if ($nsec3->covers($name)) {
+            if ( $nsec3->covers( $name ) ) {
                 push @results, info( NSEC3_COVERS => { name => $name } );
-            } else {
+            }
+            else {
                 push @results, info( NSEC3_COVERS_NOT => { name => $name } );
             }
 
-            my @sigs = grep {$_->typecovered eq 'NSEC3'} $test_p->get_records_for_name( 'RRSIG', $nsec3->name );
+            my @sigs = grep { $_->typecovered eq 'NSEC3' } $test_p->get_records_for_name( 'RRSIG', $nsec3->name );
             my $ok = 0;
             foreach my $sig ( @sigs ) {
                 my $msg = '';
