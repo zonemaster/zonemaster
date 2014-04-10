@@ -457,7 +457,13 @@ sub dnssec10 {
         push @results, info( HAS_NSEC => { } );
         foreach my $nsec ( @nsec ) {
             push @results, info( CHECKING_NSEC => { name => $nsec->name });
-            # FIXME: Check that it covers $name
+
+            if ($nsec->covers($name)) {
+                push @results, info( NSEC_COVERS => { name => $name } );
+            } else {
+                push @results, info( NSEC_COVERS_NOT => { name => $name } );
+            }
+
             my @sigs = grep {$_->typecovered eq 'NSEC'} $test_p->get_records_for_name( 'RRSIG', $nsec->name );
             my $ok = 0;
             foreach my $sig ( @sigs ) {
@@ -483,7 +489,13 @@ sub dnssec10 {
     if ( @nsec3 ) {
         push @results, info( HAS_NSEC3 => {} );
         foreach my $nsec3 ( @nsec3 ) {
-            # FIXME: Check that it covers $name
+
+            if ($nsec3->covers($name)) {
+                push @results, info( NSEC3_COVERS => { name => $name } );
+            } else {
+                push @results, info( NSEC3_COVERS_NOT => { name => $name } );
+            }
+
             my @sigs = grep {$_->typecovered eq 'NSEC3'} $test_p->get_records_for_name( 'RRSIG', $nsec3->name );
             my $ok = 0;
             foreach my $sig ( @sigs ) {
