@@ -25,6 +25,11 @@ sub all {
     push @results, $class->dnssec03( $zone );
     push @results, $class->dnssec04( $zone );
     push @results, $class->dnssec05( $zone );
+    push @results, $class->dnssec06( $zone );
+    push @results, $class->dnssec07( $zone );
+    push @results, $class->dnssec08( $zone );
+    push @results, $class->dnssec09( $zone );
+    push @results, $class->dnssec10( $zone );
 
     return @results;
 }
@@ -43,8 +48,17 @@ sub metadata {
         dnssec03 => [qw( NO_NSEC3PARAM MANY_ITERATIONS TOO_MANY_ITERATIONS ITERATIONS_OK  )],
         dnssec04 => [qw( DURATION_SHORT DURATION_LONG DURATION_OK )],
         dnssec05 => [qw( ALGORITHM_DEPRECATED ALGORITHM_RESERVED ALGORITHM_UNASSIGNED ALGORITHM_OK )],
+        dnssec06 => [qw( EXTRA_PROCESSING_OK EXTRA_PROCESSING_BROKEN )],
+        dnssec07 => [qw( DNSKEY_BUT_NOT_DS DNSKEY_AND_DS NEITHER_DNSKEY_NOR_DS DS_BUT_NOT_DNSKEY )],
+        dnssec08 =>
+          [qw( DNSKEY_SIGNATURE_OK DNSKEY_SIGNATURE_NOT_OK DNSKEY_SIGNED DNSKEY_NOT_SIGNED NO_KEYS_OR_NO_SIGS )],
+        dnssec09 =>
+          [qw( NO_KEYS_OR_NO_SIGS_OR_NO_SOA SOA_SIGNATURE_OK SOA_SIGNATURE_NOT_OK SOA_SIGNED SOA_NOT_SIGNED )],
+        dnssec10 => [
+            qw( INVALID_NAME_FOUND INVALID_NAME_RCODE NSEC_COVERS NSEC_COVERS_NOT NSEC_SIG_VERIFY_ERROR NSEC_SIGNED NSEC_NOT_SIGNED HAS_NSEC NSEC3_COVERS NSEC3_COVERS_NOT NSE3C_SIG_VERIFY_ERROR NSEC3_SIGNED NSEC3_NOT_SIGNED HAS_NSEC3 )
+        ],
     };
-}
+} ## end sub metadata
 
 sub version {
     return "$Giraffa::Test::DNSSEC::VERSION";
@@ -60,7 +74,7 @@ sub dnssec01 {
 
     my %type = ( 1 => 'SHA-1', 2 => 'SHA-256', 3 => 'GOST R 34.11-94', 4 => 'SHA-384' );
 
-    my $ds_p = $zone->parent->query_one( $zone->name, 'DS' );
+    my $ds_p = $zone->parent->query_one( $zone->name, 'DS', { dnssec => 1 } );
     die "No response from parent nameservers" if not $ds_p;
     my @ds = $ds_p->get_records( 'DS', 'answer' );
 
@@ -85,7 +99,7 @@ sub dnssec02 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    my $ds_p = $zone->parent->query_one( $zone->name, 'DS' );
+    my $ds_p = $zone->parent->query_one( $zone->name, 'DS', { dnssec => 1 } );
     die "No response from parent nameservers" if not $ds_p;
     my @ds = $ds_p->get_records( 'DS', 'answer' );
 
@@ -93,7 +107,7 @@ sub dnssec02 {
         push @results, info( NO_DS => { zone => '' . $zone->name, from => $ds_p->answerfrom } );
     }
     else {
-        my $dnskey_p = $zone->query_one( $zone->name, 'DNSKEY' );
+        my $dnskey_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
         die "No response from child nameservers" if not $dnskey_p;
         my %dnskey = map { $_->keytag => $_ } $dnskey_p->get_records( 'DNSKEY', 'answer' );
         my $match_found = 0;
@@ -133,17 +147,17 @@ sub dnssec03 {
     my ( $self, $zone ) = @_;
     my @results;
 
-    my $param_p = $zone->query_one( $zone->name, 'NSEC3PARAM' );
+    my $param_p = $zone->query_one( $zone->name, 'NSEC3PARAM', { dnssec => 1 } );
     die "No response from child zone nameservers" if not $param_p;
     my @nsec3params = $param_p->get_records( 'NSEC3PARAM', 'answer' );
 
-    my $dk_p = $zone->query_one( $zone->name, 'DNSKEY' );
+    my $dk_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
     die "No response from child zone nameservers" if not $dk_p;
     my @dnskey = $dk_p->get_records( 'DNSKEY', 'answer' );
     my $min_len = min map { $_->keysize } @dnskey;
 
     if ( @nsec3params == 0 ) {
-        push @results, info( NO_NSEC3PARAM => {} );
+        push @results, info( NO_NSEC3PARAM => { server => $param_p->answerfrom } );
     }
     else {
         foreach my $n3p ( @nsec3params ) {
@@ -243,7 +257,7 @@ sub dnssec05 {
     my ( $self, $zone ) = @_;
     my @results;
 
-    my $key_p = $zone->query_one( $zone->name, 'DNSKEY' );
+    my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
     if ( not $key_p ) {
         die "No response from child nameservers";
     }
@@ -274,6 +288,241 @@ sub dnssec05 {
 
     return @results;
 } ## end sub dnssec05
+
+sub dnssec06 {
+    my ( $self, $zone ) = @_;
+    my @results;
+
+    my $key_aref = $zone->query_all( $zone->name, 'DNSKEY', { dnssec => 1 } );
+    foreach my $key_p ( @$key_aref ) {
+        next if not $key_p;
+
+        my @keys = $key_p->get_records( 'DNSKEY', 'answer' );
+        my @sigs = $key_p->get_records( 'RRSIG',  'answer' );
+        if ( @sigs > 0 and @keys > 0 ) {
+            push @results,
+              info( EXTRA_PROCESSING_OK =>
+                  { server => $key_p->answerfrom, keys => scalar( @keys ), sigs => scalar( @sigs ) } );
+        }
+        else {
+            push @results,
+              info( EXTRA_PROCESSING_BROKEN =>
+                  { server => $key_p->answerfrom, keys => scalar( @keys ), sigs => scalar( @sigs ) } );
+        }
+    }
+
+    return @results;
+} ## end sub dnssec06
+
+sub dnssec07 {
+    my ( $self, $zone ) = @_;
+    my @results;
+
+    my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
+    if ( not $key_p ) {
+        die "No response from child nameservers";
+    }
+    my ( $dnskey ) = $key_p->get_records( 'DNSKEY', 'answer' );
+
+    my $ds_p = $zone->parent->query_one( $zone->name, 'DS', { dnssec => 1 } );
+    if ( not $ds_p ) {
+        die "No response from parent nameservers";
+    }
+    my ( $ds ) = $ds_p->get_records( 'DS', 'answer' );
+
+    if ( $dnskey and not $ds ) {
+        push @results, info( DNSKEY_BUT_NOT_DS => { child => $key_p->answerfrom, parent => $ds_p->answerfrom } );
+    }
+    elsif ( $dnskey and $ds ) {
+        push @results, info( DNSKEY_AND_DS => { child => $key_p->answerfrom, parent => $ds_p->answerfrom } );
+    }
+    elsif ( not $dnskey and $ds ) {
+        push @results, info( DS_BUT_NOT_DNSKEY => { child => $key_p->answerfrom, parent => $ds_p->answerfrom } );
+    }
+    else {
+        push @results, info( NEITHER_DNSKEY_NOR_DS => { child => $key_p->answerfrom, parent => $ds_p->answerfrom } );
+    }
+
+    return @results;
+} ## end sub dnssec07
+
+sub dnssec08 {
+    my ( $self, $zone ) = @_;
+    my @results;
+
+    my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
+    if ( not $key_p ) {
+        die "No response from child servers";
+    }
+    my @dnskeys = $key_p->get_records( 'DNSKEY', 'answer' );
+    my @sigs    = $key_p->get_records( 'RRSIG',  'answer' );
+
+    if ( @dnskeys == 0 or @sigs == 0 ) {
+        push @results, info( NO_KEYS_OR_NO_SIGS => { keys => scalar(@dnskeys), sigs => scalar(@sigs) } );
+        return @results;
+    }
+
+    my $ok = 0;
+    foreach my $sig ( @sigs ) {
+        my $msg  = '';
+        my $time = time();
+        if ( $sig->verify_time( \@dnskeys, \@dnskeys, $time, $msg ) ) {
+            push @results, info( DNSKEY_SIGNATURE_OK => { signature => $sig->keytag } );
+            $ok = $sig->keytag;
+        }
+        else {
+            push @results, info( DNSKEY_SIGNATURE_NOT_OK => { signature => $sig->keytag, error => $msg } );
+        }
+    }
+
+    if ( $ok ) {
+        push @results, info( DNSKEY_SIGNED => { keytag => $ok } );
+    }
+    else {
+        push @results, info( DNSKEY_NOT_SIGNED => {} );
+    }
+
+    return @results;
+} ## end sub dnssec08
+
+sub dnssec09 {
+    my ( $self, $zone ) = @_;
+    my @results;
+
+    my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
+    if ( not $key_p ) {
+        die "No response from child servers for DNSKEY";
+    }
+    my @dnskeys = $key_p->get_records( 'DNSKEY', 'answer' );
+
+    my $soa_p = $zone->query_one( $zone->name, 'SOA', { dnssec => 1 } );
+    if ( not $soa_p ) {
+        die "No response from child servers for SOA";
+    }
+    my @soa  = $soa_p->get_records( 'SOA',   'answer' );
+    my @sigs = $soa_p->get_records( 'RRSIG', 'answer' );
+
+    if ( @dnskeys == 0 or @sigs == 0 or @soa == 0 ) {
+        push @results, info( NO_KEYS_OR_NO_SIGS_OR_NO_SOA => { keys => scalar(@dnskeys), sigs => scalar(@sigs), soas => scalar(@soa)} );
+        return @results;
+    }
+
+    my $ok = 0;
+    foreach my $sig ( @sigs ) {
+        my $msg  = '';
+        my $time = time();
+        if ( $sig->verify_time( \@soa, \@dnskeys, $time, $msg ) ) {
+            push @results, info( SOA_SIGNATURE_OK => { signature => $sig->keytag } );
+            $ok = $sig->keytag;
+        }
+        else {
+            push @results, info( SOA_SIGNATURE_NOT_OK => { signature => $sig->keytag, error => $msg } );
+        }
+    }
+
+    if ( $ok ) {
+        push @results, info( SOA_SIGNED => { keytag => $ok } );
+    }
+    else {
+        push @results, info( SOA_NOT_SIGNED => {} );
+    }
+
+    return @results;
+} ## end sub dnssec09
+
+sub dnssec10 {
+    my ( $self, $zone ) = @_;
+    my @results;
+
+    my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
+    if ( not $key_p ) {
+        die "No response from child servers for DNSKEY";
+    }
+    my @dnskeys = $key_p->get_records( 'DNSKEY', 'answer' );
+
+    my $name = 'xx--example.' . $zone->name;
+    my $test_p = $zone->query_one( $name, 'A', { dnssec => 1 } );
+    if ( not $test_p ) {
+        die "No response from child servers for A";
+    }
+
+    if ( $test_p->rcode eq 'NOERROR' ) {
+        push @results, info( INVALID_NAME_FOUND => { name => $name } );
+        return @results;
+    }
+
+    if ( $test_p->rcode ne 'NXDOMAIN' ) {
+        push @results, info( INVALID_NAME_RCODE => { name => $name, rcode => $test_p->rcode } );
+        return @results;
+    }
+
+    my @nsec = $test_p->get_records( 'NSEC', 'authority' );
+    if ( @nsec ) {
+        push @results, info( HAS_NSEC => {} );
+        foreach my $nsec ( @nsec ) {
+
+            if ( $nsec->covers( $name ) ) {
+                push @results, info( NSEC_COVERS => { name => $name } );
+            }
+            else {
+                push @results, info( NSEC_COVERS_NOT => { name => $name } );
+            }
+
+            my @sigs = grep { $_->typecovered eq 'NSEC' } $test_p->get_records_for_name( 'RRSIG', $nsec->name );
+            my $ok = 0;
+            foreach my $sig ( @sigs ) {
+                my $msg = '';
+                if ( $sig->verify_time( [ grep { $_->name eq $sig->name } @nsec ], \@dnskeys, time(), $msg ) ) {
+                    $ok = 1;
+                }
+                else {
+                    push @results, info( NSEC_SIG_VERIFY_ERROR => { error => $msg, sig=> $sig->keytag } );
+                }
+
+                if ( $ok ) {
+                    push @results, info( NSEC_SIGNED => {} );
+                }
+                else {
+                    push @results, info( NSEC_NOT_SIGNED => {} );
+                }
+            }
+        } ## end foreach my $nsec ( @nsec )
+    } ## end if ( @nsec )
+
+    my @nsec3 = $test_p->get_records( 'NSEC3', 'authority' );
+    if ( @nsec3 ) {
+        push @results, info( HAS_NSEC3 => {} );
+        foreach my $nsec3 ( @nsec3 ) {
+
+            if ( $nsec3->covers( $name ) ) {
+                push @results, info( NSEC3_COVERS => { name => $name } );
+            }
+            else {
+                push @results, info( NSEC3_COVERS_NOT => { name => $name } );
+            }
+
+            my @sigs = grep { $_->typecovered eq 'NSEC3' } $test_p->get_records_for_name( 'RRSIG', $nsec3->name );
+            my $ok = 0;
+            foreach my $sig ( @sigs ) {
+                my $msg = '';
+                if ( $sig->verify_time( [ grep { $_->name eq $sig->name } @nsec3 ], \@dnskeys, time(), $msg ) ) {
+                    $ok = 1;
+                }
+                else {
+                    push @results, info( NSEC3_SIG_VERIFY_ERROR => { sig => $sig->keytag, error => $msg } );
+                }
+                if ( $ok ) {
+                    push @results, info( NSEC3_SIGNED => {} );
+                }
+                else {
+                    push @results, info( NSE3C_NOT_SIGNED => {} );
+                }
+            }
+        } ## end foreach my $nsec3 ( @nsec3 )
+    } ## end if ( @nsec3 )
+
+    return @results;
+} ## end sub dnssec10
 
 1;
 
@@ -327,6 +576,26 @@ Checks the durations of the signatures for the DNSKEY and SOA RRsets.
 =item dnssec05($zone)
 
 Check DNSKEY algorithms.
+
+=item dnssec06($zone)
+
+Check for DNSSEC extra processing at child nameservers.
+
+=item dnssec07($zone)
+
+Check that both DS and DNSKEY are present.
+
+=item dnssec08($zone)
+
+Check that the DNSKEY RRset is signed.
+
+=item dnssec09($zone)
+
+Check that the SOA RRset is signed.
+
+=item dnssec10($zone)
+
+Check for the presence of either NSEC or NSEC3, with proper coverage and signatures.
 
 =back
 

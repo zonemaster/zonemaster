@@ -29,6 +29,9 @@ and the test levels. Each of the requirements will be broken down into
 a set of test procedures. The process of doing this will be done in
 accordance with the standard IEEE 829-2008.
 
+The test requirements are all documented in the [Test Requirements]
+(../requirements/TestRequirements.md) document.
+
 ### Scope
 
 Only the current test cases derived from the current versions of

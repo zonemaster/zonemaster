@@ -39,7 +39,12 @@ sub run_all_for {
         ## no critic (Modules::RequireExplicitInclusion)
         foreach my $module ( map { "Giraffa::Test::$_" } __PACKAGE__->modules ) {
             info( MODULE_VERSION => { module => $module, version => $module->version } );
-            push @results, $module->all( $zone );
+            my @res = eval { $module->all( $zone ) };
+            if ($@) {
+                push @res, info( MODULE_ERROR => { msg => $@ } );
+            }
+
+            push @results, @res;
         }
     }
 
@@ -53,7 +58,11 @@ sub run_module {
 
     if ( grep { $module eq $_ } $class->modules ) {
         my $m = "Giraffa::Test::$module";
-        return $m->all( $zone );
+        my @res = eval { $m->all( $zone ) };
+        if ($@) {
+            push @res, info( MODULE_ERROR => { msg => $@ } );
+        }
+        return @res;
     }
     else {
         info( UNKOWN_MODULE => { name => $module, method => 'all' } );
@@ -69,7 +78,11 @@ sub run_one {
         my $m = "Giraffa::Test::$module";
         if ( $m->metadata->{$test} ) {
             info( MODULE_CALL => { module => $module, method => $test, version => $m->version } );
-            return $m->$test( @arguments );
+            my @res = eval { $m->$test( @arguments ) };
+            if ($@) {
+                push @res, info( MODULE_ERROR => { msg => $@ } );
+            }
+            return @res;
         }
         else {
             info( UNKNOWN_METHOD => { module => $m, method => $test } );

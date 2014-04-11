@@ -43,6 +43,36 @@ ok( $tag{DURATION_OK}, 'DURATION_OK' );
 %tag = map { $_->tag => 1 } @res;
 ok( $tag{ALGORITHM_OK}, 'ALGORITHM_OK' );
 
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec06', $zone );
+%tag = map { $_->tag => 1 } @res;
+ok( $tag{EXTRA_PROCESSING_OK}, 'EXTRA_PROCESSING_OK' );
+
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec07', $zone );
+%tag = map { $_->tag => 1 } @res;
+ok( $tag{DNSKEY_AND_DS}, 'DNSKEY_AND_DS' );
+
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec08', $zone );
+%tag = map { $_->tag => 1 } @res;
+ok( $tag{DNSKEY_SIGNATURE_OK}, 'DNSKEY_SIGNATURE_OK' );
+ok( $tag{DNSKEY_SIGNED}, 'DNSKEY_SIGNED' );
+
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec09', $zone );
+%tag = map { $_->tag => 1 } @res;
+ok( $tag{SOA_SIGNATURE_OK}, 'SOA_SIGNATURE_OK' );
+ok( $tag{SOA_SIGNED}, 'SOA_SIGNED' );
+
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec10', $zone );
+%tag = map { $_->tag => 1 } @res;
+ok( $tag{HAS_NSEC}, 'HAS_NSEC' );
+ok( $tag{NSEC_SIGNED}, 'NSEC_SIGNED' );
+ok( $tag{NSEC_COVERS}, 'NSEC_COVERS' );
+
+@res = Giraffa->test_method( 'DNSSEC', 'dnssec10', $zone3 );
+%tag = map { $_->tag => 1 } @res;
+ok( $tag{HAS_NSEC3}, 'HAS_NSEC3' );
+ok( $tag{NSEC3_SIGNED}, 'NSEC3_SIGNED' );
+ok( $tag{NSEC3_COVERS}, 'NSEC3_COVERS' );
+
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );
 }

@@ -53,8 +53,6 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R34|coherence of administrative contact with primary nameserver | CONSISTENCY:SOA_DIGEST_CONSISTENT |Consistency|
 |R35|coherence of master with primary nameserver | CONSISTENCY:NS_SETS_OK ?                    |Consistency|
 |R36|coherence of SOA with primary nameserver    | CONSISTENCY:SOA_DIGEST_CONSISTENT           |Consistency|
-|R37|loopback delegation                         | __not implemented__?                        |?|
-|R38|loopback is resolvable                      | __not implemented__?                        |?|
 |R40|nameserver IP reverse                       | ADDRESS:PTR_NOT_FOUND                       |Address|
 |R41|nameserver IP reverse matching nameserver name | __not implemented__?                     |Address|
 |R42|check if server is really recursive         | NAMESERVER:RECURSIVE                        |Name server|
@@ -115,6 +113,12 @@ Future tests
  * domain able to receive email (delivery using MX, A, AAAA)
  * test if mail delivery possible
  * ICMP answer
+ * Test for referral to root (possible DDoS vector for authoritative name servers)
+
+Discarded tests
+---------------
+ * loopback delegation (Section 4.1 of RFC 1912)
+ * loopback is resolvable (Section 4.1 of RFC 1912)
 
 Requirements on writing test specifications
 -------------------------------------------
