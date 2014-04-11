@@ -69,7 +69,7 @@ Giraffa->logger->callback(
                 and $levels{ $e->level } >= $levels{$level} )
           )
         {
-            say $trans->translate( $e );
+            say $trans->to_string( $e );
         }
     }
 );

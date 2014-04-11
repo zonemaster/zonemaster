@@ -59,7 +59,7 @@ sub _load_language {
 ### Working methods
 ###
 
-sub translate {
+sub to_string {
     my ( $self, $entry ) = @_;
 
     my $string = $self->data->{ $entry->module }{ $entry->tag };
@@ -79,7 +79,7 @@ sub translate {
     }
 
     return sprintf( "%7.2f %-7s %s", $entry->timestamp, $entry->level, $string );
-} ## end sub translate
+} ## end sub to_string
 
 1;
 
@@ -90,7 +90,7 @@ Giraffa::Translator - translation support for Giraffa
 =head1 SYNOPSIS
 
     my $trans = Giraffa::Translator->new({ lang => 'tech' });
-    say $trans->translate($entry);
+    say $trans->to_string($entry);
 
 =head1 ATTRIBUTES
 
@@ -115,9 +115,9 @@ A reference to a hash with translation data.
 
 =over
 
-=item translate($entry)
+=item to_string($entry)
 
-Takes a L<Giraffa::Logger::Entry> object as its argument and returns a translated string for the message and arguments in the entry.
+Takes a L<Giraffa::Logger::Entry> object as its argument and returns a to_stringd string for the message and arguments in the entry.
 
 =back
 

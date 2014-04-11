@@ -28,9 +28,9 @@ my $entry = Giraffa::Logger::Entry->new(
     }
 );
 is(
-    $trans->translate( $entry ),
+    $trans->to_string( $entry ),
     '   0.00 CRITICAL Nameservers for "se" provided no NS records for tested zone. RCODE given was SERVFAIL.',
-    'string translated as expected'
+    'string to_stringd as expected'
 );
 
 done_testing;
