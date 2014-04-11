@@ -77,7 +77,7 @@
          "ITERATIONS_OK" : "DEBUG",
          "MANY_ITERATIONS" : "NOTICE",
          "MATCH_FOUND" : "DEBUG",
-         "MATCH_NOT_FOUND" : "WARNING",
+         "MATCH_NOT_FOUND" : "ERROR",
          "NEITHER_DNSKEY_NOR_DS" : "DEBUG",
          "NO_DNSKEY_FOR_DS" : "WARNING",
          "NO_DS" : "INFO",

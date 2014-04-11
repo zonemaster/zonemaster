@@ -157,7 +157,7 @@ sub dnssec03 {
     my $min_len = min map { $_->keysize } @dnskey;
 
     if ( @nsec3params == 0 ) {
-        push @results, info( NO_NSEC3PARAM => {} );
+        push @results, info( NO_NSEC3PARAM => { server => $param_p->answerfrom } );
     }
     else {
         foreach my $n3p ( @nsec3params ) {
@@ -358,7 +358,7 @@ sub dnssec08 {
     my @sigs    = $key_p->get_records( 'RRSIG',  'answer' );
 
     if ( @dnskeys == 0 or @sigs == 0 ) {
-        push @results, info( NO_KEYS_OR_NO_SIGS => {} );
+        push @results, info( NO_KEYS_OR_NO_SIGS => { keys => scalar(@dnskeys), sigs => scalar(@sigs) } );
         return @results;
     }
 
@@ -403,7 +403,7 @@ sub dnssec09 {
     my @sigs = $soa_p->get_records( 'RRSIG', 'answer' );
 
     if ( @dnskeys == 0 or @sigs == 0 or @soa == 0 ) {
-        push @results, info( NO_KEYS_OR_NO_SIGS_OR_NO_SOA => {} );
+        push @results, info( NO_KEYS_OR_NO_SIGS_OR_NO_SOA => { keys => scalar(@dnskeys), sigs => scalar(@sigs), soas => scalar(@soa)} );
         return @results;
     }
 
@@ -476,7 +476,7 @@ sub dnssec10 {
                     $ok = 1;
                 }
                 else {
-                    push @results, info( NSEC_SIG_VERIFY_ERROR => { error => $msg } );
+                    push @results, info( NSEC_SIG_VERIFY_ERROR => { error => $msg, sig=> $sig->keytag } );
                 }
 
                 if ( $ok ) {
@@ -509,7 +509,7 @@ sub dnssec10 {
                     $ok = 1;
                 }
                 else {
-                    push @results, info( NSEC3_SIG_VERIFY_ERROR => { error => $msg } );
+                    push @results, info( NSEC3_SIG_VERIFY_ERROR => { sig => $sig->keytag, error => $msg } );
                 }
                 if ( $ok ) {
                     push @results, info( NSEC3_SIGNED => {} );
