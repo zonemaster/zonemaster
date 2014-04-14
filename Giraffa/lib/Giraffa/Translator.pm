@@ -67,6 +67,7 @@ sub to_string {
 
 sub translate_tag {
     my ( $self, $entry ) = @_;
+    no warnings 'uninitialized';
 
     my $string = $self->data->{ $entry->module }{ $entry->tag };
 

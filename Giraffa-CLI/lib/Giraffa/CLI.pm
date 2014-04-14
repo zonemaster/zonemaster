@@ -30,6 +30,8 @@ has 'lang' =>
 has 'time' => ( is => 'ro', isa => 'Bool', documentation => 'Print timestamp on entries.', default => 1);
 has 'show_level' => ( is => 'ro', isa => 'Bool', documentation => 'Print level on entries.', default => 1);
 
+has 'ns' => ( is => 'ro', isa => 'ArrayRef', documentation => 'A name/ip string giving a nameserver for an undelegated test.');
+
 sub run {
     my ( $self ) = @_;
     my @accumulator;
@@ -88,6 +90,9 @@ sub run {
         say '======= ======= =======';
     }
 
+    if ($self->ns and @{$self->ns} > 0) {
+        $self->add_fake_delegation($domain);
+    }
     Giraffa->test_zone( $domain );
 
     if ($self->lang eq 'json') {
@@ -96,5 +101,19 @@ sub run {
 
     return;
 } ## end sub run
+
+sub add_fake_delegation {
+    my ( $self, $domain ) = @_;
+    my %data;
+
+    foreach my $pair (@{$self->ns}) {
+        my ($name, $ip) = split('/', $pair, 2);
+        push @{$data{$name}}, $ip;
+    }
+
+    Giraffa->add_fake_delegation($domain => \%data);
+
+    return;
+}
 
 1;

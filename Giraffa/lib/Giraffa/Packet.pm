@@ -8,7 +8,7 @@ has 'packet' => (
     is       => 'ro',
     isa      => 'Net::LDNS::Packet',
     required => 1,
-    handles  => [qw(data rcode aa question answer authority additional print string answerfrom answersize unique_push)]
+    handles  => [qw(data rcode aa question answer authority additional print string answersize unique_push)]
 );
 
 sub no_such_record {
@@ -96,6 +96,14 @@ sub has_rrs_of_type_for_name {
     return ( grep { $_->name eq $name } $self->get_records( $type ) ) > 0;
 }
 
+sub answerfrom {
+    my ( $self ) = @_;
+
+    my $from = $self->packet->answerfrom // '<unknown>';
+
+    return $from;
+}
+
 sub TO_JSON {
     my ( $self ) = @_;
 
@@ -151,6 +159,10 @@ Returns all L<Net::LDNS::RR> objects for the given name in the packet.
 =item has_rrs_of_type_for_name($type, $name)
 
 Returns true if the packet holds any RRs of the specified type for the given name.
+
+=item answerfrom
+
+Wrapper for the underlying packet method, that replaces udnefined values with the string C<E<lt>unknownE<gt>>.
 
 =item TO_JSON
 
