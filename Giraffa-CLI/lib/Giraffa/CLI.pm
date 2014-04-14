@@ -83,6 +83,11 @@ sub run {
         }
     );
 
+    if ($translator) {
+        say 'Seconds Level   Message';
+        say '======= ======= =======';
+    }
+
     Giraffa->test_zone( $domain );
 
     if ($self->lang eq 'json') {
