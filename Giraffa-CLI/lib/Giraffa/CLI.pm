@@ -23,8 +23,12 @@ has 'level' => (
     default       => 'NOTICE',
     documentation => 'The minimum severity level to display'
 );
+
 has 'lang' =>
   ( is => 'ro', isa => 'Str', required => 0, default => 'tech', documentation => 'The language to show messages in. Can be tech, raw, json or any installed translation.' );
+
+has 'time' => ( is => 'ro', isa => 'Bool', documentation => 'Print timestamp on entries.', default => 1);
+has 'show_level' => ( is => 'ro', isa => 'Bool', documentation => 'Print level on entries.', default => 1);
 
 sub run {
     my ( $self ) = @_;
@@ -55,6 +59,14 @@ sub run {
             return if $numeric{ uc $entry->level } < $numeric{ uc $self->level };
 
             if ( $translator ) {
+                if ($self->time) {
+                    printf "%7.2f ", $entry->timestamp;
+                }
+
+                if ($self->show_level) {
+                    printf "%-7s ", $entry->level;
+                }
+
                 say $translator->translate_tag( $entry );
             }
             elsif ($self->lang eq 'json') {
