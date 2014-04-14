@@ -114,6 +114,8 @@ Future tests
  * test if mail delivery possible
  * ICMP answer
  * Test for referral to root (possible DDoS vector for authoritative name servers)
+ * Check to see if removed authoritative name server is still authoritative (requires
+   a new input parameter, "previous ns")
 
 Discarded tests
 ---------------
