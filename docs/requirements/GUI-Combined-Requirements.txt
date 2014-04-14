@@ -33,7 +33,7 @@ Functionality:
  [4.2] The GUI MUST create unique links for every test generated through its' interface and these links SHOULD be easy to find for the user.
  [4.3] The GUI SHOULD allow links to tests that were generated from other sources than the GUI itself but MAY not allow all available sources to be accessed.
  [4.4] The GUI MUST be designed so that it is easy to add new tests easily.
- [4.5] The GUI MUST be able to take DS- or DNSKEY record(s) as input to test DNSSEC properly (even on undelegated domains).
+ [4.5] The GUI MUST be able to take DS record(s) as input to test DNSSEC properly on undelegated domains.
 
 
 
