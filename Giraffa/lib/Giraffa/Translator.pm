@@ -62,6 +62,12 @@ sub _load_language {
 sub to_string {
     my ( $self, $entry ) = @_;
 
+    return sprintf( "%7.2f %-7s %s", $entry->timestamp, $entry->level, $self->translate_tag($entry) );
+} ## end sub to_string
+
+sub translate_tag {
+    my ( $self, $entry ) = @_;
+
     my $string = $self->data->{ $entry->module }{ $entry->tag };
 
     if ( not $string ) {
@@ -78,8 +84,8 @@ sub to_string {
         warn "Expected argument $1 not provided";
     }
 
-    return sprintf( "%7.2f %-7s %s", $entry->timestamp, $entry->level, $string );
-} ## end sub to_string
+    return $string;
+}
 
 1;
 
@@ -117,7 +123,12 @@ A reference to a hash with translation data.
 
 =item to_string($entry)
 
-Takes a L<Giraffa::Logger::Entry> object as its argument and returns a to_stringd string for the message and arguments in the entry.
+Takes a L<Giraffa::Logger::Entry> object as its argument and returns a translated string with the timestamp, level, message and arguments in the
+entry.
+
+=item translate_tag
+
+Takes a L<Giraffa::Logger::Entry> object as its argument and returns a translation of its tag and arguments.
 
 =back
 
