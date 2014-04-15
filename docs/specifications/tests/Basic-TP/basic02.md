@@ -10,17 +10,17 @@ can answer queries about the domain.
 
 ### Inputs
 
-1. A list of name server names taken from the parent domain
-2. and the IP addresses corresponding to those names.
-
-The addresses should come from glue name address records for in-bailiwick
-name server names and from separate recursive queries for out-of-bailiwick
-name server names.
+The label of the domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. An NS query for the child domain should be sent to each address.
-2. If there are no DNS valid DNS packets containing the NS answer from any
+1. Retrieve the IP addresses from the parent delegation using [Method 2]
+   (../Methods.md#method-2-obtain-name-servers-from-parent) and and [Method 4]
+   (../Methods.md##method-4-obtain-glue-address-records-from-parent). For name
+   server that are out-of-bailiwick, do separate recursive queries to retrieve
+   the IP addresses of those names.
+2. An NS query for the domain name should be sent to each address.
+3. If there are no valid DNS packets containing the NS answer from any
    of the name servers, this test case fails.
 
 ### Outcome(s)
