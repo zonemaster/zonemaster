@@ -21,7 +21,7 @@ INIT {
       grep { $_ ne 'Giraffa::Test::Basic' } useall( 'Giraffa::Test' );
 }
 
-sub log_dependency_versions {
+sub _log_dependency_versions {
     info ( DEPENDENCY_VERSION => { name => 'Net::LDNS', version => $Net::LDNS::VERSION });
     info ( DEPENDENCY_VERSION => { name => 'IO::Socket::INET6', version  => $IO::Socket::INET6::VERSION });
     info ( DEPENDENCY_VERSION => { name => 'Moose', version  => $Moose::VERSION });
@@ -48,7 +48,7 @@ sub run_all_for {
             version => Giraffa::Test::Basic->version
         }
     );
-    log_dependency_versions();
+    _log_dependency_versions();
     @results = Giraffa::Test::Basic->all( $zone );
 
     if ( Giraffa::Test::Basic->can_continue( @results ) ) {

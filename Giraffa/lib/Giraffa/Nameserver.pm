@@ -127,7 +127,9 @@ sub query {
                 }
             );
 
-            return Giraffa::Packet->new( { packet => $p } );
+            my $res = Giraffa::Packet->new( { packet => $p } );
+            Giraffa->logger->add( FAKED_RETURN => { packet => $res->string } );
+            return $res;
         } ## end if ( $name =~ m/(\.|^)\Q$fname\E$/i)
     } ## end foreach my $fname ( keys %{...})
 
@@ -136,13 +138,16 @@ sub query {
           $self->_query( $name, $type, $href );
     }
 
-    return $self->cache->data->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse};
+    my $p = $self->cache->data->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse};
+    Giraffa->logger->add( CACHED_RETURN => { packet => ($p?$p->string:'undef') } );
+    return $p;
 } ## end sub query
 
 sub add_fake_delegation {
     my ( $self, $domain, $href ) = @_;
     my %delegation;
 
+    Giraffa->logger->add( FAKE_DELEGATION => { domain => $domain, data => $href } );
     foreach my $name ( keys %$href ) {
         push @{ $delegation{authority} }, Net::LDNS::RR->new( sprintf( '%s IN NS %s', $domain, $name ) );
         foreach my $ip ( @{ $href->{$name} } ) {
@@ -196,9 +201,12 @@ sub _query {
     }
 
     if ( $res ) {
-        return Giraffa::Packet->new( { packet => $res } );
+        my $p = Giraffa::Packet->new( { packet => $res } );
+        Giraffa->logger->add( EXTERNAL_RESPONSE => { packet => $p->string });
+        return $p;
     }
     else {
+        Giraffa->logger->add( EMPTY_RETURN => {});
         return;
     }
 } ## end sub _query
@@ -227,6 +235,8 @@ sub save {
     }
 
     close $fh or die $!;
+
+    Giraffa->logger->add( SAVED_NS_CACHE => { file => $filename });
 
     return;
 }
@@ -266,6 +276,8 @@ sub restore {
         );
     }
     close $fh;
+
+    Giraffa->logger->add( RESTORED_NS_CACHE => { file => $filename });
 
     return;
 } ## end sub restore

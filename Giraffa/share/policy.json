@@ -1,4 +1,25 @@
 {
+    "SYSTEM": {
+        "NS_FETCHED": "DEBUG3",
+        "CACHE_CREATED": "DEBUG2",
+        "CACHE_FETCHED": "DEBUG2",
+        "DEPENDENCY_VERSION": "DEBUG",
+        "EXTERNAL_QUERY": "DEBUG2",
+        "IS_REDIRECT": "DEBUG2",
+        "MODULE_ERROR": "CRITICAL",
+        "MODULE_VERSION": "DEBUG",
+        "NO_SUCH_NAME": "DEBUG2",
+        "NO_SUCH_RECORD": "DEBUG2",
+        "NS_CREATED": "DEBUG2",
+        "QUERY": "DEBUG2",
+        "FAKED_RETURN": "DEBUG2",
+        "CACHED_RETURN": "DEBUG2",
+        "FAKE_DELEGATION": "DEBUG2",
+        "EXTERNAL_RESPONSE": "DEBUG3",
+        "EMPTY_RETURN": "DEBUG3",
+        "SAVED_NS_CACHE": "DEBUG2",
+        "RESTORED_NS_CACHE": "DEBUG2"
+    },
    "BASIC" : {
       "HAS_GLUE" : "INFO",
       "NO_DOMAIN" : "CRITICAL",

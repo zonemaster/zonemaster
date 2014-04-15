@@ -62,7 +62,7 @@ sub _load_language {
 sub to_string {
     my ( $self, $entry ) = @_;
 
-    return sprintf( "%7.2f %-7s %s", $entry->timestamp, $entry->level, $self->translate_tag($entry) );
+    return sprintf( "%7.2f %-9s %s", $entry->timestamp, $entry->level, $self->translate_tag($entry) );
 } ## end sub to_string
 
 sub translate_tag {

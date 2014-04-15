@@ -95,7 +95,7 @@ sub run {
                 }
 
                 if ( $self->show_level ) {
-                    printf "%-7s ", $entry->level;
+                    printf "%-9s ", $entry->level;
                 }
 
                 say $translator->translate_tag( $entry );
@@ -110,14 +110,14 @@ sub run {
                   };
             }
             else {
-                say "$entry";
+                printf "%7.2f %-9s %s\n", $entry->timestamp, $entry->level, $entry->string;
             }
         }
     );
 
     if ( $translator ) {
-        say 'Seconds Level   Message';
-        say '======= ======= =======';
+        say 'Seconds Level     Message';
+        say '======= ========= =======';
     }
 
     if ( $self->ns and @{ $self->ns } > 0 ) {

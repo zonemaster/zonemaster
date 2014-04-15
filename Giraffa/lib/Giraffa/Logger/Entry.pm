@@ -9,6 +9,8 @@ use Giraffa;
 use overload '""' => \&string;
 
 our %numeric = (
+    DEBUG3 => -2,
+    DEBUG2 => -1,
     DEBUG => 0,
     INFO => 1,
     NOTICE => 2,
@@ -99,7 +101,7 @@ sub string {
         sort keys %{ $self->args } )
       if $self->args;
 
-    return sprintf( '%7.2f %-7s %s:%s %s', $self->timestamp, $self->level, $self->module, $self->tag, $argstr );
+    return sprintf( '%s:%s %s', $self->module, $self->tag, $argstr );
 }
 
 1;
@@ -113,6 +115,16 @@ Giraffa::Logger::Entry - module for single log entries
     Giraffa->logger->add( TAG => { some => 'arguments' });
 
 There should never be a need to create a log entry object in isolation. They should always be associated with and created via a logger object.
+
+=head1 CLASS METHOD
+
+=over
+
+=item levels
+
+Returns a hash where the keys are log levels as strings and the corresponding values their numeric value.
+
+=back
 
 =head1 ATTRIBUTES
 
@@ -150,6 +162,10 @@ A partial stack trace for the call that created the entry. Used to create the mo
 =item string
 
 Simple method to generate a string representation of the log entry. Overloaded to the stringification operator.
+
+=item numeric_level
+
+Returns the log level of the entry in numeric form.
 
 =back
 
