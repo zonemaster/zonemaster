@@ -59,6 +59,20 @@ has 'ds' => (
       'A DS record in presentation format for undelegated tests (not yet implemented). Can be given multiple times.'
 );
 
+has 'save' => (
+    is            => 'ro',
+    isa           => 'Str',
+    required      => 0,
+    documentation => 'Name of a file to save DNS data to after running tests.',
+);
+
+has 'restore' => (
+    is            => 'ro',
+    isa           => 'Str',
+    required      => 0,
+    documentation => 'Name of a file to restore DNS data from before running test.',
+);
+
 sub run {
     my ( $self ) = @_;
     my @accumulator;
@@ -80,6 +94,10 @@ sub run {
         else {
             die "Oops: $@";
         }
+    }
+
+    if ( $self->restore ) {
+        Giraffa->preload_cache( $self->restore );
     }
 
     # Callback defined here so it closes over the setup above.
@@ -127,6 +145,10 @@ sub run {
 
     if ( $self->lang eq 'json' ) {
         say $json->encode( \@accumulator );
+    }
+
+    if ( $self->save ) {
+        Giraffa->save_cache( $self->save );
     }
 
     return;
