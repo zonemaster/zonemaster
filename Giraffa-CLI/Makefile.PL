@@ -27,9 +27,10 @@ build_requires (
 );
 
 requires (
-    Giraffa => 0,
+    'Giraffa' => 0,
     'MooseX::Getopt' => 0,
     'Getopt::Long::Descriptive' => 0,
+    'JSON::XS' => 0,
 );
 
 install_script 'giraffa-cli';
