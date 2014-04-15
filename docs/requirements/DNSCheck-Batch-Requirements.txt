@@ -17,6 +17,7 @@ Functions:
  [1.5] The batch function MUST be handle test results of up to several million tests (SCALABILITY).
  [1.6] The batch function MUST log when a test was started, when it ended, the complete test result, what source generated the result and at what priority (TRACEABILITY).
  [1.7] The batch function MUST support a queue system, running tests based on the level of priority as per [1.4].
+ [1.9] The batch function MUST support a configurable maximum numbers of domain tests it starts, also based on priority as per [1.4].
 
 [ future .SE special re-delegation test ]
 [1.8] The batch function MUST be able to use information (if available) of previously used name servers for any domain being tested (HISTORY #2).
