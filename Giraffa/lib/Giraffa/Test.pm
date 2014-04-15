@@ -8,6 +8,8 @@ use Giraffa;
 use Giraffa::Util;
 use Giraffa::Test::Basic;
 
+use IO::Socket::INET6; # Lazy-loads, so make sure it's here for the version logging
+
 use Module::Find qw[useall];
 
 my @all_test_modules;
@@ -17,6 +19,19 @@ INIT {
       grep { _policy_allowed( $_ ) }
       map { my $f = $_; $f =~ s|^Giraffa::Test::||; $f }
       grep { $_ ne 'Giraffa::Test::Basic' } useall( 'Giraffa::Test' );
+}
+
+sub log_dependency_versions {
+    info ( DEPENDENCY_VERSION => { name => 'Net::LDNS', version => $Net::LDNS::VERSION });
+    info ( DEPENDENCY_VERSION => { name => 'IO::Socket::INET6', version  => $IO::Socket::INET6::VERSION });
+    info ( DEPENDENCY_VERSION => { name => 'Moose', version  => $Moose::VERSION });
+    info ( DEPENDENCY_VERSION => { name => 'Module::Find', version  => $Module::Find::VERSION });
+    info ( DEPENDENCY_VERSION => { name => 'JSON', version  => $JSON::VERSION });
+    info ( DEPENDENCY_VERSION => { name => 'File::ShareDir', version  => $File::ShareDir::VERSION });
+    info ( DEPENDENCY_VERSION => { name => 'File::Slurp', version  => $File::Slurp::VERSION });
+    info ( DEPENDENCY_VERSION => { name => 'Net::IP', version  => $Net::IP::VERSION });
+    info ( DEPENDENCY_VERSION => { name => 'List::MoreUtils', version  => $List::MoreUtils::VERSION });
+    info ( DEPENDENCY_VERSION => { name => 'RFC::RFC822::Address', version  => $RFC::RFC822::Address::VERSION });
 }
 
 sub modules {
@@ -33,6 +48,7 @@ sub run_all_for {
             version => Giraffa::Test::Basic->version
         }
     );
+    log_dependency_versions();
     @results = Giraffa::Test::Basic->all( $zone );
 
     if ( Giraffa::Test::Basic->can_continue( @results ) ) {
