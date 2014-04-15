@@ -9,7 +9,7 @@ project. All the details are in the [Master Test Plan]
 
 1. The tests that has to be elaborated as test specifications has been
    defined as a list of [test requirements]
-   (../../requirements/Test%20requirements.md). Each test falls under a
+   (../../requirements/TestRequirements.md). Each test falls under a
    specific category.
 
 2. The document hierarchy of the test specifications could be found in
