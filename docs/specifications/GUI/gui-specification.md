@@ -5,6 +5,8 @@ The web framework must separate code from web page design. If possible, the syst
 
 No 3rd party resources should be loaded by the web client, all resources should be hosted on the same domain address as the rest of the web interface (this also makes it transport protocol independent).
 
+This specification has been created based on the requirements found in this document: [Combined-GUI-Requirements](../../requirements/GUI-Combined-Requirements.txt)
+
 **Functionality on the first page the user encounters are the following:**
 * Language selection (defined languages in v1.0 must be at least English, French and Swedish)
 * Domain name input (with "test now" button)
@@ -20,7 +22,7 @@ No 3rd party resources should be loaded by the web client, all resources should 
 **Advanced options:**
 * IPv4 only
 * IPv6 only
-* "Profile" selection (pre-defined set of tests to run)
+* "Profile" selection (pre-defined set of tests for the engine to run)
 
 *Below: mockup of simplistic, first view with advanced options out. Picture 2.*
 ![Image](./dnscheck___Home-Advanced.png?raw=true)
@@ -96,17 +98,16 @@ tests from undelegated tests.
 * Add a bonus system, stars for domains with IPv6 and DNSSEC, and other features.
 
 **API:**
-* I want to be able to list (see name of) all available engine configurations.
+* I want to be able to list (see name of) all available test profiles (See Advanced Options for definition).
 * I want to be able to send/set these advanced runtime options:
  - No IPv4
  - No IPv6
- - Choose an engine configuration
+ - Choose a test profile
 * I want to get a progress report of a test being run, in X of Y tests executed or a percentage of tests run.
 * I want to know what the current running test level is in every progress update.
 * I want to able to send name servers (name/ip) along with the domain to test for undelegated-test purposes.
 * I want to be able to configure priority of normal and undelegated runs (serverside).
 * Undelegated runs should be set at a lower priority than normal runs by default.
-* These requirements are also needed:
-	"https://github.com/dotse/new-dnscheck/blob/master/docs/requirements/DNSCheck-Batch-Requirements.txt"
+* These requirements are also needed: [Additional Requirements](../../requirements/DNSCheck-Batch-Requirements.txt)
 
 
