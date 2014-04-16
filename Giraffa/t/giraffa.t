@@ -13,4 +13,7 @@ ok($module{Delegation}, 'Delegation');
 ok($module{Syntax}, 'Syntax');
 ok($module{Connectivity}, 'Connectivity');
 
+my %methods = Giraffa->all_methods;
+ok(exists($methods{Basic}));
+
 done_testing;

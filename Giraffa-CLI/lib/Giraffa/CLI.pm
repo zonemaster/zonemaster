@@ -87,9 +87,27 @@ has 'ipv6' => (
     documentation => 'Flag to permit or deny queries being sent via IPv6.',
 );
 
+has 'list_tests' => (
+    is => 'ro',
+    isa => 'Bool',
+    default => 0,
+    documentation => 'Instead of running a test, list all available tests.',
+);
+
 sub run {
     my ( $self ) = @_;
     my @accumulator;
+
+    if ($self->list_tests) {
+        my %methods = Giraffa->all_methods;
+        foreach my $module (sort keys %methods) {
+            say $module;
+            foreach my $method (sort @{$methods{$module}}) {
+                say "\t$method";
+            }
+        }
+        exit(0);
+    }
 
     my ( $domain ) = @{ $self->extra_argv };
     if ( not $domain ) {

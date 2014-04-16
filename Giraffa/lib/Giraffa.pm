@@ -67,6 +67,21 @@ sub all_tags {
     return @res;
 }
 
+sub all_methods {
+    my ( $class ) = @_;
+    my %res;
+
+    foreach my $module ( 'Basic', Giraffa::Test->modules ) {
+        my $full = "Giraffa::Test::$module";
+        my $ref  = $full->metadata;
+        foreach my $method ( keys %$ref ) {
+            push @{$res{$module}}, $method;
+        }
+    }
+
+    return %res;
+}
+
 sub recurse {
     my ($class, $qname, $qtype, $qclass ) = @_;
     $qtype //= 'A';
@@ -143,6 +158,10 @@ Returns the global L<Giraffa::Logger> object.
 =item all_tags()
 
 Returns a list of all the tags that can be logged for all avilable test modules.
+
+=item all_methods()
+
+Returns a hash, where the keys are test module names and the values are lists with the names of the test methods in that module.
 
 =item recurse($name, $type, $class)
 
