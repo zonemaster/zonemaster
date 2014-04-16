@@ -79,6 +79,20 @@ foreach my $ns ( Giraffa::Nameserver->all_known_nameservers ) {
 
 is( scalar(keys %Giraffa::Nameserver::Cache::object_cache), 4);
 
+Giraffa->config->get->{net}{ipv4} = 0;
+Giraffa->config->get->{net}{ipv6} = 0;
+my $p5 = $nsv6->query( 'iis.se', 'SOA', { dnssec => 1 } );
+my $p6 = $nsv4->query( 'iis.se', 'SOA', { dnssec => 1 } );
+ok(!defined($p5), 'IPv4 blocked');
+ok(!defined($p6), 'IPv6 blocked');
+
+Giraffa->config->get->{net}{ipv4} = 1;
+Giraffa->config->get->{net}{ipv6} = 1;
+$p5 = $nsv6->query( 'iis.se', 'SOA', { dnssec => 1 } );
+$p6 = $nsv4->query( 'iis.se', 'SOA', { dnssec => 1 } );
+ok(defined($p5), 'IPv4 not blocked');
+ok(defined($p6), 'IPv6 not blocked');
+
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );
 }

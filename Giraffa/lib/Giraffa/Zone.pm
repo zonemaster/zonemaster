@@ -49,7 +49,11 @@ sub _build_ns {
         return [ Giraffa::Recursor->root_servers ];
     }
 
-    my $p = $self->glue->[0]->query( $self->name, 'NS' );
+    my $p;
+    foreach my $s (@{$self->glue}) {
+        $p = $s->query( $self->name, 'NS' );
+        last if defined($p);
+    }
     croak "Failed to get nameservers" if not defined( $p );
 
     return Giraffa::Recursor->get_ns_from( $p );

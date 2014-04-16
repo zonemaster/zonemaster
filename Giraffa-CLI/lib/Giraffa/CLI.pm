@@ -73,6 +73,20 @@ has 'restore' => (
     documentation => 'Name of a file to restore DNS data from before running test.',
 );
 
+has 'ipv4' => (
+    is => 'ro',
+    isa => 'Bool',
+    default => 1,
+    documentation => 'Flag to permit or deny queries being sent via IPv4.',
+);
+
+has 'ipv6' => (
+    is => 'ro',
+    isa => 'Bool',
+    default => 1,
+    documentation => 'Flag to permit or deny queries being sent via IPv6.',
+);
+
 sub run {
     my ( $self ) = @_;
     my @accumulator;
@@ -81,6 +95,9 @@ sub run {
     if ( not $domain ) {
         die "Must give the name of a domain to test.\n";
     }
+
+    Giraffa->config->get->{net}{ipv4} = $self->ipv4;
+    Giraffa->config->get->{net}{ipv6} = $self->ipv6;
 
     my $translator;
     $translator = Giraffa::Translator->new( { lang => $self->lang } )

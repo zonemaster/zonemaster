@@ -90,6 +90,16 @@ sub query {
     my ( $self, $name, $type, $href ) = @_;
     $type //= 'A';
 
+    if ( $self->address->version == 4 and not Giraffa->config->get->{net}{ipv4}) {
+        Giraffa->logger->add( IPV4_BLOCKED => { ns => $self->string });
+        return;
+    }
+
+    if ( $self->address->version == 6 and not Giraffa->config->get->{net}{ipv6}) {
+        Giraffa->logger->add( IPV6_BLOCKED => { ns => $self->string });
+        return;
+    }
+
     Giraffa->logger->add(
         'query',
         {

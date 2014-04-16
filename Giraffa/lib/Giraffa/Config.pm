@@ -63,5 +63,10 @@ __DATA__
                 "retry" : 2,
                 "igntc" : 0
             }
-        }
+        },
+    "net": {
+        "ipv4": 1,
+        "ipv6": 1
+    },
+    "no_network": 0
 }
