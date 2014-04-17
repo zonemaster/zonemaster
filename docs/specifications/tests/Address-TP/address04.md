@@ -1,7 +1,7 @@
-## ADDR04: IPv4 loopback address is not forward to root name servers
+## ADDRESS04: IPv4 loopback address is not forward to root name servers
 
 ### Test case identifier
-**ADDR04** IPv4 loopback address is not forward to root name servers
+**ADDRESS04** IPv4 loopback address is not forward to root name servers
 
 ### Objective
 
