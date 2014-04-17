@@ -16,7 +16,19 @@
       "NAMESERVER_NO_TCP_53" : "Nameserver {ns}/{address} not accessible over TCP on port 53.",
       "NAMESERVER_IPV6_ADDRESS_BOGON" : "Nameserver {ns} IPv6 address {address} is part of a bogon prefix.",
       "NAMESERVER_IPV6_ADDRESSES_NOT_BOGON" : "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix.",
-      "NAMESERVERS_WITH_UNIQ_AS" : "All nameservers are in the same AS ({asn})"
+      "NAMESERVERS_WITH_UNIQ_AS" : "All nameservers are in the same AS ({asn})."
+   },
+   "ZONE" : {
+      "REFRESH_MINIMUM_VALUE_LOWER" : "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh}).",
+      "REFRESH_LOWER_THAN_RETRY" : "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({retry}).",
+      "RETRY_MINIMUM_VALUE_LOWER" : "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry}).",
+      "EXPIRE_MINIMUM_VALUE_LOWER" : "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire}).",
+      "EXPIRE_LOWER_THAN_REFRESH" : "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh}).",
+      "SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER" : "SOA 'minimum' value ({minimum}) is higher than the recommended one ({highest_minimum}).",
+      "SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER" : "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum}).",
+      "MASTER_IS_AN_ALIAS" : "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME).",
+      "MX_RECORD_IS_CNAME" : "MX record for the domain is pointing to a CNAME.",
+      "NO_MX_RECORD" : "No target (MX, A or AAA record) to deliver e-mail for the domain name."
    },
    "HOSTNAME": {
        "CHECKING_NAME": "{name} is about to be checked.",
