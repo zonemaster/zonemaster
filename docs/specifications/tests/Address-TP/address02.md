@@ -1,7 +1,7 @@
-## ADDR02: Reverse DNS entry exists for name server IP address
+## ADDRESS02: Reverse DNS entry exists for name server IP address
 
 ### Test case identifier
-**ADDR02** Reverse DNS entry should exist for name server IP address
+**ADDRESS02** Reverse DNS entry should exist for name server IP address
 
 ### Objective
 
