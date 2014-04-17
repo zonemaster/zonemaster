@@ -98,5 +98,5 @@ tests from undelegated tests.
 * Add a bonus system, stars for domains with IPv6 and DNSSEC, and other features.
 
 **API:**
-[See this file for API-specification](/api-specification.md)
+[See this file for API-specification](./api-specification.md)
 
