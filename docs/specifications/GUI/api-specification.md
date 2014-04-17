@@ -1,5 +1,5 @@
 **API**
-* I want to be able to list (see name of) all available test profiles (See Advanced Options for definition).
+* I want to be able to list (see name of) all available test profiles (pre-defined set of tests for the engine to run).
 * I want to be able to send/set these advanced runtime options:
  - No IPv4
  - No IPv6
@@ -13,6 +13,3 @@
 * I want to be able to retrieve complete test results from old tests listed from above. 
 * I want to be able to set the number of concurrent tests being run as to not overload the engine/machine/network.
 * Undelegated runs should be set at a lower priority than normal runs by default.
-
-
-
