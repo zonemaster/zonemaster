@@ -94,6 +94,13 @@ has 'list_tests' => (
     documentation => 'Instead of running a test, list all available tests.',
 );
 
+has 'test' => (
+    is => 'ro',
+    isa => 'ArrayRef',
+    required => 0,
+    documentation => 'Specify test to run. Should be either the name of a module, or the name of a module and the name of a method in that module separated by a "/" character (Example: "Basic/basic1"). The method specified must be one that takes a zone object as its single argument. This switch can be repeated.'
+);
+
 sub run {
     my ( $self ) = @_;
     my @accumulator;
@@ -176,7 +183,20 @@ sub run {
     if ( $self->ns and @{ $self->ns } > 0 ) {
         $self->add_fake_delegation( $domain );
     }
-    Giraffa->test_zone( $domain );
+
+    # Actually run tests!
+    if ($self->test and @{$self->test} > 0) {
+        foreach my $t (@{$self->test}) {
+            my ($module, $method) = split('/', $t, 2);
+            if ($method) {
+                Giraffa->test_method($module, $method, Giraffa->zone($domain));
+            } else {
+                Giraffa->test_module($module, $domain);
+            }
+        }
+    } else {
+        Giraffa->test_zone( $domain );
+    }
 
     if ( $self->lang eq 'json' ) {
         say $json->encode( \@accumulator );
