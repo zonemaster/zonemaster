@@ -78,6 +78,19 @@ sub common {
     return $count;
 } ## end sub common
 
+sub prepend {
+    my ( $self, $label ) = @_;
+    my @labels = ( $label, @{$self->labels});
+
+    return $self->new({ labels => \@labels});
+}
+
+sub TO_JSON {
+    my ( $self ) = @_;
+
+    return $self->string;
+}
+
 ## no critic (Modules::RequireExplicitInclusion)
 __PACKAGE__->meta->make_immutable;
 
@@ -131,6 +144,14 @@ Returns a new L<Giraffa::DNSName> object, representing the name of the called on
 
 Returns the number of labels from the rightmost going left that are the same in both names. Used by the recursor to check for redirections going
 up the DNS tree.
+
+=item prepend($label)
+
+Returns a new L<Giraffa::DNSName> object, representing the called one with the given label prepended.
+
+=item TO_JSON
+
+Helper method for JSON encoding.
 
 =over
 

@@ -204,6 +204,9 @@ sub _query {
 
     my $before = time();
     my $res = eval { $self->dns->query( "$name", $type, $href->{class} ) };
+    if ($@) {
+        Giraffa->logger->add( LOOKUP_ERROR => { message => $@});
+    }
     push @{ $self->times }, ( time() - $before );
 
     foreach my $flag ( keys %defaults ) {

@@ -21,6 +21,8 @@ our %numeric = (
 
 our $start_time;
 
+my $json = JSON::XS->new->allow_blessed->convert_blessed;
+
 INIT {
     $start_time = time();
 }
@@ -97,7 +99,7 @@ sub string {
     no warnings 'uninitialized';
 
     $argstr = join( ', ',
-        map { $_ . '=' . ( ref( $self->args->{$_} ) ? encode_json( $self->args->{$_} ) : $self->args->{$_} ) }
+        map { $_ . '=' . ( ref( $self->args->{$_} ) ? $json->encode( $self->args->{$_} ) : $self->args->{$_} ) }
         sort keys %{ $self->args } )
       if $self->args;
 

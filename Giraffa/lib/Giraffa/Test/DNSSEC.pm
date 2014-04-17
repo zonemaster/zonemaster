@@ -440,7 +440,7 @@ sub dnssec10 {
     }
     my @dnskeys = $key_p->get_records( 'DNSKEY', 'answer' );
 
-    my $name = 'xx--example.' . $zone->name;
+    my $name = $zone->name->prepend('xx--example');
     my $test_p = $zone->query_one( $name, 'A', { dnssec => 1 } );
     if ( not $test_p ) {
         die "No response from child servers for A";

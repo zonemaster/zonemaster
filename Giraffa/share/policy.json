@@ -22,7 +22,8 @@
         "UNKOWN_MODULE": "CRITICAL",
         "UNKNOWN_METHOD": "CRITICAL",
         "IPV4_BLOCKED": "DEBUG2",
-        "IPV6_BLOCKED": "DEBUG2"
+        "IPV6_BLOCKED": "DEBUG2",
+        "LOOKUP_ERROR": "DEBUG"
     },
    "BASIC" : {
       "HAS_GLUE" : "INFO",

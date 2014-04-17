@@ -109,7 +109,7 @@
          "MATCH_NOT_FOUND" : "The parent side has one or more DS records, but there are no matching DNSKEY records on the child side.",
          "NEITHER_DNSKEY_NOR_DS" : "There are neither DS nor DNSKEY records for the zone.",
          "NO_DNSKEY_FOR_DS" : "The DS records with keytag {keytag} has no corresponding DNSKEY record.",
-         "NO_DS" : "{server} returned no DS records for {zone}.",
+         "NO_DS" : "{from} returned no DS records for {zone}.",
          "NO_KEYS_OR_NO_SIGS" : "Cannot test DNSKEY signatures, because we got {keys} DNSKEY records and {sigs} RRSIG records.",
          "NO_KEYS_OR_NO_SIGS_OR_NO_SOA" : "Cannot test SOA signatures, because we got {keys} DNSKEY records, {sigs} RRSIG records and {soas} SOA records.",
          "NO_NSEC3PARAM" : "{server} returned no NSEC3PARAM records.",
