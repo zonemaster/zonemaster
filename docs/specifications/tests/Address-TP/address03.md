@@ -1,7 +1,7 @@
-## ADDR03: Reverse DNS entry matches name server name
+## ADDRESS03: Reverse DNS entry matches name server name
 
 ### Test case identifier
-**ADDR03** Reverse DNS entry matches name server name
+**ADDRESS03** Reverse DNS entry matches name server name
 
 ### Objective
 

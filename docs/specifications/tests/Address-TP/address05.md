@@ -1,7 +1,7 @@
-## ADDR05: IPv6 loopback address is not forward to root name servers
+## ADDRESS05: IPv6 loopback address is not forward to root name servers
 
 ### Test case identifier
-**ADDR05** IPv6 loopback address is not forward to root name servers
+**ADDRESS05** IPv6 loopback address is not forward to root name servers
 
 ### Objective
 
