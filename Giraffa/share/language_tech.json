@@ -35,6 +35,11 @@
       "AXFR_FAILURE" : "AXFR not available on nameserver {ns}/{address}.",
       "AXFR_AVAILABLE" : "Nameserver {ns}/{address} allow zone transfer using AXFR."
    },
+   "ADDRESS" : {
+      "NAMESERVER_IPV4_PRIVATE_NETWORK" : "Nameserver {ns} has an IPv4 address ({address}) in a private network.",
+      "NAMESERVER_IP_WITHOUT_REVERSE" : "Nameserver {ns} has an IP address ({address}) without PTR configured.",
+      "NAMESERVER_IP_PTR_MISMATCH" : "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names})."
+   },
    "HOSTNAME": {
        "CHECKING_NAME": "{name} is about to be checked.",
        "NUMERIC_TOP": "{name} has an all-numeric top-level label.",
