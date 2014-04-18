@@ -36,7 +36,7 @@ sub metadata {
         nameserver1 => [qw(IS_A_RECURSOR)],
         nameserver2 => [qw()],
         nameserver3 => [qw(AXFR_FAILURE AXFR_AVAILABLE)],
-        nameserver4 => [qw()],
+        nameserver4 => [qw(SAME_SOURCE_IP)],
     };
 }
 
@@ -140,7 +140,18 @@ sub nameserver4 {
                   
         my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
         my $p = $ns->query( $zone->name, 'SOA' );
-
+        if ( $p ) {
+            if ( $local_ns->address->short ne $p->answerfrom ) {
+                push @results,
+                  info(
+                      SAME_SOURCE_IP => {
+                        ns      => $local_ns->name->string,
+                        address => $local_ns->address->short,
+                        source  => $p->answerfrom,
+                    }
+                  );
+            }
+        }
         $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short}++;
     }               
                 

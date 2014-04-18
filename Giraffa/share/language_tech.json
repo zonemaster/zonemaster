@@ -33,7 +33,8 @@
    "NAMESERVER" : {
       "IS_A_RECURSOR" : "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}.",
       "AXFR_FAILURE" : "AXFR not available on nameserver {ns}/{address}.",
-      "AXFR_AVAILABLE" : "Nameserver {ns}/{address} allow zone transfer using AXFR."
+      "AXFR_AVAILABLE" : "Nameserver {ns}/{address} allow zone transfer using AXFR.",
+      "SAME_SOURCE_IP" : "Nameserver {ns}/{address} replies on a SOA query with a different source address ({source})."
    },
    "ADDRESS" : {
       "NAMESERVER_IPV4_PRIVATE_NETWORK" : "Nameserver {ns} has an IPv4 address ({address}) in a private network.",

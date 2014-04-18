@@ -65,7 +65,8 @@
    "NAMESERVER" : {
       "IS_A_RECURSOR" : "WARNING",
       "AXFR_FAILURE" : "INFO",
-      "AXFR_AVAILABLE" : "ERROR"
+      "AXFR_AVAILABLE" : "ERROR",
+      "SAME_SOURCE_IP" : "ERROR"
    },
    "ADDRESS" : {
       "NAMESERVER_IPV4_PRIVATE_NETWORK" : "ERROR",
