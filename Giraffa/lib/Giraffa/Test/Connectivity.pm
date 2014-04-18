@@ -25,18 +25,6 @@ sub all {
     return @results;
 }
 
-sub can_continue {
-    my ( $class, @results ) = @_;
-    my %tag = map { $_->tag => 1 } @results;
-    
-    if ( $tag{'a'} and $tag{'b'} ) {
-        return 1;
-    }               
-    else {          
-        return 1; 
-    }
-}
-
 ###
 ### Metadata Exposure
 ###
@@ -73,9 +61,9 @@ sub connectivity1 {
         next if $ips{$local_ns->address->short};
 
         my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
-        my $p = $ns->query( $zone->name, 'SOA' , { 'usevc' => 0 } );
+        my $p = $ns->query( $zone->name, q{SOA} , { usevc => 0 } );
 
-        if ( $p and $p->rcode eq 'NOERROR' ) {
+        if ( $p and $p->rcode eq q{NOERROR} ) {
             push @results,
               info(
                 NAMESERVER_HAS_UDP_53 => {
@@ -102,9 +90,9 @@ sub connectivity1 {
         next if $ips{$local_ns->address->short};
 
         my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
-        my $p = $ns->query( $zone->name, 'SOA' , { 'usevc' => 0 } );
+        my $p = $ns->query( $zone->name, q{SOA} , { usevc => 0 } );
 
-        if ( $p and $p->rcode eq 'NOERROR' ) {
+        if ( $p and $p->rcode eq q{NOERROR} ) {
             push @results,
               info(
                 NAMESERVER_HAS_UDP_53 => {
@@ -139,9 +127,9 @@ sub connectivity2 {
         next if $ips{$local_ns->address->short};
 
         my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
-        my $p = $ns->query( $zone->name, 'SOA' , { 'usevc' => 1 } );
+        my $p = $ns->query( $zone->name, q{SOA} , { usevc => 1 } );
 
-        if ( $p and $p->rcode eq 'NOERROR' ) {
+        if ( $p and $p->rcode eq q{NOERROR} ) {
             push @results,
               info(
                 NAMESERVER_HAS_TCP_53 => {
@@ -168,9 +156,9 @@ sub connectivity2 {
         next if $ips{$local_ns->address->short};
 
         my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
-        my $p = $ns->query( $zone->name, 'SOA' , { 'usevc' => 1 } );
+        my $p = $ns->query( $zone->name, q{SOA} , { usevc => 1 } );
 
-        if ( $p and $p->rcode eq 'NOERROR' ) {
+        if ( $p and $p->rcode eq q{NOERROR} ) {
             push @results,
               info(
                 NAMESERVER_HAS_TCP_53 => {
@@ -215,9 +203,9 @@ sub connectivity3 {
         my $p = Giraffa::Recursor->recurse( $reverse_ip_query );
 
         if ( $p ) {
-            if ( $p->rcode ne 'NXDOMAIN' ) {
+            if ( $p->rcode ne q{NXDOMAIN} ) {
                 foreach my $rr ($p->answer) {
-                    if ( $rr->type eq 'A' and $rr->address eq '127.0.0.2' ) {
+                    if ( $rr->type eq q{A} and $rr->address eq q{127.0.0.2} ) {
                         push @results,
                           info(
                             NAMESERVER_IPV6_ADDRESS_BOGON => {
@@ -234,7 +222,7 @@ sub connectivity3 {
 
     }
 
-    if ( $ipv6_nb > 0 and not grep { $_->tag eq 'NAMESERVER_IPV6_ADDRESS_BOGON' } @results ) {
+    if ( $ipv6_nb > 0 and not grep { $_->tag eq q{NAMESERVER_IPV6_ADDRESS_BOGON} } @results ) {
         push @results,
           info(
             NAMESERVER_IPV6_ADDRESSES_NOT_BOGON => {
@@ -272,10 +260,10 @@ sub connectivity6 {
         my $reverse_ip_query = $local_ns->address->reverse_ip;
         $reverse_ip_query =~ s/\.[^\.*]*\.arpa./.asn.routeviews.org./;
 
-        my $p = Giraffa::Recursor->recurse( $reverse_ip_query, 'TXT' );
+        my $p = Giraffa::Recursor->recurse( $reverse_ip_query, q{TXT} );
 
         if ( $p ) {
-            my ( $txt ) = $p->get_records_for_name( 'TXT', $reverse_ip_query );
+            my ( $txt ) = $p->get_records_for_name( q{TXT}, $reverse_ip_query );
             $asns{$txt->txtdata}++;
         }
 
