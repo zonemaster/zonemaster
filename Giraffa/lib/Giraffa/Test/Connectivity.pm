@@ -6,7 +6,6 @@ use warnings;
 
 use Giraffa;
 use Giraffa::Util;
-use List::MoreUtils qw[uniq];
 
 ###
 ### Entry Points
@@ -20,7 +19,7 @@ sub all {
     push @results, $class->connectivity2( $zone );
     push @results, $class->connectivity3( $zone );
 #    push @results, $class->connectivity4( $zone );
-    push @results, $class->connectivity5( $zone );
+#    push @results, $class->connectivity5( $zone );
     push @results, $class->connectivity6( $zone );
 
     return @results;
@@ -34,7 +33,7 @@ sub can_continue {
         return 1;
     }               
     else {          
-        return; 
+        return 1; 
     }
 }
 
@@ -51,7 +50,7 @@ sub metadata {
         connectivity3 => [qw(NAMESERVER_IPV6_ADDRESS_BOGON NAMESERVER_IPV6_ADDRESSES_NOT_BOGON)],
         connectivity4 => [qw()],
         connectivity5 => [qw()],
-        connectivity6 => [qw()],
+        connectivity6 => [qw(NAMESERVERS_WITH_UNIQ_AS)],
     };
 }
 
@@ -70,15 +69,18 @@ sub connectivity1 {
     my %ips;
 
     foreach my $local_ns ( @{ $zone->ns } ) {
+
         next if $ips{$local_ns->address->short};
+
         my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
         my $p = $ns->query( $zone->name, 'SOA' , { 'usevc' => 0 } );
-        if ( $p  and  $p->rcode eq 'NOERROR' ) {
+
+        if ( $p and $p->rcode eq 'NOERROR' ) {
             push @results,
               info(
                 NAMESERVER_HAS_UDP_53 => {
                     ns      => $ns->name->string,
-                    address => $ns->address->short
+                    address => $ns->address->short,
                 }
               );
         } else {
@@ -86,23 +88,28 @@ sub connectivity1 {
               info(
                 NAMESERVER_NO_UDP_53 => {
                     ns      => $ns->name->string,
-                    address => $ns->address->short
+                    address => $ns->address->short,
                 }
               );
         }
-        $ips{$ns->address->short} = 1;
+
+        $ips{$ns->address->short}++;
+
     }
 
     foreach my $local_ns ( @{ $zone->glue } ) {
+
         next if $ips{$local_ns->address->short};
+
         my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
         my $p = $ns->query( $zone->name, 'SOA' , { 'usevc' => 0 } );
-        if ( $p  and  $p->rcode eq 'NOERROR' ) {
+
+        if ( $p and $p->rcode eq 'NOERROR' ) {
             push @results,
               info(
                 NAMESERVER_HAS_UDP_53 => {
                     ns      => $ns->name->string,
-                    address => $ns->address->short
+                    address => $ns->address->short,
                 }
               );
         } else {
@@ -110,11 +117,13 @@ sub connectivity1 {
               info(
                 NAMESERVER_NO_UDP_53 => {
                     ns      => $ns->name->string,
-                    address => $ns->address->short
+                    address => $ns->address->short,
                 }
               );
         }
-        $ips{$ns->address->short} = 1;
+
+        $ips{$ns->address->short}++;
+
     }
 
     return @results;
@@ -131,12 +140,13 @@ sub connectivity2 {
 
         my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
         my $p = $ns->query( $zone->name, 'SOA' , { 'usevc' => 1 } );
-        if ( $p  and  $p->rcode eq 'NOERROR' ) {
+
+        if ( $p and $p->rcode eq 'NOERROR' ) {
             push @results,
               info(
                 NAMESERVER_HAS_TCP_53 => {
                     ns      => $ns->name->string,
-                    address => $ns->address->short
+                    address => $ns->address->short,
                 }
               );
         } else {
@@ -144,11 +154,12 @@ sub connectivity2 {
               info(
                 NAMESERVER_NO_TCP_53 => {
                     ns      => $ns->name->string,
-                    address => $ns->address->short
+                    address => $ns->address->short,
                 }
               );
         }
-        $ips{$ns->address->short} = 1;
+
+        $ips{$ns->address->short}++;
 
     }
     
@@ -158,12 +169,13 @@ sub connectivity2 {
 
         my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
         my $p = $ns->query( $zone->name, 'SOA' , { 'usevc' => 1 } );
-        if ( $p  and  $p->rcode eq 'NOERROR' ) {
+
+        if ( $p and $p->rcode eq 'NOERROR' ) {
             push @results,
               info(
                 NAMESERVER_HAS_TCP_53 => {
                     ns      => $ns->name->string,
-                    address => $ns->address->short
+                    address => $ns->address->short,
                 }
               );
         } else {
@@ -171,16 +183,14 @@ sub connectivity2 {
               info(
                 NAMESERVER_NO_TCP_53 => {
                     ns      => $ns->name->string,
-                    address => $ns->address->short
+                    address => $ns->address->short,
                 }
               );
         }
-        $ips{$ns->address->short} = 1;
+
+        $ips{$ns->address->short}++;
 
     }
-
-    return @results;
-
 
     return @results;
 } ## end sub connectivity2
@@ -191,13 +201,12 @@ sub connectivity3 {
     my %ips;
     my $ipv6_nb = 0;
 
-    foreach my $local_ns ( @{ $zone->ns },  @{ $zone->glue } ) {
+    foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
 
         next unless $local_ns->address;
         next unless $local_ns->address->version == 6;
         next if $ips{$local_ns->address->short};
 
-        $ips{$local_ns->address->short} = 1;
         $ipv6_nb++;
 
         my $reverse_ip_query = $local_ns->address->reverse_ip;
@@ -213,7 +222,7 @@ sub connectivity3 {
                           info(
                             NAMESERVER_IPV6_ADDRESS_BOGON => {
                                 ns      => $local_ns->name->string,
-                                address => $local_ns->address->short
+                                address => $local_ns->address->short,
                             }
                           );
                     }
@@ -221,13 +230,15 @@ sub connectivity3 {
             }
         }
 
+        $ips{$local_ns->address->short}++;
+
     }
 
     if ( $ipv6_nb > 0 and not grep { $_->tag eq 'NAMESERVER_IPV6_ADDRESS_BOGON' } @results ) {
         push @results,
           info(
             NAMESERVER_IPV6_ADDRESSES_NOT_BOGON => {
-                nb => $ipv6_nb
+                nb => $ipv6_nb,
             }
           );
     }
@@ -268,13 +279,15 @@ sub connectivity6 {
             $asns{$txt->txtdata}++;
         }
 
+        $ips{$local_ns->address->short}++;
+
     }
 
-    if ( 1 or scalar keys %asns == 1 ) {
+    if ( scalar keys %asns == 1 ) {
         push @results,
           info(
             NAMESERVERS_WITH_UNIQ_AS => {
-                asn => (keys %asns)[0]
+                asn => (keys %asns)[0],
             }
           );
     }
