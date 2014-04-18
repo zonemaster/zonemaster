@@ -30,6 +30,11 @@
       "MX_RECORD_IS_CNAME" : "MX record for the domain is pointing to a CNAME.",
       "NO_MX_RECORD" : "No target (MX, A or AAA record) to deliver e-mail for the domain name."
    },
+   "NAMESERVER" : {
+      "IS_A_RECURSOR" : "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}.",
+      "AXFR_FAILURE" : "AXFR not available on nameserver {ns}/{address}.",
+      "AXFR_AVAILABLE" : "Nameserver {ns}/{address} allow zone transfer using AXFR."
+   },
    "HOSTNAME": {
        "CHECKING_NAME": "{name} is about to be checked.",
        "NUMERIC_TOP": "{name} has an all-numeric top-level label.",

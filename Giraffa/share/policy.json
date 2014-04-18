@@ -62,6 +62,11 @@
       "MX_RECORD_IS_CNAME" : "WARNING",
       "NO_MX_RECORD" : "WARNING"
    },
+   "NAMESERVER" : {
+      "IS_A_RECURSOR" : "WARNING",
+      "AXFR_FAILURE" : "INFO",
+      "AXFR_AVAILABLE" : "ERROR"
+   },
    "EXAMPLE" : {
       "EXAMPLE_TAG" : "DEBUG",
       "DISABLED" : true
