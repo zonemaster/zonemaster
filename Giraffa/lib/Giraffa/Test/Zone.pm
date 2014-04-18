@@ -293,3 +293,74 @@ sub zone9 {
 } ## end sub zone9
 
 1;
+
+=head1 NAME
+
+Giraffa::Test::Zone - module implementing tests of the zone content in DNS, such as SOA and MX records
+
+=head1 SYNOPSIS
+
+    my @results = Giraffa::Test::Zone->all($zone);
+
+=head1 METHODS
+
+=over
+
+=item all($zone)
+
+Runs the default set of tests and returns a list of log entries made by the tests
+
+=item metadata()
+
+Returns a reference to a hash, the keys of which are the names of all test methods in the module, and the corresponding values are references to
+lists with all the tags that the method can use in log entries.
+
+=item version()
+
+Returns a version string for the module.
+
+=back
+
+=head1 TESTS
+
+=over
+
+=item zone1($zone)
+
+Not yet implemented.
+
+=item zone2($zone)
+
+Verify SOA 'refresh' minimum value.
+
+=item zone3($zone)
+
+Verify SOA 'retry' value  is lower than SOA 'refresh' value.
+
+=item zone4($zone)
+
+Verify SOA 'retry' minimum value.
+
+=item zone5($zone)
+
+Verify SOA 'expire' minimum value.
+
+=item zone6($zone)
+
+Verify SOA 'minimum' (default TTL) value.
+
+=item zone7($zone)
+
+Verify that SOA master is not an alias (CNAME).
+
+=item zone8($zone)
+
+Verify that MX records does not resolve to a CNAME.
+
+=item zone9($zone)
+
+Verify that there is a target host (MX, A or AAAA) to deliver e-mail for the domain name.
+
+=back
+
+=cut
