@@ -15,12 +15,12 @@ sub all {
     my ( $class, $zone ) = @_;
     my @results;
 
-    push @results, $class->connectivity1( $zone );
-    push @results, $class->connectivity2( $zone );
-    push @results, $class->connectivity3( $zone );
-#    push @results, $class->connectivity4( $zone );
-#    push @results, $class->connectivity5( $zone );
-    push @results, $class->connectivity6( $zone );
+    push @results, $class->connectivity01( $zone );
+    push @results, $class->connectivity02( $zone );
+    push @results, $class->connectivity03( $zone );
+    push @results, $class->connectivity04( $zone );
+    push @results, $class->connectivity05( $zone );
+    push @results, $class->connectivity06( $zone );
 
     return @results;
 }
@@ -33,12 +33,12 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        connectivity1 => [qw(NAMESERVER_HAS_UDP_53 NAMESERVER_NO_UDP_53)],
-        connectivity2 => [qw(NAMESERVER_HAS_TCP_53 NAMESERVER_NO_TCP_53)],
-        connectivity3 => [qw(NAMESERVER_IPV6_ADDRESS_BOGON NAMESERVER_IPV6_ADDRESSES_NOT_BOGON)],
-        connectivity4 => [qw()],
-        connectivity5 => [qw()],
-        connectivity6 => [qw(NAMESERVERS_WITH_UNIQ_AS)],
+        connectivity01 => [qw(NAMESERVER_HAS_UDP_53 NAMESERVER_NO_UDP_53)],
+        connectivity02 => [qw(NAMESERVER_HAS_TCP_53 NAMESERVER_NO_TCP_53)],
+        connectivity03 => [qw(NAMESERVER_IPV6_ADDRESS_BOGON NAMESERVER_IPV6_ADDRESSES_NOT_BOGON)],
+        connectivity04 => [qw()],
+        connectivity05 => [qw()],
+        connectivity06 => [qw(NAMESERVERS_WITH_UNIQ_AS)],
     };
 }
 
@@ -50,7 +50,7 @@ sub version {
 ### Tests
 ###
 
-sub connectivity1 {
+sub connectivity01 {
     my ( $class, $zone ) = @_;
     my @results;
 
@@ -115,9 +115,9 @@ sub connectivity1 {
     }
 
     return @results;
-} ## end sub connectivity1
+} ## end sub connectivity01
 
-sub connectivity2 {
+sub connectivity02 {
     my ( $class, $zone ) = @_;
     my @results;
     my %ips;
@@ -181,9 +181,9 @@ sub connectivity2 {
     }
 
     return @results;
-} ## end sub connectivity2
+} ## end sub connectivity02
 
-sub connectivity3 {
+sub connectivity03 {
     my ( $class, $zone ) = @_;
     my @results;
     my %ips;
@@ -232,23 +232,23 @@ sub connectivity3 {
     }
 
     return @results;
-} ## end sub connectivity3
+} ## end sub connectivity03
 
-sub connectivity4 {
+sub connectivity04 {
     my ( $class, $zone ) = @_;
     my @results;
 
     return @results;
-} ## end sub connectivity4
+} ## end sub connectivity04
 
-sub connectivity5 {
+sub connectivity05 {
     my ( $class, $zone ) = @_;
     my @results;
 
     return @results;
-} ## end sub connectivity5
+} ## end sub connectivity05
 
-sub connectivity6 {
+sub connectivity06 {
     my ( $class, $zone ) = @_;
     my @results;
     my ( %ips, %asns );
@@ -281,6 +281,65 @@ sub connectivity6 {
     }
 
     return @results;
-} ## end sub connectivity6
+} ## end sub connectivity06
 
 1;
+
+=head1 NAME
+
+Giraffa::Test::Connectivity - module implementing tests of nameservers reachability
+
+=head1 SYNOPSIS
+
+    my @results = Giraffa::Test::Connectivity->all($zone);
+
+=head1 METHODS
+
+=over
+
+=item all($zone)
+
+Runs the default set of tests and returns a list of log entries made by the tests
+
+=item metadata()
+
+Returns a reference to a hash, the keys of which are the names of all test methods in the module, and the corresponding values are references to
+lists with all the tags that the method can use in log entries.
+
+=item version()
+
+Returns a version string for the module.
+
+=back
+
+=head1 TESTS
+
+=over
+
+=item connectivity01($zone)
+
+Verify nameservers UDP port 53 reachability.
+
+=item connectivity02($zone)
+
+Verify nameservers TCP port 53 reachability.
+
+=item connectivity03($zone)
+
+Verify that nameservers addresses are not part of a bogon prefix.
+
+=item connectivity04($zone)
+
+Not yet implemented.
+
+=item connectivity05($zone)
+
+Not yet implemented.
+
+=item connectivity06($zone)
+
+Verify that all nameservers do not belong to the same AS.
+
+=back
+
+=cut

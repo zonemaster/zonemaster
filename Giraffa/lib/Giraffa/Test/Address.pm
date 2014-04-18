@@ -17,11 +17,11 @@ sub all {
     my ( $class, $zone ) = @_;
     my @results;
 
-    push @results, $class->address1( $zone );
-    push @results, $class->address2( $zone );
-    push @results, $class->address3( $zone );
-    push @results, $class->address4( $zone );
-    push @results, $class->address5( $zone );
+    push @results, $class->address01( $zone );
+    push @results, $class->address02( $zone );
+    push @results, $class->address03( $zone );
+    push @results, $class->address04( $zone );
+    push @results, $class->address05( $zone );
 
     return @results;
 }
@@ -34,11 +34,11 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        address1 => [qw(NAMESERVER_IPV4_PRIVATE_NETWORK)],
-        address2 => [qw(NAMESERVER_IP_WITHOUT_REVERSE)],
-        address3 => [qw(NAMESERVER_IP_WITHOUT_REVERSE NAMESERVER_IP_PTR_MISMATCH)],
-        address4 => [qw()],
-        address5 => [qw()],
+        address01 => [qw(NAMESERVER_IPV4_PRIVATE_NETWORK)],
+        address02 => [qw(NAMESERVER_IP_WITHOUT_REVERSE)],
+        address03 => [qw(NAMESERVER_IP_WITHOUT_REVERSE NAMESERVER_IP_PTR_MISMATCH)],
+        address04 => [qw()],
+        address05 => [qw()],
     };
 } ## end sub metadata
 
@@ -46,7 +46,7 @@ sub version {
     return "$Giraffa::Test::Address::VERSION";
 }
 
-sub address1 {
+sub address01 {
     my ( $class, $zone ) = @_;
     my @results;
 
@@ -73,9 +73,9 @@ sub address1 {
     }
 
     return @results;
-} ## end sub address1
+} ## end sub address01
 
-sub address2 {
+sub address02 {
     my ( $class, $zone ) = @_;
     my @results;
 
@@ -110,10 +110,11 @@ sub address2 {
     }
 
     return @results;
-} ## end sub address2
+} ## end sub address02
 
 # TODO: Cache result from address2
-sub address3 {
+# TODO: Implement input cases b and c.
+sub address03 {
     my ( $class, $zone ) = @_;
     my @results;
 
@@ -160,20 +161,76 @@ sub address3 {
 
     }  
     return @results;
-} ## end sub address3
+} ## end sub address03
 
-sub address4 {
+sub address04 {
     my ( $class, $zone ) = @_;
     my @results;
 
     return @results;
-} ## end sub address4
+} ## end sub address04
 
-sub address5 {
+sub address05 {
     my ( $class, $zone ) = @_;
     my @results;
 
     return @results;
-} ## end sub address5
+} ## end sub address05
 
 1;
+
+=head1 NAME
+
+Giraffa::Test::Address - module implementing tests focused on the Address specific test cases of the DNS tests
+
+=head1 SYNOPSIS
+
+    my @results = Giraffa::Test::Address->all($zone);
+
+=head1 METHODS
+
+=over
+
+=item all($zone)
+
+Runs the default set of tests and returns a list of log entries made by the tests
+
+=item metadata()
+
+Returns a reference to a hash, the keys of which are the names of all test methods in the module, and the corresponding values are references to
+lists with all the tags that the method can use in log entries.
+
+=item version()
+
+Returns a version string for the module.
+
+=back
+
+=head1 TESTS
+
+=over
+
+=item address01($zone)
+
+Verify that IPv4 addresse are not in private networks.
+
+=item address02($zone)
+
+Verify reverse DNS entries exist for nameservers IP addresses.
+
+=item address03($zone)
+
+Verify that reverse DNS entries match nameservers names.
+
+=item address04($zone)
+
+Not yet implemented.
+
+=item address05($zone)
+
+Not yet implemented.
+
+=back
+
+=cut
+

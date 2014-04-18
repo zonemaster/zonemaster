@@ -25,15 +25,15 @@ sub all {
     my ( $class, $zone ) = @_;
     my @results;
 
-    push @results, $class->zone1( $zone );
-    push @results, $class->zone2( $zone );
-    push @results, $class->zone3( $zone );
-    push @results, $class->zone4( $zone );
-    push @results, $class->zone5( $zone );
-    push @results, $class->zone6( $zone );
-    push @results, $class->zone7( $zone );
-    push @results, $class->zone8( $zone );
-    push @results, $class->zone9( $zone );
+    push @results, $class->zone01( $zone );
+    push @results, $class->zone02( $zone );
+    push @results, $class->zone03( $zone );
+    push @results, $class->zone04( $zone );
+    push @results, $class->zone05( $zone );
+    push @results, $class->zone06( $zone );
+    push @results, $class->zone07( $zone );
+    push @results, $class->zone08( $zone );
+    push @results, $class->zone09( $zone );
 
     return @results;
 }
@@ -46,15 +46,15 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        zone1 => [qw()],
-        zone2 => [qw(REFRESH_MINIMUM_VALUE_LOWER)],
-        zone3 => [qw(REFRESH_LOWER_THAN_RETRY)],
-        zone4 => [qw(RETRY_MINIMUM_VALUE_LOWER)],
-        zone5 => [qw(EXPIRE_MINIMUM_VALUE_LOWER EXPIRE_LOWER_THAN_REFRESH)],
-        zone6 => [qw(SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER)],
-        zone7 => [qw(MASTER_IS_AN_ALIAS)],
-        zone8 => [qw(MX_RECORD_IS_CNAME)],
-        zone9 => [qw(NO_MX_RECORD)],
+        zone01 => [qw()],
+        zone02 => [qw(REFRESH_MINIMUM_VALUE_LOWER)],
+        zone03 => [qw(REFRESH_LOWER_THAN_RETRY)],
+        zone04 => [qw(RETRY_MINIMUM_VALUE_LOWER)],
+        zone05 => [qw(EXPIRE_MINIMUM_VALUE_LOWER EXPIRE_LOWER_THAN_REFRESH)],
+        zone06 => [qw(SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER)],
+        zone07 => [qw(MASTER_IS_AN_ALIAS)],
+        zone08 => [qw(MX_RECORD_IS_CNAME)],
+        zone09 => [qw(NO_MX_RECORD)],
     };
 } ## end sub metadata
 
@@ -62,14 +62,14 @@ sub version {
     return "$Giraffa::Test::Zone::VERSION";
 }
 
-sub zone1 {
+sub zone01 {
     my ( $class, $zone ) = @_;
     my @results;
 
     return @results;
-} ## end sub zone1
+} ## end sub zone01
 
-sub zone2 {
+sub zone02 {
     my ( $class, $zone ) = @_;
     my @results;
 
@@ -93,9 +93,9 @@ sub zone2 {
     }
 
     return @results;
-} ## end sub zone2
+} ## end sub zone02
 
-sub zone3 {
+sub zone03 {
     my ( $class, $zone ) = @_;
     my @results;
 
@@ -120,9 +120,9 @@ sub zone3 {
     }
 
     return @results;
-} ## end sub zone3
+} ## end sub zone03
 
-sub zone4 {
+sub zone04 {
     my ( $class, $zone ) = @_;
     my @results;
 
@@ -146,9 +146,9 @@ sub zone4 {
     }
 
     return @results;
-} ## end sub zone4
+} ## end sub zone04
 
-sub zone5 {
+sub zone05 {
     my ( $class, $zone ) = @_;
     my @results;
 
@@ -182,9 +182,9 @@ sub zone5 {
     }
 
     return @results;
-} ## end sub zone5
+} ## end sub zone05
 
-sub zone6 {
+sub zone06 {
     my ( $class, $zone ) = @_;
     my @results;
 
@@ -217,9 +217,9 @@ sub zone6 {
     }
 
     return @results;
-} ## end sub zone6
+} ## end sub zone06
 
-sub zone7 {
+sub zone07 {
     my ( $class, $zone ) = @_;
     my @results;
 
@@ -247,9 +247,9 @@ sub zone7 {
     }
 
     return @results;
-} ## end sub zone7
+} ## end sub zone07
 
-sub zone8 {
+sub zone08 {
     my ( $class, $zone ) = @_;
     my @results;
 
@@ -266,9 +266,9 @@ sub zone8 {
     }
 
     return @results;
-} ## end sub zone8
+} ## end sub zone08
 
-sub zone9 {
+sub zone09 {
     my ( $class, $zone ) = @_;
     my @results;
 
@@ -290,7 +290,7 @@ sub zone9 {
     }
 
     return @results;
-} ## end sub zone9
+} ## end sub zone09
 
 1;
 
@@ -325,39 +325,39 @@ Returns a version string for the module.
 
 =over
 
-=item zone1($zone)
+=item zone01($zone)
 
 Not yet implemented.
 
-=item zone2($zone)
+=item zone02($zone)
 
 Verify SOA 'refresh' minimum value.
 
-=item zone3($zone)
+=item zone03($zone)
 
 Verify SOA 'retry' value  is lower than SOA 'refresh' value.
 
-=item zone4($zone)
+=item zone04($zone)
 
 Verify SOA 'retry' minimum value.
 
-=item zone5($zone)
+=item zone05($zone)
 
 Verify SOA 'expire' minimum value.
 
-=item zone6($zone)
+=item zone06($zone)
 
 Verify SOA 'minimum' (default TTL) value.
 
-=item zone7($zone)
+=item zone07($zone)
 
 Verify that SOA master is not an alias (CNAME).
 
-=item zone8($zone)
+=item zone08($zone)
 
 Verify that MX records does not resolve to a CNAME.
 
-=item zone9($zone)
+=item zone09($zone)
 
 Verify that there is a target host (MX, A or AAAA) to deliver e-mail for the domain name.
 

@@ -17,10 +17,10 @@ sub all {
     my ( $class, $zone ) = @_;
     my @results;
 
-    push @results, $class->nameserver1( $zone );
-    push @results, $class->nameserver2( $zone );
-    push @results, $class->nameserver3( $zone );
-    push @results, $class->nameserver4( $zone );
+    push @results, $class->nameserver01( $zone );
+    push @results, $class->nameserver02( $zone );
+    push @results, $class->nameserver03( $zone );
+    push @results, $class->nameserver04( $zone );
 
     return @results;
 }
@@ -33,10 +33,10 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        nameserver1 => [qw(IS_A_RECURSOR)],
-        nameserver2 => [qw()],
-        nameserver3 => [qw(AXFR_FAILURE AXFR_AVAILABLE)],
-        nameserver4 => [qw(SAME_SOURCE_IP)],
+        nameserver01 => [qw(IS_A_RECURSOR)],
+        nameserver02 => [qw()],
+        nameserver03 => [qw(AXFR_FAILURE AXFR_AVAILABLE)],
+        nameserver04 => [qw(SAME_SOURCE_IP)],
     };
 }
 
@@ -44,7 +44,7 @@ sub version {
     return "$Giraffa::Test::Nameserver::VERSION";
 }
 
-sub nameserver1 {
+sub nameserver01 {
     my ( $class, $zone ) = @_;
     my $nonexistent_name = q{xx--domain-cannot-exist.xx--illegal-syntax-tld};
     my @results;
@@ -70,9 +70,9 @@ sub nameserver1 {
     }
 
     return @results;
-} ## end sub nameserver1
+} ## end sub nameserver01
 
-sub nameserver2 {
+sub nameserver02 {
     my ( $class, $zone ) = @_;
     my @results;
     my %nsnames;
@@ -85,9 +85,9 @@ sub nameserver2 {
     }
 
     return @results;
-} ## end sub nameserver2
+} ## end sub nameserver02
 
-sub nameserver3 {
+sub nameserver03 {
     my ( $class, $zone ) = @_;
     my @results;
     my %nsnames_and_ip;
@@ -127,9 +127,9 @@ sub nameserver3 {
     }
 
     return @results;
-} ## end sub nameserver3
+} ## end sub nameserver03
 
-sub nameserver4 {
+sub nameserver04 {
     my ( $class, $zone ) = @_;
     my @results;
     my %nsnames_and_ip;
@@ -156,6 +156,57 @@ sub nameserver4 {
     }               
                 
     return @results;
-} ## end sub nameserver4
+} ## end sub nameserver04
 
 1;
+
+=head1 NAME
+
+Giraffa::Test::Nameserver - module implementing tests of the properties of a name server
+
+=head1 SYNOPSIS
+
+    my @results = Giraffa::Test::Nameserver->all($zone);
+
+=head1 METHODS
+
+=over
+
+=item all($zone)
+
+Runs the default set of tests and returns a list of log entries made by the tests
+
+=item metadata()
+
+Returns a reference to a hash, the keys of which are the names of all test methods in the module, and the corresponding values are references to
+lists with all the tags that the method can use in log entries.
+
+=item version()
+
+Returns a version string for the module.
+
+=back
+
+=head1 TESTS
+
+=over
+
+=item nameserver01($zone)
+
+Verify that nameserver is not recursive.
+
+=item nameserver02($zone)
+
+Not yet implemented.
+
+=item nameserver03($zone)
+
+Verify that zone transfer (AXFR) is not available.
+
+=item nameserver04($zone)
+
+Verify that replies from nameserver comes from the expected IP address.
+
+=back
+
+=cut
