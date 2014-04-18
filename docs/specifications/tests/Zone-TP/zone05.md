@@ -19,7 +19,7 @@ the primary name server.
 
 The [RIPE-203](http://www.ripe.net/ripe/docs/ripe-203) recommendation
 for the expire value is 1000 hours (roughly 41 days). Older DNSCheck code
-had a 7 day minimum value (25200 seconds), and this is the minimum
+had a 7 day minimum value (604800 seconds), and this is the minimum
 value we recommend as an absolut minimum.
 
 ### Inputs
@@ -30,14 +30,14 @@ The domain name to be tested.
 
 1. Retrieve the expire value and the refresh value from the SOA record
    of the domain being tested.
-2. If the expire value is less than 25200 seconds (7 days), this test
+2. If the expire value is less than 604800 seconds (7 days), this test
    case fails.
 3. If the expire value is lower than the refresh value, this test case
    fails.
 
 ### Outcome(s)
 
-If the expire value is less than 25200 seconds or if the expire value is
+If the expire value is less than 604800 seconds or if the expire value is
 lower than the refresh value, this test case fails.
 
 ### Special procedural requirements
