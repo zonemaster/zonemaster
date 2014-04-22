@@ -53,7 +53,8 @@ tests) within the five minute interval above, the user interface will wait for t
 test to be finished, or display the last test results.
 * Each test result should have a unique (and short) URL for easy sharing.
 * While waiting for a test to be finished, some sort of progress indicator must be shown -
-when a test level starts running it could output information on what is being done.
+when a test level starts running it could output information on what is being done. Preferably these
+indicators should be on the same page as the "Test now".
 
 **Input:**
 * The domain name input must be filtered and validated according the current DNS rules.
@@ -77,6 +78,7 @@ URL for the specific test result (for example something like: &output=json?).
 * Alongside with the test output, there should a paginated list of previous
 test results with links to the full test results of the results - separating normal domain
 tests from undelegated tests.
+* Preferably results from a test should be on the same page as the progressbar and the "Test now".
 
 *Below: mockup of normal results view. Picture 4.*
 ![Image](./dnscheck___results.png?raw=true)
@@ -93,6 +95,7 @@ tests from undelegated tests.
 
 **Nice to have:**
 * View historic test results without initiating a new test for a domain.
+* Being able to show advanced results for specific parts of tests in the Basic view, for example when user clicks or hovers over a test level (Delegation/DNSSEC etcetera).
 
 **Future:**
 * Add a bonus system, stars for domains with IPv6 and DNSSEC, and other features.
