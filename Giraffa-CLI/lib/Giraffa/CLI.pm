@@ -16,6 +16,14 @@ use JSON::XS;
 our %numeric = Giraffa::Logger::Entry->levels;
 my $json = JSON::XS->new;
 
+has 'version' => (
+    is => 'ro',
+    isa => 'Bool',
+    default => 0,
+    required => 0,
+    documentation => 'Print version information and exit.',
+);
+
 has 'level' => (
     is            => 'ro',
     isa           => 'Str',
@@ -104,6 +112,11 @@ has 'test' => (
 sub run {
     my ( $self ) = @_;
     my @accumulator;
+
+    if ($self->version) {
+        print_versions();
+        exit;
+    }
 
     if ($self->list_tests) {
         my %methods = Giraffa->all_methods;
@@ -221,6 +234,18 @@ sub add_fake_delegation {
     Giraffa->add_fake_delegation( $domain => \%data );
 
     return;
+}
+
+sub print_versions {
+    say 'CLI version:    ' . $VERSION;
+    say 'Engine version: ' . $Giraffa::VERSION;
+    say "\nTest module versions:";
+
+    my %methods = Giraffa->all_methods;
+    foreach my $module (sort keys %methods) {
+        my $mod = "Giraffa::Test::$module";
+        say "\t$module: " . $mod->version;
+    }
 }
 
 1;
