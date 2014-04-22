@@ -10,7 +10,7 @@ has 'entries' => (
     isa     => 'ArrayRef[Giraffa::Logger::Entry]',
     default => sub { [] }
 );
-has 'callback' => ( is => 'rw', isa => 'CodeRef', required => 0 );
+has 'callback' => ( is => 'rw', isa => 'CodeRef', required => 0, clearer => 'clear_callback' );
 
 sub add {
     my ( $self, $tag, $argref ) = @_;
@@ -20,7 +20,11 @@ sub add {
     push @{ $self->entries }, $new;
 
     if ( $self->callback and ref( $self->callback ) eq 'CODE' ) {
-        $self->callback->( $new );
+        eval { $self->callback->( $new ) };
+        if ($@) {
+            $self->clear_callback;
+            $self->add( LOGGER_CALLBACK_ERROR => { exception => $@ });
+        }
     }
 
     return $new;

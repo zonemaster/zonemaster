@@ -37,4 +37,13 @@ $log->callback(
 $log->add( CALLBACK => { canary => 1 } );
 ok( $canary, 'canary set' );
 
+$log->callback(
+    sub { die "in callback"}
+);
+$log->add( DO_CRASH => {} );
+my %res = map {$_->tag => 1} @{$log->entries};
+ok($res{LOGGER_CALLBACK_ERROR}, 'Callback crash logged');
+ok($res{DO_CRASH}, 'DO_CRASH got logged anyway');
+ok(!$log->callback, 'Callback got removed');
+
 done_testing;
