@@ -365,13 +365,13 @@ sub dnssec08 {
     my $ok = 0;
     foreach my $sig ( @sigs ) {
         my $msg  = '';
-        my $time = time();
+        my $time = $key_p->timestamp;
         if ( $sig->verify_time( \@dnskeys, \@dnskeys, $time, $msg ) ) {
             push @results, info( DNSKEY_SIGNATURE_OK => { signature => $sig->keytag } );
             $ok = $sig->keytag;
         }
         else {
-            push @results, info( DNSKEY_SIGNATURE_NOT_OK => { signature => $sig->keytag, error => $msg } );
+            push @results, info( DNSKEY_SIGNATURE_NOT_OK => { signature => $sig->keytag, error => $msg, time => $time } );
         }
     }
 
@@ -410,7 +410,7 @@ sub dnssec09 {
     my $ok = 0;
     foreach my $sig ( @sigs ) {
         my $msg  = '';
-        my $time = time();
+        my $time = $soa_p->timestamp;
         if ( $sig->verify_time( \@soa, \@dnskeys, $time, $msg ) ) {
             push @results, info( SOA_SIGNATURE_OK => { signature => $sig->keytag } );
             $ok = $sig->keytag;
@@ -472,7 +472,7 @@ sub dnssec10 {
             my $ok = 0;
             foreach my $sig ( @sigs ) {
                 my $msg = '';
-                if ( $sig->verify_time( [ grep { $_->name eq $sig->name } @nsec ], \@dnskeys, time(), $msg ) ) {
+                if ( $sig->verify_time( [ grep { $_->name eq $sig->name } @nsec ], \@dnskeys, $test_p->timestamp, $msg ) ) {
                     $ok = 1;
                 }
                 else {
@@ -505,7 +505,7 @@ sub dnssec10 {
             my $ok = 0;
             foreach my $sig ( @sigs ) {
                 my $msg = '';
-                if ( $sig->verify_time( [ grep { $_->name eq $sig->name } @nsec3 ], \@dnskeys, time(), $msg ) ) {
+                if ( $sig->verify_time( [ grep { $_->name eq $sig->name } @nsec3 ], \@dnskeys, $test_p->timestamp, $msg ) ) {
                     $ok = 1;
                 }
                 else {
