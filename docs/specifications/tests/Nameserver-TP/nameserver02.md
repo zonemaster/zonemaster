@@ -27,18 +27,24 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Find all hostnames for all the name servers used by the domain.
-   (This is all the name servers from the parent delegation, and all the
-   name servers in the apex of the zone itself.)
+1. Find all hostnames for all the name servers used for the domain using
+   [Method 2](../Methods.md#method-2-obtain-name-servers-from-parent) and
+   [Method 3](../Methods.md#method-3-obtain-name-servers-from-child).
+2. Find all address records for the name servers using
+   [Method 4](../Methods.md#method-4-obtain-glue-address-records-from-parent) and
+   [Method 5](../Methods.md##method-5-obtain-the-name-server-address-records-from-child),
+   and do recursive lookups for the name servers that are out of bailiwick.
 2. Send a DNS query to each name server IP address querying the SOA record
    of the domain name with the DO bit set and a payload size ("bufsize")
    set to 512.
 3. If any answer from step 2 contains a FORMERR RCODE this test case fails.
+4. If the answer does not containt an OPT RR with EDNS version 0, this test
+   case fails.
 
 ### Outcome(s)
 
-If any name server returns FORMERR for a query using EDNS(0), this test
-case fails.
+If any name server returns FORMERR for a query using EDNS(0), or if there is
+no OPT RR with EDNS version 0 in it, this test case fails.
 
 ### Special procedural requirements
 
