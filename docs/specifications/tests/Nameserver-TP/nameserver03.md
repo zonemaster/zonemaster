@@ -20,9 +20,9 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Find all hostnames for all the name servers used by the domain.
-   (This is all the name servers from the parent delegation, and all the
-   name servers in the apex of the zone itself.)
+1. Find all hostnames for all the name servers used for the domain using
+   [Method 2](../Methods.md#method-2-obtain-name-servers-from-parent) and
+   [Method 3](../Methods.md#method-3-obtain-name-servers-from-child).
 2. Send an AXFR query to each name server found in step 1.
 3. If any answer to the AXFR query is starting with the SOA record
    for the domain, this test case fails.
