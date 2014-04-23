@@ -5,25 +5,27 @@
 
 ### Objective
 
-The case where a domain is too broken to be fully tested but functional
-enough for simple web browsing should be detected. This test should only
-be performed if the BASIC02 test has failed.
+The case where the delegation for a domain is too broken to be fully
+tested but functional enough for simple web browsing should be detected.
+This test should only be performed if the BASIC02 test has failed, in
+order to explain why the domain seemingly works but otherwise is
+untestable.
 
 ### Inputs
 
-1. A list of name server names taken from the parent domain
-2. and the IP addresses corresponding to those names.
-
-The addresses should come from glue address records for in-bailiwick
-name server names, and from separate recursive queries for out-of-bailiwick
-name server names.
+The label of the domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. An A query for the child domain name with the label 'www' prepended is
+1. Retrieve the IP addresses from the parent delegation using [Method 2]
+   (../Methods.md#method-2-obtain-name-servers-from-parent) and and [Method 4]
+   (../Methods.md##method-4-obtain-glue-address-records-from-parent). For name
+   server that are out-of-bailiwick, do separate recursive queries to retrieve
+   the IP addresses of those names.
+2. An A query for the child domain name with the label 'www' prepended is
    sent to each address from the input parameters, and the responses
    recorded.
-2. If no answer from the above queries contain any A record, this test
+3. If no answer from the above queries contain any A record, this test
    fails.
 
 ### Outcome(s)
