@@ -8,7 +8,6 @@ Ext - Refers to external review <br/>
 
 | Test   | Category change | Discard | Review/comments                  | Author   |
 |:-------|:---------|:--------|:----------------------------------------|:---------|
-| [BASIC01](Basic-TP/basic01.md) |   No     |   No    | 1. Refer to "Method 1" <br/> 2. step 2 is not clear enough, please update. | 1. SBA <br/> 2. Ext |
 | [BASIC03](Basic-TP/basic03.md) | No | No | 1. Similar to the comments in BASIC02 <br/> 2. Rational behind the test  | 1. SBA <br/> 2. Ext |    
 | Nameserver | No | No | 1. Modify all test cases from ns* -> nameserver*  | 1. SBA |
 | [NS02](Nameserver-TP/ns02.md) | No | No | 1. fail or warn? there might be necessary to test more EDNS things. EDNS should be in the answer. | 1. Ext |

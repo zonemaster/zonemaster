@@ -31,7 +31,7 @@ root domain should be done, and the steps of the process recorded.
 ### Outcome(s)
 
 If the recursive lookup of the domain is successful, this test cases passes.
-If the cannot continue (step 3), this test case fails.
+If the test cannot continue (step 3), this test case fails.
 
 ### Special procedural requirements
 
