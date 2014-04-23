@@ -1,7 +1,7 @@
-## NS03: Test availability of zone transfer (AXFR)
+## NAMESERVER03: Test availability of zone transfer (AXFR)
 
 ### Test case identifier
-**NS03** Test availability of zone transfer (AXFR)
+**NAMESERVER03** Test availability of zone transfer (AXFR)
 
 ### Objective
 

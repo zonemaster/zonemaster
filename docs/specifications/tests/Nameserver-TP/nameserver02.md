@@ -1,7 +1,7 @@
-## NS02: Test of EDNS0 support
+## NAMESERVER02: Test of EDNS0 support
 
 ### Test case identifier
-**NS02** Test of EDNS0 support
+**NAMESERVER02** Test of EDNS0 support
 
 ### Objective
 

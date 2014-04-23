@@ -1,7 +1,7 @@
-## NS04: Same source address
+## NAMESERVER04: Same source address
 
 ### Test case identifier
-**NS04** Same source address
+**NAMESERVER04** Same source address
 
 ### Objective
 

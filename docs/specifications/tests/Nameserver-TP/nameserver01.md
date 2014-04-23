@@ -1,7 +1,7 @@
-## NS01: A name server should not be a recursor
+## NAMESERVER01: A name server should not be a recursor
 
 ### Test case identifier
-**NS01** A name server should not be a recursor
+**NAMESERVER01** A name server should not be a recursor
 
 ### Objective
 
