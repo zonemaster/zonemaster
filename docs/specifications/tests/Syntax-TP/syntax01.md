@@ -1,11 +1,11 @@
-## SYNTAX01: No illegal symbols in the domain name
+## SYNTAX01: No illegal characters in the domain name
 
 ### Test case identifier
-**SYNTAX01** No illegal symbols in the domain name
+**SYNTAX01** No illegal characters in the domain name
 
 ### Objective
 
-There must be no illegal symbols in the domain name.
+There must be no illegal characters used in the domain name.
 The domain name must follow the rules defined in section 2.3.1 of
 [RFC 1035](http://www.ietf.org/rfc/rfc1035.txt),
 section 2.1 of [RFC 1123](http://tools.ietf.org/html/rfc1123#section-2.1),

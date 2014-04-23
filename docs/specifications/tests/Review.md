@@ -8,7 +8,6 @@ Ext - Refers to external review <br/>
 
 | Test   | Category change | Discard | Review/comments                  | Author   |
 |:-------|:---------|:--------|:----------------------------------------|:---------|
-| [SYNTAX01](Syntax-TP/syntax01.md) | No | No | 1. Step 2 in "Ordered description" -> IDNs <br/> 2. symbols - is this correct terminology? | 1. SBA <br/> 2. Ext |
 | [SYNTAX04](Syntax-TP/syntax04.md) | No | No | 1. generalize the validation of names (we have discussed this already) (same comment for 07 & 08)| 1. Ext |
 | Zone | No | No | 1. maybe change category name to SOA to make it more clear?| 1. Ext |
 | [Zone01](Zone-TP/zone01.md) | No | No | 1. Write and point to a method how the SOA record is retrieved| 1. SBA |
