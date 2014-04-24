@@ -19,7 +19,7 @@ to this method.
    with NXDOMAIN for the child domain, the test succeeds. The domain through
    which the name server was found is considered the parent domain.
 
-### Method 2: Obtain name servers from parent
+### Method 2: Obtain "glue Name records" from parent
 
 This method tries to obtain the authoritative name servers from the
 delegation of the parent domain.
@@ -39,7 +39,7 @@ for the child zone from the child domain itself.
 2. Record all the unique name servers from the answers received from the query in 
    step 1.
 
-### Method 4: Obtain glue address records from parent
+### Method 4: Obtain "glue address records" from parent
 
 This method tries to obtain any glue address records from the delegation
 in the parent zone.
