@@ -8,7 +8,7 @@ This document uses the terminology defined in the
 ## Mapping from Requirements to Test Case
 
 |Req| Description                                                              | Test Case            |
-|:--|:-------------------------------------------------------------------------|:--------------   ----|
+|:--|:-------------------------------------------------------------------------|:---------------------|
 |R03| Nameserver address must not be in  private network                       |[ADDR01](address01.md)|
 |R40| Reverse DNS entry exists for nameserver IP address                       |[ADDR02](address02.md)|
 |R41| Reverse DNS entry matches nameserver name                                |[ADDR03](address03.md)|
