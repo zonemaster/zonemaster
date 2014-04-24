@@ -9,11 +9,11 @@ This document uses the terminology defined in the
 
 |Req| Description                                                              | Test Case            |
 |:--|:-------------------------------------------------------------------------|:---------------------|
-|R03| Nameserver address must not be in  private network                       |[ADDR01](address01.md)|
-|R40| Reverse DNS entry exists for nameserver IP address                       |[ADDR02](address02.md)|
-|R41| Reverse DNS entry matches nameserver name                                |[ADDR03](address03.md)|
-|X37| IPv4 loopback address is not forward to root name servers                |[ADDR04](address04.md)|
-|X38| IPv6 loopback address is not forward to root name servers                |[ADDR05](address05.md)|
+|R03| Nameserver address must not be in  private network                       |[ADDRESS01](address01.md)|
+|R40| Reverse DNS entry exists for nameserver IP address                       |[ADDRESS02](address02.md)|
+|R41| Reverse DNS entry matches nameserver name                                |[ADDRESS03](address03.md)|
+|X37| IPv4 loopback address is not forward to root name servers                |[ADDRESS04](address04.md)|
+|X38| IPv6 loopback address is not forward to root name servers                |[ADDRESS05](address05.md)|
 
 
 
