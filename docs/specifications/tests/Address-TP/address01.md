@@ -41,8 +41,8 @@ The domain name to be tested.
 | 223.255.255.0/24		      | Reserved                  | RFC 3330  |
 | 224.0.0.0/4		              | Multicast                 | RFC 3330  |
 | 240.0.0.0/4		              | Reserved                  | RFC 3330  |
-| ::1/128, ::/128, 
-  ::ffff:0:0/96                                                               
+| ::1/128, ::/128, <br>
+  ::ffff:0:0/96  <br>                                                             
   fe80::/10, fc00::/7                                            
   2001:db8::/32                   
   5f00::/8, 3ffe::/16             
