@@ -4,7 +4,7 @@
 |:--|:---------------------|:---------|:-----------|:---------------|
 |R01|       UDP connectivity|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY01](./Connectivity-TP/connectivity01.md)|The domain must answer DNS queries over UDP on port 53|
 |R02|       TCP connectivity|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY02](./Connectivity-TP/connectivity02.md)|The domain must answer DNS queries over TCP on port 53|
-|R03|address in a private network|[Address-TP](Address-TP/level.md)|[ADDRESS01](./Address-TP/address01.md)|Name server address must not be in private network|
+|R03|address in a private network|[Address-TP](Address-TP/level.md)|[ADDRESS01](./Address-TP/address01.md)|Name server address must be globally routable|
 |R04|address should not be part of a bogon prefix|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY03](./Connectivity-TP/connectivity03.md)|The IPv6 addresses of the authoritative name servers of the domain should not be part of a bogon prefix|
 |R05|illegal symbols in domain name|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX01](./Syntax-TP/syntax01.md)|No illegal characters in the domain name|
 |R06|dash ('-') at start or beginning of domain name|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX02](./Syntax-TP/syntax02.md)|No hyphen ('-') at the start or end of the domain name|
