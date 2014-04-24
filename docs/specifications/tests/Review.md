@@ -20,7 +20,6 @@ Ext - Refers to external review <br/>
 | [Address5](Address-TP/addr05.md) | No | No | 1. Missing reference | 1.PWA |
 | [Consistency1](Consistency-TP/consistency01.md) | No | No | 1. Missing reference | 1.SBA |
 | [Consistency3](Consistency-TP/consistency03.md) | No | yes | 1. Explanation in the test case | 1.SBA |
-| [Delegation1](Delegation-TP/delegation01.md) | yes | No | 1. Move delegation01 & 02 & to a different category | 1.SBA |
 | [Delegation6](Delegation-TP/delegation06.md) | No | No | 1. 05 & 06 only relevant if it is actually a glue record? | 1.Ext |
 | [Delegation9](Delegation-TP/delegation09.md) | No | No | 1. split into separate tests - it is ok for the child domain to have more NS records than the parent domain, but not the opposite | 1.Ext |
 
