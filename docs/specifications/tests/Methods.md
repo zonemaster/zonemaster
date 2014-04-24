@@ -36,7 +36,7 @@ for the child zone from the child domain itself.
 
 1. A NS query for the domain is made to all listed name servers obtained
    from Method 2. 
-2. Record all the unique names from the answers received from the query in 
+2. Record all the unique name servers from the answers received from the query in 
    step 1.
 
 ### Method 4: Obtain glue address records from parent
@@ -44,7 +44,7 @@ for the child zone from the child domain itself.
 This method tries to obtain any glue address records from the delegation
 in the parent zone.
 
-1. Query the servers in Method 2 for A and AAAA addresses of the names.
+1. Query the servers in Method 2 for A and AAAA addresses.
 2. Record the unique IP addresses from the answers (both A and AAAA) in
    the additional section, which are the glue address records for the
    domain.
