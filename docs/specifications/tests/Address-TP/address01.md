@@ -41,7 +41,7 @@ The domain name to be tested.
 | 224.0.0.0/4		              | Multicast                 | RFC 3330  |
 | 240.0.0.0/4		              | Reserved                  | RFC 3330  |
 | ::1/128, ::/128	              | Special use IPv6 addresses| RFC 5156  |
-| ::ffff:0:0/96                       |                           |           |
+| ::ffff:0:0/96                                                               |
 | fe80::/10, fc00::/7                 |                           |           |
 | 2001:db8::/32                       |                           |           |
 | 5f00::/8, 3ffe::/16                 |                           |           |
