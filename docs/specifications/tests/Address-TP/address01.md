@@ -29,8 +29,10 @@ The domain name to be tested.
 1. Obtain the IP addresses of each name server of the domain checked using
    [Method5](../Methods.md)
 
-2. Each IP address has to be checked against the following blocks :
+2. Each IP address has to be checked against the blocks listed in the table below.
  
+3. If any IP address matches one of the block, the test case fails.
+
 
 |Address Block                        | Description               | Reference |
 |:------------------------------------|:--------------------------|:----------|
@@ -46,14 +48,12 @@ The domain name to be tested.
 | 2001::/32                           | Teredo                    | RFC 5156  |
 | ::<ipv4-address>/96                 | Deprecated                | RFC 5156  |
 
-3. If any address matches one of the private blocks, the test case
-   fails.
+Table: Forbidden address blocks
 
 ### Outcome(s)
 
-If one name server address is part of a private network, the test fails.
-If all the name server addresses are in the public addressing space, the
-test succeeds.
+If one name server has one of its addresses matches a forbidden address block , the test fails.
+If all the name server addresses are outside these forbidden blocks, the test case succeeds. 
 
 ### Special procedural requirements
 
