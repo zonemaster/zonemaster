@@ -44,9 +44,8 @@ for the child zone from the child domain itself.
 This method tries to obtain any glue address records from the delegation
 in the parent zone.
 
-1. Sort the result of Method 2 in alphabetical order.
-2. Query the servers in step 1 for A and AAAA addresses of the names.
-3. Record the unique IP addresses from the answers (both A and AAAA) in
+1. Query the servers in Method 2 for A and AAAA addresses of the names.
+2. Record the unique IP addresses from the answers (both A and AAAA) in
    the additional section, which are the glue address records for the
    domain.
 
