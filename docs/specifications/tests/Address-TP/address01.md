@@ -1,7 +1,7 @@
 ## ADDRESS01: Name server address must not be in private network
 
 ### Test case identifier
-**ADDRESS01** A name server address must not be in private network
+**ADDRESS01** A name server address must be in the public addressing space.
 
 ### Objective
 
@@ -35,13 +35,11 @@ The domain name to be tested.
 |:------------------------------------|:--------------------------|:----------|
 | 10/8, 172.16/12, 192.168/16         | Private IPv4 addresses    | RFC 1918  |                 
 | 100.64.0.0/10                       | Shared IPv4 addresses     | RFC 6598  |
-|:------------------------------------|:--------------------------|:----------|
 | 192.0.0.0/24			      | Reserved                  | RFC 5735  |
 | 192.88.99.0/24		      | 6to4 anycast              | RFC 5735  |
 | 223.255.255.0/24		      | Reserved                  | RFC 3330  |
 | 224.0.0.0/4		              | Multicast                 | RFC 3330  |
 | 240.0.0.0/4		              | Reserved                  | RFC 3330  |
-|:------------------------------------|:--------------------------|:----------|
 | ::1/128, ::/128	              | Special use IPv6 addresses| RFC 5156  |
 | ::ffff:0:0/96                       |                           |           |
 | fe80::/10, fc00::/7                 |                           |           |
@@ -50,10 +48,8 @@ The domain name to be tested.
 | 2001:10::/28                        |                           |           |
 | ::/0                                |                           |           |
 | ff00::/8                            |                           |           |
-|:------------------------------------|:--------------------------|:----------|
 | 2002::/16                           | 6to4                      | RFC 5156  |
 | 2001::/32                           | Teredo                    | RFC 5156  |
-|:------------------------------------|:--------------------------|:----------|
 | ::<ipv4-address>/96                 | Deprecated                | RFC 5156  |
 
 3. If any address matches one of the private blocks, the test case
