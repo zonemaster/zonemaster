@@ -1,7 +1,8 @@
 ## ADDRESS01: Name server address must not be in private network
 
 ### Test case identifier
-**ADDRESS01** A name server address must be in the public addressing space.
+**ADDRESS01** A name server address must be in the globally routable public
+ address space.
 
 ### Objective
 
@@ -16,7 +17,7 @@ shared address space.
 (https://tools.ietf.org/rfc/rfc5735.txt) specify reserved and multicast blocks
 that should not appear on the public Internet.
 
-Finally [RFC 5156](https://tools.ietf.org/rfc/rfc5156.txt) gives a compilation
+Finally, [RFC 5156](https://tools.ietf.org/rfc/rfc5156.txt) gives a compilation
 of reserved and special use of IPv6 blocks that are invalid routing prefixes.
 
 ### Inputs
@@ -40,7 +41,7 @@ The domain name to be tested.
 | 223.255.255.0/24		      | Reserved                  | RFC 3330  |
 | 224.0.0.0/4		              | Multicast                 | RFC 3330  |
 | 240.0.0.0/4		              | Reserved                  | RFC 3330  |
-| ::1/128, ::/128	              | Special use IPv6 addresses| RFC 5156  |
+| ::1/128, ::/128 <br>	              | Special use IPv6 addresses| RFC 5156  |
   ::ffff:0:0/96                                                               
 | fe80::/10, fc00::/7                 |                           |           |
 | 2001:db8::/32                       |                           |           |
