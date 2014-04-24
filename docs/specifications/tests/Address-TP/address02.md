@@ -10,20 +10,21 @@ In order to prevent name servers to be blocked or blacklisted, DNS
 administrators should publish PTR records associated to name servers'
 addresses.
 
+[technical reference to be found]
+
 ### Inputs
 
 The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Find the IP addresses of each name server of the domain checked.
-   Use the method described in [Master Test Plan](../Master Test Plan.md)
-   paragraph "Get the IP address records from the child zone".
+1. Obtain the IP addresses of each name server of the domain checked
+   using [Method5](../Methods.md)
 
 2. For each IP address, a recursive PTR query must be generated.
 
 3. If any answer of the queries made in step 2 contains an RCODE other than
-   NoError, this test case fails.
+   NoError or if the answer doesn't include a PTR record, this test case fails.
 
 ### Outcome(s)
 
@@ -32,10 +33,8 @@ results of the PTR queries generated.
 
 ### Special procedural requirements
 
-Even though it is recommended to publish reverse DNS entries for nameservers
-IP addresses, this test should not be blocking for the rest of the test cases
-and should only issue a warning rather than an error.
+None.
 
 ### Intercase dependencies
 
-The outcomes of this test is used as the input of ADDR03 test case.
+The outcomes of this test is used as the input of ADDRESS03 test case.
