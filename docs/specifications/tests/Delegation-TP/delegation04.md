@@ -1,24 +1,15 @@
-## DELEGATION04: Test whether the referrals response at the authoritative and additional section fit into 512 byte UDP packet
+## DELEGATION04: Test whether there is an authoritative ANSWER for the name server
 
 ### Test case identifier
 
-**DELEGATION04:** Test whether the referrals response at the authoritative
-and additional section fit into 512 byte UDP packet
+**DELEGATION04:** Test whether there is an authoritative ANSWER for the name server 
 
 ### Objective
 
-The Domain Name System defaults to using UDP for queries and replies with a
-DNS payload limit of 512 bytes.  Larger replies cause an initial truncation
-indication leading to a subsequent handling via TCP with substantially
-higher overhead.  EDNS0 is used to permits larger UDP responses thus
-reducing the need for use of TCP.
-
-But [IANA](https://www.iana.org/help/nameserver-requirements) still maintai
-ns that referrals from the parent zonne name servers must fit into a non-ED
-NS0 UDP DNS packet. Hence this test is done.
-
-In this test, the authoritaitve and additional section of the referral
-response from the domain must fit into a 512 byte UDP packet.
+Subsection 6.1 of [RFC 2181](http://tools.ietf.org/html/rfc2181) specifies
+that the nameservers must answer authoritatively for the designated zone.
+Responses to queries to the name servers for the designated zone must have
+the "AA" bit set
 
 ### Inputs
 
@@ -28,15 +19,14 @@ response from the domain must fit into a 512 byte UDP packet.
 
 1. Obtain the list of name servers from [Method2](../Methods.md) and
 [Method3](../Methods.md)
-2. Obtains the IP addresss of the name servers from [Method4](../Methods.md)
-and [Method5](../Methods.md)
-3. An empty DNS answer packet is generated.
-4. All the data from step 2 is added to the packet
-5. If the size of the packet is more than 512 bytes, then the test fails
+2. All name servers obtained as the result of step 1 are queried for the SOA
+record over TCP and UDP
+3. If any of the name server fail to give an authoritative answer ("AA-bit"
+is set in the answer), the test fails
 
 ### Outcome(s)
 
-If the created packet fits into 512 byte UDP packet, then the test succeeds
+If all the name servers answer with the AA-bit set, then the test succeeds
 
 ### Special procedural requirements
 

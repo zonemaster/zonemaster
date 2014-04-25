@@ -1,33 +1,32 @@
-## DELEGATION06: Test that the NS record is not pointing to a CNAME alias
+## DELEGATION06:Test the existence of SOA record in the domain's zone
 
 ### Test case identifier
 
-**DELEGATION06:** Test that the NS record is not pointing to a CNAME alias 
+**DELEGATION06:** Test the existence of SOA record in the domain's zone 
 
 ### Objective
 
-[RFC 1912](http://tools.ietf.org/html/rfc1912) mentions that NS records
-pointing to CNAME is forbidden. 
+Section 6.1 of the [RFC 2182](http://tools.ietf.org/html/rfc2182) specifies
+that the SOA record is mandatory for every zone. 
 
-The objective of this test is to verify that name servers does not point to
-a CNAME record
+This test is intended to verify the prescence of a SOA record in the
+domain's zone.
 
 ### Inputs
 
-1. The label of the domain name to be tested
+1. The label of the domain to be tested
 
 ### Ordered description of steps to be taken to execute the test case
 
 1. Obtain the list of name servers from [Method2](../Methods.md) and
 [Method3](../Methods.md)
-2. All name servers obtained as the result of step 1 are queried for A and
-AAAA records
-3. If any of the name server queried responded with the resource record type
-CNAME, then the test fails
+2. Apply [Method6](../Methods.md) to all the authoritative name servers for
+the domain.
+3. If there is no result from step2, the test fails
 
 ### Outcome(s)
 
-If none of the response contains the resource record type CNAME then the test succeeds
+If there is a single answer in step 2, then the test succeeds
 
 ### Special procedural requirements
 

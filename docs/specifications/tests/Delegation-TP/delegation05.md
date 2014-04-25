@@ -1,15 +1,16 @@
-## DELEGATION05: Test whether there is an authoritative ANSWER for the name server
+## DELEGATION05: Test that the NS record is not pointing to a CNAME alias
 
 ### Test case identifier
 
-**DELEGATION05:** Test whether there is an authoritative ANSWER for the name server 
+**DELEGATION05:** Test that the NS record is not pointing to a CNAME alias 
 
 ### Objective
 
-Subsection 6.1 of [RFC 2181](http://tools.ietf.org/html/rfc2181) specifies
-that the nameservers must answer authoritatively for the designated zone.
-Responses to queries to the name servers for the designated zone must have
-the "AA" bit set
+[RFC 1912](http://tools.ietf.org/html/rfc1912) mentions that NS records
+pointing to CNAME is forbidden. 
+
+The objective of this test is to verify that name servers does not point to
+a CNAME record
 
 ### Inputs
 
@@ -19,14 +20,14 @@ the "AA" bit set
 
 1. Obtain the list of name servers from [Method2](../Methods.md) and
 [Method3](../Methods.md)
-2. All name servers obtained as the result of step 1 are queried for the SOA
-record over TCP and UDP
-3. If any of the name server fail to give an authoritative answer ("AA-bit"
-is set in the answer), the test fails
+2. All name servers obtained as the result of step 1 are queried for A and
+AAAA records
+3. If any of the name server queried responded with the resource record type
+CNAME, then the test fails
 
 ### Outcome(s)
 
-If all the name servers answer with the AA-bit set, then the test succeeds
+If none of the response contains the resource record type CNAME then the test succeeds
 
 ### Special procedural requirements
 

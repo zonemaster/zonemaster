@@ -1,9 +1,9 @@
-## DELEGATION09: This test is done to verify whether all glue name records
+## DELEGATION07: This test is done to verify whether all glue name records
 are present at the child
 
 ### Test case identifier
 
-**DELEGATION09:** Test to verify whether all glue name records are present
+**DELEGATION07:** Test to verify whether all glue name records are present
 at the child 
 
 ### Objective
