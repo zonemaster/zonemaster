@@ -34,11 +34,11 @@ The domain name to be tested.
    [Method 4](../Methods.md#method-4-obtain-glue-address-records-from-parent) and
    [Method 5](../Methods.md##method-5-obtain-the-name-server-address-records-from-child),
    and do recursive lookups for the name servers that are out of bailiwick.
-2. Send a DNS query to each name server IP address querying the SOA record
+3. Send a DNS query to each name server IP address querying the SOA record
    of the domain name with the DO bit set and a payload size ("bufsize")
    set to 512.
-3. If any answer from step 2 contains a FORMERR RCODE this test case fails.
-4. If the answer does not containt an OPT RR with EDNS version 0, this test
+4. If any answer from step 2 contains a FORMERR RCODE this test case fails.
+5. If the answer does not containt an OPT RR with EDNS version 0, this test
    case fails.
 
 ### Outcome(s)
