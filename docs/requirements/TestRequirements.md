@@ -51,7 +51,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R32|SOA master is not an alias                  | SOA:MNAME_IS_CNAME                          |Zone|
 |R33|coherence of serial number with primary nameserver | CONSISTENCY:SOA_SERIAL_CONSISTENT    |Consistency|
 |R34|coherence of administrative contact with primary nameserver | CONSISTENCY:SOA_DIGEST_CONSISTENT |Consistency|
-|R35|coherence of master with primary nameserver | CONSISTENCY:NS_SETS_OK ?                    |Consistency|
+|R35|coherence of master with primary nameserver | Removed (Exp. to be provided in discarded test |Consistency|
 |R36|coherence of SOA with primary nameserver    | CONSISTENCY:SOA_DIGEST_CONSISTENT           |Consistency|
 |R40|nameserver IP reverse                       | ADDRESS:PTR_NOT_FOUND                       |Address|
 |R41|nameserver IP reverse matching nameserver name | __not implemented__?                     |Address|
