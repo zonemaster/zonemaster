@@ -28,8 +28,8 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R07|double dash in domain name                  | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME       |Syntax|
 |R09|at least two nameservers for the domain     | DELEGATION:TOO_FEW_NS                       |Delegation|
 |R10|identical addresses                         | DELEGATION:TOO_FEW_NS_IPV4 ?                |Delegation|
-|R11|nameserver addresses on same subnet         | __think we removed this__!?                 |Connectivity|
-|R12|nameserver addresses are all on the same subnet | __indirectly done through AS checks__!? |Connectivity|
+|R11|nameserver addresses on same subnet         | __Indirectly done through AS checks (R54)__!                 |Connectivity|
+|R12|nameserver addresses are all on the same subnet | __indirectly done through AS checks (R54)__! |Connectivity|
 |R13|delegation response fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK        |Delegation|
 |R14|delegation response with additional fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK |Delegation|
 |R15|NS record present                           | ZONE:FATAL_NO_CHILD_NS                      |Basic|
@@ -51,7 +51,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R32|SOA master is not an alias                  | SOA:MNAME_IS_CNAME                          |Zone|
 |R33|coherence of serial number with primary nameserver | CONSISTENCY:SOA_SERIAL_CONSISTENT    |Consistency|
 |R34|coherence of administrative contact with primary nameserver | CONSISTENCY:SOA_DIGEST_CONSISTENT |Consistency|
-|R35|coherence of master with primary nameserver | Removed (Exp. to be provided in discarded test |Consistency|
+|R35|coherence of master with primary nameserver | Removed (Wrong to assume if MNAME is not identifical across all content servers of a DNS zone) |Consistency|
 |R36|coherence of SOA with primary nameserver    | CONSISTENCY:SOA_DIGEST_CONSISTENT           |Consistency|
 |R40|nameserver IP reverse                       | ADDRESS:PTR_NOT_FOUND                       |Address|
 |R41|nameserver IP reverse matching nameserver name | __not implemented__?                     |Address|
