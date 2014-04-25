@@ -15,3 +15,4 @@ This document uses the terminology defined in the
 |R72|Test of EDNS0 support                                                     |[NAMESERVER02](nameserver02.md)|
 |R73|Test availability of zone transfer (AXFR)                                 |[NAMESERVER03](nameserver03.md)|
 |R74|Answer from name server came from an IP address other than expected (wrong source IP)|[NAMESERVER04](nameserver04.md)|
+|R53|behaviour against AAAA query (RFC 4074)                                   |[NAMESERVER05](nameserver05.md)|
