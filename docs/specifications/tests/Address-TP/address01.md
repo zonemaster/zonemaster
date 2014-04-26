@@ -34,7 +34,7 @@ The domain name to be tested.
 3. If any IP address matches one of the block, the test case fails.
 
 
-| IPv4 Special purpose adresses |||
+| IPv4 Special purpose adresses |
 |---------------------|----------------------------|--------------|
 | **Address Block**      | **Name**                | **Reference**|
 | 0.0.0.0/8          | "This host on this network" | RFC 1122     |
