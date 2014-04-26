@@ -34,9 +34,9 @@ The domain name to be tested.
 3. If any IP address matches one of the block, the test case fails.
 
 
-| IPv4 Special purpose adresses |
+| IPv4 Special purpose adresses |||
 |---------------------|----------------------------|--------------|
-| **Address Block**      | **Name**                | **Reference**|
+| **Address Block**   | **Name**                   | **Reference**|
 | 0.0.0.0/8          | "This host on this network" | RFC 1122     |
 | 10.0.0.0/8, <br>192.168.0.0/16,<br>172.16.0.0/12 | Private-Use  | RFC 1918     |
 | 100.64.0.0/10      | Shared Address Space        | RFC 6598     |
@@ -51,36 +51,39 @@ The domain name to be tested.
 | 240.0.0.0/4        | Reserved                    | RFC 1112     |
 | 255.255.255.255/32 | Limited Broadcast           | RFC 919      |
 
+Table: IPv4 special purpose blocks
+
 
 | IPv6 Special purpose adresses |||
-|---------------------|--------------------|--------------|
-| **Address Block**   | **Name**           | **Reference**|
-|---------------------|--------------------|--------------|
-|::1/128	   |Loopback Address	       | RFC 4291     |
-|::/128	       |Unspecified Address	       | RFC 4291     | 
-|::ffff:0:0/96 |IPv4-mapped Address	       | RFC 4291     |
-|64:ff9b::/96  |IPv4-IPv6 Translation	   | RFC 6052     | 
-|100::/64	   |Discard-Only Address Block | RFC 6666     |
-|2001::/23	   |IETF Protocol Assignments  | RFC 2928     | 
-|2001::/32	   |TEREDO	                   | RFC 4380     |
-|2001:2::/48   |Benchmarking	           | RFC 5180     |
-|2001:db8::/32 |Documentation	           | RFC 3849     |
-|2001:10::/28  |Deprecated (ORCHID)	       | RFC 4843     | 
-|2002::/16	   |6to4 	                   | RFC 3056     |
-|fc00::/7	   |Unique-Local 	           | RFC 4193     |
-|fe80::/10	   |Linked-Scoped Unicast	   | RFC 4291     |
-|::<ipv4-address>/96 |Deprecated (IPv4-compatible Address)| RFC 4291     | 
-|5f00::/8 <br> 3ffe::/16 | unallocated (ex 6bone) | RFC 3701 |
-|::/0          |Default route              | RFC 5156     |  
+|---------------------|----------------------------|--------------|
+| **Address Block**   | **Name**                   | **Reference**|
+|::1/128	      |Loopback Address	           | RFC 4291     |
+|::/128	              |Unspecified Address	   | RFC 4291     | 
+|::ffff:0:0/96        |IPv4-mapped Address	   | RFC 4291     |
+|64:ff9b::/96         |IPv4-IPv6 Translation	   | RFC 6052     | 
+|100::/64	      |Discard-Only Address Block  | RFC 6666     |
+|2001::/23	      |IETF Protocol Assignments   | RFC 2928     | 
+|2001::/32	      |TEREDO	                   | RFC 4380     |
+|2001:2::/48          |Benchmarking	           | RFC 5180     |
+|2001:db8::/32        |Documentation	           | RFC 3849     |
+|2001:10::/28         |Deprecated (ORCHID)	   | RFC 4843     | 
+|2002::/16	      |6to4 	                   | RFC 3056     |
+|fc00::/7	      |Unique-Local 	           | RFC 4193     |
+|fe80::/10	      |Linked-Scoped Unicast	   | RFC 4291     |
+|::<ipv4-address>/96  |Deprecated (IPv4-compatible Address)| RFC 4291     | 
+|5f00::/8 <br> 3ffe::/16 | unallocated (ex 6bone)  | RFC 3701     |
+|::/0                 |Default route               | RFC 5156     |  
+
+Table: IPv6 special purpose blocks
 
 
 | Multicast adresses |||
 |---------------------|----------------------------|--------------|
 | **Address Block**      | **Name**                | **Reference**|
-|--------------------|-----------------------------|--------------|
 | 224.0.0.0/4        | IPv4 multicast addresses    | RFC 5771     |
 | ff00::/8           | IPv6 multicast addresses    | RFC 4291     |
 
+Table: Multicast blocks
 
 ### Outcome(s)
 
