@@ -7,7 +7,7 @@
 ### Objective
 
 In order for the domain and its resources to be accessible, authoritative 
-name servers must have addrresses in the routable public addressing space.
+name servers must have addresses in the routable public addressing space.
 
 IANA is responsible for global coordination of the IP addressing system.
 Aside its address allocation activities, it maintains reserved address ranges
@@ -37,7 +37,6 @@ The domain name to be tested.
 | IPv4 Special purpose adresses |||
 |---------------------|----------------------------|--------------|
 | **Address Block**      | **Name**                | **Reference**|
-|--------------------|-----------------------------|--------------|
 | 0.0.0.0/8          | "This host on this network" | RFC 1122     |
 | 10.0.0.0/8, <br>192.168.0.0/16,<br>172.16.0.0/12 | Private-Use  | RFC 1918     |
 | 100.64.0.0/10      | Shared Address Space        | RFC 6598     |
@@ -80,7 +79,7 @@ The domain name to be tested.
 | **Address Block**      | **Name**                | **Reference**|
 |--------------------|-----------------------------|--------------|
 | 224.0.0.0/4        | IPv4 multicast addresses    | RFC 5771     |
-| ffOO::/8           | IPv6 multicast addresses    | RFC 4291     |
+| ff00::/8           | IPv6 multicast addresses    | RFC 4291     |
 
 
 ### Outcome(s)
