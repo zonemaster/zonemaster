@@ -19,8 +19,6 @@ sub all {
     push @results, $class->connectivity02( $zone );
     push @results, $class->connectivity03( $zone );
     push @results, $class->connectivity04( $zone );
-    push @results, $class->connectivity05( $zone );
-    push @results, $class->connectivity06( $zone );
 
     return @results;
 }
@@ -36,9 +34,7 @@ sub metadata {
         connectivity01 => [qw(NAMESERVER_HAS_UDP_53 NAMESERVER_NO_UDP_53)],
         connectivity02 => [qw(NAMESERVER_HAS_TCP_53 NAMESERVER_NO_TCP_53)],
         connectivity03 => [qw(NAMESERVER_IPV6_ADDRESS_BOGON NAMESERVER_IPV6_ADDRESSES_NOT_BOGON)],
-        connectivity04 => [qw()],
-        connectivity05 => [qw()],
-        connectivity06 => [qw(NAMESERVERS_WITH_UNIQ_AS)],
+        connectivity04 => [qw(NAMESERVERS_WITH_UNIQ_AS)],
     };
 }
 
@@ -237,20 +233,6 @@ sub connectivity03 {
 sub connectivity04 {
     my ( $class, $zone ) = @_;
     my @results;
-
-    return @results;
-} ## end sub connectivity04
-
-sub connectivity05 {
-    my ( $class, $zone ) = @_;
-    my @results;
-
-    return @results;
-} ## end sub connectivity05
-
-sub connectivity06 {
-    my ( $class, $zone ) = @_;
-    my @results;
     my ( %ips, %asns );
 
     foreach my $local_ns ( @{ $zone->ns },  @{ $zone->glue } ) {
@@ -281,7 +263,7 @@ sub connectivity06 {
     }
 
     return @results;
-} ## end sub connectivity06
+} ## end sub connectivity04
 
 1;
 
@@ -329,14 +311,6 @@ Verify nameservers TCP port 53 reachability.
 Verify that nameservers addresses are not part of a bogon prefix.
 
 =item connectivity04($zone)
-
-Not yet implemented.
-
-=item connectivity05($zone)
-
-Not yet implemented.
-
-=item connectivity06($zone)
 
 Verify that all nameservers do not belong to the same AS.
 
