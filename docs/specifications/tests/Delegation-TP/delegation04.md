@@ -1,32 +1,31 @@
-## DELEGATION04: Test whether there is an authoritative ANSWER for the name server
+## DELEGATION04: Name server is authoritative
 
 ### Test case identifier
 
-**DELEGATION04:** Test whether there is an authoritative ANSWER for the name server 
+**DELEGATION04:** Name server is authoritative
 
 ### Objective
 
 Subsection 6.1 of [RFC 2181](http://tools.ietf.org/html/rfc2181) specifies
-that the nameservers must answer authoritatively for the designated zone.
-Responses to queries to the name servers for the designated zone must have
-the "AA" bit set
+that the nameservers must answer authoritatively for the domain. Answers
+to queries to the name servers for the designated zone must have the "AA"
+bit set.
 
 ### Inputs
 
-1. The label of the domain name to be tested
+The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the list of name servers from [Method2](../Methods.md) and
-[Method3](../Methods.md)
-2. All name servers obtained as the result of step 1 are queried for the SOA
-record over TCP and UDP
-3. If any of the name server fail to give an authoritative answer ("AA-bit"
-is set in the answer), the test fails
+1. Obtain the complete set of name servers from the parent using
+   [Method2](../Methods.md) and the child using [Method3](../Methods.md).
+2. All name servers queried for the SOA record over TCP and UDP on port 53.
+3. If any name server fail to give an authoritative answer ("AA-bit" is set
+   in the answer), the test fails.
 
 ### Outcome(s)
 
-If all the name servers answer with the AA-bit set, then the test succeeds
+If all the name servers answer with the AA-bit set, then the test succeeds.
 
 ### Special procedural requirements
 
