@@ -1,8 +1,7 @@
 ## ADDRESS01: Name server address must be globally routable
 
 ### Test case identifier
-**ADDRESS01** A name server address must be in the globally routable public
- address space.
+**ADDRESS01** Name server address must be globally routable
 
 ### Objective
 
@@ -29,7 +28,8 @@ The domain name to be tested.
 1. Obtain the IP addresses of each name server of the domain checked using
    [Method5](../Methods.md)
 
-2. Each IP address has to be checked against the blocks listed in the three tables below.
+2. Each IP address has to be checked against the blocks listed in the three
+   tables below.
  
 3. If any IP address matches one of the block, the test case fails.
 
@@ -87,8 +87,9 @@ Table: Multicast blocks
 
 ### Outcome(s)
 
-If one name server has one of its addresses matches a forbidden address block , the test fails.
-If all the name server addresses are outside these forbidden blocks, the test case succeeds. 
+If one name server has one of its addresses matches a forbidden address
+block, the test fails. If all the name server addresses are outside these
+forbidden blocks, the test case succeeds. 
 
 ### Special procedural requirements
 
