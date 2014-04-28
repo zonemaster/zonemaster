@@ -30,7 +30,8 @@ The domain to be tested.
 2. Obtains the IPv6 addresss of the name servers from [Method4]
    (../Methods.md) and [Method5](../Methods.md)
 3. If any of the addresses obtained from the name servers is part of a bogon
-   [where to get a list]?
+prefix [Match with Team-cymru IPv6 bogon prefixes as explained here :
+   (https://www.team-cymru.org/Services/Bogons/dns.html)]
 
 ### Outcome(s)
 
