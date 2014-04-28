@@ -1,8 +1,8 @@
-## CONNECTIVITY01: The domain must answer DNS queries over UDP on port 53
+## CONNECTIVITY01: UDP connectivity
 
 ### Test case identifier
 
-**CONNECTIVITY01:**  The domain must answer DNS queries over UDP on port 53
+**CONNECTIVITY01:** UDP connectivity
 
 ### Objective
 
@@ -14,7 +14,7 @@ the domain are accessible over UDP on port 53
 
 ### Inputs
 
-1. The domain name to be tested
+The domain to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
