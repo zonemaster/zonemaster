@@ -12,7 +12,7 @@ a workaround to a certain policy restriction. This test case checks that
 the name servers used does not resolve to reuse the same IP addresses.
 
 Section 4.1 of [RFC 1034](http://tools.ietf.org/html/rfc1034) says at least
-to name servers must be used for a delegation. 
+to name servers must be used for a delegation.
 
 ### Inputs
 
