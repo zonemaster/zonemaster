@@ -31,7 +31,7 @@ The domain name to be tested.
 2. Each IP address has to be checked against the blocks listed in the three
    tables below.
  
-3. If any IP address matches one of the block, the test case fails.
+3. If any IP address matches one of the blocks, the test case fails.
 
 
 | IPv4 Special purpose adresses |||
