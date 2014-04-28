@@ -1,8 +1,8 @@
-## CONSISTENCY01: Serial number consistency
+## CONSISTENCY01: SOA serial number consistency
 
 ### Test case identifier
 
-**CONSISTENCY01:** Serial number consistency
+**CONSISTENCY01:** SOA serial number consistency
 
 ### Objective
 

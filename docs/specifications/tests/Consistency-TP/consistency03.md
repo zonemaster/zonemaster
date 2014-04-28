@@ -1,9 +1,8 @@
-## CONSISTENCY04: The RDATA fields "REFRESH", "RETRY", "EXPIRE" and "MINIMUM"  must be consistent between authoritative name servers
+## CONSISTENCY03: SOA parameters consistency
 
 ### Test case identifier
 
-**CONSISTENCY04:**  The RDATA fields "REFRESH", "RETRY", "EXPIRE" and
-"MINIMUM" must be consistent between authoritative name servers
+**CONSISTENCY03:** SOA parameters consistency
 
 ### Objective
 
@@ -23,16 +22,15 @@ Verify*) might result in operational inconsistencies.
 
 ### Inputs
 
-1. The domain name to be tested
+The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
 1. Obtain the list of name servers from [Method2](../Methods.md) and
-[Method3](../Methods.md)
-2. Apply [Method6](../Methods.md) to all the authoritative name servers for
-the domain.
-3. If the SOA values "REFRESH", "RETRY", "EXPIRE" and "MINIMUM" not the same
-from all the answers received from step 2, then the test fails
+   [Method3](../Methods.md).
+2. Retrieve the SOA RR from all the name servers. 
+3. If the SOA values "REFRESH", "RETRY", "EXPIRE" and "MINIMUM" are not the
+   same from all the answers received from step 2, then the test case fails.
 
 ### Outcome(s)
 
