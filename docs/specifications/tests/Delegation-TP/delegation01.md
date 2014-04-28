@@ -1,8 +1,8 @@
-## DELEGATION01: The domain must have a minimum of two authoritative name servers   
+## DELEGATION01: Minimum number of name servers   
 
 ### Test case identifier
 
-**DELEGATION01:** The domain must have a minimum of two authoritative name servers
+**DELEGATION01:** Minimum number of name servers
 
 ### Objective
 
@@ -12,18 +12,19 @@ done to verify this condition
 
 ### Inputs
 
-The label of the domain name to be tested
+The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the list of name servers from [Method2](../Methods.md) and
-[Method3](../Methods.md)
-2. if the result of step 1 is less than two, the test fails
+1. Obtain the complete set of name servers from parent using
+   [Method2](../Methods.md) and the child using [Method3](../Methods.md).
+2. If the total amount of name servers returned are less than two, the test
+   case fails.
  
 ### Outcome(s)
 
-If the results of step 2.1 and step 3.2 contain two or more name servers,
-then the test succeeds 
+If the total amount of name servers used for the domain are two or more,
+then the test case succeeds .
 
 ### Special procedural requirements
 
