@@ -19,13 +19,13 @@ The domain to be tested.
 ### Ordered description of steps to be taken to execute the test case
 
 1. Obtain the list of name servers from [Method2](../Methods.md) and
-[Method3](../Methods.md)
+   [Method3](../Methods.md)
 2. Obtains the IP addresss of the name servers from [Method4](../Methods.md)
-and [Method5](../Methods.md)
+   and [Method5](../Methods.md)
 3. A SOA query is sent over TCP to distinct IP address of each name server
-found in step2
+   found in step2
 4. If all queries in step 3 receive a DNS answer (bogus response are not
-checked here) then the test case succeed.
+   checked here) then the test case succeed.
 
 ### Outcome(s)
 

@@ -34,8 +34,6 @@ test DNSSEC fully even for undelegated domains.
 a provided flag.
 - [2.11] The CLI MUST be able to test all available test cases within one
 group, it MAY also work per unique test case (--test=zone or --test=zone03). 
-The CLI SHOULD report what, if any, additional input is required to run 
-the test specified.
 
 **Output:**
 - [3.1] The CLI MUST be able to provide an output log that is machine 
@@ -49,10 +47,9 @@ parseable and this MAY be disabled or enabled with a provided parameter.
 - [3.4] The CLI MUST have a flag to list all available tests and a brief
  text on what these tests do. The CLI MAY also have more detailed
  information about each test reachable elsewhere from the CLI.
-- [3.5] The CLI MUST be able to limit output (filter) by type of errors
- or ignore specific hosts.
 
 **Optional (or for future uses):**
 - [4.1] Boost policy error level WARNING to ERROR with provided flag.
 - [4.2] Possible to activate tool debugging code.
-
+- [4.3] Possibility for the CLI to limit output (filter) by type of errors
+  or ignore specific hosts.
