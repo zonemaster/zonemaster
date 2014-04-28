@@ -1,21 +1,20 @@
-## CONNECTIVITY02: The domain must answer DNS queries over TCP on port 53
+## CONNECTIVITY02: TCP connectivity
 
 ### Test case identifier
 
-**CONNECTIVITY02:**  The domain must answer DNS queries over TCP on port 53 
+**CONNECTIVITY02:** TCP connectivity
 
 ### Objective
 
-DNS queries are sent using TCPP on port 53, as described in section 4.2.2 of
+DNS queries are sent using TCP on port 53, as described in section 4.2.2 of
 [RFC 1035](http://tools.ietf.org/html/rfc1035).
 
 The objective for this test is that all the authoritative name servers for
 the domain are accessible over TCP on port 53
 
-
 ### Inputs
 
-1. The domain name to be tested
+The domain to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
