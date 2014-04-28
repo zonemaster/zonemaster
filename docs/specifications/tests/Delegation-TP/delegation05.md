@@ -1,8 +1,8 @@
-## DELEGATION05: Test that the NS record is not pointing to a CNAME alias
+## DELEGATION05: NS RR does not point to CNAME alias
 
 ### Test case identifier
 
-**DELEGATION05:** Test that the NS record is not pointing to a CNAME alias 
+**DELEGATION05:** NS RR does not point to CNAME alias 
 
 ### Objective
 
@@ -10,24 +10,24 @@
 pointing to CNAME is forbidden. 
 
 The objective of this test is to verify that name servers does not point to
-a CNAME record
+a CNAME record.
 
 ### Inputs
 
-1. The label of the domain name to be tested
+The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the list of name servers from [Method2](../Methods.md) and
-[Method3](../Methods.md)
-2. All name servers obtained as the result of step 1 are queried for A and
-AAAA records
+1. Obtain the complete set of name servers from the parent using
+   [Method2](../Methods.md) and the child using [Method3](../Methods.md).
+2. All name servers are queried for A and AAAA records.
 3. If any of the name server queried responded with the resource record type
-CNAME, then the test fails
+   CNAME, then this test case fails.
 
 ### Outcome(s)
 
-If none of the response contains the resource record type CNAME then the test succeeds
+If none of the response contains the resource record type CNAME then the
+test succeeds.
 
 ### Special procedural requirements
 
