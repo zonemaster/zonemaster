@@ -1,32 +1,32 @@
-## DELEGATION06:Test the existence of SOA record in the domain's zone
+## DELEGATION06: Existence of SOA
 
 ### Test case identifier
 
-**DELEGATION06:** Test the existence of SOA record in the domain's zone 
+**DELEGATION06:** Existence of SOA
 
 ### Objective
 
 Section 6.1 of the [RFC 2182](http://tools.ietf.org/html/rfc2182) specifies
 that the SOA record is mandatory for every zone. 
 
-This test is intended to verify the prescence of a SOA record in the
-domain's zone.
+This test is intended to verify the prescence of a SOA record for the
+domain.
 
 ### Inputs
 
-1. The label of the domain to be tested
+The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the list of name servers from [Method2](../Methods.md) and
-[Method3](../Methods.md)
-2. Apply [Method6](../Methods.md) to all the authoritative name servers for
-the domain.
-3. If there is no result from step2, the test fails
+1. Obtain the complete set of name servers from the parent using
+   [Method2](../Methods.md) and the child using [Method3](../Methods.md).
+2. Query for the SOA record.
+3. If there is an answer with NOERROR and there is no content in the
+   answer section, this test case fails.
 
 ### Outcome(s)
 
-If there is a single answer in step 2, then the test succeeds
+If there is a SOA record present for the domain this test case succeeds.
 
 ### Special procedural requirements
 
