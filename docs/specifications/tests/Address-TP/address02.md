@@ -29,9 +29,10 @@ The domain name to be tested.
 
 ### Outcome(s)
 
-A list of of address with corresponding PTR records. These are the 
-results of the PTR queries generated. The result could be stored as a
-hash table where the key is the IP address and the values, the hostnames found.
+If the test case succeeds, its result is a list of addresses with corresponding
+hostnames which are the result of the PTR queries performed.
+The result could be represented as a hash table where the keys are the IP
+addresses and the values their corresponding hostnames.
 
 ### Special procedural requirements
 
