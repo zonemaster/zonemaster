@@ -1,10 +1,8 @@
-## DELEGATION07: This test is done to verify whether all glue name records
-are present at the child
+## DELEGATION07: Parent glue name records present in child
 
 ### Test case identifier
 
-**DELEGATION07:** Test to verify whether all glue name records are present
-at the child 
+**DELEGATION07:** Parent glue name records present in child
 
 ### Objective
 
@@ -15,14 +13,14 @@ found in its its child zone, then it leads to an inconsistency.
 
 ### Inputs
 
-1. The label of the domain name to be tested
+The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the list of name servers from [Method2](../Methods.md) and
-[Method3](../Methods.md)
+1. Obtain the complete set of name servers from the parent using
+   [Method2](../Methods.md) and the child using [Method3](../Methods.md).
 3. If the set of NS names obtained from [Method2](../Methods.md) are 
-not found in [Method3](../Methods.md) , then the test fails
+   not found in [Method3](../Methods.md), then the test fails.
 
 ### Outcome(s)
 
