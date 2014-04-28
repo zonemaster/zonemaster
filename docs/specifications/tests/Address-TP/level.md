@@ -2,7 +2,7 @@
 
 These tests focuses on the Address specific test cases of the DNS tests.
 
-This document uses the terminology defined in the
+These documents uses the terminology defined in the
 [Master Test Plan](../MasterTestPlan.md).
 
 ## Mapping from Requirements to Test Case
