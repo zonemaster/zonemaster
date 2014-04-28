@@ -1,9 +1,8 @@
-## CONSISTENCY01: Serial number must be consistent between authoritative name servers 
+## CONSISTENCY01: Serial number consistency
 
 ### Test case identifier
 
-**CONSISTENCY01:** Serial number must be consistent between authoritative
-name servers 
+**CONSISTENCY01:** Serial number consistency
 
 ### Objective
 
@@ -24,32 +23,24 @@ between different authoritative name servers.
 
 ### Inputs
 
-1. The domain name to be tested
+The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
+
 1. Obtain the list of name servers from [Method2](../Methods.md) and
-[Method3](../Methods.md)
-2. Apply [Method6](../Methods.md) to all the authoritative name servers for
-the domain. 
+   [Method3](../Methods.md)
+2. Retrieve the SOA RR from all the name servers. 
 3. If the SOA serial number is not the same from all the answers received
-from step 2, then the test fails
+   from step 2, then the test fails
 
 ### Outcome(s)
 
 All authoritative name servers must have consistent serial numbers. If the
-test does not find any inconsistency, then the test succeeds
+test does not find any inconsistency, then the test case passes.
 
 ### Special procedural requirements	
 
-If for operational reasons, the zone content fluctuates rapidly (e.g. within
-a second), then the test may fail even though there is no misconfigurations.
-In this case, the serial numbers between different authoritative name
-servers need only to be loosely coherent. A manual inspection of the SOA
-serial should be enough to determine if the zone updates work properly or
-not, and if the serial values are within a reasonable range, the test is OK. 
-
-Such manual inspection is needed in the case of zones which rapidly
-fluctuates, as in the case of Top Level Domains (TLDs).  
+None
 
 ### Intercase dependencies
 
