@@ -8,7 +8,7 @@ This document uses the terminology defined in the [Master Test Plan](../Master%2
 |:--|:-----------------------------------------------|:----------------------------------|
 |R01|UDP connectivity                                |[CONNECTIVITY01](connectivity01.md)|
 |R02|TCP connectivity                                |[CONNECTIVITY02](connectivity02.md)|
-|R04|Address should not be part of a bogon prefix    |[CONNECTIVITY03](connectivity03.md)|
+|R04|IPv6 address not part of bogon prefix           |[CONNECTIVITY03](connectivity03.md)|
 |R11|Nameserver addresses on the same subnet         |[CONNECTIVITY04](connectivity04.md)|
 |R12|Nameserver addresses are all on the same subnet |[CONNECTIVITY04](connectivity04.md)|
 |R54|Nameservers belong all to the same AS           |[CONNECTIVITY04](connectivity04.md)|
