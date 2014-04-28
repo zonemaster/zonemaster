@@ -6,10 +6,10 @@
 
 ### Objective
 
-All authoritative name servers must serve the same SOA record for the
-tested domain. [Technical reference to be provided]. As per section
-3.3.13 of [RFC 1035](http://tools.ietf.org/html/rfc1035), the RNAME field
-in the SOA RDATA refers to the administrative contact. The inconsistency in
+All authoritative name servers must serve the same SOA record (section
+4.2.1 of [RFC 1034](http://tools.ietf.org/html/rfc1034) for the
+tested domain. As per section 3.3.13 of [RFC 1035](http://tools.ietf.org/html/rfc1035),
+the RNAME field in the SOA RDATA refers to the administrative contact. The inconsistency in
 the administrative contact for the a domain might result in operational
 failures being informed to different persons.
 
