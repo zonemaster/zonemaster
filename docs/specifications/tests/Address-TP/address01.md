@@ -12,11 +12,11 @@ IANA is responsible for global coordination of the IP addressing system.
 Aside its address allocation activities, it maintains reserved address ranges
 for special uses. These ranges can be categorized into three types : 
 [Special purpose IPv4
-addresses](http://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.txt),
+addresses](http://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xml),
 [Special purpose IPv6
-addresses](http://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.txt)
+addresses](http://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xml)
 and [Multicast reserved
-addresses](https://www.iana.org/assignments/multicast-addresses/multicast-addresses.txt).
+addresses](https://www.iana.org/assignments/multicast-addresses/multicast-addresses.xml).
 
 
 ### Inputs
