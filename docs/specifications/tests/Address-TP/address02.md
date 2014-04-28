@@ -7,7 +7,7 @@
 
 Some anti-spam techniques use reverse DNS lookup to allow incoming traffic.
 In order to prevent name servers to be blocked or blacklisted, DNS 
-administrators should publish PTR records associated to name servers'
+administrators should publish PTR records associated to name server
 addresses.
 
 [technical reference to be found]
@@ -21,10 +21,11 @@ The domain name to be tested.
 1. Obtain the IP addresses of each name server of the domain checked
    using [Method5](../Methods.md)
 
-2. For each IP address, a recursive PTR query must be generated.
+2. For each IP address, a recursive PTR query must be performed.
 
-3. If any answer of the queries made in step 2 contains an RCODE other than
-   NoError or if the answer doesn't include a PTR record, this test case fails.
+3. If any answer of the queries performed in step 2 contains an RCODE
+   other than NOERROR or if the answer does not include a PTR record,
+   this test case fails.
 
 ### Outcome(s)
 
