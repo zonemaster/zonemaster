@@ -40,4 +40,4 @@ None.
 
 ### Intercase dependencies
 
-The outcomes of this test is used as the input of [ADDRESS03](Address03.md) test case.
+The outcomes of this test is used as the input of [ADDRESS03](address03.md) test case.
