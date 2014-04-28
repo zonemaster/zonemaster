@@ -30,7 +30,8 @@ The domain name to be tested.
 ### Outcome(s)
 
 A list of of address with corresponding PTR records. These are the 
-results of the PTR queries generated.
+results of the PTR queries generated. The result could be stored as a
+hash table where the key is the IP address and the values, the hostnames found.
 
 ### Special procedural requirements
 
@@ -38,4 +39,4 @@ None.
 
 ### Intercase dependencies
 
-The outcomes of this test is used as the input of ADDRESS03 test case.
+The outcomes of this test is used as the input of [ADDRESS03](Address03) test case.
