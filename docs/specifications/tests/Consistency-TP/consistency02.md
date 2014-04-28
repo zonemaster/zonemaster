@@ -34,6 +34,7 @@ If the test does not find any inconsistency, then the test succeeds.
 
 ### Special procedural requirements	
 
+None
 
 ### Intercase dependencies
 

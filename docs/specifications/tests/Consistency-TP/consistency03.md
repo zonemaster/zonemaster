@@ -44,4 +44,4 @@ None
 
 ### Intercase dependencies
 
-This test is done only when [CONSISTENCY01](./consistency01.md) succeeds
+This test is done only when [CONSISTENCY01](./consistency01.md) succeeds.
