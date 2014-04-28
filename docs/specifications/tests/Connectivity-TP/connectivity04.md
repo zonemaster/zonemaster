@@ -24,12 +24,13 @@ The domain name to be tested.
 ### Ordered description of steps to be taken to execute the test case
 
 1. Obtain the list of name servers from [Method2](../Methods.md) and
-[Method3](../Methods.md).
+   [Method3](../Methods.md).
 2. Obtains the IP addresss of the name servers from [Method4](../Methods.md)
-and [Method5](../Methods.md).
+   and [Method5](../Methods.md).
 3. Obtain the AS (name) list for each IP address obtained from step2 using
-"asn.routeviews.org".
-4. If all the retrieved AS (obtained from step3) are same, then the test fails.
+   "asn.routeviews.org".
+4. If all the retrieved AS (obtained from step3) are same, then the test
+   fails.
 
 ### Outcome(s)
 
