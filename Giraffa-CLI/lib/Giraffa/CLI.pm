@@ -11,6 +11,7 @@ with 'MooseX::Getopt';
 use Giraffa;
 use Giraffa::Logger::Entry;
 use Giraffa::Translator;
+use Giraffa::Util qw[pod_extract_for];
 use JSON::XS;
 
 our %numeric = Giraffa::Logger::Entry->levels;
@@ -122,8 +123,13 @@ sub run {
         my %methods = Giraffa->all_methods;
         foreach my $module (sort keys %methods) {
             say $module;
+            my $doc = pod_extract_for($module);
             foreach my $method (sort @{$methods{$module}}) {
-                say "\t$method";
+                print "\t$method";
+                if ($doc and $doc->{$method}) {
+                    print "\t" . $doc->{$method};
+                }
+                print "\n";
             }
         }
         exit(0);
