@@ -7,7 +7,7 @@
 
 The recommended format for the serial number is YYYYMMDDnn, which is year, month
 and date with a two digit serial number. This is documented in section 2.2 of
-[RFC 1912](http://www.ietf.org/rfc/rfc1912.txt).
+[RFC 1912](http://tools.ietf.org/rfc/rfc1912.txt).
 [RFC 3339](http://tools.ietf.org/html/rfc3339#section-5) describes the use of
 date and time formats in Internet protocols, and its use of ISO 8601.
 
