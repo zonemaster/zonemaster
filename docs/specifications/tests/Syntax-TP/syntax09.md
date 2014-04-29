@@ -1,7 +1,7 @@
 ## SYNTAX09: The SOA serial number field should be in the YYYYMMDDnn format
 
 ### Test case identifier
-**SYNTAX01** The SOA serial number field should be in the YYYYMMDDnn format
+**SYNTAX09** The SOA serial number field should be in the YYYYMMDDnn format
 
 ### Objective
 
