@@ -3,7 +3,7 @@
       "ipv4" : 1,
       "ipv6" : 1
    },
-   "no_network" : 0,
+   "no_network" : 1,
    "resolver" : {
       "defaults" : {
          "debug" : 0,
@@ -14,5 +14,16 @@
          "retry" : 4711,
          "usevc" : 0
       }
+   },
+   "logfilter": {
+       "SYSTEM": {
+           "FILTER_THIS": {
+               "when": {
+                   "when": 1,
+                   "and": ["this", "or"]
+               },
+               "set": "INFO"
+           }
+       }
    }
 }
