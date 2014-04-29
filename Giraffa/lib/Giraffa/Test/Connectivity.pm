@@ -1,4 +1,4 @@
-package Giraffa::Test::Connectivity v0.0.1;
+package Giraffa::Test::Connectivity v0.0.5;
 
 use 5.14.2;
 use strict;
@@ -7,6 +7,51 @@ use warnings;
 use Giraffa;
 use Giraffa::Util;
 
+use Carp;
+
+use Readonly;
+use List::Util qw[minstr];
+
+Readonly our $ASN_UNASSIGNED_UNANNOUNCED_ADDRESS_SPACE_VALUE => 4_294_967_295;
+Readonly our $IP_VERSION_4                                   => 4;
+Readonly our $IP_VERSION_6                                   => 6;
+Readonly our $ASN_CHECKING_TEAM_CYMRU_SERVICE_NAME           => q{TEAMCYRU};
+Readonly our $ASN_CHECKING_ROUTE_VIEWS_SERVICE_NAME          => q{ROUTEVIEWS};
+Readonly our $ASN_CHECKING_SERVICE_USED                      => $ASN_CHECKING_TEAM_CYMRU_SERVICE_NAME;
+Readonly our $ASN_IPV4_CHECKING_SERVICE_TEAM_CYMRU_DOMAIN    => q{.origin.asn.cymru.com.};
+Readonly our $ASN_IPV6_CHECKING_SERVICE_TEAM_CYMRU_DOMAIN    => q{.origin6.asn.cymru.com.};
+Readonly our $ASN_IPV4_CHECKING_SERVICE_ROUTE_VIEWS_DOMAIN   => q{.asn.routeviews.org.};
+Readonly our $ASN_IPV6_CHECKING_SERVICE_ROUTE_VIEWS_DOMAIN   => q{};
+
+Readonly::Hash our %ASN_CHECKING_SERVICE_DOMAIN => {
+                       $ASN_CHECKING_TEAM_CYMRU_SERVICE_NAME => {
+                           descr => q{Team Cymru Community services 'https://www.team-cymru.org/'},
+                           $IP_VERSION_4 => $ASN_IPV4_CHECKING_SERVICE_TEAM_CYMRU_DOMAIN,
+                           $IP_VERSION_6 => $ASN_IPV6_CHECKING_SERVICE_TEAM_CYMRU_DOMAIN,
+                           f => sub {
+                                    my ( $txt, $rcode ) = @_;
+                                    my ( $asn );
+                                    if ( $rcode eq q{NXDOMAIN} ) {
+                                        $asn = $ASN_UNASSIGNED_UNANNOUNCED_ADDRESS_SPACE_VALUE;
+                                    }
+                                    else {
+                                        $txt =~ s/\A"|"\z//smgx;
+                                        ( $asn ) = split /\s+/smx, $txt;
+                                    }
+                                    return ( $asn );
+                                },
+                       },
+                       $ASN_CHECKING_ROUTE_VIEWS_SERVICE_NAME =>  {
+                           descr => q{University of Oregon Route Views Project 'http://www.routeviews.org/'},
+                           $IP_VERSION_4 => $ASN_IPV4_CHECKING_SERVICE_ROUTE_VIEWS_DOMAIN,
+                           $IP_VERSION_6 => $ASN_IPV6_CHECKING_SERVICE_ROUTE_VIEWS_DOMAIN,
+                           f => sub {
+                                    my ( $txt, $rcode ) = @_;
+                                    my ( $asn, $prefix, $prefix_len ) = map {my $r = $_; $r =~ s/"//smgx; $r} split /\s+/smx, $txt;
+                                    return ( $asn );
+                                },
+                       },
+                   };
 ###
 ### Entry Points
 ###
@@ -34,7 +79,7 @@ sub metadata {
         connectivity01 => [qw(NAMESERVER_HAS_UDP_53 NAMESERVER_NO_UDP_53)],
         connectivity02 => [qw(NAMESERVER_HAS_TCP_53 NAMESERVER_NO_TCP_53)],
         connectivity03 => [qw(NAMESERVER_IPV6_ADDRESS_BOGON NAMESERVER_IPV6_ADDRESSES_NOT_BOGON)],
-        connectivity04 => [qw(NAMESERVERS_WITH_UNIQ_AS)],
+        connectivity04 => [qw(NAMESERVER_WITH_UNALLOCATED_ADDRESS NAMESERVERS_WITH_UNIQ_AS NAMESERVERS_IPV4_WITH_UNIQ_AS NAMESERVERS_IPV6_WITH_UNIQ_AS)],
     };
 }
 
@@ -67,7 +112,8 @@ sub connectivity01 {
                     address => $ns->address->short,
                 }
               );
-        } else {
+        }
+        else {
             push @results,
               info(
                 NAMESERVER_NO_UDP_53 => {
@@ -96,7 +142,8 @@ sub connectivity01 {
                     address => $ns->address->short,
                 }
               );
-        } else {
+        }
+        else {
             push @results,
               info(
                 NAMESERVER_NO_UDP_53 => {
@@ -133,7 +180,8 @@ sub connectivity02 {
                     address => $ns->address->short,
                 }
               );
-        } else {
+        }
+        else {
             push @results,
               info(
                 NAMESERVER_NO_TCP_53 => {
@@ -162,7 +210,8 @@ sub connectivity02 {
                     address => $ns->address->short,
                 }
               );
-        } else {
+        }
+        else {
             push @results,
               info(
                 NAMESERVER_NO_TCP_53 => {
@@ -187,14 +236,14 @@ sub connectivity03 {
 
     foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
 
-        next unless $local_ns->address;
-        next unless $local_ns->address->version == 6;
+        next if not $local_ns->address;
+        next if not $local_ns->address->version == $IP_VERSION_6;
         next if $ips{$local_ns->address->short};
 
         $ipv6_nb++;
 
         my $reverse_ip_query = $local_ns->address->reverse_ip;
-        $reverse_ip_query =~ s/ip6.arpa./v6.fullbogons.cymru.com./;
+        $reverse_ip_query =~ s/ip6.arpa./v6.fullbogons.cymru.com./smx;
 
         my $p = Giraffa::Recursor->recurse( $reverse_ip_query );
 
@@ -240,26 +289,70 @@ sub connectivity04 {
         next if $ips{$local_ns->address->short};
 
         my $reverse_ip_query = $local_ns->address->reverse_ip;
-        $reverse_ip_query =~ s/\.[^\.*]*\.arpa./.asn.routeviews.org./;
+
+        if ( not $ASN_CHECKING_SERVICE_DOMAIN{$ASN_CHECKING_SERVICE_USED}{$local_ns->address->version} ) {
+            push @results,
+              info(
+                ADDRESS_TYPE_NOT_IMPLEMENTED => {
+                    service => $ASN_CHECKING_SERVICE_DOMAIN{$ASN_CHECKING_SERVICE_USED}{descr},
+                    type    => $local_ns->address->version,
+                }
+              );
+            next;
+        }
+
+        $reverse_ip_query =~ s/\.[^\.*]*\.arpa./$ASN_CHECKING_SERVICE_DOMAIN{$ASN_CHECKING_SERVICE_USED}{$local_ns->address->version}/smx;
 
         my $p = Giraffa::Recursor->recurse( $reverse_ip_query, q{TXT} );
 
         if ( $p ) {
             my ( $txt ) = $p->get_records_for_name( q{TXT}, $reverse_ip_query );
-            $asns{$txt->txtdata}++;
+            my ( $asn ) = &{ $ASN_CHECKING_SERVICE_DOMAIN{$ASN_CHECKING_SERVICE_USED}{f} }($txt->txtdata, $p->rcode);
+            if ( $asn == $ASN_UNASSIGNED_UNANNOUNCED_ADDRESS_SPACE_VALUE ) {
+                push @results,
+                  info(
+                    NAMESERVER_WITH_UNALLOCATED_ADDRESS => {
+                        ns      => $local_ns->name->string,
+                        address => $local_ns->address->short,
+                    }
+                  );
+            }
+            else {
+                $asns{$local_ns->address->version}{$asn}++;
+            }
         }
 
         $ips{$local_ns->address->short}++;
 
     }
 
-    if ( scalar keys %asns == 1 ) {
+    if (    scalar keys %{ $asns{$IP_VERSION_4} } == 1
+        and scalar keys %{ $asns{$IP_VERSION_6} } == 1
+        and minstr(keys %{ $asns{$IP_VERSION_4} }) == minstr(keys %{ $asns{$IP_VERSION_6} }) ) {
         push @results,
           info(
             NAMESERVERS_WITH_UNIQ_AS => {
-                asn => (keys %asns)[0],
+                asn => minstr(keys %{ $asns{$IP_VERSION_4} }),
             }
           );
+    }
+    else {
+        if ( scalar keys %{ $asns{$IP_VERSION_4} } == 1 ) {
+            push @results,
+              info(
+                NAMESERVERS_IPV4_WITH_UNIQ_AS => {
+                    asn => minstr(keys %{ $asns{$IP_VERSION_4} }),
+                }
+              );
+        }
+        if ( scalar keys %{ $asns{$IP_VERSION_6} } == 1 ) {
+            push @results,
+              info(
+                NAMESERVERS_IPV6_WITH_UNIQ_AS => {
+                    asn => minstr(keys %{ $asns{$IP_VERSION_6} }),
+                }
+              );
+        }
     }
 
     return @results;
