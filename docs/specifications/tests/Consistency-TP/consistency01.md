@@ -19,9 +19,9 @@ propagation to the secondary name servers.
 The objective of this test is to verify that the serial number is consistent
 between different authoritative name servers.
 
-For reference purposes : [[RFC1982](http://tools.ietf.org/html/rfc1982)) 
+For reference purposes : [RFC1982](http://tools.ietf.org/html/rfc1982) 
 explains the serial number arithmetic, and section 4.3.5 of 
-[[RFC 1034](http://tools.ietf.org/html/rfc1035)] explains the importance of
+[RFC 1034](http://tools.ietf.org/html/rfc1035) explains the importance of
 serial number consistency.
 
 
