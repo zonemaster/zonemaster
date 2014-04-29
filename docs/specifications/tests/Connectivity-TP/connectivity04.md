@@ -25,19 +25,18 @@ The domain name to be tested.
 
 1. Obtain the list of name servers from [Method2](../Methods.md) and
    [Method3](../Methods.md).
-2. Obtains the IP addresss of the name servers from [Method4](../Methods.md)
+2. Obtain the IP addresss of the name servers from [Method4](../Methods.md)
    and [Method5](../Methods.md).
-3. Obtain the AS (name) list for each IP address obtained from step2 using
    the following methods:
-3. For IPv6 addresses; first reverse the nibbles of the IPv6 address and 
-   place dots between each nibble. It is important all omitted zeroes in the 
-   IPv6 address are included. <br />
+3. For obtaining the AS numbers for IPv6 addresses; first reverse the nibbles of 
+   the IPv6 address and place dots between each nibble. It is important all omitted 
+   zeroes in the IPv6 address are included. <br />
 3.1. At the end of the reversed IPv6 address (obtained from step 3), concatenate
      the string ".origin6.asn.cymru.com.". <br/>
 3.2 Send a "TXT" query using the string (obtained from Step 3.1) <br/>
 3.3 The AS number for the IPv6 address is found in the ANSWER for the query 
-4. For IPv4 addresses; first reverse the nibbles of the IPv4 address and 
-   place dots between each nibble. <br/>
+4. For obtaining the AS numbers for IPv4 addresses; first reverse the nibbles 
+   of the IPv4 address and  place dots between each nibble. <br/>
 4.1. At the end of the reversed IPv4 address (obtained from step 4), concatenate 
      the string ".origin.asn.cymru.com.". <br/> 
 4.2 Send a "TXT" query using the string (obtained from Step 4.1) <br/>
