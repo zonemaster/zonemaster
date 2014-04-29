@@ -16,6 +16,7 @@ requires 'File::Slurp' => 0;
 requires 'Net::IP' => 0;
 requires 'List::MoreUtils' => 0;
 requires 'RFC::RFC822::Address' => 0;
+requires 'Hash::Merge' => 0;
 
 recommends 'JSON::XS' => 2.32;
 
