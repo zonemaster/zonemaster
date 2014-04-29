@@ -82,7 +82,7 @@ Giraffa::Config - configuration access module for Giraffa
 
     my $value = Giraffa::Config->get->{key}{subkey};
 
-=METHODS
+=head1 METHODS
 
 =over
 
@@ -105,6 +105,93 @@ Load configuration information from the given file and merge it into the pre-loa
 
 =back
 
+=head1 CONFIGURATION DATA
+
+The configuration data is stored internally in a nested hash (possibly with arrays as values in places). As of this writing, the file format used is JSON.
+
+The interesting keys are as follows.
+
+=head2 resolver
+
+=head3 defaults
+
+These are the default flag and timing values used for the resolver objects used to actually send DNS queries.
+
+=over
+
+=item usevc
+
+If set, only use TCP. Default not set.
+
+=item retrans
+
+The number of seconds between retries. Default 3.
+
+=item dnssec
+
+If set, sets the DO flag in queries. Default not set.
+
+=item recurse
+
+If set, sets the RD flag in queries. Default not set (and almost certainly should remain that way).
+
+=item retry
+
+The number of times a query is sent before we give up. Can be set to zero, although that's not very useful (since no queries will be sent at all). Defaults to 2.
+
+=item igntc
+
+If set, queries that get truncated UDP responses will be automatically retried over TCP. Default not set.
+
+=back
+
+=head2 net
+
+=over
+
+=item ipv4
+
+If set, resolver objects are allowed to send queries over IPv4. Default set.
+
+=item ipv6
+
+If set, resolver objects are allowed to send queries over IPv6. Default set.
+
+=back
+
+=head2 no_network
+
+If set to a true value, network traffic is forbidden. Use when you want to be sure that any data is only taken from a preloaded cache.
+
+=head2 logfilter
+
+By using this key, the log level of messages can be set in a much more fine-grained way than by the policy file. The intended use is to remove known erroneous results. If you, for example, know that a certain name server is recursive and for some reason should be, you can use this functionality to lower the severity of the complaint about it to a lower level than normal.
+
+The the data under the C<logfilter> key should be structured like this:
+
+   Module
+      Tag
+         "when"
+            Hash with conditions
+         "set"
+            Level to set if all conditions match
+
+The hash with conditions should have keys matching the attributes of the log entry that's being filtered (check the translation files to see what they are). The values for the keys should be either a single value that the attribute should be, or an array of values any one of which the attribute should be.
+
+A complete entry might could look like this:
+
+       "SYSTEM": {
+           "FILTER_THIS": {
+               "when": {
+                   "count": 1,
+                   "type": ["this", "or"]
+               },
+               "set": "INFO"
+           }
+       }
+
+This would set the level to C<INFO> for any C<SYSTEM:FILTER_THIS> messages that had a C<count> attribute set to 1 and a C<type> attribute set to either C<this> or C<or>.
+
 =cut
 
 __DATA__
@@ -125,5 +212,16 @@ __DATA__
         "ipv4": 1,
         "ipv6": 1
     },
-    "no_network": 0
+    "no_network": 0,
+    "logfilter": {
+       "SYSTEM": {
+           "FILTER_THIS": {
+               "when": {
+                   "count": 1,
+                   "type": ["this", "or"]
+               },
+               "set": "INFO"
+           }
+       }
+   }
 }
