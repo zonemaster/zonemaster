@@ -326,9 +326,13 @@ sub connectivity04 {
 
     }
 
-    if (    scalar keys %{ $asns{$IP_VERSION_4} } == 1
-        and scalar keys %{ $asns{$IP_VERSION_6} } == 1
-        and minstr(keys %{ $asns{$IP_VERSION_4} }) == minstr(keys %{ $asns{$IP_VERSION_6} }) ) {
+    if ( ( scalar keys %{ $asns{$IP_VERSION_4} } == 1 and scalar keys %{ $asns{$IP_VERSION_6} } == 0 ) or
+         ( scalar keys %{ $asns{$IP_VERSION_6} } == 1 and scalar keys %{ $asns{$IP_VERSION_4} } == 0 ) or
+         (     scalar keys %{ $asns{$IP_VERSION_4} } == 1
+           and scalar keys %{ $asns{$IP_VERSION_6} } == 1
+           and minstr(keys %{ $asns{$IP_VERSION_4} }) == minstr(keys %{ $asns{$IP_VERSION_6} })
+         )
+       ) {
         push @results,
           info(
             NAMESERVERS_WITH_UNIQ_AS => {
