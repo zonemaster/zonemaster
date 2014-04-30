@@ -6,7 +6,7 @@ BEGIN {
     use_ok('Giraffa::Test::Connectivity');
 }
 
-my $datafile = 't/connectivity.data';
+my $datafile = 't/Test-connectivity.data';
 if ( not $ENV{GIRAFFA_RECORD} ) {
     die "Stored data file missing" if not -r $datafile;
     Giraffa::Nameserver->restore( $datafile );
