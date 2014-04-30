@@ -15,5 +15,6 @@ structured output).
 people did <http://www.dnssec-tools.org/testzone/>.
 10. Developing a Mobile app
 11. Parallel tests
-
+12. It would be nice to test if unknown RR types can be queried (Ref :
+https://savannah.nongnu.org/bugs/?36909)
 
