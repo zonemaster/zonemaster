@@ -67,10 +67,14 @@ No internal requirements.
         * Test Case x
     * Address Test Plan
         * Test Case x
+    * Name Server Test Plan
+        * Test Case x
     * Connectivity Test Plan
         * Test Case x
     * Zone Test Plan
         * Test Case x
+    * Syntax Test Plan
+	* Test Case x
     * Resolver Test Plan
         * Test Case x
 
