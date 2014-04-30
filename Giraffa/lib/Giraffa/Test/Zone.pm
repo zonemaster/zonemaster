@@ -1,4 +1,4 @@
-package Giraffa::Test::Zone v0.0.1;
+package Giraffa::Test::Zone v0.0.5;
 
 use 5.14.2;
 use strict;
@@ -32,8 +32,10 @@ sub all {
     push @results, $class->zone05( $zone );
     push @results, $class->zone06( $zone );
     push @results, $class->zone07( $zone );
-    push @results, $class->zone08( $zone );
-    push @results, $class->zone09( $zone );
+    if ( not grep { $_->tag eq q{MNAME_RECORD_DOES_NOT_EXIST} } @results ) {
+        push @results, $class->zone08( $zone );
+        push @results, $class->zone09( $zone );
+    }
 
     return @results;
 }
@@ -46,7 +48,7 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        zone01 => [qw()],
+        zone01 => [qw(MNAME_RECORD_DOES_NOT_EXIST MNAME_NOT_AUTHORITATIVE MNAME_NO_RESPONSE MNAME_NOT_IN_GLUE)],
         zone02 => [qw(REFRESH_MINIMUM_VALUE_LOWER)],
         zone03 => [qw(REFRESH_LOWER_THAN_RETRY)],
         zone04 => [qw(RETRY_MINIMUM_VALUE_LOWER)],
@@ -65,6 +67,49 @@ sub version {
 sub zone01 {
     my ( $class, $zone ) = @_;
     my @results;
+
+    my $p = $zone->query_one( $zone->name, q{SOA} );
+
+    if ( $p ) {
+        my ( $soa )   = $p->get_records( q{SOA}, q{answer} );
+        my $soa_mname = $soa->mname;
+        if ( not $soa_mname ) {
+            push @results, info( MNAME_RECORD_DOES_NOT_EXIST => { } );
+        }
+        else {
+            foreach my $ip_address ( Giraffa::Recursor->get_addresses_for( $soa_mname ) ) {
+                my $ns = Giraffa::Nameserver->new({ name => $soa_mname, address => $ip_address->short });
+                my $p = $ns->query( $zone->name, q{SOA} );
+                if ( $p and $p->rcode eq q{NOERROR} ) {
+                    if ( not $p->aa ) {
+                        push @results,
+                          info(
+                            MNAME_NOT_AUTHORITATIVE => {
+                                ns      => $soa_mname,
+                                address => $ip_address->short,
+                                zone    => $zone->name,
+                            }
+                          );
+                    }
+                }
+                else {
+                    push @results,
+                      info(
+                        MNAME_NO_RESPONSE => {
+                            ns      => $soa_mname,
+                            address => $ip_address->short,
+                        }
+                      );
+                }
+            }
+            if ( not grep { $_->name eq $soa_mname } @{ $zone->glue } ) {
+                push @results, info( MNAME_NOT_IN_GLUE => { } );
+            }
+        }
+    }
+    else {
+        croak q{No response from child nameservers};
+    }
 
     return @results;
 } ## end sub zone01
@@ -257,8 +302,7 @@ sub zone08 {
 
     if ( $p ) {
         if ( $p->has_rrs_of_type_for_name( q{CNAME}, $zone->name ) ) {
-            push @results,
-              info( MX_RECORD_IS_CNAME => { } );
+            push @results, info( MX_RECORD_IS_CNAME => { } );
         }
     }
     else {
@@ -280,8 +324,7 @@ sub zone09 {
             my $p_aaaa = $zone->query_one( $zone->name, q{AAAA} );
             if (    not $p_a->has_rrs_of_type_for_name( q{A}, $zone->name ) 
                 and not $p_aaaa->has_rrs_of_type_for_name( q{AAAA}, $zone->name ) ) {
-                push @results,
-                  info( NO_MX_RECORD => { } );
+                push @results, info( NO_MX_RECORD => { } );
             }
         }
     }

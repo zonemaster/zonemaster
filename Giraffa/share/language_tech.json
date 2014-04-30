@@ -23,6 +23,10 @@
       "NAMESERVERS_WITH_UNIQ_AS" : "All nameservers are in the same AS ({asn})."
    },
    "ZONE" : {
+      "MNAME_RECORD_DOES_NOT_EXIST" : "SOA 'mname' fiels does not exist",
+      "MNAME_NO_RESPONSE" : "SOA 'mname' nameserver {ns}/{address} does not respond.",
+      "MNAME_NOT_AUTHORITATIVE" : "SOA 'mname' nameserver {ns}/{address} is not authoritative for '{zone}' zone.",
+      "MNAME_NOT_IN_GLUE" : "SOA 'mname' nameserver is not listed in \"parent\" NS records for tested zone.",
       "REFRESH_MINIMUM_VALUE_LOWER" : "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh}).",
       "REFRESH_LOWER_THAN_RETRY" : "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({retry}).",
       "RETRY_MINIMUM_VALUE_LOWER" : "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry}).",
