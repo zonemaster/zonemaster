@@ -6,6 +6,7 @@ use warnings;
 
 use Giraffa;
 use Giraffa::Util;
+use Giraffa::Test::Address;
 
 use Carp;
 
@@ -13,8 +14,8 @@ use Readonly;
 use List::Util qw[minstr];
 
 Readonly our $ASN_UNASSIGNED_UNANNOUNCED_ADDRESS_SPACE_VALUE => 4_294_967_295;
-Readonly our $IP_VERSION_4                                   => 4;
-Readonly our $IP_VERSION_6                                   => 6;
+Readonly our $IP_VERSION_4                                   => $Giraffa::Test::Address::IP_VERSION_4;
+Readonly our $IP_VERSION_6                                   => $Giraffa::Test::Address::IP_VERSION_6;
 Readonly our $ASN_CHECKING_TEAM_CYMRU_SERVICE_NAME           => q{TEAMCYRU};
 Readonly our $ASN_CHECKING_ROUTE_VIEWS_SERVICE_NAME          => q{ROUTEVIEWS};
 Readonly our $ASN_CHECKING_SERVICE_USED                      => $ASN_CHECKING_TEAM_CYMRU_SERVICE_NAME;
