@@ -134,8 +134,8 @@ sub address03 {
         my $p = Giraffa::Recursor->recurse( $reverse_ip_query, q{PTR} );
 
         if ( $p ) {
-            if ( $p->rcode eq q{NOERROR} ) {
-                my @ptr = $p->get_records_for_name( q{PTR}, $reverse_ip_query );
+            my @ptr = $p->get_records_for_name( q{PTR}, $reverse_ip_query );
+            if ( $p->rcode eq q{NOERROR} and scalar @ptr ) {
                 if ( not grep { $_->ptrdname eq $local_ns->name->string.q{.} } @ptr ) {
                     push @results,
                       info(

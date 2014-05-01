@@ -13,7 +13,14 @@ if ( not $ENV{GIRAFFA_RECORD} ) {
     Giraffa->config->{no_network} = 1;
 }  
 
-# Add tests cases for NAMESERVER_IP_PRIVATE_NETWORK/NAMESERVER_IP_WITHOUT_REVERSE/NAMESERVER_IP_PTR_MISMATCH
+my %res = map {$_->tag => 1} Giraffa->test_module(q{address}, q{nic.fr});
+ok($res{NAMESERVER_IP_PTR_MISMATCH}, q{Nameserver IP PTR mismatch});
+
+%res = map {$_->tag => 1} Giraffa->test_module(q{address}, q{x6.tf});
+ok($res{NAMESERVER_IP_WITHOUT_REVERSE}, q{Nameserver IP without PTR});
+
+# Add test case for NAMESERVER_IP_PRIVATE_NETWORK
+
 if ( $ENV{GIRAFFA_RECORD} ) {
     Giraffa::Nameserver->save( $datafile );
 }
