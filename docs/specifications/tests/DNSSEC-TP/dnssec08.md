@@ -23,14 +23,14 @@ The domain name to be tested.
 2. Retrieve the RRSIG from the answer.
 3. Match the RRSIGs with the DNSKEY RR set, and check the inception and
    expiration times and compare them with the current time.
-4. If the RRSIGs validates the DNSKEY RR set, and the RRSIG is within the
-   validity period this test case pass.
-5. If any of the RRSIGs does not validate the DNSKEY RR set, this test
+4. If any of the RRSIGs validates the DNSKEY RR set, and the RRSIG is
+   within the validity period this test case pass.
+5. If none of the RRSIGs does not validate the DNSKEY RR set, this test
    case fails.
 
 ### Outcome(s)
 
-If all RRSIG validates the DNSKEY RR set, this test case pass.
+If any RRSIG validates the DNSKEY RR set, this test case pass.
 
 ### Special procedural requirements
 
