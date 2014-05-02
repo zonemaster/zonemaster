@@ -53,7 +53,7 @@ The domain name to be tested.
 ### Outcome(s)
 
 If the NSEC3 iterations value is higher than 100, this test case gives
-a warning. If it is higher than the number recommended for the correspinding
+a warning. If it is higher than the number recommended for the corresponding
 key size, this test case fails.
 
 ### Special procedural requirements
