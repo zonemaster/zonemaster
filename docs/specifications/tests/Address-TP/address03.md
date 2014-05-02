@@ -11,7 +11,7 @@ administrators should publish PTR records associated with the name server
 addresses. 
 
 Moreover, as mentioned in paragraph 2.1 of [RFC
-1912](http://tools.ietf.org/html/rfc1912) when a PTR record exists, it must match the host
+1912](https://tools.ietf.org/html/rfc1912) when a PTR record exists, it must match the host
 name.
 
 ### Inputs

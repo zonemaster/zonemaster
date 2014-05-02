@@ -7,11 +7,11 @@
 
 There must be no illegal characters used in the domain name.
 The domain name must follow the rules defined in section 2.3.1 of
-[RFC 1035](http://tools.ietf.org/rfc/rfc1035.txt),
-section 2.1 of [RFC 1123](http://tools.ietf.org/html/rfc1123#section-2.1),
+[RFC 1035](https://tools.ietf.org/rfc/rfc1035.txt),
+section 2.1 of [RFC 1123](https://tools.ietf.org/html/rfc1123#section-2.1),
 section 11 of
-[RFC 2182](http://tools.ietf.org/html/rfc2181#section-11) and section 2 of
-[RFC 3696](http://tools.ietf.org/html/rfc3696#section-2).
+[RFC 2182](https://tools.ietf.org/html/rfc2181#section-11) and section 2 of
+[RFC 3696](https://tools.ietf.org/html/rfc3696#section-2).
 
 ### Inputs
 
@@ -23,7 +23,7 @@ The domain name to be tested.
    validation.
 2. Check for characters that are not allowed in the domain name according
    to the rules defined in section 2.3.1 of
-   [RFC 1035](http://tools.ietf.org/rfc/rfc1035.txt).
+   [RFC 1035](https://tools.ietf.org/rfc/rfc1035.txt).
 
 ### Outcome(s)
 

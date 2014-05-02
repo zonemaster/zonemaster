@@ -6,7 +6,7 @@
 
 ### Objective
 
-[RFC 2182](http://tools.ietf.org/html/rfc2182), section 3.1
+[RFC 2182](https://tools.ietf.org/html/rfc2182), section 3.1
 clearly specifies that distinct authoritative name servers for a child
 domain should be placed in different topological and geographical locations.
 The objective is to minimise the likelihood of a single failure disabling

@@ -6,7 +6,7 @@
 ### Objective
 
 It is strongly recommended in section 7 of
-[RFC 2142](http://tools.ietf.org/html/rfc2142)
+[RFC 2142](https://tools.ietf.org/html/rfc2142)
 that all domains should have a mailbox named hostmaster@domain.
 
 > For simplicity and regularity, it is strongly recommended that the
@@ -16,7 +16,7 @@ that all domains should have a mailbox named hostmaster@domain.
 It is therefore necessary for any domain to publish an MX record.
 However, SMTP can make a delivery without the MX, using the A or
 AAAA record as specified in section 5.1 of
-[RFC 5321](http://tools.ietf.org/html/rfc5321#section-5.1).
+[RFC 5321](https://tools.ietf.org/html/rfc5321#section-5.1).
 
 ### Inputs
 

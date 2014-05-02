@@ -8,8 +8,8 @@
 EDNS(0) is a mechanism to announce capabilities of a DNS implementation,
 and is now basically required by any new functionality in DNS such as
 DNSSEC.
-Initially standardized in [RFC 2671](http://tools.ietf.org/search/rfc2671)
-and later updated by [RFC 6891](http://tools.ietf.org/search/rfc6891),
+Initially standardized in [RFC 2671](https://tools.ietf.org/search/rfc2671)
+and later updated by [RFC 6891](https://tools.ietf.org/search/rfc6891),
 EDNS(0) is a mechanism to announce capabilities of a DNS implementation.
 This test case checks that all name servers has the capability to do
 EDNS(0).

@@ -12,9 +12,9 @@ No other DS Digest Algorithm values other than those allocated by IANA
 should be published in DNS.
 
 The use of the DS RR type is described in section 2.4 of
-[RFC 4035](http://tools.ietf.org/html/rfc4035#section-2.4), and the exact
+[RFC 4035](https://tools.ietf.org/html/rfc4035#section-2.4), and the exact
 definition of the DS RR type is in
-[RFC3658](http://tools.ietf.org/html/rfc3658).
+[RFC3658](https://tools.ietf.org/html/rfc3658).
 
 ### Inputs
 

@@ -6,7 +6,7 @@
 ### Objective
 
 The apex DNSKEY RRset should be signed with an RRSIG with a DNSKEY from
-the RRset. This is described in section 2.4 of [RFC 4035](http://tools.ietf.org/html/rfc4035#section-2.4).
+the RRset. This is described in section 2.4 of [RFC 4035](https://tools.ietf.org/html/rfc4035#section-2.4).
 
 (In reality the RRSIG should be created by a DNSKEY matching a DS. All
 algorithms from the DS should have a matching DNSKEY with those algorithms,
