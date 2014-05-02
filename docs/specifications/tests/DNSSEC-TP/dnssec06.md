@@ -6,7 +6,7 @@
 ### Objective
 
 In order for an authoritative name server to be DNSSEC compliant,
-it must serve DNSKEY signatures (RRSIG) as additional data in a DNS answer.
+it must serve DNSSEC signatures (RRSIG) as additional data in a DNS answer.
 This additional processing is described in section 3.1 of [RFC 4035]
 (https://tools.ietf.org/html/rfc4035#section-3.1).
 
