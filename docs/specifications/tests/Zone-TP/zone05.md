@@ -10,14 +10,14 @@ keeps the zone valid without any contact with the primary name server.
 This value should be greater than how long a major outage would
 typically last. The expire value should also be larger than the
 refresh and retry values, as described in section 3.3.13 in
-[RFC 1035](http://tools.ietf.org/html/rfc1035), and clarified in
-section 2.2 of [RFC 1912](http://tools.ietf.org/html/rfc1912).
+[RFC 1035](https://tools.ietf.org/html/rfc1035), and clarified in
+section 2.2 of [RFC 1912](https://tools.ietf.org/html/rfc1912).
 
 Setting the expire value low will increase the risk of any unwanted
 non-availability of the zone because of any failures in contacting
 the primary name server.
 
-The [RIPE-203](http://www.ripe.net/ripe/docs/ripe-203) recommendation
+The [RIPE-203](https://www.ripe.net/ripe/docs/ripe-203) recommendation
 for the expire value is 1000 hours (roughly 41 days). Older DNSCheck code
 had a 7 day minimum value (604800 seconds), and this is the minimum
 value we recommend as an absolut minimum.

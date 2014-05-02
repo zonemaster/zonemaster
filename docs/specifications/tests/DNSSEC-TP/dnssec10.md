@@ -12,14 +12,14 @@ returned for a query for an non-existent name, and that they cover the
 queried name.
 
 The use of the NSEC RR type is described in section 3.1.3 of
-[RFC 4035](http://tools.ietf.org/html/rfc4035#section-3.1.3), and
+[RFC 4035](https://tools.ietf.org/html/rfc4035#section-3.1.3), and
 the description of the NSEC RR itself is in section 4 of
 [RFC 4034](https://tools.ietf.org/html/rfc4034#section-4).
 
 The description of the NSEC3 RR is in section 3 of
-[RFC 5155](http://tools.ietf.org/html/rfc5155#section-3), and its
+[RFC 5155](https://tools.ietf.org/html/rfc5155#section-3), and its
 use in the DNS response is described in section 7.2 of
-[RFC 5155](http://tools.ietf.org/html/rfc5155#section-7.2).
+[RFC 5155](https://tools.ietf.org/html/rfc5155#section-7.2).
 
 ### Inputs
 

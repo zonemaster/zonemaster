@@ -9,7 +9,7 @@ To ensure consistency in DNS, an authoritative name server should not be
 configured to do recursive lookups. Also, open recursive resolvers are
 considered bad internet practice due to their capability of assisting in
 large scale DDoS attacks. The introduction to [RFC 5358]
-(http://tools.ietf.org/html/rfc5358) elaborates on mixing recursor and
+(https://tools.ietf.org/html/rfc5358) elaborates on mixing recursor and
 authoritative functionality, and the issue is further elaborated by
 [D.J. Bernstein](http://cr.yp.to/djbdns/separation.html).
 

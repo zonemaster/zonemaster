@@ -8,7 +8,7 @@
 For an authoritative name server an increased number of NSEC3 iterations
 have a negative impact on performance.
 
-Section 10.3 in [RFC 5155](http://tools.ietf.org/html/rfc5155#section-10.3)
+Section 10.3 in [RFC 5155](https://tools.ietf.org/html/rfc5155#section-10.3)
 sets a maximum number of iterations depending on the DNSSEC key size -
 regardless of which algorithm is used.
 
@@ -23,7 +23,7 @@ regardless of which algorithm is used.
 |2048     |500        |
 |4096     |2,500      |
 
-Section 5.3.2 in [RFC 6781](http://tools.ietf.org/html/rfc6781#section-5.3.2)
+Section 5.3.2 in [RFC 6781](https://tools.ietf.org/html/rfc6781#section-5.3.2)
 describes the consequences for an authoritative name server in more detail, and
 references the [NSEC Hash Performance](http://www.nlnetlabs.nl/downloads/publications/nsec3_hash_performance.pdf)
 study from NLNet Labs.
@@ -53,7 +53,7 @@ The domain name to be tested.
 ### Outcome(s)
 
 If the NSEC3 iterations value is higher than 100, this test case gives
-a warning. If it is higher than the number recommended for the correspinding
+a warning. If it is higher than the number recommended for the corresponding
 key size, this test case fails.
 
 ### Special procedural requirements

@@ -8,7 +8,7 @@
 If the zone is signed, the SOA RR should be signed with a valid RRSIG 
 using a DNSKEY from the DNSKEY RR set. This is use signatures isdescribed
 in section 2.2 of
-[RFC 4035](http://tools.ietf.org/html/rfc4035#section-2.2).
+[RFC 4035](https://tools.ietf.org/html/rfc4035#section-2.2).
 
 (In reality the RRSIG should be created by the DNSKEY matching the DS. All
 algorithms from the DS should have a matching DNSKEY with those algorithms,

@@ -7,13 +7,13 @@
 
 The SOA MNAME record must be a fully qualified master nameserver.
 Hostnames are valid according to the
-rules defined in [RFC 952](http://tools.ietf.org/html/rfc952),
-section 3.3.13 in [RFC 1035](http://tools.ietf.org/html/rfc1035)
-and section 11 in [RFC 2182](http://tools.ietf.org/html/rfc2181#section-11).
+rules defined in [RFC 952](https://tools.ietf.org/html/rfc952),
+section 3.3.13 in [RFC 1035](https://tools.ietf.org/html/rfc1035)
+and section 11 in [RFC 2182](https://tools.ietf.org/html/rfc2181#section-11).
 The hostname of the MNAME field may not be listed among the delegated
 name servers, but should still be authoritative for the zone. MNAME may
 be used for other services such as DNS NOTIFY described in
-[RFC 1996](http://tools.ietf.org/html/rfc1996).
+[RFC 1996](https://tools.ietf.org/html/rfc1996).
 
 ### Inputs
 

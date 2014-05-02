@@ -6,9 +6,9 @@
 ### Objective
 
 An MX type record for a domain must not resolve to a CNAME, following
-the text in section 10.3 of [RFC 2181](http://tools.ietf.org/html/rfc2181)
+the text in section 10.3 of [RFC 2181](https://tools.ietf.org/html/rfc2181)
 and section 2.3.5 in
-[RFC 5321](http://tools.ietf.org/html/rfc5321#section-2.3.5).
+[RFC 5321](https://tools.ietf.org/html/rfc5321#section-2.3.5).
 
 ### Inputs
 

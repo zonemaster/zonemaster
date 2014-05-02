@@ -8,14 +8,14 @@
 The SOA retry value is the number of seconds that describes
 minimum time elapsed since a failed zone refresh from the primary
 name server. The SOA refresh value is described
-in section 3.3.13 in [RFC 1035](http://tools.ietf.org/html/rfc1035),
+in section 3.3.13 in [RFC 1035](https://tools.ietf.org/html/rfc1035),
 and clarified in section 2.2 of
-[RFC 1912](http://tools.ietf.org/html/rfc1912).
+[RFC 1912](https://tools.ietf.org/html/rfc1912).
 
 Setting the retry value low will increase the DNS traffic between
 the servers, and also increase the load on the master name server.
 
-The [RIPE-203](http://www.ripe.net/ripe/docs/ripe-203) recommendation
+The [RIPE-203](https://www.ripe.net/ripe/docs/ripe-203) recommendation
 for the retry value is 2 hours (7200 seconds). Older DNSCheck code
 had a one hour minimum value (3600 seconds), and this is the minimum
 value we recommend.

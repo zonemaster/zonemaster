@@ -7,7 +7,7 @@
 ### Objective
 
 DNS queries are sent using TCP on port 53, as described in section 4.2.2 of
-[RFC 1035](http://tools.ietf.org/html/rfc1035).
+[RFC 1035](https://tools.ietf.org/html/rfc1035).
 
 The objective for this test is that all the authoritative name servers for
 the domain are accessible over TCP on port 53

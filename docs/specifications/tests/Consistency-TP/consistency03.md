@@ -7,7 +7,7 @@
 ### Objective
 
 All authoritative name servers must serve the same SOA record for the
-designated domain. As per section 3.3.13 of [RFC 1035](http://tools.ietf.org/html/rfc1035),
+designated domain. As per section 3.3.13 of [RFC 1035](https://tools.ietf.org/html/rfc1035),
 the field "REFRESH" in the SOA RDATA refers to the 32 bit time interval before the
 zone should be refereshed. The field "RETRY" refers to the 32 bit interval
 before a failed refresh should be retried, the field "EXPIRE" refers to a 32
