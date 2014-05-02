@@ -21,6 +21,7 @@ sub all {
     push @results, $class->nameserver02( $zone );
     push @results, $class->nameserver03( $zone );
     push @results, $class->nameserver04( $zone );
+    push @results, $class->nameserver05( $zone );
 
     return @results;
 }
@@ -37,6 +38,7 @@ sub metadata {
         nameserver02 => [qw()],
         nameserver03 => [qw(AXFR_FAILURE AXFR_AVAILABLE)],
         nameserver04 => [qw(SAME_SOURCE_IP)],
+        nameserver05 => [qw()],
     };
 }
 
@@ -75,13 +77,15 @@ sub nameserver01 {
 sub nameserver02 {
     my ( $class, $zone ) = @_;
     my @results;
-    my %nsnames;
+    my %nsnames_and_ip;
 
     foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
 
-        next if $nsnames{$local_ns->name};
+        next if $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short};
 
-        $nsnames{$local_ns->name}++;
+        my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
+
+        $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short}++;
     }
 
     return @results;
@@ -139,7 +143,7 @@ sub nameserver04 {
         next if $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short};
                   
         my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
-        my $p = $ns->query( $zone->name, 'SOA' );
+        my $p = $ns->query( $zone->name, q{SOA} );
         if ( $p ) {
             if ( $local_ns->address->short ne $p->answerfrom ) {
                 push @results,
@@ -157,6 +161,57 @@ sub nameserver04 {
                 
     return @results;
 } ## end sub nameserver04
+
+sub nameserver05 {
+    my ( $class, $zone ) = @_;
+    my @results;
+    my %nsnames_and_ip;
+
+    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+
+        next if $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short};
+
+        $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short}++;
+
+        my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
+        my $p = $ns->query( $zone->name, q{AAAA} );
+
+        if ( not $p ) {
+            push @results,
+              info(
+                  QUERY_DROPPED => {
+                    ns      => $local_ns->name->string,
+                    address => $local_ns->address->short,
+                }
+              );
+            next;
+        }
+
+        next if not scalar $p->answer and $p->rcode eq q{NOERROR};
+
+        if ( $p->rcode eq q{FORMERR} or $p->rcode eq q{SERVFAIL} or $p->rcode eq q{NXDOMAIN} or $p->rcode eq q{NOTIMPL} ) {
+            push @results,
+              info(
+                  ANSWER_BAD_RCODE => {
+                    ns      => $local_ns->name->string,
+                    address => $local_ns->address->short,
+                    rcode   => $p->rcode,
+                }
+              );
+            next;
+        }
+
+        if ( $p->has_rrs_of_type_for_name( q{AAAA}, $zone->name ) and $p->rcode eq q{NOERROR} ) {
+            foreach my $rr_aaaa ($p->get_records( q{AAAA}, q{answer} ) ) {
+
+                # Check last case with 4 bytes RDATA
+
+            }
+        }
+    }
+
+    return @results;
+} ## end sub nameserver05
 
 1;
 
@@ -197,7 +252,7 @@ Verify that nameserver is not recursive.
 
 =item nameserver02($zone)
 
-Not yet implemented.
+Verify EDNS0 support. (WORK IN PROGRESS)
 
 =item nameserver03($zone)
 
@@ -206,6 +261,10 @@ Verify that zone transfer (AXFR) is not available.
 =item nameserver04($zone)
 
 Verify that replies from nameserver comes from the expected IP address.
+
+=item nameserver05($zone)
+
+Verify behaviour against AAAA queries. (WORK IN PROGRESS)
 
 =back
 
