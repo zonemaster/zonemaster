@@ -370,7 +370,7 @@ Returns a version string for the module.
 
 =item zone01($zone)
 
-Not yet implemented.
+Check that master nameserver in SOA is fully qualified.
 
 =item zone02($zone)
 
