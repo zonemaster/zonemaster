@@ -7,7 +7,7 @@
 
 The allowed Digest Algorithms in a DS record published by the parent are
 published by IANA in [Delegation Signer (DS) Resource Record (RR) Type
-Digest Algorithms](https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xhtml).
+Digest Algorithms](https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xml).
 No other DS Digest Algorithm values other than those allocated by IANA
 should be published in DNS.
 

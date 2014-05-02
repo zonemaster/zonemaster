@@ -19,10 +19,10 @@ described in section 2 of [RFC 4034]
 (https://tools.ietf.org/html/rfc4034#section-2).
 
 The IANA registry of DNSKEY algorithm numbers is in the [dns-sec-alg-numbers]
-(https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xhtml).
+(https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml).
 The allowed Digest Algorithms in a DS record published by the parent are
 published by IANA in [Delegation Signer (DS) Resource Record (RR) Type
-Digest Algorithms](https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xhtml). 
+Digest Algorithms](https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xml). 
 
 The Key Tag is only an indicator for a resolver or application to enable
 a quicker matching of the keys. This is however not a reliable method for
