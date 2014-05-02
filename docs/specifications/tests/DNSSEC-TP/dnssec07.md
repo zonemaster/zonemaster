@@ -29,7 +29,7 @@ The domain name to be tested.
 ### Outcome(s)
 
 A warning is issued there is a DNSKEY present in the child zone, and there
-is DS record present in the parent zone.
+is no DS record present in the parent zone.
 
 ### Special procedural requirements
 
