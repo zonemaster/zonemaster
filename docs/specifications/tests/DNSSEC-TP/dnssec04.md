@@ -6,10 +6,10 @@
 ### Objective
 
 Having RRSIG signature lifetimes last for too long opens up for DNS replay
-attacks. By having too short RRSIG signature lifetimes is likely to have
+attacks. Having too short RRSIG signature lifetimes is likely to have
 a major operational impact if the master name server is down for that long.
 
-There is no clear recommendation of the exact validity perionds to use with
+There is no clear recommendation of the exact validity periods to use with
 DNSSEC. Shorter validity than 12 hours will give a serious operational
 problem just in case of temporary network problems, and longer than 180
 days will create wide open holes for replay attacks.
