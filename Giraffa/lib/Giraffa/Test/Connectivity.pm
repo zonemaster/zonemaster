@@ -77,10 +77,32 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        connectivity01 => [qw(NAMESERVER_HAS_UDP_53 NAMESERVER_NO_UDP_53)],
-        connectivity02 => [qw(NAMESERVER_HAS_TCP_53 NAMESERVER_NO_TCP_53)],
-        connectivity03 => [qw(NAMESERVER_IPV6_ADDRESS_BOGON NAMESERVER_IPV6_ADDRESSES_NOT_BOGON)],
-        connectivity04 => [qw(NAMESERVER_WITH_UNALLOCATED_ADDRESS NAMESERVERS_WITH_UNIQ_AS NAMESERVERS_IPV4_WITH_UNIQ_AS NAMESERVERS_IPV6_WITH_UNIQ_AS)],
+        connectivity01 => [
+            qw(
+              NAMESERVER_HAS_UDP_53
+              NAMESERVER_NO_UDP_53
+              )
+        ],
+        connectivity02 => [
+            qw(
+              NAMESERVER_HAS_TCP_53
+              NAMESERVER_NO_TCP_53
+              )
+        ],
+        connectivity03 => [
+            qw(
+              NAMESERVER_IPV6_ADDRESS_BOGON
+              NAMESERVER_IPV6_ADDRESSES_NOT_BOGON
+              )
+        ],
+        connectivity04 => [
+            qw(
+              NAMESERVER_WITH_UNALLOCATED_ADDRESS
+              NAMESERVERS_WITH_UNIQ_AS
+              NAMESERVERS_IPV4_WITH_UNIQ_AS
+              NAMESERVERS_IPV6_WITH_UNIQ_AS
+              )
+        ],
     };
 }
 

@@ -48,15 +48,55 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        zone01 => [qw(MNAME_RECORD_DOES_NOT_EXIST MNAME_NOT_AUTHORITATIVE MNAME_NO_RESPONSE MNAME_NOT_IN_GLUE)],
-        zone02 => [qw(REFRESH_MINIMUM_VALUE_LOWER)],
-        zone03 => [qw(REFRESH_LOWER_THAN_RETRY)],
-        zone04 => [qw(RETRY_MINIMUM_VALUE_LOWER)],
-        zone05 => [qw(EXPIRE_MINIMUM_VALUE_LOWER EXPIRE_LOWER_THAN_REFRESH)],
-        zone06 => [qw(SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER)],
-        zone07 => [qw(MASTER_IS_AN_ALIAS)],
-        zone08 => [qw(MX_RECORD_IS_CNAME)],
-        zone09 => [qw(NO_MX_RECORD)],
+        zone01 => [
+            qw(
+              MNAME_RECORD_DOES_NOT_EXIST
+              MNAME_NOT_AUTHORITATIVE
+              MNAME_NO_RESPONSE MNAME_NOT_IN_GLUE
+              )
+        ],
+        zone02 => [
+            qw(
+              REFRESH_MINIMUM_VALUE_LOWER
+              )
+        ],
+        zone03 => [
+            qw(
+              REFRESH_LOWER_THAN_RETRY
+              )
+        ],
+        zone04 => [
+            qw(
+              RETRY_MINIMUM_VALUE_LOWER
+              )
+        ],
+        zone05 => [
+            qw(
+              EXPIRE_MINIMUM_VALUE_LOWER
+              EXPIRE_LOWER_THAN_REFRESH
+              )
+        ],
+        zone06 => [
+            qw(
+              SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER
+              SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER
+              )
+        ],
+        zone07 => [
+            qw(
+              MASTER_IS_AN_ALIAS
+              )
+        ],
+        zone08 => [
+            qw(
+              MX_RECORD_IS_CNAME
+              )
+        ],
+        zone09 => [
+            qw(
+              NO_MX_RECORD
+              )
+        ],
     };
 } ## end sub metadata
 

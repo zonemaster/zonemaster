@@ -82,9 +82,22 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        address01 => [qw(NAMESERVER_IP_PRIVATE_NETWORK)],
-        address02 => [qw(NAMESERVER_IP_WITHOUT_REVERSE)],
-        address03 => [qw(NAMESERVER_IP_WITHOUT_REVERSE NAMESERVER_IP_PTR_MISMATCH)],
+        address01 => [
+            qw(
+              NAMESERVER_IP_PRIVATE_NETWORK
+              )
+        ],
+        address02 => [
+            qw(
+              NAMESERVER_IP_WITHOUT_REVERSE
+              )
+        ],
+        address03 => [
+            qw(
+              NAMESERVER_IP_WITHOUT_REVERSE
+              NAMESERVER_IP_PTR_MISMATCH
+              )
+        ],
     };
 } ## end sub metadata
 

@@ -34,11 +34,32 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        nameserver01 => [qw(IS_A_RECURSOR)],
-        nameserver02 => [qw()],
-        nameserver03 => [qw(AXFR_FAILURE AXFR_AVAILABLE)],
-        nameserver04 => [qw(SAME_SOURCE_IP)],
-        nameserver05 => [qw()],
+        nameserver01 => [
+            qw(
+              IS_A_RECURSOR
+              )
+        ],
+        nameserver02 => [
+            qw(
+              )
+        ],
+        nameserver03 => [
+            qw(
+              AXFR_FAILURE
+              AXFR_AVAILABLE
+              )
+        ],
+        nameserver04 => [
+            qw(
+              SAME_SOURCE_IP
+              )
+        ],
+        nameserver05 => [
+            qw(
+              QUERY_DROPPED
+              ANSWER_BAD_RCODE
+              )
+        ],
     };
 }
 
@@ -84,6 +105,10 @@ sub nameserver02 {
         next if $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short};
 
         my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
+        my $p = $ns->query( $zone->name, q{SOA}, { dnssec => 1 } );
+        if ( $p ) {
+#WIP
+        }
 
         $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short}++;
     }
@@ -203,8 +228,8 @@ sub nameserver05 {
 
         if ( $p->has_rrs_of_type_for_name( q{AAAA}, $zone->name ) and $p->rcode eq q{NOERROR} ) {
             foreach my $rr_aaaa ($p->get_records( q{AAAA}, q{answer} ) ) {
-
-                # Check last case with 4 bytes RDATA
+#WIP
+                # Check last case with 4 bytes RDATA...
 
             }
         }
