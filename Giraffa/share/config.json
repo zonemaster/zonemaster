@@ -12,7 +12,8 @@
          "recurse" : 0,
          "retrans" : 3,
          "retry" : 2,
-         "usevc" : 0
+         "usevc" : 0,
+         "edns_size" : 0
       }
    }
 }

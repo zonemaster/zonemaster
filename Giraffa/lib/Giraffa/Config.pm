@@ -61,7 +61,7 @@ sub load_config_file {
     my $new = decode_json read_file $filename;
     $config = $merger->merge($config,$new) if $new;
 
-    return;
+    return !!$new;
 }
 
 sub load_policy_file {
@@ -69,7 +69,7 @@ sub load_policy_file {
     my $new = decode_json read_file $filename;
     $policy = $merger->merge($policy, $new) if $new;
 
-    return;
+    return !!$new;
 }
 
 1;
@@ -205,23 +205,13 @@ __DATA__
                 "debug" : 0,
                 "recurse" : 0,
                 "retry" : 2,
-                "igntc" : 0
+                "igntc" : 0,
+                "edns_size" : 0
             }
         },
     "net": {
         "ipv4": 1,
         "ipv6": 1
     },
-    "no_network": 0,
-    "logfilter": {
-       "SYSTEM": {
-           "FILTER_THIS": {
-               "when": {
-                   "count": 1,
-                   "type": ["this", "or"]
-               },
-               "set": "INFO"
-           }
-       }
-   }
+    "no_network": 0
 }
