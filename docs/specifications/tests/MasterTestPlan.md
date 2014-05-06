@@ -1,22 +1,22 @@
-New DNSCheck Master Test Plan
-=============================
+Zonemaster Master Test Plan
+===========================
 
 Introduction
 ------------
 
-This section gives a brief introduction to the New DNSCheck.
+This section gives a brief introduction to Zonemaster.
 
 ### Background
 
 DNSCheck from .SE and Zonecheck from AFNIC are two different software
 packages that do DNS validation of the quality of a DNS
-delegation. The New DNSCheck implementation intends to be a major
+delegation. The Zonemaster implementation intends to be a major
 rewrite of these software packages, and implement the best parts of
 both.
 
 ### Purpose
 
-The purpose of the New DNSCheck is to test the quality of a DNS
+The purpose of Zonemaster is to test the quality of a DNS
 delegation. The core of the software is all the implemented
 tests. There will be a command line tool to run a complete set of
 tests, and a web interface tailored for use by both basic and advanced
@@ -113,7 +113,7 @@ necessary to perform the testing.
 
 #### Organization
 
-A test is run on any machine where the New DNSCheck software is
+A test is run on any machine where the Zonemaster software is
 available. The tests ordinarily needs access to a complete DNS
 hierarchy to be performed.
 
