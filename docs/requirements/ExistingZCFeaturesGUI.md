@@ -1,7 +1,7 @@
 Existing ZC GUI Features
 ========================
 
-ZoneCheck GUI Features which could be included in the new tool
+ZoneCheck GUI Features which could be included in "Zonemaster"
 
 Link to example : http://www.zonecheck.fr/demo/
 
