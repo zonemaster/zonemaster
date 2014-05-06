@@ -1,6 +1,6 @@
-# New DNSCheck Test Specifications
+# Zonemaster Test Specifications
 
-This is the collection of test specifications for the New DNSCheck
+This is the collection of test specifications for the Zonemaster
 project. All the details are in the [Master Test Plan]
 (MasterTestPlan.md).
 
