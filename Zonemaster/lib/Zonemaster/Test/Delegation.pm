@@ -19,7 +19,6 @@ Readonly our $UDP_PAYLOAD_LIMIT             => 512;
 Readonly our $IP_VERSION_4                  => $Zonemaster::Test::Address::IP_VERSION_4;
 Readonly our $IP_VERSION_6                  => $Zonemaster::Test::Address::IP_VERSION_6;
 
-
 ###
 ### Entry points
 ###
@@ -153,20 +152,20 @@ sub delegation02 {
 
     foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
 
-        next if $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short};
+        next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
 
         push @{ $ips{ $local_ns->address->short } }, $local_ns->name->string;
 
-        $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short}++;
+        $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short }++;
 
     }
 
     foreach my $local_ip ( keys %ips ) {
-        if ( scalar @{ $ips{ $local_ip } } > 1 ) {
+        if ( scalar @{ $ips{$local_ip} } > 1 ) {
             push @results,
               info(
                 SAME_IP_ADDRESS => {
-                    nss     => join( q{;}, @{ $ips{ $local_ip } } ),
+                    nss     => join( q{;}, @{ $ips{$local_ip} } ),
                     address => $local_ip,
                 }
               );
@@ -222,10 +221,10 @@ sub delegation04 {
     my ( $class, $zone ) = @_;
     my @results;
     my %nsnames;
-    
+
     foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
-    
-        next if $nsnames{$local_ns->name};
+
+        next if $nsnames{ $local_ns->name };
 
         foreach my $usevc ( 0, 1 ) {
             my $p = $local_ns->query( $zone->name, q{SOA}, { usevc => $usevc } );
@@ -240,21 +239,21 @@ sub delegation04 {
             }
         }
 
-        $nsnames{$local_ns->name}++;
+        $nsnames{ $local_ns->name }++;
     }
 
     return @results;
-}## end sub delegation04
+} ## end sub delegation04
 
 sub delegation05 {
     my ( $class, $zone ) = @_;
     my @results;
     my %nsnames;
-    
+
     foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
-    
-        next if $nsnames{$local_ns->name};
-    
+
+        next if $nsnames{ $local_ns->name };
+
         foreach my $address_type ( q{A}, q{AAAA} ) {
             my $p = $zone->query_one( $local_ns->name, $address_type );
             if ( $p ) {
@@ -270,11 +269,11 @@ sub delegation05 {
             }
         }
 
-        $nsnames{$local_ns->name}++;
-    }
+        $nsnames{ $local_ns->name }++;
+    } ## end foreach my $local_ns ( @{ $zone...})
 
     return @results;
-}## end sub delegation05
+} ## end sub delegation05
 
 sub delegation06 {
     my ( $class, $zone ) = @_;
@@ -283,11 +282,11 @@ sub delegation06 {
 
     foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
 
-        next if $nsnames{$local_ns->name};
+        next if $nsnames{ $local_ns->name };
 
         my $p = $local_ns->query( $zone->name, q{SOA} );
-        if ( $p  and $p->rcode eq q{NOERROR} ) {
-            if ( not length($p->answer) ) {
+        if ( $p and $p->rcode eq q{NOERROR} ) {
+            if ( not length( $p->answer ) ) {
                 push @results,
                   info(
                     SOA_NOT_EXISTS => {
@@ -297,11 +296,11 @@ sub delegation06 {
             }
         }
 
-        $nsnames{$local_ns->name}++;
+        $nsnames{ $local_ns->name }++;
     }
 
     return @results;
-}## end sub delegation06
+} ## end sub delegation06
 
 sub delegation07 {
     my ( $class, $zone ) = @_;
@@ -320,21 +319,39 @@ sub delegation07 {
     my @extra_name_child  = grep { $names{$_} < 0 } keys %names;
 
     if ( @extra_name_parent ) {
-        push @results, info( EXTRA_NAME_PARENT => { extra => join( q{;}, @extra_name_parent ) } );
+        push @results,
+          info(
+            EXTRA_NAME_PARENT => {
+                extra => join( q{;}, @extra_name_parent ),
+            }
+          );
     }
 
     if ( @extra_name_child ) {
-        push @results, info( EXTRA_NAME_CHILD => { extra => join( q{;}, @extra_name_child ) } );
+        push @results,
+          info(
+            EXTRA_NAME_CHILD => {
+                extra => join( q{;}, @extra_name_child ),
+            }
+          );
     }
 
     if ( @extra_name_parent == 0 and @extra_name_child == 0 ) {
-        push @results, info( NAMES_MATCH => { names => join( q{;}, @same_name ) } );
+        push @results,
+          info(
+            NAMES_MATCH => {
+                names => join( q{;}, @same_name ),
+            }
+          );
     }
 
     if ( scalar( @same_name ) == 0 ) {
         push @results,
           info(
-            TOTAL_NAME_MISMATCH => { glue => join( q{;}, @extra_name_parent ), child => join( q{;}, @extra_name_child ) }
+            TOTAL_NAME_MISMATCH => {
+                glue  => join( q{;}, @extra_name_parent ),
+                child => join( q{;}, @extra_name_child ),
+            }
           );
     }
 
