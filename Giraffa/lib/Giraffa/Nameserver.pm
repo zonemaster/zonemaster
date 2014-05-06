@@ -194,10 +194,12 @@ sub _query {
 
     my %defaults = %{ Giraffa->config->get->{resolver}{defaults} };
 
+    # Make sure we have a value for each flag
     foreach my $flag ( keys %defaults ) {
         $flags{$flag} = $href->{$flag} // $defaults{$flag};
     }
 
+    # Set flags for this query
     foreach my $flag ( keys %flags ) {
         $self->dns->$flag( $flags{$flag} );
     }
@@ -209,7 +211,8 @@ sub _query {
     }
     push @{ $self->times }, ( time() - $before );
 
-    foreach my $flag ( keys %defaults ) {
+    # Reset to defaults
+    foreach my $flag ( keys %flags ) {
         $self->dns->$flag( $defaults{$flag} );
     }
 

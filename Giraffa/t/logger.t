@@ -4,6 +4,7 @@ BEGIN { use_ok( 'Giraffa::Logger' ) }
 use Giraffa::Util;
 
 my $log = Giraffa->logger;
+
 isa_ok( $log, 'Giraffa::Logger' );
 
 $log->add( 'TAG', { seventeen => 17 } );
@@ -46,7 +47,7 @@ ok($res{LOGGER_CALLBACK_ERROR}, 'Callback crash logged');
 ok($res{DO_CRASH}, 'DO_CRASH got logged anyway');
 ok(!$log->callback, 'Callback got removed');
 
-Giraffa->config->load_config_file('t/config.json');
+ok(Giraffa->config->load_config_file('t/config.json'), 'config loaded');
 $log->add( FILTER_THIS => { when => 1, and => 'this' });
 my $filtered = $log->entries->[-1];
 $log->add( FILTER_THIS => { when => 1, and => 'or' });
