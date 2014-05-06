@@ -11,11 +11,11 @@ use Carp;
 
 use Readonly;
 
-Readonly our $SOA_REFRESH_MINIMUM_VALUE     =>  14_400; # 14400 seconds (4 hours)
-Readonly our $SOA_RETRY_MINIMUM_VALUE       =>   3_600; # 3600 seconds (1 hour)
-Readonly our $SOA_EXPIRE_MINIMUM_VALUE      => 604_800; # 604800 seconds (7 days)
-Readonly our $SOA_DEFAULT_TTL_MAXIMUM_VALUE =>  86_400; # 86400 seconds (1 day)
-Readonly our $SOA_DEFAULT_TTL_MINIMUM_VALUE =>     300; # 300 seconds (5 minutes)
+Readonly our $SOA_REFRESH_MINIMUM_VALUE     => 14_400;     # 14400 seconds (4 hours)
+Readonly our $SOA_RETRY_MINIMUM_VALUE       => 3_600;      # 3600 seconds (1 hour)
+Readonly our $SOA_EXPIRE_MINIMUM_VALUE      => 604_800;    # 604800 seconds (7 days)
+Readonly our $SOA_DEFAULT_TTL_MAXIMUM_VALUE => 86_400;     # 86400 seconds (1 day)
+Readonly our $SOA_DEFAULT_TTL_MINIMUM_VALUE => 300;        # 300 seconds (5 minutes)
 
 ###
 ### Entry Points
@@ -111,17 +111,17 @@ sub zone01 {
     my $p = $zone->query_one( $zone->name, q{SOA} );
 
     if ( $p ) {
-        my ( $soa )   = $p->get_records( q{SOA}, q{answer} );
+        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
         my $soa_mname = $soa->mname;
         if ( not $soa_mname ) {
-            push @results, info( MNAME_RECORD_DOES_NOT_EXIST => { } );
+            push @results, info( MNAME_RECORD_DOES_NOT_EXIST => {} );
         }
         else {
             foreach my $ip_address ( Zonemaster::Recursor->get_addresses_for( $soa_mname ) ) {
-                my $ns = Zonemaster::Nameserver->new({ name => $soa_mname, address => $ip_address->short });
-                my $p = $ns->query( $zone->name, q{SOA} );
-                if ( $p and $p->rcode eq q{NOERROR} ) {
-                    if ( not $p->aa ) {
+                my $ns = Zonemaster::Nameserver->new( { name => $soa_mname, address => $ip_address->short } );
+                my $p_soa = $ns->query( $zone->name, q{SOA} );
+                if ( $p_soa and $p_soa->rcode eq q{NOERROR} ) {
+                    if ( not $p_soa->aa ) {
                         push @results,
                           info(
                             MNAME_NOT_AUTHORITATIVE => {
@@ -141,12 +141,12 @@ sub zone01 {
                         }
                       );
                 }
-            }
+            } ## end foreach my $ip_address ( Zonemaster::Recursor...)
             if ( not grep { $_->name eq $soa_mname } @{ $zone->glue } ) {
-                push @results, info( MNAME_NOT_IN_GLUE => { } );
+                push @results, info( MNAME_NOT_IN_GLUE => {} );
             }
-        }
-    }
+        } ## end else [ if ( not $soa_mname ) ]
+    } ## end if ( $p )
     else {
         croak q{No response from child nameservers};
     }
@@ -161,7 +161,7 @@ sub zone02 {
     my $p = $zone->query_one( $zone->name, q{SOA} );
 
     if ( $p ) {
-        my ( $soa )     = $p->get_records( q{SOA}, q{answer} );
+        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
         my $soa_refresh = $soa->refresh;
         if ( $soa_refresh < $SOA_REFRESH_MINIMUM_VALUE ) {
             push @results,
@@ -187,7 +187,7 @@ sub zone03 {
     my $p = $zone->query_one( $zone->name, q{SOA} );
 
     if ( $p ) {
-        my ( $soa )     = $p->get_records( q{SOA}, q{answer} );
+        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
         my $soa_retry   = $soa->retry;
         my $soa_refresh = $soa->refresh;
         if ( $soa_retry >= $soa_refresh ) {
@@ -214,7 +214,7 @@ sub zone04 {
     my $p = $zone->query_one( $zone->name, q{SOA} );
 
     if ( $p ) {
-        my ( $soa )   = $p->get_records( q{SOA}, q{answer} );
+        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
         my $soa_retry = $soa->retry;
         if ( $soa_retry < $SOA_RETRY_MINIMUM_VALUE ) {
             push @results,
@@ -240,7 +240,7 @@ sub zone05 {
     my $p = $zone->query_one( $zone->name, q{SOA} );
 
     if ( $p ) {
-        my ( $soa )     = $p->get_records( q{SOA}, q{answer} );
+        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
         my $soa_expire  = $soa->expire;
         my $soa_refresh = $soa->refresh;
         if ( $soa_expire < $SOA_EXPIRE_MINIMUM_VALUE ) {
@@ -261,7 +261,7 @@ sub zone05 {
                 }
               );
         }
-    }
+    } ## end if ( $p )
     else {
         croak q{No response from child nameservers};
     }
@@ -276,14 +276,14 @@ sub zone06 {
     my $p = $zone->query_one( $zone->name, q{SOA} );
 
     if ( $p ) {
-        my ( $soa )     = $p->get_records( q{SOA}, q{answer} );
+        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
         my $soa_minimum = $soa->minimum;
         if ( $soa_minimum > $SOA_DEFAULT_TTL_MAXIMUM_VALUE ) {
             push @results,
               info(
                 SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER => {
-                    minimum          => $soa_minimum,
-                    highest_minimum  => $SOA_DEFAULT_TTL_MAXIMUM_VALUE,
+                    minimum         => $soa_minimum,
+                    highest_minimum => $SOA_DEFAULT_TTL_MAXIMUM_VALUE,
                 }
               );
         }
@@ -296,7 +296,7 @@ sub zone06 {
                 }
               );
         }
-    }
+    } ## end if ( $p )
     else {
         croak q{No response from child nameservers};
     }
@@ -311,7 +311,7 @@ sub zone07 {
     my $p = $zone->query_one( $zone->name, q{SOA} );
 
     if ( $p ) {
-        my ( $soa )   = $p->get_records( q{SOA}, q{answer} );
+        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
         my $soa_mname = $soa->mname;
         my $p_mname = Zonemaster::Recursor->recurse( $soa_mname, q{A} );
 
@@ -320,7 +320,7 @@ sub zone07 {
                 push @results,
                   info(
                     MASTER_IS_AN_ALIAS => {
-                        mname   => $soa_mname,
+                        mname => $soa_mname,
                     }
                   );
             }
@@ -342,7 +342,7 @@ sub zone08 {
 
     if ( $p ) {
         if ( $p->has_rrs_of_type_for_name( q{CNAME}, $zone->name ) ) {
-            push @results, info( MX_RECORD_IS_CNAME => { } );
+            push @results, info( MX_RECORD_IS_CNAME => {} );
         }
     }
     else {
@@ -350,7 +350,7 @@ sub zone08 {
     }
 
     return @results;
-} ## end sub zone08
+}
 
 sub zone09 {
     my ( $class, $zone ) = @_;
@@ -362,9 +362,10 @@ sub zone09 {
         if ( not $p->has_rrs_of_type_for_name( q{MX}, $zone->name ) ) {
             my $p_a    = $zone->query_one( $zone->name, q{A} );
             my $p_aaaa = $zone->query_one( $zone->name, q{AAAA} );
-            if (    not $p_a->has_rrs_of_type_for_name( q{A}, $zone->name ) 
-                and not $p_aaaa->has_rrs_of_type_for_name( q{AAAA}, $zone->name ) ) {
-                push @results, info( NO_MX_RECORD => { } );
+            if (    not $p_a->has_rrs_of_type_for_name( q{A}, $zone->name )
+                and not $p_aaaa->has_rrs_of_type_for_name( q{AAAA}, $zone->name ) )
+            {
+                push @results, info( NO_MX_RECORD => {} );
             }
         }
     }
