@@ -77,16 +77,18 @@ sub nameserver01 {
 
         next if $nsnames{$local_ns->name};
 
-        my $p = $local_ns->query( $nonexistent_name, q{SOA}, { q{recurse} => 1 } );
+        my $p = $local_ns->query( $nonexistent_name, q{SOA}, { recurse => 1 } );
 
-        if ( $p->rcode eq q{NXDOMAIN} ) {
-            push @results,
-              info(
-                IS_A_RECURSOR => {
-                    ns     => $local_ns->name,
-                    dname  => $nonexistent_name,
-                }
-              );
+        if ( $p ) {
+            if ( $p->rcode eq q{NXDOMAIN} ) {
+                push @results,
+                  info(
+                    IS_A_RECURSOR => {
+                        ns     => $local_ns->name,
+                        dname  => $nonexistent_name,
+                    }
+                  );
+            }
         }
 
         $nsnames{$local_ns->name}++;
@@ -105,9 +107,28 @@ sub nameserver02 {
         next if $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short};
 
         my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
-        my $p = $ns->query( $zone->name, q{SOA}, { dnssec => 1 } );
+        my $p = $ns->query( $zone->name, q{SOA}, { dnssec => 1, edns_size => 512 } );
         if ( $p ) {
-#WIP
+            if ( $p->rcode eq q{FORMERR} ) {
+                push @results,
+                  info(
+                    EDNS0_BAD_QUERY => {
+                        ns      => $local_ns->name,
+                        address => $local_ns->address->short,
+                    }
+                  );
+            }
+            else {
+                if ( not $p->edns_rcode or not $p->edns_size() ) {
+                    push @results,
+                      info(
+                        EDNS0_BAD_ANSWER => {
+                            ns      => $local_ns->name,
+                            address => $local_ns->address->short,
+                        }
+                      );
+                }
+            }
         }
 
         $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short}++;
@@ -226,13 +247,6 @@ sub nameserver05 {
             next;
         }
 
-        if ( $p->has_rrs_of_type_for_name( q{AAAA}, $zone->name ) and $p->rcode eq q{NOERROR} ) {
-            foreach my $rr_aaaa ($p->get_records( q{AAAA}, q{answer} ) ) {
-#WIP
-                # Check last case with 4 bytes RDATA...
-
-            }
-        }
     }
 
     return @results;
@@ -289,7 +303,7 @@ Verify that replies from nameserver comes from the expected IP address.
 
 =item nameserver05($zone)
 
-Verify behaviour against AAAA queries. (WORK IN PROGRESS)
+Verify behaviour against AAAA queries.
 
 =back
 

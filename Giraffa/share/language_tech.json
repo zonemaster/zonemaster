@@ -40,11 +40,13 @@
    },
    "NAMESERVER" : {
       "IS_A_RECURSOR" : "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}.",
+      "EDNS0_BAD_QUERY" : "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)",
+      "EDNS0_BAD_ANSWER" : "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)",
       "AXFR_FAILURE" : "AXFR not available on nameserver {ns}/{address}.",
       "AXFR_AVAILABLE" : "Nameserver {ns}/{address} allow zone transfer using AXFR.",
       "SAME_SOURCE_IP" : "Nameserver {ns}/{address} replies on a SOA query with a different source address ({source}).",
-      "QUERY_DROPPED" : "",
-      "ANSWER_BAD_RCODE" : ""
+      "QUERY_DROPPED" : "Nameserver {ns}/{address} dropped AAAA query.",
+      "ANSWER_BAD_RCODE" : "Nameserver {ns}/{address} answered AAAA query with an unexpected rcode ({rcode})."
    },
    "ADDRESS" : {
       "NAMESERVER_IP_PRIVATE_NETWORK" : "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'.",
@@ -61,6 +63,12 @@
        "NON_ALPHANUMERIC_START": "{name} does not start with an alphanumeric character."
    },
    "DELEGATION" : {
+         "ENOUGH_NS_GLUE": "Parent lists enough nameservers ({count}).",
+         "NOT_ENOUGH_NS_GLUE": "Parent does not list enough nameservers ({count}).",
+         "ENOUGH_NS": "Child lists enough nameservers ({count}).",
+         "NOT_ENOUGH_NS": "Child does not list enough nameservers ({count}).",
+         "IS_NOT_AUTHORITATIVE" : "Nameserver {ns} response is not authoritative on {proto} port 53.",
+         "NS_RR_IS_CNAME" : "Nameserver RR p
          "REFERRAL_SIZE_LARGE": "The smallest possible legal referral packet is larger than 512 octets (it is {size}).",
          "REFERRAL_SIZE_OK": "The smallest possible legal referral packet is smaller than 513 octets (it is {size}).",
          "EXTRA_NAME_PARENT": "Parent has nameserver(s) not listed at the child ({extra}).",
@@ -71,10 +79,6 @@
          "NAMES_MATCH": "All of the nameserver names are listed both at parent and child.",
          "ADDRESSES_MATCH": "All of the nameserver addresses are listed both at parent and child.",
          "TOTAL_ADDRESS_MISMATCH": "None of the nameserver addresses listed at the parent are listed at the child.",
-         "ENOUGH_NS_GLUE": "Parent lists enough nameservers ({count}).",
-         "NOT_ENOUGH_NS_GLUE": "Parent does not list enough nameservers ({count}).",
-         "ENOUGH_NS": "Child lists enough nameservers ({count}).",
-         "NOT_ENOUGH_NS": "Child does not list enough nameservers ({count}).",
          "INZONE_NO_GLUE": "In-zone nameserver {ns} does not have any glue.",
          "INZONE_HAS_GLUE": "In-zone nameserver {ns} does have glue.",
          "NOT_IN_ZONE": "Nameserver {ns} is not in-zone."

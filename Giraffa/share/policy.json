@@ -73,6 +73,8 @@
    },
    "NAMESERVER" : {
       "IS_A_RECURSOR" : "ERROR",
+      "EDNS0_BAD_QUERY" : "WARNING",
+      "EDNS0_BAD_ANSWER" : "WARNING",
       "AXFR_FAILURE" : "INFO",
       "AXFR_AVAILABLE" : "ERROR",
       "SAME_SOURCE_IP" : "ERROR",
@@ -89,6 +91,11 @@
       "DISABLED" : true
    },
    "DELEGATION" : {
+         "ENOUGH_NS_GLUE": "INFO",
+         "NOT_ENOUGH_NS_GLUE": "WARNING",
+         "ENOUGH_NS": "INFO",
+         "NOT_ENOUGH_NS": "WARNING",
+         "IS_NOT_AUTHORITATIVE" : "WARNING",
          "REFERRAL_SIZE_LARGE": "WARNING",
          "REFERRAL_SIZE_OK": "INFO",
          "EXTRA_NAME_PARENT": "WARNING",
@@ -99,10 +106,6 @@
          "NAMES_MATCH": "INFO",
          "ADDRESSES_MATCH": "INFO",
          "TOTAL_ADDRESS_MISMATCH": "ERROR",
-         "ENOUGH_NS_GLUE": "INFO",
-         "NOT_ENOUGH_NS_GLUE": "WARNING",
-         "ENOUGH_NS": "INFO",
-         "NOT_ENOUGH_NS": "WARNING",
          "INZONE_NO_GLUE": "ERROR",
          "INZONE_HAS_GLUE": "INFO",
          "NOT_IN_ZONE": "DEBUG"
