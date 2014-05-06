@@ -6,6 +6,7 @@ use warnings;
 
 use Zonemaster;
 use Zonemaster::Util;
+use Zonemaster::Test::Address;
 
 use Readonly;
 use Net::IP;
@@ -14,6 +15,10 @@ use Net::LDNS::Packet;
 use Net::LDNS::RR;
 
 Readonly our $MINIMUM_NUMBER_OF_NAMESERVERS => 2;
+Readonly our $UDP_PAYLOAD_LIMIT             => 512;
+Readonly our $IP_VERSION_4                  => $Zonemaster::Test::Address::IP_VERSION_4;
+Readonly our $IP_VERSION_6                  => $Zonemaster::Test::Address::IP_VERSION_6;
+
 
 ###
 ### Entry points
@@ -24,12 +29,12 @@ sub all {
     my @results;
 
     push @results, $class->delegation01( $zone );
+    push @results, $class->delegation02( $zone );
+    push @results, $class->delegation03( $zone );
     push @results, $class->delegation04( $zone );
     push @results, $class->delegation05( $zone );
-
-    push @results, $class->parent_child_match( $zone );
-    push @results, $class->inzone_glue( $zone );
-    push @results, $class->referral_size( $zone );
+    push @results, $class->delegation06( $zone );
+    push @results, $class->delegation07( $zone );
 
     return @results;
 }
@@ -50,6 +55,17 @@ sub metadata {
               NOT_ENOUGH_NS
               )
         ],
+        delegation02 => [
+            qw(
+              SAME_IP_ADDRESS
+              )
+        ],
+        delegation03 => [
+            qw(
+              REFERRAL_SIZE_LARGE
+              REFERRAL_SIZE_OK
+              )
+        ],
         delegation04 => [
             qw(
               IS_NOT_AUTHORITATIVE
@@ -60,29 +76,17 @@ sub metadata {
               NS_RR_IS_CNAME
               )
         ],
-        parent_child_match => [
+        delegation06 => [
+            qw(
+              SOA_NOT_EXISTS
+              )
+        ],
+        delegation07 => [
             qw(
               EXTRA_NAME_PARENT
               EXTRA_NAME_CHILD
-              EXTRA_ADDR_PARENT
-              EXTRA_ADDR_CHILD
               TOTAL_NAME_MISMATCH
               NAMES_MATCH
-              ADDRESSES_MATCH
-              TOTAL_ADDRESS_MISMATCH
-              )
-        ],
-        inzone_glue => [
-            qw(
-              INZONE_NO_GLUE
-              INZONE_HAS_GLUE
-              NOT_IN_ZONE
-              )
-        ],
-        referral_size => [
-            qw(
-              REFERRAL_SIZE_LARGE
-              REFERRAL_SIZE_OK
               )
         ],
     };
@@ -100,30 +104,119 @@ sub delegation01 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    if ( scalar( $zone->glue ) >= $MINIMUM_NUMBER_OF_NAMESERVERS ) {
-        push @results,
-          info( ENOUGH_NS_GLUE =>
-              { count => scalar( @{ $zone->glue } ), glue => join( ';', map { $_->string } @{ $zone->glue } ) } );
-    }
-    else {
-        push @results,
-          info( NOT_ENOUGH_NS_GLUE =>
-              { count => scalar( @{ $zone->glue } ), glue => join( ';', map { $_->string } @{ $zone->glue } ) } );
-    }
-
-    if ( scalar( $zone->ns ) >= $MINIMUM_NUMBER_OF_NAMESERVERS ) {
+    if ( scalar( @{ $zone->glue } ) >= $MINIMUM_NUMBER_OF_NAMESERVERS ) {
         push @results,
           info(
-            ENOUGH_NS => { count => scalar( @{ $zone->ns } ), ns => join( ';', map { $_->string } @{ $zone->ns } ) } );
+            ENOUGH_NS_GLUE => {
+                count => scalar( @{ $zone->glue } ),
+                glue  => join( q{;}, map { $_->string } @{ $zone->glue } ),
+            }
+          );
     }
     else {
         push @results,
-          info( NOT_ENOUGH_NS =>
-              { count => scalar( @{ $zone->ns } ), ns => join( ';', map { $_->string } @{ $zone->ns } ) } );
+          info(
+            NOT_ENOUGH_NS_GLUE => {
+                count => scalar( @{ $zone->glue } ),
+                glue  => join( q{;}, map { $_->string } @{ $zone->glue } ),
+            }
+          );
+    }
+
+    if ( scalar( @{ $zone->ns } ) >= $MINIMUM_NUMBER_OF_NAMESERVERS ) {
+        push @results,
+          info(
+            ENOUGH_NS => {
+                count => scalar( @{ $zone->ns } ),
+                ns    => join( q{;}, map { $_->string } @{ $zone->ns } ),
+            }
+          );
+    }
+    else {
+        push @results,
+          info(
+            NOT_ENOUGH_NS => {
+                count => scalar( @{ $zone->ns } ),
+                ns    => join( q{;}, map { $_->string } @{ $zone->ns } ),
+            }
+          );
     }
 
     return @results;
 } ## end sub delegation01
+
+sub delegation02 {
+    my ( $class, $zone ) = @_;
+    my @results;
+    my %nsnames_and_ip;
+    my %ips;
+
+    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+
+        next if $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short};
+
+        push @{ $ips{ $local_ns->address->short } }, $local_ns->name->string;
+
+        $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short}++;
+
+    }
+
+    foreach my $local_ip ( keys %ips ) {
+        if ( scalar @{ $ips{ $local_ip } } > 1 ) {
+            push @results,
+              info(
+                SAME_IP_ADDRESS => {
+                    nss     => join( q{;}, @{ $ips{ $local_ip } } ),
+                    address => $local_ip,
+                }
+              );
+        }
+    }
+
+    return @results;
+} ## end sub delegation02
+
+sub delegation03 {
+    my ( $class, $zone ) = @_;
+    my @results;
+
+    my @nsnames = uniq map { $_->name } @{ $zone->ns };
+    my @needs_glue =
+      sort { length( $a->name->string ) <=> length( $b->name->string ) }
+      grep { $zone->is_in_zone( $_->name ) } @{ $zone->ns };
+    my @needs_v4_glue = grep { $_->address->version == $IP_VERSION_4 } @needs_glue;
+    my @needs_v6_glue = grep { $_->address->version == $IP_VERSION_6 } @needs_glue;
+    my $long_name     = _max_length_name_for( $zone->name );
+
+    my $p = Net::LDNS::Packet->new( $long_name, q{NS}, q{IN} );
+
+    foreach my $ns ( @nsnames ) {
+        my $rr = Net::LDNS::RR->new( sprintf( q{%s IN NS %s}, $zone->name, $ns ) );
+        $p->unique_push( q{authority}, $rr );
+    }
+
+    if ( @needs_v4_glue ) {
+        my $ns = $needs_v4_glue[0];
+        my $rr = Net::LDNS::RR->new( sprintf( q{%s IN A %s}, $ns->name, $ns->address->short ) );
+        $p->unique_push( q{additional}, $rr );
+    }
+
+    if ( @needs_v6_glue ) {
+        my $ns = $needs_v6_glue[0];
+        my $rr = Net::LDNS::RR->new( sprintf( q{%s IN AAAA %s}, $ns->name, $ns->address->short ) );
+        $p->unique_push( q{additional}, $rr );
+    }
+
+    my $size = length( $p->data );
+    if ( $size > $UDP_PAYLOAD_LIMIT ) {
+        push @results, info( REFERRAL_SIZE_LARGE => { size => $size } );
+    }
+    else {
+        push @results, info( REFERRAL_SIZE_OK => { size => $size } );
+    }
+
+    return @results;
+} ## end sub delegation03
 
 sub delegation04 {
     my ( $class, $zone ) = @_;
@@ -169,6 +262,7 @@ sub delegation05 {
                     push @results,
                       info(
                         NS_RR_IS_CNAME => {
+                            ns           => $local_ns->name,
                             address_type => $address_type,
                         }
                       );
@@ -181,144 +275,71 @@ sub delegation05 {
 
     return @results;
 }## end sub delegation05
-sub parent_child_match {
+
+sub delegation06 {
+    my ( $class, $zone ) = @_;
+    my @results;
+    my %nsnames;
+
+    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+
+        next if $nsnames{$local_ns->name};
+
+        my $p = $local_ns->query( $zone->name, q{SOA} );
+        if ( $p  and $p->rcode eq q{NOERROR} ) {
+            if ( not length($p->answer) ) {
+                push @results,
+                  info(
+                    SOA_NOT_EXISTS => {
+                        ns => $local_ns->name,
+                    }
+                  );
+            }
+        }
+
+        $nsnames{$local_ns->name}++;
+    }
+
+    return @results;
+}## end sub delegation06
+
+sub delegation07 {
     my ( $class, $zone ) = @_;
     my @results;
 
     my %names;
-    my %ips;
     foreach my $name ( uniq map { $_->name } @{ $zone->ns } ) {
         $names{$name} -= 1;
-    }
-    foreach my $addr ( uniq map { $_->address->short } @{ $zone->ns } ) {
-        $ips{$addr} -= 1;
     }
     foreach my $name ( uniq map { $_->name } @{ $zone->glue } ) {
         $names{$name} += 1;
     }
-    foreach my $addr ( uniq map { $_->address->short } @{ $zone->glue } ) {
-        $ips{$addr} += 1;
-    }
 
     my @same_name         = grep { $names{$_} == 0 } keys %names;
-    my @same_addr         = grep { $ips{$_} == 0 } keys %ips;
     my @extra_name_parent = grep { $names{$_} > 0 } keys %names;
     my @extra_name_child  = grep { $names{$_} < 0 } keys %names;
-    my @extra_addr_parent = grep { $ips{$_} > 0 } keys %ips;
-    my @extra_addr_child  = grep { $ips{$_} < 0 } keys %ips;
 
     if ( @extra_name_parent ) {
-        push @results, info( EXTRA_NAME_PARENT => { extra => join( ';', @extra_name_parent ) } );
+        push @results, info( EXTRA_NAME_PARENT => { extra => join( q{;}, @extra_name_parent ) } );
     }
 
     if ( @extra_name_child ) {
-        push @results, info( EXTRA_NAME_CHILD => { extra => join( ';', @extra_name_child ) } );
-    }
-
-    if ( @extra_addr_parent ) {
-        push @results, info( EXTRA_ADDR_PARENT => { extra => join( ';', @extra_addr_parent ) } );
-    }
-
-    if ( @extra_addr_child ) {
-        push @results, info( EXTRA_ADDR_CHILD => { extra => join( ';', @extra_addr_child ) } );
+        push @results, info( EXTRA_NAME_CHILD => { extra => join( q{;}, @extra_name_child ) } );
     }
 
     if ( @extra_name_parent == 0 and @extra_name_child == 0 ) {
-        push @results, info( NAMES_MATCH => { names => join( ';', @same_name ) } );
-    }
-
-    if ( @extra_addr_parent == 0 and @extra_addr_child == 0 ) {
-        push @results, info( ADDRESSES_MATCH => { names => join( ';', @same_addr ) } );
+        push @results, info( NAMES_MATCH => { names => join( q{;}, @same_name ) } );
     }
 
     if ( scalar( @same_name ) == 0 ) {
         push @results,
           info(
-            TOTAL_NAME_MISMATCH => { glue => join( ';', @extra_name_parent ), child => join( ';', @extra_name_child ) }
+            TOTAL_NAME_MISMATCH => { glue => join( q{;}, @extra_name_parent ), child => join( q{;}, @extra_name_child ) }
           );
     }
 
-    if ( scalar( @same_addr ) == 0 ) {
-        push @results,
-          info( TOTAL_ADDRESS_MISMATCH =>
-              { glue => join( ';', @extra_addr_parent ), child => join( ';', @extra_addr_child ) } );
-    }
-
     return @results;
-} ## end sub parent_child_match
-
-sub inzone_glue {
-    my ( $class, $zone ) = @_;
-    my @results;
-
-    foreach my $ns ( @{ $zone->glue } ) {
-        if ( $zone->is_in_zone( $ns->name ) ) {
-
-            my $found = 0;
-
-            foreach my $rr ( @{ $zone->glue_addresses } ) {
-                my $addr = Net::IP->new( $rr->address );
-                if ( $addr->ip eq $ns->address->ip ) {
-                    $found = 1;
-                }
-            }
-
-            if ( not $found ) {
-                push @results, info( INZONE_NO_GLUE => { ns => $ns->string } );
-            }
-            else {
-                push @results, info( INZONE_HAS_GLUE => { ns => $ns->string } );
-            }
-        }
-        else {
-            push @results, info( NOT_IN_ZONE => { ns => $ns->string } );
-        }
-    } ## end foreach my $ns ( @{ $zone->...})
-
-    return @results;
-} ## end sub inzone_glue
-
-sub referral_size {
-    my ( $class, $zone ) = @_;
-    my @results;
-
-    my @nsnames = uniq map { $_->name } @{ $zone->ns };
-    my @needs_glue =
-      sort { length( $a->name->string ) <=> length( $b->name->string ) }
-      grep { $zone->is_in_zone( $_->name ) } @{ $zone->ns };
-    my @needs_v4_glue = grep { $_->address->version == 4 } @needs_glue;
-    my @needs_v6_glue = grep { $_->address->version == 6 } @needs_glue;
-    my $long_name     = _max_length_name_for( $zone->name );
-
-    my $p = Net::LDNS::Packet->new( $long_name, 'NS', 'IN' );
-
-    foreach my $ns ( @nsnames ) {
-        my $rr = Net::LDNS::RR->new( sprintf( '%s IN NS %s', $zone->name, $ns ) );
-        $p->unique_push( 'authority', $rr );
-    }
-
-    if ( @needs_v4_glue ) {
-        my $ns = $needs_v4_glue[0];
-        my $rr = Net::LDNS::RR->new( sprintf( '%s IN A %s', $ns->name, $ns->address->short ) );
-        $p->unique_push( 'additional', $rr );
-    }
-
-    if ( @needs_v6_glue ) {
-        my $ns = $needs_v6_glue[0];
-        my $rr = Net::LDNS::RR->new( sprintf( '%s IN AAAA %s', $ns->name, $ns->address->short ) );
-        $p->unique_push( 'additional', $rr );
-    }
-
-    my $size = length( $p->data );
-    if ( $size > 512 ) {
-        push @results, info( REFERRAL_SIZE_LARGE => { size => $size } );
-    }
-    else {
-        push @results, info( REFERRAL_SIZE_OK => { size => $size } );
-    }
-
-    return @results;
-} ## end sub referral_size
+} ## end sub delegation07
 
 ###
 ### Helper functions
@@ -327,17 +348,17 @@ sub referral_size {
 # Make up a name of maximum length in the given domain
 sub _max_length_name_for {
     my ( $top ) = @_;
-    my @chars = 'A' .. 'Z';
+    my @chars = q{A} .. q{Z};
 
-    my $name = '';
+    my $name = q{};
     $name = "$top";
 
-    $name .= '.' if $name !~ m/\.$/;
+    $name .= q{.} if $name !~ m/\.$/;
 
     while ( length( $name ) < 253 ) {
         my $len = 253 - length( $name );
         $len = 63 if $len > 63;
-        $name = join( '', map { $chars[ rand @chars ] } 1 .. $len ) . '.' . $name;
+        $name = join( q{}, map { $chars[ rand @chars ] } 1 .. $len ) . q{.} . $name;
     }
 
     return $name;

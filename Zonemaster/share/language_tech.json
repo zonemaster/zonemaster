@@ -67,21 +67,16 @@
          "NOT_ENOUGH_NS_GLUE": "Parent does not list enough nameservers ({count}).",
          "ENOUGH_NS": "Child lists enough nameservers ({count}).",
          "NOT_ENOUGH_NS": "Child does not list enough nameservers ({count}).",
-         "IS_NOT_AUTHORITATIVE" : "Nameserver {ns} response is not authoritative on {proto} port 53.",
-         "NS_RR_IS_CNAME" : "Nameserver RR p
+         "SAME_IP_ADDRESS": "IP {address} refers to multiple nameservers ({nss}).",
          "REFERRAL_SIZE_LARGE": "The smallest possible legal referral packet is larger than 512 octets (it is {size}).",
          "REFERRAL_SIZE_OK": "The smallest possible legal referral packet is smaller than 513 octets (it is {size}).",
+         "IS_NOT_AUTHORITATIVE" : "Nameserver {ns} response is not authoritative on {proto} port 53.",
+         "NS_RR_IS_CNAME" : "Nameserver {ns} {address_type} RR point to CNAME.",
+         "SOA_NOT_EXISTS" : "A SOA query NOERROR response from {ns} was received empty.",
          "EXTRA_NAME_PARENT": "Parent has nameserver(s) not listed at the child ({extra}).",
          "EXTRA_NAME_CHILD": "Child has nameserver(s) not listed at parent ({extra}).",
-         "EXTRA_ADDR_PARENT": "Parent has nameserver(s) address that do not exist at the child side ({extra}).",
-         "EXTRA_ADDR_CHILD": "Child has nameserver address(es) that do not exist at the parent side ({extra}).",
          "TOTAL_NAME_MISMATCH": "None of the nameservers listed at the parent are listed at the child.",
-         "NAMES_MATCH": "All of the nameserver names are listed both at parent and child.",
-         "ADDRESSES_MATCH": "All of the nameserver addresses are listed both at parent and child.",
-         "TOTAL_ADDRESS_MISMATCH": "None of the nameserver addresses listed at the parent are listed at the child.",
-         "INZONE_NO_GLUE": "In-zone nameserver {ns} does not have any glue.",
-         "INZONE_HAS_GLUE": "In-zone nameserver {ns} does have glue.",
-         "NOT_IN_ZONE": "Nameserver {ns} is not in-zone."
+         "NAMES_MATCH": "All of the nameserver names are listed both at parent and child."
    },
    "CONSISTENCY": {
        "NO_RESPONSE": "Nameserver {ns} did not respond.",
