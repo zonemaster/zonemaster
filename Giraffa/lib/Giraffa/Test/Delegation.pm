@@ -7,10 +7,13 @@ use warnings;
 use Giraffa;
 use Giraffa::Util;
 
+use Readonly;
 use Net::IP;
 use List::MoreUtils qw[uniq];
 use Net::LDNS::Packet;
 use Net::LDNS::RR;
+
+Readonly our $MINIMUM_NUMBER_OF_NAMESERVERS => 2;
 
 ###
 ### Entry points
@@ -20,7 +23,10 @@ sub all {
     my ( $class, $zone ) = @_;
     my @results;
 
-    push @results, $class->enough_nameservers( $zone );
+    push @results, $class->delegation01( $zone );
+    push @results, $class->delegation04( $zone );
+    push @results, $class->delegation05( $zone );
+
     push @results, $class->parent_child_match( $zone );
     push @results, $class->inzone_glue( $zone );
     push @results, $class->referral_size( $zone );
@@ -36,12 +42,22 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        enough_nameservers => [
+        delegation01 => [
             qw(
               ENOUGH_NS_GLUE
               NOT_ENOUGH_NS_GLUE
               ENOUGH_NS
               NOT_ENOUGH_NS
+              )
+        ],
+        delegation04 => [
+            qw(
+              IS_NOT_AUTHORITATIVE
+              )
+        ],
+        delegation05 => [
+            qw(
+              NS_RR_IS_CNAME
               )
         ],
         parent_child_match => [
@@ -80,11 +96,11 @@ sub version {
 ### Tests
 ###
 
-sub enough_nameservers {
+sub delegation01 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    if ( scalar( $zone->glue ) > 0 ) {
+    if ( scalar( $zone->glue ) >= $MINIMUM_NUMBER_OF_NAMESERVERS ) {
         push @results,
           info( ENOUGH_NS_GLUE =>
               { count => scalar( @{ $zone->glue } ), glue => join( ';', map { $_->string } @{ $zone->glue } ) } );
@@ -95,7 +111,7 @@ sub enough_nameservers {
               { count => scalar( @{ $zone->glue } ), glue => join( ';', map { $_->string } @{ $zone->glue } ) } );
     }
 
-    if ( scalar( $zone->ns ) > 0 ) {
+    if ( scalar( $zone->ns ) >= $MINIMUM_NUMBER_OF_NAMESERVERS ) {
         push @results,
           info(
             ENOUGH_NS => { count => scalar( @{ $zone->ns } ), ns => join( ';', map { $_->string } @{ $zone->ns } ) } );
@@ -107,8 +123,64 @@ sub enough_nameservers {
     }
 
     return @results;
-} ## end sub enough_nameservers
+} ## end sub delegation01
 
+sub delegation04 {
+    my ( $class, $zone ) = @_;
+    my @results;
+    my %nsnames;
+    
+    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+    
+        next if $nsnames{$local_ns->name};
+
+        foreach my $usevc ( 0, 1 ) {
+            my $p = $local_ns->query( $zone->name, q{SOA}, { usevc => $usevc } );
+            if ( not $p->aa ) {
+                push @results,
+                  info(
+                    IS_NOT_AUTHORITATIVE => {
+                        ns    => $local_ns->name,
+                        proto => $usevc ? q{TCP} : q{UDP},
+                    }
+                  );
+            }
+        }
+
+        $nsnames{$local_ns->name}++;
+    }
+
+    return @results;
+}## end sub delegation04
+
+sub delegation05 {
+    my ( $class, $zone ) = @_;
+    my @results;
+    my %nsnames;
+    
+    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+    
+        next if $nsnames{$local_ns->name};
+    
+        foreach my $address_type ( q{A}, q{AAAA} ) {
+            my $p = $zone->query_one( $local_ns->name, $address_type );
+            if ( $p ) {
+                if ( $p->has_rrs_of_type_for_name( q{CNAME}, $zone->name ) ) {
+                    push @results,
+                      info(
+                        NS_RR_IS_CNAME => {
+                            address_type => $address_type,
+                        }
+                      );
+                }
+            }
+        }
+
+        $nsnames{$local_ns->name}++;
+    }
+
+    return @results;
+}## end sub delegation05
 sub parent_child_match {
     my ( $class, $zone ) = @_;
     my @results;
@@ -304,7 +376,7 @@ Returns a version string for the module.
 
 =over
 
-=item enough_nameservers($zone)
+=item delegation01($zone)
 
 Verify that there is more than one nameserver.
 
