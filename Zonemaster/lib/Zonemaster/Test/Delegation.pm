@@ -370,7 +370,7 @@ sub _max_length_name_for {
     my $name = q{};
     $name = "$top";
 
-    $name .= q{.} if $name !~ m/\.$/;
+    $name .= q{.} if $name !~ m/\.\z/x;
 
     while ( length( $name ) < 253 ) {
         my $len = 253 - length( $name );
