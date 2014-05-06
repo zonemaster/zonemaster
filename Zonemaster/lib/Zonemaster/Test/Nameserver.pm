@@ -41,6 +41,8 @@ sub metadata {
         ],
         nameserver02 => [
             qw(
+              EDNS0_BAD_QUERY
+              EDNS0_BAD_ANSWER
               )
         ],
         nameserver03 => [
@@ -106,7 +108,7 @@ sub nameserver02 {
 
         next if $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short};
 
-        my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
+        my $ns = Zonemaster::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
         my $p = $ns->query( $zone->name, q{SOA}, { dnssec => 1, edns_size => 512 } );
         if ( $p ) {
             if ( $p->rcode eq q{FORMERR} ) {
