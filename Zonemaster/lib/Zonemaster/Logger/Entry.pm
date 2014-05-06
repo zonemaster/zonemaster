@@ -1,10 +1,10 @@
-package Giraffa::Logger::Entry v0.0.1;
+package Zonemaster::Logger::Entry v0.0.1;
 
 use 5.14.2;
 use Time::HiRes qw[time];
 use JSON;
 use Moose;
-use Giraffa;
+use Zonemaster;
 
 use overload '""' => \&string;
 
@@ -43,7 +43,7 @@ sub _build_trace {
     #        0          1      2            3         4           5          6            7       8         9         10
     # $package, $filename, $line, $subroutine, $hasargs, $wantarray, $evaltext, $is_require, $hints, $bitmask, $hinthash
     while ( my @line = caller( $i++ ) ) {
-        next unless $line[3] =~ /^Giraffa/;
+        next unless $line[3] =~ /^Zonemaster/;
         push @trace, [ @line[ 0, 3 ] ];
     }
 
@@ -54,8 +54,8 @@ sub _build_module {
     my ( $self ) = @_;
 
     foreach my $e ( @{ $self->trace } ) {
-        if (    $e->[1] eq 'Giraffa::Util::info'
-            and $e->[0] =~ /^Giraffa::Test::(.*)$/ )
+        if (    $e->[1] eq 'Zonemaster::Util::info'
+            and $e->[0] =~ /^Zonemaster::Test::(.*)$/ )
         {
             return uc $1;
         }
@@ -68,8 +68,8 @@ sub _build_level {
     my ( $self ) = @_;
     my $string;
 
-    if ( Giraffa->config->policy->{ $self->module }{ $self->tag } ) {
-        $string = uc Giraffa->config->policy->{ $self->module }{ $self->tag };
+    if ( Zonemaster->config->policy->{ $self->module }{ $self->tag } ) {
+        $string = uc Zonemaster->config->policy->{ $self->module }{ $self->tag };
     }
     else {
         $string = 'DEBUG';
@@ -110,11 +110,11 @@ sub string {
 
 =head1 NAME
 
-Giraffa::Logger::Entry - module for single log entries
+Zonemaster::Logger::Entry - module for single log entries
 
 =head1 SYNOPSIS
 
-    Giraffa->logger->add( TAG => { some => 'arguments' });
+    Zonemaster->logger->add( TAG => { some => 'arguments' });
 
 There should never be a need to create a log entry object in isolation. They should always be associated with and created via a logger object.
 
@@ -134,8 +134,8 @@ Returns a hash where the keys are log levels as strings and the corresponding va
 
 =item module
 
-An auto-generated identifier of the module that created the log entry. If it was generated from a module under Giraffa::Test, it will be an
-uppercased version of the part of the name after "Giraffa::Test". For example, "Giraffa::Test::Basic" gets the module identifier "BASIC". If the
+An auto-generated identifier of the module that created the log entry. If it was generated from a module under Zonemaster::Test, it will be an
+uppercased version of the part of the name after "Zonemaster::Test". For example, "Zonemaster::Test::Basic" gets the module identifier "BASIC". If the
 entry was generated from anywhere else, it will get the module identifier "SYSTEM".
 
 =item tag

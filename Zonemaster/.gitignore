@@ -13,6 +13,6 @@ blib/
 nytprof.out
 pod2htm*.tmp
 pm_to_blib
-DCNG-*
-DCNG-*.tar.gz
+Zonemaster-*
+Zonemaster-*.tar.gz
 *.bak

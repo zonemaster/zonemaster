@@ -1,11 +1,11 @@
-package Giraffa::Test::Address v0.0.1;
+package Zonemaster::Test::Address v0.0.1;
 
 use 5.14.2;
 use strict;
 use warnings;
 
-use Giraffa;
-use Giraffa::Util;
+use Zonemaster;
+use Zonemaster::Util;
 
 use Carp;
 
@@ -102,7 +102,7 @@ sub metadata {
 } ## end sub metadata
 
 sub version {
-    return "$Giraffa::Test::Address::VERSION";
+    return "$Zonemaster::Test::Address::VERSION";
 }
 
 sub find_special_address {
@@ -170,7 +170,7 @@ sub address02 {
 
         my $reverse_ip_query = $local_ns->address->reverse_ip;
 
-        my $p = Giraffa::Recursor->recurse( $reverse_ip_query, q{PTR} );
+        my $p = Zonemaster::Recursor->recurse( $reverse_ip_query, q{PTR} );
 
         if ( $p ) {
             if ( $p->rcode ne q{NOERROR} ) {
@@ -207,7 +207,7 @@ sub address03 {
 
         my $reverse_ip_query = $local_ns->address->reverse_ip;
 
-        my $p = Giraffa::Recursor->recurse( $reverse_ip_query, q{PTR} );
+        my $p = Zonemaster::Recursor->recurse( $reverse_ip_query, q{PTR} );
 
         if ( $p ) {
             my @ptr = $p->get_records_for_name( q{PTR}, $reverse_ip_query );
@@ -247,11 +247,11 @@ sub address03 {
 
 =head1 NAME
 
-Giraffa::Test::Address - module implementing tests focused on the Address specific test cases of the DNS tests
+Zonemaster::Test::Address - module implementing tests focused on the Address specific test cases of the DNS tests
 
 =head1 SYNOPSIS
 
-    my @results = Giraffa::Test::Address->all($zone);
+    my @results = Zonemaster::Test::Address->all($zone);
 
 =head1 METHODS
 

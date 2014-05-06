@@ -1,13 +1,13 @@
-package Giraffa::Test::Syntax v0.0.1;
+package Zonemaster::Test::Syntax v0.0.1;
 
 use 5.14.2;
 use strict;
 use warnings;
 
-use Giraffa;
-use Giraffa::Util;
-use Giraffa::Recursor;
-use Giraffa::DNSName;
+use Zonemaster;
+use Zonemaster::Util;
+use Zonemaster::Recursor;
+use Zonemaster::DNSName;
 
 use List::MoreUtils;
 use RFC::RFC822::Address qw[valid];
@@ -35,7 +35,7 @@ sub all {
     # syntax08
     my $rname = $soa->rname;
     $rname =~ s/[^\\]\.(.*)+$/$1/;                         # Keep everything after the first unescaped dot
-    $p = Giraffa::Recursor->recurse( $rname, 'MX' );
+    $p = Zonemaster::Recursor->recurse( $rname, 'MX' );
     foreach my $mx ( grep { $_->type eq 'MX' } $p->answer ) {
         push @results, $class->name_syntax( $mx->exchange );
     }
@@ -79,7 +79,7 @@ sub metadata {
 } ## end sub metadata
 
 sub version {
-    return "$Giraffa::Test::Syntax::VERSION";
+    return "$Zonemaster::Test::Syntax::VERSION";
 }
 
 ###
@@ -90,8 +90,8 @@ sub name_syntax {
     my ( $class, $name ) = @_;
     my @results;
 
-    if ( not ref( $name ) and not $name->isa( 'Giraffa::DNSName' ) ) {
-        $name = Giraffa::DNSName->new( $name );
+    if ( not ref( $name ) and not $name->isa( 'Zonemaster::DNSName' ) ) {
+        $name = Zonemaster::DNSName->new( $name );
     }
 
     info( CHECKING_NAME => { name => "$name" } );
@@ -188,11 +188,11 @@ sub soa_date {
 
 =head1 NAME
 
-Giraffa::Test::Syntax - test validating the syntax of host names and other data
+Zonemaster::Test::Syntax - test validating the syntax of host names and other data
 
 =head1 SYNOPSIS
 
-    my @results = Giraffa::Test::Syntax->all($zone);
+    my @results = Zonemaster::Test::Syntax->all($zone);
 
 =head1 METHODS
 

@@ -1,11 +1,11 @@
-package Giraffa::Test::Zone v0.0.5;
+package Zonemaster::Test::Zone v0.0.5;
 
 use 5.14.2;
 use strict;
 use warnings;
 
-use Giraffa;
-use Giraffa::Util;
+use Zonemaster;
+use Zonemaster::Util;
 
 use Carp;
 
@@ -101,7 +101,7 @@ sub metadata {
 } ## end sub metadata
 
 sub version {
-    return "$Giraffa::Test::Zone::VERSION";
+    return "$Zonemaster::Test::Zone::VERSION";
 }
 
 sub zone01 {
@@ -117,8 +117,8 @@ sub zone01 {
             push @results, info( MNAME_RECORD_DOES_NOT_EXIST => { } );
         }
         else {
-            foreach my $ip_address ( Giraffa::Recursor->get_addresses_for( $soa_mname ) ) {
-                my $ns = Giraffa::Nameserver->new({ name => $soa_mname, address => $ip_address->short });
+            foreach my $ip_address ( Zonemaster::Recursor->get_addresses_for( $soa_mname ) ) {
+                my $ns = Zonemaster::Nameserver->new({ name => $soa_mname, address => $ip_address->short });
                 my $p = $ns->query( $zone->name, q{SOA} );
                 if ( $p and $p->rcode eq q{NOERROR} ) {
                     if ( not $p->aa ) {
@@ -313,7 +313,7 @@ sub zone07 {
     if ( $p ) {
         my ( $soa )   = $p->get_records( q{SOA}, q{answer} );
         my $soa_mname = $soa->mname;
-        my $p_mname = Giraffa::Recursor->recurse( $soa_mname, q{A} );
+        my $p_mname = Zonemaster::Recursor->recurse( $soa_mname, q{A} );
 
         if ( $p_mname ) {
             if ( $p_mname->has_rrs_of_type_for_name( q{CNAME}, $soa_mname ) ) {
@@ -379,11 +379,11 @@ sub zone09 {
 
 =head1 NAME
 
-Giraffa::Test::Zone - module implementing tests of the zone content in DNS, such as SOA and MX records
+Zonemaster::Test::Zone - module implementing tests of the zone content in DNS, such as SOA and MX records
 
 =head1 SYNOPSIS
 
-    my @results = Giraffa::Test::Zone->all($zone);
+    my @results = Zonemaster::Test::Zone->all($zone);
 
 =head1 METHODS
 

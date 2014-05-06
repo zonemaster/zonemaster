@@ -1,15 +1,15 @@
-package Giraffa::Logger v0.0.1;
+package Zonemaster::Logger v0.0.1;
 
 use 5.14.2;
 use Moose;
 
-use Giraffa::Logger::Entry;
-use Giraffa;
+use Zonemaster::Logger::Entry;
+use Zonemaster;
 use List::MoreUtils qw[none];
 
 has 'entries' => (
     is      => 'ro',
-    isa     => 'ArrayRef[Giraffa::Logger::Entry]',
+    isa     => 'ArrayRef[Zonemaster::Logger::Entry]',
     default => sub { [] }
 );
 has 'callback' => ( is => 'rw', isa => 'CodeRef', required => 0, clearer => 'clear_callback' );
@@ -18,7 +18,7 @@ sub add {
     my ( $self, $tag, $argref ) = @_;
 
     my $new =
-      Giraffa::Logger::Entry->new( { tag => uc( $tag ), args => $argref } );
+      Zonemaster::Logger::Entry->new( { tag => uc( $tag ), args => $argref } );
     $self->_check_filter( $new );
     push @{ $self->entries }, $new;
 
@@ -35,7 +35,7 @@ sub add {
 
 sub _check_filter {
     my ( $self, $entry ) = @_;
-    my $config = Giraffa->config->get->{logfilter};
+    my $config = Zonemaster->config->get->{logfilter};
 
     if ( $config ) {
         if ( $config->{ $entry->module } ) {
@@ -64,11 +64,11 @@ sub _check_filter {
 
 =head1 NAME
 
-Giraffa::Logger - class that holds L<Giraffa::Logger::Entry> objects.
+Zonemaster::Logger - class that holds L<Zonemaster::Logger::Entry> objects.
 
 =head1 SYNOPSIS
 
-    my $logger = Giraffa::Logger->new;
+    my $logger = Zonemaster::Logger->new;
     $logger->add( TAG => {some => 'arguments'});
 
 =head1 ATTRIBUTES
@@ -77,7 +77,7 @@ Giraffa::Logger - class that holds L<Giraffa::Logger::Entry> objects.
 
 =item entries
 
-A reference to an array holding L<Giraffa::Logger::Entry> objects.
+A reference to an array holding L<Zonemaster::Logger::Entry> objects.
 
 =back
 

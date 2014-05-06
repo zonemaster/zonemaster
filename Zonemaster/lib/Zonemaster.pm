@@ -1,63 +1,63 @@
-package Giraffa v0.0.2;
+package Zonemaster v0.0.2;
 
 use 5.014002;
 use Moose;
 
-use Giraffa::Nameserver;
-use Giraffa::Logger;
-use Giraffa::Config;
-use Giraffa::Zone;
-use Giraffa::Test;
-use Giraffa::Recursor;
+use Zonemaster::Nameserver;
+use Zonemaster::Logger;
+use Zonemaster::Config;
+use Zonemaster::Zone;
+use Zonemaster::Test;
+use Zonemaster::Recursor;
 
 our $logger;
 our $config;
-our $recursor = Giraffa::Recursor->new;
+our $recursor = Zonemaster::Recursor->new;
 
 sub logger {
-    return $logger //= Giraffa::Logger->new;
+    return $logger //= Zonemaster::Logger->new;
 }
 
 sub config {
-    return $config //= Giraffa::Config->new;
+    return $config //= Zonemaster::Config->new;
 }
 
 sub ns {
     my ( $class, $name, $address ) = @_;
 
-    return Giraffa::Nameserver->new( { name => $name, address => $address } );
+    return Zonemaster::Nameserver->new( { name => $name, address => $address } );
 }
 
 sub zone {
     my ( $class, $name ) = @_;
 
-    return Giraffa::Zone->new( { name => $name } );
+    return Zonemaster::Zone->new( { name => $name } );
 }
 
 sub test_zone {
     my ( $class, $zname ) = @_;
 
-    return Giraffa::Test->run_all_for( $class->zone( $zname ) );
+    return Zonemaster::Test->run_all_for( $class->zone( $zname ) );
 }
 
 sub test_module {
     my ( $class, $module, $zname ) = @_;
 
-    return Giraffa::Test->run_module( $module, $class->zone( $zname ) );
+    return Zonemaster::Test->run_module( $module, $class->zone( $zname ) );
 }
 
 sub test_method {
     my ( $class, $module, $method, @arguments ) = @_;
 
-    return Giraffa::Test->run_one( $module, $method, @arguments );
+    return Zonemaster::Test->run_one( $module, $method, @arguments );
 }
 
 sub all_tags {
     my ( $class ) = @_;
     my @res;
 
-    foreach my $module ( 'Basic', Giraffa::Test->modules ) {
-        my $full = "Giraffa::Test::$module";
+    foreach my $module ( 'Basic', Zonemaster::Test->modules ) {
+        my $full = "Zonemaster::Test::$module";
         my $ref  = $full->metadata;
         foreach my $list ( values %$ref ) {
             push @res, map { uc( $module ) . ':' . $_ } @$list;
@@ -71,8 +71,8 @@ sub all_methods {
     my ( $class ) = @_;
     my %res;
 
-    foreach my $module ( 'Basic', Giraffa::Test->modules ) {
-        my $full = "Giraffa::Test::$module";
+    foreach my $module ( 'Basic', Zonemaster::Test->modules ) {
+        my $full = "Zonemaster::Test::$module";
         my $ref  = $full->metadata;
         foreach my $method ( keys %$ref ) {
             push @{$res{$module}}, $method;
@@ -104,22 +104,22 @@ sub add_fake_delegation {
 sub save_cache {
     my ( $class, $filename ) = @_;
 
-    return Giraffa::Nameserver->save( $filename );
+    return Zonemaster::Nameserver->save( $filename );
 }
 
 sub preload_cache {
     my ( $class, $filename ) = @_;
 
-    return Giraffa::Nameserver->restore( $filename );
+    return Zonemaster::Nameserver->restore( $filename );
 }
 
 =head1 NAME
 
-Giraffa - A tool to check the quality of a DNS zone
+Zonemaster - A tool to check the quality of a DNS zone
 
 =head1 SYNOPSIS
 
-    my @results = Giraffa->test_zone('iis.se')
+    my @results = Zonemaster->test_zone('iis.se')
 
 =head1 METHODS
 
@@ -127,7 +127,7 @@ Giraffa - A tool to check the quality of a DNS zone
 
 =item test_zone($name)
 
-Runs all available tests and returns a list of L<Giraffa::Logger::Entry> objects.
+Runs all available tests and returns a list of L<Zonemaster::Logger::Entry> objects.
 
 =item test_module($module, $name)
 
@@ -141,19 +141,19 @@ are fulfilled, the method will be called with the provided arguments.
 
 =item zone($name)
 
-Returns a L<Giraffa::Zone> object for the given name.
+Returns a L<Zonemaster::Zone> object for the given name.
 
 =item ns($name, $address)
 
-Returns a L<Giraffa::Nameserver> object for the given name and address.
+Returns a L<Zonemaster::Nameserver> object for the given name and address.
 
 =item config()
 
-Returns the global L<Giraffa::Config> object.
+Returns the global L<Zonemaster::Config> object.
 
 =item logger()
 
-Returns the global L<Giraffa::Logger> object.
+Returns the global L<Zonemaster::Logger> object.
 
 =item all_tags()
 
@@ -166,7 +166,7 @@ Returns a hash, where the keys are test module names and the values are lists wi
 =item recurse($name, $type, $class)
 
 Does a recursive lookup for the given name, type and class, and returns the resulting packet (if any). Simply calls
-L<Giraffa::Recursor::recurse()> on a globally stored object.
+L<Zonemaster::Recursor::recurse()> on a globally stored object.
 
 =item save_cache($filename)
 
@@ -184,7 +184,7 @@ information. The keys in the hash must be nameserver names, and the values refer
 
 Example:
 
-    Giraffa->add_fake_delegation(
+    Zonemaster->add_fake_delegation(
         'lysator.liu.se' => {
             'ns.nic.se'  => [ '212.247.7.228',  '2a00:801:f0:53::53' ],
             'i.ns.se'    => [ '194.146.106.22', '2001:67c:1010:5::53' ],

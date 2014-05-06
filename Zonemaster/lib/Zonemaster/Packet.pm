@@ -1,8 +1,8 @@
-package Giraffa::Packet v0.0.1;
+package Zonemaster::Packet v0.0.1;
 
 use 5.14.2;
 use Moose;
-use Giraffa::Util;
+use Zonemaster::Util;
 
 has 'packet' => (
     is       => 'ro',
@@ -107,14 +107,14 @@ sub answerfrom {
 sub TO_JSON {
     my ( $self ) = @_;
 
-    return { 'Giraffa::Packet' => $self->packet };
+    return { 'Zonemaster::Packet' => $self->packet };
 }
 
 1;
 
 =head1 NAME
 
-Giraffa::Packet - wrapping object for L<Net::LDNS::Packet> objects
+Zonemaster::Packet - wrapping object for L<Net::LDNS::Packet> objects
 
 =head1 SYNOPSIS
 

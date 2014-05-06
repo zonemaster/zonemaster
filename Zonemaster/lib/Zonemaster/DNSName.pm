@@ -1,10 +1,10 @@
-package Giraffa::DNSName v0.0.1;
+package Zonemaster::DNSName v0.0.1;
 
 use 5.14.2;
 use Moose;
 use Moose::Util::TypeConstraints;
 
-coerce 'Giraffa::DNSName', from 'Str', via { Giraffa::DNSName->new( $_ ) };
+coerce 'Zonemaster::DNSName', from 'Str', via { Zonemaster::DNSName->new( $_ ) };
 
 use overload
   '""'  => \&string,
@@ -49,7 +49,7 @@ sub next_higher {
     my @l    = @{ $self->labels };
     if ( @l ) {
         shift @l;
-        return Giraffa::DNSName->new( labels => \@l );
+        return Zonemaster::DNSName->new( labels => \@l );
     }
     else {
         return;
@@ -98,12 +98,12 @@ __PACKAGE__->meta->make_immutable;
 
 =head1 NAME
 
-Giraffa::DNSName - class representing DNS names
+Zonemaster::DNSName - class representing DNS names
 
 =head1 SYNOPSIS
 
-    my $name1 = Giraffa::Name->new('www.example.org');
-    my $name2 = Giraffa::Name->new('ns.example.org');
+    my $name1 = Zonemaster::Name->new('www.example.org');
+    my $name2 = Zonemaster::Name->new('ns.example.org');
     say "Yay!" if $name1->common($name2) == 2;
 
 =head1 ATTRIBUTES
@@ -138,7 +138,7 @@ Overloads string comparison. Comparison is made after converting the names to up
 
 =item next_higher()
 
-Returns a new L<Giraffa::DNSName> object, representing the name of the called one with the leftmost label removed.
+Returns a new L<Zonemaster::DNSName> object, representing the name of the called one with the leftmost label removed.
 
 =item common($other)
 
@@ -147,7 +147,7 @@ up the DNS tree.
 
 =item prepend($label)
 
-Returns a new L<Giraffa::DNSName> object, representing the called one with the given label prepended.
+Returns a new L<Zonemaster::DNSName> object, representing the called one with the given label prepended.
 
 =item TO_JSON
 

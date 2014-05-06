@@ -1,11 +1,11 @@
-package Giraffa::Test::Basic v0.0.1;
+package Zonemaster::Test::Basic v0.0.1;
 
 use 5.14.2;
 use strict;
 use warnings;
 
-use Giraffa;
-use Giraffa::Util;
+use Zonemaster;
+use Zonemaster::Util;
 
 ###
 ### Entry Points
@@ -57,7 +57,7 @@ sub metadata {
 }
 
 sub version {
-    return "$Giraffa::Test::Basic::VERSION";
+    return "$Zonemaster::Test::Basic::VERSION";
 }
 
 ###
@@ -151,11 +151,11 @@ sub basic3 {
 
 =head1 NAME
 
-Giraffa::Test::Basic - module implementing test for very basic domain functionality
+Zonemaster::Test::Basic - module implementing test for very basic domain functionality
 
 =head1 SYNOPSIS
 
-    my @results = Giraffa::Test::Basic->all($zone);
+    my @results = Zonemaster::Test::Basic->all($zone);
 
 =head1 METHODS
 

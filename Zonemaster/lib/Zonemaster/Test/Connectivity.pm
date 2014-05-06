@@ -1,12 +1,12 @@
-package Giraffa::Test::Connectivity v0.0.5;
+package Zonemaster::Test::Connectivity v0.0.5;
 
 use 5.14.2;
 use strict;
 use warnings;
 
-use Giraffa;
-use Giraffa::Util;
-use Giraffa::Test::Address;
+use Zonemaster;
+use Zonemaster::Util;
+use Zonemaster::Test::Address;
 
 use Carp;
 
@@ -14,8 +14,8 @@ use Readonly;
 use List::Util qw[minstr];
 
 Readonly our $ASN_UNASSIGNED_UNANNOUNCED_ADDRESS_SPACE_VALUE => 4_294_967_295;
-Readonly our $IP_VERSION_4                                   => $Giraffa::Test::Address::IP_VERSION_4;
-Readonly our $IP_VERSION_6                                   => $Giraffa::Test::Address::IP_VERSION_6;
+Readonly our $IP_VERSION_4                                   => $Zonemaster::Test::Address::IP_VERSION_4;
+Readonly our $IP_VERSION_6                                   => $Zonemaster::Test::Address::IP_VERSION_6;
 Readonly our $ASN_CHECKING_TEAM_CYMRU_SERVICE_NAME           => q{TEAMCYRU};
 Readonly our $ASN_CHECKING_ROUTE_VIEWS_SERVICE_NAME          => q{ROUTEVIEWS};
 Readonly our $ASN_CHECKING_SERVICE_USED                      => $ASN_CHECKING_TEAM_CYMRU_SERVICE_NAME;
@@ -107,7 +107,7 @@ sub metadata {
 }
 
 sub version {
-    return "$Giraffa::Test::Connectivity::VERSION";
+    return "$Zonemaster::Test::Connectivity::VERSION";
 }
 
 ###
@@ -124,7 +124,7 @@ sub connectivity01 {
 
         next if $ips{$local_ns->address->short};
 
-        my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
+        my $ns = Zonemaster::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
         my $p = $ns->query( $zone->name, q{SOA} , { usevc => 0 } );
 
         if ( $p and $p->rcode eq q{NOERROR} ) {
@@ -154,7 +154,7 @@ sub connectivity01 {
 
         next if $ips{$local_ns->address->short};
 
-        my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
+        my $ns = Zonemaster::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
         my $p = $ns->query( $zone->name, q{SOA} , { usevc => 0 } );
 
         if ( $p and $p->rcode eq q{NOERROR} ) {
@@ -192,7 +192,7 @@ sub connectivity02 {
 
         next if $ips{$local_ns->address->short};
 
-        my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
+        my $ns = Zonemaster::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
         my $p = $ns->query( $zone->name, q{SOA} , { usevc => 1 } );
 
         if ( $p and $p->rcode eq q{NOERROR} ) {
@@ -222,7 +222,7 @@ sub connectivity02 {
 
         next if $ips{$local_ns->address->short};
 
-        my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
+        my $ns = Zonemaster::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
         my $p = $ns->query( $zone->name, q{SOA} , { usevc => 1 } );
 
         if ( $p and $p->rcode eq q{NOERROR} ) {
@@ -268,7 +268,7 @@ sub connectivity03 {
         my $reverse_ip_query = $local_ns->address->reverse_ip;
         $reverse_ip_query =~ s/ip6.arpa./v6.fullbogons.cymru.com./smx;
 
-        my $p = Giraffa::Recursor->recurse( $reverse_ip_query );
+        my $p = Zonemaster::Recursor->recurse( $reverse_ip_query );
 
         if ( $p ) {
             if ( $p->rcode ne q{NXDOMAIN} ) {
@@ -326,7 +326,7 @@ sub connectivity04 {
 
         $reverse_ip_query =~ s/\.[^\.*]*\.arpa./$ASN_CHECKING_SERVICE_DOMAIN{$ASN_CHECKING_SERVICE_USED}{$local_ns->address->version}/smx;
 
-        my $p = Giraffa::Recursor->recurse( $reverse_ip_query, q{TXT} );
+        my $p = Zonemaster::Recursor->recurse( $reverse_ip_query, q{TXT} );
 
         if ( $p ) {
             my ( $txt ) = $p->get_records_for_name( q{TXT}, $reverse_ip_query );
@@ -389,11 +389,11 @@ sub connectivity04 {
 
 =head1 NAME
 
-Giraffa::Test::Connectivity - module implementing tests of nameservers reachability
+Zonemaster::Test::Connectivity - module implementing tests of nameservers reachability
 
 =head1 SYNOPSIS
 
-    my @results = Giraffa::Test::Connectivity->all($zone);
+    my @results = Zonemaster::Test::Connectivity->all($zone);
 
 =head1 METHODS
 

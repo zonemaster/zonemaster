@@ -1,4 +1,4 @@
-package Giraffa::Config v0.0.1;
+package Zonemaster::Config v0.0.1;
 
 use 5.14.2;
 use Moose;
@@ -7,7 +7,7 @@ use File::ShareDir qw[dist_file];
 use File::Slurp;
 use Hash::Merge;
 
-use Giraffa;
+use Zonemaster;
 
 my $merger = Hash::Merge->new;
 $merger->specify_behavior(
@@ -33,7 +33,7 @@ $merger->specify_behavior(
 our $config;
 _load_base_config();
 
-our $policy = decode_json read_file dist_file( 'Giraffa', 'policy.json' );
+our $policy = decode_json read_file dist_file( 'Zonemaster', 'policy.json' );
 
 sub get {
     my ( $class ) = @_;
@@ -49,7 +49,7 @@ sub policy {
 
 sub _load_base_config {
     my $internal = decode_json( join( '', <DATA> ) );
-    my $default = eval { decode_json read_file dist_file( 'Giraffa', 'config.json') };
+    my $default = eval { decode_json read_file dist_file( 'Zonemaster', 'config.json') };
 
     $internal = $merger->merge($internal, $default) if $default;
 
@@ -76,11 +76,11 @@ sub load_policy_file {
 
 =head1 NAME
 
-Giraffa::Config - configuration access module for Giraffa
+Zonemaster::Config - configuration access module for Zonemaster
 
 =head1 SYNOPSIS
 
-    my $value = Giraffa::Config->get->{key}{subkey};
+    my $value = Zonemaster::Config->get->{key}{subkey};
 
 =head1 METHODS
 

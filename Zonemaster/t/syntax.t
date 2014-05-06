@@ -2,19 +2,19 @@ use Test::More;
 
 use 5.14.2;
 
-BEGIN { use_ok('Giraffa')}
+BEGIN { use_ok('Zonemaster')}
 
 sub gives {
     my ($test, $name, $gives) = @_;
 
-    my @res = Giraffa->test_method('Syntax', $test, $name);
+    my @res = Zonemaster->test_method('Syntax', $test, $name);
     ok((grep {$_->tag eq $gives} @res), "$name gives $gives");
 }
 
 sub gives_not {
     my ($test, $name, $gives) = @_;
 
-    my @res = Giraffa->test_method('Syntax', $test, $name);
+    my @res = Zonemaster->test_method('Syntax', $test, $name);
     ok(!(grep {$_->tag eq $gives} @res), "$name does not give $gives");
 }
 
@@ -58,6 +58,6 @@ serial_gives( 2014023100, 'SERIAL_NOT_DATE');
 serial_gives_not( 2014013100, 'SERIAL_NOT_DATE');
 
 # For now, just run this and make sure it does not explode
-my @res = Giraffa->test_module('Syntax', 'iis.se');
+my @res = Zonemaster->test_module('Syntax', 'iis.se');
 
 done_testing;

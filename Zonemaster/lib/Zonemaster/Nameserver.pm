@@ -1,13 +1,13 @@
-package Giraffa::Nameserver v0.0.1;
+package Zonemaster::Nameserver v0.0.1;
 
 use 5.14.2;
 use Moose;
 use Moose::Util::TypeConstraints;
 
-use Giraffa::DNSName;
-use Giraffa;
-use Giraffa::Packet;
-use Giraffa::Nameserver::Cache;
+use Zonemaster::DNSName;
+use Zonemaster;
+use Zonemaster::Packet;
+use Zonemaster::Nameserver::Cache;
 
 use Net::LDNS;
 
@@ -23,14 +23,14 @@ use overload
   '""'  => \&string,
   'cmp' => \&compare;
 
-subtype 'Giraffa::Net::IP', as 'Object', where { $_->isa( 'Net::IP' ) };
-coerce 'Giraffa::Net::IP', from 'Str', via { Net::IP->new( $_ ) };
+subtype 'Zonemaster::Net::IP', as 'Object', where { $_->isa( 'Net::IP' ) };
+coerce 'Zonemaster::Net::IP', from 'Str', via { Net::IP->new( $_ ) };
 
-has 'name'    => ( is => 'ro', isa => 'Giraffa::DNSName', coerce => 1, required => 0 );
-has 'address' => ( is => 'ro', isa => 'Giraffa::Net::IP', coerce => 1, required => 1 );
+has 'name'    => ( is => 'ro', isa => 'Zonemaster::DNSName', coerce => 1, required => 0 );
+has 'address' => ( is => 'ro', isa => 'Zonemaster::Net::IP', coerce => 1, required => 1 );
 
 has 'dns'   => ( is => 'ro', isa => 'Net::LDNS',                  lazy_build => 1 );
-has 'cache' => ( is => 'ro', isa => 'Giraffa::Nameserver::Cache', lazy_build => 1 );
+has 'cache' => ( is => 'ro', isa => 'Zonemaster::Nameserver::Cache', lazy_build => 1 );
 has 'times' => ( is => 'ro', isa => 'ArrayRef',                   default    => sub { [] } );
 
 has 'fake_delegations' => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
@@ -54,11 +54,11 @@ around 'new' => sub {
     $name = '$$$NONAME' unless $name;
 
     if ( not exists $object_cache{$name}{ $obj->address->ip } ) {
-        Giraffa->logger->add( NS_CREATED => { name => $name, ip => $obj->address->ip } );
+        Zonemaster->logger->add( NS_CREATED => { name => $name, ip => $obj->address->ip } );
         $object_cache{$name}{ $obj->address->ip } = $obj;
     }
 
-    Giraffa->logger->add( NS_FETCHED => { name => $name, ip => $obj->address->ip } );
+    Zonemaster->logger->add( NS_FETCHED => { name => $name, ip => $obj->address->ip } );
     return $object_cache{$name}{ $obj->address->ip };
 };
 
@@ -68,7 +68,7 @@ sub _build_dns {
     my $res = Net::LDNS->new( $self->address->ip );
     $res->recurse( 0 );
 
-    my %defaults = %{ Giraffa->config->get->{resolver}{defaults} };
+    my %defaults = %{ Zonemaster->config->get->{resolver}{defaults} };
     foreach my $flag ( keys %defaults ) {
         $res->$flag( $defaults{$flag} );
     }
@@ -79,7 +79,7 @@ sub _build_dns {
 sub _build_cache {
     my ( $self ) = @_;
 
-    Giraffa::Nameserver::Cache->new( { address => $self->address } );
+    Zonemaster::Nameserver::Cache->new( { address => $self->address } );
 }
 
 ###
@@ -90,17 +90,17 @@ sub query {
     my ( $self, $name, $type, $href ) = @_;
     $type //= 'A';
 
-    if ( $self->address->version == 4 and not Giraffa->config->get->{net}{ipv4}) {
-        Giraffa->logger->add( IPV4_BLOCKED => { ns => $self->string });
+    if ( $self->address->version == 4 and not Zonemaster->config->get->{net}{ipv4}) {
+        Zonemaster->logger->add( IPV4_BLOCKED => { ns => $self->string });
         return;
     }
 
-    if ( $self->address->version == 6 and not Giraffa->config->get->{net}{ipv6}) {
-        Giraffa->logger->add( IPV6_BLOCKED => { ns => $self->string });
+    if ( $self->address->version == 6 and not Zonemaster->config->get->{net}{ipv6}) {
+        Zonemaster->logger->add( IPV6_BLOCKED => { ns => $self->string });
         return;
     }
 
-    Giraffa->logger->add(
+    Zonemaster->logger->add(
         'query',
         {
             name  => "$name",
@@ -110,7 +110,7 @@ sub query {
         }
     );
 
-    my %defaults = %{ Giraffa->config->get->{resolver}{defaults} };
+    my %defaults = %{ Zonemaster->config->get->{resolver}{defaults} };
 
     my $class   = $href->{class}   // 'IN';
     my $dnssec  = $href->{dnssec}  // $defaults{dnssec};
@@ -127,7 +127,7 @@ sub query {
             $p->aa( 0 );
             $p->do( $dnssec );
             $p->rd( $recurse );
-            Giraffa->logger->add(
+            Zonemaster->logger->add(
                 'fake_delegation',
                 {
                     name  => "$name",
@@ -137,8 +137,8 @@ sub query {
                 }
             );
 
-            my $res = Giraffa::Packet->new( { packet => $p } );
-            Giraffa->logger->add( FAKED_RETURN => { packet => $res->string } );
+            my $res = Zonemaster::Packet->new( { packet => $p } );
+            Zonemaster->logger->add( FAKED_RETURN => { packet => $res->string } );
             return $res;
         } ## end if ( $name =~ m/(\.|^)\Q$fname\E$/i)
     } ## end foreach my $fname ( keys %{...})
@@ -149,7 +149,7 @@ sub query {
     }
 
     my $p = $self->cache->data->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse};
-    Giraffa->logger->add( CACHED_RETURN => { packet => ($p?$p->string:'undef') } );
+    Zonemaster->logger->add( CACHED_RETURN => { packet => ($p?$p->string:'undef') } );
     return $p;
 } ## end sub query
 
@@ -157,7 +157,7 @@ sub add_fake_delegation {
     my ( $self, $domain, $href ) = @_;
     my %delegation;
 
-    Giraffa->logger->add( FAKE_DELEGATION => { domain => $domain, data => $href } );
+    Zonemaster->logger->add( FAKE_DELEGATION => { domain => $domain, data => $href } );
     foreach my $name ( keys %$href ) {
         push @{ $delegation{authority} }, Net::LDNS::RR->new( sprintf( '%s IN NS %s', $domain, $name ) );
         foreach my $ip ( @{ $href->{$name} } ) {
@@ -176,13 +176,13 @@ sub _query {
     $type //= 'A';
     $href->{class} //= 'IN';
 
-    if ( Giraffa->config->get->{no_network} ) {
+    if ( Zonemaster->config->get->{no_network} ) {
         croak sprintf
           "External query for %s, %s attempted to %s while running with no_network",
           $name, $type, $self->string;
     }
 
-    Giraffa->logger->add(
+    Zonemaster->logger->add(
         'external_query',
         {
             name  => "$name",
@@ -192,7 +192,7 @@ sub _query {
         }
     );
 
-    my %defaults = %{ Giraffa->config->get->{resolver}{defaults} };
+    my %defaults = %{ Zonemaster->config->get->{resolver}{defaults} };
 
     # Make sure we have a value for each flag
     foreach my $flag ( keys %defaults ) {
@@ -207,7 +207,7 @@ sub _query {
     my $before = time();
     my $res = eval { $self->dns->query( "$name", $type, $href->{class} ) };
     if ($@) {
-        Giraffa->logger->add( LOOKUP_ERROR => { message => $@});
+        Zonemaster->logger->add( LOOKUP_ERROR => { message => $@});
     }
     push @{ $self->times }, ( time() - $before );
 
@@ -217,12 +217,12 @@ sub _query {
     }
 
     if ( $res ) {
-        my $p = Giraffa::Packet->new( { packet => $res } );
-        Giraffa->logger->add( EXTERNAL_RESPONSE => { packet => $p->string });
+        my $p = Zonemaster::Packet->new( { packet => $res } );
+        Zonemaster->logger->add( EXTERNAL_RESPONSE => { packet => $p->string });
         return $p;
     }
     else {
-        Giraffa->logger->add( EMPTY_RETURN => {});
+        Zonemaster->logger->add( EMPTY_RETURN => {});
         return;
     }
 } ## end sub _query
@@ -252,7 +252,7 @@ sub save {
 
     close $fh or die $!;
 
-    Giraffa->logger->add( SAVED_NS_CACHE => { file => $filename });
+    Zonemaster->logger->add( SAVED_NS_CACHE => { file => $filename });
 
     return;
 }
@@ -272,10 +272,10 @@ sub restore {
             return $obj;
         }
       )->filter_json_single_key_object(
-        'Giraffa::Packet' => sub {
+        'Zonemaster::Packet' => sub {
             my ( $ref ) = @_;
 
-            return Giraffa::Packet->new( { packet => $ref } );
+            return Zonemaster::Packet->new( { packet => $ref } );
         }
       );
 
@@ -283,17 +283,17 @@ sub restore {
     while ( my $line = <$fh> ) {
         my ( $name, $addr, $data ) = split( / /, $line, 3 );
         my $ref = $decode->decode( $data );
-        my $ns  = Giraffa::Nameserver->new(
+        my $ns  = Zonemaster::Nameserver->new(
             {
                 name    => $name,
                 address => $addr,
-                cache   => Giraffa::Nameserver::Cache->new( { data => $ref, address => Net::IP->new( $addr ) } )
+                cache   => Zonemaster::Nameserver::Cache->new( { data => $ref, address => Net::IP->new( $addr ) } )
             }
         );
     }
     close $fh;
 
-    Giraffa->logger->add( RESTORED_NS_CACHE => { file => $filename });
+    Zonemaster->logger->add( RESTORED_NS_CACHE => { file => $filename });
 
     return;
 } ## end sub restore
@@ -362,11 +362,11 @@ sub all_known_nameservers {
 
 =head1 NAME
 
-Giraffa::Nameserver - object representing a DNS nameserver
+Zonemaster::Nameserver - object representing a DNS nameserver
 
 =head1 SYNOPSIS
 
-    my $ns = Giraffa::Nameserver->new({ name => 'ns.nic.se', address => '212.247.7.228' });
+    my $ns = Zonemaster::Nameserver->new({ name => 'ns.nic.se', address => '212.247.7.228' });
     my $p = $ns->query('www.iis.se', 'AAAA');
 
 =head1 ATTRIBUTES
@@ -375,7 +375,7 @@ Giraffa::Nameserver - object representing a DNS nameserver
 
 =item name
 
-A L<Giraffa::DNSName> object holding the nameserver's name.
+A L<Zonemaster::DNSName> object holding the nameserver's name.
 
 =item address
 
@@ -387,7 +387,7 @@ The L<Net::LDNS::Resolver> object used to actually send and recieve DNS queries.
 
 =item cache
 
-A reference to a L<Giraffa::Nameserver::Cache> object holding the cache of sent queries. Not meant for external use.
+A reference to a L<Zonemaster::Nameserver::Cache> object holding the cache of sent queries. Not meant for external use.
 
 =item times
 
@@ -495,7 +495,7 @@ Class method that returns a list of all nameserver objects in the global cache.
 
 =item add_fake_delegation($domain,$data)
 
-Adds fake delegation information to this specific nameserver object. Takes the same arguments as the similarly named method in L<Giraffa>. This is
+Adds fake delegation information to this specific nameserver object. Takes the same arguments as the similarly named method in L<Zonemaster>. This is
 primarily used for internal information, and using it directly will likely give confusing results (but may be useful to model certain kinds of
 misconfigurations).
 

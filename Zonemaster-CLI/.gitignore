@@ -14,5 +14,5 @@ inc/
 nytprof.out
 pod2htm*.tmp
 pm_to_blib
-Giraffa-CLI-*
-Giraffa-CLI-*.tar.gz
+Zonemaster-CLI-*
+Zonemaster-CLI-*.tar.gz

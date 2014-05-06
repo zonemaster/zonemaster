@@ -3,6 +3,6 @@
 use 5.14.2;
 use warnings;
 
-use Giraffa::CLI;
+use Zonemaster::CLI;
 
-Giraffa::CLI->new_with_options->run;
+Zonemaster::CLI->new_with_options->run;

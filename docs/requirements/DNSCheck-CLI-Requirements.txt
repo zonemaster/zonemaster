@@ -1,4 +1,4 @@
-Requirements for CLI functionality (taken from DNSCheck 1.*'s) for the Giraffa project. This is the functional requirements from the current DNSCheck.
+Requirements for CLI functionality (taken from DNSCheck 1.*'s) for the Zonemaster project. This is the functional requirements from the current DNSCheck.
 Current code: https://github.com/dotse/dnscheck/blob/master/engine/apps/dnscheck
 
 Usability:

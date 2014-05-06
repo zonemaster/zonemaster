@@ -1,4 +1,4 @@
-package Giraffa::CLI;
+package Zonemaster::CLI;
 
 use 5.014002;
 use warnings;
@@ -8,13 +8,13 @@ our $VERSION = '0.01';
 use Moose;
 with 'MooseX::Getopt';
 
-use Giraffa;
-use Giraffa::Logger::Entry;
-use Giraffa::Translator;
-use Giraffa::Util qw[pod_extract_for];
+use Zonemaster;
+use Zonemaster::Logger::Entry;
+use Zonemaster::Translator;
+use Zonemaster::Util qw[pod_extract_for];
 use JSON::XS;
 
-our %numeric = Giraffa::Logger::Entry->levels;
+our %numeric = Zonemaster::Logger::Entry->levels;
 my $json = JSON::XS->new;
 
 has 'version' => (
@@ -120,7 +120,7 @@ sub run {
     }
 
     if ($self->list_tests) {
-        my %methods = Giraffa->all_methods;
+        my %methods = Zonemaster->all_methods;
         foreach my $module (sort keys %methods) {
             say $module;
             my $doc = pod_extract_for($module);
@@ -140,11 +140,11 @@ sub run {
         die "Must give the name of a domain to test.\n";
     }
 
-    Giraffa->config->get->{net}{ipv4} = $self->ipv4;
-    Giraffa->config->get->{net}{ipv6} = $self->ipv6;
+    Zonemaster->config->get->{net}{ipv4} = $self->ipv4;
+    Zonemaster->config->get->{net}{ipv6} = $self->ipv6;
 
     my $translator;
-    $translator = Giraffa::Translator->new( { lang => $self->lang } )
+    $translator = Zonemaster::Translator->new( { lang => $self->lang } )
       unless ( $self->lang eq 'raw' or $self->lang eq 'json' );
     eval { $translator->data } if $translator;    # Provoke lazy loading of translation data
     if ( $@ ) {
@@ -158,11 +158,11 @@ sub run {
     }
 
     if ( $self->restore ) {
-        Giraffa->preload_cache( $self->restore );
+        Zonemaster->preload_cache( $self->restore );
     }
 
     # Callback defined here so it closes over the setup above.
-    Giraffa->logger->callback(
+    Zonemaster->logger->callback(
         sub {
             my ( $entry ) = @_;
 
@@ -208,13 +208,13 @@ sub run {
         foreach my $t (@{$self->test}) {
             my ($module, $method) = split('/', $t, 2);
             if ($method) {
-                Giraffa->test_method($module, $method, Giraffa->zone($domain));
+                Zonemaster->test_method($module, $method, Zonemaster->zone($domain));
             } else {
-                Giraffa->test_module($module, $domain);
+                Zonemaster->test_module($module, $domain);
             }
         }
     } else {
-        Giraffa->test_zone( $domain );
+        Zonemaster->test_zone( $domain );
     }
 
     if ( $self->lang eq 'json' ) {
@@ -222,7 +222,7 @@ sub run {
     }
 
     if ( $self->save ) {
-        Giraffa->save_cache( $self->save );
+        Zonemaster->save_cache( $self->save );
     }
 
     return;
@@ -237,19 +237,19 @@ sub add_fake_delegation {
         push @{ $data{$name} }, $ip;
     }
 
-    Giraffa->add_fake_delegation( $domain => \%data );
+    Zonemaster->add_fake_delegation( $domain => \%data );
 
     return;
 }
 
 sub print_versions {
     say 'CLI version:    ' . $VERSION;
-    say 'Engine version: ' . $Giraffa::VERSION;
+    say 'Engine version: ' . $Zonemaster::VERSION;
     say "\nTest module versions:";
 
-    my %methods = Giraffa->all_methods;
+    my %methods = Zonemaster->all_methods;
     foreach my $module (sort keys %methods) {
-        my $mod = "Giraffa::Test::$module";
+        my $mod = "Zonemaster::Test::$module";
         say "\t$module: " . $mod->version;
     }
 }

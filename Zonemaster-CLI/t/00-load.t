@@ -7,7 +7,7 @@ use Test::More;
 plan tests => 1;
 
 BEGIN {
-    use_ok( 'Giraffa::CLI' ) || print "Bail out!\n";
+    use_ok( 'Zonemaster::CLI' ) || print "Bail out!\n";
 }
 
-diag( "Testing Giraffa::CLI $Giraffa::CLI::VERSION, Perl $], $^X" );
+diag( "Testing Zonemaster::CLI $Zonemaster::CLI::VERSION, Perl $], $^X" );

@@ -1,4 +1,4 @@
-package Giraffa::Zone v0.0.1;
+package Zonemaster::Zone v0.0.1;
 
 use 5.14.2;
 use strict;
@@ -7,12 +7,12 @@ use warnings;
 use Moose;
 use Carp;
 
-use Giraffa::DNSName;
-use Giraffa::Recursor;
+use Zonemaster::DNSName;
+use Zonemaster::Recursor;
 
-has 'name' => ( is => 'ro', isa => 'Giraffa::DNSName', required => 1, coerce => 1 );
-has 'parent' => ( is => 'ro', isa => 'Maybe[Giraffa::Zone]', lazy_build => 1 );
-has [ 'ns', 'glue' ] => ( is => 'ro', isa => 'ArrayRef[Giraffa::Nameserver]', lazy_build => 1 );
+has 'name' => ( is => 'ro', isa => 'Zonemaster::DNSName', required => 1, coerce => 1 );
+has 'parent' => ( is => 'ro', isa => 'Maybe[Zonemaster::Zone]', lazy_build => 1 );
+has [ 'ns', 'glue' ] => ( is => 'ro', isa => 'ArrayRef[Zonemaster::Nameserver]', lazy_build => 1 );
 has 'glue_addresses' => ( is => 'ro', isa => 'ArrayRef[Net::LDNS::RR]', lazy_build => 1 );
 
 ###
@@ -26,7 +26,7 @@ sub _build_parent {
         return $self;
     }
 
-    my $pname = Giraffa::Recursor->parent( '' . $self->name );
+    my $pname = Zonemaster::Recursor->parent( '' . $self->name );
     return if not $pname;
     ## no critic (Modules::RequireExplicitInclusion)
     return __PACKAGE__->new( { name => $pname } );
@@ -39,14 +39,14 @@ sub _build_glue {
     my $p = $self->parent->query_one( $self->name, 'NS' );
     croak "Failed to get glue" if not defined( $p );
 
-    return Giraffa::Recursor->get_ns_from( $p );
+    return Zonemaster::Recursor->get_ns_from( $p );
 }
 
 sub _build_ns {
     my ( $self ) = @_;
 
     if ( $self->name eq '.' ) {    # Root is a special case
-        return [ Giraffa::Recursor->root_servers ];
+        return [ Zonemaster::Recursor->root_servers ];
     }
 
     my $p;
@@ -56,7 +56,7 @@ sub _build_ns {
     }
     croak "Failed to get nameservers" if not defined( $p );
 
-    return Giraffa::Recursor->get_ns_from( $p );
+    return Zonemaster::Recursor->get_ns_from( $p );
 }
 
 sub _build_glue_addresses {
@@ -93,8 +93,8 @@ sub query_all {
 sub is_in_zone {
     my ( $self, $name ) = @_;
 
-    if ( not ref( $name ) or ref( $name ) ne 'Giraffa::DNSName' ) {
-        $name = Giraffa::DNSName->new( $name );
+    if ( not ref( $name ) or ref( $name ) ne 'Zonemaster::DNSName' ) {
+        $name = Zonemaster::DNSName->new( $name );
     }
 
     if ( scalar( @{ $self->name->labels } ) != $self->name->common( $name ) ) {
@@ -120,11 +120,11 @@ sub is_in_zone {
 
 =head1 NAME
 
-Giraffa::Zone - Object representing a DNS zone
+Zonemaster::Zone - Object representing a DNS zone
 
 =head1 SYNOPSIS
 
-    my $zone = Giraffa::Zone->new({ name => 'nic.se' });
+    my $zone = Zonemaster::Zone->new({ name => 'nic.se' });
     my $packet = $zone->parent->query_one($zone->name, 'NS');
 
 =head1 ATTRIBUTES
@@ -133,20 +133,20 @@ Giraffa::Zone - Object representing a DNS zone
 
 =item name
 
-A L<Giraffa::DNSName> object representing the name of the zone.
+A L<Zonemaster::DNSName> object representing the name of the zone.
 
 =item parent
 
-A L<Giraffa::Zone> object for this domain's parent domain.
+A L<Zonemaster::Zone> object for this domain's parent domain.
 
 =item ns
 
-A reference to an array of L<Giraffa::Nameserver> objects for the domain. The list is based on the NS records returned from a query to the first
+A reference to an array of L<Zonemaster::Nameserver> objects for the domain. The list is based on the NS records returned from a query to the first
 listed glue server for the domain.
 
 =item glue
 
-A reference to an array of L<Giraffa::Nameserver> objects for the domain. The list is based on the NS records returned from a query to the first
+A reference to an array of L<Zonemaster::Nameserver> objects for the domain. The list is based on the NS records returned from a query to the first
 listed nameserver for the parent domain.
 
 =item glue_addresses
@@ -163,12 +163,12 @@ for the parent domain.
 =item query_one($name[, $type[, $flags]])
 
 Sends (or retrieves from cache) a query for the given name, type and flags sent to the first nameserver in the zone's ns list. If there is a
-response, it will be returned in a L<Giraffa::Packet> object. If the type arguments is not given, it defaults to 'A'. If the flags are not given, they default to C<class> IN and C<dnssec>, C<usevc> and C<recurse> according to configuration (which is by default off on all three).
+response, it will be returned in a L<Zonemaster::Packet> object. If the type arguments is not given, it defaults to 'A'. If the flags are not given, they default to C<class> IN and C<dnssec>, C<usevc> and C<recurse> according to configuration (which is by default off on all three).
 
 =item query_all($name, $type, $flags)
 
 Sends (or retrieves from cache) queries to all the nameservers listed in the zone's ns list, and returns a reference to an array with the
-responses. The responses can be either L<Giraffa::Packet> objects or C<undef> values. The arguments are the same as for L<query_one>.
+responses. The responses can be either L<Zonemaster::Packet> objects or C<undef> values. The arguments are the same as for L<query_one>.
 
 =item is_in_zone($name)
 

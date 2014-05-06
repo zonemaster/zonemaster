@@ -1,11 +1,11 @@
-package Giraffa::Test::Nameserver v0.0.1;
+package Zonemaster::Test::Nameserver v0.0.1;
 
 use 5.14.2;
 use strict;
 use warnings; 
         
-use Giraffa;
-use Giraffa::Util;
+use Zonemaster;
+use Zonemaster::Util;
 
 use Net::LDNS;
 
@@ -64,7 +64,7 @@ sub metadata {
 }
 
 sub version {
-    return "$Giraffa::Test::Nameserver::VERSION";
+    return "$Zonemaster::Test::Nameserver::VERSION";
 }
 
 sub nameserver01 {
@@ -104,7 +104,7 @@ sub nameserver02 {
 
         next if $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short};
 
-        my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
+        my $ns = Zonemaster::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
         my $p = $ns->query( $zone->name, q{SOA}, { dnssec => 1 } );
         if ( $p ) {
 #WIP
@@ -167,7 +167,7 @@ sub nameserver04 {
             
         next if $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short};
                   
-        my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
+        my $ns = Zonemaster::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
         my $p = $ns->query( $zone->name, q{SOA} );
         if ( $p ) {
             if ( $local_ns->address->short ne $p->answerfrom ) {
@@ -198,7 +198,7 @@ sub nameserver05 {
 
         $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short}++;
 
-        my $ns = Giraffa::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
+        my $ns = Zonemaster::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
         my $p = $ns->query( $zone->name, q{AAAA} );
 
         if ( not $p ) {
@@ -242,11 +242,11 @@ sub nameserver05 {
 
 =head1 NAME
 
-Giraffa::Test::Nameserver - module implementing tests of the properties of a name server
+Zonemaster::Test::Nameserver - module implementing tests of the properties of a name server
 
 =head1 SYNOPSIS
 
-    my @results = Giraffa::Test::Nameserver->all($zone);
+    my @results = Zonemaster::Test::Nameserver->all($zone);
 
 =head1 METHODS
 

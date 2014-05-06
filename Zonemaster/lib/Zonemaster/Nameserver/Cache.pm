@@ -1,9 +1,9 @@
-package Giraffa::Nameserver::Cache v0.0.1;
+package Zonemaster::Nameserver::Cache v0.0.1;
 
 use 5.14.2;
 use warnings;
 use Moose;
-use Giraffa;
+use Zonemaster;
 
 our %object_cache;
 
@@ -17,11 +17,11 @@ around 'new' => sub {
     my $obj  = $self->$orig( @_ );
 
     if ( not exists $object_cache{ $obj->address->ip } ) {
-        Giraffa->logger->add( CACHE_CREATED => { ip => $obj->address->ip } );
+        Zonemaster->logger->add( CACHE_CREATED => { ip => $obj->address->ip } );
         $object_cache{ $obj->address->ip } = $obj;
     }
 
-    Giraffa->logger->add( CACHE_FETCHED => { ip => $obj->address->ip } );
+    Zonemaster->logger->add( CACHE_FETCHED => { ip => $obj->address->ip } );
     return $object_cache{ $obj->address->ip };
 };
 
@@ -29,7 +29,7 @@ around 'new' => sub {
 
 =head1 NAME
 
-Giraffa::Nameserver::Cache - shared caches for nameserver objects
+Zonemaster::Nameserver::Cache - shared caches for nameserver objects
 
 =head1 SYNOPSIS
 

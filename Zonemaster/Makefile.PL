@@ -1,10 +1,10 @@
 use inc::Module::Install;
 use Module::Install::Share;
 
-name 'Giraffa';
+name 'Zonemaster';
 
 license 'bsd';
-all_from 'lib/Giraffa.pm';
+all_from 'lib/Zonemaster.pm';
 
 requires 'Net::LDNS' => 0.62;
 requires 'IO::Socket::INET6' => 2.69;
@@ -22,7 +22,7 @@ requires 'Readonly' => 0;
 recommends 'JSON::XS' => 2.32;
 recommends 'Readonly::XS' => 0;
 
-install_script 'giraffa';
+install_script 'zonemaster';
 install_share;
 
 WriteAll;

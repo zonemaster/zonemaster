@@ -1,6 +1,6 @@
 =head1 INTRODUCTION
 
-The Giraffa system intends to provide a framework for implementing DNS tests. In order to do this, it exposes APIs to the test code for examining a
+The Zonemaster system intends to provide a framework for implementing DNS tests. In order to do this, it exposes APIs to the test code for examining a
 DNS zone, to emit examination results and to access configuration information on how the tests should be performed.
 
 =head1 RULES AND RECOMMENDATIONS FOR TEST CODE
@@ -42,11 +42,11 @@ read the code and verify that it correctly implements the corresponding test spe
 
 =head1 TEST MODULE STRUCTURE
 
-The Giraffa framework will attempt to load and call all modules in the namespace C<Giraffa::Test>. These modules must have three class methods
+The Zonemaster framework will attempt to load and call all modules in the namespace C<Zonemaster::Test>. These modules must have three class methods
 defined. One to run all tests it provides, and two to expose metadata about the module. Apart from that (and the rules above) the module can be
 implemented as desired.
 
-There is an example module included in the standard Giraffa distribution, L<Giraffa::Test::Example>, that demonstrates what a test module should
+There is an example module included in the standard Zonemaster distribution, L<Zonemaster::Test::Example>, that demonstrates what a test module should
 look like. Incidentally, it also serves to demonstrate how to use the policy to block a test module from being run.
 
 =head2 Metadata methods
@@ -67,11 +67,11 @@ values for each key should be a reference to an array listing all the possible m
 
 =head2 Test-running method(s)
 
-The framework expects to be able to run all tests in a module by calling a class method C<all()> with a L<Giraffa::Zone> object as the argument.
-The return value from this method is expected to be a list of L<Giraffa::Logger::Entry> objects describing the results of the tests run. The
+The framework expects to be able to run all tests in a module by calling a class method C<all()> with a L<Zonemaster::Zone> object as the argument.
+The return value from this method is expected to be a list of L<Zonemaster::Logger::Entry> objects describing the results of the tests run. The
 example test module has one possible implementation of this.
 
-In the case where one test module wants to use a test in another, the top-level L<Giraffa> module has a method C<test_method()> to request that.
+In the case where one test module wants to use a test in another, the top-level L<Zonemaster> module has a method C<test_method()> to request that.
 This method will call the other test, if it is available and the current policy allows its execution. It's up to the caller to know what arguments
 the other test needs, and what it returns.
 

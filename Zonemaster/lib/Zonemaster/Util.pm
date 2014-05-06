@@ -1,11 +1,11 @@
-package Giraffa::Util v0.0.1;
+package Zonemaster::Util v0.0.1;
 
 use 5.14.2;
 use parent 'Exporter';
 use warnings;
 
-use Giraffa;
-use Giraffa::DNSName;
+use Zonemaster;
+use Zonemaster::DNSName;
 use Pod::Simple::SimpleTree;
 
 ## no critic (Modules::ProhibitAutomaticExportation)
@@ -13,27 +13,27 @@ our @EXPORT = qw[ ns info config name policy pod_extract_for ];
 
 ## no critic (Subroutines::RequireArgUnpacking)
 sub ns {
-    return Giraffa->ns( @_ );
+    return Zonemaster->ns( @_ );
 }
 
 sub info {
     my ( $tag, $argref ) = @_;
 
-    return Giraffa->logger->add( $tag, $argref );
+    return Zonemaster->logger->add( $tag, $argref );
 }
 
 sub config {
-    return Giraffa->config->get;
+    return Zonemaster->config->get;
 }
 
 sub policy {
-    return Giraffa->config->policy;
+    return Zonemaster->config->policy;
 }
 
 sub name {
     my ( $name ) = @_;
 
-    return Giraffa::DNSName->new( $name );
+    return Zonemaster::DNSName->new( $name );
 }
 
 # Functions for extracting POD documentation from test modules
@@ -94,7 +94,7 @@ sub pod_extract_for {
     my $parser = Pod::Simple::SimpleTree->new;
     $parser->no_whining( 1 );
 
-    my %desc = eval { _pod_process_tree( $parser->parse_file( $INC{"Giraffa/Test/$name.pm"} )->root ) };
+    my %desc = eval { _pod_process_tree( $parser->parse_file( $INC{"Zonemaster/Test/$name.pm"} )->root ) };
 
     return \%desc;
 }
@@ -103,11 +103,11 @@ sub pod_extract_for {
 
 =head1 NAME
 
-Giraffa::Util - utility functions for other Giraffa modules
+Zonemaster::Util - utility functions for other Zonemaster modules
 
 =head1 SYNOPSIS
 
-    use Giraffa::Util;
+    use Zonemaster::Util;
     info(TAG => { some => 'argument'});
     my $ns = ns($name, $address);
     config->{resolver}{defaults}{tcp_timeout} = 4711;
@@ -119,7 +119,7 @@ Giraffa::Util - utility functions for other Giraffa modules
 
 =item info($tag, $href)
 
-Creates and returns a L<Giraffa::Logger::Entry> object. The object is also added to the global logger object's list of entries.
+Creates and returns a L<Zonemaster::Logger::Entry> object. The object is also added to the global logger object's list of entries.
 
 =item ns($name, $address)
 
@@ -127,7 +127,7 @@ Creates and returns a nameserver object with the given name and address.
 
 =item config()
 
-Returns the global L<Giraffa::Config> object.
+Returns the global L<Zonemaster::Config> object.
 
 =item policy()
 
@@ -135,7 +135,7 @@ Returns a reference to the global policy hash.
 
 =item name($string)
 
-Creates and returns a L<Giraffa::DNSName> object for the given string.
+Creates and returns a L<Zonemaster::DNSName> object for the given string.
 
 =item pod_extract_for($testname)
 

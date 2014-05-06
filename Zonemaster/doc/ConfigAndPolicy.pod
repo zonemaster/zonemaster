@@ -1,6 +1,6 @@
 =head1 OVERVIEW
 
-At the moment, the configuration system is exceedingly simple: it's just a JSON-serialized hash stored as data in the L<Giraffa::Config> module.
+At the moment, the configuration system is exceedingly simple: it's just a JSON-serialized hash stored as data in the L<Zonemaster::Config> module.
 Eventually, this will be changed to loading a file and providing the ability for local overrides of defaults.
 
 The policy data is already distributed as and loaded from an external JSON file. There isn't yet any ability to override policy data, or specify
@@ -72,12 +72,12 @@ The policy data is also a nested hash. The top-level keys are upper-case-only ve
 for that particular module. The keys in the next level down are, with one exception, logger tags. The exception is the special key C<DISABLED>,
 which if given a true value will prevent the module from being executed. In the standard configuration, this key is set for the C<Example> module.
 The values for the tag keys should be the severity level for that tag. For example, under the C<BASIC> top-level key (for the 'Basic' test module),
-there is a key C<NO_GLUE>. That tag will be emitted by the code in the L<Giraffa::Test::Basic> module if it fails to get NS records for the zone
+there is a key C<NO_GLUE>. That tag will be emitted by the code in the L<Zonemaster::Test::Basic> module if it fails to get NS records for the zone
 being tested from its parent zone. Since that is an error that prevents further testing, the message is given the severity level C<CRITICAL>.
 
 =head2 The Severity Levels
 
-Giraffa uses six severity levels. They are as follows, in order from the most severe to the least severe.
+Zonemaster uses six severity levels. They are as follows, in order from the most severe to the least severe.
 
 =over
 

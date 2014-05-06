@@ -1,4 +1,4 @@
-package Giraffa::Translator v0.0.1;
+package Zonemaster::Translator v0.0.1;
 
 use 5.14.2;
 use strict;
@@ -41,7 +41,7 @@ sub _find_file {
 
     return unless defined( $self->lang );
 
-    my $filename = sprintf( '%s/language_%s.json', dist_dir( 'Giraffa' ), $self->lang );
+    my $filename = sprintf( '%s/language_%s.json', dist_dir( 'Zonemaster' ), $self->lang );
     if ( not -r $filename ) {
         croak "Cannot read translation file " . $filename . "\n";
     }
@@ -92,11 +92,11 @@ sub translate_tag {
 
 =head1 NAME
 
-Giraffa::Translator - translation support for Giraffa
+Zonemaster::Translator - translation support for Zonemaster
 
 =head1 SYNOPSIS
 
-    my $trans = Giraffa::Translator->new({ lang => 'tech' });
+    my $trans = Zonemaster::Translator->new({ lang => 'tech' });
     say $trans->to_string($entry);
 
 =head1 ATTRIBUTES
@@ -110,7 +110,7 @@ The language code for the language the translator should use. Either this or C<f
 =item file
 
 The file from which the translation data will be loaded. If it is not provided but C<lang> is, an attempt will be made to load a file called
-F<language_lang.json> from the Giraffa distribution directory.
+F<language_lang.json> from the Zonemaster distribution directory.
 
 =item data
 
@@ -124,12 +124,12 @@ A reference to a hash with translation data.
 
 =item to_string($entry)
 
-Takes a L<Giraffa::Logger::Entry> object as its argument and returns a translated string with the timestamp, level, message and arguments in the
+Takes a L<Zonemaster::Logger::Entry> object as its argument and returns a translated string with the timestamp, level, message and arguments in the
 entry.
 
 =item translate_tag
 
-Takes a L<Giraffa::Logger::Entry> object as its argument and returns a translation of its tag and arguments.
+Takes a L<Zonemaster::Logger::Entry> object as its argument and returns a translation of its tag and arguments.
 
 =back
 

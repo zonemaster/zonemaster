@@ -4,8 +4,8 @@ use 5.14.2;
 use strict;
 use warnings;
 
-use Giraffa;
-use Giraffa::Translator;
+use Zonemaster;
+use Zonemaster::Translator;
 use Getopt::Long;
 
 my $debug     = 0;
@@ -45,7 +45,7 @@ GetOptions(
 
 my $zname = shift( @ARGV );
 
-my $trans = Giraffa::Translator->new( { lang => $lang } );
+my $trans = Zonemaster::Translator->new( { lang => $lang } );
 
 $level = uc( $level );
 if ( not defined $levels{$level} ) {
@@ -54,12 +54,12 @@ if ( not defined $levels{$level} ) {
 }
 
 if ( $debug ) {
-    Giraffa->config->get->{resolver}{defaults}{debug} = 1;
+    Zonemaster->config->get->{resolver}{defaults}{debug} = 1;
     $verbose = 1;
     inform "Debugging turned on for resolvers.";
 }
 
-Giraffa->logger->callback(
+Zonemaster->logger->callback(
     sub {
         my ( $e ) = @_;
 
@@ -75,23 +75,23 @@ Giraffa->logger->callback(
 );
 
 if ( $nonetwork ) {
-    Giraffa->config->get->{no_network} = 1;
+    Zonemaster->config->get->{no_network} = 1;
     inform "Network traffic forbidden.";
 }
 
 if ( $infile ) {
-    Giraffa->preload_cache( $infile );
+    Zonemaster->preload_cache( $infile );
     inform "Preloading cache from $infile.";
 }
 
 if ($module) {
-    Giraffa->test_module($module, $zname);
+    Zonemaster->test_module($module, $zname);
 }
 else {
-    Giraffa->test_zone( $zname );
+    Zonemaster->test_zone( $zname );
 }
 
 if ( $outfile ) {
-    Giraffa->save_cache( $outfile );
+    Zonemaster->save_cache( $outfile );
     inform "Saved cache to $outfile.";
 }

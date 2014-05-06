@@ -1,11 +1,11 @@
-package Giraffa::Test::Delegation v0.0.1;
+package Zonemaster::Test::Delegation v0.0.1;
 
 use 5.14.2;
 use strict;
 use warnings;
 
-use Giraffa;
-use Giraffa::Util;
+use Zonemaster;
+use Zonemaster::Util;
 
 use Net::IP;
 use List::MoreUtils qw[uniq];
@@ -73,7 +73,7 @@ sub metadata {
 } ## end sub metadata
 
 sub version {
-    return "$Giraffa::Test::Delegation::VERSION";
+    return "$Zonemaster::Test::Delegation::VERSION";
 }
 
 ###
@@ -275,11 +275,11 @@ sub _max_length_name_for {
 
 =head1 NAME
 
-Giraffa::Test::Delegation - Tests regarding delegation details
+Zonemaster::Test::Delegation - Tests regarding delegation details
 
 =head1 SYNOPSIS
 
-    my @results = Giraffa::Test::Delegation->all($zone);
+    my @results = Zonemaster::Test::Delegation->all($zone);
 
 =head1 METHODS
 

@@ -1,4 +1,4 @@
-Requirements for batch functionality (taken from DNSCheck 1.*'s) for the Giraffa project. This is the functional requirements from the current DNSCheck.
+Requirements for batch functionality (taken from DNSCheck 1.*'s) for the Zonemaster project. This is the functional requirements from the current DNSCheck.
 
 Today we have several users of batch functionality, for example:
 1. The Web interface uses the batch functionality to queue tests and to display history of test results. 

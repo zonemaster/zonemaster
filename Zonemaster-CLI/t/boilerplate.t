@@ -50,7 +50,7 @@ TODO: {
     "placeholder date/time"       => qr(Date/time)
   );
 
-  module_boilerplate_ok('lib/Giraffa/CLI.pm');
+  module_boilerplate_ok('lib/Zonemaster/CLI.pm');
 
 
 }

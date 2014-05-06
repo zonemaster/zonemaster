@@ -1,4 +1,4 @@
-package Giraffa::Test::Example v0.0.1;
+package Zonemaster::Test::Example v0.0.1;
 
 ###
 ### This test module is meant to serve as an example when writing proper ones.
@@ -8,8 +8,8 @@ use 5.14.2;
 use strict;
 use warnings;
 
-use Giraffa;
-use Giraffa::Util;
+use Zonemaster;
+use Zonemaster::Util;
 
 ###
 ### Entry points
@@ -35,7 +35,7 @@ sub metadata {
 }
 
 sub version {
-    return "$Giraffa::Test::Example::VERSION";
+    return "$Zonemaster::Test::Example::VERSION";
 }
 
 ###
@@ -55,11 +55,11 @@ sub placeholder {
 
 =head1 NAME
 
-Giraffa::Test::Example - example module showing the expected structure of Giraffa test modules
+Zonemaster::Test::Example - example module showing the expected structure of Zonemaster test modules
 
 =head1 SYNOPSIS
 
-    my @results = Giraffa::Test::Example->all($zone);
+    my @results = Zonemaster::Test::Example->all($zone);
 
 =head1 METHODS
 

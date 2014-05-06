@@ -1,11 +1,11 @@
-package Giraffa::Test::Consistency v0.0.1;
+package Zonemaster::Test::Consistency v0.0.1;
 
 use 5.14.2;
 use strict;
 use warnings;
 
-use Giraffa;
-use Giraffa::Util;
+use Zonemaster;
+use Zonemaster::Util;
 
 ###
 ### Entry points
@@ -49,7 +49,7 @@ sub metadata {
 } ## end sub metadata
 
 sub version {
-    return "$Giraffa::Test::Consistency::VERSION";
+    return "$Zonemaster::Test::Consistency::VERSION";
 }
 
 ###
@@ -121,11 +121,11 @@ sub soa_consistent {
 
 =head1 NAME
 
-Giraffa::Test::Consistency - Consistency module showing the expected structure of Giraffa test modules
+Zonemaster::Test::Consistency - Consistency module showing the expected structure of Zonemaster test modules
 
 =head1 SYNOPSIS
 
-    my @results = Giraffa::Test::Consistency->all($zone);
+    my @results = Zonemaster::Test::Consistency->all($zone);
 
 =head1 METHODS
 

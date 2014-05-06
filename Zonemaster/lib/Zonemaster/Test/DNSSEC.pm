@@ -1,4 +1,4 @@
-package Giraffa::Test::DNSSEC v0.0.1;
+package Zonemaster::Test::DNSSEC v0.0.1;
 
 ###
 ### This test module implements DNSSEC tests.
@@ -8,8 +8,8 @@ use 5.14.2;
 use strict;
 use warnings;
 
-use Giraffa;
-use Giraffa::Util;
+use Zonemaster;
+use Zonemaster::Util;
 use List::Util qw[min];
 
 ###
@@ -61,7 +61,7 @@ sub metadata {
 } ## end sub metadata
 
 sub version {
-    return "$Giraffa::Test::DNSSEC::VERSION";
+    return "$Zonemaster::Test::DNSSEC::VERSION";
 }
 
 ###
@@ -528,11 +528,11 @@ sub dnssec10 {
 
 =head1 NAME
 
-Giraffa::Test::DNSSEC - dnssec module showing the expected structure of Giraffa test modules
+Zonemaster::Test::DNSSEC - dnssec module showing the expected structure of Zonemaster test modules
 
 =head1 SYNOPSIS
 
-    my @results = Giraffa::Test::DNSSEC->all($zone);
+    my @results = Zonemaster::Test::DNSSEC->all($zone);
 
 =head1 METHODS
 

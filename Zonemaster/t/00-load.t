@@ -6,7 +6,7 @@ use Test::More;
 plan tests => 1;
 
 BEGIN {
-    use_ok( 'Giraffa' ) || print "Bail out!\n";
+    use_ok( 'Zonemaster' ) || print "Bail out!\n";
 }
 
-diag( "Testing Giraffa $Giraffa::VERSION, Perl $], $^X" );
+diag( "Testing Zonemaster $Zonemaster::VERSION, Perl $], $^X" );
