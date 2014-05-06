@@ -1,0 +1,97 @@
+#!/usr/bin/env perl
+
+use 5.14.2;
+use strict;
+use warnings;
+
+use Zonemaster;
+use Zonemaster::Translator;
+use Getopt::Long;
+
+my $debug     = 0;
+my $verbose   = 0;
+my $nonetwork = 0;
+my $outfile;
+my $infile;
+my $lang  = 'tech';
+my $level = 'INFO';
+my $module;
+
+our %levels = (
+    DEBUG    => 0,
+    INFO     => 1,
+    NOTICE   => 2,
+    WARNING  => 3,
+    ERROR    => 4,
+    CRITICAL => 5,
+);
+
+sub inform {
+    my @args = @_;
+
+    say @args if $verbose;
+}
+
+GetOptions(
+    'debug|d'    => \$debug,
+    'verbose|v'  => \$verbose,
+    'nonetwork'  => \$nonetwork,
+    'restore=s'  => \$infile,
+    'save=s'     => \$outfile,
+    'language=s' => \$lang,
+    'level=s'    => \$level,
+    'module=s'   => \$module,
+);
+
+my $zname = shift( @ARGV );
+
+my $trans = Zonemaster::Translator->new( { lang => $lang } );
+
+$level = uc( $level );
+if ( not defined $levels{$level} ) {
+    say "Unknown log level: $level";
+    exit( 1 );
+}
+
+if ( $debug ) {
+    Zonemaster->config->get->{resolver}{defaults}{debug} = 1;
+    $verbose = 1;
+    inform "Debugging turned on for resolvers.";
+}
+
+Zonemaster->logger->callback(
+    sub {
+        my ( $e ) = @_;
+
+        if (
+            $verbose
+            or (    $e->module ne 'SYSTEM'
+                and $levels{ $e->level } >= $levels{$level} )
+          )
+        {
+            say $trans->to_string( $e );
+        }
+    }
+);
+
+if ( $nonetwork ) {
+    Zonemaster->config->get->{no_network} = 1;
+    inform "Network traffic forbidden.";
+}
+
+if ( $infile ) {
+    Zonemaster->preload_cache( $infile );
+    inform "Preloading cache from $infile.";
+}
+
+if ($module) {
+    Zonemaster->test_module($module, $zname);
+}
+else {
+    Zonemaster->test_zone( $zname );
+}
+
+if ( $outfile ) {
+    Zonemaster->save_cache( $outfile );
+    inform "Saved cache to $outfile.";
+}

@@ -1,7 +1,7 @@
 Existing ZC CLI Features
 ========================
 
-ZoneCheck CLI Features which could be included in the new tool
+ZoneCheck CLI Features which could be included in "Zonemaster" 
 
 Link to example : http://www.zonecheck.fr/doc/man/zonecheck.cli.shtml
 

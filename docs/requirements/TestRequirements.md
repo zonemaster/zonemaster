@@ -125,7 +125,7 @@ Discarded tests
 Requirements on writing test specifications
 -------------------------------------------
 
-These are some requirements for writing specifications for the new project:
+These are some requirements for writing specifications for "Zonemaster":
 
  1. Follow the framework of the IEEE 829-2008.
  2. The documents must be in [Markdown Syntax]

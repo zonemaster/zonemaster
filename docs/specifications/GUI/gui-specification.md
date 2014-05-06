@@ -1,7 +1,7 @@
 Web User interface
 ==================
 
-The web framework must separate code from web page design. If possible, the system should be able to replace the web page design easily by using another set of web page templates for the design. It should be possible to use the web interface without the need for enabling javascript or cookies. The web interface should echo the web clients IP address somewhere, and be very specific in what "giraffa" version used to generated the test results that the client is looking at.
+The web framework must separate code from web page design. If possible, the system should be able to replace the web page design easily by using another set of web page templates for the design. It should be possible to use the web interface without the need for enabling javascript or cookies. The web interface should echo the web clients IP address somewhere, and be very specific in what "zonemaster" version used to generated the test results that the client is looking at.
 
 No 3rd party resources should be loaded by the web client, all resources should be hosted on the same domain address as the rest of the web interface (this also makes it transport protocol independent).
 

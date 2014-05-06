@@ -1,6 +1,6 @@
-New DNSCheck
-============
+Zonemaster
+==========
 
-This is the repository for the New DNSCheck project. (Final name of the project still has to be decided.)
+This is the repository for the Zonemaster project.
 
-New DNSCheck is a collaboration between .SE and AFNIC.
+Zonemaster is a collaboration between .SE and AFNIC, and is a rewrite of DNSCheck and Zonecheck.

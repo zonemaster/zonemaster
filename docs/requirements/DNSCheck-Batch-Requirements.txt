@@ -1,11 +1,11 @@
-Requirements for batch functionality (taken from DNSCheck 1.*'s) for the Giraffa project. This is the functional requirements from the current DNSCheck.
+Requirements for batch functionality (taken from DNSCheck 1.*'s) for the Zonemaster project. This is the functional requirements from the current DNSCheck.
 
 Today we have several users of batch functionality, for example:
 1. The Web interface uses the batch functionality to queue tests and to display history of test results. 
 2. The automatic support emails going out to .SE's Registrars to test and track domains as they change.
 3. To generate DNS delegation quality statistics.
 
-A batch function could be called a user of the new DNSCheck test framework with the ultimate goal of easily accessing stored test results in an efficient way for statistics or reporting purposes.
+A batch function could be called a user of the Zonemaster test framework with the ultimate goal of easily accessing stored test results in an efficient way for statistics or reporting purposes.
 One type of batch user: https://github.com/dotse/dnscheck/tree/master/webui
 Another type of batch user: https://github.com/dotse/dnscheck/blob/master/engine/apps/dnscheck-dispatcher
 
