@@ -5,6 +5,7 @@ use Moose;
 use JSON::PP;
 use Zonemaster::Util;
 use Net::IP;
+use Zonemaster;
 
 my $seed_data;
 
@@ -19,6 +20,7 @@ sub recurse {
     $type  //= 'A';
     $class //= 'IN';
 
+    Zonemaster->logger->add( RECURSE => {name => $name, type => $type, class => $class });
     my ( $p, $state ) =
       $self->_recurse( $name, $type, $class, { ns => [ root_servers() ], count => 0, common => 0, seen => {} } );
 
@@ -53,6 +55,7 @@ sub _recurse {
     my ( $self, $name, $type, $class, $state ) = @_;
 
     while ( my $ns = pop @{ $state->{ns} } ) {
+        Zonemaster->logger->add( RECURSE_QUERY => { ns => "$ns", name => $name, type => $type, class => $class });
         my $p = $ns->query( $name, $type, { class => $class } );
 
         next if not $p;                     # Ask next server if no response

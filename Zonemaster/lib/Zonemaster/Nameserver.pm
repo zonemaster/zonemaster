@@ -150,6 +150,7 @@ sub query {
 
     my $p = $self->cache->data->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse};
     Zonemaster->logger->add( CACHED_RETURN => { packet => ($p?$p->string:'undef') } );
+
     return $p;
 } ## end sub query
 

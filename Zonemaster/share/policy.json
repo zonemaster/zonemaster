@@ -13,7 +13,7 @@
         "NS_CREATED": "DEBUG2",
         "QUERY": "DEBUG2",
         "FAKED_RETURN": "DEBUG2",
-        "CACHED_RETURN": "DEBUG2",
+        "CACHED_RETURN": "DEBUG3",
         "FAKE_DELEGATION": "DEBUG2",
         "EXTERNAL_RESPONSE": "DEBUG3",
         "EMPTY_RETURN": "DEBUG3",
@@ -23,7 +23,9 @@
         "UNKNOWN_METHOD": "CRITICAL",
         "IPV4_BLOCKED": "DEBUG2",
         "IPV6_BLOCKED": "DEBUG2",
-        "LOOKUP_ERROR": "DEBUG"
+        "LOOKUP_ERROR": "DEBUG",
+        "RECURSE": "DEBUG2",
+        "RECURSE_QUERY": "DEBUG2"
     },
    "BASIC" : {
       "HAS_GLUE" : "INFO",

@@ -8,7 +8,7 @@ has 'packet' => (
     is       => 'ro',
     isa      => 'Net::LDNS::Packet',
     required => 1,
-    handles  => [qw(data rcode aa question answer authority additional print string answersize unique_push timestamp)]
+    handles  => [qw(data rcode aa question answer authority additional print string answersize unique_push timestamp type)]
 );
 
 sub no_such_record {
