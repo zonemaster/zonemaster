@@ -12,5 +12,6 @@ These documents uses the terminology defined in the Master Test Plan.
 |Req| Description                                                 | Test Case           |
 |:--|:------------------------------------------------------------|:--------------------|
 |R67|The domain must have a parent domain                         |[BASIC01](basic01.md)|
+|R08|The child domain must have at least one working nameserver   |[BASIC02](basic02.md)|
 |R68|The child domain must have at least one working nameserver   |[BASIC02](basic02.md)|
 |R69|The _Broken but functional_ test                             |[BASIC03](basic03.md)|
