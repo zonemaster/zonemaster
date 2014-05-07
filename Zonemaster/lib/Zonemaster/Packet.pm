@@ -47,7 +47,8 @@ sub is_redirect {
     if ( $self->type eq 'referral' )
     {
         my ( $q ) = $self->question;
-        info( IS_REDIRECT => { name => $q->name, type => $q->type } );
+        my ( $a ) = $self->authority;
+        info( IS_REDIRECT => { name => $q->name, type => $q->type, to => $a->name } );
 
         return 1;
     }
