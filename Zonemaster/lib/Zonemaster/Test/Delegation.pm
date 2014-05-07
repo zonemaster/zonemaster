@@ -416,20 +416,31 @@ Returns a version string for the module.
 
 =item delegation01($zone)
 
-Verify that there is more than one nameserver.
+Verify that there is more than two nameserver.
 
-=item parent_child_match($zone)
+=item delegation02($zone)
 
-Verify that the names and addresses listed at the parent and child side match up.
+Verify that name servers have distinct IP addresses.
 
-=item inzone_glue($zone)
+=item delegation03($zone)
 
-Verify that in-zone nameserver have glue records at the parent.
+Verify that there is no truncation on referrals.
 
-=item referral_size($zone)
+=item delegation04($zone)
 
-Verify that the size of the smallest legal referral packet is 512 octets or less.
+Verify that nameservers are authoritative.
 
+=item delegation05($zone)
+
+Verify that NS RRs do not point to CNAME alias.
+
+=item delegation06($zone)
+
+Verify existence of SOA.
+
+=item delegation07($zone)
+
+Verify that parent glue name records are present in child.
 =back
 
 =cut
