@@ -57,26 +57,24 @@ http://www.zonecheck.fr/features.shtml
 No internal requirements.
 #### Document hieararchy
 * Master Test Plan  
-    * Basic Test Plan  
+    * [Basic Test Plan](Basic-TP/level.md)
         * Test Case x
-    * Delegation Test Plan
+    * [Delegation Test Plan](Delegation-TP/level.md)
         * Test Case x
-    * Consistency Test Plan
+    * [Consistency Test Plan](Consistency-TP/level.md)
         * Test Case x
-    * DNSSEC Test Plan
+    * [DNSSEC Test Plan](DNSSEC-TP/level.md)
         * Test Case x
-    * Address Test Plan
+    * [Address Test Plan](Address-TP/level.md)
         * Test Case x
-    * Name Server Test Plan
+    * [Name Server Test Plan](Nameserver-TP/level.md)
         * Test Case x
-    * Connectivity Test Plan
+    * [Connectivity Test Plan](Connectivity-TP/level.md)
         * Test Case x
-    * Zone Test Plan
+    * [Zone Test Plan](Zone-TP/level.md)
         * Test Case x
-    * Syntax Test Plan
-	* Test Case x
-    * Resolver Test Plan
-        * Test Case x
+    * [Syntax Test Plan](Syntax-TP/level.md)
+	    * Test Case x
 
 ### System overview and key features
 
@@ -167,9 +165,9 @@ part of this subproject to define.
 ### Definition of test levels
 
 There can be different types of tests, e.g. unit, system, and
-acceptance tests. This test environment will only focus on acceptance
-testing, thus only one test level. Multiple areas have however been
-identified within the system requirements:
+acceptance tests. This test environment will only focus on compliance
+testing for DNS, thus only one test level. Multiple areas have however
+been identified within the system requirements:
 
 * Basic
 * Delegation
@@ -180,9 +178,8 @@ identified within the system requirements:
 * Connectivity
 * Zone
 * Syntax
-* Resolver
 
-However, the separation of test levels does not necessarily mean that
+The separation of test levels does not necessarily mean that
 the levels are separated in the New DNSCheck implementation. The
 actual test levels might differ from the actual test modules in the
 code. At this level, the separation is done to make a better overview

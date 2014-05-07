@@ -51,13 +51,11 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R32|SOA master is not an alias                  | SOA:MNAME_IS_CNAME                          |Zone|
 |R33|coherence of serial number with primary nameserver | CONSISTENCY:SOA_SERIAL_CONSISTENT    |Consistency|
 |R34|coherence of administrative contact with primary nameserver | CONSISTENCY:SOA_DIGEST_CONSISTENT |Consistency|
-|R35|coherence of master with primary nameserver | Removed (Wrong to assume if MNAME is not identifical across all content servers of a DNS zone) |Consistency|
 |R36|coherence of SOA with primary nameserver    | CONSISTENCY:SOA_DIGEST_CONSISTENT           |Consistency|
 |R40|nameserver IP reverse                       | ADDRESS:PTR_NOT_FOUND                       |Address|
 |R41|nameserver IP reverse matching nameserver name | __not implemented__?                     |Address|
 |R42|check if server is really recursive         | NAMESERVER:RECURSIVE                        |Name server|
 |R43|nameserver doesn't allow recursion          | NAMESERVER:RECURSIVE __dup__?               |Name server|
-|R45|correctness of given nameserver list        | CONSISTENCY:NS_SETS_OK ?                    |Consistency|
 |R46|test if server is recursive                 | NAMESERVER:RECURSIVE __dup__?               |Name server|
 |R47|MX record present                           | MAIL:ALL_MX_IN_ZONE                         |Zone|
 |R49|MX syntax is valid for an hostname          | MAIL:HOST_ERROR                             |Syntax|
