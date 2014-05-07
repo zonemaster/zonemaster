@@ -15,8 +15,9 @@ sub all {
     my ( $class, $zone ) = @_;
     my @results;
 
-    push @results, $class->ns_consistent( $zone );
-    push @results, $class->soa_consistent( $zone );
+    push @results, $class->consistency01( $zone );
+    push @results, $class->consistency02( $zone );
+    push @results, $class->consistency03( $zone );
 
     return @results;
 }
@@ -29,22 +30,30 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        ns_consistent => [
-            qw(
-              NO_RESPONSE
-              ONE_NS_SET
-              MULTIPLE_NS_SETS
-              NS_SET
-              )
-        ],
-        soa_consistent => [
+        consistency01 => [
             qw(
               NO_RESPONSE
               ONE_SOA_SERIAL
               MULTIPLE_SOA_SERIALS
               SOA_SERIAL
               )
-        ]
+        ],
+        consistency02 => [
+            qw(
+              NO_RESPONSE
+              ONE_SOA_RNAME
+              MULTIPLE_SOA_RNAMES
+              SOA_RNAME
+              )
+        ],
+        consistency03 => [
+            qw(
+              NO_RESPONSE
+              ONE_SOA_TIME_PARAMETER_SET
+              MULTIPLE_SOA_TIME_PARAMETER_SET
+              SOA_TIME_PARAMETER_SET
+              )
+        ],
     };
 } ## end sub metadata
 
@@ -56,66 +65,180 @@ sub version {
 ### Tests
 ###
 
-sub ns_consistent {
+sub consistency01 {
     my ( $class, $zone ) = @_;
     my @results;
-
-    my %sets;
-    foreach my $ns ( @{ $zone->ns } ) {
-        my $p = $ns->query( $zone->name, 'NS' );
-
-        if ( not $p ) {
-            push @results, info( NO_RESPONSE => { ns => "$ns" } );
-            next;
-        }
-
-        my @nsnames = sort map { $_->nsdname } $p->get_records_for_name( 'NS', $zone->name );
-        push @{ $sets{ join( ';', @nsnames ) } }, $ns;
-    }
-
-    if ( keys %sets == 1 ) {
-        push @results, info( ONE_NS_SET => { set => ( keys %sets )[0] } );
-    }
-    else {
-        push @results, info( MULTIPLE_NS_SETS => { count => scalar( keys( %sets ) ) } );
-        foreach my $set ( keys %sets ) {
-            push @results, info( NS_SET => { set => $set, servers => join( ';', @{ $sets{$set} } ) } );
-        }
-    }
-
-    return @results;
-} ## end sub ns_consistent
-
-sub soa_consistent {
-    my ( $class, $zone ) = @_;
-    my @results;
+    my %nsnames;
 
     my %serials;
-    foreach my $ns ( @{ $zone->ns } ) {
-        my $p = $ns->query( $zone->name, 'SOA' );
+    foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
+
+        next if $nsnames{ $local_ns->name->string };
+
+        my $p = $local_ns->query( $zone->name, q{SOA} );
 
         if ( not $p ) {
-            push @results, info( NO_RESPONSE => { ns => "$ns" } );
+            push @results,
+              info(
+                NO_RESPONSE => {
+                    ns => $local_ns->name,
+                }
+              );
             next;
         }
 
-        my ( $soa ) = $p->get_records_for_name( 'SOA', $zone->name );
-        push @{ $serials{ $soa->serial } }, $ns;
+        my ( $soa ) = $p->get_records_for_name( q{SOA}, $zone->name );
+        push @{ $serials{ $soa->serial } }, $local_ns->name->string;
 
+        $nsnames{ $local_ns->name->string }++;
     }
 
     if ( keys %serials == 1 ) {
-        push @results, info( ONE_SOA_SERIAL => { serial => ( keys %serials )[0] } );
+        push @results,
+          info(
+            ONE_SOA_SERIAL => {
+                serial => ( keys %serials )[0],
+            }
+          );
     }
     else {
-        push @results, info( MULTIPLE_SOA_SERIALS => { count => scalar( keys( %serials ) ) } );
+        push @results,
+          info(
+            MULTIPLE_SOA_SERIALS => {
+                count => scalar( keys( %serials ) ),
+            }
+          );
         foreach my $serial ( keys %serials ) {
-            push @results, info( SOA_SERIAL => { serial => $serial, servers => join( ';', @{ $serials{$serial} } ) } );
+            push @results,
+              info(
+                SOA_SERIAL => {
+                    serial  => $serial,
+                    servers => join( ';', @{ $serials{$serial} } ),
+                }
+              );
         }
     }
 
     return @results;
-} ## end sub soa_consistent
+} ## end sub consistency01
+
+sub consistency02 {
+    my ( $class, $zone ) = @_;
+    my @results;
+    my %nsnames;
+
+    my %rnames;
+    foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
+
+        next if $nsnames{ $local_ns->name->string };
+
+        my $p = $local_ns->query( $zone->name, q{SOA} );
+
+        if ( not $p ) {
+            push @results,
+              info(
+                NO_RESPONSE => {
+                    ns => $local_ns->name,
+                }
+              );
+            next;
+        }
+
+        my ( $soa ) = $p->get_records_for_name( q{SOA}, $zone->name );
+        push @{ $rnames{ $soa->rname } }, $local_ns->name->string;
+
+        $nsnames{ $local_ns->name->string }++;
+    }
+
+    if ( keys %rnames == 1 ) {
+        push @results,
+          info(
+            ONE_SOA_RNAME => {
+                rname => ( keys %rnames )[0],
+            }
+          );
+    }
+    else {
+        push @results,
+          info(
+            MULTIPLE_SOA_RNAMES => {
+                count => scalar( keys( %rnames ) ),
+            }
+          );
+        foreach my $rname ( keys %rnames ) {
+            push @results,
+              info(
+                SOA_RNAME => {
+                    rname  => $rname,
+                    servers => join( ';', @{ $rnames{$rname} } ),
+                }
+              );
+        }
+    }
+
+    return @results;
+} ## end sub consistency02
+
+sub consistency03 {
+    my ( $class, $zone ) = @_;
+    my @results;
+    my %nsnames;
+
+    my %time_parameter_sets;
+    foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
+
+        next if $nsnames{ $local_ns->name->string };
+
+        my $p = $local_ns->query( $zone->name, q{SOA} );
+
+        if ( not $p ) {
+            push @results,
+              info(
+                NO_RESPONSE => {
+                    ns => $local_ns->name,
+                }
+              );
+            next;
+        }
+
+        my ( $soa ) = $p->get_records_for_name( q{SOA}, $zone->name );
+        push @{ $time_parameter_sets{ sprintf q{%d;%d;%d;%d}, $soa->refresh, $soa->retry, $soa->expire, $soa->minimum } }, $local_ns->name->string;
+
+        $nsnames{ $local_ns->name->string }++;
+    }
+
+    if ( keys %time_parameter_sets == 1 ) {
+        push @results,
+          info(
+            ONE_SOA_TIME_PARAMETER_SET => {
+                rname => ( keys %time_parameter_sets )[0],
+            }
+          );
+    }
+    else {
+        push @results,
+          info(
+            MULTIPLE_SOA_TIME_PARAMETER_SET => {
+                count => scalar( keys( %time_parameter_sets ) ),
+            }
+          );
+        foreach my $time_parameter_set ( keys %time_parameter_sets ) {
+            my ( $refresh, $retry, $expire, $minimum) = split /;/, $time_parameter_set;
+            push @results,
+              info(
+                SOA_TIME_PARAMETER_SET => {
+                    refresh => $refresh,
+                    retry   => $retry,
+                    expire  => $expire,
+                    minimum => $minimum,
+                    servers => join( ';', @{ $time_parameter_sets{$time_parameter_set} } ),
+                }
+              );
+        }
+    }
+
+    return @results;
+} ## end sub consistency03
 
 1;
 

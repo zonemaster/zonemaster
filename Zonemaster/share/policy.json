@@ -110,12 +110,15 @@
    },
    "CONSISTENCY": {
        "NO_RESPONSE": "WARNING",
-       "ONE_NS_SET": "INFO",
-       "MULTIPLE_NS_SETS": "WARNING",
-       "NS_SET": "INFO",
        "ONE_SOA_SERIAL": "INFO",
        "MULTIPLE_SOA_SERIALS": "NOTICE",
-       "SOA_SERIAL": "INFO"
+       "SOA_SERIAL": "INFO",
+       "ONE_SOA_RNAME": "INFO",
+       "MULTIPLE_SOA_RNAMES": "NOTICE",
+       "SOA_RNAME": "INFO",
+       "ONE_SOA_TIME_PARAMETER_SET": "INFO",
+       "MULTIPLE_SOA_TIME_PARAMETER_SET": "NOTICE",
+       "SOA_TIME_PARAMETER_SET": "INFO"
    },
   "DNSSEC" : {
          "ALGORITHM_DEPRECATED" : "WARNING",

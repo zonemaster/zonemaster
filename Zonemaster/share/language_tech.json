@@ -80,12 +80,15 @@
    },
    "CONSISTENCY": {
        "NO_RESPONSE": "Nameserver {ns} did not respond.",
-       "ONE_NS_SET": "A single NS set seen ({set}).",
-       "MULTIPLE_NS_SETS": "Saw {count} NS sets.",
-       "NS_SET": "Saw NS set: {set}",
        "ONE_SOA_SERIAL": "A single SOA serial number was seen ({serial}).",
        "MULTIPLE_SOA_SERIALS": "Saw {count} SOA serial numbers.",
-       "SOA_SERIAL": "Saw SOA serial number {serial}."
+       "SOA_SERIAL": "Saw SOA serial number {serial}.",
+       "ONE_SOA_RNAME": "",
+       "MULTIPLE_SOA_RNAMES": "",
+       "SOA_RNAME": "",
+       "ONE_SOA_TIME_PARAMETER_SET": "",
+       "MULTIPLE_SOA_TIME_PARAMETER_SET": "",
+       "SOA_TIME_PARAMETER_SET": ""
    },
   "DNSSEC" : {
          "ALGORITHM_DEPRECATED" : "The DNSKEY with tag {keytag} uses deprecated algorithm number {algorithm}.",
