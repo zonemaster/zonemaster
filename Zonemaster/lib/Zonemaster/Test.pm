@@ -72,7 +72,7 @@ sub run_module {
 
     $module = ucfirst( $module );
 
-    if ( grep { $module eq $_ } $class->modules ) {
+    if ( (grep { $module eq $_ } $class->modules) or ( $module eq 'Basic' ) ) {
         my $m = "Zonemaster::Test::$module";
         my @res = eval { $m->all( $zone ) };
         if ($@) {
@@ -81,7 +81,7 @@ sub run_module {
         return @res;
     }
     else {
-        info( UNKOWN_MODULE => { name => $module, method => 'all' } );
+        info( UNKNOWN_MODULE => { name => $module, method => 'all', known => join(':', sort $class->modules) } );
     }
 
     return;
@@ -90,7 +90,9 @@ sub run_module {
 sub run_one {
     my ( $class, $module, $test, @arguments ) = @_;
 
-    if ( grep { $module eq $_ } $class->modules ) {
+    $module = ucfirst($module);
+
+    if ( (grep { $module eq $_ } $class->modules) or ( $module eq 'Basic' ) ) {
         my $m = "Zonemaster::Test::$module";
         if ( $m->metadata->{$test} ) {
             info( MODULE_CALL => { module => $module, method => $test, version => $m->version } );

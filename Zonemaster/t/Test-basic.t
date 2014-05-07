@@ -24,6 +24,9 @@ ok($res{NO_GLUE}, q{NO_GLUE});
 %res = map {$_->tag => 1} Zonemaster->test_module(q{basic}, q{aff.tf});
 ok($res{HAS_NAMESERVERS}, q{HAS_NAMESERVERS});
 
+my @res = Zonemaster->test_method( q{basic}, q{basic01}, Zonemaster->zone(q{001.tf}));
+is($res[0]->tag, q{HAS_GLUE} );
+
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
 }
