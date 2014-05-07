@@ -160,7 +160,7 @@ sub delegation02 {
 
     }
 
-    foreach my $local_ip ( keys %ips ) {
+    foreach my $local_ip ( sort keys %ips ) {
         if ( scalar @{ $ips{$local_ip} } > 1 ) {
             push @results,
               info(
@@ -314,9 +314,9 @@ sub delegation07 {
         $names{$name} += 1;
     }
 
-    my @same_name         = grep { $names{$_} == 0 } keys %names;
-    my @extra_name_parent = grep { $names{$_} > 0 } keys %names;
-    my @extra_name_child  = grep { $names{$_} < 0 } keys %names;
+    my @same_name         = sort grep { $names{$_} == 0 } keys %names;
+    my @extra_name_parent = sort grep { $names{$_} > 0 } keys %names;
+    my @extra_name_child  = sort grep { $names{$_} < 0 } keys %names;
 
     if ( @extra_name_parent ) {
         push @results,
