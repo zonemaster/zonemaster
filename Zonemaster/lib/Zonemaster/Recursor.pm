@@ -9,6 +9,8 @@ use Zonemaster;
 
 my $seed_data;
 
+our %recurse_cache;
+
 INIT {
     local $/;
     my $json = <DATA>;
@@ -21,8 +23,14 @@ sub recurse {
     $class //= 'IN';
 
     Zonemaster->logger->add( RECURSE => {name => $name, type => $type, class => $class });
+
+    if (exists $recurse_cache{$name}{$type}{$class}) {
+        return $recurse_cache{$name}{$type}{$class};
+    }
+
     my ( $p, $state ) =
       $self->_recurse( $name, $type, $class, { ns => [ root_servers() ], count => 0, common => 0, seen => {} } );
+    $recurse_cache{$name}{$type}{$class} = $p;
 
     return $p;
 }
@@ -169,6 +177,10 @@ sub _is_answer {
     return ($packet->type eq 'answer');
 }
 
+sub clear_cache {
+    %recurse_cache = ();
+}
+
 sub root_servers {
     return map { Zonemaster::Util::ns( $_->{name}, $_->{address} ) }
       sort { $a->{name} cmp $b->{name} } @{ $seed_data->{'.'} };
@@ -206,6 +218,10 @@ Internal method. Takes a packet and a recursion state and returns a list of ns o
 
 Takes a name and returns a (possibly empty) list of IP addresses for that name. When used internally by the recursor it's passed a recursion state
 as its second argument.
+
+=item clear_cache()
+
+Class method to empty the cache of responses to recursive queries.
 
 =item root_servers()
 

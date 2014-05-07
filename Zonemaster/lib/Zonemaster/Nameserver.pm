@@ -8,6 +8,7 @@ use Zonemaster::DNSName;
 use Zonemaster;
 use Zonemaster::Packet;
 use Zonemaster::Nameserver::Cache;
+use Zonemaster::Recursor;
 
 use Net::LDNS;
 
@@ -168,6 +169,11 @@ sub add_fake_delegation {
     }
 
     $self->fake_delegations->{$domain} = \%delegation;
+
+    # We're changing the world, so the cache can't be trusted
+    Zonemaster::Recursor->clear_cache;
+
+    return;
 }
 
 sub _query {
