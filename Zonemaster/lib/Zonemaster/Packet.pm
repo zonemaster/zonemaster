@@ -14,13 +14,11 @@ has 'packet' => (
 sub no_such_record {
     my ( $self ) = @_;
 
-    if (    scalar( $self->packet->answer ) == 0
-        and $self->packet->rcode eq 'NOERROR'
-        and scalar( grep { $_->type eq 'SOA' } $self->packet->authority ) == 1
-        and $self->packet->aa )
+    if ( $self->type eq 'nodata' )
     {
         my ( $q ) = $self->question;
         info( NO_SUCH_RECORD => { name => $q->name, type => $q->type } );
+
         return 1;
     }
     else {
@@ -31,11 +29,11 @@ sub no_such_record {
 sub no_such_name {
     my ( $self ) = @_;
 
-    if (    $self->packet->rcode eq 'NXDOMAIN'
-        and $self->packet->aa )
+    if ( $self->type eq 'nxdomain' )
     {
         my ( $q ) = $self->question;
         info( NO_SUCH_NAME => { name => $q->name, type => $q->type } );
+
         return 1;
     }
     else {
@@ -46,11 +44,11 @@ sub no_such_name {
 sub is_redirect {
     my ( $self ) = @_;
 
-    if (    scalar( $self->packet->answer ) == 0
-        and scalar( grep { $_->type eq 'NS' } $self->packet->authority ) > 0 )
+    if ( $self->type eq 'referral' )
     {
         my ( $q ) = $self->question;
         info( IS_REDIRECT => { name => $q->name, type => $q->type } );
+
         return 1;
     }
     else {

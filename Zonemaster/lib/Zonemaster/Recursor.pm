@@ -70,13 +70,11 @@ sub _recurse {
           if $p->no_such_record;            # Node exists, but not record
         return ( $p, $state ) if $p->no_such_name;    # Node does not exist
         return ( $p, $state )
-          if $self->is_answer( $p, $name, $type, $class );    # Return answer
+          if $self->_is_answer( $p );    # Return answer
 
         # So it's not an error, not an empty response and not an answer
 
         if ( $p->is_redirect ) {
-
-            # Looks like a redirect
             my $zname = ( $p->get_records( 'ns' ) )[0]->name;
             next if $state->{seen}{$zname};                   # We followed this redirect before
 
@@ -165,37 +163,11 @@ sub get_addresses_for {
     return @res;
 } ## end sub get_addresses_for
 
-sub is_answer {
-    my ( $self, $packet, $name, $type, $class ) = @_;
+sub _is_answer {
+    my ( $self, $packet ) = @_;
 
-    foreach my $rr ( $packet->answer ) {
-        if (    name( $rr->name ) eq $name
-            and ( $rr->class eq $class or $class eq 'ANY' )
-            and ( $rr->type eq $type   or $type eq 'ANY' ) )
-        {
-            return 1;
-        }
-        if (    name( $rr->name ) eq $name
-            and ( $rr->class eq $class or $class eq 'ANY' )
-            and $rr->type eq 'CNAME' )
-        {
-            my $new_packet = $self->recurse( $rr->cname, $type, $class );
-            $packet->unique_push( answer => $new_packet->answer )
-              if $new_packet;
-            return 1;
-        }
-    }
-    foreach my $rr ( $packet->authority ) {
-        if (    name( $rr->name ) eq $name
-            and ( $rr->class eq $class or $class eq 'ANY' )
-            and ( $rr->type eq $type   or $type eq 'ANY' ) )
-        {
-            return 1;
-        }
-    }
-
-    return;
-} ## end sub is_answer
+    return ($packet->type eq 'answer');
+}
 
 sub root_servers {
     return map { Zonemaster::Util::ns( $_->{name}, $_->{address} ) }
@@ -234,10 +206,6 @@ Internal method. Takes a packet and a recursion state and returns a list of ns o
 
 Takes a name and returns a (possibly empty) list of IP addresses for that name. When used internally by the recursor it's passed a recursion state
 as its second argument.
-
-=item is_answer($packet, $name, $type, $class)
-
-Internal method. Returns true if the given packet is an answer for a query for the given triplet.
 
 =item root_servers()
 
