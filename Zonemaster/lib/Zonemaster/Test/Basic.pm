@@ -68,7 +68,7 @@ sub metadata {
               )
         ],
     };
-}
+} ## end sub metadata
 
 sub version {
     return "$Zonemaster::Test::Basic::VERSION";
@@ -122,7 +122,7 @@ sub basic01 {
                 }
               );
         }
-    } ## end else [ if ( $p->rcode eq 'NXDOMAIN')]
+    } ## end else [ if ( $p->rcode eq q{NXDOMAIN})]
 
     return @results;
 } ## end sub basic01
@@ -152,7 +152,7 @@ sub basic02 {
                     }
                   );
             }
-        }
+        } ## end if ( $p )
         else {
             push @results,
               info(
