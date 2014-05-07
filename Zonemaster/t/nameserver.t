@@ -93,6 +93,9 @@ $p6 = $nsv4->query( 'iis.se', 'SOA', { dnssec => 1 } );
 ok(defined($p5), 'IPv4 not blocked');
 ok(defined($p6), 'IPv6 not blocked');
 
+is( $p5->edns_size, 4096, 'EDNS0 size');
+is( $p5->edns_rcode, 0, 'EDNS0 rcode');
+
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
 }
