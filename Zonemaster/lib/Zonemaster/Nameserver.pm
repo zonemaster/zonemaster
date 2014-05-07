@@ -208,7 +208,9 @@ sub _query {
     my $before = time();
     my $res = eval { $self->dns->query( "$name", $type, $href->{class} ) };
     if ($@) {
-        Zonemaster->logger->add( LOOKUP_ERROR => { message => $@});
+        my $msg = "$@";
+        chomp($msg);
+        Zonemaster->logger->add( LOOKUP_ERROR => { message => $msg, ns => "$self", name => "$name", type => $type, class => $href->{class} });
     }
     push @{ $self->times }, ( time() - $before );
 
