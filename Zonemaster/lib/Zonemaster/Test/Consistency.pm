@@ -1,4 +1,4 @@
-package Zonemaster::Test::Consistency v0.0.1;
+package Zonemaster::Test::Consistency v0.0.5;
 
 use 5.14.2;
 use strict;
@@ -93,7 +93,7 @@ sub consistency01 {
         $nsnames{ $local_ns->name->string }++;
     }
 
-    if ( keys %serials == 1 ) {
+    if ( scalar ( keys %serials ) == 1 ) {
         push @results,
           info(
             ONE_SOA_SERIAL => {
@@ -105,7 +105,7 @@ sub consistency01 {
         push @results,
           info(
             MULTIPLE_SOA_SERIALS => {
-                count => scalar( keys( %serials ) ),
+                count => scalar( keys %serials ),
             }
           );
         foreach my $serial ( keys %serials ) {
@@ -150,7 +150,7 @@ sub consistency02 {
         $nsnames{ $local_ns->name->string }++;
     }
 
-    if ( keys %rnames == 1 ) {
+    if ( scalar ( keys %rnames ) == 1 ) {
         push @results,
           info(
             ONE_SOA_RNAME => {
@@ -162,7 +162,7 @@ sub consistency02 {
         push @results,
           info(
             MULTIPLE_SOA_RNAMES => {
-                count => scalar( keys( %rnames ) ),
+                count => scalar( keys %rnames ),
             }
           );
         foreach my $rname ( keys %rnames ) {
@@ -207,11 +207,15 @@ sub consistency03 {
         $nsnames{ $local_ns->name->string }++;
     }
 
-    if ( keys %time_parameter_sets == 1 ) {
+    if ( scalar ( keys %time_parameter_sets ) == 1 ) {
+        my ( $refresh, $retry, $expire, $minimum) = split /;/, ( keys %time_parameter_sets )[0];
         push @results,
           info(
             ONE_SOA_TIME_PARAMETER_SET => {
-                rname => ( keys %time_parameter_sets )[0],
+                refresh => $refresh,
+                retry   => $retry,
+                expire  => $expire,
+                minimum => $minimum,
             }
           );
     }
@@ -219,7 +223,7 @@ sub consistency03 {
         push @results,
           info(
             MULTIPLE_SOA_TIME_PARAMETER_SET => {
-                count => scalar( keys( %time_parameter_sets ) ),
+                count => scalar( keys %time_parameter_sets ),
             }
           );
         foreach my $time_parameter_set ( keys %time_parameter_sets ) {
