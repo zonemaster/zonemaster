@@ -17,6 +17,8 @@ use JSON::XS;
 our %numeric = Zonemaster::Logger::Entry->levels;
 my $json = JSON::XS->new;
 
+STDOUT->autoflush( 1 );
+
 has 'version' => (
     is            => 'ro',
     isa           => 'Bool',
@@ -167,6 +169,8 @@ sub run {
         sub {
             my ( $entry ) = @_;
 
+            print_spinner();
+
             return if $numeric{ uc $entry->level } < $numeric{ uc $self->level };
 
             if ( $translator ) {
@@ -255,6 +259,14 @@ sub print_versions {
         my $mod = "Zonemaster::Test::$module";
         say "\t$module: " . $mod->version;
     }
+}
+
+my @spinner_strings = ( '  | ', '  / ', '  - ', '  \\ ' );
+
+sub print_spinner {
+    state $counter = 0;
+
+    printf "%s\r", $spinner_strings[ $counter++ % 4 ];
 }
 
 1;
