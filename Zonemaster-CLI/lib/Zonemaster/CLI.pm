@@ -18,10 +18,10 @@ our %numeric = Zonemaster::Logger::Entry->levels;
 my $json = JSON::XS->new;
 
 has 'version' => (
-    is => 'ro',
-    isa => 'Bool',
-    default => 0,
-    required => 0,
+    is            => 'ro',
+    isa           => 'Bool',
+    default       => 0,
+    required      => 0,
     documentation => 'Print version information and exit.',
 );
 
@@ -83,56 +83,57 @@ has 'restore' => (
 );
 
 has 'ipv4' => (
-    is => 'ro',
-    isa => 'Bool',
-    default => 1,
+    is            => 'ro',
+    isa           => 'Bool',
+    default       => 1,
     documentation => 'Flag to permit or deny queries being sent via IPv4.',
 );
 
 has 'ipv6' => (
-    is => 'ro',
-    isa => 'Bool',
-    default => 1,
+    is            => 'ro',
+    isa           => 'Bool',
+    default       => 1,
     documentation => 'Flag to permit or deny queries being sent via IPv6.',
 );
 
 has 'list_tests' => (
-    is => 'ro',
-    isa => 'Bool',
-    default => 0,
+    is            => 'ro',
+    isa           => 'Bool',
+    default       => 0,
     documentation => 'Instead of running a test, list all available tests.',
 );
 
 has 'test' => (
-    is => 'ro',
-    isa => 'ArrayRef',
+    is       => 'ro',
+    isa      => 'ArrayRef',
     required => 0,
-    documentation => 'Specify test to run. Should be either the name of a module, or the name of a module and the name of a method in that module separated by a "/" character (Example: "Basic/basic1"). The method specified must be one that takes a zone object as its single argument. This switch can be repeated.'
+    documentation =>
+'Specify test to run. Should be either the name of a module, or the name of a module and the name of a method in that module separated by a "/" character (Example: "Basic/basic1"). The method specified must be one that takes a zone object as its single argument. This switch can be repeated.'
 );
 
 sub run {
     my ( $self ) = @_;
     my @accumulator;
 
-    if ($self->version) {
+    if ( $self->version ) {
         print_versions();
         exit;
     }
 
-    if ($self->list_tests) {
+    if ( $self->list_tests ) {
         my %methods = Zonemaster->all_methods;
-        foreach my $module (sort keys %methods) {
+        foreach my $module ( sort keys %methods ) {
             say $module;
-            my $doc = pod_extract_for($module);
-            foreach my $method (sort @{$methods{$module}}) {
+            my $doc = pod_extract_for( $module );
+            foreach my $method ( sort @{ $methods{$module} } ) {
                 print "\t$method";
-                if ($doc and $doc->{$method}) {
+                if ( $doc and $doc->{$method} ) {
                     print "\t" . $doc->{$method};
                 }
                 print "\n";
             }
         }
-        exit(0);
+        exit( 0 );
     }
 
     my ( $domain ) = @{ $self->extra_argv };
@@ -204,16 +205,18 @@ sub run {
     }
 
     # Actually run tests!
-    if ($self->test and @{$self->test} > 0) {
-        foreach my $t (@{$self->test}) {
-            my ($module, $method) = split('/', $t, 2);
-            if ($method) {
-                Zonemaster->test_method($module, $method, Zonemaster->zone($domain));
-            } else {
-                Zonemaster->test_module($module, $domain);
+    if ( $self->test and @{ $self->test } > 0 ) {
+        foreach my $t ( @{ $self->test } ) {
+            my ( $module, $method ) = split( '/', $t, 2 );
+            if ( $method ) {
+                Zonemaster->test_method( $module, $method, Zonemaster->zone( $domain ) );
+            }
+            else {
+                Zonemaster->test_module( $module, $domain );
             }
         }
-    } else {
+    }
+    else {
         Zonemaster->test_zone( $domain );
     }
 
@@ -248,7 +251,7 @@ sub print_versions {
     say "\nTest module versions:";
 
     my %methods = Zonemaster->all_methods;
-    foreach my $module (sort keys %methods) {
+    foreach my $module ( sort keys %methods ) {
         my $mod = "Zonemaster::Test::$module";
         say "\t$module: " . $mod->version;
     }
