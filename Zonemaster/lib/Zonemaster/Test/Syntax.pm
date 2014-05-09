@@ -449,17 +449,41 @@ Returns a version string for the module.
 
 =over
 
-=item name_syntax($name)
+=item syntax01($name)
 
-Verifies that the name given conforms to the rules.
+Verifies that the name (Zonemaster::DNSName) given contains only allowed characters.
 
-=item rname_syntax($rname)
+=item syntax02($name)
 
-Perform tests on a SOA RNAME.
+Verifies that the name (Zonemaster::DNSName) given does not start or end with a hyphen ('-').
 
-=item soa_date($serial)
+=item syntax03($name)
 
-Check if the SOA serial value conforms to the date plus counter format.
+Verifies that the name (Zonemaster::DNSName) given does not contain a hyphen in 3rd and 4th position (in the exception of 'xn--').
+
+=item syntax04($name)
+
+Verify that a nameserver (Zonemaster::DNSName) given is conform to previous syntax rules. It also verify name total length as well as labels.
+
+=item syntax05($zone)
+
+Verify that a SOA rname (Zonemaster::DNSName) given has a conform usage of at sign (@).
+
+=item syntax06($zone)
+
+Verify that a SOA rname (Zonemaster::DNSName) given is RFC822 compliant.
+
+=item syntax07($zone)
+
+Verify that SOA mname of zone given is conform to previous syntax rules (syntax01, syntax02, syntax03). It also verify name total length as well as labels.
+
+=item syntax08(@mx_names)
+
+Verify that MX name (Zonemaster::DNSName)  given is conform to previous syntax rules (syntax01, syntax02, syntax03). It also verify name total length as well as labels.
+
+=item syntax09($zone)
+
+Check SOA serial format.
 
 =back
 

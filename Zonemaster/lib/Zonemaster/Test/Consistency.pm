@@ -277,13 +277,17 @@ Returns a version string for the module.
 
 =over
 
-=item ns_consistent($zone)
-
-Query all nameservers for NS, and see that they all return the same set of names.
-
-=item soa_consistent($zone)
+=item consistency01($zone)
 
 Query all nameservers for SOA, and see that they all have the same SOA serial number.
+
+=item consistency02($zone)
+
+Query all nameservers for SOA, and see that they all have the same SOA rname.
+
+=item consistency03($zone)
+
+Query all nameservers for SOA, and see that they all have the same time parameters (REFRESH/RETRY/EXPIRE/MINIMUM).
 
 =back
 
