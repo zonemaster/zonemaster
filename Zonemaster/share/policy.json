@@ -25,7 +25,8 @@
         "IPV6_BLOCKED": "DEBUG2",
         "LOOKUP_ERROR": "DEBUG",
         "RECURSE": "DEBUG2",
-        "RECURSE_QUERY": "DEBUG2"
+        "RECURSE_QUERY": "DEBUG2",
+        "LOGGER_CALLBACK_ERROR": "ERROR"
     },
    "BASIC" : {
       "HAS_GLUE" : "INFO",
