@@ -11,7 +11,7 @@ my $datafile = q{t/zonemaster.data};
 if ( not $ENV{ZONEMASTER_RECORD} ) {
     die q{Stored data file missing} if not -r $datafile;
     Zonemaster::Nameserver->restore( $datafile );
-    Zonemaster->config->{no_network} = 1;
+    Zonemaster->config->get->{no_network} = 1;
 }
 
 isa_ok( Zonemaster->logger, 'Zonemaster::Logger' );
@@ -30,7 +30,7 @@ ok(exists($methods{Basic}), 'all_methods');
 my @tags = Zonemaster->all_tags;
 ok((grep {/BASIC:HAS_NAMESERVERS/} @tags), 'all_tags');
 
-my %module;
+%module = ();
 Zonemaster->logger->callback(sub {
     my ($e) = shift;
 
@@ -60,6 +60,15 @@ is($save_entry->args->{file}, $filename, 'To the right file name.');
 is($restore_entry->tag, 'RESTORED_NS_CACHE', 'Restoring worked.');
 is($restore_entry->args->{file}, $filename, 'From the right file name.');
 unlink($filename);
+
+Zonemaster->test_module('gurksallad', 'nic.se');
+is(Zonemaster->logger->entries->[-1]->tag, 'UNKNOWN_MODULE', 'Proper message for unknown module');
+
+Zonemaster->test_method('gurksallad', 'nic.se');
+is(Zonemaster->logger->entries->[-1]->tag, 'UNKNOWN_MODULE', 'Proper message for unknown module');
+
+Zonemaster->test_method('basic', 'basic17');
+is(Zonemaster->logger->entries->[-1]->tag, 'UNKNOWN_METHOD', 'Proper message for unknown method');
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );

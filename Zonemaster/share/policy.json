@@ -19,7 +19,7 @@
         "EMPTY_RETURN": "DEBUG3",
         "SAVED_NS_CACHE": "DEBUG2",
         "RESTORED_NS_CACHE": "DEBUG2",
-        "UNKOWN_MODULE": "CRITICAL",
+        "UNKNOWN_MODULE": "CRITICAL",
         "UNKNOWN_METHOD": "CRITICAL",
         "IPV4_BLOCKED": "DEBUG2",
         "IPV6_BLOCKED": "DEBUG2",

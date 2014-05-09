@@ -9,7 +9,7 @@ my $datafile = 't/dnssec.data';
 if ( not $ENV{ZONEMASTER_RECORD} ) {
     die "Stored data file missing" if not -r $datafile;
     Zonemaster::Nameserver->restore( $datafile );
-    Zonemaster->config->{no_network} = 1;
+    Zonemaster->config->get->{no_network} = 1;
 }
 
 my $zone = Zonemaster->zone( 'nic.se' );
@@ -64,14 +64,24 @@ ok( $tag{SOA_SIGNED}, 'SOA_SIGNED' );
 @res = Zonemaster->test_method( 'DNSSEC', 'dnssec10', $zone );
 %tag = map { $_->tag => 1 } @res;
 ok( $tag{HAS_NSEC}, 'HAS_NSEC' );
-ok( $tag{NSEC_SIGNED} || $tag{NSEC_NOT_SIGNED}, 'NSEC_SIGNED' ); # FIXME: Find better solution for key expiry
+ok( $tag{NSEC_SIGNED}, 'NSEC_SIGNED' );
 ok( $tag{NSEC_COVERS}, 'NSEC_COVERS' );
 
 @res = Zonemaster->test_method( 'DNSSEC', 'dnssec10', $zone3 );
 %tag = map { $_->tag => 1 } @res;
 ok( $tag{HAS_NSEC3}, 'HAS_NSEC3' );
-ok( $tag{NSEC3_SIGNED} || $tag{NSE3C_NOT_SIGNED}, 'NSEC3_SIGNED' ); # FIXME: Find better solution for key expiry
+ok( $tag{NSEC3_SIGNED}, 'NSEC3_SIGNED' );
 ok( $tag{NSEC3_COVERS}, 'NSEC3_COVERS' );
+
+@res = Zonemaster->test_module( 'DNSSEC', 'loopia.se');
+%tag = map { $_->tag => 1 } @res;
+ok($tag{NO_DS}, 'NO_DS');
+ok($tag{DNSKEY_BUT_NOT_DS}, 'DNSKEY_BUT_NOT_DS');
+
+@res = Zonemaster->test_module( 'DNSSEC', 'openbsd.org');
+%tag = map { $_->tag => 1 } @res;
+ok($tag{EXTRA_PROCESSING_BROKEN}, 'EXTRA_PROCESSING_BROKEN');
+ok($tag{NO_KEYS_OR_NO_SIGS}, 'NO_KEYS_OR_NO_SIGS');
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );

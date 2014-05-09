@@ -72,6 +72,8 @@ config->{no_network} = $save;
 is( $nsv6->stddev_time, 2, 'known value check' );
 is( $nsv6->average_time, 5 );
 is( $nsv6->median_time,  4.5 );
+is( $nsv6->max_time, 9 );
+is( $nsv6->min_time, 2 );
 
 foreach my $ns ( Zonemaster::Nameserver->all_known_nameservers ) {
     isa_ok( $ns, 'Zonemaster::Nameserver' );
