@@ -143,12 +143,12 @@ sub query {
         } ## end if ( $name =~ m/(\.|^)\Q$fname\E$/i)
     } ## end foreach my $fname ( keys %{...})
 
-    if ( not exists( $self->cache->data->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse} ) ) {
-        $self->cache->data->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse} =
+    if ( not exists( $self->cache->data->{"\U$name"}{"\U$type"}{"\U$class"}{$dnssec}{$usevc}{$recurse} ) ) {
+        $self->cache->data->{"\U$name"}{"\U$type"}{"\U$class"}{$dnssec}{$usevc}{$recurse} =
           $self->_query( $name, $type, $href );
     }
 
-    my $p = $self->cache->data->{$name}{$type}{$class}{$dnssec}{$usevc}{$recurse};
+    my $p = $self->cache->data->{"\U$name"}{"\U$type"}{"\U$class"}{$dnssec}{$usevc}{$recurse};
     Zonemaster->logger->add( CACHED_RETURN => { packet => ($p?$p->string:'undef') } );
 
     return $p;
