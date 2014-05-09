@@ -19,13 +19,14 @@
         "EMPTY_RETURN": "DEBUG3",
         "SAVED_NS_CACHE": "DEBUG2",
         "RESTORED_NS_CACHE": "DEBUG2",
-        "UNKOWN_MODULE": "CRITICAL",
+        "UNKNOWN_MODULE": "CRITICAL",
         "UNKNOWN_METHOD": "CRITICAL",
         "IPV4_BLOCKED": "DEBUG2",
         "IPV6_BLOCKED": "DEBUG2",
         "LOOKUP_ERROR": "DEBUG",
         "RECURSE": "DEBUG2",
-        "RECURSE_QUERY": "DEBUG2"
+        "RECURSE_QUERY": "DEBUG2",
+        "LOGGER_CALLBACK_ERROR": "ERROR"
     },
     "BASIC" : {
         "HAS_GLUE" : "INFO",
