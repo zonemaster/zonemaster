@@ -352,7 +352,7 @@ sub _label_not_ace_has_double_hyphen_in_position_3_and_4 {
 
     return 0 if not $label;
 
-    if ( $label =~ /\A..--/smgx ) {
+    if ( $label =~ /\A..--/ and $label !~ /\Axn/ ) {
         return 1;
     }
     else {
@@ -405,7 +405,7 @@ sub _check_name_syntax {
     if ( length "$name" >= $FQDN_MAX_LENGTH ) { # not trailing 'dot' in $name, which explains the '=' sign.
         push @results,
           info(
-            $info_label_prefix.q{NAME_TOO_LONG} => {
+            $info_label_prefix.q{_NAME_TOO_LONG} => {
                 name   => "$name",,
                 length => length( "$name" ),
                 max    => $FQDN_MAX_LENGTH,
