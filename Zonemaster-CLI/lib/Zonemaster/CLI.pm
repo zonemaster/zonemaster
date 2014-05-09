@@ -200,8 +200,21 @@ sub run {
     );
 
     if ( $translator ) {
-        say 'Seconds Level     Message';
-        say '======= ========= =======';
+        if ($self->time) {
+            print 'Seconds ';
+        }
+        if ($self->show_level) {
+            print 'Level     ';
+        }
+        say 'Message';
+
+        if ($self->time) {
+            print '======= ';
+        }
+        if ($self->show_level) {
+            print '========= '
+        }
+        say '=======';
     }
 
     if ( $self->ns and @{ $self->ns } > 0 ) {
