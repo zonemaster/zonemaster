@@ -93,7 +93,7 @@ sub consistency01 {
         $nsnames{ $local_ns->name->string }++;
     }
 
-    if ( scalar ( keys %serials ) == 1 ) {
+    if ( scalar( keys %serials ) == 1 ) {
         push @results,
           info(
             ONE_SOA_SERIAL => {
@@ -150,7 +150,7 @@ sub consistency02 {
         $nsnames{ $local_ns->name->string }++;
     }
 
-    if ( scalar ( keys %rnames ) == 1 ) {
+    if ( scalar( keys %rnames ) == 1 ) {
         push @results,
           info(
             ONE_SOA_RNAME => {
@@ -169,7 +169,7 @@ sub consistency02 {
             push @results,
               info(
                 SOA_RNAME => {
-                    rname  => $rname,
+                    rname   => $rname,
                     servers => join( ';', @{ $rnames{$rname} } ),
                 }
               );
@@ -207,8 +207,8 @@ sub consistency03 {
         $nsnames{ $local_ns->name->string }++;
     }
 
-    if ( scalar ( keys %time_parameter_sets ) == 1 ) {
-        my ( $refresh, $retry, $expire, $minimum) = split /;/, ( keys %time_parameter_sets )[0];
+    if ( scalar( keys %time_parameter_sets ) == 1 ) {
+        my ( $refresh, $retry, $expire, $minimum ) = split /;/, ( keys %time_parameter_sets )[0];
         push @results,
           info(
             ONE_SOA_TIME_PARAMETER_SET => {
@@ -227,7 +227,7 @@ sub consistency03 {
             }
           );
         foreach my $time_parameter_set ( keys %time_parameter_sets ) {
-            my ( $refresh, $retry, $expire, $minimum) = split /;/, $time_parameter_set;
+            my ( $refresh, $retry, $expire, $minimum ) = split /;/, $time_parameter_set;
             push @results,
               info(
                 SOA_TIME_PARAMETER_SET => {

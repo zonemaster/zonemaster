@@ -52,8 +52,10 @@ sub metadata {
     return {
         basic01 => [
             qw(
-              HAS_GLUE NO_GLUE
-              NO_DOMAIN NO_PARENT_RESPONSE
+              HAS_GLUE
+              NO_GLUE
+              NO_DOMAIN
+              NO_PARENT_RESPONSE
               )
         ],
         basic02 => [
