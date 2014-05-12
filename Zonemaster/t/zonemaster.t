@@ -1,10 +1,12 @@
 use Test::More;
+use Test::Fatal;
 use File::Temp qw[:POSIX];
 
 BEGIN {
     use_ok( 'Zonemaster' );
     use_ok( 'Zonemaster::Test' );
     use_ok( 'Zonemaster::Nameserver' );
+    use_ok( 'Zonemaster::Exception' );
 }
 
 my $datafile = q{t/zonemaster.data};
@@ -69,6 +71,16 @@ is(Zonemaster->logger->entries->[-1]->tag, 'UNKNOWN_MODULE', 'Proper message for
 
 Zonemaster->test_method('basic', 'basic17');
 is(Zonemaster->logger->entries->[-1]->tag, 'UNKNOWN_METHOD', 'Proper message for unknown method');
+
+# Test exceptions in callbacks
+Zonemaster->logger->callback( sub { die Zonemaster::Exception->new( { message => 'canary' } ) } );
+
+isa_ok( exception {Zonemaster->test_zone('nic.se')}, 'Zonemaster::Exception' );
+
+isa_ok( exception {Zonemaster->test_module('Basic', 'nic.se')}, 'Zonemaster::Exception' );
+
+isa_ok( exception {Zonemaster->test_method('Basic', 'basic01', Zonemaster->zone('nic.se'))}, 'Zonemaster::Exception' );
+
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );

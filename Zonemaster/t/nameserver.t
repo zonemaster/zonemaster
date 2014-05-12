@@ -40,6 +40,8 @@ ok( $p3 ne $p1,          'Same packet object not returned with other flag' );
 
 my $nscopy = Zonemaster->ns( 'ns.nic.se.', '2a00:801:f0:53:0000::53' );
 ok( $nsv6 eq $nscopy, 'Same nameserver object returned' );
+my $nssame = Zonemaster->ns( 'foo.example.org', '2a00:801:f0:53:0000::53' );
+ok( ($nssame ne $nsv6 and $nssame->cache eq $nsv6->cache), 'Different name, same IP are different but has same cache');
 
 SKIP: {
     skip '/tmp not writable', 2 unless -w '/tmp';

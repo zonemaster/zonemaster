@@ -4,6 +4,7 @@ use Test::Fatal;
 BEGIN {
     use_ok( 'Zonemaster::Logger' );
     use_ok( 'Zonemaster::Logger::Entry' );
+    use_ok( 'Zonemaster::Exception' );
 }
 use Zonemaster::Util;
 
@@ -51,6 +52,18 @@ my %res = map {$_->tag => 1} @{$log->entries};
 ok($res{LOGGER_CALLBACK_ERROR}, 'Callback crash logged');
 ok($res{DO_CRASH}, 'DO_CRASH got logged anyway');
 ok(!$log->callback, 'Callback got removed');
+
+$log->callback(
+    sub { die Zonemaster::Exception->new({ message => 'canary' }) }
+);
+eval { $log->add( DO_NOT_CRASH => {} )};
+my $err = $@;
+my %res = map {$_->tag => 1} @{$log->entries};
+ok($res{DO_NOT_CRASH}, 'DO_NOT_CRASH got logged');
+ok($log->callback, 'Callback still there');
+isa_ok($err, 'Zonemaster::Exception');
+is("$err", 'canary');
+$log->clear_callback;
 
 ok(Zonemaster->config->load_config_file('t/config.json'), 'config loaded');
 $log->add( FILTER_THIS => { when => 1, and => 'this' });
