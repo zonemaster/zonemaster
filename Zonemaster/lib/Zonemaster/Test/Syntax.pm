@@ -368,6 +368,10 @@ sub _check_name_syntax {
     my ( $info_label_prefix, $name ) = @_;
     my @results;
 
+    if (not ref($name)) {
+        $name = name($name);
+    }
+
     foreach my $local_label ( @{ $name->labels } ) {
         if ( length $local_label > $LABEL_MAX_LENGTH ) {
             push @results,
