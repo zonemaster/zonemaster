@@ -11,6 +11,7 @@ use Zonemaster::Test::Basic;
 use IO::Socket::INET6; # Lazy-loads, so make sure it's here for the version logging
 
 use Module::Find qw[useall];
+use Scalar::Util qw[blessed];
 
 my @all_test_modules;
 
@@ -57,7 +58,13 @@ sub run_all_for {
             info( MODULE_VERSION => { module => $module, version => $module->version } );
             my @res = eval { $module->all( $zone ) };
             if ($@) {
-                push @res, info( MODULE_ERROR => { msg => $@ } );
+                my $err = $@;
+                if (blessed $err and $err->isa('Zonemaster::Exception')) {
+                    die $err; # Utility exception, pass it on
+                }
+                else {
+                    push @res, info( MODULE_ERROR => { msg => "$err" } );
+                }
             }
 
             push @results, @res;
@@ -76,7 +83,13 @@ sub run_module {
         my $m = "Zonemaster::Test::$module";
         my @res = eval { $m->all( $zone ) };
         if ($@) {
-            push @res, info( MODULE_ERROR => { msg => $@ } );
+            my $err = $@;
+            if (blessed $err and $err->isa('Zonemaster::Exception')) {
+                die $err; # Utility exception, pass it on
+            }
+            else {
+                push @res, info( MODULE_ERROR => { msg => "$err" } );
+            }
         }
         return @res;
     }
@@ -98,7 +111,13 @@ sub run_one {
             info( MODULE_CALL => { module => $module, method => $test, version => $m->version } );
             my @res = eval { $m->$test( @arguments ) };
             if ($@) {
-                push @res, info( MODULE_ERROR => { msg => $@ } );
+                my $err = $@;
+                if (blessed $err and $err->isa('Zonemaster::Exception')) {
+                    die $err; # Utility exception, pass it on
+                }
+                else {
+                    push @res, info( MODULE_ERROR => { msg => "$err" } );
+                }
             }
             return @res;
         }

@@ -6,6 +6,7 @@ use Moose;
 use Zonemaster::Logger::Entry;
 use Zonemaster;
 use List::MoreUtils qw[none];
+use Scalar::Util qw[blessed];
 
 has 'entries' => (
     is      => 'ro',
@@ -25,8 +26,14 @@ sub add {
     if ( $self->callback and ref( $self->callback ) eq 'CODE' ) {
         eval { $self->callback->( $new ) };
         if ( $@ ) {
-            $self->clear_callback;
-            $self->add( LOGGER_CALLBACK_ERROR => { exception => $@ } );
+            my $err = $@;
+            if (blessed($err) and $err->isa("Zonemaster::Exception")) {
+                die $err;
+            }
+            else {
+                $self->clear_callback;
+                $self->add( LOGGER_CALLBACK_ERROR => { exception => $err } );
+            }
         }
     }
 
@@ -78,6 +85,21 @@ Zonemaster::Logger - class that holds L<Zonemaster::Logger::Entry> objects.
 =item entries
 
 A reference to an array holding L<Zonemaster::Logger::Entry> objects.
+
+=item callback($coderef)
+
+If this attribute is set, the given code reference will be called every time a
+log entry is added. The referenced code will be called with the newly created
+entry as its single argument. The return value of the called code is ignored.
+
+If the called code throws an exception, and the exception is not an object of
+class L<Zonemaster::Exception> (or a subclass of it), the exception will be
+logged as a system message at default level C<CRITICAL> and the callback
+attribute will be cleared.
+
+If an exception that is of (sub)class L<Zonemaster::Exception> is called, the
+exception will simply be rethrown until it reaches the code that started the
+test run that logged the message.
 
 =back
 

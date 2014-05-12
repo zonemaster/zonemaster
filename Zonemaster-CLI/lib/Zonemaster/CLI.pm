@@ -1,3 +1,9 @@
+# Brief help module to define the exception we use for early exits.
+package NormalExit;
+use Moose;
+extends 'Zonemaster::Exception';
+
+# The actual interesting module.
 package Zonemaster::CLI;
 
 use 5.014002;
@@ -12,10 +18,12 @@ use Zonemaster;
 use Zonemaster::Logger::Entry;
 use Zonemaster::Translator;
 use Zonemaster::Util qw[pod_extract_for];
+use Zonemaster::Exception;
 use JSON::XS;
+use Scalar::Util qw[blessed];
 
 our %numeric = Zonemaster::Logger::Entry->levels;
-my $json = JSON::XS->new;
+my $json = JSON::XS->new->allow_blessed->convert_blessed;
 
 STDOUT->autoflush( 1 );
 
@@ -222,7 +230,9 @@ sub run {
                     printf "%7.2f %-9s %s\n", $entry->timestamp, $entry->level, $entry->string;
                 }
             } ## end if ( $numeric{ uc $entry...})
-            exit( 0 ) if ( $self->stop_level and $numeric{ uc $entry->level } >= $numeric{ uc $self->stop_level } );
+            if ( $self->stop_level and $numeric{ uc $entry->level } >= $numeric{ uc $self->stop_level } ) {
+                die(NormalExit->new({message => "Saw message at level " . $entry->level}));
+            }
         }
     );
 
@@ -263,19 +273,30 @@ sub run {
     }
 
     # Actually run tests!
-    if ( $self->test and @{ $self->test } > 0 ) {
-        foreach my $t ( @{ $self->test } ) {
-            my ( $module, $method ) = split( '/', $t, 2 );
-            if ( $method ) {
-                Zonemaster->test_method( $module, $method, Zonemaster->zone( $domain ) );
-            }
-            else {
-                Zonemaster->test_module( $module, $domain );
+    eval {
+        if ( $self->test and @{ $self->test } > 0 ) {
+            foreach my $t ( @{ $self->test } ) {
+                my ( $module, $method ) = split( '/', $t, 2 );
+                if ( $method ) {
+                    Zonemaster->test_method( $module, $method, Zonemaster->zone( $domain ) );
+                }
+                else {
+                    Zonemaster->test_module( $module, $domain );
+                }
             }
         }
-    }
-    else {
-        Zonemaster->test_zone( $domain );
+        else {
+            Zonemaster->test_zone( $domain );
+        }
+    };
+    if ($@) {
+        my $err = $@;
+        if (blessed $err and $err->isa("NormalExit")) {
+            say STDERR "Exited early: " . $err->message;
+        }
+        else {
+            die $err; # Don't know what it is, rethrow
+        }
     }
 
     if ( $self->lang eq 'json' ) {
