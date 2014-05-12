@@ -113,6 +113,13 @@ has 'test' => (
 'Specify test to run. Should be either the name of a module, or the name of a module and the name of a method in that module separated by a "/" character (Example: "Basic/basic1"). The method specified must be one that takes a zone object as its single argument. This switch can be repeated.'
 );
 
+has 'stop_level' => (
+    is            => 'ro',
+    isa           => 'Str',
+    required      => 0,
+    documentation => 'As soon as a message at this level or higher is logged, execution will stop.'
+);
+
 sub run {
     my ( $self ) = @_;
     my @accumulator;
@@ -143,6 +150,10 @@ sub run {
         die "Must give the name of a domain to test.\n";
     }
 
+    if ( $self->stop_level and not defined( $numeric{ $self->stop_level } ) ) {
+        die "Failed to recognize stop level '" . $self->stop_level . "'.\n";
+    }
+
     Zonemaster->config->get->{net}{ipv4} = $self->ipv4;
     Zonemaster->config->get->{net}{ipv6} = $self->ipv6;
 
@@ -171,48 +182,50 @@ sub run {
 
             print_spinner();
 
-            return if $numeric{ uc $entry->level } < $numeric{ uc $self->level };
+            if ( $numeric{ uc $entry->level } >= $numeric{ uc $self->level } ) {
 
-            if ( $translator ) {
-                if ( $self->time ) {
-                    printf "%7.2f ", $entry->timestamp;
+                if ( $translator ) {
+                    if ( $self->time ) {
+                        printf "%7.2f ", $entry->timestamp;
+                    }
+
+                    if ( $self->show_level ) {
+                        printf "%-9s ", $entry->level;
+                    }
+
+                    say $translator->translate_tag( $entry );
                 }
-
-                if ( $self->show_level ) {
-                    printf "%-9s ", $entry->level;
+                elsif ( $self->lang eq 'json' ) {
+                    push @accumulator,
+                      {
+                        timestamp => $entry->timestamp,
+                        module    => $entry->module,
+                        tag       => $entry->tag,
+                        args      => $entry->args,
+                      };
                 }
-
-                say $translator->translate_tag( $entry );
-            }
-            elsif ( $self->lang eq 'json' ) {
-                push @accumulator,
-                  {
-                    timestamp => $entry->timestamp,
-                    module    => $entry->module,
-                    tag       => $entry->tag,
-                    args      => $entry->args,
-                  };
-            }
-            else {
-                printf "%7.2f %-9s %s\n", $entry->timestamp, $entry->level, $entry->string;
-            }
+                else {
+                    printf "%7.2f %-9s %s\n", $entry->timestamp, $entry->level, $entry->string;
+                }
+            } ## end if ( $numeric{ uc $entry...})
+            exit( 0 ) if ( $self->stop_level and $numeric{ uc $entry->level } >= $numeric{ uc $self->stop_level } );
         }
     );
 
     if ( $translator ) {
-        if ($self->time) {
+        if ( $self->time ) {
             print 'Seconds ';
         }
-        if ($self->show_level) {
+        if ( $self->show_level ) {
             print 'Level     ';
         }
         say 'Message';
 
-        if ($self->time) {
+        if ( $self->time ) {
             print '======= ';
         }
-        if ($self->show_level) {
-            print '========= '
+        if ( $self->show_level ) {
+            print '========= ';
         }
         say '=======';
     }
