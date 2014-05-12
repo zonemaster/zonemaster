@@ -120,6 +120,20 @@ has 'stop_level' => (
     documentation => 'As soon as a message at this level or higher is logged, execution will stop.'
 );
 
+has 'config' => (
+    is            => 'ro',
+    isa           => 'Str',
+    required      => 0,
+    documentation => 'Name of configuration file to load.',
+);
+
+has 'policy' => (
+    is            => 'ro',
+    isa           => 'Str',
+    required      => 0,
+    documentation => 'Name of policy file to load.',
+);
+
 sub run {
     my ( $self ) = @_;
     my @accumulator;
@@ -211,6 +225,20 @@ sub run {
             exit( 0 ) if ( $self->stop_level and $numeric{ uc $entry->level } >= $numeric{ uc $self->stop_level } );
         }
     );
+
+    if ( $self->policy ) {
+        say "Loading policy from " . $self->policy;
+        Zonemaster->config->load_policy_file( $self->policy );
+    }
+
+    if ( $self->config ) {
+        say "Loading configuration from " . $self->config;
+        Zonemaster->config->load_config_file( $self->config );
+    }
+
+    if ( $self->config or $self->policy ) {
+        print "\n";    # Cosmetic
+    }
 
     if ( $translator ) {
         if ( $self->time ) {
