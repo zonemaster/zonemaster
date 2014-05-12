@@ -1,6 +1,10 @@
 use Test::More;
+use Test::Fatal;
 
-BEGIN { use_ok( 'Zonemaster::Logger' ) }
+BEGIN {
+    use_ok( 'Zonemaster::Logger' );
+    use_ok( 'Zonemaster::Logger::Entry' );
+}
 use Zonemaster::Util;
 
 my $log = Zonemaster->logger;
@@ -25,6 +29,7 @@ like( "$entry", qr/SYSTEM:TEST an=argument/, 'stringification overload' );
 is( $entry->level, 'DEBUG', 'right level' );
 my $example = Zonemaster::Logger::Entry->new( { module => 'BASIC', tag => 'NS_FAILED' } );
 is( $example->level, 'WARNING', 'expected level' );
+is( $example->numeric_level, 3, 'expected numeric level' );
 
 my $canary = 0;
 $log->callback(
@@ -58,5 +63,13 @@ my $not_filtered = $log->entries->[-1];
 is($not_filtered->level, 'DEBUG', 'Unfiltered level');
 is($filtered->level, 'INFO', 'Filtered level');
 is($also_filtered->level, 'INFO', 'Filtered level');
+
+my %levels = Zonemaster::Logger::Entry->levels;
+is($levels{CRITICAL}, 5, 'CRITICAL is level 5');
+is($levels{INFO}, 1, 'INFO is level 1');
+
+Zonemaster->config->policy->{BASIC}{NS_FAILED} = 'GURKSALLAD';
+my $fail = Zonemaster::Logger::Entry->new( { module => 'BASIC', tag => 'NS_FAILED' } );
+like( exception { $fail->level}, qr/Unknown level string: GURKSALLAD/, 'Dies on unknown level string');
 
 done_testing;

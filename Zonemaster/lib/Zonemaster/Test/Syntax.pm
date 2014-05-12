@@ -9,9 +9,14 @@ use Zonemaster::Util;
 use Zonemaster::Recursor;
 use Zonemaster::DNSName;
 
+use Readonly;
+
 use List::MoreUtils;
 use RFC::RFC822::Address qw[valid];
 use Time::Local;
+
+Readonly our $FQDN_MAX_LENGTH  => 255;
+Readonly our $LABEL_MAX_LENGTH => 63;
 
 ###
 ### Entry points
@@ -21,24 +26,25 @@ sub all {
     my ( $class, $zone ) = @_;
     my @results;
 
-    push @results, $class->name_syntax( $zone->name );
-    foreach my $name ( keys %{ { map { $_->name => 1 } ( @{ $zone->ns }, @{ $zone->glue } ) } } ) {
-        push @results, $class->name_syntax( $name );
+    push @results, $class->syntax01( $zone->name );
+    push @results, $class->syntax02( $zone->name );
+    push @results, $class->syntax03( $zone->name );
+
+    my %nsnames;
+    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+        next if $nsnames{ $local_ns->name };
+        push @results, $class->syntax04( $local_ns->name );
+        $nsnames{ $local_ns->name }++;
     }
 
-    my $p = $zone->query_one( $zone->name, 'SOA' );
-    my ( $soa ) = $p->get_records( 'SOA' );
-    push @results, $class->name_syntax( $soa->mname );     # syntax07
-    push @results, $class->rname_syntax( $soa->rname );    # syntax05 and syntax06
-    push @results, $class->soa_date( $soa->serial );       # syntax09
+    push @results, $class->syntax05( $zone );
+    push @results, $class->syntax06( $zone );
+    push @results, $class->syntax07( $zone );
 
-    # syntax08
-    my $rname = $soa->rname;
-    $rname =~ s/[^\\]\.(.*)+$/$1/;                         # Keep everything after the first unescaped dot
-    $p = Zonemaster::Recursor->recurse( $rname, 'MX' );
-    foreach my $mx ( grep { $_->type eq 'MX' } $p->answer ) {
-        push @results, $class->name_syntax( $mx->exchange );
-    }
+    my $p = $zone->query_one( $zone->name, q{MX} );
+    push @results, $class->syntax08( sort keys %{ { map { $_->exchange => 1 } $p->get_records( q{MX}, q{answer} ) } } );
+
+    push @results, $class->syntax09( $zone );
 
     return @results;
 } ## end sub all
@@ -51,30 +57,62 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
-        name_syntax => [
+        syntax01 => [
             qw(
-              CHECKING_NAME
               ONLY_ALLOWED_CHARS
               NON_ALLOWED_CHARS
-              INITIAL_HYPHEN
-              TERMINAL_HYPHEN
-              DISCOURAGED_DOUBLE_DASH
-              NUMERIC_TLD
-              NAME_TOO_LONG
-              LABEL_TOO_LONG
               )
         ],
-        rname_syntax => [
+        syntax02 => [
+            qw(
+              INITIAL_HYPHEN
+              TERMINAL_HYPHEN
+              )
+        ],
+        syntax03 => [
+            qw(
+              DISCOURAGED_DOUBLE_DASH
+              )
+        ],
+        syntax04 => [
+            qw(
+              NAMESERVER_DISCOURAGED_DOUBLE_DASH
+              NAMESERVER_LABEL_TOO_LONG
+              NAMESERVER_NUMERIC_TLD
+              NAMESERVER_NAME_TOO_LONG
+              )
+        ],
+        syntax05 => [
             qw(
               RNAME_MISUSED_AT_SIGN
+              )
+        ],
+        syntax06 => [
+            qw(
               RNAME_RFC822_INVALID
               )
         ],
-        soa_date => [
+        syntax07 => [
+            qw(
+              MNAME_DISCOURAGED_DOUBLE_DASH
+              MNAME_LABEL_TOO_LONG
+              MNAME_NUMERIC_TLD
+              MNAME_NAME_TOO_LONG
+              )
+        ],
+        syntax08 => [
+            qw(
+              MX_DISCOURAGED_DOUBLE_DASH
+              MX_LABEL_TOO_LONG
+              MX_NUMERIC_TLD
+              MX_NAME_TOO_LONG
+              )
+        ],
+        syntax09 => [
             qw(
               SERIAL_NOT_DATE
               )
-        ]
+        ],
     };
 } ## end sub metadata
 
@@ -86,102 +124,296 @@ sub version {
 ### Tests
 ###
 
-sub name_syntax {
+sub syntax01 {
     my ( $class, $name ) = @_;
     my @results;
 
-    if ( not ref( $name ) and not $name->isa( 'Zonemaster::DNSName' ) ) {
-        $name = Zonemaster::DNSName->new( $name );
-    }
-
-    info( CHECKING_NAME => { name => "$name" } );
-
-    # syntax01
-    if ( List::MoreUtils::all { m/^[-A-Za-z0-9]+$/ } @{ $name->labels } ) {
-        push @results, info( ONLY_ALLOWED_CHARS => { name => "$name" } );
+    if ( _name_has_only_legal_characters( $name ) ) {
+        push @results,
+          info(
+            ONLY_ALLOWED_CHARS => {
+                name => "$name",
+            }
+          );
     }
     else {
-        push @results, info( NON_ALLOWED_CHARS => { name => "$name" } );
-    }
-
-    # syntax02
-    foreach my $label ( @{ $name->labels } ) {
-        if ( $label =~ /^-/ ) {
-            push @results, info( INITIAL_HYPHEN => { label => $label, name => "$name" } );
-        }
-        if ( $label =~ /-$/ ) {
-            push @results, info( TERMINAL_HYPHEN => { label => $label, name => "$name" } );
-        }
-    }
-
-    # syntax03
-    foreach my $label ( @{ $name->labels } ) {
-        if ( ( $label =~ /^..--/ ) and not( $label =~ /^xn/ ) ) {
-            push @results, info( DISCOURAGED_DOUBLE_DASH => { label => $label, name => "$name" } );
-        }
-    }
-
-    # syntax04, numeric TLD subtest
-    my $tld = @{ $name->labels }[-1];
-    if ( $tld =~ /^[0-9]+$/ ) {
-        push @results, info( NUMERIC_TLD => { name => "$name" } );
-    }
-
-    # syntax04, size subtests, can only fail for manually added names
-    if ( length( "$name" ) > 254 ) {    # $name plus terminal dot > 255
-        push @results, info( NAME_TOO_LONG => { name => "$name", length => length( "$name" ) } );
-    }
-    foreach my $label ( @{ $name->labels } ) {
-        if ( length( $label ) > 63 ) {
-            push @results, info( LABEL_TOO_LONG => { name => "$name", label => $label, length => length( $label ) } );
-        }
+        push @results,
+          info(
+            NON_ALLOWED_CHARS => {
+                name => "$name",
+            }
+          );
     }
 
     return @results;
-} ## end sub name_syntax
+} ## end sub syntax01
 
-sub rname_syntax {
-    my ( $self, $rname ) = @_;
+sub syntax02 {
+    my ( $class, $name ) = @_;
     my @results;
 
-    info( CHECKING_RNAME => { rname => $rname } );
-
-    # syntax05
-    my $copy = $rname;
-    $copy =~ s/\\././g;
-    if ( index( $copy, '@' ) != -1 ) {
-        push @results, info( RNAME_MISUSED_AT_SIGN => { rname => $rname } );
-    }
-
-    # syntax06
-    $rname =~ s/([^\\])\./$1@/;    # Replace first non-escaped dot with an at-sign
-    $rname =~ s/\\././g;           # Un-escape dots
-    $rname =~ s/\.$//;             # Validator does not like final dots
-    if ( not valid( $rname ) ) {
-        push @results, info( RNAME_RFC822_INVALID => { rname => $rname } );
+    foreach my $local_label ( @{ $name->labels } ) {
+        if ( _label_starts_with_hyphen( $local_label ) ) {
+            push @results,
+              info(
+                INITIAL_HYPHEN => {
+                    label => $local_label,
+                    name  => "$name",
+                }
+              );
+        }
+        if ( _label_ends_with_hyphen( $local_label ) ) {
+            push @results,
+              info(
+                TERMINAL_HYPHEN => {
+                    label => $local_label,
+                    name  => "$name",
+                }
+              );
+        }
     }
 
     return @results;
-} ## end sub rname_syntax
+} ## end sub syntax02
 
-sub soa_date {
-    my ( $self, $serial ) = @_;
+sub syntax03 {
+    my ( $class, $name ) = @_;
+    my @results;
+
+    foreach my $local_label ( @{ $name->labels } ) {
+        if ( _label_not_ace_has_double_hyphen_in_position_3_and_4( $local_label ) ) {
+            push @results,
+              info(
+                DISCOURAGED_DOUBLE_DASH => {
+                    label => $local_label,
+                    name  => "$name",
+                }
+              );
+        }
+    }
+
+    return @results;
+} ## end sub syntax03
+
+sub syntax04 {
+    my ( $class, $name ) = @_;
+
+    return _check_name_syntax( q{NAMESERVER}, $name );
+} ## end sub syntax04
+
+sub syntax05 {
+    my ( $class, $zone ) = @_;
+    my @results;
+
+    my $p = $zone->query_one( $zone->name, q{SOA} );
+    my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
+
+    my $rname = $soa->rname;
+    $rname =~ s/\\./\./smgx;
+    if ( index( $rname, q{@} ) != -1 ) {
+        push @results,
+          info(
+            RNAME_MISUSED_AT_SIGN => {
+                rname => $soa->rname,
+            }
+          );
+    }
+
+    return @results;
+} ## end sub syntax05
+
+sub syntax06 {
+    my ( $class, $zone ) = @_;
+    my @results;
+
+    my $p = $zone->query_one( $zone->name, q{SOA} );
+    my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
+
+    my $rname = $soa->rname;
+    $rname =~ s/([^\\])\./$1@/smx;    # Replace first non-escaped dot with an at-sign
+    $rname =~ s/\\./\./smgx;           # Un-escape dots
+    $rname =~ s/\.\z//smgx;            # Validator does not like final dots
+    if ( not valid( $rname ) ) {
+        push @results,
+          info(
+            RNAME_RFC822_INVALID => {
+                rname => $rname,
+            }
+          );
+    }
+
+    return @results;
+} ## end sub syntax06
+
+sub syntax07 {
+    my ( $class, $zone ) = @_;
+
+    my $p = $zone->query_one( $zone->name, q{SOA} );
+    my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
+
+    my $mname = $soa->mname;
+
+    return _check_name_syntax( q{MNAME}, $mname );
+} ## end sub syntax07
+
+sub syntax08 {
+    my ( $class, @names ) = @_;
+    my @results;
+
+    foreach my $mx ( @names ) {
+        push @results, _check_name_syntax( q{MX}, $mx );
+    }
+
+    return @results;
+} ## end sub syntax08
+
+sub syntax09 {
+    my ( $class, $zone ) = @_;
+
+    my $p = $zone->query_one( $zone->name, q{SOA} );
+    my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
+
+    my $serial = $soa->serial;
 
     if ( length( $serial ) != 10 ) {    # Wrong length, can't be date+counter
-        return info( SERIAL_NOT_DATE => { serial => $serial, why => 'wrong length' } );
+        return info(
+            SERIAL_NOT_DATE => {
+                serial => $serial,
+                why    => q{wrong length},
+            }
+        );
     }
 
     my ( $year, $month, $day ) = $serial =~ m|^([0-9]{4})([0-9]{2})([0-9]{2})|;
     if ( not( defined( $year ) and defined( $month ) and defined( $day ) ) ) {
-        return info( SERIAL_NOT_DATE => { serial => $serial, why => 'wrong format' } );
+        return info(
+            SERIAL_NOT_DATE => {
+                serial => $serial,
+                why    => q{wrong format},
+            }
+        );
     }
 
     my $t = eval { timegm( 0, 0, 0, $day, $month - 1, $year ) };
     if ( not defined( $t ) ) {
-        return info( SERIAL_NOT_DATE => { serial => $serial, why => 'invalid date' } );
+        return info(
+            SERIAL_NOT_DATE => {
+                serial => $serial,
+                why    => q{invalid date},
+            }
+        );
     }
 
-    return;
+} ## end sub syntax09
+
+###
+### Internal Tests with Boolean (0|1) return value.
+###
+
+sub _name_has_only_legal_characters {
+    my ( $name ) = @_;
+
+    if ( List::MoreUtils::all { m/\A[-A-Za-z0-9]+\z/ } @{ $name->labels } ) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+sub _label_starts_with_hyphen {
+    my ( $label ) = @_;
+
+    return 0 if not $label;
+
+    if ( $label =~ /\A-/smgx ) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+sub _label_ends_with_hyphen {
+    my ( $label ) = @_;
+
+    return 0 if not $label;
+
+    if ( $label =~ /-\z/smgx ) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+sub _label_not_ace_has_double_hyphen_in_position_3_and_4 {
+    my ( $label ) = @_;
+
+    return 0 if not $label;
+
+    if ( $label =~ /\A..--/ and $label !~ /\Axn/ ) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+###
+### Common part for syntax04, syntax07 and syntax08
+###
+
+sub _check_name_syntax {
+    my ( $info_label_prefix, $name ) = @_;
+    my @results;
+
+    foreach my $local_label ( @{ $name->labels } ) {
+        if ( length $local_label > $LABEL_MAX_LENGTH ) {
+            push @results,
+              info(
+                $info_label_prefix.q{_LABEL_TOO_LONG} => {
+                    name   => "$name",
+                    label  => $local_label,
+                    length => length( $local_label ),
+                    max    => $LABEL_MAX_LENGTH,
+                }
+              );
+        }
+        if ( _label_not_ace_has_double_hyphen_in_position_3_and_4( $local_label ) ) {
+            push @results,
+              info(
+                $info_label_prefix.q{_DISCOURAGED_DOUBLE_DASH} => {
+                    label => $local_label,
+                    name  => "$name",
+                }
+              );
+        }
+    }
+
+    my $tld = @{ $name->labels }[-1];
+    if ( $tld =~ /\A[0-9]+\z/smgx ) {
+        push @results,
+          info(
+            $info_label_prefix.q{_NUMERIC_TLD} => {
+                name  => "$name",
+                tld   => $tld,
+            }
+          );
+    }
+
+    if ( length "$name" >= $FQDN_MAX_LENGTH ) { # not trailing 'dot' in $name, which explains the '=' sign.
+        push @results,
+          info(
+            $info_label_prefix.q{_NAME_TOO_LONG} => {
+                name   => "$name",,
+                length => length( "$name" ),
+                max    => $FQDN_MAX_LENGTH,
+            }
+          );
+    }
+
+    return @results;
 }
 
 1;
@@ -217,17 +449,41 @@ Returns a version string for the module.
 
 =over
 
-=item name_syntax($name)
+=item syntax01($name)
 
-Verifies that the name given conforms to the rules.
+Verifies that the name (Zonemaster::DNSName) given contains only allowed characters.
 
-=item rname_syntax($rname)
+=item syntax02($name)
 
-Perform tests on a SOA RNAME.
+Verifies that the name (Zonemaster::DNSName) given does not start or end with a hyphen ('-').
 
-=item soa_date($serial)
+=item syntax03($name)
 
-Check if the SOA serial value conforms to the date plus counter format.
+Verifies that the name (Zonemaster::DNSName) given does not contain a hyphen in 3rd and 4th position (in the exception of 'xn--').
+
+=item syntax04($name)
+
+Verify that a nameserver (Zonemaster::DNSName) given is conform to previous syntax rules. It also verify name total length as well as labels.
+
+=item syntax05($zone)
+
+Verify that a SOA rname (Zonemaster::DNSName) given has a conform usage of at sign (@).
+
+=item syntax06($zone)
+
+Verify that a SOA rname (Zonemaster::DNSName) given is RFC822 compliant.
+
+=item syntax07($zone)
+
+Verify that SOA mname of zone given is conform to previous syntax rules (syntax01, syntax02, syntax03). It also verify name total length as well as labels.
+
+=item syntax08(@mx_names)
+
+Verify that MX name (Zonemaster::DNSName)  given is conform to previous syntax rules (syntax01, syntax02, syntax03). It also verify name total length as well as labels.
+
+=item syntax09($zone)
+
+Check SOA serial format.
 
 =back
 

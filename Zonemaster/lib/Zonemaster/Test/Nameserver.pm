@@ -7,8 +7,6 @@ use warnings;
 use Zonemaster;
 use Zonemaster::Util;
 
-use Net::LDNS;
-
 ###
 ### Entry Points
 ###
@@ -150,7 +148,7 @@ sub nameserver03 {
 
         my $first_rr;
         eval {
-            my $res = Net::LDNS->new( $local_ns->address->short );
+            my $res = $local_ns->dns;
             $res->axfr_start( $zone->name );
             ( $first_rr ) = $res->axfr_next;
             1;

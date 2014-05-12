@@ -288,6 +288,10 @@ Verify reverse DNS entries exist for nameservers IP addresses.
 
 Verify that reverse DNS entries match nameservers names.
 
+=item find_special_address($ip)
+
+Verify that an address (Net::IP) given is a special (private, reserved, ...) one.
+
 =back
 
 =cut

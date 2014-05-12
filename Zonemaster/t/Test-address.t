@@ -11,7 +11,7 @@ my $datafile = q{t/Test-address.data};
 if ( not $ENV{ZONEMASTER_RECORD} ) {
     die "Stored data file missing" if not -r $datafile;
     Zonemaster::Nameserver->restore( $datafile );
-    Zonemaster->config->{no_network} = 1;
+    Zonemaster->config->get->{no_network} = 1;
 }  
 
 ok(defined(Zonemaster::Test::Address->find_special_address(Net::IP->new(q{0.255.255.255}))), q{bad address});
