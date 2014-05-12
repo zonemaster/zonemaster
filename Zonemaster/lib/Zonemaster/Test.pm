@@ -33,6 +33,7 @@ sub _log_dependency_versions {
     info ( DEPENDENCY_VERSION => { name => 'Net::IP', version  => $Net::IP::VERSION });
     info ( DEPENDENCY_VERSION => { name => 'List::MoreUtils', version  => $List::MoreUtils::VERSION });
     info ( DEPENDENCY_VERSION => { name => 'RFC::RFC822::Address', version  => $RFC::RFC822::Address::VERSION });
+    info ( DEPENDENCY_VERSION => { name => 'Scalar::Util', version  => $Scalar::Util::VERSION });
 }
 
 sub modules {
