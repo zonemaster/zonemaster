@@ -313,6 +313,10 @@ sub syntax09 {
 sub _name_has_only_legal_characters {
     my ( $name ) = @_;
 
+    if (not ref($name)) {
+        $name = name($name);
+    }
+
     if ( List::MoreUtils::all { m/\A[-A-Za-z0-9]+\z/ } @{ $name->labels } ) {
         return 1;
     }
