@@ -101,6 +101,17 @@ sub add_fake_delegation {
     return;
 }
 
+sub add_fake_ds {
+    my ( $class, $domain, $aref ) = @_;
+
+    my $parent = $class->zone($recursor->parent($domain));
+    foreach my $ns (@{$parent->ns}) {
+        $ns->add_fake_ds($domain => $aref);
+    }
+
+    return;
+}
+
 sub save_cache {
     my ( $class, $filename ) = @_;
 
@@ -191,6 +202,23 @@ Example:
             'ns3.nic.se' => [ '212.247.8.152',  '2a00:801:f0:211::152' ]
         }
     );
+
+=item add_fake_ds($domain, $data)
+
+This method adds fake DS records to the system. The arguments are a domain
+name, and a reference to a list of references to hashes. The hashes in turn
+must have the keys C<keytag>, C<algorithm>, C<type> and C<digest>, with the
+values holding the corresponding data. The digest data should be a single
+unbroken string of hexadecimal digits.
+
+Example:
+
+   Zonemaster->add_fake_ds(
+      'nic.se' => [
+         { keytag => 16696, algorithm => 5, type => 2, digest => '40079DDF8D09E7F10BB248A69B6630478A28EF969DDE399F95BC3B39F8CBACD7' },
+         { keytag => 16696, algorithm => 5, type => 1, digest => 'EF5D421412A5EAF1230071AFFD4F585E3B2B1A60' },
+      ]
+   );
 
 =back
 

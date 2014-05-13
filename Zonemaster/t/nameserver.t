@@ -104,4 +104,13 @@ if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
 }
 
+$nsv4->add_fake_ds('iis.se' => [{ keytag => 16696, algorithm => 5, type => 1, digest => 'DEADBEEF' }]);
+ok($nsv4->fake_ds->{'iis.se'}, 'Fake DS data added');
+my $p7 = $nsv4->query('iis.se', 'DS', { class => 'IN' });
+isa_ok($p7, 'Zonemaster::Packet');
+my ($dsrr) = $p7->answer;
+isa_ok($dsrr, 'Net::LDNS::RR::DS');
+is($dsrr->keytag, 16696, 'Expected keytag');
+is($dsrr->hexdigest, 'deadbeef', 'Expected digest data');
+
 done_testing;

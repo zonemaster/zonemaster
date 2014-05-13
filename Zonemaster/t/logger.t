@@ -58,7 +58,7 @@ $log->callback(
 );
 eval { $log->add( DO_NOT_CRASH => {} )};
 my $err = $@;
-my %res = map {$_->tag => 1} @{$log->entries};
+%res = map {$_->tag => 1} @{$log->entries};
 ok($res{DO_NOT_CRASH}, 'DO_NOT_CRASH got logged');
 ok($log->callback, 'Callback still there');
 isa_ok($err, 'Zonemaster::Exception');

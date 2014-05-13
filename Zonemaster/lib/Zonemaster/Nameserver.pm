@@ -35,6 +35,7 @@ has 'cache' => ( is => 'ro', isa => 'Zonemaster::Nameserver::Cache', lazy_build 
 has 'times' => ( is => 'ro', isa => 'ArrayRef',                   default    => sub { [] } );
 
 has 'fake_delegations' => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
+has 'fake_ds' => ( is => 'ro', isa => 'HashRef', default => sub { {} });
 
 ###
 ### Variables
@@ -118,6 +119,21 @@ sub query {
     my $usevc   = $href->{usevc}   // $defaults{usevc};
     my $recurse = $href->{recurse} // $defaults{recurse};
 
+    # Fake a DS answer
+    if ( $type eq 'DS' and $class eq 'IN' and $self->fake_ds->{lc($name)} ) {
+        my $p = Net::LDNS::Packet->new( $name, $type, $class );
+        $p->aa( 0 );
+        $p->do( $dnssec );
+        $p->rd( $recurse );
+        foreach my $rr (@{$self->fake_ds->{$name}}) {
+            $p->unique_push('answer', $rr);
+        }
+        my $res = Zonemaster::Packet->new({ packet => $p });
+        Zonemaster->logger->add( FAKE_DS_RETURNED => { name => "$name", from => "$self" });
+        return $res;
+    }
+
+    # Fake a delegation
     foreach my $fname ( keys %{ $self->fake_delegations } ) {
         if ( $name =~ m/(\.|^)\Q$fname\E$/i ) {
             my $p = Net::LDNS::Packet->new( $name, $type, $class );
@@ -169,6 +185,27 @@ sub add_fake_delegation {
     }
 
     $self->fake_delegations->{$domain} = \%delegation;
+
+    # We're changing the world, so the cache can't be trusted
+    Zonemaster::Recursor->clear_cache;
+
+    return;
+}
+
+sub add_fake_ds {
+    my ( $self, $domain, $aref ) = @_;
+    my @ds;
+
+    if (not ref $domain) {
+        $domain = Zonemaster::DNSName->new($domain);
+    }
+
+    Zonemaster->logger->add( FAKE_DS => { domain => lc("$domain"), data => $aref, ns=> "$self" } );
+    foreach my $href ( @$aref ) {
+        push @ds, Net::LDNS::RR->new( sprintf( '%s IN DS %d %d %d %s', "$domain", $href->{keytag}, $href->{algorithm}, $href->{type}, $href->{digest} ) );
+    }
+
+    $self->fake_ds->{lc("$domain")} = \@ds;
 
     # We're changing the world, so the cache can't be trusted
     Zonemaster::Recursor->clear_cache;
@@ -504,9 +541,16 @@ Class method that returns a list of all nameserver objects in the global cache.
 
 =item add_fake_delegation($domain,$data)
 
-Adds fake delegation information to this specific nameserver object. Takes the same arguments as the similarly named method in L<Zonemaster>. This is
-primarily used for internal information, and using it directly will likely give confusing results (but may be useful to model certain kinds of
+Adds fake delegation information to this specific nameserver object. Takes the
+same arguments as the similarly named method in L<Zonemaster>. This is
+primarily used for internal information, and using it directly will likely give
+confusing results (but may be useful to model certain kinds of
 misconfigurations).
+
+=item add_fake_ds($domain, $data)
+
+Adds fake DS information to this nameserver object. Takes the same arguments as
+the similarly named method in L<Zonemaster>.
 
 =back
 
