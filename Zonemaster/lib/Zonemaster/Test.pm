@@ -76,11 +76,12 @@ sub run_all_for {
 } ## end sub run_all_for
 
 sub run_module {
-    my ( $class, $module, $zone ) = @_;
+    my ( $class, $requested, $zone ) = @_;
 
-    $module = ucfirst( $module );
+    my ($module) = grep { lc($requested) eq lc($_) } $class->modules;
+    $module = 'Basic' if (not $module and lc($requested) eq 'basic');
 
-    if ( (grep { $module eq $_ } $class->modules) or ( $module eq 'Basic' ) ) {
+    if ( $module ) {
         my $m = "Zonemaster::Test::$module";
         my @res = eval { $m->all( $zone ) };
         if ($@) {
@@ -95,18 +96,19 @@ sub run_module {
         return @res;
     }
     else {
-        info( UNKNOWN_MODULE => { name => $module, method => 'all', known => join(':', sort $class->modules) } );
+        info( UNKNOWN_MODULE => { name => $requested, method => 'all', known => join(':', sort $class->modules) } );
     }
 
     return;
 }
 
 sub run_one {
-    my ( $class, $module, $test, @arguments ) = @_;
+    my ( $class, $requested, $test, @arguments ) = @_;
 
-    $module = ucfirst($module);
+    my ($module) = grep { lc($requested) eq lc($_) } $class->modules;
+    $module = 'Basic' if (not $module and lc($requested) eq 'basic');
 
-    if ( (grep { $module eq $_ } $class->modules) or ( $module eq 'Basic' ) ) {
+    if ( $module ) {
         my $m = "Zonemaster::Test::$module";
         if ( $m->metadata->{$test} ) {
             info( MODULE_CALL => { module => $module, method => $test, version => $m->version } );
@@ -127,7 +129,7 @@ sub run_one {
         }
     }
     else {
-        info( UNKNOWN_MODULE => { module => $module, method => $test } );
+        info( UNKNOWN_MODULE => { module => $requested, method => $test } );
     }
 
     return;

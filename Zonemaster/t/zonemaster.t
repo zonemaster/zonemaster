@@ -80,7 +80,7 @@ Zonemaster->logger->callback(
         die Zonemaster::Exception->new( { message => 'canary' } );
     });
 isa_ok( exception {Zonemaster->test_zone('nic.se')}, 'Zonemaster::Exception' );
-isa_ok( exception {Zonemaster->test_module('Syntax', 'nic.se')}, 'Zonemaster::Exception' );
+isa_ok( exception {Zonemaster->test_module('SyNtAx', 'nic.se')}, 'Zonemaster::Exception' );
 isa_ok( exception {Zonemaster->test_method('Syntax', 'syntax01', 'nic.se')}, 'Zonemaster::Exception' );
 
 
