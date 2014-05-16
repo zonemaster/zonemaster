@@ -142,6 +142,13 @@ has 'policy' => (
     documentation => 'Name of policy file to load.',
 );
 
+has 'ds' => (
+    is => 'ro',
+    isa => 'ArrayRef[Str]',
+    required => 0,
+    documentation => 'Strings with DS data on the form "keytag,algorithm,type,digest"',
+);
+
 sub run {
     my ( $self ) = @_;
     my @accumulator;
@@ -272,6 +279,10 @@ sub run {
         $self->add_fake_delegation( $domain );
     }
 
+    if ($self->ds and @{ $self->ds }) {
+        $self->add_fake_ds( $domain );
+    }
+
     # Actually run tests!
     eval {
         if ( $self->test and @{ $self->test } > 0 ) {
@@ -320,6 +331,20 @@ sub add_fake_delegation {
     }
 
     Zonemaster->add_fake_delegation( $domain => \%data );
+
+    return;
+}
+
+sub add_fake_ds {
+    my ( $self, $domain ) = @_;
+    my @data;
+
+    foreach my $str (@{$self->ds}) {
+        my ( $tag, $algo, $type, $digest ) = split(/,/, $str);
+        push @data, { keytag => $tag, algorithm => $algo, type => $type, digest => $digest };
+    }
+
+    Zonemaster->add_fake_ds( $domain => \@data);
 
     return;
 }
