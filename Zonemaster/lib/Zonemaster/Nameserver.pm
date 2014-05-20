@@ -404,6 +404,12 @@ sub all_known_nameservers {
     return @res;
 }
 
+sub axfr {
+    my ( $self, $domain, $callback, $class ) = @_;
+
+    return $self->dns->axfr( $domain, $callback, $class );
+}
+
 1;
 
 =head1 NAME
@@ -551,6 +557,14 @@ misconfigurations).
 
 Adds fake DS information to this nameserver object. Takes the same arguments as
 the similarly named method in L<Zonemaster>.
+
+=item axfr( $domain, $callback, $class )
+
+Does an AXFR for the requested domain from the nameserver. The callback
+function will be called once for each received RR, with that RR as its only
+argument. To continue getting more RRs, the callback must return a true value.
+If it returns a true value, the AXFR will be aborted. See L<Net::LDNS::axfr>
+for more details.
 
 =back
 
