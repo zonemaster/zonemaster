@@ -12,7 +12,11 @@ like( $@, qr/Must have at least one of lang and file/, 'expected error message' 
 is( $trans->lang, 'sv', 'expected language code' );
 
 eval { $trans->file };
-like( $@, qr[Cannot read translation file .+/lib/auto/share/dist/Zonemaster/language_sv.json], 'expected error message' );
+like(
+    $@,
+    qr[Cannot read translation file .+/lib/auto/share/dist/Zonemaster/language_sv.json],
+    'expected error message'
+);
 
 $trans = Zonemaster::Translator->new( { lang => 'tech' } );
 eval { $trans->data };

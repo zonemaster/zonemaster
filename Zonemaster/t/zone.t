@@ -54,16 +54,17 @@ foreach my $p ( @$ary ) {
     isa_ok( $p, 'Zonemaster::Packet' );
     my @a_rrs = $p->get_records( 'a', 'answer' );
     is( scalar( @a_rrs ), 1, 'one answer A RR' );
-    my @sigs = $p->get_records( 'RRSIG', 'ANSWER');
-    is( scalar(@sigs), 1, 'one signature for A RR');
+    my @sigs = $p->get_records( 'RRSIG', 'ANSWER' );
+    is( scalar( @sigs ), 1, 'one signature for A RR' );
 }
 
-ok($zone->is_in_zone('www.iis.se', 'www.iis.se is in zone iis.se'));
-ok(not $zone->is_in_zone('www.google.se','www.google.se is not in zone iis.se'));
+ok( $zone->is_in_zone( 'www.iis.se', 'www.iis.se is in zone iis.se' ) );
+ok( not $zone->is_in_zone( 'www.google.se', 'www.google.se is not in zone iis.se' ) );
 
-my $net = Zonemaster::Zone->new({name => 'net'});
-ok(not($net->is_in_zone('k.gtld-servers.net.')), 'k.gtld-servers.net is not in zone');
-ok(Zonemaster::Zone->new({name => 'gtld-servers.net'})->is_in_zone('k.gtld-servers.net.'), 'k.gtld-servers.net is in zone');
+my $net = Zonemaster::Zone->new( { name => 'net' } );
+ok( not( $net->is_in_zone( 'k.gtld-servers.net.' ) ), 'k.gtld-servers.net is not in zone' );
+ok( Zonemaster::Zone->new( { name => 'gtld-servers.net' } )->is_in_zone( 'k.gtld-servers.net.' ),
+    'k.gtld-servers.net is in zone' );
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );

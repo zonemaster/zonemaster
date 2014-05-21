@@ -14,7 +14,7 @@ around 'new' => sub {
     my $orig = shift;
     my $self = shift;
 
-    my $obj  = $self->$orig( @_ );
+    my $obj = $self->$orig( @_ );
 
     if ( not exists $object_cache{ $obj->address->ip } ) {
         Zonemaster->logger->add( CACHE_CREATED => { ip => $obj->address->ip } );

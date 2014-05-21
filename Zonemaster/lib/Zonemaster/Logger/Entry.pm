@@ -9,13 +9,13 @@ use Zonemaster;
 use overload '""' => \&string;
 
 our %numeric = (
-    DEBUG3 => -2,
-    DEBUG2 => -1,
-    DEBUG => 0,
-    INFO => 1,
-    NOTICE => 2,
-    WARNING => 3,
-    ERROR => 4,
+    DEBUG3   => -2,
+    DEBUG2   => -1,
+    DEBUG    => 0,
+    INFO     => 1,
+    NOTICE   => 2,
+    WARNING  => 3,
+    ERROR    => 4,
     CRITICAL => 5,
 );
 
@@ -75,9 +75,10 @@ sub _build_level {
         $string = 'DEBUG';
     }
 
-    if (defined $numeric{$string}) {
+    if ( defined $numeric{$string} ) {
         return $string;
-    } else {
+    }
+    else {
         die "Unknown level string: $string";
     }
 }
@@ -85,7 +86,7 @@ sub _build_level {
 sub numeric_level {
     my ( $self ) = @_;
 
-    return $numeric{$self->level};
+    return $numeric{ $self->level };
 }
 
 sub levels {

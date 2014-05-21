@@ -27,7 +27,7 @@ sub add {
         eval { $self->callback->( $new ) };
         if ( $@ ) {
             my $err = $@;
-            if (blessed($err) and $err->isa("Zonemaster::Exception")) {
+            if ( blessed( $err ) and $err->isa( "Zonemaster::Exception" ) ) {
                 die $err;
             }
             else {
@@ -38,7 +38,7 @@ sub add {
     }
 
     return $new;
-}
+} ## end sub add
 
 sub _check_filter {
     my ( $self, $entry ) = @_;
@@ -64,7 +64,7 @@ sub _check_filter {
                 $entry->_set_level( $rule->{set} );
             }
         }
-    }
+    } ## end if ( $config )
 } ## end sub _check_filter
 
 1;

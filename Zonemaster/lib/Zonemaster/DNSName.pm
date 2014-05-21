@@ -80,9 +80,9 @@ sub common {
 
 sub prepend {
     my ( $self, $label ) = @_;
-    my @labels = ( $label, @{$self->labels});
+    my @labels = ( $label, @{ $self->labels } );
 
-    return $self->new({ labels => \@labels});
+    return $self->new( { labels => \@labels } );
 }
 
 sub TO_JSON {

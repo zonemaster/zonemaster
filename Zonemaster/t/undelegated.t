@@ -27,22 +27,21 @@ Zonemaster->add_fake_delegation(
 );
 
 my $fake_happened = 0;
-Zonemaster->logger->callback(sub { $fake_happened = 1 if $_[0]->tag eq 'FAKE_DELEGATION'});
+Zonemaster->logger->callback( sub { $fake_happened = 1 if $_[0]->tag eq 'FAKE_DELEGATION' } );
 
 my $fake_p = Zonemaster->recurse( 'www.lysator.liu.se', 'AAAA' );
-is($fake_p->rcode, 'REFUSED', 'expected RCODE');
-ok( $fake_happened, 'Fake delegation logged');
+is( $fake_p->rcode, 'REFUSED', 'expected RCODE' );
+ok( $fake_happened, 'Fake delegation logged' );
 
-Zonemaster->add_fake_ds(
-    'lysator.liu.se' => [ {keytag => 4711, algorithm => 17, type => 42, digest => 'FACEB00C'} ],
+Zonemaster->add_fake_ds( 'lysator.liu.se' => [ { keytag => 4711, algorithm => 17, type => 42, digest => 'FACEB00C' } ],
 );
 
-my $lys = Zonemaster->zone('lysator.liu.se');
-my $ds_p = $lys->parent->query_one('lysator.liu.se', 'DS');
-isa_ok($ds_p, 'Zonemaster::Packet');
-my ($ds) = $ds_p->answer;
-isa_ok($ds, 'Net::LDNS::RR::DS');
-is($ds->hexdigest, 'faceb00c', 'Correct digest');
+my $lys = Zonemaster->zone( 'lysator.liu.se' );
+my $ds_p = $lys->parent->query_one( 'lysator.liu.se', 'DS' );
+isa_ok( $ds_p, 'Zonemaster::Packet' );
+my ( $ds ) = $ds_p->answer;
+isa_ok( $ds, 'Net::LDNS::RR::DS' );
+is( $ds->hexdigest, 'faceb00c', 'Correct digest' );
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );

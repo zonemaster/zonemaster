@@ -91,7 +91,7 @@ sub consistency01 {
         push @{ $serials{ $soa->serial } }, $local_ns->name->string;
 
         $nsnames{ $local_ns->name->string }++;
-    }
+    } ## end foreach my $local_ns ( @{ $zone...})
 
     if ( scalar( keys %serials ) == 1 ) {
         push @results,
@@ -148,7 +148,7 @@ sub consistency02 {
         push @{ $rnames{ $soa->rname } }, $local_ns->name->string;
 
         $nsnames{ $local_ns->name->string }++;
-    }
+    } ## end foreach my $local_ns ( @{ $zone...})
 
     if ( scalar( keys %rnames ) == 1 ) {
         push @results,
@@ -202,10 +202,11 @@ sub consistency03 {
         }
 
         my ( $soa ) = $p->get_records_for_name( q{SOA}, $zone->name );
-        push @{ $time_parameter_sets{ sprintf q{%d;%d;%d;%d}, $soa->refresh, $soa->retry, $soa->expire, $soa->minimum } }, $local_ns->name->string;
+        push @{ $time_parameter_sets{ sprintf q{%d;%d;%d;%d}, $soa->refresh, $soa->retry, $soa->expire, $soa->minimum }
+        }, $local_ns->name->string;
 
         $nsnames{ $local_ns->name->string }++;
-    }
+    } ## end foreach my $local_ns ( @{ $zone...})
 
     if ( scalar( keys %time_parameter_sets ) == 1 ) {
         my ( $refresh, $retry, $expire, $minimum ) = split /;/, ( keys %time_parameter_sets )[0];
@@ -239,7 +240,7 @@ sub consistency03 {
                 }
               );
         }
-    }
+    } ## end else [ if ( scalar( keys %time_parameter_sets...))]
 
     return @results;
 } ## end sub consistency03

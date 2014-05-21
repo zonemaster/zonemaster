@@ -30,12 +30,12 @@ coerce 'Zonemaster::Net::IP', from 'Str', via { Net::IP->new( $_ ) };
 has 'name'    => ( is => 'ro', isa => 'Zonemaster::DNSName', coerce => 1, required => 0 );
 has 'address' => ( is => 'ro', isa => 'Zonemaster::Net::IP', coerce => 1, required => 1 );
 
-has 'dns'   => ( is => 'ro', isa => 'Net::LDNS',                  lazy_build => 1 );
+has 'dns'   => ( is => 'ro', isa => 'Net::LDNS',                     lazy_build => 1 );
 has 'cache' => ( is => 'ro', isa => 'Zonemaster::Nameserver::Cache', lazy_build => 1 );
-has 'times' => ( is => 'ro', isa => 'ArrayRef',                   default    => sub { [] } );
+has 'times' => ( is => 'ro', isa => 'ArrayRef',                      default    => sub { [] } );
 
 has 'fake_delegations' => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
-has 'fake_ds' => ( is => 'ro', isa => 'HashRef', default => sub { {} });
+has 'fake_ds'          => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
 
 ###
 ### Variables
@@ -92,13 +92,13 @@ sub query {
     my ( $self, $name, $type, $href ) = @_;
     $type //= 'A';
 
-    if ( $self->address->version == 4 and not Zonemaster->config->get->{net}{ipv4}) {
-        Zonemaster->logger->add( IPV4_BLOCKED => { ns => $self->string });
+    if ( $self->address->version == 4 and not Zonemaster->config->get->{net}{ipv4} ) {
+        Zonemaster->logger->add( IPV4_BLOCKED => { ns => $self->string } );
         return;
     }
 
-    if ( $self->address->version == 6 and not Zonemaster->config->get->{net}{ipv6}) {
-        Zonemaster->logger->add( IPV6_BLOCKED => { ns => $self->string });
+    if ( $self->address->version == 6 and not Zonemaster->config->get->{net}{ipv6} ) {
+        Zonemaster->logger->add( IPV6_BLOCKED => { ns => $self->string } );
         return;
     }
 
@@ -120,16 +120,16 @@ sub query {
     my $recurse = $href->{recurse} // $defaults{recurse};
 
     # Fake a DS answer
-    if ( $type eq 'DS' and $class eq 'IN' and $self->fake_ds->{lc($name)} ) {
+    if ( $type eq 'DS' and $class eq 'IN' and $self->fake_ds->{ lc( $name ) } ) {
         my $p = Net::LDNS::Packet->new( $name, $type, $class );
         $p->aa( 0 );
         $p->do( $dnssec );
         $p->rd( $recurse );
-        foreach my $rr (@{$self->fake_ds->{$name}}) {
-            $p->unique_push('answer', $rr);
+        foreach my $rr ( @{ $self->fake_ds->{$name} } ) {
+            $p->unique_push( 'answer', $rr );
         }
-        my $res = Zonemaster::Packet->new({ packet => $p });
-        Zonemaster->logger->add( FAKE_DS_RETURNED => { name => "$name", from => "$self" });
+        my $res = Zonemaster::Packet->new( { packet => $p } );
+        Zonemaster->logger->add( FAKE_DS_RETURNED => { name => "$name", from => "$self" } );
         return $res;
     }
 
@@ -166,7 +166,7 @@ sub query {
     }
 
     my $p = $self->cache->data->{"\U$name"}{"\U$type"}{"\U$class"}{$dnssec}{$usevc}{$recurse};
-    Zonemaster->logger->add( CACHED_RETURN => { packet => ($p?$p->string:'undef') } );
+    Zonemaster->logger->add( CACHED_RETURN => { packet => ( $p ? $p->string : 'undef' ) } );
 
     return $p;
 } ## end sub query
@@ -190,28 +190,34 @@ sub add_fake_delegation {
     Zonemaster::Recursor->clear_cache;
 
     return;
-}
+} ## end sub add_fake_delegation
 
 sub add_fake_ds {
     my ( $self, $domain, $aref ) = @_;
     my @ds;
 
-    if (not ref $domain) {
-        $domain = Zonemaster::DNSName->new($domain);
+    if ( not ref $domain ) {
+        $domain = Zonemaster::DNSName->new( $domain );
     }
 
-    Zonemaster->logger->add( FAKE_DS => { domain => lc("$domain"), data => $aref, ns=> "$self" } );
+    Zonemaster->logger->add( FAKE_DS => { domain => lc( "$domain" ), data => $aref, ns => "$self" } );
     foreach my $href ( @$aref ) {
-        push @ds, Net::LDNS::RR->new( sprintf( '%s IN DS %d %d %d %s', "$domain", $href->{keytag}, $href->{algorithm}, $href->{type}, $href->{digest} ) );
+        push @ds,
+          Net::LDNS::RR->new(
+            sprintf(
+                '%s IN DS %d %d %d %s',
+                "$domain", $href->{keytag}, $href->{algorithm}, $href->{type}, $href->{digest}
+            )
+          );
     }
 
-    $self->fake_ds->{lc("$domain")} = \@ds;
+    $self->fake_ds->{ lc( "$domain" ) } = \@ds;
 
     # We're changing the world, so the cache can't be trusted
     Zonemaster::Recursor->clear_cache;
 
     return;
-}
+} ## end sub add_fake_ds
 
 sub _query {
     my ( $self, $name, $type, $href ) = @_;
@@ -250,10 +256,12 @@ sub _query {
 
     my $before = time();
     my $res = eval { $self->dns->query( "$name", $type, $href->{class} ) };
-    if ($@) {
+    if ( $@ ) {
         my $msg = "$@";
-        chomp($msg);
-        Zonemaster->logger->add( LOOKUP_ERROR => { message => $msg, ns => "$self", name => "$name", type => $type, class => $href->{class} });
+        chomp( $msg );
+        Zonemaster->logger->add(
+            LOOKUP_ERROR => { message => $msg, ns => "$self", name => "$name", type => $type, class => $href->{class} }
+        );
     }
     push @{ $self->times }, ( time() - $before );
 
@@ -264,11 +272,11 @@ sub _query {
 
     if ( $res ) {
         my $p = Zonemaster::Packet->new( { packet => $res } );
-        Zonemaster->logger->add( EXTERNAL_RESPONSE => { packet => $p->string });
+        Zonemaster->logger->add( EXTERNAL_RESPONSE => { packet => $p->string } );
         return $p;
     }
     else {
-        Zonemaster->logger->add( EMPTY_RETURN => {});
+        Zonemaster->logger->add( EMPTY_RETURN => {} );
         return;
     }
 } ## end sub _query
@@ -298,7 +306,7 @@ sub save {
 
     close $fh or die $!;
 
-    Zonemaster->logger->add( SAVED_NS_CACHE => { file => $filename });
+    Zonemaster->logger->add( SAVED_NS_CACHE => { file => $filename } );
 
     return;
 }
@@ -339,7 +347,7 @@ sub restore {
     }
     close $fh;
 
-    Zonemaster->logger->add( RESTORED_NS_CACHE => { file => $filename });
+    Zonemaster->logger->add( RESTORED_NS_CACHE => { file => $filename } );
 
     return;
 } ## end sub restore

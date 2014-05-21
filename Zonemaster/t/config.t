@@ -13,10 +13,10 @@ my $policy = Zonemaster::Config->policy;
 isa_ok( $policy, 'HASH', 'policy got loaded and' );
 is( $policy->{'EXAMPLE'}{'EXAMPLE_TAG'}, 'DEBUG', 'found policy for example tag' );
 
-Zonemaster::Config->load_config_file('t/config.json');
+Zonemaster::Config->load_config_file( 't/config.json' );
 is( config->{resolver}{defaults}{retry}, 4711, 'loading config works' );
 
-Zonemaster::Config->load_policy_file('t/policy.json');
+Zonemaster::Config->load_policy_file( 't/policy.json' );
 is( Zonemaster::Config->policy->{'EXAMPLE'}{'EXAMPLE_TAG'}, 'WARNING', 'loading policy works' );
 
 done_testing;

@@ -171,7 +171,7 @@ sub syntax02 {
                 }
               );
         }
-    }
+    } ## end foreach my $local_label ( @...)
 
     return @results;
 } ## end sub syntax02
@@ -193,13 +193,13 @@ sub syntax03 {
     }
 
     return @results;
-} ## end sub syntax03
+}
 
 sub syntax04 {
     my ( $class, $name ) = @_;
 
     return _check_name_syntax( q{NAMESERVER}, $name );
-} ## end sub syntax04
+}
 
 sub syntax05 {
     my ( $class, $zone ) = @_;
@@ -231,8 +231,8 @@ sub syntax06 {
 
     my $rname = $soa->rname;
     $rname =~ s/([^\\])\./$1@/smx;    # Replace first non-escaped dot with an at-sign
-    $rname =~ s/\\./\./smgx;           # Un-escape dots
-    $rname =~ s/\.\z//smgx;            # Validator does not like final dots
+    $rname =~ s/\\./\./smgx;          # Un-escape dots
+    $rname =~ s/\.\z//smgx;           # Validator does not like final dots
     if ( not valid( $rname ) ) {
         push @results,
           info(
@@ -254,7 +254,7 @@ sub syntax07 {
     my $mname = $soa->mname;
 
     return _check_name_syntax( q{MNAME}, $mname );
-} ## end sub syntax07
+}
 
 sub syntax08 {
     my ( $class, @names ) = @_;
@@ -265,7 +265,7 @@ sub syntax08 {
     }
 
     return @results;
-} ## end sub syntax08
+}
 
 sub syntax09 {
     my ( $class, $zone ) = @_;
@@ -313,8 +313,8 @@ sub syntax09 {
 sub _name_has_only_legal_characters {
     my ( $name ) = @_;
 
-    if (not ref($name)) {
-        $name = name($name);
+    if ( not ref( $name ) ) {
+        $name = name( $name );
     }
 
     if ( List::MoreUtils::all { m/\A[-A-Za-z0-9]+\z/ } @{ $name->labels } ) {
@@ -372,57 +372,62 @@ sub _check_name_syntax {
     my ( $info_label_prefix, $name ) = @_;
     my @results;
 
-    if (not ref($name)) {
-        $name = name($name);
+    if ( not ref( $name ) ) {
+        $name = name( $name );
     }
 
     foreach my $local_label ( @{ $name->labels } ) {
         if ( length $local_label > $LABEL_MAX_LENGTH ) {
             push @results,
               info(
-                $info_label_prefix.q{_LABEL_TOO_LONG} => {
+                $info_label_prefix
+                  . q{_LABEL_TOO_LONG} => {
                     name   => "$name",
                     label  => $local_label,
                     length => length( $local_label ),
                     max    => $LABEL_MAX_LENGTH,
-                }
+                  }
               );
         }
         if ( _label_not_ace_has_double_hyphen_in_position_3_and_4( $local_label ) ) {
             push @results,
               info(
-                $info_label_prefix.q{_DISCOURAGED_DOUBLE_DASH} => {
+                $info_label_prefix
+                  . q{_DISCOURAGED_DOUBLE_DASH} => {
                     label => $local_label,
                     name  => "$name",
-                }
+                  }
               );
         }
-    }
+    } ## end foreach my $local_label ( @...)
 
     my $tld = @{ $name->labels }[-1];
     if ( $tld =~ /\A[0-9]+\z/smgx ) {
         push @results,
           info(
-            $info_label_prefix.q{_NUMERIC_TLD} => {
-                name  => "$name",
-                tld   => $tld,
-            }
+            $info_label_prefix
+              . q{_NUMERIC_TLD} => {
+                name => "$name",
+                tld  => $tld,
+              }
           );
     }
 
-    if ( length "$name" >= $FQDN_MAX_LENGTH ) { # not trailing 'dot' in $name, which explains the '=' sign.
+    if ( length "$name" >= $FQDN_MAX_LENGTH ) {    # not trailing 'dot' in $name, which explains the '=' sign.
         push @results,
           info(
-            $info_label_prefix.q{_NAME_TOO_LONG} => {
-                name   => "$name",,
+            $info_label_prefix
+              . q{_NAME_TOO_LONG} => {
+                name => "$name",
+                ,
                 length => length( "$name" ),
                 max    => $FQDN_MAX_LENGTH,
-            }
+              }
           );
     }
 
     return @results;
-}
+} ## end sub _check_name_syntax
 
 1;
 

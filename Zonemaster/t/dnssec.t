@@ -54,34 +54,34 @@ ok( $tag{DNSKEY_AND_DS}, 'DNSKEY_AND_DS' );
 @res = Zonemaster->test_method( 'DNSSEC', 'dnssec08', $zone );
 %tag = map { $_->tag => 1 } @res;
 ok( $tag{DNSKEY_SIGNATURE_OK}, 'DNSKEY_SIGNATURE_OK' );
-ok( $tag{DNSKEY_SIGNED}, 'DNSKEY_SIGNED' );
+ok( $tag{DNSKEY_SIGNED},       'DNSKEY_SIGNED' );
 
 @res = Zonemaster->test_method( 'DNSSEC', 'dnssec09', $zone );
 %tag = map { $_->tag => 1 } @res;
 ok( $tag{SOA_SIGNATURE_OK}, 'SOA_SIGNATURE_OK' );
-ok( $tag{SOA_SIGNED}, 'SOA_SIGNED' );
+ok( $tag{SOA_SIGNED},       'SOA_SIGNED' );
 
 @res = Zonemaster->test_method( 'DNSSEC', 'dnssec10', $zone );
 %tag = map { $_->tag => 1 } @res;
-ok( $tag{HAS_NSEC}, 'HAS_NSEC' );
+ok( $tag{HAS_NSEC},    'HAS_NSEC' );
 ok( $tag{NSEC_SIGNED}, 'NSEC_SIGNED' );
 ok( $tag{NSEC_COVERS}, 'NSEC_COVERS' );
 
 @res = Zonemaster->test_method( 'DNSSEC', 'dnssec10', $zone3 );
 %tag = map { $_->tag => 1 } @res;
-ok( $tag{HAS_NSEC3}, 'HAS_NSEC3' );
+ok( $tag{HAS_NSEC3},    'HAS_NSEC3' );
 ok( $tag{NSEC3_SIGNED}, 'NSEC3_SIGNED' );
 ok( $tag{NSEC3_COVERS}, 'NSEC3_COVERS' );
 
-@res = Zonemaster->test_module( 'DNSSEC', 'loopia.se');
+@res = Zonemaster->test_module( 'DNSSEC', 'loopia.se' );
 %tag = map { $_->tag => 1 } @res;
-ok($tag{NO_DS}, 'NO_DS');
-ok($tag{DNSKEY_BUT_NOT_DS}, 'DNSKEY_BUT_NOT_DS');
+ok( $tag{NO_DS},             'NO_DS' );
+ok( $tag{DNSKEY_BUT_NOT_DS}, 'DNSKEY_BUT_NOT_DS' );
 
-@res = Zonemaster->test_module( 'DNSSEC', 'openbsd.org');
+@res = Zonemaster->test_module( 'DNSSEC', 'openbsd.org' );
 %tag = map { $_->tag => 1 } @res;
-ok($tag{EXTRA_PROCESSING_BROKEN}, 'EXTRA_PROCESSING_BROKEN');
-ok($tag{NO_KEYS_OR_NO_SIGS}, 'NO_KEYS_OR_NO_SIGS');
+ok( $tag{EXTRA_PROCESSING_BROKEN}, 'EXTRA_PROCESSING_BROKEN' );
+ok( $tag{NO_KEYS_OR_NO_SIGS},      'NO_KEYS_OR_NO_SIGS' );
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );

@@ -2,8 +2,8 @@ package Zonemaster::Test::Nameserver v0.0.1;
 
 use 5.14.2;
 use strict;
-use warnings; 
-        
+use warnings;
+
 use Zonemaster;
 use Zonemaster::Util;
 
@@ -61,7 +61,7 @@ sub metadata {
               )
         ],
     };
-}
+} ## end sub metadata
 
 sub version {
     return "$Zonemaster::Test::Nameserver::VERSION";
@@ -75,7 +75,7 @@ sub nameserver01 {
 
     foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
 
-        next if $nsnames{$local_ns->name};
+        next if $nsnames{ $local_ns->name };
 
         my $p = $local_ns->query( $nonexistent_name, q{SOA}, { recurse => 1 } );
 
@@ -84,15 +84,15 @@ sub nameserver01 {
                 push @results,
                   info(
                     IS_A_RECURSOR => {
-                        ns     => $local_ns->name,
-                        dname  => $nonexistent_name,
+                        ns    => $local_ns->name,
+                        dname => $nonexistent_name,
                     }
                   );
             }
         }
 
-        $nsnames{$local_ns->name}++;
-    }
+        $nsnames{ $local_ns->name }++;
+    } ## end foreach my $local_ns ( @{ $zone...})
 
     return @results;
 } ## end sub nameserver01
@@ -104,9 +104,10 @@ sub nameserver02 {
 
     foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
 
-        next if $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short};
+        next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
 
-        my $ns = Zonemaster::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
+        my $ns =
+          Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
         my $p = $ns->query( $zone->name, q{SOA}, { dnssec => 1, edns_size => 512 } );
         if ( $p ) {
             if ( $p->rcode eq q{FORMERR} ) {
@@ -129,10 +130,10 @@ sub nameserver02 {
                       );
                 }
             }
-        }
+        } ## end if ( $p )
 
-        $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short}++;
-    }
+        $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short }++;
+    } ## end foreach my $local_ns ( @{ $zone...})
 
     return @results;
 } ## end sub nameserver02
@@ -144,17 +145,16 @@ sub nameserver03 {
 
     foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
 
-        next if $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short};
+        next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
 
         my $first_rr;
         eval {
-            $local_ns->axfr( $zone->name, sub { ($first_rr) = @_; return 0;});
+            $local_ns->axfr( $zone->name, sub { ( $first_rr ) = @_; return 0; } );
             1;
-        }
-        or do {
+        } or do {
             push @results,
               info(
-                  AXFR_FAILURE => {
+                AXFR_FAILURE => {
                     ns      => $local_ns->name->string,
                     address => $local_ns->address->short,
                 }
@@ -164,15 +164,15 @@ sub nameserver03 {
         if ( $first_rr and $first_rr->type eq q{SOA} ) {
             push @results,
               info(
-                  AXFR_AVAILABLE => {
+                AXFR_AVAILABLE => {
                     ns      => $local_ns->name->string,
                     address => $local_ns->address->short,
                 }
               );
         }
 
-        $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short}++;
-    }
+        $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short }++;
+    } ## end foreach my $local_ns ( @{ $zone...})
 
     return @results;
 } ## end sub nameserver03
@@ -183,16 +183,17 @@ sub nameserver04 {
     my %nsnames_and_ip;
 
     foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
-            
-        next if $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short};
-                  
-        my $ns = Zonemaster::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
+
+        next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
+
+        my $ns =
+          Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
         my $p = $ns->query( $zone->name, q{SOA} );
         if ( $p ) {
             if ( $local_ns->address->short ne $p->answerfrom ) {
                 push @results,
                   info(
-                      SAME_SOURCE_IP => {
+                    SAME_SOURCE_IP => {
                         ns      => $local_ns->name->string,
                         address => $local_ns->address->short,
                         source  => $p->answerfrom,
@@ -200,9 +201,9 @@ sub nameserver04 {
                   );
             }
         }
-        $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short}++;
-    }               
-                
+        $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short }++;
+    } ## end foreach my $local_ns ( @{ $zone...})
+
     return @results;
 } ## end sub nameserver04
 
@@ -213,17 +214,18 @@ sub nameserver05 {
 
     foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
 
-        next if $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short};
+        next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
 
-        $nsnames_and_ip{$local_ns->name->string.q{/}.$local_ns->address->short}++;
+        $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short }++;
 
-        my $ns = Zonemaster::Nameserver->new({ name => $local_ns->name->string, address => $local_ns->address->short });
+        my $ns =
+          Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
         my $p = $ns->query( $zone->name, q{AAAA} );
 
         if ( not $p ) {
             push @results,
               info(
-                  QUERY_DROPPED => {
+                QUERY_DROPPED => {
                     ns      => $local_ns->name->string,
                     address => $local_ns->address->short,
                 }
@@ -233,10 +235,14 @@ sub nameserver05 {
 
         next if not scalar $p->answer and $p->rcode eq q{NOERROR};
 
-        if ( $p->rcode eq q{FORMERR} or $p->rcode eq q{SERVFAIL} or $p->rcode eq q{NXDOMAIN} or $p->rcode eq q{NOTIMPL} ) {
+        if (   $p->rcode eq q{FORMERR}
+            or $p->rcode eq q{SERVFAIL}
+            or $p->rcode eq q{NXDOMAIN}
+            or $p->rcode eq q{NOTIMPL} )
+        {
             push @results,
               info(
-                  ANSWER_BAD_RCODE => {
+                ANSWER_BAD_RCODE => {
                     ns      => $local_ns->name->string,
                     address => $local_ns->address->short,
                     rcode   => $p->rcode,
@@ -245,7 +251,7 @@ sub nameserver05 {
             next;
         }
 
-    }
+    } ## end foreach my $local_ns ( @{ $zone...})
 
     return @results;
 } ## end sub nameserver05

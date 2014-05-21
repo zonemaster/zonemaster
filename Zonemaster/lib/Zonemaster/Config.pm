@@ -49,9 +49,9 @@ sub policy {
 
 sub _load_base_config {
     my $internal = decode_json( join( '', <DATA> ) );
-    my $default = eval { decode_json read_file dist_file( 'Zonemaster', 'config.json') };
+    my $default = eval { decode_json read_file dist_file( 'Zonemaster', 'config.json' ) };
 
-    $internal = $merger->merge($internal, $default) if $default;
+    $internal = $merger->merge( $internal, $default ) if $default;
 
     $config = $internal;
 }
@@ -59,7 +59,7 @@ sub _load_base_config {
 sub load_config_file {
     my ( $class, $filename ) = @_;
     my $new = decode_json read_file $filename;
-    $config = $merger->merge($config,$new) if $new;
+    $config = $merger->merge( $config, $new ) if $new;
 
     return !!$new;
 }
@@ -67,7 +67,7 @@ sub load_config_file {
 sub load_policy_file {
     my ( $class, $filename ) = @_;
     my $new = decode_json read_file $filename;
-    $policy = $merger->merge($policy, $new) if $new;
+    $policy = $merger->merge( $policy, $new ) if $new;
 
     return !!$new;
 }

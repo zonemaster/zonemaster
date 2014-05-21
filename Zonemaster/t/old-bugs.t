@@ -10,8 +10,8 @@ if ( not $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster->config->get->{no_network} = 1;
 }
 
-my @res = Zonemaster->test_method( q{basic}, q{basic01}, Zonemaster->zone(q{001.tf}));
-is($res[0]->tag, q{HAS_GLUE}, 'Running single tests in Basic works.' );
+my @res = Zonemaster->test_method( q{basic}, q{basic01}, Zonemaster->zone( q{001.tf} ) );
+is( $res[0]->tag, q{HAS_GLUE}, 'Running single tests in Basic works.' );
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );

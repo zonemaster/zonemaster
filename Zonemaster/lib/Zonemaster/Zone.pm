@@ -50,9 +50,9 @@ sub _build_ns {
     }
 
     my $p;
-    foreach my $s (@{$self->glue}) {
+    foreach my $s ( @{ $self->glue } ) {
         $p = $s->query( $self->name, 'NS' );
-        last if defined($p);
+        last if defined( $p );
     }
     croak "Failed to get nameservers" if not defined( $p );
 

@@ -8,7 +8,7 @@ use Zonemaster;
 use Zonemaster::Util;
 use Zonemaster::Test::Basic;
 
-use IO::Socket::INET6; # Lazy-loads, so make sure it's here for the version logging
+use IO::Socket::INET6;    # Lazy-loads, so make sure it's here for the version logging
 
 use Module::Find qw[useall];
 use Scalar::Util qw[blessed];
@@ -23,17 +23,17 @@ INIT {
 }
 
 sub _log_dependency_versions {
-    info ( DEPENDENCY_VERSION => { name => 'Net::LDNS', version => $Net::LDNS::VERSION });
-    info ( DEPENDENCY_VERSION => { name => 'IO::Socket::INET6', version  => $IO::Socket::INET6::VERSION });
-    info ( DEPENDENCY_VERSION => { name => 'Moose', version  => $Moose::VERSION });
-    info ( DEPENDENCY_VERSION => { name => 'Module::Find', version  => $Module::Find::VERSION });
-    info ( DEPENDENCY_VERSION => { name => 'JSON', version  => $JSON::VERSION });
-    info ( DEPENDENCY_VERSION => { name => 'File::ShareDir', version  => $File::ShareDir::VERSION });
-    info ( DEPENDENCY_VERSION => { name => 'File::Slurp', version  => $File::Slurp::VERSION });
-    info ( DEPENDENCY_VERSION => { name => 'Net::IP', version  => $Net::IP::VERSION });
-    info ( DEPENDENCY_VERSION => { name => 'List::MoreUtils', version  => $List::MoreUtils::VERSION });
-    info ( DEPENDENCY_VERSION => { name => 'RFC::RFC822::Address', version  => $RFC::RFC822::Address::VERSION });
-    info ( DEPENDENCY_VERSION => { name => 'Scalar::Util', version  => $Scalar::Util::VERSION });
+    info( DEPENDENCY_VERSION => { name => 'Net::LDNS',            version => $Net::LDNS::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'IO::Socket::INET6',    version => $IO::Socket::INET6::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'Moose',                version => $Moose::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'Module::Find',         version => $Module::Find::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'JSON',                 version => $JSON::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'File::ShareDir',       version => $File::ShareDir::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'File::Slurp',          version => $File::Slurp::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'Net::IP',              version => $Net::IP::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'List::MoreUtils',      version => $List::MoreUtils::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'RFC::RFC822::Address', version => $RFC::RFC822::Address::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'Scalar::Util',         version => $Scalar::Util::VERSION } );
 }
 
 sub modules {
@@ -58,10 +58,10 @@ sub run_all_for {
         foreach my $module ( map { "Zonemaster::Test::$_" } __PACKAGE__->modules ) {
             info( MODULE_VERSION => { module => $module, version => $module->version } );
             my @res = eval { $module->all( $zone ) };
-            if ($@) {
+            if ( $@ ) {
                 my $err = $@;
-                if (blessed $err and $err->isa('Zonemaster::Exception')) {
-                    die $err; # Utility exception, pass it on
+                if ( blessed $err and $err->isa( 'Zonemaster::Exception' ) ) {
+                    die $err;    # Utility exception, pass it on
                 }
                 else {
                     push @res, info( MODULE_ERROR => { msg => "$err" } );
@@ -78,16 +78,16 @@ sub run_all_for {
 sub run_module {
     my ( $class, $requested, $zone ) = @_;
 
-    my ($module) = grep { lc($requested) eq lc($_) } $class->modules;
-    $module = 'Basic' if (not $module and lc($requested) eq 'basic');
+    my ( $module ) = grep { lc( $requested ) eq lc( $_ ) } $class->modules;
+    $module = 'Basic' if ( not $module and lc( $requested ) eq 'basic' );
 
     if ( $module ) {
         my $m = "Zonemaster::Test::$module";
         my @res = eval { $m->all( $zone ) };
-        if ($@) {
+        if ( $@ ) {
             my $err = $@;
-            if (blessed $err and $err->isa('Zonemaster::Exception')) {
-                die $err; # Utility exception, pass it on
+            if ( blessed $err and $err->isa( 'Zonemaster::Exception' ) ) {
+                die $err;    # Utility exception, pass it on
             }
             else {
                 push @res, info( MODULE_ERROR => { msg => "$err" } );
@@ -96,27 +96,27 @@ sub run_module {
         return @res;
     }
     else {
-        info( UNKNOWN_MODULE => { name => $requested, method => 'all', known => join(':', sort $class->modules) } );
+        info( UNKNOWN_MODULE => { name => $requested, method => 'all', known => join( ':', sort $class->modules ) } );
     }
 
     return;
-}
+} ## end sub run_module
 
 sub run_one {
     my ( $class, $requested, $test, @arguments ) = @_;
 
-    my ($module) = grep { lc($requested) eq lc($_) } $class->modules;
-    $module = 'Basic' if (not $module and lc($requested) eq 'basic');
+    my ( $module ) = grep { lc( $requested ) eq lc( $_ ) } $class->modules;
+    $module = 'Basic' if ( not $module and lc( $requested ) eq 'basic' );
 
     if ( $module ) {
         my $m = "Zonemaster::Test::$module";
         if ( $m->metadata->{$test} ) {
             info( MODULE_CALL => { module => $module, method => $test, version => $m->version } );
             my @res = eval { $m->$test( @arguments ) };
-            if ($@) {
+            if ( $@ ) {
                 my $err = $@;
-                if (blessed $err and $err->isa('Zonemaster::Exception')) {
-                    die $err; # Utility exception, pass it on
+                if ( blessed $err and $err->isa( 'Zonemaster::Exception' ) ) {
+                    die $err;    # Utility exception, pass it on
                 }
                 else {
                     push @res, info( MODULE_ERROR => { msg => "$err" } );
@@ -127,13 +127,13 @@ sub run_one {
         else {
             info( UNKNOWN_METHOD => { module => $m, method => $test } );
         }
-    }
+    } ## end if ( $module )
     else {
         info( UNKNOWN_MODULE => { module => $requested, method => $test } );
     }
 
     return;
-}
+} ## end sub run_one
 
 sub _policy_allowed {
     my ( $name ) = @_;

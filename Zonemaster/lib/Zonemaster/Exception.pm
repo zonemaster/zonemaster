@@ -5,7 +5,7 @@ use Moose;
 
 use overload '""' => \&string;
 
-has 'message' => ( is => 'ro', isa => 'Str', required => 1);
+has 'message' => ( is => 'ro', isa => 'Str', required => 1 );
 
 sub string {
     my ( $self ) = @_;

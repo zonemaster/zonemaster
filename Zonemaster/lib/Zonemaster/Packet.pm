@@ -8,31 +8,32 @@ has 'packet' => (
     is       => 'ro',
     isa      => 'Net::LDNS::Packet',
     required => 1,
-    handles  => [qw(
-        data
-        rcode
-        aa
-        question
-        answer
-        authority
-        additional
-        print
-        string
-        answersize
-        unique_push
-        timestamp
-        type
-        edns_size
-        edns_rcode
-        has_edns
-    )]
+    handles  => [
+        qw(
+          data
+          rcode
+          aa
+          question
+          answer
+          authority
+          additional
+          print
+          string
+          answersize
+          unique_push
+          timestamp
+          type
+          edns_size
+          edns_rcode
+          has_edns
+          )
+    ]
 );
 
 sub no_such_record {
     my ( $self ) = @_;
 
-    if ( $self->type eq 'nodata' )
-    {
+    if ( $self->type eq 'nodata' ) {
         my ( $q ) = $self->question;
         info( NO_SUCH_RECORD => { name => $q->name, type => $q->type } );
 
@@ -46,8 +47,7 @@ sub no_such_record {
 sub no_such_name {
     my ( $self ) = @_;
 
-    if ( $self->type eq 'nxdomain' )
-    {
+    if ( $self->type eq 'nxdomain' ) {
         my ( $q ) = $self->question;
         info( NO_SUCH_NAME => { name => $q->name, type => $q->type } );
 
@@ -61,8 +61,7 @@ sub no_such_name {
 sub is_redirect {
     my ( $self ) = @_;
 
-    if ( $self->type eq 'referral' )
-    {
+    if ( $self->type eq 'referral' ) {
         my ( $q ) = $self->question;
         my ( $a ) = $self->authority;
         info( IS_REDIRECT => { name => $q->name, type => $q->type, to => $a->name } );
@@ -76,7 +75,7 @@ sub is_redirect {
 
 sub get_records {
     my ( $self, $type, @section ) = @_;
-    my %sec = map { lc($_) => 1 } @section;
+    my %sec = map { lc( $_ ) => 1 } @section;
     my @raw;
 
     if ( !@section ) {

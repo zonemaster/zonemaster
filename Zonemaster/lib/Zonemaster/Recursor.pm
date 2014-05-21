@@ -22,9 +22,9 @@ sub recurse {
     $type  //= 'A';
     $class //= 'IN';
 
-    Zonemaster->logger->add( RECURSE => {name => $name, type => $type, class => $class });
+    Zonemaster->logger->add( RECURSE => { name => $name, type => $type, class => $class } );
 
-    if (exists $recurse_cache{$name}{$type}{$class}) {
+    if ( exists $recurse_cache{$name}{$type}{$class} ) {
         return $recurse_cache{$name}{$type}{$class};
     }
 
@@ -63,34 +63,34 @@ sub _recurse {
     my ( $self, $name, $type, $class, $state ) = @_;
 
     while ( my $ns = pop @{ $state->{ns} } ) {
-        Zonemaster->logger->add( RECURSE_QUERY => { ns => "$ns", name => $name, type => $type, class => $class });
+        Zonemaster->logger->add( RECURSE_QUERY => { ns => "$ns", name => $name, type => $type, class => $class } );
         my $p = $ns->query( $name, $type, { class => $class } );
 
-        next if not $p;                     # Ask next server if no response
+        next if not $p;    # Ask next server if no response
 
-        if($p->rcode eq 'REFUSED' or $p->rcode eq 'SERVFAIL') {
+        if ( $p->rcode eq 'REFUSED' or $p->rcode eq 'SERVFAIL' ) {
             # Respond with these if we can't get a better response
             $state->{candidate} = $p;
             next;
         }
 
         return ( $p, $state )
-          if $p->no_such_record;            # Node exists, but not record
+          if $p->no_such_record;    # Node exists, but not record
         return ( $p, $state ) if $p->no_such_name;    # Node does not exist
         return ( $p, $state )
-          if $self->_is_answer( $p );    # Return answer
+          if $self->_is_answer( $p );                 # Return answer
 
         # So it's not an error, not an empty response and not an answer
 
         if ( $p->is_redirect ) {
             my $zname = ( $p->get_records( 'ns' ) )[0]->name;
-            next if $state->{seen}{$zname};                   # We followed this redirect before
+            next if $state->{seen}{$zname};           # We followed this redirect before
 
             $state->{seen}{$zname} = 1;
             my $common = name( $zname )->common( name( $state->{qname} ) );
 
             next
-              if $common < $state->{common};                  # Redirect going up the hierarchy is not OK
+              if $common < $state->{common};          # Redirect going up the hierarchy is not OK
 
             $state->{common} = $common;
             $state->{ns} = $self->get_ns_from( $p, $state );    # Follow redirect
@@ -174,7 +174,7 @@ sub get_addresses_for {
 sub _is_answer {
     my ( $self, $packet ) = @_;
 
-    return ($packet->type eq 'answer');
+    return ( $packet->type eq 'answer' );
 }
 
 sub clear_cache {

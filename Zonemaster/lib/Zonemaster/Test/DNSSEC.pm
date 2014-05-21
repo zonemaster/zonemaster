@@ -358,7 +358,7 @@ sub dnssec08 {
     my @sigs    = $key_p->get_records( 'RRSIG',  'answer' );
 
     if ( @dnskeys == 0 or @sigs == 0 ) {
-        push @results, info( NO_KEYS_OR_NO_SIGS => { keys => scalar(@dnskeys), sigs => scalar(@sigs) } );
+        push @results, info( NO_KEYS_OR_NO_SIGS => { keys => scalar( @dnskeys ), sigs => scalar( @sigs ) } );
         return @results;
     }
 
@@ -371,7 +371,8 @@ sub dnssec08 {
             $ok = $sig->keytag;
         }
         else {
-            push @results, info( DNSKEY_SIGNATURE_NOT_OK => { signature => $sig->keytag, error => $msg, time => $time } );
+            push @results,
+              info( DNSKEY_SIGNATURE_NOT_OK => { signature => $sig->keytag, error => $msg, time => $time } );
         }
     }
 
@@ -403,7 +404,9 @@ sub dnssec09 {
     my @sigs = $soa_p->get_records( 'RRSIG', 'answer' );
 
     if ( @dnskeys == 0 or @sigs == 0 or @soa == 0 ) {
-        push @results, info( NO_KEYS_OR_NO_SIGS_OR_NO_SOA => { keys => scalar(@dnskeys), sigs => scalar(@sigs), soas => scalar(@soa)} );
+        push @results,
+          info( NO_KEYS_OR_NO_SIGS_OR_NO_SOA =>
+              { keys => scalar( @dnskeys ), sigs => scalar( @sigs ), soas => scalar( @soa ) } );
         return @results;
     }
 
@@ -440,7 +443,7 @@ sub dnssec10 {
     }
     my @dnskeys = $key_p->get_records( 'DNSKEY', 'answer' );
 
-    my $name = $zone->name->prepend('xx--example');
+    my $name = $zone->name->prepend( 'xx--example' );
     my $test_p = $zone->query_one( $name, 'A', { dnssec => 1 } );
     if ( not $test_p ) {
         die "No response from child servers for A";
@@ -472,11 +475,13 @@ sub dnssec10 {
             my $ok = 0;
             foreach my $sig ( @sigs ) {
                 my $msg = '';
-                if ( $sig->verify_time( [ grep { $_->name eq $sig->name } @nsec ], \@dnskeys, $test_p->timestamp, $msg ) ) {
+                if ( $sig->verify_time( [ grep { $_->name eq $sig->name } @nsec ], \@dnskeys, $test_p->timestamp, $msg )
+                  )
+                {
                     $ok = 1;
                 }
                 else {
-                    push @results, info( NSEC_SIG_VERIFY_ERROR => { error => $msg, sig=> $sig->keytag } );
+                    push @results, info( NSEC_SIG_VERIFY_ERROR => { error => $msg, sig => $sig->keytag } );
                 }
 
                 if ( $ok ) {
@@ -505,7 +510,12 @@ sub dnssec10 {
             my $ok = 0;
             foreach my $sig ( @sigs ) {
                 my $msg = '';
-                if ( $sig->verify_time( [ grep { $_->name eq $sig->name } @nsec3 ], \@dnskeys, $test_p->timestamp, $msg ) ) {
+                if (
+                    $sig->verify_time(
+                        [ grep { $_->name eq $sig->name } @nsec3 ], \@dnskeys, $test_p->timestamp, $msg
+                    )
+                  )
+                {
                     $ok = 1;
                 }
                 else {
@@ -517,7 +527,7 @@ sub dnssec10 {
                 else {
                     push @results, info( NSE3C_NOT_SIGNED => {} );
                 }
-            }
+            } ## end foreach my $sig ( @sigs )
         } ## end foreach my $nsec3 ( @nsec3 )
     } ## end if ( @nsec3 )
 

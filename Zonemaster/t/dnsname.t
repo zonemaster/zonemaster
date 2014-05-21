@@ -33,10 +33,10 @@ my $two = Zonemaster::DNSName->new( 'fee.bar.baz.com' );
 is( $one->common( $two ), 3, 'common label counting works' );
 
 my $ex = Zonemaster::DNSName->new( 'example.org' );
-my $pr = $ex->prepend('xx-example');
-is($pr, 'xx-example.example.org', "Prepend works: $pr");
-is($ex, 'example.org', "Prepend does not change original: $ex");
-$pr = $root->prepend('xx-example');
-is($pr, 'xx-example', "Prepend to root works: $pr");
+my $pr = $ex->prepend( 'xx-example' );
+is( $pr, 'xx-example.example.org', "Prepend works: $pr" );
+is( $ex, 'example.org',            "Prepend does not change original: $ex" );
+$pr = $root->prepend( 'xx-example' );
+is( $pr, 'xx-example', "Prepend to root works: $pr" );
 
 done_testing;

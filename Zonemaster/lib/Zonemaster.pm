@@ -75,7 +75,7 @@ sub all_methods {
         my $full = "Zonemaster::Test::$module";
         my $ref  = $full->metadata;
         foreach my $method ( keys %$ref ) {
-            push @{$res{$module}}, $method;
+            push @{ $res{$module} }, $method;
         }
     }
 
@@ -83,19 +83,19 @@ sub all_methods {
 }
 
 sub recurse {
-    my ($class, $qname, $qtype, $qclass ) = @_;
-    $qtype //= 'A';
+    my ( $class, $qname, $qtype, $qclass ) = @_;
+    $qtype  //= 'A';
     $qclass //= 'IN';
 
-    return $recursor->recurse($qname, $qtype, $qclass);
+    return $recursor->recurse( $qname, $qtype, $qclass );
 }
 
 sub add_fake_delegation {
     my ( $class, $domain, $href ) = @_;
 
-    my $parent = $class->zone($recursor->parent($domain));
-    foreach my $ns (@{$parent->ns}) {
-        $ns->add_fake_delegation($domain => $href);
+    my $parent = $class->zone( $recursor->parent( $domain ) );
+    foreach my $ns ( @{ $parent->ns } ) {
+        $ns->add_fake_delegation( $domain => $href );
     }
 
     return;
@@ -104,9 +104,9 @@ sub add_fake_delegation {
 sub add_fake_ds {
     my ( $class, $domain, $aref ) = @_;
 
-    my $parent = $class->zone($recursor->parent($domain));
-    foreach my $ns (@{$parent->ns}) {
-        $ns->add_fake_ds($domain => $aref);
+    my $parent = $class->zone( $recursor->parent( $domain ) );
+    foreach my $ns ( @{ $parent->ns } ) {
+        $ns->add_fake_ds( $domain => $aref );
     }
 
     return;
