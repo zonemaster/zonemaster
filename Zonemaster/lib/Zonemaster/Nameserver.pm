@@ -406,6 +406,7 @@ sub all_known_nameservers {
 
 sub axfr {
     my ( $self, $domain, $callback, $class ) = @_;
+    $class //= 'IN';
 
     return $self->dns->axfr( $domain, $callback, $class );
 }
