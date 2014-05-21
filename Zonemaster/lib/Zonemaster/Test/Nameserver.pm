@@ -148,9 +148,7 @@ sub nameserver03 {
 
         my $first_rr;
         eval {
-            my $res = $local_ns->dns;
-            $res->axfr_start( $zone->name );
-            ( $first_rr ) = $res->axfr_next;
+            $local_ns->axfr( $zone->name, sub { ($first_rr) = @_; return 0;});
             1;
         }
         or do {
