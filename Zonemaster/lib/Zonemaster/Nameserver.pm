@@ -408,6 +408,12 @@ sub axfr {
     my ( $self, $domain, $callback, $class ) = @_;
     $class //= 'IN';
 
+    if ( Zonemaster->config->get->{no_network} ) {
+        croak sprintf
+          "External AXFR query for %s attempted to %s while running with no_network",
+          $domain, $self->string;
+    }
+
     return $self->dns->axfr( $domain, $callback, $class );
 }
 
