@@ -119,7 +119,7 @@ sub nameserver02 {
                   );
             }
             else {
-                if ( not $p->edns_rcode or not $p->edns_size() ) {
+                if ( not $p->has_edns ) {
                     push @results,
                       info(
                         EDNS0_BAD_ANSWER => {
