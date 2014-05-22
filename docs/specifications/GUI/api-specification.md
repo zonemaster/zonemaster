@@ -1,3 +1,5 @@
+**This document can from now (2014-05-22) on be considered optional/wont fix until further notice...**
+
 **API**
 * I want to be able to list (see name of) all available test profiles (pre-defined set of tests for the engine to run).
 * I want to be able to send/set these advanced runtime options:
