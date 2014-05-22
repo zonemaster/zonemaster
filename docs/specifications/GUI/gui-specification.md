@@ -55,6 +55,11 @@ test to be finished, or display the last test results.
 * While waiting for a test to be finished, some sort of progress indicator must be shown -
 when a test level starts running it could output information on what is being done. Preferably these
 indicators should be on the same page as the "Test now".
+* It should be possible to configure the number of concurrent tests being run as to not overload the 
+engine/machine/network.
+* Special care should be taken for undelegated tests so that these do not fill up all available
+testing "slots" as configured above. One example solution could be to have "dedicated" slots for
+delegated runs vs undelegated runs, like 20x delegated and 20x undelegated concurrent tests.
 
 **Input:**
 * The domain name input must be filtered and validated according the current DNS rules.
@@ -99,7 +104,3 @@ tests from undelegated tests.
 
 **Future:**
 * Add a bonus system, stars for domains with IPv6 and DNSSEC, and other features.
-
-**API:**
-[See this file for API-specification](./api-specification.md)
-
