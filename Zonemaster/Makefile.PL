@@ -22,7 +22,6 @@ requires 'Readonly' => 0;
 recommends 'JSON::XS' => 2.32;
 recommends 'Readonly::XS' => 0;
 
-install_script 'zonemaster';
 install_share;
 
 WriteAll;
