@@ -2,6 +2,10 @@ DOC=ZonemasterTestSpecifications.md
 
 all: mtp address basic connectivity consistency delegation dnssec nameserver syntax zone
 
+map:
+	../../../utils/maprequirement.pl --reqfile ../../requirements/TestRequirements.md \
+	--specdir ./ > Report.md
+
 mtp:
 	cat MasterTestPlan.md > $(DOC)
 
