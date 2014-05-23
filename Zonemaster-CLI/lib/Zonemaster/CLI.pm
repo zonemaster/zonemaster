@@ -143,15 +143,23 @@ has 'policy' => (
 );
 
 has 'ds' => (
-    is => 'ro',
-    isa => 'ArrayRef[Str]',
-    required => 0,
+    is            => 'ro',
+    isa           => 'ArrayRef[Str]',
+    required      => 0,
     documentation => 'Strings with DS data on the form "keytag,algorithm,type,digest"',
+);
+
+has 'count' => (
+    is            => 'ro',
+    isa           => 'Bool',
+    required      => 0,
+    documentation => 'Print a count of the number of messages at each level',
 );
 
 sub run {
     my ( $self ) = @_;
     my @accumulator;
+    my %counter;
 
     if ( $self->version ) {
         print_versions();
@@ -211,6 +219,8 @@ sub run {
 
             print_spinner();
 
+            $counter{ uc $entry->level } += 1;
+
             if ( $numeric{ uc $entry->level } >= $numeric{ uc $self->level } ) {
 
                 if ( $translator ) {
@@ -238,7 +248,7 @@ sub run {
                 }
             } ## end if ( $numeric{ uc $entry...})
             if ( $self->stop_level and $numeric{ uc $entry->level } >= $numeric{ uc $self->stop_level } ) {
-                die(NormalExit->new({message => "Saw message at level " . $entry->level}));
+                die( NormalExit->new( { message => "Saw message at level " . $entry->level } ) );
             }
         }
     );
@@ -279,7 +289,7 @@ sub run {
         $self->add_fake_delegation( $domain );
     }
 
-    if ($self->ds and @{ $self->ds }) {
+    if ( $self->ds and @{ $self->ds } ) {
         $self->add_fake_ds( $domain );
     }
 
@@ -300,13 +310,21 @@ sub run {
             Zonemaster->test_zone( $domain );
         }
     };
-    if ($@) {
+    if ( $@ ) {
         my $err = $@;
-        if (blessed $err and $err->isa("NormalExit")) {
+        if ( blessed $err and $err->isa( "NormalExit" ) ) {
             say STDERR "Exited early: " . $err->message;
         }
         else {
-            die $err; # Don't know what it is, rethrow
+            die $err;    # Don't know what it is, rethrow
+        }
+    }
+
+    if ( $self->count ) {
+        say "\n\n   Level\tNumber of log entries";
+        say "   =====\t=====================";
+        foreach my $level ( sort { $numeric{$b} <=> $numeric{$a} } keys %counter ) {
+            printf "%8s\t%5d entries.\n", $level, $counter{$level};
         }
     }
 
@@ -339,12 +357,12 @@ sub add_fake_ds {
     my ( $self, $domain ) = @_;
     my @data;
 
-    foreach my $str (@{$self->ds}) {
-        my ( $tag, $algo, $type, $digest ) = split(/,/, $str);
+    foreach my $str ( @{ $self->ds } ) {
+        my ( $tag, $algo, $type, $digest ) = split( /,/, $str );
         push @data, { keytag => $tag, algorithm => $algo, type => $type, digest => $digest };
     }
 
-    Zonemaster->add_fake_ds( $domain => \@data);
+    Zonemaster->add_fake_ds( $domain => \@data );
 
     return;
 }
