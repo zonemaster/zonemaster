@@ -11,6 +11,7 @@ use warnings;
 use Zonemaster;
 use Zonemaster::Util;
 use List::Util qw[min];
+use List::MoreUtils qw[none];
 
 ###
 ### Entry points
@@ -21,15 +22,17 @@ sub all {
     my @results;
 
     push @results, $class->dnssec01( $zone );
-    push @results, $class->dnssec02( $zone );
-    push @results, $class->dnssec03( $zone );
-    push @results, $class->dnssec04( $zone );
-    push @results, $class->dnssec05( $zone );
-    push @results, $class->dnssec06( $zone );
-    push @results, $class->dnssec07( $zone );
-    push @results, $class->dnssec08( $zone );
-    push @results, $class->dnssec09( $zone );
-    push @results, $class->dnssec10( $zone );
+    if ( none { $_->tag eq 'NO_DS' } @results ) {
+        push @results, $class->dnssec02( $zone );
+        push @results, $class->dnssec03( $zone );
+        push @results, $class->dnssec04( $zone );
+        push @results, $class->dnssec05( $zone );
+        push @results, $class->dnssec06( $zone );
+        push @results, $class->dnssec07( $zone );
+        push @results, $class->dnssec08( $zone );
+        push @results, $class->dnssec09( $zone );
+        push @results, $class->dnssec10( $zone );
+    }
 
     return @results;
 }
@@ -115,8 +118,8 @@ sub dnssec02 {
         die "No response from child nameservers" if not $dnskey_p;
         my %dnskey = map { $_->keytag => $_ } $dnskey_p->get_records( 'DNSKEY', 'answer' );
 
-        if (scalar( keys %dnskey ) == 0) {
-            push @results, info( NO_DNSKEY => {});
+        if ( scalar( keys %dnskey ) == 0 ) {
+            push @results, info( NO_DNSKEY => {} );
             return @results;
         }
 
