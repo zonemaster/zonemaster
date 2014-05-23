@@ -478,73 +478,79 @@ sub dnssec10 {
     my @nsec = $test_p->get_records( 'NSEC', 'authority' );
     if ( @nsec ) {
         push @results, info( HAS_NSEC => {} );
+        my $covered = 0;
         foreach my $nsec ( @nsec ) {
 
             if ( $nsec->covers( $name ) ) {
-                push @results, info( NSEC_COVERS => { name => $name } );
-            }
-            else {
-                push @results, info( NSEC_COVERS_NOT => { name => $name } );
-            }
+                $covered = 1;
 
-            my @sigs = grep { $_->typecovered eq 'NSEC' } $test_p->get_records_for_name( 'RRSIG', $nsec->name );
-            my $ok = 0;
-            foreach my $sig ( @sigs ) {
-                my $msg = '';
-                if ( $sig->verify_time( [ grep { $_->name eq $sig->name } @nsec ], \@dnskeys, $test_p->timestamp, $msg )
-                  )
-                {
-                    $ok = 1;
-                }
-                else {
-                    push @results, info( NSEC_SIG_VERIFY_ERROR => { error => $msg, sig => $sig->keytag } );
-                }
+                my @sigs = grep { $_->typecovered eq 'NSEC' } $test_p->get_records_for_name( 'RRSIG', $nsec->name );
+                my $ok = 0;
+                foreach my $sig ( @sigs ) {
+                    my $msg = '';
+                    if ( $sig->verify_time( [ grep { $_->name eq $sig->name } @nsec ], \@dnskeys, $test_p->timestamp, $msg )
+                      )
+                    {
+                        $ok = 1;
+                    }
+                    else {
+                        push @results, info( NSEC_SIG_VERIFY_ERROR => { error => $msg, sig => $sig->keytag } );
+                    }
 
-                if ( $ok ) {
-                    push @results, info( NSEC_SIGNED => {} );
-                }
-                else {
-                    push @results, info( NSEC_NOT_SIGNED => {} );
+                    if ( $ok ) {
+                        push @results, info( NSEC_SIGNED => {} );
+                    }
+                    else {
+                        push @results, info( NSEC_NOT_SIGNED => {} );
+                    }
                 }
             }
         } ## end foreach my $nsec ( @nsec )
+        if ($covered) {
+            push @results, info( NSEC_COVERS => { name => $name } );
+        } else {
+            push @results, info( NSEC_COVERS_NOT => { name => $name } );
+        }
     } ## end if ( @nsec )
 
     my @nsec3 = $test_p->get_records( 'NSEC3', 'authority' );
     if ( @nsec3 ) {
+        my $covered = 0;
         push @results, info( HAS_NSEC3 => {} );
         foreach my $nsec3 ( @nsec3 ) {
 
             if ( $nsec3->covers( $name ) ) {
-                push @results, info( NSEC3_COVERS => { name => $name } );
-            }
-            else {
-                push @results, info( NSEC3_COVERS_NOT => { name => $name } );
-            }
+                $covered = 1;
 
-            my @sigs = grep { $_->typecovered eq 'NSEC3' } $test_p->get_records_for_name( 'RRSIG', $nsec3->name );
-            my $ok = 0;
-            foreach my $sig ( @sigs ) {
-                my $msg = '';
-                if (
-                    $sig->verify_time(
-                        [ grep { $_->name eq $sig->name } @nsec3 ], \@dnskeys, $test_p->timestamp, $msg
-                    )
-                  )
-                {
-                    $ok = 1;
-                }
-                else {
-                    push @results, info( NSEC3_SIG_VERIFY_ERROR => { sig => $sig->keytag, error => $msg } );
-                }
-                if ( $ok ) {
-                    push @results, info( NSEC3_SIGNED => {} );
-                }
-                else {
-                    push @results, info( NSE3C_NOT_SIGNED => {} );
-                }
-            } ## end foreach my $sig ( @sigs )
+                my @sigs = grep { $_->typecovered eq 'NSEC3' } $test_p->get_records_for_name( 'RRSIG', $nsec3->name );
+                my $ok = 0;
+                foreach my $sig ( @sigs ) {
+                    my $msg = '';
+                    if (
+                        $sig->verify_time(
+                            [ grep { $_->name eq $sig->name } @nsec3 ], \@dnskeys, $test_p->timestamp, $msg
+                        )
+                      )
+                    {
+                        $ok = 1;
+                    }
+                    else {
+                        push @results, info( NSEC3_SIG_VERIFY_ERROR => { sig => $sig->keytag, error => $msg } );
+                    }
+                    if ( $ok ) {
+                        push @results, info( NSEC3_SIGNED => {} );
+                    }
+                    else {
+                        push @results, info( NSE3C_NOT_SIGNED => {} );
+                    }
+                } ## end foreach my $sig ( @sigs )
+            }
         } ## end foreach my $nsec3 ( @nsec3 )
+        if ($covered) {
+            push @results, info( NSEC3_COVERS => { name => $name } );
+        } else {
+            push @results, info( NSEC3_COVERS_NOT => { name => $name } );
+        }
     } ## end if ( @nsec3 )
 
     return @results;

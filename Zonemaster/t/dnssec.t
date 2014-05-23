@@ -82,12 +82,6 @@ ok( $tag{NSEC3_COVERS}, 'NSEC3_COVERS' );
 @res = Zonemaster->test_module( 'DNSSEC', 'loopia.se' );
 %tag = map { $_->tag => 1 } @res;
 ok( $tag{NO_DS},             'NO_DS' );
-ok( $tag{DNSKEY_BUT_NOT_DS}, 'DNSKEY_BUT_NOT_DS' );
-
-@res = Zonemaster->test_module( 'DNSSEC', 'openbsd.org' );
-%tag = map { $_->tag => 1 } @res;
-ok( $tag{EXTRA_PROCESSING_BROKEN}, 'EXTRA_PROCESSING_BROKEN' );
-ok( $tag{NO_KEYS_OR_NO_SIGS},      'NO_KEYS_OR_NO_SIGS' );
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
