@@ -422,6 +422,16 @@ sub axfr {
           $domain, $self->string;
     }
 
+    if ( $self->address->version == 4 and not Zonemaster->config->get->{net}{ipv4} ) {
+        Zonemaster->logger->add( IPV4_BLOCKED => { ns => $self->string } );
+        return;
+    }
+
+    if ( $self->address->version == 6 and not Zonemaster->config->get->{net}{ipv6} ) {
+        Zonemaster->logger->add( IPV6_BLOCKED => { ns => $self->string } );
+        return;
+    }
+
     return $self->dns->axfr( $domain, $callback, $class );
 }
 
