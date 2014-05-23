@@ -157,8 +157,6 @@
         "DS_BUT_NOT_DNSKEY" : "ERROR",
         "DS_DIGTYPE_NOT_OK" : "ERROR",
         "DS_DIGTYPE_OK" : "DEBUG",
-        "DS_DOES_NOT_MATCH_DNSKEY" : "NOTICE",
-        "DS_MATCHES_DNSKEY" : "DEBUG",
         "DURATION_LONG" : "WARNING",
         "DURATION_OK" : "DEBUG",
         "DURATION_SHORT" : "WARNING",
@@ -170,11 +168,7 @@
         "INVALID_NAME_RCODE" : "NOTICE",
         "ITERATIONS_OK" : "DEBUG",
         "MANY_ITERATIONS" : "NOTICE",
-        "MATCH_FOUND" : "DEBUG",
-        "MATCH_NOT_FOUND" : "ERROR",
         "NEITHER_DNSKEY_NOR_DS" : "DEBUG",
-        "NO_DNSKEY_FOR_DS" : "WARNING",
-        "NO_DS" : "INFO",
         "NO_KEYS_OR_NO_SIGS" : "ERROR",
         "NO_KEYS_OR_NO_SIGS_OR_NO_SOA" : "ERROR",
         "NO_NSEC3PARAM" : "DEBUG",
@@ -192,6 +186,15 @@
         "SOA_SIGNATURE_NOT_OK" : "ERROR",
         "SOA_SIGNATURE_OK" : "DEBUG",
         "SOA_SIGNED" : "DEBUG",
-        "TOO_MANY_ITERATIONS" : "WARNING"
+        "TOO_MANY_ITERATIONS" : "WARNING",
+        "NO_DS": "NOTICE",
+        "DS_FOUND": "INFO",
+        "NO_DNSKEY": "WARNING",
+        "COMMON_KEYTAGS": "INFO",
+        "DS_MATCHES_DNSKEY": "INFO",
+        "DS_DOES_NOT_MATCH_DNSKEY": "ERROR",
+        "DS_MATCH_FOUND": "INFO",
+        "DS_MATCH_NOT_FOUND": "ERROR",
+        "NO_COMMON_KEYTAGS": "ERROR"
     }
 }

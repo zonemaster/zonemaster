@@ -27,8 +27,14 @@ is( $res[0]->tag,   'NO_DS', 'NO_DS' );
 @res = Zonemaster->test_method( 'DNSSEC', 'dnssec02', $zone );
 my %tag = map { $_->tag => 1 } @res;
 ok( $tag{DS_MATCHES_DNSKEY},        'DS_MATCHES_DNSKEY' );
-ok( $tag{DS_DOES_NOT_MATCH_DNSKEY}, 'DS_DOES_NOT_MATCH_DNSKEY' );
-ok( $tag{MATCH_FOUND},              'MATCH_FOUND' );
+ok( $tag{COMMON_KEYTAGS}, 'COMMON_KEYTAGS' );
+ok( $tag{DS_MATCH_FOUND},              'DS_MATCH_FOUND' );
+ok( $tag{DS_FOUND}, 'DS_FOUND' );
+
+@res = Zonemaster->test_method( 'DNSSEC', 'dnssec02', $zone2 );
+my %tag = map { $_->tag => 1 } @res;
+ok( $tag{NO_DS}, 'NO_DS' );
+is( scalar(keys %tag), 1, 'Only one message');
 
 my $zone3 = Zonemaster->zone( 'com' );
 @res = Zonemaster->test_method( 'DNSSEC', 'dnssec03', $zone3 );

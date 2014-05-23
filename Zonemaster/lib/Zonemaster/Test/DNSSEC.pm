@@ -43,8 +43,11 @@ sub metadata {
 
     return {
         dnssec01 => [qw( DS_DIGTYPE_OK DS_DIGTYPE_NOT_OK NO_DS )],
-        dnssec02 =>
-          [qw( NO_DS NO_DNSKEY_FOR_DS DS_MATCHES_DNSKEY DS_DOES_NOT_MATCH_DNSKEY MATCH_FOUND MATCH_NOT_FOUND )],
+        dnssec02 => [
+            qw(
+              NO_DS DS_FOUND NO_DNSKEY COMMON_KEYTAGS DS_MATCHES_DNSKEY DS_DOES_NOT_MATCH_DNSKEY DS_MATCH_FOUND DS_MATCH_NOT_FOUND NO_COMMON_KEYTAGS
+              )
+        ],
         dnssec03 => [qw( NO_NSEC3PARAM MANY_ITERATIONS TOO_MANY_ITERATIONS ITERATIONS_OK  )],
         dnssec04 => [qw( DURATION_SHORT DURATION_LONG DURATION_OK )],
         dnssec05 => [qw( ALGORITHM_DEPRECATED ALGORITHM_RESERVED ALGORITHM_UNASSIGNED ALGORITHM_OK )],
@@ -101,44 +104,54 @@ sub dnssec02 {
 
     my $ds_p = $zone->parent->query_one( $zone->name, 'DS', { dnssec => 1 } );
     die "No response from parent nameservers" if not $ds_p;
-    my @ds = $ds_p->get_records( 'DS', 'answer' );
+    my %ds = map { $_->keytag => $_ } $ds_p->get_records( 'DS', 'answer' );
 
-    if ( @ds == 0 ) {
+    if ( scalar( keys %ds ) == 0 ) {
         push @results, info( NO_DS => { zone => '' . $zone->name, from => $ds_p->answerfrom } );
     }
     else {
+        push @results, info( DS_FOUND => { keytags => join( ':', map { $_->keytag } values %ds ) } );
         my $dnskey_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
         die "No response from child nameservers" if not $dnskey_p;
         my %dnskey = map { $_->keytag => $_ } $dnskey_p->get_records( 'DNSKEY', 'answer' );
-        my $match_found = 0;
 
-        foreach my $ds ( @ds ) {
-            if ( not $dnskey{ $ds->keytag } ) {
-                push @results, info( NO_DNSKEY_FOR_DS => { keytag => $ds->keytag } );
-            }
-            foreach my $key ( values %dnskey ) {
-                next if ( $key->algorithm != $ds->algorithm );
-                if ( $ds->verify( $key ) ) {
-                    push @results,
-                      info(
-                        DS_MATCHES_DNSKEY => { ds => $ds->keytag, dnskey => $key->keytag, algorithm => $ds->algorithm }
-                      );
-                    $match_found = 1;
+        if (scalar( keys %dnskey ) == 0) {
+            push @results, info( NO_DNSKEY => {});
+            return @results;
+        }
+
+        # Pick out keys with a tag that a DS has using a hash slice
+        my @common = @dnskey{ keys %ds };
+
+        if ( @common ) {
+            push @results, info( COMMON_KEYTAGS => { keytags => join( ':', map { $_->keytag } @common ) } );
+            my $found = 0;
+            foreach my $key ( @common ) {
+                if ( $ds{ $key->keytag }->verify( $key ) ) {
+                    push @results, info( DS_MATCHES_DNSKEY => { keytag => $key->keytag } );
+                    $found = 1;
                 }
                 else {
-                    push @results,
-                      info( DS_DOES_NOT_MATCH_DNSKEY =>
-                          { ds => $ds->keytag, dnskey => $key->keytag, algorithm => $ds->algorithm } );
+                    push @results, info( DS_DOES_NOT_MATCH_DNSKEY => { keytag => $key->keytag } );
                 }
             }
-        } ## end foreach my $ds ( @ds )
-        if ( $match_found ) {
-            push @results, info( MATCH_FOUND => {} );
+            if ( $found ) {
+                push @results, info( DS_MATCH_FOUND => {} );
+            }
+            else {
+                push @results, info( DS_MATCH_NOT_FOUND => {} );
+            }
         }
         else {
-            push @results, info( MATCH_NOT_FOUND => {} );
+            push @results,
+              info(
+                NO_COMMON_KEYTAGS => {
+                    dstags     => join( ':', map { $_->keytag } keys %ds ),
+                    dnskeytags => join( ':', map { $_->keytag } keys %dnskey )
+                }
+              );
         }
-    } ## end else [ if ( @ds == 0 ) ]
+    } ## end else [ if ( scalar( keys %ds ...))]
 
     return @results;
 } ## end sub dnssec02
