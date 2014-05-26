@@ -1,85 +1,42 @@
 Zonemaster
+==========
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+Zonemaster is a cooperative project between .SE and AFNIC. It is a successor to both .SE's DNSCheck and AFNIC's Zonecheck.
 
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
+The Perl modules included in this distribution comprise the "engine" part of the whole Zonemaster system. It is the framework needed to run tests, and the core set of implemented tests. User interfaces are distributed separately (or specially written), as may additional test modules be.
+
+As of this writing, this code is in roughly alpha test state. It is fully usable, but not all the included tests have been verified to be correct. If you're interested in using this code, you should keep an eye on our Github repository (https://github.com/dotse/zonemaster).
 
 
-INSTALLATION
+Installation
+============
 
-To install this module, run the following commands:
+The Zonemaster engine is installed just like any other Perl module:
 
-	perl Build.PL
-	./Build
-	./Build test
-	./Build install
-
-SUPPORT AND DOCUMENTATION
-
-After installing, you can find documentation for this module with the
-perldoc command.
-
-    perldoc Zonemaster
-
-You can also look for information at:
-
-    RT, CPAN's request tracker (report bugs here)
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Zonemaster
-
-    AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/Zonemaster
-
-    CPAN Ratings
-        http://cpanratings.perl.org/d/Zonemaster
-
-    Search CPAN
-        http://search.cpan.org/dist/Zonemaster/
+perl Makefile.pl
+make
+make test
+make install
 
 
-LICENSE AND COPYRIGHT
+Prerequisites
+=============
 
-Copyright (C) 2013 Calle Dybedahl
+The other modules needed to run the Zonemaster engine are listed in Makefile.PL as usual. One of them is Moose, so if you don't already have that installed a large number of modules will get installed.
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of the the Artistic License (2.0). You may obtain a
-copy of the full license at:
+For sending, receiving and interpreting DNS queries, the Zonemaster engine relies on the Net::LDNS module (available from CPAN). That module in turn relies on the ldns C library from NLNet Labs (https://www.nlnetlabs.nl/projects/ldns/), so that needs to be installed first.
 
-L<http://www.perlfoundation.org/artistic_license_2_0>
 
-Any use, modification, and distribution of the Standard or Modified
-Versions is governed by this Artistic License. By using, modifying or
-distributing the Package, you accept this license. Do not use, modify,
-or distribute the Package, if you do not accept this license.
+Documentation
+=============
 
-If your Modified Version has been derived from a Modified Version made
-by someone other than you, you are nevertheless required to ensure that
-your Modified Version complies with the requirements of this license.
+The documentation is at the moment a work in progress. If you want to use the engine, read the POD documentation for the Zonemaster module. If you want to see the test specifications and such, look at the Github repository.
 
-This license does not grant you the right to use any trademark, service
-mark, tradename, or logo of the Copyright Holder.
 
-This license includes the non-exclusive, worldwide, free-of-charge
-patent license to make, have made, use, offer to sell, sell, import and
-otherwise transfer the Package with respect to any patent claims
-licensable by the Copyright Holder that are necessarily infringed by the
-Package. If you institute patent litigation (including a cross-claim or
-counterclaim) against any party alleging that the Package constitutes
-direct or contributory patent infringement, then this Artistic License
-to you shall terminate on the date that such litigation is filed.
+License
+=======
 
-Disclaimer of Warranty: THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER
-AND CONTRIBUTORS "AS IS' AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES.
-THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-PURPOSE, OR NON-INFRINGEMENT ARE DISCLAIMED TO THE EXTENT PERMITTED BY
-YOUR LOCAL LAW. UNLESS REQUIRED BY LAW, NO COPYRIGHT HOLDER OR
-CONTRIBUTOR WILL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, OR
-CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THE PACKAGE,
-EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+The software is released under the 2-clause BSD license. See separate LICENSE file.
 
+
+2014-05-26 Calle Dybedahl, for the Zonemaster development team
