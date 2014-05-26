@@ -16,3 +16,4 @@ pod2htm*.tmp
 pm_to_blib
 Zonemaster-CLI-*
 Zonemaster-CLI-*.tar.gz
+MANIFEST.bak
