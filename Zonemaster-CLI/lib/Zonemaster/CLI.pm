@@ -96,14 +96,14 @@ has 'ipv4' => (
     is            => 'ro',
     isa           => 'Bool',
     default       => 1,
-    documentation => 'Flag to permit or deny queries being sent via IPv4.',
+    documentation => 'Flag to permit or deny queries being sent via IPv4. --ipv4 permits IPv4 traffic, --no-ipv4 forbids it.',
 );
 
 has 'ipv6' => (
     is            => 'ro',
     isa           => 'Bool',
     default       => 1,
-    documentation => 'Flag to permit or deny queries being sent via IPv6.',
+    documentation => 'Flag to permit or deny queries being sent via IPv6. --ipv6 permits IPv6 traffic, --no-ipv6 forbids it.',
 );
 
 has 'list_tests' => (
