@@ -64,12 +64,15 @@ sub run_all_for {
                     die $err;    # Utility exception, pass it on
                 }
                 else {
-                    push @res, info( MODULE_ERROR => { msg => "$err" } );
+                    push @res, info( MODULE_ERROR => { module => $module, msg => "$err" } );
                 }
             }
 
             push @results, @res;
         }
+    }
+    else {
+        push @results, info( CANNOT_CONTINUE => { zone => $zone->name->string });
     }
 
     return @results;
@@ -90,7 +93,7 @@ sub run_module {
                 die $err;    # Utility exception, pass it on
             }
             else {
-                push @res, info( MODULE_ERROR => { msg => "$err" } );
+                push @res, info( MODULE_ERROR => { module => $module, msg => "$err" } );
             }
         }
         return @res;
@@ -119,7 +122,7 @@ sub run_one {
                     die $err;    # Utility exception, pass it on
                 }
                 else {
-                    push @res, info( MODULE_ERROR => { msg => "$err" } );
+                    push @res, info( MODULE_ERROR => { module => $module, msg => "$err" } );
                 }
             }
             return @res;
@@ -129,7 +132,7 @@ sub run_one {
         }
     } ## end if ( $module )
     else {
-        info( UNKNOWN_MODULE => { module => $requested, method => $test } );
+        info( UNKNOWN_MODULE => { module => $requested, method => $test, known => join( ':', sort $class->modules) } );
     }
 
     return;

@@ -15,7 +15,7 @@ sub all {
     my ( $class, $zone ) = @_;
     my @results;
 
-    push @results, $class->basic01( $zone );
+    push @results, eval { $class->basic01( $zone ) };
 
     # Perform BASIC2 if BASIC1 passed
     if ( grep { $_->tag eq q{HAS_GLUE} } @results ) {
@@ -24,7 +24,7 @@ sub all {
 
     # Perform BASIC3 if BASIC2 failed
     if ( not grep { $_->tag eq q{HAS_NAMESERVERS} } @results ) {
-        push @results, $class->basic03( $zone );
+        push @results, eval { $class->basic03( $zone ) };
     }
 
     return @results;
@@ -85,6 +85,7 @@ sub basic01 {
     my @results;
 
     my $parent = $zone->parent;
+
     my $p = $parent->query_one( $zone->name, q{NS} );
 
     if ( not $p ) {
