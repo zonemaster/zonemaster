@@ -34,7 +34,7 @@ Should be easy to do, in order to encourage fixing problems quickly. All unit te
 
 ## Major Versions
 
-These should be done with more care. Not only should all unit tests pass and everything be documented, but release candidates should be produced and known major users of the component should be encouraged to test the release candidates.
+These should be done with more care. Not only must all unit tests pass and everything be documented, but release candidates should be produced and known major users of the component should be encouraged to test the release candidates.
 
 ## New Epoch
 
