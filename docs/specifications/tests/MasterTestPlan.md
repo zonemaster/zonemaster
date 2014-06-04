@@ -85,7 +85,7 @@ include:
  * [**Basic**](Basic-TP/level.md) (initial tests)
  * [**Delegation**](Delegation-TP/level.md) properties (parent and child
    name servers)  
- * [**Consistency**](Consistency-TP/level.md) (all name have consistend
+ * [**Consistency**](Consistency-TP/level.md) (all name have consistent
    answers)
  * [**DNSSEC**](DNSSEC-TP/level.md) properties (algorithms, secure
    delegation)  
@@ -180,7 +180,7 @@ been identified within the system requirements:
 * Syntax
 
 The separation of test levels does not necessarily mean that
-the levels are separated in the New DNSCheck implementation. The
+the levels are separated in the Zonemaster implementation. The
 actual test levels might differ from the actual test modules in the
 code. At this level, the separation is done to make a better overview
 of all the test cases specified.
@@ -231,7 +231,7 @@ The tests are executed with the input given by the user. The input
 data is validated to be correct. Depending on the input data and what
 is available in the public DNS, some test cases might not be executed.
 
-The output from DNSCheck should clearly indicate what test cases have
+The output from Zonemaster should clearly indicate what test cases have
 been executed, and which have not.
 
 #### Reporting Processes
