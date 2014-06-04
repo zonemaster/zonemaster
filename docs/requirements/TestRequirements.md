@@ -114,6 +114,7 @@ Future tests
  * Test for referral to root (possible DDoS vector for authoritative name servers)
  * Check to see if removed authoritative name server is still authoritative (requires
    a new input parameter, "previous ns")
+ * Test the preservation of qname case in DNS answers, RFC 1035 section 7.1. ("0x20" hack)
 
 Discarded tests
 ---------------
