@@ -6,7 +6,7 @@ name 'Zonemaster';
 license 'bsd';
 all_from 'lib/Zonemaster.pm';
 
-requires 'Net::LDNS' => 0.63;
+requires 'Net::LDNS' => 0.64;
 requires 'IO::Socket::INET6' => 2.69;
 requires 'Moose' => 2.0401;
 requires 'Module::Find' => 0.10;
