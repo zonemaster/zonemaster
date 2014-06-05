@@ -9,7 +9,7 @@ package Zonemaster::CLI;
 use 5.014002;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Moose;
 with 'MooseX::Getopt';
@@ -156,6 +156,13 @@ has 'count' => (
     documentation => 'Print a count of the number of messages at each level',
 );
 
+has 'progress' => (
+    is => 'ro',
+    isa => 'Bool',
+    default => 1,
+    documentation => 'Boolean flag for activity indicator. Default on.',
+);
+
 sub run {
     my ( $self ) = @_;
     my @accumulator;
@@ -217,7 +224,7 @@ sub run {
         sub {
             my ( $entry ) = @_;
 
-            print_spinner();
+            $self->print_spinner();
 
             $counter{ uc $entry->level } += 1;
 
@@ -382,9 +389,11 @@ sub print_versions {
 my @spinner_strings = ( '  | ', '  / ', '  - ', '  \\ ' );
 
 sub print_spinner {
+    my ( $self ) = @_;
+
     state $counter = 0;
 
-    printf "%s\r", $spinner_strings[ $counter++ % 4 ];
+    printf "%s\r", $spinner_strings[ $counter++ % 4 ] if $self->progress;
 }
 
 1;
