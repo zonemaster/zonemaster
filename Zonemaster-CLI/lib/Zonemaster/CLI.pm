@@ -159,8 +159,8 @@ has 'count' => (
 has 'progress' => (
     is => 'ro',
     isa => 'Bool',
-    default => 1,
-    documentation => 'Boolean flag for activity indicator. Default on.',
+    default => !!(-t STDOUT),
+    documentation => 'Boolean flag for activity indicator. Defaults to on if STDOUT is a tty, off if it is not.',
 );
 
 sub run {
