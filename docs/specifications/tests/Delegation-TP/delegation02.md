@@ -21,10 +21,9 @@ The domain name to be tested.
 ### Ordered description of steps to be taken to execute the test case
 
 1. Obtain the complete set of name servers from the parent using
-   [Method2](../Methods.md) and the child using [Method3](../Methods.md).
+   [Method2](../Methods.md).
 2. Obtains the IP addresss of the name servers from the parent using
-   [Method4](../Methods.md) and the child using [Method5](../Methods.md),
-   and do recursive lookups for the name servers that are out of bailiwick.
+   [Method4](../Methods.md).
 3. If any of the IP addresses resolved in step 2 are not unique, then this
    test case fails.
 
