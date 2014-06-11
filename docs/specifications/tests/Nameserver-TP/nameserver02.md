@@ -35,10 +35,10 @@ The domain name to be tested.
    [Method 5](../Methods.md##method-5-obtain-the-name-server-address-records-from-child),
    and do recursive lookups for the name servers that are out of bailiwick.
 3. Send a DNS query to each name server IP address querying the SOA record
-   of the domain name with the DO bit set and a payload size ("bufsize")
+   of the domain name with EDNS0 option of payload size ("bufsize")
    set to 512.
 4. If any answer from step 2 contains a FORMERR RCODE this test case fails.
-5. If the answer does not containt an OPT RR with EDNS version 0, this test
+5. If the answer does not contain an OPT RR with EDNS version 0, this test
    case fails.
 
 ### Outcome(s)
