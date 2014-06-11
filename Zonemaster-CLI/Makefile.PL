@@ -31,6 +31,7 @@ requires (
     'MooseX::Getopt' => 0,
     'Getopt::Long::Descriptive' => 0,
     'JSON::XS' => 0,
+    'Net::LibIDN' => 0,
 );
 
 install_script 'zonemaster-cli';
