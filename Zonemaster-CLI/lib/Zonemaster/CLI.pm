@@ -22,7 +22,7 @@ use Zonemaster::Exception;
 use JSON::XS;
 use Scalar::Util qw[blessed];
 use Encode;
-use Net::LibIDN ':all';
+use Net::LDNS;
 
 our %numeric = Zonemaster::Logger::Entry->levels;
 my $json = JSON::XS->new->allow_blessed->convert_blessed;
@@ -162,7 +162,8 @@ has 'encoding' => (
     is => 'ro',
     isa => 'Str',
     default => sub {
-        my ($e) = $ENV{LC_CTYPE} =~ m|\.(.*)$|;
+        my $locale = $ENV{LC_CTYPE} // 'C';
+        my ($e) = $locale =~ m|\.(.*)$|;
         $e //= 'UTF-8';
         return $e;
     },
@@ -406,7 +407,7 @@ sub print_spinner {
 sub to_idn {
     my ( $self, $str ) = @_;
 
-    return idn_to_ascii(encode('utf8',decode($self->encoding, $str)), 'utf8');
+    return Net::LDNS::to_idn(encode('utf8',decode($self->encoding, $str)));
 }
 
 1;
