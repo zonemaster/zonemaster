@@ -19,7 +19,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 
 |Req| Zonecheck                                  | DNSCheck                                    | Level       | 
 |:--|:-------------------------------------------|:--------------------------------------------|:------------|
-|R01|UDP connectivity                            | NAMESERVER:NO_UDP                           |[../specifications/tests/connectivity01.md][CONNECTIVITY01]|
+|R01|UDP connectivity                            | NAMESERVER:NO_UDP                           |[CONNECTIVITY01](../specifications/tests/connectivity01.md](CONNECTIVITY01)|
 |R02|TCP connectivity                            | NAMESERVER:NO_TCP                           |Connectivity|
 |R03|address in a private network                | ADDRESS:PRIVATE_IPV4                        |Address|
 |R04|address should not be part of a bogon prefix | Partly implemented                         |Connectivity|
