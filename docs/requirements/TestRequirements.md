@@ -26,19 +26,19 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R05|illegal symbols in domain name              | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ?     |[SYNTAX](../specifications/tests/Syntax-TP/syntax01.md)|
 |R06|dash ('-') at start or beginning of domain name | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ? |[SYNTAX](../specifications/tests/Syntax-TP/syntax02.md)|
 |R07|double dash in domain name                  | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME       |[SYNTAX](../specifications/tests/Syntax-TP/syntax03.md)|
-|R09|at least two nameservers for the domain     | DELEGATION:TOO_FEW_NS                       |[DELEGATION]../specifications/tests/Delegation-TP/delegation01.md)|
-|R10|identical addresses                         | DELEGATION:TOO_FEW_NS_IPV4 ?                |[DELEGATION]../specifications/tests/Delegation-TP/delegation02.md)|
+|R09|at least two nameservers for the domain     | DELEGATION:TOO_FEW_NS                       |[DELEGATION](../specifications/tests/Delegation-TP/delegation01.md)|
+|R10|identical addresses                         | DELEGATION:TOO_FEW_NS_IPV4 ?                |[DELEGATION](../specifications/tests/Delegation-TP/delegation02.md)|
 |R11|nameserver addresses on same subnet         | __Indirectly done through AS checks (R54)__!                 |[CONNECTIVITY](../specifications/tests/Connectivity-TP/connectivity03.md)|
 |R12|nameserver addresses are all on the same subnet | __indirectly done through AS checks (R54)__! |[CONNECTIVITY](../specifications/tests/Connectivity-TP/connectivity03.md)|
-|R13|delegation response fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK        |[DELEGATION]../specifications/tests/Delegation-TP/delegation03.md)|
-|R14|delegation response with additional fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK |[DELEGATION]../specifications/tests/Delegation-TP/delegation03.md)|
-|R15|NS record present                           | ZONE:FATAL_NO_CHILD_NS                      |[BASIC]../specifications/tests/Basic-TP/basic??.md)|
-|R16|NS authoritative answer                     | DNS:NOT_AUTH                                |[DELEGATION]../specifications/tests/Delegation-TP/delegation04.md)|
+|R13|delegation response fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK        |[DELEGATION](../specifications/tests/Delegation-TP/delegation03.md)|
+|R14|delegation response with additional fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK |[DELEGATION](../specifications/tests/Delegation-TP/delegation03.md)|
+|R15|NS record present                           | ZONE:FATAL_NO_CHILD_NS                      |[BASIC](../specifications/tests/Basic-TP/basic??.md)|
+|R16|NS authoritative answer                     | DNS:NOT_AUTH                                |[DELEGATION](../specifications/tests/Delegation-TP/delegation04.md)|
 |R17|NS name has a valid domain/hostname syntax  | HOST:ILLEGAL_NAME                           |[SYNTAX](../specifications/tests/Syntax-TP/syntax04.md)|
-|R18|NS is not an alias                          | DELEGATION:NS_IS_CNAME                      |[DELEGATION]../specifications/tests/Delegation-TP/delegation05.md)|
-|R19|NS can be resolved                          | DELEGATION:NOT_FOUND_AT_CHILD               |[DELEGATION]../specifications/tests/Delegation-TP/??)|
-|R20|SOA record present                          | NAMESERVER:AUTH                             |[DELEGATION]../specifications/tests/Delegation-TP/delegation06.md)|
-|R21|SOA authoritative answer                    | NAMESERVER:AUTH                             |[DELEGATION]../specifications/tests/Delegation-TP/delegation06.md)|
+|R18|NS is not an alias                          | DELEGATION:NS_IS_CNAME                      |[DELEGATION](../specifications/tests/Delegation-TP/delegation05.md)|
+|R19|NS can be resolved                          | DELEGATION:NOT_FOUND_AT_CHILD               |[DELEGATION](../specifications/tests/Delegation-TP/??)|
+|R20|SOA record present                          | NAMESERVER:AUTH                             |[DELEGATION](../specifications/tests/Delegation-TP/delegation06.md)|
+|R21|SOA authoritative answer                    | NAMESERVER:AUTH                             |[DELEGATION](../specifications/tests/Delegation-TP/delegation06.md)|
 |R22|missused '@' characters in SOA contact name | SOA:RNAME_SYNTAX                            |[SYNTAX](../specifications/tests/Syntax-TP/syntax05.md)|
 |R23|illegal characters in SOA contact name      | SOA:RNAME_SYNTAX                            |[SYNTAX](../specifications/tests/Syntax-TP/syntax06.md)|
 |R24|illegal characters in SOA master nameserver | SOA:MNAME_ERROR                             |[SYNTAX](../specifications/tests/Syntax-TP/syntax07.md)|
@@ -88,13 +88,13 @@ is comprehensive, it is not a list of tests as such. It is a list of messages em
 |R66|RRSIG(SOA) must be valid and created by a valid DNSKEY                |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec09.md)|
 |R67|There must be NS records for the zone being tested on the parent side |&nbsp;    |[BASIC]../specifications/tests/Basic-TP/basic01.md)|
 |R68|The child domain must have at least one working nameserver            |&nbsp;    |[BASIC]../specifications/tests/Basic-TP/basic02.md)|
-|R69|NS records from parent exists, but the child does not have NS but answers for A|&nbsp;|[BASIC]../specifications/tests/Basic-TP/basic03.md)|
+|R69|NS records from parent exists, but the child does not have NS but answers for A|&nbsp;|[BASIC](../specifications/tests/Basic-TP/basic03.md)|
 |R70|Coherence of all other SOA-fields where SOA Serial is the same        |&nbsp;    |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency03.md)|
-|R71|Total mismatch between child and parent NS records, delegation works due to same IP|&nbsp;    |[DELEGATION]../specifications/tests/Delegation-TP/delegation07.md)|
+|R71|Total mismatch between child and parent NS records, delegation works due to same IP|&nbsp;    |[DELEGATION](../specifications/tests/Delegation-TP/delegation07.md)|
 |R72|Test of EDNS0 support                                                 |&nbsp;    |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver02.md)|
 |R73|Test availability of zone transfer (AXFR)                             |&nbsp;    |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver03.md)|
 |R74|Answer from name server came from an IP address other than expected (wrong source IP)|&nbsp;|[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver04.md)|
-|R75|SOA serial may not be zero                                            |&nbsp;    |[DELEGATION]../specifications/tests/Delegation-TP/??)|
+|R75|SOA serial may not be zero                                            |&nbsp;    |[DELEGATION](../specifications/tests/Delegation-TP/??)|
 |R76|Zone contains NSEC or NSEC3 records                                   |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec10.md)|
 
 Future tests
