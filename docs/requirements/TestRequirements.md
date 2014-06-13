@@ -19,11 +19,11 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 
 |Req| Zonecheck                                  | DNSCheck                                    | Level       | 
 |:--|:-------------------------------------------|:--------------------------------------------|:------------|
-|R01|UDP connectivity                            | NAMESERVER:NO_UDP                           |[CONNECTIVITY01](../specifications/tests/Connectivity-TP/connectivity01.md)|
-|R02|TCP connectivity                            | NAMESERVER:NO_TCP                           |Connectivity|
-|R03|address in a private network                | ADDRESS:PRIVATE_IPV4                        |Address|
-|R04|address should not be part of a bogon prefix | Partly implemented                         |Connectivity|
-|R05|illegal symbols in domain name              | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ?     |Syntax|
+|R01|UDP connectivity                            | NAMESERVER:NO_UDP                           |[CONNECTIVITY](../specifications/tests/Connectivity-TP/connectivity01.md)|
+|R02|TCP connectivity                            | NAMESERVER:NO_TCP                           |[CONNECTIVITY](../specifications/tests/Connectivity-TP/connectivity02.md)|
+|R03|address in a private network                | ADDRESS:PRIVATE_IPV4                        |[ADDRESS](../specifications/tests/Address-TP/address01.md)|
+|R04|address should not be part of a bogon prefix | Partly implemented                         |[ADDRESS](../specifications/tests/Address-TP/address04.md)|
+|R05|illegal symbols in domain name              | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ?     |[SYNTAX](../specifications/tests/Syntax-TP/syntax01.md)|
 |R06|dash ('-') at start or beginning of domain name | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME ? |Syntax|
 |R07|double dash in domain name                  | HOST:ILLEGAL_NAME / ZONE:INVALID_NAME       |Syntax|
 |R09|at least two nameservers for the domain     | DELEGATION:TOO_FEW_NS                       |Delegation|
