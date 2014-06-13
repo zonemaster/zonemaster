@@ -86,8 +86,8 @@ is comprehensive, it is not a list of tests as such. It is a list of messages em
 |R64|If there exists DNSKEY at child, the parent should have a DS          |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec07.md)|
 |R65|RRSIG(DNSKEY) must be valid and created by a valid DNSKEY             |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec08.md)|
 |R66|RRSIG(SOA) must be valid and created by a valid DNSKEY                |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec09.md)|
-|R67|There must be NS records for the zone being tested on the parent side |&nbsp;    |[BASIC]../specifications/tests/Basic-TP/basic01.md)|
-|R68|The child domain must have at least one working nameserver            |&nbsp;    |[BASIC]../specifications/tests/Basic-TP/basic02.md)|
+|R67|There must be NS records for the zone being tested on the parent side |&nbsp;    |[BASIC](../specifications/tests/Basic-TP/basic01.md)|
+|R68|The child domain must have at least one working nameserver            |&nbsp;    |[BASIC](../specifications/tests/Basic-TP/basic02.md)|
 |R69|NS records from parent exists, but the child does not have NS but answers for A|&nbsp;|[BASIC](../specifications/tests/Basic-TP/basic03.md)|
 |R70|Coherence of all other SOA-fields where SOA Serial is the same        |&nbsp;    |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency03.md)|
 |R71|Total mismatch between child and parent NS records, delegation works due to same IP|&nbsp;    |[DELEGATION](../specifications/tests/Delegation-TP/delegation07.md)|
