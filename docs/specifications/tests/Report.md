@@ -5,15 +5,14 @@
 |R01|       UDP connectivity|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY01](.//Connectivity-TP/connectivity01.md)| UDP connectivity|
 |R02|       TCP connectivity|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY02](.//Connectivity-TP/connectivity02.md)| TCP connectivity|
 |R03|address in a private network|[Address-TP](Address-TP/level.md)|[ADDRESS01](.//Address-TP/address01.md)|Name server address must be globally routable|
-|R04|address should not be part of a bogon prefix|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY03](.//Connectivity-TP/connectivity03.md)|IPv6 address not part of bogon prefix|
+|R04|address should not be part of a bogon prefix|[Address-TP](Address-TP/level.md)|[ADDRESS04](.//Address-TP/address04.md)|IPv6 address not part of bogon prefix|
 |R05|illegal symbols in domain name|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX01](.//Syntax-TP/syntax01.md)|No illegal characters in the domain name|
 |R06|dash ('-') at start or beginning of domain name|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX02](.//Syntax-TP/syntax02.md)|No hyphen ('-') at the start or end of the domain name|
 |R07|double dash in domain name|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX03](.//Syntax-TP/syntax03.md)|There must be no double hyphen ('--') in position 3 and 4 of the domain name|
-|R08|The child domain must have at least one working nameserver|[  Basic-TP](Basic-TP/level.md)|[BASIC02](.//Basic-TP/basic02.md)|The domain must have at least one working name server|
 |R09|at least two nameservers for the domain|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION01](.//Delegation-TP/delegation01.md)|Minimum number of name servers   |
 |R10|    identical addresses|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION02](.//Delegation-TP/delegation02.md)|Name servers must have distinct IP addresses|
-|R11|nameserver addresses on same subnet|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY04](.//Connectivity-TP/connectivity04.md)|     AS Diversity|
-|R12|nameserver addresses are all on the same subnet|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY04](.//Connectivity-TP/connectivity04.md)|     AS Diversity|
+|R11|nameserver addresses on same subnet|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY03](.//Connectivity-TP/connectivity03.md)|     AS Diversity|
+|R12|nameserver addresses are all on the same subnet|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY03](.//Connectivity-TP/connectivity03.md)|     AS Diversity|
 |R13|delegation response fit in a 512 byte UDP packet|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION03](.//Delegation-TP/delegation03.md)|No truncation of referrals|
 |R14|delegation response with additional fit in a 512 byte UDP packet|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION03](.//Delegation-TP/delegation03.md)|No truncation of referrals|
 |R15|      NS record present|**missing**|**missing**|      **missing**|
@@ -46,8 +45,7 @@
 |R50|     MX is not an alias|[   Zone-TP](Zone-TP/level.md)|[ZONE08](.//Zone-TP/zone08.md)|MX is not an alias|
 |R52|     MX can be resolved|[   Zone-TP](Zone-TP/level.md)|[ZONE09](.//Zone-TP/zone09.md)|MX record present|
 |R53|behaviour against AAAA query (RFC 4074)|[Nameserver-TP](Nameserver-TP/level.md)|[NAMESERVER05](.//Nameserver-TP/nameserver05.md)|Behaviour against AAAA query|
-|R54|nameservers belong all to the same AS|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY04](.//Connectivity-TP/connectivity04.md)|     AS Diversity|
-|R55|serial number of the form YYYYMMDDnn|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX09](.//Syntax-TP/syntax09.md)|The SOA serial number field should be in the YYYYMMDDnn format|
+|R54|nameservers belong all to the same AS|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY03](.//Connectivity-TP/connectivity03.md)|     AS Diversity|
 |R58|Legal values for the DS hash digest algorithm|[ DNSSEC-TP](DNSSEC-TP/level.md)|[DNSSEC01](.//DNSSEC-TP/dnssec01.md)|Legal values for the DS hash digest algorithm|
 |R59|DS must match a DNSKEY in the designated zone|[ DNSSEC-TP](DNSSEC-TP/level.md)|[DNSSEC02](.//DNSSEC-TP/dnssec02.md)|DS must match a DNSKEY in the designated zone|
 |R60|Check for too many NSEC3 iterations|[ DNSSEC-TP](DNSSEC-TP/level.md)|[DNSSEC03](.//DNSSEC-TP/dnssec03.md)|Check for too many NSEC3 iterations|
@@ -58,6 +56,7 @@
 |R65|RRSIG(DNSKEY) must be valid and created by a valid DNSKEY|[ DNSSEC-TP](DNSSEC-TP/level.md)|[DNSSEC08](.//DNSSEC-TP/dnssec08.md)|RRSIG(DNSKEY) must be valid and created by a valid DNSKEY|
 |R66|RRSIG(SOA) must be valid and created by a valid DNSKEY|[ DNSSEC-TP](DNSSEC-TP/level.md)|[DNSSEC09](.//DNSSEC-TP/dnssec09.md)|RRSIG(SOA) must be valid and created by a valid DNSKEY|
 |R67|There must be NS records for the zone being tested on the parent side|[  Basic-TP](Basic-TP/level.md)|[BASIC01](.//Basic-TP/basic01.md)|The domain must have a parent domain|
+|R68|The child domain must have at least one working nameserver|[  Basic-TP](Basic-TP/level.md)|[BASIC02](.//Basic-TP/basic02.md)|The domain must have at least one working name server|
 |R69|NS records from parent exists, but the child does not have NS but answers for A|[  Basic-TP](Basic-TP/level.md)|[BASIC03](.//Basic-TP/basic03.md)|The _Broken but functional_ test|
 |R70|Coherence of all other SOA-fields where SOA Serial is the same|[Consistency-TP](Consistency-TP/level.md)|[CONSISTENCY03](.//Consistency-TP/consistency03.md)|SOA parameters consistency|
 |R71|Total mismatch between child and parent NS records, delegation works due to same IP|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION07](.//Delegation-TP/delegation07.md)|Parent glue name records present in child|
