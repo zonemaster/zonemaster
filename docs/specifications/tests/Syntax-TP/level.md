@@ -18,4 +18,3 @@ This document uses the terminology defined in the
 |R23|There must be no illegal characters in the SOA RNAME field                |[SYNTAX06](syntax06.md)|
 |R24|There must be no illegal characters in the SOA MNAME field                |[SYNTAX07](syntax07.md)|
 |R49|The MX name must have a valid domain/hostname                             |[SYNTAX08](syntax08.md)|
-|R55|The SOA serial number field should be in the YYYYMMDDnn format            |[SYNTAX09](syntax09.md)|

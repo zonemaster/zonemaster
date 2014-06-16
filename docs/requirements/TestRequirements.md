@@ -63,7 +63,6 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R52|MX can be resolved                          | MAIL:ALL_MX_IN_ZONE __dup__?                |[ZONE](../specifications/tests/Zone-TP/zone09.md)|
 |R53|behaviour against AAAA query (RFC 4074)     | __implicit in all other tests__             |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver05.md)|
 |R54|nameservers belong all to the same AS       | CONNECTIVITY:TOO_FEW_ASN / CONNECTIVITY:V6_TOO_FEW_ASN |[CONNECTIVITY](../specifications/tests/Connectivity-TP/connectivity03.md)|
-|R55|serial number of the form YYYYMMDDnn        | New test to identify serial number scheme   |[SYNTAX](../specifications/tests/Syntax-TP/syntax09.md)|
 
 
 Comment regarding addresses in bogon prefixes: DNSCheck implements checks against invalid addresses defined in RFCs. Since all of IPv4 space has been delegated to the RIRs, that is the whole of the low-volatility bogon space. The high-voltility bogon list would require daily (or even more frequent) updates, which is not practical in a standalone library.
@@ -120,6 +119,7 @@ Discarded tests
 ---------------
  * loopback delegation (Section 4.1 of RFC 1912)
  * loopback is resolvable (Section 4.1 of RFC 1912)
+ * serial number of the form YYYYMMDDnn (RFC 1912 is not normative)
 
 Requirements on writing test specifications
 -------------------------------------------
