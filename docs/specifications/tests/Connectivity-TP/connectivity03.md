@@ -1,8 +1,8 @@
-## CONNECTIVITY04: AS Diversity
+## CONNECTIVITY03: AS Diversity
 
 ### Test case identifier
 
-**CONNECTIVITY04:** AS Diversity
+**CONNECTIVITY03:** AS Diversity
 
 ### Objective
 

@@ -21,6 +21,8 @@ use Zonemaster::Util qw[pod_extract_for];
 use Zonemaster::Exception;
 use JSON::XS;
 use Scalar::Util qw[blessed];
+use Encode;
+use Net::LibIDN ':all';
 
 our %numeric = Zonemaster::Logger::Entry->levels;
 my $json = JSON::XS->new->allow_blessed->convert_blessed;
@@ -69,13 +71,6 @@ has 'ns' => (
     is            => 'ro',
     isa           => 'ArrayRef',
     documentation => 'A name/ip string giving a nameserver for undelegated tests. Can be given multiple times.',
-);
-
-has 'ds' => (
-    is  => 'ro',
-    isa => 'ArrayRef',
-    documentation =>
-      'A DS record in presentation format for undelegated tests (not yet implemented). Can be given multiple times.'
 );
 
 has 'save' => (
@@ -163,6 +158,17 @@ has 'progress' => (
     documentation => 'Boolean flag for activity indicator. Defaults to on if STDOUT is a tty, off if it is not.',
 );
 
+has 'encoding' => (
+    is => 'ro',
+    isa => 'Str',
+    default => sub {
+        my ($e) = $ENV{LC_CTYPE} =~ m|\.(.*)$|;
+        $e //= 'UTF-8';
+        return $e;
+    },
+    documentation => 'Name of the character encoding used for command line arguments',
+);
+
 sub run {
     my ( $self ) = @_;
     my @accumulator;
@@ -193,6 +199,7 @@ sub run {
     if ( not $domain ) {
         die "Must give the name of a domain to test.\n";
     }
+    $domain = $self->to_idn($domain);
 
     if ( $self->stop_level and not defined( $numeric{ $self->stop_level } ) ) {
         die "Failed to recognize stop level '" . $self->stop_level . "'.\n";
@@ -352,7 +359,7 @@ sub add_fake_delegation {
 
     foreach my $pair ( @{ $self->ns } ) {
         my ( $name, $ip ) = split( '/', $pair, 2 );
-        push @{ $data{$name} }, $ip;
+        push @{ $data{$self->to_idn($name)} }, $ip;
     }
 
     Zonemaster->add_fake_delegation( $domain => \%data );
@@ -394,6 +401,12 @@ sub print_spinner {
     state $counter = 0;
 
     printf "%s\r", $spinner_strings[ $counter++ % 4 ] if $self->progress;
+}
+
+sub to_idn {
+    my ( $self, $str ) = @_;
+
+    return idn_to_ascii(encode('utf8',decode($self->encoding, $str)), 'utf8');
 }
 
 1;
