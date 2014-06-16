@@ -93,7 +93,6 @@ is comprehensive, it is not a list of tests as such. It is a list of messages em
 |R72|Test of EDNS0 support                                                 |&nbsp;    |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver02.md)|
 |R73|Test availability of zone transfer (AXFR)                             |&nbsp;    |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver03.md)|
 |R74|Answer from name server came from an IP address other than expected (wrong source IP)|&nbsp;|[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver04.md)|
-|R75|SOA serial may not be zero                                            |&nbsp;    |[DELEGATION](../specifications/tests/Delegation-TP/??)|
 |R76|Zone contains NSEC or NSEC3 records                                   |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec10.md)|
 
 Future tests
@@ -120,6 +119,7 @@ Discarded tests
  * loopback delegation (Section 4.1 of RFC 1912)
  * loopback is resolvable (Section 4.1 of RFC 1912)
  * serial number of the form YYYYMMDDnn (RFC 1912 is not normative)
+ * SOA serial may not be zero
 
 Requirements on writing test specifications
 -------------------------------------------
