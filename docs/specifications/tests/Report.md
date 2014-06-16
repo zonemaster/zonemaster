@@ -63,5 +63,4 @@
 |R72|  Test of EDNS0 support|[Nameserver-TP](Nameserver-TP/level.md)|[NAMESERVER02](.//Nameserver-TP/nameserver02.md)|Test of EDNS0 support|
 |R73|Test availability of zone transfer (AXFR)|[Nameserver-TP](Nameserver-TP/level.md)|[NAMESERVER03](.//Nameserver-TP/nameserver03.md)|Test availability of zone transfer (AXFR)|
 |R74|Answer from name server came from an IP address other than expected (wrong source IP)|[Nameserver-TP](Nameserver-TP/level.md)|[NAMESERVER04](.//Nameserver-TP/nameserver04.md)|Same source address|
-|R75|SOA serial may not be zero|**missing**|**missing**|      **missing**|
 |R76|Zone contains NSEC or NSEC3 records|[ DNSSEC-TP](DNSSEC-TP/level.md)|[DNSSEC10](.//DNSSEC-TP/dnssec10.md)|Zone contains NSEC or NSEC3 records|
