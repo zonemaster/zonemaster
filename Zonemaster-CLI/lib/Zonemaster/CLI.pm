@@ -407,7 +407,13 @@ sub print_spinner {
 sub to_idn {
     my ( $self, $str ) = @_;
 
-    return Net::LDNS::to_idn(encode('utf8',decode($self->encoding, $str)));
+    if (Net::LDNS::has_idn()) {
+        return Net::LDNS::to_idn(encode('utf8',decode($self->encoding, $str)));
+    }
+    else {
+        say "Warning: Net::LDNS not compiled with libidn, cannot handle non-ASCII names correctly.";
+        return $str;
+    }
 }
 
 1;
