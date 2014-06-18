@@ -32,7 +32,7 @@ Tests to implement from Zonecheck (mapped to DNSCheck)
 |R12|nameserver addresses are all on the same subnet | __indirectly done through AS checks (R54)__! |[CONNECTIVITY](../specifications/tests/Connectivity-TP/connectivity03.md)|
 |R13|delegation response fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK        |[DELEGATION](../specifications/tests/Delegation-TP/delegation03.md)|
 |R14|delegation response with additional fit in a 512 byte UDP packet | DELEGATION:MIN_REFERRAL_SIZE_OK |[DELEGATION](../specifications/tests/Delegation-TP/delegation03.md)|
-|R15|NS record present                           | ZONE:FATAL_NO_CHILD_NS                      |[BASIC](../specifications/tests/Basic-TP/basic??.md)|
+|R15|NS record present                           | ZONE:FATAL_NO_CHILD_NS                      |[BASIC](../specifications/tests/Basic-TP/basici02.md)|
 |R16|NS authoritative answer                     | DNS:NOT_AUTH                                |[DELEGATION](../specifications/tests/Delegation-TP/delegation04.md)|
 |R17|NS name has a valid domain/hostname syntax  | HOST:ILLEGAL_NAME                           |[SYNTAX](../specifications/tests/Syntax-TP/syntax04.md)|
 |R18|NS is not an alias                          | DELEGATION:NS_IS_CNAME                      |[DELEGATION](../specifications/tests/Delegation-TP/delegation05.md)|
