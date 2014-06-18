@@ -1,4 +1,4 @@
-package Zonemaster::Logger v0.0.1;
+package Zonemaster::Logger v0.0.2;
 
 use 5.14.2;
 use Moose;
