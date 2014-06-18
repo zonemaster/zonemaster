@@ -8,9 +8,15 @@ use Net::IP;
 use Zonemaster;
 use Zonemaster::Nameserver;
 
-our %roots = (
-    'in-addr.arpa.' => 'origin.asnlookup.iis.se',
-    'ip6.arpa.'     => 'origin6.asnlookup.iis.se',
+our @roots = (
+    {
+        'in-addr.arpa.' => 'origin.asnlookup.iis.se',
+        'ip6.arpa.'     => 'origin6.asnlookup.iis.se',
+    },
+    {
+        'in-addr.arpa.' => 'origin.asn.cymru,com',
+        'ip6.arpa.'     => 'origin6.asn.cymru.com',
+    },
 );
 
 sub get {
@@ -21,26 +27,29 @@ sub get {
     }
 
     my $reverse = $ip->reverse_ip;
-    foreach my $root ( keys %roots ) {
-        if ( $reverse =~ s/$root/$roots{$root}/i ) {
-            my $p = Zonemaster->recurse( $reverse, 'TXT' );
-            next if not $p;
+    foreach my $pair ( @roots ) {
+        foreach my $root ( keys %$pair ) {
+            if ( $reverse =~ s/$root/$pair->{$root}/i ) {
+                my $p = Zonemaster->recurse( $reverse, 'TXT' );
+                next if not $p;
 
-            my ( $rr ) = $p->get_records( 'TXT' );
-            return if not $rr;
+                my ( $rr ) = $p->get_records( 'TXT' );
+                return if not $rr;
 
-            my $str = $rr->txtdata;
-            $str =~ s/"([^"]+)"/$1/;
-            my @fields = split( / \| ?/, $str );
+                my $str = $rr->txtdata;
+                $str =~ s/"([^"]+)"/$1/;
+                my @fields = split( / \| ?/, $str );
 
-            if ( wantarray() ) {
-                return $fields[0], Net::IP->new( $fields[1] );
+                if ( wantarray() ) {
+                    return $fields[0], Net::IP->new( $fields[1] );
+                }
+                else {
+                    return $fields[0];
+                }
             }
-            else {
-                return $fields[0];
-            }
-        }
-    } ## end foreach my $root ( keys %roots)
+        } ## end foreach my $root ( keys %$pair)
+    } ## end foreach my $pair ( @roots )
+    return;
 } ## end sub get
 
 1;
