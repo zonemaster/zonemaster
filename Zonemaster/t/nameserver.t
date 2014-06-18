@@ -88,15 +88,15 @@ foreach my $ns ( Zonemaster::Nameserver->all_known_nameservers ) {
 
 is( scalar( keys %Zonemaster::Nameserver::Cache::object_cache ), 4 );
 
-Zonemaster->config->get->{net}{ipv4} = 0;
-Zonemaster->config->get->{net}{ipv6} = 0;
+Zonemaster->config->ipv4_ok(0);
+Zonemaster->config->ipv6_ok(0);
 my $p5 = $nsv6->query( 'iis.se', 'SOA', { dnssec => 1 } );
 my $p6 = $nsv4->query( 'iis.se', 'SOA', { dnssec => 1 } );
 ok( !defined( $p5 ), 'IPv4 blocked' );
 ok( !defined( $p6 ), 'IPv6 blocked' );
 
-Zonemaster->config->get->{net}{ipv4} = 1;
-Zonemaster->config->get->{net}{ipv6} = 1;
+Zonemaster->config->ipv4_ok(1);
+Zonemaster->config->ipv6_ok(1);
 $p5 = $nsv6->query( 'iis.se', 'SOA', { dnssec => 1 } );
 $p6 = $nsv4->query( 'iis.se', 'SOA', { dnssec => 1 } );
 ok( defined( $p5 ), 'IPv4 not blocked' );

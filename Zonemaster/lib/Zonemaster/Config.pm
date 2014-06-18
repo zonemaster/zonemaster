@@ -82,6 +82,26 @@ sub no_network {
     return $class->get->{no_network};
 }
 
+sub ipv4_ok {
+    my ( $class, $value ) = @_;
+
+    if ( defined($value) ) {
+        $class->get->{net}{ipv4} = $value;
+    }
+
+    return $class->get->{net}{ipv4};
+}
+
+sub ipv6_ok {
+    my ( $class, $value ) = @_;
+
+    if ( defined($value) ) {
+        $class->get->{net}{ipv6} = $value;
+    }
+
+    return $class->get->{net}{ipv6};
+}
+
 1;
 
 =head1 NAME
@@ -101,6 +121,14 @@ Zonemaster::Config - configuration access module for Zonemaster
 =item no_network([$value])
 
 Returns the value of the C<no_network> flag. If given a defined value, sets the value to that value.
+
+=item ipv4_ok([$value])
+
+Returns the value of the C<ipv4> flag. If given a defined value, sets the value to that value.
+
+=item ipv6_ok([$value])
+
+Returns the value of the C<ipv6> flag. If given a defined value, sets the value to that value.
 
 =back
 

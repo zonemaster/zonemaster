@@ -92,12 +92,12 @@ sub query {
     my ( $self, $name, $type, $href ) = @_;
     $type //= 'A';
 
-    if ( $self->address->version == 4 and not Zonemaster->config->get->{net}{ipv4} ) {
+    if ( $self->address->version == 4 and not Zonemaster->config->ipv4_ok ) {
         Zonemaster->logger->add( IPV4_BLOCKED => { ns => $self->string } );
         return;
     }
 
-    if ( $self->address->version == 6 and not Zonemaster->config->get->{net}{ipv6} ) {
+    if ( $self->address->version == 6 and not Zonemaster->config->ipv6_ok ) {
         Zonemaster->logger->add( IPV6_BLOCKED => { ns => $self->string } );
         return;
     }
@@ -422,12 +422,12 @@ sub axfr {
           $domain, $self->string;
     }
 
-    if ( $self->address->version == 4 and not Zonemaster->config->get->{net}{ipv4} ) {
+    if ( $self->address->version == 4 and not Zonemaster->config->ipv4_ok ) {
         Zonemaster->logger->add( IPV4_BLOCKED => { ns => $self->string } );
         return;
     }
 
-    if ( $self->address->version == 6 and not Zonemaster->config->get->{net}{ipv6} ) {
+    if ( $self->address->version == 6 and not Zonemaster->config->ipv6_ok ) {
         Zonemaster->logger->add( IPV6_BLOCKED => { ns => $self->string } );
         return;
     }
