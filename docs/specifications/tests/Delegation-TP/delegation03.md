@@ -29,13 +29,21 @@ The domain name to be tested.
    [Method2](../Methods.md) and the child using [Method3](../Methods.md).
 2. Obtains the IP addresss of the name servers from the parent using
    [Method4](../Methods.md) and the child using [Method5](../Methods.md).
-3. An empty DNS answer packet is generated.
-4. All the data from step 2 is added to the packet.
-5. If the size of the packet is more than 512 bytes, then the test fails.
+3. Create a DNS packet holding a query for a maximally long name in the relevant
+zone (that is, 255 octets including label separators).
+4. Add all unique NS records for the zone obtained from step1 to the Authority section.
+5. If there is at least one in-zone NS that has an IPv4 address, take the
+one with the shortest name and add an A record for it to the Additional
+section.
+6. If there is at least one in-zone NS that has an IPv6 address, take the
+one with the shortest name and add an AAAA record for it to the Additional
+section.
+7. If the DNS packet after encoding is more than 512 octets then the test
+fails
 
 ### Outcome(s)
 
-If the created packet fits into 512 byte UDP packet, then the test succeeds.
+If the created packet fits into 512 octet, then the test succeeds.
 
 ### Special procedural requirements
 
