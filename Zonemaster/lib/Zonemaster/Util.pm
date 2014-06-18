@@ -9,7 +9,7 @@ use Zonemaster::DNSName;
 use Pod::Simple::SimpleTree;
 
 ## no critic (Modules::ProhibitAutomaticExportation)
-our @EXPORT = qw[ ns info config name policy pod_extract_for ];
+our @EXPORT = qw[ ns info name policy pod_extract_for ];
 
 ## no critic (Subroutines::RequireArgUnpacking)
 sub ns {
@@ -20,10 +20,6 @@ sub info {
     my ( $tag, $argref ) = @_;
 
     return Zonemaster->logger->add( $tag, $argref );
-}
-
-sub config {
-    return Zonemaster->config->get;
 }
 
 sub policy {
@@ -110,7 +106,6 @@ Zonemaster::Util - utility functions for other Zonemaster modules
     use Zonemaster::Util;
     info(TAG => { some => 'argument'});
     my $ns = ns($name, $address);
-    config->{resolver}{defaults}{tcp_timeout} = 4711;
     my $name = name('whatever.example.org');
 
 =head1 EXPORTED FUNCTIONS
@@ -124,10 +119,6 @@ Creates and returns a L<Zonemaster::Logger::Entry> object. The object is also ad
 =item ns($name, $address)
 
 Creates and returns a nameserver object with the given name and address.
-
-=item config()
-
-Returns the global L<Zonemaster::Config> object.
 
 =item policy()
 
