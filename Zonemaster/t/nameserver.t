@@ -8,7 +8,7 @@ my $datafile = 't/nameserver.data';
 if ( not $ENV{ZONEMASTER_RECORD} ) {
     die "Stored data file missing" if not -r $datafile;
     Zonemaster::Nameserver->restore( $datafile );
-    config->{no_network} = 1;
+    Zonemaster->config->no_network(1);
 }
 
 my $nsv6 = new_ok( 'Zonemaster::Nameserver' => [ { name => 'ns.nic.se', address => '2a00:801:f0:53::53' } ] );
@@ -64,14 +64,14 @@ my $p = $broken->query( 'www.iis.se' );
 ok( !$p, 'no response from broken server' );
 
 my $googlens = ns( 'ns1.google.com', '216.239.32.10' );
-my $save = config->{no_network};
-config->{no_network} = 1;
+my $save = Zonemaster->config->no_network;
+Zonemaster->config->no_network(1);
 delete( $googlens->cache->{'www.google.com'} );
 eval { $googlens->query( 'www.google.com', 'TXT' ) };
 like( $@,
     qr{External query for www.google.com, TXT attempted to ns1.google.com/216.239.32.10 while running with no_network}i
 );
-config->{no_network} = $save;
+Zonemaster->config->no_network( $save );
 
 @{ $nsv6->times } = ( qw[2 4 4 4 5 5 7 9] );
 is( $nsv6->stddev_time, 2, 'known value check' );
@@ -118,7 +118,7 @@ isa_ok( $dsrr, 'Net::LDNS::RR::DS' );
 is( $dsrr->keytag,    16696,      'Expected keytag' );
 is( $dsrr->hexdigest, 'deadbeef', 'Expected digest data' );
 
-config->{no_network} = 0;
+Zonemaster->config->no_network(0);
 my $fail_ns = Zonemaster::Nameserver->new( { name => 'fail', address => '127.0.0.17' } );
 my $fail_p = $fail_ns->_query( 'example.org', 'A', {} );
 is( $fail_p, undef, 'No return from broken server' );

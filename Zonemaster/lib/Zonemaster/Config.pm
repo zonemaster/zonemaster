@@ -72,6 +72,16 @@ sub load_policy_file {
     return !!$new;
 }
 
+sub no_network {
+    my ( $class, $value ) = @_;
+
+    if (defined($value)) {
+        $class->get->{no_network} = $value;
+    }
+
+    return $class->get->{no_network};
+}
+
 1;
 
 =head1 NAME
@@ -80,7 +90,19 @@ Zonemaster::Config - configuration access module for Zonemaster
 
 =head1 SYNOPSIS
 
-    my $value = Zonemaster::Config->get->{key}{subkey};
+    Zonemaster->config->no_network(1); # Forbid network traffic
+
+    my $value = Zonemaster::Config->get->{key}{subkey}; # Not really recommended way to access config data
+
+=head1 METHODS FOR CONFIGURATION ITEMS
+
+=over
+
+=item no_network([$value])
+
+Returns the value of the C<no_network> flag. If given a defined value, sets the value to that value.
+
+=back
 
 =head1 METHODS
 

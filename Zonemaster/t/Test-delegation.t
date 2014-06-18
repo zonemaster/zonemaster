@@ -9,7 +9,7 @@ my $datafile = q{t/Test-delegation.data};
 if ( not $ENV{ZONEMASTER_RECORD} ) {
     die q{Stored data file missing} if not -r $datafile;
     Zonemaster::Nameserver->restore( $datafile );
-    Zonemaster->config->get->{no_network} = 1;
+    Zonemaster->config->no_network(1);
 }
 
 my $iis = Zonemaster->zone( q{iis.se} );

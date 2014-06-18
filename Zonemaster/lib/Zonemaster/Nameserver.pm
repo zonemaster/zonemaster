@@ -226,7 +226,7 @@ sub _query {
     $type //= 'A';
     $href->{class} //= 'IN';
 
-    if ( Zonemaster->config->get->{no_network} ) {
+    if ( Zonemaster->config->no_network ) {
         croak sprintf
           "External query for %s, %s attempted to %s while running with no_network",
           $name, $type, $self->string;
@@ -416,7 +416,7 @@ sub axfr {
     my ( $self, $domain, $callback, $class ) = @_;
     $class //= 'IN';
 
-    if ( Zonemaster->config->get->{no_network} ) {
+    if ( Zonemaster->config->no_network ) {
         croak sprintf
           "External AXFR query for %s attempted to %s while running with no_network",
           $domain, $self->string;
