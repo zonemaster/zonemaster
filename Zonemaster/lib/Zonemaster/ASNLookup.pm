@@ -8,16 +8,11 @@ use Net::IP;
 use Zonemaster;
 use Zonemaster::Nameserver;
 
-our @roots = (
-    {
-        'in-addr.arpa.' => 'origin.asnlookup.iis.se',
-        'ip6.arpa.'     => 'origin6.asnlookup.iis.se',
-    },
-    {
-        'in-addr.arpa.' => 'origin.asn.cymru,com',
-        'ip6.arpa.'     => 'origin6.asn.cymru.com',
-    },
-);
+our @roots;
+
+INIT {
+    @roots = @{ Zonemaster->config->asnroots() };
+}
 
 sub get {
     my ( $class, $ip ) = @_;

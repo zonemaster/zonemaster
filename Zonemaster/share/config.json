@@ -1,4 +1,14 @@
 {
+   "asnroots" : [
+      {
+         "in-addr.arpa." : "origin.asnlookup.iis.se",
+         "ip6.arpa." : "origin6.asnlookup.iis.se"
+      },
+      {
+         "in-addr.arpa." : "origin.asn.cymru,com",
+         "ip6.arpa." : "origin6.asn.cymru.com"
+      }
+   ],
    "net" : {
       "ipv4" : 1,
       "ipv6" : 1
@@ -8,12 +18,13 @@
       "defaults" : {
          "debug" : 0,
          "dnssec" : 0,
+         "edns_size" : 0,
          "igntc" : 0,
          "recurse" : 0,
          "retrans" : 3,
          "retry" : 2,
-         "usevc" : 0,
-         "edns_size" : 0
+         "usevc" : 0
       }
    }
 }
+

@@ -114,6 +114,12 @@ sub logfilter {
     return $class->get->{logfilter};
 }
 
+sub asnroots {
+    my ( $class ) = @_;
+
+    return $class->get->{asnroots};
+}
+
 1;
 
 =head1 NAME
@@ -149,6 +155,10 @@ Returns a reference to the resolver_defaults hash.
 =item logfilter()
 
 Returns a reference to the logfilter hash.
+
+=item asnroots()
+
+Returns a reference to the list of ASN lookup domains.
 
 =back
 
@@ -233,6 +243,14 @@ If set, resolver objects are allowed to send queries over IPv6. Default set.
 
 If set to a true value, network traffic is forbidden. Use when you want to be sure that any data is only taken from a preloaded cache.
 
+=head2 asnroots
+
+This key must be a list of hashes. In the hashes the keys should be domain
+suffixes, and the value the new suffix to replace the first one with. Normally,
+there should be two keys, C<in-addr.arpa.> and C<ip6.arpa.>, that get replaced
+with Team Cymru-style DNS zones for IP to AS lookup. The ASN lookup code will
+try to use each hash in turn, and quit when one answers.
+
 =head2 logfilter
 
 By using this key, the log level of messages can be set in a much more fine-grained way than by the policy file. The intended use is to remove known erroneous results. If you, for example, know that a certain name server is recursive and for some reason should be, you can use this functionality to lower the severity of the complaint about it to a lower level than normal.
@@ -266,22 +284,31 @@ This would set the level to C<INFO> for any C<SYSTEM:FILTER_THIS> messages that 
 
 __DATA__
 {
-    "resolver": {
-        "defaults":
-            {
-                "usevc" : 0,
-                "retrans" : 3,
-                "dnssec" : 0,
-                "debug" : 0,
-                "recurse" : 0,
-                "retry" : 2,
-                "igntc" : 0,
-                "edns_size" : 0
-            }
-        },
-    "net": {
-        "ipv4": 1,
-        "ipv6": 1
-    },
-    "no_network": 0
+   "asnroots" : [
+      {
+         "in-addr.arpa." : "origin.asnlookup.iis.se",
+         "ip6.arpa." : "origin6.asnlookup.iis.se"
+      },
+      {
+         "in-addr.arpa." : "origin.asn.cymru,com",
+         "ip6.arpa." : "origin6.asn.cymru.com"
+      }
+   ],
+   "net" : {
+      "ipv4" : 1,
+      "ipv6" : 1
+   },
+   "no_network" : 0,
+   "resolver" : {
+      "defaults" : {
+         "debug" : 0,
+         "dnssec" : 0,
+         "edns_size" : 0,
+         "igntc" : 0,
+         "recurse" : 0,
+         "retrans" : 3,
+         "retry" : 2,
+         "usevc" : 0
+      }
+   }
 }
