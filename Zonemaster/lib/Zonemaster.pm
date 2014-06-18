@@ -9,6 +9,7 @@ use Zonemaster::Config;
 use Zonemaster::Zone;
 use Zonemaster::Test;
 use Zonemaster::Recursor;
+use Zonemaster::ASNLookup;
 
 our $logger;
 our $config;
@@ -124,6 +125,12 @@ sub preload_cache {
     return Zonemaster::Nameserver->restore( $filename );
 }
 
+sub asn_lookup {
+    my ( undef, $ip ) = @_;
+
+    return Zonemaster::ASNLookup->get($ip);
+}
+
 =head1 NAME
 
 Zonemaster - A tool to check the quality of a DNS zone
@@ -187,6 +194,26 @@ After running the tests, save the accumulated cache to a file with the given nam
 
 Before running the tests, load the cache with information from a file with the given name. This file must have the same format as is produced by
 L<save_cache()>.
+
+=item asn_lookup($ip)
+
+Takes a single IP address and returns one of three things:
+
+=over
+
+=item
+
+Nothing, if the IP address is not in any AS.
+
+=item
+
+If called in list context, a list of AS number and a L<Net::IP> object representing the prefix it's in.
+
+=item
+
+If called in scalar context, only the AS number.
+
+=back
 
 =item add_fake_delegation($domain, $data)
 
