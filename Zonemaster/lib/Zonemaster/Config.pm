@@ -102,6 +102,18 @@ sub ipv6_ok {
     return $class->get->{net}{ipv6};
 }
 
+sub resolver_defaults {
+    my ( $class ) = @_;
+
+    return $class->get->{resolver}{defaults};
+}
+
+sub logfilter {
+    my ( $class ) = @_;
+
+    return $class->get->{logfilter};
+}
+
 1;
 
 =head1 NAME
@@ -129,6 +141,14 @@ Returns the value of the C<ipv4> flag. If given a defined value, sets the value 
 =item ipv6_ok([$value])
 
 Returns the value of the C<ipv6> flag. If given a defined value, sets the value to that value.
+
+=item resolver_defaults()
+
+Returns a reference to the resolver_defaults hash.
+
+=item logfilter()
+
+Returns a reference to the logfilter hash.
 
 =back
 

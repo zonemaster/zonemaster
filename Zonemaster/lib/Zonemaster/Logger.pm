@@ -42,7 +42,7 @@ sub add {
 
 sub _check_filter {
     my ( $self, $entry ) = @_;
-    my $config = Zonemaster->config->get->{logfilter};
+    my $config = Zonemaster->config->logfilter;
 
     if ( $config ) {
         if ( $config->{ $entry->module } ) {

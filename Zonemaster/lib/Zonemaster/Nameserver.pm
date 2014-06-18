@@ -70,7 +70,7 @@ sub _build_dns {
     my $res = Net::LDNS->new( $self->address->ip );
     $res->recurse( 0 );
 
-    my %defaults = %{ Zonemaster->config->get->{resolver}{defaults} };
+    my %defaults = %{ Zonemaster->config->resolver_defaults };
     foreach my $flag ( keys %defaults ) {
         $res->$flag( $defaults{$flag} );
     }
@@ -112,7 +112,7 @@ sub query {
         }
     );
 
-    my %defaults = %{ Zonemaster->config->get->{resolver}{defaults} };
+    my %defaults = %{ Zonemaster->config->resolver_defaults };
 
     my $class   = $href->{class}   // 'IN';
     my $dnssec  = $href->{dnssec}  // $defaults{dnssec};
@@ -242,7 +242,7 @@ sub _query {
         }
     );
 
-    my %defaults = %{ Zonemaster->config->get->{resolver}{defaults} };
+    my %defaults = %{ Zonemaster->config->resolver_defaults };
 
     # Make sure we have a value for each flag
     foreach my $flag ( keys %defaults ) {
