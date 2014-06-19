@@ -34,6 +34,8 @@ sub _log_dependency_versions {
     info( DEPENDENCY_VERSION => { name => 'List::MoreUtils',      version => $List::MoreUtils::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'RFC::RFC822::Address', version => $RFC::RFC822::Address::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'Scalar::Util',         version => $Scalar::Util::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'Hash::Merge',          version => $Hash::Merge::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'Readonly',             version => $Readonly::VERSION } );
 }
 
 sub modules {
@@ -86,6 +88,7 @@ sub run_module {
 
     if ( $module ) {
         my $m = "Zonemaster::Test::$module";
+        info( MODULE_VERSION => { module => $m, version => $m->version } );
         my @res = eval { $m->all( $zone ) };
         if ( $@ ) {
             my $err = $@;
