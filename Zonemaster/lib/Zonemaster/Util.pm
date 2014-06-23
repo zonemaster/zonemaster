@@ -9,7 +9,9 @@ use Zonemaster::DNSName;
 use Pod::Simple::SimpleTree;
 
 ## no critic (Modules::ProhibitAutomaticExportation)
-our @EXPORT = qw[ ns info name policy pod_extract_for ];
+our @EXPORT = qw[ ns info name pod_extract_for ];
+our @EXPORT_OK = qw[ ns info name pod_extract_for policy ];
+our %EXPORT_TAGS = ( all => \@EXPORT_OK);
 
 ## no critic (Subroutines::RequireArgUnpacking)
 sub ns {

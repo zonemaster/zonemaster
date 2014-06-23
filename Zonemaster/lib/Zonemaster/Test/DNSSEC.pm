@@ -134,6 +134,63 @@ sub translations {
     };
 } ## end sub translations
 
+sub policy {
+    return {
+        "ALGORITHM_DEPRECATED"         => "WARNING",
+        "ALGORITHM_OK"                 => "DEBUG",
+        "ALGORITHM_RESERVED"           => "ERROR",
+        "ALGORITHM_UNASSIGNED"         => "ERROR",
+        "COMMON_KEYTAGS"               => "INFO",
+        "DNSKEY_AND_DS"                => "DEBUG",
+        "DNSKEY_BUT_NOT_DS"            => "WARNING",
+        "DNSKEY_NOT_SIGNED"            => "ERROR",
+        "DNSKEY_SIGNATURE_NOT_OK"      => "ERROR",
+        "DNSKEY_SIGNATURE_OK"          => "DEBUG",
+        "DNSKEY_SIGNED"                => "DEBUG",
+        "DS_BUT_NOT_DNSKEY"            => "ERROR",
+        "DS_DIGTYPE_NOT_OK"            => "ERROR",
+        "DS_DIGTYPE_OK"                => "DEBUG",
+        "DS_DOES_NOT_MATCH_DNSKEY"     => "ERROR",
+        "DS_FOUND"                     => "INFO",
+        "DS_MATCHES_DNSKEY"            => "INFO",
+        "DS_MATCH_FOUND"               => "INFO",
+        "DS_MATCH_NOT_FOUND"           => "ERROR",
+        "DURATION_LONG"                => "WARNING",
+        "DURATION_OK"                  => "DEBUG",
+        "DURATION_SHORT"               => "WARNING",
+        "EXTRA_PROCESSING_BROKEN"      => "ERROR",
+        "EXTRA_PROCESSING_OK"          => "DEBUG",
+        "HAS_NSEC"                     => "INFO",
+        "HAS_NSEC3"                    => "INFO",
+        "INVALID_NAME_FOUND"           => "NOTICE",
+        "INVALID_NAME_RCODE"           => "NOTICE",
+        "ITERATIONS_OK"                => "DEBUG",
+        "MANY_ITERATIONS"              => "NOTICE",
+        "NEITHER_DNSKEY_NOR_DS"        => "DEBUG",
+        "NO_COMMON_KEYTAGS"            => "ERROR",
+        "NO_DNSKEY"                    => "WARNING",
+        "NO_DS"                        => "NOTICE",
+        "NO_KEYS_OR_NO_SIGS"           => "ERROR",
+        "NO_KEYS_OR_NO_SIGS_OR_NO_SOA" => "ERROR",
+        "NO_NSEC3PARAM"                => "DEBUG",
+        "NSE3C_SIG_VERIFY_ERROR"       => "ERROR",
+        "NSEC3_COVERS"                 => "DEBUG",
+        "NSEC3_COVERS_NOT"             => "WARNING",
+        "NSEC3_NOT_SIGNED"             => "ERROR",
+        "NSEC3_SIGNED"                 => "DEBUG",
+        "NSEC_COVERS"                  => "DEBUG",
+        "NSEC_COVERS_NOT"              => "WARNING",
+        "NSEC_NOT_SIGNED"              => "ERROR",
+        "NSEC_SIGNED"                  => "DEBUG",
+        "NSEC_SIG_VERIFY_ERROR"        => "ERROR",
+        "SOA_NOT_SIGNED"               => "ERROR",
+        "SOA_SIGNATURE_NOT_OK"         => "ERROR",
+        "SOA_SIGNATURE_OK"             => "DEBUG",
+        "SOA_SIGNED"                   => "DEBUG",
+        "TOO_MANY_ITERATIONS"          => "WARNING",
+    };
+} ## end sub policy
+
 sub version {
     return "$Zonemaster::Test::DNSSEC::VERSION";
 }
@@ -659,6 +716,11 @@ lists with all the tags that the method can use in log entries.
 Returns a reference to a nested hash, where the outermost keys are language
 codes, the keys below that are message tags and their values are translation
 strings.
+
+=item policy()
+
+Returns a reference to a hash with the default policy for the module. The keys
+are message tags, and the corresponding values are their default log levels.
 
 =item version()
 

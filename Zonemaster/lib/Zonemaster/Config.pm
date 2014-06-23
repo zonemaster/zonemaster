@@ -34,6 +34,7 @@ our $config;
 _load_base_config();
 
 our $policy = decode_json read_file dist_file( 'Zonemaster', 'policy.json' );
+INIT { _load_base_policy(); }
 
 sub get {
     my ( $class ) = @_;
@@ -54,6 +55,19 @@ sub _load_base_config {
     $internal = $merger->merge( $internal, $default ) if $default;
 
     $config = $internal;
+}
+
+sub _load_base_policy {
+    my $data;
+
+    foreach my $mod (Zonemaster->modules) {
+        my $m = 'Zonemaster::Test::' . $mod;
+        if ($m->can('policy') and $m->policy) {
+            $policy = $merger->merge($policy, {$mod => $m->policy});
+        }
+    }
+
+    return;
 }
 
 sub load_config_file {

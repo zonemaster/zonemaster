@@ -46,6 +46,12 @@ sub translations {
     }
 }
 
+sub policy {
+    return {
+        EXAMPLE_TAG => 'DEBUG',
+    }
+}
+
 ###
 ### Tests
 ###
@@ -87,6 +93,11 @@ lists with all the tags that the method can use in log entries.
 Returns a reference to a nested hash, where the outermost keys are language
 codes, the keys below that are message tags and their values are translation
 strings.
+
+=item policy()
+
+Returns a reference to a hash with the default policy for the module. The keys
+are message tags, and the corresponding values are their default log levels.
 
 =item version()
 

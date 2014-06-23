@@ -17,7 +17,6 @@ my @all_test_modules;
 
 INIT {
     @all_test_modules =
-      grep { _policy_allowed( $_ ) }
       map { my $f = $_; $f =~ s|^Zonemaster::Test::||; $f }
       grep { $_ ne 'Zonemaster::Test::Basic' } useall( 'Zonemaster::Test' );
 }
@@ -39,7 +38,7 @@ sub _log_dependency_versions {
 }
 
 sub modules {
-    return @all_test_modules;
+    return grep { _policy_allowed( $_ ) } @all_test_modules;
 }
 
 sub run_all_for {
