@@ -131,6 +131,10 @@ sub asn_lookup {
     return Zonemaster::ASNLookup->get($ip);
 }
 
+sub modules {
+    return Zonemaster::Test->modules;
+}
+
 =head1 NAME
 
 Zonemaster - A tool to check the quality of a DNS zone
@@ -214,6 +218,10 @@ If called in list context, a list of AS number and a L<Net::IP> object represent
 If called in scalar context, only the AS number.
 
 =back
+
+=item modules()
+
+Returns a list of the loaded test modules. Exactly the same as L<Zonemaster::Test::modules>.
 
 =item add_fake_delegation($domain, $data)
 

@@ -6,6 +6,7 @@ use warnings;
 
 use Moose;
 use Carp;
+use Zonemaster;
 
 use File::ShareDir qw[dist_dir];
 use File::Slurp;
@@ -52,7 +53,30 @@ sub _find_file {
 sub _load_language {
     my ( $self ) = @_;
 
-    return decode_json read_file $self->file;
+    my $data = {};
+
+    if ($data->{_language}) {
+        $self->{lang} = $data->{_language}; # Bypass read-only accessor
+        delete $data->{_language};
+    }
+
+    foreach my $mod (Zonemaster->modules) {
+        my $m = 'Zonemaster::Test::' . $mod;
+        if ($m->can('translations') and $self->lang and $m->translations->{$self->lang}) {
+            $data->{uc($mod)} = $m->translations->{$self->lang};
+        }
+    }
+
+    my $file = eval { decode_json read_file $self->file };
+    if ($@) {
+        warn "Reading translation data from file failed: $@";
+    } else {
+        foreach my $key (keys %$file) {
+            $data->{$key} = $file->{$key};
+        }
+    }
+
+    return $data;
 }
 
 ###
@@ -105,16 +129,22 @@ Zonemaster::Translator - translation support for Zonemaster
 
 =item lang
 
-The language code for the language the translator should use. Either this or C<file> must be provided.
+The language code for the language the translator should use. Either this or
+C<file> must be provided. If only a C<file> is provided, an attempt will be
+made to set the language code from the C<_language> key in the file. If a
+language code is not available at all, it will not be possible to fetch
+translation data from modules that store it internally.
 
 =item file
 
-The file from which the translation data will be loaded. If it is not provided but C<lang> is, an attempt will be made to load a file called
+The file from which the translation data will be loaded. If it is not provided
+but C<lang> is, an attempt will be made to load a file called
 F<language_lang.json> from the Zonemaster distribution directory.
 
 =item data
 
-A reference to a hash with translation data.
+A reference to a hash with translation data. This data will first be loaded
+from a file as described above, and then fetched directly from plugin modules.
 
 =back
 

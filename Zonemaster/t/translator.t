@@ -1,4 +1,5 @@
 use Test::More;
+use Test::Fatal;
 
 use Zonemaster::Logger::Entry;
 
@@ -6,23 +7,21 @@ BEGIN { use_ok( 'Zonemaster::Translator' ) }
 
 my $trans = new_ok( 'Zonemaster::Translator' => [ { lang => 'sv' } ] );
 
-eval { Zonemaster::Translator->new; };
-like( $@, qr/Must have at least one of lang and file/, 'expected error message' );
+like( exception {Zonemaster::Translator->new}, qr/Must have at least one of lang and file/, 'expected error message' );
 
 is( $trans->lang, 'sv', 'expected language code' );
 
-eval { $trans->file };
 like(
-    $@,
+    exception { $trans->file },
     qr[Cannot read translation file .+/lib/auto/share/dist/Zonemaster/language_sv.json],
     'expected error message'
 );
 
 $trans = Zonemaster::Translator->new( { lang => 'tech' } );
-eval { $trans->data };
-ok( !$@, 'no error reading translation data' );
+is( exception { $trans->data }, undef, 'no error reading translation data' );
 
-ok( exists $trans->data->{BASIC}{NO_GLUE}, 'expected key exists' );
+ok( exists $trans->data->{BASIC}{NO_GLUE}, 'expected key from file exists' );
+ok( exists $trans->data->{DNSSEC}{ALGORITHM_OK}, 'expected key from module exists' );
 
 my $entry = Zonemaster::Logger::Entry->new(
     {

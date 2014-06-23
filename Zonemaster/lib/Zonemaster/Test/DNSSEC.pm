@@ -66,6 +66,74 @@ sub metadata {
     };
 } ## end sub metadata
 
+sub translations {
+    return {
+        tech => {
+            "ALGORITHM_DEPRECATED" => "The DNSKEY with tag {keytag} uses deprecated algorithm number {algorithm}.",
+            "ALGORITHM_OK"         => "The DNSKEY with tag {keytag} uses algorithm number {algorithm}, which is OK.",
+            "ALGORITHM_RESERVED"   => "The DNSKEY with tag {keytag} uses reserved algorithm number {algorithm}.",
+            "ALGORITHM_UNASSIGNED" => "The DNSKEY with tag {keytag} uses unassigned algorithm number {algorithm}.",
+            "COMMON_KEYTAGS"       => "There are both DS and DNSKEY records with key tags {keytags}.",
+            "DNSKEY_AND_DS"        => "{parent} sent a DS record, and {child} a DNSKEY record.",
+            "DNSKEY_BUT_NOT_DS"    => "{child} sent a DNSKEY record, but {parent} did not send a DS record.",
+            "DNSKEY_NOT_SIGNED"    => "The apex DNSKEY RRset was not correctly signed.",
+            "DNSKEY_SIGNATURE_NOT_OK" =>
+              "Signature for DNSKEY with tag {signature} failed to verify with error '{error}'.",
+            "DNSKEY_SIGNATURE_OK"      => "A signature for DNSKEY with tag {signature} was correctly signed.",
+            "DNSKEY_SIGNED"            => "The apex DNSKEY RRset was correcly signed.",
+            "DS_BUT_NOT_DNSKEY"        => "{parent} sent a DS record, but {child} did not send a DNSKEY record.",
+            "DS_DIGTYPE_NOT_OK"        => "DS record with keytag {keytag} uses forbidden digest type {digtype}.",
+            "DS_DIGTYPE_OK"            => "DS record with keytag {keytag} uses digest type {digtype}, which is OK.",
+            "DS_DOES_NOT_MATCH_DNSKEY" => "DS record with keytag {keytag} does not match the DNSKEY with the same tag.",
+            "DS_FOUND"                 => "Found DS records with tags {keytags}",
+            "DS_MATCHES_DNSKEY"        => "DS record with keytag {keytag} matches the DNSKEY with the same tag.",
+            "DS_MATCH_FOUND"           => "At least one DS record with a matching DNSKEY record was found.",
+            "DS_MATCH_NOT_FOUND"       => "No DS record with a matching DNSKEY record was found.",
+            "DURATION_LONG" =>
+"RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too long.",
+            "DURATION_OK" =>
+"RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine.",
+            "DURATION_SHORT" =>
+"RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too short.",
+            "EXTRA_PROCESSING_BROKEN" => "Server at {server} sent {keys} DNSKEY records and {sigs} RRSIG records.",
+            "EXTRA_PROCESSING_OK"     => "Server at {server} sent {keys} DNSKEY records and {sigs} RRSIG records.",
+            "HAS_NSEC"                => "The zone has NSEC records.",
+            "HAS_NSEC3"               => "The zone has NSEC3 records.",
+            "INVALID_NAME_FOUND" =>
+              "When asked for the name {name}, which must not exist, the response was not an error.",
+            "INVALID_NAME_RCODE" =>
+              "When asked for the name {name}, which must not exist, the response had RCODE {rcode}.",
+            "ITERATIONS_OK"         => "The number of NSEC3 iterations is {count}, which is OK.",
+            "MANY_ITERATIONS"       => "The number of NSEC3 iterations is {count}, which is on the high side.",
+            "NEITHER_DNSKEY_NOR_DS" => "There are neither DS nor DNSKEY records for the zone.",
+            "NO_COMMON_KEYTAGS"     => "No DS record had a DNSKEY with a matching keytag.",
+            "NO_DNSKEY"             => "No DNSKEYs were returned.",
+            "NO_DS"                 => "{from} returned no DS records for {zone}.",
+            "NO_KEYS_OR_NO_SIGS" =>
+              "Cannot test DNSKEY signatures, because we got {keys} DNSKEY records and {sigs} RRSIG records.",
+            "NO_KEYS_OR_NO_SIGS_OR_NO_SOA" =>
+"Cannot test SOA signatures, because we got {keys} DNSKEY records, {sigs} RRSIG records and {soas} SOA records.",
+            "NO_NSEC3PARAM"          => "{server} returned no NSEC3PARAM records.",
+            "NSE3C_SIG_VERIFY_ERROR" => "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'.",
+            "NSEC3_COVERS"           => "NSEC3 record covers {name}.",
+            "NSEC3_COVERS_NOT"       => "NSEC3 record does not cover {name}.",
+            "NSEC3_NOT_SIGNED"       => "No signature correctly signed the NSEC3 RRset.",
+            "NSEC3_SIGNED"           => "At least one signature correctly signed the NSEC3 RRset.",
+            "NSEC_COVERS"            => "NSEC covers {name}.",
+            "NSEC_COVERS_NOT"        => "NSEC does not cover {name}.",
+            "NSEC_NOT_SIGNED"        => "No signature correctly signed the NSEC RRset.",
+            "NSEC_SIGNED"            => "At least one signature correctly signed the NSEC RRset.",
+            "NSEC_SIG_VERIFY_ERROR"  => "Trying to verify NSEC RRset with RRSIG {sig} gave error '{error}'.",
+            "SOA_NOT_SIGNED"         => "No RRSIG correctly signed the SOA RRset.",
+            "SOA_SIGNATURE_NOT_OK"   => "Trying to verify SOA RRset with signature {signature} gave error '{error}'.",
+            "SOA_SIGNATURE_OK"       => "RRSIG {signature} correctly signs SOA RRset.",
+            "SOA_SIGNED"             => "At least one RRSIG correctly signs the SOA RRset.",
+            "TOO_MANY_ITERATIONS" =>
+              "The number of NSEC3 iterations is {count}, which is too high for key length {keylength}.",
+        }
+    };
+} ## end sub translations
+
 sub version {
     return "$Zonemaster::Test::DNSSEC::VERSION";
 }
@@ -488,7 +556,11 @@ sub dnssec10 {
                 my $ok = 0;
                 foreach my $sig ( @sigs ) {
                     my $msg = '';
-                    if ( $sig->verify_time( [ grep { $_->name eq $sig->name } @nsec ], \@dnskeys, $test_p->timestamp, $msg )
+                    if (
+                        $sig->verify_time(
+                            [ grep { $_->name eq $sig->name } @nsec ],
+                            \@dnskeys, $test_p->timestamp, $msg
+                        )
                       )
                     {
                         $ok = 1;
@@ -503,12 +575,13 @@ sub dnssec10 {
                     else {
                         push @results, info( NSEC_NOT_SIGNED => {} );
                     }
-                }
-            }
+                } ## end foreach my $sig ( @sigs )
+            } ## end if ( $nsec->covers( $name...))
         } ## end foreach my $nsec ( @nsec )
-        if ($covered) {
+        if ( $covered ) {
             push @results, info( NSEC_COVERS => { name => $name } );
-        } else {
+        }
+        else {
             push @results, info( NSEC_COVERS_NOT => { name => $name } );
         }
     } ## end if ( @nsec )
@@ -528,7 +601,8 @@ sub dnssec10 {
                     my $msg = '';
                     if (
                         $sig->verify_time(
-                            [ grep { $_->name eq $sig->name } @nsec3 ], \@dnskeys, $test_p->timestamp, $msg
+                            [ grep { $_->name eq $sig->name } @nsec3 ],
+                            \@dnskeys, $test_p->timestamp, $msg
                         )
                       )
                     {
@@ -544,11 +618,12 @@ sub dnssec10 {
                         push @results, info( NSE3C_NOT_SIGNED => {} );
                     }
                 } ## end foreach my $sig ( @sigs )
-            }
+            } ## end if ( $nsec3->covers( $name...))
         } ## end foreach my $nsec3 ( @nsec3 )
-        if ($covered) {
+        if ( $covered ) {
             push @results, info( NSEC3_COVERS => { name => $name } );
-        } else {
+        }
+        else {
             push @results, info( NSEC3_COVERS_NOT => { name => $name } );
         }
     } ## end if ( @nsec3 )
@@ -578,6 +653,12 @@ Runs the default set of tests and returns a list of log entries made by the test
 
 Returns a reference to a hash, the keys of which are the names of all test methods in the module, and the corresponding values are references to
 lists with all the tags that the method can use in log entries.
+
+=item translations()
+
+Returns a reference to a nested hash, where the outermost keys are language
+codes, the keys below that are message tags and their values are translation
+strings.
 
 =item version()
 
