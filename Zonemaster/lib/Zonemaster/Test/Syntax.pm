@@ -180,6 +180,10 @@ sub syntax03 {
     my ( $class, $name ) = @_;
     my @results;
 
+    if (not ref($name)) {
+        $name = name($name);
+    }
+
     foreach my $local_label ( @{ $name->labels } ) {
         if ( _label_not_ace_has_double_hyphen_in_position_3_and_4( $local_label ) ) {
             push @results,
@@ -356,7 +360,7 @@ sub _label_not_ace_has_double_hyphen_in_position_3_and_4 {
 
     return 0 if not $label;
 
-    if ( $label =~ /\A..--/ and $label !~ /\Axn/ ) {
+    if ( $label =~ /\A..--/ and $label !~ /\Axn/i ) {
         return 1;
     }
     else {
