@@ -228,7 +228,7 @@ sub delegation04 {
 
         foreach my $usevc ( 0, 1 ) {
             my $p = $local_ns->query( $zone->name, q{SOA}, { usevc => $usevc } );
-            if ( not $p->aa ) {
+            if ( not $p or not $p->aa ) { # Consider non-responsive server non-auth
                 push @results,
                   info(
                     IS_NOT_AUTHORITATIVE => {
