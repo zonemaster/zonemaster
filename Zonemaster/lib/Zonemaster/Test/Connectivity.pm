@@ -91,12 +91,6 @@ sub metadata {
         ],
         connectivity03 => [
             qw(
-              NAMESERVER_IPV6_ADDRESS_BOGON
-              NAMESERVER_IPV6_ADDRESSES_NOT_BOGON
-              )
-        ],
-        connectivity04 => [
-            qw(
               NAMESERVER_WITH_UNALLOCATED_ADDRESS
               NAMESERVERS_WITH_UNIQ_AS
               NAMESERVERS_IPV4_WITH_UNIQ_AS
@@ -258,57 +252,6 @@ sub connectivity02 {
 sub connectivity03 {
     my ( $class, $zone ) = @_;
     my @results;
-    my %ips;
-    my $ipv6_nb = 0;
-
-    foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
-
-        next if not $local_ns->address;
-        next if not $local_ns->address->version == $IP_VERSION_6;
-        next if $ips{ $local_ns->address->short };
-
-        $ipv6_nb++;
-
-        my $reverse_ip_query = $local_ns->address->reverse_ip;
-        $reverse_ip_query =~ s/ip6.arpa./v6.fullbogons.cymru.com./smx;
-
-        my $p = Zonemaster::Recursor->recurse( $reverse_ip_query );
-
-        if ( $p ) {
-            if ( $p->rcode ne q{NXDOMAIN} ) {
-                foreach my $rr ( $p->answer ) {
-                    if ( $rr->type eq q{A} and $rr->address eq q{127.0.0.2} ) {
-                        push @results,
-                          info(
-                            NAMESERVER_IPV6_ADDRESS_BOGON => {
-                                ns      => $local_ns->name->string,
-                                address => $local_ns->address->short,
-                            }
-                          );
-                    }
-                }
-            }
-        }
-
-        $ips{ $local_ns->address->short }++;
-
-    } ## end foreach my $local_ns ( @{ $zone...})
-
-    if ( $ipv6_nb > 0 and not grep { $_->tag eq q{NAMESERVER_IPV6_ADDRESS_BOGON} } @results ) {
-        push @results,
-          info(
-            NAMESERVER_IPV6_ADDRESSES_NOT_BOGON => {
-                nb => $ipv6_nb,
-            }
-          );
-    }
-
-    return @results;
-} ## end sub connectivity03
-
-sub connectivity04 {
-    my ( $class, $zone ) = @_;
-    my @results;
     my ( %ips, %asns );
 
     foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
@@ -389,7 +332,7 @@ sub connectivity04 {
     }
 
     return @results;
-} ## end sub connectivity04
+} ## end sub connectivity03
 
 1;
 
@@ -433,10 +376,6 @@ Verify nameservers UDP port 53 reachability.
 Verify nameservers TCP port 53 reachability.
 
 =item connectivity03($zone)
-
-Verify that nameservers addresses are not part of a bogon prefix.
-
-=item connectivity04($zone)
 
 Verify that all nameservers do not belong to the same AS.
 

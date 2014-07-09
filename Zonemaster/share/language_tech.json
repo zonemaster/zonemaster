@@ -3,7 +3,9 @@
    "ADDRESS" : {
       "NAMESERVER_IP_PRIVATE_NETWORK" : "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'.",
       "NAMESERVER_IP_PTR_MISMATCH" : "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names}).",
-      "NAMESERVER_IP_WITHOUT_REVERSE" : "Nameserver {ns} has an IP address ({address}) without PTR configured."
+      "NAMESERVER_IP_WITHOUT_REVERSE" : "Nameserver {ns} has an IP address ({address}) without PTR configured.",
+      "NAMESERVER_IPV6_ADDRESSES_NOT_BOGON" : "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix.",
+      "NAMESERVER_IPV6_ADDRESS_BOGON" : "Nameserver {ns} IPv6 address {address} is part of a bogon prefix."
    },
    "BASIC" : {
       "HAS_A_RECORDS" : "Nameserver {source} returned A record(s) for {name}",
@@ -22,8 +24,6 @@
       "NAMESERVERS_WITH_UNIQ_AS" : "All nameservers are in the same AS ({asn}).",
       "NAMESERVER_HAS_TCP_53" : "Nameserver {ns}/{address} accessible over TCP on port 53.",
       "NAMESERVER_HAS_UDP_53" : "Nameserver {ns}/{address} accessible over UDP on port 53.",
-      "NAMESERVER_IPV6_ADDRESSES_NOT_BOGON" : "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix.",
-      "NAMESERVER_IPV6_ADDRESS_BOGON" : "Nameserver {ns} IPv6 address {address} is part of a bogon prefix.",
       "NAMESERVER_NO_TCP_53" : "Nameserver {ns}/{address} not accessible over TCP on port 53.",
       "NAMESERVER_NO_UDP_53" : "Nameserver {ns}/{address} not accessible over UDP on port 53.",
       "NAMESERVER_WITH_UNALLOCATED_ADDRESS" : "Nameserver {ns}/{address} uses an unassigned/unannounced address."
