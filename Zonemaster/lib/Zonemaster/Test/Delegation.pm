@@ -150,7 +150,7 @@ sub delegation02 {
     my %nsnames_and_ip;
     my %ips;
 
-    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+    foreach my $local_ns ( @{ $zone->glue } ) {
 
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
 
