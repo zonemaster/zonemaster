@@ -44,8 +44,6 @@ sub all {
     my $p = $zone->query_one( $zone->name, q{MX} );
     push @results, $class->syntax08( sort keys %{ { map { $_->exchange => 1 } $p->get_records( q{MX}, q{answer} ) } } );
 
-    push @results, $class->syntax09( $zone );
-
     return @results;
 } ## end sub all
 
@@ -106,11 +104,6 @@ sub metadata {
               MX_LABEL_TOO_LONG
               MX_NUMERIC_TLD
               MX_NAME_TOO_LONG
-              )
-        ],
-        syntax09 => [
-            qw(
-              SERIAL_NOT_DATE
               )
         ],
     };
@@ -270,45 +263,6 @@ sub syntax08 {
 
     return @results;
 }
-
-sub syntax09 {
-    my ( $class, $zone ) = @_;
-
-    my $p = $zone->query_one( $zone->name, q{SOA} );
-    my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
-
-    my $serial = $soa->serial;
-
-    if ( length( $serial ) != 10 ) {    # Wrong length, can't be date+counter
-        return info(
-            SERIAL_NOT_DATE => {
-                serial => $serial,
-                why    => q{wrong length},
-            }
-        );
-    }
-
-    my ( $year, $month, $day ) = $serial =~ m|^([0-9]{4})([0-9]{2})([0-9]{2})|;
-    if ( not( defined( $year ) and defined( $month ) and defined( $day ) ) ) {
-        return info(
-            SERIAL_NOT_DATE => {
-                serial => $serial,
-                why    => q{wrong format},
-            }
-        );
-    }
-
-    my $t = eval { timegm( 0, 0, 0, $day, $month - 1, $year ) };
-    if ( not defined( $t ) ) {
-        return info(
-            SERIAL_NOT_DATE => {
-                serial => $serial,
-                why    => q{invalid date},
-            }
-        );
-    }
-
-} ## end sub syntax09
 
 ###
 ### Internal Tests with Boolean (0|1) return value.
@@ -497,10 +451,6 @@ Verify that SOA mname of zone given is conform to previous syntax rules (syntax0
 =item syntax08(@mx_names)
 
 Verify that MX name (Zonemaster::DNSName)  given is conform to previous syntax rules (syntax01, syntax02, syntax03). It also verify name total length as well as labels.
-
-=item syntax09($zone)
-
-Check SOA serial format.
 
 =back
 

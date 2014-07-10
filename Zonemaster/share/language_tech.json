@@ -94,7 +94,6 @@
       "ONLY_ALLOWED_CHARS" : "No illegal chatacters in the domain name ({name}).",
       "RNAME_MISUSED_AT_SIGN" : "There must be no misused '@' character in the SOA RNAME field ({rname}).",
       "RNAME_RFC822_INVALID" : "There must be no illegal characters in the SOA RNAME field ({rname}).",
-      "SERIAL_NOT_DATE" : "The SOA serial number ({serial}/{why}) field should be in the YYYYMMDDnn format.",
       "TERMINAL_HYPHEN" : "Domain name ({name}) has a label ({label}) ending with an hyphen ('-')."
    },
    "SYSTEM" : {
