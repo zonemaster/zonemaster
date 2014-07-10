@@ -179,7 +179,7 @@ sub delegation03 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    my @nsnames = uniq map { $_->name } @{ $zone->ns };
+    my @nsnames = uniq map { $_->name } @{ $zone->glue }, @{ $zone->ns };
     my @needs_glue =
       sort { length( $a->name->string ) <=> length( $b->name->string ) }
       grep { $zone->is_in_zone( $_->name ) } @{ $zone->ns };
