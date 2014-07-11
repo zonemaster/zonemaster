@@ -114,10 +114,11 @@ sub query {
 
     my %defaults = %{ Zonemaster->config->resolver_defaults };
 
-    my $class   = $href->{class}   // 'IN';
-    my $dnssec  = $href->{dnssec}  // $defaults{dnssec};
-    my $usevc   = $href->{usevc}   // $defaults{usevc};
-    my $recurse = $href->{recurse} // $defaults{recurse};
+    my $class     = $href->{class}     // 'IN';
+    my $dnssec    = $href->{dnssec}    // $defaults{dnssec};
+    my $usevc     = $href->{usevc}     // $defaults{usevc};
+    my $recurse   = $href->{recurse}   // $defaults{recurse};
+    my $edns_size = $href->{edns_size} // $defaults{edns_size};
 
     # Fake a DS answer
     if ( $type eq 'DS' and $class eq 'IN' and $self->fake_ds->{ lc( $name ) } ) {
@@ -160,12 +161,12 @@ sub query {
         } ## end if ( $name =~ m/(\.|^)\Q$fname\E$/i)
     } ## end foreach my $fname ( keys %{...})
 
-    if ( not exists( $self->cache->data->{"\U$name"}{"\U$type"}{"\U$class"}{$dnssec}{$usevc}{$recurse} ) ) {
-        $self->cache->data->{"\U$name"}{"\U$type"}{"\U$class"}{$dnssec}{$usevc}{$recurse} =
+    if ( not exists( $self->cache->data->{"\U$name"}{"\U$type"}{"\U$class"}{$dnssec}{$usevc}{$recurse}{$edns_size} ) ) {
+        $self->cache->data->{"\U$name"}{"\U$type"}{"\U$class"}{$dnssec}{$usevc}{$recurse}{$edns_size} =
           $self->_query( $name, $type, $href );
     }
 
-    my $p = $self->cache->data->{"\U$name"}{"\U$type"}{"\U$class"}{$dnssec}{$usevc}{$recurse};
+    my $p = $self->cache->data->{"\U$name"}{"\U$type"}{"\U$class"}{$dnssec}{$usevc}{$recurse}{$edns_size};
     Zonemaster->logger->add( CACHED_RETURN => { packet => ( $p ? $p->string : 'undef' ) } );
 
     return $p;

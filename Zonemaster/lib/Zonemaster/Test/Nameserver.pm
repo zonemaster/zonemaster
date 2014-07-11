@@ -105,10 +105,9 @@ sub nameserver02 {
     foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
 
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
-
         my $ns =
           Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
-        my $p = $ns->query( $zone->name, q{SOA}, { dnssec => 1, edns_size => 512 } );
+        my $p = $ns->query( $zone->name, q{SOA}, { edns_size => 512 } );
         if ( $p ) {
             if ( $p->rcode eq q{FORMERR} ) {
                 push @results,
@@ -295,7 +294,7 @@ Verify that nameserver is not recursive.
 
 =item nameserver02($zone)
 
-Verify EDNS0 support. (WORK IN PROGRESS)
+Verify EDNS0 support.
 
 =item nameserver03($zone)
 
