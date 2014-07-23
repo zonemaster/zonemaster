@@ -67,6 +67,13 @@ has 'show_level' => (
     default       => 1,
 );
 
+has 'show_module' => (
+    is            => 'ro',
+    isa           => 'Bool',
+    documentation => 'Print the name of the maodule on entries.',
+    default       => 0,
+);
+
 has 'ns' => (
     is            => 'ro',
     isa           => 'ArrayRef',
@@ -247,6 +254,10 @@ sub run {
                         printf "%-9s ", $entry->level;
                     }
 
+                    if ( $self->show_module ) {
+                        printf "%-12s ", $entry->module;
+                    }
+
                     say $translator->translate_tag( $entry );
                 }
                 elsif ( $self->lang eq 'json' ) {
@@ -257,6 +268,9 @@ sub run {
                         tag       => $entry->tag,
                         args      => $entry->args,
                       };
+                }
+                elsif ( $self->show_module ) {
+                    printf "%7.2f %-9s %-12s %s\n", $entry->timestamp, $entry->level, $entry->module, $entry->string;
                 }
                 else {
                     printf "%7.2f %-9s %s\n", $entry->timestamp, $entry->level, $entry->string;
@@ -289,6 +303,9 @@ sub run {
         if ( $self->show_level ) {
             print 'Level     ';
         }
+        if ( $self->show_module ) {
+            print 'Module       ';
+        }
         say 'Message';
 
         if ( $self->time ) {
@@ -296,6 +313,9 @@ sub run {
         }
         if ( $self->show_level ) {
             print '========= ';
+        }
+        if ( $self->show_module ) {
+            print '============ ';
         }
         say '=======';
     }
