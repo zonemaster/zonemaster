@@ -40,14 +40,12 @@ DNScheck
 |R02|Triggers when it detects a FQDN that exceeds the maximum length - 255 octets|
 |R03|Triggers when it detects other than letters, digits and '-' character in a label for a host name|
 |R04|Match the results with existing ZC/DC when certain protocols are disabled (e.g. IPv6|
-|R05| Run only appropriate tests when the default test profile is modified.  
-Match the results with existing ZC/DC under the same configuration|
+|R05| Run only appropriate tests when the default test profile is modified. Match the results with existing ZC/DC under the same configuration|
 |R06|Capale of running the test when the delegation parameters are specified|
 |R07|Able to test non delegated domain|
 |R08|Check whether timestamps on the test being run are being displayed|
 |R09|With the report flag enabled check whether the tool reports tests as they are being run|
-|R10|Check whether the tool displays statistics on network performance, RTT: 
-min, max, stddev, avg, per protocol and queries sent per name server|
+|R10|Check whether the tool displays statistics on network performance, RTT: min, max, stddev, avg, per protocol and queries sent per name server|
 |R11|Provides the same results as in ZC/DC when IDNs are used|
 |R12|Trigger when there is a collision with CNAME RRs (If a CNAME RR is present at a node, no other data should be present; (3.6.2) - RFC 1034) |
 |R13|Trigger when there is an error in the RR format (3.3 - RFC 1035)|
