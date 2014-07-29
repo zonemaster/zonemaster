@@ -6,7 +6,6 @@ authors, number the comments as 1. and 2., and in the author column add your
 three letter acronym  for example such as 1: PWA and 2: SBA <br/>
 
 | Test   | Category change | Discard | Review/comments                  | Author   |
-|
 |:-------|:---------|:--------|:----------------------------------------|:---------|
 | [Delegation06](Delegation-TP/delegation06.md) | No | No | 1. 05 & 06 only 
 relevant if it is actually a glue record? [Review not clear to the gate keeper 
