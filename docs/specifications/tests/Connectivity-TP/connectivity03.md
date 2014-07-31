@@ -27,21 +27,23 @@ The domain name to be tested.
    [Method3](../Methods.md).
 2. Obtain the IP addresss of the name servers from [Method4](../Methods.md)
    and [Method5](../Methods.md).
-   the following methods:
-3. For obtaining the AS numbers for IPv6 addresses; first reverse the nibbles of 
+3. Obtain the list of ASN lookup domains from "Zonemaster/lib/Zonemaster/Config.pm"
+4. For obtaining the AS numbers for IPv6 addresses; first reverse the nibbles of 
    the IPv6 address and place dots between each nibble. It is important all omitted 
    zeroes in the IPv6 address are included. <br />
-3.1. At the end of the reversed IPv6 address (obtained from step 3), concatenate
-     the string ".origin6.asn.zonemaster.net.". <br/>
-3.2 Send a "TXT" query using the string (obtained from Step 3.1) <br/>
-3.3 The AS number for the IPv6 address is found in the ANSWER for the query 
-4. For obtaining the AS numbers for IPv4 addresses; first reverse the nibbles 
-   of the IPv4 address and  place dots between each nibble. <br/>
-4.1. At the end of the reversed IPv4 address (obtained from step 4), concatenate 
-     the string ".origin.asn.zonemaster.net.". <br/> 
+4.1. At the end of the reversed IPv6 address, concatenate the  string (from step3) <br/>
 4.2 Send a "TXT" query using the string (obtained from Step 4.1) <br/>
-4.3 The AS number for the IPv6 address is found in the ANSWER for the query 
-5. If all the retrieved AS (obtained from step3.3 and 4.3) are same, then the test
+4.3 If there is an ANSWER, then go to step 4.4, else go to the next string
+in the list (from step 3)
+4.4 The AS number for the IPv6 address is found in the ANSWER for the query 
+5. For obtaining the AS numbers for IPv4 addresses; first reverse the nibbles 
+   of the IPv4 address and  place dots between each nibble. <br/>
+5.1. At the end of the reversed IPv4 address concatenate the string (from step3) <br/> 
+5.2 Send a "TXT" query using the string (obtained from Step 5.1) <br/>
+5.3 If there is an ANSWER, then go to step 5.4, else go to the next string
+in the list (from step 3)
+5.4 The AS number for the IPv4 address is found in the ANSWER for the query 
+6. If all the retrieved AS (obtained from step 4.3 and 5.3) are same, then the test
    fails.
 
 ### Outcome(s)
