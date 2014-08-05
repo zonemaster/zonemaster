@@ -15,11 +15,9 @@ use Scalar::Util qw[blessed];
 
 my @all_test_modules;
 
-INIT {
-    @all_test_modules =
-      map { my $f = $_; $f =~ s|^Zonemaster::Test::||; $f }
-      grep { $_ ne 'Zonemaster::Test::Basic' } useall( 'Zonemaster::Test' );
-}
+@all_test_modules =
+  map { my $f = $_; $f =~ s|^Zonemaster::Test::||; $f }
+  grep { $_ ne 'Zonemaster::Test::Basic' } useall( 'Zonemaster::Test' );
 
 sub _log_dependency_versions {
     info( DEPENDENCY_VERSION => { name => 'Net::LDNS',            version => $Net::LDNS::VERSION } );

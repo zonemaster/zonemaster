@@ -68,7 +68,7 @@ sub _check_filter {
 } ## end sub _check_filter
 
 sub start_time_now {
-    Zonemaster::Entry->start_time_now();
+    Zonemaster::Logger::Entry->start_time_now();
 }
 
 1;

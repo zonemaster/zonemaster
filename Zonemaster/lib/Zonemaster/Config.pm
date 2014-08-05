@@ -34,7 +34,6 @@ our $config;
 _load_base_config();
 
 our $policy = decode_json read_file dist_file( 'Zonemaster', 'policy.json' );
-INIT { _load_base_policy(); }
 
 sub get {
     my ( $class ) = @_;
@@ -44,6 +43,10 @@ sub get {
 
 sub policy {
     my ( $class ) = @_;
+
+    if (not $policy) {
+        _load_base_policy();
+    }
 
     return $policy;
 }

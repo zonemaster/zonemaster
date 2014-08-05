@@ -11,7 +11,7 @@ my $seed_data;
 
 our %recurse_cache;
 
-INIT {
+{
     local $/;
     my $json = <DATA>;
     $seed_data = decode_json $json;

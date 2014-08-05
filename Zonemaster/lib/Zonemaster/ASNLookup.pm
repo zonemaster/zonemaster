@@ -10,12 +10,12 @@ use Zonemaster::Nameserver;
 
 our @roots;
 
-INIT {
-    @roots = @{ Zonemaster->config->asnroots() };
-}
-
 sub get {
     my ( $class, $ip ) = @_;
+
+    if (not @roots) {
+        @roots = @{ Zonemaster->config->asnroots() };
+    }
 
     if ( not ref( $ip ) or not $ip->isa( 'Net::IP' ) ) {
         $ip = Net::IP->new( $ip );
