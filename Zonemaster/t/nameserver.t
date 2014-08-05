@@ -86,7 +86,7 @@ foreach my $ns ( Zonemaster::Nameserver->all_known_nameservers ) {
     isa_ok( $ns, 'Zonemaster::Nameserver' );
 }
 
-is( scalar( keys %Zonemaster::Nameserver::Cache::object_cache ), 4 );
+ok( scalar( keys %Zonemaster::Nameserver::Cache::object_cache ) >= 4 );
 
 Zonemaster->config->ipv4_ok(0);
 Zonemaster->config->ipv6_ok(0);

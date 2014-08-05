@@ -102,8 +102,12 @@ ok( !defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{1
 my %res = map { $_->tag => 1 } Zonemaster->test_module( q{address}, q{nic.fr} );
 ok( $res{NAMESERVER_IP_PTR_MISMATCH}, q{Nameserver IP PTR mismatch} );
 
-%res = map { $_->tag => 1 } Zonemaster->test_module( q{address}, q{x6.tf} );
+%res = map { $_->tag => 1 } Zonemaster->test_module( q{address}, q{bisexualmenace.org} );
 ok( $res{NAMESERVER_IP_WITHOUT_REVERSE}, q{Nameserver IP without PTR} );
+
+%res = map { $_->tag => 1 } Zonemaster->test_module( q{address}, q{afnic.fr} );
+ok( $res{NAMESERVER_IPV6_ADDRESSES_NOT_BOGON}, q{Nameserver IPv6 addresses not bogon} );
+ok( !$res{NAMESERVER_IPV6_ADDRESS_BOGON},      q{Nameserver IPv6 addresses not bogon (double check)} );
 
 # Add test case for NAMESERVER_IP_PRIVATE_NETWORK
 

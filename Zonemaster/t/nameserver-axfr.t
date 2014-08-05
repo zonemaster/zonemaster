@@ -15,7 +15,7 @@ my %saved_axfr;
 setup( $datafile );
 
 # This should be a successful AXFR
-my $ns = Zonemaster::Nameserver->new( { name => 'willow.faerywicca.se', address => '79.99.7.203' } );
+my $ns = Zonemaster::Nameserver->new( { name => 'kennedy.faerywicca.se', address => '46.21.106.227' } );
 my $counter = 0;
 is(
     exception {
