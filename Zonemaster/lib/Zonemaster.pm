@@ -135,6 +135,10 @@ sub modules {
     return Zonemaster::Test->modules;
 }
 
+sub start_time_now {
+    Zonemaster::Logger->start_time_now();
+}
+
 =head1 NAME
 
 Zonemaster - A tool to check the quality of a DNS zone

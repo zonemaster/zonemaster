@@ -19,13 +19,9 @@ our %numeric = (
     CRITICAL => 5,
 );
 
-our $start_time;
+our $start_time = time();
 
 my $json = JSON::XS->new->allow_blessed->convert_blessed;
-
-INIT {
-    $start_time = time();
-}
 
 has 'module'    => ( is => 'ro', isa => 'Str',                lazy_build => 1 );
 has 'tag'       => ( is => 'ro', isa => 'Str',                required   => 1 );
@@ -105,6 +101,15 @@ sub string {
       if $self->args;
 
     return sprintf( '%s:%s %s', $self->module, $self->tag, $argstr );
+}
+
+
+###
+### Class method
+###
+
+sub start_time_now {
+    $start_time = time();
 }
 
 1;

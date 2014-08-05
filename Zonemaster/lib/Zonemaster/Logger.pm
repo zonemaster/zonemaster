@@ -67,6 +67,10 @@ sub _check_filter {
     } ## end if ( $config )
 } ## end sub _check_filter
 
+sub start_time_now {
+    Zonemaster::Entry->start_time_now();
+}
+
 1;
 
 =head1 NAME

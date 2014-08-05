@@ -45,6 +45,7 @@ sub run_all_for {
     my ( $class, $zone ) = @_;
     my @results;
 
+    Zonemaster->start_time_now();
     info(
         MODULE_VERSION => {
             module  => 'Zonemaster::Test::Basic',
@@ -85,6 +86,7 @@ sub run_module {
     my ( $module ) = grep { lc( $requested ) eq lc( $_ ) } $class->modules;
     $module = 'Basic' if ( not $module and lc( $requested ) eq 'basic' );
 
+    Zonemaster->start_time_now();
     if ( $module ) {
         my $m = "Zonemaster::Test::$module";
         info( MODULE_VERSION => { module => $m, version => $m->version } );
@@ -113,6 +115,7 @@ sub run_one {
     my ( $module ) = grep { lc( $requested ) eq lc( $_ ) } $class->modules;
     $module = 'Basic' if ( not $module and lc( $requested ) eq 'basic' );
 
+    Zonemaster->start_time_now();
     if ( $module ) {
         my $m = "Zonemaster::Test::$module";
         if ( $m->metadata->{$test} ) {
