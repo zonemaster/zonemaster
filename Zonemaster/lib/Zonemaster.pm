@@ -259,6 +259,10 @@ Example:
       ]
    );
 
+=item start_time_now()
+
+Set the logger's start time to the current time.
+
 =back
 
 =head1 AUTHOR

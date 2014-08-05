@@ -117,4 +117,14 @@ Adds an entry with the given tag and arguments to the logger object.
 
 =back
 
+=head1 CLASS METHOD
+
+=over
+
+=item start_time_now()
+
+Set the logger's start time to the current time.
+
+=back
+
 =cut
