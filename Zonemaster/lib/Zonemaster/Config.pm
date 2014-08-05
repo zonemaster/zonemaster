@@ -60,14 +60,12 @@ sub _load_base_config {
     $config = $internal;
 }
 
-sub _load_base_policy {
-    my $data;
+sub load_module_policy {
+    my ($class, $mod) = @_;
 
-    foreach my $mod (Zonemaster->modules) {
-        my $m = 'Zonemaster::Test::' . $mod;
-        if ($m->can('policy') and $m->policy) {
-            $policy = $merger->merge($policy, {$mod => $m->policy});
-        }
+    my $m = 'Zonemaster::Test::' . $mod;
+    if ($m->can('policy') and $m->policy) {
+        $policy = $merger->merge($policy, {$mod => $m->policy});
     }
 
     return;
@@ -199,6 +197,11 @@ Load policy information from the given file and merge it into the pre-loaded pol
 =item load_config_file($filename)
 
 Load configuration information from the given file and merge it into the pre-loaded config. Information from the loaded file overrides the pre-loaded information when the same keys exist in both places.
+
+=item load_module_policy($module)
+
+Loads policy data included in a test module. The argument must be the short
+form (without the initial C<Zonemaster::Test::>) and correctly capitalized.
 
 =back
 

@@ -55,7 +55,9 @@ sub run_all_for {
 
     if ( Zonemaster::Test::Basic->can_continue( @results ) ) {
         ## no critic (Modules::RequireExplicitInclusion)
-        foreach my $module ( map { "Zonemaster::Test::$_" } __PACKAGE__->modules ) {
+        foreach my $mod ( __PACKAGE__->modules ) {
+            Zonemaster->config->load_module_policy($mod);
+            my $module = "Zonemaster::Test::$mod";
             info( MODULE_VERSION => { module => $module, version => $module->version } );
             my @res = eval { $module->all( $zone ) };
             if ( $@ ) {
@@ -86,6 +88,7 @@ sub run_module {
 
     Zonemaster->start_time_now();
     if ( $module ) {
+        Zonemaster->config->load_module_policy($module);
         my $m = "Zonemaster::Test::$module";
         info( MODULE_VERSION => { module => $m, version => $m->version } );
         my @res = eval { $m->all( $zone ) };
@@ -115,6 +118,7 @@ sub run_one {
 
     Zonemaster->start_time_now();
     if ( $module ) {
+        Zonemaster->config->load_module_policy($module);
         my $m = "Zonemaster::Test::$module";
         if ( $m->metadata->{$test} ) {
             info( MODULE_CALL => { module => $module, method => $test, version => $m->version } );
