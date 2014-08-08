@@ -264,6 +264,7 @@ sub run {
                     push @accumulator,
                       {
                         timestamp => $entry->timestamp,
+                        level	  => $entry->level,
                         module    => $entry->module,
                         tag       => $entry->tag,
                         args      => $entry->args,
