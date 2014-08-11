@@ -38,8 +38,8 @@ functional tests for the test engine, following steps should be followed:
 
 
 
-|Req| Test case                                  | 
-|:--|:-------------------------------------------|
+|Req| Test requirement                           |Explanation|
+|:--|:-------------------------------------------|-----------|
 |R01|A DNS query with a label that exceeds the maximum length - 63 characters|[Test Case](../specifications/tests/Connectivity-TP/connectivity01.md)|[Test-Case01](../specifications/functional-tests/test-case01.md)|
 |R02|A FQDN that exceeds the maximum length - 255 octets||
 |R03|A host name label with other than letters, digits and '-' character ||
