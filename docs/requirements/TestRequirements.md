@@ -76,15 +76,15 @@ is comprehensive, it is not a list of tests as such. It is a list of messages em
 
 |Req| DNSCheck                                                             | DNSCheck | Level |
 |:--|:---------------------------------------------------------------------|:---------|:------|
-|R58|Legal values for the DS hash digest algorithm                         |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec01.md)|
-|R59|DS must match a DNSKEY in the designated zone                         |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec02.md)|
-|R60|Check for too many NSEC3 iterations                                   |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec03.md)|
-|R61|Check for too short or too long RRSIG lifetimes                       |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec04.md)|
-|R62|Check for invalid DNSKEY algorithms                                   |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec05.md)|
-|R63|Verify DNSSEC additional processing                                   |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec06.md)|
-|R64|If there exists DNSKEY at child, the parent should have a DS          |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec07.md)|
-|R65|RRSIG(DNSKEY) must be valid and created by a valid DNSKEY             |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec08.md)|
-|R66|RRSIG(SOA) must be valid and created by a valid DNSKEY                |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec09.md)|
+|R58|Legal values for the DS hash digest algorithm                         |&nbsp;    |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec01.md)|
+|R59|DS must match a DNSKEY in the designated zone                         |&nbsp;    |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec02.md)|
+|R60|Check for too many NSEC3 iterations                                   |&nbsp;    |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec03.md)|
+|R61|Check for too short or too long RRSIG lifetimes                       |&nbsp;    |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec04.md)|
+|R62|Check for invalid DNSKEY algorithms                                   |&nbsp;    |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec05.md)|
+|R63|Verify DNSSEC additional processing                                   |&nbsp;    |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec06.md)|
+|R64|If there exists DNSKEY at child, the parent should have a DS          |&nbsp;    |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec07.md)|
+|R65|RRSIG(DNSKEY) must be valid and created by a valid DNSKEY             |&nbsp;    |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec08.md)|
+|R66|RRSIG(SOA) must be valid and created by a valid DNSKEY                |&nbsp;    |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec09.md)|
 |R67|There must be NS records for the zone being tested on the parent side |&nbsp;    |[BASIC](../specifications/tests/Basic-TP/basic01.md)|
 |R68|The child domain must have at least one working nameserver            |&nbsp;    |[BASIC](../specifications/tests/Basic-TP/basic02.md)|
 |R69|NS records from parent exists, but the child does not have NS but answers for A|&nbsp;|[BASIC](../specifications/tests/Basic-TP/basic03.md)|
@@ -93,7 +93,7 @@ is comprehensive, it is not a list of tests as such. It is a list of messages em
 |R72|Test of EDNS0 support                                                 |&nbsp;    |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver02.md)|
 |R73|Test availability of zone transfer (AXFR)                             |&nbsp;    |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver03.md)|
 |R74|Answer from name server came from an IP address other than expected (wrong source IP)|&nbsp;|[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver04.md)|
-|R76|Zone contains NSEC or NSEC3 records                                   |&nbsp;    |[DNSSEC](../specifications/tests/Dnssec-TP/dnssec10.md)|
+|R76|Zone contains NSEC or NSEC3 records                                   |&nbsp;    |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec10.md)|
 
 Future tests
 ------------
