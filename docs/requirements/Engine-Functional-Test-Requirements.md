@@ -45,14 +45,10 @@ functional tests for the test engine, following steps should be followed:
 |R03|A host name label with other than letters, digits and '-' character ||
 |R04|CNAME RRs collision (If a CNAME RR is present at a node, no other data should be present; (3.6.2) - RFC 1034) ||
 |R05|Error in the RR format (3.3 - RFC 1035)||
-|R06|Test whether the tool correctly treats the name error with "NXDOMAIN"
-in response||
-|R07|Test whether the tool correctly treats when "no such data exist"  with
-"NODATA" in response||
-|R08|Test whether the tool triggers appropriate error when network
-connectivity is disabled||
-|R09|Test whether the tool triggers appropriate error when network
-connectivity is enabled||
+|R06|Test whether the tool correctly treats the name error with "NXDOMAIN" in response||
+|R07|Test whether the tool correctly treats when "no such data exist"  with "NODATA" in response||
+|R08|Test whether the tool triggers appropriate error when network connectivity is disabled||
+|R09|Test whether the tool triggers appropriate error when network connectivity is enabled||
 |R10|Match the results with existing ZC/DC when certain protocols are disabled (e.g. IPv6||
 |R11|Test whether the tool Run only appropriate tests when the default test profile is modified||
 |R12|Capable of running the test when the delegation parameters are specified||
