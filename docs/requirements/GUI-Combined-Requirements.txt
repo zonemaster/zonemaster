@@ -1,39 +1,69 @@
-This is the merged requirements from the respective GUI's of ZoneCheck and DNSCheck.
+This is the merged requirements from the respective GUI's of ZoneCheck and 
+DNSCheck.
 
 Language:
-[1.1] The GUI MUST support multiple languages in a standardized and reasonably easy-to-understand way (especially to make it easy to add more languages in the future). 
- [1.2] The GUI MUST have a way of identifying preference of connected users' language and this SHOULD be implemented on the client side (for example using language preference settings from connecting browser).
- [1.3] The GUI MUST have a easily configurable default language as a fallback from req [1.2].
+[1.1] The GUI MUST support multiple languages in a standardized and reasonably 
+easy-to-understand way (especially to make it easy to add more languages in the 
+future).  [1.2] The GUI MUST have a way of identifying preference of connected 
+users' language and this SHOULD be implemented on the client side (for example 
+using language preference settings from connecting browser).
+ [1.3] The GUI MUST have a easily configurable default language as a fallback 
+from req [1.2].
  [1.4] The GUI MUST support IDN 2.0 domains as input.
- [1.5] The GUI MUST have an easy-to-understand way to change the language from the first page.
- [1.6] When a user has chosen a language the index, faq and results MUST be in the chosen language UNLESS specific messages are missing where in such a case the default language COULD be used for these, or all, messages.
+ [1.5] The GUI MUST have an easy-to-understand way to change the language from 
+the first page.
+ [1.6] When a user has chosen a language the index, faq and results MUST be in 
+the chosen language UNLESS specific messages are missing where in such a case 
+the default language COULD be used for these, or all, messages.
 
 Usability:
-[2.1] The GUI MUST have more than one possible view towards the users and the default SHOULD be the most simple one.
- [2.2] The GUI MUST have a view containing the "undelegated"-functionality, this view SHOULD be perfectly clear on what this means (for example a small warning that notifies the user when presenting undelegated-results). 
- [2.3] The simple view SHOULD highlight found errors and warnings for the test being run.
- [2.4] The simple view SHOULD give the user the possibility to see more information about encountered errors from within the simple view, if he/she so chooses. 
- [2.5] The GUI MUST be able to give a simple, summarized verdict on the domain being tested (for example; green/yellow/red).
- [2.6] The GUI MUST provide a list with previous runs for the given domain and these SHOULD be kept separate between normal and "undelegated" testruns.
- [2.7] The list from [2.6] MUST contain working links to the previous tests and these MAY be the same links as created in [4.2].
- [2.8] The GUI MUST be able to run on delegated zones with the zone itself exclusively as input (name servers as input is optional)
- [2.9] The GUI MUST be able to run on undelegated zones with the zone and at least one name server as input. 
- [2.10] The GUI MUST be able to support HTML/TXT as output and SHOULD be designed with further output formats in mind.
- [2.11] The GUI MUST be able to run with different test profiles (meaning: what tests are being run at all).
- [2.12] The GUI MUST be able to show a progress bar with a rough estimate of total test progress and it SHOULD also tell the user what specific test is currently running.
- [2.13] The GUI MUST be able to stop a test on a fatal error if the user has given the GUI input to do so.
+[2.1] The GUI MUST have more than one possible view towards the users and the 
+default SHOULD be the most simple one.
+ [2.2] The GUI MUST have a view containing the "undelegated"-functionality, this 
+view SHOULD be perfectly clear on what this means (for example a small warning 
+that notifies the user when presenting undelegated-results).  [2.3] The simple 
+view SHOULD highlight found errors and warnings for the test being run.
+ [2.4] The simple view SHOULD give the user the possibility to see more 
+information about encountered errors from within the simple view, if he/she so 
+chooses.  [2.5] The GUI MUST be able to give a simple, summarized verdict on the 
+domain being tested (for example; green/yellow/red).
+ [2.6] The GUI MUST provide a list with previous runs for the given domain and 
+these SHOULD be kept separate between normal and "undelegated" testruns.
+ [2.7] The list from [2.6] MUST contain working links to the previous tests and 
+these MAY be the same links as created in [4.2].
+ [2.8] The GUI MUST be able to run on delegated zones with the zone itself 
+exclusively as input (name servers as input is optional)
+ [2.9] The GUI MUST be able to run on undelegated zones with the zone and at 
+least one name server as input.  [2.10] The GUI MUST be able to support HTML/TXT 
+as output and SHOULD be designed with further output formats in mind.
+ [2.11] The GUI MUST be able to run with different test profiles (meaning: what 
+tests are being run at all).
+ [2.12] The GUI MUST be able to show a progress bar with a rough estimate of 
+total test progress and it SHOULD also tell the user what specific test is 
+currently running.
+ [2.13] The GUI MUST be able to stop a test on a fatal error if the user has 
+given the GUI input to do so.
  	
 Security:
-[3.1] The GUI MUST have a chroot-similar design where its' config, outside of reach of the web root itself, is read only once at startup.
- [3.2] The GUI MUST have all sensitive information in the protected configuration file from [3.1] but MAY have options elsewhere if deemed necessary. 
- [3.3] The GUI SHOULD have an easy-to-read source code that is well documented and commented.
+[3.1] The GUI MUST have a chroot-similar design where its' config, outside of 
+reach of the web root itself, is read only once at startup.
+ [3.2] The GUI MUST have all sensitive information in the protected 
+configuration file from [3.1] but MAY have options elsewhere if deemed 
+necessary.  [3.3] The GUI SHOULD have an easy-to-read source code that is well 
+documented and commented.
 
 Functionality:
 [4.1] The GUI MUST have the same functionality over IPv6 as is given over IPv4.
- [4.2] The GUI MUST create unique links for every test generated through its' interface and these links SHOULD be easy to find for the user.
- [4.3] The GUI SHOULD allow links to tests that were generated from other sources than the GUI itself but MAY not allow all available sources to be accessed.
+ [4.2] The GUI MUST create unique links for every test generated through its' 
+interface and these links SHOULD be easy to find for the user.
+ [4.3] The GUI SHOULD allow links to tests that were generated from other 
+sources than the GUI itself but MAY not allow all available sources to be 
+accessed.
  [4.4] The GUI MUST be designed so that it is easy to add new tests easily.
- [4.5] The GUI MUST be able to take DS record(s) as input to test DNSSEC properly on undelegated domains.
- [4.6] The GUI SHOULD report to the user what IP-adress he/she is connecting from.
- [4.7] The GUI MUST report what version of the engine was used to generate the result(s) displayed.
+ [4.5] The GUI MUST be able to take DS record(s) as input to test DNSSEC 
+properly on undelegated domains.
+ [4.6] The GUI SHOULD report to the user what IP-adress he/she is connecting 
+from.
+ [4.7] The GUI MUST report what version of the engine was used to generate the 
+result(s) displayed.
 
