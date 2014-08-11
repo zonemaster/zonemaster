@@ -249,7 +249,7 @@ sub dnssec02 {
         }
 
         # Pick out keys with a tag that a DS has using a hash slice
-        my @common = @dnskey{ keys %ds };
+        my @common = grep {$_} @dnskey{ keys %ds };
 
         if ( @common ) {
             push @results, info( COMMON_KEYTAGS => { keytags => join( ':', map { $_->keytag } @common ) } );
