@@ -9,7 +9,7 @@ my $datafile = 't/Test-dnssec.data';
 if ( not $ENV{ZONEMASTER_RECORD} ) {
     die "Stored data file missing" if not -r $datafile;
     Zonemaster::Nameserver->restore( $datafile );
-    Zonemaster->config->no_network(1);
+    Zonemaster->config->no_network( 1 );
 }
 
 my $zone = Zonemaster->zone( 'nic.se' );
@@ -26,15 +26,15 @@ is( $res[0]->tag,   'NO_DS', 'NO_DS' );
 
 @res = Zonemaster->test_method( 'DNSSEC', 'dnssec02', $zone );
 my %tag = map { $_->tag => 1 } @res;
-ok( $tag{DS_MATCHES_DNSKEY},        'DS_MATCHES_DNSKEY' );
-ok( $tag{COMMON_KEYTAGS}, 'COMMON_KEYTAGS' );
-ok( $tag{DS_MATCH_FOUND},              'DS_MATCH_FOUND' );
-ok( $tag{DS_FOUND}, 'DS_FOUND' );
+ok( $tag{DS_MATCHES_DNSKEY}, 'DS_MATCHES_DNSKEY' );
+ok( $tag{COMMON_KEYTAGS},    'COMMON_KEYTAGS' );
+ok( $tag{DS_MATCH_FOUND},    'DS_MATCH_FOUND' );
+ok( $tag{DS_FOUND},          'DS_FOUND' );
 
 @res = Zonemaster->test_method( 'DNSSEC', 'dnssec02', $zone2 );
 my %tag = map { $_->tag => 1 } @res;
 ok( $tag{NO_DS}, 'NO_DS' );
-is( scalar(keys %tag), 1, 'Only one message');
+is( scalar( keys %tag ), 1, 'Only one message' );
 
 my $zone3 = Zonemaster->zone( 'com' );
 @res = Zonemaster->test_method( 'DNSSEC', 'dnssec03', $zone3 );
@@ -81,7 +81,7 @@ ok( $tag{NSEC3_COVERS}, 'NSEC3_COVERS' );
 
 @res = Zonemaster->test_module( 'DNSSEC', 'loopia.se' );
 %tag = map { $_->tag => 1 } @res;
-ok( $tag{NO_DS},             'NO_DS' );
+ok( $tag{NO_DS}, 'NO_DS' );
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );

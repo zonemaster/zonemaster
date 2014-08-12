@@ -8,7 +8,7 @@ my $datafile = 't/nameserver.data';
 if ( not $ENV{ZONEMASTER_RECORD} ) {
     die "Stored data file missing" if not -r $datafile;
     Zonemaster::Nameserver->restore( $datafile );
-    Zonemaster->config->no_network(1);
+    Zonemaster->config->no_network( 1 );
 }
 
 my $nsv6 = new_ok( 'Zonemaster::Nameserver' => [ { name => 'ns.nic.se', address => '2a00:801:f0:53::53' } ] );
@@ -65,7 +65,7 @@ ok( !$p, 'no response from broken server' );
 
 my $googlens = ns( 'ns1.google.com', '216.239.32.10' );
 my $save = Zonemaster->config->no_network;
-Zonemaster->config->no_network(1);
+Zonemaster->config->no_network( 1 );
 delete( $googlens->cache->{'www.google.com'} );
 eval { $googlens->query( 'www.google.com', 'TXT' ) };
 like( $@,
@@ -88,15 +88,15 @@ foreach my $ns ( Zonemaster::Nameserver->all_known_nameservers ) {
 
 ok( scalar( keys %Zonemaster::Nameserver::Cache::object_cache ) >= 4 );
 
-Zonemaster->config->ipv4_ok(0);
-Zonemaster->config->ipv6_ok(0);
+Zonemaster->config->ipv4_ok( 0 );
+Zonemaster->config->ipv6_ok( 0 );
 my $p5 = $nsv6->query( 'iis.se', 'SOA', { dnssec => 1 } );
 my $p6 = $nsv4->query( 'iis.se', 'SOA', { dnssec => 1 } );
 ok( !defined( $p5 ), 'IPv4 blocked' );
 ok( !defined( $p6 ), 'IPv6 blocked' );
 
-Zonemaster->config->ipv4_ok(1);
-Zonemaster->config->ipv6_ok(1);
+Zonemaster->config->ipv4_ok( 1 );
+Zonemaster->config->ipv6_ok( 1 );
 $p5 = $nsv6->query( 'iis.se', 'SOA', { dnssec => 1 } );
 $p6 = $nsv4->query( 'iis.se', 'SOA', { dnssec => 1 } );
 ok( defined( $p5 ), 'IPv4 not blocked' );
@@ -118,7 +118,7 @@ isa_ok( $dsrr, 'Net::LDNS::RR::DS' );
 is( $dsrr->keytag,    16696,      'Expected keytag' );
 is( $dsrr->hexdigest, 'deadbeef', 'Expected digest data' );
 
-Zonemaster->config->no_network(0);
+Zonemaster->config->no_network( 0 );
 my $fail_ns = Zonemaster::Nameserver->new( { name => 'fail', address => '127.0.0.17' } );
 my $fail_p = $fail_ns->_query( 'example.org', 'A', {} );
 is( $fail_p, undef, 'No return from broken server' );
