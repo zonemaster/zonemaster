@@ -1,0 +1,227 @@
+body{
+ padding: 32px 32px 32px 32px;
+ background-color: #f9f9f9;
+}
+#info_footer{
+ position: absolute;
+ bottom: 4px;
+ left: 32px;
+ font-size: 12px;
+ color: 002233;
+}
+#language_selector{
+ position: absolute;
+ bottom: 12px;
+ right: 12px;
+}
+.language_selector{
+ background-color: #f2f2f2;
+ text-decoration: none;
+ font-size: 12px;
+ font-style: oblique;
+ color: #002233;
+ border: 1px solid #ffdddd;
+ padding: 16px 16px 16px 16px;
+}
+
+.language_selector img{
+ width: 25px;
+ height: 18px;
+}
+
+.main_tabs {
+	margin-left: 200px;
+}
+
+#mainform_container {
+ width: 720px ;
+ margin-left: auto ;
+ margin-right: auto ;
+ background-color: #f7f7f7;
+ padding: 36px 36px 36px 36px;
+ border: 1px solid #006677;
+ border-radius: 36px;
+ z-index: 10;
+}
+
+#mainform_container a:focus { 
+    outline: none; 
+}
+
+#mainform_container input[type='text']{
+ width: 196px;
+ height: 24px;
+ margin: 2px 2px 2px 2px;
+ border: 1px solid #227788;
+ border-radius: 2px;
+}
+
+#mainform_container input[type='submit']{
+ width: 162px;
+ height: 36px;
+ color: #eedd00;
+ font: 16px Helvetica;
+ background-color: #003344;
+ font-weight: bold;
+ font-variant: small-caps;
+ margin: 2px 2px 2px 2px;
+ border-radius: 16px;
+ border: 3px solid #ffee88;
+}
+
+#mainform_container input[type='button']{
+ width: 372px;
+ height: 36px;
+ color: #002233;
+ font: 14px Helvetica;
+ background-color: #bbbbbb;
+ font-weight: bold;
+ font-variant: small-caps;
+ margin: 2px 2px 2px 2px;
+ border-radius: 12px;
+ border: 1px solid #005566;
+}
+
+#mainform_container label{
+ font: 16px Tahoma, sans-serif;
+ font-style: oblique;
+ font-weight: bold;
+ margin: 2px 2px 2px 2px;
+ border: 0;
+ color: #003344;
+}
+
+.form_info{
+ background-color: #f2f2f2;
+ font-size: 12px;
+ font-style: oblique;
+ color: #002233;
+ border: 0;
+ padding: 0;
+}
+
+#domain_test_anchor{
+ text-decoration: none;
+ font-size: 14px;
+ font-style: oblique;
+ font-weight: bold;
+ color: #002233;
+ border: 1px solid #ffdddd;
+ padding: 16px 16px 16px 16px;
+ position: relative;
+ top: -64px;
+ left: 140px;
+ border: 1px solid #227788;
+ border-bottom: 0;
+ border-top-left-radius: 16px;
+ border-top-right-radius: 16px;
+}
+
+#undomain_test_anchor{
+ text-decoration: none;
+ font-size: 14px;
+ font-style: oblique;
+ font-weight: bold;
+ color: #002233;
+ border: 1px solid #ffdddd;
+ padding: 16px 16px 16px 16px;
+ position: relative;
+ top: -64px;
+ left: 120px;
+ border: 1px solid #227788;
+ border-bottom: 0;
+ border-top-left-radius: 16px;
+ border-top-right-radius: 16px;
+}
+#undelegated_domain_notice{
+ padding: 16px 16px 16px 16px;
+ color: #993300;
+ font-style: oblique;
+}
+#error_message{
+ padding: 6px 6px 6px 6px;
+ color: #aa3300;
+ font-style: oblique;
+ font-weight: bold;
+ font-size: 12px;
+ border: 1px solid #663300;
+ background-color: #f9f900;
+ display: none;	
+}
+#wait_animation{
+ padding: 24px 24px 24px 24px;
+ background-color: #f9f9f9;
+ border: 3px groove #003344;
+ border-radius: 24px;
+ position: fixed;
+ top: 120px;
+ left: 240px;
+ z-index: 40;
+ display: none;
+}
+
+#progress_bar_container{
+ padding: 12px 12px 12px 12px;
+ background-color: #f2f2f2;
+ border: 1px solid #003344;
+ border-radius: 12px;
+ color: #004455;
+ font-size: 12px;
+ font-style: oblique;
+ font-weight: bold;
+ display: none;
+}
+
+#progress_bar{
+ width: 360px;
+ height: 14px;
+}
+
+#displayed_history{
+ padding: 12px 12px 12px 12px;
+ background-color: #ffffff;
+ border: 3px groove #003344;
+ border-radius: 8px;
+ color: #221100;
+ font-size: 12px;
+ font-style: oblique;
+ position: absolute;
+ top: 32px;
+ left: 12px;
+ z-index: 125;
+ display: none;
+}
+
+#displayed_report{
+ padding: 12px 12px 12px 12px;
+ background-color: #ffffff;
+ border: 3px groove #003344;
+ border-radius: 8px;
+ color: #221100;
+ font-size: 12px;
+ font-style: oblique;
+ position: absolute;
+ top: 32px;
+ right: 10px;
+ z-index: 120;
+ display: none;
+}
+#side_menu{
+ padding: 6px 6px 6px 6px;
+ margin: 6px 6px 6px 6px;
+ background-color: #f9f9f9;
+ border: 1px solid #006677;
+ border-radius: 12px;
+}
+#side_menu a{
+ padding: 2px 2px 2px 2px;
+ text-decoration: none;
+ font-size: 14px;
+ font-style: oblique;
+ color: #003344;
+ border: 1px solid #dddddd;
+ border-radius: 6px;
+}
+#side_menu a:focus { 
+ outline: none; 
+}

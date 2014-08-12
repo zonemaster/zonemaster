@@ -1,0 +1,101 @@
+[% IF no_results %]
+	<b> [% no_results %]: [% domain %] </b>
+[% ELSE %]
+<div style='padding: 16px 16px 16px 16px'>
+<table>
+<tr><td colspan=2><b>Tests history, domain: [% domain %]</b></td></tr> 
+	[% FOREACH key IN history.sort.reverse %]
+	<tr [% UNLESS pages.$key == '0' %]
+		style='display: none;' [% END %] id='row[% loop.count %]_[% pages.$key %]' class='record_rows'>
+	<td>[% IF advanced_options.$key %] 
+		<img src='/img/advanced_home_icon.png' style='width: 11px; height: 12px;'>
+		[% ELSE %] &nbsp; [% END %]</td>
+	<td><a class='history_link' id='history_link[% key %]' title='Click to get detailed history' 
+		href='javascript:void(0)'> [% history.$key %]</a></td></tr>
+	[% END %]
+</table>
+</div>
+
+[% IF total_pages > 1 %]
+<p> 
+<a id='previous_page' href='javascript:void(0)' style='display: none;'>&lt; Previous</a>&nbsp;
+Page: <span id='pagenum'>1</span> of <span id='pagetotal'>[% total_pages %]</span> 
+&nbsp;<a id='next_page' href='javascript:void(0)'>Next &gt;</a></p>
+[% END %]
+
+<script type="text/javascript">
+	jQuery(function(){
+		jQuery('#next_page').on('click', function(){
+			var current_page = jQuery('#pagenum').html();
+			var page_tot = jQuery('#pagetotal').html();
+			current_page++;
+			jQuery('#pagenum').html(current_page);
+			jQuery('#previous_page').show();
+			if(current_page == page_tot)
+				jQuery('#next_page').hide();
+			jQuery('.record_rows').each(function(){ 
+				var id = this.id; 
+				var pg = id.match(/_\d/);
+				var page = pg[0].replace('_', '');
+				page++;
+				if(page == current_page)
+					jQuery('#' + id).show();
+				else
+					jQuery('#' + id).hide();
+			});
+		});
+		jQuery('#previous_page').on('click', function(){
+			var current_page = jQuery('#pagenum').html();
+			var page_tot = jQuery('#pagetotal').html();
+			current_page--;
+			jQuery('#pagenum').html(current_page);
+			jQuery('#next_page').show();
+			if(current_page == 1)
+				jQuery('#previous_page').hide();
+			jQuery('.record_rows').each(function(){ 
+				var id = this.id; 
+				var pg = id.match(/_\d/);
+				var page = pg[0].replace('_', '');
+				page++;
+				if(page == current_page)
+					jQuery('#' + id).show();
+				else
+					jQuery('#' + id).hide();
+			});
+		});
+
+		jQuery('.history_link').on('click', function(){
+			var id = this.id.replace('history_link','');
+			window.location = '[% local_cgi_prefix %]/index.cgi?test_id=' + id;
+		/*
+			jQuery('#displayed_text').html('');
+			jQuery('#displayed_report').hide();
+			jQuery.ajax({type:'POST',
+				url:'[% local_cgi_prefix %]/session.cgi',
+				data:{action:'retrieve_report',session_uuid:"[% uuid %]",
+					"function":"[% function %]",
+					testing_id:id,
+					language:"[% language %]"},
+				dataType:'html',
+				beforeSend: function(){ jQuery('#wait_animation').show(); }
+				})
+				.done(function(data){
+					jQuery('#wait_animation').hide();
+					jQuery('#displayed_text').html(data);
+					jQuery('#displayed_report').show();
+				})
+				.fail(function(jqXHR, textStatus){
+					jQuery('#wait_animation').hide();
+					jQuery('#displayed_text').html('');
+					jQuery('#displayed_report').hide();
+					jQuery('#error_message').html(jqXHR.responseText);
+					jQuery('#error_message').show();
+				}); */
+		});
+		jQuery('.hide_history').on('click', function(){
+			jQuery('#displayed_history').hide();
+		});
+		
+	});
+</script>
+[% END %]
