@@ -1,0 +1,180 @@
+<div id='head_container' class="main_tabs">&nbsp;<img src='/img/logo.png' style='width: 90px; height: 87px; margin: auto;'></div>
+
+<div id='info_footer'>[% version_info %], ip: [% remote_addr %]</div>
+<div id='language_selector'>
+<a class='language_selector' id='english_selector' href='javascript:void(0)'
+[% IF language=='en_US' %] style='color: #bb3300; font-weight: bold;' [% END %]>
+<img src='/img/us.png'> English</a>
+<a class='language_selector' id='swedish_selector' href='javascript:void(0)'
+[% IF language=='sv' %] style='color: #bb3300; font-weight: bold;' [% END %]>
+<img src='/img/se.png'> Sverige</a>
+<a class='language_selector' id='french_selector' href='javascript:void(0)'
+[% IF language=='fr' %] style='color: #bb3300; font-weight: bold;' [% END %]>
+<img src='/img/fr.png'> Fran&#xE7;ais</a>
+</div>
+
+<table class="main_tabs"><tr><td>
+<div id='mainform_container'>
+<a class='selection_anchor' id='domain_test_anchor' 
+	[% IF function=='delegated_domains' %]
+style='z-index: 20; background-color: #f9f9f9;'
+	[% ELSE %] 
+style='z-index: 5; background-color: #c9c9c9;'
+	[% END %]
+	href='javascript:void(0)'>[% dictionary.domain_test %]</a>
+<a class='selection_anchor' id='undomain_test_anchor' 
+	[% IF function=='un_delegated_domains' %]
+style='z-index: 20; background-color: #f9f9f9;'
+	[% ELSE %] 
+style='z-index: 5; background-color: #c9c9c9;'
+	[% END %]
+	href='javascript:void(0)'>[% dictionary.un_domain_test %]</a>
+
+<div id='wait_animation'>
+<img src='/img/wait_animation.gif'>
+</div>
+<div id='displayed_report'>
+<a href='javascript:void(0)' class='hide_report' style='position: absolute; top: 4px; right: 4px;'>
+<img src='/img/no.png' style='width: 12px; height: 12px; border: 1px solid #993300;' 
+	title='[% dictionary.close %]'></a>
+<div id='displayed_text'></div>
+<a href='javascript:void(0)' class='hide_report' style='position: absolute; bottom: 4px; right: 4px;'>
+<img src='/img/no.png' style='width: 12px; height: 12px; border: 1px solid #993300;' 
+	title='[% dictionary.close %]'></a>
+</div>
+
+<div id='displayed_history'>
+<a href='javascript:void(0)' class='hide_history' style='position: absolute; top: 4px; right: 4px;'>
+<img src='/img/no.png' style='width: 12px; height: 12px; border: 1px solid #993300;' 
+	title='[% dictionary.close %]'></a>
+<div id='displayed_history_text'></div>
+<a href='javascript:void(0)' class='hide_history' style='position: absolute; bottom: 4px; right: 4px;'>
+<img src='/img/no.png' style='width: 12px; height: 12px; border: 1px solid #993300;' 
+	title='[% dictionary.close %]'></a>
+</div>
+
+<form id="mainform" action="javascript:void(0)" method='POST'>
+	[% IF function=='un_delegated_domains' %]
+<div id='undelegated_domain_notice'> [% dictionary.undelegated_notice %]</div>
+	[% END %]
+	<div id='error_message'>Error message</div>
+	<div id='progress_bar_container'><span id='progress_bar_label'></span>
+		<progress value="0" max="100" id='progress_bar'></progress>
+	</div>
+	<table>
+	<tr><td><label for="domaininput">[% dictionary.domain_name_label %]</label></td>
+	<td><input name="domaininput" id="domaininput" value="[% preseting.domain %]" type="text"></td><td>
+	<input type="submit" value="[% dictionary.test_submit %]" id='submit_dns_test'></td></tr>
+    	<tr><td colspan=3><span class='form_info'>[% dictionary.enter_domain_message %]</span></td></tr>
+        <tr><td colspan=2><input type='checkbox' id='adv_options_check' name='adv_options_check'
+		[% IF preseting.advanced_options %] CHECKED [% END %] >
+	<label for='adv_options_check'> [% dictionary.advanced_options %] </label></td>
+	<td>&nbsp;</td></tr>
+	<tr id='row_ipv4'  [% UNLESS preseting.advanced_options %] style='display: none;' [% END %]><td>&nbsp;</td><td>
+		<input type='checkbox' id='test_ipv4' name='test_ipv4' 
+			[% UNLESS preseting.uncheck_ipv4 %]checked='checked'[% END %]>
+		<label for='test_ipv4'> IPv4 </label>
+	</td><td>&nbsp;</td></tr>
+	<tr id='row_ipv6' [% UNLESS preseting.advanced_options %] style='display: none;' [% END %]><td>&nbsp;</td><td>
+		<input type='checkbox' id='test_ipv6' name='test_ipv6' 
+			[% UNLESS preseting.uncheck_ipv6 %]checked='checked'[% END %]>
+		<label for='test_ipv6'> IPv6 </label>
+	</td><td>&nbsp;</td></tr>
+	<tr id='row_prof' [% UNLESS preseting.advanced_options %] style='display: none;' [% END %]><td>&nbsp;</td><td>
+		<select id='profile_select' name='profile_select'>
+			<option value="Test profile 1" 
+	[% IF preseting.test_profile == 'Test profile 1' %]SELECTED[% END %]> Test profile 1 </opition>
+			<option value="Test profile 2"
+	[% IF preseting.test_profile == 'Test profile 2' %]SELECTED[% END %]> Test profile 2 </opition>
+		</select>
+	</td><td>&nbsp;</td></tr> 
+	[% IF function=='un_delegated_domains' %]
+	<tr class='ns_ip_pair' id='ns_ip_pair'>
+		<td><label for='ns_value'> NS: </label><input class='ns_value_field' type='text' 
+			name='ns_value' id='ns_value' value=''></td>
+		<td><label for='ip_value'> &nbsp;&nbsp; IP: </label>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type='text' name='ip_value' id='ip_value' value='' ></td>
+		<td><a href='javascript:void(0)' id='ns_ip_add'><img src='/img/Add-icon.png' 
+                        style='width: 24px; height: 24px;' title='[% dictionary.add_more %]'></a></td>
+	</tr>
+		[% MAXIMAL_ROWS = 30 %]
+		[% LOOPED_ROW = 0 %]
+		[% WHILE LOOPED_ROW < MAXIMAL_ROWS %]
+	<tr class='ns_ip_pair' id='ns_ip_pair[% LOOPED_ROW %]' 
+		[% UNLESS preseting.ns_ip_pair.$LOOPED_ROW %] style='display: none;' [% END %]>
+		<td><label for='ns_value[% LOOPED_ROW %]' style='font-size: 14px;'> NS: 
+		</label><input type='text' class='ns_value_field' name='ns_value[% LOOPED_ROW %]' 
+			id='ns_value[% LOOPED_ROW %]' value='[% preseting.ns_value.$LOOPED_ROW %]' 
+				style='height: 18px;'></td>
+		<td><label for='ip_value[% LOOPED_ROW %]' style='font-size: 14px;'> &nbsp;&nbsp; IP:</label>	
+		&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type='text' name='ip_value[% LOOPED_ROW %]' id='ip_value[% LOOPED_ROW %]'
+				value='[% preseting.ip_value.$LOOPED_ROW %]' style='height: 18px;'> </td><td> 
+		<a href='javascript:void(0)' class='cleanup_ns_ip_pair' id='cleanup_ns_ip_[% LOOPED_ROW %]'>
+			<img style='width: 20px; height: dopx' src='/img/minus.png'></a></td>
+	</tr>
+
+			[% LOOPED_ROW = LOOPED_ROW + 1 %]
+		[% END %] 
+	<tr class='ds_dig_pair' id='ds_dig_pair'>
+		<td><label for='ds_value'> DS: 
+			<select name='ds_value' id='ds_value'>
+				<option value='sha1'> SHA-1 </option>
+				<option value='ds1'> DS 1 </option>
+				<option value='ds2'> DS 2 </option>
+			</select>
+		</td>
+		<td><label for='dig_value'> &nbsp;&nbsp; Digest: </label><input type='text' name='dig_value' 
+			id='dig_value' value=''></td>
+		<td><a href='javascript:void(0)' id='ds_dig_add'><img src='/img/Add-icon.png' 
+			style='width: 24px; height: 24px;' title='[% dictionary.add_more %]'></a></td>
+	</tr>
+		[% MAXIMAL_ROWS = 30 %]
+		[% LOOPED_ROW = 0 %]
+		[% WHILE LOOPED_ROW < MAXIMAL_ROWS %]
+	<tr class='ds_dig_pair' id='ds_dig_pair[% LOOPED_ROW %]' 
+		[% UNLESS preseting.ds_dig_pair.$LOOPED_ROW %] style='display: none;' [% END %]>
+		<td><label for='ds_value[% LOOPED_ROW %]' style='font-size: 14px;'> DS: 
+			<select name='ds_value[% LOOPED_ROW %]' id='ds_value[% LOOPED_ROW %]'>
+				<option value='sha1' 
+			[% IF preseting.ds_value.$LOOPED_ROW == 'sha1' %] SELECTED [% END %]> SHA-1 </option>
+				<option value='ds1'
+			[% IF preseting.ds_value.$LOOPED_ROW == 'ds1' %] SELECTED [% END %]> DS 1 </option>
+				<option value='ds2'
+			[% IF preseting.ds_value.$LOOPED_ROW == 'ds2' %] SELECTED [% END %]> DS 2 </option>
+			</select>
+		</td>
+		<td><label for='dig_value[% LOOPED_ROW %]' style='font-size: 14px;'> &nbsp;&nbsp; Digest: </label>
+		<input type='text' name='dig_value[% LOOPED_ROW %]' id='dig_value[% LOOPED_ROW %]' 
+				value='[% preseting.dig_value.$LOOPED_ROW %]' style='height: 18px;'></td>
+		<td>&nbsp;</td>
+	</tr>
+			[% LOOPED_ROW = LOOPED_ROW + 1 %]
+		[% END %] 
+	<tr><td colspan=2><input type="button" value="[% dictionary.fetch_from_parent %]" id='fetch_from_parent'>
+	</td><td>&nbsp;</td></tr>
+	[% END %]
+	<input type='hidden' id='session_uuid' name='session_uuid' value='[% uuid %]'>
+	<input type='hidden' id='session_language' name='session_language' value='[% language %]'>
+	<input type='hidden' id='current_function' name='current_function' value='[% function %]'>
+	<input type='hidden' id='processed_test_id' name='processed_test_id' value=''>
+	<input type='hidden' id='local_cgi_url' name='local_cgi_url' value='[% local_cgi_url %]'>
+	<input type='hidden' id='no_pairs_supplied' value='[% dictionary.no_pairs_supplied %]'>
+	<input type='hidden' id='no_domain_supplied' value='[% dictionary.no_domain_supplied %]'>
+	<input type='hidden' id='preseting_test_id' value='[% preseting.test_id %]'>
+	</table>
+</form>
+</div>
+</td><td style='vertical-align: top;'><div id='side_menu'>
+	<table>
+		<tr><td><a id='home_anchor' href='javascript:void(0)'
+	[% IF function=='delegated_domains' %] style='font-weight: bold; color: #443300;' [% END %] > 
+		[% dictionary.home_label %] </a></td></tr>
+		<tr><td><a id='undelegated_anchor'
+	[% IF function=='un_delegated_domains' %] style='font-weight: bold; color: #443300;' [% END %] 
+				href='javascript:void(0)'> [% dictionary.undelegated_label %] </a></td></tr>
+		<tr><td><a id='results_anchor' href='javascript:void(0)'> [% dictionary.results_label %] </a></td></tr>
+		<tr><td><a id='about_anchor' href='javascript:void(0)'> [% dictionary.about_label %] </a></td></tr>
+		<tr><td><a id='faq_anchor' href='javascript:void(0)'> [% dictionary.faq_label %] </a></td></tr>
+	</table></div>
+</tr></table>

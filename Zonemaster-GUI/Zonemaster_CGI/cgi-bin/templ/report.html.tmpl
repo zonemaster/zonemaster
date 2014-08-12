@@ -1,0 +1,241 @@
+<div id='report_body'>
+<div id='report_tabs'>
+<a href='javascript:void' id='select_basic_results' 
+	class='hist_selection_anchor'>[% dictionary.basic_results_tab %]</a>
+<a href='javascript:void' id='select_advanced_results'
+	class='hist_selection_anchor'>[% dictionary.advanced_results_tab %]</a>
+<a href='javascript:void' id='select_export'
+	class='hist_selection_anchor'>[% dictionary.export_tab %]</a>
+</div>
+<div id='displayed_basic_results'>
+<div style='font-size: 16px; font-weight: bold; color: #002233;'>
+Test id: <i>[% test_id %]</i>, processed on <i>[% creation_time %]</i></div>
+<br>
+[% dictionary.reproduce_link %] <a target='_blank' href='[% cgi_url %]index.cgi?test_id=[% test_id %]'>[% cgi_url %]index.cgi?test_id=[% test_id %]</a><br>
+[% FOREACH key IN report.keys %]
+	<p><img src='/img/[% status.$key %].png' style='width: 16px; height: 16px;'>&nbsp;<b>[% key %]</b>
+		&nbsp;&nbsp;&nbsp;&nbsp; <a href='javascript:void(0);' 
+		id='handle_[% key %]_details' class='handle_details' title='[% dictionary.show_details %]'>
+	[% UNLESS key == 'NAMESERVER' %]
+		<img id='handle_[% key %]_details_indicator' style='width: 16px; height: 16px;' src='/img/plus.png'></a>
+        	[% val = report.$key %]
+        	[% record_status = statuses.$key %]
+		<div id='handle_[% key %]_details_content' style='display: none;'>
+        	[% FOREACH value IN val %]
+			[% loop_index = loop.index() %]
+			[% IF record_status.$loop_index == 'WARNING' || record_status.$loop_index == 'ERROR' %]
+				<table style='border: 0; color: #991100; font-weight: bold;'>
+			[% ELSE %]
+				<table style='border: 0;'>
+			[% END %]
+			[% FOREACH vkey IN value.keys %]
+				<tr><td> &nbsp; &nbsp; </td><td> [% value.$vkey %] </td></tr>
+			[% END %]
+			</table>
+        	[% END %]
+		</div>
+	[% ELSE %]
+	<img id='handle_[% key %]_details_indicator' style='width: 16px; height: 16px;' src='/img/plus.png'></a>
+		<div id='handle_[% key %]_details_content' style='display: block;'>
+		[% FOREACH ns IN ns_details.keys %]
+			<p style='font-weight: bold; color: #331100;'> &nbsp; [% ns %] </p>
+        		[% val = ns_details.$ns %]
+        		[% record_statuses = ns_statuses.$ns %]
+        		[% FOREACH value IN val %]
+				[% loop_index = loop.index() %]
+			   [% IF record_statuses.$loop_index == 'WARNING' || record_statuses.$loop_index == 'ERROR' %]
+				<table style='border: 0; color: #991100; font-weight: bold; display: none;' 
+					class='nameservers_table'>
+			   [% ELSE %]
+				<table style='border: 0; display: none;' class='nameservers_table'>
+			   [% END %]
+				[% FOREACH vkey IN value.keys %]
+					<tr><td> &nbsp; &nbsp; </td><td> [% value.$vkey %] </td></tr>
+				[% END %]
+			</table>
+			[% END %]
+		[% END %]
+		</div>
+	[% END %]
+	</p>
+[% END %]
+[% FOREACH key IN status.keys %]
+	[% IF status.$key == 'gray' %]
+		<p><img src='/img/[% status.$key %].png' style='width: 16px; height: 16px;'>&nbsp;<b>[% key %]</b></p>
+	[% END %]
+[% END %]
+</div>
+
+<div id='displayed_advanced_results' style='display: none;'>
+<div style='font-size: 16px; font-weight: bold; color: #002233;' id='displayed_advanced_results'>
+Test id: <i>[% test_id %]</i>, processed on <i>[% creation_time %]</i></div>
+<br>
+[% FOREACH key IN report.keys %]
+	<p><img src='/img/[% status.$key %].png' style='width: 16px; height: 16px;'>&nbsp;<b>[% key %]</b>
+	[% UNLESS key == 'NAMESERVER' %]
+        	[% val = report.$key %]
+        	[% record_status = statuses.$key %]
+        	[% FOREACH value IN val %]
+			[% loop_index = loop.index() %]
+			[% IF record_status.$loop_index == 'WARNING' || record_status.$loop_index == 'ERROR' %]
+				<table style='border: 0; color: #991100; font-weight: bold;'>
+			[% ELSE %]
+				<table style='border: 0;'>
+			[% END %]
+			[% FOREACH vkey IN value.keys %]
+				<tr><td> &nbsp; &nbsp; </td><td> [% value.$vkey %] </td></tr>
+			[% END %]
+			</table>
+        	[% END %]
+	[% ELSE %]
+		[% FOREACH ns IN ns_details.keys %]
+			<p style='font-weight: bold; color: #331100;'> &nbsp; [% ns %] </p>
+        		[% val = ns_details.$ns %]
+        		[% record_statuses = ns_statuses.$ns %]
+        		[% FOREACH value IN val %]
+				[% loop_index = loop.index() %]
+			   [% IF record_statuses.$loop_index == 'WARNING' || record_statuses.$loop_index == 'ERROR' %]
+				<table style='border: 0; color: #991100; font-weight: bold;'>
+			   [% ELSE %]
+			<table style='border: 0;'>
+			   [% END %]	
+				[% FOREACH vkey IN value.keys %]
+					<tr><td> &nbsp; &nbsp; </td><td> [% value.$vkey %] </td></tr>
+				[% END %]
+			</table>
+			[% END %]
+		[% END %]
+	[% END %]
+	</p>
+[% END %]
+</div>
+<div id='displayed_export' style='display: none; padding: 36px 36px 36px 36px; 
+	border: 1px solid #006677; border-radius: 16px;'>
+<p><b>[% dictionary.export_label %]</b></p>
+	<form target='_blank' id='export_current_data' method='POST' action='[% cgi_url %]index.cgi'>
+		<input type='hidden' name='test_id' value='[% test_id %]'>
+		<input type='hidden' name='uuid' value='[% uuid %]'>
+		<input type='submit' value='[% dictionary.export_tab %]'>
+		<textarea name='unformated_input' style='display: none;'>
+[% FOREACH key IN report.keys %]
+__INPUT_ITEM__START[% key %]END__INPUT_ITEM__
+	[% UNLESS key == 'NAMESERVER' %]
+        	[% val = report.$key %]
+        	[% FOREACH value IN val %]
+			[% FOREACH vkey IN value.keys %]
+__INPUT_ITEM__START[% value.$vkey %]END__INPUT_ITEM__
+			[% END %]
+        	[% END %]
+	[% ELSE %]
+		[% FOREACH ns IN ns_details.keys %]
+__INPUT_ITEM__START[% ns %]END__INPUT_ITEM__
+        		[% val = ns_details.$ns %]
+        		[% FOREACH value IN val %]
+				[% FOREACH vkey IN value.keys %]
+__INPUT_ITEM__START[% value.$vkey %]END__INPUT_ITEM__
+				[% END %]
+			[% END %]
+		[% END %]
+	[% END %]
+[% END %]
+		</textarea>
+	</form>
+</div>
+</div>
+
+<script type="text/javascript">
+	jQuery(function(){
+		jQuery('.handle_details').on('click', function(){
+			var id = this.id;
+			var indicator = jQuery('#' + id + '_indicator').attr('src');
+			if(indicator == '/img/plus.png'){
+				jQuery('#' + id + '_indicator').attr('src', '/img/minus.png');
+				if(id.match(/NAMESERVER/)){
+					jQuery('.nameservers_table').each(function(){
+						jQuery( this ).show();
+					});
+				}
+				else
+					jQuery('#' + id + '_content').show();
+				jQuery('#' + id).attr('title', '[% dictionary.hide_details %]');
+			}
+			else{
+				jQuery('#' + id + '_indicator').attr('src', '/img/plus.png');
+				if(id.match(/NAMESERVER/)){
+					jQuery('.nameservers_table').each(function(){
+						jQuery( this ).hide();
+					});
+				}
+				else
+					jQuery('#' + id + '_content').hide();
+				jQuery('#' + id).attr('title', '[% dictionary.show_details %]');
+			}
+		});
+
+		jQuery('.hist_selection_anchor').each(function(index){
+			var id = this.id;
+			var shift = (-12) * index;
+			jQuery('#' + id).css('text-decoration', 'none');
+			jQuery('#' + id).css('padding', '8px 8px 8px 8px');
+			jQuery('#' + id).css('color', '#002233');
+			jQuery('#' + id).css('font-size', '14px');
+			jQuery('#' + id).css('font-weight', 'bold');
+			jQuery('#' + id).css('font-style', 'oblique');
+			jQuery('#' + id).css('border', '1px solid #005566');
+			jQuery('#' + id).css('border-bottom', '0');
+			jQuery('#' + id).css('border-top-left-radius', '12px');
+			jQuery('#' + id).css('border-top-right-radius', '12px');
+			jQuery('#' + id).css('position', 'relative');
+			jQuery('#' + id).css('top', '-32px');
+			jQuery('#' + id).css('left', shift + 'px');
+			jQuery('#' + id).css('background-color', '#cccccc');
+			jQuery('#' + id).css('z-index', '24');
+			if(id == 'select_basic_results'){
+				jQuery('#' + id).css('color', '#332200');
+				jQuery('#' + id).css('background-color', '#ffffff');
+				jQuery('#' + id).css('z-index', '28');
+				jQuery('#display_basic_results').show();
+			}
+		});
+		jQuery('.hist_selection_anchor').on('click', function(){
+			var clicked_id = this.id;
+			jQuery('.hist_selection_anchor').each(function(index){
+				var id = this.id;
+				var shift = (-12) * index;
+				jQuery('#' + id).css('text-decoration', 'none');
+				jQuery('#' + id).css('padding', '8px 8px 8px 8px');
+				jQuery('#' + id).css('color', '#002233');
+				jQuery('#' + id).css('font-size', '14px');
+				jQuery('#' + id).css('font-weight', 'bold');
+				jQuery('#' + id).css('font-style', 'oblique');
+				jQuery('#' + id).css('border', '1px solid #005566');
+				jQuery('#' + id).css('border-bottom', '0');
+				jQuery('#' + id).css('border-top-left-radius', '12px');
+				jQuery('#' + id).css('border-top-right-radius', '12px');
+				jQuery('#' + id).css('position', 'relative');
+				jQuery('#' + id).css('top', '-32px');
+				jQuery('#' + id).css('left', shift + 'px');
+				jQuery('#' + id).css('background-color', '#cccccc');
+				jQuery('#' + id).css('z-index', '24');
+			});
+			jQuery('#' + clicked_id).css('color', '#332200');
+			jQuery('#' + clicked_id).css('background-color', '#ffffff');
+			jQuery('#' + clicked_id).css('z-index', '28');
+			if(clicked_id == 'select_basic_results'){
+				jQuery('#displayed_basic_results').show();
+				jQuery('#displayed_advanced_results').hide();
+				jQuery('#displayed_export').hide();
+			}
+			else if(clicked_id == 'select_advanced_results'){
+				jQuery('#displayed_basic_results').hide();
+				jQuery('#displayed_advanced_results').show();
+				jQuery('#displayed_export').hide();
+			}
+			else if(clicked_id == 'select_export'){
+				jQuery('#displayed_basic_results').hide();
+				jQuery('#displayed_advanced_results').hide();
+				jQuery('#displayed_export').show();
+			}
+		})
+	});
+</script>
