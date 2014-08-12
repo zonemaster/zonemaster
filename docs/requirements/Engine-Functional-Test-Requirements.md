@@ -63,10 +63,7 @@ functional tests for the test engine, following steps should be followed:
 |R21|Triggers when NS RRset declared at the parent is not the same as the one declared in the child zone||
 |R22|Triggers when glue A record does not point to the same IP address as the corresponding authoritative A record||
 |R23|Triggers when the TTL values are not consistent for the same RRset in both parent and child zone||
-|R24|When a nameserver that is registered in the DNS system as authoritative
-for a zone , does not provide authoritative answers for the zone ||
+|R24|When a nameserver that is registered in the DNS system as authoritative for a zone , does not provide authoritative answers for the zone ||
 |R25|A nameserver that is authoritative for a zone does not have authoritative data||
-|R26|Triggers when, in order to resolve a zone 'x', the resolver needs to
-query 'y', which in order to be resolved requires 'x' to be resolved first -
-- "Zone cyclic dependency"||
+|R26|Triggers when, in order to resolve a zone 'x', the resolver needs to query 'y', which in order to be resolved requires 'x' to be resolved first - - "Zone cyclic dependency"||
 
