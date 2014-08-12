@@ -26,7 +26,7 @@ my $datafile = q{t/Test-syntax.data};
 if ( not $ENV{ZONEMASTER_RECORD} ) {
     die q{Stored data file missing} if not -r $datafile;
     Zonemaster::Nameserver->restore( $datafile );
-    Zonemaster->config->no_network(1);
+    Zonemaster->config->no_network( 1 );
 }
 
 my $dn_ok = Zonemaster::DNSName->new( q{www.nic.se} );

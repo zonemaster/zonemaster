@@ -50,6 +50,7 @@ sub setup {
     my ( $datafile ) = @_;
     my $meta = Class::MOP::Class->initialize( 'Zonemaster::Nameserver' );
     if ( not $ENV{ZONEMASTER_RECORD} ) {
+
         # Replay
         die "Stored data file missing" if not -r $datafile;
         open my $fh, '<', $datafile or die "Failed to open $datafile for reading: $!\n";
@@ -68,7 +69,7 @@ sub setup {
                 $saved_axfr{$domain} = $str;
             }
         }
-        Zonemaster->config->no_network(1);
+        Zonemaster->config->no_network( 1 );
         $meta->add_around_method_modifier(
             'axfr',
             sub {

@@ -7,7 +7,8 @@ BEGIN { use_ok( 'Zonemaster::Translator' ) }
 
 my $trans = new_ok( 'Zonemaster::Translator' => [ { lang => 'sv' } ] );
 
-like( exception {Zonemaster::Translator->new}, qr/Must have at least one of lang and file/, 'expected error message' );
+like( exception { Zonemaster::Translator->new }, qr/Must have at least one of lang and file/,
+    'expected error message' );
 
 is( $trans->lang, 'sv', 'expected language code' );
 
@@ -20,7 +21,7 @@ like(
 $trans = Zonemaster::Translator->new( { lang => 'tech' } );
 is( exception { $trans->data }, undef, 'no error reading translation data' );
 
-ok( exists $trans->data->{BASIC}{NO_GLUE}, 'expected key from file exists' );
+ok( exists $trans->data->{BASIC}{NO_GLUE},       'expected key from file exists' );
 ok( exists $trans->data->{DNSSEC}{ALGORITHM_OK}, 'expected key from module exists' );
 
 my $entry = Zonemaster::Logger::Entry->new(
