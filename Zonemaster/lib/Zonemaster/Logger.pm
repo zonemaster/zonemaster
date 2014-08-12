@@ -71,6 +71,15 @@ sub start_time_now {
     Zonemaster::Logger::Entry->start_time_now();
 }
 
+sub clear_history {
+    my ($self) = @_;
+
+    my $r = $self->entries;
+    splice @$r,0,scalar(@$r);
+
+    return;
+}
+
 1;
 
 =head1 NAME
@@ -124,6 +133,10 @@ Adds an entry with the given tag and arguments to the logger object.
 =item start_time_now()
 
 Set the logger's start time to the current time.
+
+=item clear_history()
+
+Remove all known log entries.
 
 =back
 

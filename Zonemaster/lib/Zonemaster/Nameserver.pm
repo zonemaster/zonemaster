@@ -436,6 +436,12 @@ sub axfr {
     return $self->dns->axfr( $domain, $callback, $class );
 }
 
+sub empty_cache {
+    %object_cache = ();
+
+    return;
+}
+
 1;
 
 =head1 NAME
@@ -591,6 +597,10 @@ function will be called once for each received RR, with that RR as its only
 argument. To continue getting more RRs, the callback must return a true value.
 If it returns a true value, the AXFR will be aborted. See L<Net::LDNS::axfr>
 for more details.
+
+=item empty_cache()
+
+Remove all entries from the object cache.
 
 =back
 

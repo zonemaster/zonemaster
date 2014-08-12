@@ -86,6 +86,12 @@ isa_ok( exception { Zonemaster->test_zone( 'nic.se' ) }, 'Zonemaster::Exception'
 isa_ok( exception { Zonemaster->test_module( 'SyNtAx', 'nic.se' ) }, 'Zonemaster::Exception' );
 isa_ok( exception { Zonemaster->test_method( 'Syntax', 'syntax01', 'nic.se' ) }, 'Zonemaster::Exception' );
 
+ok(@{Zonemaster->logger->entries} > 0, 'There are log entries');
+ok(scalar(keys(%Zonemaster::Nameserver::object_cache)) > 0, 'There are things in the object cache');
+Zonemaster->reset;
+ok(@{Zonemaster->logger->entries} == 0, 'There are no log entries');
+ok(scalar(keys(%Zonemaster::Nameserver::object_cache)) == 0, 'The object cache is empty');
+
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
 }
