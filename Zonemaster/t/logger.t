@@ -77,6 +77,12 @@ my %levels = Zonemaster::Logger::Entry->levels;
 is( $levels{CRITICAL}, 5, 'CRITICAL is level 5' );
 is( $levels{INFO},     1, 'INFO is level 1' );
 
+ok(@{$log->entries} > 0, 'There are log entries');
+my $all_json = $log->json;
+my $some_json = $log->json('ERROR');
+ok(length($all_json) > length($some_json), 'All longer than some');
+like($some_json, qr[[{"args":{"exception":"in callback at t/logger.t line 47, <DATA> line 1.\n"},"level":"ERROR","module":"SYSTEM","tag":"LOGGER_CALLBACK_ERROR","timestamp":0.\d+}]], 'JSON looks OK');
+
 Zonemaster->config->policy->{BASIC}{NS_FAILED} = 'GURKSALLAD';
 my $fail = Zonemaster::Logger::Entry->new( { module => 'BASIC', tag => 'NS_FAILED' } );
 like( exception { $fail->level }, qr/Unknown level string: GURKSALLAD/, 'Dies on unknown level string' );
