@@ -381,6 +381,12 @@ sub add_fake_delegation {
 
     foreach my $pair ( @{ $self->ns } ) {
         my ( $name, $ip ) = split( '/', $pair, 2 );
+
+        if (not $name or not $ip) {
+            say STDERR "Malformed --ns switch, need name and IP separated by a /.";
+            exit(1);
+        }
+
         push @{ $data{$self->to_idn($name)} }, $ip;
     }
 
