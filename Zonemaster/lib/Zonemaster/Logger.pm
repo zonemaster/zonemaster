@@ -7,6 +7,7 @@ use Zonemaster::Logger::Entry;
 use Zonemaster;
 use List::MoreUtils qw[none];
 use Scalar::Util qw[blessed];
+use JSON::XS;
 
 has 'entries' => (
     is      => 'ro',
@@ -80,6 +81,33 @@ sub clear_history {
     return;
 }
 
+sub json {
+    my ($self, $min_level) = @_;
+    my $json = JSON::XS->new->allow_blessed->convert_blessed->canonical;
+    my %numeric = Zonemaster::Logger::Entry->levels();
+
+    my @msg = @{$self->entries};
+
+    if ($min_level and defined $numeric{uc($min_level)} ) {
+        @msg = grep {$_->numeric_level >= $numeric{uc($min_level)}} @msg;
+    }
+
+    my @out;
+    foreach my $m (@msg) {
+        my %r;
+        $r{timestamp} = $m->timestamp;
+        $r{module} = $m->module;
+        $r{tag} = $m->tag;
+        $r{level} = $m->level;
+        $r{args} = $m->args if $m->args;
+
+        push @out, \%r;
+    }
+
+    return $json->encode(\@out);
+}
+
+
 1;
 
 =head1 NAME
@@ -123,6 +151,12 @@ test run that logged the message.
 =item add($tag, $argref)
 
 Adds an entry with the given tag and arguments to the logger object.
+
+=item json([$level])
+
+Returns a JSON-formatted string with all the stored log entries. If an argument
+is given and is a known severity level, only messages with at least that level
+will be included.
 
 =back
 
