@@ -139,6 +139,15 @@ sub start_time_now {
     Zonemaster::Logger->start_time_now();
 }
 
+sub reset {
+    Zonemaster::Logger->start_time_now();
+    Zonemaster::Nameserver->empty_cache();
+    $logger->clear_history();
+    Zonemaster::Recursor->clear_cache();
+
+    return;
+}
+
 =head1 NAME
 
 Zonemaster - A tool to check the quality of a DNS zone
@@ -262,6 +271,11 @@ Example:
 =item start_time_now()
 
 Set the logger's start time to the current time.
+
+=item reset()
+
+Reset logger start time to current time, empty the list of log messages, clear
+nameserver object cache and recursor cache.
 
 =back
 
