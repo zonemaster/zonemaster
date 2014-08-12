@@ -5,6 +5,7 @@ doc/ConfigAndPolicy.pod
 doc/Implementing_Tests.pod
 doc/Translation.pod
 lib/Zonemaster.pm
+lib/Zonemaster/ASNLookup.pm
 lib/Zonemaster/Config.pm
 lib/Zonemaster/DNSName.pm
 lib/Zonemaster/Exception.pm
@@ -28,6 +29,7 @@ lib/Zonemaster/Test/Zone.pm
 lib/Zonemaster/Translator.pm
 lib/Zonemaster/Util.pm
 lib/Zonemaster/Zone.pm
+LICENSE
 Makefile.PL
 MANIFEST			This list of files
 README
@@ -35,11 +37,11 @@ share/config.json
 share/language_tech.json
 share/policy.json
 t/00-load.t
+t/asn.data
+t/asn.t
 t/config.json
 t/config.t
 t/dnsname.t
-t/dnssec.data
-t/dnssec.t
 t/logger.t
 t/nameserver-axfr.data
 t/nameserver-axfr.t
@@ -61,6 +63,8 @@ t/Test-consistency.data
 t/Test-consistency.t
 t/Test-delegation.data
 t/Test-delegation.t
+t/Test-dnssec.data
+t/Test-dnssec.t
 t/Test-syntax.data
 t/Test-syntax.t
 t/Test-zone.data
