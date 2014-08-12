@@ -27,10 +27,9 @@ build_requires (
 );
 
 requires (
-    'Zonemaster' => 0,
+    'Zonemaster' => '0.0.4',
     'MooseX::Getopt' => 0,
     'Getopt::Long::Descriptive' => 0,
-    'JSON::XS' => 0,
     'Net::LDNS' => 0.65,
 );
 

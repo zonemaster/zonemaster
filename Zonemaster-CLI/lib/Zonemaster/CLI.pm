@@ -19,13 +19,11 @@ use Zonemaster::Logger::Entry;
 use Zonemaster::Translator;
 use Zonemaster::Util qw[pod_extract_for];
 use Zonemaster::Exception;
-use JSON::XS;
 use Scalar::Util qw[blessed];
 use Encode;
 use Net::LDNS;
 
 our %numeric = Zonemaster::Logger::Entry->levels;
-my $json = JSON::XS->new->allow_blessed->convert_blessed;
 
 STDOUT->autoflush( 1 );
 
@@ -261,14 +259,7 @@ sub run {
                     say $translator->translate_tag( $entry );
                 }
                 elsif ( $self->lang eq 'json' ) {
-                    push @accumulator,
-                      {
-                        timestamp => $entry->timestamp,
-                        level	  => $entry->level,
-                        module    => $entry->module,
-                        tag       => $entry->tag,
-                        args      => $entry->args,
-                      };
+                    # Don't do anything
                 }
                 elsif ( $self->show_module ) {
                     printf "%7.2f %-9s %-12s %s\n", $entry->timestamp, $entry->level, $entry->module, $entry->string;
@@ -365,7 +356,7 @@ sub run {
     }
 
     if ( $self->lang eq 'json' ) {
-        say $json->encode( \@accumulator );
+        say Zonemaster->logger->json($self->level);
     }
 
     if ( $self->save ) {
