@@ -23,10 +23,10 @@ sub can_start_new_worker {
 	my @same_test_id = split(/\n+/, `ps -ef | grep "execute_zonemaster_P$priority.pl $test_id " | grep -v "sh -c" | grep -v grep | grep -v tail`);
 	
 	my $max_slots = 0;
-	if ($priority = 5) {
+	if ($priority == 5) {
 		$max_slots = $batch_slots;
 	}
-	elsif ($priority = 10) {
+	elsif ($priority == 10) {
 		$max_slots = $frontend_slots;
 	}
 	
