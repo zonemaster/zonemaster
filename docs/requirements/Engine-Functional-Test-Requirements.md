@@ -37,7 +37,7 @@ functional tests for the test engine, following steps should be followed:
    results of the test with the results of both Zonecheck and DNScheck
 
 
-6Req| Test requirement                           |Explanation|
+|Req| Test requirement                           |Explanation|
 |:--|:-------------------------------------------|-----------|
 |FR01|A DNS query with a label that exceeds the maximum length - 63 characters|[SYNTAX01](../specifications/functional-tests/SYNTAX-TP/syntax01.md)|
 |FR02|A FQDN that exceeds the maximum length - 255 octets|(../specifications/functional-tests/SYNTAX-TP/syntax02.md)|
