@@ -5,12 +5,12 @@
 **SYNTAX01:** Label length
 
 ### Objective
-In DNS, each part of a DNS domain name represents a node in the domain
-namespace tree. Section 3.1 of [RFC 1034](https://tools.ietf.org/html/rfc1034) 
-mentions that each node has a label, which is zero to 63 octets in length.
+In DNS, domain names are expressed in terms of a sequence of labels. Section 
+2.3.1 of [RFC 1035](https://tools.ietf.org/html/rfc1035) mentions that the 
+label must be 63 characters or less.
 
 The objective for this test is verify whether the engine conforms to the
-specification described in the previous paragraph
+specification described in the previous paragraph.
 
 ### Inputs
 
@@ -33,7 +33,7 @@ FAIL
 ### Outcome(s)
 
 The engine should capture the label length functionality as specified in
-RFC 1034 and return PASS and if not, returns FAIL
+RFC 1035 and return PASS and if not, returns FAIL
 
 ### Special procedural requirements	
 
