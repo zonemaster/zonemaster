@@ -16,6 +16,8 @@ A change is approved by the development team, and added to the roadmap and the c
 
 Any new development for Zonemaster must follow the strict process where we have formal requirements, have specifications implementing the requirements and then any design and architecture fulfilling the specifications, and finally the implemenation and QA. When all this is performed successully, we have a release being performing using the release process.
 
+The developers are responsible for the specifications that implements the requirements, and that the code follows the specifications. All code should be reviewed by a developer other than the developer himself, this could either be the Release manager or another developer acting as a Code reviewer.
+
 ### Requirements
 
 Formal requirements comes from "some kind of managament or governance of the project", the team and any users requesting new functionality. Requirements should be ranked in importance depending on a number of factors such as complexity, amount of work, risk, architectural changes, relevance to the product and so on.
@@ -25,6 +27,8 @@ New requirements that are acknowledged make it to the roadmap, and planned for s
 ### Specification
 
 A set of functional specifications can be derived from the requirements. It does not describe the inner workings of the system, but are focusing more on the interaction between the system and outside world. The specification is added to the current set of specifications.
+
+All specified tests must have a requirement that matches the specification, and should also reference any valid standards documents that defines the protocol (DNS). All specified functionality should also match any functional requirements.
 
 ### Design and architecture
 
@@ -94,7 +98,9 @@ Release check list:
  * Run code integrity tools
  * Agree to release
 
-After that, se the Release process.
+After that, se the Release Process.
+
+The Release Manager is responsible for the Release Process and the Relase Management Process, and can veto the decision to execute the release.
 
 ## Version numbering policy
 
@@ -113,7 +119,9 @@ In order to create a release after the decision to make a release has been made,
  * Generate the release (tar.gz, check for completeness)
  * Announcements
 
-The release process should be documented in a more exact routine document so that anybody in the team can create a release.
+The Release Process should be documented in a more exact routine document so that anybody in the team can create a release.
+ 
+The Release Manager is responsible for the Release Process and the Relase Management Process.
  
 ## Queries on the users mailing list
 
@@ -124,6 +132,8 @@ All developers in the development team are responsible for answer any queries or
 The roadmap of things to be implemeted is regularly reviewed and updated by the team and by "the steering committee". All current issues in the issue tracker are also taken into account, and major issues are prioritized and added the a future release in the roadmap.
 
 The roadmap is a public document in the Github source code tree or wiki.
+
+The Roadmap owner has the responsibility for the roadmap, and decides on the content and timing of each release in coordination with project management and the developer team.
 
 ## User requests
 
@@ -183,6 +193,8 @@ The web site needs content, and it has to be regularly updated to reflect change
  * Documentation for developers
  * License text
  * Download links
+
+The Content editor has responsibility to update the content on the web site.
 
 ## Roles
 
