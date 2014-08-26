@@ -122,6 +122,8 @@ In order to create a release after the decision to make a release has been made,
 The Release Process should be documented in a more exact routine document so that anybody in the team can create a release.
  
 The Release Manager is responsible for the Release Process and the Relase Management Process.
+
+Once the announcements are made, it is common practice to also give a friendly notice to any package maintainers that wants to package the new version.
  
 ## Queries on the users mailing list
 
@@ -146,6 +148,14 @@ The initial translations of the software, FAQs, web interfaces and so on, are fo
 Any new language added to the software requires a person to be responsible for that translation. Since strings may change between releases, it is important that the new strings will be translated for all the languages.
 
 There might be a need to have somebody to be responsible for translations, and that this responsibility includes having personal contacts with the translators.
+
+## Packaging
+
+Open source software is often shipped as software included in different operating system distributions. There are many people packaging software for these systems. Sometimes the open source projects takes its own responsibility to provide OS packages, especially if they have not yet been included in any distribution.
+
+We should not package the software for any target OS, but we should have a friendly dialogue with the people that want to package ZoneMaster in any distribution.
+
+In the release process, there are often release candidate versions release before the actual release. These *rc* versions are often tested by the package maintainers, and it is also a good way to see that the release are working on the platforms that the software is distributed with. Therefore we want the package maintainers to test the package before we release any final version.
 
 ## Operational systems
 
@@ -205,6 +215,7 @@ A number of roles have been identified by the above processes and systems:
  * Tester for QA
  * Translators
  * Release manager
+ * Package maintainer
  * Roadmap owner
  * Github manager
  * Mailinglist moderator
