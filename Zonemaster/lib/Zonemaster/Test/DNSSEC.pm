@@ -93,7 +93,7 @@ sub translation {
 "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine.",
         "DURATION_SHORT" =>
 "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too short.",
-        "EXTRA_PROCESSING_BROKEN" => "Server at {server} sent {keys} DNSKEY records and {sigs} RRSIG records.",
+        "EXTRA_PROCESSING_BROKEN" => "Server at {server} sent {keys} DNSKEY records, and {sigs} RRSIG records.",
         "EXTRA_PROCESSING_OK"     => "Server at {server} sent {keys} DNSKEY records and {sigs} RRSIG records.",
         "HAS_NSEC"                => "The zone has NSEC records.",
         "HAS_NSEC3"               => "The zone has NSEC3 records.",
