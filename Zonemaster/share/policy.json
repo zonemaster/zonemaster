@@ -58,15 +58,6 @@
       "DISABLED" : true,
       "EXAMPLE_TAG" : "DEBUG"
    },
-   "HOSTNAME" : {
-      "ALPHANUMERIC_START" : "INFO",
-      "CHECKING_NAME" : "DEBUG",
-      "DASH_END" : "WARNING",
-      "NON_ALPHANUMERIC_START" : "WARNING",
-      "NON_NUMERIC_TOP" : "INFO",
-      "NO_DASH_END" : "INFO",
-      "NUMERIC_TOP" : "ERROR"
-   },
    "NAMESERVER" : {
       "ANSWER_BAD_RCODE" : "WARNING",
       "AXFR_AVAILABLE" : "ERROR",

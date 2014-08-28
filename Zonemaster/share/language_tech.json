@@ -1,14 +1,5 @@
 {
     "_language": "tech",
-   "HOSTNAME" : {
-      "ALPHANUMERIC_START" : "{name} starts with an alphanumeric character.",
-      "CHECKING_NAME" : "{name} is about to be checked.",
-      "DASH_END" : "{name} has a label that ends with a dash character.",
-      "NON_ALPHANUMERIC_START" : "{name} does not start with an alphanumeric character.",
-      "NON_NUMERIC_TOP" : "{name} does not have an all-numeric top-level label.",
-      "NO_DASH_END" : "{name} has no labels ending with dash characters.",
-      "NUMERIC_TOP" : "{name} has an all-numeric top-level label."
-   },
    "SYSTEM" : {
       "CANNOT_CONTINUE" : "Not enough data about {zone} was found to be able to run tests.",
       "DEPENDENCY_VERSION" : "Using prerequisite module {name} version {version}.",
