@@ -74,7 +74,7 @@ sub metadata {
 
 sub translation {
     return {
-        "NO_GLUE" => "Nameservers for " {parent} " provided no NS records for tested zone. RCODE given was {rcode}.",
+        "NO_GLUE" => "Nameservers for \"{parent}\" provided no NS records for tested zone. RCODE given was {rcode}.",
         "HAS_A_RECORDS"      => "Nameserver {source} returned A record(s) for {name}",
         "NO_DOMAIN"          => "Nameserver for zone {parent} responded with NXDOMAIN to query for glue.",
         "HAS_NAMESERVERS"    => "Nameserver {source} listed these servers as glue: {ns}",

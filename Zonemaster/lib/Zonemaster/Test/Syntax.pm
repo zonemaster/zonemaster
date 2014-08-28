@@ -130,7 +130,7 @@ sub translation {
         "MNAME_NUMERIC_TLD"         => "SOA MNAME ({name}) within a 'numeric only' TLD ({tld}).",
         "MX_NAME_TOO_LONG"          => "Domain name MX  is too long ({length}/{max}).",
         "ONLY_ALLOWED_CHARS"        => "No illegal chatacters in the domain name ({name}).",
-        "RNAME_MISUSED_AT_SIGN"     => "There must be no misused '@' character in the SOA RNAME field ({rname}).",
+        "RNAME_MISUSED_AT_SIGN"     => "There must be no misused '\@' character in the SOA RNAME field ({rname}).",
         "MX_DISCOURAGED_DOUBLE_DASH" =>
 "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--').",
         "RNAME_RFC822_INVALID" => "There must be no illegal characters in the SOA RNAME field ({rname}).",
