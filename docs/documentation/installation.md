@@ -14,15 +14,13 @@ Another application is the web interface which is split in two parts. The user v
 
 **To get the source code**
 
-```
-$ sudo apt-get install git build-essential
+```$ sudo apt-get install git build-essential
 $ git clone https://github.com/dotse/zonemaster.git
 ```
 
 **Install package dependencies**
 
-```
-$ sudo apt-get install libfile-slurp-perl libjson-perl
+```$ sudo apt-get install libfile-slurp-perl libjson-perl
   liblist-moreutils-perl libio-socket-inet6-perl libmodule-find-perl \
   libmoose-perl libnet-ip-perl libfile-sharedir-perl libhash-merge-perl \
   libreadonly-perl libldns-dev libmodule-install-perl
@@ -32,8 +30,7 @@ $ sudo apt-get install libfile-slurp-perl libjson-perl
 
 Unfortunately `Net::LDNS` and `RFC::RFC822::Address` has not been packaged for Ubuntu yet. So you need to install these dependencies from CPAN:
 
-```
-$ sudo perl -MCPAN -e 'install RFC::RFC822::Address'
+```$ sudo perl -MCPAN -e 'install RFC::RFC822::Address'
 $ sudo perl -MCPAN -e 'install Net::LDNS'
 ```
 
@@ -41,8 +38,7 @@ If all package dependencies are already installed from the previous section, thi
 
 **Build source code**
 
-```
-$ cd zonemaster/Zonemaster
+```$ cd zonemaster/Zonemaster
 $ perl Makefile.PL
 Writing Makefile for Zonemaster
 Writing MYMETA.yml and MYMETA.json
