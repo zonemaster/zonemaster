@@ -8,76 +8,44 @@ use Moose;
 use Carp;
 use Zonemaster;
 
-use File::ShareDir qw[dist_dir];
-use File::Slurp;
-use JSON;
+use POSIX qw[setlocale];
+use Locale::TextDomain qw[Zonemaster];
 
-# Not necessary if a filename is given
-has 'lang' => ( is => 'ro', isa => 'Str', required => 0 );
-
-# Can be auto-generated from language code
-has 'file' => ( is => 'ro', isa => 'Maybe[Str]', lazy => 1, builder => '_find_file' );
-
-# Loaded from file
-has 'data' => ( is => 'ro', isa => 'HashRef', lazy => 1, builder => '_load_language' );
-
-around 'new' => sub {
-    my $orig  = shift;
-    my $class = shift;
-
-    my $obj = $class->$orig( @_ );
-
-    croak 'Must have at least one of lang and file'
-      if not( $obj->lang or $obj->file );
-
-    return $obj;
-};
+has 'locale' => ( is => 'rw', isa => 'Str',     lazy => 1, builder => '_get_locale' );
+has 'data'   => ( is => 'ro', isa => 'HashRef', lazy => 1, builder => '_load_data' );
 
 ###
 ### Builder Methods
 ###
 
-sub _find_file {
-    my ( $self ) = @_;
+sub _get_locale {
+    my $locale = $ENV{LANG} || $ENV{LC_ALL} || $ENV{LC_MESSAGES} || 'en_US.UTF-8';
+    setlocale( $locale );
 
-    return unless defined( $self->lang );
-
-    my $filename = sprintf( '%s/language_%s.json', dist_dir( 'Zonemaster' ), $self->lang );
-    if ( not -r $filename ) {
-        croak "Cannot read translation file " . $filename . "\n";
-    }
-
-    return $filename;
+    return $locale;
 }
 
-sub _load_language {
+sub _load_data {
+    my %data;
+
+    $data{SYSTEM} = _system_translation();
+    foreach my $mod ( 'Basic', Zonemaster->modules ) {
+        my $module = 'Zonemaster::Test::' . $mod;
+        $data{ uc( $mod ) } = $module->translation();
+    }
+
+    return \%data;
+}
+
+###
+### Method modifiers
+###
+
+after 'locale' => sub {
     my ( $self ) = @_;
 
-    my $data = {};
-
-    if ($data->{_language}) {
-        $self->{lang} = $data->{_language}; # Bypass read-only accessor
-        delete $data->{_language};
-    }
-
-    foreach my $mod (Zonemaster->modules) {
-        my $m = 'Zonemaster::Test::' . $mod;
-        if ($m->can('translations') and $self->lang and $m->translations->{$self->lang}) {
-            $data->{uc($mod)} = $m->translations->{$self->lang};
-        }
-    }
-
-    my $file = eval { decode_json read_file $self->file };
-    if ($@) {
-        warn "Reading translation data from file failed: $@";
-    } else {
-        foreach my $key (keys %$file) {
-            $data->{$key} = $file->{$key};
-        }
-    }
-
-    return $data;
-}
+    setlocale( $self->{locale} );
+};
 
 ###
 ### Working methods
@@ -91,7 +59,6 @@ sub to_string {
 
 sub translate_tag {
     my ( $self, $entry ) = @_;
-    no warnings 'uninitialized';
 
     my $string = $self->data->{ $entry->module }{ $entry->tag };
 
@@ -99,18 +66,21 @@ sub translate_tag {
         return $entry->string;
     }
 
-    foreach my $arg ( keys %{ $entry->args } ) {
-        if ( not $string =~ s/\{$arg\}/$entry->args->{$arg}/e ) {
-            # warn "Unused entry argument '$arg";
-        }
-    }
+    return __x( $string, %{ $entry->args } );
+}
 
-    while ( $string =~ /\{(\w+)\}/g ) {
-        warn "Expected argument $1 not provided";
-    }
-
-    return $string;
-} ## end sub translate_tag
+sub _system_translation {
+    return {
+        "CANNOT_CONTINUE"       => "Not enough data about {zone} was found to be able to run tests.",
+        "DEPENDENCY_VERSION"    => "Using prerequisite module {name} version {version}.",
+        "LOGGER_CALLBACK_ERROR" => "Logger callback died with error: {exception}",
+        "LOOKUP_ERROR"          => "DNS query to {ns} for {name}/{type}/{class} failed with error: {message}",
+        "MODULE_ERROR"          => "Fatal error in {module}: {msg}",
+        "MODULE_VERSION"        => "Using module {module} version {version}.",
+        "UNKNOWN_METHOD"        => "Request to run unknown method {method} in module {moduke}.",
+        "UNKNOWN_MODULE"        => "Request to run {method} in unknown module {module}. Known modules: {known}."
+    };
+}
 
 1;
 
@@ -127,24 +97,14 @@ Zonemaster::Translator - translation support for Zonemaster
 
 =over
 
-=item lang
+=item locale
 
-The language code for the language the translator should use. Either this or
-C<file> must be provided. If only a C<file> is provided, an attempt will be
-made to set the language code from the C<_language> key in the file. If a
-language code is not available at all, it will not be possible to fetch
-translation data from modules that store it internally.
-
-=item file
-
-The file from which the translation data will be loaded. If it is not provided
-but C<lang> is, an attempt will be made to load a file called
-F<language_lang.json> from the Zonemaster distribution directory.
+The locale that should be used to find translation data.
 
 =item data
 
-A reference to a hash with translation data. This data will first be loaded
-from a file as described above, and then fetched directly from plugin modules.
+A reference to a hash with translation data. This is unlikely to be useful to
+end-users.
 
 =back
 
