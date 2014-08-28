@@ -43,6 +43,19 @@ If all package dependencies are already installed from the previous section, thi
     $ make test
     $ sudo make install
 
+### Instructions for Debian Wheezy (version 7)
+
+**To get the source code**
+
+    $ sudo apt-get install git build-essential
+    $ git clone https://github.com/dotse/zonemaster.git
+
+**Install package dependencies**
+
+**Install CPAN dependencies**
+
+**Build source code**
+
 ## ZoneMaster CLI installation
 
 ### Instructions for Ubuntu 14.04
