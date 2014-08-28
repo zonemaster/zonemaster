@@ -109,6 +109,34 @@ sub metadata {
     };
 } ## end sub metadata
 
+sub translation {
+    return {
+        "NAMESERVER_NAME_TOO_LONG" => "Nameserver ({name}) is too long ({length}/{max}).",
+        "NAMESERVER_DISCOURAGED_DOUBLE_DASH" =>
+"Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--').",
+        "MNAME_LABEL_TOO_LONG" => "SOA MNAME ({name}) has a label ({label}) too long ({length}/{max}).",
+        "MNAME_NAME_TOO_LONG"  => "SOA MNAME ({name}) is too long ({length}/{max}).",
+        "DISCOURAGED_DOUBLE_DASH" =>
+"Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--').",
+        "INITIAL_HYPHEN"    => "Domain name ({name}) has a label ({label}) starting with an hyphen ('-').",
+        "MX_LABEL_TOO_LONG" => "Domain name MX ({name}) has a label ({label}) too long ({length}/{max}).",
+        "MNAME_DISCOURAGED_DOUBLE_DASH" =>
+"SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--').",
+        "MX_NUMERIC_TLD"            => "Domain name MX ({name}) within a 'numeric only' TLD ({tld}).",
+        "TERMINAL_HYPHEN"           => "Domain name ({name}) has a label ({label}) ending with an hyphen ('-').",
+        "NON_ALLOWED_CHARS"         => "Found illegal characters in the domain name ({name})",
+        "NAMESERVER_NUMERIC_TLD"    => "Nameserver ({name}) within a 'numeric only' TLD ({tld}).",
+        "NAMESERVER_LABEL_TOO_LONG" => "Nameserver ({name}) has a label ({label}) too long ({length}/{max}).",
+        "MNAME_NUMERIC_TLD"         => "SOA MNAME ({name}) within a 'numeric only' TLD ({tld}).",
+        "MX_NAME_TOO_LONG"          => "Domain name MX  is too long ({length}/{max}).",
+        "ONLY_ALLOWED_CHARS"        => "No illegal chatacters in the domain name ({name}).",
+        "RNAME_MISUSED_AT_SIGN"     => "There must be no misused '@' character in the SOA RNAME field ({rname}).",
+        "MX_DISCOURAGED_DOUBLE_DASH" =>
+"Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--').",
+        "RNAME_RFC822_INVALID" => "There must be no illegal characters in the SOA RNAME field ({rname}).",
+    };
+} ## end sub translation
+
 sub version {
     return "$Zonemaster::Test::Syntax::VERSION";
 }
@@ -173,8 +201,8 @@ sub syntax03 {
     my ( $class, $name ) = @_;
     my @results;
 
-    if (not ref($name)) {
-        $name = name($name);
+    if ( not ref( $name ) ) {
+        $name = name( $name );
     }
 
     foreach my $local_label ( @{ $name->labels } ) {
@@ -190,7 +218,7 @@ sub syntax03 {
     }
 
     return @results;
-}
+} ## end sub syntax03
 
 sub syntax04 {
     my ( $class, $name ) = @_;

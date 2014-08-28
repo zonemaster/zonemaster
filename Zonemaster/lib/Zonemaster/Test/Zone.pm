@@ -100,6 +100,31 @@ sub metadata {
     };
 } ## end sub metadata
 
+sub translation {
+    return {
+        "RETRY_MINIMUM_VALUE_LOWER" =>
+          "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry}).",
+        "MNAME_NO_RESPONSE"  => "SOA 'mname' nameserver {ns}/{address} does not respond.",
+        "MASTER_IS_AN_ALIAS" => "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME).",
+        "NO_MX_RECORD"       => "No target (MX, A or AAA record) to deliver e-mail for the domain name.",
+        "REFRESH_MINIMUM_VALUE_LOWER" =>
+          "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh}).",
+        "EXPIRE_LOWER_THAN_REFRESH" =>
+          "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh}).",
+        "SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER" =>
+          "SOA 'minimum' value ({minimum}) is higher than the recommended one ({highest_minimum}).",
+        "SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER" =>
+          "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum}).",
+        "MNAME_NOT_AUTHORITATIVE" => "SOA 'mname' nameserver {ns}/{address} is not authoritative for '{zone}' zone.",
+        "MNAME_RECORD_DOES_NOT_EXIST" => "SOA 'mname' field does not exist",
+        "EXPIRE_MINIMUM_VALUE_LOWER" =>
+          "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire}).",
+        "MNAME_NOT_IN_GLUE"        => "SOA 'mname' nameserver is not listed in \"parent\" NS records for tested zone.",
+        "REFRESH_LOWER_THAN_RETRY" => "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({retry}).",
+        "MX_RECORD_IS_CNAME"       => "MX record for the domain is pointing to a CNAME.",
+    };
+} ## end sub translation
+
 sub version {
     return "$Zonemaster::Test::Zone::VERSION";
 }

@@ -108,6 +108,19 @@ sub metadata {
     };
 } ## end sub metadata
 
+sub translation {
+    return {
+        "NAMESERVER_IP_WITHOUT_REVERSE" => "Nameserver {ns} has an IP address ({address}) without PTR configured.",
+        "NAMESERVER_IP_PTR_MISMATCH" =>
+          "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names}).",
+        "NAMESERVER_IPV6_ADDRESSES_NOT_BOGON" =>
+          "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix.",
+        "NAMESERVER_IPV6_ADDRESS_BOGON" => "Nameserver {ns} IPv6 address {address} is part of a bogon prefix.",
+        "NAMESERVER_IP_PRIVATE_NETWORK" =>
+          "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'.",
+    };
+}
+
 sub version {
     return "$Zonemaster::Test::Address::VERSION";
 }
@@ -299,7 +312,7 @@ sub address04 {
     }
 
     return @results;
-} ## end sub address3
+} ## end sub address04
 
 1;
 

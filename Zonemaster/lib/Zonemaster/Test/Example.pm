@@ -39,17 +39,11 @@ sub version {
 }
 
 sub translations {
-    return {
-        tech => {
-            EXAMPLE_TAG => 'This is an example tag.',
-        }
-    }
+    return { EXAMPLE_TAG => 'This is an example tag.', };
 }
 
 sub policy {
-    return {
-        EXAMPLE_TAG => 'DEBUG',
-    }
+    return { EXAMPLE_TAG => 'DEBUG', };
 }
 
 ###

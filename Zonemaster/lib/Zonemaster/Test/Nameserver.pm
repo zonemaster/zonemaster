@@ -63,6 +63,20 @@ sub metadata {
     };
 } ## end sub metadata
 
+sub translation {
+    return {
+        "EDNS0_BAD_QUERY" => "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)",
+        "SAME_SOURCE_IP" =>
+          "Nameserver {ns}/{address} replies on a SOA query with a different source address ({source}).",
+        "AXFR_AVAILABLE"   => "Nameserver {ns}/{address} allow zone transfer using AXFR.",
+        "AXFR_FAILURE"     => "AXFR not available on nameserver {ns}/{address}.",
+        "QUERY_DROPPED"    => "Nameserver {ns}/{address} dropped AAAA query.",
+        "IS_A_RECURSOR"    => "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}.",
+        "ANSWER_BAD_RCODE" => "Nameserver {ns}/{address} answered AAAA query with an unexpected rcode ({rcode}).",
+        "EDNS0_BAD_ANSWER" => "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)",
+    };
+}
+
 sub version {
     return "$Zonemaster::Test::Nameserver::VERSION";
 }

@@ -57,6 +57,23 @@ sub metadata {
     };
 } ## end sub metadata
 
+sub translation {
+    return {
+        "SOA_TIME_PARAMETER_SET" =>
+"Saw SOA time parameter set (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}) on following nameserver set : {servers}.",
+        "ONE_SOA_RNAME"                   => "A single SOA rname value was seen ({rname})",
+        "MULTIPLE_SOA_SERIALS"            => "Saw {count} SOA serial numbers.",
+        "SOA_SERIAL"                      => "Saw SOA serial number {serial} on following nameserver set : {servers}.",
+        "SOA_RNAME"                       => "Saw SOA rname {rname} on following nameserver set : {servers}.",
+        "MULTIPLE_SOA_RNAMES"             => "Saw {count} SOA rname.",
+        "ONE_SOA_SERIAL"                  => "A single SOA serial number was seen ({serial}).",
+        "MULTIPLE_SOA_TIME_PARAMETER_SET" => "Saw {count} SOA time parameter set.",
+        "NO_RESPONSE"                     => "Nameserver {ns} did not respond.",
+        "ONE_SOA_TIME_PARAMETER_SET" =>
+"A single SOA time parameter set was seen (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}).",
+    };
+}
+
 sub version {
     return "$Zonemaster::Test::Consistency::VERSION";
 }

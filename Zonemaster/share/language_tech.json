@@ -1,61 +1,5 @@
 {
     "_language": "tech",
-   "ADDRESS" : {
-      "NAMESERVER_IP_PRIVATE_NETWORK" : "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'.",
-      "NAMESERVER_IP_PTR_MISMATCH" : "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names}).",
-      "NAMESERVER_IP_WITHOUT_REVERSE" : "Nameserver {ns} has an IP address ({address}) without PTR configured.",
-      "NAMESERVER_IPV6_ADDRESSES_NOT_BOGON" : "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix.",
-      "NAMESERVER_IPV6_ADDRESS_BOGON" : "Nameserver {ns} IPv6 address {address} is part of a bogon prefix."
-   },
-   "BASIC" : {
-      "HAS_A_RECORDS" : "Nameserver {source} returned A record(s) for {name}",
-      "HAS_GLUE" : "Nameserver for zone {parent} listed these nameservers as glue: {ns}",
-      "HAS_NAMESERVERS" : "Nameserver {source} listed these servers as glue: {ns}",
-      "NO_DOMAIN" : "Nameserver for zone {parent} responded with NXDOMAIN to query for glue.",
-      "NO_GLUE" : "Nameservers for \"{parent}\" provided no NS records for tested zone. RCODE given was {rcode}.",
-      "NO_PARENT_RESPONSE" : "No response from nameserver for zone {parent} when trying to fetch glue.",
-      "NS_FAILED" : "Nameserver {source} did not return NS records. RCODE was {rcode}.",
-      "NS_NO_RESPONSE" : "Nameserver {source} did not respond to NS query."
-   },
-   "CONNECTIVITY" : {
-      "ADDRESS_TYPE_NOT_IMPLEMENTED" : "Service provided by - {service} - does not work with IPv{type} addresses",
-      "NAMESERVERS_IPV4_WITH_UNIQ_AS" : "All nameservers IPv4 addresses are in the same AS ({asn}).",
-      "NAMESERVERS_IPV6_WITH_UNIQ_AS" : "All nameservers IPv6 addresses are in the same AS ({asn}).",
-      "NAMESERVERS_WITH_UNIQ_AS" : "All nameservers are in the same AS ({asn}).",
-      "NAMESERVER_HAS_TCP_53" : "Nameserver {ns}/{address} accessible over TCP on port 53.",
-      "NAMESERVER_HAS_UDP_53" : "Nameserver {ns}/{address} accessible over UDP on port 53.",
-      "NAMESERVER_NO_TCP_53" : "Nameserver {ns}/{address} not accessible over TCP on port 53.",
-      "NAMESERVER_NO_UDP_53" : "Nameserver {ns}/{address} not accessible over UDP on port 53.",
-      "NAMESERVER_WITH_UNALLOCATED_ADDRESS" : "Nameserver {ns}/{address} uses an unassigned/unannounced address."
-   },
-   "CONSISTENCY" : {
-      "MULTIPLE_SOA_RNAMES" : "Saw {count} SOA rname.",
-      "MULTIPLE_SOA_SERIALS" : "Saw {count} SOA serial numbers.",
-      "MULTIPLE_SOA_TIME_PARAMETER_SET" : "Saw {count} SOA time parameter set.",
-      "NO_RESPONSE" : "Nameserver {ns} did not respond.",
-      "ONE_SOA_RNAME" : "A single SOA rname value was seen ({rname})",
-      "ONE_SOA_SERIAL" : "A single SOA serial number was seen ({serial}).",
-      "ONE_SOA_TIME_PARAMETER_SET" : "A single SOA time parameter set was seen (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}).",
-      "SOA_RNAME" : "Saw SOA rname {rname} on following nameserver set : {servers}.",
-      "SOA_SERIAL" : "Saw SOA serial number {serial} on following nameserver set : {servers}.",
-      "SOA_TIME_PARAMETER_SET" : "Saw SOA time parameter set (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}) on following nameserver set : {servers}."
-   },
-   "DELEGATION" : {
-      "ENOUGH_NS" : "Child lists enough nameservers ({count}).",
-      "ENOUGH_NS_GLUE" : "Parent lists enough nameservers ({count}).",
-      "EXTRA_NAME_CHILD" : "Child has nameserver(s) not listed at parent ({extra}).",
-      "EXTRA_NAME_PARENT" : "Parent has nameserver(s) not listed at the child ({extra}).",
-      "IS_NOT_AUTHORITATIVE" : "Nameserver {ns} response is not authoritative on {proto} port 53.",
-      "NAMES_MATCH" : "All of the nameserver names are listed both at parent and child.",
-      "NOT_ENOUGH_NS" : "Child does not list enough nameservers ({count}).",
-      "NOT_ENOUGH_NS_GLUE" : "Parent does not list enough nameservers ({count}).",
-      "NS_RR_IS_CNAME" : "Nameserver {ns} {address_type} RR point to CNAME.",
-      "REFERRAL_SIZE_LARGE" : "The smallest possible legal referral packet is larger than 512 octets (it is {size}).",
-      "REFERRAL_SIZE_OK" : "The smallest possible legal referral packet is smaller than 513 octets (it is {size}).",
-      "SAME_IP_ADDRESS" : "IP {address} refers to multiple nameservers ({nss}).",
-      "SOA_NOT_EXISTS" : "A SOA query NOERROR response from {ns} was received empty.",
-      "TOTAL_NAME_MISMATCH" : "None of the nameservers listed at the parent are listed at the child."
-   },
    "HOSTNAME" : {
       "ALPHANUMERIC_START" : "{name} starts with an alphanumeric character.",
       "CHECKING_NAME" : "{name} is about to be checked.",
@@ -64,37 +8,6 @@
       "NON_NUMERIC_TOP" : "{name} does not have an all-numeric top-level label.",
       "NO_DASH_END" : "{name} has no labels ending with dash characters.",
       "NUMERIC_TOP" : "{name} has an all-numeric top-level label."
-   },
-   "NAMESERVER" : {
-      "ANSWER_BAD_RCODE" : "Nameserver {ns}/{address} answered AAAA query with an unexpected rcode ({rcode}).",
-      "AXFR_AVAILABLE" : "Nameserver {ns}/{address} allow zone transfer using AXFR.",
-      "AXFR_FAILURE" : "AXFR not available on nameserver {ns}/{address}.",
-      "EDNS0_BAD_ANSWER" : "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)",
-      "EDNS0_BAD_QUERY" : "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)",
-      "IS_A_RECURSOR" : "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}.",
-      "QUERY_DROPPED" : "Nameserver {ns}/{address} dropped AAAA query.",
-      "SAME_SOURCE_IP" : "Nameserver {ns}/{address} replies on a SOA query with a different source address ({source})."
-   },
-   "SYNTAX" : {
-      "DISCOURAGED_DOUBLE_DASH" : "Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--').",
-      "INITIAL_HYPHEN" : "Domain name ({name}) has a label ({label}) starting with an hyphen ('-').",
-      "MNAME_DISCOURAGED_DOUBLE_DASH" : "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--').",
-      "MNAME_LABEL_TOO_LONG" : "SOA MNAME ({name}) has a label ({label}) too long ({length}/{max}).",
-      "MNAME_NAME_TOO_LONG" : "SOA MNAME ({name}) is too long ({length}/{max}).",
-      "MNAME_NUMERIC_TLD" : "SOA MNAME ({name}) within a 'numeric only' TLD ({tld}).",
-      "MX_DISCOURAGED_DOUBLE_DASH" : "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--').",
-      "MX_LABEL_TOO_LONG" : "Domain name MX ({name}) has a label ({label}) too long ({length}/{max}).",
-      "MX_NAME_TOO_LONG" : "Domain name MX  is too long ({length}/{max}).",
-      "MX_NUMERIC_TLD" : "Domain name MX ({name}) within a 'numeric only' TLD ({tld}).",
-      "NAMESERVER_DISCOURAGED_DOUBLE_DASH" : "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--').",
-      "NAMESERVER_LABEL_TOO_LONG" : "Nameserver ({name}) has a label ({label}) too long ({length}/{max}).",
-      "NAMESERVER_NAME_TOO_LONG" : "Nameserver ({name}) is too long ({length}/{max}).",
-      "NAMESERVER_NUMERIC_TLD" : "Nameserver ({name}) within a 'numeric only' TLD ({tld}).",
-      "NON_ALLOWED_CHARS" : "Found illegal characters in the domain name ({name})",
-      "ONLY_ALLOWED_CHARS" : "No illegal chatacters in the domain name ({name}).",
-      "RNAME_MISUSED_AT_SIGN" : "There must be no misused '@' character in the SOA RNAME field ({rname}).",
-      "RNAME_RFC822_INVALID" : "There must be no illegal characters in the SOA RNAME field ({rname}).",
-      "TERMINAL_HYPHEN" : "Domain name ({name}) has a label ({label}) ending with an hyphen ('-')."
    },
    "SYSTEM" : {
       "CANNOT_CONTINUE" : "Not enough data about {zone} was found to be able to run tests.",
@@ -105,22 +18,6 @@
       "MODULE_VERSION" : "Using module {module} version {version}.",
       "UNKNOWN_METHOD" : "Request to run unknown method {method} in module {moduke}.",
       "UNKNOWN_MODULE" : "Request to run {method} in unknown module {module}. Known modules: {known}."
-   },
-   "ZONE" : {
-      "EXPIRE_LOWER_THAN_REFRESH" : "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh}).",
-      "EXPIRE_MINIMUM_VALUE_LOWER" : "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire}).",
-      "MASTER_IS_AN_ALIAS" : "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME).",
-      "MNAME_NOT_AUTHORITATIVE" : "SOA 'mname' nameserver {ns}/{address} is not authoritative for '{zone}' zone.",
-      "MNAME_NOT_IN_GLUE" : "SOA 'mname' nameserver is not listed in \"parent\" NS records for tested zone.",
-      "MNAME_NO_RESPONSE" : "SOA 'mname' nameserver {ns}/{address} does not respond.",
-      "MNAME_RECORD_DOES_NOT_EXIST" : "SOA 'mname' field does not exist",
-      "MX_RECORD_IS_CNAME" : "MX record for the domain is pointing to a CNAME.",
-      "NO_MX_RECORD" : "No target (MX, A or AAA record) to deliver e-mail for the domain name.",
-      "REFRESH_LOWER_THAN_RETRY" : "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({retry}).",
-      "REFRESH_MINIMUM_VALUE_LOWER" : "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh}).",
-      "RETRY_MINIMUM_VALUE_LOWER" : "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry}).",
-      "SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER" : "SOA 'minimum' value ({minimum}) is higher than the recommended one ({highest_minimum}).",
-      "SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER" : "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum})."
    }
 }
 

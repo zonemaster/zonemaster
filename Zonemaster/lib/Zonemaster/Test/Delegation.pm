@@ -91,6 +91,26 @@ sub metadata {
     };
 } ## end sub metadata
 
+sub translation {
+    return {
+        "REFERRAL_SIZE_LARGE" =>
+          "The smallest possible legal referral packet is larger than 512 octets (it is {size}).",
+        "EXTRA_NAME_CHILD" => "Child has nameserver(s) not listed at parent ({extra}).",
+        "REFERRAL_SIZE_OK" => "The smallest possible legal referral packet is smaller than 513 octets (it is {size}).",
+        "IS_NOT_AUTHORITATIVE" => "Nameserver {ns} response is not authoritative on {proto} port 53.",
+        "ENOUGH_NS_GLUE"       => "Parent lists enough nameservers ({count}).",
+        "NS_RR_IS_CNAME"       => "Nameserver {ns} {address_type} RR point to CNAME.",
+        "SAME_IP_ADDRESS"      => "IP {address} refers to multiple nameservers ({nss}).",
+        "ENOUGH_NS"            => "Child lists enough nameservers ({count}).",
+        "NAMES_MATCH"          => "All of the nameserver names are listed both at parent and child.",
+        "TOTAL_NAME_MISMATCH"  => "None of the nameservers listed at the parent are listed at the child.",
+        "SOA_NOT_EXISTS"       => "A SOA query NOERROR response from {ns} was received empty.",
+        "EXTRA_NAME_PARENT"    => "Parent has nameserver(s) not listed at the child ({extra}).",
+        "NOT_ENOUGH_NS_GLUE"   => "Parent does not list enough nameservers ({count}).",
+        "NOT_ENOUGH_NS"        => "Child does not list enough nameservers ({count}).",
+    };
+}
+
 sub version {
     return "$Zonemaster::Test::Delegation::VERSION";
 }
@@ -228,7 +248,7 @@ sub delegation04 {
 
         foreach my $usevc ( 0, 1 ) {
             my $p = $local_ns->query( $zone->name, q{SOA}, { usevc => $usevc } );
-            if ( not $p or not $p->aa ) { # Consider non-responsive server non-auth
+            if ( not $p or not $p->aa ) {    # Consider non-responsive server non-auth
                 push @results,
                   info(
                     IS_NOT_AUTHORITATIVE => {

@@ -72,6 +72,19 @@ sub metadata {
     };
 } ## end sub metadata
 
+sub translation {
+    return {
+        "NO_GLUE" => "Nameservers for " {parent} " provided no NS records for tested zone. RCODE given was {rcode}.",
+        "HAS_A_RECORDS"      => "Nameserver {source} returned A record(s) for {name}",
+        "NO_DOMAIN"          => "Nameserver for zone {parent} responded with NXDOMAIN to query for glue.",
+        "HAS_NAMESERVERS"    => "Nameserver {source} listed these servers as glue: {ns}",
+        "NO_PARENT_RESPONSE" => "No response from nameserver for zone {parent} when trying to fetch glue.",
+        "NS_FAILED"          => "Nameserver {source} did not return NS records. RCODE was {rcode}.",
+        "NS_NO_RESPONSE"     => "Nameserver {source} did not respond to NS query.",
+        "HAS_GLUE"           => "Nameserver for zone {parent} listed these nameservers as glue: {ns}",
+    };
+}
+
 sub version {
     return "$Zonemaster::Test::Basic::VERSION";
 }
