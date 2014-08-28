@@ -35,6 +35,8 @@ MANIFEST			This list of files
 README
 share/config.json
 share/language_tech.json
+share/locale/en/LC_MESSAGES/Zonemaster.po
+share/locale/en/LC_MESSAGES/Zonemaster.mo
 share/policy.json
 t/00-load.t
 t/asn.data

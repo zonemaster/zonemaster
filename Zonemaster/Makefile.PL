@@ -19,6 +19,7 @@ requires 'RFC::RFC822::Address' => 0;
 requires 'Hash::Merge' => 0;
 requires 'Readonly' => 0;
 requires 'Time::HiRes' => 0;
+requires 'Locale::TextDomain' => 0;
 
 recommends 'JSON::XS' => 2.32;
 recommends 'Readonly::XS' => 0;
