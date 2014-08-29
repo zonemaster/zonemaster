@@ -4,7 +4,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: 0.0.4\n"
-"PO-Revision-Date: 2014-08-29 10:06+0200\n"
+"PO-Revision-Date: 2014-08-29 10:53+0200\n"
 "Last-Translator: calle@init.se\n"
 "Language-Team: Zonemaster Team\n"
 "MIME-Version: 1.0\n"
@@ -195,215 +195,215 @@ msgstr "Ingen av de namnservrar som listas på föräldrasidan listas på barnsi
 
 #: DNSSEC:ALGORITHM_DEPRECATED
 msgid  "The DNSKEY with tag {keytag} uses deprecated algorithm number {algorithm}."
-msgstr "The DNSKEY with tag {keytag} uses deprecated algorithm number {algorithm}."
+msgstr "DNSKEY-posten med keytag {keytag} använder den deprekerade algoritmen med nummer {algorithm}."
 
 #: DNSSEC:ALGORITHM_OK
 msgid  "The DNSKEY with tag {keytag} uses algorithm number {algorithm}, which is OK."
-msgstr "The DNSKEY with tag {keytag} uses algorithm number {algorithm}, which is OK."
+msgstr "DNSKEY-posten med keytag {keytag} använder algoritm nummer {algorithm}, vilket är OK."
 
 #: DNSSEC:ALGORITHM_RESERVED
 msgid  "The DNSKEY with tag {keytag} uses reserved algorithm number {algorithm}."
-msgstr "The DNSKEY with tag {keytag} uses reserved algorithm number {algorithm}."
+msgstr "DNSKEY-posten med keytag {keytag} använder det reserverade algoritm-numret {algorithm}."
 
 #: DNSSEC:ALGORITHM_UNASSIGNED
 msgid  "The DNSKEY with tag {keytag} uses unassigned algorithm number {algorithm}."
-msgstr "The DNSKEY with tag {keytag} uses unassigned algorithm number {algorithm}."
+msgstr "DNSKEY-posten med keytag {keytag} använder det icke tilldelade algoritm-numret {algorithm}."
 
 #: DNSSEC:COMMON_KEYTAGS
 msgid  "There are both DS and DNSKEY records with key tags {keytags}."
-msgstr "There are both DS and DNSKEY records with key tags {keytags}."
+msgstr "Det finns både DS- and DNSKEY-poster med keytag {keytags}."
 
 #: DNSSEC:DNSKEY_AND_DS
 msgid  "{parent} sent a DS record, and {child} a DNSKEY record."
-msgstr "{parent} sent a DS record, and {child} a DNSKEY record."
+msgstr "{parent} skickade en DS-post, och {child} en DNSKEY-post."
 
 #: DNSSEC:DNSKEY_BUT_NOT_DS
 msgid  "{child} sent a DNSKEY record, but {parent} did not send a DS record."
-msgstr "{child} sent a DNSKEY record, but {parent} did not send a DS record."
+msgstr "{child} skickade en DNSKEY-post, men {parent} skickade inte någon DS-post."
 
 #: DNSSEC:DNSKEY_NOT_SIGNED
 msgid  "The apex DNSKEY RRset was not correctly signed."
-msgstr "The apex DNSKEY RRset was not correctly signed."
+msgstr "DNSKEY-mängden i zontoppen var inte korrekt signerad."
 
 #: DNSSEC:DNSKEY_SIGNATURE_NOT_OK
 msgid  "Signature for DNSKEY with tag {signature} failed to verify with error '{error}'."
-msgstr "Signature for DNSKEY with tag {signature} failed to verify with error '{error}'."
+msgstr "Verifiering av signaturen för DNSKEY-posten med keytag {signature} misslyckades med felmeddelandet '{error}'."
 
 #: DNSSEC:DNSKEY_SIGNATURE_OK
 msgid  "A signature for DNSKEY with tag {signature} was correctly signed."
-msgstr "A signature for DNSKEY with tag {signature} was correctly signed."
+msgstr "Verifiering av en signatur för DNSKEY-posten med keytag {signature} lyckades."
 
 #: DNSSEC:DNSKEY_SIGNED
 msgid  "The apex DNSKEY RRset was correcly signed."
-msgstr "The apex DNSKEY RRset was correcly signed."
+msgstr "DNSKEY-mängden i zontoppen var korrekt signerad."
 
 #: DNSSEC:DS_BUT_NOT_DNSKEY
 msgid  "{parent} sent a DS record, but {child} did not send a DNSKEY record."
-msgstr "{parent} sent a DS record, but {child} did not send a DNSKEY record."
+msgstr "{parent} skickade en DS-post, men {child} skickade ingen DNSKEY-post."
 
 #: DNSSEC:DS_DIGTYPE_NOT_OK
 msgid  "DS record with keytag {keytag} uses forbidden digest type {digtype}."
-msgstr "DS record with keytag {keytag} uses forbidden digest type {digtype}."
+msgstr "DS-posten med keytag {keytag} använder den förbjudna digest-typen {digtype}."
 
 #: DNSSEC:DS_DIGTYPE_OK
 msgid  "DS record with keytag {keytag} uses digest type {digtype}, which is OK."
-msgstr "DS record with keytag {keytag} uses digest type {digtype}, which is OK."
+msgstr "DS-posten med keytag {keytag} använder digest-typen {digtype}, vilket är OK."
 
 #: DNSSEC:DS_DOES_NOT_MATCH_DNSKEY
 msgid  "DS record with keytag {keytag} does not match the DNSKEY with the same tag."
-msgstr "DS record with keytag {keytag} does not match the DNSKEY with the same tag."
+msgstr "DS-posten med keytag {keytag} matchar inte DNSKEY-posten med samma keytag."
 
 #: DNSSEC:DS_FOUND
 msgid  "Found DS records with tags {keytags}"
-msgstr "Found DS records with tags {keytags}"
+msgstr "Hittade DS-poster med keytaggarna {keytags}"
 
 #: DNSSEC:DS_MATCHES_DNSKEY
 msgid  "DS record with keytag {keytag} matches the DNSKEY with the same tag."
-msgstr "DS record with keytag {keytag} matches the DNSKEY with the same tag."
+msgstr "DS-posten med keytag {keytag} matchar DNSKEY-posten med samma keytag."
 
 #: DNSSEC:DS_MATCH_FOUND
 msgid  "At least one DS record with a matching DNSKEY record was found."
-msgstr "At least one DS record with a matching DNSKEY record was found."
+msgstr "Minst en DS-post med med en matchande DNSKEY-post hittades."
 
 #: DNSSEC:DS_MATCH_NOT_FOUND
 msgid  "No DS record with a matching DNSKEY record was found."
-msgstr "No DS record with a matching DNSKEY record was found."
+msgstr "Ingen DS-post med någon matchande DNSKEY-post hittades."
 
 #: DNSSEC:DURATION_LONG
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too long."
-msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too long."
+msgstr "RRSIG-posten med keytag {tag} och täckande typerna {types} har en livslängd på {duration} sekunder, vilket är för länge."
 
 #: DNSSEC:DURATION_OK
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine."
-msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine."
+msgstr "RRSIG-posten med keytag {tag} och täckande typerna {types} har en livslängd på {duration} sekunder, vilket är lagom."
 
 #: DNSSEC:DURATION_SHORT
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too short."
-msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too short."
+msgstr "RRSIG-posten med keytag {tag} och täckande typerna {types} har en livslängd på {duration} sekunder, vilket är för kort."
 
 #: DNSSEC:EXTRA_PROCESSING_BROKEN
 msgid  "Server at {server} sent {keys} DNSKEY records, and {sigs} RRSIG records."
-msgstr "Server at {server} sent {keys} DNSKEY records, and {sigs} RRSIG records."
+msgstr "Namnservern {server} skickade {keys} DNSKEY-poster, och {sigs} RRSIG-poster."
 
 #: DNSSEC:EXTRA_PROCESSING_OK
 msgid  "Server at {server} sent {keys} DNSKEY records and {sigs} RRSIG records."
-msgstr "Server at {server} sent {keys} DNSKEY records and {sigs} RRSIG records."
+msgstr "Namnservern {server} skickade {keys} DNSKEY-poster och {sigs} RRSIG-poster."
 
 #: DNSSEC:HAS_NSEC
 msgid  "The zone has NSEC records."
-msgstr "The zone has NSEC records."
+msgstr "Zonen har NSEC-poster."
 
 #: DNSSEC:HAS_NSEC3
 msgid  "The zone has NSEC3 records."
-msgstr "The zone has NSEC3 records."
+msgstr "Zonen har NSEC3-poster."
 
 #: DNSSEC:INVALID_NAME_FOUND
 msgid  "When asked for the name {name}, which must not exist, the response was not an error."
-msgstr "When asked for the name {name}, which must not exist, the response was not an error."
+msgstr "Svaret på en fråga om namnet {name}, som inte får existera, var inte ett felmeddelande."
 
 #: DNSSEC:INVALID_NAME_RCODE
 msgid  "When asked for the name {name}, which must not exist, the response had RCODE {rcode}."
-msgstr "When asked for the name {name}, which must not exist, the response had RCODE {rcode}."
+msgstr "Svaret på en fråga om namnet {name}, som inte får existera, hade RCODE {rcode}."
 
 #: DNSSEC:ITERATIONS_OK
 msgid  "The number of NSEC3 iterations is {count}, which is OK."
-msgstr "The number of NSEC3 iterations is {count}, which is OK."
+msgstr "Antalet NSEC3-iterationer är {count}, vilket är lagom."
 
 #: DNSSEC:MANY_ITERATIONS
 msgid  "The number of NSEC3 iterations is {count}, which is on the high side."
-msgstr "The number of NSEC3 iterations is {count}, which is on the high side."
+msgstr "Antalet NSEC3-iterationer är {count}, vilket är högt."
 
 #: DNSSEC:NEITHER_DNSKEY_NOR_DS
 msgid  "There are neither DS nor DNSKEY records for the zone."
-msgstr "There are neither DS nor DNSKEY records for the zone."
+msgstr "Zonen har varken DS- eller DNSKEY-poster."
 
 #: DNSSEC:NO_COMMON_KEYTAGS
 msgid  "No DS record had a DNSKEY with a matching keytag."
-msgstr "No DS record had a DNSKEY with a matching keytag."
+msgstr "Ingen DS-post hade en DNSKEY-post med matchande keytag."
 
 #: DNSSEC:NO_DNSKEY
 msgid  "No DNSKEYs were returned."
-msgstr "No DNSKEYs were returned."
+msgstr "Inga DNSKEY-poster returnerades."
 
 #: DNSSEC:NO_DS
 msgid  "{from} returned no DS records for {zone}."
-msgstr "{from} returned no DS records for {zone}."
+msgstr "{from} skickade inga DS-poster för {zone}."
 
 #: DNSSEC:NO_KEYS_OR_NO_SIGS
 msgid  "Cannot test DNSKEY signatures, because we got {keys} DNSKEY records and {sigs} RRSIG records."
-msgstr "Cannot test DNSKEY signatures, because we got {keys} DNSKEY records and {sigs} RRSIG records."
+msgstr "Kan inte testa DNSKEY-signaturer, eftersom vi fick {keys} DNSKEY-poster och {sigs} RRSIG-poster."
 
 #: DNSSEC:NO_KEYS_OR_NO_SIGS_OR_NO_SOA
 msgid  "Cannot test SOA signatures, because we got {keys} DNSKEY records, {sigs} RRSIG records and {soas} SOA records."
-msgstr "Cannot test SOA signatures, because we got {keys} DNSKEY records, {sigs} RRSIG records and {soas} SOA records."
+msgstr "Kan inte testa SOA-signaturer, eftersom vi fick {keys} DNSKEY-poster, {sigs} RRSIG-poster och {soas} SOA-poster."
 
 #: DNSSEC:NO_NSEC3PARAM
 msgid  "{server} returned no NSEC3PARAM records."
-msgstr "{server} returned no NSEC3PARAM records."
+msgstr "{server} returnerade inga NSEC3PARAM-poster."
 
 #: DNSSEC:NSE3C_SIG_VERIFY_ERROR
 msgid  "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'."
-msgstr "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'."
+msgstr "Försök att verifiera NSEC3-mängden med RRSIG {sig} gav felet '{error}'."
 
 #: DNSSEC:NSEC3_COVERS
 msgid  "NSEC3 record covers {name}."
-msgstr "NSEC3 record covers {name}."
+msgstr "NSEC3-posten täcker {name}."
 
 #: DNSSEC:NSEC3_COVERS_NOT
 msgid  "NSEC3 record does not cover {name}."
-msgstr "NSEC3 record does not cover {name}."
+msgstr "NSEC3-posten täcker inte {name}."
 
 #: DNSSEC:NSEC3_NOT_SIGNED
 msgid  "No signature correctly signed the NSEC3 RRset."
-msgstr "No signature correctly signed the NSEC3 RRset."
+msgstr "Ingen signatur signerade NSEC3-mängden korrekt."
 
 #: DNSSEC:NSEC3_SIGNED
 msgid  "At least one signature correctly signed the NSEC3 RRset."
-msgstr "At least one signature correctly signed the NSEC3 RRset."
+msgstr "Minst en signatur signerade korrekt NSEC3-mängden."
 
 #: DNSSEC:NSEC_COVERS
 msgid  "NSEC covers {name}."
-msgstr "NSEC covers {name}."
+msgstr "NSEC täcker {name}."
 
 #: DNSSEC:NSEC_COVERS_NOT
 msgid  "NSEC does not cover {name}."
-msgstr "NSEC does not cover {name}."
+msgstr "NSEC täcker inte {name}."
 
 #: DNSSEC:NSEC_NOT_SIGNED
 msgid  "No signature correctly signed the NSEC RRset."
-msgstr "No signature correctly signed the NSEC RRset."
+msgstr "Ingen signatur signerade korrekt NSEC-mängden."
 
 #: DNSSEC:NSEC_SIGNED
 msgid  "At least one signature correctly signed the NSEC RRset."
-msgstr "At least one signature correctly signed the NSEC RRset."
+msgstr "Minst en signatur signerade korrekt NSEC-mängden."
 
 #: DNSSEC:NSEC_SIG_VERIFY_ERROR
 msgid  "Trying to verify NSEC RRset with RRSIG {sig} gave error '{error}'."
-msgstr "Trying to verify NSEC RRset with RRSIG {sig} gave error '{error}'."
+msgstr "Försök att verifiera NSEC-mängden med RRSIG {sig} gav felet '{error}'."
 
 #: DNSSEC:SOA_NOT_SIGNED
 msgid  "No RRSIG correctly signed the SOA RRset."
-msgstr "No RRSIG correctly signed the SOA RRset."
+msgstr "Ingen RRSIG signerade korrekt SOA-mängden."
 
 #: DNSSEC:SOA_SIGNATURE_NOT_OK
 msgid  "Trying to verify SOA RRset with signature {signature} gave error '{error}'."
-msgstr "Trying to verify SOA RRset with signature {signature} gave error '{error}'."
+msgstr "Försök att verifiera SOA-mängden med signatur {signature} gav felet '{error}'."
 
 #: DNSSEC:SOA_SIGNATURE_OK
 msgid  "RRSIG {signature} correctly signs SOA RRset."
-msgstr "RRSIG {signature} correctly signs SOA RRset."
+msgstr "RRSIG {signature} signerar korrekt SOA-mängden."
 
 #: DNSSEC:SOA_SIGNED
 msgid  "At least one RRSIG correctly signs the SOA RRset."
-msgstr "At least one RRSIG correctly signs the SOA RRset."
+msgstr "Minst en RRSIG-post signerar korrekt SOA-mängden."
 
 #: DNSSEC:TOO_MANY_ITERATIONS
 msgid  "The number of NSEC3 iterations is {count}, which is too high for key length {keylength}."
-msgstr "The number of NSEC3 iterations is {count}, which is too high for key length {keylength}."
+msgstr "Antalet NSEC3-iterationer är {count}, vilket är för mycket för nyckellängden {keylength}."
 
 #: NAMESERVER:ANSWER_BAD_RCODE
 msgid  "Nameserver {ns}/{address} answered AAAA query with an unexpected rcode ({rcode})."
-msgstr "Nameserver {ns}/{address} answered AAAA query with an unexpected rcode ({rcode})."
+msgstr "Namnservern {ns}/{address} besvarade en AAAA-fråga med den oväntade svarskoden ({rcode})."
 
 #: NAMESERVER:AXFR_AVAILABLE
 msgid  "Nameserver {ns}/{address} allow zone transfer using AXFR."
