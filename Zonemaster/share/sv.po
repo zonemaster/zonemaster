@@ -4,7 +4,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: 0.0.4\n"
-"PO-Revision-Date: 2014-08-29 10:53+0200\n"
+"PO-Revision-Date: 2014-08-29 11:39+0200\n"
 "Last-Translator: calle@init.se\n"
 "Language-Team: Zonemaster Team\n"
 "MIME-Version: 1.0\n"
@@ -407,193 +407,193 @@ msgstr "Namnservern {ns}/{address} besvarade en AAAA-fråga med den oväntade sv
 
 #: NAMESERVER:AXFR_AVAILABLE
 msgid  "Nameserver {ns}/{address} allow zone transfer using AXFR."
-msgstr "Nameserver {ns}/{address} allow zone transfer using AXFR."
+msgstr "Namnservern {ns}/{address} tillåter zonöverföringar med AXFR."
 
 #: NAMESERVER:AXFR_FAILURE
 msgid  "AXFR not available on nameserver {ns}/{address}."
-msgstr "AXFR not available on nameserver {ns}/{address}."
+msgstr "AXFR är inte tillgängligt på namnservern {ns}/{address}."
 
 #: NAMESERVER:EDNS0_BAD_ANSWER
 msgid  "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)"
-msgstr "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)"
+msgstr "Namnservern {ns}/{address} stöder inte EDNS0 (ingen OPT i svaret)"
 
 #: NAMESERVER:EDNS0_BAD_QUERY
 msgid  "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)"
-msgstr "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)"
+msgstr "Namnservern {ns}/{address} stöder inte EDNS0 (svar med FORMERR)"
 
 #: NAMESERVER:IS_A_RECURSOR
 msgid  "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}."
-msgstr "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}."
+msgstr "Namnservern {ns} svarade med RCODE NXDOMAIN på en SOA-fråga om {dname}."
 
 #: NAMESERVER:QUERY_DROPPED
 msgid  "Nameserver {ns}/{address} dropped AAAA query."
-msgstr "Nameserver {ns}/{address} dropped AAAA query."
+msgstr "Namnservern {ns}/{address} tappade en AAAA-fråga."
 
 #: NAMESERVER:SAME_SOURCE_IP
 msgid  "Nameserver {ns}/{address} replies on a SOA query with a different source address ({source})."
-msgstr "Nameserver {ns}/{address} replies on a SOA query with a different source address ({source})."
+msgstr "Namnservern {ns}/{address} svarade på en SOA-fråga från en annan käll-adress ({source})."
 
 #: SYNTAX:DISCOURAGED_DOUBLE_DASH
 msgid  "Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
-msgstr "Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgstr "Domännamnet ({name}) har en label ({label}) med bindestreck i position 3 och 4, och ett prefix som inte är 'xn--'."
 
 #: SYNTAX:INITIAL_HYPHEN
 msgid  "Domain name ({name}) has a label ({label}) starting with an hyphen ('-')."
-msgstr "Domain name ({name}) has a label ({label}) starting with an hyphen ('-')."
+msgstr "Domännamnet {name} har en label ({label}) som börjar med ett bindestreck."
 
 #: SYNTAX:MNAME_DISCOURAGED_DOUBLE_DASH
 msgid  "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
-msgstr "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgstr "SOA MNAME ({name}) har en label ({label}) med bindestreck i position 3 och 4 (och ett prefix som inte är 'xn--'."
 
 #: SYNTAX:MNAME_LABEL_TOO_LONG
 msgid  "SOA MNAME ({name}) has a label ({label}) too long ({length}/{max})."
-msgstr "SOA MNAME ({name}) has a label ({label}) too long ({length}/{max})."
+msgstr "SOA MNAME ({name}) har en label ({label}) som är för lång ({length}/{max})."
 
 #: SYNTAX:MNAME_NAME_TOO_LONG
 msgid  "SOA MNAME ({name}) is too long ({length}/{max})."
-msgstr "SOA MNAME ({name}) is too long ({length}/{max})."
+msgstr "SOA MNAME ({name}) är för långt ({length}/{max})."
 
 #: SYNTAX:MNAME_NUMERIC_TLD
 msgid  "SOA MNAME ({name}) within a 'numeric only' TLD ({tld})."
-msgstr "SOA MNAME ({name}) within a 'numeric only' TLD ({tld})."
+msgstr "SOA MNAME ({name}) är i en helnumerisk TLD ({tld})."
 
 #: SYNTAX:MX_DISCOURAGED_DOUBLE_DASH
 msgid  "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
-msgstr "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgstr "Domänens MX ({name}) har en label ({label}) med bindestreck i position 3 och 4, och ett prefix som inte är 'xn--'."
 
 #: SYNTAX:MX_LABEL_TOO_LONG
 msgid  "Domain name MX ({name}) has a label ({label}) too long ({length}/{max})."
-msgstr "Domain name MX ({name}) has a label ({label}) too long ({length}/{max})."
+msgstr "Domänens MX ({name}) har en label ({label}) som är för lång ({length}/{max})."
 
 #: SYNTAX:MX_NAME_TOO_LONG
 msgid  "Domain name MX  is too long ({length}/{max})."
-msgstr "Domain name MX  is too long ({length}/{max})."
+msgstr "Domänens MX  är för långt ({length}/{max})."
 
 #: SYNTAX:MX_NUMERIC_TLD
 msgid  "Domain name MX ({name}) within a 'numeric only' TLD ({tld})."
-msgstr "Domain name MX ({name}) within a 'numeric only' TLD ({tld})."
+msgstr "Domänens MX ({name}) är i en helnumerisk TLD ({tld})."
 
 #: SYNTAX:NAMESERVER_DISCOURAGED_DOUBLE_DASH
 msgid  "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
-msgstr "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgstr "Namnservern ({name}) har en label ({label}) med bindestreck i position 3 och 4, och ett prefix som inte är 'xn--'."
 
 #: SYNTAX:NAMESERVER_LABEL_TOO_LONG
 msgid  "Nameserver ({name}) has a label ({label}) too long ({length}/{max})."
-msgstr "Nameserver ({name}) has a label ({label}) too long ({length}/{max})."
+msgstr "Namnservern ({name}) har en label ({label}) som är för lång ({length}/{max})."
 
 #: SYNTAX:NAMESERVER_NAME_TOO_LONG
 msgid  "Nameserver ({name}) is too long ({length}/{max})."
-msgstr "Nameserver ({name}) is too long ({length}/{max})."
+msgstr "Namnserver-namnet ({name}) är för långt ({length}/{max})."
 
 #: SYNTAX:NAMESERVER_NUMERIC_TLD
 msgid  "Nameserver ({name}) within a 'numeric only' TLD ({tld})."
-msgstr "Nameserver ({name}) within a 'numeric only' TLD ({tld})."
+msgstr "Namnservern ({name}) finns i en helnumerisk TLD ({tld})."
 
 #: SYNTAX:NON_ALLOWED_CHARS
 msgid  "Found illegal characters in the domain name ({name})"
-msgstr "Found illegal characters in the domain name ({name})"
+msgstr "Otillåtna tecken i domännamnet {name}."
 
 #: SYNTAX:ONLY_ALLOWED_CHARS
 msgid  "No illegal chatacters in the domain name ({name})."
-msgstr "No illegal chatacters in the domain name ({name})."
+msgstr "Endast tillåtna tecken i namnet {name}."
 
 #: SYNTAX:RNAME_MISUSED_AT_SIGN
 msgid  "There must be no misused '@' character in the SOA RNAME field ({rname})."
-msgstr "There must be no misused '@' character in the SOA RNAME field ({rname})."
+msgstr "Felaktigt använt '@'-tecken i SOA RNAME ({rname})."
 
 #: SYNTAX:RNAME_RFC822_INVALID
 msgid  "There must be no illegal characters in the SOA RNAME field ({rname})."
-msgstr "There must be no illegal characters in the SOA RNAME field ({rname})."
+msgstr "Otillåtet tecken i SOA RNAME ({rname})."
 
 #: SYNTAX:TERMINAL_HYPHEN
 msgid  "Domain name ({name}) has a label ({label}) ending with an hyphen ('-')."
-msgstr "Domain name ({name}) has a label ({label}) ending with an hyphen ('-')."
+msgstr "Domännamnet ({name}) har en label ({label}) som slutar med ett bindestreck."
 
 #: SYSTEM:CANNOT_CONTINUE
 msgid  "Not enough data about {zone} was found to be able to run tests."
-msgstr "Not enough data about {zone} was found to be able to run tests."
+msgstr "Hittade inte tillräckligt med information om {zone} för att kunna köra tester."
 
 #: SYSTEM:DEPENDENCY_VERSION
 msgid  "Using prerequisite module {name} version {version}."
-msgstr "Using prerequisite module {name} version {version}."
+msgstr "Använder version {version} av modulen {name}."
 
 #: SYSTEM:LOGGER_CALLBACK_ERROR
 msgid  "Logger callback died with error: {exception}"
-msgstr "Logger callback died with error: {exception}"
+msgstr "Callback-funktionen för log-modulen dog med felmeddelandet: {exception}"
 
 #: SYSTEM:LOOKUP_ERROR
 msgid  "DNS query to {ns} for {name}/{type}/{class} failed with error: {message}"
-msgstr "DNS query to {ns} for {name}/{type}/{class} failed with error: {message}"
+msgstr "DNS-fråga till {ns} för {name}/{type}/{class} misslyckades med felet: {message}"
 
 #: SYSTEM:MODULE_ERROR
 msgid  "Fatal error in {module}: {msg}"
-msgstr "Fatal error in {module}: {msg}"
+msgstr "Fatalt fel i {module}: {msg}"
 
 #: SYSTEM:MODULE_VERSION
 msgid  "Using module {module} version {version}."
-msgstr "Using module {module} version {version}."
+msgstr "Använder version {version} av modulen {module}."
 
 #: SYSTEM:UNKNOWN_METHOD
 msgid  "Request to run unknown method {method} in module {moduke}."
-msgstr "Request to run unknown method {method} in module {moduke}."
+msgstr "Begäran om att köra den okända metoden {method} i modulen {module}."
 
 #: SYSTEM:UNKNOWN_MODULE
 msgid  "Request to run {method} in unknown module {module}. Known modules: {known}."
-msgstr "Request to run {method} in unknown module {module}. Known modules: {known}."
+msgstr "Begäran om att köra metoden {method} i den okända modulen {module}. Kända moduler: {known}."
 
 #: ZONE:EXPIRE_LOWER_THAN_REFRESH
 msgid  "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh})."
-msgstr "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh})."
+msgstr "Värdet för SOA 'expire' ({expire}) är lägre än värdet för SOA 'refresh' ({refresh})."
 
 #: ZONE:EXPIRE_MINIMUM_VALUE_LOWER
 msgid  "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire})."
-msgstr "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire})."
+msgstr "Värdet för SOA 'expire' ({expire}) är lägre än rekommenderat ({required_expire})."
 
 #: ZONE:MASTER_IS_AN_ALIAS
 msgid  "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
-msgstr "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
+msgstr "SOA 'mname' ({mname}) refererar till ett NS-namn som är ett alias (CNAME)."
 
 #: ZONE:MNAME_NOT_AUTHORITATIVE
 msgid  "SOA 'mname' nameserver {ns}/{address} is not authoritative for '{zone}' zone."
-msgstr "SOA 'mname' nameserver {ns}/{address} is not authoritative for '{zone}' zone."
+msgstr "Namnservern angiven som SOA 'mname' ({ns}/{address}) är inte auktoritativ för zonen '{zone}'."
 
 #: ZONE:MNAME_NOT_IN_GLUE
 msgid  "SOA 'mname' nameserver is not listed in \"parent\" NS records for tested zone."
-msgstr "SOA 'mname' nameserver is not listed in \"parent\" NS records for tested zone."
+msgstr "Namnservern angiven som SOA 'mname' finns inte med bland de NS-poster som listas i föräldrazonen."
 
 #: ZONE:MNAME_NO_RESPONSE
 msgid  "SOA 'mname' nameserver {ns}/{address} does not respond."
-msgstr "SOA 'mname' nameserver {ns}/{address} does not respond."
+msgstr "Namnservern angiven som SOA 'mname' ({ns}/{address}) svarar inte."
 
 #: ZONE:MNAME_RECORD_DOES_NOT_EXIST
 msgid  "SOA 'mname' field does not exist"
-msgstr "SOA 'mname' field does not exist"
+msgstr "'MNAME'-fältet i SOA-posten är tomt."
 
 #: ZONE:MX_RECORD_IS_CNAME
 msgid  "MX record for the domain is pointing to a CNAME."
-msgstr "MX record for the domain is pointing to a CNAME."
+msgstr "Domänens MX-post pekar på ett alias (CNAME)."
 
 #: ZONE:NO_MX_RECORD
 msgid  "No target (MX, A or AAA record) to deliver e-mail for the domain name."
-msgstr "No target (MX, A or AAA record) to deliver e-mail for the domain name."
+msgstr "Inget mål att levera mail till (MX-, A- eller AAAA-post) angivet för domänen."
 
 #: ZONE:REFRESH_LOWER_THAN_RETRY
 msgid  "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({retry})."
-msgstr "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({retry})."
+msgstr "SOA-postens 'refresh'-värde ({refresh}) är lägre än dess 'retry'-värde ({retry})."
 
 #: ZONE:REFRESH_MINIMUM_VALUE_LOWER
 msgid  "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh})."
-msgstr "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh})."
+msgstr "SOA-postens 'refresh'-värde ({refresh}) är lägre än rekommenderat ({required_refresh})."
 
 #: ZONE:RETRY_MINIMUM_VALUE_LOWER
 msgid  "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry})."
-msgstr "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry})."
+msgstr "SOA-postens 'retry'-värde ({retry}) är lägre än rekommenderat ({required_retry})."
 
 #: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER
 msgid  "SOA 'minimum' value ({minimum}) is higher than the recommended one ({highest_minimum})."
-msgstr "SOA 'minimum' value ({minimum}) is higher than the recommended one ({highest_minimum})."
+msgstr "SOA-postens 'minimum'-värde ({minimum}) är högre än rekommenderat ({highest_minimum})."
 
 #: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER
 msgid  "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum})."
-msgstr "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum})."
+msgstr "SOA-postens 'minimum'-värde ({minimum}) är lägre än rekommenderat ({lowest_minimum})."
 
