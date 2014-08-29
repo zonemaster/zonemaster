@@ -4,7 +4,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: 0.0.4\n"
-"PO-Revision-Date: 2014-08-29 09:29+0200\n"
+"PO-Revision-Date: 2014-08-29 09:39+0200\n"
 "Last-Translator: calle@init.se\n"
 "Language-Team: Zonemaster Team\n"
 "MIME-Version: 1.0\n"
@@ -63,39 +63,39 @@ msgstr "Namnservern {source} svarade inte på en NS-fråga."
 
 #: CONNECTIVITY:ADDRESS_TYPE_NOT_IMPLEMENTED
 msgid  "Service provided by - {service} - does not work with IPv{type} addresses"
-msgstr "Service provided by - {service} - does not work with IPv{type} addresses"
+msgstr "ASN-uppslagningstjänsten {service} stödjer inte IPv{type}."
 
 #: CONNECTIVITY:NAMESERVERS_IPV4_WITH_UNIQ_AS
 msgid  "All nameservers IPv4 addresses are in the same AS ({asn})."
-msgstr "All nameservers IPv4 addresses are in the same AS ({asn})."
+msgstr "Alla namnserverars IPv4-adresser finns i samma AS ({asn})."
 
 #: CONNECTIVITY:NAMESERVERS_IPV6_WITH_UNIQ_AS
 msgid  "All nameservers IPv6 addresses are in the same AS ({asn})."
-msgstr "All nameservers IPv6 addresses are in the same AS ({asn})."
+msgstr "Alla namnservrars IPv6-adresser finns i samma AS ({asn})."
 
 #: CONNECTIVITY:NAMESERVERS_WITH_UNIQ_AS
 msgid  "All nameservers are in the same AS ({asn})."
-msgstr "All nameservers are in the same AS ({asn})."
+msgstr "Alla namnservrar finns i samma AS ({asn})."
 
 #: CONNECTIVITY:NAMESERVER_HAS_TCP_53
 msgid  "Nameserver {ns}/{address} accessible over TCP on port 53."
-msgstr "Nameserver {ns}/{address} accessible over TCP on port 53."
+msgstr "Namnservern {ns}/{address} är åtkomlig med TCP på port 53."
 
 #: CONNECTIVITY:NAMESERVER_HAS_UDP_53
 msgid  "Nameserver {ns}/{address} accessible over UDP on port 53."
-msgstr "Nameserver {ns}/{address} accessible over UDP on port 53."
+msgstr "Namnservern {ns}/{address} är åtkomlig med UDP på port 53."
 
 #: CONNECTIVITY:NAMESERVER_NO_TCP_53
 msgid  "Nameserver {ns}/{address} not accessible over TCP on port 53."
-msgstr "Nameserver {ns}/{address} not accessible over TCP on port 53."
+msgstr "Namnservern {ns}/{address} är inte åtkomlig över TCP på port 53."
 
 #: CONNECTIVITY:NAMESERVER_NO_UDP_53
 msgid  "Nameserver {ns}/{address} not accessible over UDP on port 53."
-msgstr "Nameserver {ns}/{address} not accessible over UDP on port 53."
+msgstr "Namnservern {ns}/{address} är inte åtkomlig över UDP på port 53."
 
 #: CONNECTIVITY:NAMESERVER_WITH_UNALLOCATED_ADDRESS
 msgid  "Nameserver {ns}/{address} uses an unassigned/unannounced address."
-msgstr "Nameserver {ns}/{address} uses an unassigned/unannounced address."
+msgstr "Namnservern {ns}/{address} använder en oallokerad eller otillåten adress."
 
 #: CONSISTENCY:MULTIPLE_SOA_RNAMES
 msgid  "Saw {count} SOA rname."
