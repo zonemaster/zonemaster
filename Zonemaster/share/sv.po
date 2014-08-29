@@ -4,7 +4,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: 0.0.4\n"
-"PO-Revision-Date: 2014-08-29 09:39+0200\n"
+"PO-Revision-Date: 2014-08-29 09:55+0200\n"
 "Last-Translator: calle@init.se\n"
 "Language-Team: Zonemaster Team\n"
 "MIME-Version: 1.0\n"
@@ -35,15 +35,15 @@ msgstr "Namnservern {source} svarade med A-poster för {name}"
 
 #: BASIC:HAS_GLUE
 msgid  "Nameserver for zone {parent} listed these nameservers as glue: {ns}"
-msgstr "En namnserver för zonen {parent} gav dessa namnservrar som klister: {ns}"
+msgstr "En namnserver för zonen {parent} gav dessa namnservrar som glue: {ns}"
 
 #: BASIC:HAS_NAMESERVERS
 msgid  "Nameserver {source} listed these servers as glue: {ns}"
-msgstr "Namnservern {source} gav dessa servrar som klister: {ns}"
+msgstr "Namnservern {source} gav dessa servrar som glue: {ns}"
 
 #: BASIC:NO_DOMAIN
 msgid  "Nameserver for zone {parent} responded with NXDOMAIN to query for glue."
-msgstr "Namnservern för zonen {parent} svarade med NXDOMAIN på en fråga om klister."
+msgstr "Namnservern för zonen {parent} svarade med NXDOMAIN på en fråga om glue."
 
 #: BASIC:NO_GLUE
 msgid  "Nameservers for \"{parent}\" provided no NS records for tested zone. RCODE given was {rcode}."
@@ -51,7 +51,7 @@ msgstr "Namnservrarna för {parent} gav inga NS-poster för den testade zonen. D
 
 #: BASIC:NO_PARENT_RESPONSE
 msgid  "No response from nameserver for zone {parent} when trying to fetch glue."
-msgstr "Namnservern för zonen {parent} gav inget svar vid försök att hämta klister."
+msgstr "Namnservern för zonen {parent} gav inget svar vid försök att hämta glue."
 
 #: BASIC:NS_FAILED
 msgid  "Nameserver {source} did not return NS records. RCODE was {rcode}."
@@ -99,43 +99,43 @@ msgstr "Namnservern {ns}/{address} använder en oallokerad eller otillåten adre
 
 #: CONSISTENCY:MULTIPLE_SOA_RNAMES
 msgid  "Saw {count} SOA rname."
-msgstr "Saw {count} SOA rname."
+msgstr "Såg {count} olika SOA RNAME."
 
 #: CONSISTENCY:MULTIPLE_SOA_SERIALS
 msgid  "Saw {count} SOA serial numbers."
-msgstr "Saw {count} SOA serial numbers."
+msgstr "Såg {count} olika SOA-serienummer."
 
 #: CONSISTENCY:MULTIPLE_SOA_TIME_PARAMETER_SET
 msgid  "Saw {count} SOA time parameter set."
-msgstr "Saw {count} SOA time parameter set."
+msgstr "Såg {count} olika uppsättningar med SOA-tidsparametrar."
 
 #: CONSISTENCY:NO_RESPONSE
 msgid  "Nameserver {ns} did not respond."
-msgstr "Nameserver {ns} did not respond."
+msgstr "Namnservern {ns} svarade inte."
 
 #: CONSISTENCY:ONE_SOA_RNAME
 msgid  "A single SOA rname value was seen ({rname})"
-msgstr "A single SOA rname value was seen ({rname})"
+msgstr "Ett enda SOA RNAME sågs ({rname})"
 
 #: CONSISTENCY:ONE_SOA_SERIAL
 msgid  "A single SOA serial number was seen ({serial})."
-msgstr "A single SOA serial number was seen ({serial})."
+msgstr "Ett enda SOA-serienummer sågs ({serial})."
 
 #: CONSISTENCY:ONE_SOA_TIME_PARAMETER_SET
 msgid  "A single SOA time parameter set was seen (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum})."
-msgstr "A single SOA time parameter set was seen (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum})."
+msgstr "En enda uppsättning SOA-tidsparametrar sågs (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum})."
 
 #: CONSISTENCY:SOA_RNAME
 msgid  "Saw SOA rname {rname} on following nameserver set : {servers}."
-msgstr "Saw SOA rname {rname} on following nameserver set : {servers}."
+msgstr "Såg SOA RNAME {rname} på följande namnservrar : {servers}."
 
 #: CONSISTENCY:SOA_SERIAL
 msgid  "Saw SOA serial number {serial} on following nameserver set : {servers}."
-msgstr "Saw SOA serial number {serial} on following nameserver set : {servers}."
+msgstr "Såg SOA-serienummer {serial} på följande namnservrar : {servers}."
 
 #: CONSISTENCY:SOA_TIME_PARAMETER_SET
 msgid  "Saw SOA time parameter set (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}) on following nameserver set : {servers}."
-msgstr "Saw SOA time parameter set (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}) on following nameserver set : {servers}."
+msgstr "Såg dessa SOA-tidsparametrar (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}) på följande namnservrar : {servers}."
 
 #: DELEGATION:ENOUGH_NS
 msgid  "Child lists enough nameservers ({count})."
