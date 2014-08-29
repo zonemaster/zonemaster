@@ -47,14 +47,53 @@ If all package dependencies are already installed from the previous section, thi
 
 **To get the source code**
 
-    $ sudo apt-get install git build-essential
+    $ sudo aptitude install git build-essential
     $ git clone https://github.com/dotse/zonemaster.git
 
 **Install package dependencies**
 
+      $ sudo aptitude install libfile-slurp-perl libjson-perl \
+	  liblist-moreutils-perl libio-socket-inet6-perl libmodule-find-perl \
+	  libmoose-perl libnet-ip-perl libfile-sharedir-perl libhash-merge-perl \
+	  libreadonly-perl libldns-dev libmodule-install-perl
+
 **Install CPAN dependencies**
 
+Unfortunately `Net::LDNS` and `RFC::RFC822::Address` has not been packaged for Debian yet. So you need to install these dependencies from CPAN:
+
+    $ sudo perl -MCPAN -e 'install RFC::RFC822::Address'
+
+The version of ldns that Net::LDNS is based on is too old for ZoneMaster, thus it has to be installed from source. However, ldns requires some more packages to be installed.
+
+	$ sudo aptitude install libssl-dev zlib1g-dev
+
+Fetch the lates version of ldns (as of this writing 1.6.17):
+
+	$ wget http://www.nlnetlabs.nl/downloads/ldns/ldns-1.6.17.tar.gz
+	$ tar zxf ldns-1.6.17.tar.gz
+	$ cd ldns-1.6.17
+	$ ./configure
+	$ make
+	$ sudo make install
+	$ sudo ldconfig
+
+Now that ldns has been installed, install Net::LDNS:
+
+    $ sudo perl -MCPAN -e 'install Net::LDNS'
+
+If all package dependencies are already installed from the previous section, this should compile and install after configuration of your CPAN module installer.
+
 **Build source code**
+
+    $ cd zonemaster/Zonemaster
+    $ perl Makefile.PL
+	Checking if your kit is complete...
+	Looks good
+	Generating a Unix-style Makefile
+	Writing Makefile for Zonemaster
+	Writing MYMETA.yml and MYMETA.json
+	$ make test
+    $ sudo make install
 
 ## ZoneMaster CLI installation
 
