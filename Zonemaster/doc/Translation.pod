@@ -1,14 +1,57 @@
-=head1 TRANSLATION
+=head1 INTRODUCTION
 
-The structure of the translation files is similar to that for the policy file. It's a nested hash, the top-level keys being upper-cased version of
-test module names and the next-level keys are message tags. The values for the tags are translation strings.
+The translation system in Zonemaster is a two-step process, where internal
+message tags are first translated to English strings with argument
+placeholders, and a second step where GNU gettext is used to translate the
+strings to other languages and fill in the placeholders based on provided data.
 
-The arguments in a log entry is a simple one-level hash. The values in this hash will be substituted into the translation string by their keys. When
-writing the translation string, you indicate where the substitution will happen by writing the key in braces, like this:
+=head1 FOR DEVELOPERS OF ZONEMASTER TEST MODULES
 
-    This is a translation string, and the value for the key "here" will be put {here}.
+Your test code should produce log messages with message tags, as documented
+elsewhere. These tags will be used for translation to human language, for
+determining the severity of the even logged and to make the events easily used
+by other software.
 
-If there are placeholders with no corresponding key, or keys with no corresponding placeholder, warnings will be printed during the translation
-process.
+Each test module must also have a method named C<translation()>. This method
+must return a reference to a hash, in which the keys are message tags (short
+form, without module specification), and the corresponding values a string
+describing the meaning of the tag in English. In this string can be
+placeholders of the form C<{somename}>, which will be replaced by the value of
+the log entry argument named C<somename>.
 
-Since they correspond to hash keys, placeholder names must occur exactly once.
+The English string with its placeholders will be used as a key to look up
+corresponding translated strings in other languages, so be very careful about
+editing them!
+
+Every time you have added, removed or modified a tag or its arguments, re-run
+the F<extract_po.pl> script as descibed in the next section.
+
+=head1 FOR TRANSLATORS
+
+The translation files live in the subdirectory F<share> in the L<Zonemaster>
+source directory, and are named as C<{language_code}.po> (for example,
+F<en.po>, F<sv.po> or F<fr.po>). The master file is F<en.po>. All other
+translations should be based on that file, and that file should never be
+edited. It is produced by running the script F<util/extract_po.pl>, which will
+walk through all installed L<Zonemaster> test modules, pull out their provided
+English translations and make these into a valid C<po> file. This should only
+be necessary to do when a developer has added or changed a test module. If the
+new code is installed, just running the script works. If the new code has not
+been installed, run the script with an C<-I> flag pointing at the edited
+module(s).
+
+In order to make a new translation usable, it must be compiled to C<mo> format
+and installed. The first step needs the C<msgfmt> program from the GNU gettext
+package to be installed and available in the shell path. As long as it is, it
+should be enough to go to the F<share> directory and run C<make>.
+
+For the new translation to actually be installed, the C<mo> file must be added
+to the F<MANIFEST> file. At the end of the C<make> run, it should have printed
+a list of all the paths that has to be there. Just open F<MANIFEST> in a text
+editor, check that all the lines are in there and add any that are missing (if
+you just added a new translation, that will be missing, for example).
+
+Once the new translation is compiled and added to F<MANIFEST>, the normal Perl
+C<make install> process will install it.
+
+Don't forget to commit the new C<po> and C<mo> files to git.
