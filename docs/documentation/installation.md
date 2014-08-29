@@ -116,6 +116,24 @@ Now you are ready to run the zonemaster-cli command:
 
     $ zonemaster-cli example.com
 
+### Instructions for Debian Wheezy (version 7)
+
+First install the ZoneMaster Engine, following the instructions above.
+
+**Install package dependencies**
+
+    $ sudo aptitude install libmoosex-getopt-perl
+
+**Build source code**
+
+    $ cd zonemaster/Zonemaster-CLI
+    $ perl Makefile.PL
+    $ make test
+    $ sudo make install
+
+Now you are ready to run the zonemaster-cli command:
+
+    $ zonemaster-cli example.com
 
 ## ZoneMaster Web interface installation
 
