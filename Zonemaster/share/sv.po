@@ -4,7 +4,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: 0.0.4\n"
-"PO-Revision-Date: 2014-08-29 09:55+0200\n"
+"PO-Revision-Date: 2014-08-29 10:06+0200\n"
 "Last-Translator: calle@init.se\n"
 "Language-Team: Zonemaster Team\n"
 "MIME-Version: 1.0\n"
@@ -139,59 +139,59 @@ msgstr "Såg dessa SOA-tidsparametrar (REFRESH={refresh},RETRY={retry},EXPIRE={e
 
 #: DELEGATION:ENOUGH_NS
 msgid  "Child lists enough nameservers ({count})."
-msgstr "Child lists enough nameservers ({count})."
+msgstr "Barnsidan listar tillräckligt många namnservrar ({count})."
 
 #: DELEGATION:ENOUGH_NS_GLUE
 msgid  "Parent lists enough nameservers ({count})."
-msgstr "Parent lists enough nameservers ({count})."
+msgstr "Föräldrasidan listar tillräckligt många namnservrar ({count})."
 
 #: DELEGATION:EXTRA_NAME_CHILD
 msgid  "Child has nameserver(s) not listed at parent ({extra})."
-msgstr "Child has nameserver(s) not listed at parent ({extra})."
+msgstr "Barnsidan har en eller flera namnservrar som inte listas på föräldrasidan ({extra})."
 
 #: DELEGATION:EXTRA_NAME_PARENT
 msgid  "Parent has nameserver(s) not listed at the child ({extra})."
-msgstr "Parent has nameserver(s) not listed at the child ({extra})."
+msgstr "Föräldrasidan har en eller flera namnservrar som inte listas på barnsidan ({extra})."
 
 #: DELEGATION:IS_NOT_AUTHORITATIVE
 msgid  "Nameserver {ns} response is not authoritative on {proto} port 53."
-msgstr "Nameserver {ns} response is not authoritative on {proto} port 53."
+msgstr "Namnservern {ns} svarade inte auktoritativt på {proto} port 53."
 
 #: DELEGATION:NAMES_MATCH
 msgid  "All of the nameserver names are listed both at parent and child."
-msgstr "All of the nameserver names are listed both at parent and child."
+msgstr "Alla namnserver-namn listas både på föräldra- och barn-sidan."
 
 #: DELEGATION:NOT_ENOUGH_NS
 msgid  "Child does not list enough nameservers ({count})."
-msgstr "Child does not list enough nameservers ({count})."
+msgstr "Barn-sidan listar inte tillräckligt många namnservrar ({count})."
 
 #: DELEGATION:NOT_ENOUGH_NS_GLUE
 msgid  "Parent does not list enough nameservers ({count})."
-msgstr "Parent does not list enough nameservers ({count})."
+msgstr "Föräldrasidan listar inte tillräckligt många namnservrar ({count})."
 
 #: DELEGATION:NS_RR_IS_CNAME
 msgid  "Nameserver {ns} {address_type} RR point to CNAME."
-msgstr "Nameserver {ns} {address_type} RR point to CNAME."
+msgstr "På namnservern {ns} så pekar en {address_type}-post på en CNAME-post."
 
 #: DELEGATION:REFERRAL_SIZE_LARGE
 msgid  "The smallest possible legal referral packet is larger than 512 octets (it is {size})."
-msgstr "The smallest possible legal referral packet is larger than 512 octets (it is {size})."
+msgstr "Minsta möjliga giltiga hänvisningspaket är större än 512 oktetter (det är {size})."
 
 #: DELEGATION:REFERRAL_SIZE_OK
 msgid  "The smallest possible legal referral packet is smaller than 513 octets (it is {size})."
-msgstr "The smallest possible legal referral packet is smaller than 513 octets (it is {size})."
+msgstr "Minsta möjliga giltiga hänvisningspaket är på 512 oktetter eller mindre (det är {size})."
 
 #: DELEGATION:SAME_IP_ADDRESS
 msgid  "IP {address} refers to multiple nameservers ({nss})."
-msgstr "IP {address} refers to multiple nameservers ({nss})."
+msgstr "IP-adressen {address} referrerar till flera namnservrar ({nss})."
 
 #: DELEGATION:SOA_NOT_EXISTS
 msgid  "A SOA query NOERROR response from {ns} was received empty."
-msgstr "A SOA query NOERROR response from {ns} was received empty."
+msgstr "En SOA-fråga fick ett svar med RCODE NOERROR från {ns}, men svaret var tomt."
 
 #: DELEGATION:TOTAL_NAME_MISMATCH
 msgid  "None of the nameservers listed at the parent are listed at the child."
-msgstr "None of the nameservers listed at the parent are listed at the child."
+msgstr "Ingen av de namnservrar som listas på föräldrasidan listas på barnsidan."
 
 #: DNSSEC:ALGORITHM_DEPRECATED
 msgid  "The DNSKEY with tag {keytag} uses deprecated algorithm number {algorithm}."
