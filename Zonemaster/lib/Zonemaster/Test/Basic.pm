@@ -227,6 +227,10 @@ Runs between one and three tests, depending on the zone. If L<basic01> passes, L
 Returns a reference to a hash, the keys of which are the names of all test methods in the module, and the corresponding values are references to
 lists with all the tags that the method can use in log entries.
 
+=item translation()
+
+Returns a refernce to a hash with translation data. Used by the builtin translation system.
+
 =item version()
 
 Returns a version string for the module.

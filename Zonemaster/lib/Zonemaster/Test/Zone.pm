@@ -419,6 +419,10 @@ Zonemaster::Test::Zone - module implementing tests of the zone content in DNS, s
 
 Runs the default set of tests and returns a list of log entries made by the tests
 
+=item translation()
+
+Returns a refernce to a hash with translation data. Used by the builtin translation system.
+
 =item metadata()
 
 Returns a reference to a hash, the keys of which are the names of all test methods in the module, and the corresponding values are references to

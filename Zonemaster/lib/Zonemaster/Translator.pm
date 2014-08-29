@@ -8,7 +8,7 @@ use Moose;
 use Carp;
 use Zonemaster;
 
-use POSIX qw[setlocale];
+use POSIX qw[setlocale LC_MESSAGES];
 use Locale::TextDomain qw[Zonemaster];
 
 has 'locale' => ( is => 'rw', isa => 'Str',     lazy => 1, builder => '_get_locale' );
@@ -20,7 +20,7 @@ has 'data'   => ( is => 'ro', isa => 'HashRef', lazy => 1, builder => '_load_dat
 
 sub _get_locale {
     my $locale = $ENV{LANG} || $ENV{LC_ALL} || $ENV{LC_MESSAGES} || 'en_US.UTF-8';
-    setlocale( $locale );
+    setlocale( LC_MESSAGES, $locale );
 
     return $locale;
 }
@@ -44,7 +44,7 @@ sub _load_data {
 after 'locale' => sub {
     my ( $self ) = @_;
 
-    setlocale( $self->{locale} );
+    setlocale( LC_MESSAGES, $self->{locale} );
 };
 
 ###

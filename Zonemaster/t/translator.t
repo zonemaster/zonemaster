@@ -19,6 +19,8 @@ my $entry = Zonemaster::Logger::Entry->new(
         args   => { parent => 'se', rcode => 'SERVFAIL' }
     }
 );
+
+$trans->locale('en_US.UTF-8');
 like(
     $trans->to_string( $entry ),
     qr'   0.\d\d CRITICAL  Nameservers for "se" provided no NS records for tested zone. RCODE given was SERVFAIL.',
