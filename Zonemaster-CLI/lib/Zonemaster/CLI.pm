@@ -43,12 +43,25 @@ has 'level' => (
     documentation => 'The minimum severity level to display'
 );
 
-has 'lang' => (
+has 'locale' => (
     is            => 'ro',
     isa           => 'Str',
     required      => 0,
-    default       => 'tech',
-    documentation => 'The language to show messages in. Can be tech, raw, json or any installed translation.',
+    documentation => 'The locale to use for messages translation.',
+);
+
+has 'json' => (
+    is => 'ro',
+    isa => 'Bool',
+    default => 0,
+    documentation => 'Flag indicating of output should be in JSON or not.',
+);
+
+has 'raw' => (
+    is => 'ro',
+    isa => 'Bool',
+    default => 0,
+    documentation => 'Flag indicating if output should be translated to human language or dumped raw.',
 );
 
 has 'time' => (
@@ -215,18 +228,9 @@ sub run {
     Zonemaster->config->get->{net}{ipv6} = $self->ipv6;
 
     my $translator;
-    $translator = Zonemaster::Translator->new( { lang => $self->lang } )
-      unless ( $self->lang eq 'raw' or $self->lang eq 'json' );
+    $translator = Zonemaster::Translator->new unless ( $self->raw or $self->json );
+    $translator->locale($self->locale) if $translator and $self->locale;
     eval { $translator->data } if $translator;    # Provoke lazy loading of translation data
-    if ( $@ ) {
-        if ( $@ =~ /Cannot read translation file/ ) {
-            say "Cannot find a translation for language " . $self->lang . ".";
-            exit( 1 );
-        }
-        else {
-            die "Oops: $@";
-        }
-    }
 
     if ( $self->restore ) {
         Zonemaster->preload_cache( $self->restore );
@@ -258,7 +262,7 @@ sub run {
 
                     say $translator->translate_tag( $entry );
                 }
-                elsif ( $self->lang eq 'json' ) {
+                elsif ( $self->json ) {
                     # Don't do anything
                 }
                 elsif ( $self->show_module ) {
@@ -355,7 +359,7 @@ sub run {
         }
     }
 
-    if ( $self->lang eq 'json' ) {
+    if ( $self->json ) {
         say Zonemaster->logger->json($self->level);
     }
 

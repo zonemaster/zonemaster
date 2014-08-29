@@ -48,23 +48,21 @@ order from highest to lowest, CRITICAL, ERROR, WARNING, NOTICE, INFO, DEBUG,
 DEBUG2 and DEBUG3. The lowest two levels show some of the internal workings of
 the test engine, and are probably not useful for ordinary users.
 
-=item --lang=LANGUAGE
+=item --locale=LOCALE
 
-Specifies which translation to use for the messages printed. There are some
-special ones that are always available, and on top of those any number can be
-locally installed.
+Specifies which locale to tell the translation system to use. If not given, the
+translation system itself will look at environment variables to try to guess.
+If the requested translation does not exist, it will fallback to the local
+locale, and if that doesn't exist either to English.
 
-The default language is called "tech", and i supposed to be in English and useful
-for a user that knows DNS well.
+=item --json
 
-The second special one is called "raw". It's a non-translation, where the
-messages are simply serialized and printed. This is only meant to be useful to
-someone looking into Zonemaster itself, for example trying to figure out why it
-produced an unexpected result.
+Print results as JSON instead of human language.
 
-The third special one is called "json". This delays any printing until the
-entire test has run, and the formats the entire result set into a single JSON
-expression.
+=item --raw
+
+Print messages as raw dumps instead of passing them through the translation
+system.
 
 =item --time, --no-time
 
