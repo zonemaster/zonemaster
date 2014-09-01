@@ -21,13 +21,17 @@ msgstr ""
 
 PRELUDE
 
+my %uniq;
+
 foreach my $m (sort keys %{$data}) {
     next if ref($data->{$m}) ne 'HASH';
     foreach my $t (sort keys %{$data->{$m}}) {
         printf qq[#: %s:%s\n], $m, $t;
         my $str = $data->{$m}{$t};
         $str =~ s/\"/\\"/g;
+        next if exists $uniq{$str};
         printf qq[msgid  "%s"\n], $str;
         printf qq[msgstr "%s"\n\n], $str;
+        $uniq{$str} = 1;
     }
 }

@@ -62,11 +62,15 @@ sub metadata {
             qw(
               NS_FAILED NS_NO_RESPONSE
               HAS_NAMESERVERS
+              IPV4_DISABLED
+              IPV6_DISABLED
               )
         ],
         basic03 => [
             qw(
               HAS_A_RECORDS
+              IPV4_DISABLED
+              IPV6_DISABLED
               )
         ],
     };
@@ -82,6 +86,8 @@ sub translation {
         "NS_FAILED"          => "Nameserver {source} did not return NS records. RCODE was {rcode}.",
         "NS_NO_RESPONSE"     => "Nameserver {source} did not respond to NS query.",
         "HAS_GLUE"           => "Nameserver for zone {parent} listed these nameservers as glue: {ns}",
+        "IPV4_DISABLED"      => "IPv4 is disabled, not sending query to {ns}.",
+        "IPV6_DISABLED"      => "IPv6 is disabled, not sending query to {ns}.",
     };
 }
 
@@ -148,6 +154,16 @@ sub basic02 {
     my @results;
 
     foreach my $ns ( @{ $zone->glue } ) {
+        if (not Zonemaster->config->ipv4_ok and $ns->address->version == 4) {
+            info( IPV4_DISABLED => { ns => "$ns" });
+            next;
+        }
+
+        if (not Zonemaster->config->ipv6_ok and $ns->address->version == 6) {
+            info( IPV6_DISABLED => { ns => "$ns" });
+            next;
+        }
+
         my $p = $ns->query( $zone->name, q{NS} );
         if ( $p ) {
             if ( $p->has_rrs_of_type_for_name( q{NS}, $zone->name ) ) {
@@ -188,6 +204,16 @@ sub basic03 {
 
     my $name = q{www.} . $zone->name;
     foreach my $ns ( @{ $zone->glue } ) {
+        if (not Zonemaster->config->ipv4_ok and $ns->address->version == 4) {
+            info( IPV4_DISABLED => { ns => "$ns" });
+            next;
+        }
+
+        if (not Zonemaster->config->ipv6_ok and $ns->address->version == 6) {
+            info( IPV6_DISABLED => { ns => "$ns" });
+            next;
+        }
+
         my $p = $ns->query( $name, q{A} );
         next if not $p;
         if ( $p->has_rrs_of_type_for_name( q{A}, $name ) ) {
