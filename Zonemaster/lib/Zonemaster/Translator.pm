@@ -78,7 +78,9 @@ sub _system_translation {
         "MODULE_ERROR"          => "Fatal error in {module}: {msg}",
         "MODULE_VERSION"        => "Using module {module} version {version}.",
         "UNKNOWN_METHOD"        => "Request to run unknown method {method} in module {moduke}.",
-        "UNKNOWN_MODULE"        => "Request to run {method} in unknown module {module}. Known modules: {known}."
+        "UNKNOWN_MODULE"        => "Request to run {method} in unknown module {module}. Known modules: {known}.",
+        "SKIP_IPV4_DISABLED"    => "IPv4 is disabled, not sending query to {ns}.",
+        "SKIP_IPV6_DISABLED"    => "IPv6 is disabled, not sending query to {ns}.",
     };
 }
 

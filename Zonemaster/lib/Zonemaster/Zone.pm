@@ -77,6 +77,16 @@ sub query_one {
 
     # Return response from the first server that gives one
     foreach my $ns ( @{ $self->ns } ) {
+        if (not Zonemaster->config->ipv4_ok and $ns->address->version == 4) {
+            Zonemaster->logger->add( SKIP_IPV4_DISABLED => { ns => "$ns"} );
+            next;
+        }
+
+        if (not Zonemaster->config->ipv6_ok and $ns->address->version == 6) {
+            Zonemaster->logger->add( SKIP_IPV6_DISABLED => { ns => "$ns"} );
+            next;
+        }
+
         my $p = $ns->query( $name, $type, $flags );
         return $p if defined( $p );
     }
@@ -87,7 +97,21 @@ sub query_one {
 sub query_all {
     my ( $self, $name, $type, $flags ) = @_;
 
-    return [ map { $_->query( $name, $type, $flags ) } @{ $self->ns } ];
+    my @servers = @{ $self->ns };
+
+    if (not Zonemaster->config->ipv4_ok) {
+        my @nope = grep { $_->address->version == 4 } @servers;
+        @servers = grep { $_->address->version != 4 } @servers;
+        Zonemaster->logger->add( SKIP_IPV4_DISABLED => { ns => (join ';', map {"$_"} @nope) } );
+    }
+
+    if (not Zonemaster->config->ipv6_ok) {
+        my @nope = grep { $_->address->version == 6 } @servers;
+        @servers = grep { $_->address->version != 6 } @servers;
+        Zonemaster->logger->add( SKIP_IPV6_DISABLED => { ns => (join ';', map {"$_"} @nope) } );
+    }
+
+    return [ map { $_->query( $name, $type, $flags ) } @servers ];
 }
 
 sub is_in_zone {

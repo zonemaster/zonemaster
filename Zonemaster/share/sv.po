@@ -4,7 +4,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: 0.0.4\n"
-"PO-Revision-Date: 2014-08-29 11:39+0200\n"
+"PO-Revision-Date: 2014-09-01 12:09+0200\n"
 "Last-Translator: calle@init.se\n"
 "Language-Team: Zonemaster Team\n"
 "MIME-Version: 1.0\n"
@@ -532,6 +532,14 @@ msgstr "Fatalt fel i {module}: {msg}"
 #: SYSTEM:MODULE_VERSION
 msgid  "Using module {module} version {version}."
 msgstr "Använder version {version} av modulen {module}."
+
+#: SYSTEM:SKIP_IPV4_DISABLED
+msgid "IPv4 is disabled, not sending query to {ns}."
+msgstr "IPv4 är avstängt, skickar ingen fråga till {ns}."
+
+#: SYSTEM:SKIP_IPV6_DISABLED
+msgid "IPv6 is disabled, not sending query to {ns}."
+msgstr "IPv6 är avstängt, skickar ingen fråga till {ns}."
 
 #: SYSTEM:UNKNOWN_METHOD
 msgid  "Request to run unknown method {method} in module {moduke}."

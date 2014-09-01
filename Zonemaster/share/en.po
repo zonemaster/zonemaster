@@ -533,6 +533,14 @@ msgstr "Fatal error in {module}: {msg}"
 msgid  "Using module {module} version {version}."
 msgstr "Using module {module} version {version}."
 
+#: SYSTEM:SKIP_IPV4_DISABLED
+msgid  "IPv4 is disabled, not sending query to {ns}."
+msgstr "IPv4 is disabled, not sending query to {ns}."
+
+#: SYSTEM:SKIP_IPV6_DISABLED
+msgid  "IPv6 is disabled, not sending query to {ns}."
+msgstr "IPv6 is disabled, not sending query to {ns}."
+
 #: SYSTEM:UNKNOWN_METHOD
 msgid  "Request to run unknown method {method} in module {moduke}."
 msgstr "Request to run unknown method {method} in module {moduke}."
