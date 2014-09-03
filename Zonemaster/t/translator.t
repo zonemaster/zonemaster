@@ -6,7 +6,7 @@ use POSIX qw[setlocale :locale_h];
 
 BEGIN { use_ok( 'Zonemaster::Translator' ) }
 
-my $trans = new_ok( 'Zonemaster::Translator' => [ { locale => 'sv_SE.UTF8' } ] );
+my $trans = new_ok( 'Zonemaster::Translator' => [ { locale => 'sv_SE.UTF-8' } ] );
 is(setlocale(LC_MESSAGES), 'sv_SE.UTF-8');
 
 ok( exists $trans->data->{BASIC}{NO_GLUE},       'expected key from file exists' );

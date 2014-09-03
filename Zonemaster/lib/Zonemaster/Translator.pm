@@ -18,6 +18,14 @@ has 'data'   => ( is => 'ro', isa => 'HashRef', lazy => 1, builder => '_load_dat
 ### Builder Methods
 ###
 
+sub BUILD {
+    my ( $self ) = @_;
+
+    $self->locale;
+
+    return $self;
+}
+
 sub _get_locale {
     my $locale = $ENV{LANG} || $ENV{LC_ALL} || $ENV{LC_MESSAGES} || 'en_US.UTF-8';
     setlocale( LC_MESSAGES, $locale );
@@ -122,6 +130,10 @@ entry.
 =item translate_tag
 
 Takes a L<Zonemaster::Logger::Entry> object as its argument and returns a translation of its tag and arguments.
+
+=item BUILD
+
+Internal method that's only mentioned here to placate L<Pod::Coverage>.
 
 =back
 
