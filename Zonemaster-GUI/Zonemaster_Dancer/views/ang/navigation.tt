@@ -1,0 +1,7 @@
+<div class="navigation" ng-class="{'inverse':inverse==='yes'}">
+      <div class="menuitem" ng-repeat="pane in panes" ng-class="{active:pane.selected}">
+        
+        <a href="" ng-click="select(pane)"><span ng-show="pane.tabIcon" class="glyphicon glyphicon-{{pane.tabIcon}}"></span> {{pane.tabTitle}}</a>
+      </div>
+</div>
+<div ng-transclude></div>

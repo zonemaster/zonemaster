@@ -1,0 +1,38 @@
+<html ng-app="z_dnscheck">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=<% settings.charset %>" />
+<title>{{'dnscheck'|translate}}</title>
+    <link href='//fonts.googleapis.com/css?family=Cuprum:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<% request.uri_base %>/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<% request.uri_base %>/css/style.css" />
+
+<script>
+ <% if result %> var t_res = <% result %>; <% end %>
+</script>
+
+</head>
+<body>
+<div class="wrapper">
+  <% content %>
+<div class="push"></div>
+</div>
+<div class="footer">
+<version></version>
+</div>
+<script type="text/javascript">/* <![CDATA[ */
+    !window.jQuery && document.write('<script type="text/javascript" src="<% request.uri_base %>/javascripts/jquery.js"><\/script>')
+/* ]]> */</script>
+<script src="/javascripts/angular.min.js"></script>
+<script src="/javascripts/angular-resource.min.js"></script>
+<script src="/components/angular-route/angular-route.min.js"></script>
+<script src="/components/angular-translate/angular-translate.min.js"></script>
+<script src="/components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/socket.io.js"></script>
+<script src="/javascripts/dnscheck.js"></script>
+<script src="/javascripts/z_dnscheck.js"></script>
+<script src="/javascripts/japp.js"></script>
+<!-- <script src="/javascripts/app.js"></script> -->
+</body>
+</html>

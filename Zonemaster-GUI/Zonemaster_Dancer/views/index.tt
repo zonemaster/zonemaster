@@ -1,0 +1,34 @@
+<div>
+  <div class="head">
+    <br>
+    <img src="/images/dns.svg" alt="DNS check" width="100">
+    <div class="pull-right">
+      <lang lang="en">en</lang> |
+      <lang lang="ru">ru</lang>
+      &nbsp;
+    </div>
+    <div style="position:absolute;display:inline-block;margin-top:30px;">
+    </div>
+    <navigation nav-id="main">
+      <tab tab-title="{{'Domain check'|translate}}" tab-id="domain_check"></tab>
+      <tab tab-title="{{'Inactive domain check'|translate}}" tab-id="inactive_domain_check"></tab>
+      <tab tab-title="{{'FAQ'|translate}}" tab-id="faq"></tab>
+    </navigation>
+  </div>
+  <div class="shadow">&nbsp;</div>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-sm-8 col-md-9 col-lg-10">
+      <div ng-show="main_currentTab == 'domain_check'">
+        <domain_check></domain_check>
+      </div>
+      <div ng-show="main_currentTab == 'inactive_domain_check'">
+        <domain_check inactive="yes"></domain_check>
+      </div>
+      <div ng-show="main_currentTab == 'faq'">
+      
+      </div>
+    </div>
+  </div>
+</div>
+</div>
