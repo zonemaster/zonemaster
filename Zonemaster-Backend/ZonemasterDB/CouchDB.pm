@@ -51,13 +51,18 @@ sub add_api_user_to_db {
 sub user_authorized {
 	my ($self, $user, $api_key) = @_;
 
-
+	my $hashref = $self->db->get_view({
+		view => 'application/users',
+		opts => { key => $user },
+	});
+	  
+	return ($hashref && $hashref->{$user} eq $api_key)?(1):(0);
 }
 
 sub create_new_batch_job {
-	my ($self, $user, $api_key) = @_;
+	my ($self, $username) = @_;
 
-
+	# find all batch jobs of the user
 }
 
 sub create_new_test {

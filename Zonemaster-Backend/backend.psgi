@@ -12,6 +12,8 @@ use POSIX;
 
 use Plack::Builder;
 
+local $| = 1;
+
 builder {
 	enable 'Debug',
 };
@@ -40,6 +42,11 @@ my $router = router {
 		handler => "+Engine",
 		action => "get_data_from_parent_zone"
 	};
+
+        connect "get_data_from_parent_zone_1" => {
+                handler => "+Engine",
+                action => "get_data_from_parent_zone_1"
+        };
 
 	connect "validate_domain_syntax" => {
 		handler => "+Engine",
@@ -88,8 +95,11 @@ sub {
     my $env = shift;
     my $req = Plack::Request->new($env);
     eval {
-		my $content = decode_json($req->content);
-		say "[".strftime("%F %T", localtime())."][IP:".$env->{REMOTE_ADDR}."][id:".$content->{id}."][method:".$content->{method}."]"
+		say '-----------------------------------------------------------------------------------------';
+		my $json = $req->content;
+		my $content = decode_json($json);
+		say "[".strftime("%F %T", localtime())."][IP:".$env->{REMOTE_ADDR}."][id:".$content->{id}."][method:".$content->{method}."]";
+		say $json;
 	};
     
     $dispatch->handle_psgi($env, $env->{REMOTE_HOST} );

@@ -1,4 +1,4 @@
-package Engine v0.0.1;
+ package Engine v0.0.1;
 
 use strict;
 use warnings;
@@ -8,6 +8,8 @@ use 5.14.0;
 # Public Modules
 use Data::Dumper;
 use Net::DNS;
+use Net::DNS::SEC;
+use Net::DNS::Keyset;
 use JSON;
 use DBI qw(:utils);
 use Digest::MD5 qw(md5_hex);
@@ -104,27 +106,61 @@ sub get_data_from_parent_zone {
 sub get_data_from_parent_zone_1 {
 	my($self, $domain) = @_;
 
-	my @ns_names;
 	my %result;
+	
+	
 	my @ns_list;
-
-	my $res   = Net::DNS::Resolver->new;
-	my $query = $res->search($domain, 'NS');
+	my @ns_names;
+	my $res_ns   = Net::DNS::Resolver->new;
+	my $query = $res_ns->search($domain, 'NS');
 	if ($query) {
 		foreach my $rr ($query->answer) {
 			push(@ns_names, $rr->nsdname);
 		}
 		
 		foreach my $ns_name (@ns_names) {
-			push(@result, @{ $self->get_ns_ips($ns_name)});
+			foreach my $ns_ip_pair (@{ $self->get_ns_ips($ns_name)}) {
+				push(@ns_list, { ns => (keys %$ns_ip_pair)[0], ip => $ns_ip_pair->{(keys %$ns_ip_pair)[0]} });
+			}
 		}
 	} 
+	push(@ns_list, {'NOT FOUND' => '0.0.0.0'}) unless(@ns_list);
 	
+	
+	my %algorithm_ids = ( 
+		1 => 'sha1',
+		2 => 'sha1',
+		3 => 'sha1',
+		4 => 'sha1',
+		5 => 'sha1',
+		6 => 'sha1',
+		7 => 'sha1',
+		8 => 'sha1',
+		9 => 'sha1',
+		10 => 'sha1',
+	);
 	my @ds_list;
+	my $res_ds = Net::DNS::Resolver->new;
+
+	$res_ds->dnssec(1);
+	my $packet = $res_ds->query($domain, 'DNSKEY', 'IN');
+
+	if (defined $packet) {
+		my $keyset=Net::DNS::Keyset->new($packet) ;
+
+		if ( $keyset ){
+			my @ds=$keyset->extract_ds;
+			foreach my $ds ( @ds ) {
+				my ($dn, $num, $in, $type, $key_tag, $algorithm, $digest_type, $digest) = split(/\s+/, $ds->string);
+				push(@ds_list, { algorithm => $algorithm_ids{$algorithm}, digest => $digest });
+			}
+		}
+	}
 	
-	push(@result, {'NOT FOUND' => '0.0.0.0'}) unless(@result);
+	$result{ns_list} = \@ns_list;
+	$result{ds_list} = \@ds_list;
 	
-	return \@result;
+	return \%result;
 }
 
 sub validate_domain_syntax {
@@ -218,12 +254,12 @@ sub get_test_results {
 	my($self, $params) = @_;
 	my $result;
 	
-	my $zm_results = read_file('/home/toma/TEMP/test_json_rpc/zm_results.json');
+#	my $zm_results = read_file('/home/toma/TEMP/test_json_rpc/zm_results.json');
 #	my $query = "UPDATE test_results SET results=".$dbh->quote($zm_results)." WHERE id=$params->{id}";
 #	my $query = "UPDATE test_results SET results=".$dbh->quote($zm_results);
 #	$dbh->do($query);
 
-	my $sth1 = $dbh->prepare("SELECT * from test_results WHERE id=$params->{id}");
+	my $sth1 = $dbh->prepare("SELECT * from test_results WHERE id=$params->{id} AND progress=100");
 	$sth1->execute;
 	if (my $h = $sth1->fetchrow_hashref) {
 		my @zm_results;
@@ -244,6 +280,9 @@ sub get_test_results {
 			results => \@zm_results,
 			creation_time => $h->{creation_time},
 		};
+	}
+	else {
+		die "ERROR 001: Test not yet finished, check the progress";
 	}
 	
 	return $result;
@@ -292,7 +331,7 @@ sub add_batch_job {
 		my $domains = $params->{batch_params}->{domains};
 		delete($params->{batch_params}->{domains});
 		
-		my $batch_id = $self->{db}->create_new_batch_job($params->{username});
+		$batch_id = $self->{db}->create_new_batch_job($params->{username});
 		
 		my $minutes_between_tests_with_same_params = 5;
 		foreach my $domain (@{$domains}) {

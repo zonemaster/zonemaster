@@ -29,16 +29,21 @@ if (defined $params->{ipv4}) {
 my @ns;
 if ($params->{nameservers}) {
 	foreach my $ns (@{$params->{nameservers}}) {
-		if ((keys %$ns)[0] ne 'empty') {
-			push(@ns, "--ns='".(keys %$ns)[0]."'");
+		if (defined $ns->{ns}) {
+			push(@ns, "--ns='".$ns->{ns}."/".$ns->{ip}."'");
 		}
 		else {
-#			push(@ns, "--ns='".$ns->{(keys %$ns)[0]}."'");
+			if ((keys %$ns)[0] ne 'empty') {
+				push(@ns, "--ns='".(keys %$ns)[0]."/".$ns->{(keys %$ns)[0]}."'");
+			}
+			else {
+#				push(@ns, "--ns='".$ns->{(keys %$ns)[0]}."'");
+			}
 		}
 	}
 }
-#my $ns = join(' ', @ns);
-my $ns = '';
+my $ns = join(' ', @ns);
+$ns = '' unless(@ns);
 
 my $command = "/home/toma/perl5/perlbrew/perls/perl-5.20.0/bin/perl -I/home/toma/PROD/Zonemaster/Zonemaster-CLI/lib -I/home/toma/REPOSITORY/zonemaster/Zonemaster/lib /home/toma/PROD/Zonemaster/Zonemaster-CLI/script/zonemaster-cli --show_module --level=INFO --lang=json $ns $ip_v4 $ip_v6";
 $command .= " ".shell_quote($params->{domain});
