@@ -1,15 +1,13 @@
-## SYNTAX03: Character set restriction for label
+## SYNTAX02: Domain name length
 
 ### Test case identifier
 
-**SYNTAX03:** Character set restriction for label
+**SYNTAX02:** Domain name length
 
 ### Objective
-Section 3.5 of [RFC 1034](https://tools.ietf.org/html/rfc1034) mentions that the
-the labels must follow the rules for ARPANET host names.  They must start with 
-a letter, end with a letter or digit, and have as interior characters only 
-letters, digits, and hyphen.
-
+Section 3.1 of [RFC 1035](https://tools.ietf.org/html/rfc1035) mentions that the
+the total length of a domain name (i.e., label octets and label length octets) 
+is restricted to 255 octets or less.
 
 The objective for this test is verify whether the engine conforms to the
 specification described in the previous paragraph
