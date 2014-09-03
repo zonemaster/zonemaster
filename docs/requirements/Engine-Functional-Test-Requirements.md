@@ -39,9 +39,9 @@ functional tests for the test engine, following steps should be followed:
 
 |Req| Test requirement                           |Explanation|
 |:--|:-------------------------------------------|-----------|
-|FR01|A DNS query with a label that exceeds the maximum length - 63 characters|[SYNTAX01](../specifications/functional-tests/SYNTAX-TP/syntax01.md)|
-|FR02|A FQDN that exceeds the maximum length - 255 octets|[SYNTAX02](../specifications/functional-tests/SYNTAX-TP/syntax02.md)|
-|FR03|A host name label with other than letters, digits and '-' character|[SYNTAX03](../specifications/functional-tests/SYNTAX-TP/syntax03.md)|
+|FR01|A DNS query with a label that exceeds the maximum length - 63 characters|[SYNTAX01](../specifications/functional-tests/Syntax-TP/syntax01.md)|
+|FR02|A FQDN that exceeds the maximum length - 255 octets|[SYNTAX02](../specifications/functional-tests/Syntax-TP/syntax02.md)|
+|FR03|A host name label with other than letters, digits and '-' character|[SYNTAX03](../specifications/functional-tests/Syntax-TP/syntax03.md)|
 |FR04|CNAME RRs collision (If a CNAME RR is present at a node, no other data should be present; (3.6.2) - RFC 1034) |[CONFIGURATION01](../specifications/functional-tests/CONFIGURATION-TP/configuration01.md)|
 |FR05|Triggers when, in order to resolve a zone 'x', the resolver needs to query 'y', which in order to be resolved requires 'x' to be resolved first - - "Zone cyclic dependency"|[CONFIGURATION02](../specifications/functional-tests/CONFIGURATION-TP/configuration02.md)|
 |FR06|Triggers when NS RRset declared at the parent is not the same as the one declared in the child zone|[COHERENCY01](../specifications/functional-tests/COHERENCY-TP/coherency01.md)|
