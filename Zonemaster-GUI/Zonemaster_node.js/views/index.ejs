@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="z_dnscheck">
+<head>
+<title>{{'dnscheck'|translate}}</title>
+    <link href='//fonts.googleapis.com/css?family=Cuprum:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+
+<script>
+  <% if(typeof result !=='undefined'){ %> var t_res = <%- JSON.stringify(result) %>; <% } %>
+</script>
+
+</head>
+<body>
+<div class="wrapper">
+<div>
+  <div class="head">
+    <br>
+    <img src="/images/dns.svg" alt="DNS check" width="100">
+    <div class="pull-right">
+      <lang lang="en">en</lang> |
+      <lang lang="ru">ru</lang>
+      &nbsp;
+    </div>
+    <div style="position:absolute;display:inline-block;margin-top:30px;">
+    </div>
+    <navigation nav-id="main">
+      <tab tab-title="{{'Domain check'|translate}}" tab-id="domain_check"></tab>
+      <tab tab-title="{{'Inactive domain check'|translate}}" tab-id="inactive_domain_check"></tab>
+      <tab tab-title="{{'FAQ'|translate}}" tab-id="faq"></tab>
+    </navigation>
+  </div>
+  <div class="shadow">&nbsp;</div>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-sm-8 col-md-9 col-lg-10">
+      <div ng-show="main_currentTab == 'domain_check'">
+        <domain_check></domain_check>
+      </div>
+      <div ng-show="main_currentTab == 'inactive_domain_check'">
+        <domain_check inactive="yes"></domain_check>
+      </div>
+      <div ng-show="main_currentTab == 'faq'">
+      
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="push"></div>
+</div>
+<div class="footer">
+<version></version>
+</div>
+<script type="text/javascript">/* <![CDATA[ */
+    !window.jQuery && document.write('<script type="text/javascript" src="/javascripts/jquery.js"><\/script>')
+/* ]]> */</script>
+<script src="/javascripts/angular.min.js"></script>
+<script src="/javascripts/angular-resource.min.js"></script>
+<script src="/components/angular-route/angular-route.min.js"></script>
+<script src="/components/angular-translate/angular-translate.min.js"></script>
+<script src="/components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/socket.io.js"></script>
+<script src="/javascripts/dnscheck.js"></script>
+<script src="/javascripts/z_dnscheck.js"></script>
+<script src="/javascripts/japp.js"></script>
+<!-- <script src="/javascripts/app.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+"Domain check"                              : "Domain check"                         
+,"Inactive domain check"                    : "Inactive domain check"               
+,"Domain name"                              : "Domain name"                         
+,"Basic"                                    : "Basic"                               
+,"Advanced"                                 : "Advanced"                            
+,"Export"                                   : "Export"                              
+,"History"                                  : "History"                             
+,"Download"                                 : "Download"                            
+,"Nameservers"                              : "Nameservers"                         
+,"Digests"                                  : "Digests"                             
+,"Fetch data from parent zone"              : "Fetch data from parent zone"         
+,"Advanced options"                         : "Advanced options"                    
+,"Notice! This is an undelegated test"      : "Notice! This is an undelegated test" 
+,"":""
+}
