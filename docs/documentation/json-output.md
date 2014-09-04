@@ -1,7 +1,7 @@
-# Specification of the ZoneMaster  JSON output
+# Specification of the Zonemaster  JSON output
 
-The JSON output format in all the ZoneMaster applications is generated
-by the ZoneMaster Engine. [... is there a developer reference that can
+The JSON output format in all the Zonemaster applications is generated
+by the Zonemaster Engine. [... is there a developer reference that can
 be referred to here?]
 
 The output format is simple, it is an array consisting of a number of

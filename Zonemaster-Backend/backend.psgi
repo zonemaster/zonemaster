@@ -5,7 +5,6 @@ use 5.14.0;
 
 use JSON::RPC::Dispatch;
 use Router::Simple::Declare;
-use MyPackage;
 use Data::Dumper;
 use JSON;
 use POSIX;

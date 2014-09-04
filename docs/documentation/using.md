@@ -1,8 +1,8 @@
-# ZoneMaster users guide
+# Zonemaster users guide
 
 ## How to get started
 
-In order to use any of the ZoneMaster tools you need access to the tools.
+In order to use any of the Zonenaster tools you need access to the tools.
 Please refer to the [installation document](installation.md) on how to
 install the software.
 
@@ -35,7 +35,7 @@ The default level reporting is in plain english, but other output formats
 are also available. The `--lang=raw` option will give you the technical
 language output; instead of english the messages will be displayed as a
 combination of test level and test case message for easy mapping into each
-test case executed by ZoneMaster.
+test case executed by Zonemaster.
 
 For automatic parsing of the output, the option to have the output reported
 in JSON might be better suited. Use `--lang=json` to have the output in JSON
@@ -43,6 +43,10 @@ format. The JSON format is described in the [JSON Output](json-output.md)
 document.
 
 ### Advanced use
+
+## Configuration
+
+### Policy configuration
 
 ## Using the Web Interface
 

@@ -1609,3 +1609,96 @@
                          }
                        ]
         }; in /home/toma/TEMP/Zonemaster_Dancer/lib/dnscheck.pm l. 34
+[10951] debug @0.047809> [hit #4]$VAR1 = 'Zonemaster v0.0.5, Engine v0.0.1'; in /home/toma/REPOSITORY/zonemaster/Zonemaster-GUI/Zonemaster_Dancer/lib/dnscheck.pm l. 43
+[10950] debug @0.052047> [hit #6]$VAR1 = {
+          'ds_list' => [
+                         {
+                           'algorithm' => 'sha1',
+                           'digest' => '5e8917857209eee5507a251890f347fa3f3fef98'
+                         },
+                         {
+                           'algorithm' => 'sha1',
+                           'digest' => '0256f2c46c9abe36852d98b806685200202a37f7'
+                         },
+                         {
+                           'digest' => '181c044c33ee1af37fe5c370fc24d2e72bcb395a',
+                           'algorithm' => 'sha1'
+                         },
+                         {
+                           'digest' => '1a51812d9f145424dd8946640fcfc1e4df1a4bc0',
+                           'algorithm' => 'sha1'
+                         }
+                       ],
+          'ns_list' => [
+                         {
+                           'ip' => '192.93.0.4',
+                           'ns' => 'ns2.nic.fr'
+                         },
+                         {
+                           'ns' => 'ns2.nic.fr',
+                           'ip' => '2001:660:3005:1:0:0:1:2'
+                         },
+                         {
+                           'ns' => 'ns3.nic.fr',
+                           'ip' => '192.134.0.49'
+                         },
+                         {
+                           'ns' => 'ns3.nic.fr',
+                           'ip' => '2001:660:3006:1:0:0:1:1'
+                         },
+                         {
+                           'ip' => '192.134.4.1',
+                           'ns' => 'ns1.nic.fr'
+                         },
+                         {
+                           'ip' => '2001:660:3003:2:0:0:4:1',
+                           'ns' => 'ns1.nic.fr'
+                         }
+                       ]
+        }; in /home/toma/REPOSITORY/zonemaster/Zonemaster-GUI/Zonemaster_Dancer/lib/dnscheck.pm l. 34
+[10952] debug @0.022920> [hit #8]$VAR1 = {
+          'ns_list' => [
+                         {
+                           'ip' => '192.134.0.49',
+                           'ns' => 'ns3.nic.fr'
+                         },
+                         {
+                           'ns' => 'ns3.nic.fr',
+                           'ip' => '2001:660:3006:1:0:0:1:1'
+                         },
+                         {
+                           'ip' => '192.93.0.4',
+                           'ns' => 'ns2.nic.fr'
+                         },
+                         {
+                           'ip' => '2001:660:3005:1:0:0:1:2',
+                           'ns' => 'ns2.nic.fr'
+                         },
+                         {
+                           'ip' => '192.134.4.1',
+                           'ns' => 'ns1.nic.fr'
+                         },
+                         {
+                           'ip' => '2001:660:3003:2:0:0:4:1',
+                           'ns' => 'ns1.nic.fr'
+                         }
+                       ],
+          'ds_list' => [
+                         {
+                           'digest' => '0256f2c46c9abe36852d98b806685200202a37f7',
+                           'algorithm' => 'sha1'
+                         },
+                         {
+                           'digest' => '181c044c33ee1af37fe5c370fc24d2e72bcb395a',
+                           'algorithm' => 'sha1'
+                         },
+                         {
+                           'algorithm' => 'sha1',
+                           'digest' => '1a51812d9f145424dd8946640fcfc1e4df1a4bc0'
+                         },
+                         {
+                           'algorithm' => 'sha1',
+                           'digest' => '5e8917857209eee5507a251890f347fa3f3fef98'
+                         }
+                       ]
+        }; in /home/toma/REPOSITORY/zonemaster/Zonemaster-GUI/Zonemaster_Dancer/lib/dnscheck.pm l. 34
