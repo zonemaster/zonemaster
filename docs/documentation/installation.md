@@ -1,14 +1,14 @@
-# ZoneMaster installation guide
+# Zonemaster installation guide
 
 ## Components
 
-The ZoneMaster software contains of several different components. The most important component is the ZoneMaster Engine, which is the core library that implements the DNS test framework and all the test cases.
+The Zonemaster software contains of several different components. The most important component is the Zonemaster Engine, which is the core library that implements the DNS test framework and all the test cases.
 
-In order to use the ZoneMaster Engine you must install one of the applications, the simplest being the CLI interface.
+In order to use the Zonemaster Engine you must install one of the applications, the simplest being the CLI interface.
 
-Another application is the web interface which is split in two parts. The user visible component is the Web Frontent, and the backend is responsible for the testing. The CLI and the web interface are both dependent on the ZoneMaster Engine.
+Another application is the web interface which is split in two parts. The user visible component is the Web Frontent, and the backend is responsible for the testing. The CLI and the web interface are both dependent on the Zonemaster Engine.
 
-## ZoneMaster Engine installation
+## Zonemaster Engine installation
 
 ### Instructions for Ubuntu 14.04
 
@@ -65,7 +65,7 @@ Unfortunately `Locale::TextDomain`, `Net::LDNS` and `RFC::RFC822::Address` has n
 	$ sudo perl -MCPAN -e 'install Locale::TextDomain'
     $ sudo perl -MCPAN -e 'install RFC::RFC822::Address'
 
-The version of ldns that Net::LDNS is based on is too old for ZoneMaster, thus it has to be installed from source. However, ldns requires some more packages to be installed.
+The version of ldns that Net::LDNS is based on is too old for Zonemaster, thus it has to be installed from source. However, ldns requires some more packages to be installed.
 
 	$ sudo aptitude install libssl-dev zlib1g-dev
 
@@ -97,11 +97,11 @@ If all package dependencies are already installed from the previous section, thi
 	$ make test
     $ sudo make install
 
-## ZoneMaster CLI installation
+## Zonemaster CLI installation
 
 ### Instructions for Ubuntu 14.04
 
-First install the ZoneMaster Engine, following the instructions above.
+First install the Zonemaster Engine, following the instructions above.
 
 **Install package dependencies**
 
@@ -120,7 +120,7 @@ Now you are ready to run the zonemaster-cli command:
 
 ### Instructions for Debian Wheezy (version 7)
 
-First install the ZoneMaster Engine, following the instructions above.
+First install the Zonemaster Engine, following the instructions above.
 
 **Install package dependencies**
 
@@ -137,7 +137,7 @@ Now you are ready to run the zonemaster-cli command:
 
     $ zonemaster-cli example.com
 
-## ZoneMaster Web interface installation
+## Zonemaster Web interface installation
 
 ### Backend
 
