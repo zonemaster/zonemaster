@@ -37,6 +37,7 @@ sub new{
 	
 	if ($params && $params->{db}) {
 		eval{
+			say "using DB:[$params->{db}]";
 			$self->{db} = "$params->{db}"->new();
 		};
 	}
@@ -168,21 +169,7 @@ sub validate_domain_syntax {
 
 	my $result = 'syntax_not_ok';
 
-=coment
-	my $command = 'perl -I/home/toma/REPOSITORY/zonemaster/Zonemaster-CLI/lib -I/home/toma/REPOSITORY/zonemaster/Zonemaster/lib /home/toma/REPOSITORY/zonemaster/Zonemaster-CLI/script/zonemaster-cli --show_module --level=INFO --lang=json --test=syntax ';
-	print "$command\n";
-	$command .= shell_quote($domain);
-	my $zm_results = decode_json(`$command`);
-	
-	print Dumper($zm_results);
-	
-	foreach my $zm_result (@$zm_results) {
-		$result = 'syntax_not_ok' if ($zm_result->{tag} ne 'ONLY_ALLOWED_CHARS');
-	}
-=cut
-
 	my $dn = Zonemaster::DNSName->new( $domain );
-	
 
 	my @test_syntax01 = Zonemaster->test_method('Syntax', 'syntax01', $dn);
 	print Dumper(\@test_syntax01);
@@ -211,27 +198,8 @@ sub start_domain_test {
 	
 	die "No domain in parameters\n" unless ($params->{domain});
 	
-	my %pure_params = %$params;
-	delete($pure_params{client_id});
-	delete($pure_params{client_version});
+	$result = $self->{db}->create_new_test($params->{domain}, $params, 10, 10);
 	
-	my $js = JSON->new;
-	$js->canonical(1);
-	my $test_params_deterministic_hash = md5_hex($js->encode(\%pure_params));
-	
-	my $query = "INSERT INTO test_results (params_deterministic_hash, params) SELECT ".
-										"'$test_params_deterministic_hash' AS params_deterministic_hash, ".
-										$dbh->quote($js->encode($params))." AS params ".
-										" WHERE NOT EXISTS (SELECT * FROM test_results WHERE params_deterministic_hash='$test_params_deterministic_hash')";
-#	print "query: $query\n\n";
-	my $nb_inserted = $dbh->do($query);
-
-	my $sth1 = $dbh->prepare("SELECT * FROM test_results WHERE params_deterministic_hash='$test_params_deterministic_hash' ");
-	$sth1->execute;
-	if (my $h = $sth1->fetchrow_hashref) {
-		$result = $h->{id};
-	}
-
 	return $result;
 }
 

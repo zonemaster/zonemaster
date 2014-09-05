@@ -1702,3 +1702,7 @@
                          }
                        ]
         }; in /home/toma/REPOSITORY/zonemaster/Zonemaster-GUI/Zonemaster_Dancer/lib/dnscheck.pm l. 34
+[10954] debug @0.010688> [hit #14]$VAR1 = 'Zonemaster v0.0.5, Engine v0.0.1'; in /home/toma/REPOSITORY/zonemaster/Zonemaster-GUI/Zonemaster_Dancer/lib/dnscheck.pm l. 43
+[10951] debug @0.005896> [hit #16]$VAR1 = 'Zonemaster v0.0.5, Engine v0.0.1'; in /home/toma/REPOSITORY/zonemaster/Zonemaster-GUI/Zonemaster_Dancer/lib/dnscheck.pm l. 43
+[10951] debug @0.007012> [hit #21]$VAR1 = 'Zonemaster v0.0.5, Engine v0.0.1'; in /home/toma/REPOSITORY/zonemaster/Zonemaster-GUI/Zonemaster_Dancer/lib/dnscheck.pm l. 43
+[10954] error @0.003386> [hit #24]request to GET /result crashed: Package:Client / Line:65 / JSON::RPC Eror: ERROR 001: Test not yet finished, check the progress at Engine.pm line 285. in /home/toma/perl5/perlbrew/perls/perl-5.20.0/lib/site_perl/5.20.0/Dancer/Handler.pm l. 98

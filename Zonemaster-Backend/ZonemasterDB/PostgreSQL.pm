@@ -69,7 +69,7 @@ sub create_new_batch_job {
 }
 
 sub create_new_test {
-	my ($self, $domain, $test_params, $minutes_between_tests_with_same_params, $batch_id) = @_;
+	my ($self, $domain, $test_params, $minutes_between_tests_with_same_params, $priority, $batch_id) = @_;
 	my $result;
 
 	$test_params->{domain} = $domain;
@@ -87,11 +87,7 @@ sub create_new_test {
 				
 	my $nb_inserted = $self->dbh->do($query);
 	
-	my $sth1 = $self->dbh->prepare("SELECT * FROM test_results WHERE params_deterministic_hash='$test_params_deterministic_hash' ");
-	$sth1->execute;
-	if (my $h = $sth1->fetchrow_hashref) {
-		$result = $h->{id};
-	}
+	($result) = $self->dbh->selectrow_array("SELECT MAX(id) AS id FROM test_results WHERE params_deterministic_hash='$test_params_deterministic_hash'");
 	
 	return $result;
 }

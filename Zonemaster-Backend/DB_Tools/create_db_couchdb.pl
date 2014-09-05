@@ -27,29 +27,55 @@ sub create_db{
 	
 	say Dumper( $sc->create_db('zonemaster') );
 	
+	say "------------ Create Views START -------------------";
 	# To create a new document dont put the _revision parameter
-	my ($id, $rev) = $sc->put_doc({ dbname => 'zonemaster', doc => {
-					"_id" => "_design/application",
+	my ($id, $rev) = $sc->put_doc({ dbname => 'zonemaster', 
+				doc => {
+					"_id" => "_design/application", 
 					"views" => {
-						"users" => {
-							"map" => "function(doc) {
-								if(doc.username) {
-									emit(doc.username, null);
-								}
-							}"
+							"users" => {
+								"map" => "function(doc) {
+									if(doc.doc_type == 'user' && doc.username) {
+										emit(doc.username, null);
+									}
+								}"
+							},
+
+							"tests_by_deterministic_hash" => {
+								"map" => "function(doc) {
+									if(doc.doc_type == 'test') {
+										emit(doc.deterministic_hash, { 'doc_id' : doc.doc_id, 'creation_time' : doc.creation_time });
+									}
+								}"
+							}
 						}
 					}
-				}});
+				});
 
 	say "id: $id";
 	say "rev: $rev";
+	say "------------ Create Views END -------------------";
+	
+	say "------------ Search Documet 1 START -------------------";
+	my $hashref = $sc->get_view({
+		view => 'application/users',
+		opts => { key => 'user1' },
+	});
+	print Dumper($hashref);
+	say "------------ Search Documet 1 END -------------------";
+    
+	say "------------ INSERT Documet 1 START -------------------";
+	my ($id, $rev) = $sc->put_doc({ dbname => 'zonemaster', doc => { doc_type => 'user', username => 'user1' } } );
+	say "------------ INSERT Documet 1 STOP -------------------";
 
+	say "------------ Search Documet 1 START -------------------";
 	$hashref = $sc->get_view({
 		view => 'application/users',
-		opts => { username => 'user1' },
+		opts => { key => 'user1' },
 	});
-    
 	print Dumper($hashref);
+	say "------------ Search Documet 1 STOP -------------------";
+
 }
 
 create_db();
