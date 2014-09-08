@@ -429,6 +429,10 @@ sub print_spinner {
 sub to_idn {
     my ( $self, $str ) = @_;
 
+    if ($str =~ m/^[[:ascii:]]+$/) {
+        return $str;
+    }
+
     if (Net::LDNS::has_idn()) {
         return Net::LDNS::to_idn(encode('utf8',decode($self->encoding, $str)));
     }
