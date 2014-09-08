@@ -3,11 +3,14 @@ package Zonemaster::Config v0.0.2;
 use 5.14.2;
 use Moose;
 use JSON;
-use File::ShareDir qw[dist_file];
+use File::ShareDir qw[dist_dir dist_file];
 use File::Slurp;
 use Hash::Merge;
+use File::Spec;
 
 use Zonemaster;
+
+has 'files' => ( is => 'ro', isa => 'ArrayRef', default => sub {[]});
 
 my $merger = Hash::Merge->new;
 $merger->specify_behavior(
@@ -35,6 +38,19 @@ _load_base_config();
 
 our $policy = decode_json read_file dist_file( 'Zonemaster', 'policy.json' );
 
+sub BUILD {
+    my ( $self ) = @_;
+
+    foreach my $dir (_config_directory_list()) {
+        my $file = File::Spec->catfile($dir, 'config.json');
+        my $new = eval { decode_json read_file $file };
+        if ($new) {
+            $merger->merge( $config, $new );
+            push @{$self->files}, $file;
+        }
+    }
+}
+
 sub get {
     my ( $class ) = @_;
 
@@ -51,11 +67,27 @@ sub policy {
     return $policy;
 }
 
+sub _config_directory_list {
+    my @dirlist;
+
+    push @dirlist, dist_dir( 'Zonemaster' );
+    push @dirlist, '/etc/zonemaster';
+    push @dirlist, '/usr/local/etc/zonemaster';
+
+    my $dir = (getpwuid($>))[7];
+    if ($dir) {
+        push @dirlist, $dir . '/.zonemaster';
+    }
+
+    return @dirlist;
+}
+
 sub _load_base_config {
     my $internal = decode_json( join( '', <DATA> ) );
-    my $default = eval { decode_json read_file dist_file( 'Zonemaster', 'config.json' ) };
-
-    $internal = $merger->merge( $internal, $default ) if $default;
+    # my $filename = dist_file( 'Zonemaster', 'config.json' );
+    # my $default = eval { decode_json read_file $filename };
+    # 
+    # $internal = $merger->merge( $internal, $default ) if $default;
 
     $config = $internal;
 }
@@ -147,6 +179,49 @@ Zonemaster::Config - configuration access module for Zonemaster
 
     my $value = Zonemaster::Config->get->{key}{subkey}; # Not really recommended way to access config data
 
+=head1 LOADING CONFIGURATION
+
+Configuration data is loaded in several stages, each one overlaying the result
+from the previous one (that is, the later in the list take priority over the
+earlier). The first stage is hardcoded into the source code and loaded while it
+is being compiled, to make sure that there will always be some basic
+information available. Later, when the configuration object is first used, the
+system will look for a file named F<config.json> in each of a list of
+directories. If the file exists, is readable and contains proper JSON data, it
+will be loaded and overlaid on the current internal config. The directories
+are, in order from first checked to last:
+
+=over
+
+=item The L<Zonemaster> perl module installation directory
+
+This is where the installation process puts the default configuration. It is
+not meant to be modified by the user, and it will be overwritten when the
+module is upgraded (or reinstalled for any other reason). If you really need to
+know where it is, you can either check the log message left when loading it or
+run this command to find the path:
+
+    perl -MFile::ShareDir=dist_dir -E 'say dist_dir( "Zonemaster" )'
+
+=item /etc/zonemaster
+
+Intended to hold system-global configuration changes.
+
+=item /usr/local/etc/zonemaster
+
+Basically the same as the previous one, but for those who like to keep their
+locally installed software inside F</usr/local>.
+
+=item ~/.zonemaster
+
+That is, a F<.zonemaster> directory in the home directory of the current user.
+Intended, obviously, for configuration changes local to one particular user.
+
+=back
+
+The possible contents of the JSON data is described further down in this manual
+page.
+
 =head1 METHODS FOR CONFIGURATION ITEMS
 
 =over
@@ -202,6 +277,10 @@ Load configuration information from the given file and merge it into the pre-loa
 
 Loads policy data included in a test module. The argument must be the short
 form (without the initial C<Zonemaster::Test::>) and correctly capitalized.
+
+=item BUILD
+
+Internal method only mentioned here to please L<Pod::Coverage>.
 
 =back
 

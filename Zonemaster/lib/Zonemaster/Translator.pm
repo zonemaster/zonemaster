@@ -80,6 +80,7 @@ sub translate_tag {
 sub _system_translation {
     return {
         "CANNOT_CONTINUE"       => "Not enough data about {zone} was found to be able to run tests.",
+        "CONFIG_FILE"           => "Configuration was read from {name}.",
         "DEPENDENCY_VERSION"    => "Using prerequisite module {name} version {version}.",
         "LOGGER_CALLBACK_ERROR" => "Logger callback died with error: {exception}",
         "LOOKUP_ERROR"          => "DNS query to {ns} for {name}/{type}/{class} failed with error: {message}",

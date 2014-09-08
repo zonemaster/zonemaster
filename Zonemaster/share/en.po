@@ -513,6 +513,10 @@ msgstr "Domain name ({name}) has a label ({label}) ending with an hyphen ('-')."
 msgid  "Not enough data about {zone} was found to be able to run tests."
 msgstr "Not enough data about {zone} was found to be able to run tests."
 
+#: SYSTEM:CONFIG_FILE
+msgid "Configuration was read from {name}."
+msgstr "Configuration was read from {name}."
+
 #: SYSTEM:DEPENDENCY_VERSION
 msgid  "Using prerequisite module {name} version {version}."
 msgstr "Using prerequisite module {name} version {version}."

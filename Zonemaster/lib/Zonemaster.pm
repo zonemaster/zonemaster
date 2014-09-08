@@ -20,7 +20,14 @@ sub logger {
 }
 
 sub config {
-    return $config //= Zonemaster::Config->new;
+    if (not defined $config) {
+        $config = Zonemaster::Config->new;
+        foreach my $file (@{$config->files}) {
+            __PACKAGE__->logger->add( CONFIG_FILE => { name => $file } );
+        }
+    }
+    
+    return $config;
 }
 
 sub ns {

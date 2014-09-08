@@ -513,6 +513,10 @@ msgstr "Domännamnet ({name}) har en label ({label}) som slutar med ett bindestr
 msgid  "Not enough data about {zone} was found to be able to run tests."
 msgstr "Hittade inte tillräckligt med information om {zone} för att kunna köra tester."
 
+#: SYSTEM:CONFIG_FILE
+msgid "Configuration was read from {name}."
+msgstr "Konfiguration lästes från {name}."
+
 #: SYSTEM:DEPENDENCY_VERSION
 msgid  "Using prerequisite module {name} version {version}."
 msgstr "Använder version {version} av modulen {name}."
