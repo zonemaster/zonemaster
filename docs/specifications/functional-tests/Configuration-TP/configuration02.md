@@ -25,6 +25,7 @@ The domain to be tested.
 1. Configure a live zone in such a manner wherein a partial failure may stop
 accessing the domain
 
+```
 For example (Zone "nic.fr") (with missing glue A RR): 
 
       IN  NS     ns1
@@ -32,7 +33,8 @@ For example (Zone "nic.fr") (with missing glue A RR):
       IN  NS     ns3
 ns1   IN  A      1.2.3.4
 ns2   IN  A      1.2.3.5
-
+```
+```
 Another example with two zones depending on each other
 
 (Zone "nic.fr"):
@@ -46,7 +48,7 @@ ns2   IN  A      1.2.3.5
 (Zone "nic.com")
       IN  NS    ns1.nic.fr.
       IN  NS    ns2.nic.fr.
-
+```
 2. A standard query for the domain is made 
 3. ToDo : How to test it? 
 
