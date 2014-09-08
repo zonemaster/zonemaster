@@ -23,18 +23,23 @@ The domain to be tested.
 ### Ordered description of steps to be taken to execute the test case
 
 1. Configure a live zone, wherein the CNAME record coexist with any other data
+
+```
 For example (Zone "nic.fr"): 
 
 rd    IN  NS     ns1
       IN  NS     ns2
       IN  CNAME  labs.nic.fr.
 labs  IN  A      1.2.3.4
+```
 
+```
 Another example (Zone "rd.nic.fr"):
 
       IN  MX    10  mail.rd.nic.fr.
 mail  IN  CNAME     labs        
 labs  IN  A         1.2.3.4 
+```
 
 2. A standard query for the domain is made 
 3. If the query don’t receive Error response, the test returns with FAIL
