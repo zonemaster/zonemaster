@@ -44,7 +44,7 @@ functional tests for the test engine, following steps should be followed:
 |FR03|A host name label with other than letters, digits and '-' character|[SYNTAX03](../specifications/functional-tests/Syntax-TP/syntax03.md)|
 |FR04|CNAME RRs collision (If a CNAME RR is present at a node, no other data should be present; (3.6.2) - RFC 1034) |[CONFIGURATION01](../specifications/functional-tests/Configuration-TP/configuration01.md)|
 |FR05|Zone cyclic dependency|[CONFIGURATION02](../specifications/functional-tests/Configuration-TP/configuration02.md)|
-|FR06|Lame delegation[CONFIGURATION03](../specifications/functional-tests/Configuration-TP/configuration03.md)|
+|FR06|Lame delegation | [CONFIGURATION03](../specifications/functional-tests/Configuration-TP/configuration03.md)|
 |FR07|Triggers when glue A record does not point to the same IP address as the corresponding authoritative A record|[COHERENCY02](../specifications/functional-tests/COHERENCY-TP/coherency02.md)|
 |FR08|Triggers when the TTL values are not consistent for the same RRset in both parent and child zone|[COHERENCY03](../specifications/functional-tests/COHERENCY-TP/coherency03.md)|
 |FR09|When a nameserver that is registered in the DNS system as authoritative for a zone , does not provide authoritative answers for the zone |[COHERENCY04](../specifications/functional-tests/COHERENCY-TP/coherency04.md)|
