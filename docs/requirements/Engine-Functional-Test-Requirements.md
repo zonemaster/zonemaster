@@ -43,8 +43,8 @@ functional tests for the test engine, following steps should be followed:
 |FR02|A FQDN that exceeds the maximum length - 255 octets|[SYNTAX02](../specifications/functional-tests/Syntax-TP/syntax02.md)|
 |FR03|A host name label with other than letters, digits and '-' character|[SYNTAX03](../specifications/functional-tests/Syntax-TP/syntax03.md)|
 |FR04|CNAME RRs collision (If a CNAME RR is present at a node, no other data should be present; (3.6.2) - RFC 1034) |[CONFIGURATION01](../specifications/functional-tests/Configuration-TP/configuration01.md)|
-|FR05|Triggers when, in order to resolve a zone 'x', the resolver needs to query 'y', which in order to be resolved requires 'x' to be resolved first - - "Zone cyclic dependency"|[CONFIGURATION02](../specifications/functional-tests/Configuration-TP/configuration02.md)|
-|FR06|Triggers when NS RRset declared at the parent is not the same as the one declared in the child zone|[COHERENCY01](../specifications/functional-tests/COHERENCY-TP/coherency01.md)|
+|FR05|Zone cyclic dependency|[CONFIGURATION02](../specifications/functional-tests/Configuration-TP/configuration02.md)|
+|FR06|Lame delegation[CONFIGURATION03](../specifications/functional-tests/Configuration-TP/configuration03.md)|
 |FR07|Triggers when glue A record does not point to the same IP address as the corresponding authoritative A record|[COHERENCY02](../specifications/functional-tests/COHERENCY-TP/coherency02.md)|
 |FR08|Triggers when the TTL values are not consistent for the same RRset in both parent and child zone|[COHERENCY03](../specifications/functional-tests/COHERENCY-TP/coherency03.md)|
 |FR09|When a nameserver that is registered in the DNS system as authoritative for a zone , does not provide authoritative answers for the zone |[COHERENCY04](../specifications/functional-tests/COHERENCY-TP/coherency04.md)|

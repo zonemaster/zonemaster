@@ -49,12 +49,14 @@ ns2   IN  A      1.2.3.5
       IN  NS    ns1.nic.fr.
       IN  NS    ns2.nic.fr.
 ```
-2. A standard query for the domain is made 
-3. ToDo : How to test it? 
+2. Try to resolve the domain name through each of the authoritative servers in
+the zone 
 
 ### Outcome(s)
 
-ToDo
+The engine should return FAIL atleast once for the configuration defined. If it
+returns PASS for all the tests then the engine does not capture the zone cyclic
+dependency test.
 
 ### Special procedural requirements	
 
