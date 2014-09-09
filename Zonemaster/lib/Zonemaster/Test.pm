@@ -33,6 +33,13 @@ sub _log_dependency_versions {
     info( DEPENDENCY_VERSION => { name => 'Scalar::Util',         version => $Scalar::Util::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'Hash::Merge',          version => $Hash::Merge::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'Readonly',             version => $Readonly::VERSION } );
+
+    foreach my $file (@{Zonemaster->config->cfiles}) {
+        info( CONFIG_FILE => { name => $file } );
+    }
+    foreach my $file (@{Zonemaster->config->pfiles}) {
+        info( POLICY_FILE => { name => $file } );
+    }
 }
 
 sub modules {

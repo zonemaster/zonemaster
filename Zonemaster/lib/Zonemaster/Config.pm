@@ -10,7 +10,8 @@ use File::Spec;
 
 use Zonemaster;
 
-has 'files' => ( is => 'ro', isa => 'ArrayRef', default => sub {[]});
+has 'cfiles' => ( is => 'ro', isa => 'ArrayRef', default => sub {[]});
+has 'pfiles' => ( is => 'ro', isa => 'ArrayRef', default => sub {[]});
 
 my $merger = Hash::Merge->new;
 $merger->specify_behavior(
@@ -36,18 +37,26 @@ $merger->specify_behavior(
 our $config;
 _load_base_config();
 
-our $policy = decode_json read_file dist_file( 'Zonemaster', 'policy.json' );
+our $policy = {};
 
 sub BUILD {
     my ( $self ) = @_;
 
     foreach my $dir (_config_directory_list()) {
-        my $file = File::Spec->catfile($dir, 'config.json');
-        my $new = eval { decode_json read_file $file };
+        my $cfile = File::Spec->catfile($dir, 'config.json');
+        my $new = eval { decode_json read_file $cfile };
         if ($new) {
-            $merger->merge( $config, $new );
-            push @{$self->files}, $file;
+            $config = $merger->merge( $config, $new );
+            push @{$self->cfiles}, $cfile;
         }
+
+        my $pfile = File::Spec->catfile($dir, 'policy.json');
+        $new = eval { decode_json read_file $pfile };
+        if ($new) {
+            $policy = $merger->merge( $policy, $new );
+            push @{$self->pfiles}, $pfile;
+        }
+
     }
 }
 

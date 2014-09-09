@@ -86,6 +86,7 @@ sub _system_translation {
         "LOOKUP_ERROR"          => "DNS query to {ns} for {name}/{type}/{class} failed with error: {message}",
         "MODULE_ERROR"          => "Fatal error in {module}: {msg}",
         "MODULE_VERSION"        => "Using module {module} version {version}.",
+        "POLICY_FILE"           => "Policy was read from {name}.",
         "UNKNOWN_METHOD"        => "Request to run unknown method {method} in module {moduke}.",
         "UNKNOWN_MODULE"        => "Request to run {method} in unknown module {module}. Known modules: {known}.",
         "SKIP_IPV4_DISABLED"    => "IPv4 is disabled, not sending query to {ns}.",

@@ -537,6 +537,10 @@ msgstr "Fatal error in {module}: {msg}"
 msgid  "Using module {module} version {version}."
 msgstr "Using module {module} version {version}."
 
+#: SYSTEM:POLICY_FILE
+msgid "Policy was read from {name}."
+msgstr "Policy was read from {name}."
+
 #: SYSTEM:SKIP_IPV4_DISABLED
 msgid  "IPv4 is disabled, not sending query to {ns}."
 msgstr "IPv4 is disabled, not sending query to {ns}."
