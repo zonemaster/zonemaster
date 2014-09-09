@@ -11,6 +11,7 @@ use warnings;
 
 our $VERSION = '0.02';
 
+use Locale::TextDomain 'Zonemaster-CLI';
 use Moose;
 with 'MooseX::Getopt';
 
@@ -32,7 +33,7 @@ has 'version' => (
     isa           => 'Bool',
     default       => 0,
     required      => 0,
-    documentation => 'Print version information and exit.',
+    documentation => __('Print version information and exit.'),
 );
 
 has 'level' => (
@@ -40,90 +41,90 @@ has 'level' => (
     isa           => 'Str',
     required      => 0,
     default       => 'NOTICE',
-    documentation => 'The minimum severity level to display'
+    documentation => __('The minimum severity level to display'),
 );
 
 has 'locale' => (
     is            => 'ro',
     isa           => 'Str',
     required      => 0,
-    documentation => 'The locale to use for messages translation.',
+    documentation => __('The locale to use for messages translation.'),
 );
 
 has 'json' => (
     is => 'ro',
     isa => 'Bool',
     default => 0,
-    documentation => 'Flag indicating of output should be in JSON or not.',
+    documentation => __('Flag indicating of output should be in JSON or not.'),
 );
 
 has 'raw' => (
     is => 'ro',
     isa => 'Bool',
     default => 0,
-    documentation => 'Flag indicating if output should be translated to human language or dumped raw.',
+    documentation => __('Flag indicating if output should be translated to human language or dumped raw.'),
 );
 
 has 'time' => (
     is            => 'ro',
     isa           => 'Bool',
-    documentation => 'Print timestamp on entries.',
+    documentation => __('Print timestamp on entries.'),
     default       => 1,
 );
 
 has 'show_level' => (
     is            => 'ro',
     isa           => 'Bool',
-    documentation => 'Print level on entries.',
+    documentation => __('Print level on entries.'),
     default       => 1,
 );
 
 has 'show_module' => (
     is            => 'ro',
     isa           => 'Bool',
-    documentation => 'Print the name of the maodule on entries.',
+    documentation => __('Print the name of the maodule on entries.'),
     default       => 0,
 );
 
 has 'ns' => (
     is            => 'ro',
     isa           => 'ArrayRef',
-    documentation => 'A name/ip string giving a nameserver for undelegated tests. Can be given multiple times.',
+    documentation => __('A name/ip string giving a nameserver for undelegated tests. Can be given multiple times.'),
 );
 
 has 'save' => (
     is            => 'ro',
     isa           => 'Str',
     required      => 0,
-    documentation => 'Name of a file to save DNS data to after running tests.',
+    documentation => __('Name of a file to save DNS data to after running tests.'),
 );
 
 has 'restore' => (
     is            => 'ro',
     isa           => 'Str',
     required      => 0,
-    documentation => 'Name of a file to restore DNS data from before running test.',
+    documentation => __('Name of a file to restore DNS data from before running test.'),
 );
 
 has 'ipv4' => (
     is            => 'ro',
     isa           => 'Bool',
     default       => 1,
-    documentation => 'Flag to permit or deny queries being sent via IPv4. --ipv4 permits IPv4 traffic, --no-ipv4 forbids it.',
+    documentation => __('Flag to permit or deny queries being sent via IPv4. --ipv4 permits IPv4 traffic, --no-ipv4 forbids it.'),
 );
 
 has 'ipv6' => (
     is            => 'ro',
     isa           => 'Bool',
     default       => 1,
-    documentation => 'Flag to permit or deny queries being sent via IPv6. --ipv6 permits IPv6 traffic, --no-ipv6 forbids it.',
+    documentation => __('Flag to permit or deny queries being sent via IPv6. --ipv6 permits IPv6 traffic, --no-ipv6 forbids it.'),
 );
 
 has 'list_tests' => (
     is            => 'ro',
     isa           => 'Bool',
     default       => 0,
-    documentation => 'Instead of running a test, list all available tests.',
+    documentation => __('Instead of running a test, list all available tests.'),
 );
 
 has 'test' => (
@@ -131,49 +132,49 @@ has 'test' => (
     isa      => 'ArrayRef',
     required => 0,
     documentation =>
-'Specify test to run. Should be either the name of a module, or the name of a module and the name of a method in that module separated by a "/" character (Example: "Basic/basic1"). The method specified must be one that takes a zone object as its single argument. This switch can be repeated.'
+__('Specify test to run. Should be either the name of a module, or the name of a module and the name of a method in that module separated by a "/" character (Example: "Basic/basic1"). The method specified must be one that takes a zone object as its single argument. This switch can be repeated.')
 );
 
 has 'stop_level' => (
     is            => 'ro',
     isa           => 'Str',
     required      => 0,
-    documentation => 'As soon as a message at this level or higher is logged, execution will stop.'
+    documentation => __('As soon as a message at this level or higher is logged, execution will stop.')
 );
 
 has 'config' => (
     is            => 'ro',
     isa           => 'Str',
     required      => 0,
-    documentation => 'Name of configuration file to load.',
+    documentation => __('Name of configuration file to load.'),
 );
 
 has 'policy' => (
     is            => 'ro',
     isa           => 'Str',
     required      => 0,
-    documentation => 'Name of policy file to load.',
+    documentation => __('Name of policy file to load.'),
 );
 
 has 'ds' => (
     is            => 'ro',
     isa           => 'ArrayRef[Str]',
     required      => 0,
-    documentation => 'Strings with DS data on the form "keytag,algorithm,type,digest"',
+    documentation => __('Strings with DS data on the form "keytag,algorithm,type,digest"'),
 );
 
 has 'count' => (
     is            => 'ro',
     isa           => 'Bool',
     required      => 0,
-    documentation => 'Print a count of the number of messages at each level',
+    documentation => __('Print a count of the number of messages at each level'),
 );
 
 has 'progress' => (
     is => 'ro',
     isa => 'Bool',
     default => !!(-t STDOUT),
-    documentation => 'Boolean flag for activity indicator. Defaults to on if STDOUT is a tty, off if it is not.',
+    documentation => __('Boolean flag for activity indicator. Defaults to on if STDOUT is a tty, off if it is not.'),
 );
 
 has 'encoding' => (
@@ -185,7 +186,7 @@ has 'encoding' => (
         $e //= 'UTF-8';
         return $e;
     },
-    documentation => 'Name of the character encoding used for command line arguments',
+    documentation => __('Name of the character encoding used for command line arguments'),
 );
 
 sub run {
@@ -216,12 +217,12 @@ sub run {
 
     my ( $domain ) = @{ $self->extra_argv };
     if ( not $domain ) {
-        die "Must give the name of a domain to test.\n";
+        die __("Must give the name of a domain to test.\n");
     }
     $domain = $self->to_idn($domain);
 
     if ( $self->stop_level and not defined( $numeric{ $self->stop_level } ) ) {
-        die "Failed to recognize stop level '" . $self->stop_level . "'.\n";
+        die __("Failed to recognize stop level '") . $self->stop_level . "'.\n";
     }
 
     Zonemaster->config->get->{net}{ipv4} = $self->ipv4;
@@ -253,7 +254,7 @@ sub run {
                     }
 
                     if ( $self->show_level ) {
-                        printf "%-9s ", $entry->level;
+                        printf "%-9s ", __($entry->level);
                     }
 
                     if ( $self->show_module ) {
@@ -279,12 +280,12 @@ sub run {
     );
 
     if ( $self->policy ) {
-        say "Loading policy from " . $self->policy;
+        say __("Loading policy from ") . $self->policy;
         Zonemaster->config->load_policy_file( $self->policy );
     }
 
     if ( $self->config ) {
-        say "Loading configuration from " . $self->config;
+        say __("Loading configuration from ") . $self->config;
         Zonemaster->config->load_config_file( $self->config );
     }
 
@@ -294,15 +295,15 @@ sub run {
 
     if ( $translator ) {
         if ( $self->time ) {
-            print 'Seconds ';
+            print __('Seconds ');
         }
         if ( $self->show_level ) {
-            print 'Level     ';
+            print __('Level     ');
         }
         if ( $self->show_module ) {
-            print 'Module       ';
+            print __('Module       ');
         }
-        say 'Message';
+        say __('Message');
 
         if ( $self->time ) {
             print '======= ';
@@ -352,10 +353,10 @@ sub run {
     }
 
     if ( $self->count ) {
-        say "\n\n   Level\tNumber of log entries";
-        say "   =====\t=====================";
+        say __("\n\n   Level\tNumber of log entries");
+        say        "   =====\t=====================";
         foreach my $level ( sort { $numeric{$b} <=> $numeric{$a} } keys %counter ) {
-            printf "%8s\t%5d entries.\n", $level, $counter{$level};
+            printf __("%8s\t%5d entries.\n"), __($level), $counter{$level};
         }
     }
 
@@ -437,7 +438,7 @@ sub to_idn {
         return Net::LDNS::to_idn(encode('utf8',decode($self->encoding, $str)));
     }
     else {
-        say "Warning: Net::LDNS not compiled with libidn, cannot handle non-ASCII names correctly.";
+        say __("Warning: Net::LDNS not compiled with libidn, cannot handle non-ASCII names correctly.");
         return $str;
     }
 }

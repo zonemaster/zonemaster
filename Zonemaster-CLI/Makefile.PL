@@ -31,8 +31,10 @@ requires (
     'MooseX::Getopt' => 0,
     'Getopt::Long::Descriptive' => 0,
     'Net::LDNS' => 0.65,
+    'Locale::TextDomain' => 0,
 );
 
 install_script 'zonemaster-cli';
+install_share;
 
 WriteAll;

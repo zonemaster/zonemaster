@@ -1,0 +1,128 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: 0.0.5\n"
+"PO-Revision-Date: 2014-08-28\n"
+"Last-Translator: calle@init.se\n"
+"Language-Team: Zonemaster Team\n"
+"MIME-Version: 1.0\n"
+
+msgid "Print version information and exit."
+msgstr "Print version information and exit."
+
+msgid "The minimum severity level to display"
+msgstr "The minimum severity level to display"
+
+msgid "The locale to use for messages translation."
+msgstr "The locale to use for messages translation."
+
+msgid "Flag indicating of output should be in JSON or not."
+msgstr "Flag indicating of output should be in JSON or not."
+
+msgid "Flag indicating if output should be translated to human language or dumped raw."
+msgstr "Flag indicating if output should be translated to human language or dumped raw."
+
+msgid "Print timestamp on entries."
+msgstr "Print timestamp on entries."
+
+msgid "Print level on entries."
+msgstr "Print level on entries."
+
+msgid "Print the name of the maodule on entries."
+msgstr "Print the name of the maodule on entries."
+
+msgid "A name/ip string giving a nameserver for undelegated tests. Can be given multiple times."
+msgstr "A name/ip string giving a nameserver for undelegated tests. Can be given multiple times."
+
+msgid "Name of a file to save DNS data to after running tests."
+msgstr "Name of a file to save DNS data to after running tests."
+
+msgid "Name of a file to restore DNS data from before running test."
+msgstr "Name of a file to restore DNS data from before running test."
+
+msgid "Flag to permit or deny queries being sent via IPv4. --ipv4 permits IPv4 traffic, --no-ipv4 forbids it."
+msgstr "Flag to permit or deny queries being sent via IPv4. --ipv4 permits IPv4 traffic, --no-ipv4 forbids it."
+
+msgid "Flag to permit or deny queries being sent via IPv6. --ipv6 permits IPv6 traffic, --no-ipv6 forbids it."
+msgstr "Flag to permit or deny queries being sent via IPv6. --ipv6 permits IPv6 traffic, --no-ipv6 forbids it."
+
+msgid "Instead of running a test, list all available tests."
+msgstr "Instead of running a test, list all available tests."
+
+msgid "Specify test to run. Should be either the name of a module, or the name of a module and the name of a method in that module separated by a \"/\" character (Example: \"Basic/basic1\"). The method specified must be one that takes a zone object as its single argument. This switch can be repeated"
+msgstr "Specify test to run. Should be either the name of a module, or the name of a module and the name of a method in that module separated by a \"/\" character (Example: \"Basic/basic1\"). The method specified must be one that takes a zone object as its single argument. This switch can be repeated"
+
+msgid "As soon as a message at this level or higher is logged, execution will stop"
+msgstr "As soon as a message at this level or higher is logged, execution will stop"
+
+msgid "Name of configuration file to load."
+msgstr "Name of configuration file to load."
+
+msgid "Name of policy file to load."
+msgstr "Name of policy file to load."
+
+msgid "Strings with DS data on the form \"keytag,algorithm,type,digest\""
+msgstr "Strings with DS data on the form \"keytag,algorithm,type,digest\""
+
+msgid "Print a count of the number of messages at each level"
+msgstr "Print a count of the number of messages at each level"
+
+msgid "Boolean flag for activity indicator. Defaults to on if STDOUT is a tty, off if it is not."
+msgstr "Boolean flag for activity indicator. Defaults to on if STDOUT is a tty, off if it is not."
+
+msgid "Name of the character encoding used for command line arguments"
+msgstr "Name of the character encoding used for command line arguments"
+
+msgid "Must give the name of a domain to test.\n"
+msgstr "Must give the name of a domain to test.\n"
+
+msgid "Failed to recognize stop level '"
+msgstr "Failed to recognize stop level '"
+
+msgid "Loading policy from "
+msgstr "Loading policy from "
+
+msgid "Loading configuration from "
+msgstr "Loading configuration from "
+
+msgid "Seconds "
+msgstr "Seconds "
+
+msgid "Level     "
+msgstr "Level     "
+
+msgid "Module       "
+msgstr "Module       "
+
+msgid "Message"
+msgstr "Message"
+
+msgid "\n\n   Level\tNumber of log entries"
+msgstr "\n\n   Level\tNumber of log entries"
+
+msgid "%8s\t%5d entries.\n"
+msgstr "%8s\t%5d entries.\n"
+
+msgid "Warning: Net::LDNS not compiled with libidn, cannot handle non-ASCII names correctly."
+msgstr "Warning: Net::LDNS not compiled with libidn, cannot handle non-ASCII names correctly."
+
+msgid "CRITICAL"
+msgstr "CRITICAL"
+
+msgid "ERROR"
+msgstr "ERROR"
+
+msgid "WARNING"
+msgstr "WARNING"
+
+msgid "NOTICE"
+msgstr "NOTICE"
+
+msgid "INFO"
+msgstr "INFO"
+
+msgid "DEBUG"
+msgstr "DEBUG"
+
