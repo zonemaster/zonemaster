@@ -87,6 +87,7 @@ sub _system_translation {
         "MODULE_ERROR"          => "Fatal error in {module}: {msg}",
         "MODULE_VERSION"        => "Using module {module} version {version}.",
         "POLICY_FILE"           => "Policy was read from {name}.",
+        "POLICY_DISABLED"       => "The module {name} was disabled by the policy.",
         "UNKNOWN_METHOD"        => "Request to run unknown method {method} in module {moduke}.",
         "UNKNOWN_MODULE"        => "Request to run {method} in unknown module {module}. Known modules: {known}.",
         "SKIP_IPV4_DISABLED"    => "IPv4 is disabled, not sending query to {ns}.",

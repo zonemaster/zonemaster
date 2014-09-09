@@ -32,10 +32,15 @@ ok( exists( $methods{Basic} ), 'all_methods' );
 my @tags = Zonemaster->all_tags;
 ok( ( grep { /BASIC:HAS_NAMESERVERS/ } @tags ), 'all_tags' );
 
+my $disabled = 0;
 %module = ();
 Zonemaster->logger->callback(
     sub {
         my ( $e ) = shift;
+
+        if ( $e->tag eq 'POLICY_DISABLED' and $e->args->{name} eq 'Example') {
+            $disabled = 1;
+        }
 
         if ( $e->tag eq 'MODULE_VERSION' ) {
             $module{ $e->args->{module} } = $e->args->{version};
@@ -53,6 +58,8 @@ ok( $module{'Zonemaster::Test::Delegation'},   'Zonemaster::Test::Delegation did
 ok( $module{'Zonemaster::Test::Nameserver'},   'Zonemaster::Test::Nameserver did run.' );
 ok( $module{'Zonemaster::Test::Syntax'},       'Zonemaster::Test::Syntax did run.' );
 ok( $module{'Zonemaster::Test::Zone'},         'Zonemaster::Test::Zone did run.' );
+
+ok( $disabled, 'Blocking of disabled module was logged.' );
 
 my $filename = tmpnam();
 Zonemaster->save_cache( $filename );

@@ -111,6 +111,7 @@
       "NO_SUCH_RECORD" : "DEBUG2",
       "NS_CREATED" : "DEBUG2",
       "NS_FETCHED" : "DEBUG3",
+      "POLICY_DISABLED" : "INFO",
       "QUERY" : "DEBUG2",
       "RECURSE" : "DEBUG2",
       "RECURSE_QUERY" : "DEBUG2",

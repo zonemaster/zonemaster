@@ -541,6 +541,10 @@ msgstr "Using module {module} version {version}."
 msgid "Policy was read from {name}."
 msgstr "Policy was read from {name}."
 
+#: SYSTEM:POLICY_DISABLED
+msgid "The module {name} was disabled by the policy."
+msgstr "The module {name} was disabled by the policy."
+
 #: SYSTEM:SKIP_IPV4_DISABLED
 msgid  "IPv4 is disabled, not sending query to {ns}."
 msgstr "IPv4 is disabled, not sending query to {ns}."

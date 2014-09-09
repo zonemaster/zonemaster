@@ -43,7 +43,7 @@ sub _log_dependency_versions {
 }
 
 sub modules {
-    return grep { _policy_allowed( $_ ) } @all_test_modules;
+    return @all_test_modules;
 }
 
 sub run_all_for {
@@ -64,6 +64,12 @@ sub run_all_for {
         ## no critic (Modules::RequireExplicitInclusion)
         foreach my $mod ( __PACKAGE__->modules ) {
             Zonemaster->config->load_module_policy($mod);
+
+            if (not _policy_allowed($mod)) {
+                push @results, info( POLICY_DISABLED => {name => $mod} );
+                next;
+            }
+
             my $module = "Zonemaster::Test::$mod";
             info( MODULE_VERSION => { module => $module, version => $module->version } );
             my @res = eval { $module->all( $zone ) };
