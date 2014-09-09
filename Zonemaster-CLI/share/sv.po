@@ -4,121 +4,121 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: 0.0.5\n"
-"PO-Revision-Date: 2014-08-28\n"
+"PO-Revision-Date: 2014-09-09 15:20+0200\n"
 "Last-Translator: calle@init.se\n"
 "Language-Team: Zonemaster Team\n"
 "MIME-Version: 1.0\n"
 
 msgid "Print version information and exit."
-msgstr "Print version information and exit."
+msgstr "Skriv ut versionsinformation och avsluta."
 
 msgid "The minimum severity level to display"
-msgstr "The minimum severity level to display"
+msgstr "Den lägsta allvarlighetsgrad som skall skrivas ut."
 
 msgid "The locale to use for messages translation."
-msgstr "The locale to use for messages translation."
+msgstr "Den locale som skall användas för utskrifter."
 
 msgid "Flag indicating of output should be in JSON or not."
-msgstr "Flag indicating of output should be in JSON or not."
+msgstr "Flagga som avgör om utskrift skall göras som JSON."
 
 msgid "Flag indicating if output should be translated to human language or dumped raw."
-msgstr "Flag indicating if output should be translated to human language or dumped raw."
+msgstr "Flagga som avgör om resultat skall skrivas ut i råformat."
 
 msgid "Print timestamp on entries."
-msgstr "Print timestamp on entries."
+msgstr "Skriv ut tidsstämplar."
 
 msgid "Print level on entries."
-msgstr "Print level on entries."
+msgstr "Skriv ut allvarlighetsnivåer."
 
 msgid "Print the name of the maodule on entries."
-msgstr "Print the name of the maodule on entries."
+msgstr "Skriv ut modulnamn."
 
 msgid "A name/ip string giving a nameserver for undelegated tests. Can be given multiple times."
-msgstr "A name/ip string giving a nameserver for undelegated tests. Can be given multiple times."
+msgstr "Ett par av namn/IP som anger en namnserver att använda för odelegerade tester. Kan ges flera gånger."
 
 msgid "Name of a file to save DNS data to after running tests."
-msgstr "Name of a file to save DNS data to after running tests."
+msgstr "Namn på en fll att spara DNS-data i efter en körning."
 
 msgid "Name of a file to restore DNS data from before running test."
-msgstr "Name of a file to restore DNS data from before running test."
+msgstr "Namn på en fil att läsa in DNS-data från innan tester körs."
 
 msgid "Flag to permit or deny queries being sent via IPv4. --ipv4 permits IPv4 traffic, --no-ipv4 forbids it."
-msgstr "Flag to permit or deny queries being sent via IPv4. --ipv4 permits IPv4 traffic, --no-ipv4 forbids it."
+msgstr "Flagga som tillåter eller förbjuder användning av IPv4. --ipv4 tillåter, --no-ipv4 förbjuder."
 
 msgid "Flag to permit or deny queries being sent via IPv6. --ipv6 permits IPv6 traffic, --no-ipv6 forbids it."
-msgstr "Flag to permit or deny queries being sent via IPv6. --ipv6 permits IPv6 traffic, --no-ipv6 forbids it."
+msgstr "Flagga som tillåter eller förbjuder användning av IPv6. --ipv6 tillåter, --no-ipv6 förbjuder."
 
 msgid "Instead of running a test, list all available tests."
-msgstr "Instead of running a test, list all available tests."
+msgstr "Istället för att köra tester, skriv ut en lista med alla tillgängliga tester."
 
 msgid "Specify test to run. Should be either the name of a module, or the name of a module and the name of a method in that module separated by a \"/\" character (Example: \"Basic/basic1\"). The method specified must be one that takes a zone object as its single argument. This switch can be repeated"
-msgstr "Specify test to run. Should be either the name of a module, or the name of a module and the name of a method in that module separated by a \"/\" character (Example: \"Basic/basic1\"). The method specified must be one that takes a zone object as its single argument. This switch can be repeated"
+msgstr "Specificera tester att köra. Skall vara antingen namnet på en testmodul, eller namnet på en modul och namnet på en testmetod i den modulen separerade med ett snedstreck (exempel: \"Basic/basic1\"). Den utpekade metoden måste vara en som tar enbart ett zon-objekt som argument. Den här flaggan kan anges flera gånger."
 
 msgid "As soon as a message at this level or higher is logged, execution will stop"
-msgstr "As soon as a message at this level or higher is logged, execution will stop"
+msgstr "Avsluta testkörningen så snart ett meddelande med denna nivå eller högre registreras."
 
 msgid "Name of configuration file to load."
-msgstr "Name of configuration file to load."
+msgstr "Namnet på en konfigurationsfil att läsa in."
 
 msgid "Name of policy file to load."
-msgstr "Name of policy file to load."
+msgstr "Namnet på en policy-fil att läsa in."
 
 msgid "Strings with DS data on the form \"keytag,algorithm,type,digest\""
-msgstr "Strings with DS data on the form \"keytag,algorithm,type,digest\""
+msgstr "En sträng med DS-data på formatet \"keytag,algoritm,typ,digest\"."
 
 msgid "Print a count of the number of messages at each level"
-msgstr "Print a count of the number of messages at each level"
+msgstr "Skriv ut en summering av antalet registrerade meddelanden på varje nivå."
 
 msgid "Boolean flag for activity indicator. Defaults to on if STDOUT is a tty, off if it is not."
-msgstr "Boolean flag for activity indicator. Defaults to on if STDOUT is a tty, off if it is not."
+msgstr "Flagga för om en aktivitets-indikator skall användas. Normalt på om STDOUT är en tty, och av annars."
 
 msgid "Name of the character encoding used for command line arguments"
-msgstr "Name of the character encoding used for command line arguments"
+msgstr "Namnet på den teckenkodning som används för kommandoradsargumenten."
 
 msgid "Must give the name of a domain to test.\n"
-msgstr "Must give the name of a domain to test.\n"
+msgstr "Måste ange namnet på en domän att testa.\n"
 
 msgid "Failed to recognize stop level '"
-msgstr "Failed to recognize stop level '"
+msgstr "Kände inte igen avslutsnivån '"
 
 msgid "Loading policy from "
-msgstr "Loading policy from "
+msgstr "Laddar policy från "
 
 msgid "Loading configuration from "
-msgstr "Loading configuration from "
+msgstr "Laddar konfiguration från "
 
-msgid "Seconds "
-msgstr "Seconds "
+msgid  "Seconds "
+msgstr " Sekund "
 
 msgid "Level     "
-msgstr "Level     "
+msgstr "Nivå      "
 
 msgid "Module       "
-msgstr "Module       "
+msgstr "Modul        "
 
 msgid "Message"
-msgstr "Message"
+msgstr "Meddelande"
 
 msgid "\n\n   Level\tNumber of log entries"
-msgstr "\n\n   Level\tNumber of log entries"
+msgstr "\n\n   Nivå \tAntal loggmeddelanden"
 
 msgid "%8s\t%5d entries.\n"
-msgstr "%8s\t%5d entries.\n"
+msgstr "%8s\t%5d meddelanden.\n"
 
 msgid "Warning: Net::LDNS not compiled with libidn, cannot handle non-ASCII names correctly."
-msgstr "Warning: Net::LDNS not compiled with libidn, cannot handle non-ASCII names correctly."
+msgstr "Varning: Net::LDNS är inte kompilerad med IDNA-stöd, så enbart ASCII-namn kan hanteras."
 
 msgid "CRITICAL"
-msgstr "CRITICAL"
+msgstr "KRITISKT"
 
 msgid "ERROR"
-msgstr "ERROR"
+msgstr "FEL"
 
 msgid "WARNING"
-msgstr "WARNING"
+msgstr "VARNING"
 
 msgid "NOTICE"
-msgstr "NOTICE"
+msgstr "NOTIS"
 
 msgid "INFO"
 msgstr "INFO"
@@ -129,11 +129,11 @@ msgstr "DEBUG"
 msgid "======= "
 msgstr "======= "
 
-msgid "========= "
-msgstr "========= "
+msgid  "========= "
+msgstr "====      "
 
 msgid "============ "
 msgstr "============ "
 
 msgid "======="
-msgstr "======="
+msgstr "=========="

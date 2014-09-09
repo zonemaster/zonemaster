@@ -306,15 +306,15 @@ sub run {
         say __('Message');
 
         if ( $self->time ) {
-            print '======= ';
+            print __('======= ');
         }
         if ( $self->show_level ) {
-            print '========= ';
+            print __('========= ');
         }
         if ( $self->show_module ) {
-            print '============ ';
+            print __('============ ');
         }
-        say '=======';
+        say __('=======');
     }
 
     if ( $self->ns and @{ $self->ns } > 0 ) {
