@@ -23,6 +23,7 @@ use Zonemaster::Exception;
 use Scalar::Util qw[blessed];
 use Encode;
 use Net::LDNS;
+use POSIX qw[setlocale LC_MESSAGES];
 
 our %numeric = Zonemaster::Logger::Entry->levels;
 
@@ -193,6 +194,10 @@ sub run {
     my ( $self ) = @_;
     my @accumulator;
     my %counter;
+
+    if ($self->locale) {
+        setlocale(LC_MESSAGES,$self->locale);
+    }
 
     if ( $self->version ) {
         print_versions();
