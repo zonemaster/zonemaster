@@ -81,6 +81,9 @@ msgstr "Måste ange namnet på en domän att testa.\n"
 msgid "Failed to recognize stop level '"
 msgstr "Kände inte igen avslutsnivån '"
 
+msgid "--level must be one of CRITICAL, ERROR, WARNING, NOTICE, INFO, DEBUG, DEBUG2 or DEBUG3.\n"
+msgstr "--level måste vara en av CRITICAL, ERROR, WARNING, NOTICE, INFO, DEBUG, DEBUG2 eller DEBUG3.\n"
+
 msgid "Loading policy from "
 msgstr "Laddar policy från "
 

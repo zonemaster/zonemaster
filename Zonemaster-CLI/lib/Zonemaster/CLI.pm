@@ -230,6 +230,10 @@ sub run {
         die __("Failed to recognize stop level '") . $self->stop_level . "'.\n";
     }
 
+    if (not defined $numeric{$self->level}) {
+        die __("--level must be one of CRITICAL, ERROR, WARNING, NOTICE, INFO, DEBUG, DEBUG2 or DEBUG3.\n");
+    }
+
     Zonemaster->config->get->{net}{ipv4} = $self->ipv4;
     Zonemaster->config->get->{net}{ipv6} = $self->ipv6;
 
