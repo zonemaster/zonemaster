@@ -93,6 +93,7 @@ sub metadata {
               IPV6_DISABLED
               IPV4_ENABLED
               IPV6_ENABLED
+              A_QUERY_NO_RESPONSES
               )
         ],
     };
@@ -110,6 +111,7 @@ sub translation {
         "NO_GLUE_PREVENTS_NAMESERVER_TESTS" => "No NS records for tested zone from parent. NS tests aborted.",
         "NS_FAILED"                         => "Nameserver {source} did not return NS records. RCODE was {rcode}.",
         "NS_NO_RESPONSE"                    => "Nameserver {source} did not respond to NS query.",
+        "A_QUERY_NO_RESPONSES"              => "Nameservers did not respond to A query.",
         "HAS_NAMESERVER_NO_WWW_A_TEST"      => "Functional nameserver found. \"A\" query for www.{name} test aborted.",
         "HAS_GLUE"                          => "Nameserver for zone {parent} listed these nameservers as glue: {ns}",
         "IPV4_DISABLED"                     => "IPv4 is disabled, not sending \"{type}\" query to {ns}.",
@@ -267,6 +269,7 @@ sub basic03 {
     my @results;
 
     my $name = q{www.} . $zone->name;
+    my $response_nb = 0;
     foreach my $ns ( @{ $zone->glue } ) {
         if (not Zonemaster->config->ipv4_ok and $ns->address->version == 4) {
             push @results,
@@ -308,6 +311,7 @@ sub basic03 {
 
         my $p = $ns->query( $name, q{A} );
         next if not $p;
+        $response_nb++;
         if ( $p->has_rrs_of_type_for_name( q{A}, $name ) ) {
             push @results,
               info(
@@ -326,6 +330,13 @@ sub basic03 {
                 }
               );
         }
+    }
+
+    if (scalar( @{ $zone->glue } ) and not $response_nb) {
+        push @results,
+          info(
+            A_QUERY_NO_RESPONSES => { }
+          );
     }
 
     return @results;

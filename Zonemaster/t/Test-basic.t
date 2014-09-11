@@ -46,7 +46,7 @@ TODO: {
 
     ok( $res{IPV6_ENABLED}, q{IPV6_ENABLED} );
 
-    ok( $res{NO_A_RECORDS}, q{NO_A_RECORDS} );
+    ok( $res{A_QUERY_NO_RESPONSES}, q{A_QUERY_NO_RESPONSES} );
 
 };
 
