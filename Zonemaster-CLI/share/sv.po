@@ -111,6 +111,9 @@ msgstr "%8s\t%5d meddelanden.\n"
 msgid "Warning: Net::LDNS not compiled with libidn, cannot handle non-ASCII names correctly."
 msgstr "Varning: Net::LDNS är inte kompilerad med IDNA-stöd, så enbart ASCII-namn kan hanteras."
 
+msgid "Warning: setting locale %s failed.\n\n"
+msgstr "Varning: misslyckades med att sätta locale till '%s'.\n\n"
+
 msgid "CRITICAL"
 msgstr "KRITISKT"
 
