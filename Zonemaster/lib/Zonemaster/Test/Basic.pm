@@ -21,10 +21,24 @@ sub all {
     if ( grep { $_->tag eq q{HAS_GLUE} } @results ) {
         push @results, $class->basic02( $zone );
     }
+    else {
+        push @results,
+          info(
+            NO_GLUE_PREVENTS_NAMESERVER_TESTS => { } 
+          );
+    }
 
     # Perform BASIC3 if BASIC2 failed
     if ( not grep { $_->tag eq q{HAS_NAMESERVERS} } @results ) {
         push @results, eval { $class->basic03( $zone ) };
+    }
+    else {
+        push @results,
+          info(
+            HAS_NAMESERVER_NO_WWW_A_TEST => {
+                name => $zone->name,
+            } 
+          );
     }
 
     return @results;
@@ -55,22 +69,30 @@ sub metadata {
               HAS_GLUE
               NO_GLUE
               NO_DOMAIN
+              PARENT_REPLIES
               NO_PARENT_RESPONSE
               )
         ],
         basic02 => [
             qw(
-              NS_FAILED NS_NO_RESPONSE
+              NO_GLUE_PREVENTS_NAMESERVER_TESTS
+              NS_FAILED
+              NS_NO_RESPONSE
               HAS_NAMESERVERS
               IPV4_DISABLED
               IPV6_DISABLED
+              IPV4_ENABLED
+              IPV6_ENABLED
               )
         ],
         basic03 => [
             qw(
+              NO_NAMESERVER_PREVENTS_WWW_A_TEST
               HAS_A_RECORDS
               IPV4_DISABLED
               IPV6_DISABLED
+              IPV4_ENABLED
+              IPV6_ENABLED
               )
         ],
     };
@@ -78,16 +100,22 @@ sub metadata {
 
 sub translation {
     return {
-        "NO_GLUE" => "Nameservers for \"{parent}\" provided no NS records for tested zone. RCODE given was {rcode}.",
-        "HAS_A_RECORDS"      => "Nameserver {source} returned A record(s) for {name}",
-        "NO_DOMAIN"          => "Nameserver for zone {parent} responded with NXDOMAIN to query for glue.",
-        "HAS_NAMESERVERS"    => "Nameserver {source} listed these servers as glue: {ns}",
-        "NO_PARENT_RESPONSE" => "No response from nameserver for zone {parent} when trying to fetch glue.",
-        "NS_FAILED"          => "Nameserver {source} did not return NS records. RCODE was {rcode}.",
-        "NS_NO_RESPONSE"     => "Nameserver {source} did not respond to NS query.",
-        "HAS_GLUE"           => "Nameserver for zone {parent} listed these nameservers as glue: {ns}",
-        "IPV4_DISABLED"      => "IPv4 is disabled, not sending query to {ns}.",
-        "IPV6_DISABLED"      => "IPv6 is disabled, not sending query to {ns}.",
+        "NO_GLUE"                           => "Nameservers for \"{parent}\" provided no NS records for tested zone. RCODE given was {rcode}.",
+        "HAS_A_RECORDS"                     => "Nameserver {source} returned A record(s) for {name}",
+        "NO_A_RECORDS"                      => "Nameserver {source} did not return A record(s) for {name}",
+        "NO_DOMAIN"                         => "Nameserver for zone {parent} responded with NXDOMAIN to query for glue.",
+        "HAS_NAMESERVERS"                   => "Nameserver {source} listed these servers as glue: {ns}",
+        "PARENT_REPLIES"                    => "Nameserver for zone {parent} replies when trying to fetch glue.",
+        "NO_PARENT_RESPONSE"                => "No response from nameserver for zone {parent} when trying to fetch glue.",
+        "NO_GLUE_PREVENTS_NAMESERVER_TESTS" => "No NS records for tested zone from parent. NS tests aborted.",
+        "NS_FAILED"                         => "Nameserver {source} did not return NS records. RCODE was {rcode}.",
+        "NS_NO_RESPONSE"                    => "Nameserver {source} did not respond to NS query.",
+        "HAS_NAMESERVER_NO_WWW_A_TEST"      => "Functional nameserver found. \"A\" query for www.{name} test aborted.",
+        "HAS_GLUE"                          => "Nameserver for zone {parent} listed these nameservers as glue: {ns}",
+        "IPV4_DISABLED"                     => "IPv4 is disabled, not sending \"{type}\" query to {ns}.",
+        "IPV4_ENABLED"                      => "IPv4 is enabled, can send \"{type}\" query to {ns}.",
+        "IPV6_DISABLED"                     => "IPv6 is disabled, not sending \"{type}\" query to {ns}.",
+        "IPV6_ENABLED"                      => "IPv6 is enabled, can send \"{type}\" query to {ns}.",
     };
 }
 
@@ -107,7 +135,15 @@ sub basic01 {
 
     my $p = $parent->query_one( $zone->name, q{NS} );
 
-    if ( not $p ) {
+    if ( $p ) {
+        push @results,
+          info(
+            PARENT_REPLIES => {
+                parent => $parent->name->string,
+            }
+          );
+    }
+    else {
         push @results,
           info(
             NO_PARENT_RESPONSE => {
@@ -155,13 +191,41 @@ sub basic02 {
 
     foreach my $ns ( @{ $zone->glue } ) {
         if (not Zonemaster->config->ipv4_ok and $ns->address->version == 4) {
-            info( IPV4_DISABLED => { ns => "$ns" });
+            push @results,
+              info(
+                IPV4_DISABLED => {
+                    ns   => "$ns",
+                    type => q{NS},
+                }
+              );
             next;
+        }
+        elsif (Zonemaster->config->ipv4_ok and $ns->address->version == 4)  {
+              info(
+                IPV4_ENABLED => {
+                    ns   => "$ns",
+                    type => q{NS},
+                }
+              );
         }
 
         if (not Zonemaster->config->ipv6_ok and $ns->address->version == 6) {
-            info( IPV6_DISABLED => { ns => "$ns" });
+            push @results,
+              info(
+                IPV6_DISABLED => {
+                    ns   => "$ns",
+                    type => q{NS},
+                }
+              );
             next;
+        }
+        elsif (Zonemaster->config->ipv6_ok and $ns->address->version == 6) {
+              info(
+                IPV6_ENABLED => {
+                    ns   => "$ns",
+                    type => q{NS},
+                }
+              );
         }
 
         my $p = $ns->query( $zone->name, q{NS} );
@@ -205,13 +269,41 @@ sub basic03 {
     my $name = q{www.} . $zone->name;
     foreach my $ns ( @{ $zone->glue } ) {
         if (not Zonemaster->config->ipv4_ok and $ns->address->version == 4) {
-            info( IPV4_DISABLED => { ns => "$ns" });
+            push @results,
+              info(
+                IPV4_DISABLED => {
+                    ns   => "$ns",
+                    type => q{A},
+                }
+              );
             next;
+        }
+        else {
+              info(
+                IPV4_ENABLED => {
+                    ns   => "$ns",
+                    type => q{NS},
+                }
+              );
         }
 
         if (not Zonemaster->config->ipv6_ok and $ns->address->version == 6) {
-            info( IPV6_DISABLED => { ns => "$ns" });
+            push @results,
+              info(
+                IPV6_DISABLED => {
+                    ns   => "$ns",
+                    type => q{A},
+                }
+              );
             next;
+        }
+        else {
+              info(
+                IPV6_ENABLED => {
+                    ns   => "$ns",
+                    type => q{NS},
+                }
+              );
         }
 
         my $p = $ns->query( $name, q{A} );
@@ -220,6 +312,15 @@ sub basic03 {
             push @results,
               info(
                 HAS_A_RECORDS => {
+                    source => $ns->string,
+                    name   => $name,
+                }
+              );
+        }
+        else {
+            push @results,
+              info(
+                NO_A_RECORDS => {
                     source => $ns->string,
                     name   => $name,
                 }
