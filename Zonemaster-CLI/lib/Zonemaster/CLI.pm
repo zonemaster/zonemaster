@@ -196,7 +196,10 @@ sub run {
     my %counter;
 
     if ($self->locale) {
-        setlocale(LC_MESSAGES,$self->locale);
+        my $loc = setlocale(LC_MESSAGES,$self->locale);
+        if (not defined $loc) {
+            printf STDERR __("Warning: setting locale %s failed.\n\n"), $self->locale;
+        }
     }
 
     if ( $self->version ) {
