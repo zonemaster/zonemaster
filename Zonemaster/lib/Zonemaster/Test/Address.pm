@@ -38,24 +38,26 @@ Readonly::Array our @IPV4_SPECIAL_ADDRESSES => (
 );
 
 Readonly::Array our @IPV6_SPECIAL_ADDRESSES => (
-    { ip => Net::IP->new( q{::1/128} ),       name => q{Loopback Address},           reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{::/128} ),        name => q{Unspecified Address},        reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{::ffff:0:0/96} ), name => q{IPv4-mapped Address},        reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{64:ff9b::/96} ),  name => q{IPv4-IPv6 Translation},      reference => q{RFC 6052} },
-    { ip => Net::IP->new( q{100::/64} ),      name => q{Discard-Only Address Block}, reference => q{RFC 6666} },
-    { ip => Net::IP->new( q{2001::/23} ),     name => q{IETF Protocol Assignments},  reference => q{RFC 2928} },
-    { ip => Net::IP->new( q{2001::/32} ),     name => q{TEREDO},                     reference => q{RFC 4380} },
-    { ip => Net::IP->new( q{2001:2::/48} ),   name => q{Benchmarking},               reference => q{RFC 5180} },
-    { ip => Net::IP->new( q{2001:db8::/32} ), name => q{Documentation},              reference => q{RFC 3849} },
-    { ip => Net::IP->new( q{2001:10::/28} ),  name => q{Deprecated (ORCHID)},        reference => q{RFC 4843} },
-    { ip => Net::IP->new( q{2002::/16} ),     name => q{6to4},                       reference => q{RFC 3056} },
-    { ip => Net::IP->new( q{fc00::/7} ),      name => q{Unique-Local},               reference => q{RFC 4193} },
-    { ip => Net::IP->new( q{fe80::/10} ),     name => q{Linked-Scoped Unicast},      reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{::/96} ),     name => q{Deprecated (IPv4-compatible Address)}, reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{5f00::/8} ),  name => q{unallocated (ex 6bone)},               reference => q{RFC 3701} },
-    { ip => Net::IP->new( q{3ffe::/16} ), name => q{unallocated (ex 6bone)},               reference => q{RFC 3701} },
-    { ip => Net::IP->new( q{ff00::/8} ),  name => q{IPv6 multicast addresses},             reference => q{RFC 4291} },
+    { ip => Net::IP->new( q{::1/128} ),       name => q{Loopback Address},                     reference => q{RFC 4291} },
+    { ip => Net::IP->new( q{::/128} ),        name => q{Unspecified Address},                  reference => q{RFC 4291} },
+    { ip => Net::IP->new( q{::ffff:0:0/96} ), name => q{IPv4-mapped Address},                  reference => q{RFC 4291} },
+    { ip => Net::IP->new( q{64:ff9b::/96} ),  name => q{IPv4-IPv6 Translation},                reference => q{RFC 6052} },
+    { ip => Net::IP->new( q{100::/64} ),      name => q{Discard-Only Address Block},           reference => q{RFC 6666} },
+    { ip => Net::IP->new( q{2001::/23} ),     name => q{IETF Protocol Assignments},            reference => q{RFC 2928} },
+    { ip => Net::IP->new( q{2001::/32} ),     name => q{TEREDO},                               reference => q{RFC 4380} },
+    { ip => Net::IP->new( q{2001:2::/48} ),   name => q{Benchmarking},                         reference => q{RFC 5180} },
+    { ip => Net::IP->new( q{2001:db8::/32} ), name => q{Documentation},                        reference => q{RFC 3849} },
+    { ip => Net::IP->new( q{2001:10::/28} ),  name => q{Deprecated (ORCHID)},                  reference => q{RFC 4843} },
+    { ip => Net::IP->new( q{2002::/16} ),     name => q{6to4},                                 reference => q{RFC 3056} },
+    { ip => Net::IP->new( q{fc00::/7} ),      name => q{Unique-Local},                         reference => q{RFC 4193} },
+    { ip => Net::IP->new( q{fe80::/10} ),     name => q{Linked-Scoped Unicast},                reference => q{RFC 4291} },
+    { ip => Net::IP->new( q{::/96} ),         name => q{Deprecated (IPv4-compatible Address)}, reference => q{RFC 4291} },
+    { ip => Net::IP->new( q{5f00::/8} ),      name => q{unallocated (ex 6bone)},               reference => q{RFC 3701} },
+    { ip => Net::IP->new( q{3ffe::/16} ),     name => q{unallocated (ex 6bone)},               reference => q{RFC 3701} },
+#    { ip => Net::IP->new( q{::/0} ),          name => q{Default route},                        reference => q{RFC 5156} },
+    { ip => Net::IP->new( q{ff00::/8} ),      name => q{IPv6 multicast addresses},             reference => q{RFC 4291} },
 );
+
 ###
 ### Entry Points
 ###
@@ -86,17 +88,20 @@ sub metadata {
         address01 => [
             qw(
               NAMESERVER_IP_PRIVATE_NETWORK
+              NO_IP_PRIVATE_NETWORK
               )
         ],
         address02 => [
             qw(
               NAMESERVER_IP_WITHOUT_REVERSE
+              NAMESERVERS_IP_WITH_REVERSE
               )
         ],
         address03 => [
             qw(
               NAMESERVER_IP_WITHOUT_REVERSE
               NAMESERVER_IP_PTR_MISMATCH
+              NAMESERVER_IP_PTR_MATCH
               )
         ],
         address04 => [
@@ -110,14 +115,14 @@ sub metadata {
 
 sub translation {
     return {
-        "NAMESERVER_IP_WITHOUT_REVERSE" => "Nameserver {ns} has an IP address ({address}) without PTR configured.",
-        "NAMESERVER_IP_PTR_MISMATCH" =>
-          "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names}).",
-        "NAMESERVER_IPV6_ADDRESSES_NOT_BOGON" =>
-          "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix.",
-        "NAMESERVER_IPV6_ADDRESS_BOGON" => "Nameserver {ns} IPv6 address {address} is part of a bogon prefix.",
-        "NAMESERVER_IP_PRIVATE_NETWORK" =>
-          "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'.",
+        "NAMESERVER_IP_WITHOUT_REVERSE"       => "Nameserver {ns} has an IP address ({address}) without PTR configured.",
+        "NAMESERVER_IP_PTR_MISMATCH"          => "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names}).",
+        "NAMESERVER_IPV6_ADDRESSES_NOT_BOGON" => "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix.",
+        "NAMESERVER_IPV6_ADDRESS_BOGON"       => "Nameserver {ns} IPv6 address {address} is part of a bogon prefix.",
+        "NAMESERVER_IP_PRIVATE_NETWORK"       => "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'.",
+        "NO_IP_PRIVATE_NETWORK"               => "All Nameserver addresses are in the routable public addressing space.",
+        "NAMESERVERS_IP_WITH_REVERSE"         => "Reverse DNS entry exist for all Nameserver IP addresses",
+        "NAMESERVER_IP_PTR_MATCH"             => "All reverse DNS entry matches name server name",
     };
 }
 
@@ -174,6 +179,13 @@ sub address01 {
 
     } ## end foreach my $local_ns ( @{ $zone...})
 
+    if (not scalar @results) {
+        push @results,
+          info(
+            NO_IP_PRIVATE_NETWORK => { }
+          );
+    }
+
     return @results;
 } ## end sub address01
 
@@ -210,6 +222,13 @@ sub address02 {
         $ips{ $local_ns->address->short }++;
 
     } ## end foreach my $local_ns ( @{ $zone...})
+
+    if ((scalar @{ $zone->ns } or scalar @{ $zone->glue }) and not scalar @results) {
+        push @results,
+          info(
+            NAMESERVERS_IP_WITH_REVERSE => { }
+          );
+    }
 
     return @results;
 } ## end sub address02
@@ -260,6 +279,14 @@ sub address03 {
         $ips{ $local_ns->address->short }++;
 
     } ## end foreach my $local_ns ( @{ $zone...})
+
+    if ((scalar @{ $zone->ns } or scalar @{ $zone->glue }) and not scalar @results) {
+        push @results,
+          info(
+            NAMESERVER_IP_PTR_MATCH => { }
+          );
+    }
+
     return @results;
 } ## end sub address03
 
