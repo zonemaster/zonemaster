@@ -9,6 +9,10 @@ msgstr ""
 "Language-Team: Zonemaster Team\n"
 "MIME-Version: 1.0\n"
 
+#: ADDRESS:NAMESERVERS_IP_WITH_REVERSE
+msgid  "Reverse DNS entry exist for all Nameserver IP addresses"
+msgstr "Reverse DNS entry exist for all Nameserver IP addresses"
+
 #: ADDRESS:NAMESERVER_IPV6_ADDRESSES_NOT_BOGON
 msgid  "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix."
 msgstr "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix."
@@ -21,6 +25,10 @@ msgstr "Nameserver {ns} IPv6 address {address} is part of a bogon prefix."
 msgid  "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'."
 msgstr "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'."
 
+#: ADDRESS:NAMESERVER_IP_PTR_MATCH
+msgid  "All reverse DNS entry matches name server name"
+msgstr "All reverse DNS entry matches name server name"
+
 #: ADDRESS:NAMESERVER_IP_PTR_MISMATCH
 msgid  "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names})."
 msgstr "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names})."
@@ -28,6 +36,14 @@ msgstr "Nameserver {ns} has an IP address ({address}) with mismatched PTR result
 #: ADDRESS:NAMESERVER_IP_WITHOUT_REVERSE
 msgid  "Nameserver {ns} has an IP address ({address}) without PTR configured."
 msgstr "Nameserver {ns} has an IP address ({address}) without PTR configured."
+
+#: ADDRESS:NO_IP_PRIVATE_NETWORK
+msgid  "All Nameserver addresses are in the routable public addressing space."
+msgstr "All Nameserver addresses are in the routable public addressing space."
+
+#: BASIC:A_QUERY_NO_RESPONSES
+msgid  "Nameservers did not respond to A query."
+msgstr "Nameservers did not respond to A query."
 
 #: BASIC:HAS_A_RECORDS
 msgid  "Nameserver {source} returned A record(s) for {name}"
@@ -41,6 +57,30 @@ msgstr "Nameserver for zone {parent} listed these nameservers as glue: {ns}"
 msgid  "Nameserver {source} listed these servers as glue: {ns}"
 msgstr "Nameserver {source} listed these servers as glue: {ns}"
 
+#: BASIC:HAS_NAMESERVER_NO_WWW_A_TEST
+msgid  "Functional nameserver found. \"A\" query for www.{name} test aborted."
+msgstr "Functional nameserver found. \"A\" query for www.{name} test aborted."
+
+#: BASIC:IPV4_DISABLED
+msgid  "IPv4 is disabled, not sending \"{type}\" query to {ns}."
+msgstr "IPv4 is disabled, not sending \"{type}\" query to {ns}."
+
+#: BASIC:IPV4_ENABLED
+msgid  "IPv4 is enabled, can send \"{type}\" query to {ns}."
+msgstr "IPv4 is enabled, can send \"{type}\" query to {ns}."
+
+#: BASIC:IPV6_DISABLED
+msgid  "IPv6 is disabled, not sending \"{type}\" query to {ns}."
+msgstr "IPv6 is disabled, not sending \"{type}\" query to {ns}."
+
+#: BASIC:IPV6_ENABLED
+msgid  "IPv6 is enabled, can send \"{type}\" query to {ns}."
+msgstr "IPv6 is enabled, can send \"{type}\" query to {ns}."
+
+#: BASIC:NO_A_RECORDS
+msgid  "Nameserver {source} did not return A record(s) for {name}"
+msgstr "Nameserver {source} did not return A record(s) for {name}"
+
 #: BASIC:NO_DOMAIN
 msgid  "Nameserver for zone {parent} responded with NXDOMAIN to query for glue."
 msgstr "Nameserver for zone {parent} responded with NXDOMAIN to query for glue."
@@ -48,6 +88,10 @@ msgstr "Nameserver for zone {parent} responded with NXDOMAIN to query for glue."
 #: BASIC:NO_GLUE
 msgid  "Nameservers for \"{parent}\" provided no NS records for tested zone. RCODE given was {rcode}."
 msgstr "Nameservers for \"{parent}\" provided no NS records for tested zone. RCODE given was {rcode}."
+
+#: BASIC:NO_GLUE_PREVENTS_NAMESERVER_TESTS
+msgid  "No NS records for tested zone from parent. NS tests aborted."
+msgstr "No NS records for tested zone from parent. NS tests aborted."
 
 #: BASIC:NO_PARENT_RESPONSE
 msgid  "No response from nameserver for zone {parent} when trying to fetch glue."
@@ -60,6 +104,10 @@ msgstr "Nameserver {source} did not return NS records. RCODE was {rcode}."
 #: BASIC:NS_NO_RESPONSE
 msgid  "Nameserver {source} did not respond to NS query."
 msgstr "Nameserver {source} did not respond to NS query."
+
+#: BASIC:PARENT_REPLIES
+msgid  "Nameserver for zone {parent} replies when trying to fetch glue."
+msgstr "Nameserver for zone {parent} replies when trying to fetch glue."
 
 #: CONNECTIVITY:ADDRESS_TYPE_NOT_IMPLEMENTED
 msgid  "Service provided by - {service} - does not work with IPv{type} addresses"
@@ -401,6 +449,10 @@ msgstr "At least one RRSIG correctly signs the SOA RRset."
 msgid  "The number of NSEC3 iterations is {count}, which is too high for key length {keylength}."
 msgstr "The number of NSEC3 iterations is {count}, which is too high for key length {keylength}."
 
+#: EXAMPLE:EXAMPLE_TAG
+msgid  "This is an example tag."
+msgstr "This is an example tag."
+
 #: NAMESERVER:ANSWER_BAD_RCODE
 msgid  "Nameserver {ns}/{address} answered AAAA query with an unexpected rcode ({rcode})."
 msgstr "Nameserver {ns}/{address} answered AAAA query with an unexpected rcode ({rcode})."
@@ -514,7 +566,7 @@ msgid  "Not enough data about {zone} was found to be able to run tests."
 msgstr "Not enough data about {zone} was found to be able to run tests."
 
 #: SYSTEM:CONFIG_FILE
-msgid "Configuration was read from {name}."
+msgid  "Configuration was read from {name}."
 msgstr "Configuration was read from {name}."
 
 #: SYSTEM:DEPENDENCY_VERSION
@@ -537,13 +589,13 @@ msgstr "Fatal error in {module}: {msg}"
 msgid  "Using module {module} version {version}."
 msgstr "Using module {module} version {version}."
 
-#: SYSTEM:POLICY_FILE
-msgid "Policy was read from {name}."
-msgstr "Policy was read from {name}."
-
 #: SYSTEM:POLICY_DISABLED
-msgid "The module {name} was disabled by the policy."
+msgid  "The module {name} was disabled by the policy."
 msgstr "The module {name} was disabled by the policy."
+
+#: SYSTEM:POLICY_FILE
+msgid  "Policy was read from {name}."
+msgstr "Policy was read from {name}."
 
 #: SYSTEM:SKIP_IPV4_DISABLED
 msgid  "IPv4 is disabled, not sending query to {ns}."

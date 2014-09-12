@@ -4,7 +4,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: 0.0.4\n"
-"PO-Revision-Date: 2014-09-01 12:09+0200\n"
+"PO-Revision-Date: 2014-09-12 09:51+0200\n"
 "Last-Translator: calle@init.se\n"
 "Language-Team: Zonemaster Team\n"
 "MIME-Version: 1.0\n"
@@ -617,3 +617,54 @@ msgstr "SOA-postens 'minimum'-värde ({minimum}) är högre än rekommenderat ({
 msgid  "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum})."
 msgstr "SOA-postens 'minimum'-värde ({minimum}) är lägre än rekommenderat ({lowest_minimum})."
 
+#: ADDRESS:NAMESERVERS_IP_WITH_REVERSE
+msgid   "Reverse DNS entry exist for all Nameserver IP addresses"
+msgstr "Bakåtuppslagning finns för samtliga namnserveradresser."
+
+#: ADDRESS:NAMESERVER_IP_PTR_MATCH
+msgid   "All reverse DNS entry matches name server name"
+msgstr "Alla bakåtuppslagningar stämmer överens med motsvarande namnservernamn."
+
+#: ADDRESS:NO_IP_PRIVATE_NETWORK
+msgid   "All Nameserver addresses are in the routable public addressing space."
+msgstr "Alla namnserveradresser finns i den publikt routningsbara addressrymden."
+
+#: BASIC:A_QUERY_NO_RESPONSES
+msgid   "Nameservers did not respond to A query."
+msgstr "Namnservern svarade inte på en A-fråga."
+
+#: BASIC:HAS_NAMESERVER_NO_WWW_A_TEST
+msgid   "Functional nameserver found. \"A\" query for www.{name} test aborted."
+msgstr "En fungerande namnserver hittades. Testet om \"A\"-fråga för www.{name} behövdes inte."
+
+#: BASIC:IPV4_DISABLED
+msgid   "IPv4 is disabled, not sending \"{type}\" query to {ns}."
+msgstr "IPv4 är avstängt, skickar inte \"{type}\"-fråga till {ns}."
+
+#: BASIC:IPV4_ENABLED
+msgid   "IPv4 is enabled, can send \"{type}\" query to {ns}."
+msgstr "IPv4 är påslaget, kan skicka \"{type}\"-fråga till {ns}."
+
+#: BASIC:IPV6_DISABLED
+msgid   "IPv6 is disabled, not sending \"{type}\" query to {ns}."
+msgstr "IPv6 är avstängt, skickar inte \"{type}\"-fråga till {ns}."
+
+#: BASIC:IPV6_ENABLED
+msgid   "IPv6 is enabled, can send \"{type}\" query to {ns}."
+msgstr "IPv6 är påslaget, kan skicka \"{type}\"-fråga till {ns}."
+
+#: BASIC:NO_A_RECORDS
+msgid   "Nameserver {source} did not return A record(s) for {name}"
+msgstr "Namnservern {source} svarade inte med några A-poster för {name}"
+
+#: BASIC:NO_GLUE_PREVENTS_NAMESERVER_TESTS
+msgid   "No NS records for tested zone from parent. NS tests aborted."
+msgstr "Inga NS-poster för den testade zonen från föräldern. NS-tester avbryts."
+
+#: BASIC:PARENT_REPLIES
+msgid   "Nameserver for zone {parent} replies when trying to fetch glue."
+msgstr "Namnserver för zonen {parent} svarade på försök att hämta glue."
+
+#: EXAMPLE:EXAMPLE_TAG
+msgid   "This is an example tag."
+msgstr "Detta är en exempel-tagg."
