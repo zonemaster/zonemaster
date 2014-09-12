@@ -23,7 +23,7 @@ Security and Performance testing are not included.
 |GR04|On launching the URL opens with a default simple view  |            |
 |GR05|The simple view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.   |            |
 |GR06|The simple view should support an advanced view expanding when the checkbox is enabled|            |
-|GR07|The advanced view should support the possibility of enabling or disabling IPv4 or IPv6 or both|            |
+|GR07|The advanced view should support the possibility of enabling or disabling IPv4 or IPv6 |            |
 |GR08|The advanced view should support the possibility of choosing a profile from multiple profiles|            |
 |GR09|The advanced view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.   |            |
 |GR10|The simple view should have a shortcut to undelegated view and FAQ|            |
@@ -41,7 +41,7 @@ Security and Performance testing are not included.
 |GR22|Check the display of appropriate content on clicking each link |            |
 |GR23|Check the tool displays the client IP address  |            |
 |GR24|Able to specify delegation parameters  |            |
-|GR25|Able to specify to stop the test on a fatal error   |            |
+|GR25|Able to specify to stop the test on a fatal error (For release 1.1)   |            |
 |GR26|Check all the terms (such as menus, input fields) are appropriate   |            |
 |GR27|Afnic and .SE logo in the main page   |            |
 |FR01|Identifies the preference of connected user's language |            |
@@ -53,8 +53,8 @@ Security and Performance testing are not included.
 |FR07|Provide the possibility to see more information about encountered errors within the simple view |            |
 |FR08|Provide a list of previous runs for the domain and should be paginated |            |
 |FR09|The list of previous runs should contain links to the previous tests |            |
-|FR10|For delegated zones, the GUI should be able to run tests by just providing the domain nmae |            |
-|FR11|For delegated zones, the GUI should be able to run the test with name servers as input (which will be optional) |            |
+|FR10|The list of previous runs should clearly differentiate that the source of test has been normal, undelegate or batch |            |
+|FR11|For delegated zones, the GUI should be able to run tests by just providing the domain nmae |            |
 |FR12|For undelegated zones, the GUI should be able to run the test with atleast one name server as input |            |
 |FR13|For undelegated zones, the user must be able to submit one or more DS record(s) for use with DNSSEC |            |
 |FR14|Verify the GUI runs with different test profiles|            |
@@ -62,13 +62,12 @@ Security and Performance testing are not included.
 |FR16|Should be able to export the result in TEXT format|            |
 |FR17|Should be able to show a progress bar with a rough estimate of the total test progress|            |
 |FR18|Should be able to tell the user what specific test it is currently running near to the progress bar|            |
-|FR19|Able to stop the test on a fatal error if the user has given in the GUI input to do so|            |
-|FR20|Check whether the input field in the simple view is actually a valid delegated domain name |            |
-|FR21|Check for illegal characters as in SQL injections and illegal double dashes etc.  |            |
-|FR22|Check label length not greater than 64  |            |
-|FR23|Check domain length not greater than 256  |            |
-|FR24|Check whether a default "test profile"  is mandatorily selected in the advanced view |            |
-|FR25|Compare the results of a well configured domain name with ZC and DC |            |
-|FR26|Compare the results of different broken  domain names with ZC and DC |            |
-|FR27|In the undelegated domain check whether IP fields autocomplete when the associated NS field is added |            |
+|FR19|Check whether the input field in the simple view is actually a valid delegated domain name |            |
+|FR20|Check for illegal characters as in SQL injections and illegal double dashes etc.  |            |
+|FR21|Check label length not greater than 64  |            |
+|FR22|Check domain length not greater than 256  |            |
+|FR23|Check whether a default "test profile"  is mandatorily selected in the advanced view |            |
+|FR24|Compare the results of a well configured domain name with ZC and DC |            |
+|FR25|Compare the results of different broken  domain names with ZC and DC |            |
+|FR26|In the undelegated domain check whether IP fields autocomplete when the associated NS field is added |            |
 
