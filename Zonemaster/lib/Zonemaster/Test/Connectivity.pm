@@ -122,6 +122,7 @@ sub metadata {
               NAMESERVERS_WITH_UNIQ_AS
               NAMESERVERS_IPV4_WITH_UNIQ_AS
               NAMESERVERS_IPV6_WITH_UNIQ_AS
+              NAMESERVERS_WITH_MULTIPLE_AS
               )
         ],
     };
@@ -134,10 +135,11 @@ sub translation {
         "NAMESERVERS_WITH_UNIQ_AS"            => "All nameservers are in the same AS ({asn}).",
         "NAMESERVERS_IPV4_WITH_UNIQ_AS"       => "All nameservers IPv4 addresses are in the same AS ({asn}).",
         "NAMESERVER_NO_UDP_53"                => "Nameserver {ns}/{address} not accessible over UDP on port 53.",
-        "ADDRESS_TYPE_NOT_IMPLEMENTED"  => "Service provided by - {service} - does not work with IPv{type} addresses",
-        "NAMESERVER_HAS_TCP_53"         => "Nameserver {ns}/{address} accessible over TCP on port 53.",
-        "NAMESERVERS_IPV6_WITH_UNIQ_AS" => "All nameservers IPv6 addresses are in the same AS ({asn}).",
-        "NAMESERVER_NO_TCP_53"          => "Nameserver {ns}/{address} not accessible over TCP on port 53.",
+        "ADDRESS_TYPE_NOT_IMPLEMENTED"        => "Service provided by - {service} - does not work with IPv{type} addresses",
+        "NAMESERVER_HAS_TCP_53"               => "Nameserver {ns}/{address} accessible over TCP on port 53.",
+        "NAMESERVERS_IPV6_WITH_UNIQ_AS"       => "All nameservers IPv6 addresses are in the same AS ({asn}).",
+        "NAMESERVER_NO_TCP_53"                => "Nameserver {ns}/{address} not accessible over TCP on port 53.",
+        "NAMESERVERS_WITH_MULTIPLE_AS"        => "Domain's authoritative nameservers do not belong to the same AS.",
     };
 }
 
@@ -354,22 +356,27 @@ sub connectivity03 {
           );
     }
     else {
-        if ( scalar keys %{ $asns{$IP_VERSION_4} } == 1 ) {
-            push @results,
-              info(
-                NAMESERVERS_IPV4_WITH_UNIQ_AS => {
-                    asn => minstr( keys %{ $asns{$IP_VERSION_4} } ),
-                }
-              );
-        }
-        if ( scalar keys %{ $asns{$IP_VERSION_6} } == 1 ) {
-            push @results,
-              info(
-                NAMESERVERS_IPV6_WITH_UNIQ_AS => {
-                    asn => minstr( keys %{ $asns{$IP_VERSION_6} } ),
-                }
-              );
-        }
+        push @results,
+          info(
+            NAMESERVERS_WITH_MULTIPLE_AS => { }
+          );
+    }
+
+    if ( scalar keys %{ $asns{$IP_VERSION_4} } == 1 ) {
+        push @results,
+          info(
+            NAMESERVERS_IPV4_WITH_UNIQ_AS => {
+                asn => minstr( keys %{ $asns{$IP_VERSION_4} } ),
+            }
+          );
+    }
+    if ( scalar keys %{ $asns{$IP_VERSION_6} } == 1 ) {
+        push @results,
+          info(
+            NAMESERVERS_IPV6_WITH_UNIQ_AS => {
+                asn => minstr( keys %{ $asns{$IP_VERSION_6} } ),
+            }
+          );
     }
 
     return @results;
