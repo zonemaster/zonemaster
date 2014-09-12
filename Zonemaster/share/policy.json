@@ -47,7 +47,7 @@
       "ONE_SOA_RNAME" : "INFO",
       "ONE_SOA_SERIAL" : "INFO",
       "ONE_SOA_TIME_PARAMETER_SET" : "INFO",
-      "SOA_RNAME" : "INFO",,
+      "SOA_RNAME" : "INFO",
       "SOA_SERIAL" : "INFO",
       "SOA_TIME_PARAMETER_SET" : "INFO"
    },
