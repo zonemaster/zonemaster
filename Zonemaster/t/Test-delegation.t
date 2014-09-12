@@ -28,6 +28,29 @@ ok( $res{TOTAL_NAME_MISMATCH}, q{TOTAL_NAME_MISMATCH} );
 %res = map { $_->tag => $_ } Zonemaster->test_module( q{delegation}, q{bao.tf} );
 ok( $res{IS_NOT_AUTHORITATIVE}, q{IS_NOT_AUTHORITATIVE} );
 
+TODO: {
+    local $TODO = "Need to find domain name with that error";
+
+    ok( $res{REFERRAL_SIZE_LARGE}, q{REFERRAL_SIZE_LARGE} );
+
+    ok( $res{NS_RR_IS_CNAME}, q{NS_RR_IS_CNAME} );
+
+    ok ( $res{SOA_NOT_EXISTS}, q{SOA_NOT_EXISTS} );
+
+    ok ( $res{NOT_ENOUGH_NS_GLUE}, q{NOT_ENOUGH_NS_GLUE} );
+
+    ok ( $res{NOT_ENOUGH_NS}, q{NOT_ENOUGH_NS} );
+
+    ok ( $res{DISTINCT_IP_ADDRESS}, q{DISTINCT_IP_ADDRESS} );
+
+    ok ( $res{ARE_AUTHORITATIVE}, q{ARE_AUTHORITATIVE} );
+
+    ok ( $res{NS_RR_NO_CNAME}, q{NS_RR_NO_CNAME} );
+
+    ok ( $res{SOA_EXISTS}, q{SOA_EXISTS} );
+
+};
+
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
 }
