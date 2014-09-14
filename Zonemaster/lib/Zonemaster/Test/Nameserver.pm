@@ -35,12 +35,14 @@ sub metadata {
         nameserver01 => [
             qw(
               IS_A_RECURSOR
+              NO_RECURSOR
               )
         ],
         nameserver02 => [
             qw(
               EDNS0_BAD_QUERY
               EDNS0_BAD_ANSWER
+              EDNS0_SUPPORT
               )
         ],
         nameserver03 => [
@@ -51,6 +53,7 @@ sub metadata {
         ],
         nameserver04 => [
             qw(
+              DIFFERENT_SOURCE_IP
               SAME_SOURCE_IP
               )
         ],
@@ -65,15 +68,17 @@ sub metadata {
 
 sub translation {
     return {
-        "EDNS0_BAD_QUERY" => "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)",
-        "SAME_SOURCE_IP" =>
-          "Nameserver {ns}/{address} replies on a SOA query with a different source address ({source}).",
-        "AXFR_AVAILABLE"   => "Nameserver {ns}/{address} allow zone transfer using AXFR.",
-        "AXFR_FAILURE"     => "AXFR not available on nameserver {ns}/{address}.",
-        "QUERY_DROPPED"    => "Nameserver {ns}/{address} dropped AAAA query.",
-        "IS_A_RECURSOR"    => "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}.",
-        "ANSWER_BAD_RCODE" => "Nameserver {ns}/{address} answered AAAA query with an unexpected rcode ({rcode}).",
-        "EDNS0_BAD_ANSWER" => "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)",
+        "AAAA_WELL_PROCESSED" => "The following nameservers answer AAAA queries without problems : {names}.",
+        "EDNS0_BAD_QUERY"     => "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)",
+        "DIFFERENT_SOURCE_IP" => "Nameserver {ns}/{address} replies on a SOA query with a different source address ({source}).",
+        "AXFR_AVAILABLE"      => "Nameserver {ns}/{address} allow zone transfer using AXFR.",
+        "AXFR_FAILURE"        => "AXFR not available on nameserver {ns}/{address}.",
+        "QUERY_DROPPED"       => "Nameserver {ns}/{address} dropped AAAA query.",
+        "IS_A_RECURSOR"       => "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}.",
+        "NO_RECURSOR"         => "None of the following nameservers is a recursor : {names}.",
+        "ANSWER_BAD_RCODE"    => "Nameserver {ns}/{address} answered AAAA query with an unexpected rcode ({rcode}).",
+        "EDNS0_BAD_ANSWER"    => "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)",
+        "EDNS0_SUPPORT"       => "The following nameservers support EDNS0 : {names}.",
     };
 }
 
@@ -103,10 +108,19 @@ sub nameserver01 {
                     }
                   );
             }
+            $nsnames{ $local_ns->name }++;
         }
 
-        $nsnames{ $local_ns->name }++;
     } ## end foreach my $local_ns ( @{ $zone...})
+
+    if (scalar keys %nsnames and not scalar @results) {
+        push @results,
+          info(
+            NO_RECURSOR => {
+                names   => join( q{,}, keys %nsnames ),
+            }
+          );
+    }
 
     return @results;
 } ## end sub nameserver01
@@ -119,8 +133,7 @@ sub nameserver02 {
     foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
 
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
-        my $ns =
-          Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
+        my $ns = Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
         my $p = $ns->query( $zone->name, q{SOA}, { edns_size => 512 } );
         if ( $p ) {
             if ( $p->rcode eq q{FORMERR} ) {
@@ -147,6 +160,15 @@ sub nameserver02 {
 
         $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short }++;
     } ## end foreach my $local_ns ( @{ $zone...})
+
+    if (scalar keys %nsnames_and_ip and not scalar @results) {
+        push @results,
+          info(   
+            EDNS0_SUPPORT => {
+                names   => join( q{,}, keys %nsnames_and_ip ),
+            }
+          );
+    }
 
     return @results;
 } ## end sub nameserver02
@@ -199,14 +221,13 @@ sub nameserver04 {
 
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
 
-        my $ns =
-          Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
+        my $ns = Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
         my $p = $ns->query( $zone->name, q{SOA} );
         if ( $p ) {
             if ( $local_ns->address->short ne $p->answerfrom ) {
                 push @results,
                   info(
-                    SAME_SOURCE_IP => {
+                    DIFFERENT_SOURCE_IP => {
                         ns      => $local_ns->name->string,
                         address => $local_ns->address->short,
                         source  => $p->answerfrom,
@@ -216,6 +237,15 @@ sub nameserver04 {
         }
         $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short }++;
     } ## end foreach my $local_ns ( @{ $zone...})
+
+    if (scalar keys %nsnames_and_ip and not scalar @results) {
+        push @results,
+          info(   
+            SAME_SOURCE_IPS => {
+                names   => join( q{,}, keys %nsnames_and_ip ),
+            }       
+          );        
+    }
 
     return @results;
 } ## end sub nameserver04
@@ -231,8 +261,7 @@ sub nameserver05 {
 
         $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short }++;
 
-        my $ns =
-          Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
+        my $ns = Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
         my $p = $ns->query( $zone->name, q{AAAA} );
 
         if ( not $p ) {
@@ -265,6 +294,15 @@ sub nameserver05 {
         }
 
     } ## end foreach my $local_ns ( @{ $zone...})
+
+    if (scalar keys %nsnames_and_ip and not grep { $_->tag eq q{ANSWER_BAD_RCODE} } @results) {
+        push @results,
+          info(
+            AAAA_WELL_PROCESSED => {
+                names   => join( q{,}, keys %nsnames_and_ip ),
+            }
+          );
+    }
 
     return @results;
 } ## end sub nameserver05

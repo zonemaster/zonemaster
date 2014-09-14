@@ -76,14 +76,18 @@
       "EXAMPLE_TAG" : "DEBUG"
    },
    "NAMESERVER" : {
+      "AAAA_WELL_PROCESSED" : "INFO",
       "ANSWER_BAD_RCODE" : "WARNING",
       "AXFR_AVAILABLE" : "ERROR",
       "AXFR_FAILURE" : "INFO",
+      "DIFFERENT_SOURCE_IP : "ERROR",
       "EDNS0_BAD_ANSWER" : "WARNING",
       "EDNS0_BAD_QUERY" : "WARNING",
+      "EDNS0_SUPPORT" : "INFO",
       "IS_A_RECURSOR" : "ERROR",
+      "NO_RECURSOR" : "INFO",
       "QUERY_DROPPED" : "WARNING",
-      "SAME_SOURCE_IP" : "ERROR"
+      "SAME_SOURCE_IPS" : "INFO"
    },
    "SYNTAX" : {
       "DISCOURAGED_DOUBLE_DASH" : "WARNING",
