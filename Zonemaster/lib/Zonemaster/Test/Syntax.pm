@@ -32,19 +32,11 @@ sub all {
 
     if ( grep { $_->tag eq q{ONLY_ALLOWED_CHARS} } @results ) {
 
-        my %nsnames;
-        foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
-            next if $nsnames{ $local_ns->name };
-            push @results, $class->syntax04( $local_ns->name );
-            $nsnames{ $local_ns->name }++;
-        }
-
+        push @results, $class->syntax04( $zone );
         push @results, $class->syntax05( $zone );
         push @results, $class->syntax06( $zone );
         push @results, $class->syntax07( $zone );
-
-        my $p = $zone->query_one( $zone->name, q{MX} );
-        push @results, $class->syntax08( sort keys %{ { map { $_->exchange => 1 } $p->get_records( q{MX}, q{answer} ) } } );
+        push @results, $class->syntax08( $zone );
 
     }
 
@@ -252,9 +244,17 @@ sub syntax03 {
 } ## end sub syntax03
 
 sub syntax04 {
-    my ( $class, $name ) = @_;
+    my ( $class, $zone ) = @_;
+    my @results;
+    my %nsnames;
 
-    return _check_name_syntax( q{NAMESERVER}, $name );
+    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+        next if $nsnames{ $local_ns->name };
+        push @results, _check_name_syntax( q{NAMESERVER}, $local_ns->name );
+        $nsnames{ $local_ns->name }++;
+    }
+
+    return @results;
 }
 
 sub syntax05 {
@@ -329,10 +329,12 @@ sub syntax07 {
 }
 
 sub syntax08 {
-    my ( $class, @names ) = @_;
+    my ( $class, $zone ) = @_;
     my @results;
 
-    foreach my $mx ( @names ) {
+    my $p = $zone->query_one( $zone->name, q{MX} );
+
+    foreach my $mx ( sort keys %{ { map { $_->exchange => 1 } $p->get_records( q{MX}, q{answer} ) } } ) {
         push @results, _check_name_syntax( q{MX}, $mx );
     }
 
