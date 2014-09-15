@@ -53,48 +53,57 @@ sub metadata {
               MNAME_RECORD_DOES_NOT_EXIST
               MNAME_NOT_AUTHORITATIVE
               MNAME_NO_RESPONSE MNAME_NOT_IN_GLUE
+              MNAME_IS_AUTHORITATIVE
               )
         ],
         zone02 => [
             qw(
               REFRESH_MINIMUM_VALUE_LOWER
+              REFRESH_MINIMUM_VALUE_OK
               )
         ],
         zone03 => [
             qw(
               REFRESH_LOWER_THAN_RETRY
+              REFRESH_HIGHER_THAN_RETRY
               )
         ],
         zone04 => [
             qw(
               RETRY_MINIMUM_VALUE_LOWER
+              RETRY_MINIMUM_VALUE_OK
               )
         ],
         zone05 => [
             qw(
               EXPIRE_MINIMUM_VALUE_LOWER
               EXPIRE_LOWER_THAN_REFRESH
+              EXPIRE_MINIMUM_VALUE_OK
               )
         ],
         zone06 => [
             qw(
               SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER
               SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER
+              SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK
               )
         ],
         zone07 => [
             qw(
-              MASTER_IS_AN_ALIAS
+              MASTER_IS_CNAME
+              MASTER_IS_NOT_CNAME
               )
         ],
         zone08 => [
             qw(
               MX_RECORD_IS_CNAME
+              MX_RECORD_IS_NOT_CNAME
               )
         ],
         zone09 => [
             qw(
               NO_MX_RECORD
+              MX_RECORD_EXISTS
               )
         ],
     };
@@ -102,26 +111,28 @@ sub metadata {
 
 sub translation {
     return {
-        "RETRY_MINIMUM_VALUE_LOWER" =>
-          "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry}).",
+        "RETRY_MINIMUM_VALUE_LOWER" => "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry}).",
+        "RETRY_MINIMUM_VALUE_OK" => "SOA 'retry' value ({retry}) is more than the minimum recommended value ({required_retry}).",
         "MNAME_NO_RESPONSE"  => "SOA 'mname' nameserver {ns}/{address} does not respond.",
-        "MASTER_IS_AN_ALIAS" => "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME).",
+        "MASTER_IS_CNAME" => "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME).",
+        "MASTER_IS_NOT_CNAME" => "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME).",
         "NO_MX_RECORD"       => "No target (MX, A or AAA record) to deliver e-mail for the domain name.",
-        "REFRESH_MINIMUM_VALUE_LOWER" =>
-          "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh}).",
-        "EXPIRE_LOWER_THAN_REFRESH" =>
-          "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh}).",
-        "SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER" =>
-          "SOA 'minimum' value ({minimum}) is higher than the recommended one ({highest_minimum}).",
-        "SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER" =>
-          "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum}).",
+        "MX_RECORD_EXISTS"   => "Target ({info}) found to deliver e-mail for the domain name.",
+        "REFRESH_MINIMUM_VALUE_LOWER" => "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh}).",
+        "REFRESH_MINIMUM_VALUE_OK" => "SOA 'refresh' value ({refresh}) is higher than the minimum recommended value ({required_refresh}).",
+        "EXPIRE_LOWER_THAN_REFRESH" => "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh}).",
+        "SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER" => "SOA 'minimum' value ({minimum}) is higher than the recommended one ({highest_minimum}).",
+        "SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER" => "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum}).",
+        "SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK" => "SOA 'minimum' value ({minimum}) is between the recommended one ({lowest_minimum}/{highest_minimum}).",
         "MNAME_NOT_AUTHORITATIVE" => "SOA 'mname' nameserver {ns}/{address} is not authoritative for '{zone}' zone.",
         "MNAME_RECORD_DOES_NOT_EXIST" => "SOA 'mname' field does not exist",
-        "EXPIRE_MINIMUM_VALUE_LOWER" =>
-          "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire}).",
+        "EXPIRE_MINIMUM_VALUE_LOWER" => "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire}).",
         "MNAME_NOT_IN_GLUE"        => "SOA 'mname' nameserver is not listed in \"parent\" NS records for tested zone.",
         "REFRESH_LOWER_THAN_RETRY" => "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({retry}).",
+        "REFRESH_HIGHER_THAN_RETRY" => "SOA 'refresh' value ({refresh}) is higher than the SOA 'retry' value ({retry}).",
         "MX_RECORD_IS_CNAME"       => "MX record for the domain is pointing to a CNAME.",
+        "MX_RECORD_IS_NOT_CNAME"   => "MX record for the domain is not pointing to a CNAME.",
+        "MNAME_IS_AUTHORITATIVE" => "SOA 'mname' nameserver ({mname}) is authoritative for '{zone}' zone.",
     };
 } ## end sub translation
 
@@ -139,7 +150,10 @@ sub zone01 {
         my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
         my $soa_mname = $soa->mname;
         if ( not $soa_mname ) {
-            push @results, info( MNAME_RECORD_DOES_NOT_EXIST => {} );
+            push @results,
+              info(
+                MNAME_RECORD_DOES_NOT_EXIST => {}
+              );
         }
         else {
             foreach my $ip_address ( Zonemaster::Recursor->get_addresses_for( $soa_mname ) ) {
@@ -168,9 +182,21 @@ sub zone01 {
                 }
             } ## end foreach my $ip_address ( Zonemaster::Recursor...)
             if ( not grep { $_->name eq $soa_mname } @{ $zone->glue } ) {
-                push @results, info( MNAME_NOT_IN_GLUE => {} );
+                push @results,
+                  info(
+                    MNAME_NOT_IN_GLUE => {}
+                  );
             }
         } ## end else [ if ( not $soa_mname ) ]
+        if (not scalar @results) {
+            push @results,
+              info(
+                MNAME_IS_AUTHORITATIVE => {
+                    mname  => "$soa_mname",
+                    zone   => $zone->name,
+                }
+              );
+        }
     } ## end if ( $p )
     else {
         croak q{No response from child nameservers};
@@ -192,6 +218,15 @@ sub zone02 {
             push @results,
               info(
                 REFRESH_MINIMUM_VALUE_LOWER => {
+                    refresh          => $soa_refresh,
+                    required_refresh => $SOA_REFRESH_MINIMUM_VALUE,
+                }
+              );
+        }
+        else {
+            push @results,
+              info(
+                REFRESH_MINIMUM_VALUE_OK => {
                     refresh          => $soa_refresh,
                     required_refresh => $SOA_REFRESH_MINIMUM_VALUE,
                 }
@@ -224,6 +259,15 @@ sub zone03 {
                 }
               );
         }
+        else {
+            push @results,
+              info(
+                REFRESH_HIGHER_THAN_RETRY => {
+                    retry   => $soa_retry,
+                    refresh => $soa_refresh,
+                }
+              );
+        }
     }
     else {
         croak q{No response from child nameservers};
@@ -245,6 +289,15 @@ sub zone04 {
             push @results,
               info(
                 RETRY_MINIMUM_VALUE_LOWER => {
+                    retry          => $soa_retry,
+                    required_retry => $SOA_RETRY_MINIMUM_VALUE,
+                }
+              );
+        }
+        else {
+            push @results,
+              info(
+                RETRY_MINIMUM_VALUE_OK => {
                     retry          => $soa_retry,
                     required_retry => $SOA_RETRY_MINIMUM_VALUE,
                 }
@@ -286,6 +339,15 @@ sub zone05 {
                 }
               );
         }
+        if (not scalar @results) {
+            push @results,
+              info(
+                EXPIRE_MINIMUM_VALUE_OK => {
+                    expire          => $soa_expire,
+                    required_expire => $SOA_EXPIRE_MINIMUM_VALUE,
+                }
+              );
+        }
     } ## end if ( $p )
     else {
         croak q{No response from child nameservers};
@@ -321,6 +383,16 @@ sub zone06 {
                 }
               );
         }
+        else {
+            push @results,
+              info(
+                SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK => {
+                    minimum         => $soa_minimum,
+                    highest_minimum => $SOA_DEFAULT_TTL_MAXIMUM_VALUE,
+                    lowest_minimum  => $SOA_DEFAULT_TTL_MINIMUM_VALUE,
+                }
+              );
+        }
     } ## end if ( $p )
     else {
         croak q{No response from child nameservers};
@@ -344,13 +416,20 @@ sub zone07 {
             if ( $p_mname->has_rrs_of_type_for_name( q{CNAME}, $soa_mname ) ) {
                 push @results,
                   info(
-                    MASTER_IS_AN_ALIAS => {
+                    MASTER_IS_CNAME => {
                         mname => $soa_mname,
                     }
                   );
             }
         }
-
+        else {
+            push @results,
+              info(
+                MASTER_IS_CNAME => {
+                    mname => $soa_mname,
+                }
+              );
+        }
     }
     else {
         croak q{No response from child nameservers};
@@ -367,7 +446,16 @@ sub zone08 {
 
     if ( $p ) {
         if ( $p->has_rrs_of_type_for_name( q{CNAME}, $zone->name ) ) {
-            push @results, info( MX_RECORD_IS_CNAME => {} );
+            push @results,
+              info(
+                MX_RECORD_IS_CNAME => {}
+            );
+        }
+        else {
+            push @results,
+              info(
+                MX_RECORD_IS_NOT_CNAME => {}
+            );
         }
     }
     else {
@@ -380,6 +468,7 @@ sub zone08 {
 sub zone09 {
     my ( $class, $zone ) = @_;
     my @results;
+    my $info;
 
     my $p = $zone->query_one( $zone->name, q{MX} );
 
@@ -390,8 +479,26 @@ sub zone09 {
             if (    not $p_a->has_rrs_of_type_for_name( q{A}, $zone->name )
                 and not $p_aaaa->has_rrs_of_type_for_name( q{AAAA}, $zone->name ) )
             {
-                push @results, info( NO_MX_RECORD => {} );
+                push @results,
+                  info(
+                    NO_MX_RECORD => {}
+                  );
             }
+            else {
+                my @as   = $p_a->get_records_for_name( q{A}, $zone->name );
+                my @aaas = $p_aaaa->get_records_for_name( q{AAAA}, $zone->name );
+                $info = join( q{/}, map { $_ =~ /:/ ? q{AAAA=}.$_->address : q{A=}.$_->address } (@as, @aaas) );
+            }
+        }
+        else {
+            my @mx = $p->get_records_for_name( q{MX}, $zone->name );
+            $info = join( q{/}, map { q{MX=}.$_->exchange } @mx );
+        }
+        if (not scalar @results) {
+            push @results,
+              info(
+                MX_RECORD_EXISTS => { info => $info}
+              );
         }
     }
     else {
