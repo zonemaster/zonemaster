@@ -9,6 +9,8 @@ use Zonemaster::Util;
 use Zonemaster::Recursor;
 use Zonemaster::DNSName;
 
+use Carp;
+
 use Readonly;
 
 use List::MoreUtils;
@@ -262,25 +264,30 @@ sub syntax05 {
     my @results;
 
     my $p = $zone->query_one( $zone->name, q{SOA} );
-    my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
 
-    my $rname = $soa->rname;
-    $rname =~ s/\\./\./smgx;
-    if ( index( $rname, q{@} ) != -1 ) {
-        push @results,
-          info(
-            RNAME_MISUSED_AT_SIGN => {
-                rname => $soa->rname,
-            }
-          );
+    if ( $p ) {
+        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
+        my $rname   = $soa->rname;
+        $rname =~ s/\\./\./smgx;
+        if ( index( $rname, q{@} ) != -1 ) {
+            push @results,
+              info(
+                RNAME_MISUSED_AT_SIGN => {
+                    rname => $soa->rname,
+                }
+              );
+        }
+        else {
+            push @results,
+              info(
+                RNAME_NO_AT_SIGN => {
+                    rname => $soa->rname,
+                }
+              );
+        }
     }
     else {
-        push @results,
-          info(
-            RNAME_NO_AT_SIGN => {
-                rname => $soa->rname,
-            }
-          );
+        croak q{No response from nameserver};
     }
 
     return @results;
@@ -291,41 +298,54 @@ sub syntax06 {
     my @results;
 
     my $p = $zone->query_one( $zone->name, q{SOA} );
-    my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
 
-    my $rname = $soa->rname;
-    $rname =~ s/([^\\])\./$1@/smx;    # Replace first non-escaped dot with an at-sign
-    $rname =~ s/\\./\./smgx;          # Un-escape dots
-    $rname =~ s/\.\z//smgx;           # Validator does not like final dots
-    if ( not valid( $rname ) ) {
-        push @results,
-          info(
-            RNAME_RFC822_INVALID => {
-                rname => $rname,
-            }
-          );
+    if ( $p ) {
+        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
+        my $rname   = $soa->rname;
+        $rname =~ s/([^\\])\./$1@/smx;    # Replace first non-escaped dot with an at-sign
+        $rname =~ s/\\./\./smgx;          # Un-escape dots
+        $rname =~ s/\.\z//smgx;           # Validator does not like final dots
+        if ( not valid( $rname ) ) {
+            push @results,
+              info(
+                RNAME_RFC822_INVALID => {
+                    rname => $rname,
+                }
+              );
+        }
+        else {
+            push @results,
+              info(
+                RNAME_RFC822_VALID => {
+                    rname => $rname,
+                }
+              );
+        }
     }
     else {
-        push @results,
-          info(
-            RNAME_RFC822_VALID => {
-                rname => $rname,
-            }
-          );
+        croak q{No response from nameserver};
     }
-
     return @results;
 } ## end sub syntax06
 
 sub syntax07 {
     my ( $class, $zone ) = @_;
+    my @results;
 
     my $p = $zone->query_one( $zone->name, q{SOA} );
-    my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
 
-    my $mname = $soa->mname;
+    if ( $p ) {
+        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
 
-    return _check_name_syntax( q{MNAME}, $mname );
+        my $mname = $soa->mname;
+
+        push @results, _check_name_syntax( q{MNAME}, $mname );
+    }
+    else {
+        croak q{No response from nameserver};
+    }
+
+    return @results;
 }
 
 sub syntax08 {
@@ -334,8 +354,13 @@ sub syntax08 {
 
     my $p = $zone->query_one( $zone->name, q{MX} );
 
-    foreach my $mx ( sort keys %{ { map { $_->exchange => 1 } $p->get_records( q{MX}, q{answer} ) } } ) {
-        push @results, _check_name_syntax( q{MX}, $mx );
+    if ( $p ) {
+        foreach my $mx ( sort keys %{ { map { $_->exchange => 1 } $p->get_records( q{MX}, q{answer} ) } } ) {
+            push @results, _check_name_syntax( q{MX}, $mx );
+        }
+    }
+    else {
+        croak q{No response from nameserver};
     }
 
     return @results;
