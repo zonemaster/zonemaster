@@ -4,7 +4,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: 0.0.4\n"
-"PO-Revision-Date: 2014-08-28\n"
+"PO-Revision-Date: 2014-09-15 10:09+0200\n"
 "Last-Translator: calle@init.se\n"
 "Language-Team: Zonemaster Team\n"
 "MIME-Version: 1.0\n"
@@ -356,10 +356,6 @@ msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {
 #: DNSSEC:DURATION_OK
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine."
 msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine."
-
-#: DNSSEC:DURATION_REMAINING_LONG
-msgid  ""
-msgstr ""
 
 #: DNSSEC:DURATION_REMAINING_OK
 #: DNSSEC:DURATION_REMAINING_SHORT

@@ -4,7 +4,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: 0.0.4\n"
-"PO-Revision-Date: 2014-09-12 09:51+0200\n"
+"PO-Revision-Date: 2014-09-15 10:24+0200\n"
 "Last-Translator: calle@init.se\n"
 "Language-Team: Zonemaster Team\n"
 "MIME-Version: 1.0\n"
@@ -668,3 +668,63 @@ msgstr "Namnserver för zonen {parent} svarade på försök att hämta glue."
 #: EXAMPLE:EXAMPLE_TAG
 msgid   "This is an example tag."
 msgstr "Detta är en exempel-tagg."
+
+#: CONNECTIVITY:NAMESERVERS_WITH_MULTIPLE_AS
+msgid   "Domain's authoritative nameservers do not belong to the same AS."
+msgstr "Domänens servrar finns inte alla i samma AS."
+
+#: DELEGATION:ARE_AUTHORITATIVE
+msgid   "All the nameservers are authoritative."
+msgstr "Alla namnservrar är auktoritativa."
+
+#: DELEGATION:DISTINCT_IP_ADDRESS
+msgid   "All the IP addresses used by the nameservers are unique"
+msgstr "Alla namnservrars IP-adresser är unika."
+
+#: DELEGATION:NS_RR_NO_CNAME
+msgid   "No nameserver point to CNAME alias."
+msgstr "Inget namnserver-namn pekar på ett CNAME-alias."
+
+#: DELEGATION:SOA_EXISTS
+msgid   "All the nameservers have SOA record."
+msgstr "Alla namnservrar har en SOA-post."
+
+#: DNSSEC:ADDITIONAL_DNSKEY_SKIPPED
+msgid   "No DNSKEYs found. Additional tests skipped."
+msgstr "Inga DNSKEY-poster hittades. Resterande tester hoppas över."
+
+#: DNSSEC:ALGORITHM_DEPRECATED
+msgid   "The DNSKEY with tag {keytag} uses deprecated algorithm number {algorithm}/({description})."
+msgstr "DNSKEY-posten med tag {keytag} använder den deprekerade algoritmen {algorithm}/({description})."
+
+#: DNSSEC:ALGORITHM_OK
+msgid   "The DNSKEY with tag {keytag} uses algorithm number {algorithm}/({description}), which is OK."
+msgstr "DNSKEY-posten med tag {keytag} använder algoritm nummer {algorithm}/({description}), vilket är OK."
+
+#: DNSSEC:ALGORITHM_PRIVATE
+msgid   "The DNSKEY with tag {keytag} uses private algorithm number {algorithm}/({description})."
+msgstr "DNSKEY-posten med tag {keytag} använder den privata algoritmen med nummer {algorithm}/({description})."
+
+#: DNSSEC:ALGORITHM_RESERVED
+msgid   "The DNSKEY with tag {keytag} uses reserved algorithm number {algorithm}/({description})."
+msgstr "DNSKEY-posten med tag {keytag} använder reserverad algoritm nummer {algorithm}/({description})."
+
+#: DNSSEC:ALGORITHM_UNASSIGNED
+msgid   "The DNSKEY with tag {keytag} uses unassigned algorithm number {algorithm}/({description})."
+msgstr "DNSKEY-posten med tag {keytag} använder den otilldelade algoritmen med nummer {algorithm}/({description})."
+
+#: DNSSEC:ALGORITHM_UNKNOWN
+msgid   "The DNSKEY with tag {keytag} uses unknown algorithm number {algorithm}."
+msgstr "DNSKEY-posten med tag {keytag} använder algoritmen med det okända numret {algorithm}."
+
+#: NAMESERVER:AAAA_WELL_PROCESSED
+msgid   "The following nameservers answer AAAA queries without problems : {names}."
+msgstr "Följande namnservrar svarade problemfritt på AAAA-frågor : {names}."
+
+#: NAMESERVER:EDNS0_SUPPORT
+msgid   "The following nameservers support EDNS0 : {names}."
+msgstr "Följande namnservrar stöder EDNS0 : {names}."
+
+#: NAMESERVER:NO_RECURSOR
+msgid   "None of the following nameservers is a recursor : {names}."
+msgstr "Ingen av följande namnservrar är rekursiv : {names}."
