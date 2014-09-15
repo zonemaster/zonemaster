@@ -12,7 +12,7 @@ is( Zonemaster->config->resolver_defaults->{retry}, 2, 'access other way works t
 isa_ok( Zonemaster::Config->policy, 'HASH', 'policy got loaded and' );
 is( Zonemaster::Config->policy->{'EXAMPLE'}{'EXAMPLE_TAG'}, 'DEBUG', 'found policy for example tag' );
 Zonemaster::Config->load_module_policy( "DNSSEC" );
-is( Zonemaster::Config->policy->{DNSSEC}{ALGORITHM_OK}, 'DEBUG', 'Found policy loaded from module' );
+is( Zonemaster::Config->policy->{DNSSEC}{ALGORITHM_OK}, 'INFO', 'Found policy loaded from module' );
 
 Zonemaster::Config->load_config_file( 't/config.json' );
 is( Zonemaster->config->resolver_defaults->{retry}, 4711, 'loading config works' );
