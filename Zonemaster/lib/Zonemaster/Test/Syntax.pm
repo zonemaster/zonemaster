@@ -30,19 +30,23 @@ sub all {
     push @results, $class->syntax02( $zone->name );
     push @results, $class->syntax03( $zone->name );
 
-    my %nsnames;
-    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
-        next if $nsnames{ $local_ns->name };
-        push @results, $class->syntax04( $local_ns->name );
-        $nsnames{ $local_ns->name }++;
+    if ( grep { $_->tag eq q{ONLY_ALLOWED_CHARS} } @results ) {
+
+        my %nsnames;
+        foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+            next if $nsnames{ $local_ns->name };
+            push @results, $class->syntax04( $local_ns->name );
+            $nsnames{ $local_ns->name }++;
+        }
+
+        push @results, $class->syntax05( $zone );
+        push @results, $class->syntax06( $zone );
+        push @results, $class->syntax07( $zone );
+
+        my $p = $zone->query_one( $zone->name, q{MX} );
+        push @results, $class->syntax08( sort keys %{ { map { $_->exchange => 1 } $p->get_records( q{MX}, q{answer} ) } } );
+
     }
-
-    push @results, $class->syntax05( $zone );
-    push @results, $class->syntax06( $zone );
-    push @results, $class->syntax07( $zone );
-
-    my $p = $zone->query_one( $zone->name, q{MX} );
-    push @results, $class->syntax08( sort keys %{ { map { $_->exchange => 1 } $p->get_records( q{MX}, q{answer} ) } } );
 
     return @results;
 } ## end sub all
@@ -65,11 +69,13 @@ sub metadata {
             qw(
               INITIAL_HYPHEN
               TERMINAL_HYPHEN
+              NO_ENDING_HYPHENS
               )
         ],
         syntax03 => [
             qw(
               DISCOURAGED_DOUBLE_DASH
+              NO_DOUBLE_DASH
               )
         ],
         syntax04 => [
@@ -78,11 +84,13 @@ sub metadata {
               NAMESERVER_LABEL_TOO_LONG
               NAMESERVER_NUMERIC_TLD
               NAMESERVER_NAME_TOO_LONG
+              NAMESERVER_SYNTAX_OK
               )
         ],
         syntax05 => [
             qw(
               RNAME_MISUSED_AT_SIGN
+              RNAME_NO_AT_SIGN
               )
         ],
         syntax06 => [
@@ -96,6 +104,7 @@ sub metadata {
               MNAME_LABEL_TOO_LONG
               MNAME_NUMERIC_TLD
               MNAME_NAME_TOO_LONG
+              MNAME_SYNTAX_OK
               )
         ],
         syntax08 => [
@@ -104,6 +113,7 @@ sub metadata {
               MX_LABEL_TOO_LONG
               MX_NUMERIC_TLD
               MX_NAME_TOO_LONG
+              MX_SYNTAX_OK
               )
         ],
     };
@@ -111,29 +121,32 @@ sub metadata {
 
 sub translation {
     return {
-        "NAMESERVER_NAME_TOO_LONG" => "Nameserver ({name}) is too long ({length}/{max}).",
-        "NAMESERVER_DISCOURAGED_DOUBLE_DASH" =>
-"Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--').",
-        "MNAME_LABEL_TOO_LONG" => "SOA MNAME ({name}) has a label ({label}) too long ({length}/{max}).",
-        "MNAME_NAME_TOO_LONG"  => "SOA MNAME ({name}) is too long ({length}/{max}).",
-        "DISCOURAGED_DOUBLE_DASH" =>
-"Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--').",
-        "INITIAL_HYPHEN"    => "Domain name ({name}) has a label ({label}) starting with an hyphen ('-').",
-        "MX_LABEL_TOO_LONG" => "Domain name MX ({name}) has a label ({label}) too long ({length}/{max}).",
-        "MNAME_DISCOURAGED_DOUBLE_DASH" =>
-"SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--').",
-        "MX_NUMERIC_TLD"            => "Domain name MX ({name}) within a 'numeric only' TLD ({tld}).",
-        "TERMINAL_HYPHEN"           => "Domain name ({name}) has a label ({label}) ending with an hyphen ('-').",
-        "NON_ALLOWED_CHARS"         => "Found illegal characters in the domain name ({name})",
-        "NAMESERVER_NUMERIC_TLD"    => "Nameserver ({name}) within a 'numeric only' TLD ({tld}).",
-        "NAMESERVER_LABEL_TOO_LONG" => "Nameserver ({name}) has a label ({label}) too long ({length}/{max}).",
-        "MNAME_NUMERIC_TLD"         => "SOA MNAME ({name}) within a 'numeric only' TLD ({tld}).",
-        "MX_NAME_TOO_LONG"          => "Domain name MX  is too long ({length}/{max}).",
-        "ONLY_ALLOWED_CHARS"        => "No illegal chatacters in the domain name ({name}).",
-        "RNAME_MISUSED_AT_SIGN"     => "There must be no misused '\@' character in the SOA RNAME field ({rname}).",
-        "MX_DISCOURAGED_DOUBLE_DASH" =>
-"Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--').",
-        "RNAME_RFC822_INVALID" => "There must be no illegal characters in the SOA RNAME field ({rname}).",
+        "NAMESERVER_LABEL_TOO_LONG"          => "Nameserver ({name}) has a label ({label}) too long ({length}/{max}).",
+        "NAMESERVER_NAME_TOO_LONG"           => "Nameserver ({name}) is too long ({length}/{max}).",
+        "NAMESERVER_DISCOURAGED_DOUBLE_DASH" => "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--').",
+        "NAMESERVER_NUMERIC_TLD"             => "Nameserver ({name}) within a 'numeric only' TLD ({tld}).",
+        "NAMESERVER_SYNTAX_OK"               => "Nameserver ({name}) syntax is valid.",
+        "MNAME_LABEL_TOO_LONG"               => "SOA MNAME ({name}) has a label ({label}) too long ({length}/{max}).",
+        "MNAME_NAME_TOO_LONG"                => "SOA MNAME ({name}) is too long ({length}/{max}).",
+        "MNAME_DISCOURAGED_DOUBLE_DASH"      => "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--').",
+        "MNAME_NUMERIC_TLD"                  => "SOA MNAME ({name}) within a 'numeric only' TLD ({tld}).",
+        "MNAME_SYNTAX_OK"                    => "SOA MNAME ({name}) syntax is valid.",
+        "MX_LABEL_TOO_LONG"                  => "Domain name MX ({name}) has a label ({label}) too long ({length}/{max}).",
+        "MX_NAME_TOO_LONG"                   => "Domain name MX is too long ({length}/{max}).",
+        "MX_DISCOURAGED_DOUBLE_DASH"         => "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--').",
+        "MX_NUMERIC_TLD"                     => "Domain name MX ({name}) within a 'numeric only' TLD ({tld}).",
+        "MX_SYNTAX_OK"                       => "Domain name MX ({name}) syntax is valid.",
+        "DISCOURAGED_DOUBLE_DASH"            => "Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--').",
+        "INITIAL_HYPHEN"                     => "Domain name ({name}) has a label ({label}) starting with an hyphen ('-').",
+        "TERMINAL_HYPHEN"                    => "Domain name ({name}) has a label ({label}) ending with an hyphen ('-').",
+        "NON_ALLOWED_CHARS"                  => "Found illegal characters in the domain name ({name})",
+        "ONLY_ALLOWED_CHARS"                 => "No illegal characters in the domain name ({name}).",
+        "RNAME_MISUSED_AT_SIGN"              => "There must be no misused '\@' character in the SOA RNAME field ({rname}).",
+        "RNAME_RFC822_INVALID"               => "There must be no illegal characters in the SOA RNAME field ({rname}).",
+        "RNAME_RFC822_VALID"                 => "The SOA RNAME field ({rname}) is compliant with RFC2822.",
+        "NO_ENDING_HYPHENS"                  => "Both ends of all labels of the domain name ({name}) have no hyphens.",
+        "NO_DOUBLE_DASH"                     => "Domain name ({name}) has no label with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--').",
+        "RNAME_NO_AT_SIGN"                   => "There is no misused '\@' character in the SOA RNAME field ({rname}).",
     };
 } ## end sub translation
 
@@ -194,6 +207,15 @@ sub syntax02 {
         }
     } ## end foreach my $local_label ( @...)
 
+    if (scalar @{ $name->labels } and not scalar @results) {
+        push @results,
+          info(
+            NO_ENDING_HYPHENS => {
+                name  => "$name",
+            }
+          );
+    }
+
     return @results;
 } ## end sub syntax02
 
@@ -215,6 +237,15 @@ sub syntax03 {
                 }
               );
         }
+    }
+
+    if (scalar @{ $name->labels } and not scalar @results) {
+        push @results,
+          info(
+            NO_DOUBLE_DASH => {
+                name  => "$name",
+            }
+          );
     }
 
     return @results;
@@ -243,6 +274,14 @@ sub syntax05 {
             }
           );
     }
+    else {
+        push @results,
+          info(
+            RNAME_NO_AT_SIGN => {
+                rname => $soa->rname,
+            }
+          );
+    }
 
     return @results;
 } ## end sub syntax05
@@ -262,6 +301,14 @@ sub syntax06 {
         push @results,
           info(
             RNAME_RFC822_INVALID => {
+                rname => $rname,
+            }
+          );
+    }
+    else {
+        push @results,
+          info(
+            RNAME_RFC822_VALID => {
                 rname => $rname,
             }
           );
@@ -366,8 +413,7 @@ sub _check_name_syntax {
         if ( length $local_label > $LABEL_MAX_LENGTH ) {
             push @results,
               info(
-                $info_label_prefix
-                  . q{_LABEL_TOO_LONG} => {
+                $info_label_prefix . q{_LABEL_TOO_LONG} => {
                     name   => "$name",
                     label  => $local_label,
                     length => length( $local_label ),
@@ -378,8 +424,7 @@ sub _check_name_syntax {
         if ( _label_not_ace_has_double_hyphen_in_position_3_and_4( $local_label ) ) {
             push @results,
               info(
-                $info_label_prefix
-                  . q{_DISCOURAGED_DOUBLE_DASH} => {
+                $info_label_prefix . q{_DISCOURAGED_DOUBLE_DASH} => {
                     label => $local_label,
                     name  => "$name",
                   }
@@ -391,8 +436,7 @@ sub _check_name_syntax {
     if ( $tld =~ /\A[0-9]+\z/smgx ) {
         push @results,
           info(
-            $info_label_prefix
-              . q{_NUMERIC_TLD} => {
+            $info_label_prefix . q{_NUMERIC_TLD} => {
                 name => "$name",
                 tld  => $tld,
               }
@@ -402,13 +446,20 @@ sub _check_name_syntax {
     if ( length "$name" >= $FQDN_MAX_LENGTH ) {    # not trailing 'dot' in $name, which explains the '=' sign.
         push @results,
           info(
-            $info_label_prefix
-              . q{_NAME_TOO_LONG} => {
+            $info_label_prefix . q{_NAME_TOO_LONG} => {
                 name => "$name",
-                ,
                 length => length( "$name" ),
                 max    => $FQDN_MAX_LENGTH,
               }
+          );
+    }
+
+    if (not scalar @results) {
+        push @results,
+          info(
+            $info_label_prefix . q{_SYNTAX_OK} => {
+                name  => "$name",
+            }
           );
     }
 
@@ -482,7 +533,7 @@ Verify that SOA mname of zone given is conform to previous syntax rules (syntax0
 
 =item syntax08(@mx_names)
 
-Verify that MX name (Zonemaster::DNSName)  given is conform to previous syntax rules (syntax01, syntax02, syntax03). It also verify name total length as well as labels.
+Verify that MX name (Zonemaster::DNSName) given is conform to previous syntax rules (syntax01, syntax02, syntax03). It also verify name total length as well as labels.
 
 =back
 
