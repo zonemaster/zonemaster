@@ -36,8 +36,10 @@ sub all {
 
         push @results, $class->syntax04( $zone );
         push @results, $class->syntax05( $zone );
-        push @results, $class->syntax06( $zone );
-        push @results, $class->syntax07( $zone );
+        if (not grep { $_->tag eq q{NO_RESPONSE_SOA_QUERY} } @results ) {
+            push @results, $class->syntax06( $zone );
+            push @results, $class->syntax07( $zone );
+        }
         push @results, $class->syntax08( $zone );
 
     }
@@ -85,11 +87,13 @@ sub metadata {
             qw(
               RNAME_MISUSED_AT_SIGN
               RNAME_NO_AT_SIGN
+              NO_RESPONSE_SOA_QUERY
               )
         ],
         syntax06 => [
             qw(
               RNAME_RFC822_INVALID
+              NO_RESPONSE_SOA_QUERY
               )
         ],
         syntax07 => [
@@ -99,6 +103,7 @@ sub metadata {
               MNAME_NUMERIC_TLD
               MNAME_NAME_TOO_LONG
               MNAME_SYNTAX_OK
+              NO_RESPONSE_SOA_QUERY
               )
         ],
         syntax08 => [
@@ -108,6 +113,7 @@ sub metadata {
               MX_NUMERIC_TLD
               MX_NAME_TOO_LONG
               MX_SYNTAX_OK
+              NO_RESPONSE_MX_QUERY
               )
         ],
     };
@@ -141,6 +147,8 @@ sub translation {
         "NO_ENDING_HYPHENS"                  => "Both ends of all labels of the domain name ({name}) have no hyphens.",
         "NO_DOUBLE_DASH"                     => "Domain name ({name}) has no label with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--').",
         "RNAME_NO_AT_SIGN"                   => "There is no misused '\@' character in the SOA RNAME field ({rname}).",
+        "NO_RESPONSE_SOA_QUERY"              => "No response from nameserver(s) on SOA queries.",
+        "NO_RESPONSE_MX_QUERY"               => "No response from nameserver(s) on MX queries.",
     };
 } ## end sub translation
 
@@ -153,14 +161,16 @@ sub version {
 ###
 
 sub syntax01 {
-    my ( $class, $name ) = @_;
+    my ( $class, $item ) = @_;
     my @results;
+
+    my $name = _get_name( $item );
 
     if ( _name_has_only_legal_characters( $name ) ) {
         push @results,
           info(
             ONLY_ALLOWED_CHARS => {
-                name => "$name",
+                name => $name,
             }
           );
     }
@@ -168,7 +178,7 @@ sub syntax01 {
         push @results,
           info(
             NON_ALLOWED_CHARS => {
-                name => "$name",
+                name => $name,
             }
           );
     }
@@ -177,8 +187,10 @@ sub syntax01 {
 } ## end sub syntax01
 
 sub syntax02 {
-    my ( $class, $name ) = @_;
+    my ( $class, $item ) = @_;
     my @results;
+
+    my $name = _get_name( $item );
 
     foreach my $local_label ( @{ $name->labels } ) {
         if ( _label_starts_with_hyphen( $local_label ) ) {
@@ -186,7 +198,7 @@ sub syntax02 {
               info(
                 INITIAL_HYPHEN => {
                     label => $local_label,
-                    name  => "$name",
+                    name  => $name,
                 }
               );
         }
@@ -195,7 +207,7 @@ sub syntax02 {
               info(
                 TERMINAL_HYPHEN => {
                     label => $local_label,
-                    name  => "$name",
+                    name  => $name,
                 }
               );
         }
@@ -205,7 +217,7 @@ sub syntax02 {
         push @results,
           info(
             NO_ENDING_HYPHENS => {
-                name  => "$name",
+                name  => $name,
             }
           );
     }
@@ -214,12 +226,10 @@ sub syntax02 {
 } ## end sub syntax02
 
 sub syntax03 {
-    my ( $class, $name ) = @_;
+    my ( $class, $item ) = @_;
     my @results;
 
-    if ( not ref( $name ) ) {
-        $name = name( $name );
-    }
+    my $name = _get_name( $item );
 
     foreach my $local_label ( @{ $name->labels } ) {
         if ( _label_not_ace_has_double_hyphen_in_position_3_and_4( $local_label ) ) {
@@ -227,7 +237,7 @@ sub syntax03 {
               info(
                 DISCOURAGED_DOUBLE_DASH => {
                     label => $local_label,
-                    name  => "$name",
+                    name  => $name,
                 }
               );
         }
@@ -237,7 +247,7 @@ sub syntax03 {
         push @results,
           info(
             NO_DOUBLE_DASH => {
-                name  => "$name",
+                name  => $name,
             }
           );
     }
@@ -287,7 +297,10 @@ sub syntax05 {
         }
     }
     else {
-        croak q{No response from nameserver};
+        push @results,
+          info(
+            NO_RESPONSE_SOA_QUERY => { }
+          );
     }
 
     return @results;
@@ -323,7 +336,10 @@ sub syntax06 {
         }
     }
     else {
-        croak q{No response from nameserver};
+        push @results,
+          info(
+            NO_RESPONSE_SOA_QUERY => { }
+          );
     }
     return @results;
 } ## end sub syntax06
@@ -342,11 +358,14 @@ sub syntax07 {
         push @results, _check_name_syntax( q{MNAME}, $mname );
     }
     else {
-        croak q{No response from nameserver};
+        push @results,
+          info(
+            NO_RESPONSE_SOA_QUERY => { }
+          );
     }
 
     return @results;
-}
+} ## end sub syntax07
 
 sub syntax08 {
     my ( $class, $zone ) = @_;
@@ -360,11 +379,14 @@ sub syntax08 {
         }
     }
     else {
-        croak q{No response from nameserver};
+        push @results,
+          info(
+            NO_RESPONSE_MX_QUERY => { }
+          );
     }
 
     return @results;
-}
+} ## end sub syntax08
 
 ###
 ### Internal Tests with Boolean (0|1) return value.
@@ -372,10 +394,6 @@ sub syntax08 {
 
 sub _name_has_only_legal_characters {
     my ( $name ) = @_;
-
-    if ( not ref( $name ) ) {
-        $name = name( $name );
-    }
 
     if ( List::MoreUtils::all { m/\A[-A-Za-z0-9]+\z/ } @{ $name->labels } ) {
         return 1;
@@ -427,6 +445,23 @@ sub _label_not_ace_has_double_hyphen_in_position_3_and_4 {
 ###
 ### Common part for syntax04, syntax07 and syntax08
 ###
+
+sub _get_name {
+    my ( $item ) = @_;
+    my $name;
+
+    if ( not ref( $item ) ) {
+        $name = name( $item );
+    }     
+    elsif (ref( $item ) eq q{Zonemaster::Zone}) {
+        $name = $item->name;
+    }
+    elsif (ref( $item ) eq q{Zonemaster::DNSName}) {
+        $name = $item;
+    }
+
+    return $name;
+}
 
 sub _check_name_syntax {
     my ( $info_label_prefix, $name ) = @_;
