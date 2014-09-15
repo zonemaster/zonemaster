@@ -71,6 +71,7 @@ sub translation {
         "AAAA_WELL_PROCESSED" => "The following nameservers answer AAAA queries without problems : {names}.",
         "EDNS0_BAD_QUERY"     => "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)",
         "DIFFERENT_SOURCE_IP" => "Nameserver {ns}/{address} replies on a SOA query with a different source address ({source}).",
+        "SAME_SOURCE_IP"      => "All nameservers reply with same IP used to query them.",
         "AXFR_AVAILABLE"      => "Nameserver {ns}/{address} allow zone transfer using AXFR.",
         "AXFR_FAILURE"        => "AXFR not available on nameserver {ns}/{address}.",
         "QUERY_DROPPED"       => "Nameserver {ns}/{address} dropped AAAA query.",
@@ -241,7 +242,7 @@ sub nameserver04 {
     if (scalar keys %nsnames_and_ip and not scalar @results) {
         push @results,
           info(   
-            SAME_SOURCE_IPS => {
+            SAME_SOURCE_IP => {
                 names   => join( q{,}, keys %nsnames_and_ip ),
             }       
           );        
