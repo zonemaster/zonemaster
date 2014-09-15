@@ -126,6 +126,7 @@ sub is_in_zone {
     }
 
     my $p = $self->query_one( "$name", 'SOA' );
+    croak "Failed to get SOA" if not defined( $p );
 
     if ( $p->is_redirect ) {
         return;    # Authoritative servers redirect us, so name must be out-of-zone
