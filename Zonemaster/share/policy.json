@@ -53,6 +53,7 @@
    },
    "DELEGATION" : {
       "ARE_AUTHORITATIVE" : "INFO",
+      "CALCULATION_INCOMPLETE" : "ERROR",
       "DISTINCT_IP_ADDRESS" : "INFO",
       "ENOUGH_NS" : "INFO",
       "ENOUGH_NS_GLUE" : "INFO",

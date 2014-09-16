@@ -61,6 +61,7 @@ sub metadata {
         ],
         delegation03 => [
             qw(
+              CALCULATION_INCOMPLETE
               REFERRAL_SIZE_LARGE
               REFERRAL_SIZE_OK
               )
@@ -93,24 +94,25 @@ sub metadata {
 
 sub translation {
     return {
-        "REFERRAL_SIZE_LARGE"  => "The smallest possible legal referral packet is larger than 512 octets (it is {size}).",
-        "EXTRA_NAME_CHILD"     => "Child has nameserver(s) not listed at parent ({extra}).",
-        "REFERRAL_SIZE_OK"     => "The smallest possible legal referral packet is smaller than 513 octets (it is {size}).",
-        "IS_NOT_AUTHORITATIVE" => "Nameserver {ns} response is not authoritative on {proto} port 53.",
-        "ENOUGH_NS_GLUE"       => "Parent lists enough nameservers ({count}).",
-        "NS_RR_IS_CNAME"       => "Nameserver {ns} {address_type} RR point to CNAME.",
-        "SAME_IP_ADDRESS"      => "IP {address} refers to multiple nameservers ({nss}).",
-        "DISTINCT_IP_ADDRESS"  => "All the IP addresses used by the nameservers are unique",
-        "ENOUGH_NS"            => "Child lists enough nameservers ({count}).",
-        "NAMES_MATCH"          => "All of the nameserver names are listed both at parent and child.",
-        "TOTAL_NAME_MISMATCH"  => "None of the nameservers listed at the parent are listed at the child.",
-        "SOA_NOT_EXISTS"       => "A SOA query NOERROR response from {ns} was received empty.",
-        "EXTRA_NAME_PARENT"    => "Parent has nameserver(s) not listed at the child ({extra}).",
-        "NOT_ENOUGH_NS_GLUE"   => "Parent does not list enough nameservers ({count}).",
-        "NOT_ENOUGH_NS"        => "Child does not list enough nameservers ({count}).",
-        "ARE_AUTHORITATIVE"    => "All the nameservers are authoritative.",
-        "NS_RR_NO_CNAME"       => "No nameserver point to CNAME alias.",
-        "SOA_EXISTS"           => "All the nameservers have SOA record.",
+        "REFERRAL_SIZE_LARGE"    => "The smallest possible legal referral packet is larger than 512 octets (it is {size}).",
+        "EXTRA_NAME_CHILD"       => "Child has nameserver(s) not listed at parent ({extra}).",
+        "REFERRAL_SIZE_OK"       => "The smallest possible legal referral packet is smaller than 513 octets (it is {size}).",
+        "IS_NOT_AUTHORITATIVE"   => "Nameserver {ns} response is not authoritative on {proto} port 53.",
+        "ENOUGH_NS_GLUE"         => "Parent lists enough nameservers ({count}).",
+        "NS_RR_IS_CNAME"         => "Nameserver {ns} {address_type} RR point to CNAME.",
+        "SAME_IP_ADDRESS"        => "IP {address} refers to multiple nameservers ({nss}).",
+        "DISTINCT_IP_ADDRESS"    => "All the IP addresses used by the nameservers are unique",
+        "ENOUGH_NS"              => "Child lists enough nameservers ({count}).",
+        "NAMES_MATCH"            => "All of the nameserver names are listed both at parent and child.",
+        "TOTAL_NAME_MISMATCH"    => "None of the nameservers listed at the parent are listed at the child.",
+        "SOA_NOT_EXISTS"         => "A SOA query NOERROR response from {ns} was received empty.",
+        "EXTRA_NAME_PARENT"      => "Parent has nameserver(s) not listed at the child ({extra}).",
+        "NOT_ENOUGH_NS_GLUE"     => "Parent does not list enough nameservers ({count}).",
+        "NOT_ENOUGH_NS"          => "Child does not list enough nameservers ({count}).",
+        "ARE_AUTHORITATIVE"      => "All the nameservers are authoritative.",
+        "NS_RR_NO_CNAME"         => "No nameserver point to CNAME alias.",
+        "SOA_EXISTS"             => "All the nameservers have SOA record.",
+        "CALCULATION_INCOMPLETE" => "Cannot check if IP addresses of nameserver {ns} are needed in referal response.",
     };
 }
 
@@ -210,9 +212,24 @@ sub delegation03 {
     my @results;
 
     my @nsnames = uniq map { $_->name } @{ $zone->glue }, @{ $zone->ns };
-    my @needs_glue =
-      sort { length( $a->name->string ) <=> length( $b->name->string ) }
-      grep { $zone->is_in_zone( $_->name ) } @{ $zone->ns };
+    my @needs_glue;
+
+    foreach my $ns ( @{ $zone->ns } ) {
+        eval {
+            if ($zone->is_in_zone( $ns->name ) ) {
+                push @needs_glue, $ns;
+            }
+            1;
+        } or do {
+            push @results,
+              info(
+                CALCULATION_INCOMPLETE => {
+                    ns => $ns->name,
+                }
+              );
+        };
+    }
+    @needs_glue = sort { length( $a->name->string ) <=> length( $b->name->string ) } @needs_glue;
     my @needs_v4_glue = grep { $_->address->version == $IP_VERSION_4 } @needs_glue;
     my @needs_v6_glue = grep { $_->address->version == $IP_VERSION_6 } @needs_glue;
     my $long_name     = _max_length_name_for( $zone->name );
