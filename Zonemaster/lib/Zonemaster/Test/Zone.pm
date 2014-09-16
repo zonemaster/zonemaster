@@ -26,15 +26,19 @@ sub all {
     my @results;
 
     push @results, $class->zone01( $zone );
-    push @results, $class->zone02( $zone );
-    push @results, $class->zone03( $zone );
-    push @results, $class->zone04( $zone );
-    push @results, $class->zone05( $zone );
-    push @results, $class->zone06( $zone );
-    push @results, $class->zone07( $zone );
+    if ( not grep { $_->tag eq q{NO_RESPONSE_SOA_QUERY} } @results ) {
+        push @results, $class->zone02( $zone );
+        push @results, $class->zone03( $zone );
+        push @results, $class->zone04( $zone );
+        push @results, $class->zone05( $zone );
+        push @results, $class->zone06( $zone );
+        push @results, $class->zone07( $zone );
+    }
     if ( not grep { $_->tag eq q{MNAME_RECORD_DOES_NOT_EXIST} } @results ) {
         push @results, $class->zone08( $zone );
-        push @results, $class->zone09( $zone );
+        if ( not grep { $_->tag eq q{NO_RESPONSE_MX_QUERY} } @results ) {
+            push @results, $class->zone09( $zone );
+        }
     }
 
     return @results;
@@ -54,24 +58,28 @@ sub metadata {
               MNAME_NOT_AUTHORITATIVE
               MNAME_NO_RESPONSE MNAME_NOT_IN_GLUE
               MNAME_IS_AUTHORITATIVE
+              NO_RESPONSE_SOA_QUERY
               )
         ],
         zone02 => [
             qw(
               REFRESH_MINIMUM_VALUE_LOWER
               REFRESH_MINIMUM_VALUE_OK
+              NO_RESPONSE_SOA_QUERY
               )
         ],
         zone03 => [
             qw(
               REFRESH_LOWER_THAN_RETRY
               REFRESH_HIGHER_THAN_RETRY
+              NO_RESPONSE_SOA_QUERY
               )
         ],
         zone04 => [
             qw(
               RETRY_MINIMUM_VALUE_LOWER
               RETRY_MINIMUM_VALUE_OK
+              NO_RESPONSE_SOA_QUERY
               )
         ],
         zone05 => [
@@ -79,6 +87,7 @@ sub metadata {
               EXPIRE_MINIMUM_VALUE_LOWER
               EXPIRE_LOWER_THAN_REFRESH
               EXPIRE_MINIMUM_VALUE_OK
+              NO_RESPONSE_SOA_QUERY
               )
         ],
         zone06 => [
@@ -86,24 +95,28 @@ sub metadata {
               SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER
               SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER
               SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK
+              NO_RESPONSE_SOA_QUERY
               )
         ],
         zone07 => [
             qw(
               MASTER_IS_CNAME
               MASTER_IS_NOT_CNAME
+              NO_RESPONSE_SOA_QUERY
               )
         ],
         zone08 => [
             qw(
               MX_RECORD_IS_CNAME
               MX_RECORD_IS_NOT_CNAME
+              NO_RESPONSE_MX_QUERY
               )
         ],
         zone09 => [
             qw(
               NO_MX_RECORD
               MX_RECORD_EXISTS
+              NO_RESPONSE_MX_QUERY
               )
         ],
     };
@@ -133,6 +146,9 @@ sub translation {
         "MX_RECORD_IS_CNAME"       => "MX record for the domain is pointing to a CNAME.",
         "MX_RECORD_IS_NOT_CNAME"   => "MX record for the domain is not pointing to a CNAME.",
         "MNAME_IS_AUTHORITATIVE" => "SOA 'mname' nameserver ({mname}) is authoritative for '{zone}' zone.",
+        "NO_RESPONSE_SOA_QUERY"  => "No response from nameserver(s) on SOA queries.",
+        "NO_RESPONSE_MX_QUERY"   => "No response from nameserver(s) on MX queries.",
+
     };
 } ## end sub translation
 
@@ -199,7 +215,10 @@ sub zone01 {
         }
     } ## end if ( $p )
     else {
-        croak q{No response from child nameservers};
+        push @results,
+          info(
+            NO_RESPONSE_SOA_QUERY => { }
+          );
     }
 
     return @results;
@@ -234,7 +253,10 @@ sub zone02 {
         }
     }
     else {
-        croak q{No response from child nameservers};
+        push @results,
+          info(
+            NO_RESPONSE_SOA_QUERY => { }
+          );
     }
 
     return @results;
@@ -270,7 +292,10 @@ sub zone03 {
         }
     }
     else {
-        croak q{No response from child nameservers};
+        push @results,
+          info(
+            NO_RESPONSE_SOA_QUERY => { }
+          );
     }
 
     return @results;
@@ -305,7 +330,10 @@ sub zone04 {
         }
     }
     else {
-        croak q{No response from child nameservers};
+        push @results,
+          info(
+            NO_RESPONSE_SOA_QUERY => { }
+          );
     }
 
     return @results;
@@ -350,7 +378,10 @@ sub zone05 {
         }
     } ## end if ( $p )
     else {
-        croak q{No response from child nameservers};
+        push @results,
+          info(
+            NO_RESPONSE_SOA_QUERY => { }
+          );
     }
 
     return @results;
@@ -395,7 +426,10 @@ sub zone06 {
         }
     } ## end if ( $p )
     else {
-        croak q{No response from child nameservers};
+        push @results,
+          info(
+            NO_RESPONSE_SOA_QUERY => { }
+          );
     }
 
     return @results;
@@ -432,7 +466,10 @@ sub zone07 {
         }
     }
     else {
-        croak q{No response from child nameservers};
+        push @results,
+          info(
+            NO_RESPONSE_SOA_QUERY => { }
+          );
     }
 
     return @results;
@@ -459,7 +496,10 @@ sub zone08 {
         }
     }
     else {
-        croak q{No response from child nameservers};
+        push @results,
+          info(
+            NO_RESPONSE_MX_QUERY => { }
+          );
     }
 
     return @results;
@@ -502,7 +542,10 @@ sub zone09 {
         }
     }
     else {
-        croak q{No response from child nameservers};
+        push @results,
+          info(
+            NO_RESPONSE_MX_QUERY => { }
+          );
     }
 
     return @results;
