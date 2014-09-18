@@ -31,7 +31,6 @@ sub add_api_user {
 	die "add_api_user_to_db not successfull" unless($result);
 	
 	return $result;
-	
 }
 
 no Moose::Role;
