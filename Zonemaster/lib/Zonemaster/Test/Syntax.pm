@@ -34,12 +34,20 @@ sub all {
 
     if ( grep { $_->tag eq q{ONLY_ALLOWED_CHARS} } @results ) {
 
-        push @results, $class->syntax04( $zone );
+        my %nsnames;
+        foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+            next if $nsnames{ $local_ns->name };
+            push @results, $class->syntax04( $local_ns->name);
+            $nsnames{ $local_ns->name }++;
+        }
+
         push @results, $class->syntax05( $zone );
+
         if (not grep { $_->tag eq q{NO_RESPONSE_SOA_QUERY} } @results ) {
             push @results, $class->syntax06( $zone );
             push @results, $class->syntax07( $zone );
         }
+
         push @results, $class->syntax08( $zone );
 
     }
@@ -256,18 +264,14 @@ sub syntax03 {
 } ## end sub syntax03
 
 sub syntax04 {
-    my ( $class, $zone ) = @_;
+    my ( $class, $item ) = @_;
     my @results;
     my %nsnames;
 
-    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
-        next if $nsnames{ $local_ns->name };
-        push @results, _check_name_syntax( q{NAMESERVER}, $local_ns->name );
-        $nsnames{ $local_ns->name }++;
-    }
+    my $name = _get_name( $item );
 
-    return @results;
-}
+    return _check_name_syntax( q{NAMESERVER}, $name );
+} ## end sub syntax04
 
 sub syntax05 {
     my ( $class, $zone ) = @_;
