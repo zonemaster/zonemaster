@@ -66,6 +66,7 @@ sub metadata {
     return {
         basic01 => [
             qw(
+              NO_PARENT
               HAS_GLUE
               NO_GLUE
               NO_DOMAIN
@@ -101,6 +102,7 @@ sub metadata {
 
 sub translation {
     return {
+        "NO_PARENT"                         => "No parent domain could be found for the tested domain",
         "NO_GLUE"                           => "Nameservers for \"{parent}\" provided no NS records for tested zone. RCODE given was {rcode}.",
         "HAS_A_RECORDS"                     => "Nameserver {source} returned A record(s) for {name}",
         "NO_A_RECORDS"                      => "Nameserver {source} did not return A record(s) for {name}",
@@ -134,6 +136,10 @@ sub basic01 {
     my @results;
 
     my $parent = $zone->parent;
+
+    if (not $parent) {
+        return info( NO_PARENT => { zone => $zone->name->string });
+    }
 
     my $p = $parent->query_one( $zone->name, q{NS} );
 

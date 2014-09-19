@@ -1,4 +1,4 @@
-package Zonemaster::Zone v0.0.1;
+package Zonemaster::Zone v0.0.2;
 
 use 5.14.2;
 use strict;
@@ -11,7 +11,7 @@ use Zonemaster::DNSName;
 use Zonemaster::Recursor;
 
 has 'name' => ( is => 'ro', isa => 'Zonemaster::DNSName', required => 1, coerce => 1 );
-has 'parent' => ( is => 'ro', isa => 'Zonemaster::Zone', lazy_build => 1 );
+has 'parent' => ( is => 'ro', isa => 'Maybe[Zonemaster::Zone]', lazy_build => 1 );
 has [ 'ns', 'glue' ] => ( is => 'ro', isa => 'ArrayRef[Zonemaster::Nameserver]', lazy_build => 1 );
 has 'glue_addresses' => ( is => 'ro', isa => 'ArrayRef[Net::LDNS::RR]', lazy_build => 1 );
 
@@ -36,8 +36,13 @@ sub _build_glue {
     my ( $self ) = @_;
     my @res;
 
+    if (not $self->parent) {
+        return [];
+    }
+
     my $p = $self->parent->query_one( $self->name, 'NS' );
-    croak "Failed to get glue" if not defined( $p );
+    # croak "Failed to get glue" if not defined( $p );
+    return [] if not defined $p;
 
     return Zonemaster::Recursor->get_ns_from( $p );
 }
@@ -54,13 +59,18 @@ sub _build_ns {
         $p = $s->query( $self->name, 'NS' );
         last if defined( $p );
     }
-    croak "Failed to get nameservers" if not defined( $p );
+    # croak "Failed to get nameservers" if not defined( $p );
+    return [] if not defined $p;
 
     return Zonemaster::Recursor->get_ns_from( $p );
 }
 
 sub _build_glue_addresses {
     my ( $self ) = @_;
+
+    if (not $self->parent) {
+        return [];
+    }
 
     my $p = $self->parent->query_one( $self->name, 'NS' );
     croak "Failed to get glue addresses" if not defined( $p );
