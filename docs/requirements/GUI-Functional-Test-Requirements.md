@@ -44,6 +44,7 @@ Security and Performance testing are not included.
 |GR25|Able to specify to stop the test on a fatal error (For release 1.1)   |            |
 |GR26|Check all the terms (such as menus, input fields) are appropriate   |            |
 |GR27|Afnic and .SE logo in the main page   |            |
+|GR28|Check the existence of correct title for the web site   |            |
 |FR01|Identifies the preference of connected user's language |            |
 |FR02|Presence of a default fallback language |            |
 |FR03|Support IDN2.0 domains as input |            |
