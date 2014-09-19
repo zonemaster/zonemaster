@@ -1,4 +1,4 @@
-package Zonemaster::Test::DNSSEC v0.0.1;
+package Zonemaster::Test::DNSSEC v0.0.2;
 
 ###
 ### This test module implements DNSSEC tests.
@@ -402,6 +402,7 @@ sub dnssec01 {
 
     my %type = ( 1 => 'SHA-1', 2 => 'SHA-256', 3 => 'GOST R 34.11-94', 4 => 'SHA-384' );
 
+    return if not $zone->parent;
     my $ds_p = $zone->parent->query_one( $zone->name, 'DS', { dnssec => 1 } );
     die "No response from parent nameservers" if not $ds_p;
     my @ds = $ds_p->get_records( 'DS', 'answer' );
@@ -445,6 +446,7 @@ sub dnssec02 {
     my ( $class, $zone ) = @_;
     my @results;
 
+    return if not $zone->parent;
     my $ds_p = $zone->parent->query_one( $zone->name, 'DS', { dnssec => 1 } );
     die "No response from parent nameservers" if not $ds_p;
     my %ds = map { $_->keytag => $_ } $ds_p->get_records( 'DS', 'answer' );
@@ -762,6 +764,7 @@ sub dnssec07 {
     my ( $self, $zone ) = @_;
     my @results;
 
+    return if not $zone->parent;
     my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
     if ( not $key_p ) {
         die "No response from child nameservers";
