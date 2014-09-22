@@ -17,6 +17,11 @@ tests. There will be a command line tool to run a complete set of
 tests, and a web interface tailored for use by both basic and advanced
 users.
 
+### Documentation
+
+There is some [user documentation](docs/documentation/readme.md) available
+on how to install and use the Zonemaster software.
+
 ### Participation
 
 The core development team are people from .SE and Afnic. However, you
