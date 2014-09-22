@@ -37,11 +37,12 @@ In Zone 'C' ("rd.nic.fr"):
 
 ```
 2. Obtain the complete set of name servers from the parent using
-[Method2](../specifications/tests/Methods.md) and the child using [Method3]
-(../specifications/tests/Methods.md).
+[Method2](../../tests/Methods.md) and the child using [Method3]
+(../../tests/Methods.md).
 3. Query for the SOA record.
 4. If there is an answer with NOERROR and there is no content in the answer
 section, this test case fails.
+
 
 ### Outcome(s)
 
