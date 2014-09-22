@@ -39,9 +39,12 @@ functional tests for the test engine, following steps should be followed:
 
 |Req| Test requirement                           |Explanation|
 |:--|:-------------------------------------------|-----------|
-|FR01|A DNS query with a label that exceeds the maximum length - 63 characters|[SYNTAX01](../specifications/functional-tests/Syntax-TP/syntax01.md)|
-|FR02|A FQDN that exceeds the maximum length - 255 octets|[SYNTAX02](../specifications/functional-tests/Syntax-TP/syntax02.md)|
-|FR03|A host name label with other than letters, digits and '-' character|[SYNTAX03](../specifications/functional-tests/Syntax-TP/syntax03.md)|
+|FR01|A DNS query with a label that exceeds the maximum length - 63
+characters|[RESTRICTION01](../specifications/functional-tests/Restriction-TP/restriction01.md)|
+|FR02|A FQDN that exceeds the maximum length - 255
+octets|[RESTRICTION02](../specifications/functional-tests/Restriction-TP/restriction02.md)|
+|FR03|A host name label with other than letters, digits and '-'
+character|[RESTRICTION03](../specifications/functional-tests/Restriction-TP/restriction03.md)|
 |FR04|CNAME RRs collision (If a CNAME RR is present at a node, no other data should be present; (3.6.2) - RFC 1034) |[CONFIGURATION01](../specifications/functional-tests/Configuration-TP/configuration01.md)|
 |FR05|Zone cyclic dependency|[CONFIGURATION02](../specifications/functional-tests/Configuration-TP/configuration02.md)|
 |FR06|Lame delegation | [CONFIGURATION03](../specifications/functional-tests/Configuration-TP/configuration03.md)|
