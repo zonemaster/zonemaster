@@ -193,6 +193,7 @@ sub metadata {
         ],
         dnssec04 => [
             qw(
+              RRSIG_EXPIRED
               REMAINING_SHORT
               REMAINING_LONG
               DURATION_LONG
@@ -288,11 +289,9 @@ sub translation {
         "DS_MATCH_NOT_FOUND"       => "No DS record with a matching DNSKEY record was found.",
         "DURATION_LONG" => "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too long.",
         "DURATION_OK" => "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine.",
+        "RRSIG_EXPIRED" => "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration}).",
         "REMAINING_SHORT" => "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too short.",
         "REMAINING_LONG" => "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long.",
-        "DURATION_REMAINING_SHORT" => "",
-        "DURATION_REMAINING_LONG"  => "",
-        "DURATION_REMAINING_OK"    => "",
         "EXTRA_PROCESSING_BROKEN" => "Server at {server} sent {keys} DNSKEY records, and {sigs} RRSIG records.",
         "EXTRA_PROCESSING_OK"     => "Server at {server} sent {keys} DNSKEY records and {sigs} RRSIG records.",
         "HAS_NSEC"                => "The zone has NSEC records.",
@@ -353,11 +352,6 @@ sub policy {
         "DS_MATCH_NOT_FOUND"           => "ERROR",
         "DURATION_LONG"                => "WARNING",
         "DURATION_OK"                  => "DEBUG",
-        "REMAINING_SHORT"              => "WARNING",
-        "REMAINING_LONG"               => "WARNING",
-        "DURATION_REMAINING_LONG"      => "WARNING",
-        "DURATION_REMAINING_OK"        => "DEBUG",
-        "DURATION_REMAINING_SHORT"     => "WARNING",
         "EXTRA_PROCESSING_BROKEN"      => "ERROR",
         "EXTRA_PROCESSING_OK"          => "DEBUG",
         "HAS_NSEC"                     => "INFO",
@@ -383,6 +377,9 @@ sub policy {
         "NSEC_NOT_SIGNED"              => "ERROR",
         "NSEC_SIGNED"                  => "DEBUG",
         "NSEC_SIG_VERIFY_ERROR"        => "ERROR",
+        "REMAINING_LONG"               => "WARNING",
+        "REMAINING_SHORT"              => "WARNING",
+        "RRSIG_EXPIRED"                => "ERROR",
         "SOA_NOT_SIGNED"               => "ERROR",
         "SOA_SIGNATURE_NOT_OK"         => "ERROR",
         "SOA_SIGNATURE_OK"             => "DEBUG",
@@ -618,7 +615,17 @@ sub dnssec04 {
     foreach my $sig ( @key_sigs, @soa_sigs ) {
         my $duration = $sig->expiration - $sig->inception;
         my $remaining = $sig->expiration - int(time());
-        if ( $remaining < ( 12 * 60 * 60 ) ) {    # 12 hours
+        if ( $remaining < 0 ) {    # lready expired
+            push @results,
+              info(
+                RRSIG_EXPIRED => {
+                    expiration => $sig->expiration,
+                    tag        => $sig->keytag,
+                    types      => $sig->typecovered,
+                }
+              );
+        }
+        elsif ( $remaining < ( 12 * 60 * 60 ) ) {    # 12 hours
             push @results,
               info(
                 REMAINING_SHORT => {
