@@ -1,8 +1,8 @@
-## SYNTAX03: Character set restriction for label
+## RESTRICTION03: Character set restriction for label
 
 ### Test case identifier
 
-**SYNTAX03:** Character set restriction for label
+**RESTRICTION03:** Character set restriction for label
 
 ### Objective
 

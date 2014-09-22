@@ -1,8 +1,8 @@
-## SYNTAX01: Label length
+## RESTRICTION01: Label length
 
 ### Test case identifier
 
-**SYNTAX01:** Label length
+**RESTRICTION01:** Label length
 
 ### Objective
 In DNS, domain names are expressed in terms of a sequence of labels. Section 

@@ -1,8 +1,8 @@
-## SYNTAX02: Domain name length
+## RESTRICTION02: Domain name length
 
 ### Test case identifier
 
-**SYNTAX02:** Domain name length
+**RESTRICTION02:** Domain name length
 
 ### Objective
 Section 3.1 of [RFC 1035](https://tools.ietf.org/html/rfc1035) mentions that the
