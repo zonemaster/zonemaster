@@ -193,7 +193,8 @@ sub metadata {
         ],
         dnssec04 => [
             qw(
-              DURATION_SHORT
+              REMAINING_SHORT
+              REMAINING_LONG
               DURATION_LONG
               DURATION_OK
               )
@@ -287,7 +288,8 @@ sub translation {
         "DS_MATCH_NOT_FOUND"       => "No DS record with a matching DNSKEY record was found.",
         "DURATION_LONG" => "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too long.",
         "DURATION_OK" => "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine.",
-        "DURATION_SHORT" => "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too short.",
+        "REMAINING_SHORT" => "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too short.",
+        "REMAINING_LONG" => "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long.",
         "DURATION_REMAINING_SHORT" => "",
         "DURATION_REMAINING_LONG"  => "",
         "DURATION_REMAINING_OK"    => "",
@@ -614,11 +616,22 @@ sub dnssec04 {
 
     foreach my $sig ( @key_sigs, @soa_sigs ) {
         my $duration = $sig->expiration - $sig->inception;
-        if ( $duration < ( 12 * 60 * 60 ) ) {    # 12 hours
+        my $remaining = $sig->expiration - int(time());
+        if ( $remaining < ( 12 * 60 * 60 ) ) {    # 12 hours
             push @results,
               info(
-                DURATION_SHORT => {
-                    duration => $duration,
+                REMAINING_SHORT => {
+                    duration => $remaining,
+                    tag      => $sig->keytag,
+                    types    => $sig->typecovered,
+                }
+              );
+        }
+        elsif ( $remaining > ( 180 * 24 * 60 * 60 ) ) {    # 180 days
+            push @results,
+              info(
+                REMAINING_LONG => {
+                    duration => $remaining,
                     tag      => $sig->keytag,
                     types    => $sig->typecovered,
                 }

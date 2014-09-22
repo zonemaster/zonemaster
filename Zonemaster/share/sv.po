@@ -277,9 +277,13 @@ msgstr "RRSIG-posten med keytag {tag} och täckande typerna {types} har en livsl
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine."
 msgstr "RRSIG-posten med keytag {tag} och täckande typerna {types} har en livslängd på {duration} sekunder, vilket är lagom."
 
-#: DNSSEC:DURATION_SHORT
-msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too short."
-msgstr "RRSIG-posten med keytag {tag} och täckande typerna {types} har en livslängd på {duration} sekunder, vilket är för kort."
+#: DNSSEC:REMAINING_SHORT
+msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too short."
+msgstr "RRSIG-posten med keytag {tag} och täckande typerna {types} har en kvarvarande livslängd på {duration} sekunder, vilket är för kort."
+
+#: REMAINING_LONG
+msgid "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long."
+msgstr "RRSIG-posten med keytag {tag} och täckande typerna {types} har en kvarvarande livslängd på {duration} sekunder, vilket är för länge."
 
 #: DNSSEC:EXTRA_PROCESSING_BROKEN
 msgid  "Server at {server} sent {keys} DNSKEY records, and {sigs} RRSIG records."
