@@ -24,24 +24,24 @@ The domain to be tested.
 1. Configure a live zone with lame delegation
 
 ```
-For example (Zone "nic.fr") : 
+For example ('P' Zone "nic.fr") : 
 
 rd    IN  NS     ns1
 rd    IN  NS     ns2
 rd    IN  NS     ns3
 
-In Zone "rd.nic.fr"):
+In Zone 'C' ("rd.nic.fr"):
 
       IN  NS     ns1
       IN  NS     ns2
 
 ```
-```
-ToDo: Lame delegation with non-existing or non-authoritative servers
-```
-
-2. Try to resolve the domain name through each of the authoritative servers in
-the zone 
+2. Obtain the complete set of name servers from the parent using
+[Method2](../specifications/tests/Methods.md) and the child using [Method3]
+(../specifications/tests/Methods.md).
+3. Query for the SOA record.
+4. If there is an answer with NOERROR and there is no content in the answer
+section, this test case fails.
 
 ### Outcome(s)
 

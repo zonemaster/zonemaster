@@ -8,7 +8,7 @@ different
 ### Objective 
 A cyclic zone dependency happens when two or more zones DNS service depends on
 each other in a circular way. This scenario is possible due to configuration
-errors in either or both of the zones, however in some cases it is also possible
+errors in either or both of the zones; however in some cases it is also possible
 when none of the involved zones has any noticeable configuration error. Thus the
 combination of two or more correctly configured zones may also result in cyclic
 zone dependency.
@@ -37,20 +37,21 @@ ns2   IN  A      1.2.3.5
 ```
 Another example with two zones depending on each other
 
-(Zone "nic.fr"):
-      IN  NS     ns1
-      IN  NS     ns2
-      IN  NS     dns1.nic.com.
-      IN  NS     dns2.nic.com.
-ns1   IN  A      1.2.3.4
-ns2   IN  A      1.2.3.5
+(Zone "fr"):
+nic.fr.        IN  NS     ns1.denic.de.
+nic.fr.        IN  NS     ns2.denic.de.
+nic.fr.        IN  NS     dns1.nic.fr.
+nic.fr.        IN  NS     dns2.nic.fr.
+dns1.nic.fr.   IN  A      1.2.3.4
+dns2.nic.fr.   IN  A      1.2.3.5
 
-(Zone "nic.com")
-      IN  NS    ns1.nic.fr.
-      IN  NS    ns2.nic.fr.
+(Zone "denic.de")
+      IN  NS    dns1.nic.fr.
+      IN  NS    dns2.nic.fr.
 ```
-2. Try to resolve the domain name through each of the authoritative servers in
-the zone 
+2. Try to resolve the domain name ("nic.fr") through each of the authoritative servers in
+the zone, and assuming that other than the authoritative server being used to
+test, all the others are not reachable.
 
 ### Outcome(s)
 
