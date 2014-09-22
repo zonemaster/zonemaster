@@ -10,9 +10,9 @@ attacks. Having too short RRSIG signature lifetimes is likely to have
 a major operational impact if the master name server is down for that long.
 
 There is no clear recommendation of the exact validity periods to use with
-DNSSEC. Shorter validity than 12 hours will give a serious operational
-problem just in case of temporary network problems, and longer than 180
-days will create wide open holes for replay attacks.
+DNSSEC. Shorter validity than 12 hours until expiration will give a serious
+operational problem just in case of temporary network problems, and longer
+than 180 days will create wide open holes for replay attacks.
 
 The considerations are described in [RFC6781]
 (https://tools.ietf.org/html/rfc6781).
@@ -25,15 +25,19 @@ The domain name to be tested.
 
 1. Retrieve the DNSKEY RR set from the child zone, including RRSIG.
 2. Retrieve the SOA RR set from the child zone, including RRSIG.
-3. If any RRSIG validity time is shorter than 12 hours (from "now"),
-   this test case emits a warning.
-4. If any RRSIG validity time is longer than 180 days (from "now"), this
-   test case emits a warning.
+3. If any RRSIG validity is found where the expiration time already has
+   passed, this test case fails.
+4. If any RRSIG validity time is shorter than 12 hours (from "now"),
+   this test case fails.
+5. If any RRSIG validity time is longer than 180 days (from "now"), this
+   test fails.
+6. If any RRSIG validity from inception to expiration is longer than 180
+   days, this test case fails.
 
 ### Outcome(s)
 
 If any of the signature expirations time is either shorter than 12 hours or
-longer than 180 days, this test case emits warning(s).
+longer than 180 days, this test case fails.
 
 ### Special procedural requirements
 
