@@ -359,9 +359,13 @@ msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {
 
 #: DNSSEC:DURATION_REMAINING_OK
 #: DNSSEC:DURATION_REMAINING_SHORT
-#: DNSSEC:DURATION_SHORT
-msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too short."
-msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too short."
+#: DNSSEC:REMAINING_SHORT
+msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too short."
+msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too short."
+
+#: REMAINING_LONG
+msgid "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long."
+msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long."
 
 #: DNSSEC:EXTRA_PROCESSING_BROKEN
 msgid  "Server at {server} sent {keys} DNSKEY records, and {sigs} RRSIG records."
