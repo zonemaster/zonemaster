@@ -1,4 +1,4 @@
-## BEHAVIOR01: NXDOMAIN returned in response in the event of querying a
+## BEHAVIOR01: NXDOMAIN returned in response in the event of querying a 
 domain name that does not exist
 
 ### Test case identifier
