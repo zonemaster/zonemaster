@@ -45,12 +45,7 @@ functional tests for the test engine, following steps should be followed:
 |FR04|CNAME RRs collision (If a CNAME RR is present at a node, no other data should be present; (3.6.2) - RFC 1034) |[CONFIGURATION01](../specifications/functional-tests/Configuration-TP/configuration01.md)|
 |FR05|Zone cyclic dependency|[CONFIGURATION02](../specifications/functional-tests/Configuration-TP/configuration02.md)|
 |FR06|Lame delegation | [CONFIGURATION03](../specifications/functional-tests/Configuration-TP/configuration03.md)|
-|FR07|Triggers when glue A record does not point to the same IP address as the corresponding authoritative A record|[COHERENCY01](../specifications/functional-tests/COHERENCY-TP/coherency02.md)|
-|FR08|Triggers when the TTL values are not consistent for the same RRset in both parent and child zone|[COHERENCY03](../specifications/functional-tests/COHERENCY-TP/coherency02.md)|
-|FR09|When a nameserver that is registered in the DNS system as authoritative for a zone , does not provide authoritative answers for the zone |[COHERENCY03](../specifications/functional-tests/COHERENCY-TP/coherency03.md)|
-|FR10|A nameserver that is authoritative for a zone does not have authoritative data|[COHERENCY05](../specifications/functional-tests/COHERENCY-TP/coherency04.md)|
-|FR11|Test whether the tool triggers appropriate error when network connectivity is disabled|[CONNECTIVITY01](../specifications/functional-tests/CONNECTIVITY-TP/connectivity01.md)|
-|FR12|Test whether the tool triggers appropriate error when network connectivity is enabled|[CONNECTIVITY02](../specifications/functional-tests/CONNECTIVITY-TP/connectivity02.md)|
+|FR07|TTL Delegation
 |FR13|Test whether the tool correctly treats the name error with "NXDOMAIN" in response|[BEHAVIOR01](../specifications/functional-tests/BEHAVIOR-TP/behavior01.md)|
 |FR14|Test whether the tool correctly treats when "no such data exist"  with "NODATA" in response|[BEHAVIOR02](../specifications/functional-tests/BEHAVIOR-TP/behavior02.md)|
 |FR15|Match the results with existing ZC/DC when certain protocols are disabled (e.g. IPv6|[BEHAVIOR03](../specifications/functional-tests/BEHAVIOR-TP/behavior03.md)|

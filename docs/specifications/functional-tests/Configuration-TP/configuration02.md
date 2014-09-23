@@ -22,20 +22,7 @@ The domain to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Configure a live zone in such a manner wherein a partial failure may stop
-accessing the domain
-
-```
-For example (Zone "nic.fr") (with missing glue A RR): 
-
-      IN  NS     ns1
-      IN  NS     ns2
-      IN  NS     ns3
-ns1   IN  A      1.2.3.4
-ns2   IN  A      1.2.3.5
-```
-```
-Another example with two zones depending on each other
+1. Configure live zone(s) with cyclic dependencies
 
 (Zone "fr"):
 nic.fr.        IN  NS     ns1.denic.de.
