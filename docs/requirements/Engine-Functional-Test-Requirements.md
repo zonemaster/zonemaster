@@ -45,18 +45,18 @@ functional tests for the test engine, following steps should be followed:
 |FR04|CNAME RRs collision (If a CNAME RR is present at a node, no other data should be present; (3.6.2) - RFC 1034) |[CONFIGURATION01](../specifications/functional-tests/Configuration-TP/configuration01.md)|
 |FR05|Zone cyclic dependency|[CONFIGURATION02](../specifications/functional-tests/Configuration-TP/configuration02.md)|
 |FR06|Lame delegation | [CONFIGURATION03](../specifications/functional-tests/Configuration-TP/configuration03.md)|
-|FR07|TTL Delegation
-|FR13|Test whether the tool correctly treats the name error with "NXDOMAIN" in response|[BEHAVIOR01](../specifications/functional-tests/BEHAVIOR-TP/behavior01.md)|
-|FR14|Test whether the tool correctly treats when "no such data exist"  with "NODATA" in response|[BEHAVIOR02](../specifications/functional-tests/BEHAVIOR-TP/behavior02.md)|
-|FR15|Match the results with existing ZC/DC when certain protocols are disabled (e.g. IPv6|[BEHAVIOR03](../specifications/functional-tests/BEHAVIOR-TP/behavior03.md)|
-|FR16|Test whether the tool Run only appropriate tests when the default test profile is modified|[BEHAVIOR04](../specifications/functional-tests/BEHAVIOR-TP/behavior04.md)|
-|FR17|Capable of running the test when the delegation parameters are specified|[BEHAVIOR05](../specifications/functional-tests/BEHAVIOR-TP/behavior05.md)|
-|FR18|Able to test non delegated domain|[BEHAVIOR06](../specifications/functional-tests/BEHAVIOR-TP/behavior06.md)|
-|FR19|Check whether timestamps on the test being run are being displayed|[BEHAVIOR07](../specifications/functional-tests/BEHAVIOR-TP/behavior07.md)|
-|FR20|With the report flag enabled check whether the tool reports tests as they are being run|[BEHAVIOR08](../specifications/functional-tests/BEHAVIOR-TP/behavior08.md)|
-|FR21|Check whether the tool displays statistics on network performance, RTT: min, max, stddev, avg, per protocol and queries sent per name server|[BEHAVIOR09](../specifications/functional-tests/BEHAVIOR-TP/behavior09.md)|
-|FR22|Provides the same results as in ZC/DC when IDNs are used|[BEHAVIOR10](../specifications/functional-tests/BEHAVIOR-TP/behavior10.md)|
-|FR23|Test whether the tool displays verbose information when launched with appropriate flags|[BEHAVIOR11](../specifications/functional-tests/BEHAVIOR-TP/behavior11.md)|
-|FR24|Test whether the tool triggers appropriate error code when the server is misconfigured|[BEHAVIOR12](../specifications/functional-tests/BEHAVIOR-TP/behavior12.md)|
-|FR25|Test whether the tool respond with one or more RRs if data does exist for the DNS query in question|[BEHAVIOR13](../specifications/functional-tests/BEHAVIOR-TP/behavior13.md)|
+|FR07|Delegation Inconsistency|[CONFIGURATION04](../specifications/functional-tests/Configuration-TP/configuration04.md)|
+|FR08|Test whether the tool correctly treats the name error with "NXDOMAIN" in response|[BEHAVIOR01](../specifications/functional-tests/Behavior-TP/behavior01.md)|
+|FR09|Test whether the tool correctly treats when "no such data exist"  with "NODATA" in response|[BEHAVIOR02](../specifications/functional-tests/Behavior-TP/behavior02.md)|
+|FR10|Match the results with existing ZC/DC when certain protocols are disabled (e.g. IPv6|[BEHAVIOR03](../specifications/functional-tests/BEHAVIOR-TP/behavior03.md)|
+|FR11|Test whether the tool Run only appropriate tests when the default test profile is modified|[BEHAVIOR04](../specifications/functional-tests/BEHAVIOR-TP/behavior04.md)|
+|FR12|Capable of running the test when the delegation parameters are specified|[BEHAVIOR05](../specifications/functional-tests/BEHAVIOR-TP/behavior05.md)|
+|FR13|Able to test non delegated domain|[BEHAVIOR06](../specifications/functional-tests/BEHAVIOR-TP/behavior06.md)|
+|FR14|Check whether timestamps on the test being run are being displayed|[BEHAVIOR07](../specifications/functional-tests/BEHAVIOR-TP/behavior07.md)|
+|FR15|With the report flag enabled check whether the tool reports tests as they are being run|[BEHAVIOR08](../specifications/functional-tests/BEHAVIOR-TP/behavior08.md)|
+|FR16|Check whether the tool displays statistics on network performance, RTT: min, max, stddev, avg, per protocol and queries sent per name server|[BEHAVIOR09](../specifications/functional-tests/BEHAVIOR-TP/behavior09.md)|
+|FR17|Provides the same results as in ZC/DC when IDNs are used|[BEHAVIOR10](../specifications/functional-tests/BEHAVIOR-TP/behavior10.md)|
+|FR18|Test whether the tool displays verbose information when launched with appropriate flags|[BEHAVIOR11](../specifications/functional-tests/BEHAVIOR-TP/behavior11.md)|
+|FR19|Test whether the tool triggers appropriate error code when the server is misconfigured|[BEHAVIOR12](../specifications/functional-tests/BEHAVIOR-TP/behavior12.md)|
+|FR20|Test whether the tool respond with one or more RRs if data does exist for the DNS query in question|[BEHAVIOR13](../specifications/functional-tests/BEHAVIOR-TP/behavior13.md)|
 
