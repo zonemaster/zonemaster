@@ -98,17 +98,17 @@ sub translation {
         "EXTRA_NAME_CHILD"       => "Child has nameserver(s) not listed at parent ({extra}).",
         "REFERRAL_SIZE_OK"       => "The smallest possible legal referral packet is smaller than 513 octets (it is {size}).",
         "IS_NOT_AUTHORITATIVE"   => "Nameserver {ns} response is not authoritative on {proto} port 53.",
-        "ENOUGH_NS_GLUE"         => "Parent lists enough nameservers ({count}).",
+        "ENOUGH_NS_GLUE"         => "Parent lists enough nameservers ({glue}). Lower limit set to {minimum}.",
         "NS_RR_IS_CNAME"         => "Nameserver {ns} {address_type} RR point to CNAME.",
         "SAME_IP_ADDRESS"        => "IP {address} refers to multiple nameservers ({nss}).",
         "DISTINCT_IP_ADDRESS"    => "All the IP addresses used by the nameservers are unique",
-        "ENOUGH_NS"              => "Child lists enough nameservers ({count}).",
+        "ENOUGH_NS"              => "Child lists enough nameservers ({ns}). Lower limit set to {minimum}.",
         "NAMES_MATCH"            => "All of the nameserver names are listed both at parent and child.",
         "TOTAL_NAME_MISMATCH"    => "None of the nameservers listed at the parent are listed at the child.",
         "SOA_NOT_EXISTS"         => "A SOA query NOERROR response from {ns} was received empty.",
         "EXTRA_NAME_PARENT"      => "Parent has nameserver(s) not listed at the child ({extra}).",
-        "NOT_ENOUGH_NS_GLUE"     => "Parent does not list enough nameservers ({count}).",
-        "NOT_ENOUGH_NS"          => "Child does not list enough nameservers ({count}).",
+        "NOT_ENOUGH_NS_GLUE"     => "Parent does not list enough nameservers ({glue}). Lower limit set to {minimum}.",
+        "NOT_ENOUGH_NS"          => "Child does not list enough nameservers ({ns}). Lower limit set to {minimum}.",
         "ARE_AUTHORITATIVE"      => "All the nameservers are authoritative.",
         "NS_RR_NO_CNAME"         => "No nameserver point to CNAME alias.",
         "SOA_EXISTS"             => "All the nameservers have SOA record.",
@@ -128,12 +128,14 @@ sub delegation01 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    if ( scalar( @{ $zone->glue } ) >= $MINIMUM_NUMBER_OF_NAMESERVERS ) {
+    my @gluenames = uniq map { $_->name } @{ $zone->glue };
+    if ( scalar( @gluenames ) >= $MINIMUM_NUMBER_OF_NAMESERVERS ) {
         push @results,
           info(
             ENOUGH_NS_GLUE => {
-                count => scalar( @{ $zone->glue } ),
-                glue  => join( q{;}, map { $_->string } @{ $zone->glue } ),
+                count   => scalar( @gluenames ),
+                minimum => $MINIMUM_NUMBER_OF_NAMESERVERS,
+                glue    => join( q{;}, map { $_->string } @gluenames ),
             }
           );
     }
@@ -141,18 +143,21 @@ sub delegation01 {
         push @results,
           info(
             NOT_ENOUGH_NS_GLUE => {
-                count => scalar( @{ $zone->glue } ),
-                glue  => join( q{;}, map { $_->string } @{ $zone->glue } ),
+                count   => scalar( @gluenames ),
+                minimum => $MINIMUM_NUMBER_OF_NAMESERVERS,
+                glue    => join( q{;}, map { $_->string } @gluenames ),
             }
           );
     }
 
-    if ( scalar( @{ $zone->ns } ) >= $MINIMUM_NUMBER_OF_NAMESERVERS ) {
+    my @nsnames = uniq map { $_->name } @{ $zone->ns };
+    if ( scalar( @nsnames ) >= $MINIMUM_NUMBER_OF_NAMESERVERS ) {
         push @results,
           info(
             ENOUGH_NS => {
-                count => scalar( @{ $zone->ns } ),
-                ns    => join( q{;}, map { $_->string } @{ $zone->ns } ),
+                count   => scalar( @nsnames ),
+                minimum => $MINIMUM_NUMBER_OF_NAMESERVERS,
+                ns      => join( q{;}, map { $_->string } @nsnames ),
             }
           );
     }
@@ -160,8 +165,9 @@ sub delegation01 {
         push @results,
           info(
             NOT_ENOUGH_NS => {
-                count => scalar( @{ $zone->ns } ),
-                ns    => join( q{;}, map { $_->string } @{ $zone->ns } ),
+                count   => scalar( @nsnames ),
+                minimum => $MINIMUM_NUMBER_OF_NAMESERVERS,
+                ns      => join( q{;}, map { $_->string } @nsnames ),
             }
           );
     }
