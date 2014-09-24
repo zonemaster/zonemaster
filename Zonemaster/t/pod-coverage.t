@@ -13,6 +13,11 @@ if ( $@ ) {
     exit( 0 );
 }
 
+if ($^V >= v5.18.0 && $^V < v5.19.0) {
+    plan skip_all => "Test broken on this Perl version.";
+    exit(0);
+}
+
 my @modules;
 
 find(

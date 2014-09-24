@@ -6,9 +6,7 @@ use POSIX qw[setlocale :locale_h];
 
 BEGIN { use_ok( 'Zonemaster::Translator' ) }
 
-my $trans = new_ok( 'Zonemaster::Translator' => [ { locale => 'sv_SE.UTF-8' } ] );
-is(setlocale(LC_MESSAGES), 'sv_SE.UTF-8');
-
+my $trans = new_ok( 'Zonemaster::Translator' => [ { locale => 'C' } ] );
 ok( exists $trans->data->{BASIC}{NO_GLUE},       'expected key from file exists' );
 ok( exists $trans->data->{DNSSEC}{ALGORITHM_OK}, 'expected key from module exists' );
 
@@ -20,7 +18,6 @@ my $entry = Zonemaster::Logger::Entry->new(
     }
 );
 
-$trans->locale('en_US.UTF-8');
 like(
     $trans->to_string( $entry ),
     qr'   0.\d\d CRITICAL  Nameservers for "se" provided no NS records for tested zone. RCODE given was SERVFAIL.',

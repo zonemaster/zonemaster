@@ -43,8 +43,7 @@ is( $res[0]->tag, 'ITERATIONS_OK', 'ITERATIONS_OK' );
 
 @res = Zonemaster->test_method( 'DNSSEC', 'dnssec04', $zone );
 %tag = map { $_->tag => 1 } @res;
-ok( $tag{DURATION_OK} || $tag{REMAINING_SHORT}, 'DURATION_OK (sort of)' );
-
+ok( ($tag{DURATION_OK} || $tag{REMAINING_SHORT} || $tag{RRSIG_EXPIRED}), 'DURATION_OK (sort of)' );
 
 @res = Zonemaster->test_method( 'DNSSEC', 'dnssec05', $zone );
 %tag = map { $_->tag => 1 } @res;
