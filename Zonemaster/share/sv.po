@@ -277,6 +277,10 @@ msgstr "RRSIG-posten med keytag {tag} och täckande typerna {types} har en livsl
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine."
 msgstr "RRSIG-posten med keytag {tag} och täckande typerna {types} har en livslängd på {duration} sekunder, vilket är lagom."
 
+#: DNSSEC:RRSIG_EXPIRED
+msgid "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration})."
+msgstr "RRSIG-posten med {tag} och täckande typerna {types} har redan gått ut (utgångstiden är: {expiration})."
+
 #: DNSSEC:REMAINING_SHORT
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too short."
 msgstr "RRSIG-posten med keytag {tag} och täckande typerna {types} har en kvarvarande livslängd på {duration} sekunder, vilket är för kort."
