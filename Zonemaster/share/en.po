@@ -357,6 +357,10 @@ msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine."
 msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine."
 
+#: DNSSEC:RRSIG_EXPIRED
+msgid "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration})."
+msgstr "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration})."
+
 #: DNSSEC:DURATION_REMAINING_OK
 #: DNSSEC:DURATION_REMAINING_SHORT
 #: DNSSEC:REMAINING_SHORT
