@@ -34,7 +34,7 @@ The domain name to be tested.
 
 ### Outcome(s)
 
-If there is no target host (MX, A or AAA record) to deliver e-mail for the
+If there is no target host (MX, A or AAAA record) to deliver e-mail for the
 domain name, this test case fails.
 
 ### Special procedural requirements
