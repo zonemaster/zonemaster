@@ -22,10 +22,15 @@ is( $zone->parent->name, 'se' );
 my $root = new_ok( 'Zonemaster::Zone' => [ { name => '.' } ] );
 is( $root->parent, $root );
 
+isa_ok($zone->glue_names, 'ARRAY');
+is_deeply($zone->glue_names, [qw(i.ns.se ns.nic.se ns3.nic.se)]);
+
 isa_ok( $zone->glue, 'ARRAY' );
 ok( @{ $zone->glue } > 0, 'glue list not empty' );
 isa_ok( $_, 'Zonemaster::Nameserver' ) for @{ $zone->glue };
 
+isa_ok( $zone->ns_names, 'ARRAY');
+is_deeply($zone->ns_names, [qw(i.ns.se ns.nic.se ns3.nic.se)]);
 isa_ok( $zone->ns, 'ARRAY' );
 ok( @{ $zone->ns } > 0, 'NS list not empty' );
 isa_ok( $_, 'Zonemaster::Nameserver' ) for @{ $zone->ns };

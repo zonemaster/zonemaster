@@ -1,4 +1,4 @@
-package Zonemaster::Zone v0.0.2;
+package Zonemaster::Zone v0.0.3;
 
 use 5.14.2;
 use strict;
@@ -13,6 +13,7 @@ use Zonemaster::Recursor;
 has 'name' => ( is => 'ro', isa => 'Zonemaster::DNSName', required => 1, coerce => 1 );
 has 'parent' => ( is => 'ro', isa => 'Maybe[Zonemaster::Zone]', lazy_build => 1 );
 has [ 'ns', 'glue' ] => ( is => 'ro', isa => 'ArrayRef[Zonemaster::Nameserver]', lazy_build => 1 );
+has [ 'ns_names', 'glue_names' ] => ( is => 'ro', isa => 'ArrayRef[Zonemaster::DNSName]', lazy_build => 1 );
 has 'glue_addresses' => ( is => 'ro', isa => 'ArrayRef[Net::LDNS::RR]', lazy_build => 1 );
 
 ###
@@ -32,19 +33,49 @@ sub _build_parent {
     return __PACKAGE__->new( { name => $pname } );
 }
 
-sub _build_glue {
+sub _build_glue_names {
     my ( $self ) = @_;
-    my @res;
 
     if (not $self->parent) {
         return [];
     }
 
     my $p = $self->parent->query_one( $self->name, 'NS' );
-    # croak "Failed to get glue" if not defined( $p );
+
     return [] if not defined $p;
 
-    return Zonemaster::Recursor->get_ns_from( $p );
+    return [ sort map {Zonemaster::DNSName->new($_->nsdname)} $p->get_records_for_name('ns', $self->name->string)];
+}
+
+sub _build_glue {
+    my ( $self ) = @_;
+    my @res;
+
+    foreach my $name (@{$self->glue_names}) {
+        my @addr = Zonemaster::Recursor->get_addresses_for($name);
+        push @res, Zonemaster::Nameserver->new({ name => $name, address => $_ }) for @addr;
+    }
+
+    return [sort @res];
+}
+
+sub _build_ns_names {
+    my ( $self ) = @_;
+
+    if ( $self->name eq '.' ) {
+        my %u;
+        $u{$_} = $_ for map {$_->name} @{$self->ns};
+        return [sort values %u];
+    }
+
+    my $p;
+    foreach my $s ( @{ $self->glue } ) {
+        $p = $s->query( $self->name, 'NS' );
+        last if defined( $p );
+    }
+    return [] if not defined $p;
+
+    return [ sort map {Zonemaster::DNSName->new($_->nsdname)} $p->get_records_for_name('ns', $self->name->string)];
 }
 
 sub _build_ns {
@@ -54,15 +85,13 @@ sub _build_ns {
         return [ Zonemaster::Recursor->root_servers ];
     }
 
-    my $p;
-    foreach my $s ( @{ $self->glue } ) {
-        $p = $s->query( $self->name, 'NS' );
-        last if defined( $p );
+    my @res;
+    foreach my $name (@{$self->ns_names}) {
+        my @addr = Zonemaster::Recursor->get_addresses_for($name);
+        push @res, Zonemaster::Nameserver->new({ name => $name, address => $_ }) for @addr;
     }
-    # croak "Failed to get nameservers" if not defined( $p );
-    return [] if not defined $p;
 
-    return Zonemaster::Recursor->get_ns_from( $p );
+    return [sort @res];
 }
 
 sub _build_glue_addresses {
@@ -174,20 +203,37 @@ A L<Zonemaster::DNSName> object representing the name of the zone.
 
 A L<Zonemaster::Zone> object for this domain's parent domain.
 
+=item ns_names
+
+A reference to an array of L<Zonemaster::DNSName> objects, holding the names of
+the nameservers for the domain, as returned by the first responding nameserver
+in the glue list.
+
 =item ns
 
-A reference to an array of L<Zonemaster::Nameserver> objects for the domain. The list is based on the NS records returned from a query to the first
-listed glue server for the domain.
+A reference to an array of L<Zonemaster::Nameserver> objects for the domain,
+built by taking the list returned from L<ns_names()> and looking up addresses
+for the names. One element will be added to this list for each unique name/IP
+pair. Names for which no addresses could be found will not be in this list.
+
+=item glue_names
+
+A reference to a an array of L<Zonemaster::DNSName> objects, holding the names
+of this zones nameservers as listed at the first responding nameserver of the
+parent zone.
 
 =item glue
 
-A reference to an array of L<Zonemaster::Nameserver> objects for the domain. The list is based on the NS records returned from a query to the first
-listed nameserver for the parent domain.
+A reference to an array of L<Zonemaster::Nameserver> objects for the domain,
+built by taking the list returned from L<glue_names()> and looking up addresses
+for the names. One element will be added to this list for each unique name/IP
+pair. Names for which no addresses could be found will not be in this list.
 
 =item glue_addresses
 
-A list of L<Net::LDNS::RR::A> and L<Net::LDNS::RR::AAAA> records returned in the Additional section of an NS query to the first listed nameserver
-for the parent domain.
+A list of L<Net::LDNS::RR::A> and L<Net::LDNS::RR::AAAA> records returned in
+the Additional section of an NS query to the first listed nameserver for the
+parent domain.
 
 =back
 

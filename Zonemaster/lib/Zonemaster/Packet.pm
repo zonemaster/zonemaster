@@ -1,4 +1,4 @@
-package Zonemaster::Packet v0.0.1;
+package Zonemaster::Packet v0.0.2;
 
 use 5.14.2;
 use Moose;
@@ -102,13 +102,13 @@ sub get_records {
 sub get_records_for_name {
     my ( $self, $type, $name ) = @_;
 
-    return grep { $_->name eq $name } $self->get_records( $type );
+    return grep { name($_->name) eq name($name) } $self->get_records( $type );
 }
 
 sub has_rrs_of_type_for_name {
     my ( $self, $type, $name ) = @_;
 
-    return ( grep { $_->name eq $name } $self->get_records( $type ) ) > 0;
+    return ( grep { name($_->name) eq name($name) } $self->get_records( $type ) ) > 0;
 }
 
 sub answerfrom {
