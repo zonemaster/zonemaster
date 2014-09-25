@@ -95,6 +95,7 @@ sub metadata {
             qw(
               NAMESERVER_IP_WITHOUT_REVERSE
               NAMESERVERS_IP_WITH_REVERSE
+              NO_RESPONSE_PTR_QUERY
               )
         ],
         address03 => [
@@ -102,6 +103,7 @@ sub metadata {
               NAMESERVER_IP_WITHOUT_REVERSE
               NAMESERVER_IP_PTR_MISMATCH
               NAMESERVER_IP_PTR_MATCH
+              NO_RESPONSE_PTR_QUERY
               )
         ],
         address04 => [
@@ -123,6 +125,7 @@ sub translation {
         "NO_IP_PRIVATE_NETWORK"               => "All Nameserver addresses are in the routable public addressing space.",
         "NAMESERVERS_IP_WITH_REVERSE"         => "Reverse DNS entry exist for all Nameserver IP addresses",
         "NAMESERVER_IP_PTR_MATCH"             => "All reverse DNS entry matches name server name",
+        "NO_RESPONSE_PTR_QUERY"               => "No response from nameserver(s) on PTR query ({reverse}).",
     };
 }
 
@@ -201,7 +204,6 @@ sub address02 {
         next if $ips{ $local_ns->address->short };
 
         my $reverse_ip_query = $local_ns->address->reverse_ip;
-
         my $p = Zonemaster::Recursor->recurse( $reverse_ip_query, q{PTR} );
 
         if ( $p ) {
@@ -214,10 +216,15 @@ sub address02 {
                     }
                   );
             }
-        }
+        } ## end if ( $p )
         else {
-            croak q{No response from nameserver};
-        }
+            push @results,
+              info(
+                NO_RESPONSE_PTR_QUERY => {
+                    reverse => $reverse_ip_query,
+                }
+              );
+        } ## end else [ if ( $p ) ]
 
         $ips{ $local_ns->address->short }++;
 
@@ -273,8 +280,13 @@ sub address03 {
             }
         } ## end if ( $p )
         else {
-            croak q{No response from nameserver};
-        }
+            push @results,
+              info(
+                NO_RESPONSE_PTR_QUERY => {
+                    reverse => $reverse_ip_query,
+                }
+              );
+        } ## end else [ if ( $p ) ]
 
         $ips{ $local_ns->address->short }++;
 

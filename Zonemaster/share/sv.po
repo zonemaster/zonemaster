@@ -736,3 +736,8 @@ msgstr "Följande namnservrar stöder EDNS0 : {names}."
 #: NAMESERVER:NO_RECURSOR
 msgid   "None of the following nameservers is a recursor : {names}."
 msgstr "Ingen av följande namnservrar är rekursiv : {names}."
+
+#: ADDRESS:NO_RESPONSE_PTR_QUERY
+msgid  "No response from nameserver(s) on PTR query ({reverse})."
+msgstr "NO_RESPONSE_PTR_QUERY needs translation..."
+

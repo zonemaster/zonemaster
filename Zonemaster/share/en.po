@@ -41,6 +41,10 @@ msgstr "Nameserver {ns} has an IP address ({address}) without PTR configured."
 msgid  "All Nameserver addresses are in the routable public addressing space."
 msgstr "All Nameserver addresses are in the routable public addressing space."
 
+#: ADDRESS:NO_RESPONSE_PTR_QUERY
+msgid  "No response from nameserver(s) on PTR query ({reverse})."
+msgstr "No response from nameserver(s) on PTR query ({reverse})."
+
 #: BASIC:A_QUERY_NO_RESPONSES
 msgid  "Nameservers did not respond to A query."
 msgstr "Nameservers did not respond to A query."
