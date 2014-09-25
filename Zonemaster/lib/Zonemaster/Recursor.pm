@@ -114,6 +114,7 @@ sub get_ns_from {
     $state->{glue}{ name( $_->name ) }{ $_->address } = 1 for ( $p->get_records( 'a' ), $p->get_records( 'aaaa' ) );
 
     foreach my $name ( @names ) {
+        $state->{name_seen} = {};
         if ( $state->{glue}{$name} ) {
             push @new, ns( $name, $_ ) for keys %{ $state->{glue}{$name} };
         }
