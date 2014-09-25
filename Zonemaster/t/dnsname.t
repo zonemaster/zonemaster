@@ -39,4 +39,6 @@ is( $ex, 'example.org',            "Prepend does not change original: $ex" );
 $pr = $root->prepend( 'xx-example' );
 is( $pr, 'xx-example', "Prepend to root works: $pr" );
 
+is($name, Zonemaster::DNSName->new($name), 'Roundtrip creation works');
+
 done_testing;
