@@ -22,6 +22,9 @@ around BUILDARGS => sub {
         my @labels = split( /\./, $name );
         return $class->$orig( labels => \@labels );
     }
+    elsif (ref($_[0]) and ref($_[0]) eq __PACKAGE__) {
+        return $_[0];
+    }
     else {
         return $class->$orig( @_ );
     }
