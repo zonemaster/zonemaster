@@ -129,7 +129,7 @@ sub translation {
         "MNAME_NO_RESPONSE"  => "SOA 'mname' nameserver {ns}/{address} does not respond.",
         "MASTER_IS_CNAME" => "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME).",
         "MASTER_IS_NOT_CNAME" => "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME).",
-        "NO_MX_RECORD"       => "No target (MX, A or AAA record) to deliver e-mail for the domain name.",
+        "NO_MX_RECORD"       => "No target (MX, A or AAAA record) to deliver e-mail for the domain name.",
         "MX_RECORD_EXISTS"   => "Target ({info}) found to deliver e-mail for the domain name.",
         "REFRESH_MINIMUM_VALUE_LOWER" => "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh}).",
         "REFRESH_MINIMUM_VALUE_OK" => "SOA 'refresh' value ({refresh}) is higher than the minimum recommended value ({required_refresh}).",

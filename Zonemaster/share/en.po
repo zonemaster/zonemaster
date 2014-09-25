@@ -660,8 +660,8 @@ msgid  "IPv6 is disabled, not sending query to {ns}."
 msgstr "IPv6 is disabled, not sending query to {ns}."
 
 #: SYSTEM:UNKNOWN_METHOD
-msgid  "Request to run unknown method {method} in module {moduke}."
-msgstr "Request to run unknown method {method} in module {moduke}."
+msgid  "Request to run unknown method {method} in module {module}."
+msgstr "Request to run unknown method {method} in module {module}."
 
 #: SYSTEM:UNKNOWN_MODULE
 msgid  "Request to run {method} in unknown module {module}. Known modules: {known}."
@@ -700,8 +700,8 @@ msgid  "MX record for the domain is pointing to a CNAME."
 msgstr "MX record for the domain is pointing to a CNAME."
 
 #: ZONE:NO_MX_RECORD
-msgid  "No target (MX, A or AAA record) to deliver e-mail for the domain name."
-msgstr "No target (MX, A or AAA record) to deliver e-mail for the domain name."
+msgid  "No target (MX, A or AAAA record) to deliver e-mail for the domain name."
+msgstr "No target (MX, A or AAAA record) to deliver e-mail for the domain name."
 
 #: ZONE:REFRESH_LOWER_THAN_RETRY
 msgid  "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({retry})."
