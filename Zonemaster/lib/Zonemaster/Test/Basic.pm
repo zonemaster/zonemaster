@@ -6,6 +6,7 @@ use warnings;
 
 use Zonemaster;
 use Zonemaster::Util;
+use Zonemaster::TestMethods;
 
 ###
 ### Entry Points
@@ -197,7 +198,7 @@ sub basic02 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    foreach my $ns ( @{ $zone->glue } ) {
+    foreach my $ns ( @{ Zonemaster::TestMethods->method4($zone) } ) {
         if (not Zonemaster->config->ipv4_ok and $ns->address->version == 4) {
             push @results,
               info(
@@ -276,7 +277,7 @@ sub basic03 {
 
     my $name = q{www.} . $zone->name;
     my $response_nb = 0;
-    foreach my $ns ( @{ $zone->glue } ) {
+    foreach my $ns ( @{ Zonemaster::TestMethods->method4($zone) } ) {
         if (not Zonemaster->config->ipv4_ok and $ns->address->version == 4) {
             push @results,
               info(
@@ -338,7 +339,7 @@ sub basic03 {
         }
     }
 
-    if (scalar( @{ $zone->glue } ) and not $response_nb) {
+    if (scalar( @{ Zonemaster::TestMethods->method4($zone) } ) and not $response_nb) {
         push @results,
           info(
             A_QUERY_NO_RESPONSES => { }
