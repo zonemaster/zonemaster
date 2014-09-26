@@ -342,15 +342,21 @@ _Parent Domain_ is the domain that delegates directly to the domain
 being tested. Differently put, it is the domain whose nameservers
 delivers the glue records for the child domain.
 
-_Glue Name Records_ are defined as all NS, A and AAAA records
+_Glue Name Records_ are defined as all NS records
 pertaining to the child domain that are delivered by the nameservers
 for the parent domain.
 
-_Glue Address Records_ are all glue records of type A or AAAA.
+_Glue Address Records_ are all A or AAAA records
+pertaining to the child domain that are delivered by the nameservers
+for the parent domain
 
-_In bailiwick_ TODO
+_In bailiwick_ means that nameservers for a domain is in
+the same domain (within the domain). i.e for 'domain.com', nameserver 
+is ns.domain.com and not ns.domain.net nor ns.otherdomain.org
 
-_Out of bailiwick_ TODO
+_Out of bailiwick_ The term out-of-bailiwick means that nameservers for 
+a domain is not in the same domain. ie for 'domain.com' nameserver is 
+ns.domain.net or ns.otherdomain.org etc.
 
 
 ### Document change procedures
