@@ -48,4 +48,30 @@ sub method5 {
     return $zone->ns;
 } ## end sub method5
 
+=head1 NAME
+
+Zonemaster::TestMethods - Methods common to Test Specification used in test modules
+
+=head1 SYNOPSIS
+
+    my @results = Zonemaster::TestMethods->method1($zone);
+
+=head1 METHODS
+
+=over
+
+=item method1($zone)
+
+=item method2($zone)
+
+=item method3($zone)
+
+=item method4($zone)
+
+=item method5($zone)
+
+=back
+
+=cut
+
 1;

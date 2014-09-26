@@ -6,6 +6,7 @@ use warnings;
 
 use Zonemaster;
 use Zonemaster::Util;
+use Zonemaster::TestMethods;
 
 use Carp;
 
@@ -158,9 +159,8 @@ sub address01 {
     my @results;
     my %ips;
 
-    foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
-        next unless $local_ns->address;
         next if $ips{ $local_ns->address->short };
 
         my $ip_details_ref = $class->find_special_address( $local_ns->address );
@@ -182,7 +182,7 @@ sub address01 {
 
     } ## end foreach my $local_ns ( @{ $zone...})
 
-    if (not scalar @results) {
+    if (scalar keys %ips and not scalar @results) {
         push @results,
           info(
             NO_IP_PRIVATE_NETWORK => { }
@@ -198,9 +198,8 @@ sub address02 {
 
     my %ips;
 
-    foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method5($zone) } ) {
 
-        next unless $local_ns->address;
         next if $ips{ $local_ns->address->short };
 
         my $reverse_ip_query = $local_ns->address->reverse_ip;
@@ -230,7 +229,7 @@ sub address02 {
 
     } ## end foreach my $local_ns ( @{ $zone...})
 
-    if ((scalar @{ $zone->ns } or scalar @{ $zone->glue }) and not scalar @results) {
+    if (scalar keys %ips and not scalar @results) {
         push @results,
           info(
             NAMESERVERS_IP_WITH_REVERSE => { }
@@ -246,9 +245,8 @@ sub address03 {
 
     my %ips;
 
-    foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method5($zone) } ) {
 
-        next unless $local_ns->address;
         next if $ips{ $local_ns->address->short };
 
         my $reverse_ip_query = $local_ns->address->reverse_ip;
@@ -292,7 +290,7 @@ sub address03 {
 
     } ## end foreach my $local_ns ( @{ $zone...})
 
-    if ((scalar @{ $zone->ns } or scalar @{ $zone->glue }) and not scalar @results) {
+    if (scalar keys %ips and not scalar @results) {
         push @results,
           info(
             NAMESERVER_IP_PTR_MATCH => { }
@@ -308,9 +306,8 @@ sub address04 {
     my %ips;
     my $ipv6_nb = 0;
 
-    foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
-        next if not $local_ns->address;
         next if not $local_ns->address->version == $IP_VERSION_6;
         next if $ips{ $local_ns->address->short };
 
