@@ -7,6 +7,7 @@ use warnings;
 use Zonemaster;
 use Zonemaster::Util;
 use Zonemaster::Test::Address;
+use Zonemaster::TestMethods;
 
 use Carp;
 
@@ -157,20 +158,18 @@ sub connectivity01 {
 
     my %ips;
 
-    foreach my $local_ns ( @{ $zone->ns } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
         next if $ips{ $local_ns->address->short };
 
-        my $ns =
-          Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
-        my $p = $ns->query( $zone->name, q{SOA}, { usevc => 0 } );
+        my $p = $local_ns->query( $zone->name, q{SOA}, { usevc => 0 } );
 
         if ( $p and $p->rcode eq q{NOERROR} ) {
             push @results,
               info(
                 NAMESERVER_HAS_UDP_53 => {
-                    ns      => $ns->name->string,
-                    address => $ns->address->short,
+                    ns      => $local_ns->name->string,
+                    address => $local_ns->address->short,
                 }
               );
         }
@@ -178,44 +177,13 @@ sub connectivity01 {
             push @results,
               info(
                 NAMESERVER_NO_UDP_53 => {
-                    ns      => $ns->name->string,
-                    address => $ns->address->short,
+                    ns      => $local_ns->name->string,
+                    address => $local_ns->address->short,
                 }
               );
         }
 
-        $ips{ $ns->address->short }++;
-
-    } ## end foreach my $local_ns ( @{ $zone...})
-
-    foreach my $local_ns ( @{ $zone->glue } ) {
-
-        next if $ips{ $local_ns->address->short };
-
-        my $ns =
-          Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
-        my $p = $ns->query( $zone->name, q{SOA}, { usevc => 0 } );
-
-        if ( $p and $p->rcode eq q{NOERROR} ) {
-            push @results,
-              info(
-                NAMESERVER_HAS_UDP_53 => {
-                    ns      => $ns->name->string,
-                    address => $ns->address->short,
-                }
-              );
-        }
-        else {
-            push @results,
-              info(
-                NAMESERVER_NO_UDP_53 => {
-                    ns      => $ns->name->string,
-                    address => $ns->address->short,
-                }
-              );
-        }
-
-        $ips{ $ns->address->short }++;
+        $ips{ $local_ns->address->short }++;
 
     } ## end foreach my $local_ns ( @{ $zone...})
 
@@ -227,20 +195,18 @@ sub connectivity02 {
     my @results;
     my %ips;
 
-    foreach my $local_ns ( @{ $zone->ns } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
         next if $ips{ $local_ns->address->short };
 
-        my $ns =
-          Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
-        my $p = $ns->query( $zone->name, q{SOA}, { usevc => 1 } );
+        my $p = $local_ns->query( $zone->name, q{SOA}, { usevc => 1 } );
 
         if ( $p and $p->rcode eq q{NOERROR} ) {
             push @results,
               info(
                 NAMESERVER_HAS_TCP_53 => {
-                    ns      => $ns->name->string,
-                    address => $ns->address->short,
+                    ns      => $local_ns->name->string,
+                    address => $local_ns->address->short,
                 }
               );
         }
@@ -248,44 +214,13 @@ sub connectivity02 {
             push @results,
               info(
                 NAMESERVER_NO_TCP_53 => {
-                    ns      => $ns->name->string,
-                    address => $ns->address->short,
+                    ns      => $local_ns->name->string,
+                    address => $local_ns->address->short,
                 }
               );
         }
 
-        $ips{ $ns->address->short }++;
-
-    } ## end foreach my $local_ns ( @{ $zone...})
-
-    foreach my $local_ns ( @{ $zone->glue } ) {
-
-        next if $ips{ $local_ns->address->short };
-
-        my $ns =
-          Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
-        my $p = $ns->query( $zone->name, q{SOA}, { usevc => 1 } );
-
-        if ( $p and $p->rcode eq q{NOERROR} ) {
-            push @results,
-              info(
-                NAMESERVER_HAS_TCP_53 => {
-                    ns      => $ns->name->string,
-                    address => $ns->address->short,
-                }
-              );
-        }
-        else {
-            push @results,
-              info(
-                NAMESERVER_NO_TCP_53 => {
-                    ns      => $ns->name->string,
-                    address => $ns->address->short,
-                }
-              );
-        }
-
-        $ips{ $ns->address->short }++;
+        $ips{ $local_ns->address->short }++;
 
     } ## end foreach my $local_ns ( @{ $zone...})
 
@@ -297,7 +232,7 @@ sub connectivity03 {
     my @results;
     my ( %ips, %asns );
 
-    foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
         next if $ips{ $local_ns->address->short };
 
