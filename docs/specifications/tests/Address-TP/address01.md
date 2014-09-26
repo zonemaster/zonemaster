@@ -25,8 +25,8 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the IP addresses of each name server of the domain checked using
-   [Method5](../Methods.md)
+1. Obtain the IP addresses of each name server of the domain from the parent using
+   [Method5](../Methods.md) and child using [Method5](../Methods.md)
 
 2. Each IP address has to be checked against the blocks listed in the three
    tables below.
