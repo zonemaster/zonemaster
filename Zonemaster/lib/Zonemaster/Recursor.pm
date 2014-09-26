@@ -121,6 +121,7 @@ sub get_ns_from {
         else {
             foreach my $a ( $self->get_addresses_for( $name, $state ) ) {
                 push @new, ns( $name, $a->short );
+                $state->{glue}{$name}{$a->short} = 1;
             }
         }
     }
