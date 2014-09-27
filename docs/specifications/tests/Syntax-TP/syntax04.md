@@ -19,7 +19,8 @@ used, from both the parent and the zone itself.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Find all hostnames for all the name servers used by the domain.
+1. Obtain the list of name server hostnames from [Method2](../Methods.md) and
+   [Method3](../Methods.md)
    (This is all the name servers from the parent delegation, and all the
    name servers in the apex of the zone itself.)
 2. Each label of the hostname of the test object is used as the input
