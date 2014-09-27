@@ -4,6 +4,8 @@ use 5.14.2;
 use strict;
 use warnings;
 
+use List::MoreUtils qw[uniq];
+
 use Zonemaster;
 use Zonemaster::Util;
 
@@ -91,11 +93,12 @@ sub nameserver01 {
     my ( $class, $zone ) = @_;
     my $nonexistent_name = q{xx--domain-cannot-exist.xx--illegal-syntax-tld};
     my @results;
+    my %ips;
     my %nsnames;
 
-    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
-        next if $nsnames{ $local_ns->name };
+        next if $ips{ $local_ns->address->short };
 
         my $p = $local_ns->query( $nonexistent_name, q{SOA}, { recurse => 1 } );
 
@@ -110,6 +113,7 @@ sub nameserver01 {
                   );
             }
             $nsnames{ $local_ns->name }++;
+            $ips{ $local_ns->address->short }++;
         }
 
     } ## end foreach my $local_ns ( @{ $zone...})
@@ -118,7 +122,7 @@ sub nameserver01 {
         push @results,
           info(
             NO_RECURSOR => {
-                names   => join( q{,}, keys %nsnames ),
+                names   => join( q{,}, sort uniq keys %nsnames ),
             }
           );
     }
@@ -131,7 +135,7 @@ sub nameserver02 {
     my @results;
     my %nsnames_and_ip;
 
-    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
         my $ns = Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
@@ -179,7 +183,7 @@ sub nameserver03 {
     my @results;
     my %nsnames_and_ip;
 
-    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
 
@@ -218,7 +222,7 @@ sub nameserver04 {
     my @results;
     my %nsnames_and_ip;
 
-    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
 
@@ -256,7 +260,7 @@ sub nameserver05 {
     my @results;
     my %nsnames_and_ip;
 
-    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
 
