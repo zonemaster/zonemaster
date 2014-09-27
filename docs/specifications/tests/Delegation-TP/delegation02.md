@@ -22,7 +22,7 @@ The domain name to be tested.
 
 1. Obtains the IP addresss of the name servers from the parent using
    [Method4](../Methods.md).
-2. If any of the IP addresses resolved in step 2 are not unique, then this
+2. If any of the IP addresses resolved in step 1 are not unique, then this
    test case fails.
 
 
