@@ -29,7 +29,7 @@ The domain name to be tested.
 
 1. Retrieve the SOA MNAME value from the SOA record of the domain being
    tested.
-2. Query the A record of the host from MNAME.
+2. Query for A and AAAA records for the host from MNAME.
 3. If the answer to the query is a CNAME, this test case fails.
 
 ### Outcome(s)
