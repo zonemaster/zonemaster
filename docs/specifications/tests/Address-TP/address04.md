@@ -25,11 +25,9 @@ The domain to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the list of name servers from [Method2](../Methods.md) and
-   [Method3](../Methods.md)
-2. Obtains the IPv6 addresss of the name servers from [Method4]
+1. Obtains the IPv6 addresss of the name servers from [Method4]
    (../Methods.md) and [Method5](../Methods.md)
-3. If any of the addresses obtained from the name servers is part of a bogon
+2. If any of the addresses obtained from the name servers is part of a bogon
 prefix [Match with Team-cymru IPv6 bogon prefixes as explained here :
    (https://www.team-cymru.org/Services/Bogons/dns.html)]
 

@@ -20,11 +20,9 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the complete set of name servers from the parent using
-   [Method2](../Methods.md).
-2. Obtains the IP addresss of the name servers from the parent using
+1. Obtains the IP addresss of the name servers from the parent using
    [Method4](../Methods.md).
-3. If any of the IP addresses resolved in step 2 are not unique, then this
+2. If any of the IP addresses resolved in step 2 are not unique, then this
    test case fails.
 
 
