@@ -8,12 +8,13 @@ use Zonemaster;
 use Zonemaster::Util;
 use Zonemaster::Recursor;
 use Zonemaster::DNSName;
+use Zonemaster::TestMethods;
 
 use Carp;
 
 use Readonly;
 
-use List::MoreUtils;
+use List::MoreUtils qw[uniq];
 use RFC::RFC822::Address qw[valid];
 use Time::Local;
 
@@ -34,11 +35,8 @@ sub all {
 
     if ( grep { $_->tag eq q{ONLY_ALLOWED_CHARS} } @results ) {
 
-        my %nsnames;
-        foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
-            next if $nsnames{ $local_ns->name };
-            push @results, $class->syntax04( $local_ns->name);
-            $nsnames{ $local_ns->name }++;
+        foreach my $local_nsname ( uniq map { $_->string } @{ Zonemaster::TestMethods->method2($zone) }, @{ Zonemaster::TestMethods->method3($zone) } ) {
+            push @results, $class->syntax04( $local_nsname);
         }
 
         push @results, $class->syntax05( $zone );
