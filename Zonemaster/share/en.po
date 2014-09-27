@@ -727,3 +727,7 @@ msgstr "SOA 'minimum' value ({minimum}) is higher than the recommended one ({hig
 msgid  "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum})."
 msgstr "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum})."
 
+#: ZONE:MNAME_HAS_NO_ADDRESS
+msgid  "No IP address found for SOA 'mname' nameserver ({mname})."
+msgstr "No IP address found for SOA 'mname' nameserver ({mname})."
+

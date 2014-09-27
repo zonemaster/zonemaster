@@ -6,6 +6,7 @@ use warnings;
 
 use Zonemaster;
 use Zonemaster::Util;
+use Zonemaster::TestMethods;
 
 use Carp;
 
@@ -103,6 +104,7 @@ sub metadata {
               MASTER_IS_CNAME
               MASTER_IS_NOT_CNAME
               NO_RESPONSE_SOA_QUERY
+              MASTER_HAS_NO_ADDRESS
               )
         ],
         zone08 => [
@@ -140,7 +142,7 @@ sub translation {
         "MNAME_NOT_AUTHORITATIVE" => "SOA 'mname' nameserver {ns}/{address} is not authoritative for '{zone}' zone.",
         "MNAME_RECORD_DOES_NOT_EXIST" => "SOA 'mname' field does not exist",
         "EXPIRE_MINIMUM_VALUE_LOWER" => "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire}).",
-        "MNAME_NOT_IN_GLUE"        => "SOA 'mname' nameserver is not listed in \"parent\" NS records for tested zone.",
+        "MNAME_NOT_IN_GLUE"        => "SOA 'mname' nameserver ({mname}) is not listed in \"parent\" NS records for tested zone ({ns}).",
         "REFRESH_LOWER_THAN_RETRY" => "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({retry}).",
         "REFRESH_HIGHER_THAN_RETRY" => "SOA 'refresh' value ({refresh}) is higher than the SOA 'retry' value ({retry}).",
         "MX_RECORD_IS_CNAME"       => "MX record for the domain is pointing to a CNAME.",
@@ -148,6 +150,7 @@ sub translation {
         "MNAME_IS_AUTHORITATIVE" => "SOA 'mname' nameserver ({mname}) is authoritative for '{zone}' zone.",
         "NO_RESPONSE_SOA_QUERY"  => "No response from nameserver(s) on SOA queries.",
         "NO_RESPONSE_MX_QUERY"   => "No response from nameserver(s) on MX queries.",
+        "MNAME_HAS_NO_ADDRESS" => "No IP address found for SOA 'mname' nameserver ({mname}).",
 
     };
 } ## end sub translation
@@ -164,7 +167,7 @@ sub zone01 {
 
     if ( $p ) {
         my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
-        my $soa_mname = $soa->mname;
+        my $soa_mname = $soa->mname; $soa_mname =~ s/\.\z//;
         if ( not $soa_mname ) {
             push @results,
               info(
@@ -197,10 +200,13 @@ sub zone01 {
                       );
                 }
             } ## end foreach my $ip_address ( Zonemaster::Recursor...)
-            if ( not grep { $_->name eq $soa_mname } @{ $zone->glue } ) {
+            if ( not grep { $_ eq $soa_mname } @{ Zonemaster::TestMethods->method2($zone) } ) {
                 push @results,
                   info(
-                    MNAME_NOT_IN_GLUE => {}
+                    MNAME_NOT_IN_GLUE => {
+                        mname  => $soa_mname,
+                        ns     => join( q{;}, @{ Zonemaster::TestMethods->method2($zone) } )
+                    }
                   );
             }
         } ## end else [ if ( not $soa_mname ) ]
@@ -208,7 +214,7 @@ sub zone01 {
             push @results,
               info(
                 MNAME_IS_AUTHORITATIVE => {
-                    mname  => "$soa_mname",
+                    mname  => $soa_mname,
                     zone   => $zone->name,
                 }
               );
@@ -443,7 +449,7 @@ sub zone07 {
 
     if ( $p ) {
         my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
-        my $soa_mname = $soa->mname;
+        my $soa_mname = $soa->mname; $soa_mname =~ s/\.\z//;
         my $p_mname = Zonemaster::Recursor->recurse( $soa_mname, q{A} );
 
         if ( $p_mname ) {
@@ -455,11 +461,19 @@ sub zone07 {
                     }
                   );
             }
+            else {
+                push @results,
+                  info(
+                    MASTER_IS_NOT_CNAME => {
+                        mname => $soa_mname,
+                    }
+                  );
+            }
         }
         else {
             push @results,
               info(
-                MASTER_IS_CNAME => {
+                MNAME_HAS_NO_ADDRESS => {
                     mname => $soa_mname,
                 }
               );
@@ -532,7 +546,7 @@ sub zone09 {
         }
         else {
             my @mx = $p->get_records_for_name( q{MX}, $zone->name );
-            $info = join( q{/}, map { q{MX=}.$_->exchange } @mx );
+            $info = join( q{/}, map { my $tmp = q{MX=}.$_->exchange; $tmp =~ s/\.\z//; $tmp } @mx );
         }
         if (not scalar @results) {
             push @results,

@@ -739,5 +739,9 @@ msgstr "Ingen av följande namnservrar är rekursiv : {names}."
 
 #: ADDRESS:NO_RESPONSE_PTR_QUERY
 msgid  "No response from nameserver(s) on PTR query ({reverse})."
-msgstr "NO_RESPONSE_PTR_QUERY needs translation..."
+msgstr "ADDRESS:NO_RESPONSE_PTR_QUERY needs translation..."
+
+#: ZONE:MNAME_HAS_NO_ADDRESS
+msgid  "No IP address found for SOA 'mname' nameserver ({mname})."
+msgstr "ZONE:MNAME_HAS_NO_ADDRESS needs translation..."
 
