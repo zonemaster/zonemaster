@@ -14,7 +14,7 @@ if ( not $ENV{ZONEMASTER_RECORD} ) {
 }
 
 my %res = map { $_->tag => 1 } Zonemaster->test_module( q{zone}, q{afnic.fr} );
-ok( $res{MNAME_NO_RESPONSE}, q{SOA 'mname' noe response} );
+ok( $res{MNAME_NO_RESPONSE}, q{SOA 'mname' no response} );
 ok( $res{MNAME_NOT_IN_GLUE}, q{SOA 'mname' not listed as NS} );
 
 %res = map { $_->tag => 1 } Zonemaster->test_module( q{zone}, q{add.tf} );
