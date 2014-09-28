@@ -263,8 +263,6 @@ sub syntax03 {
 
 sub syntax04 {
     my ( $class, $item ) = @_;
-    my @results;
-    my %nsnames;
 
     my $name = _get_name( $item );
 
@@ -397,7 +395,7 @@ sub syntax08 {
 sub _name_has_only_legal_characters {
     my ( $name ) = @_;
 
-    if ( List::MoreUtils::all { m/\A[-A-Za-z0-9]+\z/ } @{ $name->labels } ) {
+    if ( List::MoreUtils::all { m/\A[-A-Za-z0-9]+\z/smx } @{ $name->labels } ) {
         return 1;
     }
     else {
@@ -436,7 +434,7 @@ sub _label_not_ace_has_double_hyphen_in_position_3_and_4 {
 
     return 0 if not $label;
 
-    if ( $label =~ /\A..--/ and $label !~ /\Axn/i ) {
+    if ( $label =~ /\A..--/smx and $label !~ /\Axn/ismx ) {
         return 1;
     }
     else {
@@ -507,7 +505,7 @@ sub _check_name_syntax {
           );
     }
 
-    if ( length "$name" >= $FQDN_MAX_LENGTH ) {    # not trailing 'dot' in $name, which explains the '=' sign.
+    if ( length( "$name" ) >= $FQDN_MAX_LENGTH ) {    # not trailing 'dot' in $name, which explains the '=' sign.
         push @results,
           info(
             $info_label_prefix . q{_NAME_TOO_LONG} => {

@@ -7,6 +7,15 @@ use warnings;
 use Zonemaster;
 use Zonemaster::Util;
 use Zonemaster::TestMethods;
+use Zonemaster::Test::Address;
+use List::MoreUtils qw[any none];
+
+use Carp;
+
+use Readonly;
+
+Readonly our $IP_VERSION_4 => $Zonemaster::Test::Address::IP_VERSION_4;
+Readonly our $IP_VERSION_6 => $Zonemaster::Test::Address::IP_VERSION_6;
 
 ###
 ### Entry Points
@@ -19,7 +28,7 @@ sub all {
     push @results, eval { $class->basic01( $zone ) };
 
     # Perform BASIC2 if BASIC1 passed
-    if ( grep { $_->tag eq q{HAS_GLUE} } @results ) {
+    if ( any { $_->tag eq q{HAS_GLUE} } @results ) {
         push @results, $class->basic02( $zone );
     }
     else {
@@ -30,7 +39,7 @@ sub all {
     }
 
     # Perform BASIC3 if BASIC2 failed
-    if ( not grep { $_->tag eq q{HAS_NAMESERVERS} } @results ) {
+    if ( none { $_->tag eq q{HAS_NAMESERVERS} } @results ) {
         push @results, eval { $class->basic03( $zone ) };
     }
     else {
@@ -199,7 +208,7 @@ sub basic02 {
     my @results;
 
     foreach my $ns ( @{ Zonemaster::TestMethods->method4($zone) } ) {
-        if (not Zonemaster->config->ipv4_ok and $ns->address->version == 4) {
+        if (not Zonemaster->config->ipv4_ok and $ns->address->version == $IP_VERSION_4) {
             push @results,
               info(
                 IPV4_DISABLED => {
@@ -209,7 +218,7 @@ sub basic02 {
               );
             next;
         }
-        elsif (Zonemaster->config->ipv4_ok and $ns->address->version == 4)  {
+        elsif (Zonemaster->config->ipv4_ok and $ns->address->version == $IP_VERSION_4)  {
               info(
                 IPV4_ENABLED => {
                     ns   => "$ns",
@@ -218,7 +227,7 @@ sub basic02 {
               );
         }
 
-        if (not Zonemaster->config->ipv6_ok and $ns->address->version == 6) {
+        if (not Zonemaster->config->ipv6_ok and $ns->address->version == $IP_VERSION_6) {
             push @results,
               info(
                 IPV6_DISABLED => {
@@ -228,7 +237,7 @@ sub basic02 {
               );
             next;
         }
-        elsif (Zonemaster->config->ipv6_ok and $ns->address->version == 6) {
+        elsif (Zonemaster->config->ipv6_ok and $ns->address->version == $IP_VERSION_6) {
               info(
                 IPV6_ENABLED => {
                     ns   => "$ns",
@@ -278,7 +287,7 @@ sub basic03 {
     my $name = q{www.} . $zone->name;
     my $response_nb = 0;
     foreach my $ns ( @{ Zonemaster::TestMethods->method4($zone) } ) {
-        if (not Zonemaster->config->ipv4_ok and $ns->address->version == 4) {
+        if (not Zonemaster->config->ipv4_ok and $ns->address->version == $IP_VERSION_4) {
             push @results,
               info(
                 IPV4_DISABLED => {
@@ -297,7 +306,7 @@ sub basic03 {
               );
         }
 
-        if (not Zonemaster->config->ipv6_ok and $ns->address->version == 6) {
+        if (not Zonemaster->config->ipv6_ok and $ns->address->version == $IP_VERSION_6) {
             push @results,
               info(
                 IPV6_DISABLED => {

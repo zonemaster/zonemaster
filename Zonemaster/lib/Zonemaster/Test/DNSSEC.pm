@@ -13,13 +13,17 @@ use Zonemaster::Util;
 use List::Util qw[min];
 use List::MoreUtils qw[none];
 
+use Carp;
+
 use Readonly;
 
-Readonly our $ALGO_STATUS_DEPRECATED => 1;
-Readonly our $ALGO_STATUS_RESERVED   => 2;
-Readonly our $ALGO_STATUS_UNASSIGNED => 3;
-Readonly our $ALGO_STATUS_PRIVATE    => 4;
-Readonly our $ALGO_STATUS_VALID      => 5;
+Readonly our $ALGO_STATUS_DEPRECATED       => 1;
+Readonly our $ALGO_STATUS_RESERVED         => 2;
+Readonly our $ALGO_STATUS_UNASSIGNED       => 3;
+Readonly our $ALGO_STATUS_PRIVATE          => 4;
+Readonly our $ALGO_STATUS_VALID            => 5;
+Readonly our $DURATION_12_HOURS_IN_SECONDS => 12 * 60 * 60;
+Readonly our $DURATION_180_DAYS_IN_SECONDS => 180 * 24 * 60 * 60;
 ### Table fetched from IANA on 2014-09-12
 Readonly::Hash our %algo_properties => (
     0 => {
@@ -411,7 +415,7 @@ sub dnssec01 {
         push @results,
           info(
             NO_DS => {
-                zone => '' . $zone->name,
+                zone => q{} . $zone->name,
                 from => $ds_p->answerfrom
             }
           );
@@ -455,7 +459,7 @@ sub dnssec02 {
         push @results,
           info(
             NO_DS => {
-                zone => '' . $zone->name,
+                zone => q{} . $zone->name,
                 from => $ds_p->answerfrom,
             }
           );
@@ -464,7 +468,7 @@ sub dnssec02 {
         push @results,
           info(
             DS_FOUND => {
-                keytags => join( ':', map { $_->keytag } values %ds ),
+                keytags => join( q{:}, map { $_->keytag } values %ds ),
             }
           );
         my $dnskey_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
@@ -486,7 +490,7 @@ sub dnssec02 {
             push @results,
               info(
                 COMMON_KEYTAGS => {
-                    keytags => join( ':', map { $_->keytag } @common ),
+                    keytags => join( q{:}, map { $_->keytag } @common ),
                 }
               );
             my $found = 0;
@@ -526,8 +530,8 @@ sub dnssec02 {
             push @results,
               info(
                 NO_COMMON_KEYTAGS => {
-                    dstags     => join( ':', map { $_->keytag } keys %ds ),
-                    dnskeytags => join( ':', map { $_->keytag } keys %dnskey ),
+                    dstags     => join( q{:}, map { $_->keytag } keys %ds ),
+                    dnskeytags => join( q{:}, map { $_->keytag } keys %dnskey ),
                 }
               );
         }
@@ -615,7 +619,7 @@ sub dnssec04 {
     foreach my $sig ( @key_sigs, @soa_sigs ) {
         my $duration = $sig->expiration - $sig->inception;
         my $remaining = $sig->expiration - int(time());
-        if ( $remaining < 0 ) {    # lready expired
+        if ( $remaining < 0 ) {    # already expired
             push @results,
               info(
                 RRSIG_EXPIRED => {
@@ -625,7 +629,7 @@ sub dnssec04 {
                 }
               );
         }
-        elsif ( $remaining < ( 12 * 60 * 60 ) ) {    # 12 hours
+        elsif ( $remaining < ( $DURATION_12_HOURS_IN_SECONDS ) ) {
             push @results,
               info(
                 REMAINING_SHORT => {
@@ -635,7 +639,7 @@ sub dnssec04 {
                 }
               );
         }
-        elsif ( $remaining > ( 180 * 24 * 60 * 60 ) ) {    # 180 days
+        elsif ( $remaining > ( $DURATION_180_DAYS_IN_SECONDS ) ) {
             push @results,
               info(
                 REMAINING_LONG => {
@@ -645,7 +649,7 @@ sub dnssec04 {
                 }
               );
         }
-        elsif ( $duration > ( 180 * 24 * 60 * 60 ) ) {    # 180 days
+        elsif ( $duration > ( $DURATION_180_DAYS_IN_SECONDS ) ) {
             push @results,
               info(
                 DURATION_LONG => {
@@ -751,7 +755,7 @@ sub dnssec06 {
     my @results;
 
     my $key_aref = $zone->query_all( $zone->name, 'DNSKEY', { dnssec => 1 } );
-    foreach my $key_p ( @$key_aref ) {
+    foreach my $key_p ( @{$key_aref} ) {
         next if not $key_p;
 
         my @keys = $key_p->get_records( 'DNSKEY', 'answer' );
@@ -862,7 +866,7 @@ sub dnssec08 {
 
     my $ok = 0;
     foreach my $sig ( @sigs ) {
-        my $msg  = '';
+        my $msg  = q{};
         my $time = $key_p->timestamp;
         if ( $sig->verify_time( \@dnskeys, \@dnskeys, $time, $msg ) ) {
             push @results,
@@ -934,7 +938,7 @@ sub dnssec09 {
 
     my $ok = 0;
     foreach my $sig ( @sigs ) {
-        my $msg  = '';
+        my $msg  = q{};
         my $time = $soa_p->timestamp;
         if ( $sig->verify_time( \@soa, \@dnskeys, $time, $msg ) ) {
             push @results,
@@ -1023,7 +1027,7 @@ sub dnssec10 {
                 my @sigs = grep { $_->typecovered eq 'NSEC' } $test_p->get_records_for_name( 'RRSIG', $nsec->name );
                 my $ok = 0;
                 foreach my $sig ( @sigs ) {
-                    my $msg = '';
+                    my $msg = q{};
                     if (
                         $sig->verify_time(
                             [ grep { $_->name eq $sig->name } @nsec ],
@@ -1088,7 +1092,7 @@ sub dnssec10 {
                 my @sigs = grep { $_->typecovered eq 'NSEC3' } $test_p->get_records_for_name( 'RRSIG', $nsec3->name );
                 my $ok = 0;
                 foreach my $sig ( @sigs ) {
-                    my $msg = '';
+                    my $msg = q{};
                     if (
                         $sig->verify_time(
                             [ grep { $_->name eq $sig->name } @nsec3 ],

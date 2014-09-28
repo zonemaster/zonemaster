@@ -7,6 +7,7 @@ use warnings;
 use Zonemaster;
 use Zonemaster::Util;
 use Zonemaster::TestMethods;
+use List::MoreUtils qw[none];
 
 use Carp;
 
@@ -70,7 +71,7 @@ sub all {
     push @results, $class->address01( $zone );
     push @results, $class->address02( $zone );
     # Perform ADDRESS03 if ADDRESS01 passed
-    if ( not grep { $_->tag eq q{NAMESERVER_IP_WITHOUT_REVERSE} } @results ) {
+    if ( none { $_->tag eq q{NAMESERVER_IP_WITHOUT_REVERSE} } @results ) {
         push @results, $class->address03( $zone );
     }
     push @results, $class->address04( $zone );
@@ -256,7 +257,7 @@ sub address03 {
         if ( $p ) {
             my @ptr = $p->get_records_for_name( q{PTR}, $reverse_ip_query );
             if ( $p->rcode eq q{NOERROR} and scalar @ptr ) {
-                if ( not grep { $_->ptrdname eq $local_ns->name->string . q{.} } @ptr ) {
+                if ( none { $_->ptrdname eq $local_ns->name->string . q{.} } @ptr ) {
                     push @results,
                       info(
                         NAMESERVER_IP_PTR_MISMATCH => {
@@ -338,7 +339,7 @@ sub address04 {
 
     } ## end foreach my $local_ns ( @{ $zone...})
 
-    if ( $ipv6_nb > 0 and not grep { $_->tag eq q{NAMESERVER_IPV6_ADDRESS_BOGON} } @results ) {
+    if ( $ipv6_nb > 0 and none { $_->tag eq q{NAMESERVER_IPV6_ADDRESS_BOGON} } @results ) {
         push @results,
           info(
             NAMESERVER_IPV6_ADDRESSES_NOT_BOGON => {
