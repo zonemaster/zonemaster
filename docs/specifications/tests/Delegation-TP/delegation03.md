@@ -25,6 +25,7 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
+<<<<<<< HEAD
 1. Obtain the list of name servers from [Method2](../Methods.md) and
    [Method3](../Methods.md)
 2. Obtains the IP addresss of the name servers from the parent using
@@ -40,6 +41,23 @@ one with the shortest name and add an AAAA record for it to the Additional
 section.
 7. If the DNS packet after encoding is more than 512 octets then the test
 fails
+=======
+1. Obtain the complete set of name servers from the parent using
+   [Method2](../Methods.md) and the child using [Method3](../Methods.md).
+2. Obtains the IP addresss of the name servers from the parent using
+   [Method4](../Methods.md) and the child using [Method5](../Methods.md).
+3. Create a DNS packet holding a query for a maximally long name in the relevant
+   zone (that is, 255 octets including label separators).
+4. Add all unique NS records for the zone obtained from step1 to the Authority section.
+5. If there is at least one in-zone NS that has an IPv4 address, take the
+   one with the shortest name and add an A record for it to the Additional
+   section.
+6. If there is at least one in-zone NS that has an IPv6 address, take the
+   one with the shortest name and add an AAAA record for it to the Additional
+   section.
+7. If the DNS packet after encoding is more than 512 octets then the test
+   fails
+>>>>>>> 6d843a5786a12ce6d9819fcb1fffe39c498658a5
 
 ### Outcome(s)
 
