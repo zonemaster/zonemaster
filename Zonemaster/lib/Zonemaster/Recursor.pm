@@ -71,7 +71,7 @@ sub _recurse {
 
     while ( my $ns = pop @{ $state->{ns} } ) {
         Zonemaster->logger->add( RECURSE_QUERY => { ns => "$ns", name => $name, type => $type, class => $class } );
-        my $p = $self->do_query( $ns, $name, $type, { class => $class }, $state );
+        my $p = $self->_do_query( $ns, $name, $type, { class => $class }, $state );
 
         next if not $p;    # Ask next server if no response
 
@@ -118,7 +118,7 @@ sub _recurse {
     return;
 } ## end sub _recurse
 
-sub do_query {
+sub _do_query {
     my ( $self, $ns, $name, $type, $opts, $state ) = @_;
 
     if ( ref( $ns ) and ref( $ns ) eq 'Zonemaster::Nameserver' ) {
@@ -150,7 +150,7 @@ sub do_query {
             return;
         }
     }
-} ## end sub do_query
+} ## end sub _do_query
 
 sub get_ns_from {
     my ( $self, $p, $state ) = @_;
