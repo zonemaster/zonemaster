@@ -6,7 +6,7 @@ use 5.14.0;
 
 use Data::Dumper;
 
-requires 'add_api_user_to_db', 'user_exists_in_db', 'user_authorized', 'create_new_batch_job', 'create_new_test';
+requires 'add_api_user_to_db', 'user_exists_in_db', 'user_authorized', 'test_progress', 'create_new_batch_job', 'create_new_test';
 
 sub user_exists {
 	my ($self, $user) = @_;

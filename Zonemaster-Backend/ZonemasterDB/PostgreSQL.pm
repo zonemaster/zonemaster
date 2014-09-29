@@ -44,6 +44,21 @@ sub user_authorized {
 	return $id;
 }
 
+sub test_progress {
+	my($self, $test_id) = @_;
+	
+	my $result = 0;
+	
+	my $sth1 = $self->dbh->prepare("SELECT EXTRACT(EPOCH FROM (now() - creation_time)) AS t from test_results WHERE id=$test_id");
+	$sth1->execute;
+	if (my $h = $sth1->fetchrow_hashref) {
+		my $time_from_test_start = ($h->{t}>60)?(60):($h->{t});
+		$result = int($time_from_test_start/60*100);
+	}
+
+	return $result;
+}
+
 sub create_new_batch_job {
 	my ($self, $username) = @_;
 
