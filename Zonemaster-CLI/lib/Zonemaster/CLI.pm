@@ -275,7 +275,7 @@ sub run {
 							}
 							elsif ($previous_module) {
 								foreach my $planned_module_method (keys %{$counter_for_progress_indicator{planned}}) {
-									$counter_for_progress_indicator{executed}{$module_method}++ if ($counter_for_progress_indicator{planned}{$planned_module_method} eq $module);
+									$counter_for_progress_indicator{executed}{$planned_module_method}++ if ($counter_for_progress_indicator{planned}{$planned_module_method} eq $previous_module);
 								}
 							}
 							$previous_module = $module;
