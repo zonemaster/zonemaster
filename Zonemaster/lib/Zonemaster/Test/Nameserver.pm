@@ -4,8 +4,6 @@ use 5.14.2;
 use strict;
 use warnings;
 
-use List::MoreUtils qw[uniq];
-
 use Zonemaster;
 use Zonemaster::Util;
 
@@ -122,7 +120,7 @@ sub nameserver01 {
         push @results,
           info(
             NO_RECURSOR => {
-                names   => join( q{,}, sort uniq keys %nsnames ),
+                names   => join( q{,}, sort keys %nsnames ),
             }
           );
     }

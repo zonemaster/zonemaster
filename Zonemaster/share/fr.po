@@ -1,0 +1,741 @@
+msgid ""
+msgstr ""
+"Language: fr\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: 0.0.4\n"
+"PO-Revision-Date: 2014-09-15 10:09+0200\n"
+"Last-Translator: vincent.levigneron@afnic.fr\n"
+"Language-Team: Zonemaster Team\n"
+"MIME-Version: 1.0\n"
+
+#: ADDRESS:NAMESERVERS_IP_WITH_REVERSE
+msgid  "Reverse DNS entry exist for all Nameserver IP addresses"
+msgstr "Les différentes adresses IP des serveurs de noms ont toutes un enregistrement PTR (reverse) associé dans le DNS."
+
+#: ADDRESS:NAMESERVER_IPV6_ADDRESSES_NOT_BOGON
+msgid  "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix."
+msgstr "Aucune des {nb} adresses IPv6 des serveurs de noms ne fait partie des 'bogon'."
+
+#: ADDRESS:NAMESERVER_IPV6_ADDRESS_BOGON
+msgid  "Nameserver {ns} IPv6 address {address} is part of a bogon prefix."
+msgstr "L'adresse IPv6 {address} du serveur de noms {ns} fait partie des 'bogon'."
+
+#: ADDRESS:NAMESERVER_IP_PRIVATE_NETWORK
+msgid  "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'."
+msgstr "Le serveur de noms {ns} a une adresse IP ({address}) dont le préfixe est référéncé dans le {reference} sous le libellé '{name}'."
+
+#: ADDRESS:NAMESERVER_IP_PTR_MATCH
+msgid  "All reverse DNS entry matches name server name"
+msgstr "Traduction en cours"
+
+#: ADDRESS:NAMESERVER_IP_PTR_MISMATCH
+msgid  "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names})."
+msgstr "Traduction en cours"
+
+#: ADDRESS:NAMESERVER_IP_WITHOUT_REVERSE
+msgid  "Nameserver {ns} has an IP address ({address}) without PTR configured."
+msgstr "Traduction en cours"
+
+#: ADDRESS:NO_IP_PRIVATE_NETWORK
+msgid  "All Nameserver addresses are in the routable public addressing space."
+msgstr "Traduction en cours"
+
+#: ADDRESS:NO_RESPONSE_PTR_QUERY
+msgid  "No response from nameserver(s) on PTR query ({reverse})."
+msgstr "Traduction en cours"
+
+#: BASIC:A_QUERY_NO_RESPONSES
+msgid  "Nameservers did not respond to A query."
+msgstr "Traduction en cours"
+
+#: BASIC:HAS_A_RECORDS
+msgid  "Nameserver {source} returned A record(s) for {name}"
+msgstr "Traduction en cours"
+
+#: BASIC:HAS_GLUE
+msgid  "Nameserver for zone {parent} listed these nameservers as glue: {ns}"
+msgstr "Traduction en cours"
+
+#: BASIC:HAS_NAMESERVERS
+msgid  "Nameserver {source} listed these servers as glue: {ns}"
+msgstr "Traduction en cours"
+
+#: BASIC:HAS_NAMESERVER_NO_WWW_A_TEST
+msgid  "Functional nameserver found. \"A\" query for www.{name} test aborted."
+msgstr "Traduction en cours"
+
+#: BASIC:IPV4_DISABLED
+msgid  "IPv4 is disabled, not sending \"{type}\" query to {ns}."
+msgstr "Traduction en cours"
+
+#: BASIC:IPV4_ENABLED
+msgid  "IPv4 is enabled, can send \"{type}\" query to {ns}."
+msgstr "Traduction en cours"
+
+#: BASIC:IPV6_DISABLED
+msgid  "IPv6 is disabled, not sending \"{type}\" query to {ns}."
+msgstr "Traduction en cours"
+
+#: BASIC:IPV6_ENABLED
+msgid  "IPv6 is enabled, can send \"{type}\" query to {ns}."
+msgstr "Traduction en cours"
+
+#: BASIC:NO_A_RECORDS
+msgid  "Nameserver {source} did not return A record(s) for {name}"
+msgstr "Traduction en cours"
+
+#: BASIC:NO_DOMAIN
+msgid  "Nameserver for zone {parent} responded with NXDOMAIN to query for glue."
+msgstr "Traduction en cours"
+
+#: BASIC:NO_GLUE
+msgid  "Nameservers for \"{parent}\" provided no NS records for tested zone. RCODE given was {rcode}."
+msgstr "Traduction en cours"
+
+#: BASIC:NO_GLUE_PREVENTS_NAMESERVER_TESTS
+msgid  "No NS records for tested zone from parent. NS tests aborted."
+msgstr "Traduction en cours"
+
+#: BASIC:NO_PARENT_RESPONSE
+msgid  "No response from nameserver for zone {parent} when trying to fetch glue."
+msgstr "Traduction en cours"
+
+#: BASIC:NS_FAILED
+msgid  "Nameserver {source} did not return NS records. RCODE was {rcode}."
+msgstr "Traduction en cours"
+
+#: BASIC:NS_NO_RESPONSE
+msgid  "Nameserver {source} did not respond to NS query."
+msgstr "Traduction en cours"
+
+#: BASIC:PARENT_REPLIES
+msgid  "Nameserver for zone {parent} replies when trying to fetch glue."
+msgstr "Traduction en cours"
+
+#: CONNECTIVITY:ADDRESS_TYPE_NOT_IMPLEMENTED
+msgid  "Service provided by - {service} - does not work with IPv{type} addresses"
+msgstr "Traduction en cours"
+
+#: CONNECTIVITY:NAMESERVERS_IPV4_WITH_UNIQ_AS
+msgid  "All nameservers IPv4 addresses are in the same AS ({asn})."
+msgstr "Traduction en cours"
+
+#: CONNECTIVITY:NAMESERVERS_IPV6_WITH_UNIQ_AS
+msgid  "All nameservers IPv6 addresses are in the same AS ({asn})."
+msgstr "Traduction en cours"
+
+#: CONNECTIVITY:NAMESERVERS_WITH_MULTIPLE_AS
+msgid  "Domain's authoritative nameservers do not belong to the same AS."
+msgstr "Traduction en cours"
+
+#: CONNECTIVITY:NAMESERVERS_WITH_UNIQ_AS
+msgid  "All nameservers are in the same AS ({asn})."
+msgstr "Traduction en cours"
+
+#: CONNECTIVITY:NAMESERVER_HAS_TCP_53
+msgid  "Nameserver {ns}/{address} accessible over TCP on port 53."
+msgstr "Traduction en cours"
+
+#: CONNECTIVITY:NAMESERVER_HAS_UDP_53
+msgid  "Nameserver {ns}/{address} accessible over UDP on port 53."
+msgstr "Traduction en cours"
+
+#: CONNECTIVITY:NAMESERVER_NO_TCP_53
+msgid  "Nameserver {ns}/{address} not accessible over TCP on port 53."
+msgstr "Traduction en cours"
+
+#: CONNECTIVITY:NAMESERVER_NO_UDP_53
+msgid  "Nameserver {ns}/{address} not accessible over UDP on port 53."
+msgstr "Traduction en cours"
+
+#: CONNECTIVITY:NAMESERVER_WITH_UNALLOCATED_ADDRESS
+msgid  "Nameserver {ns}/{address} uses an unassigned/unannounced address."
+msgstr "Traduction en cours"
+
+#: CONSISTENCY:MULTIPLE_SOA_RNAMES
+msgid  "Saw {count} SOA rname."
+msgstr "Traduction en cours"
+
+#: CONSISTENCY:MULTIPLE_SOA_SERIALS
+msgid  "Saw {count} SOA serial numbers."
+msgstr "Traduction en cours"
+
+#: CONSISTENCY:MULTIPLE_SOA_TIME_PARAMETER_SET
+msgid  "Saw {count} SOA time parameter set."
+msgstr "Traduction en cours"
+
+#: CONSISTENCY:NO_RESPONSE
+msgid  "Nameserver {ns} did not respond."
+msgstr "Traduction en cours"
+
+#: CONSISTENCY:ONE_SOA_RNAME
+msgid  "A single SOA rname value was seen ({rname})"
+msgstr "Traduction en cours"
+
+#: CONSISTENCY:ONE_SOA_SERIAL
+msgid  "A single SOA serial number was seen ({serial})."
+msgstr "Traduction en cours"
+
+#: CONSISTENCY:ONE_SOA_TIME_PARAMETER_SET
+msgid  "A single SOA time parameter set was seen (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum})."
+msgstr "Traduction en cours"
+
+#: CONSISTENCY:SOA_RNAME
+msgid  "Saw SOA rname {rname} on following nameserver set : {servers}."
+msgstr "Traduction en cours"
+
+#: CONSISTENCY:SOA_SERIAL
+msgid  "Saw SOA serial number {serial} on following nameserver set : {servers}."
+msgstr "Traduction en cours"
+
+#: CONSISTENCY:SOA_TIME_PARAMETER_SET
+msgid  "Saw SOA time parameter set (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}) on following nameserver set : {servers}."
+msgstr "Traduction en cours"
+
+#: DELEGATION:ARE_AUTHORITATIVE
+msgid  "All the nameservers are authoritative."
+msgstr "Traduction en cours"
+
+#: DELEGATION:DISTINCT_IP_ADDRESS
+msgid  "All the IP addresses used by the nameservers are unique"
+msgstr "Traduction en cours"
+
+#: DELEGATION:ENOUGH_NS
+msgid  "Child lists enough nameservers ({count})."
+msgstr "Traduction en cours"
+
+#: DELEGATION:ENOUGH_NS_GLUE
+msgid  "Parent lists enough nameservers ({count})."
+msgstr "Traduction en cours"
+
+#: DELEGATION:ENOUGH_NS_TOTAL
+msgid  "Parent and child list enough nameservers ({ns}). Lower limit set to {minimum}."
+msgstr "Traduction en cours"
+
+#: DELEGATION:EXTRA_NAME_CHILD
+msgid  "Child has nameserver(s) not listed at parent ({extra})."
+msgstr "Traduction en cours"
+
+#: DELEGATION:EXTRA_NAME_PARENT
+msgid  "Parent has nameserver(s) not listed at the child ({extra})."
+msgstr "Traduction en cours"
+
+#: DELEGATION:IS_NOT_AUTHORITATIVE
+msgid  "Nameserver {ns} response is not authoritative on {proto} port 53."
+msgstr "Traduction en cours"
+
+#: DELEGATION:NAMES_MATCH
+msgid  "All of the nameserver names are listed both at parent and child."
+msgstr "Traduction en cours"
+
+#: DELEGATION:NOT_ENOUGH_NS
+msgid  "Child does not list enough nameservers ({count})."
+msgstr "Traduction en cours"
+
+#: DELEGATION:NOT_ENOUGH_NS_GLUE
+msgid  "Parent does not list enough nameservers ({count})."
+msgstr "Traduction en cours"
+
+#: DELEGATION:NOT_ENOUGH_NS_TOTAL
+msgid  "Parent and child do not list enough nameservers ({ns}). Lower limit set to {minimum}."
+msgstr "Traduction en cours"
+
+#: DELEGATION:NS_RR_IS_CNAME
+msgid  "Nameserver {ns} {address_type} RR point to CNAME."
+msgstr "Traduction en cours"
+
+#: DELEGATION:NS_RR_NO_CNAME
+msgid  "No nameserver point to CNAME alias."
+msgstr "Traduction en cours"
+
+#: DELEGATION:REFERRAL_SIZE_LARGE
+msgid  "The smallest possible legal referral packet is larger than 512 octets (it is {size})."
+msgstr "Traduction en cours"
+
+#: DELEGATION:REFERRAL_SIZE_OK
+msgid  "The smallest possible legal referral packet is smaller than 513 octets (it is {size})."
+msgstr "Traduction en cours"
+
+#: DELEGATION:SAME_IP_ADDRESS
+msgid  "IP {address} refers to multiple nameservers ({nss})."
+msgstr "Traduction en cours"
+
+#: DELEGATION:SOA_EXISTS
+msgid  "All the nameservers have SOA record."
+msgstr "Traduction en cours"
+
+#: DELEGATION:SOA_NOT_EXISTS
+msgid  "A SOA query NOERROR response from {ns} was received empty."
+msgstr "Traduction en cours"
+
+#: DELEGATION:TOTAL_NAME_MISMATCH
+msgid  "None of the nameservers listed at the parent are listed at the child."
+msgstr "Traduction en cours"
+
+#: DNSSEC:ADDITIONAL_DNSKEY_SKIPPED
+msgid  "No DNSKEYs found. Additional tests skipped."
+msgstr "Traduction en cours"
+
+#: DNSSEC:ALGORITHM_DEPRECATED
+msgid  "The DNSKEY with tag {keytag} uses deprecated algorithm number {algorithm}/({description})."
+msgstr "Traduction en cours"
+
+#: DNSSEC:ALGORITHM_OK
+msgid  "The DNSKEY with tag {keytag} uses algorithm number {algorithm}/({description}), which is OK."
+msgstr "Traduction en cours"
+
+#: DNSSEC:ALGORITHM_PRIVATE
+msgid  "The DNSKEY with tag {keytag} uses private algorithm number {algorithm}/({description})."
+msgstr "Traduction en cours"
+
+#: DNSSEC:ALGORITHM_RESERVED
+msgid  "The DNSKEY with tag {keytag} uses reserved algorithm number {algorithm}/({description})."
+msgstr "Traduction en cours"
+
+#: DNSSEC:ALGORITHM_UNASSIGNED
+msgid  "The DNSKEY with tag {keytag} uses unassigned algorithm number {algorithm}/({description})."
+msgstr "Traduction en cours"
+
+#: DNSSEC:ALGORITHM_UNKNOWN
+msgid  "The DNSKEY with tag {keytag} uses unknown algorithm number {algorithm}."
+msgstr "Traduction en cours"
+
+#: DNSSEC:COMMON_KEYTAGS
+msgid  "There are both DS and DNSKEY records with key tags {keytags}."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DNSKEY_AND_DS
+msgid  "{parent} sent a DS record, and {child} a DNSKEY record."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DNSKEY_BUT_NOT_DS
+msgid  "{child} sent a DNSKEY record, but {parent} did not send a DS record."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DNSKEY_NOT_SIGNED
+msgid  "The apex DNSKEY RRset was not correctly signed."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DNSKEY_SIGNATURE_NOT_OK
+msgid  "Signature for DNSKEY with tag {signature} failed to verify with error '{error}'."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DNSKEY_SIGNATURE_OK
+msgid  "A signature for DNSKEY with tag {signature} was correctly signed."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DNSKEY_SIGNED
+msgid  "The apex DNSKEY RRset was correcly signed."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DS_BUT_NOT_DNSKEY
+msgid  "{parent} sent a DS record, but {child} did not send a DNSKEY record."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DS_DIGTYPE_NOT_OK
+msgid  "DS record with keytag {keytag} uses forbidden digest type {digtype}."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DS_DIGTYPE_OK
+msgid  "DS record with keytag {keytag} uses digest type {digtype}, which is OK."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DS_DOES_NOT_MATCH_DNSKEY
+msgid  "DS record with keytag {keytag} does not match the DNSKEY with the same tag."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DS_FOUND
+msgid  "Found DS records with tags {keytags}"
+msgstr "Traduction en cours"
+
+#: DNSSEC:DS_MATCHES_DNSKEY
+msgid  "DS record with keytag {keytag} matches the DNSKEY with the same tag."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DS_MATCH_FOUND
+msgid  "At least one DS record with a matching DNSKEY record was found."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DS_MATCH_NOT_FOUND
+msgid  "No DS record with a matching DNSKEY record was found."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DURATION_LONG
+msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too long."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DURATION_OK
+msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine."
+msgstr "Traduction en cours"
+
+#: DNSSEC:RRSIG_EXPIRED
+msgid "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration})."
+msgstr "Traduction en cours"
+
+#: DNSSEC:DURATION_REMAINING_OK
+#: DNSSEC:DURATION_REMAINING_SHORT
+#: DNSSEC:REMAINING_SHORT
+msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too short."
+msgstr "Traduction en cours"
+
+#: REMAINING_LONG
+msgid "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long."
+msgstr "Traduction en cours"
+
+#: DNSSEC:EXTRA_PROCESSING_BROKEN
+msgid  "Server at {server} sent {keys} DNSKEY records, and {sigs} RRSIG records."
+msgstr "Traduction en cours"
+
+#: DNSSEC:EXTRA_PROCESSING_OK
+msgid  "Server at {server} sent {keys} DNSKEY records and {sigs} RRSIG records."
+msgstr "Traduction en cours"
+
+#: DNSSEC:HAS_NSEC
+msgid  "The zone has NSEC records."
+msgstr "Traduction en cours"
+
+#: DNSSEC:HAS_NSEC3
+msgid  "The zone has NSEC3 records."
+msgstr "Traduction en cours"
+
+#: DNSSEC:INVALID_NAME_FOUND
+msgid  "When asked for the name {name}, which must not exist, the response was not an error."
+msgstr "Traduction en cours"
+
+#: DNSSEC:INVALID_NAME_RCODE
+msgid  "When asked for the name {name}, which must not exist, the response had RCODE {rcode}."
+msgstr "Traduction en cours"
+
+#: DNSSEC:ITERATIONS_OK
+msgid  "The number of NSEC3 iterations is {count}, which is OK."
+msgstr "Traduction en cours"
+
+#: DNSSEC:MANY_ITERATIONS
+msgid  "The number of NSEC3 iterations is {count}, which is on the high side."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NEITHER_DNSKEY_NOR_DS
+msgid  "There are neither DS nor DNSKEY records for the zone."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NO_COMMON_KEYTAGS
+msgid  "No DS record had a DNSKEY with a matching keytag."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NO_DNSKEY
+msgid  "No DNSKEYs were returned."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NO_DS
+msgid  "{from} returned no DS records for {zone}."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NO_KEYS_OR_NO_SIGS
+msgid  "Cannot test DNSKEY signatures, because we got {keys} DNSKEY records and {sigs} RRSIG records."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NO_KEYS_OR_NO_SIGS_OR_NO_SOA
+msgid  "Cannot test SOA signatures, because we got {keys} DNSKEY records, {sigs} RRSIG records and {soas} SOA records."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NO_NSEC3PARAM
+msgid  "{server} returned no NSEC3PARAM records."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NSE3C_SIG_VERIFY_ERROR
+msgid  "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NSEC3_COVERS
+msgid  "NSEC3 record covers {name}."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NSEC3_COVERS_NOT
+msgid  "NSEC3 record does not cover {name}."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NSEC3_NOT_SIGNED
+msgid  "No signature correctly signed the NSEC3 RRset."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NSEC3_SIGNED
+msgid  "At least one signature correctly signed the NSEC3 RRset."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NSEC_COVERS
+msgid  "NSEC covers {name}."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NSEC_COVERS_NOT
+msgid  "NSEC does not cover {name}."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NSEC_NOT_SIGNED
+msgid  "No signature correctly signed the NSEC RRset."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NSEC_SIGNED
+msgid  "At least one signature correctly signed the NSEC RRset."
+msgstr "Traduction en cours"
+
+#: DNSSEC:NSEC_SIG_VERIFY_ERROR
+msgid  "Trying to verify NSEC RRset with RRSIG {sig} gave error '{error}'."
+msgstr "Traduction en cours"
+
+#: DNSSEC:SOA_NOT_SIGNED
+msgid  "No RRSIG correctly signed the SOA RRset."
+msgstr "Traduction en cours"
+
+#: DNSSEC:SOA_SIGNATURE_NOT_OK
+msgid  "Trying to verify SOA RRset with signature {signature} gave error '{error}'."
+msgstr "Traduction en cours"
+
+#: DNSSEC:SOA_SIGNATURE_OK
+msgid  "RRSIG {signature} correctly signs SOA RRset."
+msgstr "Traduction en cours"
+
+#: DNSSEC:SOA_SIGNED
+msgid  "At least one RRSIG correctly signs the SOA RRset."
+msgstr "Traduction en cours"
+
+#: DNSSEC:TOO_MANY_ITERATIONS
+msgid  "The number of NSEC3 iterations is {count}, which is too high for key length {keylength}."
+msgstr "Traduction en cours"
+
+#: EXAMPLE:EXAMPLE_TAG
+msgid  "This is an example tag."
+msgstr "Traduction en cours"
+
+#: NAMESERVER:AAAA_WELL_PROCESSED
+msgid  "The following nameservers answer AAAA queries without problems : {names}."
+msgstr "Traduction en cours"
+
+#: NAMESERVER:ANSWER_BAD_RCODE
+msgid  "Nameserver {ns}/{address} answered AAAA query with an unexpected rcode ({rcode})."
+msgstr "Traduction en cours"
+
+#: NAMESERVER:AXFR_AVAILABLE
+msgid  "Nameserver {ns}/{address} allow zone transfer using AXFR."
+msgstr "Traduction en cours"
+
+#: NAMESERVER:AXFR_FAILURE
+msgid  "AXFR not available on nameserver {ns}/{address}."
+msgstr "Traduction en cours"
+
+#: NAMESERVER:DIFFERENT_SOURCE_IP
+msgid  "Nameserver {ns}/{address} replies on a SOA query with a different source address ({source})."
+msgstr "Traduction en cours"
+
+#: NAMESERVER:EDNS0_BAD_ANSWER
+msgid  "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)"
+msgstr "Traduction en cours"
+
+#: NAMESERVER:EDNS0_BAD_QUERY
+msgid  "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)"
+msgstr "Traduction en cours"
+
+#: NAMESERVER:EDNS0_SUPPORT
+msgid  "The following nameservers support EDNS0 : {names}."
+msgstr "Traduction en cours"
+
+#: NAMESERVER:IS_A_RECURSOR
+msgid  "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}."
+msgstr "Traduction en cours"
+
+#: NAMESERVER:NO_RECURSOR
+msgid  "None of the following nameservers is a recursor : {names}."
+msgstr "Traduction en cours"
+
+#: NAMESERVER:QUERY_DROPPED
+msgid  "Nameserver {ns}/{address} dropped AAAA query."
+msgstr "Traduction en cours"
+
+#: SYNTAX:DISCOURAGED_DOUBLE_DASH
+msgid  "Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgstr "Traduction en cours"
+
+#: SYNTAX:INITIAL_HYPHEN
+msgid  "Domain name ({name}) has a label ({label}) starting with an hyphen ('-')."
+msgstr "Traduction en cours"
+
+#: SYNTAX:MNAME_DISCOURAGED_DOUBLE_DASH
+msgid  "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgstr "Traduction en cours"
+
+#: SYNTAX:MNAME_LABEL_TOO_LONG
+msgid  "SOA MNAME ({name}) has a label ({label}) too long ({length}/{max})."
+msgstr "Traduction en cours"
+
+#: SYNTAX:MNAME_NAME_TOO_LONG
+msgid  "SOA MNAME ({name}) is too long ({length}/{max})."
+msgstr "Traduction en cours"
+
+#: SYNTAX:MNAME_NUMERIC_TLD
+msgid  "SOA MNAME ({name}) within a 'numeric only' TLD ({tld})."
+msgstr "Traduction en cours"
+
+#: SYNTAX:MX_DISCOURAGED_DOUBLE_DASH
+msgid  "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgstr "Traduction en cours"
+
+#: SYNTAX:MX_LABEL_TOO_LONG
+msgid  "Domain name MX ({name}) has a label ({label}) too long ({length}/{max})."
+msgstr "Traduction en cours"
+
+#: SYNTAX:MX_NAME_TOO_LONG
+msgid  "Domain name MX  is too long ({length}/{max})."
+msgstr "Traduction en cours"
+
+#: SYNTAX:MX_NUMERIC_TLD
+msgid  "Domain name MX ({name}) within a 'numeric only' TLD ({tld})."
+msgstr "Traduction en cours"
+
+#: SYNTAX:NAMESERVER_DISCOURAGED_DOUBLE_DASH
+msgid  "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgstr "Traduction en cours"
+
+#: SYNTAX:NAMESERVER_LABEL_TOO_LONG
+msgid  "Nameserver ({name}) has a label ({label}) too long ({length}/{max})."
+msgstr "Traduction en cours"
+
+#: SYNTAX:NAMESERVER_NAME_TOO_LONG
+msgid  "Nameserver ({name}) is too long ({length}/{max})."
+msgstr "Traduction en cours"
+
+#: SYNTAX:NAMESERVER_NUMERIC_TLD
+msgid  "Nameserver ({name}) within a 'numeric only' TLD ({tld})."
+msgstr "Traduction en cours"
+
+#: SYNTAX:NON_ALLOWED_CHARS
+msgid  "Found illegal characters in the domain name ({name})"
+msgstr "Traduction en cours"
+
+#: SYNTAX:ONLY_ALLOWED_CHARS
+msgid  "No illegal chatacters in the domain name ({name})."
+msgstr "Traduction en cours"
+
+#: SYNTAX:RNAME_MISUSED_AT_SIGN
+msgid  "There must be no misused '@' character in the SOA RNAME field ({rname})."
+msgstr "Traduction en cours"
+
+#: SYNTAX:RNAME_RFC822_INVALID
+msgid  "There must be no illegal characters in the SOA RNAME field ({rname})."
+msgstr "Traduction en cours"
+
+#: SYNTAX:TERMINAL_HYPHEN
+msgid  "Domain name ({name}) has a label ({label}) ending with an hyphen ('-')."
+msgstr "Traduction en cours"
+
+#: SYSTEM:CANNOT_CONTINUE
+msgid  "Not enough data about {zone} was found to be able to run tests."
+msgstr "Traduction en cours"
+
+#: SYSTEM:CONFIG_FILE
+msgid  "Configuration was read from {name}."
+msgstr "Traduction en cours"
+
+#: SYSTEM:DEPENDENCY_VERSION
+msgid  "Using prerequisite module {name} version {version}."
+msgstr "Traduction en cours"
+
+#: SYSTEM:LOGGER_CALLBACK_ERROR
+msgid  "Logger callback died with error: {exception}"
+msgstr "Traduction en cours"
+
+#: SYSTEM:LOOKUP_ERROR
+msgid  "DNS query to {ns} for {name}/{type}/{class} failed with error: {message}"
+msgstr "Traduction en cours"
+
+#: SYSTEM:MODULE_ERROR
+msgid  "Fatal error in {module}: {msg}"
+msgstr "Traduction en cours"
+
+#: SYSTEM:MODULE_VERSION
+msgid  "Using module {module} version {version}."
+msgstr "Traduction en cours"
+
+#: SYSTEM:POLICY_DISABLED
+msgid  "The module {name} was disabled by the policy."
+msgstr "Traduction en cours"
+
+#: SYSTEM:POLICY_FILE
+msgid  "Policy was read from {name}."
+msgstr "Traduction en cours"
+
+#: SYSTEM:SKIP_IPV4_DISABLED
+msgid  "IPv4 is disabled, not sending query to {ns}."
+msgstr "Traduction en cours"
+
+#: SYSTEM:SKIP_IPV6_DISABLED
+msgid  "IPv6 is disabled, not sending query to {ns}."
+msgstr "Traduction en cours"
+
+#: SYSTEM:UNKNOWN_METHOD
+msgid  "Request to run unknown method {method} in module {module}."
+msgstr "Traduction en cours"
+
+#: SYSTEM:UNKNOWN_MODULE
+msgid  "Request to run {method} in unknown module {module}. Known modules: {known}."
+msgstr "Traduction en cours"
+
+#: ZONE:EXPIRE_LOWER_THAN_REFRESH
+msgid  "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh})."
+msgstr "Traduction en cours"
+
+#: ZONE:EXPIRE_MINIMUM_VALUE_LOWER
+msgid  "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire})."
+msgstr "Traduction en cours"
+
+#: ZONE:MASTER_IS_AN_ALIAS
+msgid  "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
+msgstr "Traduction en cours"
+
+#: ZONE:MNAME_NOT_AUTHORITATIVE
+msgid  "SOA 'mname' nameserver {ns}/{address} is not authoritative for '{zone}' zone."
+msgstr "Traduction en cours"
+
+#: ZONE:MNAME_NOT_IN_GLUE
+msgid  "SOA 'mname' nameserver is not listed in \"parent\" NS records for tested zone."
+msgstr "Traduction en cours"
+
+#: ZONE:MNAME_NO_RESPONSE
+msgid  "SOA 'mname' nameserver {ns}/{address} does not respond."
+msgstr "Traduction en cours"
+
+#: ZONE:MNAME_RECORD_DOES_NOT_EXIST
+msgid  "SOA 'mname' field does not exist"
+msgstr "Traduction en cours"
+
+#: ZONE:MX_RECORD_IS_CNAME
+msgid  "MX record for the domain is pointing to a CNAME."
+msgstr "Traduction en cours"
+
+#: ZONE:NO_MX_RECORD
+msgid  "No target (MX, A or AAAA record) to deliver e-mail for the domain name."
+msgstr "Traduction en cours"
+
+#: ZONE:REFRESH_LOWER_THAN_RETRY
+msgid  "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({retry})."
+msgstr "Traduction en cours"
+
+#: ZONE:REFRESH_MINIMUM_VALUE_LOWER
+msgid  "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh})."
+msgstr "Traduction en cours"
+
+#: ZONE:RETRY_MINIMUM_VALUE_LOWER
+msgid  "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry})."
+msgstr "Traduction en cours"
+
+#: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER
+msgid  "SOA 'minimum' value ({minimum}) is higher than the recommended one ({highest_minimum})."
+msgstr "Traduction en cours"
+
+#: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER
+msgid  "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum})."
+msgstr "Traduction en cours"
+
+#: ZONE:MNAME_HAS_NO_ADDRESS
+msgid  "No IP address found for SOA 'mname' nameserver ({mname})."
+msgstr "Traduction en cours"
+
