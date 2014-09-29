@@ -194,6 +194,7 @@ sub run {
     my ( $self ) = @_;
     my @accumulator;
     my %counter;
+    my %counter_for_progress_indicator;
 
     if ($self->locale) {
         my $loc = setlocale(LC_MESSAGES,$self->locale);
@@ -207,8 +208,8 @@ sub run {
         exit;
     }
 
+	my %methods = Zonemaster->all_methods;
     if ( $self->list_tests ) {
-        my %methods = Zonemaster->all_methods;
         foreach my $module ( sort keys %methods ) {
             say $module;
             my $doc = pod_extract_for( $module );
@@ -222,7 +223,13 @@ sub run {
         }
         exit( 0 );
     }
-
+    
+    foreach my $module (keys %methods) {
+		foreach my $method (@{ $methods{$module} }) {
+			$counter_for_progress_indicator{planned}{$module.'::'.$method} = $module.'::';
+		}
+    }
+    
     my ( $domain ) = @{ $self->extra_argv };
     if ( not $domain ) {
         die __("Must give the name of a domain to test.\n");
@@ -249,12 +256,42 @@ sub run {
         Zonemaster->preload_cache( $self->restore );
     }
 
+    # used for progress indicator
+    my ($previous_module, $previous_method) = ('', '') ; 
+    
     # Callback defined here so it closes over the setup above.
     Zonemaster->logger->callback(
         sub {
             my ( $entry ) = @_;
 
-            $self->print_spinner();
+			if ( $self->json ) {
+				foreach my $trace (reverse @{$entry->trace}) {
+					foreach my $module_method (keys %{$counter_for_progress_indicator{planned}}) {
+						if (index($trace->[1], $module_method) > -1) {
+							my $percent_progress = 0;
+							my ($module) = ($module_method =~ /(.+::)[^:]+/);
+							if ($previous_module eq $module) {
+								$counter_for_progress_indicator{executed}{$module_method}++;
+							}
+							elsif ($previous_module) {
+								foreach my $planned_module_method (keys %{$counter_for_progress_indicator{planned}}) {
+									$counter_for_progress_indicator{executed}{$module_method}++ if ($counter_for_progress_indicator{planned}{$planned_module_method} eq $module);
+								}
+							}
+							$previous_module = $module;
+							
+							if ($previous_method ne $module_method) {
+								$percent_progress = sprintf("%.0f", 100*(scalar( keys %{$counter_for_progress_indicator{executed}}) / scalar( keys %{$counter_for_progress_indicator{planned}})));
+								print STDERR "$percent_progress% / running method $module_method\n";
+								$previous_method = $module_method;
+							}
+						}
+					}
+				}
+			}
+			else {
+				$self->print_spinner();
+			}
 
             $counter{ uc $entry->level } += 1;
 
@@ -275,8 +312,8 @@ sub run {
 
                     say $translator->translate_tag( $entry );
                 }
-                elsif ( $self->json ) {
-                    # Don't do anything
+                elsif ($self->json) {
+					# do nothing
                 }
                 elsif ( $self->show_module ) {
                     printf "%7.2f %-9s %-12s %s\n", $entry->timestamp, $entry->level, $entry->module, $entry->string;
@@ -288,6 +325,7 @@ sub run {
             if ( $self->stop_level and $numeric{ uc $entry->level } >= $numeric{ uc $self->stop_level } ) {
                 die( NormalExit->new( { message => "Saw message at level " . $entry->level } ) );
             }
+            
         }
     );
 
