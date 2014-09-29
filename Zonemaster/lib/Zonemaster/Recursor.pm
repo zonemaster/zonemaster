@@ -1,4 +1,4 @@
-package Zonemaster::Recursor v0.0.1;
+package Zonemaster::Recursor v0.0.2;
 
 use 5.14.2;
 use Moose;
@@ -29,7 +29,8 @@ sub recurse {
     }
 
     my ( $p, $state ) =
-      $self->_recurse( $name, $type, $class, { ns => [ root_servers() ], count => 0, common => 0, seen => {} } );
+      $self->_recurse( $name, $type, $class,
+        { ns => [ root_servers() ], count => 0, common => 0, seen => {}, glue => {} } );
     $recurse_cache{$name}{$type}{$class} = $p;
 
     return $p;
@@ -39,7 +40,8 @@ sub parent {
     my ( $self, $name ) = @_;
 
     my ( $p, $state ) =
-      $self->_recurse( $name, 'SOA', 'IN', { ns => [ root_servers() ], count => 0, common => 0, seen => {} } );
+      $self->_recurse( $name, 'SOA', 'IN',
+        { ns => [ root_servers() ], count => 0, common => 0, seen => {}, glue => {} } );
 
     return if not $p;
 
@@ -62,9 +64,14 @@ sub parent {
 sub _recurse {
     my ( $self, $name, $type, $class, $state ) = @_;
 
+    if ( $state->{in_progress}{$name}{$type} ) {
+        return;
+    }
+    $state->{in_progress}{$name}{$type} = 1;
+
     while ( my $ns = pop @{ $state->{ns} } ) {
         Zonemaster->logger->add( RECURSE_QUERY => { ns => "$ns", name => $name, type => $type, class => $class } );
-        my $p = $ns->query( $name, $type, { class => $class } );
+        my $p = $self->do_query( $ns, $name, $type, { class => $class }, $state );
 
         next if not $p;    # Ask next server if no response
 
@@ -74,59 +81,100 @@ sub _recurse {
             next;
         }
 
-        return ( $p, $state )
-          if $p->no_such_record;    # Node exists, but not record
-        return ( $p, $state ) if $p->no_such_name;    # Node does not exist
-        return ( $p, $state )
-          if $self->_is_answer( $p );                 # Return answer
+        if ( $p->no_such_record ) {    # Node exists, but not record
+            return ( $p, $state );
+        }
+
+        if ( $p->no_such_name ) {      # Node does not exist
+            return ( $p, $state );
+        }
+
+        if ( $self->_is_answer( $p ) ) {    # Return answer
+            return ( $p, $state );
+        }
 
         # So it's not an error, not an empty response and not an answer
 
         if ( $p->is_redirect ) {
             my $zname = ( $p->get_records( 'ns' ) )[0]->name;
-            next if $state->{seen}{$zname};           # We followed this redirect before
+            next if $state->{seen}{$zname};    # We followed this redirect before
 
             $state->{seen}{$zname} = 1;
             my $common = name( $zname )->common( name( $state->{qname} ) );
 
             next
-              if $common < $state->{common};          # Redirect going up the hierarchy is not OK
+              if $common < $state->{common};    # Redirect going up the hierarchy is not OK
 
             $state->{common} = $common;
             $state->{ns} = $self->get_ns_from( $p, $state );    # Follow redirect
             $state->{count} += 1;
+            return if $state->{count} > 20;    # Loop protection
             unshift @{ $state->{trace} }, $zname;
+            next;
         }
-
-        return if $state->{count} > 20;    # Loop protection
     } ## end while ( my $ns = pop @{ $state...})
     return ( $state->{candidate}, $state ) if $state->{candidate};
 
     return;
 } ## end sub _recurse
 
+sub do_query {
+    my ( $self, $ns, $name, $type, $opts, $state ) = @_;
+
+    if ( ref( $ns ) and ref( $ns ) eq 'Zonemaster::Nameserver' ) {
+        my $p = $ns->query( $name, $type, $opts );
+
+        if ( $p ) {
+            for my $rr ( grep { $_->type eq 'A' or $_->type eq 'AAAA' } $p->answer, $p->additional ) {
+                $state->{glue}{ name( $rr->name ) }{ $rr->address } = 1;
+            }
+        }
+        return $p;
+    }
+    else {
+        if ( exists $state->{glue}{ name( $ns ) } ) {
+            return;
+        }
+
+        $state->{glue}{ name( $ns ) } = {};
+        my @addr = $self->get_addresses_for( $ns, $state );
+        if ( @addr > 0 ) {
+            foreach my $addr ( @addr ) {
+                $state->{glue}{ name( $ns ) }{$addr->short} = 1;
+                my $new = ns( $ns, $addr->short );
+                my $p = $new->query( $name, $type, $opts );
+                return $p if $p;
+            }
+        }
+        else {
+            return;
+        }
+    }
+} ## end sub do_query
+
 sub get_ns_from {
     my ( $self, $p, $state ) = @_;
-    my @new;
+    my ( @new, @extra );
 
     my @names = sort map { name( $_->nsdname ) } $p->get_records( 'ns' );
 
     $state->{glue}{ name( $_->name ) }{ $_->address } = 1 for ( $p->get_records( 'a' ), $p->get_records( 'aaaa' ) );
 
     foreach my $name ( @names ) {
-        $state->{name_seen} = {};
-        if ( $state->{glue}{$name} ) {
-            push @new, ns( $name, $_ ) for keys %{ $state->{glue}{$name} };
+        if ( exists $state->{glue}{ name( $name ) } ) {
+            for my $addr (keys %{ $state->{glue}{ name( $name ) } }) {
+                push @new, ns( $name, $addr );
+            }
         }
         else {
-            foreach my $a ( $self->get_addresses_for( $name, $state ) ) {
-                push @new, ns( $name, $a->short );
-                $state->{glue}{$name}{$a->short} = 1;
-            }
+            push @extra, $name;
         }
     }
 
-    return [ sort { $a->name cmp $b->name or $a->address->ip cmp $b->address->ip } @new ];
+    @new = sort { $a->name cmp $b->name or $a->address->ip cmp $b->address->ip } @new;
+    @extra = sort { $a cmp $b } @extra;
+
+    return [ @new, @extra ];
 } ## end sub get_ns_from
 
 sub get_addresses_for {
@@ -135,27 +183,24 @@ sub get_addresses_for {
     $state //=
       { ns => [ root_servers() ], count => 0, common => 0, seen => {} };
 
-    return if $state->{name_seen}{"$name"};
-    $state->{name_seen}{"$name"} = 1;
-
     my ( $pa ) = $self->_recurse(
         "$name", 'A', 'IN',
         {
-            ns        => [ root_servers() ],
-            count     => $state->{count},
-            common    => 0,
-            name_seen => $state->{name_seen},
-            glue      => $state->{glue}
+            ns          => [ root_servers() ],
+            count       => $state->{count},
+            common      => 0,
+            in_progress => $state->{in_progress},
+            glue        => $state->{glue}
         }
     );
     my ( $paaaa ) = $self->_recurse(
         "$name", 'AAAA', 'IN',
         {
-            ns        => [ root_servers() ],
-            count     => $state->{count},
-            common    => 0,
-            name_seen => $state->{name_seen},
-            glue      => $state->{glue}
+            ns          => [ root_servers() ],
+            count       => $state->{count},
+            common      => 0,
+            in_progress => $state->{in_progress},
+            glue        => $state->{glue}
         }
     );
 
