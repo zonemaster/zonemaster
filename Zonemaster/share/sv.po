@@ -745,3 +745,11 @@ msgstr "ADDRESS:NO_RESPONSE_PTR_QUERY needs translation..."
 msgid  "No IP address found for SOA 'mname' nameserver ({mname})."
 msgstr "ZONE:MNAME_HAS_NO_ADDRESS needs translation..."
 
+#: DELEGATION:ENOUGH_NS_TOTAL
+msgid  "Parent and child list enough nameservers ({ns}). Lower limit set to {minimum}."
+msgstr "DELEGATION:ENOUGH_NS_TOTAL needs translation..."
+
+#: DELEGATION:NOT_ENOUGH_NS_TOTAL
+msgid  "Parent and child do not list enough nameservers ({ns}). Lower limit set to {minimum}."
+msgstr "DELEGATION:NOT_ENOUGH_NS_TOTAL needs translation..."
+

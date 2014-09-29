@@ -16,6 +16,7 @@ my $iis = Zonemaster->zone( q{iis.se} );
 my %res = map { $_->tag => $_ } Zonemaster::Test::Delegation->all( $iis );
 ok( $res{ENOUGH_NS},        q{ENOUGH_NS} );
 ok( $res{ENOUGH_NS_GLUE},   q{ENOUGH_NS_GLUE} );
+ok( $res{ENOUGH_NS_TOTAL},  q{ENOUGH_NS_TOTAL} );
 ok( $res{NAMES_MATCH},      q{NAMES_MATCH} );
 ok( $res{REFERRAL_SIZE_OK}, q{REFERRAL_SIZE_OK} );
 
@@ -24,9 +25,10 @@ ok( !$res{SAME_IP_ADDRESS},    q{SAME_IP_ADDRESS} );
 ok( $res{EXTRA_NAME_PARENT},   q{EXTRA_NAME_PARENT} );
 ok( $res{EXTRA_NAME_CHILD},    q{EXTRA_NAME_CHILD} );
 ok( $res{TOTAL_NAME_MISMATCH}, q{TOTAL_NAME_MISMATCH} );
-
-%res = map { $_->tag => $_ } Zonemaster->test_module( q{delegation}, q{bao.tf} );
-ok( $res{IS_NOT_AUTHORITATIVE}, q{IS_NOT_AUTHORITATIVE} );
+ok ( $res{DISTINCT_IP_ADDRESS}, q{DISTINCT_IP_ADDRESS} );
+ok ( $res{NS_RR_NO_CNAME}, q{NS_RR_NO_CNAME} );
+ok ( $res{SOA_EXISTS}, q{SOA_EXISTS} );
+ok ( $res{ARE_AUTHORITATIVE}, q{ARE_AUTHORITATIVE} );
 
 TODO: {
     local $TODO = "Need to find domain name with that error";
@@ -41,13 +43,9 @@ TODO: {
 
     ok ( $res{NOT_ENOUGH_NS}, q{NOT_ENOUGH_NS} );
 
-    ok ( $res{DISTINCT_IP_ADDRESS}, q{DISTINCT_IP_ADDRESS} );
+    ok ( $res{NOT_ENOUGH_NS_TOTAL}, q{NOT_ENOUGH_NS_TOTAL} );
 
-    ok ( $res{ARE_AUTHORITATIVE}, q{ARE_AUTHORITATIVE} );
-
-    ok ( $res{NS_RR_NO_CNAME}, q{NS_RR_NO_CNAME} );
-
-    ok ( $res{SOA_EXISTS}, q{SOA_EXISTS} );
+    ok( $res{IS_NOT_AUTHORITATIVE}, q{IS_NOT_AUTHORITATIVE} );
 
 };
 

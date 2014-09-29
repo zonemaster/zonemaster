@@ -209,6 +209,10 @@ msgstr "Child lists enough nameservers ({count})."
 msgid  "Parent lists enough nameservers ({count})."
 msgstr "Parent lists enough nameservers ({count})."
 
+#: DELEGATION:ENOUGH_NS_TOTAL
+msgid  "Parent and child list enough nameservers ({ns}). Lower limit set to {minimum}."
+msgstr "Parent and child list enough nameservers ({ns}). Lower limit set to {minimum}."
+
 #: DELEGATION:EXTRA_NAME_CHILD
 msgid  "Child has nameserver(s) not listed at parent ({extra})."
 msgstr "Child has nameserver(s) not listed at parent ({extra})."
@@ -232,6 +236,10 @@ msgstr "Child does not list enough nameservers ({count})."
 #: DELEGATION:NOT_ENOUGH_NS_GLUE
 msgid  "Parent does not list enough nameservers ({count})."
 msgstr "Parent does not list enough nameservers ({count})."
+
+#: DELEGATION:NOT_ENOUGH_NS_TOTAL
+msgid  "Parent and child do not list enough nameservers ({ns}). Lower limit set to {minimum}."
+msgstr "Parent and child do not list enough nameservers ({ns}). Lower limit set to {minimum}."
 
 #: DELEGATION:NS_RR_IS_CNAME
 msgid  "Nameserver {ns} {address_type} RR point to CNAME."
