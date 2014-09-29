@@ -16,6 +16,9 @@ is( $res[0]->tag, q{PARENT_REPLIES}, 'Running single tests in Basic works.' );
 @res = Zonemaster->test_method( 'Syntax', 'syntax03', 'XN--MGBERP4A5D4AR' );
 is( $res[0]->tag, q{NO_DOUBLE_DASH}, 'No complaint for XN--MGBERP4A5D4AR' );
 
+my $zft_zone = Zonemaster->zone('zft.rd.nic.fr');
+is(scalar(@{$zft_zone->ns}), 2, 'Two nameservers for zft.rd.nic.fr.');
+
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
 }
