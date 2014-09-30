@@ -16,6 +16,7 @@ use Scalar::Util qw[blessed];
 my @all_test_modules;
 
 @all_test_modules =
+  sort {$a cmp $b}
   map { my $f = $_; $f =~ s|^Zonemaster::Test::||; $f }
   grep { $_ ne 'Zonemaster::Test::Basic' } useall( 'Zonemaster::Test' );
 
