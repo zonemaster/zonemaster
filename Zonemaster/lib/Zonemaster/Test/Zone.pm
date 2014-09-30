@@ -165,8 +165,7 @@ sub zone01 {
 
     my $p = $zone->query_one( $zone->name, q{SOA} );
 
-    if ( $p ) {
-        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
+    if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
         my $soa_mname = $soa->mname; $soa_mname =~ s/\.\z//;
         if ( not $soa_mname ) {
             push @results,
