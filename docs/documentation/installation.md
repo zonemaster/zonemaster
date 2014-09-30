@@ -97,6 +97,37 @@ If all package dependencies are already installed from the previous section, thi
 	$ make test
     $ sudo make install
 
+### Instructions for FreeBSD 10.0
+
+**To get the source code**
+
+	$ sudo pkg install git
+	$ git clone https://github.com/dotse/zonemaster.git
+
+**Install package dependencies**
+
+	$ sudo pkg install p5-File-ShareDir p5-File-Slurp p5-Hash-Merge \
+	p5-IO-Socket-INET6 p5-JSON p5-List-MoreUtils p5-Moose p5-Net-IP \
+	p5-Readonly p5-Module-Find p5-Module-Install p5-Devel-CheckLib ldns
+
+**Install CPAN dependencies**
+
+	$ sudo perl -MCPAN -e 'install Locale::TextDomain'
+	$ sudo perl -MCPAN -e 'install RFC::RFC822::Address'
+	$ sudo perl -MCPAN -e 'install Net::LDNS'
+
+**Build source code**
+
+    $ cd zonemaster/Zonemaster
+    $ perl Makefile.PL
+	Checking if your kit is complete...
+	Looks good
+	Generating a Unix-style Makefile
+	Writing Makefile for Zonemaster
+	Writing MYMETA.yml and MYMETA.json
+	$ make test
+    $ sudo make install
+
 ## Zonemaster CLI installation
 
 ### Instructions for Ubuntu 14.04
@@ -125,6 +156,25 @@ First install the Zonemaster Engine, following the instructions above.
 **Install package dependencies**
 
     $ sudo aptitude install libmoosex-getopt-perl
+
+**Build source code**
+
+    $ cd zonemaster/Zonemaster-CLI
+    $ perl Makefile.PL
+    $ make test
+    $ sudo make install
+
+Now you are ready to run the zonemaster-cli command:
+
+    $ zonemaster-cli example.com
+
+### Instructions for FreeBSD 1.0
+
+First install the Zonemaster Engine, following the instructions above.
+
+**Install package dependencies**
+
+	$ sudo pkg install p5-MooseX-Getopt
 
 **Build source code**
 
