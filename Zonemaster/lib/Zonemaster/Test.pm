@@ -1,4 +1,4 @@
-package Zonemaster::Test v0.0.2;
+package Zonemaster::Test v0.0.3;
 
 use 5.14.2;
 use strict;
@@ -30,7 +30,7 @@ sub _log_dependency_versions {
     info( DEPENDENCY_VERSION => { name => 'File::Slurp',          version => $File::Slurp::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'Net::IP',              version => $Net::IP::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'List::MoreUtils',      version => $List::MoreUtils::VERSION } );
-    info( DEPENDENCY_VERSION => { name => 'RFC::RFC822::Address', version => $RFC::RFC822::Address::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'Mail::RFC822::Address', version => $Mail::RFC822::Address::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'Scalar::Util',         version => $Scalar::Util::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'Hash::Merge',          version => $Hash::Merge::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'Readonly',             version => $Readonly::VERSION } );

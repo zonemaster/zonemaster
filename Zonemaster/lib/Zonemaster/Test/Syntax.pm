@@ -1,4 +1,4 @@
-package Zonemaster::Test::Syntax v0.0.1;
+package Zonemaster::Test::Syntax v0.0.2;
 
 use 5.14.2;
 use strict;
@@ -15,7 +15,7 @@ use Carp;
 use Readonly;
 
 use List::MoreUtils qw[uniq];
-use RFC::RFC822::Address qw[valid];
+use Mail::RFC822::Address qw[valid];
 use Time::Local;
 
 Readonly our $FQDN_MAX_LENGTH  => 255;
