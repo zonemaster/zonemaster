@@ -753,3 +753,7 @@ msgstr "DELEGATION:ENOUGH_NS_TOTAL needs translation..."
 msgid  "Parent and child do not list enough nameservers ({ns}). Lower limit set to {minimum}."
 msgstr "DELEGATION:NOT_ENOUGH_NS_TOTAL needs translation..."
 
+#: CONSISTENCY:NO_RESPONSE_SOA_QUERY
+msgid  "No response from nameserver {ns} on SOA queries."
+msgstr "CONSISTENCY:NO_RESPONSE_SOA_QUERY needs translation..."
+

@@ -33,6 +33,7 @@ sub metadata {
         consistency01 => [
             qw(
               NO_RESPONSE
+              NO_RESPONSE_SOA_QUERY
               ONE_SOA_SERIAL
               MULTIPLE_SOA_SERIALS
               SOA_SERIAL
@@ -41,6 +42,7 @@ sub metadata {
         consistency02 => [
             qw(
               NO_RESPONSE
+              NO_RESPONSE_SOA_QUERY
               ONE_SOA_RNAME
               MULTIPLE_SOA_RNAMES
               SOA_RNAME
@@ -49,6 +51,7 @@ sub metadata {
         consistency03 => [
             qw(
               NO_RESPONSE
+              NO_RESPONSE_SOA_QUERY
               ONE_SOA_TIME_PARAMETER_SET
               MULTIPLE_SOA_TIME_PARAMETER_SET
               SOA_TIME_PARAMETER_SET
@@ -69,8 +72,9 @@ sub translation {
         "ONE_SOA_SERIAL"                  => "A single SOA serial number was seen ({serial}).",
         "MULTIPLE_SOA_TIME_PARAMETER_SET" => "Saw {count} SOA time parameter set.",
         "NO_RESPONSE"                     => "Nameserver {ns} did not respond.",
-        "ONE_SOA_TIME_PARAMETER_SET" =>
-"A single SOA time parameter set was seen (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}).",
+        "ONE_SOA_TIME_PARAMETER_SET"      => "A single SOA time parameter set was seen (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}).",
+        "NO_RESPONSE_SOA_QUERY"           => "No response from nameserver {ns} on SOA queries.",
+
     };
 }
 
@@ -86,9 +90,9 @@ sub consistency01 {
     my ( $class, $zone ) = @_;
     my @results;
     my %nsnames;
-
     my %serials;
-    foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
+
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
         next if $nsnames{ $local_ns->name->string };
 
@@ -105,6 +109,17 @@ sub consistency01 {
         }
 
         my ( $soa ) = $p->get_records_for_name( q{SOA}, $zone->name );
+
+        if ( not $soa ) {
+            push @results,
+              info(
+                NO_RESPONSE_SOA_QUERY => {
+                    ns => $local_ns->name,
+                }
+              );
+            next;
+        }
+
         push @{ $serials{ $soa->serial } }, $local_ns->name->string;
 
         $nsnames{ $local_ns->name->string }++;
@@ -143,9 +158,9 @@ sub consistency02 {
     my ( $class, $zone ) = @_;
     my @results;
     my %nsnames;
-
     my %rnames;
-    foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
+
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
         next if $nsnames{ $local_ns->name->string };
 
@@ -162,6 +177,17 @@ sub consistency02 {
         }
 
         my ( $soa ) = $p->get_records_for_name( q{SOA}, $zone->name );
+
+        if ( not $soa ) {
+            push @results,
+              info(
+                NO_RESPONSE_SOA_QUERY => {
+                    ns => $local_ns->name,
+                }
+              );
+            next;
+        }
+
         push @{ $rnames{ $soa->rname } }, $local_ns->name->string;
 
         $nsnames{ $local_ns->name->string }++;
@@ -200,9 +226,9 @@ sub consistency03 {
     my ( $class, $zone ) = @_;
     my @results;
     my %nsnames;
-
     my %time_parameter_sets;
-    foreach my $local_ns ( @{ $zone->ns }, @{ $zone->glue } ) {
+
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
         next if $nsnames{ $local_ns->name->string };
 
@@ -219,8 +245,19 @@ sub consistency03 {
         }
 
         my ( $soa ) = $p->get_records_for_name( q{SOA}, $zone->name );
-        push @{ $time_parameter_sets{ sprintf q{%d;%d;%d;%d}, $soa->refresh, $soa->retry, $soa->expire, $soa->minimum }
-        }, $local_ns->name->string;
+
+        if ( not $soa ) {
+            push @results,
+              info(
+                NO_RESPONSE_SOA_QUERY => {
+                    ns => $local_ns->name,
+                }
+              );
+            next;
+        }
+
+        push @{ $time_parameter_sets{ sprintf q{%d;%d;%d;%d}, $soa->refresh, $soa->retry, $soa->expire, $soa->minimum } },
+             $local_ns->name->string;
 
         $nsnames{ $local_ns->name->string }++;
     } ## end foreach my $local_ns ( @{ $zone...})
