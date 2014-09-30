@@ -27,18 +27,15 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Find all hostnames for all the name servers used for the domain using
-   [Method 2](../Methods.md#method-2-obtain-name-servers-from-parent) and
-   [Method 3](../Methods.md#method-3-obtain-name-servers-from-child).
-2. Find all address records for the name servers using
+1. Retrieve all address records for all the name servers using
    [Method 4](../Methods.md#method-4-obtain-glue-address-records-from-parent) and
    [Method 5](../Methods.md##method-5-obtain-the-name-server-address-records-from-child),
    and do recursive lookups for the name servers that are out of bailiwick.
-3. Send a DNS query to each name server IP address querying the SOA record
+2. Send a DNS query to each name server IP address querying the SOA record
    of the domain name with EDNS0 option of payload size ("bufsize")
    set to 512.
-4. If any answer from step 2 contains a FORMERR RCODE this test case fails.
-5. If the answer does not contain an OPT RR with EDNS version 0, this test
+3. If any answer from step 2 contains a FORMERR RCODE this test case fails.
+4. If the answer does not contain an OPT RR with EDNS version 0, this test
    case fails.
 
 ### Outcome(s)

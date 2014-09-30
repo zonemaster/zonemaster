@@ -17,10 +17,7 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Find all hostnames for all the name servers used for the domain using
-   [Method 2](../Methods.md#method-2-obtain-name-servers-from-parent) and
-   [Method 3](../Methods.md#method-3-obtain-name-servers-from-child).
-2. Find all address records for the name servers using
+1. Retrieve all address records for all the name servers using
    [Method 4](../Methods.md#method-4-obtain-glue-address-records-from-parent) and
    [Method 5](../Methods.md##method-5-obtain-the-name-server-address-records-from-child),
    and do recursive lookups for the name servers that are out of bailiwick.
