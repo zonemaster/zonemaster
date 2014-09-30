@@ -23,14 +23,14 @@ Another application is the web interface which is split in two parts. The user v
     $ sudo apt-get install libfile-slurp-perl libjson-perl \
     liblist-moreutils-perl libio-socket-inet6-perl libmodule-find-perl \
     libmoose-perl libnet-ip-perl libfile-sharedir-perl libhash-merge-perl \
-    libreadonly-perl libldns-dev libmodule-install-perl
+    libreadonly-perl libldns-dev libmodule-install-perl \
+	libmail-rfc822-address-perl
 
 **Install CPAN dependencies**
 
 Unfortunately `Locale::TextDomain`, `Net::LDNS` and `RFC::RFC822::Address` has not been packaged for Ubuntu yet. So you need to install these dependencies from CPAN:
 
 	$ sudo perl -MCPAN -e 'install Locale::TextDomain'
-    $ sudo perl -MCPAN -e 'install RFC::RFC822::Address'
     $ sudo perl -MCPAN -e 'install Net::LDNS'
 
 If all package dependencies are already installed from the previous section, this should compile and install after configuration of your CPAN module installer.
@@ -56,14 +56,14 @@ If all package dependencies are already installed from the previous section, thi
       $ sudo aptitude install libfile-slurp-perl libjson-perl \
 	  liblist-moreutils-perl libio-socket-inet6-perl libmodule-find-perl \
 	  libmoose-perl libnet-ip-perl libfile-sharedir-perl libhash-merge-perl \
-	  libreadonly-perl libldns-dev libmodule-install-perl
+	  libreadonly-perl libldns-dev libmodule-install-perl \
+	  libmail-rfc822-address-perl
 
 **Install CPAN dependencies**
 
 Unfortunately `Locale::TextDomain`, `Net::LDNS` and `RFC::RFC822::Address` has not been packaged for Debian yet. So you need to install these dependencies from CPAN:
 
 	$ sudo perl -MCPAN -e 'install Locale::TextDomain'
-    $ sudo perl -MCPAN -e 'install RFC::RFC822::Address'
 
 The version of ldns that Net::LDNS is based on is too old for Zonemaster, thus it has to be installed from source. However, ldns requires some more packages to be installed.
 
