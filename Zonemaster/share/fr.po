@@ -166,11 +166,11 @@ msgid  "Saw {count} SOA time parameter set."
 msgstr "Traduction en cours"
 
 #: CONSISTENCY:NO_RESPONSE
-msgid  "Nameserver {ns} did not respond."
+msgid  "Nameserver {ns}/{address} did not respond."
 msgstr "Traduction en cours"
 
 #: CONSISTENCY:NO_RESPONSE_SOA_QUERY
-msgid  "No response from nameserver {ns} on SOA queries."
+msgid  "No response from nameserver {ns}/{address} on SOA queries."
 msgstr "Traduction en cours"
 
 #: CONSISTENCY:ONE_SOA_RNAME

@@ -110,8 +110,8 @@ msgid  "Saw {count} SOA time parameter set."
 msgstr "Såg {count} olika uppsättningar med SOA-tidsparametrar."
 
 #: CONSISTENCY:NO_RESPONSE
-msgid  "Nameserver {ns} did not respond."
-msgstr "Namnservern {ns} svarade inte."
+msgid  "Nameserver {ns}/{address} did not respond."
+msgstr "Namnservern {ns}/{address} svarade inte."
 
 #: CONSISTENCY:ONE_SOA_RNAME
 msgid  "A single SOA rname value was seen ({rname})"
@@ -754,6 +754,6 @@ msgid  "Parent and child do not list enough nameservers ({ns}). Lower limit set 
 msgstr "DELEGATION:NOT_ENOUGH_NS_TOTAL needs translation..."
 
 #: CONSISTENCY:NO_RESPONSE_SOA_QUERY
-msgid  "No response from nameserver {ns} on SOA queries."
+msgid  "No response from nameserver {ns}/{address} on SOA queries."
 msgstr "CONSISTENCY:NO_RESPONSE_SOA_QUERY needs translation..."
 

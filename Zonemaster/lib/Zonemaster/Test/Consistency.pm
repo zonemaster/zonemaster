@@ -1,4 +1,4 @@
-package Zonemaster::Test::Consistency v0.0.5;
+package Zonemaster::Test::Consistency v0.0.6;
 
 use 5.14.2;
 use strict;
@@ -6,6 +6,12 @@ use warnings;
 
 use Zonemaster;
 use Zonemaster::Util;
+use Zonemaster::Test::Address;
+
+use Readonly;
+
+Readonly our $IP_VERSION_4 => $Zonemaster::Test::Address::IP_VERSION_4;
+Readonly our $IP_VERSION_6 => $Zonemaster::Test::Address::IP_VERSION_6;
 
 ###
 ### Entry points
@@ -71,9 +77,9 @@ sub translation {
         "MULTIPLE_SOA_RNAMES"             => "Saw {count} SOA rname.",
         "ONE_SOA_SERIAL"                  => "A single SOA serial number was seen ({serial}).",
         "MULTIPLE_SOA_TIME_PARAMETER_SET" => "Saw {count} SOA time parameter set.",
-        "NO_RESPONSE"                     => "Nameserver {ns} did not respond.",
+        "NO_RESPONSE"                     => "Nameserver {ns}/{address} did not respond.",
         "ONE_SOA_TIME_PARAMETER_SET"      => "A single SOA time parameter set was seen (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}).",
-        "NO_RESPONSE_SOA_QUERY"           => "No response from nameserver {ns} on SOA queries.",
+        "NO_RESPONSE_SOA_QUERY"           => "No response from nameserver {ns}/{address} on SOA queries.",
 
     };
 }
@@ -94,6 +100,10 @@ sub consistency01 {
 
     foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
+        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+
+        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
+
         next if $nsnames{ $local_ns->name->string };
 
         my $p = $local_ns->query( $zone->name, q{SOA} );
@@ -102,7 +112,8 @@ sub consistency01 {
             push @results,
               info(
                 NO_RESPONSE => {
-                    ns => $local_ns->name,
+                    ns      => $local_ns->name,
+                    address => $local_ns->address->short,
                 }
               );
             next;
@@ -114,7 +125,8 @@ sub consistency01 {
             push @results,
               info(
                 NO_RESPONSE_SOA_QUERY => {
-                    ns => $local_ns->name,
+                    ns      => $local_ns->name,
+                    address => $local_ns->address->short,
                 }
               );
             next;
@@ -162,6 +174,10 @@ sub consistency02 {
 
     foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
+        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+
+        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
+
         next if $nsnames{ $local_ns->name->string };
 
         my $p = $local_ns->query( $zone->name, q{SOA} );
@@ -170,7 +186,8 @@ sub consistency02 {
             push @results,
               info(
                 NO_RESPONSE => {
-                    ns => $local_ns->name,
+                    ns      => $local_ns->name,
+                    address => $local_ns->address->short,
                 }
               );
             next;
@@ -182,7 +199,8 @@ sub consistency02 {
             push @results,
               info(
                 NO_RESPONSE_SOA_QUERY => {
-                    ns => $local_ns->name,
+                    ns      => $local_ns->name,
+                    address => $local_ns->address->short,
                 }
               );
             next;
@@ -230,6 +248,10 @@ sub consistency03 {
 
     foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
+        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+
+        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
+
         next if $nsnames{ $local_ns->name->string };
 
         my $p = $local_ns->query( $zone->name, q{SOA} );
@@ -238,7 +260,8 @@ sub consistency03 {
             push @results,
               info(
                 NO_RESPONSE => {
-                    ns => $local_ns->name,
+                    ns      => $local_ns->name,
+                    address => $local_ns->address->short,
                 }
               );
             next;
@@ -250,7 +273,8 @@ sub consistency03 {
             push @results,
               info(
                 NO_RESPONSE_SOA_QUERY => {
-                    ns => $local_ns->name,
+                    ns      => $local_ns->name,
+                    address => $local_ns->address->short,
                 }
               );
             next;
