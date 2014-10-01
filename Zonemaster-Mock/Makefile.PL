@@ -21,6 +21,6 @@ configure_requires( 'Module::Install' => 0, );
 
 build_requires( 'Test::More' => 0, );
 
-requires( 'Net::LDNS' => 0.67, );
+requires( 'Net::LDNS' => 0.68, );
 
 WriteAll;

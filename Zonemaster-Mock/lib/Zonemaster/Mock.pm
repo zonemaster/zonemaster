@@ -8,13 +8,15 @@ our $VERSION = '0.01';
 use Zonemaster::Nameserver;
 use Net::LDNS qw[load_zonefile];
 
+our $ocache = \%Zonemaster::Nameserver::object_cache;
+
 sub load_zonefiles {
     my @files = @_;
 
     foreach my $name (@files) {
         my @rrs = load_zonefile($name);
     }
-    
+
 }
 
 1; # End of Zonemaster::Mock
