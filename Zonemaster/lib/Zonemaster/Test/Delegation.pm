@@ -1,4 +1,4 @@
-package Zonemaster::Test::Delegation v0.0.1;
+package Zonemaster::Test::Delegation v0.0.2;
 
 use 5.14.2;
 use strict;
@@ -316,12 +316,16 @@ sub delegation03 {
     return @results;
 } ## end sub delegation03
 
-sub delegation04 { #WIP
+sub delegation04 {
     my ( $class, $zone ) = @_;
     my @results;
     my %nsnames;
 
-    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
+
+        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+
+        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
 
         next if $nsnames{ $local_ns->name };
 
@@ -341,7 +345,7 @@ sub delegation04 { #WIP
         $nsnames{ $local_ns->name }++;
     }
 
-    if ((scalar @{ $zone->ns } or scalar @{ $zone->glue }) and not scalar @results) {
+    if ((scalar @{ Zonemaster::TestMethods->method4($zone) } or scalar @{ Zonemaster::TestMethods->method5($zone) }) and not scalar @results) {
         push @results,
           info(
             ARE_AUTHORITATIVE => { }
@@ -386,12 +390,16 @@ sub delegation05 {
     return @results;
 } ## end sub delegation05
 
-sub delegation06 { # Waiting for clarification
+sub delegation06 {
     my ( $class, $zone ) = @_;
     my @results;
     my %nsnames;
 
-    foreach my $local_ns ( @{ $zone->glue }, @{ $zone->ns } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
+
+        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+
+        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
 
         next if $nsnames{ $local_ns->name };
 
@@ -410,7 +418,7 @@ sub delegation06 { # Waiting for clarification
         $nsnames{ $local_ns->name }++;
     }
 
-    if ((scalar @{ $zone->ns } or scalar @{ $zone->glue }) and not scalar @results) {
+    if ((scalar @{ Zonemaster::TestMethods->method4($zone) } or scalar @{ Zonemaster::TestMethods->method5($zone) }) and not scalar @results) {
         push @results,
           info(
             SOA_EXISTS => { }
