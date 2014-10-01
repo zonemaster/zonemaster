@@ -275,8 +275,7 @@ sub syntax05 {
 
     my $p = $zone->query_one( $zone->name, q{SOA} );
 
-    if ( $p ) {
-        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
+    if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
         my $rname   = $soa->rname;
         $rname =~ s/\\./\./smgx;
         if ( index( $rname, q{@} ) != -1 ) {

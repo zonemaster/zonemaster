@@ -166,12 +166,12 @@ msgid  "Saw {count} SOA time parameter set."
 msgstr "Saw {count} SOA time parameter set."
 
 #: CONSISTENCY:NO_RESPONSE
-msgid  "Nameserver {ns} did not respond."
-msgstr "Nameserver {ns} did not respond."
+msgid  "Nameserver {ns}/{address} did not respond."
+msgstr "Nameserver {ns}/{address} did not respond."
 
 #: CONSISTENCY:NO_RESPONSE_SOA_QUERY
-msgid  "No response from nameserver {ns} on SOA queries."
-msgstr "No response from nameserver {ns} on SOA queries."
+msgid  "No response from nameserver {ns}/{address} on SOA queries."
+msgstr "No response from nameserver {ns}/{address} on SOA queries."
 
 #: CONSISTENCY:ONE_SOA_RNAME
 msgid  "A single SOA rname value was seen ({rname})"
