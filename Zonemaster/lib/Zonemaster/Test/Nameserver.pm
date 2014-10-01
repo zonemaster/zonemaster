@@ -1,4 +1,4 @@
-package Zonemaster::Test::Nameserver v0.0.1;
+package Zonemaster::Test::Nameserver v0.0.2;
 
 use 5.14.2;
 use strict;
@@ -6,6 +6,12 @@ use warnings;
 
 use Zonemaster;
 use Zonemaster::Util;
+use Zonemaster::Test::Address;
+
+use Readonly;
+
+Readonly our $IP_VERSION_4 => $Zonemaster::Test::Address::IP_VERSION_4;
+Readonly our $IP_VERSION_6 => $Zonemaster::Test::Address::IP_VERSION_6;
 
 ###
 ### Entry Points
@@ -96,6 +102,10 @@ sub nameserver01 {
 
     foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
+        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+
+        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
+
         next if $ips{ $local_ns->address->short };
 
         my $p = $local_ns->query( $nonexistent_name, q{SOA}, { recurse => 1 } );
@@ -134,6 +144,10 @@ sub nameserver02 {
     my %nsnames_and_ip;
 
     foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
+
+        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+
+        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
 
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
         my $ns = Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
@@ -183,11 +197,16 @@ sub nameserver03 {
 
     foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
+        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+
+        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
+
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
 
         my $first_rr;
         eval {
-            $local_ns->axfr( $zone->name, sub { ( $first_rr ) = @_; return 0; } );
+            my $ns = Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
+            $ns->axfr( $zone->name, sub { ( $first_rr ) = @_; return 0; } );
             1;
         } or do {
             push @results,
@@ -221,6 +240,10 @@ sub nameserver04 {
     my %nsnames_and_ip;
 
     foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
+
+        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+
+        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
 
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
 
@@ -259,6 +282,10 @@ sub nameserver05 {
     my %nsnames_and_ip;
 
     foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
+
+        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+
+        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
 
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
 
