@@ -150,8 +150,8 @@ sub nameserver02 {
         next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
 
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
-        my $ns = Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
-        my $p = $ns->query( $zone->name, q{SOA}, { edns_size => 512 } );
+
+        my $p = $local_ns->query( $zone->name, q{SOA}, { edns_size => 512 } );
         if ( $p ) {
             if ( $p->rcode eq q{FORMERR} ) {
                 push @results,
@@ -205,8 +205,7 @@ sub nameserver03 {
 
         my $first_rr;
         eval {
-            my $ns = Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
-            $ns->axfr( $zone->name, sub { ( $first_rr ) = @_; return 0; } );
+            $local_ns->axfr( $zone->name, sub { ( $first_rr ) = @_; return 0; } );
             1;
         } or do {
             push @results,
@@ -247,8 +246,7 @@ sub nameserver04 {
 
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
 
-        my $ns = Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
-        my $p = $ns->query( $zone->name, q{SOA} );
+        my $p = $local_ns->query( $zone->name, q{SOA} );
         if ( $p ) {
             if ( $local_ns->address->short ne $p->answerfrom ) {
                 push @results,
@@ -291,8 +289,7 @@ sub nameserver05 {
 
         $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short }++;
 
-        my $ns = Zonemaster::Nameserver->new( { name => $local_ns->name->string, address => $local_ns->address->short } );
-        my $p = $ns->query( $zone->name, q{AAAA} );
+        my $p = $local_ns->query( $zone->name, q{AAAA} );
 
         if ( not $p ) {
             push @results,
