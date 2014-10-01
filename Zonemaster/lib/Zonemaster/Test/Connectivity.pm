@@ -160,6 +160,10 @@ sub connectivity01 {
 
     foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
+        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+
+        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
+
         next if $ips{ $local_ns->address->short };
 
         my $p = $local_ns->query( $zone->name, q{SOA}, { usevc => 0 } );
@@ -197,6 +201,10 @@ sub connectivity02 {
 
     foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
+        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+
+        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
+
         next if $ips{ $local_ns->address->short };
 
         my $p = $local_ns->query( $zone->name, q{SOA}, { usevc => 1 } );
@@ -233,6 +241,10 @@ sub connectivity03 {
     my ( %ips, %asns );
 
     foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
+
+        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+
+        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
 
         next if $ips{ $local_ns->address->short };
 
