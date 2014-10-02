@@ -26,6 +26,10 @@ has 'packet' => (
           edns_size
           edns_rcode
           has_edns
+          id
+          querytime
+          do
+          opcode
           )
     ]
 );

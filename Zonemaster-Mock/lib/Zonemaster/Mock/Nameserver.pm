@@ -6,6 +6,11 @@ use Moose::Util::TypeConstraints;
 use Time::HiRes qw[time];
 
 use Zonemaster;
+use Zonemaster::Packet;
+
+use overload
+  '""'  => \&string,
+  'cmp' => \&compare;
 
 has 'name'    => ( is => 'ro', isa => 'Zonemaster::DNSName', coerce => 1, required => 1 );
 has 'address' => ( is => 'ro', isa => 'Zonemaster::Net::IP', coerce => 1, required => 1 );
@@ -40,7 +45,7 @@ sub load {
 sub query {
     my ( $self, $name, $type, $href ) = @_;
     my $class = $href->{class} // 'IN';
-    my $p = Net::LDNS::Packet->new( "$name", $type, $class );
+    my $p = Zonemaster::Packet->new({ packet => Net::LDNS::Packet->new( "$name", $type, $class ) });
     $p->answerfrom($self->address->short);
     $p->id(next_id());
     $p->timestamp(time());
@@ -234,6 +239,22 @@ sub answer {
 
     $p->aa(1);
     return $self->dnssec_extra($p);
+}
+
+###
+### Overload implementations
+###
+
+sub string {
+    my ( $self ) = @_;
+
+    return $self->name->string . '/' . $self->address->short;
+}
+
+sub compare {
+    my ( $self, $other, $reverse ) = @_;
+
+    return $self->string cmp $other->string;
 }
 
 1;

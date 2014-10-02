@@ -121,7 +121,7 @@ sub _recurse {
 sub _do_query {
     my ( $self, $ns, $name, $type, $opts, $state ) = @_;
 
-    if ( ref( $ns ) and ref( $ns ) eq 'Zonemaster::Nameserver' ) {
+    if ( ref( $ns ) and $ns->can('query') ) {
         my $p = $ns->query( $name, $type, $opts );
 
         if ( $p ) {
