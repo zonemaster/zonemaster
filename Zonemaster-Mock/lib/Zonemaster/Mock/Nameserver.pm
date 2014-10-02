@@ -44,6 +44,9 @@ sub query {
     $p->answerfrom($self->address->short);
     $p->id(next_id());
     $p->timestamp(time());
+    if ($href->{dnssec}) {
+        $p->do(1);
+    }
 
     $name = dname( $name );
 
@@ -109,6 +112,57 @@ sub in_subzone {
     return;
 }
 
+sub dnssec_extra {
+    my ( $self, $p ) = @_;
+
+    return $p if not $p->do;
+
+    my $queryname = ($p->question)[0]->name;
+    # Add NSEC
+    if ($p->rcode eq 'NXDOMAIN') {
+        my ($soa) = $p->authority;
+        my $apexset = $self->get_rrset($soa->name, 'NSEC');
+        if ($apexset and @$apexset > 0) {
+            $p->unique_push('authority', $_) for @$apexset;
+        }
+
+        foreach my $n (keys %{$self->db}) {
+            my $set = $self->get_rrset($n, 'NSEC');
+            if ($set and @$set > 0) {
+                foreach my $sec (@$set) {
+                    if ($sec->covers($queryname)) {
+                        $p->unique_push('authority', $sec)
+                    }
+                }
+            }
+            $set = $self->get_rrset($n, 'NSEC3');
+            if ($set and @$set > 0) {
+                foreach my $sec (@$set) {
+                    if ($sec->covers($queryname)) {
+                        $p->unique_push('authority', $sec)
+                    }
+                }
+            }
+        }
+    }
+
+    # Add RRSIGs
+    foreach my $section (qw(answer authority additional)) {
+        foreach my $rr ($p->$section) {
+            my $rrset = $self->get_rrset($rr->name, 'RRSIG');
+            if ($rrset and @$rrset > 0) {
+                foreach my $sig (@$rrset) {
+                    if($sig->typecovered eq $rr->type) {
+                        $p->unique_push($section, $sig);
+                    }
+                }
+            }
+        }
+    }
+
+    return $p;
+}
+
 ###
 ### Methods to finish response packets
 ###
@@ -118,7 +172,7 @@ sub empty_response {
 
     $p->unique_push('authority', $soa);
     $p->aa(1);
-    return $p;
+    return $self->dnssec_extra($p);
 }
 
 sub referral {
@@ -140,7 +194,7 @@ sub referral {
         }
     }
 
-    return $p;
+    return $self->dnssec_extra($p);
 }
 
 sub nxdomain {
@@ -149,7 +203,7 @@ sub nxdomain {
     $p->unique_push('authority', $soa);
     $p->rcode('NXDOMAIN');
     $p->aa(1);
-    return $p;
+    return $self->dnssec_extra($p);
 }
 
 sub answer {
@@ -169,7 +223,7 @@ sub answer {
     }
 
     $p->aa(1);
-    return $p;
+    return $self->dnssec_extra($p);
 }
 
 1;
