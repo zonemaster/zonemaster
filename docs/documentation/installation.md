@@ -28,7 +28,7 @@ Another application is the web interface which is split in two parts. The user v
 
 **Install CPAN dependencies**
 
-Unfortunately `Locale::TextDomain`, `Net::LDNS` and `RFC::RFC822::Address` has not been packaged for Ubuntu yet. So you need to install these dependencies from CPAN:
+Unfortunately `Locale::TextDomain` and `Net::LDNS` have not been packaged for Ubuntu yet. So you need to install these dependencies from CPAN:
 
 	$ sudo perl -MCPAN -e 'install Locale::TextDomain'
     $ sudo perl -MCPAN -e 'install Net::LDNS'
@@ -61,7 +61,7 @@ If all package dependencies are already installed from the previous section, thi
 
 **Install CPAN dependencies**
 
-Unfortunately `Locale::TextDomain`, `Net::LDNS` and `RFC::RFC822::Address` has not been packaged for Debian yet. So you need to install these dependencies from CPAN:
+Unfortunately `Locale::TextDomain` and `Net::LDNS` have not been packaged for Debian yet. So you need to install these dependencies from CPAN:
 
 	$ sudo perl -MCPAN -e 'install Locale::TextDomain'
 
@@ -108,12 +108,12 @@ If all package dependencies are already installed from the previous section, thi
 
 	$ sudo pkg install p5-File-ShareDir p5-File-Slurp p5-Hash-Merge \
 	p5-IO-Socket-INET6 p5-JSON p5-List-MoreUtils p5-Moose p5-Net-IP \
-	p5-Readonly p5-Module-Find p5-Module-Install p5-Devel-CheckLib ldns
+	p5-Readonly p5-Module-Find p5-Module-Install p5-Devel-CheckLib \
+	ldns p5-Mail-RFC822-Address-0.3
 
 **Install CPAN dependencies**
 
 	$ sudo perl -MCPAN -e 'install Locale::TextDomain'
-	$ sudo perl -MCPAN -e 'install RFC::RFC822::Address'
 	$ sudo perl -MCPAN -e 'install Net::LDNS'
 
 **Build source code**
@@ -126,6 +126,44 @@ If all package dependencies are already installed from the previous section, thi
 	Writing Makefile for Zonemaster
 	Writing MYMETA.yml and MYMETA.json
 	$ make test
+    $ sudo make install
+
+### Instructions for CentOS 7
+
+**To get the source code**
+
+	$ sudo yum install git
+	$ git clone https://github.com/dotse/zonemaster.git
+
+**Install package dependencies**
+
+	$ sudo yum install perl perl-ExtUtils-MakeMaker perl-File-ShareDir \
+	perl-File-Slurp perl-IO-Socket-INET6 perl-JSON perl-List-MoreUtils \
+	perl-Readonly perl-Time-HiRes perl-YAML ldns-devel
+
+Zonemaster works better with ldns version 1.6.17 and up, CentOS includes
+ldns 1.6.16 that works.
+
+**Install CPAN dependencies**
+
+Unfortunately a lot of Perl modules has not been packaged for Debian yet. So you need to install these dependencies from CPAN:
+
+	$ sudo yum install perl-CPAN gcc
+
+	$ sudo perl -MCPAN -e 'install Hash::Merge'
+	$ sudo perl -MCPAN -e 'install Locale::TextDomain'
+	$ sudo perl -MCPAN -e 'install Mail::RFC822::Address'
+	$ sudo perl -MCPAN -e 'install Module::Find'
+	$ sudo perl -MCPAN -e 'install Moose'
+	$ sudo perl -MCPAN -e 'install Net::IP'
+    $ sudo perl -MCPAN -e 'install Net::LDNS'
+
+**Build source code**
+
+    $ cd zonemaster/Zonemaster
+    $ perl Makefile.PL
+	Writing Makefile for Zonemaster
+	Writing MYMETA.yml and MYMETA.json	$ make test
     $ sudo make install
 
 ## Zonemaster CLI installation
@@ -175,6 +213,29 @@ First install the Zonemaster Engine, following the instructions above.
 **Install package dependencies**
 
 	$ sudo pkg install p5-MooseX-Getopt
+
+**Build source code**
+
+    $ cd zonemaster/Zonemaster-CLI
+    $ perl Makefile.PL
+    $ make test
+    $ sudo make install
+
+Now you are ready to run the zonemaster-cli command:
+
+    $ zonemaster-cli example.com
+
+### Instructions for CentOS 7
+
+First install the Zonemaster Engine, following the instructions above.
+
+**Install package dependencies**
+
+	$ sudo yum install perl-Module-Install
+	$ sudo yum install perl-Getopt-Long
+
+	$ sudo perl -MCPAN -e 'install Getopt::Long::Descriptive'
+	$ sudo perl -MCPAN -e 'install MooseX::Getopt'
 
 **Build source code**
 
