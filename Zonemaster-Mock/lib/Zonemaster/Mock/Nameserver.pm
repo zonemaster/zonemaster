@@ -194,6 +194,16 @@ sub referral {
         }
     }
 
+    if ($p->do) {
+        my $name = $rrset->[0]->name;
+        my $dsset = $self->get_rrset($name, 'DS');
+        if ($dsset and @$dsset > 0) {
+            foreach my $ds (@$dsset) {
+                $p->unique_push('authority', $ds)
+            }
+        }
+    }
+
     return $self->dnssec_extra($p);
 }
 
