@@ -108,12 +108,12 @@ If all package dependencies are already installed from the previous section, thi
 
 	$ sudo pkg install p5-File-ShareDir p5-File-Slurp p5-Hash-Merge \
 	p5-IO-Socket-INET6 p5-JSON p5-List-MoreUtils p5-Moose p5-Net-IP \
-	p5-Readonly p5-Module-Find p5-Module-Install p5-Devel-CheckLib ldns
+	p5-Readonly p5-Module-Find p5-Module-Install p5-Devel-CheckLib \
+	ldns p5-Mail-RFC822-Address-0.3
 
 **Install CPAN dependencies**
 
 	$ sudo perl -MCPAN -e 'install Locale::TextDomain'
-	$ sudo perl -MCPAN -e 'install RFC::RFC822::Address'
 	$ sudo perl -MCPAN -e 'install Net::LDNS'
 
 **Build source code**
