@@ -109,7 +109,11 @@ sub add_fake_delegation {
 sub add_fake_ds {
     my ( $class, $domain, $aref ) = @_;
 
-    my $parent = $class->zone( $recursor->parent( $domain ) );
+    my $parent = $class->zone( scalar($recursor->parent( $domain )) );
+    if (not $parent) {
+        die "Failed to find parent for $domain";
+    }
+
     foreach my $ns ( @{ $parent->ns } ) {
         $ns->add_fake_ds( $domain => $aref );
     }
