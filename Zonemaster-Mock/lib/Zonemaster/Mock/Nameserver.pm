@@ -52,6 +52,22 @@ sub query {
     if ($rrset and @$rrset > 0) { # Found data, so answer with it
         return $self->answer( $rrset, $p );
     }
+    elsif (my $sub = $self->in_subzone($name)) {
+        my $rrset = $self->db->{$sub}{'IN'}{'NS'};
+        return $self->referral($p,$rrset);
+    }
+}
+
+sub in_subzone {
+    my ( $self, $name ) = @_;
+
+    foreach my $sn (keys %{$self->subzones}) {
+        if ($name =~ /\Q$sn\E$/) {
+            return $self->subzones->{$sn};
+        }
+    }
+
+    return;
 }
 
 sub empty_response {
@@ -61,9 +77,13 @@ sub empty_response {
 }
 
 sub referral {
-    my ( $self, $super, $p ) = @_;
+    my ( $self, $p, $rrset ) = @_;
 
-    ...;
+    foreach my $rr (@$rrset) {
+        $p->unique_push('authority', $rr);
+    }
+
+    return $p;
 }
 
 sub nxdomain {
