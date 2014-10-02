@@ -47,10 +47,7 @@ sub query {
 
     $name = dname( $name );
 
-    my $rrset;
-    if ($self->db->{$name} and $self->db->{$name}{ uc( $class ) } and $self->db->{$name}{ uc( $class ) }{ uc( $type ) }) {
-        $rrset = $self->db->{$name}{ uc( $class ) }{ uc( $type ) };
-    }
+    my $rrset = $self->get_rrset($name, $type, $class);
 
     # Found data, so answer with it
     if ($rrset and @$rrset > 0) {
@@ -69,6 +66,19 @@ sub query {
             return $self->nxdomain($p, $soa);
         }
     }
+}
+
+sub get_rrset {
+    my ( $self, $name, $type, $class ) = @_;
+    $class //= 'IN';
+    $name = dname($name);
+
+    my $rrset;
+    if ($self->db->{$name} and $self->db->{$name}{ uc( $class ) } and $self->db->{$name}{ uc( $class ) }{ uc( $type ) }) {
+        $rrset = $self->db->{$name}{ uc( $class ) }{ uc( $type ) };
+    }
+
+    return $rrset;
 }
 
 sub in_zone {
@@ -95,6 +105,10 @@ sub in_subzone {
     return;
 }
 
+###
+### Methods to finish response packets
+###
+
 sub empty_response {
     my ( $self, $p, $soa ) = @_;
 
@@ -108,6 +122,18 @@ sub referral {
 
     foreach my $rr (@$rrset) {
         $p->unique_push('authority', $rr);
+
+        my @arrs;
+        if (my $ref = $self->get_rrset($rr->nsdname, 'A')) {
+            push @arrs, @$ref;
+        }
+        if (my $ref = $self->get_rrset($rr->nsdname, 'AAAA')) {
+            push @arrs, @$ref;
+        }
+
+        foreach my $arr (@arrs) {
+            $p->unique_push('additional', $arr);
+        }
     }
 
     return $p;
