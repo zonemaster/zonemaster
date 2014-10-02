@@ -47,15 +47,40 @@ sub query {
 
     $name = dname( $name );
 
-    my $rrset = $self->db->{$name}{ uc( $class ) }{ uc( $type ) };
+    my $rrset;
+    if ($self->db->{$name} and $self->db->{$name}{ uc( $class ) } and $self->db->{$name}{ uc( $class ) }{ uc( $type ) }) {
+        $rrset = $self->db->{$name}{ uc( $class ) }{ uc( $type ) };
+    }
 
-    if ($rrset and @$rrset > 0) { # Found data, so answer with it
+    # Found data, so answer with it
+    if ($rrset and @$rrset > 0) {
         return $self->answer( $rrset, $p );
     }
+    # It's in a subzone, so refer to that
     elsif (my $sub = $self->in_subzone($name)) {
         my $rrset = $self->db->{$sub}{'IN'}{'NS'};
         return $self->referral($p,$rrset);
     }
+    # Should it be in one of our zones?
+    elsif ( my $soa = $self->in_zone($name)) {
+        if ($self->db->{$name}) {
+            return $self->empty_response($p, $soa);
+        } else {
+            return $self->nxdomain($p, $soa);
+        }
+    }
+}
+
+sub in_zone {
+    my ( $self, $name ) = @_;
+
+    foreach my $sn (keys %{$self->zones}) {
+        if ($name =~ /\Q$sn\E$/) {
+            return $self->zones->{$sn};
+        }
+    }
+
+    return;
 }
 
 sub in_subzone {
@@ -71,9 +96,11 @@ sub in_subzone {
 }
 
 sub empty_response {
-    my ( $self, $p ) = @_;
+    my ( $self, $p, $soa ) = @_;
 
-    ...;
+    $p->unique_push('authority', $soa);
+    $p->aa(1);
+    return $p;
 }
 
 sub referral {
@@ -87,9 +114,12 @@ sub referral {
 }
 
 sub nxdomain {
-    my ( $self, $p ) = @_;
+    my ( $self, $p, $soa ) = @_;
 
-    ...;
+    $p->unique_push('authority', $soa);
+    $p->rcode('NXDOMAIN');
+    $p->aa(1);
+    return $p;
 }
 
 sub answer {
