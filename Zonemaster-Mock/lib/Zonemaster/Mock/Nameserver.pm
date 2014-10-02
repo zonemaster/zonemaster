@@ -49,6 +49,10 @@ sub query {
 
     my $rrset = $self->get_rrset($name, $type, $class);
 
+    if (not $rrset or @$rrset == 0) {
+        $rrset = $self->get_rrset($name, 'CNAME', $class)
+    }
+
     # Found data, so answer with it
     if ($rrset and @$rrset > 0) {
         return $self->answer( $rrset, $p );
@@ -153,6 +157,15 @@ sub answer {
 
     foreach my $rr (@$rrset) {
         $p->unique_push('answer', $rr);
+
+        if ($rr->type eq 'CNAME') {
+            my $rrset = $self->get_rrset($rr->cname,(($p->question)[0]->type));
+            if ($rrset) {
+                foreach my $crr (@$rrset) {
+                    $p->unique_push('answer', $crr);
+                }
+            }
+        }
     }
 
     $p->aa(1);
