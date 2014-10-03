@@ -46,7 +46,7 @@ sub load_and_link_zonefiles {
         }
 
         Zonemaster->add_fake_delegation($this_zone, \%undelegated);
-        Zonemaster->add_fake_ds($this_zone, \@undel_key);
+        Zonemaster->add_fake_ds($this_zone, \@undel_key) if @key;
     }
 
     return;
