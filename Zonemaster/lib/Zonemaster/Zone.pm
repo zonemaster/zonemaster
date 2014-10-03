@@ -12,7 +12,7 @@ use Zonemaster::Recursor;
 
 has 'name' => ( is => 'ro', isa => 'Zonemaster::DNSName', required => 1, coerce => 1 );
 has 'parent' => ( is => 'ro', isa => 'Maybe[Zonemaster::Zone]', lazy_build => 1 );
-has [ 'ns', 'glue' ] => ( is => 'ro', isa => 'ArrayRef[Zonemaster::Nameserver]', lazy_build => 1 );
+has [ 'ns', 'glue' ] => ( is => 'ro', isa => 'ArrayRef', lazy_build => 1 );
 has [ 'ns_names', 'glue_names' ] => ( is => 'ro', isa => 'ArrayRef[Zonemaster::DNSName]', lazy_build => 1 );
 has 'glue_addresses' => ( is => 'ro', isa => 'ArrayRef[Net::LDNS::RR]', lazy_build => 1 );
 

@@ -138,10 +138,19 @@ sub query {
     foreach my $fname ( keys %{ $self->fake_delegations } ) {
         if ( $name =~ m/(\.|^)\Q$fname\E$/i ) {
             my $p = Net::LDNS::Packet->new( $name, $type, $class );
-            while ( my ( $section, $aref ) = each %{ $self->fake_delegations->{$fname} } ) {
-                $p->unique_push( $section, $_ ) for @$aref;
+
+            if ($name eq $fname and $type eq 'NS') {
+                my $name = $self->fake_delegations->{$fname}{authority};
+                my $addr = $self->fake_delegations->{$fname}{additional};
+                $p->unique_push('answer', $_) for @$name;
+                $p->unique_push('additional', $_) for @$addr;
             }
-            ## Need to fix Net::LDNS so these can be set
+            else {
+                while ( my ( $section, $aref ) = each %{ $self->fake_delegations->{$fname} } ) {
+                    $p->unique_push( $section, $_ ) for @$aref;
+                }
+            }
+
             $p->aa( 0 );
             $p->do( $dnssec );
             $p->rd( $recurse );
