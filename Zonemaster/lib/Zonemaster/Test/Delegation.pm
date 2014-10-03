@@ -405,7 +405,7 @@ sub delegation06 {
 
         my $p = $local_ns->query( $zone->name, q{SOA} );
         if ( $p and $p->rcode eq q{NOERROR} ) {
-            if ( not length( $p->answer ) ) {
+            if ( not $p->get_records( q{SOA}, q{answer} ) ) {
                 push @results,
                   info(
                     SOA_NOT_EXISTS => {
