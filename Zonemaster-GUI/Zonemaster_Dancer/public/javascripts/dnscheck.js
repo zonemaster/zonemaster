@@ -92,6 +92,8 @@ dnscheck.directive('domainCheck',function(){
     controller: ['$rootScope', '$scope', '$window', function($rootScope, $scope, $window){
         $scope.interval = 5000; // 5 sec retry
         $scope.form = {};
+        $scope.form.ipv4 = true;
+        $scope.form.ipv6 = true;
         $scope.location = $window.location.href;
         if(typeof $rootScope.language === 'undefined') $rootScope.language = navigator.language || navigator.userLanguage;
 

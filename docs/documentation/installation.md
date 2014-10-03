@@ -1,5 +1,16 @@
 # Zonemaster installation guide
 
+This is the installation instructions for the Zonemaster software. The
+software has not yet been packaged for any operating systems, and you
+have to install most of it from the source code.
+
+The documentation covers the following operating systems:
+
+ * Ubuntu 14.04 (LTS)
+ * Debian Wheezy (version 7)
+ * FreeBSD 10.0
+ * CentOS 7
+
 ## Components
 
 The Zonemaster software contains of several different components. The most important component is the Zonemaster Engine, which is the core library that implements the DNS test framework and all the test cases.

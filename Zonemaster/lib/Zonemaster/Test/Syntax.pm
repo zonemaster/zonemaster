@@ -311,8 +311,7 @@ sub syntax06 {
 
     my $p = $zone->query_one( $zone->name, q{SOA} );
 
-    if ( $p ) {
-        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
+    if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
         my $rname   = $soa->rname;
         $rname =~ s/([^\\])\./$1@/smx;    # Replace first non-escaped dot with an at-sign
         $rname =~ s/\\./\./smgx;          # Un-escape dots
@@ -349,9 +348,7 @@ sub syntax07 {
 
     my $p = $zone->query_one( $zone->name, q{SOA} );
 
-    if ( $p ) {
-        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
-
+    if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
         my $mname = $soa->mname;
 
         push @results, _check_name_syntax( q{MNAME}, $mname );
