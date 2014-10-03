@@ -51,6 +51,7 @@
       "ONE_SOA_TIME_PARAMETER_SET" : "INFO",
       "SOA_RNAME" : "INFO",
       "SOA_SERIAL" : "INFO",
+      "SOA_SERIAL_VARIATION" : "ERROR",
       "SOA_TIME_PARAMETER_SET" : "INFO"
    },
    "DELEGATION" : {

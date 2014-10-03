@@ -10,8 +10,9 @@ use Zonemaster::Test::Address;
 
 use Readonly;
 
-Readonly our $IP_VERSION_4 => $Zonemaster::Test::Address::IP_VERSION_4;
-Readonly our $IP_VERSION_6 => $Zonemaster::Test::Address::IP_VERSION_6;
+Readonly our $IP_VERSION_4         => $Zonemaster::Test::Address::IP_VERSION_4;
+Readonly our $IP_VERSION_6         => $Zonemaster::Test::Address::IP_VERSION_6;
+Readonly our $MAX_SERIAL_VARIATION => 0;
 
 ###
 ### Entry points
@@ -43,6 +44,7 @@ sub metadata {
               ONE_SOA_SERIAL
               MULTIPLE_SOA_SERIALS
               SOA_SERIAL
+              SOA_SERIAL_VARIATION
               )
         ],
         consistency02 => [
@@ -80,7 +82,7 @@ sub translation {
         "NO_RESPONSE"                     => "Nameserver {ns}/{address} did not respond.",
         "ONE_SOA_TIME_PARAMETER_SET"      => "A single SOA time parameter set was seen (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}).",
         "NO_RESPONSE_SOA_QUERY"           => "No response from nameserver {ns}/{address} on SOA queries.",
-
+        "SOA_SERIAL_VARIATION"            => "Difference between the smaller serial ({serial_min}) and the bigger one ({serial_max}) is greater than the maximum allowed ({max_variation}).",
     };
 }
 
@@ -137,7 +139,8 @@ sub consistency01 {
         $nsnames{ $local_ns->name->string }++;
     } ## end foreach my $local_ns ( @{ $zone...})
 
-    if ( scalar( keys %serials ) == 1 ) {
+    my @serial_numbers = sort keys %serials;
+    if ( scalar( @serial_numbers ) == 1 ) {
         push @results,
           info(
             ONE_SOA_SERIAL => {
@@ -145,7 +148,7 @@ sub consistency01 {
             }
           );
     }
-    else {
+    elsif ( scalar( @serial_numbers ) ) {
         push @results,
           info(
             MULTIPLE_SOA_SERIALS => {
@@ -160,6 +163,17 @@ sub consistency01 {
                     servers => join( q{;}, @{ $serials{$serial} } ),
                 }
               );
+        }
+        if ( $serial_numbers[-1] - $serial_numbers[0] > $MAX_SERIAL_VARIATION ) {
+            push @results,
+              info(
+                SOA_SERIAL_VARIATION => {
+                    serial_min    => $serial_numbers[0],
+                    serial_max    => $serial_numbers[-1],
+                    max_variation => $MAX_SERIAL_VARIATION,
+                }
+              );
+            
         }
     }
 
@@ -219,7 +233,7 @@ sub consistency02 {
             }
           );
     }
-    else {
+    elsif ( scalar( keys %rnames ) ) {
         push @results,
           info(
             MULTIPLE_SOA_RNAMES => {
@@ -298,7 +312,7 @@ sub consistency03 {
             }
           );
     }
-    else {
+    elsif ( scalar( keys %time_parameter_sets ) ) {
         push @results,
           info(
             MULTIPLE_SOA_TIME_PARAMETER_SET => {

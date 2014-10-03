@@ -757,3 +757,7 @@ msgstr "DELEGATION:NOT_ENOUGH_NS_TOTAL needs translation..."
 msgid  "No response from nameserver {ns}/{address} on SOA queries."
 msgstr "CONSISTENCY:NO_RESPONSE_SOA_QUERY needs translation..."
 
+#: CONSISTENCY:SOA_SERIAL_VARIATION
+msgid  "Difference between the smaller serial ({serial_min}) and the bigger one ({serial_max}) is greater than the maximum allowed ({max_variation})."
+msgstr "CONSISTENCY:SOA_SERIAL_VARIATION needs translation..."
+
