@@ -13,11 +13,6 @@ if ( $@ ) {
     exit( 0 );
 }
 
-if ($^V >= v5.18.0 && $^V < v5.19.0) {
-    plan skip_all => "Test broken on this Perl version.";
-    exit(0);
-}
-
 my @modules;
 
 find(
@@ -35,9 +30,14 @@ find(
 foreach my $name ( @modules ) {
     my $pc = Pod::Coverage->new( package => $name );
     if ( defined $pc->coverage ) {
+        my @uncovered = $pc->uncovered;
+        if (@uncovered == 1 and $uncovered[0] eq 'LC_MESSAGES') {
+            next;
+        }
+
         is( $pc->coverage, 1.0, $name );
         if ( $pc->coverage < 1.0 ) {
-            foreach my $name ( $pc->uncovered ) {
+            foreach my $name ( @uncovered ) {
                 diag "Function '$name' not documented";
             }
         }
