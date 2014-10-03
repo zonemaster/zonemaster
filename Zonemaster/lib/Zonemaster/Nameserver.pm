@@ -176,6 +176,7 @@ sub add_fake_delegation {
     my ( $self, $domain, $href ) = @_;
     my %delegation;
 
+    $domain = ''.Zonemaster::DNSName->new($domain);
     Zonemaster->logger->add( FAKE_DELEGATION => { domain => $domain, data => $href } );
     foreach my $name ( keys %$href ) {
         push @{ $delegation{authority} }, Net::LDNS::RR->new( sprintf( '%s IN NS %s', $domain, $name ) );

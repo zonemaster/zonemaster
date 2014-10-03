@@ -19,7 +19,7 @@ my $plain_p = Zonemaster->recurse( 'www.lysator.liu.se', 'AAAA' );
 isa_ok( $plain_p, 'Zonemaster::Packet' );
 
 Zonemaster->add_fake_delegation(
-    'lysator.liu.se' => {
+    'lysator.liu.se.' => {
         'ns.nic.se'  => [ '212.247.7.228',  '2a00:801:f0:53::53' ],
         'i.ns.se'    => [ '194.146.106.22', '2001:67c:1010:5::53' ],
         'ns3.nic.se' => [ '212.247.8.152',  '2a00:801:f0:211::152' ]
