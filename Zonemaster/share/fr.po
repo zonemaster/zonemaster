@@ -27,23 +27,23 @@ msgstr "Le serveur de noms {ns} a une adresse IP ({address}) dont le préfixe es
 
 #: ADDRESS:NAMESERVER_IP_PTR_MATCH
 msgid  "All reverse DNS entry matches name server name"
-msgstr "Traduction en cours"
+msgstr "Tous les enregistrements PTR correspondent aux serveurs de noms."
 
 #: ADDRESS:NAMESERVER_IP_PTR_MISMATCH
 msgid  "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names})."
-msgstr "Traduction en cours"
+msgstr "Le serveur de noms {ns} a une addresse IP ({address}) qui ne correspond pas aux enregistrements PTR retournés ({names}) pour celle-ci."
 
 #: ADDRESS:NAMESERVER_IP_WITHOUT_REVERSE
 msgid  "Nameserver {ns} has an IP address ({address}) without PTR configured."
-msgstr "Traduction en cours"
+msgstr "Le serveur de noms {ns} a une addresse IP ({address}) sans enregistrement PTR existant."
 
 #: ADDRESS:NO_IP_PRIVATE_NETWORK
 msgid  "All Nameserver addresses are in the routable public addressing space."
-msgstr "Traduction en cours"
+msgstr "Toutes les adresses IP des serveurs de noms sont dans l'espace d'adresses publiques routables."
 
 #: ADDRESS:NO_RESPONSE_PTR_QUERY
 msgid  "No response from nameserver(s) on PTR query ({reverse})."
-msgstr "Traduction en cours"
+msgstr "Aucune réponse des serveurs de noms sur une requête PTR ({reverse})."
 
 #: BASIC:A_QUERY_NO_RESPONSES
 msgid  "Nameservers did not respond to A query."

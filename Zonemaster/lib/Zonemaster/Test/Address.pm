@@ -1,4 +1,4 @@
-package Zonemaster::Test::Address v0.0.1;
+package Zonemaster::Test::Address v0.0.2;
 
 use 5.14.2;
 use strict;
@@ -207,7 +207,7 @@ sub address02 {
         my $p = Zonemaster::Recursor->recurse( $reverse_ip_query, q{PTR} );
 
         if ( $p ) {
-            if ( $p->rcode ne q{NOERROR} ) {
+            if ( $p->rcode ne q{NOERROR} or not $p->get_records( q{PTR}, q{answer} ) ) {
                 push @results,
                   info(
                     NAMESERVER_IP_WITHOUT_REVERSE => {
