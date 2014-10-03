@@ -26,5 +26,16 @@ is(scalar($p->answer), 3, '3 answer RRs');
 is(scalar($p->additional), 4, '4 additional RRs');
 
 is(scalar(@{$zone->glue}), 4, '4 glue entries');
+is(scalar(@{$zone->ns}), 4, '4 ns entries');
+
+$p = $zone->query_one('www.zmfake.se', 'A');
+my %type = map {$_->type => $_} $p->answer;
+ok($type{CNAME}, 'Has a CNAME');
+ok($type{A}, 'Has an A');
+
+my @msg = Zonemaster->test_zone($zone->name);
+my %tags = map {$_->tag => 1} @msg;
+ok($tags{NAMESERVER_IPV6_ADDRESS_BOGON}, 'NAMESERVER_IPV6_ADDRESS_BOGON');
+ok($tags{NAMESERVER_IP_PRIVATE_NETWORK}, 'NAMESERVER_IP_PRIVATE_NETWORK');
 
 done_testing;

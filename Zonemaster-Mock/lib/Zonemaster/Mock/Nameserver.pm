@@ -45,6 +45,8 @@ sub load {
 sub query {
     my ( $self, $name, $type, $href ) = @_;
     my $class = $href->{class} // 'IN';
+    $type //= 'A';
+
     my $p = Zonemaster::Packet->new({ packet => Net::LDNS::Packet->new( "$name", $type, $class ) });
     $p->answerfrom($self->address->short);
     $p->id(next_id());

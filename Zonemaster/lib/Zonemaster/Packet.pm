@@ -116,7 +116,11 @@ sub has_rrs_of_type_for_name {
 }
 
 sub answerfrom {
-    my ( $self ) = @_;
+    my ( $self, @args ) = @_;
+
+    if (@args) {
+        $self->packet->answerfrom(@args);
+    }
 
     my $from = $self->packet->answerfrom // '<unknown>';
 
