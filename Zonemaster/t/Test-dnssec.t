@@ -32,7 +32,7 @@ ok( $tag{DS_MATCH_FOUND},    'DS_MATCH_FOUND' );
 ok( $tag{DS_FOUND},          'DS_FOUND' );
 
 @res = Zonemaster->test_method( 'DNSSEC', 'dnssec02', $zone2 );
-my %tag = map { $_->tag => 1 } @res;
+%tag = map { $_->tag => 1 } @res;
 ok( $tag{NO_DS}, 'NO_DS' );
 is( scalar( keys %tag ), 1, 'Only one message' );
 
