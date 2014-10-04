@@ -695,6 +695,10 @@ msgstr "Traduction en cours"
 msgid  "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire})."
 msgstr "Traduction en cours"
 
+#: ZONE:EXPIRE_MINIMUM_VALUE_OK
+msgid  "SOA 'expire' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than 'refresh' value."
+msgstr "Traduction en cours"
+
 #: ZONE:MASTER_IS_AN_ALIAS
 msgid  "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
 msgstr "Traduction en cours"
@@ -741,6 +745,10 @@ msgstr "Traduction en cours"
 
 #: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER
 msgid  "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum})."
+msgstr "Traduction en cours"
+
+#: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK
+msgid  "SOA 'minimum' value ({minimum}) is between the recommended ones ({lowest_minimum}/{highest_minimum})."
 msgstr "Traduction en cours"
 
 #: ZONE:MNAME_HAS_NO_ADDRESS

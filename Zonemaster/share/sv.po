@@ -761,3 +761,12 @@ msgstr "CONSISTENCY:NO_RESPONSE_SOA_QUERY needs translation..."
 msgid  "Difference between the smaller serial ({serial_min}) and the bigger one ({serial_max}) is greater than the maximum allowed ({max_variation})."
 msgstr "CONSISTENCY:SOA_SERIAL_VARIATION needs translation..."
 
+#: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK
+msgid  "SOA 'minimum' value ({minimum}) is between the recommended ones ({lowest_minimum}/{highest_minimum})."
+msgstr "ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK needs translation..."
+
+#: ZONE:EXPIRE_MINIMUM_VALUE_OK
+msgid  "SOA 'expire' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than 'refresh' value."
+msgstr "ZONE:EXPIRE_MINIMUM_VALUE_OK needs translation..."
+
+
