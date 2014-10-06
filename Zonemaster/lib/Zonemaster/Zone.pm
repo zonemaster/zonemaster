@@ -153,6 +153,30 @@ sub query_all {
     return [ map { $_->query( $name, $type, $flags ) } @servers ];
 }
 
+sub query_one_persistent {
+    my ( $self, $name, $type, $flags ) = @_;
+
+    # Return response from the first server that has a record like the one asked for
+    foreach my $ns ( @{ $self->ns } ) {
+        if (not Zonemaster->config->ipv4_ok and $ns->address->version == 4) {
+            Zonemaster->logger->add( SKIP_IPV4_DISABLED => { ns => "$ns"} );
+            next;
+        }
+
+        if (not Zonemaster->config->ipv6_ok and $ns->address->version == 6) {
+            Zonemaster->logger->add( SKIP_IPV6_DISABLED => { ns => "$ns"} );
+            next;
+        }
+
+        my $p = $ns->query( $name, $type, $flags );
+        if ($p and scalar($p->get_records_for_name($type, $name)) > 0) {
+            return $p
+        }
+    }
+
+    return;
+}
+
 sub is_in_zone {
     my ( $self, $name ) = @_;
 
@@ -245,6 +269,12 @@ parent domain.
 
 Sends (or retrieves from cache) a query for the given name, type and flags sent to the first nameserver in the zone's ns list. If there is a
 response, it will be returned in a L<Zonemaster::Packet> object. If the type arguments is not given, it defaults to 'A'. If the flags are not given, they default to C<class> IN and C<dnssec>, C<usevc> and C<recurse> according to configuration (which is by default off on all three).
+
+=item query_one_persistent($name[, $type[, $flags]])
+
+Identical to L<query_one>, except that instead of returning the packet from the
+first server that returns one, it returns the first packet that actually
+contains a resource record matching the requested name and type.
 
 =item query_all($name, $type, $flags)
 
