@@ -9,7 +9,7 @@ use Store::CouchDB;
 
 sub create_db{
 	# Unusable without debug => 1
-	my $sc = Store::CouchDB->new(host => 'localhost', debug => 1);
+	my $sc = Store::CouchDB->new(host => '127.0.0.1', debug => 1);
 	
 	say Dumper($sc);
 	
@@ -65,7 +65,7 @@ sub create_db{
 	say "------------ Search Documet 1 END -------------------";
     
 	say "------------ INSERT Documet 1 START -------------------";
-	my ($id, $rev) = $sc->put_doc({ dbname => 'zonemaster', doc => { doc_type => 'user', username => 'user1' } } );
+	($id, $rev) = $sc->put_doc({ dbname => 'zonemaster', doc => { doc_type => 'user', username => 'user1' } } );
 	say "------------ INSERT Documet 1 STOP -------------------";
 
 	say "------------ Search Documet 1 START -------------------";

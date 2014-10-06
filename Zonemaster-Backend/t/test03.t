@@ -38,15 +38,14 @@ require_ok( 'Engine' );
 #require Engine;
 
 # Create Engine object
-my $engine = Engine->new({ db => 'ZonemasterDB::SQLite'} );
+my $engine = Engine->new({ db => 'ZonemasterDB::CouchDB'} );
 isa_ok($engine, 'Engine');
 
 # create a new memory SQLite database
 ok($engine->{db}->create_db());
 
 # add test user
-ok($engine->add_api_user({username => "zonemaster_test", api_key => "zonemaster_test's api key"}) == 1);
-ok(scalar($engine->{db}->dbh->selectrow_array(q/SELECT * FROM users WHERE user_info like '%zonemaster_test%'/)) == 1);
+ok(length($engine->add_api_user({username => "zonemaster_test", api_key => "zonemaster_test's api key"})) == 32);
 
 # add a new test to the db
 my $frontend_params_1 = {
@@ -67,14 +66,14 @@ my $frontend_params_1 = {
                 {'ds2' => 'digest2'},                   
         ],
 };
-ok($engine->start_domain_test($frontend_params_1) == 1);
-ok(scalar($engine->{db}->dbh->selectrow_array(q/SELECT id FROM test_results WHERE id=1/)) == 1);
+my $test_id = $engine->start_domain_test($frontend_params_1);
+ok(length($test_id) == 32);
 
 # test test_progress API
-ok($engine->test_progress(1) == 0);
+ok($engine->test_progress($test_id) == 0);
 
 require_ok('Runner');
-threads->create( sub { Runner->new({ db => 'ZonemasterDB::SQLite'} )->run(1); } )->detach();
+threads->create( sub { Runner->new({ db => 'ZonemasterDB::CouchDB'} )->run($test_id); } )->detach();
 
 sleep(5);
 ok($engine->test_progress(1) > 0);
@@ -118,7 +117,7 @@ ok(scalar($engine->{db}->dbh->selectrow_array(q/SELECT id FROM test_results WHER
 ok($engine->test_progress(2) == 0);
 
 require_ok('Runner');
-threads->create( sub { Runner->new({ db => 'ZonemasterDB::SQLite'} )->run(2); } )->detach();
+threads->create( sub { Runner->new({ db => 'ZonemasterDB::CouchDB'} )->run(2); } )->detach();
 
 sleep(5);
 ok($engine->test_progress(2) > 0);
@@ -163,7 +162,7 @@ ok(scalar($engine->{db}->dbh->selectrow_array(q/SELECT id FROM test_results WHER
 ok($engine->test_progress(3) == 0);
 
 require_ok('Runner');
-threads->create( sub { Runner->new({ db => 'ZonemasterDB::SQLite'} )->run(3); } )->detach();
+threads->create( sub { Runner->new({ db => 'ZonemasterDB::CouchDB'} )->run(3); } )->detach();
 
 sleep(5);
 ok($engine->test_progress(3) > 0);

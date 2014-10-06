@@ -164,7 +164,7 @@ sub delegation01 {
     if ( scalar( @child_nsnames ) >= $MINIMUM_NUMBER_OF_NAMESERVERS ) {
         push @results,
           info(
-            ENOUGH_NS_TOTAL => {
+            ENOUGH_NS => {
                 count   => scalar( @child_nsnames ),
                 minimum => $MINIMUM_NUMBER_OF_NAMESERVERS,
                 ns      => join( q{;}, @child_nsnames ),
@@ -174,7 +174,7 @@ sub delegation01 {
     else {
         push @results,
           info(
-            NOT_ENOUGH_NS_TOTAL => {
+            NOT_ENOUGH_NS => {
                 count   => scalar( @child_nsnames ),
                 minimum => $MINIMUM_NUMBER_OF_NAMESERVERS,
                 ns      => join( q{;}, @child_nsnames ),
@@ -187,7 +187,7 @@ sub delegation01 {
     if ( scalar( @all_nsnames ) >= $MINIMUM_NUMBER_OF_NAMESERVERS ) {
         push @results,
           info(
-            ENOUGH_NS => {
+            ENOUGH_NS_TOTAL => {
                 count   => scalar( @all_nsnames ),
                 minimum => $MINIMUM_NUMBER_OF_NAMESERVERS,
                 ns      => join( q{;}, @all_nsnames ),
@@ -197,7 +197,7 @@ sub delegation01 {
     else {
         push @results,
           info(
-            NOT_ENOUGH_NS => {
+            NOT_ENOUGH_NS_TOTAL => {
                 count   => scalar( @all_nsnames ),
                 minimum => $MINIMUM_NUMBER_OF_NAMESERVERS,
                 ns      => join( q{;}, @all_nsnames ),
@@ -405,7 +405,7 @@ sub delegation06 {
 
         my $p = $local_ns->query( $zone->name, q{SOA} );
         if ( $p and $p->rcode eq q{NOERROR} ) {
-            if ( not length( $p->answer ) ) {
+            if ( not $p->get_records( q{SOA}, q{answer} ) ) {
                 push @results,
                   info(
                     SOA_NOT_EXISTS => {

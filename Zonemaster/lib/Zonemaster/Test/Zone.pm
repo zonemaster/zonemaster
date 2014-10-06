@@ -6,7 +6,9 @@ use warnings;
 
 use Zonemaster;
 use Zonemaster::Util;
+use Zonemaster::Test::Address;
 use Zonemaster::TestMethods;
+use List::MoreUtils qw[none];
 
 use Carp;
 
@@ -17,6 +19,8 @@ Readonly our $SOA_RETRY_MINIMUM_VALUE       => 3_600;      # 3600 seconds (1 hou
 Readonly our $SOA_EXPIRE_MINIMUM_VALUE      => 604_800;    # 604800 seconds (7 days)
 Readonly our $SOA_DEFAULT_TTL_MAXIMUM_VALUE => 86_400;     # 86400 seconds (1 day)
 Readonly our $SOA_DEFAULT_TTL_MINIMUM_VALUE => 300;        # 300 seconds (5 minutes)
+Readonly our $IP_VERSION_4                  => $Zonemaster::Test::Address::IP_VERSION_4;
+Readonly our $IP_VERSION_6                  => $Zonemaster::Test::Address::IP_VERSION_6;
 
 ###
 ### Entry Points
@@ -27,17 +31,20 @@ sub all {
     my @results;
 
     push @results, $class->zone01( $zone );
-    if ( not grep { $_->tag eq q{NO_RESPONSE_SOA_QUERY} } @results ) {
+    if ( none { $_->tag eq q{NO_RESPONSE_SOA_QUERY} } @results ) {
+       
         push @results, $class->zone02( $zone );
         push @results, $class->zone03( $zone );
         push @results, $class->zone04( $zone );
         push @results, $class->zone05( $zone );
         push @results, $class->zone06( $zone );
-        push @results, $class->zone07( $zone );
+        if ( none { $_->tag eq q{MNAME_RECORD_DOES_NOT_EXIST} } @results ) {
+            push @results, $class->zone07( $zone );
+        }
     }
-    if ( not grep { $_->tag eq q{MNAME_RECORD_DOES_NOT_EXIST} } @results ) {
+    if ( none { $_->tag eq q{MNAME_RECORD_DOES_NOT_EXIST} } @results ) {
         push @results, $class->zone08( $zone );
-        if ( not grep { $_->tag eq q{NO_RESPONSE_MX_QUERY} } @results ) {
+        if ( none { $_->tag eq q{NO_RESPONSE_MX_QUERY} } @results ) {
             push @results, $class->zone09( $zone );
         }
     }
@@ -138,7 +145,7 @@ sub translation {
         "EXPIRE_LOWER_THAN_REFRESH" => "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh}).",
         "SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER" => "SOA 'minimum' value ({minimum}) is higher than the recommended one ({highest_minimum}).",
         "SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER" => "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum}).",
-        "SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK" => "SOA 'minimum' value ({minimum}) is between the recommended one ({lowest_minimum}/{highest_minimum}).",
+        "SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK" => "SOA 'minimum' value ({minimum}) is between the recommended ones ({lowest_minimum}/{highest_minimum}).",
         "MNAME_NOT_AUTHORITATIVE" => "SOA 'mname' nameserver {ns}/{address} is not authoritative for '{zone}' zone.",
         "MNAME_RECORD_DOES_NOT_EXIST" => "SOA 'mname' field does not exist",
         "EXPIRE_MINIMUM_VALUE_LOWER" => "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire}).",
@@ -151,7 +158,7 @@ sub translation {
         "NO_RESPONSE_SOA_QUERY"  => "No response from nameserver(s) on SOA queries.",
         "NO_RESPONSE_MX_QUERY"   => "No response from nameserver(s) on MX queries.",
         "MNAME_HAS_NO_ADDRESS" => "No IP address found for SOA 'mname' nameserver ({mname}).",
-
+        "EXPIRE_MINIMUM_VALUE_OK" => "SOA 'expire' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than 'refresh' value.",
     };
 } ## end sub translation
 
@@ -163,10 +170,10 @@ sub zone01 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    my $p = $zone->query_one( $zone->name, q{SOA} );
+    my $p = _retrieve_record_from_zone( $zone, $zone->name, q{SOA} );
 
     if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
-        my $soa_mname = $soa->mname; $soa_mname =~ s/\.\z//;
+        my $soa_mname = $soa->mname; $soa_mname =~ s/\.\z//smx;
         if ( not $soa_mname ) {
             push @results,
               info(
@@ -199,7 +206,7 @@ sub zone01 {
                       );
                 }
             } ## end foreach my $ip_address ( Zonemaster::Recursor...)
-            if ( not grep { $_ eq $soa_mname } @{ Zonemaster::TestMethods->method2($zone) } ) {
+            if ( none { $_ eq $soa_mname } @{ Zonemaster::TestMethods->method2($zone) } ) {
                 push @results,
                   info(
                     MNAME_NOT_IN_GLUE => {
@@ -233,7 +240,7 @@ sub zone02 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    my $p = $zone->query_one( $zone->name, q{SOA} );
+    my $p = _retrieve_record_from_zone( $zone, $zone->name, q{SOA} );
 
     if ( $p ) {
         my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
@@ -271,7 +278,7 @@ sub zone03 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    my $p = $zone->query_one( $zone->name, q{SOA} );
+    my $p = _retrieve_record_from_zone( $zone, $zone->name, q{SOA} );
 
     if ( $p ) {
         my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
@@ -310,7 +317,7 @@ sub zone04 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    my $p = $zone->query_one( $zone->name, q{SOA} );
+    my $p = _retrieve_record_from_zone( $zone, $zone->name, q{SOA} );
 
     if ( $p ) {
         my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
@@ -348,7 +355,7 @@ sub zone05 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    my $p = $zone->query_one( $zone->name, q{SOA} );
+    my $p = _retrieve_record_from_zone( $zone, $zone->name, q{SOA} );
 
     if ( $p ) {
         my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
@@ -396,7 +403,7 @@ sub zone06 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    my $p = $zone->query_one( $zone->name, q{SOA} );
+    my $p = _retrieve_record_from_zone( $zone, $zone->name, q{SOA} );
 
     if ( $p ) {
         my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
@@ -444,11 +451,11 @@ sub zone07 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    my $p = $zone->query_one( $zone->name, q{SOA} );
+    my $p = _retrieve_record_from_zone( $zone, $zone->name, q{SOA} );
 
     if ( $p ) {
         my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
-        my $soa_mname = $soa->mname; $soa_mname =~ s/\.\z//;
+        my $soa_mname = $soa->mname; $soa_mname =~ s/\.\z//smx;
         my $p_mname = Zonemaster::Recursor->recurse( $soa_mname, q{A} );
 
         if ( $p_mname ) {
@@ -492,7 +499,7 @@ sub zone08 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    my $p = $zone->query_one( $zone->name, q{MX} );
+    my $p = _retrieve_record_from_zone( $zone, $zone->name, q{MX} );
 
     if ( $p ) {
         if ( $p->has_rrs_of_type_for_name( q{CNAME}, $zone->name ) ) {
@@ -523,7 +530,7 @@ sub zone09 {
     my @results;
     my $info;
 
-    my $p = $zone->query_one( $zone->name, q{MX} );
+    my $p = _retrieve_record_from_zone( $zone, $zone->name, q{MX} );
 
     if ( $p ) {
         if ( not $p->has_rrs_of_type_for_name( q{MX}, $zone->name ) ) {
@@ -540,12 +547,12 @@ sub zone09 {
             else {
                 my @as   = $p_a->get_records_for_name( q{A}, $zone->name );
                 my @aaas = $p_aaaa->get_records_for_name( q{AAAA}, $zone->name );
-                $info = join( q{/}, map { $_ =~ /:/ ? q{AAAA=}.$_->address : q{A=}.$_->address } (@as, @aaas) );
+                $info = join( q{/}, map { $_ =~ /:/smx ? q{AAAA=}.$_->address : q{A=}.$_->address } (@as, @aaas) );
             }
         }
         else {
             my @mx = $p->get_records_for_name( q{MX}, $zone->name );
-            $info = join( q{/}, map { my $tmp = q{MX=}.$_->exchange; $tmp =~ s/\.\z//; $tmp } @mx );
+            $info = join( q{/}, map { my $tmp = q{MX=}.$_->exchange; $tmp =~ s/\.\z//smx; $tmp } @mx );
         }
         if (not scalar @results) {
             push @results,
@@ -563,6 +570,32 @@ sub zone09 {
 
     return @results;
 } ## end sub zone09
+
+sub _retrieve_record_from_zone {
+    my ( $zone, $name, $type ) =  @_;
+
+    # Return response from the first authoritative server that gives one
+    foreach my $ns ( @{ Zonemaster::TestMethods->method5($zone) } ) {
+
+        if (not Zonemaster->config->ipv4_ok and $ns->address->version == $IP_VERSION_4) {
+            Zonemaster->logger->add( SKIP_IPV4_DISABLED => { ns => "$ns"} );
+            next;
+        }
+
+        if (not Zonemaster->config->ipv6_ok and $ns->address->version == $IP_VERSION_6) {
+            Zonemaster->logger->add( SKIP_IPV6_DISABLED => { ns => "$ns"} );
+            next;
+        }
+
+        my $p = $ns->query( $name, $type );
+
+        if ( defined( $p ) ) {
+            return $p if $p->aa;
+        }
+    }
+
+    return;
+}
 
 1;
 

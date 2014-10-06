@@ -124,7 +124,6 @@ my $fail_p = $fail_ns->_query( 'example.org', 'A', {} );
 is( $fail_p, undef, 'No return from broken server' );
 my ( $e ) = grep { $_->tag eq 'LOOKUP_ERROR' } @{ Zonemaster->logger->entries };
 isa_ok( $e, 'Zonemaster::Logger::Entry' );
-like( $e->args->{message}, qr/Could not send or receive, because of network error/ );
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );

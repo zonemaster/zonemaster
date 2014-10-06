@@ -21,10 +21,78 @@ has 'db' => (
 );
 
 sub _connect_to_couch_db {
-	my $db = Store::CouchDB->new(host => 'localhost',  debug => 1);
+	my $db = Store::CouchDB->new(host => '127.0.0.1',  debug => 1);
 	$db->db('zonemaster');
 	
 	return $db;
+}
+
+sub create_db{
+	my ($self) = @_;
+	# Unusable without debug => 1
+	
+#	say Dumper( $self->db->delete_db('zonemaster') );
+#	say Dumper( $self->db->create_db('zonemaster') );
+# Kills CouchDB 1.0.4 (hangs, restart necesserry)
+
+	my @dbs = $self->db->all_dbs;
+	foreach my $db (@dbs) {
+ 		say "FOUND DB:$db";
+		if ($db eq 'zonemaster') {
+			say Dumper( $self->db->delete_db('zonemaster') );
+		}
+	}
+	
+	say Dumper( $self->db->create_db('zonemaster') );
+	
+	say "------------ Create Views START -------------------";
+	# To create a new document dont put the _revision parameter
+	my ($id, $rev) = $self->db->put_doc({ dbname => 'zonemaster', 
+				doc => {
+					"_id" => "_design/application", 
+					"views" => {
+							"users" => {
+								"map" => "function(doc) {
+									if(doc.doc_type == 'user' && doc.username) {
+										emit(doc.username, null);
+									}
+								}"
+							},
+
+							"tests_by_deterministic_hash" => {
+								"map" => "function(doc) {
+									if(doc.doc_type == 'test') {
+										emit(doc.deterministic_hash, { 'doc_id' : doc.doc_id, 'creation_time' : doc.creation_time });
+									}
+								}"
+							}
+						}
+					}
+				});
+
+	say "id: $id";
+	say "rev: $rev";
+	say "------------ Create Views END -------------------";
+	
+	say "------------ Search Documet 1 START -------------------";
+	my $hashref = $self->db->get_view({
+		view => 'application/users',
+		opts => { key => 'user1' },
+	});
+	print Dumper($hashref);
+	say "------------ Search Documet 1 END -------------------";
+    
+	say "------------ INSERT Documet 1 START -------------------";
+	($id, $rev) = $self->db->put_doc({ dbname => 'zonemaster', doc => { doc_type => 'user', username => 'user1' } } );
+	say "------------ INSERT Documet 1 STOP -------------------";
+
+	say "------------ Search Documet 1 START -------------------";
+	$hashref = $self->db->get_view({
+		view => 'application/users',
+		opts => { key => 'user1' },
+	});
+	print Dumper($hashref);
+	say "------------ Search Documet 1 STOP -------------------";
 }
 
 sub user_exists_in_db {
@@ -111,10 +179,37 @@ sub create_new_test {
 			creation_time => time(),
 			progress => 0,
 		};
-		$self->db->put_doc({ dbname => 'zonemaster', doc => $doc } );
+		my ($id, $rev) = $self->db->put_doc({ dbname => 'zonemaster', doc => $doc } );
+		$result = $id;
 	}
+
+	return $result;
+}
+
+sub get_test_history {
+	my($self, $p) = @_;
+}
+
+sub get_test_params {
+	my($self, $test_id) = @_;
+	
+	my ($result) = ();
 	
 	return $result;
+}
+
+sub test_progress {
+	my($self, $test_id, $progress) = @_;
+	
+#	$self->dbh->do("UPDATE test_results SET progress=$progress WHERE id=$test_id") if ($progress);
+	
+	my ($result);
+	
+	return $result;
+}
+
+sub test_results {
+	my($self, $test_id, $results) = @_;
 }
 
 no Moose;

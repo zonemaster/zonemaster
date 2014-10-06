@@ -38,7 +38,7 @@ require_ok( 'Engine' );
 #require Engine;
 
 # Create Engine object
-my $engine = Engine->new({ db => 'ZonemasterDB::SQLite'} );
+my $engine = Engine->new({ db => 'ZonemasterDB::PostgreSQL'} );
 isa_ok($engine, 'Engine');
 
 # create a new memory SQLite database
@@ -46,7 +46,7 @@ ok($engine->{db}->create_db());
 
 # add test user
 ok($engine->add_api_user({username => "zonemaster_test", api_key => "zonemaster_test's api key"}) == 1);
-ok(scalar($engine->{db}->dbh->selectrow_array(q/SELECT * FROM users WHERE user_info like '%zonemaster_test%'/)) == 1);
+ok(scalar($engine->{db}->dbh->selectrow_array(q/SELECT * FROM users WHERE user_info->>'username' = 'zonemaster_test'/)) == 1);
 
 # add a new test to the db
 my $frontend_params_1 = {
@@ -74,7 +74,7 @@ ok(scalar($engine->{db}->dbh->selectrow_array(q/SELECT id FROM test_results WHER
 ok($engine->test_progress(1) == 0);
 
 require_ok('Runner');
-threads->create( sub { Runner->new({ db => 'ZonemasterDB::SQLite'} )->run(1); } )->detach();
+threads->create( sub { Runner->new({ db => 'ZonemasterDB::PostgreSQL'} )->run(1); } )->detach();
 
 sleep(5);
 ok($engine->test_progress(1) > 0);
@@ -118,7 +118,7 @@ ok(scalar($engine->{db}->dbh->selectrow_array(q/SELECT id FROM test_results WHER
 ok($engine->test_progress(2) == 0);
 
 require_ok('Runner');
-threads->create( sub { Runner->new({ db => 'ZonemasterDB::SQLite'} )->run(2); } )->detach();
+threads->create( sub { Runner->new({ db => 'ZonemasterDB::PostgreSQL'} )->run(2); } )->detach();
 
 sleep(5);
 ok($engine->test_progress(2) > 0);
@@ -163,7 +163,7 @@ ok(scalar($engine->{db}->dbh->selectrow_array(q/SELECT id FROM test_results WHER
 ok($engine->test_progress(3) == 0);
 
 require_ok('Runner');
-threads->create( sub { Runner->new({ db => 'ZonemasterDB::SQLite'} )->run(3); } )->detach();
+threads->create( sub { Runner->new({ db => 'ZonemasterDB::PostgreSQL'} )->run(3); } )->detach();
 
 sleep(5);
 ok($engine->test_progress(3) > 0);
