@@ -169,7 +169,13 @@ sub test_progress {
 sub get_test_params {
 	my($self, $test_id) = @_;
 	
-	my ($result) = $self->dbh->selectrow_array("SELECT params FROM test_results WHERE id=$test_id");
+	my $result;
+	
+	my ($params_json) = $self->dbh->selectrow_array("SELECT params FROM test_results WHERE id=$test_id");
+	eval {
+		$result = decode_json($params_json);
+	};
+	die $@ if $@;
 	
 	return $result;
 }

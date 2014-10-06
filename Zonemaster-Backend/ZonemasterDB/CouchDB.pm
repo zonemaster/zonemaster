@@ -8,6 +8,7 @@ use DBI qw(:utils);
 use Store::CouchDB;
 use Time::HiRes qw(gettimeofday);
 use Digest::MD5 qw(md5_hex);
+use JSON;
 
 use ZonemasterDB;
 
@@ -21,7 +22,7 @@ has 'db' => (
 );
 
 sub _connect_to_couch_db {
-	my $db = Store::CouchDB->new(host => '127.0.0.1',  debug => 1);
+	my $db = Store::CouchDB->new(host => '127.0.0.1',  debug => 0);
 	$db->db('zonemaster');
 	
 	return $db;
@@ -65,8 +66,16 @@ sub create_db{
 										emit(doc.deterministic_hash, { 'doc_id' : doc.doc_id, 'creation_time' : doc.creation_time });
 									}
 								}"
+							},
+
+							"tests_by_domain" => {
+								"map" => "function(doc) {
+									if(doc.doc_type == 'test') {
+										emit(doc.params.domain, { 'creation_time' : doc.creation_time, 'advanced_options' : doc.params.advanced_options });
+									}
+								}"
 							}
-						}
+					}
 					}
 				});
 
@@ -179,8 +188,8 @@ sub create_new_test {
 			creation_time => time(),
 			progress => 0,
 		};
-		my ($id, $rev) = $self->db->put_doc({ dbname => 'zonemaster', doc => $doc } );
-		$result = $id;
+		my ($doc_id, $rev) = $self->db->put_doc({ dbname => 'zonemaster', doc => $doc } );
+		$result = $doc_id;
 	}
 
 	return $result;
@@ -188,12 +197,21 @@ sub create_new_test {
 
 sub get_test_history {
 	my($self, $p) = @_;
+
+	my $href = $self->db->get_array_view({
+		view => 'application/tests_by_domain',
+		opts => { key => $p->{frontend_params}->{domain} },
+	});
+	
+	return $href;
 }
 
 sub get_test_params {
 	my($self, $test_id) = @_;
 	
-	my ($result) = ();
+	my $doc = $self->db->get_doc($test_id);
+	 
+	my $result = $doc->{params} if ($doc);
 	
 	return $result;
 }
@@ -202,14 +220,37 @@ sub test_progress {
 	my($self, $test_id, $progress) = @_;
 	
 #	$self->dbh->do("UPDATE test_results SET progress=$progress WHERE id=$test_id") if ($progress);
-	
-	my ($result);
+	my $doc = $self->db->get_doc($test_id);
+	$doc->{progress} = $progress;
+	$doc->{results} = undef;
+	my ($id, $rev) = $self->db->update_doc({ doc => $doc, name => $test_id, dbname => 'zonemaster' }) if ($progress);
+	$doc = $self->db->get_doc($test_id);
+	 
+	my $result = $doc->{progress} if ($doc);
 	
 	return $result;
 }
 
 sub test_results {
 	my($self, $test_id, $results) = @_;
+	
+	my $doc = $self->db->get_doc($test_id);
+	
+	if ($results) {
+		$doc->{results} = decode_json($results);
+		$doc->{progress} = 100;
+		my ($id, $rev) = $self->db->update_doc({ doc => $doc, name => $test_id, dbname => 'zonemaster' });
+	}
+
+	my $res;
+	$doc = $self->db->get_doc($test_id);
+	
+	if ($doc) {
+		$res = $doc;
+		$res->{id} = $res->{_id};
+	}
+	
+	return $res;
 }
 
 no Moose;

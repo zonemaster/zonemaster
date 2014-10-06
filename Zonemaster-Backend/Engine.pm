@@ -16,10 +16,13 @@ use Digest::MD5 qw(md5_hex);
 use String::ShellQuote;
 use File::Slurp;
 
+unshift(@INC, "/home/toma/PROD/zonemaster/Zonemaster/lib") unless $INC{"/home/toma/PROD/zonemaster/Zonemaster/lib"};
+
 # Zonemaster Modules
-use Zonemaster;
-use Zonemaster::Nameserver;
-use Zonemaster::DNSName;
+require Zonemaster;
+require Zonemaster::Nameserver;
+require Zonemaster::DNSName;
+require Zonemaster::Translator;
 
 sub new{
 	my($type, $params) = @_;
@@ -232,7 +235,7 @@ sub get_test_results {
 	}
 
 	$result = $test_info;
-	$result->{params} = \@zm_results;
+	$result->{results} = \@zm_results;
 	
 	return $result;
 }

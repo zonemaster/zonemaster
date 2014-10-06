@@ -72,13 +72,10 @@ sub run {
     my %counter_for_progress_indicator;
 
 	my $params;
-	
+
 	$self->{db}->test_progress($test_id, 1);
 	
-	eval {
-		$params = decode_json($self->{db}->get_test_params($test_id));
-	};
-	die $@ if $@;
+	$params = $self->{db}->get_test_params($test_id);
 
 	my %methods = Zonemaster->all_methods;
     

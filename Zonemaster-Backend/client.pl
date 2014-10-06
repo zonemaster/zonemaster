@@ -35,7 +35,7 @@ my $frontend_params = {
 		{'ns1.nic.fr' => '192.134.4.1'},
 	],
 	ds_digest_pairs => [				# list of DS/Digest pairs up to 32
-		{'ds1' => 'digest1'},			# key values pairs representing ds => digest
+		{'ds1' => 'digest2'},			# key values pairs representing ds => digest
 		{'ds2' => 'digest2'},			
 	],
 };

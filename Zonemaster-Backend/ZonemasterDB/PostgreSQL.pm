@@ -13,8 +13,8 @@ use ZonemasterDB;
 with 'ZonemasterDB';
 
 #TODO read from configuration file
-#my $connection_string = "DBI:Pg:database=zonemaster;host=localhost";
-my $connection_string = "DBI:Pg:database=zonemaster;host=localhost;port=5433";
+my $connection_string = "DBI:Pg:database=zonemaster;host=localhost";
+#my $connection_string = "DBI:Pg:database=zonemaster;host=localhost;port=5433";
 
 has 'dbh' => (
 	is => 'ro',
@@ -190,7 +190,13 @@ sub create_new_test {
 sub get_test_params {
 	my($self, $test_id) = @_;
 	
-	my ($result) = $self->dbh->selectrow_array("SELECT params FROM test_results WHERE id=$test_id");
+	my $result;
+	
+	my ($params_json) = $self->dbh->selectrow_array("SELECT params FROM test_results WHERE id=$test_id");
+	eval {
+		$result = decode_json($params_json);
+	};
+	die $@ if $@;
 	
 	return $result;
 }
