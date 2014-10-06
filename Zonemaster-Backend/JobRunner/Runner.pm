@@ -19,21 +19,21 @@ FindBin::again();
 my $PROJECT_NAME = "Zonemaster-Backend";
 
 my $SCRITP_DIR = __FILE__;
-$SCRITP_DIR = $Bin unless ($SCRITP_DIR =~ /\//);
+$SCRITP_DIR = $Bin unless ($SCRITP_DIR =~ /^\//);
 
-warn "SCRITP_DIR:$SCRITP_DIR\n";
-warn "RealScript:$RealScript\n";
-warn "Script:$Script\n";
-warn "RealBin:$RealBin\n";
-warn "Bin:$Bin\n";
-warn "__PACKAGE__:".__PACKAGE__;
-warn "__FILE__:".__FILE__;
+#warn "SCRITP_DIR:$SCRITP_DIR\n";
+#warn "RealScript:$RealScript\n";
+#warn "Script:$Script\n";
+#warn "RealBin:$RealBin\n";
+#warn "Bin:$Bin\n";
+#warn "__PACKAGE__:".__PACKAGE__;
+#warn "__FILE__:".__FILE__;
 
 my ($PROD_DIR) = ($SCRITP_DIR =~ /(.*?\/)$PROJECT_NAME/);
-warn "PROD_DIR:$PROD_DIR\n";
+#warn "PROD_DIR:$PROD_DIR\n";
 
 my $PROJECT_BASE_DIR = $PROD_DIR.$PROJECT_NAME."/";
-warn "PROJECT_BASE_DIR:$PROJECT_BASE_DIR\n";
+#warn "PROJECT_BASE_DIR:$PROJECT_BASE_DIR\n";
 unshift(@INC, $PROJECT_BASE_DIR);
 ##################################################################
 
@@ -41,9 +41,25 @@ unshift(@INC, $PROD_DIR."Zonemaster/lib") unless $INC{$PROD_DIR."Zonemaster/lib"
 require Zonemaster;
 require Zonemaster::Translator;
 
+unshift(@INC, $PROD_DIR."Zonemaster-Backend") unless $INC{$PROD_DIR."Zonemaster-Backend"};
+
 sub new{
-	my ($class) = @_;
+	my ($class, $params) = @_;
 	my $self = {};
+
+	if ($params && $params->{db}) {
+		eval{
+			say "using DB:[$params->{db}]";
+			eval "require $params->{db}";
+			die $@ if $@;
+			$self->{db} = "$params->{db}"->new();
+		};
+		die $@ if $@;
+	}
+	else {
+		require ZonemasterDB::PostgreSQL;
+		$self->{db} = ZonemasterDB::PostgreSQL->new();
+	}
 
 	bless($self,$class);
 	return $self;
@@ -55,18 +71,11 @@ sub run {
     my %counter;
     my %counter_for_progress_indicator;
 
-my $connection_string = "DBI:Pg:database=zonemaster;host=localhost";
-my $dbh = DBI->connect($connection_string, "zonemaster", "zonemaster", {RaiseError => 1, AutoCommit => 1});
-
-my ($id, $par) = $dbh->selectrow_array( "SELECT id, params FROM test_results WHERE id=$test_id LIMIT 1" );
-
 	my $params;
+
+	$self->{db}->test_progress($test_id, 1);
 	
-	eval {
-		$params = decode_json($par);
-		print Dumper($params);
-	};
-	die $@ if $@;
+	$params = $self->{db}->get_test_params($test_id);
 
 	my %methods = Zonemaster->all_methods;
     
@@ -84,11 +93,6 @@ my ($id, $par) = $dbh->selectrow_array( "SELECT id, params FROM test_results WHE
 
     Zonemaster->config->get->{net}{ipv4} = ($params->{ipv4})?(1):(0);
     Zonemaster->config->get->{net}{ipv6} = ($params->{ipv6})?(1):(0);
-
-    my $translator;
-    $translator = Zonemaster::Translator->new;
-    $translator->locale('fr-FR');
-    eval { $translator->data } if $translator;    # Provoke lazy loading of translation data
 
     # used for progress indicator
     my ($previous_module, $previous_method) = ('', '') ; 
@@ -115,7 +119,8 @@ my ($id, $par) = $dbh->selectrow_array( "SELECT id, params FROM test_results WHE
 						
 						if ($previous_method ne $module_method) {
 							$percent_progress = sprintf("%.0f", 100*(scalar( keys %{$counter_for_progress_indicator{executed}}) / scalar( keys %{$counter_for_progress_indicator{planned}})));
-							print STDERR "$percent_progress% / running method $module_method\n";#."\t".$translator->translate_tag( $entry )."\n";
+							$self->{db}->test_progress($test_id, $percent_progress);
+#							print STDERR "$percent_progress% / running method $module_method\n";#."\t".$translator->translate_tag( $entry )."\n";
 							$previous_method = $module_method;
 						}
 					}
@@ -125,22 +130,6 @@ my ($id, $par) = $dbh->selectrow_array( "SELECT id, params FROM test_results WHE
             $counter{ uc $entry->level } += 1;
         }
     );
-
-=coment
-    if ( $self->policy ) {
-        say __("Loading policy from ") . $self->policy;
-        Zonemaster->config->load_policy_file( $self->policy );
-    }
-
-    if ( $self->config ) {
-        say __("Loading configuration from ") . $self->config;
-        Zonemaster->config->load_config_file( $self->config );
-    }
-
-    if ( $self->config or $self->policy ) {
-        print "\n";    # Cosmetic
-    }
-=cut
 
     if ( $params->{nameservers} && @{ $params->{nameservers} } > 0 ) {
         $self->add_fake_delegation( $domain, $params->{nameservers} );
@@ -164,7 +153,7 @@ my ($id, $par) = $dbh->selectrow_array( "SELECT id, params FROM test_results WHE
         }
     }
 
-    say Zonemaster->logger->json('INFO');
+    $self->{db}->test_results($test_id, Zonemaster->logger->json('INFO'));
 
     return;
 } ## end sub run
@@ -208,7 +197,7 @@ sub to_idn {
         return Net::LDNS::to_idn(encode('utf8',decode($self->encoding, $str)));
     }
     else {
-        say __("Warning: Net::LDNS not compiled with libidn, cannot handle non-ASCII names correctly.");
+        warn __("Warning: Net::LDNS not compiled with libidn, cannot handle non-ASCII names correctly.");
         return $str;
     }
 }

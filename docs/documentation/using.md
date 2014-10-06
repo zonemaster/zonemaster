@@ -19,7 +19,7 @@ The output comes continously as the tests are performed.
 
     Seconds Level     Message
     ======= ========= =======
-       1.16 NOTICE    No illegal chatacters in the domain name (example.com).
+       1.16 NOTICE    No illegal characters in the domain name (example.com).
        2.01 WARNING   SOA 'refresh' value (10800) is less than the recommended one (14400).
       13.86 CRITICAL  All nameservers are in the same AS (12345).
       13.87 NOTICE    123.456.789.0 returned no DS records for example.com.
@@ -41,6 +41,8 @@ For automatic parsing of the output, the option to have the output reported
 in JSON might be better suited. Use `--lang=json` to have the output in JSON
 format. The JSON format is described in the [JSON Output](json-output.md)
 document.
+
+More detailed documentation can by found in the [manual page](zonemaster-cli.md)
 
 ### Advanced use
 

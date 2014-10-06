@@ -1,4 +1,4 @@
-package ZonemasterDB::SQLite v0.0.1;
+package ZonemasterDB::MySQL v0.0.1;
 use Moose;
 use utf8;
 use 5.14.0;
@@ -13,13 +13,12 @@ use ZonemasterDB;
 with 'ZonemasterDB';
 
 #TODO read from config file
-#my $connection_string = "DBI:SQLite:database=:memory:";
-my $connection_string = "DBI:SQLite:database=/dev/shm/zonemaser.sqlite";
+my $connection_string = "DBI:mysql:database=zonemaster;host=localhost";
 
 has 'dbh' => (
 	is => 'ro',
 	isa => 'DBI::db',
-	default => sub { DBI->connect($connection_string, {RaiseError => 1, AutoCommit => 1}) },
+	default => sub { DBI->connect($connection_string, "zonemaster", "zonemaster", {RaiseError => 1, AutoCommit => 1}) },
 );
 
 sub create_db {
@@ -33,7 +32,7 @@ sub create_db {
 	$self->dbh->do('DROP TABLE IF EXISTS test_results') or die "SQLite Fatal error: " . $self->dbh->errstr();
 
 	$self->dbh->do('CREATE TABLE test_results (
-					id integer PRIMARY KEY,
+					id integer AUTO_INCREMENT PRIMARY KEY,
 					batch_id integer NULL,
 					creation_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 					test_start_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -41,8 +40,8 @@ sub create_db {
 					priority integer DEFAULT 10,
 					progress integer DEFAULT 0,
 					params_deterministic_hash character varying(32),
-					params json1 NOT NULL,
-					results json DEFAULT NULL
+					params blob NOT NULL,
+					results blob DEFAULT NULL
 			)
 	') or die "SQLite Fatal error: " . $self->dbh->errstr();
 
@@ -52,7 +51,7 @@ sub create_db {
 	$self->dbh->do('DROP TABLE IF EXISTS batch_jobs') or die "SQLite Fatal error: " . $self->dbh->errstr();
 
 	$self->dbh->do('CREATE TABLE batch_jobs (
-					id integer PRIMARY KEY,
+					id integer AUTO_INCREMENT PRIMARY KEY,
 					username character varying(50) NOT NULL,
 					creation_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 			)
@@ -63,8 +62,8 @@ sub create_db {
 	####################################################################
 	$self->dbh->do('DROP TABLE IF EXISTS users');
 	$self->dbh->do('CREATE TABLE users (
-					id integer primary key,
-					user_info json DEFAULT NULL
+					id integer AUTO_INCREMENT primary key,
+					user_info blob DEFAULT NULL
 			)
 	') or die "SQLite Fatal error: " . $self->dbh->errstr();
 	
@@ -97,13 +96,7 @@ sub user_authorized {
 
 	my $user_id;
 	
-	my $href = $self->dbh->selectall_hashref( "SELECT * FROM users", 'id' );
-	foreach my $id (keys %$href) {
-		my $user_info = decode_josn($href->{$id}->{user_info});
-		if ($user_info->{username} eq $user && $user_info->{api_key} eq $api_key) {
-			$user_id = $id;
-		}
-	}
+	my $href = $self->dbh->selectall_hashref( "SELECT id FROM users WHERE json_extract(user_info, 'username') = ".$self->dbh->quote($user)." AND json_extract(user_info, 'api_key') = ".$self->dbh->quote($api_key)  , 'id' );
 
 	return $user_id;
 }
@@ -142,12 +135,12 @@ sub create_new_test {
 	my $encoded_params = $js->encode($test_params);
 	my $test_params_deterministic_hash = md5_hex($encoded_params);
 	
-	my $query = "INSERT INTO test_results (batch_id, priority, params_deterministic_hash, params) SELECT ".
+	my $query = "INSERT INTO test_results (batch_id, priority, params_deterministic_hash, params) SELECT * FROM (SELECT ".
 				$self->dbh->quote($batch_id).", ".
 				$self->dbh->quote(5).", ".
 				$self->dbh->quote($test_params_deterministic_hash).", ".
 				$self->dbh->quote($encoded_params).
-				" WHERE NOT EXISTS (SELECT * FROM test_results WHERE params_deterministic_hash='$test_params_deterministic_hash' AND creation_time > datetime('now', '-$minutes_between_tests_with_same_params minute'))";
+				") AS tmp WHERE NOT EXISTS (SELECT * FROM test_results WHERE params_deterministic_hash='$test_params_deterministic_hash' AND creation_time > date_sub(NOW(), INTERVAL $minutes_between_tests_with_same_params MINUTE))";
 				
 	my $nb_inserted = $self->dbh->do($query);
 	
@@ -183,7 +176,7 @@ sub get_test_params {
 sub test_results {
 	my($self, $test_id, $results) = @_;
 	
-	$self->dbh->do( "UPDATE test_results SET progress=100, test_end_time=datetime('now'), results = ".$self->dbh->quote($results)." WHERE id=$test_id " ) if ($results);
+	$self->dbh->do( "UPDATE test_results SET progress=100, test_end_time=NOW(), results = ".$self->dbh->quote($results)." WHERE id=$test_id " ) if ($results);
 	
 	my $result;
 	eval {

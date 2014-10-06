@@ -16,10 +16,13 @@ use Digest::MD5 qw(md5_hex);
 use String::ShellQuote;
 use File::Slurp;
 
+unshift(@INC, "/home/toma/PROD/zonemaster/Zonemaster/lib") unless $INC{"/home/toma/PROD/zonemaster/Zonemaster/lib"};
+
 # Zonemaster Modules
-use Zonemaster;
-use Zonemaster::Nameserver;
-use Zonemaster::DNSName;
+require Zonemaster;
+require Zonemaster::Nameserver;
+require Zonemaster::DNSName;
+require Zonemaster::Translator;
 
 sub new{
 	my($type, $params) = @_;
@@ -213,36 +216,26 @@ sub get_test_results {
 	my($self, $params) = @_;
 	my $result;
 	
-#	my $zm_results = read_file('/home/toma/TEMP/test_json_rpc/zm_results.json');
-#	my $query = "UPDATE test_results SET results=".$dbh->quote($zm_results)." WHERE id=$params->{id}";
-#	my $query = "UPDATE test_results SET results=".$dbh->quote($zm_results);
-#	$dbh->do($query);
+    my $translator;
+    $translator = Zonemaster::Translator->new;
+#    $translator->locale('fr-FR');
+    eval { $translator->data } if $translator;    # Provoke lazy loading of translation data
 
-	my $sth1 = $self->{db}->dbh->prepare("SELECT * from test_results WHERE id=$params->{id} AND progress=100");
-	$sth1->execute;
-	if (my $h = $sth1->fetchrow_hashref) {
-		my @zm_results;
-		foreach my $test_res (@{decode_json($h->{results})}) {
-			my $res;
-			if ($test_res->{module} eq 'NAMESERVER') {
-				$res->{ns} = $test_res->{args}->{ns};
-			}
-			$res->{module} = $test_res->{module};
-			$res->{message} = "Messsage for $test_res->{module}/$test_res->{tag} in the language:$params->{language}";
-			$res->{level} = $test_res->{level};
-			push(@zm_results, $res);
+    my $test_info = $self->{db}->test_results($params->{id});
+	my @zm_results;
+	foreach my $test_res ( @{ $test_info->{results} } ) {
+		my $res;
+		if ($test_res->{module} eq 'NAMESERVER') {
+			$res->{ns} = $test_res->{args}->{ns};
 		}
-	
-		$result = {
-			id => $h->{id}, 
-			params => decode_json($h->{params}), 
-			results => \@zm_results,
-			creation_time => $h->{creation_time},
-		};
+		$res->{module} = $test_res->{module};
+		$res->{message} = $translator->translate_tag( $test_res )."\n";
+		$res->{level} = $test_res->{level};
+		push(@zm_results, $res);
 	}
-	else {
-		die "ERROR 001: Test not yet finished, check the progress";
-	}
+
+	$result = $test_info;
+	$result->{results} = \@zm_results;
 	
 	return $result;
 }
@@ -250,16 +243,9 @@ sub get_test_results {
 sub get_test_history {
 	my($self, $p) = @_;
 	
-	my @results;
-	my $query = "SELECT id, creation_time, params->>'advanced_options' AS advanced_options from test_results WHERE params->>'domain'=".$self->{db}->dbh->quote($p->{frontend_params}->{domain})." ORDER BY id DESC OFFSET $p->{offset} LIMIT $p->{limit}";
-	print "$query\n";
-	my $sth1 = $self->{db}->dbh->prepare($query);
-	$sth1->execute;
-	while (my $h = $sth1->fetchrow_hashref) {
-		push(@results, { id => $h->{id}, creation_time => $h->{creation_time}, advanced_options => $h->{advanced_options} });
-	}
+	my $results = $self->{db}->get_test_history($p);
 	
-	return \@results;
+	return $results;
 }
 
 sub add_api_user {

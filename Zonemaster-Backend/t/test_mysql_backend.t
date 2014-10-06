@@ -38,14 +38,15 @@ require_ok( 'Engine' );
 #require Engine;
 
 # Create Engine object
-my $engine = Engine->new({ db => 'ZonemasterDB::CouchDB'} );
+my $engine = Engine->new({ db => 'ZonemasterDB::MySQL'} );
 isa_ok($engine, 'Engine');
 
-# create a new memory SQLite database
+# create a new memory MySQL database
 ok($engine->{db}->create_db());
 
 # add test user
-ok(length($engine->add_api_user({username => "zonemaster_test", api_key => "zonemaster_test's api key"})) == 32);
+ok($engine->add_api_user({username => "zonemaster_test", api_key => "zonemaster_test's api key"}) == 1);
+ok(scalar($engine->{db}->dbh->selectrow_array(q/SELECT * FROM users WHERE user_info like '%zonemaster_test%'/)) == 1);
 
 # add a new test to the db
 my $frontend_params_1 = {
@@ -66,35 +67,31 @@ my $frontend_params_1 = {
                 {'ds2' => 'digest2'},                   
         ],
 };
-my $test_id_1 = $engine->start_domain_test($frontend_params_1);
-ok(length($test_id_1) == 32);
+ok($engine->start_domain_test($frontend_params_1) == 1);
+ok(scalar($engine->{db}->dbh->selectrow_array(q/SELECT id FROM test_results WHERE id=1/)) == 1);
 
 # test test_progress API
-ok($engine->test_progress($test_id_1) == 0);
+ok($engine->test_progress(1) == 0);
 
 require_ok('Runner');
-# The following crashes on perl 5.20.0 for unknown reason;
-#threads->create( sub { Runner->new({ db => 'ZonemasterDB::CouchDB'} )->run(2); } )->detach();
-my $job_runner_dir = $PROD_DIR."Zonemaster-Backend/JobRunner";
-my $command = qq{perl -I$job_runner_dir -MRunner -e "Runner->new( { db => 'ZonemasterDB::CouchDB' } )->run('$test_id_1')"};
-system("$command &");
+threads->create( sub { Runner->new({ db => 'ZonemasterDB::MySQL'} )->run(1); } )->detach();
 
 sleep(5);
-ok($engine->test_progress($test_id_1) > 0);
+ok($engine->test_progress(1) > 0);
 
 foreach my $i (1..12) {
 	sleep(5);
-	my $progress = $engine->test_progress($test_id_1);
+	my $progress = $engine->test_progress(1);
 	print STDERR "pregress: $progress\n";
 	last if ($progress == 100);
 }
-ok($engine->test_progress($test_id_1) == 100);
-my $test_results_1 = $engine->get_test_results({ id => $test_id_1, language => 'fr-FR' });
-ok(defined $test_results_1->{id}, 'test_results_1 contains: id');
-ok(defined $test_results_1->{params}, 'test_results_1 contains: params');
-ok(defined $test_results_1->{creation_time}, 'test_results_1 contains: creation_time');
-ok(defined $test_results_1->{results}, 'test_results_1 contains: results');
-ok(scalar(@{$test_results_1->{results}}) > 1, 'test_results_1 contain more than 1 result');
+ok($engine->test_progress(1) == 100);
+my $test_results = $engine->get_test_results({ id => 1, language => 'fr-FR' });
+ok(defined $test_results->{id});
+ok(defined $test_results->{params});
+ok(defined $test_results->{creation_time});
+ok(defined $test_results->{results});
+ok(scalar(@{$test_results->{results}}) > 1);
 
 my $frontend_params_2 = {
         client_id => 'Zonemaster CGI/Dancer/node.js', # free string
@@ -114,34 +111,31 @@ my $frontend_params_2 = {
                 {'ds2' => 'digest2'},                   
         ],
 };
-my $test_id_2 = $engine->start_domain_test($frontend_params_2);
-ok(length($test_id_2) == 32);
+ok($engine->start_domain_test($frontend_params_2) == 2);
+ok(scalar($engine->{db}->dbh->selectrow_array(q/SELECT id FROM test_results WHERE id=2/)) == 2);
 
 # test test_progress API
-ok($engine->test_progress($test_id_2) == 0);
+ok($engine->test_progress(2) == 0);
 
 require_ok('Runner');
-# The following crashes on perl 5.20.0 for unknown reason;
-#threads->create( sub { Runner->new({ db => 'ZonemasterDB::CouchDB'} )->run(2); } )->detach();
-$command = qq{perl -I$job_runner_dir -MRunner -e "Runner->new( { db => 'ZonemasterDB::CouchDB' } )->run('$test_id_2')"};
-system("$command &");
+threads->create( sub { Runner->new({ db => 'ZonemasterDB::MySQL'} )->run(2); } )->detach();
 
 sleep(5);
-ok($engine->test_progress($test_id_2) > 0);
+ok($engine->test_progress(2) > 0);
 
 foreach my $i (1..12) {
 	sleep(5);
-	my $progress = $engine->test_progress($test_id_2);
+	my $progress = $engine->test_progress(2);
 	print STDERR "pregress: $progress\n";
 	last if ($progress == 100);
 }
-ok($engine->test_progress($test_id_2) == 100);
-my $test_results_2 = $engine->get_test_results({ id => $test_id_2, language => 'fr-FR' });
-ok(defined $test_results_2->{id}, 'result contains: id');
-ok(defined $test_results_2->{params}, 'result contains: params');
-ok(defined $test_results_2->{creation_time}, 'result contains: creation_time');
-ok(defined $test_results_2->{results}, 'result contains: results');
-ok(scalar(@{$test_results_2->{results}}) > 1, 'more than 1 result');
+ok($engine->test_progress(2) == 100);
+$test_results = $engine->get_test_results({ id => 1, language => 'fr-FR' });
+ok(defined $test_results->{id});
+ok(defined $test_results->{params});
+ok(defined $test_results->{creation_time});
+ok(defined $test_results->{results});
+ok(scalar(@{$test_results->{results}}) > 1);
 
 
 my $frontend_params_3 = {
@@ -162,42 +156,39 @@ my $frontend_params_3 = {
                 {'ds2' => 'digest2'},                   
         ],
 };
-my $test_id_3 = $engine->start_domain_test($frontend_params_3);
-ok(length($test_id_3) == 32);
+ok($engine->start_domain_test($frontend_params_3) == 3);
+ok(scalar($engine->{db}->dbh->selectrow_array(q/SELECT id FROM test_results WHERE id=3/)) == 3);
 
 # test test_progress API
-ok($engine->test_progress($test_id_3) == 0);
+ok($engine->test_progress(3) == 0);
 
 require_ok('Runner');
-# The following crashes on perl 5.20.0 for unknown reason;
-#threads->create( sub { Runner->new({ db => 'ZonemasterDB::CouchDB'} )->run(2); } )->detach();
-$command = qq{perl -I$job_runner_dir -MRunner -e "Runner->new( { db => 'ZonemasterDB::CouchDB' } )->run('$test_id_3')"};
-system("$command &");
+threads->create( sub { Runner->new({ db => 'ZonemasterDB::MySQL'} )->run(3); } )->detach();
 
 sleep(5);
-ok($engine->test_progress($test_id_3) > 0);
+ok($engine->test_progress(3) > 0);
 
-foreach my $i (1..12) {
+foreach my $i (1..20) {
 	sleep(5);
-	my $progress = $engine->test_progress($test_id_3);
+	my $progress = $engine->test_progress(3);
 	print STDERR "pregress: $progress\n";
 	last if ($progress == 100);
 }
-ok($engine->test_progress($test_id_3) == 100);
-my $test_results_3 = $engine->get_test_results({ id => $test_id_3, language => 'fr-FR' });
-ok(defined $test_results_3->{id}, 'result contains: id');
-ok(defined $test_results_3->{params}, 'result contains: params');
-ok(defined $test_results_3->{creation_time}, 'result contains: creation_time');
-ok(defined $test_results_3->{results}, 'result contains: results');
-ok(scalar(@{$test_results_3->{results}}) > 1, 'more than 1 result');
+ok($engine->test_progress(3) == 100);
+$test_results = $engine->get_test_results({ id => 1, language => 'fr-FR' });
+ok(defined $test_results->{id});
+ok(defined $test_results->{params});
+ok(defined $test_results->{creation_time});
+ok(defined $test_results->{results});
+ok(scalar(@{$test_results->{results}}) > 1);
 
 
 my $offset = 0;
 my $limit = 10;
 my $test_history = $engine->get_test_history( { frontend_params => $frontend_params_1, offset => $offset, limit => $limit } );
 print STDERR Dumper($test_history);
-ok(scalar(@$test_history) == 2, 'test history contains the right number of results');
-ok($test_history->[0]->{id} eq $test_id_1 || $test_history->[1]->{id} eq $test_id_1, 'test history contains results of test_id_1');
-ok($test_history->[0]->{id} eq $test_id_2 || $test_history->[1]->{id} eq $test_id_2, 'test history contains results of test_id_2');
+ok(scalar(@$test_history) == 2);
+ok($test_history->[0]->{id} == 1 || $test_history->[1]->{id} == 1);
+ok($test_history->[0]->{id} == 2 || $test_history->[1]->{id} == 2);
 
 done_testing();
