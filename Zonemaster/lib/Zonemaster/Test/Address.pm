@@ -257,7 +257,7 @@ sub address03 {
         if ( $p ) {
             my @ptr = $p->get_records_for_name( q{PTR}, $reverse_ip_query );
             if ( $p->rcode eq q{NOERROR} and scalar @ptr ) {
-                if ( none { $_->ptrdname eq $local_ns->name->string . q{.} } @ptr ) {
+                if ( none { name($_->ptrdname) eq $local_ns->name->string . q{.} } @ptr ) {
                     push @results,
                       info(
                         NAMESERVER_IP_PTR_MISMATCH => {
