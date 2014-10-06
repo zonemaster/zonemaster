@@ -193,6 +193,10 @@ msgstr "Saw SOA rname {rname} on following nameserver set : {servers}."
 msgid  "Saw SOA serial number {serial} on following nameserver set : {servers}."
 msgstr "Saw SOA serial number {serial} on following nameserver set : {servers}."
 
+#: CONSISTENCY:SOA_SERIAL_VARIATION
+msgid  "Difference between the smaller serial ({serial_min}) and the bigger one ({serial_max}) is greater than the maximum allowed ({max_variation})."
+msgstr "Difference between the smaller serial ({serial_min}) and the bigger one ({serial_max}) is greater than the maximum allowed ({max_variation})."
+
 #: CONSISTENCY:SOA_TIME_PARAMETER_SET
 msgid  "Saw SOA time parameter set (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}) on following nameserver set : {servers}."
 msgstr "Saw SOA time parameter set (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}) on following nameserver set : {servers}."
@@ -691,6 +695,10 @@ msgstr "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({re
 msgid  "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire})."
 msgstr "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire})."
 
+#: ZONE:EXPIRE_MINIMUM_VALUE_OK
+msgid  "SOA 'expire' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than 'refresh' value."
+msgstr "SOA 'expire' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than 'refresh' value."
+
 #: ZONE:MASTER_IS_AN_ALIAS
 msgid  "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
 msgstr "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
@@ -738,6 +746,10 @@ msgstr "SOA 'minimum' value ({minimum}) is higher than the recommended one ({hig
 #: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER
 msgid  "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum})."
 msgstr "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum})."
+
+#: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK
+msgid  "SOA 'minimum' value ({minimum}) is between the recommended ones ({lowest_minimum}/{highest_minimum})."
+msgstr "SOA 'minimum' value ({minimum}) is between the recommended ones ({lowest_minimum}/{highest_minimum})."
 
 #: ZONE:MNAME_HAS_NO_ADDRESS
 msgid  "No IP address found for SOA 'mname' nameserver ({mname})."

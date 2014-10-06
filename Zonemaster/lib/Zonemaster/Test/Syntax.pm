@@ -14,7 +14,7 @@ use Carp;
 
 use Readonly;
 
-use List::MoreUtils qw[uniq];
+use List::MoreUtils qw[uniq none any];
 use Mail::RFC822::Address qw[valid];
 use Time::Local;
 
@@ -33,7 +33,7 @@ sub all {
     push @results, $class->syntax02( $zone->name );
     push @results, $class->syntax03( $zone->name );
 
-    if ( grep { $_->tag eq q{ONLY_ALLOWED_CHARS} } @results ) {
+    if ( any { $_->tag eq q{ONLY_ALLOWED_CHARS} } @results ) {
 
         foreach my $local_nsname ( uniq map { $_->string } @{ Zonemaster::TestMethods->method2($zone) }, @{ Zonemaster::TestMethods->method3($zone) } ) {
             push @results, $class->syntax04( $local_nsname);
@@ -41,7 +41,7 @@ sub all {
 
         push @results, $class->syntax05( $zone );
 
-        if (not grep { $_->tag eq q{NO_RESPONSE_SOA_QUERY} } @results ) {
+        if ( none { $_->tag eq q{NO_RESPONSE_SOA_QUERY} } @results ) {
             push @results, $class->syntax06( $zone );
             push @results, $class->syntax07( $zone );
         }

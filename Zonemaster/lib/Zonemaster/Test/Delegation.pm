@@ -164,7 +164,7 @@ sub delegation01 {
     if ( scalar( @child_nsnames ) >= $MINIMUM_NUMBER_OF_NAMESERVERS ) {
         push @results,
           info(
-            ENOUGH_NS_TOTAL => {
+            ENOUGH_NS => {
                 count   => scalar( @child_nsnames ),
                 minimum => $MINIMUM_NUMBER_OF_NAMESERVERS,
                 ns      => join( q{;}, @child_nsnames ),
@@ -174,7 +174,7 @@ sub delegation01 {
     else {
         push @results,
           info(
-            NOT_ENOUGH_NS_TOTAL => {
+            NOT_ENOUGH_NS => {
                 count   => scalar( @child_nsnames ),
                 minimum => $MINIMUM_NUMBER_OF_NAMESERVERS,
                 ns      => join( q{;}, @child_nsnames ),
@@ -187,7 +187,7 @@ sub delegation01 {
     if ( scalar( @all_nsnames ) >= $MINIMUM_NUMBER_OF_NAMESERVERS ) {
         push @results,
           info(
-            ENOUGH_NS => {
+            ENOUGH_NS_TOTAL => {
                 count   => scalar( @all_nsnames ),
                 minimum => $MINIMUM_NUMBER_OF_NAMESERVERS,
                 ns      => join( q{;}, @all_nsnames ),
@@ -197,7 +197,7 @@ sub delegation01 {
     else {
         push @results,
           info(
-            NOT_ENOUGH_NS => {
+            NOT_ENOUGH_NS_TOTAL => {
                 count   => scalar( @all_nsnames ),
                 minimum => $MINIMUM_NUMBER_OF_NAMESERVERS,
                 ns      => join( q{;}, @all_nsnames ),
