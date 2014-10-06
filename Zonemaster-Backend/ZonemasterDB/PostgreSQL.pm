@@ -12,13 +12,98 @@ use ZonemasterDB;
 
 with 'ZonemasterDB';
 
-my $connection_string = "DBI:Pg:database=zonemaster;host=localhost";
+#TODO read from configuration file
+#my $connection_string = "DBI:Pg:database=zonemaster;host=localhost";
+my $connection_string = "DBI:Pg:database=zonemaster;host=localhost;port=5433";
 
 has 'dbh' => (
 	is => 'ro',
 	isa => 'DBI::db',
 	default => sub { DBI->connect($connection_string, "zonemaster", "zonemaster", {RaiseError => 1, AutoCommit => 1}) },
 );
+
+sub create_db{
+	my ($self) = @_;
+
+	####################################################################
+	# TEST RESULTS
+	####################################################################
+	$self->dbh->do('DROP TABLE IF EXISTS test_specs CASCADE');
+	$self->dbh->do('DROP SEQUENCE IF EXISTS test_specs_id_seq');
+
+	$self->dbh->do('DROP TABLE IF EXISTS test_results CASCADE');
+	$self->dbh->do('DROP SEQUENCE IF EXISTS test_results_id_seq');
+
+	$self->dbh->do('CREATE SEQUENCE test_results_id_seq
+									INCREMENT BY 1
+									NO MAXVALUE
+									NO MINVALUE
+									CACHE 1
+	');
+
+	$self->dbh->do('ALTER TABLE public.test_results_id_seq OWNER TO zonemaster');
+
+	$self->dbh->do('CREATE TABLE test_results (
+					id integer DEFAULT nextval(\'test_results_id_seq\'::regclass) primary key,
+					batch_id integer DEFAULT NULL,
+					creation_time timestamp without time zone DEFAULT NOW() NOT NULL,
+					test_start_time timestamp without time zone DEFAULT NULL,
+					test_end_time timestamp without time zone DEFAULT NULL,
+					priority integer DEFAULT 10,
+					progress integer DEFAULT 0,
+					params_deterministic_hash character varying(32),
+					params json NOT NULL,
+					results json DEFAULT NULL
+			)
+	');
+	$self->dbh->do('ALTER TABLE test_results OWNER TO zonemaster');
+
+	####################################################################
+	# BATCH JOBS
+	####################################################################
+	$self->dbh->do('DROP TABLE IF EXISTS batch_jobs CASCADE');
+	$self->dbh->do('DROP SEQUENCE IF EXISTS batch_jobs_id_seq');
+
+	$self->dbh->do('CREATE SEQUENCE batch_jobs_id_seq
+									INCREMENT BY 1
+									NO MAXVALUE
+									NO MINVALUE
+									CACHE 1
+	');
+
+	$self->dbh->do('ALTER TABLE public.batch_jobs_id_seq OWNER TO zonemaster');
+
+	$self->dbh->do('CREATE TABLE batch_jobs (
+					id integer DEFAULT nextval(\'batch_jobs_id_seq\'::regclass) primary key,
+					username character varying(50) NOT NULL,
+					creation_time timestamp without time zone DEFAULT NOW() NOT NULL
+			)
+	');
+	$self->dbh->do('ALTER TABLE batch_jobs OWNER TO zonemaster');
+
+	####################################################################
+	# USERS
+	####################################################################
+	$self->dbh->do('DROP TABLE IF EXISTS users CASCADE');
+	$self->dbh->do('DROP SEQUENCE IF EXISTS users_id_seq');
+
+	$self->dbh->do('CREATE SEQUENCE users_id_seq
+									INCREMENT BY 1
+									NO MAXVALUE
+									NO MINVALUE
+									CACHE 1
+	');
+
+	$self->dbh->do('ALTER TABLE public.users_id_seq OWNER TO zonemaster');
+
+	$self->dbh->do('CREATE TABLE users (
+					id integer DEFAULT nextval(\'users_id_seq\'::regclass) primary key,
+					user_info json DEFAULT NULL
+			)
+	');
+	$self->dbh->do('ALTER TABLE users OWNER TO zonemaster');
+
+}
 
 sub user_exists_in_db {
 	my ($self, $user) = @_;
@@ -45,17 +130,12 @@ sub user_authorized {
 }
 
 sub test_progress {
-	my($self, $test_id) = @_;
+	my($self, $test_id, $progress) = @_;
 	
-	my $result = 0;
+	$self->dbh->do("UPDATE test_results SET progress=$progress WHERE id=$test_id") if ($progress);
 	
-	my $sth1 = $self->dbh->prepare("SELECT EXTRACT(EPOCH FROM (now() - creation_time)) AS t from test_results WHERE id=$test_id");
-	$sth1->execute;
-	if (my $h = $sth1->fetchrow_hashref) {
-		my $time_from_test_start = ($h->{t}>60)?(60):($h->{t});
-		$result = int($time_from_test_start/60*100);
-	}
-
+	my ($result) = $self->dbh->selectrow_array("SELECT progress FROM test_results WHERE id=$test_id");
+	
 	return $result;
 }
 
@@ -106,6 +186,49 @@ sub create_new_test {
 	
 	return $result;
 }
+
+sub get_test_params {
+	my($self, $test_id) = @_;
+	
+	my ($result) = $self->dbh->selectrow_array("SELECT params FROM test_results WHERE id=$test_id");
+	
+	return $result;
+}
+
+
+sub test_results {
+	my($self, $test_id, $results) = @_;
+	
+	$self->dbh->do( "UPDATE test_results SET progress=100, test_end_time=NOW(), results = ".$self->dbh->quote($results)." WHERE id=$test_id " ) if ($results);
+	
+	my $result;
+	eval {
+		my ($hrefs) = $self->dbh->selectall_hashref("SELECT * FROM test_results WHERE id=$test_id", 'id');
+		$result = $hrefs->{$test_id};
+		$result->{params} = decode_json($result->{params});
+		$result->{results} = decode_json($result->{results});
+	};
+	die $@ if $@;
+	
+	return $result;
+}
+
+
+sub get_test_history {
+	my($self, $p) = @_;
+	
+	my @results;
+	my $query = "SELECT id, creation_time, params->>'advanced_options' AS advanced_options from test_results WHERE params->>'domain'=".$self->dbh->quote($p->{frontend_params}->{domain})." ORDER BY id DESC OFFSET $p->{offset} LIMIT $p->{limit}";
+	print "$query\n";
+	my $sth1 = $self->dbh->prepare($query);
+	$sth1->execute;
+	while (my $h = $sth1->fetchrow_hashref) {
+		push(@results, { id => $h->{id}, creation_time => $h->{creation_time}, advanced_options => $h->{advanced_options} });
+	}
+	
+	return \@results;
+}
+
 
 no Moose;
 __PACKAGE__->meta()->make_immutable();

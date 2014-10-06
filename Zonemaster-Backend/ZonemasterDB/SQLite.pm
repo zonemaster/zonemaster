@@ -13,7 +13,8 @@ use ZonemasterDB;
 with 'ZonemasterDB';
 
 #TODO read from config file
-my $connection_string = "DBI:SQLite:database=:memory:";
+#my $connection_string = "DBI:SQLite:database=:memory:";
+my $connection_string = "DBI:SQLite:database=/dev/shm/zonemaser.sqlite";
 
 has 'dbh' => (
 	is => 'ro',
@@ -156,19 +157,57 @@ sub create_new_test {
 }
 
 sub test_progress {
-	my($self, $test_id) = @_;
+	my($self, $test_id, $progress) = @_;
 	
-	my $result = 0;
+	$self->dbh->do("UPDATE test_results SET progress=$progress WHERE id=$test_id") if ($progress);
 	
-	my $sth1 = $self->dbh->prepare("SELECT strftime('\%s', datetime('now')) - strftime('\%s', creation_time) AS t FROM test_results WHERE id=$test_id");
-	$sth1->execute;
-	if (my $h = $sth1->fetchrow_hashref) {
-		my $time_from_test_start = ($h->{t}>60)?(60):($h->{t});
-		$result = int($time_from_test_start/60*100);
-	}
-
+	my ($result) = $self->dbh->selectrow_array("SELECT progress FROM test_results WHERE id=$test_id");
+	
 	return $result;
 }
+
+sub get_test_params {
+	my($self, $test_id) = @_;
+	
+	my ($result) = $self->dbh->selectrow_array("SELECT params FROM test_results WHERE id=$test_id");
+	
+	return $result;
+}
+
+sub test_results {
+	my($self, $test_id, $results) = @_;
+	
+	$self->dbh->do( "UPDATE test_results SET progress=100, test_end_time=datetime('now'), results = ".$self->dbh->quote($results)." WHERE id=$test_id " ) if ($results);
+	
+	my $result;
+	eval {
+		my ($hrefs) = $self->dbh->selectall_hashref("SELECT * FROM test_results WHERE id=$test_id", 'id');
+		$result = $hrefs->{$test_id};
+		$result->{params} = decode_json($result->{params});
+		$result->{results} = decode_json($result->{results});
+	};
+	die $@ if $@;
+	
+	return $result;
+}
+
+
+sub get_test_history {
+	my($self, $p) = @_;
+	
+	my @results;
+	my $quoted_domain = $self->dbh->quote($p->{frontend_params}->{domain});
+	$quoted_domain =~ s/'/"/g;
+	my $query = "SELECT id, creation_time, params FROM test_results WHERE params like '\%\"domain\":$quoted_domain\%' ORDER BY id DESC LIMIT $p->{limit} OFFSET $p->{offset} ";
+	my $sth1 = $self->dbh->prepare($query);
+	$sth1->execute;
+	while (my $h = $sth1->fetchrow_hashref) {
+		push(@results, { id => $h->{id}, creation_time => $h->{creation_time}, advanced_options => $h->{advanced_options} });
+	}
+	
+	return \@results;
+}
+
 
 no Moose;
 __PACKAGE__->meta()->make_immutable();
