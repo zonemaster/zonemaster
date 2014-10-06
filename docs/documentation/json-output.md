@@ -21,7 +21,7 @@ hashes:
 	 {...}
     ]
 
-The tag key is used for identifiyin each individual message in a
+The tag key is used for identifying each individual message in a
 test level, and the level is the unique identifier. Both can be
 used in a pair to have a unique identifier of the message, like
 this: `MODULE:TEST_CASE_TAG`. This also maps into a
