@@ -42,7 +42,7 @@ in JSON might be better suited. Use `--lang=json` to have the output in JSON
 format. The JSON format is described in the [JSON Output](json-output.md)
 document.
 
-More detailed documentation can by found in the [manual page](zonemaster-cli.html)
+More detailed documentation can by found in the [manual page](zonemaster-cli.md)
 
 ### Advanced use
 
