@@ -11,6 +11,7 @@ These documents uses the terminology defined in the Master Test Plan.
 
 |Req| Description                                                 | Test Case           |
 |:--|:------------------------------------------------------------|:--------------------|
+|R77|Perform input validation on the domain name                  |[BASOC00](basic00.md)|
 |R67|The domain must have a parent domain                         |[BASIC01](basic01.md)|
 |R08|The child domain must have at least one working nameserver   |[BASIC02](basic02.md)|
 |R15|The child domain must have at least one working nameserver   |[BASIC02](basic02.md)|
