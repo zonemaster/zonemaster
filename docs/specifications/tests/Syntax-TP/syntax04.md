@@ -27,18 +27,14 @@ used, from both the parent and the zone itself.
    for the validation.
 3. If any label in the hostname does not contain a-z or 0-9 this test case
    fails.
-4. If any label of the hostname is longer than 63 characters, this test case
+4. If the rightmost label (the TLD) contains only digits, this test case
    fails.
-5. If the hostname is longer than 255 characters including separators, this
-   test case fails.
-6. If the rightmost label (the TLD) contains only digits, this test case
-   fails.
-7. If there is a hyphen ('-') in position 3 and 4 of the label, and the prefix
+5. If there is a hyphen ('-') in position 3 and 4 of the label, and the prefix
    is not xn (used for internationalization), this test case fails.
 
 ### Outcome(s)
 
-If any of the steps 3 to 7 in the ordered description of this test case fails,
+If any of the steps 3 to 5 in the ordered description of this test case fails,
 the whole test case fails.
 
 ### Special procedural requirements
