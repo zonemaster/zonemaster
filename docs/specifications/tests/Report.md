@@ -15,7 +15,7 @@
 |R12|nameserver addresses are all on the same subnet|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY03](.//Connectivity-TP/connectivity03.md)|     AS Diversity|
 |R13|delegation response fit in a 512 byte UDP packet|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION03](.//Delegation-TP/delegation03.md)|No truncation of referrals|
 |R14|delegation response with additional fit in a 512 byte UDP packet|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION03](.//Delegation-TP/delegation03.md)|No truncation of referrals|
-|R15|      NS record present|**missing**|**missing**|      **missing**|
+|R15|      NS record present|[  Basic-TP](Basic-TP/level.md)|[BASIC02](.//Basic-TP/basic02.md)|The domain must have at least one working name server|
 |R16|NS authoritative answer|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION04](.//Delegation-TP/delegation04.md)|Name server is authoritative|
 |R17|NS name has a valid domain/hostname syntax|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX04](.//Syntax-TP/syntax04.md)|The NS name must have a valid domain/hostname|
 |R18|     NS is not an alias|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION05](.//Delegation-TP/delegation05.md)|NS RR does not point to CNAME alias|
@@ -64,3 +64,4 @@
 |R73|Test availability of zone transfer (AXFR)|[Nameserver-TP](Nameserver-TP/level.md)|[NAMESERVER03](.//Nameserver-TP/nameserver03.md)|Test availability of zone transfer (AXFR)|
 |R74|Answer from name server came from an IP address other than expected (wrong source IP)|[Nameserver-TP](Nameserver-TP/level.md)|[NAMESERVER04](.//Nameserver-TP/nameserver04.md)|Same source address|
 |R76|Zone contains NSEC or NSEC3 records|[ DNSSEC-TP](DNSSEC-TP/level.md)|[DNSSEC10](.//DNSSEC-TP/dnssec10.md)|Zone contains NSEC or NSEC3 records|
+|R77|Perform input validation on the domain name|[  Basic-TP](Basic-TP/level.md)|[BASIC00](.//Basic-TP/basic00.md)|Domain name must be valid|
