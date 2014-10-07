@@ -1,7 +1,7 @@
 <html ng-app="z_dnscheck">
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=<% settings.charset %>" />
-<title>{{'dnscheck'|translate}}</title>
+<title>Zonemaster</title>
     <link href='//fonts.googleapis.com/css?family=Cuprum:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<% request.uri_base %>/css/bootstrap.min.css" />
@@ -13,9 +13,11 @@
 
 </head>
 <body>
-<div class="wrapper">
-  <% content %>
-<div class="push"></div>
+<div class="pagecontainer">
+	<div class="wrapper">
+		<% content %>
+		<div class="push"></div>
+	</div>
 </div>
 <div class="footer">
 <version></version>
@@ -34,5 +36,13 @@
 <script src="/javascripts/z_dnscheck.js"></script>
 <script src="/javascripts/japp.js"></script>
 <!-- <script src="/javascripts/app.js"></script> -->
+<noscript>
+	<style type="text/css">
+		.pagecontainer {display:none;}
+	</style>
+	<div class="noscriptmsg">
+		<p>Hello from the non-JavaScript interface</p>
+	</div>
+</noscript>
 </body>
 </html>

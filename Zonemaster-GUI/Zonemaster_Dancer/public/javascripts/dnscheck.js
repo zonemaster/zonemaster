@@ -279,33 +279,58 @@ dnscheck.directive('domainCheck',function(){
           });
         };
         $scope.domainCheck = function(){
-          $scope.result = null;
-          if($scope.inactive) { 
-            $scope.form.nameservers = $scope.ns_list;
-            $scope.form.ds_digest_pairs = $scope.ds_list;
-          }
-          if( (typeof $scope.form.domain === 'undefined') || ($scope.form.domain === '') ){
-            alert('Can\'t run test for unspecified domain name');
-            return;
-          }
-          if( $scope.inactive && ($scope.ns_list.length == 0 || typeof $scope.ns_list[0].ns === 'undefined' ||$scope.ns_list[0].ns === '')  ){
-            alert('Can\'t run test without at least one nameserver specified');
-            return;
-          }
-          $('.run-btn-icon').removeClass('fa-play-circle-o').addClass('loading');
-          $.ajax('/run',{
-            data : { data: JSON.stringify($scope.form) },
-            type: 'post',
-            dataType : 'json',
-            success: function(data){
-              $scope.job_id = data.job_id;
-              $scope.progressCheck();
-            },
-            error: function(){
-              alert('Can\'t run test');
-            }
-          });
-        };
+			if($scope.inactive) { 
+				$scope.form.nameservers = $scope.ns_list;
+				$scope.form.ds_digest_pairs = $scope.ds_list;
+			}
+			
+			$.ajax('/check_syntax',{
+				data : { data: JSON.stringify($scope.form) },
+				dataType : 'json',
+				success: function(data){
+					alert(JSON.stringify(data.result));
+					if(data.result.status === 'nok') {
+						$scope.$apply($scope.showSyntaxErrors(data.result));
+					}
+					else {
+						$scope.$apply($scope.startTest(data.result));
+					}
+				},
+				error: function(){
+					alert('Can\'t get syntax test result');
+				}
+			});
+
+			$scope.startTest = function () {
+				alert('Syntax OK, starting tests');
+				$scope.result = null;
+				if( (typeof $scope.form.domain === 'undefined') || ($scope.form.domain === '') ){
+					alert('Can\'t run test for unspecified domain name');
+					return;
+				}
+				if( $scope.inactive && ($scope.ns_list.length == 0 || typeof $scope.ns_list[0].ns === 'undefined' ||$scope.ns_list[0].ns === '')  ){
+					alert('Can\'t run test without at least one nameserver specified');
+					return;
+				}
+				$('.run-btn-icon').removeClass('fa-play-circle-o').addClass('loading');
+				$.ajax('/run',{
+					data : { data: JSON.stringify($scope.form) },
+					type: 'post',
+					dataType : 'json',
+					success: function(data){
+						$scope.job_id = data.job_id;
+						$scope.progressCheck();
+					},
+					error: function(){
+						alert('Can\'t run test');
+					}
+				});
+			};
+			
+			$scope.showSyntaxErrors = function () {
+				alert('Found Syntax Errors');
+			};
+		};
     }],
     template: '<div ng-include="contentUrl"></div>'
   };

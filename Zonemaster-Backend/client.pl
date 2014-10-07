@@ -12,6 +12,9 @@ use Client;
 
 my $c = Client->new({url => 'http://localhost:5000'});
 
+say "Client->validate_syntax:".Dumper($c->validate_syntax("nic.fr"));
+
+=coment
 say "Client->version_info:".Dumper($c->version_info("test param"));
 
 say "Client->get_ns_ips:".Dumper($c->get_ns_ips("ns1.nic.fr"));
@@ -87,4 +90,4 @@ my $offset = 0;
 my $limit = 10;
 say "get_test_history: ".Dumper($c->get_test_history( { frontend_params => $frontend_params1, offset => $offset, limit => $limit } ));
 say "--------------------------";
-
+=cut

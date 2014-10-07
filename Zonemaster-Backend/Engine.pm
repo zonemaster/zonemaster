@@ -15,6 +15,7 @@ use DBI qw(:utils);
 use Digest::MD5 qw(md5_hex);
 use String::ShellQuote;
 use File::Slurp;
+use Net::LDNS;
 
 unshift(@INC, "/home/toma/PROD/zonemaster/Zonemaster/lib") unless $INC{"/home/toma/PROD/zonemaster/Zonemaster/lib"};
 
@@ -45,6 +46,21 @@ sub new{
 	}
 
 	return($self);
+}
+
+sub _to_idn {
+	my ( $self, $str ) = @_;
+	
+	if ($str =~ m/^[[:ascii:]]+$/) {
+		return $str;
+	}
+
+	if (Net::LDNS::has_idn()) {
+		return Net::LDNS::to_idn(encode_utf8($str));
+	}
+	else {
+		return "ERROR: No IDN support installed";
+	}
 }
 
 sub version_info {
@@ -163,11 +179,12 @@ sub get_data_from_parent_zone_1 {
 	return \%result;
 }
 
-sub validate_domain_syntax {
-	my($self, $domain) = @_;
+sub validate_syntax {
+	my($self, $syntax_input) = @_;
 
-	my $result = 'syntax_not_ok';
-
+	my $result = { status => 'ok' };
+	$result->{message} = "Syntax message".Dumper($syntax_input);
+=coment
 	my $dn = Zonemaster::DNSName->new( $domain );
 
 	my @test_syntax01 = Zonemaster->test_method('Syntax', 'syntax01', $dn);
@@ -187,7 +204,8 @@ sub validate_domain_syntax {
 			}
 		}
 	}
-		
+=cut
+	
 	return $result;
 }
 

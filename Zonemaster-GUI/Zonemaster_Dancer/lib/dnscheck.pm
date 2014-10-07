@@ -45,6 +45,15 @@ get '/version' => sub {
   return to_json ({ result => $result . ", IP address: " . request->address }, {allow_blessed => 1, convert_blessed => 1});
 };
 
+get '/check_syntax' => sub {
+  my $c = Client->new({url => $url });
+  
+  my $data = from_json(param('data')); 
+  my $result = $c->validate_syntax({ %$data });
+  content_type 'application/json';
+  return to_json ({ result => $result }, {allow_blessed => 1, convert_blessed => 1});
+};
+
 get '/history' => sub {
   my $c = Client->new({url => $url });
   

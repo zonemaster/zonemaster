@@ -42,14 +42,14 @@ my $router = router {
 		action => "get_data_from_parent_zone"
 	};
 
-        connect "get_data_from_parent_zone_1" => {
-                handler => "+Engine",
-                action => "get_data_from_parent_zone_1"
-        };
-
-	connect "validate_domain_syntax" => {
+	connect "get_data_from_parent_zone_1" => {
 		handler => "+Engine",
-		action => "validate_domain_syntax"
+		action => "get_data_from_parent_zone_1"
+	};
+
+	connect "validate_syntax" => {
+		handler => "+Engine",
+		action => "validate_syntax"
 	};
 	
 	connect "start_domain_test" => {
