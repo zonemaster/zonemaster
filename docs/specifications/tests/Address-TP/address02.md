@@ -18,12 +18,15 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the IP addresses of each name server of the domain checked
+1. Obtain the glue address records  of the domain checked
+   using [Method4](../Methods.md)
+
+2. Obtain the IP addresses of each name server of the domain checked
    using [Method5](../Methods.md)
 
-2. For each IP address, a recursive PTR query must be performed.
+3. For each IP address, a recursive PTR query must be performed.
 
-3. If any answer of the queries performed in step 2 contains an RCODE
+4. If any answer of the queries performed in step 2 contains an RCODE
    other than NOERROR or if the answer does not include a PTR record,
    this test case fails.
 
