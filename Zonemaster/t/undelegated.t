@@ -27,14 +27,19 @@ Zonemaster->add_fake_delegation(
 );
 
 my $fake_happened = 0;
-Zonemaster->logger->callback( sub {
+Zonemaster->logger->callback(
+    sub {
         $fake_happened = 1 if $_[0]->tag eq 'FAKE_DELEGATION';
-    } );
+    }
+);
 
 my $fake_p = Zonemaster->recurse( 'www.lysator.liu.se', 'AAAA' );
 ok( $fake_happened, 'Fake delegation logged' );
-ok($fake_p, 'Got answer');
-is( $fake_p->rcode, 'REFUSED', 'expected RCODE' );
+ok( $fake_p,        'Got answer' );
+if ( $fake_p ) {
+    is( $fake_p->rcode, 'REFUSED', 'expected RCODE' );
+}
+Zonemaster->logger->clear_callback;
 
 Zonemaster->add_fake_ds( 'lysator.liu.se' => [ { keytag => 4711, algorithm => 17, type => 42, digest => 'FACEB00C' } ],
 );

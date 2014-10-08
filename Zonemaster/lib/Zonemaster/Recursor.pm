@@ -97,7 +97,7 @@ sub _recurse {
         # So it's not an error, not an empty response and not an answer
 
         if ( $p->is_redirect ) {
-            my $zname = name(( $p->get_records( 'ns' ) )[0]->name);
+            my $zname = name(lc(( $p->get_records( 'ns' ) )[0]->name));
             next if $state->{seen}{$zname};    # We followed this redirect before
 
             $state->{seen}{$zname} = 1;
