@@ -220,7 +220,7 @@ sub consistency02 {
             next;
         }
 
-        push @{ $rnames{ $soa->rname } }, $local_ns->name->string;
+        push @{ $rnames{ lc($soa->rname) } }, $local_ns->name->string;
 
         $nsnames{ $local_ns->name->string }++;
     } ## end foreach my $local_ns ( @{ $zone...})

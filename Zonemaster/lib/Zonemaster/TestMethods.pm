@@ -31,7 +31,7 @@ sub method3 {
         next if not $p;
         push @nsnames, $p->get_records_for_name( q{NS}, $zone->name );
     }
-    @child_nsnames = uniq map { name($_->nsdname) } @nsnames;
+    @child_nsnames = uniq map { name(lc($_->nsdname)) } @nsnames;
 
     return [ @child_nsnames ];
 } ## end sub method3

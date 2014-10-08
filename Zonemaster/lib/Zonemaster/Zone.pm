@@ -44,7 +44,7 @@ sub _build_glue_names {
 
     return [] if not defined $p;
 
-    return [ sort map {Zonemaster::DNSName->new($_->nsdname)} $p->get_records_for_name('ns', $self->name->string)];
+    return [ sort map {Zonemaster::DNSName->new(lc($_->nsdname))} $p->get_records_for_name('ns', $self->name->string)];
 }
 
 sub _build_glue {
@@ -75,7 +75,7 @@ sub _build_ns_names {
     }
     return [] if not defined $p;
 
-    return [ sort map {Zonemaster::DNSName->new($_->nsdname)} $p->get_records_for_name('ns', $self->name->string)];
+    return [ sort map {Zonemaster::DNSName->new(lc($_->nsdname))} $p->get_records_for_name('ns', $self->name->string)];
 }
 
 sub _build_ns {

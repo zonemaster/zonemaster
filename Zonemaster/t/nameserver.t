@@ -31,7 +31,7 @@ isa_ok( $p2, 'Zonemaster::Packet' );
 my ( $soa ) = grep { $_->type eq 'SOA' } $p1->answer;
 is( scalar( $p1->answer ), 1, 'one answer RR present ' );
 ok( $soa, 'it is a SOA RR' );
-is( $soa->rname, 'hostmaster.iis.se.', 'RNAME has expected format' );
+is( lc($soa->rname), 'hostmaster.iis.se.', 'RNAME has expected format' );
 is( scalar( grep { $_->type eq 'SOA' or $_->type eq 'RRSIG' } $p2->answer ), 2, 'SOA and RRSIG RRs present' );
 ok( !$nsv6->dns->dnssec, 'dnssec flag still unset' );
 ok( $p3 eq $p2,          'Same packet object returned' );

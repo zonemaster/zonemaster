@@ -162,7 +162,7 @@ sub get_ns_from {
     my ( $self, $p, $state ) = @_;
     my ( @new, @extra );
 
-    my @names = sort map { name( $_->nsdname ) } $p->get_records( 'ns' );
+    my @names = sort map { name( lc($_->nsdname) ) } $p->get_records( 'ns' );
 
     $state->{glue}{ lc(name( $_->name )) }{ $_->address } = 1 for ( $p->get_records( 'a' ), $p->get_records( 'aaaa' ) );
 
