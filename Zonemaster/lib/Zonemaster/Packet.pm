@@ -39,7 +39,7 @@ sub no_such_record {
 
     if ( $self->type eq 'nodata' ) {
         my ( $q ) = $self->question;
-        info( NO_SUCH_RECORD => { name => $q->name, type => $q->type } );
+        Zonemaster::Util::info( NO_SUCH_RECORD => { name => Zonemaster::Util::name($q->name), type => $q->type } );
 
         return 1;
     }
@@ -53,7 +53,7 @@ sub no_such_name {
 
     if ( $self->type eq 'nxdomain' ) {
         my ( $q ) = $self->question;
-        info( NO_SUCH_NAME => { name => $q->name, type => $q->type } );
+        info( NO_SUCH_NAME => { name => name($q->name), type => $q->type } );
 
         return 1;
     }
@@ -68,7 +68,7 @@ sub is_redirect {
     if ( $self->type eq 'referral' ) {
         my ( $q ) = $self->question;
         my ( $a ) = $self->authority;
-        info( IS_REDIRECT => { name => $q->name, type => $q->type, to => $a->name } );
+        Zonemaster::Util::info( IS_REDIRECT => { name => Zonemaster::Util::name($q->name), type => $q->type, to => Zonemaster::Util::name($a->name) } );
 
         return 1;
     }

@@ -1030,7 +1030,7 @@ sub dnssec10 {
                     my $msg = q{};
                     if (
                         $sig->verify_time(
-                            [ grep { $_->name eq $sig->name } @nsec ],
+                            [ grep { name($_->name) eq name($sig->name) } @nsec ],
                             \@dnskeys, $test_p->timestamp, $msg
                         )
                       )
@@ -1095,7 +1095,7 @@ sub dnssec10 {
                     my $msg = q{};
                     if (
                         $sig->verify_time(
-                            [ grep { $_->name eq $sig->name } @nsec3 ],
+                            [ grep { name($_->name) eq name($sig->name) } @nsec3 ],
                             \@dnskeys, $test_p->timestamp, $msg
                         )
                       )
