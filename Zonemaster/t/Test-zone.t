@@ -21,7 +21,7 @@ ok( $res{MX_RECORD_EXISTS},                 q{Target found to deliver e-mail for
 ok( $res{RETRY_MINIMUM_VALUE_LOWER},        q{SOA 'Retry' vakue is too low} );
 ok( $res{REFRESH_MINIMUM_VALUE_LOWER},      q{SOA 'Refresh' value is too low} );
 ok( $res{MNAME_NO_RESPONSE},                q{SOA 'mname' nameserver does not respond} );
-ok( $res{MASTER_IS_NOT_CNAME},              q{SOA 'mname' value refers to a NS which is not an alias} );
+ok( $res{MNAME_IS_NOT_CNAME},               q{SOA 'mname' value refers to a NS which is not an alias} );
 ok( $res{MNAME_NOT_IN_GLUE},                q{SOA 'mname' nameserver is not listed in "parent" NS records for tested zone} );
 ok( $res{SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK}, q{SOA 'minimum' value is between the recommended ones} );
 ok( $res{REFRESH_HIGHER_THAN_RETRY},        q{SOA 'refresh' value is higher than the SOA 'retry' value} );
@@ -45,7 +45,7 @@ ok( $res{EXPIRE_LOWER_THAN_REFRESH}, q{SOA 'expire' value is lower than the SOA 
 ok( $res{EXPIRE_MINIMUM_VALUE_LOWER}, q{SOA 'expire' value is less than the recommended one} );
 
 %res = map { $_->tag => 1 } Zonemaster->test_module( q{zone}, q{zone03.zut-root.rd.nic.fr} );
-ok( $res{MASTER_IS_CNAME}, q{SOA 'mname' value refers to a NS which is an alias (CNAME)} );
+ok( $res{MNAME_IS_CNAME}, q{SOA 'mname' value refers to a NS which is an alias (CNAME)} );
 ok( $res{REFRESH_LOWER_THAN_RETRY}, q{SOA 'refresh' value is lower than the SOA 'retry' value} );
 
 %res = map { $_->tag => 1 } Zonemaster->test_module( q{zone}, q{google.tf} );

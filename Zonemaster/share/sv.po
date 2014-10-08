@@ -577,7 +577,7 @@ msgstr "Värdet för SOA 'expire' ({expire}) är lägre än värdet för SOA 're
 msgid  "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire})."
 msgstr "Värdet för SOA 'expire' ({expire}) är lägre än rekommenderat ({required_expire})."
 
-#: ZONE:MASTER_IS_AN_ALIAS
+#: ZONE:MNAME_IS_CNAME
 msgid  "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
 msgstr "SOA 'mname' ({mname}) refererar till ett NS-namn som är ett alias (CNAME)."
 
@@ -769,4 +769,7 @@ msgstr "ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK needs translation..."
 msgid  "SOA 'expire' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than 'refresh' value."
 msgstr "ZONE:EXPIRE_MINIMUM_VALUE_OK needs translation..."
 
+#: ZONE:MNAME_IS_NOT_CNAME
+msgid  "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME)."
+msgstr "ZONE:MNAME_IS_NOT_CNAME needs translation..."
 

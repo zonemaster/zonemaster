@@ -67,7 +67,6 @@ sub metadata {
         ],
         delegation03 => [
             qw(
-              CALCULATION_INCOMPLETE
               REFERRAL_SIZE_LARGE
               REFERRAL_SIZE_OK
               )
@@ -118,7 +117,6 @@ sub translation {
         "ARE_AUTHORITATIVE"      => "All the nameservers are authoritative.",
         "NS_RR_NO_CNAME"         => "No nameserver point to CNAME alias.",
         "SOA_EXISTS"             => "All the nameservers have SOA record.",
-        "CALCULATION_INCOMPLETE" => "Cannot check if IP addresses of nameserver {ns} are needed in referal response.",
         "ENOUGH_NS_TOTAL"        => "Parent and child list enough nameservers ({ns}). Lower limit set to {minimum}.",
         "NOT_ENOUGH_NS_TOTAL"    => "Parent and child do not list enough nameservers ({ns}). Lower limit set to {minimum}.",
     };
@@ -256,19 +254,9 @@ sub delegation03 {
 
     foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
-        eval {
-            if ($zone->is_in_zone( $local_ns->name ) ) {
-                push @needs_glue, $local_ns;
-            }
-            1;
-        } or do {
-            push @results,
-              info(
-                CALCULATION_INCOMPLETE => {
-                    ns => $local_ns->name,
-                }
-              );
-        };
+        if ($zone->is_in_zone( $local_ns->name ) ) {
+            push @needs_glue, $local_ns;
+        }
         $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short }++;
     }
     @needs_glue = sort { length( $a->name->string ) <=> length( $b->name->string ) } @needs_glue;

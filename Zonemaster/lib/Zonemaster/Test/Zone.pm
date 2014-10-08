@@ -108,10 +108,10 @@ sub metadata {
         ],
         zone07 => [
             qw(
-              MASTER_IS_CNAME
-              MASTER_IS_NOT_CNAME
+              MNAME_IS_CNAME
+              MNAME_IS_NOT_CNAME
               NO_RESPONSE_SOA_QUERY
-              MASTER_HAS_NO_ADDRESS
+              MNAME_HAS_NO_ADDRESS
               )
         ],
         zone08 => [
@@ -136,8 +136,8 @@ sub translation {
         "RETRY_MINIMUM_VALUE_LOWER" => "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry}).",
         "RETRY_MINIMUM_VALUE_OK" => "SOA 'retry' value ({retry}) is more than the minimum recommended value ({required_retry}).",
         "MNAME_NO_RESPONSE"  => "SOA 'mname' nameserver {ns}/{address} does not respond.",
-        "MASTER_IS_CNAME" => "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME).",
-        "MASTER_IS_NOT_CNAME" => "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME).",
+        "MNAME_IS_CNAME" => "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME).",
+        "MNAME_IS_NOT_CNAME" => "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME).",
         "NO_MX_RECORD"       => "No target (MX, A or AAAA record) to deliver e-mail for the domain name.",
         "MX_RECORD_EXISTS"   => "Target ({info}) found to deliver e-mail for the domain name.",
         "REFRESH_MINIMUM_VALUE_LOWER" => "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh}).",
@@ -462,7 +462,7 @@ sub zone07 {
             if ( $p_mname->has_rrs_of_type_for_name( q{CNAME}, $soa_mname ) ) {
                 push @results,
                   info(
-                    MASTER_IS_CNAME => {
+                    MNAME_IS_CNAME => {
                         mname => $soa_mname,
                     }
                   );
@@ -470,7 +470,7 @@ sub zone07 {
             else {
                 push @results,
                   info(
-                    MASTER_IS_NOT_CNAME => {
+                    MNAME_IS_NOT_CNAME => {
                         mname => $soa_mname,
                     }
                   );
