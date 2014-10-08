@@ -35,7 +35,7 @@ msgstr "Le serveur de noms {ns} a une addresse IP ({address}) qui ne correspond 
 
 #: ADDRESS:NAMESERVER_IP_WITHOUT_REVERSE
 msgid  "Nameserver {ns} has an IP address ({address}) without PTR configured."
-msgstr "Le serveur de noms {ns} a une addresse IP ({address}) sans enregistrement PTR existant."
+msgstr "Le serveur de noms {ns} a une addresse IP ({address}) sans enregistrement PTR correspondant."
 
 #: ADDRESS:NO_IP_PRIVATE_NETWORK
 msgid  "All Nameserver addresses are in the routable public addressing space."

@@ -1,4 +1,4 @@
-package Zonemaster::Test::Address v0.0.2;
+package Zonemaster::Test::Address v0.0.3;
 
 use 5.14.2;
 use strict;
@@ -7,7 +7,7 @@ use warnings;
 use Zonemaster;
 use Zonemaster::Util;
 use Zonemaster::TestMethods;
-use List::MoreUtils qw[none];
+use List::MoreUtils qw[none any];
 
 use Carp;
 
@@ -40,24 +40,24 @@ Readonly::Array our @IPV4_SPECIAL_ADDRESSES => (
 );
 
 Readonly::Array our @IPV6_SPECIAL_ADDRESSES => (
-    { ip => Net::IP->new( q{::1/128} ),       name => q{Loopback Address},                     reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{::/128} ),        name => q{Unspecified Address},                  reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{::ffff:0:0/96} ), name => q{IPv4-mapped Address},                  reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{64:ff9b::/96} ),  name => q{IPv4-IPv6 Translation},                reference => q{RFC 6052} },
-    { ip => Net::IP->new( q{100::/64} ),      name => q{Discard-Only Address Block},           reference => q{RFC 6666} },
-    { ip => Net::IP->new( q{2001::/23} ),     name => q{IETF Protocol Assignments},            reference => q{RFC 2928} },
-    { ip => Net::IP->new( q{2001::/32} ),     name => q{TEREDO},                               reference => q{RFC 4380} },
-    { ip => Net::IP->new( q{2001:2::/48} ),   name => q{Benchmarking},                         reference => q{RFC 5180} },
-    { ip => Net::IP->new( q{2001:db8::/32} ), name => q{Documentation},                        reference => q{RFC 3849} },
-    { ip => Net::IP->new( q{2001:10::/28} ),  name => q{Deprecated (ORCHID)},                  reference => q{RFC 4843} },
-    { ip => Net::IP->new( q{2002::/16} ),     name => q{6to4},                                 reference => q{RFC 3056} },
-    { ip => Net::IP->new( q{fc00::/7} ),      name => q{Unique-Local},                         reference => q{RFC 4193} },
-    { ip => Net::IP->new( q{fe80::/10} ),     name => q{Linked-Scoped Unicast},                reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{::/96} ),         name => q{Deprecated (IPv4-compatible Address)}, reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{5f00::/8} ),      name => q{unallocated (ex 6bone)},               reference => q{RFC 3701} },
-    { ip => Net::IP->new( q{3ffe::/16} ),     name => q{unallocated (ex 6bone)},               reference => q{RFC 3701} },
-#    { ip => Net::IP->new( q{::/0} ),          name => q{Default route},                        reference => q{RFC 5156} },
-    { ip => Net::IP->new( q{ff00::/8} ),      name => q{IPv6 multicast addresses},             reference => q{RFC 4291} },
+    { ip => Net::IP->new( q{::1/128} ),       name => q{Loopback Address},           reference => q{RFC 4291} },
+    { ip => Net::IP->new( q{::/128} ),        name => q{Unspecified Address},        reference => q{RFC 4291} },
+    { ip => Net::IP->new( q{::ffff:0:0/96} ), name => q{IPv4-mapped Address},        reference => q{RFC 4291} },
+    { ip => Net::IP->new( q{64:ff9b::/96} ),  name => q{IPv4-IPv6 Translation},      reference => q{RFC 6052} },
+    { ip => Net::IP->new( q{100::/64} ),      name => q{Discard-Only Address Block}, reference => q{RFC 6666} },
+    { ip => Net::IP->new( q{2001::/23} ),     name => q{IETF Protocol Assignments},  reference => q{RFC 2928} },
+    { ip => Net::IP->new( q{2001::/32} ),     name => q{TEREDO},                     reference => q{RFC 4380} },
+    { ip => Net::IP->new( q{2001:2::/48} ),   name => q{Benchmarking},               reference => q{RFC 5180} },
+    { ip => Net::IP->new( q{2001:db8::/32} ), name => q{Documentation},              reference => q{RFC 3849} },
+    { ip => Net::IP->new( q{2001:10::/28} ),  name => q{Deprecated (ORCHID)},        reference => q{RFC 4843} },
+    { ip => Net::IP->new( q{2002::/16} ),     name => q{6to4},                       reference => q{RFC 3056} },
+    { ip => Net::IP->new( q{fc00::/7} ),      name => q{Unique-Local},               reference => q{RFC 4193} },
+    { ip => Net::IP->new( q{fe80::/10} ),     name => q{Linked-Scoped Unicast},      reference => q{RFC 4291} },
+    { ip => Net::IP->new( q{::/96} ),     name => q{Deprecated (IPv4-compatible Address)}, reference => q{RFC 4291} },
+    { ip => Net::IP->new( q{5f00::/8} ),  name => q{unallocated (ex 6bone)},               reference => q{RFC 3701} },
+    { ip => Net::IP->new( q{3ffe::/16} ), name => q{unallocated (ex 6bone)},               reference => q{RFC 3701} },
+#   { ip => Net::IP->new( q{::/0} ),      name => q{Default route},                        reference => q{RFC 5156} },
+    { ip => Net::IP->new( q{ff00::/8} ),  name => q{IPv6 multicast addresses},             reference => q{RFC 4291} },
 );
 
 ###
@@ -70,8 +70,8 @@ sub all {
 
     push @results, $class->address01( $zone );
     push @results, $class->address02( $zone );
-    # Perform ADDRESS03 if ADDRESS01 passed
-    if ( none { $_->tag eq q{NAMESERVER_IP_WITHOUT_REVERSE} } @results ) {
+    # Perform ADDRESS03 if ADDRESS02 passed
+    if ( any { $_->tag eq q{NAMESERVERS_IP_WITH_REVERSE} } @results ) {
         push @results, $class->address03( $zone );
     }
     push @results, $class->address04( $zone );
@@ -119,15 +119,18 @@ sub metadata {
 
 sub translation {
     return {
-        "NAMESERVER_IP_WITHOUT_REVERSE"       => "Nameserver {ns} has an IP address ({address}) without PTR configured.",
-        "NAMESERVER_IP_PTR_MISMATCH"          => "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names}).",
-        "NAMESERVER_IPV6_ADDRESSES_NOT_BOGON" => "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix.",
-        "NAMESERVER_IPV6_ADDRESS_BOGON"       => "Nameserver {ns} IPv6 address {address} is part of a bogon prefix.",
-        "NAMESERVER_IP_PRIVATE_NETWORK"       => "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'.",
-        "NO_IP_PRIVATE_NETWORK"               => "All Nameserver addresses are in the routable public addressing space.",
-        "NAMESERVERS_IP_WITH_REVERSE"         => "Reverse DNS entry exist for all Nameserver IP addresses",
-        "NAMESERVER_IP_PTR_MATCH"             => "All reverse DNS entry matches name server name",
-        "NO_RESPONSE_PTR_QUERY"               => "No response from nameserver(s) on PTR query ({reverse}).",
+        'NAMESERVER_IP_WITHOUT_REVERSE' => 'Nameserver {ns} has an IP address ({address}) without PTR configured.',
+        'NAMESERVER_IP_PTR_MISMATCH' =>
+          'Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names}).',
+        'NAMESERVER_IPV6_ADDRESSES_NOT_BOGON' =>
+          'None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix.',
+        'NAMESERVER_IPV6_ADDRESS_BOGON' => 'Nameserver {ns} IPv6 address {address} is part of a bogon prefix.',
+        'NAMESERVER_IP_PRIVATE_NETWORK' =>
+'Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a \'{name}\'.',
+        'NO_IP_PRIVATE_NETWORK'       => 'All Nameserver addresses are in the routable public addressing space.',
+        'NAMESERVERS_IP_WITH_REVERSE' => 'Reverse DNS entry exist for all Nameserver IP addresses',
+        'NAMESERVER_IP_PTR_MATCH'     => 'All reverse DNS entry matches name server name',
+        'NO_RESPONSE_PTR_QUERY'       => 'No response from nameserver(s) on PTR query ({reverse}).',
     };
 }
 
@@ -160,7 +163,9 @@ sub address01 {
     my @results;
     my %ips;
 
-    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
+    foreach
+      my $local_ns ( @{ Zonemaster::TestMethods->method4( $zone ) }, @{ Zonemaster::TestMethods->method5( $zone ) } )
+    {
 
         next if $ips{ $local_ns->address->short };
 
@@ -181,13 +186,11 @@ sub address01 {
 
         $ips{ $local_ns->address->short }++;
 
-    } ## end foreach my $local_ns ( @{ $zone...})
+    } ## end foreach my $local_ns ( @{ Zonemaster::TestMethods...})
 
-    if (scalar keys %ips and not scalar @results) {
+    if ( scalar keys %ips and not scalar @results ) {
         push @results,
-          info(
-            NO_IP_PRIVATE_NETWORK => { }
-          );
+          info( NO_IP_PRIVATE_NETWORK => {} );
     }
 
     return @results;
@@ -199,7 +202,7 @@ sub address02 {
 
     my %ips;
 
-    foreach my $local_ns ( @{ Zonemaster::TestMethods->method5($zone) } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method5( $zone ) } ) {
 
         next if $ips{ $local_ns->address->short };
 
@@ -216,7 +219,7 @@ sub address02 {
                     }
                   );
             }
-        } ## end if ( $p )
+        }
         else {
             push @results,
               info(
@@ -224,17 +227,15 @@ sub address02 {
                     reverse => $reverse_ip_query,
                 }
               );
-        } ## end else [ if ( $p ) ]
+        }
 
         $ips{ $local_ns->address->short }++;
 
-    } ## end foreach my $local_ns ( @{ $zone...})
+    } ## end foreach my $local_ns ( @{ Zonemaster::TestMethods...})
 
-    if (scalar keys %ips and not scalar @results) {
+    if ( scalar keys %ips and not scalar @results ) {
         push @results,
-          info(
-            NAMESERVERS_IP_WITH_REVERSE => { }
-          );
+          info( NAMESERVERS_IP_WITH_REVERSE => {} );
     }
 
     return @results;
@@ -246,7 +247,7 @@ sub address03 {
 
     my %ips;
 
-    foreach my $local_ns ( @{ Zonemaster::TestMethods->method5($zone) } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method5( $zone ) } ) {
 
         next if $ips{ $local_ns->address->short };
 
@@ -257,7 +258,7 @@ sub address03 {
         if ( $p ) {
             my @ptr = $p->get_records_for_name( q{PTR}, $reverse_ip_query );
             if ( $p->rcode eq q{NOERROR} and scalar @ptr ) {
-                if ( none { name($_->ptrdname) eq $local_ns->name->string . q{.} } @ptr ) {
+                if ( none { name( $_->ptrdname ) eq $local_ns->name->string . q{.} } @ptr ) {
                     push @results,
                       info(
                         NAMESERVER_IP_PTR_MISMATCH => {
@@ -285,17 +286,15 @@ sub address03 {
                     reverse => $reverse_ip_query,
                 }
               );
-        } ## end else [ if ( $p ) ]
+        }
 
         $ips{ $local_ns->address->short }++;
 
-    } ## end foreach my $local_ns ( @{ $zone...})
+    } ## end foreach my $local_ns ( @{ Zonemaster::TestMethods...})
 
-    if (scalar keys %ips and not scalar @results) {
+    if ( scalar keys %ips and not scalar @results ) {
         push @results,
-          info(
-            NAMESERVER_IP_PTR_MATCH => { }
-          );
+          info( NAMESERVER_IP_PTR_MATCH => {} );
     }
 
     return @results;
@@ -307,7 +306,9 @@ sub address04 {
     my %ips;
     my $ipv6_nb = 0;
 
-    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
+    foreach
+      my $local_ns ( @{ Zonemaster::TestMethods->method4( $zone ) }, @{ Zonemaster::TestMethods->method5( $zone ) } )
+    {
 
         next if not $local_ns->address->version == $IP_VERSION_6;
         next if $ips{ $local_ns->address->short };
@@ -337,7 +338,7 @@ sub address04 {
 
         $ips{ $local_ns->address->short }++;
 
-    } ## end foreach my $local_ns ( @{ $zone...})
+    } ## end foreach my $local_ns ( @{ Zonemaster::TestMethods...})
 
     if ( $ipv6_nb > 0 and none { $_->tag eq q{NAMESERVER_IPV6_ADDRESS_BOGON} } @results ) {
         push @results,

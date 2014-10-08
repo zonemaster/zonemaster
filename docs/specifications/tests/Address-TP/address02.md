@@ -26,7 +26,7 @@ The domain name to be tested.
 
 3. For each IP address, a recursive PTR query must be performed.
 
-4. If any answer of the queries performed in step 2 contains an RCODE
+4. If any answer of the queries performed in step 3 contains an RCODE
    other than NOERROR or if the answer does not include a PTR record,
    this test case fails.
 
