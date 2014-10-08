@@ -212,7 +212,7 @@ sub delegation02 {
     my %nsnames_and_ip;
     my %ips;
 
-    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) } ) {
+    foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
 
