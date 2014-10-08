@@ -18,7 +18,7 @@ use List::MoreUtils qw[uniq none any];
 use Mail::RFC822::Address qw[valid];
 use Time::Local;
 
-Readonly our $FQDN_MAX_LENGTH  => 255;
+Readonly our $FQDN_MAX_LENGTH  => 254;  # Maximum length of ASCII version of a domain name, with trailing dot.
 Readonly our $LABEL_MAX_LENGTH => 63;
 
 ###
@@ -501,12 +501,13 @@ sub _check_name_syntax {
           );
     }
 
-    if ( length( "$name" ) >= $FQDN_MAX_LENGTH ) {    # not trailing 'dot' in $name, which explains the '=' sign.
+    my $fqdn = get_FQDN_string( $name );
+    if ( length( $fqdn ) > $FQDN_MAX_LENGTH ) {
         push @results,
           info(
             $info_label_prefix . q{_NAME_TOO_LONG} => {
-                name => "$name",
-                length => length( "$name" ),
+                name => $fqdn,
+                length => length( $fqdn ),
                 max    => $FQDN_MAX_LENGTH,
               }
           );
@@ -523,6 +524,16 @@ sub _check_name_syntax {
 
     return @results;
 } ## end sub _check_name_syntax
+
+sub get_FQDN_string {
+    my ( $item ) = @_;
+
+    my $name = _get_name($item);
+
+    $name .= q{.} if $name !~ m/\.\z/smx;
+
+    return $name;
+}
 
 1;
 

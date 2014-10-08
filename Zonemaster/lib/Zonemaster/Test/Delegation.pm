@@ -481,10 +481,7 @@ sub _max_length_name_for {
     my ( $top ) = @_;
     my @chars = q{A} .. q{Z};
 
-    my $name = q{};
-    $name = "$top";
-
-    $name .= q{.} if $name !~ m/\.\z/smx;
+    my $name = Zonemaster::Test::Syntax::get_FQDN_string( $top );
     $name = '' if $name eq '.'; # Special case for root zone
 
     while ( length( $name ) < $FQDN_MAX_LENGTH - 1 ) {
