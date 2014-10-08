@@ -485,6 +485,7 @@ sub _max_length_name_for {
     $name = "$top";
 
     $name .= q{.} if $name !~ m/\.\z/smx;
+    $name = '' if $name eq '.'; # Special case for root zone
 
     while ( length( $name ) < $FQDN_MAX_LENGTH - 1 ) {
         my $len = $FQDN_MAX_LENGTH - length( $name ) - 1;

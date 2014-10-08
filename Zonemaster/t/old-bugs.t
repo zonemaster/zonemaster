@@ -2,6 +2,9 @@ use Test::More;
 
 use Zonemaster;
 use Zonemaster::Nameserver;
+use Zonemaster::Test::Delegation;
+
+use List::MoreUtils qw[any none];
 
 my $datafile = q{t/old-bugs.data};
 if ( not $ENV{ZONEMASTER_RECORD} ) {
@@ -18,6 +21,11 @@ is( $res[0]->tag, q{NO_DOUBLE_DASH}, 'No complaint for XN--MGBERP4A5D4AR' );
 
 my $zft_zone = Zonemaster->zone('zft.rd.nic.fr');
 is(scalar(@{$zft_zone->ns}), 2, 'Two nameservers for zft.rd.nic.fr.');
+
+my $root = Zonemaster->zone('.');
+my @msg = Zonemaster->test_method('Delegation', 'delegation03', $root);
+ok(any  {$_->tag eq 'REFERRAL_SIZE_OK'} @msg);
+ok(none {$_->tag eq 'MODULE_ERROR'} @msg);
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
