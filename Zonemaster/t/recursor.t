@@ -33,6 +33,9 @@ is_parent( 'sno.pp.se',                                                         
 is_parent( '2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4.9.5.0.7.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa', '0.7.4.0.1.0.0.2.ip6.arpa' );
 is_parent( '.',                                                                        '.' );
 is_parent( 'foo.bar.baz.example.org',                                                  'example.org' );
+is_parent( 'xx--doesnotexist.se',                                                      'se');
+is_parent( 'xx--doesnotexist.com',                                                     'com');
+is_parent( 'pewc.eu',                                                                  'eu');
 
 sub is_parent {
     my ( $name, $pname ) = @_;

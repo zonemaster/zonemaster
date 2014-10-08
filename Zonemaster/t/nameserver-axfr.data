@@ -1,4 +1,5 @@
-cyberpomo.com	RR	cyberpomo.com.	86400	IN	SOA	kennedy.faerywicca.se. hostmaster.cyberpomo.com. 2014072030 28800 7200 604800 86400
+iis.se	EXCEPTION	AXFR transfer error: REFUSED at /Users/called/Clients/IIS/zonemaster/Zonemaster/blib/lib/Zonemaster/Nameserver.pm line 446, <DATA> line 1.
+cyberpomo.com	RR	cyberpomo.com.	86400	IN	SOA	kennedy.faerywicca.se. hostmaster.cyberpomo.com. 2014072031 28800 7200 604800 86400
 cyberpomo.com	RR	cyberpomo.com.	86400	IN	NSEC	dev.cyberpomo.com. NS SOA MX RRSIG NSEC DNSKEY 
 cyberpomo.com	RR	cyberpomo.com.	86400	IN	RRSIG	NSEC 5 2 86400 20141022030516 20140922024544 26205 cyberpomo.com. pGxuZJyzzG8NPryDo7z4PVOte1zudU9LLC3bv9WfDVNbyga/R1ySo80hVSZqSN6CMFm7qK7ovRWAmri1EVwVk5vb3zfm0+IB2p+AB4DTzxz0CwbvnabfLaaglyNl1CUPG0XrEVJp5UuiIDmNP8jZcFC1PQ6tDfbAMPn5MR0IXq4=
 cyberpomo.com	RR	cyberpomo.com.	86400	IN	NS	ns.cyberpomo.com.
@@ -10,8 +11,8 @@ cyberpomo.com	RR	cyberpomo.com.	86400	IN	DNSKEY	256 3 5 AwEAAdvI6Pq+Z8STqOHPxYkg
 cyberpomo.com	RR	cyberpomo.com.	86400	IN	DNSKEY	257 3 5 AwEAAcmkKRx6/l0oIFyGSBO/4lQgO3i8dDjGD1a6PC/RwCHgQrrSDbIL2S5D4WCKUWsQ9EVqQ+p3QHEYxL0q7NpCtFjFxP3X+mmyz1wfxBtcsoNwX5uYYKK3GqIYoO2EZQ48oM9TRLfw7vjNMNRNuU58yhyNfV2/cmpw3rgvFinBG1nfG7KWCoH1aP6L/gmRKDF2A+ECTunjvU00JvtG6qK2T2AjCSdqEYIwF8zCsNak4fRcahACIYyiHH4frkNu9M4lJHIt5ltshD9P2NpHtwrSfk1OppmOwwphjp4jGS8FDo7BOn1LWnIuPghs49U3TU70r7ADqSII4rX6WPTIbEsXBG0= ;{id = 35326 (ksk), size = 2048b}
 cyberpomo.com	RR	cyberpomo.com.	86400	IN	RRSIG	DNSKEY 5 2 86400 20141020204445 20140920201552 26205 cyberpomo.com. Rb2FIb7sar5U43W89eAwXdSrW0H94t5PUyOysTg9IcgFFqw6pwo50v6dRTzh6zU6e3Xzr4kcw9tdQj4XTUp+cho5Y9I1TkJfQiAy87XIOhWFkRYqk2gvCIIagJHeu1yj4N+X0KZM1XFR1hmVAZq6PI9JAHodjmeOTUEJaFP1hl0=
 cyberpomo.com	RR	cyberpomo.com.	86400	IN	RRSIG	DNSKEY 5 2 86400 20141020204445 20140920201552 35326 cyberpomo.com. thrLn+67qbG3CZGAVkNWsA269ywZ5fd8y3pOM4Sy+4Tn9/GG2ZaSYid1PE9hEhgQ7mTGb6K5pxY0Fum+0Oo1E9HI0fRUckJvKAbaG03OF63s3VT+4Ufsch/bV5y0uTsHDt7Da/7o98HV4iv5OmxmsEXpbNqAfuxNnrGIrSpObHMBKcduJ8WOsOKxsFu3EvwT34uk22+Md4m8ePF8vbhTJKYNCYzp28Feg2v4JIw6Fyij65PSCwmtHMBAXl03kbCB6FunDmsqOraciZCqAVhKHQNBP/tc6hEq+SjnBw1wbZrJvVn9raercaVU3Lh5jdkC+QdstoGrpCkBlsph8GGrIg==
-cyberpomo.com	RR	cyberpomo.com.	86400	IN	RRSIG	SOA 5 2 86400 20141025232347 20140925222347 26205 cyberpomo.com. uWKvQJov9HeRwktif9U3qKvklcfAEMEGKuTL/22I/XiP4HzXskqVMxfyGi5JzY90HW7tYnLzksWiiv3ouVrPfyW7nknjNQsxOflgu+rsqR4LOnGrCjiyg8dvaBrnoyS1hPB/hbg58vhdFcr0i7bUsNOZWee9M65q7TFrAFq1VDg=
-cyberpomo.com	RR	cyberpomo.com.	86400	IN	RRSIG	MX 5 2 86400 20141013115443 20140913113119 26205 cyberpomo.com. KuJetKvTp1heqjYnzzwDX4v7z/CrmJpgIXUZVuESyeEIefKR2j9StBkHWtN/H9Y96DlAqTq5W8z2uSlgI4xY296o1hkxI/9GTh/zx80qQaLOGveN8uFtLW9DV6VHt6mmpplbQEooJkfDN5ZZ++aS/URQ5OhNE0+6gBEq9Gr9LEM=
+cyberpomo.com	RR	cyberpomo.com.	86400	IN	RRSIG	SOA 5 2 86400 20141104235443 20141005225443 26205 cyberpomo.com. K8yg72j0wyB73+KYkpoP9O7z3ffwnm7MICFZs1MAaJ7vZOPPqqnLNDsxxXwi3fO/9Beeon7ZMZSoeM3bcuSLEmgiBvp8rTBvdXUIABDgt7BoJh6LzY86U2mUSWFC3P/NEKHGGWKOg6/s0m1AYcPge9eThvbNFb246w04R4lf4do=
+cyberpomo.com	RR	cyberpomo.com.	86400	IN	RRSIG	MX 5 2 86400 20141104233042 20141005225443 26205 cyberpomo.com. pDN6+q8U/eV567NK0rC4vHBzhAxy4FBFp9aW7W/e9GrJm/kShVj/bOmG4GCrBjQxM9SANkGc/yC7esTggszGUdv1936XFkFFOnCbmFFKAdlI+ShMmdZPdsF6X5MxT6NhQjR0ETzW4HNWBE7ImKVJBd5cdmaa8fzYgIrFWiNspoc=
 cyberpomo.com	RR	cyberpomo.com.	86400	IN	RRSIG	NS 5 2 86400 20141022030516 20140922024544 26205 cyberpomo.com. dpFxguT6MQP9NPu1urmW62rWSa2sUn4M+1nYDNbIsk4/tRrNaGlAJcOaTuDxR8TOS8g0wQxwPeq3kaQDXHM+SKnlTg1PfgcWvu7/54UQUrepBIaNnCbC3M9yg3FOxN43/fAKccm4Gu/PbrwVvubjDyWTzW+923nHHMW+Uy3z0jE=
 cyberpomo.com	RR	dev.cyberpomo.com.	86400	IN	A	127.0.0.1
 cyberpomo.com	RR	dev.cyberpomo.com.	86400	IN	NSEC	dns.cyberpomo.com. A RRSIG NSEC 
@@ -85,5 +86,4 @@ cyberpomo.com	RR	www.cyberpomo.com.	86400	IN	NSEC	cyberpomo.com. CNAME RRSIG NSE
 cyberpomo.com	RR	www.cyberpomo.com.	86400	IN	RRSIG	CNAME 5 3 86400 20141025224215 20140925222347 26205 cyberpomo.com. bX/HEFqBhP1eLoR9E0Vjf5vDzGlCCy0WFS233Fqs2NN3MeM7DtDIazbJ0RpIDQ0dfiP/7/+731Sg7Tgtm1eyBwKA4OtTFwg2TEAlbuxJb7e7/uMe69UJi5WDOdj/hiHpS1KvS+xB+0Yy/xvJDBZ42SQvL6w7rggmxdykgcCtAOw=
 cyberpomo.com	RR	www.cyberpomo.com.	86400	IN	RRSIG	NSEC 5 3 86400 20141020195450 20140920190646 26205 cyberpomo.com. neYiy2pR2IMg6uwy/ZPv9Yc1hDv+4w7MxBWt0jBoKD60dz7yX0nyaa8JV0UxVBOY5jO603GLP6rFRJSD0Ex8hWWvEQu5CKD16OOFsSTJQdONwoVpvSlQVtWrAZDGaemKMSE/a2VfatW7xhsIZ6ANlwek0tVFRReDQqjaJ0SsZZA=
 cyberpomo.com	RR	www.cyberpomo.com.	86400	IN	CNAME	spencer.faerywicca.se.
-cyberpomo.com	RR	cyberpomo.com.	86400	IN	SOA	kennedy.faerywicca.se. hostmaster.cyberpomo.com. 2014072030 28800 7200 604800 86400
-iis.se	EXCEPTION	AXFR transfer error: REFUSED at /Users/called/Clients/IIS/zonemaster/Zonemaster/lib/Zonemaster/Nameserver.pm line 436, <DATA> line 1.
+cyberpomo.com	RR	cyberpomo.com.	86400	IN	SOA	kennedy.faerywicca.se. hostmaster.cyberpomo.com. 2014072031 28800 7200 604800 86400

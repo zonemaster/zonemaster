@@ -29,8 +29,6 @@ ok( $res{EXPIRE_MINIMUM_VALUE_OK},          q{SOA 'expire' value is higher than 
 ok( $res{MX_RECORD_IS_NOT_CNAME},           q{MX record for the domain is not pointing to a CNAME} );
 
 $zone = Zonemaster->zone( q{zone01.zut-root.rd.nic.fr} );
-%res = map { $_->tag => 1 } Zonemaster->test_method( q{zone}, q{zone07}, $zone );
-ok( $res{MNAME_HAS_NO_ADDRESS},           q{No IP address found for SOA 'mname' nameserver} );
 %res = map { $_->tag => 1 } Zonemaster->test_method( q{zone}, q{zone01}, $zone );
 ok( $res{MNAME_RECORD_DOES_NOT_EXIST},    q{SOA 'mname' field does not exist} );
 
@@ -56,6 +54,9 @@ ok( $res{MNAME_IS_AUTHORITATIVE}, q{SOA 'mname' nameserver is authoritative zone
 
 TODO: {
     local $TODO = "Need to find domain name with that error";
+
+    %res = map { $_->tag => 1 } Zonemaster->test_method( q{zone}, q{zone07}, $zone );
+    ok( $res{MNAME_HAS_NO_ADDRESS},           q{No IP address found for SOA 'mname' nameserver} );
 
     ok( $res{NO_RESPONSE_SOA_QUERY}, q{No response from nameserver(s) on SOA queries} );
 
