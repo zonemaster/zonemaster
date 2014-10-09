@@ -422,12 +422,12 @@ msgid  "AXFR not available on nameserver {ns}/{address}."
 msgstr "AXFR är inte tillgängligt på namnservern {ns}/{address}."
 
 #: NAMESERVER:EDNS0_BAD_ANSWER
-msgid  "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)"
-msgstr "Namnservern {ns}/{address} stöder inte EDNS0 (ingen OPT i svaret)"
+msgid  "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)."
+msgstr "Namnservern {ns}/{address} stöder inte EDNS0 (ingen OPT i svaret)."
 
 #: NAMESERVER:EDNS0_BAD_QUERY
-msgid  "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)"
-msgstr "Namnservern {ns}/{address} stöder inte EDNS0 (svar med FORMERR)"
+msgid  "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)."
+msgstr "Namnservern {ns}/{address} stöder inte EDNS0 (svar med FORMERR)."
 
 #: NAMESERVER:IS_A_RECURSOR
 msgid  "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}."

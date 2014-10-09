@@ -6,9 +6,9 @@
 ### Objective
 
 All name servers names listed for a delegation must be resolvable in DNS.
-If they are resolvable using DNS this is a sign of misconfiguration, and
-raises the risk of unreachability for the domain. It could also lower the
-performance for any resolver trying to resolve the name.
+If they are not resolvable using DNS this is a sign of misconfiguration,
+and raises the risk of unreachability for the domain. It could also lower
+the performance for any resolver trying to resolve the name.
 
 The objective of this test is to resolve the domain using all the listed
 name servers used in the delegation. More information about resolver

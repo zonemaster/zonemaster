@@ -536,11 +536,11 @@ msgid  "Nameserver {ns}/{address} replies on a SOA query with a different source
 msgstr "Traduction en cours"
 
 #: NAMESERVER:EDNS0_BAD_ANSWER
-msgid  "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)"
+msgid  "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)."
 msgstr "Traduction en cours"
 
 #: NAMESERVER:EDNS0_BAD_QUERY
-msgid  "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)"
+msgid  "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)."
 msgstr "Traduction en cours"
 
 #: NAMESERVER:EDNS0_SUPPORT
