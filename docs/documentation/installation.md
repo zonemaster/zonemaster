@@ -35,13 +35,12 @@ Another application is the web interface which is split in two parts. The user v
     liblist-moreutils-perl libio-socket-inet6-perl libmodule-find-perl \
     libmoose-perl libnet-ip-perl libfile-sharedir-perl libhash-merge-perl \
     libreadonly-perl libldns-dev libmodule-install-perl \
-	libmail-rfc822-address-perl
+	libmail-rfc822-address-perl libintl-xs-perl
 
 **Install CPAN dependencies**
 
-Unfortunately `Locale::TextDomain` and `Net::LDNS` have not been packaged for Ubuntu yet. So you need to install these dependencies from CPAN:
+Unfortunately `Net::LDNS` has not been packaged for Ubuntu yet. So you need to install this dependency from CPAN:
 
-	$ sudo perl -MCPAN -e 'install Locale::TextDomain'
     $ sudo perl -MCPAN -e 'install Net::LDNS'
 
 If all package dependencies are already installed from the previous section, this should compile and install after configuration of your CPAN module installer.
@@ -120,11 +119,10 @@ If all package dependencies are already installed from the previous section, thi
 	$ sudo pkg install p5-File-ShareDir p5-File-Slurp p5-Hash-Merge \
 	p5-IO-Socket-INET6 p5-JSON p5-List-MoreUtils p5-Moose p5-Net-IP \
 	p5-Readonly p5-Module-Find p5-Module-Install p5-Devel-CheckLib \
-	ldns p5-Mail-RFC822-Address-0.3
+	ldns p5-Mail-RFC822-Address-0.3 p5-Locale-libintl
 
 **Install CPAN dependencies**
 
-	$ sudo perl -MCPAN -e 'install Locale::TextDomain'
 	$ sudo perl -MCPAN -e 'install Net::LDNS'
 
 **Build source code**
