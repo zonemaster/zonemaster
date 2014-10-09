@@ -65,3 +65,4 @@
 |R74|Answer from name server came from an IP address other than expected (wrong source IP)|[Nameserver-TP](Nameserver-TP/level.md)|[NAMESERVER04](.//Nameserver-TP/nameserver04.md)|Same source address|
 |R76|Zone contains NSEC or NSEC3 records|[ DNSSEC-TP](DNSSEC-TP/level.md)|[DNSSEC10](.//DNSSEC-TP/dnssec10.md)|Zone contains NSEC or NSEC3 records|
 |R77|Perform input validation on the domain name|[  Basic-TP](Basic-TP/level.md)|[BASIC00](.//Basic-TP/basic00.md)|Domain name must be valid|
+|R78|All authoritative nameservers reply with same set|[Consistency-TP](Consistency-TP/level.md)|[CONSISTENCY04](.//Consistency-TP/consistency04.md)|Name server NS consistency|
