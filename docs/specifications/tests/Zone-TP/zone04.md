@@ -26,9 +26,10 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Retrieve the retry value from the SOA record of the domain being
-   tested.
-2. If the retry value is less than 3600 seconds, this test case fails.
+1. Retrieve the SOA record from a delegated name server for the domain.
+2. If the answer from step 1 is not authoritative, iterate step 1 until there is an authoritative answer.
+3. Retrieve the retry value from the SOA record.
+4. If the retry value is less than 3600 seconds, this test case fails.
 
 ### Outcome(s)
 

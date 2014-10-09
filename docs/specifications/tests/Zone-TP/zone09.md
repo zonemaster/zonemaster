@@ -24,13 +24,14 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Query the MX record for the domain name.
-2. If there are MX records present in the answer, this part of the test
+1. Query the MX record from a delegated name server for the domain.
+2. If the answer from step 1 is not authoritative, iterate step 1 until there is an authoritative answer.
+3. If there are MX records present in the answer, this part of the test
    case succeeds.
-3. If there are no MX records present in the answer from the MX query,
+4. If there are no MX records present in the answer from the MX query,
    query for the A and AAAA records for the domain.
-4. If there is any A och AAAA record in the answers from the queries in
-   step 3, this test case succeeds.
+5. If there is any A och AAAA record in the answers from the queries in
+   step 4, this test case succeeds.
 
 ### Outcome(s)
 

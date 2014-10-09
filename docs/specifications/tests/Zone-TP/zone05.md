@@ -28,11 +28,12 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Retrieve the expire value and the refresh value from the SOA record
-   of the domain being tested.
-2. If the expire value is less than 604800 seconds (7 days), this test
+1. Retrieve the SOA record from a delegated name server for the domain.
+2. If the answer from step 1 is not authoritative, iterate step 1 until there is an authoritative answer.
+3. Retrieve the expire value and the refresh value from the SOA record.
+4. If the expire value is less than 604800 seconds (7 days), this test
    case fails.
-3. If the expire value is lower than the refresh value, this test case
+5. If the expire value is lower than the refresh value, this test case
    fails.
 
 ### Outcome(s)

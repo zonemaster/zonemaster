@@ -21,13 +21,14 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Retrieve the SOA record from the zone being tested.
-2. If the SOA MNAME field does not exist in DNS, this text case fails.
-3. If the IP addresses for the SOA MNAME field does not answer DNS queries
+1. Retrieve the SOA record from a delegated name server for the domain.
+2. If the answer from step 1 is not authoritative, iterate step 1 until there is an authoritative answer.
+3. If the SOA MNAME field does not exist in DNS, this text case fails.
+4. If the IP addresses for the SOA MNAME field does not answer DNS queries
    this test case fails.
-4. If the SOA MNAME field is not authoritative for the zone tested,
+5. If the SOA MNAME field is not authoritative for the zone tested,
    this test case fails.
-5. If the SOA MNAME field is not part of the NS set for the zone, this
+6. If the SOA MNAME field is not part of the NS set for the zone, this
    test case may yield a notice message.
 
 ### Outcome(s)

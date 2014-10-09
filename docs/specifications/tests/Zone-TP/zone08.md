@@ -16,8 +16,9 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Query the MX record for the domain name.
-2. If the MX answer is a CNAME, this test case fails.
+1. Query the MX record from a delegated name server for the domain.
+2. If the answer from step 1 is not authoritative, iterate step 1 until there is an authoritative answer.
+3. If the MX answer is a CNAME, this test case fails.
 
 ### Outcome(s)
 
