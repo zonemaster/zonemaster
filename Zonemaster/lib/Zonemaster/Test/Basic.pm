@@ -278,6 +278,7 @@ sub basic02 {
             next;
         }
         elsif (Zonemaster->config->ipv4_ok and $ns->address->version == $IP_VERSION_4)  {
+            push @results,
               info(
                 IPV4_ENABLED => {
                     ns   => "$ns",
@@ -297,6 +298,7 @@ sub basic02 {
             next;
         }
         elsif (Zonemaster->config->ipv6_ok and $ns->address->version == $IP_VERSION_6) {
+            push @results,
               info(
                 IPV6_ENABLED => {
                     ns   => "$ns",
@@ -357,6 +359,7 @@ sub basic03 {
             next;
         }
         else {
+            push @results,
               info(
                 IPV4_ENABLED => {
                     ns   => "$ns",
@@ -376,6 +379,7 @@ sub basic03 {
             next;
         }
         else {
+            push @results,
               info(
                 IPV6_ENABLED => {
                     ns   => "$ns",
