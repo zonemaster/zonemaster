@@ -192,3 +192,91 @@ Wrapper for the underlying packet method, that replaces udnefined values with th
 Support method for L<JSON> to be able to serialize these objects.
 
 =back
+
+=head1 METHODS PASSED THROUGH
+
+These methods are passed through transparently to the underlying L<Net::LDNS::Packet> object.
+
+=over
+
+=item *
+
+data
+
+=item *
+
+rcode
+
+=item *
+
+aa
+
+=item *
+
+question
+
+=item *
+
+answer
+
+=item *
+
+authority
+
+=item *
+
+additional
+
+=item *
+
+print
+
+=item *
+
+string
+
+=item *
+
+answersize
+
+=item *
+
+unique_push
+
+=item *
+
+timestamp
+
+=item *
+
+type
+
+=item *
+
+edns_size
+
+=item *
+
+edns_rcode
+
+=item *
+
+has_edns
+
+=item *
+
+id
+
+=item *
+
+querytime
+
+=item *
+
+do
+
+=item *
+
+opcode
+
+=back
