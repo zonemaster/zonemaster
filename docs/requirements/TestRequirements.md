@@ -95,6 +95,7 @@ is comprehensive, it is not a list of tests as such. It is a list of messages em
 |R74|Answer from name server came from an IP address other than expected (wrong source IP)|&nbsp;|[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver04.md)|
 |R76|Zone contains NSEC or NSEC3 records                                   |&nbsp;    |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec10.md)|
 |R77|Perform input validation on the domain name                           |&nbsp;|[BASIC](../specifications/tests/Basic-TP/basic00.md)|
+|R78|All authoritative nameservers reply with same set                     |&nbsp;|[CONSISTENCY](../specifications/tests/Consistency-TP/consistency04.md)|
 
 Future tests
 ------------

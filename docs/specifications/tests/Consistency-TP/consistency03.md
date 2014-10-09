@@ -28,18 +28,16 @@ The domain name to be tested.
 1. Obtain the list of name servers from [Method4](../Methods.md) and
    [Method5](../Methods.md).
 2. Retrieve the SOA RR from all the name servers. 
-3. If the SOA values "REFRESH", "RETRY", "EXPIRE" and "MINIMUM" are not the
-   same from all the answers received from step 2, then the test case fails.
+3. If the SOA RNAME field is not the same from all the answers
+   received from step 2, then the test case fails.
 
 ### Outcome(s)
 
-All authoritative name servers must have consistent "REFRESH", "RETRY",
-"EXPIRE" and "MINIMUM"  SOA values. If the test does not find any
-inconsistency, then the test succeeds
+All authoritative name servers must have consistent RNAME field.
+If the test does not find any inconsistency, then the test succeeds.
 
 ### Special procedural requirements	
 
 None
 
 ### Intercase dependencies
-
