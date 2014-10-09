@@ -43,6 +43,7 @@ if ( not $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster->config->no_network( 1 );
 }
 
+my $ns_ok = Zonemaster::DNSName->new( q{ns1.nic.fr} );
 my $dn_ok = Zonemaster::DNSName->new( q{www.nic.se} );
 my $dn_ko = Zonemaster::DNSName->new( q{www.nic&nac.se} );
 name_gives( q{syntax01}, $dn_ok, q{ONLY_ALLOWED_CHARS} );
@@ -70,17 +71,6 @@ name_gives_not( q{syntax03}, $dn_idn_ok, q{DISCOURAGED_DOUBLE_DASH} );
 name_gives( q{syntax03}, $dn_ok,         q{NO_DOUBLE_DASH} );
 name_gives( q{syntax03}, $dn_idn_ok,     q{NO_DOUBLE_DASH} );
 
-my $ns_ok       = Zonemaster::DNSName->new( q{ns1.nic.fr} );
-my $ns_too_long = Zonemaster::DNSName->new(
-q{ns123456789012345678901234567890123456789012345678901234567890.dom123456789012345678901234567890123456789012345678901234567890.dom123456789012345678901234567890123456789012345678901234567890.tld123456789012345678901234567890123456789012345678901234567890}
-);
-my $ns_ok_long = Zonemaster::DNSName->new(
-q{ns23456789012345678901234567890123456789012345678901234567890.dom123456789012345678901234567890123456789012345678901234567890.dom123456789012345678901234567890123456789012345678901234567890.tld123456789012345678901234567890123456789012345678901234567890}
-);
-name_gives( q{syntax04}, $ns_too_long, q{NAMESERVER_NAME_TOO_LONG} );
-name_gives_not( q{syntax04}, $ns_ok, q{NAMESERVER_NAME_TOO_LONG} );
-name_gives_not( q{syntax04}, $ns_ok_long, q{NAMESERVER_NAME_TOO_LONG} );
-
 my $ns_double_dash = Zonemaster::DNSName->new( q{ns1.ns--nic.fr} );
 name_gives( q{syntax04}, $ns_double_dash, q{NAMESERVER_DISCOURAGED_DOUBLE_DASH} );
 name_gives_not( q{syntax04}, $ns_ok, q{NAMESERVER_DISCOURAGED_DOUBLE_DASH} );
@@ -88,11 +78,6 @@ name_gives_not( q{syntax04}, $ns_ok, q{NAMESERVER_DISCOURAGED_DOUBLE_DASH} );
 my $ns_num_tld = Zonemaster::DNSName->new( q{ns1.nic.47} );
 name_gives( q{syntax04}, $ns_num_tld, q{NAMESERVER_NUMERIC_TLD} );
 name_gives_not( q{syntax04}, $ns_ok, q{NAMESERVER_NUMERIC_TLD} );
-
-my $ns_label_too_long =
-  Zonemaster::DNSName->new( q{ns1234567890123456789012345678901234567890123456789012345678901234567890.nic.fr} );
-name_gives( q{syntax04}, $ns_label_too_long, q{NAMESERVER_LABEL_TOO_LONG} );
-name_gives_not( q{syntax04}, $ns_ok, q{NAMESERVER_LABEL_TOO_LONG} );
 
 my %res;
 my $zone;
@@ -104,13 +89,9 @@ zone_gives( q{syntax06}, $zone, q{RNAME_RFC822_VALID} );
 zone_gives_not( q{syntax06}, $zone, q{RNAME_RFC822_INVALID} );
 zone_gives_not( q{syntax07}, $zone, q{MNAME_DISCOURAGED_DOUBLE_DASH} );
 zone_gives_not( q{syntax07}, $zone, q{MNAME_NUMERIC_TLD} );
-zone_gives_not( q{syntax07}, $zone, q{MNAME_NAME_TOO_LONG} );
-zone_gives_not( q{syntax07}, $zone, q{MNAME_LABEL_TOO_LONG} );
 zone_gives_not( q{syntax07}, $zone, q{NO_RESPONSE_SOA_QUERY} );
 zone_gives_not( q{syntax08}, $zone, q{MX_DISCOURAGED_DOUBLE_DASH} );
 zone_gives_not( q{syntax08}, $zone, q{MX_NUMERIC_TLD} );
-zone_gives_not( q{syntax08}, $zone, q{MX_NAME_TOO_LONG} );
-zone_gives_not( q{syntax08}, $zone, q{MX_LABEL_TOO_LONG} );
 zone_gives_not( q{syntax08}, $zone, q{NO_RESPONSE_MX_QUERY} );
 zone_gives_not( q{syntax06}, $zone, q{NO_RESPONSE_SOA_QUERY} );
 
@@ -130,16 +111,5 @@ zone_gives_not( q{syntax06}, $zone, q{NO_RESPONSE_SOA_QUERY} );
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
 }
-
-TODO: {
-    local $TODO = "Need to find domain name with that error";
-
-    # syntax07
-    # MNAME_NAME_TOO_LONG
-    # MNAME_LABEL_TOO_LONG
-    # syntax08
-    # MX_NAME_TOO_LONG
-    # MX_LABEL_TOO_LONG
-}   
 
 done_testing;
