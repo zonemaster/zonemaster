@@ -19,7 +19,7 @@
 |R16|NS authoritative answer|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION04](.//Delegation-TP/delegation04.md)|Name server is authoritative|
 |R17|NS name has a valid domain/hostname syntax|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX04](.//Syntax-TP/syntax04.md)|The NS name must have a valid domain/hostname|
 |R18|     NS is not an alias|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION05](.//Delegation-TP/delegation05.md)|NS RR does not point to CNAME alias|
-|R19|     NS can be resolved|**missing**|**missing**|      **missing**|
+|R19|     NS can be resolved|[Nameserver-TP](Nameserver-TP/level.md)|[NAMESERVER06](.//Nameserver-TP/nameserver06.md)|NS can be resolved|
 |R20|     SOA record present|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION06](.//Delegation-TP/delegation06.md)| Existence of SOA|
 |R21|SOA authoritative answer|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION06](.//Delegation-TP/delegation06.md)| Existence of SOA|
 |R22|missused '@' characters in SOA contact name|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX05](.//Syntax-TP/syntax05.md)|Misuse of '@' character in the SOA RNAME field|

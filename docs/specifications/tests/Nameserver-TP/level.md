@@ -16,3 +16,4 @@ These documents use the terminology defined in the
 |R73|Test availability of zone transfer (AXFR) |[NAMESERVER03](nameserver03.md)|
 |R74|Same source address                       |[NAMESERVER04](nameserver04.md)|
 |R53|behaviour against AAAA query              |[NAMESERVER05](nameserver05.md)|
+|R19|NS can be resolved                        |[NAMESERVER06](nameserver06.md)|
