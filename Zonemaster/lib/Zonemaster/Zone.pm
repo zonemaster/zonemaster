@@ -209,22 +209,24 @@ sub is_in_zone {
     }
 
     if ( scalar( @{ $self->name->labels } ) != $self->name->common( $name ) ) {
-        return;    # Zone name cannot be a suffix of tested name
+        return 0;    # Zone name cannot be a suffix of tested name
     }
 
     my $p = $self->query_one( "$name", 'SOA' );
-    croak "Failed to get SOA" if not defined( $p );
+    if (not $p) {
+        return;
+    }
 
     if ( $p->is_redirect ) {
-        return;    # Authoritative servers redirect us, so name must be out-of-zone
+        return 0;    # Authoritative servers redirect us, so name must be out-of-zone
     }
 
     my ( $soa ) = $p->get_records( 'SOA' );
-    if ( $soa->name eq $self->name ) {
+    if ( Zonemaster::DNSName->new($soa->name) eq $self->name ) {
         return 1;
     }
     else {
-        return;
+        return 0;
     }
 } ## end sub is_in_zone
 
@@ -312,7 +314,9 @@ responses. The responses can be either L<Zonemaster::Packet> objects or C<undef>
 
 =item is_in_zone($name)
 
-Returns true if the given name is in the zone, false if not.
+Returns true if the given name is in the zone, false if not. If it could not be
+determined with a sufficient degree of certainty if the name is in the zone or
+not, C<undef> is returned.
 
 =back
 
