@@ -430,8 +430,8 @@ msgid  "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR).
 msgstr "Namnservern {ns}/{address} stöder inte EDNS0 (svar med FORMERR)."
 
 #: NAMESERVER:IS_A_RECURSOR
-msgid  "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}."
-msgstr "Namnservern {ns} svarade med RCODE NXDOMAIN på en SOA-fråga om {dname}."
+msgid  "Nameserver {ns}/{address} answered with a RCODE NXDOMAIN to SOA query on {dname}."
+msgstr "Namnservern {ns}/{address} svarade med RCODE NXDOMAIN på en SOA-fråga om {dname}."
 
 #: NAMESERVER:QUERY_DROPPED
 msgid  "Nameserver {ns}/{address} dropped AAAA query."

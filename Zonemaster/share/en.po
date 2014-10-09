@@ -554,8 +554,8 @@ msgid  "The following nameservers support EDNS0 : {names}."
 msgstr "The following nameservers support EDNS0 : {names}."
 
 #: NAMESERVER:IS_A_RECURSOR
-msgid  "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}."
-msgstr "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}."
+msgid  "Nameserver {ns}/{address} answered with a RCODE NXDOMAIN to SOA query on {dname}."
+msgstr "Nameserver {ns}/{address} answered with a RCODE NXDOMAIN to SOA query on {dname}."
 
 #: NAMESERVER:NO_RECURSOR
 msgid  "None of the following nameservers is a recursor : {names}."

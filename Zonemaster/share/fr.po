@@ -11,7 +11,7 @@ msgstr ""
 
 #: ADDRESS:NAMESERVERS_IP_WITH_REVERSE
 msgid  "Reverse DNS entry exist for all Nameserver IP addresses."
-msgstr "Les différentes adresses IP des serveurs de noms ont toutes un enregistrement PTR (reverse) associé dans le DNS."
+msgstr "Les différentes adresses IP des serveurs de noms ont toutes un enregistrement \"PTR\" (reverse) associé dans le DNS."
 
 #: ADDRESS:NAMESERVER_IPV6_ADDRESSES_NOT_BOGON
 msgid  "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix."
@@ -31,11 +31,11 @@ msgstr "Tous les enregistrements PTR correspondent aux serveurs de noms."
 
 #: ADDRESS:NAMESERVER_IP_PTR_MISMATCH
 msgid  "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names})."
-msgstr "Le serveur de noms {ns} a une addresse IP ({address}) qui ne correspond pas aux enregistrements PTR retournés ({names}) pour celle-ci."
+msgstr "Le serveur de noms {ns} a une addresse IP ({address}) qui ne correspond pas aux enregistrements \"PTR\" retournés ({names}) pour celle-ci."
 
 #: ADDRESS:NAMESERVER_IP_WITHOUT_REVERSE
 msgid  "Nameserver {ns} has an IP address ({address}) without PTR configured."
-msgstr "Le serveur de noms {ns} a une addresse IP ({address}) sans enregistrement PTR correspondant."
+msgstr "Le serveur de noms {ns} a une addresse IP ({address}) sans enregistrement \"PTR\" correspondant."
 
 #: ADDRESS:NO_IP_PRIVATE_NETWORK
 msgid  "All Nameserver addresses are in the routable public addressing space."
@@ -43,15 +43,15 @@ msgstr "Toutes les adresses IP des serveurs de noms sont dans l'espace d'adresse
 
 #: ADDRESS:NO_RESPONSE_PTR_QUERY
 msgid  "No response from nameserver(s) on PTR query ({reverse})."
-msgstr "Aucune réponse des serveurs de noms sur une requête de type PTR ({reverse})."
+msgstr "Aucune réponse des serveurs de noms sur une requête de type \"PTR\" ({reverse})."
 
 #: BASIC:A_QUERY_NO_RESPONSES
 msgid  "Nameservers did not respond to A query."
-msgstr "Aucune réponse des serveurs de noms sur une requête de type A."
+msgstr "Aucune réponse des serveurs de noms sur une requête de type \"A\"."
 
 #: BASIC:HAS_A_RECORDS
 msgid  "Nameserver {source} returned A record(s) for {name}."
-msgstr "Le serveur de noms {source} renvoit un enregistrement de type A en réponse à une requête pour {name}."
+msgstr "Le serveur de noms {source} renvoit un enregistrement de type \"A\" en réponse à une requête pour {name}."
 
 #: BASIC:HAS_GLUE
 msgid  "Nameserver for zone {parent} listed these nameservers as glue: {ns}."
@@ -381,8 +381,6 @@ msgstr "Traduction en cours"
 msgid "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration})."
 msgstr "Traduction en cours"
 
-#: DNSSEC:DURATION_REMAINING_OK
-#: DNSSEC:DURATION_REMAINING_SHORT
 #: DNSSEC:REMAINING_SHORT
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too short."
 msgstr "Traduction en cours"
@@ -517,47 +515,59 @@ msgstr "Traduction en cours"
 
 #: NAMESERVER:AAAA_WELL_PROCESSED
 msgid  "The following nameservers answer AAAA queries without problems : {names}."
-msgstr "Traduction en cours"
+msgstr "Les serveurs de noms suivants répondent correctement aux requêtes de type \"AAAA\" : {names}."
 
 #: NAMESERVER:ANSWER_BAD_RCODE
 msgid  "Nameserver {ns}/{address} answered AAAA query with an unexpected rcode ({rcode})."
-msgstr "Traduction en cours"
+msgstr "Le serveur de noms {ns}/{address} a répondu à une requête de type \"AAAA\" avec un code retour inattendu ({rcode})."
 
 #: NAMESERVER:AXFR_AVAILABLE
 msgid  "Nameserver {ns}/{address} allow zone transfer using AXFR."
-msgstr "Traduction en cours"
+msgstr "Il est possible de réaliser un transfert de zone depuis le serveur de noms {ns}/{address}."
 
 #: NAMESERVER:AXFR_FAILURE
 msgid  "AXFR not available on nameserver {ns}/{address}."
-msgstr "Traduction en cours"
+msgstr "Il n'est pas  possible de réaliser un transfert de zone depuis le serveur de noms {ns}/{address}."
 
 #: NAMESERVER:DIFFERENT_SOURCE_IP
 msgid  "Nameserver {ns}/{address} replies on a SOA query with a different source address ({source})."
-msgstr "Traduction en cours"
-
-#: NAMESERVER:EDNS0_BAD_ANSWER
-msgid  "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)."
-msgstr "Traduction en cours"
+msgstr "Le serveur de noms {ns}/{address} répond depuis une autre adresse que celle à laquelle la requête a été envoyée."
 
 #: NAMESERVER:EDNS0_BAD_QUERY
 msgid  "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)."
-msgstr "Traduction en cours"
+msgstr "Le serveur de noms {ns}/{address} ne supporte pas EDNS0 (retourne le code FORMERR)."
+
+#: NAMESERVER:EDNS0_BAD_ANSWER
+msgid  "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)."
+msgstr "Le serveur de noms {ns}/{address} ne supporte pas EDNS0 (pas d'enregistrement OPT dans la réponse)."
 
 #: NAMESERVER:EDNS0_SUPPORT
 msgid  "The following nameservers support EDNS0 : {names}."
-msgstr "Traduction en cours"
+msgstr "Les serveurs de noms suivants supportent EDNS0 : {names}."
 
 #: NAMESERVER:IS_A_RECURSOR
-msgid  "Nameserver {ns} answered with a RCODE NXDOMAIN to SOA query on {dname}."
-msgstr "Traduction en cours"
+msgid  "Nameserver {ns}/{address} answered with a RCODE NXDOMAIN to SOA query on {dname}."
+msgstr "Le serveur de noms {ns}/{address} retourne le code NXDOMAIN lors d'une requête de type \"SOA\" sur le nom de domaine {dname}. Il est récursif."
 
 #: NAMESERVER:NO_RECURSOR
 msgid  "None of the following nameservers is a recursor : {names}."
-msgstr "Traduction en cours"
+msgstr "Aucun des serveurs de noms suivants n'est récursif : {names}."
 
 #: NAMESERVER:QUERY_DROPPED
 msgid  "Nameserver {ns}/{address} dropped AAAA query."
-msgstr "Traduction en cours"
+msgstr "Le serveur de noms {ns}/{address} ne répond pas aux requêtes portant sur le type \"AAAA\"."
+
+#: NAMESERVER:CAN_NOT_BE_RESOLVED
+msgid  "The following nameservers failed to resolve to an IP address : {names}."
+msgstr "Aucune adresse IP n'a pu être trouvée pour les serveurs de noms suivants : {names}."
+
+#: NAMESERVER:CAN_BE_RESOLVED
+msgid  "All nameservers succeeded to resolve to an IP address."
+msgstr "Il a été possible de trouver au moins une adresse IP poir tous les serveurs de noms."
+
+#: NAMESERVER:NO_RESOLUTION
+msgid  "No nameservers succeeded to resolve to an IP address."
+msgstr "Il a été impossible de trouver une adresse IP pour les serveurs de noms."
 
 #: SYNTAX:DISCOURAGED_DOUBLE_DASH
 msgid  "Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
