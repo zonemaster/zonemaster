@@ -44,7 +44,13 @@ my @rrs = $p->get_records( 'a', 'answer' );
 is( scalar( @rrs ), 1, 'one answer A RR' );
 is( $rrs[0]->address, '91.226.36.46', 'expected address' );
 
-$p = $zone->query_one_persistent( 'www.iis.se', 'A' );
+$p = $zone->query_persistent( 'www.iis.se', 'A' );
+isa_ok( $p, 'Zonemaster::Packet' );
+@rrs = $p->get_records( 'a', 'answer' );
+is( scalar( @rrs ), 1, 'one answer A RR' );
+is( $rrs[0]->address, '91.226.36.46', 'expected address' );
+
+$p = $zone->query_auth( 'www.iis.se', 'A' );
 isa_ok( $p, 'Zonemaster::Packet' );
 @rrs = $p->get_records( 'a', 'answer' );
 is( scalar( @rrs ), 1, 'one answer A RR' );
