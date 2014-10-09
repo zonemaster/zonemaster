@@ -10,8 +10,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 
 #: ADDRESS:NAMESERVERS_IP_WITH_REVERSE
-msgid  "Reverse DNS entry exist for all Nameserver IP addresses"
-msgstr "Reverse DNS entry exist for all Nameserver IP addresses"
+msgid  "Reverse DNS entry exist for all Nameserver IP addresses."
+msgstr "Reverse DNS entry exist for all Nameserver IP addresses."
 
 #: ADDRESS:NAMESERVER_IPV6_ADDRESSES_NOT_BOGON
 msgid  "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix."
@@ -26,8 +26,8 @@ msgid  "Nameserver {ns} has an IP address ({address}) with prefix {prefix} refer
 msgstr "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'."
 
 #: ADDRESS:NAMESERVER_IP_PTR_MATCH
-msgid  "All reverse DNS entry matches name server name"
-msgstr "All reverse DNS entry matches name server name"
+msgid  "All reverse DNS entry matches name server name."
+msgstr "All reverse DNS entry matches name server name."
 
 #: ADDRESS:NAMESERVER_IP_PTR_MISMATCH
 msgid  "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names})."
@@ -49,17 +49,29 @@ msgstr "No response from nameserver(s) on PTR query ({reverse})."
 msgid  "Nameservers did not respond to A query."
 msgstr "Nameservers did not respond to A query."
 
+#: BASIC:DOMAIN_NAME_LABEL_TOO_LONG
+msgid  "Domain name ({name}) has a label ({label}) too long ({length}/{max})."
+msgstr "Domain name ({name}) has a label ({label}) too long ({length}/{max})."
+
+#: BASIC:DOMAIN_NAME_TOO_LONG
+msgid  "Domain name is too long ({length}/{max})."
+msgstr "Domain name is too long ({length}/{max})."
+
+#: BASIC:DOMAIN_NAME_ZERO_LENGTH_LABEL
+msgid  "Domain name ({name}) has a zero length label."
+msgstr "Domain name ({name}) has a zero length label."
+
 #: BASIC:HAS_A_RECORDS
-msgid  "Nameserver {source} returned A record(s) for {name}"
-msgstr "Nameserver {source} returned A record(s) for {name}"
+msgid  "Nameserver {source} returned A record(s) for {name}."
+msgstr "Nameserver {source} returned A record(s) for {name}."
 
 #: BASIC:HAS_GLUE
-msgid  "Nameserver for zone {parent} listed these nameservers as glue: {ns}"
-msgstr "Nameserver for zone {parent} listed these nameservers as glue: {ns}"
+msgid  "Nameserver for zone {parent} listed these nameservers as glue: {ns}."
+msgstr "Nameserver for zone {parent} listed these nameservers as glue: {ns}."
 
 #: BASIC:HAS_NAMESERVERS
-msgid  "Nameserver {source} listed these servers as glue: {ns}"
-msgstr "Nameserver {source} listed these servers as glue: {ns}"
+msgid  "Nameserver {source} listed these servers as glue: {ns}."
+msgstr "Nameserver {source} listed these servers as glue: {ns}."
 
 #: BASIC:HAS_NAMESERVER_NO_WWW_A_TEST
 msgid  "Functional nameserver found. \"A\" query for www.{name} test aborted."
@@ -82,8 +94,8 @@ msgid  "IPv6 is enabled, can send \"{type}\" query to {ns}."
 msgstr "IPv6 is enabled, can send \"{type}\" query to {ns}."
 
 #: BASIC:NO_A_RECORDS
-msgid  "Nameserver {source} did not return A record(s) for {name}"
-msgstr "Nameserver {source} did not return A record(s) for {name}"
+msgid  "Nameserver {source} did not return A record(s) for {name}."
+msgstr "Nameserver {source} did not return A record(s) for {name}."
 
 #: BASIC:NO_DOMAIN
 msgid  "Nameserver for zone {parent} responded with NXDOMAIN to query for glue."
@@ -98,8 +110,8 @@ msgid  "No NS records for tested zone from parent. NS tests aborted."
 msgstr "No NS records for tested zone from parent. NS tests aborted."
 
 #: BASIC:NO_PARENT
-msgid  "No parent domain could be found for the tested domain"
-msgstr "No parent domain could be found for the tested domain"
+msgid  "No parent domain could be found for the tested domain."
+msgstr "No parent domain could be found for the tested domain."
 
 #: BASIC:NO_PARENT_RESPONSE
 msgid  "No response from nameserver for zone {parent} when trying to fetch glue."
@@ -157,6 +169,10 @@ msgstr "Nameserver {ns}/{address} not accessible over UDP on port 53."
 msgid  "Nameserver {ns}/{address} uses an unassigned/unannounced address."
 msgstr "Nameserver {ns}/{address} uses an unassigned/unannounced address."
 
+#: CONSISTENCY:MULTIPLE_NS_SET
+msgid  "Saw {count} NS set."
+msgstr "Saw {count} NS set."
+
 #: CONSISTENCY:MULTIPLE_SOA_RNAMES
 msgid  "Saw {count} SOA rname."
 msgstr "Saw {count} SOA rname."
@@ -173,9 +189,21 @@ msgstr "Saw {count} SOA time parameter set."
 msgid  "Nameserver {ns}/{address} did not respond."
 msgstr "Nameserver {ns}/{address} did not respond."
 
+#: CONSISTENCY:NO_RESPONSE_NS_QUERY
+msgid  "No response from nameserver {ns}/{address} on NS queries."
+msgstr "No response from nameserver {ns}/{address} on NS queries."
+
 #: CONSISTENCY:NO_RESPONSE_SOA_QUERY
 msgid  "No response from nameserver {ns}/{address} on SOA queries."
 msgstr "No response from nameserver {ns}/{address} on SOA queries."
+
+#: CONSISTENCY:NS_SET
+msgid  "Saw NS set ({nsset}) on following nameserver set : {servers}."
+msgstr "Saw NS set ({nsset}) on following nameserver set : {servers}."
+
+#: CONSISTENCY:ONE_NS_SET
+msgid  "A unique NS set was seen ({nsset})."
+msgstr "A unique NS set was seen ({nsset})."
 
 #: CONSISTENCY:ONE_SOA_RNAME
 msgid  "A single SOA rname value was seen ({rname})"
@@ -208,10 +236,6 @@ msgstr "Saw SOA time parameter set (REFRESH={refresh},RETRY={retry},EXPIRE={expi
 #: DELEGATION:ARE_AUTHORITATIVE
 msgid  "All the nameservers are authoritative."
 msgstr "All the nameservers are authoritative."
-
-#: DELEGATION:CALCULATION_INCOMPLETE
-msgid  "Cannot check if IP addresses of nameserver {ns} are needed in referal response."
-msgstr "Cannot check if IP addresses of nameserver {ns} are needed in referal response."
 
 #: DELEGATION:DISTINCT_IP_ADDRESS
 msgid  "All the IP addresses used by the nameservers are unique"
@@ -537,17 +561,25 @@ msgstr "Nameserver {ns}/{address} allow zone transfer using AXFR."
 msgid  "AXFR not available on nameserver {ns}/{address}."
 msgstr "AXFR not available on nameserver {ns}/{address}."
 
+#: NAMESERVER:CAN_BE_RESOLVED
+msgid  "All nameservers succeeded to resolve to an IP address."
+msgstr "All nameservers succeeded to resolve to an IP address."
+
+#: NAMESERVER:CAN_NOT_BE_RESOLVED
+msgid  "The following nameservers failed to resolve to an IP address : {names}."
+msgstr "The following nameservers failed to resolve to an IP address : {names}."
+
 #: NAMESERVER:DIFFERENT_SOURCE_IP
 msgid  "Nameserver {ns}/{address} replies on a SOA query with a different source address ({source})."
 msgstr "Nameserver {ns}/{address} replies on a SOA query with a different source address ({source})."
 
 #: NAMESERVER:EDNS0_BAD_ANSWER
-msgid  "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)"
-msgstr "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)"
+msgid  "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)."
+msgstr "Nameserver {ns}/{address} does not support EDNS0 (OPT not set in reply)."
 
 #: NAMESERVER:EDNS0_BAD_QUERY
-msgid  "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)"
-msgstr "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)"
+msgid  "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)."
+msgstr "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR)."
 
 #: NAMESERVER:EDNS0_SUPPORT
 msgid  "The following nameservers support EDNS0 : {names}."
@@ -560,6 +592,10 @@ msgstr "Nameserver {ns}/{address} answered with a RCODE NXDOMAIN to SOA query on
 #: NAMESERVER:NO_RECURSOR
 msgid  "None of the following nameservers is a recursor : {names}."
 msgstr "None of the following nameservers is a recursor : {names}."
+
+#: NAMESERVER:NO_RESOLUTION
+msgid  "No nameservers succeeded to resolve to an IP address."
+msgstr "No nameservers succeeded to resolve to an IP address."
 
 #: NAMESERVER:QUERY_DROPPED
 msgid  "Nameserver {ns}/{address} dropped AAAA query."
@@ -581,14 +617,6 @@ msgstr "Domain name ({name}) has a label ({label}) starting with an hyphen ('-')
 msgid  "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 
-#: SYNTAX:MNAME_LABEL_TOO_LONG
-msgid  "SOA MNAME ({name}) has a label ({label}) too long ({length}/{max})."
-msgstr "SOA MNAME ({name}) has a label ({label}) too long ({length}/{max})."
-
-#: SYNTAX:MNAME_NAME_TOO_LONG
-msgid  "SOA MNAME ({name}) is too long ({length}/{max})."
-msgstr "SOA MNAME ({name}) is too long ({length}/{max})."
-
 #: SYNTAX:MNAME_NUMERIC_TLD
 msgid  "SOA MNAME ({name}) within a 'numeric only' TLD ({tld})."
 msgstr "SOA MNAME ({name}) within a 'numeric only' TLD ({tld})."
@@ -601,14 +629,6 @@ msgstr "SOA MNAME ({name}) syntax is valid."
 msgid  "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 
-#: SYNTAX:MX_LABEL_TOO_LONG
-msgid  "Domain name MX ({name}) has a label ({label}) too long ({length}/{max})."
-msgstr "Domain name MX ({name}) has a label ({label}) too long ({length}/{max})."
-
-#: SYNTAX:MX_NAME_TOO_LONG
-msgid  "Domain name MX is too long ({length}/{max})."
-msgstr "Domain name MX is too long ({length}/{max})."
-
 #: SYNTAX:MX_NUMERIC_TLD
 msgid  "Domain name MX ({name}) within a 'numeric only' TLD ({tld})."
 msgstr "Domain name MX ({name}) within a 'numeric only' TLD ({tld})."
@@ -620,14 +640,6 @@ msgstr "Domain name MX ({name}) syntax is valid."
 #: SYNTAX:NAMESERVER_DISCOURAGED_DOUBLE_DASH
 msgid  "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
-
-#: SYNTAX:NAMESERVER_LABEL_TOO_LONG
-msgid  "Nameserver ({name}) has a label ({label}) too long ({length}/{max})."
-msgstr "Nameserver ({name}) has a label ({label}) too long ({length}/{max})."
-
-#: SYNTAX:NAMESERVER_NAME_TOO_LONG
-msgid  "Nameserver ({name}) is too long ({length}/{max})."
-msgstr "Nameserver ({name}) is too long ({length}/{max})."
 
 #: SYNTAX:NAMESERVER_NUMERIC_TLD
 msgid  "Nameserver ({name}) within a 'numeric only' TLD ({tld})."
@@ -745,14 +757,6 @@ msgstr "SOA 'expire' value ({expire}) is less than the recommended one ({require
 msgid  "SOA 'expire' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than 'refresh' value."
 msgstr "SOA 'expire' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than 'refresh' value."
 
-#: ZONE:MASTER_IS_CNAME
-msgid  "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
-msgstr "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
-
-#: ZONE:MASTER_IS_NOT_CNAME
-msgid  "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME)."
-msgstr "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME)."
-
 #: ZONE:MNAME_HAS_NO_ADDRESS
 msgid  "No IP address found for SOA 'mname' nameserver ({mname})."
 msgstr "No IP address found for SOA 'mname' nameserver ({mname})."
@@ -760,6 +764,14 @@ msgstr "No IP address found for SOA 'mname' nameserver ({mname})."
 #: ZONE:MNAME_IS_AUTHORITATIVE
 msgid  "SOA 'mname' nameserver ({mname}) is authoritative for '{zone}' zone."
 msgstr "SOA 'mname' nameserver ({mname}) is authoritative for '{zone}' zone."
+
+#: ZONE:MNAME_IS_CNAME
+msgid  "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
+msgstr "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
+
+#: ZONE:MNAME_IS_NOT_CNAME
+msgid  "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME)."
+msgstr "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME)."
 
 #: ZONE:MNAME_NOT_AUTHORITATIVE
 msgid  "SOA 'mname' nameserver {ns}/{address} is not authoritative for '{zone}' zone."

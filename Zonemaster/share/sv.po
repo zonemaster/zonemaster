@@ -773,3 +773,19 @@ msgstr "ZONE:EXPIRE_MINIMUM_VALUE_OK needs translation..."
 msgid  "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME)."
 msgstr "ZONE:MNAME_IS_NOT_CNAME needs translation..."
 
+#: CONSISTENCY:MULTIPLE_NS_SET
+msgid  "Saw {count} NS set."
+msgstr "CONSISTENCY:MULTIPLE_NS_SET needs translation..."
+
+#: CONSISTENCY:NO_RESPONSE_NS_QUERY
+msgid  "No response from nameserver {ns}/{address} on NS queries."
+msgstr "CONSISTENCY:NO_RESPONSE_NS_QUERY needs translation..."
+
+#: CONSISTENCY:NS_SET
+msgid  "Saw NS set ({nsset}) on following nameserver set : {servers}."
+msgstr "CONSISTENCY:NS_SET needs translation..."
+
+#: CONSISTENCY:ONE_NS_SET
+msgid  "A unique NS set was seen ({nsset})."
+msgstr "CONSISTENCY:ONE_NS_SET needs translation..."
+

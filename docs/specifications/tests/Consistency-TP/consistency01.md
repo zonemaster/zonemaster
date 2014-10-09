@@ -31,8 +31,8 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the list of name servers from [Method2](../Methods.md) and
-   [Method3](../Methods.md)
+1. Obtain the list of name servers from [Method4](../Methods.md) and
+   [Method5](../Methods.md)
 2. Retrieve the SOA RR from all the name servers. 
 3. If the SOA serial number is not the same from all the answers received
    from step 2, then

@@ -15,15 +15,19 @@ if ( not $ENV{ZONEMASTER_RECORD} ) {
 
 my %res;
 
-#%res = map { $_->tag => 1 } Zonemaster->test_module( q{consistency}, q{bonk.tf} );
+%res = map { $_->tag => 1 } Zonemaster->test_module( q{consistency}, q{zft-sandoche.rd.nic.fr} );
+ok( $res{MULTIPLE_NS_SET}, q{Saw several NS set} );
+ok( $res{NS_SET},          q{NS set details} );
+
 %res = map { $_->tag => 1 } Zonemaster->test_module( q{consistency}, q{consistency01.zut-root.rd.nic.fr} );
 ok( $res{SOA_SERIAL_VARIATION}, q{Big variation between multiple SOA serials} );
 ok( $res{MULTIPLE_SOA_SERIALS}, q{Multiple SOA serials} );
-ok( $res{SOA_SERIAL},                      q{SOA serial details} );
+ok( $res{SOA_SERIAL},           q{SOA serial details} );
+ok( $res{ONE_NS_SET},           q{A unique NS set was seen} );
 
 %res = map { $_->tag => 1 } Zonemaster->test_module( q{consistency}, q{consistency02.zut-root.rd.nic.fr} );
-ok( $res{MULTIPLE_SOA_RNAMES},             q{Multiple SOA rname} );
-ok( $res{SOA_RNAME},                       q{SOA rname details} );
+ok( $res{MULTIPLE_SOA_RNAMES}, q{Multiple SOA rname} );
+ok( $res{SOA_RNAME},           q{SOA rname details} );
 
 %res = map { $_->tag => 1 } Zonemaster->test_module( q{consistency}, q{consistency03.zut-root.rd.nic.fr} );
 ok( $res{MULTIPLE_SOA_TIME_PARAMETER_SET}, q{Multiple SOA time parameters} );
@@ -33,6 +37,7 @@ ok( $res{SOA_TIME_PARAMETER_SET},          q{SOA time parameters details} );
 ok( $res{ONE_SOA_SERIAL},             q{One SOA serial} );
 ok( $res{ONE_SOA_RNAME},              q{One SOA rname} );
 ok( $res{ONE_SOA_TIME_PARAMETER_SET}, q{One SOA time parameters set} );
+
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );

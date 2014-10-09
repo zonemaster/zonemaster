@@ -153,53 +153,69 @@ msgstr "Traduction en cours"
 msgid  "Nameserver {ns}/{address} uses an unassigned/unannounced address."
 msgstr "Traduction en cours"
 
+#: CONSISTENCY:MULTIPLE_NS_SET
+msgid  "Saw {count} NS set."
+msgstr "Plusieurs ensembles de serveurs de noms ({count}) ont été trouvés dans les différents SOA."
+
 #: CONSISTENCY:MULTIPLE_SOA_RNAMES
 msgid  "Saw {count} SOA rname."
-msgstr "Traduction en cours"
+msgstr "Plusieurs adresses mail ({count}) ont été trouvées dans les différents SOA."
 
 #: CONSISTENCY:MULTIPLE_SOA_SERIALS
 msgid  "Saw {count} SOA serial numbers."
-msgstr "Traduction en cours"
+msgstr "Plusieurs numéros de série ({count}) ont été trouvés dans les différents SOA."
 
 #: CONSISTENCY:MULTIPLE_SOA_TIME_PARAMETER_SET
 msgid  "Saw {count} SOA time parameter set."
-msgstr "Traduction en cours"
+msgstr "Plusieurs ensembles de paramètres temporels ({count}) ont été trouvés dans les différents SOA."
 
 #: CONSISTENCY:NO_RESPONSE
 msgid  "Nameserver {ns}/{address} did not respond."
-msgstr "Traduction en cours"
+msgstr "Le serveur de noms {ns}/{address} n'a pas répondu."
+
+#: CONSISTENCY:NO_RESPONSE_NS_QUERY
+msgid  "No response from nameserver {ns}/{address} on NS queries."
+msgstr "Le serveur de noms {ns}/{address} n'a pas répondu aux requêtes de type \"NS\"."
 
 #: CONSISTENCY:NO_RESPONSE_SOA_QUERY
 msgid  "No response from nameserver {ns}/{address} on SOA queries."
-msgstr "Traduction en cours"
+msgstr "Le serveur de noms {ns}/{address} n'a pas répondu aux requêtes de type \"SOA\"."
+
+#: CONSISTENCY:NS_SET
+msgid  "Saw NS set ({nsset}) on following nameserver set : {servers}."
+msgstr "L'ensemble de serveurs de noms ({nsset}) est défini sur les serveurs suivants : {servers}."
+
+#: CONSISTENCY:ONE_NS_SET
+msgid  "A unique NS set was seen ({nsset})."
+msgstr "Un unique ensemble de serveurs de noms est configuré sur les serveurs de la zone testée ({nsset})."
 
 #: CONSISTENCY:ONE_SOA_RNAME
 msgid  "A single SOA rname value was seen ({rname})"
-msgstr "Traduction en cours"
+msgstr "Une unique adresse mail a été trouvée dans les enregistrements de type \"SOA\" de la zone testée ({rname})."
 
 #: CONSISTENCY:ONE_SOA_SERIAL
 msgid  "A single SOA serial number was seen ({serial})."
-msgstr "Traduction en cours"
+msgstr "Un unique numéro de série a été trouvé dans les enregistrements de type \"SOA\" de la zone testée ({serial})."
 
 #: CONSISTENCY:ONE_SOA_TIME_PARAMETER_SET
 msgid  "A single SOA time parameter set was seen (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum})."
-msgstr "Traduction en cours"
+msgstr "Un unique ensemble de paramètres temporels a été trouvé (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum})."
 
-#: CONSISTENCY:SOA_RNAME
+#: CONSISTENCY:SOA_RNAME{serial}
 msgid  "Saw SOA rname {rname} on following nameserver set : {servers}."
-msgstr "Traduction en cours"
+msgstr "L'adresse mail {rname} a été récupérée sur les serueurs suivants : {servers}."
 
 #: CONSISTENCY:SOA_SERIAL
 msgid  "Saw SOA serial number {serial} on following nameserver set : {servers}."
-msgstr "Traduction en cours"
+msgstr "Le numéro de série {serial} a été récupérée sur les serueurs suivants : {servers}."
 
 #: CONSISTENCY:SOA_SERIAL_VARIATION
 msgid  "Difference between the smaller serial ({serial_min}) and the bigger one ({serial_max}) is greater than the maximum allowed ({max_variation})."
-msgstr "Traduction en cours"
+msgstr "La différence entre le plus petit numéro de série de la zone récupéré ({serial_min}) et le plus grand ({serial_max}) est supérieure au maximum autorisé ({max_variation})."
 
 #: CONSISTENCY:SOA_TIME_PARAMETER_SET
 msgid  "Saw SOA time parameter set (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}) on following nameserver set : {servers}."
-msgstr "Traduction en cours"
+msgstr "L'ensemble de paramètres temporels (REFRESH={refresh},RETRY={retry},EXPIRE={expire},MINIMUM={minimum}) a été récupérée sur les serueurs suivants : {servers}."
 
 #: DELEGATION:ARE_AUTHORITATIVE
 msgid  "All the nameservers are authoritative."
