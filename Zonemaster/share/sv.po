@@ -626,11 +626,11 @@ msgid  "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowes
 msgstr "SOA-postens 'minimum'-värde ({minimum}) är lägre än rekommenderat ({lowest_minimum})."
 
 #: ADDRESS:NAMESERVERS_IP_WITH_REVERSE
-msgid   "Reverse DNS entry exist for all Nameserver IP addresses"
+msgid   "Reverse DNS entry exist for all Nameserver IP addresses."
 msgstr "Bakåtuppslagning finns för samtliga namnserveradresser."
 
 #: ADDRESS:NAMESERVER_IP_PTR_MATCH
-msgid   "All reverse DNS entry matches name server name"
+msgid   "All reverse DNS entry matches name server name."
 msgstr "Alla bakåtuppslagningar stämmer överens med motsvarande namnservernamn."
 
 #: ADDRESS:NO_IP_PRIVATE_NETWORK

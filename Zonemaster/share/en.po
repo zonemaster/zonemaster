@@ -10,8 +10,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 
 #: ADDRESS:NAMESERVERS_IP_WITH_REVERSE
-msgid  "Reverse DNS entry exist for all Nameserver IP addresses"
-msgstr "Reverse DNS entry exist for all Nameserver IP addresses"
+msgid  "Reverse DNS entry exist for all Nameserver IP addresses."
+msgstr "Reverse DNS entry exist for all Nameserver IP addresses."
 
 #: ADDRESS:NAMESERVER_IPV6_ADDRESSES_NOT_BOGON
 msgid  "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix."
@@ -26,8 +26,8 @@ msgid  "Nameserver {ns} has an IP address ({address}) with prefix {prefix} refer
 msgstr "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'."
 
 #: ADDRESS:NAMESERVER_IP_PTR_MATCH
-msgid  "All reverse DNS entry matches name server name"
-msgstr "All reverse DNS entry matches name server name"
+msgid  "All reverse DNS entry matches name server name."
+msgstr "All reverse DNS entry matches name server name."
 
 #: ADDRESS:NAMESERVER_IP_PTR_MISMATCH
 msgid  "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names})."

@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 
 #: ADDRESS:NAMESERVERS_IP_WITH_REVERSE
-msgid  "Reverse DNS entry exist for all Nameserver IP addresses"
+msgid  "Reverse DNS entry exist for all Nameserver IP addresses."
 msgstr "Les différentes adresses IP des serveurs de noms ont toutes un enregistrement PTR (reverse) associé dans le DNS."
 
 #: ADDRESS:NAMESERVER_IPV6_ADDRESSES_NOT_BOGON
@@ -26,7 +26,7 @@ msgid  "Nameserver {ns} has an IP address ({address}) with prefix {prefix} refer
 msgstr "Le serveur de noms {ns} a une adresse IP ({address}) dont le préfixe est référéncé dans le {reference} sous le libellé '{name}'."
 
 #: ADDRESS:NAMESERVER_IP_PTR_MATCH
-msgid  "All reverse DNS entry matches name server name"
+msgid  "All reverse DNS entry matches name server name."
 msgstr "Tous les enregistrements PTR correspondent aux serveurs de noms."
 
 #: ADDRESS:NAMESERVER_IP_PTR_MISMATCH
@@ -43,75 +43,75 @@ msgstr "Toutes les adresses IP des serveurs de noms sont dans l'espace d'adresse
 
 #: ADDRESS:NO_RESPONSE_PTR_QUERY
 msgid  "No response from nameserver(s) on PTR query ({reverse})."
-msgstr "Aucune réponse des serveurs de noms sur une requête PTR ({reverse})."
+msgstr "Aucune réponse des serveurs de noms sur une requête de type PTR ({reverse})."
 
 #: BASIC:A_QUERY_NO_RESPONSES
 msgid  "Nameservers did not respond to A query."
-msgstr "Traduction en cours"
+msgstr "Aucune réponse des serveurs de noms sur une requête de type A."
 
 #: BASIC:HAS_A_RECORDS
-msgid  "Nameserver {source} returned A record(s) for {name}"
-msgstr "Traduction en cours"
+msgid  "Nameserver {source} returned A record(s) for {name}."
+msgstr "Le serveur de noms {source} renvoit un enregistrement de type A en réponse à une requête pour {name}."
 
 #: BASIC:HAS_GLUE
-msgid  "Nameserver for zone {parent} listed these nameservers as glue: {ns}"
-msgstr "Traduction en cours"
+msgid  "Nameserver for zone {parent} listed these nameservers as glue: {ns}."
+msgstr "Le serveur de nom pour la zone {parent} renvoit la liste de serveurs de noms suivants: {ns}."
 
 #: BASIC:HAS_NAMESERVERS
-msgid  "Nameserver {source} listed these servers as glue: {ns}"
-msgstr "Traduction en cours"
+msgid  "Nameserver {source} listed these servers as glue: {ns}."
+msgstr "Un requête NS sur le serveur de noms {source} renvoit la liste de serveurs de noms suivants: {ns}."
 
 #: BASIC:HAS_NAMESERVER_NO_WWW_A_TEST
 msgid  "Functional nameserver found. \"A\" query for www.{name} test aborted."
-msgstr "Traduction en cours"
+msgstr "Un serveur de nom fonctionnel a été trouvé. Inutile de réaliser une requête de type \"A\" sur www.{name}."
 
 #: BASIC:IPV4_DISABLED
 msgid  "IPv4 is disabled, not sending \"{type}\" query to {ns}."
-msgstr "Traduction en cours"
+msgstr "IPv4 a été désactivé, la requête de type \"{type}\" sur le serveur {ns} est annulée."
 
 #: BASIC:IPV4_ENABLED
 msgid  "IPv4 is enabled, can send \"{type}\" query to {ns}."
-msgstr "Traduction en cours"
+msgstr "IPv4 est activé, il est possible de réaliser une requête de type \"{type}\" sur le serveur {ns}."
 
 #: BASIC:IPV6_DISABLED
 msgid  "IPv6 is disabled, not sending \"{type}\" query to {ns}."
-msgstr "Traduction en cours"
+msgstr "IPv6 a été désactivé, la requête de type \"{type}\" sur le serveur {ns} est annulée."
 
 #: BASIC:IPV6_ENABLED
 msgid  "IPv6 is enabled, can send \"{type}\" query to {ns}."
-msgstr "Traduction en cours"
+msgstr "IPv6 est activé, il est possible de réaliser une requête de type \"{type}\" sur le serveur {ns}."
 
 #: BASIC:NO_A_RECORDS
-msgid  "Nameserver {source} did not return A record(s) for {name}"
-msgstr "Traduction en cours"
+msgid  "Nameserver {source} did not return A record(s) for {name}."
+msgstr "Le serveur de noms {source} ne renvoit pas d'enregistrement de type \"A\" en réponse à une requête pour {name}."
 
 #: BASIC:NO_DOMAIN
 msgid  "Nameserver for zone {parent} responded with NXDOMAIN to query for glue."
-msgstr "Traduction en cours"
+msgstr "Le serveur de nom pour la zone {parent} retourne un code NXDOMAIN à une requête de type \"NS\" pour la zone testée."
 
 #: BASIC:NO_GLUE
 msgid  "Nameservers for \"{parent}\" provided no NS records for tested zone. RCODE given was {rcode}."
-msgstr "Traduction en cours"
+msgstr "Les serveurs de noms pour la zone \"{parent}\" ne renvoient pas d'enregistrements de type \"NS\" pour la zone testée. Le code {rcode} a été retourné."
 
 #: BASIC:NO_GLUE_PREVENTS_NAMESERVER_TESTS
 msgid  "No NS records for tested zone from parent. NS tests aborted."
-msgstr "Traduction en cours"
+msgstr "Aucun enregistrement de type \"NS\" renvoyé par la zone parente pour la zone testée. Les tests complémentaires sur ces serveurs sont annulés."
 
 #: BASIC:NO_PARENT_RESPONSE
 msgid  "No response from nameserver for zone {parent} when trying to fetch glue."
-msgstr "Traduction en cours"
+msgstr "Aucune réponse obtenue des serveurs de noms de la zone {parent} en essayant de récupérer la liste des serveurs de noms de la zone testée."
 
 #: BASIC:NS_FAILED
 msgid  "Nameserver {source} did not return NS records. RCODE was {rcode}."
-msgstr "Traduction en cours"
+msgstr "Le serveur de noms {source} ne renvoit pas d'enregistrements de type \"NS\" pour la zone testée. Le code {rcode} a été retourné."
 
 #: BASIC:NS_NO_RESPONSE
 msgid  "Nameserver {source} did not respond to NS query."
-msgstr "Traduction en cours"
+msgstr "Le serveur de noms {source} ne répond pas à une requête de type \"NS\"."
 
 #: BASIC:PARENT_REPLIES
 msgid  "Nameserver for zone {parent} replies when trying to fetch glue."
-msgstr "Traduction en cours"
+msgstr "Les serveurs de noms de la zone {parent} répondent lorsque l'on essaye de récupérer la liste des serveurs de noms de la zone testée."
 
 #: CONNECTIVITY:ADDRESS_TYPE_NOT_IMPLEMENTED
 msgid  "Service provided by - {service} - does not work with IPv{type} addresses"

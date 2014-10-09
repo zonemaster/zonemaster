@@ -128,8 +128,8 @@ sub translation {
         'NAMESERVER_IP_PRIVATE_NETWORK' =>
 'Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a \'{name}\'.',
         'NO_IP_PRIVATE_NETWORK'       => 'All Nameserver addresses are in the routable public addressing space.',
-        'NAMESERVERS_IP_WITH_REVERSE' => 'Reverse DNS entry exist for all Nameserver IP addresses',
-        'NAMESERVER_IP_PTR_MATCH'     => 'All reverse DNS entry matches name server name',
+        'NAMESERVERS_IP_WITH_REVERSE' => 'Reverse DNS entry exist for all Nameserver IP addresses.',
+        'NAMESERVER_IP_PTR_MATCH'     => 'All reverse DNS entry matches name server name.',
         'NO_RESPONSE_PTR_QUERY'       => 'No response from nameserver(s) on PTR query ({reverse}).',
     };
 }

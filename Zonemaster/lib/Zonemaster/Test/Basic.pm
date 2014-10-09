@@ -458,6 +458,11 @@ Looks at the provided log entries and returns true if they indicate that further
 
 =over
 
+=item basic00
+
+Checks if the domain name to be tested is valid. Not all syntax tests are done here, it "just" checks domain name total length and labels length.
+In case of failure, all other tests are aborted.
+
 =item basic01
 
 Checks that we can find a parent zone for the zone we're testing. If we can't, no further testing is done.
