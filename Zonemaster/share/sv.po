@@ -30,16 +30,16 @@ msgid  "Nameserver {ns} has an IP address ({address}) without PTR configured."
 msgstr "Namnservern {ns} har en IP-adress ({address}) utan bakåtuppslagning."
 
 #: BASIC:HAS_A_RECORDS
-msgid  "Nameserver {source} returned A record(s) for {name}"
-msgstr "Namnservern {source} svarade med A-poster för {name}"
+msgid  "Nameserver {source} returned A record(s) for {name}."
+msgstr "Namnservern {source} svarade med A-poster för {name}."
 
 #: BASIC:HAS_GLUE
-msgid  "Nameserver for zone {parent} listed these nameservers as glue: {ns}"
-msgstr "En namnserver för zonen {parent} gav dessa namnservrar som glue: {ns}"
+msgid  "Nameserver for zone {parent} listed these nameservers as glue: {ns}."
+msgstr "En namnserver för zonen {parent} gav dessa namnservrar som glue: {ns}."
 
 #: BASIC:HAS_NAMESERVERS
-msgid  "Nameserver {source} listed these servers as glue: {ns}"
-msgstr "Namnservern {source} gav dessa servrar som glue: {ns}"
+msgid  "Nameserver {source} listed these servers as glue: {ns}."
+msgstr "Namnservern {source} gav dessa servrar som glue: {ns}."
 
 #: BASIC:NO_DOMAIN
 msgid  "Nameserver for zone {parent} responded with NXDOMAIN to query for glue."

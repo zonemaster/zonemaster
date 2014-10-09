@@ -83,9 +83,7 @@ sub metadata {
         syntax04 => [
             qw(
               NAMESERVER_DISCOURAGED_DOUBLE_DASH
-              NAMESERVER_LABEL_TOO_LONG
               NAMESERVER_NUMERIC_TLD
-              NAMESERVER_NAME_TOO_LONG
               NAMESERVER_SYNTAX_OK
               )
         ],
@@ -105,9 +103,7 @@ sub metadata {
         syntax07 => [
             qw(
               MNAME_DISCOURAGED_DOUBLE_DASH
-              MNAME_LABEL_TOO_LONG
               MNAME_NUMERIC_TLD
-              MNAME_NAME_TOO_LONG
               MNAME_SYNTAX_OK
               NO_RESPONSE_SOA_QUERY
               )
@@ -115,9 +111,7 @@ sub metadata {
         syntax08 => [
             qw(
               MX_DISCOURAGED_DOUBLE_DASH
-              MX_LABEL_TOO_LONG
               MX_NUMERIC_TLD
-              MX_NAME_TOO_LONG
               MX_SYNTAX_OK
               NO_RESPONSE_MX_QUERY
               )
@@ -127,18 +121,12 @@ sub metadata {
 
 sub translation {
     return {
-        "NAMESERVER_LABEL_TOO_LONG"          => "Nameserver ({name}) has a label ({label}) too long ({length}/{max}).",
-        "NAMESERVER_NAME_TOO_LONG"           => "Nameserver ({name}) is too long ({length}/{max}).",
         "NAMESERVER_DISCOURAGED_DOUBLE_DASH" => "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--').",
         "NAMESERVER_NUMERIC_TLD"             => "Nameserver ({name}) within a 'numeric only' TLD ({tld}).",
         "NAMESERVER_SYNTAX_OK"               => "Nameserver ({name}) syntax is valid.",
-        "MNAME_LABEL_TOO_LONG"               => "SOA MNAME ({name}) has a label ({label}) too long ({length}/{max}).",
-        "MNAME_NAME_TOO_LONG"                => "SOA MNAME ({name}) is too long ({length}/{max}).",
         "MNAME_DISCOURAGED_DOUBLE_DASH"      => "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--').",
         "MNAME_NUMERIC_TLD"                  => "SOA MNAME ({name}) within a 'numeric only' TLD ({tld}).",
         "MNAME_SYNTAX_OK"                    => "SOA MNAME ({name}) syntax is valid.",
-        "MX_LABEL_TOO_LONG"                  => "Domain name MX ({name}) has a label ({label}) too long ({length}/{max}).",
-        "MX_NAME_TOO_LONG"                   => "Domain name MX is too long ({length}/{max}).",
         "MX_DISCOURAGED_DOUBLE_DASH"         => "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--').",
         "MX_NUMERIC_TLD"                     => "Domain name MX ({name}) within a 'numeric only' TLD ({tld}).",
         "MX_SYNTAX_OK"                       => "Domain name MX ({name}) syntax is valid.",
@@ -170,7 +158,7 @@ sub syntax01 {
     my ( $class, $item ) = @_;
     my @results;
 
-    my $name = _get_name( $item );
+    my $name = get_name( $item );
 
     if ( _name_has_only_legal_characters( $name ) ) {
         push @results,
@@ -196,7 +184,7 @@ sub syntax02 {
     my ( $class, $item ) = @_;
     my @results;
 
-    my $name = _get_name( $item );
+    my $name = get_name( $item );
 
     foreach my $local_label ( @{ $name->labels } ) {
         if ( _label_starts_with_hyphen( $local_label ) ) {
@@ -235,7 +223,7 @@ sub syntax03 {
     my ( $class, $item ) = @_;
     my @results;
 
-    my $name = _get_name( $item );
+    my $name = get_name( $item );
 
     foreach my $local_label ( @{ $name->labels } ) {
         if ( _label_not_ace_has_double_hyphen_in_position_3_and_4( $local_label ) ) {
@@ -263,10 +251,13 @@ sub syntax03 {
 
 sub syntax04 {
     my ( $class, $item ) = @_;
+    my @results;
 
-    my $name = _get_name( $item );
+    my $name = get_name( $item );
 
-    return _check_name_syntax( q{NAMESERVER}, $name );
+    push @results, check_name_syntax( q{NAMESERVER}, $name );
+
+    return @results;
 } ## end sub syntax04
 
 sub syntax05 {
@@ -351,7 +342,7 @@ sub syntax07 {
     if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
         my $mname = $soa->mname;
 
-        push @results, _check_name_syntax( q{MNAME}, $mname );
+        push @results, check_name_syntax( q{MNAME}, $mname );
     }
     else {
         push @results,
@@ -371,7 +362,7 @@ sub syntax08 {
 
     if ( $p ) {
         foreach my $mx ( sort keys %{ { map { $_->exchange => 1 } $p->get_records( q{MX}, q{answer} ) } } ) {
-            push @results, _check_name_syntax( q{MX}, $mx );
+            push @results, check_name_syntax( q{MX}, $mx );
         }
     }
     else {
@@ -442,7 +433,7 @@ sub _label_not_ace_has_double_hyphen_in_position_3_and_4 {
 ### Common part for syntax04, syntax07 and syntax08
 ###
 
-sub _get_name {
+sub get_name {
     my ( $item ) = @_;
     my $name;
 
@@ -459,26 +450,13 @@ sub _get_name {
     return $name;
 }
 
-sub _check_name_syntax {
+sub check_name_syntax {
     my ( $info_label_prefix, $name ) = @_;
     my @results;
 
-    if ( not ref( $name ) ) {
-        $name = name( $name );
-    }
+    $name = get_name( $name );
 
     foreach my $local_label ( @{ $name->labels } ) {
-        if ( length $local_label > $LABEL_MAX_LENGTH ) {
-            push @results,
-              info(
-                $info_label_prefix . q{_LABEL_TOO_LONG} => {
-                    name   => "$name",
-                    label  => $local_label,
-                    length => length( $local_label ),
-                    max    => $LABEL_MAX_LENGTH,
-                  }
-              );
-        }
         if ( _label_not_ace_has_double_hyphen_in_position_3_and_4( $local_label ) ) {
             push @results,
               info(
@@ -501,18 +479,6 @@ sub _check_name_syntax {
           );
     }
 
-    my $fqdn = get_FQDN_string( $name );
-    if ( length( $fqdn ) > $FQDN_MAX_LENGTH ) {
-        push @results,
-          info(
-            $info_label_prefix . q{_NAME_TOO_LONG} => {
-                name => $fqdn,
-                length => length( $fqdn ),
-                max    => $FQDN_MAX_LENGTH,
-              }
-          );
-    }
-
     if (not scalar @results) {
         push @results,
           info(
@@ -523,13 +489,14 @@ sub _check_name_syntax {
     }
 
     return @results;
-} ## end sub _check_name_syntax
+} ## end sub check_name_syntax
 
 sub get_FQDN_string {
     my ( $item ) = @_;
 
-    my $name = _get_name($item);
+    my $dns_name = get_name($item);
 
+    my $name = "$dns_name";
     $name .= q{.} if $name !~ m/\.\z/smx;
 
     return $name;

@@ -8,6 +8,7 @@ use Zonemaster;
 use Zonemaster::Util;
 use Zonemaster::TestMethods;
 use Zonemaster::Test::Address;
+use Zonemaster::Test::Syntax;
 use List::MoreUtils qw[any none];
 
 use Carp;
@@ -25,30 +26,34 @@ sub all {
     my ( $class, $zone ) = @_;
     my @results;
 
-    push @results, eval { $class->basic01( $zone ) };
+    push @results, $class->basic00( $zone );
 
-    # Perform BASIC2 if BASIC1 passed
-    if ( any { $_->tag eq q{HAS_GLUE} } @results ) {
-        push @results, $class->basic02( $zone );
-    }
-    else {
-        push @results,
-          info(
-            NO_GLUE_PREVENTS_NAMESERVER_TESTS => { } 
-          );
-    }
+    if ( none { $_->tag eq q{DOMAIN_NAME_LABEL_TOO_LONG} or $_->tag eq q{DOMAIN_NAME_ZERO_LENGTH_LABEL} or $_->tag eq q{DOMAIN_NAME_TOO_LONG} } @results ) {
+        push @results, $class->basic01( $zone );
 
-    # Perform BASIC3 if BASIC2 failed
-    if ( none { $_->tag eq q{HAS_NAMESERVERS} } @results ) {
-        push @results, eval { $class->basic03( $zone ) };
-    }
-    else {
-        push @results,
-          info(
-            HAS_NAMESERVER_NO_WWW_A_TEST => {
-                name => $zone->name,
-            } 
-          );
+        # Perform BASIC2 if BASIC1 passed
+        if ( any { $_->tag eq q{HAS_GLUE} } @results ) {
+            push @results, $class->basic02( $zone );
+        }
+        else {
+            push @results,
+              info(
+                NO_GLUE_PREVENTS_NAMESERVER_TESTS => { } 
+              );
+        }
+
+        # Perform BASIC3 if BASIC2 failed
+        if ( none { $_->tag eq q{HAS_NAMESERVERS} } @results ) {
+            push @results, $class->basic03( $zone );
+        }
+        else {
+            push @results,
+              info(
+                HAS_NAMESERVER_NO_WWW_A_TEST => {
+                    name => $zone->name,
+                } 
+              );
+        }
     }
 
     return @results;
@@ -74,6 +79,13 @@ sub metadata {
     my ( $class ) = @_;
 
     return {
+        basic00 => [
+            qw(
+              DOMAIN_NAME_LABEL_TOO_LONG
+              DOMAIN_NAME_ZERO_LENGTH_LABEL
+              DOMAIN_NAME_TOO_LONG
+              )
+        ],
         basic01 => [
             qw(
               NO_PARENT
@@ -112,24 +124,27 @@ sub metadata {
 
 sub translation {
     return {
-        "NO_PARENT"                         => "No parent domain could be found for the tested domain",
-        "NO_GLUE"                           => "Nameservers for \"{parent}\" provided no NS records for tested zone. RCODE given was {rcode}.",
-        "HAS_A_RECORDS"                     => "Nameserver {source} returned A record(s) for {name}",
-        "NO_A_RECORDS"                      => "Nameserver {source} did not return A record(s) for {name}",
-        "NO_DOMAIN"                         => "Nameserver for zone {parent} responded with NXDOMAIN to query for glue.",
-        "HAS_NAMESERVERS"                   => "Nameserver {source} listed these servers as glue: {ns}",
-        "PARENT_REPLIES"                    => "Nameserver for zone {parent} replies when trying to fetch glue.",
-        "NO_PARENT_RESPONSE"                => "No response from nameserver for zone {parent} when trying to fetch glue.",
-        "NO_GLUE_PREVENTS_NAMESERVER_TESTS" => "No NS records for tested zone from parent. NS tests aborted.",
-        "NS_FAILED"                         => "Nameserver {source} did not return NS records. RCODE was {rcode}.",
-        "NS_NO_RESPONSE"                    => "Nameserver {source} did not respond to NS query.",
-        "A_QUERY_NO_RESPONSES"              => "Nameservers did not respond to A query.",
-        "HAS_NAMESERVER_NO_WWW_A_TEST"      => "Functional nameserver found. \"A\" query for www.{name} test aborted.",
-        "HAS_GLUE"                          => "Nameserver for zone {parent} listed these nameservers as glue: {ns}",
-        "IPV4_DISABLED"                     => "IPv4 is disabled, not sending \"{type}\" query to {ns}.",
-        "IPV4_ENABLED"                      => "IPv4 is enabled, can send \"{type}\" query to {ns}.",
-        "IPV6_DISABLED"                     => "IPv6 is disabled, not sending \"{type}\" query to {ns}.",
-        "IPV6_ENABLED"                      => "IPv6 is enabled, can send \"{type}\" query to {ns}.",
+        "DOMAIN_NAME_LABEL_TOO_LONG"        => "Domain name ({name}) has a label ({label}) too long ({length}/{max}).",
+        "DOMAIN_NAME_ZERO_LENGTH_LABEL"     => "Domain name ({name}) has a zero length label.",
+        "DOMAIN_NAME_TOO_LONG"              => "Domain name is too long ({length}/{max}).",
+        'NO_PARENT'                         => 'No parent domain could be found for the tested domain.',
+        'NO_GLUE'                           => 'Nameservers for "{parent}" provided no NS records for tested zone. RCODE given was {rcode}.',
+        'HAS_A_RECORDS'                     => 'Nameserver {source} returned A record(s) for {name}.',
+        'NO_A_RECORDS'                      => 'Nameserver {source} did not return A record(s) for {name}.',
+        'NO_DOMAIN'                         => 'Nameserver for zone {parent} responded with NXDOMAIN to query for glue.',
+        'HAS_NAMESERVERS'                   => 'Nameserver {source} listed these servers as glue: {ns}.',
+        'PARENT_REPLIES'                    => 'Nameserver for zone {parent} replies when trying to fetch glue.',
+        'NO_PARENT_RESPONSE'                => 'No response from nameserver for zone {parent} when trying to fetch glue.',
+        'NO_GLUE_PREVENTS_NAMESERVER_TESTS' => 'No NS records for tested zone from parent. NS tests aborted.',
+        'NS_FAILED'                         => 'Nameserver {source} did not return NS records. RCODE was {rcode}.',
+        'NS_NO_RESPONSE'                    => 'Nameserver {source} did not respond to NS query.',
+        'A_QUERY_NO_RESPONSES'              => 'Nameservers did not respond to A query.',
+        'HAS_NAMESERVER_NO_WWW_A_TEST'      => 'Functional nameserver found. "A" query for www.{name} test aborted.',
+        'HAS_GLUE'                          => 'Nameserver for zone {parent} listed these nameservers as glue: {ns}.',
+        'IPV4_DISABLED'                     => 'IPv4 is disabled, not sending "{type}" query to {ns}.',
+        'IPV4_ENABLED'                      => 'IPv4 is enabled, can send "{type}" query to {ns}.',
+        'IPV6_DISABLED'                     => 'IPv6 is disabled, not sending "{type}" query to {ns}.',
+        'IPV6_ENABLED'                      => 'IPv6 is enabled, can send "{type}" query to {ns}.',
     };
 }
 
@@ -140,6 +155,50 @@ sub version {
 ###
 ### Tests
 ###
+
+sub basic00 {
+    my ( $class, $item ) = @_;
+    my @results;
+
+    my $name = Zonemaster::Test::Syntax::get_name( $item );
+
+    foreach my $local_label ( @{ $name->labels } ) {
+        if ( length $local_label > $Zonemaster::Test::Syntax::LABEL_MAX_LENGTH ) {
+            push @results,
+              info(
+                q{DOMAIN_NAME_LABEL_TOO_LONG} => {
+                    name   => "$name",
+                    label  => $local_label,
+                    length => length( $local_label ),
+                    max    => $Zonemaster::Test::Syntax::LABEL_MAX_LENGTH,
+                  }
+              );
+        }
+        elsif ( length $local_label == 0 ) {
+            push @results,
+              info(
+                q{DOMAIN_NAME_ZERO_LENGTH_LABEL} => {
+                    name   => "$name",
+                  }
+              );
+        }
+    }
+
+    my $fqdn = Zonemaster::Test::Syntax::get_FQDN_string( $name );
+    if ( length( $fqdn ) > $Zonemaster::Test::Syntax::FQDN_MAX_LENGTH ) {
+        push @results,
+          info(
+            q{DOMAIN_NAME_TOO_LONG} => {
+                name => $fqdn,
+                length => length( $fqdn ),
+                max    => $Zonemaster::Test::Syntax::FQDN_MAX_LENGTH,
+              }
+          );
+    }
+
+    return @results;
+
+}
 
 sub basic01 {
     my ( $class, $zone ) = @_;

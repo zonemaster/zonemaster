@@ -4,7 +4,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: 0.0.4\n"
-"PO-Revision-Date: 2014-09-15 10:09+0200\n"
+"PO-Revision-Date: 2014-08-28\n"
 "Last-Translator: calle@init.se\n"
 "Language-Team: Zonemaster Team\n"
 "MIME-Version: 1.0\n"
@@ -96,6 +96,10 @@ msgstr "Nameservers for \"{parent}\" provided no NS records for tested zone. RCO
 #: BASIC:NO_GLUE_PREVENTS_NAMESERVER_TESTS
 msgid  "No NS records for tested zone from parent. NS tests aborted."
 msgstr "No NS records for tested zone from parent. NS tests aborted."
+
+#: BASIC:NO_PARENT
+msgid  "No parent domain could be found for the tested domain"
+msgstr "No parent domain could be found for the tested domain"
 
 #: BASIC:NO_PARENT_RESPONSE
 msgid  "No response from nameserver for zone {parent} when trying to fetch glue."
@@ -205,17 +209,21 @@ msgstr "Saw SOA time parameter set (REFRESH={refresh},RETRY={retry},EXPIRE={expi
 msgid  "All the nameservers are authoritative."
 msgstr "All the nameservers are authoritative."
 
+#: DELEGATION:CALCULATION_INCOMPLETE
+msgid  "Cannot check if IP addresses of nameserver {ns} are needed in referal response."
+msgstr "Cannot check if IP addresses of nameserver {ns} are needed in referal response."
+
 #: DELEGATION:DISTINCT_IP_ADDRESS
 msgid  "All the IP addresses used by the nameservers are unique"
 msgstr "All the IP addresses used by the nameservers are unique"
 
 #: DELEGATION:ENOUGH_NS
-msgid  "Child lists enough nameservers ({count})."
-msgstr "Child lists enough nameservers ({count})."
+msgid  "Child lists enough nameservers ({ns}). Lower limit set to {minimum}."
+msgstr "Child lists enough nameservers ({ns}). Lower limit set to {minimum}."
 
 #: DELEGATION:ENOUGH_NS_GLUE
-msgid  "Parent lists enough nameservers ({count})."
-msgstr "Parent lists enough nameservers ({count})."
+msgid  "Parent lists enough nameservers ({glue}). Lower limit set to {minimum}."
+msgstr "Parent lists enough nameservers ({glue}). Lower limit set to {minimum}."
 
 #: DELEGATION:ENOUGH_NS_TOTAL
 msgid  "Parent and child list enough nameservers ({ns}). Lower limit set to {minimum}."
@@ -238,12 +246,12 @@ msgid  "All of the nameserver names are listed both at parent and child."
 msgstr "All of the nameserver names are listed both at parent and child."
 
 #: DELEGATION:NOT_ENOUGH_NS
-msgid  "Child does not list enough nameservers ({count})."
-msgstr "Child does not list enough nameservers ({count})."
+msgid  "Child does not list enough nameservers ({ns}). Lower limit set to {minimum}."
+msgstr "Child does not list enough nameservers ({ns}). Lower limit set to {minimum}."
 
 #: DELEGATION:NOT_ENOUGH_NS_GLUE
-msgid  "Parent does not list enough nameservers ({count})."
-msgstr "Parent does not list enough nameservers ({count})."
+msgid  "Parent does not list enough nameservers ({glue}). Lower limit set to {minimum}."
+msgstr "Parent does not list enough nameservers ({glue}). Lower limit set to {minimum}."
 
 #: DELEGATION:NOT_ENOUGH_NS_TOTAL
 msgid  "Parent and child do not list enough nameservers ({ns}). Lower limit set to {minimum}."
@@ -377,20 +385,6 @@ msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine."
 msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine."
 
-#: DNSSEC:RRSIG_EXPIRED
-msgid "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration})."
-msgstr "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration})."
-
-#: DNSSEC:DURATION_REMAINING_OK
-#: DNSSEC:DURATION_REMAINING_SHORT
-#: DNSSEC:REMAINING_SHORT
-msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too short."
-msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too short."
-
-#: REMAINING_LONG
-msgid "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long."
-msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long."
-
 #: DNSSEC:EXTRA_PROCESSING_BROKEN
 msgid  "Server at {server} sent {keys} DNSKEY records, and {sigs} RRSIG records."
 msgstr "Server at {server} sent {keys} DNSKEY records, and {sigs} RRSIG records."
@@ -491,6 +485,18 @@ msgstr "At least one signature correctly signed the NSEC RRset."
 msgid  "Trying to verify NSEC RRset with RRSIG {sig} gave error '{error}'."
 msgstr "Trying to verify NSEC RRset with RRSIG {sig} gave error '{error}'."
 
+#: DNSSEC:REMAINING_LONG
+msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long."
+msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long."
+
+#: DNSSEC:REMAINING_SHORT
+msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too short."
+msgstr "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too short."
+
+#: DNSSEC:RRSIG_EXPIRED
+msgid  "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration})."
+msgstr "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration})."
+
 #: DNSSEC:SOA_NOT_SIGNED
 msgid  "No RRSIG correctly signed the SOA RRset."
 msgstr "No RRSIG correctly signed the SOA RRset."
@@ -559,17 +565,21 @@ msgstr "None of the following nameservers is a recursor : {names}."
 msgid  "Nameserver {ns}/{address} dropped AAAA query."
 msgstr "Nameserver {ns}/{address} dropped AAAA query."
 
+#: NAMESERVER:SAME_SOURCE_IP
+msgid  "All nameservers reply with same IP used to query them."
+msgstr "All nameservers reply with same IP used to query them."
+
 #: SYNTAX:DISCOURAGED_DOUBLE_DASH
-msgid  "Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
-msgstr "Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgid  "Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
+msgstr "Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 
 #: SYNTAX:INITIAL_HYPHEN
 msgid  "Domain name ({name}) has a label ({label}) starting with an hyphen ('-')."
 msgstr "Domain name ({name}) has a label ({label}) starting with an hyphen ('-')."
 
 #: SYNTAX:MNAME_DISCOURAGED_DOUBLE_DASH
-msgid  "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
-msgstr "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgid  "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
+msgstr "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 
 #: SYNTAX:MNAME_LABEL_TOO_LONG
 msgid  "SOA MNAME ({name}) has a label ({label}) too long ({length}/{max})."
@@ -583,25 +593,33 @@ msgstr "SOA MNAME ({name}) is too long ({length}/{max})."
 msgid  "SOA MNAME ({name}) within a 'numeric only' TLD ({tld})."
 msgstr "SOA MNAME ({name}) within a 'numeric only' TLD ({tld})."
 
+#: SYNTAX:MNAME_SYNTAX_OK
+msgid  "SOA MNAME ({name}) syntax is valid."
+msgstr "SOA MNAME ({name}) syntax is valid."
+
 #: SYNTAX:MX_DISCOURAGED_DOUBLE_DASH
-msgid  "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
-msgstr "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgid  "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
+msgstr "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 
 #: SYNTAX:MX_LABEL_TOO_LONG
 msgid  "Domain name MX ({name}) has a label ({label}) too long ({length}/{max})."
 msgstr "Domain name MX ({name}) has a label ({label}) too long ({length}/{max})."
 
 #: SYNTAX:MX_NAME_TOO_LONG
-msgid  "Domain name MX  is too long ({length}/{max})."
-msgstr "Domain name MX  is too long ({length}/{max})."
+msgid  "Domain name MX is too long ({length}/{max})."
+msgstr "Domain name MX is too long ({length}/{max})."
 
 #: SYNTAX:MX_NUMERIC_TLD
 msgid  "Domain name MX ({name}) within a 'numeric only' TLD ({tld})."
 msgstr "Domain name MX ({name}) within a 'numeric only' TLD ({tld})."
 
+#: SYNTAX:MX_SYNTAX_OK
+msgid  "Domain name MX ({name}) syntax is valid."
+msgstr "Domain name MX ({name}) syntax is valid."
+
 #: SYNTAX:NAMESERVER_DISCOURAGED_DOUBLE_DASH
-msgid  "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
-msgstr "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgid  "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
+msgstr "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 
 #: SYNTAX:NAMESERVER_LABEL_TOO_LONG
 msgid  "Nameserver ({name}) has a label ({label}) too long ({length}/{max})."
@@ -615,21 +633,49 @@ msgstr "Nameserver ({name}) is too long ({length}/{max})."
 msgid  "Nameserver ({name}) within a 'numeric only' TLD ({tld})."
 msgstr "Nameserver ({name}) within a 'numeric only' TLD ({tld})."
 
+#: SYNTAX:NAMESERVER_SYNTAX_OK
+msgid  "Nameserver ({name}) syntax is valid."
+msgstr "Nameserver ({name}) syntax is valid."
+
 #: SYNTAX:NON_ALLOWED_CHARS
 msgid  "Found illegal characters in the domain name ({name})"
 msgstr "Found illegal characters in the domain name ({name})"
 
+#: SYNTAX:NO_DOUBLE_DASH
+msgid  "Domain name ({name}) has no label with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
+msgstr "Domain name ({name}) has no label with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
+
+#: SYNTAX:NO_ENDING_HYPHENS
+msgid  "Both ends of all labels of the domain name ({name}) have no hyphens."
+msgstr "Both ends of all labels of the domain name ({name}) have no hyphens."
+
+#: SYNTAX:NO_RESPONSE_MX_QUERY
+msgid  "No response from nameserver(s) on MX queries."
+msgstr "No response from nameserver(s) on MX queries."
+
+#: SYNTAX:NO_RESPONSE_SOA_QUERY
+msgid  "No response from nameserver(s) on SOA queries."
+msgstr "No response from nameserver(s) on SOA queries."
+
 #: SYNTAX:ONLY_ALLOWED_CHARS
-msgid  "No illegal chatacters in the domain name ({name})."
-msgstr "No illegal chatacters in the domain name ({name})."
+msgid  "No illegal characters in the domain name ({name})."
+msgstr "No illegal characters in the domain name ({name})."
 
 #: SYNTAX:RNAME_MISUSED_AT_SIGN
 msgid  "There must be no misused '@' character in the SOA RNAME field ({rname})."
 msgstr "There must be no misused '@' character in the SOA RNAME field ({rname})."
 
+#: SYNTAX:RNAME_NO_AT_SIGN
+msgid  "There is no misused '@' character in the SOA RNAME field ({rname})."
+msgstr "There is no misused '@' character in the SOA RNAME field ({rname})."
+
 #: SYNTAX:RNAME_RFC822_INVALID
 msgid  "There must be no illegal characters in the SOA RNAME field ({rname})."
 msgstr "There must be no illegal characters in the SOA RNAME field ({rname})."
+
+#: SYNTAX:RNAME_RFC822_VALID
+msgid  "The SOA RNAME field ({rname}) is compliant with RFC2822."
+msgstr "The SOA RNAME field ({rname}) is compliant with RFC2822."
 
 #: SYNTAX:TERMINAL_HYPHEN
 msgid  "Domain name ({name}) has a label ({label}) ending with an hyphen ('-')."
@@ -699,21 +745,29 @@ msgstr "SOA 'expire' value ({expire}) is less than the recommended one ({require
 msgid  "SOA 'expire' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than 'refresh' value."
 msgstr "SOA 'expire' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than 'refresh' value."
 
-#: ZONE:MNAME_IS_CNAME
+#: ZONE:MASTER_IS_CNAME
 msgid  "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
 msgstr "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
 
-#: ZONE:MNAME_IS_NOT_CNAME
+#: ZONE:MASTER_IS_NOT_CNAME
 msgid  "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME)."
 msgstr "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME)."
+
+#: ZONE:MNAME_HAS_NO_ADDRESS
+msgid  "No IP address found for SOA 'mname' nameserver ({mname})."
+msgstr "No IP address found for SOA 'mname' nameserver ({mname})."
+
+#: ZONE:MNAME_IS_AUTHORITATIVE
+msgid  "SOA 'mname' nameserver ({mname}) is authoritative for '{zone}' zone."
+msgstr "SOA 'mname' nameserver ({mname}) is authoritative for '{zone}' zone."
 
 #: ZONE:MNAME_NOT_AUTHORITATIVE
 msgid  "SOA 'mname' nameserver {ns}/{address} is not authoritative for '{zone}' zone."
 msgstr "SOA 'mname' nameserver {ns}/{address} is not authoritative for '{zone}' zone."
 
 #: ZONE:MNAME_NOT_IN_GLUE
-msgid  "SOA 'mname' nameserver is not listed in \"parent\" NS records for tested zone."
-msgstr "SOA 'mname' nameserver is not listed in \"parent\" NS records for tested zone."
+msgid  "SOA 'mname' nameserver ({mname}) is not listed in \"parent\" NS records for tested zone ({ns})."
+msgstr "SOA 'mname' nameserver ({mname}) is not listed in \"parent\" NS records for tested zone ({ns})."
 
 #: ZONE:MNAME_NO_RESPONSE
 msgid  "SOA 'mname' nameserver {ns}/{address} does not respond."
@@ -723,13 +777,27 @@ msgstr "SOA 'mname' nameserver {ns}/{address} does not respond."
 msgid  "SOA 'mname' field does not exist"
 msgstr "SOA 'mname' field does not exist"
 
+#: ZONE:MX_RECORD_EXISTS
+msgid  "Target ({info}) found to deliver e-mail for the domain name."
+msgstr "Target ({info}) found to deliver e-mail for the domain name."
+
 #: ZONE:MX_RECORD_IS_CNAME
 msgid  "MX record for the domain is pointing to a CNAME."
 msgstr "MX record for the domain is pointing to a CNAME."
 
+#: ZONE:MX_RECORD_IS_NOT_CNAME
+msgid  "MX record for the domain is not pointing to a CNAME."
+msgstr "MX record for the domain is not pointing to a CNAME."
+
 #: ZONE:NO_MX_RECORD
 msgid  "No target (MX, A or AAAA record) to deliver e-mail for the domain name."
 msgstr "No target (MX, A or AAAA record) to deliver e-mail for the domain name."
+
+#: ZONE:NO_RESPONSE_MX_QUERY
+#: ZONE:NO_RESPONSE_SOA_QUERY
+#: ZONE:REFRESH_HIGHER_THAN_RETRY
+msgid  "SOA 'refresh' value ({refresh}) is higher than the SOA 'retry' value ({retry})."
+msgstr "SOA 'refresh' value ({refresh}) is higher than the SOA 'retry' value ({retry})."
 
 #: ZONE:REFRESH_LOWER_THAN_RETRY
 msgid  "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({retry})."
@@ -739,9 +807,17 @@ msgstr "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({re
 msgid  "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh})."
 msgstr "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh})."
 
+#: ZONE:REFRESH_MINIMUM_VALUE_OK
+msgid  "SOA 'refresh' value ({refresh}) is higher than the minimum recommended value ({required_refresh})."
+msgstr "SOA 'refresh' value ({refresh}) is higher than the minimum recommended value ({required_refresh})."
+
 #: ZONE:RETRY_MINIMUM_VALUE_LOWER
 msgid  "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry})."
 msgstr "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry})."
+
+#: ZONE:RETRY_MINIMUM_VALUE_OK
+msgid  "SOA 'retry' value ({retry}) is more than the minimum recommended value ({required_retry})."
+msgstr "SOA 'retry' value ({retry}) is more than the minimum recommended value ({required_retry})."
 
 #: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER
 msgid  "SOA 'minimum' value ({minimum}) is higher than the recommended one ({highest_minimum})."
@@ -754,8 +830,4 @@ msgstr "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowes
 #: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK
 msgid  "SOA 'minimum' value ({minimum}) is between the recommended ones ({lowest_minimum}/{highest_minimum})."
 msgstr "SOA 'minimum' value ({minimum}) is between the recommended ones ({lowest_minimum}/{highest_minimum})."
-
-#: ZONE:MNAME_HAS_NO_ADDRESS
-msgid  "No IP address found for SOA 'mname' nameserver ({mname})."
-msgstr "No IP address found for SOA 'mname' nameserver ({mname})."
 
