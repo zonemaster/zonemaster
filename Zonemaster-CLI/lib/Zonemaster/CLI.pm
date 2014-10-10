@@ -194,6 +194,7 @@ sub run {
     my ( $self ) = @_;
     my @accumulator;
     my %counter;
+    my $printed_something;
 
     if ($self->locale) {
         my $loc = setlocale(LC_MESSAGES,$self->locale);
@@ -259,6 +260,7 @@ sub run {
             $counter{ uc $entry->level } += 1;
 
             if ( $numeric{ uc $entry->level } >= $numeric{ uc $self->level } ) {
+                $printed_something = 1;
 
                 if ( $translator ) {
                     if ( $self->time ) {
@@ -354,6 +356,12 @@ sub run {
             Zonemaster->test_zone( $domain );
         }
     };
+    if ($translator) {
+        if (not $printed_something) {
+            say __("Looks OK.");
+        }
+    }
+
     if ( $@ ) {
         my $err = $@;
         if ( blessed $err and $err->isa( "NormalExit" ) ) {

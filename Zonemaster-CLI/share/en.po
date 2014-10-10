@@ -143,3 +143,7 @@ msgstr "============ "
 
 msgid "======="
 msgstr "======="
+
+msgid "Looks OK."
+msgstr "Looks OK."
+
