@@ -302,7 +302,7 @@ Identical to L<query_one>, except that instead of returning the packet from the
 first server that returns one, it returns the first packet that actually
 contains a resource record matching the requested name and type.
 
-=item query_persistent($name[, $type[, $flags]])
+=item query_auth($name[, $type[, $flags]])
 
 Identical to L<query_one>, except that instead of returning the packet from the
 first server that returns one, it returns the first packet that has the AA flag set.

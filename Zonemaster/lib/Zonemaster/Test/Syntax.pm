@@ -573,4 +573,23 @@ Verify that MX name (Zonemaster::DNSName) given is conform to previous syntax ru
 
 =back
 
+=head1 INTERNAL METHODS
+
+=over
+
+=item get_name($item)
+
+Converts argument to a L<Zonemaster::DNSName> object.
+
+=item get_FQDN_string($item)
+
+Converts the item to a L<Zonemaster::DNSName>, then stringifies it and adds a
+final dot unless it is the root domain.
+
+=item check_name_syntax
+
+Implementation of some tests that are used on several kinds of input.
+
+=back
+
 =cut
