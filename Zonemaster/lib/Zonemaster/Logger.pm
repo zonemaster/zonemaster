@@ -52,11 +52,13 @@ sub _check_filter {
                     my $cond = $rule->{when}{$key};
                     if ( ref( $cond ) and ref( $cond ) eq 'ARRAY' ) {
                         # No match in list, so overall fail, so return
+                        ## no critic (TestingAndDebugging::ProhibitNoWarnings)
                         no warnings 'uninitialized';
                         return if none { $_ eq $entry->args->{$key} } @$cond;
                     }
                     else {
                         # No match, so overall fail, so return
+                        ## no critic (TestingAndDebugging::ProhibitNoWarnings)
                         no warnings 'uninitialized';
                         return if $cond ne $entry->args->{$key};
                     }

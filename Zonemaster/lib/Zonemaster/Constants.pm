@@ -1,5 +1,8 @@
 package Zonemaster::Constants;
 
+use strict;
+use warnings;
+
 use parent 'Exporter';
 use Net::IP;
 use Readonly;
