@@ -1,4 +1,4 @@
-package Zonemaster::Test::Zone v0.0.5;
+package Zonemaster::Test::Zone v0.0.6;
 
 use 5.14.2;
 use strict;
@@ -23,7 +23,7 @@ sub all {
 
     push @results, $class->zone01( $zone );
     if ( none { $_->tag eq q{NO_RESPONSE_SOA_QUERY} } @results ) {
-       
+
         push @results, $class->zone02( $zone );
         push @results, $class->zone03( $zone );
         push @results, $class->zone04( $zone );
@@ -41,7 +41,7 @@ sub all {
     }
 
     return @results;
-}
+} ## end sub all
 
 ###
 ### Metadata Exposure
@@ -124,32 +124,46 @@ sub metadata {
 
 sub translation {
     return {
-        "RETRY_MINIMUM_VALUE_LOWER" => "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry}).",
-        "RETRY_MINIMUM_VALUE_OK" => "SOA 'retry' value ({retry}) is more than the minimum recommended value ({required_retry}).",
-        "MNAME_NO_RESPONSE"  => "SOA 'mname' nameserver {ns}/{address} does not respond.",
-        "MNAME_IS_CNAME" => "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME).",
-        "MNAME_IS_NOT_CNAME" => "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME).",
-        "NO_MX_RECORD"       => "No target (MX, A or AAAA record) to deliver e-mail for the domain name.",
-        "MX_RECORD_EXISTS"   => "Target ({info}) found to deliver e-mail for the domain name.",
-        "REFRESH_MINIMUM_VALUE_LOWER" => "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh}).",
-        "REFRESH_MINIMUM_VALUE_OK" => "SOA 'refresh' value ({refresh}) is higher than the minimum recommended value ({required_refresh}).",
-        "EXPIRE_LOWER_THAN_REFRESH" => "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh}).",
-        "SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER" => "SOA 'minimum' value ({minimum}) is higher than the recommended one ({highest_minimum}).",
-        "SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER" => "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum}).",
-        "SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK" => "SOA 'minimum' value ({minimum}) is between the recommended ones ({lowest_minimum}/{highest_minimum}).",
-        "MNAME_NOT_AUTHORITATIVE" => "SOA 'mname' nameserver {ns}/{address} is not authoritative for '{zone}' zone.",
-        "MNAME_RECORD_DOES_NOT_EXIST" => "SOA 'mname' field does not exist",
-        "EXPIRE_MINIMUM_VALUE_LOWER" => "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire}).",
-        "MNAME_NOT_IN_GLUE"        => "SOA 'mname' nameserver ({mname}) is not listed in \"parent\" NS records for tested zone ({ns}).",
-        "REFRESH_LOWER_THAN_RETRY" => "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({retry}).",
-        "REFRESH_HIGHER_THAN_RETRY" => "SOA 'refresh' value ({refresh}) is higher than the SOA 'retry' value ({retry}).",
-        "MX_RECORD_IS_CNAME"       => "MX record for the domain is pointing to a CNAME.",
-        "MX_RECORD_IS_NOT_CNAME"   => "MX record for the domain is not pointing to a CNAME.",
-        "MNAME_IS_AUTHORITATIVE" => "SOA 'mname' nameserver ({mname}) is authoritative for '{zone}' zone.",
-        "NO_RESPONSE_SOA_QUERY"  => "No response from nameserver(s) on SOA queries.",
-        "NO_RESPONSE_MX_QUERY"   => "No response from nameserver(s) on MX queries.",
-        "MNAME_HAS_NO_ADDRESS" => "No IP address found for SOA 'mname' nameserver ({mname}).",
-        "EXPIRE_MINIMUM_VALUE_OK" => "SOA 'expire' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than 'refresh' value.",
+        'RETRY_MINIMUM_VALUE_LOWER' =>
+          'SOA \'retry\' value ({retry}) is less than the recommended one ({required_retry}).',
+        'RETRY_MINIMUM_VALUE_OK' =>
+          'SOA \'retry\' value ({retry}) is more than the minimum recommended value ({required_retry}).',
+        'MNAME_NO_RESPONSE'  => 'SOA \'mname\' nameserver {ns}/{address} does not respond.',
+        'MNAME_IS_CNAME'     => 'SOA \'mname\' value ({mname}) refers to a NS which is an alias (CNAME).',
+        'MNAME_IS_NOT_CNAME' => 'SOA \'mname\' value ({mname}) refers to a NS which is not an alias (CNAME).',
+        'NO_MX_RECORD'       => 'No target (MX, A or AAAA record) to deliver e-mail for the domain name.',
+        'MX_RECORD_EXISTS'   => 'Target ({info}) found to deliver e-mail for the domain name.',
+        'REFRESH_MINIMUM_VALUE_LOWER' =>
+          'SOA \'refresh\' value ({refresh}) is less than the recommended one ({required_refresh}).',
+        'REFRESH_MINIMUM_VALUE_OK' =>
+          'SOA \'refresh\' value ({refresh}) is higher than the minimum recommended value ({required_refresh}).',
+        'EXPIRE_LOWER_THAN_REFRESH' =>
+          'SOA \'expire\' value ({expire}) is lower than the SOA \'refresh\' value ({refresh}).',
+        'SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER' =>
+          'SOA \'minimum\' value ({minimum}) is higher than the recommended one ({highest_minimum}).',
+        'SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER' =>
+          'SOA \'minimum\' value ({minimum}) is less than the recommended one ({lowest_minimum}).',
+        'SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK' =>
+          'SOA \'minimum\' value ({minimum}) is between the recommended ones ({lowest_minimum}/{highest_minimum}).',
+        'MNAME_NOT_AUTHORITATIVE' =>
+          'SOA \'mname\' nameserver {ns}/{address} is not authoritative for \'{zone}\' zone.',
+        'MNAME_RECORD_DOES_NOT_EXIST' => 'SOA \'mname\' field does not exist',
+        'EXPIRE_MINIMUM_VALUE_LOWER' =>
+          'SOA \'expire\' value ({expire}) is less than the recommended one ({required_expire}).',
+        'MNAME_NOT_IN_GLUE' =>
+          'SOA \'mname\' nameserver ({mname}) is not listed in \"parent\" NS records for tested zone ({ns}).',
+        'REFRESH_LOWER_THAN_RETRY' =>
+          'SOA \'refresh\' value ({refresh}) is lower than the SOA \'retry\' value ({retry}).',
+        'REFRESH_HIGHER_THAN_RETRY' =>
+          'SOA \'refresh\' value ({refresh}) is higher than the SOA \'retry\' value ({retry}).',
+        'MX_RECORD_IS_CNAME'     => 'MX record for the domain is pointing to a CNAME.',
+        'MX_RECORD_IS_NOT_CNAME' => 'MX record for the domain is not pointing to a CNAME.',
+        'MNAME_IS_AUTHORITATIVE' => 'SOA \'mname\' nameserver ({mname}) is authoritative for \'{zone}\' zone.',
+        'NO_RESPONSE_SOA_QUERY'  => 'No response from nameserver(s) on SOA queries.',
+        'NO_RESPONSE_MX_QUERY'   => 'No response from nameserver(s) on MX queries.',
+        'MNAME_HAS_NO_ADDRESS'   => 'No IP address found for SOA \'mname\' nameserver ({mname}).',
+        'EXPIRE_MINIMUM_VALUE_OK' =>
+'SOA \'expire\' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than \'refresh\' value.',
     };
 } ## end sub translation
 
@@ -164,12 +178,10 @@ sub zone01 {
     my $p = _retrieve_record_from_zone( $zone, $zone->name, q{SOA} );
 
     if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
-        my $soa_mname = $soa->mname; $soa_mname =~ s/\.\z//smx;
+        my $soa_mname = $soa->mname;
+        $soa_mname =~ s/[.]\z//smx;
         if ( not $soa_mname ) {
-            push @results,
-              info(
-                MNAME_RECORD_DOES_NOT_EXIST => {}
-              );
+            push @results, info( MNAME_RECORD_DOES_NOT_EXIST => {} );
         }
         else {
             foreach my $ip_address ( Zonemaster::Recursor->get_addresses_for( $soa_mname ) ) {
@@ -197,31 +209,28 @@ sub zone01 {
                       );
                 }
             } ## end foreach my $ip_address ( Zonemaster::Recursor...)
-            if ( none { $_ eq $soa_mname } @{ Zonemaster::TestMethods->method2($zone) } ) {
+            if ( none { $_ eq $soa_mname } @{ Zonemaster::TestMethods->method2( $zone ) } ) {
                 push @results,
                   info(
                     MNAME_NOT_IN_GLUE => {
-                        mname  => $soa_mname,
-                        ns     => join( q{;}, @{ Zonemaster::TestMethods->method2($zone) } )
+                        mname => $soa_mname,
+                        ns    => join( q{;}, @{ Zonemaster::TestMethods->method2( $zone ) } ),
                     }
                   );
             }
         } ## end else [ if ( not $soa_mname ) ]
-        if (not scalar @results) {
+        if ( not scalar @results ) {
             push @results,
               info(
                 MNAME_IS_AUTHORITATIVE => {
-                    mname  => $soa_mname,
-                    zone   => $zone->name,
+                    mname => $soa_mname,
+                    zone  => $zone->name,
                 }
               );
         }
-    } ## end if ( $p )
+    } ## end if ( $p and my ( $soa ...))
     else {
-        push @results,
-          info(
-            NO_RESPONSE_SOA_QUERY => { }
-          );
+        push @results, info( NO_RESPONSE_SOA_QUERY => {} );
     }
 
     return @results;
@@ -233,8 +242,7 @@ sub zone02 {
 
     my $p = _retrieve_record_from_zone( $zone, $zone->name, q{SOA} );
 
-    if ( $p ) {
-        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
+    if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
         my $soa_refresh = $soa->refresh;
         if ( $soa_refresh < $SOA_REFRESH_MINIMUM_VALUE ) {
             push @results,
@@ -254,12 +262,9 @@ sub zone02 {
                 }
               );
         }
-    }
+    } ## end if ( $p and my ( $soa ...))
     else {
-        push @results,
-          info(
-            NO_RESPONSE_SOA_QUERY => { }
-          );
+        push @results, info( NO_RESPONSE_SOA_QUERY => {} );
     }
 
     return @results;
@@ -271,8 +276,7 @@ sub zone03 {
 
     my $p = _retrieve_record_from_zone( $zone, $zone->name, q{SOA} );
 
-    if ( $p ) {
-        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
+    if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
         my $soa_retry   = $soa->retry;
         my $soa_refresh = $soa->refresh;
         if ( $soa_retry >= $soa_refresh ) {
@@ -293,12 +297,9 @@ sub zone03 {
                 }
               );
         }
-    }
+    } ## end if ( $p and my ( $soa ...))
     else {
-        push @results,
-          info(
-            NO_RESPONSE_SOA_QUERY => { }
-          );
+        push @results, info( NO_RESPONSE_SOA_QUERY => {} );
     }
 
     return @results;
@@ -310,8 +311,7 @@ sub zone04 {
 
     my $p = _retrieve_record_from_zone( $zone, $zone->name, q{SOA} );
 
-    if ( $p ) {
-        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
+    if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
         my $soa_retry = $soa->retry;
         if ( $soa_retry < $SOA_RETRY_MINIMUM_VALUE ) {
             push @results,
@@ -331,12 +331,9 @@ sub zone04 {
                 }
               );
         }
-    }
+    } ## end if ( $p and my ( $soa ...))
     else {
-        push @results,
-          info(
-            NO_RESPONSE_SOA_QUERY => { }
-          );
+        push @results, info( NO_RESPONSE_SOA_QUERY => {} );
     }
 
     return @results;
@@ -348,8 +345,7 @@ sub zone05 {
 
     my $p = _retrieve_record_from_zone( $zone, $zone->name, q{SOA} );
 
-    if ( $p ) {
-        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
+    if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
         my $soa_expire  = $soa->expire;
         my $soa_refresh = $soa->refresh;
         if ( $soa_expire < $SOA_EXPIRE_MINIMUM_VALUE ) {
@@ -370,7 +366,7 @@ sub zone05 {
                 }
               );
         }
-        if (not scalar @results) {
+        if ( not scalar @results ) {
             push @results,
               info(
                 EXPIRE_MINIMUM_VALUE_OK => {
@@ -379,12 +375,9 @@ sub zone05 {
                 }
               );
         }
-    } ## end if ( $p )
+    } ## end if ( $p and my ( $soa ...))
     else {
-        push @results,
-          info(
-            NO_RESPONSE_SOA_QUERY => { }
-          );
+        push @results, info( NO_RESPONSE_SOA_QUERY => {} );
     }
 
     return @results;
@@ -396,8 +389,7 @@ sub zone06 {
 
     my $p = _retrieve_record_from_zone( $zone, $zone->name, q{SOA} );
 
-    if ( $p ) {
-        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
+    if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
         my $soa_minimum = $soa->minimum;
         if ( $soa_minimum > $SOA_DEFAULT_TTL_MAXIMUM_VALUE ) {
             push @results,
@@ -427,12 +419,9 @@ sub zone06 {
                 }
               );
         }
-    } ## end if ( $p )
+    } ## end if ( $p and my ( $soa ...))
     else {
-        push @results,
-          info(
-            NO_RESPONSE_SOA_QUERY => { }
-          );
+        push @results, info( NO_RESPONSE_SOA_QUERY => {} );
     }
 
     return @results;
@@ -444,30 +433,35 @@ sub zone07 {
 
     my $p = _retrieve_record_from_zone( $zone, $zone->name, q{SOA} );
 
-    if ( $p ) {
-        my ( $soa ) = $p->get_records( q{SOA}, q{answer} );
-        my $soa_mname = $soa->mname; $soa_mname =~ s/\.\z//smx;
-        my $p_mname = Zonemaster::Recursor->recurse( $soa_mname, q{A} );
-
-        if ( $p_mname ) {
-            if ( $p_mname->has_rrs_of_type_for_name( q{CNAME}, $soa_mname ) ) {
-                push @results,
-                  info(
-                    MNAME_IS_CNAME => {
-                        mname => $soa_mname,
-                    }
-                  );
+    if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
+        my $soa_mname = $soa->mname;
+        $soa_mname =~ s/[.]\z//smx;
+        my $addresses_nb = 0;
+        foreach my $address_type ( q{A}, q{AAAA} ) {
+            my $p_mname = Zonemaster::Recursor->recurse( $soa_mname, $address_type );
+            if ( $p_mname ) {
+                if ( $p_mname->has_rrs_of_type_for_name( $address_type, $soa_mname ) ) {
+                    $addresses_nb++;
+                }
+                if ( $p_mname->has_rrs_of_type_for_name( q{CNAME}, $soa_mname ) ) {
+                    push @results,
+                      info(
+                        MNAME_IS_CNAME => {
+                            mname => $soa_mname,
+                        }
+                      );
+                }
+                else {
+                    push @results,
+                      info(
+                        MNAME_IS_NOT_CNAME => {
+                            mname => $soa_mname,
+                        }
+                      );
+                }
             }
-            else {
-                push @results,
-                  info(
-                    MNAME_IS_NOT_CNAME => {
-                        mname => $soa_mname,
-                    }
-                  );
-            }
-        }
-        else {
+        } ## end foreach my $address_type ( ...)
+        if ( not $addresses_nb ) {
             push @results,
               info(
                 MNAME_HAS_NO_ADDRESS => {
@@ -475,12 +469,9 @@ sub zone07 {
                 }
               );
         }
-    }
+    } ## end if ( $p and my ( $soa ...))
     else {
-        push @results,
-          info(
-            NO_RESPONSE_SOA_QUERY => { }
-          );
+        push @results, info( NO_RESPONSE_SOA_QUERY => {} );
     }
 
     return @results;
@@ -490,103 +481,88 @@ sub zone08 {
     my ( $class, $zone ) = @_;
     my @results;
 
-    my $p = _retrieve_record_from_zone( $zone, $zone->name, q{MX} );
+    my $p = $zone->query_auth( $zone->name, q{MX} );
 
     if ( $p ) {
         if ( $p->has_rrs_of_type_for_name( q{CNAME}, $zone->name ) ) {
-            push @results,
-              info(
-                MX_RECORD_IS_CNAME => {}
-            );
+            push @results, info( MX_RECORD_IS_CNAME => {} );
         }
         else {
-            push @results,
-              info(
-                MX_RECORD_IS_NOT_CNAME => {}
-            );
+            push @results, info( MX_RECORD_IS_NOT_CNAME => {} );
         }
     }
     else {
-        push @results,
-          info(
-            NO_RESPONSE_MX_QUERY => { }
-          );
+        push @results, info( NO_RESPONSE_MX_QUERY => {} );
     }
 
     return @results;
-}
+} ## end sub zone08
 
 sub zone09 {
     my ( $class, $zone ) = @_;
     my @results;
     my $info;
 
-    my $p = _retrieve_record_from_zone( $zone, $zone->name, q{MX} );
+    my $p = $zone->query_auth( $zone->name, q{MX} );
 
     if ( $p ) {
         if ( not $p->has_rrs_of_type_for_name( q{MX}, $zone->name ) ) {
-            my $p_a    = $zone->query_one( $zone->name, q{A} );
-            my $p_aaaa = $zone->query_one( $zone->name, q{AAAA} );
-            if (    not $p_a->has_rrs_of_type_for_name( q{A}, $zone->name )
-                and not $p_aaaa->has_rrs_of_type_for_name( q{AAAA}, $zone->name ) )
+            my $p_a    = _retrieve_record_from_zone( $zone, $zone->name, q{A} );
+            my $p_aaaa = _retrieve_record_from_zone( $zone, $zone->name, q{AAAA} );
+            if (
+                ( not defined $p_a and not defined $p_aaaa )
+                or (    ( not defined $p_a or not $p_a->has_rrs_of_type_for_name( q{A}, $zone->name ) )
+                    and ( not defined $p_aaaa or not $p_aaaa->has_rrs_of_type_for_name( q{AAAA}, $zone->name ) ) )
+              )
             {
-                push @results,
-                  info(
-                    NO_MX_RECORD => {}
-                  );
+                push @results, info( NO_MX_RECORD => {} );
             }
             else {
-                my @as   = $p_a->get_records_for_name( q{A}, $zone->name );
-                my @aaas = $p_aaaa->get_records_for_name( q{AAAA}, $zone->name );
-                $info = join( q{/}, map { $_ =~ /:/smx ? q{AAAA=}.$_->address : q{A=}.$_->address } (@as, @aaas) );
+                my @as = defined $p_a ? $p_a->get_records_for_name( q{A}, $zone->name ) : ();
+                my @aaas = defined $p_aaaa ? $p_aaaa->get_records_for_name( q{AAAA}, $zone->name ) : ();
+                $info = join q{/}, map { $_ =~ /:/smx ? q{AAAA=} . $_->address : q{A=} . $_->address } ( @as, @aaas );
             }
         }
         else {
             my @mx = $p->get_records_for_name( q{MX}, $zone->name );
-            $info = join( q{/}, map { my $tmp = q{MX=}.$_->exchange; $tmp =~ s/\.\z//smx; $tmp } @mx );
+            $info = join q{/}, map { my $tmp = q{MX=} . $_->exchange; $tmp =~ s/[.]\z//smx; $tmp } @mx;
         }
-        if (not scalar @results) {
-            push @results,
-              info(
-                MX_RECORD_EXISTS => { info => $info}
-              );
+        if ( not scalar @results ) {
+            push @results, info( MX_RECORD_EXISTS => { info => $info } );
         }
-    }
+    } ## end if ( $p )
     else {
-        push @results,
-          info(
-            NO_RESPONSE_MX_QUERY => { }
-          );
+        push @results, info( NO_RESPONSE_MX_QUERY => {} );
     }
 
     return @results;
 } ## end sub zone09
 
 sub _retrieve_record_from_zone {
-    my ( $zone, $name, $type ) =  @_;
+    my ( $zone, $name, $type ) = @_;
 
     # Return response from the first authoritative server that gives one
-    foreach my $ns ( @{ Zonemaster::TestMethods->method5($zone) } ) {
+    foreach my $ns ( @{ Zonemaster::TestMethods->method5( $zone ) } ) {
 
-        if (not Zonemaster->config->ipv4_ok and $ns->address->version == $IP_VERSION_4) {
-            Zonemaster->logger->add( SKIP_IPV4_DISABLED => { ns => "$ns"} );
+        if ( not Zonemaster->config->ipv4_ok and $ns->address->version == $IP_VERSION_4 ) {
+            Zonemaster->logger->add( SKIP_IPV4_DISABLED => { ns => "$ns" } );
             next;
         }
 
-        if (not Zonemaster->config->ipv6_ok and $ns->address->version == $IP_VERSION_6) {
-            Zonemaster->logger->add( SKIP_IPV6_DISABLED => { ns => "$ns"} );
+        if ( not Zonemaster->config->ipv6_ok and $ns->address->version == $IP_VERSION_6 ) {
+            Zonemaster->logger->add( SKIP_IPV6_DISABLED => { ns => "$ns" } );
             next;
         }
 
         my $p = $ns->query( $name, $type );
 
-        if ( defined( $p ) ) {
+        if ( defined $p and scalar $p->get_records( $type, q{answer} ) > 0 ) {
             return $p if $p->aa;
         }
     }
 
     return;
-}
+} ## end sub _retrieve_record_from_zone
 
 1;
 
