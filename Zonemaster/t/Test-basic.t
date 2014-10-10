@@ -97,28 +97,6 @@ zone_gives( q{basic03}, $zone, q{IPV6_DISABLED} );
 zone_gives_not( q{basic03}, $zone, q{IPV4_DISABLED} );
 zone_gives_not( q{basic03}, $zone, q{IPV6_ENABLED} );
 
-exit;
-Zonemaster->config->ipv4_ok( 1 );
-Zonemaster->config->ipv6_ok( 0 );
-%res = map { $_->tag => 1 } Zonemaster->test_module( q{basic}, q{iis.se} );
-print join ",", keys %res, "\n";
-ok( $res{IPV4_ENABLED},  q{IPv4 enabled} );
-ok( $res{IPV6_DISABLED}, q{IPv6 disabled} );
-
-Zonemaster->config->ipv4_ok( 0 );
-Zonemaster->config->ipv6_ok( 0 );
-%res = map { $_->tag => 1 } Zonemaster->test_module( q{basic}, q{iis.se} );
-print join ",", keys %res, "\n";
-ok( $res{IPV4_DISABLED}, q{IPv4 disabled} );
-ok( $res{IPV6_DISABLED}, q{IPv6 disabled} );
-
-Zonemaster->config->ipv4_ok( 1 );
-Zonemaster->config->ipv6_ok( 1 );
-%res = map { $_->tag => 1 } Zonemaster->test_module( q{basic}, q{iis.se} );
-print join ",", keys %res, "\n";
-ok( $res{IPV4_ENABLED}, q{IPv4 enabled} );
-ok( $res{IPV6_ENABLED}, q{IPv6 enabled} );
-
 TODO: {
     local $TODO = "Need to find domain name with that error";
 
