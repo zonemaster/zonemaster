@@ -378,7 +378,7 @@ sub basic03 {
               );
             next;
         }
-        else {
+        elsif (Zonemaster->config->ipv6_ok and $ns->address->version == $IP_VERSION_6) {
             push @results,
               info(
                 IPV6_ENABLED => {
