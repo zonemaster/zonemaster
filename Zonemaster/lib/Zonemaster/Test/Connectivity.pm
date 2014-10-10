@@ -8,25 +8,10 @@ use Zonemaster;
 use Zonemaster::Util;
 use Zonemaster::Test::Address;
 use Zonemaster::TestMethods;
-
+use Zonemaster::Constants qw[:ip :asn];
 use Carp;
 
-use Readonly;
 use List::Util qw[minstr];
-
-Readonly our $ASN_UNASSIGNED_UNANNOUNCED_ADDRESS_SPACE_VALUE => 4_294_967_295;
-Readonly our $IP_VERSION_4                                   => $Zonemaster::Test::Address::IP_VERSION_4;
-Readonly our $IP_VERSION_6                                   => $Zonemaster::Test::Address::IP_VERSION_6;
-Readonly our $ASN_CHECKING_TEAM_CYMRU_SERVICE_NAME           => q{TEAMCYRU};
-Readonly our $ASN_CHECKING_ROUTE_VIEWS_SERVICE_NAME          => q{ROUTEVIEWS};
-Readonly our $ASN_CHECKING_ZONEMASTER_SERVICE_NAME           => q{ZONEMASTER};
-Readonly our $ASN_CHECKING_SERVICE_USED                      => $ASN_CHECKING_TEAM_CYMRU_SERVICE_NAME;
-Readonly our $ASN_IPV4_CHECKING_SERVICE_TEAM_CYMRU_DOMAIN    => q{.origin.asn.cymru.com.};
-Readonly our $ASN_IPV6_CHECKING_SERVICE_TEAM_CYMRU_DOMAIN    => q{.origin6.asn.cymru.com.};
-Readonly our $ASN_IPV4_CHECKING_SERVICE_ROUTE_VIEWS_DOMAIN   => q{.asn.routeviews.org.};
-Readonly our $ASN_IPV6_CHECKING_SERVICE_ROUTE_VIEWS_DOMAIN   => q{};
-Readonly our $ASN_IPV4_CHECKING_SERVICE_ZONEMASTER_DOMAIN    => q{.origin.asn.zonemaster.net.};
-Readonly our $ASN_IPV6_CHECKING_SERVICE_ZONEMASTER_DOMAIN    => q{.origin6.asn.zonemaster.net.};
 
 Readonly::Hash our %ASN_CHECKING_SERVICE_DOMAIN => {
     $ASN_CHECKING_TEAM_CYMRU_SERVICE_NAME => {

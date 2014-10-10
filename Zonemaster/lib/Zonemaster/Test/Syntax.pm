@@ -9,17 +9,13 @@ use Zonemaster::Util;
 use Zonemaster::Recursor;
 use Zonemaster::DNSName;
 use Zonemaster::TestMethods;
+use Zonemaster::Constants qw[:name];
 
 use Carp;
-
-use Readonly;
 
 use List::MoreUtils qw[uniq none any];
 use Mail::RFC822::Address qw[valid];
 use Time::Local;
-
-Readonly our $FQDN_MAX_LENGTH  => 254;  # Maximum length of ASCII version of a domain name, with trailing dot.
-Readonly our $LABEL_MAX_LENGTH => 63;
 
 ###
 ### Entry points
@@ -491,17 +487,6 @@ sub check_name_syntax {
     return @results;
 } ## end sub check_name_syntax
 
-sub get_FQDN_string {
-    my ( $item ) = @_;
-
-    my $dns_name = get_name($item);
-
-    my $name = "$dns_name";
-    $name .= q{.} if $name !~ m/\.\z/smx;
-
-    return $name;
-}
-
 1;
 
 =head1 NAME
@@ -580,11 +565,6 @@ Verify that MX name (Zonemaster::DNSName) given is conform to previous syntax ru
 =item get_name($item)
 
 Converts argument to a L<Zonemaster::DNSName> object.
-
-=item get_FQDN_string($item)
-
-Converts the item to a L<Zonemaster::DNSName>, then stringifies it and adds a
-final dot unless it is the root domain.
 
 =item check_name_syntax
 

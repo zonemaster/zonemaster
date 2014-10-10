@@ -25,6 +25,9 @@ around BUILDARGS => sub {
     elsif (ref($_[0]) and ref($_[0]) eq __PACKAGE__) {
         return $_[0];
     }
+    elsif (ref($_[0]) and ref($_[0]) eq 'Zonemaster::Zone') {
+        return $_[0]->name;
+    }
     else {
         return $class->$orig( @_ );
     }
@@ -37,6 +40,12 @@ sub string {
     $name = '.' if $name eq '';
 
     return $name;
+}
+
+sub fqdn {
+    my ( $self ) = @_;
+
+    return join( '.', @{$self->labels}) . '.';
 }
 
 sub str_cmp {
@@ -134,6 +143,10 @@ Returns a string representation of the name. The string representation is create
 single dot is returned. The names created this way do not have a trailing dot.
 
 The stringification operator is overloaded to this function, so it should rarely be necessary to call it directly.
+
+=item fqdn()
+
+Returns the name as a string complete with a trailing dot.
 
 =item str_cmp($other)
 

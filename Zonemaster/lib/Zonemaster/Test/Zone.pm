@@ -8,19 +8,10 @@ use Zonemaster;
 use Zonemaster::Util;
 use Zonemaster::Test::Address;
 use Zonemaster::TestMethods;
+use Zonemaster::Constants qw[:soa :ip];
 use List::MoreUtils qw[none];
 
 use Carp;
-
-use Readonly;
-
-Readonly our $SOA_REFRESH_MINIMUM_VALUE     => 14_400;     # 14400 seconds (4 hours)
-Readonly our $SOA_RETRY_MINIMUM_VALUE       => 3_600;      # 3600 seconds (1 hour)
-Readonly our $SOA_EXPIRE_MINIMUM_VALUE      => 604_800;    # 604800 seconds (7 days)
-Readonly our $SOA_DEFAULT_TTL_MAXIMUM_VALUE => 86_400;     # 86400 seconds (1 day)
-Readonly our $SOA_DEFAULT_TTL_MINIMUM_VALUE => 300;        # 300 seconds (5 minutes)
-Readonly our $IP_VERSION_4                  => $Zonemaster::Test::Address::IP_VERSION_4;
-Readonly our $IP_VERSION_6                  => $Zonemaster::Test::Address::IP_VERSION_6;
 
 ###
 ### Entry Points

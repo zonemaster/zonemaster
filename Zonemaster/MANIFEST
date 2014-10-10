@@ -7,6 +7,7 @@ doc/Translation.pod
 lib/Zonemaster.pm
 lib/Zonemaster/ASNLookup.pm
 lib/Zonemaster/Config.pm
+lib/Zonemaster/Constants.pm
 lib/Zonemaster/DNSName.pm
 lib/Zonemaster/Exception.pm
 lib/Zonemaster/Logger.pm

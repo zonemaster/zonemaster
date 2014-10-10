@@ -9,19 +9,12 @@ use Zonemaster::Util;
 use Zonemaster::Test::Address;
 use Zonemaster::Test::Syntax;
 use Zonemaster::TestMethods;
+use Zonemaster::Constants ':all';
 
-use Readonly;
 use Net::IP;
 use List::MoreUtils qw[uniq];
 use Net::LDNS::Packet;
 use Net::LDNS::RR;
-
-Readonly our $MINIMUM_NUMBER_OF_NAMESERVERS => 2;
-Readonly our $UDP_PAYLOAD_LIMIT             => 512;
-Readonly our $LABEL_MAX_LENGTH              => $Zonemaster::Test::Syntax::LABEL_MAX_LENGTH;
-Readonly our $FQDN_MAX_LENGTH               => $Zonemaster::Test::Syntax::FQDN_MAX_LENGTH;
-Readonly our $IP_VERSION_4                  => $Zonemaster::Test::Address::IP_VERSION_4;
-Readonly our $IP_VERSION_6                  => $Zonemaster::Test::Address::IP_VERSION_6;
 
 ###
 ### Entry points
@@ -481,7 +474,7 @@ sub _max_length_name_for {
     my ( $top ) = @_;
     my @chars = q{A} .. q{Z};
 
-    my $name = Zonemaster::Test::Syntax::get_FQDN_string( $top );
+    my $name = name( $top )->fqdn;
     $name = '' if $name eq '.'; # Special case for root zone
 
     while ( length( $name ) < $FQDN_MAX_LENGTH - 1 ) {

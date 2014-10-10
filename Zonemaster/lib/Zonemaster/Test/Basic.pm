@@ -9,14 +9,10 @@ use Zonemaster::Util;
 use Zonemaster::TestMethods;
 use Zonemaster::Test::Address;
 use Zonemaster::Test::Syntax;
+use Zonemaster::Constants qw[:ip :name];
 use List::MoreUtils qw[any none];
 
 use Carp;
-
-use Readonly;
-
-Readonly our $IP_VERSION_4 => $Zonemaster::Test::Address::IP_VERSION_4;
-Readonly our $IP_VERSION_6 => $Zonemaster::Test::Address::IP_VERSION_6;
 
 ###
 ### Entry Points
@@ -157,20 +153,19 @@ sub version {
 ###
 
 sub basic00 {
-    my ( $class, $item ) = @_;
+    my ( $class, $zone ) = @_;
+    my $name = name($zone);
     my @results;
 
-    my $name = Zonemaster::Test::Syntax::get_name( $item );
-
     foreach my $local_label ( @{ $name->labels } ) {
-        if ( length $local_label > $Zonemaster::Test::Syntax::LABEL_MAX_LENGTH ) {
+        if ( length $local_label > $LABEL_MAX_LENGTH ) {
             push @results,
               info(
                 q{DOMAIN_NAME_LABEL_TOO_LONG} => {
                     name   => "$name",
                     label  => $local_label,
                     length => length( $local_label ),
-                    max    => $Zonemaster::Test::Syntax::LABEL_MAX_LENGTH,
+                    max    => $LABEL_MAX_LENGTH,
                   }
               );
         }
@@ -184,14 +179,14 @@ sub basic00 {
         }
     }
 
-    my $fqdn = Zonemaster::Test::Syntax::get_FQDN_string( $name );
-    if ( length( $fqdn ) > $Zonemaster::Test::Syntax::FQDN_MAX_LENGTH ) {
+    my $fqdn = $name->fqdn;
+    if ( length( $fqdn ) > $FQDN_MAX_LENGTH ) {
         push @results,
           info(
             q{DOMAIN_NAME_TOO_LONG} => {
                 name => $fqdn,
                 length => length( $fqdn ),
-                max    => $Zonemaster::Test::Syntax::FQDN_MAX_LENGTH,
+                max    => $FQDN_MAX_LENGTH,
               }
           );
     }

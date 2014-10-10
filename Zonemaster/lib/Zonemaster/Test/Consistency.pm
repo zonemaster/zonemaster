@@ -7,13 +7,9 @@ use warnings;
 use Zonemaster;
 use Zonemaster::Util;
 use Zonemaster::Test::Address;
+use Zonemaster::Constants qw[:ip :soa];
 
-use Readonly;
 use List::MoreUtils qw[uniq];
-
-Readonly our $IP_VERSION_4         => $Zonemaster::Test::Address::IP_VERSION_4;
-Readonly our $IP_VERSION_6         => $Zonemaster::Test::Address::IP_VERSION_6;
-Readonly our $MAX_SERIAL_VARIATION => 0;
 
 ###
 ### Entry points

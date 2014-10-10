@@ -10,20 +10,12 @@ use warnings;
 
 use Zonemaster;
 use Zonemaster::Util;
+use Zonemaster::Constants qw[:algo :soa];
 use List::Util qw[min];
 use List::MoreUtils qw[none];
 
 use Carp;
 
-use Readonly;
-
-Readonly our $ALGO_STATUS_DEPRECATED       => 1;
-Readonly our $ALGO_STATUS_RESERVED         => 2;
-Readonly our $ALGO_STATUS_UNASSIGNED       => 3;
-Readonly our $ALGO_STATUS_PRIVATE          => 4;
-Readonly our $ALGO_STATUS_VALID            => 5;
-Readonly our $DURATION_12_HOURS_IN_SECONDS => 12 * 60 * 60;
-Readonly our $DURATION_180_DAYS_IN_SECONDS => 180 * 24 * 60 * 60;
 ### Table fetched from IANA on 2014-09-12
 Readonly::Hash our %algo_properties => (
     0 => {
