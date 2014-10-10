@@ -7,10 +7,6 @@ META.yml
 README
 script/zonemaster-cli
 t/00-load.t
-t/boilerplate.t
-t/manifest.t
-t/pod-coverage.t
-t/pod.t
 share/en.po
 share/locale/en/LC_MESSAGES/Zonemaster-CLI.mo
 share/sv.po
