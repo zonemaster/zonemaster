@@ -132,10 +132,21 @@ A reference to a list of strings, being the labels the DNS name is made up from.
 
 =over
 
-=item new($string) _or_ new({ labels => \@labellist})
+=item new($input) _or_ new({ labels => \@labellist})
 
-The constructor can be called with either a single non-reference argument, which will be split at dot characters to create the label list, or with
-a reference to a hash as in the example above.
+The constructor can be called with either a single argument or with a reference
+to a hash as in the example above.
+
+If there is a single argument, it must be either a non-reference, a
+L<Zonemaster::DNSName> object or a L<Zonemaster::Zone> object.
+
+If it's a non-reference, it will be split at period characters (possibly after
+stringification) and the resulting list used as the name's labels.
+
+If it's a L<Zonemaster::DNSName> object it will simply be returned.
+
+If it's a L<Zonemaster::Zone> object, the value of its C<name> attribute will
+be returned.
 
 =item string()
 

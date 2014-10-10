@@ -139,3 +139,183 @@ Readonly::Array our @IPV6_SPECIAL_ADDRESSES => (
 );
 
 1;
+
+=head1 NAME
+
+Zonemaster::Constants - module holding constants used in test modules
+
+=head1 SYNOPSIS
+
+   use Zonemaster::Constants ':all';
+
+=head1 EXPORTED GROUPS
+
+=over
+
+=item all
+
+All exportable names.
+
+=item algo
+
+DNSSEC algorithms.
+
+=item asn
+
+Constants used by the ASN test module.
+
+=item name
+
+Label and name lengths.
+
+=item ip
+
+IP version constants.
+
+=item soa
+
+SOA value limits.
+
+=item misc
+
+UDP payload limit and minimum number of nameservers per zone.
+
+=item addresses
+
+Address classes for IPv4 and IPv6.
+
+=back
+
+=head1 EXPORTED NAMES
+
+=over
+
+=item *
+
+C<$ALGO_STATUS_DEPRECATED>
+
+=item *
+
+C<$ALGO_STATUS_PRIVATE>
+
+=item *
+
+C<$ALGO_STATUS_RESERVED>
+
+=item *
+
+C<$ALGO_STATUS_UNASSIGNED>
+
+=item *
+
+C<$ALGO_STATUS_VALID>
+
+=item *
+
+C<$ASN_CHECKING_ROUTE_VIEWS_SERVICE_NAME>
+
+=item *
+
+C<$ASN_CHECKING_TEAM_CYMRU_SERVICE_NAME>
+
+=item *
+
+C<$ASN_CHECKING_SERVICE_USED>
+
+=item *
+
+C<$ASN_CHECKING_ZONEMASTER_SERVICE_NAME>
+
+=item *
+
+C<$ASN_IPV4_CHECKING_SERVICE_ROUTE_VIEWS_DOMAIN>
+
+=item *
+
+C<$ASN_IPV4_CHECKING_SERVICE_TEAM_CYMRU_DOMAIN>
+
+=item *
+
+C<$ASN_IPV4_CHECKING_SERVICE_ZONEMASTER_DOMAIN>
+
+=item *
+
+C<$ASN_IPV6_CHECKING_SERVICE_ROUTE_VIEWS_DOMAIN>
+
+=item *
+
+C<$ASN_IPV6_CHECKING_SERVICE_TEAM_CYMRU_DOMAIN>
+
+=item *
+
+C<$ASN_IPV6_CHECKING_SERVICE_ZONEMASTER_DOMAIN>
+
+=item *
+
+C<$ASN_UNASSIGNED_UNANNOUNCED_ADDRESS_SPACE_VALUE>
+
+=item *
+
+C<$DURATION_12_HOURS_IN_SECONDS>
+
+=item *
+
+C<$DURATION_180_DAYS_IN_SECONDS>
+
+=item *
+
+C<$FQDN_MAX_LENGTH>
+
+=item *
+
+C<$LABEL_MAX_LENGTH>
+
+=item *
+
+C<$IP_VERSION_4>
+
+=item *
+
+C<$IP_VERSION_6>
+
+=item *
+
+C<$MAX_SERIAL_VARIATION>
+
+=item *
+
+C<$MINIMUM_NUMBER_OF_NAMESERVERS>
+
+=item *
+
+C<$SOA_DEFAULT_TTL_MAXIMUM_VALUE>
+
+=item *
+
+C<$SOA_DEFAULT_TTL_MINIMUM_VALUE>
+
+=item *
+
+C<$SOA_EXPIRE_MINIMUM_VALUE>
+
+=item *
+
+C<$SOA_REFRESH_MINIMUM_VALUE>
+
+=item *
+
+C<$SOA_RETRY_MINIMUM_VALUE>
+
+=item *
+
+C<$UDP_PAYLOAD_LIMIT>
+
+=item *
+
+C<@IPV4_SPECIAL_ADDRESSES>
+
+=item *
+
+C<@IPV6_SPECIAL_ADDRESSES>
+
+=back
