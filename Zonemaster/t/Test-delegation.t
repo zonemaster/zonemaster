@@ -21,11 +21,11 @@ ok( $res{NAMES_MATCH},      q{NAMES_MATCH} );
 ok( $res{REFERRAL_SIZE_OK}, q{REFERRAL_SIZE_OK} );
 
 %res = map { $_->tag => 1 } Zonemaster->test_module( q{delegation}, q{crystone.se} );
-ok( !$res{SAME_IP_ADDRESS},    q{SAME_IP_ADDRESS} );
+ok( $res{SAME_IP_ADDRESS},    q{SAME_IP_ADDRESS} );
 ok( $res{EXTRA_NAME_PARENT},   q{EXTRA_NAME_PARENT} );
 ok( $res{EXTRA_NAME_CHILD},    q{EXTRA_NAME_CHILD} );
 ok( $res{TOTAL_NAME_MISMATCH}, q{TOTAL_NAME_MISMATCH} );
-ok( $res{DISTINCT_IP_ADDRESS}, q{DISTINCT_IP_ADDRESS} );
+ok( !$res{DISTINCT_IP_ADDRESS}, q{No DISTINCT_IP_ADDRESS} );
 ok( $res{NS_RR_NO_CNAME}, q{NS_RR_NO_CNAME} );
 ok( $res{SOA_EXISTS}, q{SOA_EXISTS} );
 ok( $res{ARE_AUTHORITATIVE}, q{ARE_AUTHORITATIVE} );
