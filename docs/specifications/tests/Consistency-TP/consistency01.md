@@ -24,7 +24,6 @@ explains the serial number arithmetic, and section 4.3.5 of
 [RFC 1034](https://tools.ietf.org/html/rfc1035) explains the importance of
 serial number consistency.
 
-
 ### Inputs
 
 The domain name to be tested.
@@ -49,6 +48,10 @@ All authoritative name servers must have consistent serial numbers. If the
 test does not find any inconsistency, then the test case passes.
 
 ### Special procedural requirements	
+
+If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
+result of any test using this transport protocol. Log a message reporting
+on the ignored result.
 
 A manual inspection of the SOA serial may be needed to determine if the zone
 updates work properly or not, and if the serial values are within a

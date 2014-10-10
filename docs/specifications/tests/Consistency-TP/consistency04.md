@@ -34,7 +34,9 @@ same NS RR set, this test case fails.
 
 ### Special procedural requirements	
 
-None
+If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
+result of any test using this transport protocol. Log a message reporting
+on the ignored result.
 
 ### Intercase dependencies
 

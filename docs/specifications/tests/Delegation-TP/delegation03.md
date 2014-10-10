@@ -39,7 +39,7 @@ The domain name to be tested.
    one with the shortest name and add an AAAA record for it to the Additional
    section.
 7. If the DNS packet after encoding is more than 512 octets then the test
-   fails
+   fails.
 
 ### Outcome(s)
 

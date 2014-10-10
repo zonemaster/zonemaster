@@ -24,7 +24,7 @@ The domain name to be tested.
 ### Outcome(s)
 
 If the total amount of name servers used for the domain are two or more,
-then the test case succeeds .
+then the test case succeeds.
 
 ### Special procedural requirements
 

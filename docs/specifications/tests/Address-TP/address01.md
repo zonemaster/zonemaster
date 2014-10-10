@@ -18,7 +18,6 @@ addresses](https://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6
 and [Multicast reserved
 addresses](https://www.iana.org/assignments/multicast-addresses/multicast-addresses.xml).
 
-
 ### Inputs
 
 The domain name to be tested.
