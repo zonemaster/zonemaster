@@ -394,7 +394,7 @@ msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {
 msgstr "Traduction en cours"
 
 #: DNSSEC:RRSIG_EXPIRED
-msgid "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration})."
+msgid  "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration})."
 msgstr "Traduction en cours"
 
 #: DNSSEC:REMAINING_SHORT
@@ -402,7 +402,7 @@ msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a remaining val
 msgstr "Traduction en cours"
 
 #: REMAINING_LONG
-msgid "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long."
+msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long."
 msgstr "Traduction en cours"
 
 #: DNSSEC:EXTRA_PROCESSING_BROKEN
@@ -579,7 +579,7 @@ msgstr "Aucune adresse IP n'a pu être trouvée pour les serveurs de noms suivan
 
 #: NAMESERVER:CAN_BE_RESOLVED
 msgid  "All nameservers succeeded to resolve to an IP address."
-msgstr "Il a été possible de trouver au moins une adresse IP poir tous les serveurs de noms."
+msgstr "Il a été possible de trouver au moins une adresse IP pour tous les serveurs de noms."
 
 #: NAMESERVER:NO_RESOLUTION
 msgid  "No nameservers succeeded to resolve to an IP address."
@@ -715,73 +715,73 @@ msgstr "Traduction en cours"
 
 #: ZONE:EXPIRE_LOWER_THAN_REFRESH
 msgid  "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh})."
-msgstr "Traduction en cours"
+msgstr "Dans le SOA, la valeur du champ 'expire' ({expire}) est plus petite que la valeur du champ 'refresh' ({refresh})."
 
 #: ZONE:EXPIRE_MINIMUM_VALUE_LOWER
 msgid  "SOA 'expire' value ({expire}) is less than the recommended one ({required_expire})."
-msgstr "Traduction en cours"
+msgstr "Dans le SOA, la valeur du champ 'expire' ({expire}) est plus petite que la valeur recommandée ({required_expire})."
 
 #: ZONE:EXPIRE_MINIMUM_VALUE_OK
 msgid  "SOA 'expire' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than 'refresh' value."
-msgstr "Traduction en cours"
+msgstr "Dans le SOA, la valeur du champ 'expire' ({expire}) est plus grande que la valeur minimum recommandée ({required_expire}) et plus petite que la valeur du champ 'refresh'."
 
 #: ZONE:MNAME_IS_CNAME
 msgid  "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
-msgstr "Traduction en cours"
+msgstr "Le serveur maître défini dans le SOA, 'mname' ({mname}), fait référence à un serveur de noms qui est un alias (CNAME)."
 
 #: ZONE:MNAME_IS_NOT_CNAME
 msgid  "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME)."
-msgstr "Traduction en cours"
+msgstr "Le serveur maître défini dans le SOA, 'mname' ({mname}), fait référence à un serveur de noms qui n'est pas un alias (CNAME)."
 
 #: ZONE:MNAME_NOT_AUTHORITATIVE
 msgid  "SOA 'mname' nameserver {ns}/{address} is not authoritative for '{zone}' zone."
-msgstr "Traduction en cours"
+msgstr "Le serveur maître défini dans le SOA, 'mname' {ns}/{address}, ne fait pas autorité pour la zone '{zone}'."
 
 #: ZONE:MNAME_NOT_IN_GLUE
 msgid  "SOA 'mname' nameserver is not listed in \"parent\" NS records for tested zone."
-msgstr "Traduction en cours"
+msgstr "Le serveur maître défini dans le SOA, 'mname' ({mname}), ne fait pas partie des enregistrements de type \"NS\" listés par la zone parente."
 
 #: ZONE:MNAME_NO_RESPONSE
 msgid  "SOA 'mname' nameserver {ns}/{address} does not respond."
-msgstr "Traduction en cours"
+msgstr "Le serveur maître défini dans le SOA, 'mname' {ns}/{address}, ne répond pas."
 
 #: ZONE:MNAME_RECORD_DOES_NOT_EXIST
 msgid  "SOA 'mname' field does not exist"
-msgstr "Traduction en cours"
+msgstr "Le champ 'mname' n'est pas présent dans le SOA."
 
 #: ZONE:MX_RECORD_IS_CNAME
 msgid  "MX record for the domain is pointing to a CNAME."
-msgstr "Traduction en cours"
+msgstr "L'enregistrement de type \"MX\" pour le domaine pointe sur un alias (CNAME)."
 
 #: ZONE:NO_MX_RECORD
 msgid  "No target (MX, A or AAAA record) to deliver e-mail for the domain name."
-msgstr "Traduction en cours"
+msgstr "Aucune possibilité (enregistrement de type \"MX\", \"A\" ou \"AAAA\") de faire parvenir un message à ce nom de domaine."
 
 #: ZONE:REFRESH_LOWER_THAN_RETRY
 msgid  "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({retry})."
-msgstr "Traduction en cours"
+msgstr "Dans le SOA, la valeur du champ 'refresh' ({refresh}) est plus grande que la valeur du champ 'retry' ({retry})."
 
 #: ZONE:REFRESH_MINIMUM_VALUE_LOWER
 msgid  "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh})."
-msgstr "Traduction en cours"
+msgstr "Dans le SOA, la valeur du champ 'refresh' ({refresh}) est plus petite que la valeur recommandée ({required_refresh})."
 
 #: ZONE:RETRY_MINIMUM_VALUE_LOWER
 msgid  "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry})."
-msgstr "Traduction en cours"
+msgstr "Dans le SOA, la valeur du champ 'retry' ({retry}) est plus petite que la valeur recommandée ({required_retry})."
 
 #: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER
 msgid  "SOA 'minimum' value ({minimum}) is higher than the recommended one ({highest_minimum})."
-msgstr "Traduction en cours"
+msgstr "Dans le SOA, la valeur du champ 'minimum' ({minimum}) est plus grande que la valeur recommandée ({highest_minimum})."
 
 #: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_LOWER
 msgid  "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowest_minimum})."
-msgstr "Traduction en cours"
+msgstr "Dans le SOA, la valeur du champ 'minimum' ({minimum}) est plus petite que la valeur recommandée ({lowest_minimum})."
 
 #: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK
 msgid  "SOA 'minimum' value ({minimum}) is between the recommended ones ({lowest_minimum}/{highest_minimum})."
-msgstr "Traduction en cours"
+msgstr "Dans le SOA, la valeur du champ 'minimum' ({minimum}) est comprise dans l'interval de valeurs recommandées ({lowest_minimum}/{highest_minimum})."
 
 #: ZONE:MNAME_HAS_NO_ADDRESS
 msgid  "No IP address found for SOA 'mname' nameserver ({mname})."
-msgstr "Traduction en cours"
+msgstr "Pas d'adresse IP pour le serveur maître défini dans le SOA, 'mname' ({mname})."
 
