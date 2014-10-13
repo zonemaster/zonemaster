@@ -74,7 +74,7 @@ severity=5
 severity=5
 
 [Perl::Critic::Policy::CodeLayout::RequireTidyCode]
-severity=5
+severity=3
 
 # severity 4 rules
 [Perl::Critic::Policy::Miscellanea::ProhibitUnrestrictedNoCritic]
