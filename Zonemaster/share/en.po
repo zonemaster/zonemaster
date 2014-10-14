@@ -617,6 +617,14 @@ msgstr "Domain name ({name}) has a label ({label}) starting with an hyphen ('-')
 msgid  "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 
+#: SYNTAX:MNAME_IS_ROOT
+msgid  "MNAME ({name}) is root."
+msgstr "MNAME ({name}) is root."
+
+#: SYNTAX:MNAME_NON_ALLOWED_CHARS
+msgid  "Found illegal characters in SOA MNAME ({name})."
+msgstr "Found illegal characters in SOA MNAME ({name})."
+
 #: SYNTAX:MNAME_NUMERIC_TLD
 msgid  "SOA MNAME ({name}) within a 'numeric only' TLD ({tld})."
 msgstr "SOA MNAME ({name}) within a 'numeric only' TLD ({tld})."
@@ -628,6 +636,14 @@ msgstr "SOA MNAME ({name}) syntax is valid."
 #: SYNTAX:MX_DISCOURAGED_DOUBLE_DASH
 msgid  "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
+
+#: SYNTAX:MX_IS_ROOT
+msgid  "MX ({name}) is root."
+msgstr "MX ({name}) is root."
+
+#: SYNTAX:MX_NON_ALLOWED_CHARS
+msgid  "Found illegal characters in MX ({name})."
+msgstr "Found illegal characters in MX ({name})."
 
 #: SYNTAX:MX_NUMERIC_TLD
 msgid  "Domain name MX ({name}) within a 'numeric only' TLD ({tld})."
@@ -641,6 +657,14 @@ msgstr "Domain name MX ({name}) syntax is valid."
 msgid  "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 
+#: SYNTAX:NAMESERVER_IS_ROOT
+msgid  "Nameserver ({name}) is root."
+msgstr "Nameserver ({name}) is root."
+
+#: SYNTAX:NAMESERVER_NON_ALLOWED_CHARS
+msgid  "Found illegal characters in the nameserver ({name})."
+msgstr "Found illegal characters in the nameserver ({name})."
+
 #: SYNTAX:NAMESERVER_NUMERIC_TLD
 msgid  "Nameserver ({name}) within a 'numeric only' TLD ({tld})."
 msgstr "Nameserver ({name}) within a 'numeric only' TLD ({tld})."
@@ -650,8 +674,8 @@ msgid  "Nameserver ({name}) syntax is valid."
 msgstr "Nameserver ({name}) syntax is valid."
 
 #: SYNTAX:NON_ALLOWED_CHARS
-msgid  "Found illegal characters in the domain name ({name})"
-msgstr "Found illegal characters in the domain name ({name})"
+msgid  "Found illegal characters in the domain name ({name})."
+msgstr "Found illegal characters in the domain name ({name})."
 
 #: SYNTAX:NO_DOUBLE_DASH
 msgid  "Domain name ({name}) has no label with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."

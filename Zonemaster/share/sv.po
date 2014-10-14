@@ -193,22 +193,6 @@ msgstr "En SOA-fråga fick ett svar med RCODE NOERROR från {ns}, men svaret var
 msgid  "None of the nameservers listed at the parent are listed at the child."
 msgstr "Ingen av de namnservrar som listas på föräldrasidan listas på barnsidan."
 
-#: DNSSEC:ALGORITHM_DEPRECATED
-msgid  "The DNSKEY with tag {keytag} uses deprecated algorithm number {algorithm}."
-msgstr "DNSKEY-posten med keytag {keytag} använder den deprekerade algoritmen med nummer {algorithm}."
-
-#: DNSSEC:ALGORITHM_OK
-msgid  "The DNSKEY with tag {keytag} uses algorithm number {algorithm}, which is OK."
-msgstr "DNSKEY-posten med keytag {keytag} använder algoritm nummer {algorithm}, vilket är OK."
-
-#: DNSSEC:ALGORITHM_RESERVED
-msgid  "The DNSKEY with tag {keytag} uses reserved algorithm number {algorithm}."
-msgstr "DNSKEY-posten med keytag {keytag} använder det reserverade algoritm-numret {algorithm}."
-
-#: DNSSEC:ALGORITHM_UNASSIGNED
-msgid  "The DNSKEY with tag {keytag} uses unassigned algorithm number {algorithm}."
-msgstr "DNSKEY-posten med keytag {keytag} använder det icke tilldelade algoritm-numret {algorithm}."
-
 #: DNSSEC:COMMON_KEYTAGS
 msgid  "There are both DS and DNSKEY records with key tags {keytags}."
 msgstr "Det finns både DS- and DNSKEY-poster med keytag {keytags}."
@@ -278,15 +262,15 @@ msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {
 msgstr "RRSIG-posten med keytag {tag} och täckande typerna {types} har en livslängd på {duration} sekunder, vilket är lagom."
 
 #: DNSSEC:RRSIG_EXPIRED
-msgid "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration})."
+msgid  "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration})."
 msgstr "RRSIG-posten med {tag} och täckande typerna {types} har redan gått ut (utgångstiden är: {expiration})."
 
 #: DNSSEC:REMAINING_SHORT
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too short."
 msgstr "RRSIG-posten med keytag {tag} och täckande typerna {types} har en kvarvarande livslängd på {duration} sekunder, vilket är för kort."
 
-#: REMAINING_LONG
-msgid "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long."
+#: DNSSEC:REMAINING_LONG
+msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long."
 msgstr "RRSIG-posten med keytag {tag} och täckande typerna {types} har en kvarvarande livslängd på {duration} sekunder, vilket är för länge."
 
 #: DNSSEC:EXTRA_PROCESSING_BROKEN
@@ -442,7 +426,7 @@ msgid  "Nameserver {ns}/{address} replies on a SOA query with a different source
 msgstr "Namnservern {ns}/{address} svarade på en SOA-fråga från en annan käll-adress ({source})."
 
 #: SYNTAX:DISCOURAGED_DOUBLE_DASH
-msgid  "Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgid  "Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "Domännamnet ({name}) har en label ({label}) med bindestreck i position 3 och 4, och ett prefix som inte är 'xn--'."
 
 #: SYNTAX:INITIAL_HYPHEN
@@ -450,55 +434,31 @@ msgid  "Domain name ({name}) has a label ({label}) starting with an hyphen ('-')
 msgstr "Domännamnet {name} har en label ({label}) som börjar med ett bindestreck."
 
 #: SYNTAX:MNAME_DISCOURAGED_DOUBLE_DASH
-msgid  "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgid  "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "SOA MNAME ({name}) har en label ({label}) med bindestreck i position 3 och 4 (och ett prefix som inte är 'xn--'."
-
-#: SYNTAX:MNAME_LABEL_TOO_LONG
-msgid  "SOA MNAME ({name}) has a label ({label}) too long ({length}/{max})."
-msgstr "SOA MNAME ({name}) har en label ({label}) som är för lång ({length}/{max})."
-
-#: SYNTAX:MNAME_NAME_TOO_LONG
-msgid  "SOA MNAME ({name}) is too long ({length}/{max})."
-msgstr "SOA MNAME ({name}) är för långt ({length}/{max})."
 
 #: SYNTAX:MNAME_NUMERIC_TLD
 msgid  "SOA MNAME ({name}) within a 'numeric only' TLD ({tld})."
 msgstr "SOA MNAME ({name}) är i en helnumerisk TLD ({tld})."
 
 #: SYNTAX:MX_DISCOURAGED_DOUBLE_DASH
-msgid  "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgid  "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "Domänens MX ({name}) har en label ({label}) med bindestreck i position 3 och 4, och ett prefix som inte är 'xn--'."
-
-#: SYNTAX:MX_LABEL_TOO_LONG
-msgid  "Domain name MX ({name}) has a label ({label}) too long ({length}/{max})."
-msgstr "Domänens MX ({name}) har en label ({label}) som är för lång ({length}/{max})."
-
-#: SYNTAX:MX_NAME_TOO_LONG
-msgid  "Domain name MX  is too long ({length}/{max})."
-msgstr "Domänens MX  är för långt ({length}/{max})."
 
 #: SYNTAX:MX_NUMERIC_TLD
 msgid  "Domain name MX ({name}) within a 'numeric only' TLD ({tld})."
 msgstr "Domänens MX ({name}) är i en helnumerisk TLD ({tld})."
 
 #: SYNTAX:NAMESERVER_DISCOURAGED_DOUBLE_DASH
-msgid  "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4  (with a prefix which is not 'xn--')."
+msgid  "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "Namnservern ({name}) har en label ({label}) med bindestreck i position 3 och 4, och ett prefix som inte är 'xn--'."
-
-#: SYNTAX:NAMESERVER_LABEL_TOO_LONG
-msgid  "Nameserver ({name}) has a label ({label}) too long ({length}/{max})."
-msgstr "Namnservern ({name}) har en label ({label}) som är för lång ({length}/{max})."
-
-#: SYNTAX:NAMESERVER_NAME_TOO_LONG
-msgid  "Nameserver ({name}) is too long ({length}/{max})."
-msgstr "Namnserver-namnet ({name}) är för långt ({length}/{max})."
 
 #: SYNTAX:NAMESERVER_NUMERIC_TLD
 msgid  "Nameserver ({name}) within a 'numeric only' TLD ({tld})."
 msgstr "Namnservern ({name}) finns i en helnumerisk TLD ({tld})."
 
 #: SYNTAX:NON_ALLOWED_CHARS
-msgid  "Found illegal characters in the domain name ({name})"
+msgid  "Found illegal characters in the domain name ({name})."
 msgstr "Otillåtna tecken i domännamnet {name}."
 
 #: SYNTAX:ONLY_ALLOWED_CHARS
@@ -522,7 +482,7 @@ msgid  "Not enough data about {zone} was found to be able to run tests."
 msgstr "Hittade inte tillräckligt med information om {zone} för att kunna köra tester."
 
 #: SYSTEM:CONFIG_FILE
-msgid "Configuration was read from {name}."
+msgid  "Configuration was read from {name}."
 msgstr "Konfiguration lästes från {name}."
 
 #: SYSTEM:DEPENDENCY_VERSION
@@ -546,19 +506,19 @@ msgid  "Using module {module} version {version}."
 msgstr "Använder version {version} av modulen {module}."
 
 #: SYSTEM:POLICY_FILE
-msgid "Policy was read from {name}."
+msgid  "Policy was read from {name}."
 msgstr "Policy lästes från {name}."
 
 #: SYSTEM:POLICY_DISABLED
-msgid "The module {name} was disabled by the policy."
+msgid  "The module {name} was disabled by the policy."
 msgstr "Modulen {name} var avstängd i policyn."
 
 #: SYSTEM:SKIP_IPV4_DISABLED
-msgid "IPv4 is disabled, not sending query to {ns}."
+msgid  "IPv4 is disabled, not sending query to {ns}."
 msgstr "IPv4 är avstängt, skickar ingen fråga till {ns}."
 
 #: SYSTEM:SKIP_IPV6_DISABLED
-msgid "IPv6 is disabled, not sending query to {ns}."
+msgid  "IPv6 is disabled, not sending query to {ns}."
 msgstr "IPv6 är avstängt, skickar ingen fråga till {ns}."
 
 #: SYSTEM:UNKNOWN_METHOD
@@ -626,115 +586,115 @@ msgid  "SOA 'minimum' value ({minimum}) is less than the recommended one ({lowes
 msgstr "SOA-postens 'minimum'-värde ({minimum}) är lägre än rekommenderat ({lowest_minimum})."
 
 #: ADDRESS:NAMESERVERS_IP_WITH_REVERSE
-msgid   "Reverse DNS entry exist for all Nameserver IP addresses."
+msgid  "Reverse DNS entry exist for all Nameserver IP addresses."
 msgstr "Bakåtuppslagning finns för samtliga namnserveradresser."
 
 #: ADDRESS:NAMESERVER_IP_PTR_MATCH
-msgid   "All reverse DNS entry matches name server name."
+msgid  "All reverse DNS entry matches name server name."
 msgstr "Alla bakåtuppslagningar stämmer överens med motsvarande namnservernamn."
 
 #: ADDRESS:NO_IP_PRIVATE_NETWORK
-msgid   "All Nameserver addresses are in the routable public addressing space."
+msgid  "All Nameserver addresses are in the routable public addressing space."
 msgstr "Alla namnserveradresser finns i den publikt routningsbara addressrymden."
 
 #: BASIC:A_QUERY_NO_RESPONSES
-msgid   "Nameservers did not respond to A query."
+msgid  "Nameservers did not respond to A query."
 msgstr "Namnservern svarade inte på en A-fråga."
 
 #: BASIC:HAS_NAMESERVER_NO_WWW_A_TEST
-msgid   "Functional nameserver found. \"A\" query for www.{name} test aborted."
+msgid  "Functional nameserver found. \"A\" query for www.{name} test aborted."
 msgstr "En fungerande namnserver hittades. Testet om \"A\"-fråga för www.{name} behövdes inte."
 
 #: BASIC:IPV4_DISABLED
-msgid   "IPv4 is disabled, not sending \"{type}\" query to {ns}."
+msgid  "IPv4 is disabled, not sending \"{type}\" query to {ns}."
 msgstr "IPv4 är avstängt, skickar inte \"{type}\"-fråga till {ns}."
 
 #: BASIC:IPV4_ENABLED
-msgid   "IPv4 is enabled, can send \"{type}\" query to {ns}."
+msgid  "IPv4 is enabled, can send \"{type}\" query to {ns}."
 msgstr "IPv4 är påslaget, kan skicka \"{type}\"-fråga till {ns}."
 
 #: BASIC:IPV6_DISABLED
-msgid   "IPv6 is disabled, not sending \"{type}\" query to {ns}."
+msgid  "IPv6 is disabled, not sending \"{type}\" query to {ns}."
 msgstr "IPv6 är avstängt, skickar inte \"{type}\"-fråga till {ns}."
 
 #: BASIC:IPV6_ENABLED
-msgid   "IPv6 is enabled, can send \"{type}\" query to {ns}."
+msgid  "IPv6 is enabled, can send \"{type}\" query to {ns}."
 msgstr "IPv6 är påslaget, kan skicka \"{type}\"-fråga till {ns}."
 
 #: BASIC:NO_A_RECORDS
-msgid   "Nameserver {source} did not return A record(s) for {name}"
-msgstr "Namnservern {source} svarade inte med några A-poster för {name}"
+msgid  "Nameserver {source} did not return A record(s) for {name}."
+msgstr "Namnservern {source} svarade inte med några A-poster för {name}."
 
 #: BASIC:NO_GLUE_PREVENTS_NAMESERVER_TESTS
-msgid   "No NS records for tested zone from parent. NS tests aborted."
+msgid  "No NS records for tested zone from parent. NS tests aborted."
 msgstr "Inga NS-poster för den testade zonen från föräldern. NS-tester avbryts."
 
 #: BASIC:PARENT_REPLIES
-msgid   "Nameserver for zone {parent} replies when trying to fetch glue."
+msgid  "Nameserver for zone {parent} replies when trying to fetch glue."
 msgstr "Namnserver för zonen {parent} svarade på försök att hämta glue."
 
 #: EXAMPLE:EXAMPLE_TAG
-msgid   "This is an example tag."
+msgid  "This is an example tag."
 msgstr "Detta är en exempel-tagg."
 
 #: CONNECTIVITY:NAMESERVERS_WITH_MULTIPLE_AS
-msgid   "Domain's authoritative nameservers do not belong to the same AS."
+msgid  "Domain's authoritative nameservers do not belong to the same AS."
 msgstr "Domänens servrar finns inte alla i samma AS."
 
 #: DELEGATION:ARE_AUTHORITATIVE
-msgid   "All the nameservers are authoritative."
+msgid  "All the nameservers are authoritative."
 msgstr "Alla namnservrar är auktoritativa."
 
 #: DELEGATION:DISTINCT_IP_ADDRESS
-msgid   "All the IP addresses used by the nameservers are unique"
+msgid  "All the IP addresses used by the nameservers are unique"
 msgstr "Alla namnservrars IP-adresser är unika."
 
 #: DELEGATION:NS_RR_NO_CNAME
-msgid   "No nameserver point to CNAME alias."
+msgid  "No nameserver point to CNAME alias."
 msgstr "Inget namnserver-namn pekar på ett CNAME-alias."
 
 #: DELEGATION:SOA_EXISTS
-msgid   "All the nameservers have SOA record."
+msgid  "All the nameservers have SOA record."
 msgstr "Alla namnservrar har en SOA-post."
 
 #: DNSSEC:ADDITIONAL_DNSKEY_SKIPPED
-msgid   "No DNSKEYs found. Additional tests skipped."
+msgid  "No DNSKEYs found. Additional tests skipped."
 msgstr "Inga DNSKEY-poster hittades. Resterande tester hoppas över."
 
 #: DNSSEC:ALGORITHM_DEPRECATED
-msgid   "The DNSKEY with tag {keytag} uses deprecated algorithm number {algorithm}/({description})."
+msgid  "The DNSKEY with tag {keytag} uses deprecated algorithm number {algorithm}/({description})."
 msgstr "DNSKEY-posten med tag {keytag} använder den deprekerade algoritmen {algorithm}/({description})."
 
 #: DNSSEC:ALGORITHM_OK
-msgid   "The DNSKEY with tag {keytag} uses algorithm number {algorithm}/({description}), which is OK."
+msgid  "The DNSKEY with tag {keytag} uses algorithm number {algorithm}/({description}), which is OK."
 msgstr "DNSKEY-posten med tag {keytag} använder algoritm nummer {algorithm}/({description}), vilket är OK."
 
 #: DNSSEC:ALGORITHM_PRIVATE
-msgid   "The DNSKEY with tag {keytag} uses private algorithm number {algorithm}/({description})."
+msgid  "The DNSKEY with tag {keytag} uses private algorithm number {algorithm}/({description})."
 msgstr "DNSKEY-posten med tag {keytag} använder den privata algoritmen med nummer {algorithm}/({description})."
 
 #: DNSSEC:ALGORITHM_RESERVED
-msgid   "The DNSKEY with tag {keytag} uses reserved algorithm number {algorithm}/({description})."
+msgid  "The DNSKEY with tag {keytag} uses reserved algorithm number {algorithm}/({description})."
 msgstr "DNSKEY-posten med tag {keytag} använder reserverad algoritm nummer {algorithm}/({description})."
 
 #: DNSSEC:ALGORITHM_UNASSIGNED
-msgid   "The DNSKEY with tag {keytag} uses unassigned algorithm number {algorithm}/({description})."
+msgid  "The DNSKEY with tag {keytag} uses unassigned algorithm number {algorithm}/({description})."
 msgstr "DNSKEY-posten med tag {keytag} använder den otilldelade algoritmen med nummer {algorithm}/({description})."
 
 #: DNSSEC:ALGORITHM_UNKNOWN
-msgid   "The DNSKEY with tag {keytag} uses unknown algorithm number {algorithm}."
+msgid  "The DNSKEY with tag {keytag} uses unknown algorithm number {algorithm}."
 msgstr "DNSKEY-posten med tag {keytag} använder algoritmen med det okända numret {algorithm}."
 
 #: NAMESERVER:AAAA_WELL_PROCESSED
-msgid   "The following nameservers answer AAAA queries without problems : {names}."
+msgid  "The following nameservers answer AAAA queries without problems : {names}."
 msgstr "Följande namnservrar svarade problemfritt på AAAA-frågor : {names}."
 
 #: NAMESERVER:EDNS0_SUPPORT
-msgid   "The following nameservers support EDNS0 : {names}."
+msgid  "The following nameservers support EDNS0 : {names}."
 msgstr "Följande namnservrar stöder EDNS0 : {names}."
 
 #: NAMESERVER:NO_RECURSOR
-msgid   "None of the following nameservers is a recursor : {names}."
+msgid  "None of the following nameservers is a recursor : {names}."
 msgstr "Ingen av följande namnservrar är rekursiv : {names}."
 
 #: ADDRESS:NO_RESPONSE_PTR_QUERY
@@ -788,4 +748,72 @@ msgstr "CONSISTENCY:NS_SET needs translation..."
 #: CONSISTENCY:ONE_NS_SET
 msgid  "A unique NS set was seen ({nsset})."
 msgstr "CONSISTENCY:ONE_NS_SET needs translation..."
+
+#: SYNTAX:MNAME_IS_ROOT
+msgid  "MNAME ({name}) is root."
+msgstr "SYNTAX:MNAME_IS_ROOT needs translation..."
+
+#: SYNTAX:MNAME_NON_ALLOWED_CHARS
+msgid  "Found illegal characters in SOA MNAME ({name})."
+msgstr "SYNTAX:MNAME_NON_ALLOWED_CHARS needs translation..."
+
+#: SYNTAX:MX_IS_ROOT
+msgid  "MX ({name}) is root."
+msgstr "SYNTAX:MX_IS_ROOT needs translation..."
+
+#: SYNTAX:MX_NON_ALLOWED_CHARS
+msgid  "Found illegal characters in MX ({name})."
+msgstr "SYNTAX:MX_NON_ALLOWED_CHARS needs translation..."
+
+#: SYNTAX:NAMESERVER_IS_ROOT
+msgid  "Nameserver ({name}) is root."
+msgstr "SYNTAX:NAMESERVER_IS_ROOT needs translation..."
+
+#: SYNTAX:NAMESERVER_NON_ALLOWED_CHARS
+msgid  "Found illegal characters in the nameserver ({name})."
+msgstr "SYNTAX:NAMESERVER_NON_ALLOWED_CHARS needs translation..."
+
+#: BASIC:DOMAIN_NAME_LABEL_TOO_LONG
+msgid  "Domain name ({name}) has a label ({label}) too long ({length}/{max})."
+msgstr "BASIC:DOMAIN_NAME_LABEL_TOO_LONG needs translation..."
+
+#: BASIC:DOMAIN_NAME_TOO_LONG
+msgid  "Domain name is too long ({length}/{max})."
+msgstr "BASIC:DOMAIN_NAME_TOO_LONG needs translation..."
+
+#: SYNTAX:MNAME_SYNTAX_OK
+msgid  "SOA MNAME ({name}) syntax is valid."
+msgstr "SYNTAX:MNAME_SYNTAX_OK needs translation..."
+
+#: SYNTAX:MX_SYNTAX_OK
+msgid  "Domain name MX ({name}) syntax is valid."
+msgstr "SYNTAX:MX_SYNTAX_OK needs translation..."
+
+#: SYNTAX:NAMESERVER_SYNTAX_OK
+msgid  "Nameserver ({name}) syntax is valid."
+msgstr "SYNTAX:NAMESERVER_SYNTAX_OK needs translation..."
+
+#: SYNTAX:NO_DOUBLE_DASH
+msgid  "Domain name ({name}) has no label with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
+msgstr "SYNTAX:NAMESERVER_SYNTAX_OK needs translation..."
+
+#: SYNTAX:NO_ENDING_HYPHENS
+msgid  "Both ends of all labels of the domain name ({name}) have no hyphens."
+msgstr "SYNTAX:NO_ENDING_HYPHENS needs translation..."
+
+#: SYNTAX:NO_RESPONSE_MX_QUERY
+msgid  "No response from nameserver(s) on MX queries."
+msgstr "SYNTAX:NO_RESPONSE_MX_QUERY needs translation..."
+
+#: SYNTAX:NO_RESPONSE_SOA_QUERY
+msgid  "No response from nameserver(s) on SOA queries."
+msgstr "SYNTAX:NO_RESPONSE_SOA_QUERY needs translation..."
+
+#: SYNTAX:RNAME_NO_AT_SIGN
+msgid  "There is no misused '@' character in the SOA RNAME field ({rname})."
+msgstr "SYNTAX:RNAME_NO_AT_SIGN needs translation..."
+
+#: SYNTAX:RNAME_RFC822_VALID
+msgid  "The SOA RNAME field ({rname}) is compliant with RFC2822."
+msgstr "SYNTAX:RNAME_RFC822_VALID needs translation..."
 

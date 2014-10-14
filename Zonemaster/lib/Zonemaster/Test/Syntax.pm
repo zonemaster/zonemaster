@@ -31,8 +31,10 @@ sub all {
 
     if ( any { $_->tag eq q{ONLY_ALLOWED_CHARS} } @results ) {
 
-        foreach my $local_nsname ( uniq map { $_->string } @{ Zonemaster::TestMethods->method2($zone) }, @{ Zonemaster::TestMethods->method3($zone) } ) {
-            push @results, $class->syntax04( $local_nsname);
+        foreach my $local_nsname ( uniq map { $_->string } @{ Zonemaster::TestMethods->method2( $zone ) },
+            @{ Zonemaster::TestMethods->method3( $zone ) } )
+        {
+            push @results, $class->syntax04( $local_nsname );
         }
 
         push @results, $class->syntax05( $zone );
@@ -79,6 +81,8 @@ sub metadata {
         syntax04 => [
             qw(
               NAMESERVER_DISCOURAGED_DOUBLE_DASH
+              NAMESERVER_IS_ROOT
+              NAMESERVER_NON_ALLOWED_CHARS
               NAMESERVER_NUMERIC_TLD
               NAMESERVER_SYNTAX_OK
               )
@@ -99,6 +103,8 @@ sub metadata {
         syntax07 => [
             qw(
               MNAME_DISCOURAGED_DOUBLE_DASH
+              MNAME_IS_ROOT
+              MNAME_NON_ALLOWED_CHARS
               MNAME_NUMERIC_TLD
               MNAME_SYNTAX_OK
               NO_RESPONSE_SOA_QUERY
@@ -107,6 +113,8 @@ sub metadata {
         syntax08 => [
             qw(
               MX_DISCOURAGED_DOUBLE_DASH
+              MX_IS_ROOT
+              MX_NON_ALLOWED_CHARS
               MX_NUMERIC_TLD
               MX_SYNTAX_OK
               NO_RESPONSE_MX_QUERY
@@ -117,28 +125,39 @@ sub metadata {
 
 sub translation {
     return {
-        "NAMESERVER_DISCOURAGED_DOUBLE_DASH" => "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--').",
-        "NAMESERVER_NUMERIC_TLD"             => "Nameserver ({name}) within a 'numeric only' TLD ({tld}).",
-        "NAMESERVER_SYNTAX_OK"               => "Nameserver ({name}) syntax is valid.",
-        "MNAME_DISCOURAGED_DOUBLE_DASH"      => "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--').",
-        "MNAME_NUMERIC_TLD"                  => "SOA MNAME ({name}) within a 'numeric only' TLD ({tld}).",
-        "MNAME_SYNTAX_OK"                    => "SOA MNAME ({name}) syntax is valid.",
-        "MX_DISCOURAGED_DOUBLE_DASH"         => "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--').",
-        "MX_NUMERIC_TLD"                     => "Domain name MX ({name}) within a 'numeric only' TLD ({tld}).",
-        "MX_SYNTAX_OK"                       => "Domain name MX ({name}) syntax is valid.",
-        "DISCOURAGED_DOUBLE_DASH"            => "Domain name ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--').",
-        "INITIAL_HYPHEN"                     => "Domain name ({name}) has a label ({label}) starting with an hyphen ('-').",
-        "TERMINAL_HYPHEN"                    => "Domain name ({name}) has a label ({label}) ending with an hyphen ('-').",
-        "NON_ALLOWED_CHARS"                  => "Found illegal characters in the domain name ({name})",
-        "ONLY_ALLOWED_CHARS"                 => "No illegal characters in the domain name ({name}).",
-        "RNAME_MISUSED_AT_SIGN"              => "There must be no misused '\@' character in the SOA RNAME field ({rname}).",
-        "RNAME_RFC822_INVALID"               => "There must be no illegal characters in the SOA RNAME field ({rname}).",
-        "RNAME_RFC822_VALID"                 => "The SOA RNAME field ({rname}) is compliant with RFC2822.",
-        "NO_ENDING_HYPHENS"                  => "Both ends of all labels of the domain name ({name}) have no hyphens.",
-        "NO_DOUBLE_DASH"                     => "Domain name ({name}) has no label with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--').",
-        "RNAME_NO_AT_SIGN"                   => "There is no misused '\@' character in the SOA RNAME field ({rname}).",
-        "NO_RESPONSE_SOA_QUERY"              => "No response from nameserver(s) on SOA queries.",
-        "NO_RESPONSE_MX_QUERY"               => "No response from nameserver(s) on MX queries.",
+        'NAMESERVER_DISCOURAGED_DOUBLE_DASH' =>
+'Nameserver ({name}) has a label ({label}) with a double hyphen (\'--\') in position 3 and 4 (with a prefix which is not \'xn--\').',
+        'NAMESERVER_IS_ROOT'           => 'Nameserver ({name}) is root.',
+        'NAMESERVER_NON_ALLOWED_CHARS' => 'Found illegal characters in the nameserver ({name}).',
+        'NAMESERVER_NUMERIC_TLD'       => 'Nameserver ({name}) within a \'numeric only\' TLD ({tld}).',
+        'NAMESERVER_SYNTAX_OK'         => 'Nameserver ({name}) syntax is valid.',
+        'MNAME_DISCOURAGED_DOUBLE_DASH' =>
+'SOA MNAME ({name}) has a label ({label}) with a double hyphen (\'--\') in position 3 and 4 (with a prefix which is not \'xn--\').',
+        'MNAME_IS_ROOT'           => 'MNAME ({name}) is root.',
+        'MNAME_NON_ALLOWED_CHARS' => 'Found illegal characters in SOA MNAME ({name}).',
+        'MNAME_NUMERIC_TLD'       => 'SOA MNAME ({name}) within a \'numeric only\' TLD ({tld}).',
+        'MNAME_SYNTAX_OK'         => 'SOA MNAME ({name}) syntax is valid.',
+        'MX_DISCOURAGED_DOUBLE_DASH' =>
+'Domain name MX ({name}) has a label ({label}) with a double hyphen (\'--\') in position 3 and 4 (with a prefix which is not \'xn--\').',
+        'MX_IS_ROOT'           => 'MX ({name}) is root.',
+        'MX_NON_ALLOWED_CHARS' => 'Found illegal characters in MX ({name}).',
+        'MX_NUMERIC_TLD'       => 'Domain name MX ({name}) within a \'numeric only\' TLD ({tld}).',
+        'MX_SYNTAX_OK'         => 'Domain name MX ({name}) syntax is valid.',
+        'DISCOURAGED_DOUBLE_DASH' =>
+'Domain name ({name}) has a label ({label}) with a double hyphen (\'--\') in position 3 and 4 (with a prefix which is not \'xn--\').',
+        'INITIAL_HYPHEN'        => 'Domain name ({name}) has a label ({label}) starting with an hyphen (\'-\').',
+        'TERMINAL_HYPHEN'       => 'Domain name ({name}) has a label ({label}) ending with an hyphen (\'-\').',
+        'NON_ALLOWED_CHARS'     => 'Found illegal characters in the domain name ({name}).',
+        'ONLY_ALLOWED_CHARS'    => 'No illegal characters in the domain name ({name}).',
+        'RNAME_MISUSED_AT_SIGN' => 'There must be no misused \'@\' character in the SOA RNAME field ({rname}).',
+        'RNAME_RFC822_INVALID'  => 'There must be no illegal characters in the SOA RNAME field ({rname}).',
+        'RNAME_RFC822_VALID'    => 'The SOA RNAME field ({rname}) is compliant with RFC2822.',
+        'NO_ENDING_HYPHENS'     => 'Both ends of all labels of the domain name ({name}) have no hyphens.',
+        'NO_DOUBLE_DASH' =>
+'Domain name ({name}) has no label with a double hyphen (\'--\') in position 3 and 4 (with a prefix which is not \'xn--\').',
+        'RNAME_NO_AT_SIGN'      => 'There is no misused \'@\' character in the SOA RNAME field ({rname}).',
+        'NO_RESPONSE_SOA_QUERY' => 'No response from nameserver(s) on SOA queries.',
+        'NO_RESPONSE_MX_QUERY'  => 'No response from nameserver(s) on MX queries.',
     };
 } ## end sub translation
 
@@ -203,11 +222,11 @@ sub syntax02 {
         }
     } ## end foreach my $local_label ( @...)
 
-    if (scalar @{ $name->labels } and not scalar @results) {
+    if ( scalar @{ $name->labels } and not scalar @results ) {
         push @results,
           info(
             NO_ENDING_HYPHENS => {
-                name  => $name,
+                name => $name,
             }
           );
     }
@@ -233,11 +252,11 @@ sub syntax03 {
         }
     }
 
-    if (scalar @{ $name->labels } and not scalar @results) {
+    if ( scalar @{ $name->labels } and not scalar @results ) {
         push @results,
           info(
             NO_DOUBLE_DASH => {
-                name  => $name,
+                name => $name,
             }
           );
     }
@@ -254,7 +273,7 @@ sub syntax04 {
     push @results, check_name_syntax( q{NAMESERVER}, $name );
 
     return @results;
-} ## end sub syntax04
+}
 
 sub syntax05 {
     my ( $class, $zone ) = @_;
@@ -263,7 +282,7 @@ sub syntax05 {
     my $p = $zone->query_one( $zone->name, q{SOA} );
 
     if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
-        my $rname   = $soa->rname;
+        my $rname = $soa->rname;
         $rname =~ s/\\./\./smgx;
         if ( index( $rname, q{@} ) != -1 ) {
             push @results,
@@ -281,12 +300,10 @@ sub syntax05 {
                 }
               );
         }
-    }
+    } ## end if ( $p and my ( $soa ...))
     else {
         push @results,
-          info(
-            NO_RESPONSE_SOA_QUERY => { }
-          );
+          info( NO_RESPONSE_SOA_QUERY => {} );
     }
 
     return @results;
@@ -299,10 +316,10 @@ sub syntax06 {
     my $p = $zone->query_one( $zone->name, q{SOA} );
 
     if ( $p and my ( $soa ) = $p->get_records( q{SOA}, q{answer} ) ) {
-        my $rname   = $soa->rname;
-        $rname =~ s/([^\\])\./$1@/smx;    # Replace first non-escaped dot with an at-sign
-        $rname =~ s/\\./\./smgx;          # Un-escape dots
-        $rname =~ s/\.\z//smgx;           # Validator does not like final dots
+        my $rname = $soa->rname;
+        $rname =~ s/([^\\])[.]/$1@/smx;    # Replace first non-escaped dot with an at-sign
+        $rname =~ s/[\\][.]/./smgx;        # Un-escape dots
+        $rname =~ s/[.]\z//smgx;           # Validator does not like final dots
         if ( not valid( $rname ) ) {
             push @results,
               info(
@@ -319,12 +336,10 @@ sub syntax06 {
                 }
               );
         }
-    }
+    } ## end if ( $p and my ( $soa ...))
     else {
         push @results,
-          info(
-            NO_RESPONSE_SOA_QUERY => { }
-          );
+          info( NO_RESPONSE_SOA_QUERY => {} );
     }
     return @results;
 } ## end sub syntax06
@@ -342,13 +357,11 @@ sub syntax07 {
     }
     else {
         push @results,
-          info(
-            NO_RESPONSE_SOA_QUERY => { }
-          );
+          info( NO_RESPONSE_SOA_QUERY => {} );
     }
 
     return @results;
-} ## end sub syntax07
+}
 
 sub syntax08 {
     my ( $class, $zone ) = @_;
@@ -363,13 +376,11 @@ sub syntax08 {
     }
     else {
         push @results,
-          info(
-            NO_RESPONSE_MX_QUERY => { }
-          );
+          info( NO_RESPONSE_MX_QUERY => {} );
     }
 
     return @results;
-} ## end sub syntax08
+}
 
 ###
 ### Internal Tests with Boolean (0|1) return value.
@@ -433,13 +444,13 @@ sub get_name {
     my ( $item ) = @_;
     my $name;
 
-    if ( not ref( $item ) ) {
+    if ( not ref $item ) {
         $name = name( $item );
-    }     
-    elsif (ref( $item ) eq q{Zonemaster::Zone}) {
+    }
+    elsif ( ref( $item ) eq q{Zonemaster::Zone} ) {
         $name = $item->name;
     }
-    elsif (ref( $item ) eq q{Zonemaster::DNSName}) {
+    elsif ( ref( $item ) eq q{Zonemaster::DNSName} ) {
         $name = $item;
     }
 
@@ -452,37 +463,63 @@ sub check_name_syntax {
 
     $name = get_name( $name );
 
-    foreach my $local_label ( @{ $name->labels } ) {
-        if ( _label_not_ace_has_double_hyphen_in_position_3_and_4( $local_label ) ) {
-            push @results,
-              info(
-                $info_label_prefix . q{_DISCOURAGED_DOUBLE_DASH} => {
-                    label => $local_label,
-                    name  => "$name",
-                  }
-              );
-        }
-    } ## end foreach my $local_label ( @...)
-
-    my $tld = @{ $name->labels }[-1];
-    if ( $tld =~ /\A[0-9]+\z/smgx ) {
+    if ( $name eq q{.} ) {
         push @results,
           info(
-            $info_label_prefix . q{_NUMERIC_TLD} => {
+            $info_label_prefix
+              . q{_IS_ROOT} => {
                 name => "$name",
-                tld  => $tld,
               }
           );
     }
+    else {
 
-    if (not scalar @results) {
-        push @results,
-          info(
-            $info_label_prefix . q{_SYNTAX_OK} => {
-                name  => "$name",
+        if ( not _name_has_only_legal_characters( $name ) ) {
+            push @results,
+              info(
+                $info_label_prefix
+                  . q{_NON_ALLOWED_CHARS} => {
+                    name => $name,
+                  }
+              );
+        }
+
+        foreach my $local_label ( @{ $name->labels } ) {
+            if ( _label_not_ace_has_double_hyphen_in_position_3_and_4( $local_label ) ) {
+                push @results,
+                  info(
+                    $info_label_prefix
+                      . q{_DISCOURAGED_DOUBLE_DASH} => {
+                        label => $local_label,
+                        name  => "$name",
+                      }
+                  );
             }
-          );
-    }
+        }
+
+        my $tld = @{ $name->labels }[-1];
+        if ( $tld =~ /\A\d+\z/smgx ) {
+            push @results,
+              info(
+                $info_label_prefix
+                  . q{_NUMERIC_TLD} => {
+                    name => "$name",
+                    tld  => $tld,
+                  }
+              );
+        }
+
+        if ( not scalar @results ) {
+            push @results,
+              info(
+                $info_label_prefix
+                  . q{_SYNTAX_OK} => {
+                    name => "$name",
+                  }
+              );
+        }
+
+    } ## end else [ if ( $name eq q{.} ) ]
 
     return @results;
 } ## end sub check_name_syntax

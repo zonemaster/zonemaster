@@ -81,3 +81,4 @@ util/reformat_json.pl
 share/locale/en/LC_MESSAGES/Zonemaster.mo
 share/locale/sv/LC_MESSAGES/Zonemaster.mo
 share/locale/fr/LC_MESSAGES/Zonemaster.mo
+share/locale/fr_FR.UTF-8/LC_MESSAGES/Zonemaster.mo
