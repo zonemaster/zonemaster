@@ -8,7 +8,7 @@ This document outlines the continuous development of the ZoneMaster open source 
 
 ## Change management
 
-Any change in the software requires a change in the list of requirements. Change requests can come from anywhere, such as the users mailinglist, the steering committe or the development team.
+Any change in the software except minor improvements or bug fixes requires a change in the list of requirements. Change requests can come from anywhere, such as the users mailinglist, the steering committe or the development team. A bug or minor improvement should close a ticket in the Issues functionality of Github.
 
 A change is approved by the development team, and added to the roadmap and the current set of requirements.
 
