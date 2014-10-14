@@ -116,16 +116,16 @@ sub metadata {
 
 sub translation {
     return {
-        "NAMESERVER_WITH_UNALLOCATED_ADDRESS" => "Nameserver {ns}/{address} uses an unassigned/unannounced address.",
-        "NAMESERVER_HAS_UDP_53"               => "Nameserver {ns}/{address} accessible over UDP on port 53.",
-        "NAMESERVERS_WITH_UNIQ_AS"            => "All nameservers are in the same AS ({asn}).",
-        "NAMESERVERS_IPV4_WITH_UNIQ_AS"       => "All nameservers IPv4 addresses are in the same AS ({asn}).",
-        "NAMESERVER_NO_UDP_53"                => "Nameserver {ns}/{address} not accessible over UDP on port 53.",
-        "ADDRESS_TYPE_NOT_IMPLEMENTED"        => "Service provided by - {service} - does not work with IPv{type} addresses",
-        "NAMESERVER_HAS_TCP_53"               => "Nameserver {ns}/{address} accessible over TCP on port 53.",
-        "NAMESERVERS_IPV6_WITH_UNIQ_AS"       => "All nameservers IPv6 addresses are in the same AS ({asn}).",
-        "NAMESERVER_NO_TCP_53"                => "Nameserver {ns}/{address} not accessible over TCP on port 53.",
-        "NAMESERVERS_WITH_MULTIPLE_AS"        => "Domain's authoritative nameservers do not belong to the same AS.",
+        'NAMESERVER_WITH_UNALLOCATED_ADDRESS' => 'Nameserver {ns}/{address} uses an unassigned/unannounced address.',
+        'NAMESERVER_HAS_UDP_53'               => 'Nameserver {ns}/{address} accessible over UDP on port 53.',
+        'NAMESERVERS_WITH_UNIQ_AS'            => 'All nameservers are in the same AS ({asn}).',
+        'NAMESERVERS_IPV4_WITH_UNIQ_AS'       => 'All nameservers IPv4 addresses are in the same AS ({asn}).',
+        'NAMESERVER_NO_UDP_53'                => 'Nameserver {ns}/{address} not accessible over UDP on port 53.',
+        'ADDRESS_TYPE_NOT_IMPLEMENTED'        => 'Service provided by - {service} - does not work with IPv{type} addresses',
+        'NAMESERVER_HAS_TCP_53'               => 'Nameserver {ns}/{address} accessible over TCP on port 53.',
+        'NAMESERVERS_IPV6_WITH_UNIQ_AS'       => 'All nameservers IPv6 addresses are in the same AS ({asn}).',
+        'NAMESERVER_NO_TCP_53'                => 'Nameserver {ns}/{address} not accessible over TCP on port 53.',
+        'NAMESERVERS_WITH_MULTIPLE_AS'        => 'Domain\'s authoritative nameservers do not belong to the same AS.',
     };
 }
 
@@ -247,7 +247,7 @@ sub connectivity03 {
         }
 
         $reverse_ip_query =~
-          s/\.[^\.*]*\.arpa./$ASN_CHECKING_SERVICE_DOMAIN{$ASN_CHECKING_SERVICE_USED}{$local_ns->address->version}/smx;
+          s/[.][^.]*[.]arpa[.]/$ASN_CHECKING_SERVICE_DOMAIN{$ASN_CHECKING_SERVICE_USED}{$local_ns->address->version}/smx;
 
         my $p = Zonemaster::Recursor->recurse( $reverse_ip_query, q{TXT} );
 
