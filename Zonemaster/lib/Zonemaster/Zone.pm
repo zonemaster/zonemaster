@@ -6,6 +6,7 @@ use warnings;
 
 use Moose;
 use Carp;
+use List::MoreUtils qw[uniq];
 
 use Zonemaster::DNSName;
 use Zonemaster::Recursor;
@@ -44,19 +45,20 @@ sub _build_glue_names {
 
     return [] if not defined $p;
 
-    return [ sort map {Zonemaster::DNSName->new(lc($_->nsdname))} $p->get_records_for_name('ns', $self->name->string)];
+    return [ uniq sort map {Zonemaster::DNSName->new(lc($_->nsdname))} $p->get_records_for_name('ns', $self->name->string)];
 }
 
 sub _build_glue {
     my ( $self ) = @_;
-    my @res;
+    my %res;
 
     foreach my $name (@{$self->glue_names}) {
-        my @addr = Zonemaster::Recursor->get_addresses_for($name);
-        push @res, Zonemaster::Nameserver->new({ name => $name, address => $_ }) for @addr;
+        foreach my $addr (Zonemaster::Recursor->get_addresses_for($name)) {
+            $res{$name . '-' . $addr->ip} = Zonemaster::Nameserver->new({ name => $name, address => $addr });
+        }
     }
 
-    return [sort @res];
+    return [sort values %res];
 }
 
 sub _build_ns_names {
@@ -75,7 +77,7 @@ sub _build_ns_names {
     }
     return [] if not defined $p;
 
-    return [ sort map {Zonemaster::DNSName->new(lc($_->nsdname))} $p->get_records_for_name('ns', $self->name->string)];
+    return [ uniq sort map {Zonemaster::DNSName->new(lc($_->nsdname))} $p->get_records_for_name('ns', $self->name->string)];
 }
 
 sub _build_ns {
@@ -85,13 +87,14 @@ sub _build_ns {
         return [ Zonemaster::Recursor->root_servers ];
     }
 
-    my @res;
+    my %res;
     foreach my $name (@{$self->ns_names}) {
-        my @addr = Zonemaster::Recursor->get_addresses_for($name);
-        push @res, Zonemaster::Nameserver->new({ name => $name, address => $_ }) for @addr;
+        foreach my $addr (Zonemaster::Recursor->get_addresses_for($name)) {
+            $res{$name . '-' . $addr->ip} = Zonemaster::Nameserver->new({ name => $name, address => $addr });
+        }
     }
 
-    return [sort @res];
+    return [sort values %res];
 }
 
 sub _build_glue_addresses {

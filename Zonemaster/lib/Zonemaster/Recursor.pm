@@ -199,6 +199,12 @@ sub get_addresses_for {
             glue        => $state->{glue}
         }
     );
+
+    # Name does not exist, just stop
+    if ($pa and $pa->no_such_name) {
+        return;
+    }
+
     my ( $paaaa ) = $self->_recurse(
         "$name", 'AAAA', 'IN',
         {

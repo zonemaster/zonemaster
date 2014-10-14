@@ -27,6 +27,12 @@ my @msg = Zonemaster->test_method('Delegation', 'delegation03', $root);
 ok(any  {$_->tag eq 'REFERRAL_SIZE_OK'} @msg);
 ok(none {$_->tag eq 'MODULE_ERROR'} @msg);
 
+my $azn = Zonemaster->zone('asnlookup.zonemaster.net');
+is(scalar(@{$azn->glue_names}), 4, 'All glue names');
+is(scalar(@{$azn->glue}), 2, 'All glue objects');
+is(scalar(@{$azn->ns_names}), 4, 'All NS names');
+is(scalar(@{$azn->ns}), 2, 'All glue names');
+
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
 }
