@@ -227,83 +227,83 @@ msgstr "L'ensemble de paramètres temporels (REFRESH={refresh},RETRY={retry},EXP
 
 #: DELEGATION:ARE_AUTHORITATIVE
 msgid  "All the nameservers are authoritative."
-msgstr "Traduction en cours"
+msgstr "Tous les serveurs de noms font autorité."
 
 #: DELEGATION:DISTINCT_IP_ADDRESS
 msgid  "All the IP addresses used by the nameservers are unique"
-msgstr "Traduction en cours"
+msgstr "Toutes les adresses IP utilisées par les serveurs de noms sont uniques."
 
 #: DELEGATION:ENOUGH_NS
 msgid  "Child lists enough nameservers ({count})."
-msgstr "Traduction en cours"
+msgstr "Les serveurs de noms de la zone retournent suffisamment de serveurs autoritaires ({count})."
 
 #: DELEGATION:ENOUGH_NS_GLUE
 msgid  "Parent lists enough nameservers ({count})."
-msgstr "Traduction en cours"
+msgstr "Les serveurs de noms de la zone parente retournent suffisamment de serveurs autoritaires ({count})."
 
 #: DELEGATION:ENOUGH_NS_TOTAL
 msgid  "Parent and child list enough nameservers ({ns}). Lower limit set to {minimum}."
-msgstr "Traduction en cours"
+msgstr "Les serveurs de noms de la zone parente et les serveurs de noms de la zone retournent suffisamment de serveurs autoritaires ({{ns}). La limite inférieure étant fixée à {minimum}."
 
 #: DELEGATION:EXTRA_NAME_CHILD
 msgid  "Child has nameserver(s) not listed at parent ({extra})."
-msgstr "Traduction en cours"
+msgstr "Les serveurs de noms de la zone retournent des serveurs autoritaires ({extra}) qui ne le sont pas par les serveurs de noms de la zone parente."
 
 #: DELEGATION:EXTRA_NAME_PARENT
 msgid  "Parent has nameserver(s) not listed at the child ({extra})."
-msgstr "Traduction en cours"
+msgstr "Les serveurs de noms de la zone parente retournent des serveurs autoritaires ({extra}) qui ne le sont pas par les serveurs de noms de la zone."
 
 #: DELEGATION:IS_NOT_AUTHORITATIVE
 msgid  "Nameserver {ns} response is not authoritative on {proto} port 53."
-msgstr "Traduction en cours"
+msgstr "La réponse du serveur de noms {ns} reçue sur le port 53/{proto} ne fait pas autorité."
 
 #: DELEGATION:NAMES_MATCH
 msgid  "All of the nameserver names are listed both at parent and child."
-msgstr "Traduction en cours"
+msgstr "Tous les serveurs de noms de la zone font partie de la liste des serveurs de noms retournés par les serveurs de noms de la zone parente ainsi que par les serveurs de noms de la zone elle-même."
 
 #: DELEGATION:NOT_ENOUGH_NS
 msgid  "Child does not list enough nameservers ({count})."
-msgstr "Traduction en cours"
+msgstr "Les serveurs de noms de la zone ne retournent pas assez de serveurs autoritaires ({count})."
 
 #: DELEGATION:NOT_ENOUGH_NS_GLUE
 msgid  "Parent does not list enough nameservers ({count})."
-msgstr "Traduction en cours"
+msgstr "Les serveurs de noms de la zone parente ne retournent pas assez de serveurs autoritaires ({count})."
 
 #: DELEGATION:NOT_ENOUGH_NS_TOTAL
 msgid  "Parent and child do not list enough nameservers ({ns}). Lower limit set to {minimum}."
-msgstr "Traduction en cours"
+msgstr "Les serveurs de noms de la zone parente et les serveurs de noms de la zone ne retournent pas suffisamment de serveurs autoritaires ({{ns}). La limite inférieure étant fixée à {minimum}."
 
 #: DELEGATION:NS_RR_IS_CNAME
 msgid  "Nameserver {ns} {address_type} RR point to CNAME."
-msgstr "Traduction en cours"
+msgstr "L'enregistrement de type \"{address_type}\" retourné par le serveur de noms {ns} est un alias (CNAME)."
 
 #: DELEGATION:NS_RR_NO_CNAME
 msgid  "No nameserver point to CNAME alias."
-msgstr "Traduction en cours"
+msgstr "Aucun serveur de noms ne pointe sur un alias (CNAME)."
 
 #: DELEGATION:REFERRAL_SIZE_LARGE
 msgid  "The smallest possible legal referral packet is larger than 512 octets (it is {size})."
-msgstr "Traduction en cours"
+msgstr "La plus petite taille d'un paquet légal contenant une référence (referral) est supérieur à 512 octets (elle est de {size})."
 
 #: DELEGATION:REFERRAL_SIZE_OK
 msgid  "The smallest possible legal referral packet is smaller than 513 octets (it is {size})."
-msgstr "Traduction en cours"
+msgstr "La plus petite taille d'un paquet légal contenant une référence (referral) est inférieure à 513 octets (elle est de {size})."
 
 #: DELEGATION:SAME_IP_ADDRESS
 msgid  "IP {address} refers to multiple nameservers ({nss})."
-msgstr "Traduction en cours"
+msgstr "L'adresse IP {address} fait référence à plusieurs serveurs de noms ({nss})."
 
 #: DELEGATION:SOA_EXISTS
 msgid  "All the nameservers have SOA record."
-msgstr "Traduction en cours"
+msgstr "Tous les serveurs de noms retournent un enregistrement de type \"SOA\"."
 
 #: DELEGATION:SOA_NOT_EXISTS
 msgid  "A SOA query NOERROR response from {ns} was received empty."
-msgstr "Traduction en cours"
+msgstr "Une réponse à une requête pour un enregistrement de type \"SOA\" sur le serveur de noms {ns} a été reçue vide alors que le code retour est \"NOERROR\"."
 
 #: DELEGATION:TOTAL_NAME_MISMATCH
 msgid  "None of the nameservers listed at the parent are listed at the child."
-msgstr "Traduction en cours"
+msgstr "La liste des serveurs de noms retournée par les serveurs de noms de la zone parente et par ceux de la zone est complètement différente."
 
 #: DNSSEC:ADDITIONAL_DNSKEY_SKIPPED
 msgid  "No DNSKEYs found. Additional tests skipped."
