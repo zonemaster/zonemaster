@@ -6,67 +6,14 @@ use warnings;
 
 use Zonemaster;
 use Zonemaster::Util;
-use Zonemaster::Test::Address;
 use Zonemaster::TestMethods;
-use Zonemaster::Constants qw[:ip :asn];
+use Zonemaster::Constants qw[:ip];
+use Zonemaster::ASNLookup;
 use Carp;
 
-use List::Util qw[minstr];
+use List::MoreUtils qw[uniq];
 
-Readonly::Hash our %ASN_CHECKING_SERVICE_DOMAIN => {
-    $ASN_CHECKING_TEAM_CYMRU_SERVICE_NAME => {
-        descr         => q{Team Cymru Community services 'https://www.team-cymru.org/'},
-        $IP_VERSION_4 => $ASN_IPV4_CHECKING_SERVICE_TEAM_CYMRU_DOMAIN,
-        $IP_VERSION_6 => $ASN_IPV6_CHECKING_SERVICE_TEAM_CYMRU_DOMAIN,
-        f             => sub {
-            my ( $txt, $rcode ) = @_;
-            my ( $asn );
-            if ( $rcode eq q{NXDOMAIN} ) {
-                $asn = $ASN_UNASSIGNED_UNANNOUNCED_ADDRESS_SPACE_VALUE;
-            }
-            else {
-                $txt =~ s/\A"|"\z//smgx;
-                ( $asn ) = split /\s+/smx, $txt;
-            }
-            return ( $asn );
-        },
-    },
-    $ASN_CHECKING_ROUTE_VIEWS_SERVICE_NAME => {
-        descr         => q{University of Oregon Route Views Project 'http://www.routeviews.org/'},
-        $IP_VERSION_4 => $ASN_IPV4_CHECKING_SERVICE_ROUTE_VIEWS_DOMAIN,
-        $IP_VERSION_6 => $ASN_IPV6_CHECKING_SERVICE_ROUTE_VIEWS_DOMAIN,
-        f             => sub {
-            my ( $txt, $rcode ) = @_;
-            my ( $asn, $prefix, $prefix_len );
-            # [TODO] Need to verify the doc about NXDOMAIN behaviour...
-            if ( $rcode eq q{NXDOMAIN} ) {
-                $asn = $ASN_UNASSIGNED_UNANNOUNCED_ADDRESS_SPACE_VALUE;
-            }
-            else {
-                ( $asn, $prefix, $prefix_len ) = map { my $r = $_; $r =~ s/"//smgx; $r } split /\s+/smx, $txt;
-            }
-            return ( $asn );
-        },
-    },
-    $ASN_CHECKING_ZONEMASTER_SERVICE_NAME => {
-        descr         => q{ZoneMaster AS checking service},
-        $IP_VERSION_4 => $ASN_IPV4_CHECKING_SERVICE_ZONEMASTER_DOMAIN,
-        $IP_VERSION_6 => $ASN_IPV6_CHECKING_SERVICE_ZONEMASTER_DOMAIN,
-        f             => sub {
-            my ( $txt, $rcode ) = @_;
-            my ( $asn );
-            # [TODO] Need to verify the doc about NXDOMAIN behaviour...
-            if ( $rcode eq q{NXDOMAIN} ) {
-                $asn = $ASN_UNASSIGNED_UNANNOUNCED_ADDRESS_SPACE_VALUE;
-            }
-            else {
-                $txt =~ s/\A"|"\z//smgx;
-                ( $asn ) = split /\s+/smx, $txt;
-            }
-            return ( $asn );
-        },
-    },
-};
+
 ###
 ### Entry Points
 ###
@@ -228,91 +175,51 @@ sub connectivity02 {
 sub connectivity03 {
     my ( $class, $zone ) = @_;
     my @results;
-    my ( %ips, %asns );
+
+    my %ips = ( 4 => {}, 6 => {} );
 
     foreach
-      my $local_ns ( @{ Zonemaster::TestMethods->method4( $zone ) }, @{ Zonemaster::TestMethods->method5( $zone ) } )
+      my $ns ( @{ Zonemaster::TestMethods->method4( $zone ) }, @{ Zonemaster::TestMethods->method5( $zone ) } )
     {
+        my $addr = $ns->address;
+        $ips{$addr->version}{$addr->ip} = $addr;
+    }
 
-        next if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 );
+    my @v4ips = values %{$ips{4}};
+    my @v6ips = values %{$ips{6}};
 
-        next if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 );
+    my @v4asns   = uniq map {Zonemaster::ASNLookup->get($_)} @v4ips;
+    my @v6asns   = uniq map {Zonemaster::ASNLookup->get($_)} @v6ips;
+    my @all_asns = uniq(@v4asns, @v6asns);
 
-        next if $ips{ $local_ns->address->short };
-
-        my $reverse_ip_query = $local_ns->address->reverse_ip;
-
-        if ( not $ASN_CHECKING_SERVICE_DOMAIN{$ASN_CHECKING_SERVICE_USED}{ $local_ns->address->version } ) {
-            push @results,
-              info(
-                ADDRESS_TYPE_NOT_IMPLEMENTED => {
-                    service => $ASN_CHECKING_SERVICE_DOMAIN{$ASN_CHECKING_SERVICE_USED}{descr},
-                    type    => $local_ns->address->version,
-                }
-              );
-            next;
-        }
-
-        $reverse_ip_query =~
-s/[.][^.]*[.]arpa[.]/$ASN_CHECKING_SERVICE_DOMAIN{$ASN_CHECKING_SERVICE_USED}{$local_ns->address->version}/smx;
-
-        my $p = Zonemaster::Recursor->recurse( $reverse_ip_query, q{TXT} );
-
-        if ( $p ) {
-            my ( $txt ) = $p->get_records_for_name( q{TXT}, $reverse_ip_query );
-            my ( $asn ) = &{ $ASN_CHECKING_SERVICE_DOMAIN{$ASN_CHECKING_SERVICE_USED}{f} }( $txt->txtdata, $p->rcode );
-            if ( $asn == $ASN_UNASSIGNED_UNANNOUNCED_ADDRESS_SPACE_VALUE ) {
-                push @results,
-                  info(
-                    NAMESERVER_WITH_UNALLOCATED_ADDRESS => {
-                        ns      => $local_ns->name->string,
-                        address => $local_ns->address->short,
-                    }
-                  );
-            }
-            else {
-                $asns{ $local_ns->address->version }{$asn}++;
-            }
-        }
-
-        $ips{ $local_ns->address->short }++;
-
-    } ## end foreach my $local_ns ( @{ Zonemaster::TestMethods...})
-
-    if (
-           ( scalar keys %{ $asns{$IP_VERSION_4} } == 1 and scalar keys %{ $asns{$IP_VERSION_6} } == 0 )
-        or ( scalar keys %{ $asns{$IP_VERSION_6} } == 1 and scalar keys %{ $asns{$IP_VERSION_4} } == 0 )
-        or (    scalar keys %{ $asns{$IP_VERSION_4} } == 1
-            and scalar keys %{ $asns{$IP_VERSION_6} } == 1
-            and minstr( keys %{ $asns{$IP_VERSION_4} } ) == minstr( keys %{ $asns{$IP_VERSION_6} } ) )
-      )
-    {
-        push @results,
-          info(
-            NAMESERVERS_WITH_UNIQ_AS => {
-                asn => minstr( keys %{ $asns{$IP_VERSION_4} } ),
-            }
-          );
+    if (@v4asns == 1) {
+        push @results, info( NAMESERVERS_IPV4_WITH_UNIQ_AS => { asn => $v4asns[0] } );
+    }
+    elsif ( @v4asns > 1 ) {
+        push @results, info( NAMESERVERS_IPV4_WITH_MULTIPLE_AS => { asn => join(';', @v4asns) } );
     }
     else {
-        push @results, info( NAMESERVERS_WITH_MULTIPLE_AS => {} );
+        push @results, info( NAMESERVERS_IPV4_NO_AS => { } );
     }
 
-    if ( scalar keys %{ $asns{$IP_VERSION_4} } == 1 ) {
-        push @results,
-          info(
-            NAMESERVERS_IPV4_WITH_UNIQ_AS => {
-                asn => minstr( keys %{ $asns{$IP_VERSION_4} } ),
-            }
-          );
+    if (@v6asns == 1) {
+        push @results, info( NAMESERVERS_IPV6_WITH_UNIQ_AS => { asn => $v6asns[0] } );
     }
-    if ( scalar keys %{ $asns{$IP_VERSION_6} } == 1 ) {
-        push @results,
-          info(
-            NAMESERVERS_IPV6_WITH_UNIQ_AS => {
-                asn => minstr( keys %{ $asns{$IP_VERSION_6} } ),
-            }
-          );
+    elsif ( @v6asns > 1 ) {
+        push @results, info( NAMESERVERS_IPV6_WITH_MULTIPLE_AS => { asn => join(';', @v6asns) } );
+    }
+    else {
+        push @results, info( NAMESERVERS_IPV6_NO_AS => { } );
+    }
+
+    if (@all_asns == 1) {
+        push @results, info( NAMESERVERS_WITH_UNIQ_AS => { asn => $all_asns[0] } );
+    }
+    elsif ( @all_asns > 1 ) {
+        push @results, info( NAMESERVERS_WITH_MULTIPLE_AS => { asn => join(';', @all_asns) } );
+    }
+    else {
+        push @results, info( NAMESERVERS_NO_AS => { } ); # Shouldn't pass Basic
     }
 
     return @results;

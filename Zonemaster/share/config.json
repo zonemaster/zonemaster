@@ -1,14 +1,5 @@
 {
-   "asnroots" : [
-      {
-         "in-addr.arpa." : "origin.asnlookup.iis.se",
-         "ip6.arpa." : "origin6.asnlookup.iis.se"
-      },
-      {
-         "in-addr.arpa." : "origin.asn.cymru,com",
-         "ip6.arpa." : "origin6.asn.cymru.com"
-      }
-   ],
+   "asnroots" : [ "asnlookup.zonemaster.net", "asnlookup.iis.se", "asn.cymru,com"],
    "net" : {
       "ipv4" : 1,
       "ipv6" : 1
