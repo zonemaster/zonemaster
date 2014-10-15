@@ -151,7 +151,7 @@ sub translation {
         'EXPIRE_MINIMUM_VALUE_LOWER' =>
           'SOA \'expire\' value ({expire}) is less than the recommended one ({required_expire}).',
         'MNAME_NOT_IN_GLUE' =>
-          'SOA \'mname\' nameserver ({mname}) is not listed in \"parent\" NS records for tested zone ({ns}).',
+          'SOA \'mname\' nameserver ({mname}) is not listed in "parent" NS records for tested zone ({ns}).',
         'REFRESH_LOWER_THAN_RETRY' =>
           'SOA \'refresh\' value ({refresh}) is lower than the SOA \'retry\' value ({retry}).',
         'REFRESH_HIGHER_THAN_RETRY' =>
