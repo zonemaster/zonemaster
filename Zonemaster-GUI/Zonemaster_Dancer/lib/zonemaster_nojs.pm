@@ -40,6 +40,20 @@ sub params_backend2template {
 	
 	my %template_params;
 	
+	$template_params{domain} = $params->{domain} if ($params->{domain});
+	$template_params{ipv4} = 'checked' if ($params->{ipv4});
+	$template_params{ipv6} = 'checked' if ($params->{ipv6});
+
+	if ($params->{test_profile} eq 'test_profile_1') {
+		$template_params{profile_1_selected} = 'selected="selected"';
+	}
+	elsif ($params->{test_profile} eq 'test_profile_2') {
+		$template_params{profile_2_selected} = 'selected="selected"';
+	}
+	else {
+		$template_params{default_profile_selected} = 'selected="selected"';
+	}	
+	
 	my $ns_id = 0;
 	my @nameservers;
 	foreach my $ns ( @{$params->{nameservers}} ) {
@@ -66,6 +80,9 @@ sub params_template2backend {
 	
 	my %backend_params;
 	$backend_params{domain} = $params->{domain_name};
+	$backend_params{ipv4} = $params->{ipv4} if ($params->{ipv4});
+	$backend_params{ipv6} = $params->{ipv6} if ($params->{ipv6});
+	$backend_params{test_profile} = $params->{test_profile} if ($params->{test_profile});
 	
 	my $ns_id = 1;
 	while (defined $params->{"ns$ns_id"}) {
@@ -91,6 +108,7 @@ any ['get', 'post'] => '/nojs' => sub {
 		template 'nojs_main_view', params_backend2template($frontend_params), { layout => undef };
 	}
 	elsif ($allparams{'button'} eq 'Send to Backend') {
+		say Dumper(\%allparams);
 		my $backend_params = params_template2backend(\%allparams);
 		say Dumper($backend_params);
 		template 'nojs_main_view', params_backend2template($backend_params), { layout => undef };
@@ -159,6 +177,22 @@ any ['get', 'post'] => '/nojs' => sub {
 		}
 		else {
 			template 'nojs_error_page', { error => 'ERROR 2: Invalid domain name' }, { layout => undef };
+		}
+	}
+	elsif ($allparams{'button'} eq 'Run tests') {
+		my $c = Client->new({url => $url });
+		my $backend_params = params_template2backend(\%allparams);
+		my $syntax = $c->validate_syntax($backend_params);
+		if ($syntax->{status} eq 'ok') {
+			my $test_id = $c->start_domain_test($backend_params);
+			say Dumper($test_id);
+			my $template_params = params_backend2template($backend_params);
+			$template_params->{test_running} = 1;
+			$template_params->{test_id} = $test_id;
+			template 'nojs_main_view', $template_params, { layout => undef };
+		}
+		else {
+			template 'nojs_error_page', { error => 'ERROR 3: parameters are invalid'}, { layout => undef };
 		}
 	}
 	elsif (request->method() eq 'GET') {

@@ -1,15 +1,29 @@
 <html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<% IF test_running %>
+			<meta http-equiv="refresh" content="5;url=/nojs?test_id=<% test_id %>">
+		<% END %>
 	</head>
 	<body>
 		<h1>Domain check</h1>
 		<form method="post">
 			<label for="domain_name">
 				Domain Name
-				<input id="domain_name" name="domain_name" type="text">
+				<input id="domain_name" name="domain_name" type="text" value="<% domain %>">
 			</label>
+			<button type="submit" name="button" value="Run tests" />
+			Start the tests
+			</button>
 			<br>
+			
+			<table>
+				<tr>
+					<td style="border: 0px;padding:none">60%</td>
+					<td width=400 style="border: 2px solid silver;padding:none"><hr style="color:#c00;background-color:#c00;height:20px; border:none;margin:0;" align="left" width=60% /></td>   
+				</tr>
+			</table>
+    
 			<br>
 			<button type="submit" name="button" value="Add NS" />
 			+
@@ -65,21 +79,30 @@
 			<br>
 			Transports
 			<hr>
+			<% DEFAULT ipv4 = 'checked' ipv6 = 'checked' %>
 			<label for="ipv4">
 				IPv4
-				<input type="checkbox" name="ipv4" id="ipv4" value="male"><br>
+				<input type="checkbox" name="ipv4" id="ipv4" value="1" <% ipv4 %> >
 			</label>
 			<br>
 			<label for="ipv6">
 				IPv6
-				<input type="checkbox" name="ipv6" id="ipv6" value="male"><br>
+				<input type="checkbox" name="ipv6" id="ipv6" value="1" <% ipv6 %> >
 			</label>
 			<br>
-			<p>
-			Test profile
-			</p>
-			<hr>
-
+			<br>
+			<br>
+			<label for="test_profile">
+				Test profile
+				<select id="test_profile" name="test_profile">
+					<option <% default_profile_selected %> value="default_profile">Default</option>
+					<option <% profile_1_selected %> value="test_profile_1">Test Profile 1</option>
+					<option <% profile_2_selected %> value="test_profile_2">Test Profile 2</option>
+				</select>
+			</label>
+			<br>
+			<br>
+			<br>
 			<input type="submit" name="button" value="Send to Backend" />
 			<input type="submit" name="button" value="Load from Backend" />
 		</form>
