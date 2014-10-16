@@ -605,10 +605,6 @@ msgstr "Le nom de domaine ({name}) contient un label commençant par un tiret ('
 msgid  "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "Le serveur maître défini dans le SOA, 'mname' ({name}), contient un label ({label}) avec un double tiret ('--') en positions 3 et 4 (avec un préfixe différent de 'xn--')."
 
-#: SYNTAX:MNAME_IS_ROOT
-msgid  "MNAME ({name}) is root."
-msgstr "Le serveur maître défini dans le SOA, 'mname' ({name}) est la racine."
-
 #: SYNTAX:MNAME_NON_ALLOWED_CHARS
 msgid  "Found illegal characters in SOA MNAME ({name})."
 msgstr "Des caractèrs interdits ont été trouvés dans le nom du serveur maître défini dans le SOA, 'mname' ({name})."
@@ -625,10 +621,6 @@ msgstr "La syntaxe du nom du serveur maître défini dans le SOA, 'mname' ({name
 msgid  "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "Le relais de messagerie ({name}) contient un label ({label}) avec un double tiret ('--') en positions 3 et 4 (avec un préfixe différent de 'xn--')."
 
-#: SYNTAX:MX_IS_ROOT
-msgid  "MX ({name}) is root."
-msgstr "Le relais de messagerie ({name}) est la racine."
-
 #: SYNTAX:MX_NON_ALLOWED_CHARS
 msgid  "Found illegal characters in MX ({name})."
 msgstr "Des caractèrs interdits ont été trouvés dans le nom du relais de messagerie ({name})."
@@ -644,10 +636,6 @@ msgstr "La syntaxe du nom du relais de messagerie ({name}) est valide."
 #: SYNTAX:NAMESERVER_DISCOURAGED_DOUBLE_DASH
 msgid  "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "Le serveur de nom ({name}) contient un label ({label}) avec un double tiret ('--') en positions 3 et 4 (avec un préfixe différent de 'xn--')."
-
-#: SYNTAX:NAMESERVER_IS_ROOT
-msgid  "Nameserver ({name}) is root."
-msgstr "Le serveur de noms ({name}) est la racine."
 
 #: SYNTAX:NAMESERVER_NON_ALLOWED_CHARS
 msgid  "Found illegal characters in the nameserver ({name})."

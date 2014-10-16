@@ -617,10 +617,6 @@ msgstr "Domain name ({name}) has a label ({label}) starting with an hyphen ('-')
 msgid  "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "SOA MNAME ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 
-#: SYNTAX:MNAME_IS_ROOT
-msgid  "MNAME ({name}) is root."
-msgstr "MNAME ({name}) is root."
-
 #: SYNTAX:MNAME_NON_ALLOWED_CHARS
 msgid  "Found illegal characters in SOA MNAME ({name})."
 msgstr "Found illegal characters in SOA MNAME ({name})."
@@ -637,10 +633,6 @@ msgstr "SOA MNAME ({name}) syntax is valid."
 msgid  "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "Domain name MX ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 
-#: SYNTAX:MX_IS_ROOT
-msgid  "MX ({name}) is root."
-msgstr "MX ({name}) is root."
-
 #: SYNTAX:MX_NON_ALLOWED_CHARS
 msgid  "Found illegal characters in MX ({name})."
 msgstr "Found illegal characters in MX ({name})."
@@ -656,10 +648,6 @@ msgstr "Domain name MX ({name}) syntax is valid."
 #: SYNTAX:NAMESERVER_DISCOURAGED_DOUBLE_DASH
 msgid  "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
 msgstr "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
-
-#: SYNTAX:NAMESERVER_IS_ROOT
-msgid  "Nameserver ({name}) is root."
-msgstr "Nameserver ({name}) is root."
 
 #: SYNTAX:NAMESERVER_NON_ALLOWED_CHARS
 msgid  "Found illegal characters in the nameserver ({name})."

@@ -749,25 +749,13 @@ msgstr "CONSISTENCY:NS_SET needs translation..."
 msgid  "A unique NS set was seen ({nsset})."
 msgstr "CONSISTENCY:ONE_NS_SET needs translation..."
 
-#: SYNTAX:MNAME_IS_ROOT
-msgid  "MNAME ({name}) is root."
-msgstr "SYNTAX:MNAME_IS_ROOT needs translation..."
-
 #: SYNTAX:MNAME_NON_ALLOWED_CHARS
 msgid  "Found illegal characters in SOA MNAME ({name})."
 msgstr "SYNTAX:MNAME_NON_ALLOWED_CHARS needs translation..."
 
-#: SYNTAX:MX_IS_ROOT
-msgid  "MX ({name}) is root."
-msgstr "SYNTAX:MX_IS_ROOT needs translation..."
-
 #: SYNTAX:MX_NON_ALLOWED_CHARS
 msgid  "Found illegal characters in MX ({name})."
 msgstr "SYNTAX:MX_NON_ALLOWED_CHARS needs translation..."
-
-#: SYNTAX:NAMESERVER_IS_ROOT
-msgid  "Nameserver ({name}) is root."
-msgstr "SYNTAX:NAMESERVER_IS_ROOT needs translation..."
 
 #: SYNTAX:NAMESERVER_NON_ALLOWED_CHARS
 msgid  "Found illegal characters in the nameserver ({name})."

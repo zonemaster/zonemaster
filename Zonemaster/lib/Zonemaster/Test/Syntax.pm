@@ -81,7 +81,6 @@ sub metadata {
         syntax04 => [
             qw(
               NAMESERVER_DISCOURAGED_DOUBLE_DASH
-              NAMESERVER_IS_ROOT
               NAMESERVER_NON_ALLOWED_CHARS
               NAMESERVER_NUMERIC_TLD
               NAMESERVER_SYNTAX_OK
@@ -103,7 +102,6 @@ sub metadata {
         syntax07 => [
             qw(
               MNAME_DISCOURAGED_DOUBLE_DASH
-              MNAME_IS_ROOT
               MNAME_NON_ALLOWED_CHARS
               MNAME_NUMERIC_TLD
               MNAME_SYNTAX_OK
@@ -113,7 +111,6 @@ sub metadata {
         syntax08 => [
             qw(
               MX_DISCOURAGED_DOUBLE_DASH
-              MX_IS_ROOT
               MX_NON_ALLOWED_CHARS
               MX_NUMERIC_TLD
               MX_SYNTAX_OK
@@ -127,19 +124,16 @@ sub translation {
     return {
         'NAMESERVER_DISCOURAGED_DOUBLE_DASH' =>
 'Nameserver ({name}) has a label ({label}) with a double hyphen (\'--\') in position 3 and 4 (with a prefix which is not \'xn--\').',
-        'NAMESERVER_IS_ROOT'           => 'Nameserver ({name}) is root.',
         'NAMESERVER_NON_ALLOWED_CHARS' => 'Found illegal characters in the nameserver ({name}).',
         'NAMESERVER_NUMERIC_TLD'       => 'Nameserver ({name}) within a \'numeric only\' TLD ({tld}).',
         'NAMESERVER_SYNTAX_OK'         => 'Nameserver ({name}) syntax is valid.',
         'MNAME_DISCOURAGED_DOUBLE_DASH' =>
 'SOA MNAME ({name}) has a label ({label}) with a double hyphen (\'--\') in position 3 and 4 (with a prefix which is not \'xn--\').',
-        'MNAME_IS_ROOT'           => 'MNAME ({name}) is root.',
         'MNAME_NON_ALLOWED_CHARS' => 'Found illegal characters in SOA MNAME ({name}).',
         'MNAME_NUMERIC_TLD'       => 'SOA MNAME ({name}) within a \'numeric only\' TLD ({tld}).',
         'MNAME_SYNTAX_OK'         => 'SOA MNAME ({name}) syntax is valid.',
         'MX_DISCOURAGED_DOUBLE_DASH' =>
 'Domain name MX ({name}) has a label ({label}) with a double hyphen (\'--\') in position 3 and 4 (with a prefix which is not \'xn--\').',
-        'MX_IS_ROOT'           => 'MX ({name}) is root.',
         'MX_NON_ALLOWED_CHARS' => 'Found illegal characters in MX ({name}).',
         'MX_NUMERIC_TLD'       => 'Domain name MX ({name}) within a \'numeric only\' TLD ({tld}).',
         'MX_SYNTAX_OK'         => 'Domain name MX ({name}) syntax is valid.',
@@ -302,8 +296,7 @@ sub syntax05 {
         }
     } ## end if ( $p and my ( $soa ...))
     else {
-        push @results,
-          info( NO_RESPONSE_SOA_QUERY => {} );
+        push @results, info( NO_RESPONSE_SOA_QUERY => {} );
     }
 
     return @results;
@@ -338,8 +331,7 @@ sub syntax06 {
         }
     } ## end if ( $p and my ( $soa ...))
     else {
-        push @results,
-          info( NO_RESPONSE_SOA_QUERY => {} );
+        push @results, info( NO_RESPONSE_SOA_QUERY => {} );
     }
     return @results;
 } ## end sub syntax06
@@ -356,8 +348,7 @@ sub syntax07 {
         push @results, check_name_syntax( q{MNAME}, $mname );
     }
     else {
-        push @results,
-          info( NO_RESPONSE_SOA_QUERY => {} );
+        push @results, info( NO_RESPONSE_SOA_QUERY => {} );
     }
 
     return @results;
@@ -375,8 +366,7 @@ sub syntax08 {
         }
     }
     else {
-        push @results,
-          info( NO_RESPONSE_MX_QUERY => {} );
+        push @results, info( NO_RESPONSE_MX_QUERY => {} );
     }
 
     return @results;
@@ -463,63 +453,50 @@ sub check_name_syntax {
 
     $name = get_name( $name );
 
-    if ( $name eq q{.} ) {
+    if ( not _name_has_only_legal_characters( $name ) ) {
         push @results,
           info(
             $info_label_prefix
-              . q{_IS_ROOT} => {
+              . q{_NON_ALLOWED_CHARS} => {
+                name => $name,
+              }
+          );
+    }
+
+    foreach my $local_label ( @{ $name->labels } ) {
+        if ( _label_not_ace_has_double_hyphen_in_position_3_and_4( $local_label ) ) {
+            push @results,
+              info(
+                $info_label_prefix
+                  . q{_DISCOURAGED_DOUBLE_DASH} => {
+                    label => $local_label,
+                    name  => "$name",
+                  }
+              );
+        }
+    }
+
+    my $tld = @{ $name->labels }[-1];
+    if ( $tld =~ /\A\d+\z/smgx ) {
+        push @results,
+          info(
+            $info_label_prefix
+              . q{_NUMERIC_TLD} => {
+                name => "$name",
+                tld  => $tld,
+              }
+          );
+    }
+
+    if ( not scalar @results ) {
+        push @results,
+          info(
+            $info_label_prefix
+              . q{_SYNTAX_OK} => {
                 name => "$name",
               }
           );
     }
-    else {
-
-        if ( not _name_has_only_legal_characters( $name ) ) {
-            push @results,
-              info(
-                $info_label_prefix
-                  . q{_NON_ALLOWED_CHARS} => {
-                    name => $name,
-                  }
-              );
-        }
-
-        foreach my $local_label ( @{ $name->labels } ) {
-            if ( _label_not_ace_has_double_hyphen_in_position_3_and_4( $local_label ) ) {
-                push @results,
-                  info(
-                    $info_label_prefix
-                      . q{_DISCOURAGED_DOUBLE_DASH} => {
-                        label => $local_label,
-                        name  => "$name",
-                      }
-                  );
-            }
-        }
-
-        my $tld = @{ $name->labels }[-1];
-        if ( $tld =~ /\A\d+\z/smgx ) {
-            push @results,
-              info(
-                $info_label_prefix
-                  . q{_NUMERIC_TLD} => {
-                    name => "$name",
-                    tld  => $tld,
-                  }
-              );
-        }
-
-        if ( not scalar @results ) {
-            push @results,
-              info(
-                $info_label_prefix
-                  . q{_SYNTAX_OK} => {
-                    name => "$name",
-                  }
-              );
-        }
-
-    } ## end else [ if ( $name eq q{.} ) ]
 
     return @results;
 } ## end sub check_name_syntax
