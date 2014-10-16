@@ -10,9 +10,40 @@ use POSIX;
 
 local $| = 1;
 
-#TODO: read connection info from config file
-my $connection_string = "DBI:Pg:database=zonemaster;host=localhost";
-my $dbh = DBI->connect($connection_string, "zonemaster", "zonemaster", {RaiseError => 1, AutoCommit => 1});
+use FindBin qw($RealScript $Script $RealBin $Bin);
+FindBin::again();
+##################################################################
+my $PROJECT_NAME = "Zonemaster-Backend";
+
+my $SCRITP_DIR = __FILE__;
+$SCRITP_DIR = $Bin unless ($SCRITP_DIR =~ /^\//);
+
+#warn "SCRITP_DIR:$SCRITP_DIR\n";
+#warn "SCRITP_DIR:$SCRITP_DIR\n";
+#warn "RealScript:$RealScript\n";
+#warn "Script:$Script\n";
+#warn "RealBin:$RealBin\n";
+#warn "Bin:$Bin\n";
+#warn "__PACKAGE__:".__PACKAGE__;
+#warn "__FILE__:".__FILE__;
+
+my ($PROD_DIR) = ($SCRITP_DIR =~ /(.*?\/)$PROJECT_NAME/);
+#warn "PROD_DIR:$PROD_DIR\n";
+
+my $PROJECT_BASE_DIR = $PROD_DIR.$PROJECT_NAME."/";
+#warn "PROJECT_BASE_DIR:$PROJECT_BASE_DIR\n";
+unshift(@INC, $PROJECT_BASE_DIR);
+##################################################################
+
+unshift(@INC, $PROD_DIR."Zonemaster-Backend") unless $INC{$PROD_DIR."Zonemaster-Backend"};
+require BackendConfig;
+
+my $JOB_RUNNER_DIR = $PROD_DIR."Zonemaster-Backend/JobRunner";
+my $LOG_DIR = BackendConfig->LogDir();
+
+
+my $connection_string = BackendConfig->DB_connection_string();
+my $dbh = DBI->connect($connection_string, BackendConfig->DB_user(), BackendConfig->DB_password(), {RaiseError => 1, AutoCommit => 1});
 
 my ($frontend_slots, $batch_slots) = (2, 4);
 
@@ -42,7 +73,7 @@ do {
 	$sth1->execute;
 	while (my $h = $sth1->fetchrow_hashref) {
 		if (can_start_new_worker(10, $h->{id})) {
-			my $command = "perl /home/toma/PROD/zonemaster/Zonemaster-Backend/JobRunner/execute_zonemaster_P10.pl $h->{id} > /home/toma/LOGS/execute_zonemaster_P10_$h->{id}_$start_time.log 2>&1 &";
+			my $command = "perl $JOB_RUNNER_DIR/execute_zonemaster_P10.pl $h->{id} > $LOG_DIR/execute_zonemaster_P10_$h->{id}_$start_time.log 2>&1 &";
 			say $command;
 			system($command);
 		}
@@ -54,7 +85,7 @@ do {
 	$sth1->execute;
 	while (my $h = $sth1->fetchrow_hashref) {
 		if (can_start_new_worker(5, $h->{id})) {
-			my $command = "perl /home/toma/PROD/zonemaster/Zonemaster-Backend/JobRunner/execute_zonemaster_P5.pl $h->{id} > /home/toma/LOGS/execute_zonemaster_P5_$h->{id}_$start_time.log 2>&1 &";
+			my $command = "perl $JOB_RUNNER_DIR/execute_zonemaster_P5.pl $h->{id} > $LOG_DIR/execute_zonemaster_P5_$h->{id}_$start_time.log 2>&1 &";
 			say $command;
 			system($command);
 		}

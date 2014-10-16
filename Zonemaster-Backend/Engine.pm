@@ -1,4 +1,4 @@
- package Engine v0.0.1;
+package Engine v0.0.1;
 
 use strict;
 use warnings;
@@ -14,16 +14,41 @@ use JSON;
 use DBI qw(:utils);
 use Digest::MD5 qw(md5_hex);
 use String::ShellQuote;
-use File::Slurp;
+use File::Slurp qw(append_file);
 use Net::LDNS;
 
-unshift(@INC, "/home/toma/PROD/zonemaster/Zonemaster/lib") unless $INC{"/home/toma/PROD/zonemaster/Zonemaster/lib"};
+use FindBin qw($RealScript $Script $RealBin $Bin);
+##################################################################
+my $PROJECT_NAME = "Zonemaster-Backend";
 
+my $SCRITP_DIR = __FILE__;
+$SCRITP_DIR = $Bin unless ($SCRITP_DIR =~ /^\//);
+
+#warn "SCRITP_DIR:$SCRITP_DIR\n";
+#warn "RealScript:$RealScript\n";
+#warn "Script:$Script\n";
+#warn "RealBin:$RealBin\n";
+#warn "Bin:$Bin\n";
+#warn "__PACKAGE__:".__PACKAGE__;
+#warn "__FILE__:".__FILE__;
+
+my ($PROD_DIR) = ($SCRITP_DIR =~ /(.*?\/)$PROJECT_NAME/);
+#warn "PROD_DIR:$PROD_DIR\n";
+
+my $PROJECT_BASE_DIR = $PROD_DIR.$PROJECT_NAME."/";
+#warn "PROJECT_BASE_DIR:$PROJECT_BASE_DIR\n";
+unshift(@INC, $PROJECT_BASE_DIR);
+##################################################################
+
+unshift(@INC, $PROD_DIR."Zonemaster/lib") unless $INC{$PROD_DIR."Zonemaster/lib"};
 # Zonemaster Modules
 require Zonemaster;
 require Zonemaster::Nameserver;
 require Zonemaster::DNSName;
 require Zonemaster::Translator;
+
+unshift(@INC, $PROD_DIR."Zonemaster-Backend") unless $INC{$PROD_DIR."Zonemaster-Backend"};
+require BackendConfig;
 
 sub new{
 	my($type, $params) = @_;
@@ -41,8 +66,14 @@ sub new{
 		die $@ if $@;
 	}
 	else {
-		require ZonemasterDB::PostgreSQL;
-		$self->{db} = ZonemasterDB::PostgreSQL->new();
+		eval{
+			my $backend_module = "ZonemasterDB::".BackendConfig->BackendDBType();
+			say "using BackendDBType:[$backend_module]";
+			eval "require $backend_module";
+			die $@ if $@;
+			$self->{db} = $backend_module->new();
+		};
+		die $@ if $@;
 	}
 
 	return($self);
@@ -140,7 +171,7 @@ sub get_data_from_parent_zone_1 {
 			}
 		}
 	} 
-	push(@ns_list, {'NOT FOUND' => '0.0.0.0'}) unless(@ns_list);
+	push(@ns_list, { ns => 'NOT FOUND', ip => '0.0.0.0'}) unless(@ns_list);
 	
 	
 	my %algorithm_ids = ( 

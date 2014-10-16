@@ -18,7 +18,7 @@ say "Client->get_ns_ips:".Dumper($c->get_ns_ips("ns1.nic.fr"));
 
 say "Client->get_data_from_parent_zone:".Dumper($c->get_data_from_parent_zone("nic.fr"));
 
-say "Client->validate_domain_syntax:".Dumper($c->validate_domain_syntax("nic.fr"));
+say "Client->validate_syntax:".Dumper($c->validate_syntax("nic.fr"));
 
 my $frontend_params = {
 	client_id => 'Zonemaster CGI/Dancer/node.js', # free string

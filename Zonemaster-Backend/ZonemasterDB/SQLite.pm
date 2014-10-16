@@ -10,11 +10,35 @@ use Digest::MD5 qw(md5_hex);
 
 use ZonemasterDB;
 
+use FindBin qw($RealScript $Script $RealBin $Bin);
+##################################################################
+my $PROJECT_NAME = "Zonemaster-Backend";
+
+my $SCRITP_DIR = __FILE__;
+$SCRITP_DIR = $Bin unless ($SCRITP_DIR =~ /^\//);
+
+#warn "SCRITP_DIR:$SCRITP_DIR\n";
+#warn "RealScript:$RealScript\n";
+#warn "Script:$Script\n";
+#warn "RealBin:$RealBin\n";
+#warn "Bin:$Bin\n";
+#warn "__PACKAGE__:".__PACKAGE__;
+#warn "__FILE__:".__FILE__;
+
+my ($PROD_DIR) = ($SCRITP_DIR =~ /(.*?\/)$PROJECT_NAME/);
+#warn "PROD_DIR:$PROD_DIR\n";
+
+my $PROJECT_BASE_DIR = $PROD_DIR.$PROJECT_NAME."/";
+#warn "PROJECT_BASE_DIR:$PROJECT_BASE_DIR\n";
+unshift(@INC, $PROJECT_BASE_DIR);
+##################################################################
+
+unshift(@INC, $PROD_DIR."Zonemaster-Backend") unless $INC{$PROD_DIR."Zonemaster-Backend"};
+require BackendConfig;
+
 with 'ZonemasterDB';
 
-#TODO read from config file
-#my $connection_string = "DBI:SQLite:database=:memory:";
-my $connection_string = "DBI:SQLite:database=/dev/shm/zonemaser.sqlite";
+my $connection_string = BackendConfig->DB_connection_string();
 
 has 'dbh' => (
 	is => 'ro',

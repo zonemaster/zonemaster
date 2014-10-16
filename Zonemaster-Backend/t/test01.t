@@ -107,8 +107,8 @@ my $frontend_params_2 = {
                 { ns => 'ns2.nic.fr', ip => '192.134.4.1'},
         ],
         ds_digest_pairs => [                            # list of DS/Digest pairs up to 32
-                {'ds1' => 'ds-test2'},                   # key values pairs representing ds => digest
-                {'ds2' => 'digest2'},                   
+                { algorithm => 'ds1', digest => 'ds-test1'},                   
+                { algorithm => 'ds2', digest => 'ds-test2'},                   
         ],
 };
 ok($engine->start_domain_test($frontend_params_2) == 2);

@@ -42,6 +42,7 @@ require Zonemaster;
 require Zonemaster::Translator;
 
 unshift(@INC, $PROD_DIR."Zonemaster-Backend") unless $INC{$PROD_DIR."Zonemaster-Backend"};
+require BackendConfig;
 
 sub new{
 	my ($class, $params) = @_;
@@ -57,9 +58,16 @@ sub new{
 		die $@ if $@;
 	}
 	else {
-		require ZonemasterDB::PostgreSQL;
-		$self->{db} = ZonemasterDB::PostgreSQL->new();
+		eval{
+			my $backend_module = "ZonemasterDB::".BackendConfig->BackendDBType();
+			say "using BackendDBType:[$backend_module]";
+			eval "require $backend_module";
+			die $@ if $@;
+			$self->{db} = $backend_module->new();
+		};
+		die $@ if $@;
 	}
+
 
 	bless($self,$class);
 	return $self;

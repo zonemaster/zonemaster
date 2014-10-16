@@ -1,7 +1,7 @@
 package dnscheck;
 use Dancer ':syntax';
 use Plack::Builder;
-use PocketIO;
+#use PocketIO;
 use Data::Dumper;
 use Client;
 

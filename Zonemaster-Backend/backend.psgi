@@ -8,6 +8,7 @@ use Router::Simple::Declare;
 use Data::Dumper;
 use JSON;
 use POSIX;
+use FindBin;
 
 use Plack::Builder;
 
@@ -18,14 +19,6 @@ builder {
 };
 
 my $router = router {
-	connect "foo" => {
-		handler => "+MyPackage",
-		action  => "process1",
-	};
-	connect "bar" => {
-		handler => "+MyPackage",
-		action => "process2"
-	};
 ############## FRONTEND ####################
 	connect "version_info" => {
 		handler => "+Engine",

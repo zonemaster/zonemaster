@@ -33,4 +33,4 @@ unshift(@INC, $PROJECT_BASE_DIR);
 unshift(@INC, $PROD_DIR."Zonemaster-Backend/JobRunner") unless $INC{$PROD_DIR."Zonemaster-Backend/JobRunner"};
 require Runner;
 
-Runner->new({ db => 'ZonemasterDB::PostgreSQL'} )->run($ARGV[0]);
+Runner->new()->run($ARGV[0]);

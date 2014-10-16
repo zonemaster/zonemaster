@@ -1,16 +1,17 @@
 #!/usr/bin/env perl
 use Dancer;
 use Plack::Builder;
-use PocketIO;
+#use PocketIO;
 use Plack::App::File;
 use dnscheck;
-use sockets;
+#use sockets;
+use zonemaster_nojs;
 
-my $websockets = PocketIO->new(class => 'sockets', method => 'run');
+#my $websockets = PocketIO->new(class => 'sockets', method => 'run');
 
 my $app = sub {
     my $env = shift;
-    $env->{ws} = $websockets;
+ #   $env->{ws} = $websockets;
     my $request = Dancer::Request->new( env => $env );
     Dancer->dance($request);
 };

@@ -37,12 +37,7 @@
 <script src="/javascripts/japp.js"></script>
 <!-- <script src="/javascripts/app.js"></script> -->
 <noscript>
-	<style type="text/css">
-		.pagecontainer {display:none;}
-	</style>
-	<div class="noscriptmsg">
-		<p>Hello from the non-JavaScript interface</p>
-	</div>
+	<meta http-equiv="refresh" content="0;url=/nojs">
 </noscript>
 </body>
 </html>
