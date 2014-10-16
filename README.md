@@ -11,11 +11,10 @@ both.
 
 ### Purpose
 
-The purpose of Zonemaster is to test the quality of a DNS
-delegation. The core of the software is all the implemented
-tests. There will be a command line tool to run a complete set of
-tests, and a web interface tailored for use by both basic and advanced
-users.
+DNSCheck from .SE and Zonecheck from AFNIC are two different software
+packages that do DNS validation of the quality of a DNS delegation.
+The Zonemaster implementation is a major rewrite of these software
+packages, and implement the best parts of both.
 
 ### Documentation
 

@@ -33,6 +33,10 @@ is(scalar(@{$azn->glue}), 2, 'All glue objects');
 is(scalar(@{$azn->ns_names}), 4, 'All NS names');
 is(scalar(@{$azn->ns}), 2, 'All glue names');
 
+my $rootfr = Zonemaster->zone('root.fr');
+@res = Zonemaster->test_method('DNSSEC', 'dnssec02', $rootfr);
+ok((none {$_->tag eq 'MODULE_ERROR'} @res), 'No crash in dnssec02');
+
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
 }
