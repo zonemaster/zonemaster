@@ -238,8 +238,8 @@ msgid  "DS record with keytag {keytag} does not match the DNSKEY with the same t
 msgstr "DS-posten med keytag {keytag} matchar inte DNSKEY-posten med samma keytag."
 
 #: DNSSEC:DS_FOUND
-msgid  "Found DS records with tags {keytags}"
-msgstr "Hittade DS-poster med keytaggarna {keytags}"
+msgid  "Found DS records with tags {keytags}."
+msgstr "Hittade DS-poster med keytaggarna {keytags}."
 
 #: DNSSEC:DS_MATCHES_DNSKEY
 msgid  "DS record with keytag {keytag} matches the DNSKEY with the same tag."
