@@ -1,0 +1,95 @@
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	</head>
+	<body>
+		<h1>Domain check</h1>
+		<form method="post">
+			<label for="domain_name">
+				Domain Name
+				<input id="domain_name" name="domain_name" type="text">
+			</label>
+			<br>
+			<br>
+			<button type="submit" name="button" value="Add NS" />
+			+
+			</button>
+			Nameservers
+			<hr>
+			<% FOREACH ns IN nameservers %>
+				<button type="submit" name="button" value="Delete NS <% ns.ns_id %>" />
+				-
+				</button>
+				<label for="ns<% ns.ns_id %>">
+					NS
+					<input id="ns<% ns.ns_id %>" name="ns<% ns.ns_id %>" type="text" value="<% ns.ns %>">
+				</label>
+				<label for="ip<% ns.ns_id %>">
+					IP
+					<input id="ip<% ns.ns_id %>" name="ip<% ns.ns_id %>" type="text" value="<% ns.ip %>">
+				</label>
+				<button type="submit" name="button" value="NS IP <% ns.ns_id %>" />
+				&#x2713;
+				</button>
+				<br>
+			<% END %>
+			<br>
+			<br>
+			<button type="submit" name="button" value="Add DS" />
+			+
+			</button>
+			Digests
+			<hr>
+			<% FOREACH ds IN ds_digest_pairs %>
+				<button type="submit" name="button" value="Delete DS <% ds.ds_id %>" />
+				-
+				</button>
+				<label for="algorithm<% ds.ds_id %>">
+					Algorithm
+					<input id="algorithm<% ds.ds_id %>" name="algorithm<% ds.ds_id %>" type="text" value="<% ds.algorithm %>">
+				</label>
+				<label for="digest<% ds.ds_id %>">
+					Digest
+					<input id="digest<% ds.ds_id %>" name="digest<% ds.ds_id %>" type="text" value="<% ds.digest %>">
+				</label>
+				<br>
+			<% END %>
+
+			<button type="submit" name="button" value="Fetch" />
+			Fetch data from parent zone
+			</button>
+			
+			<br>
+			<br>
+			<br>
+			<br>
+			Transports
+			<hr>
+			<label for="ipv4">
+				IPv4
+				<input type="checkbox" name="ipv4" id="ipv4" value="male"><br>
+			</label>
+			<br>
+			<label for="ipv6">
+				IPv6
+				<input type="checkbox" name="ipv6" id="ipv6" value="male"><br>
+			</label>
+			<br>
+			<p>
+			Test profile
+			</p>
+			<hr>
+
+			<input type="submit" name="button" value="Send to Backend" />
+			<input type="submit" name="button" value="Load from Backend" />
+		</form>
+		<hr>
+		<p>
+		<% text %>
+		</p>
+		<hr>
+		<p>
+		<% text1 %>
+		</p>
+	</body>
+</html>
