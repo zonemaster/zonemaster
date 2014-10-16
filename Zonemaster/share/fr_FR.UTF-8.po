@@ -31,11 +31,11 @@ msgstr "Tous les enregistrements PTR correspondent aux serveurs de noms."
 
 #: ADDRESS:NAMESERVER_IP_PTR_MISMATCH
 msgid  "Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names})."
-msgstr "Le serveur de noms {ns} a une addresse IP ({address}) qui ne correspond pas aux enregistrements \"PTR\" retournés ({names}) pour celle-ci."
+msgstr "Le serveur de noms {ns} a une adresse IP ({address}) qui ne correspond pas aux enregistrements \"PTR\" retournés ({names}) pour celle-ci."
 
 #: ADDRESS:NAMESERVER_IP_WITHOUT_REVERSE
 msgid  "Nameserver {ns} has an IP address ({address}) without PTR configured."
-msgstr "Le serveur de noms {ns} a une addresse IP ({address}) sans enregistrement \"PTR\" correspondant."
+msgstr "Le serveur de noms {ns} a une adresse IP ({address}) sans enregistrement \"PTR\" correspondant."
 
 #: ADDRESS:NO_IP_PRIVATE_NETWORK
 msgid  "All Nameserver addresses are in the routable public addressing space."
@@ -307,235 +307,235 @@ msgstr "La liste des serveurs de noms retournée par les serveurs de noms de la 
 
 #: DNSSEC:ADDITIONAL_DNSKEY_SKIPPED
 msgid  "No DNSKEYs found. Additional tests skipped."
-msgstr "Traduction en cours"
+msgstr "Pas d'enregistrement de type \"DNSKEY\" trouvé. Les tests additionnels sont abandonnés."
 
 #: DNSSEC:ALGORITHM_DEPRECATED
 msgid  "The DNSKEY with tag {keytag} uses deprecated algorithm number {algorithm}/({description})."
-msgstr "Traduction en cours"
+msgstr "La clé (DNSKEY) avec le tag {keytag} utilise un numéro d'algorithme obsolète {algorithm}/({description})."
 
 #: DNSSEC:ALGORITHM_OK
 msgid  "The DNSKEY with tag {keytag} uses algorithm number {algorithm}/({description}), which is OK."
-msgstr "Traduction en cours"
+msgstr "La clé (DNSKEY) avec le tag {keytag} utilise un numéro d'algorithme correct {algorithm}/({description})."
 
 #: DNSSEC:ALGORITHM_PRIVATE
 msgid  "The DNSKEY with tag {keytag} uses private algorithm number {algorithm}/({description})."
-msgstr "Traduction en cours"
+msgstr "La clé (DNSKEY) avec le tag {keytag} utilise un numéro d'algorithme privé {algorithm}/({description})."
 
 #: DNSSEC:ALGORITHM_RESERVED
 msgid  "The DNSKEY with tag {keytag} uses reserved algorithm number {algorithm}/({description})."
-msgstr "Traduction en cours"
+msgstr "La clé (DNSKEY) avec le tag {keytag} utilise un numéro d'algorithme réservé {algorithm}/({description})."
 
 #: DNSSEC:ALGORITHM_UNASSIGNED
 msgid  "The DNSKEY with tag {keytag} uses unassigned algorithm number {algorithm}/({description})."
-msgstr "Traduction en cours"
+msgstr "La clé (DNSKEY) avec le tag {keytag} utilise un numéro d'algorithme non assigné {algorithm}/({description})."
 
 #: DNSSEC:ALGORITHM_UNKNOWN
 msgid  "The DNSKEY with tag {keytag} uses unknown algorithm number {algorithm}."
-msgstr "Traduction en cours"
+msgstr "La clé (DNSKEY) avec le tag {keytag} utilise un numéro d'algorithme inconnu."
 
 #: DNSSEC:COMMON_KEYTAGS
 msgid  "There are both DS and DNSKEY records with key tags {keytags}."
-msgstr "Traduction en cours"
+msgstr "Il y a des enregistrements de type \"DS\" et \"DNSKEY\" partageant les mêmes tag de clé {keytags}."
 
 #: DNSSEC:DNSKEY_AND_DS
 msgid  "{parent} sent a DS record, and {child} a DNSKEY record."
-msgstr "Traduction en cours"
+msgstr "La zone parente retourne un enregistrement de type \"DS\" et les serveurs de noms de la zone, un enregistrement de type \"DNSKEY\"."
 
 #: DNSSEC:DNSKEY_BUT_NOT_DS
 msgid  "{child} sent a DNSKEY record, but {parent} did not send a DS record."
-msgstr "Traduction en cours"
+msgstr "Les serveurs de noms de la zone retournent un enregistrement de type \"DNSKEY\", mais aucun enregistrement de type \"DS\" n'a été trouvé dans la zone parente."
 
 #: DNSSEC:DNSKEY_NOT_SIGNED
 msgid  "The apex DNSKEY RRset was not correctly signed."
-msgstr "Traduction en cours"
+msgstr "L'ensemble des clés de l'apex (DNSKEY RRset) n'est pas signé correctement."
 
 #: DNSSEC:DNSKEY_SIGNATURE_NOT_OK
 msgid  "Signature for DNSKEY with tag {signature} failed to verify with error '{error}'."
-msgstr "Traduction en cours"
+msgstr "La vérification de la signature de la clé avec le tag {signature} a échoué en retournant l'erreur '{error}'."
 
 #: DNSSEC:DNSKEY_SIGNATURE_OK
 msgid  "A signature for DNSKEY with tag {signature} was correctly signed."
-msgstr "Traduction en cours"
+msgstr "La signature de la clé avec le tag {signature} est correcte."
 
 #: DNSSEC:DNSKEY_SIGNED
 msgid  "The apex DNSKEY RRset was correcly signed."
-msgstr "Traduction en cours"
+msgstr "L'ensemble des clés de l'apex (DNSKEY RRset) est signé correctement."
 
 #: DNSSEC:DS_BUT_NOT_DNSKEY
 msgid  "{parent} sent a DS record, but {child} did not send a DNSKEY record."
-msgstr "Traduction en cours"
+msgstr "La zone parente retourne un enregistrement de type \"DS\" mais les serveurs de noms de la zone ne retournent pas d'enregistrement de type \"DNSKEY\"."
 
 #: DNSSEC:DS_DIGTYPE_NOT_OK
 msgid  "DS record with keytag {keytag} uses forbidden digest type {digtype}."
-msgstr "Traduction en cours"
+msgstr "L'enregistrement de type \"DS\" avec le tag de clé {keytag} utilise un type de condensat (digest) interdit {digtype}."
 
 #: DNSSEC:DS_DIGTYPE_OK
 msgid  "DS record with keytag {keytag} uses digest type {digtype}, which is OK."
-msgstr "Traduction en cours"
+msgstr "L'enregistrement de type \"DS\" avec le tag de clé {keytag} utilise un type de condensat (digest) correct."
 
 #: DNSSEC:DS_DOES_NOT_MATCH_DNSKEY
 msgid  "DS record with keytag {keytag} does not match the DNSKEY with the same tag."
-msgstr "Traduction en cours"
+msgstr "L'enregistrement de type \"DS\" avec le tag de clé {keytag} ne correspond à l'enregistrement de type \"DNSKEY\" ayant le même tag."
 
 #: DNSSEC:DS_FOUND
-msgid  "Found DS records with tags {keytags}"
-msgstr "Traduction en cours"
+msgid  "Found DS records with tags {keytags}."
+msgstr "Des enregistrements de type \"DS\" ont été trouvés avec les tags suivants {keytags}."
 
 #: DNSSEC:DS_MATCHES_DNSKEY
 msgid  "DS record with keytag {keytag} matches the DNSKEY with the same tag."
-msgstr "Traduction en cours"
+msgstr "L'enregistrement de type \"DS\" avec le tag de clé {keytag} correspond à l'enregistrement de type \"DNSKEY\" ayant le même tag."
 
 #: DNSSEC:DS_MATCH_FOUND
 msgid  "At least one DS record with a matching DNSKEY record was found."
-msgstr "Traduction en cours"
+msgstr "Au moins un enregistrement de type \"DS\" avec un enregistrement de type \"DNSKEY\" correspondant a été trouvé."
 
 #: DNSSEC:DS_MATCH_NOT_FOUND
 msgid  "No DS record with a matching DNSKEY record was found."
-msgstr "Traduction en cours"
+msgstr "Aucun enregistrement de type \"DS\" avec un enregistrement de type \"DNSKEY\" correspondant n'a été trouvé."
 
 #: DNSSEC:DURATION_LONG
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is too long."
-msgstr "Traduction en cours"
+msgstr "La signature (RRSIG) avec la clé de tag {tag} et couvrant les enregistrements de types \"{types}\" a une durée de {duration} seconds, ce qui est trop long."
 
 #: DNSSEC:DURATION_OK
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a duration of {duration} seconds, which is just fine."
-msgstr "Traduction en cours"
+msgstr "La signature (RRSIG) avec la clé de tag {tag} et couvrant les enregistrements de types \"{types}\" a une durée de {duration} seconds, ce qui est raisonnable."
 
 #: DNSSEC:RRSIG_EXPIRED
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has already expired (expiration is: {expiration})."
-msgstr "Traduction en cours"
+msgstr "La signature (RRSIG) avec la clé de tag {tag} et couvrant les enregistrements de types \"{types}\" a expirée (date d'expiration: {expiration})."
 
 #: DNSSEC:REMAINING_SHORT
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too short."
-msgstr "Traduction en cours"
+msgstr "La signature (RRSIG) avec la clé de tag {tag} et couvrant les enregistrements de types \"{types}\" a une durée de validitée restante de {duration} secondes, ce qui est trop court."
 
 #: DNSSEC:REMAINING_LONG
 msgid  "RRSIG with keytag {tag} and covering type(s) {types} has a remaining validity of {duration} seconds, which is too long."
-msgstr "Traduction en cours"
+msgstr "La signature (RRSIG) avec la clé de tag {tag} et couvrant les enregistrements de types \"{types}\" a une durée de validitée restante de {duration} secondes, ce qui est trop long."
 
 #: DNSSEC:EXTRA_PROCESSING_BROKEN
 msgid  "Server at {server} sent {keys} DNSKEY records, and {sigs} RRSIG records."
-msgstr "Traduction en cours"
+msgstr "Le serveur de noms {server} retourne des clés (DNSKEY) {keys}, et les signatures (RRSIG) {sigs}."
 
 #: DNSSEC:EXTRA_PROCESSING_OK
 msgid  "Server at {server} sent {keys} DNSKEY records and {sigs} RRSIG records."
-msgstr "Traduction en cours"
+msgstr "Le serveur de noms {server} retourne des clés (DNSKEY) {keys} et les signatures (RRSIG) {sigs}."
 
 #: DNSSEC:HAS_NSEC
 msgid  "The zone has NSEC records."
-msgstr "Traduction en cours"
+msgstr "La zone a des enregistrements de type \"NSEC\"."
 
 #: DNSSEC:HAS_NSEC3
 msgid  "The zone has NSEC3 records."
-msgstr "Traduction en cours"
+msgstr "La zone a des enregistrements de type \"NSEC3\"."
 
 #: DNSSEC:INVALID_NAME_FOUND
 msgid  "When asked for the name {name}, which must not exist, the response was not an error."
-msgstr "Traduction en cours"
+msgstr "Lors d'une requête sur un nom de domaine qui ne devrait pas exister, on obtient une réponse qui n'est pas une erreur."
 
 #: DNSSEC:INVALID_NAME_RCODE
 msgid  "When asked for the name {name}, which must not exist, the response had RCODE {rcode}."
-msgstr "Traduction en cours"
+msgstr "Lors d'une requête sur un nom de domaine qui ne devrait pas exister, on obtient une réponse avec le code retour (RCODE) {rcode}."
 
 #: DNSSEC:ITERATIONS_OK
 msgid  "The number of NSEC3 iterations is {count}, which is OK."
-msgstr "Traduction en cours"
+msgstr "Le nombre d'itérations pour \"NSEC3\" est de {count}, ce qui est correct."
 
 #: DNSSEC:MANY_ITERATIONS
 msgid  "The number of NSEC3 iterations is {count}, which is on the high side."
-msgstr "Traduction en cours"
+msgstr "Le nombre d'itérations pour \"NSEC3\" est de {count}, ce qui est élevé."
 
 #: DNSSEC:NEITHER_DNSKEY_NOR_DS
 msgid  "There are neither DS nor DNSKEY records for the zone."
-msgstr "Traduction en cours"
+msgstr "Il n'y a pas enregistrements de type \"DS\", ni de type \"DNSKEY\" pour la zone."
 
 #: DNSSEC:NO_COMMON_KEYTAGS
 msgid  "No DS record had a DNSKEY with a matching keytag."
-msgstr "Traduction en cours"
+msgstr "Aucun enregistrement de type \"DS\" n'a d'enregistrement de type \"DNSKEY\" correspondant (avec le même tag de clé)."
 
 #: DNSSEC:NO_DNSKEY
 msgid  "No DNSKEYs were returned."
-msgstr "Traduction en cours"
+msgstr "Aucun enregistrement de type \"DNSKEY\" n'a été retourné."
 
 #: DNSSEC:NO_DS
 msgid  "{from} returned no DS records for {zone}."
-msgstr "Traduction en cours"
+msgstr "Le serveur de nom {from} ne retourne aucun enregistrement de type \"DS\" pour la zone {zone}."
 
 #: DNSSEC:NO_KEYS_OR_NO_SIGS
 msgid  "Cannot test DNSKEY signatures, because we got {keys} DNSKEY records and {sigs} RRSIG records."
-msgstr "Traduction en cours"
+msgstr "Impossible de tester les signatures des clés (DNSKEY) car nous obtenons {keys} enregistrements de type \"DNSKEY\" et {sigs} enregistrements de type \"RRSIG\"."
 
 #: DNSSEC:NO_KEYS_OR_NO_SIGS_OR_NO_SOA
 msgid  "Cannot test SOA signatures, because we got {keys} DNSKEY records, {sigs} RRSIG records and {soas} SOA records."
-msgstr "Traduction en cours"
+msgstr "Impossible de tester les signatures des enregistrements de type \"SOA\" car nous obtenons {keys} enregistrements de type \"DNSKEY\", {sigs} enregistrements de type \"RRSIG\" et {soas} enregistrements de type \"SOA\"."
 
 #: DNSSEC:NO_NSEC3PARAM
 msgid  "{server} returned no NSEC3PARAM records."
-msgstr "Traduction en cours"
+msgstr "Le serveur de noms {server} ne retourne pas d'enregistrements de type \"NSEC3PARAM\"."
 
 #: DNSSEC:NSE3C_SIG_VERIFY_ERROR
 msgid  "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'."
-msgstr "Traduction en cours"
+msgstr "Une erreur '{error}' a été obtenue en essayant de vérifier l'ensemble des enregistrements de type \"NSEC3\" avec la signature {sig}."
 
 #: DNSSEC:NSEC3_COVERS
 msgid  "NSEC3 record covers {name}."
-msgstr "Traduction en cours"
+msgstr "NSEC3 couvre le nom {name}."
 
 #: DNSSEC:NSEC3_COVERS_NOT
 msgid  "NSEC3 record does not cover {name}."
-msgstr "Traduction en cours"
+msgstr "NSEC3 ne couvre pas le nom {name}."
 
 #: DNSSEC:NSEC3_NOT_SIGNED
 msgid  "No signature correctly signed the NSEC3 RRset."
-msgstr "Traduction en cours"
+msgstr "Aucune signature correcte ne signe l'ensemble des enregistrements de type \"NSEC3\"."
 
 #: DNSSEC:NSEC3_SIGNED
 msgid  "At least one signature correctly signed the NSEC3 RRset."
-msgstr "Traduction en cours"
+msgstr "Au moins une signature correcte signe l'ensemble des enregistrements de type \"NSEC3\"."
 
 #: DNSSEC:NSEC_COVERS
 msgid  "NSEC covers {name}."
-msgstr "Traduction en cours"
+msgstr "NSEC couvre le nom {name}."
 
 #: DNSSEC:NSEC_COVERS_NOT
 msgid  "NSEC does not cover {name}."
-msgstr "Traduction en cours"
+msgstr "NSEC ne couvre pas le nom {name}."
 
 #: DNSSEC:NSEC_NOT_SIGNED
 msgid  "No signature correctly signed the NSEC RRset."
-msgstr "Traduction en cours"
+msgstr "Aucune signature correcte ne signe l'ensemble des enregistrements de type \"NSEC\"."
 
 #: DNSSEC:NSEC_SIGNED
 msgid  "At least one signature correctly signed the NSEC RRset."
-msgstr "Traduction en cours"
+msgstr "Au moins une signature (RRSIG) correcte signe l'ensemble des enregistrements de type \"NSEC\"."
 
 #: DNSSEC:NSEC_SIG_VERIFY_ERROR
 msgid  "Trying to verify NSEC RRset with RRSIG {sig} gave error '{error}'."
-msgstr "Traduction en cours"
+msgstr "Une erreur '{error}' a été obtenue en essayant de vérifier l'ensemble des enregistrements de type \"NSEC\" avec la signature {sig}."
 
 #: DNSSEC:SOA_NOT_SIGNED
 msgid  "No RRSIG correctly signed the SOA RRset."
-msgstr "Traduction en cours"
+msgstr "Aucune signature correcte ne signe l'ensemble des enregistrements de type \"SOA\"."
 
 #: DNSSEC:SOA_SIGNATURE_NOT_OK
 msgid  "Trying to verify SOA RRset with signature {signature} gave error '{error}'."
-msgstr "Traduction en cours"
+msgstr "Une erreur '{error}' a été obtenue en essayant de vérifier l'ensemble des enregistrements de type \"SOA\" avec la signature {sig}."
 
 #: DNSSEC:SOA_SIGNATURE_OK
 msgid  "RRSIG {signature} correctly signs SOA RRset."
-msgstr "Traduction en cours"
+msgstr "La signature (RRSIG) {signature} signe correctement l'enregistrement de type \"SOA\"."
 
 #: DNSSEC:SOA_SIGNED
 msgid  "At least one RRSIG correctly signs the SOA RRset."
-msgstr "Traduction en cours"
+msgstr "Au moins une signature (RRSIG) correcte signe correctement l'enregistrement de type \"SOA\"."
 
 #: DNSSEC:TOO_MANY_ITERATIONS
 msgid  "The number of NSEC3 iterations is {count}, which is too high for key length {keylength}."
-msgstr "Traduction en cours"
+msgstr "Le nombre d'itérations pour \"NSEC3\" est de {count}, ce qui est trop élevé pour une clé de cette taille {keylength}."
 
 #: EXAMPLE:EXAMPLE_TAG
 msgid  "This is an example tag."
-msgstr "Traduction en cours"
+msgstr "Ceci est un tag d'exemple."
 
 #: NAMESERVER:AAAA_WELL_PROCESSED
 msgid  "The following nameservers answer AAAA queries without problems : {names}."
@@ -707,55 +707,55 @@ msgstr "Le nom de domaine ({name}) contient un label ({label}) se terminant par 
 
 #: SYSTEM:CANNOT_CONTINUE
 msgid  "Not enough data about {zone} was found to be able to run tests."
-msgstr "Traduction en cours"
+msgstr "Pas assez d'informations obtenues sur la zone {zone} pour permettre la poursuite des tests."
 
 #: SYSTEM:CONFIG_FILE
 msgid  "Configuration was read from {name}."
-msgstr "Traduction en cours"
+msgstr "La configuration a été lue depuis le fichier {name}."
 
 #: SYSTEM:DEPENDENCY_VERSION
 msgid  "Using prerequisite module {name} version {version}."
-msgstr "Traduction en cours"
+msgstr "Utilisation du module prérequis {name} version {version}."
 
 #: SYSTEM:LOGGER_CALLBACK_ERROR
 msgid  "Logger callback died with error: {exception}"
-msgstr "Traduction en cours"
+msgstr "L'appel au système de log (Callback) s'est terminé avec l'erreur suivante: {exception}"
 
 #: SYSTEM:LOOKUP_ERROR
 msgid  "DNS query to {ns} for {name}/{type}/{class} failed with error: {message}"
-msgstr "Traduction en cours"
+msgstr "La requête DNS {name}/{type}/{class} au serveur de noms {ns} a échoué avec le message d'erreur suivant: {message}"
 
 #: SYSTEM:MODULE_ERROR
 msgid  "Fatal error in {module}: {msg}"
-msgstr "Traduction en cours"
+msgstr "Erreur fatale dans le module {module}: {msg}"
 
 #: SYSTEM:MODULE_VERSION
 msgid  "Using module {module} version {version}."
-msgstr "Traduction en cours"
+msgstr "Utilisation du module {module} version {version}."
 
 #: SYSTEM:POLICY_DISABLED
 msgid  "The module {name} was disabled by the policy."
-msgstr "Traduction en cours"
+msgstr "Le module {name} a été désactivé par la politique en cours."
 
 #: SYSTEM:POLICY_FILE
 msgid  "Policy was read from {name}."
-msgstr "Traduction en cours"
+msgstr "La politique a été lue depuis le fichier {name}."
 
 #: SYSTEM:SKIP_IPV4_DISABLED
 msgid  "IPv4 is disabled, not sending query to {ns}."
-msgstr "Traduction en cours"
+msgstr "IPv4 est désactivé, aucune requête envoyée au serveur de noms {ns}."
 
 #: SYSTEM:SKIP_IPV6_DISABLED
 msgid  "IPv6 is disabled, not sending query to {ns}."
-msgstr "Traduction en cours"
+msgstr "IPv6 est désactivé, aucune requête envoyée au serveur de noms {ns}."
 
 #: SYSTEM:UNKNOWN_METHOD
 msgid  "Request to run unknown method {method} in module {module}."
-msgstr "Traduction en cours"
+msgstr "Demande d'exécuter une méthode inconnue {method} pour le module {module}."
 
 #: SYSTEM:UNKNOWN_MODULE
 msgid  "Request to run {method} in unknown module {module}. Known modules: {known}."
-msgstr "Traduction en cours"
+msgstr "Demande d'exécuter une méthode {method} pour le module inconnu {module}. Liste des modules connus: {known}."
 
 #: ZONE:EXPIRE_LOWER_THAN_REFRESH
 msgid  "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh})."
