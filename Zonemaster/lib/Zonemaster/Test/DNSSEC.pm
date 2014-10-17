@@ -279,7 +279,7 @@ sub translation {
         "DS_DIGTYPE_NOT_OK"       => "DS record with keytag {keytag} uses forbidden digest type {digtype}.",
         "DS_DIGTYPE_OK"           => "DS record with keytag {keytag} uses digest type {digtype}, which is OK.",
         "DS_DOES_NOT_MATCH_DNSKEY" => "DS record with keytag {keytag} does not match the DNSKEY with the same tag.",
-        "DS_FOUND"                 => "Found DS records with tags {keytags}",
+        "DS_FOUND"                 => "Found DS records with tags {keytags}.",
         "DS_MATCHES_DNSKEY"        => "DS record with keytag {keytag} matches the DNSKEY with the same tag.",
         "DS_MATCH_FOUND"           => "At least one DS record with a matching DNSKEY record was found.",
         "DS_MATCH_NOT_FOUND"       => "No DS record with a matching DNSKEY record was found.",
