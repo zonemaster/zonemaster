@@ -261,6 +261,16 @@ sub test_progress {
 	return $result;
 }
 
+sub get_test_params {
+	my($self, $test_id) = @_;
+
+	my $result = 0;
+
+	$result = $self->{db}->get_test_params($test_id);
+
+	return $result;
+}
+
 sub get_test_results {
 	my($self, $params) = @_;
 	my $result;
@@ -275,10 +285,11 @@ sub get_test_results {
 	foreach my $test_res ( @{ $test_info->{results} } ) {
 		my $res;
 		if ($test_res->{module} eq 'NAMESERVER') {
-			$res->{ns} = $test_res->{args}->{ns};
+			$res->{ns} = ($test_res->{args}->{ns})?($test_res->{args}->{ns}):('All');
 		}
 		$res->{module} = $test_res->{module};
 		$res->{message} = $translator->translate_tag( $test_res )."\n";
+		$res->{message} =~ s/,/, /isg;
 		$res->{level} = $test_res->{level};
 		push(@zm_results, $res);
 	}

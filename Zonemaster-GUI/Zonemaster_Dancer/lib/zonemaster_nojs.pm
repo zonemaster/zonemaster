@@ -189,6 +189,7 @@ any ['get', 'post'] => '/nojs' => sub {
 			my $template_params = params_backend2template($backend_params);
 			$template_params->{test_running} = 1;
 			$template_params->{test_id} = $test_id;
+			$template_params->{test_progress} = '0';
 			template 'nojs_main_view', $template_params, { layout => undef };
 		}
 		else {
@@ -196,7 +197,41 @@ any ['get', 'post'] => '/nojs' => sub {
 		}
 	}
 	elsif (request->method() eq 'GET') {
-		template 'nojs_main_view', {}, { layout => undef };
+		if (defined $allparams{'test_id'} ) {
+			my $c = Client->new({url => $url });
+			my $backend_params = $c->get_test_params($allparams{'test_id'});
+			my $progress = $c->test_progress($allparams{'test_id'});
+			if ($progress < 100) {
+				my $template_params = params_backend2template($backend_params);
+				$template_params->{test_running} = 1;
+				$template_params->{test_id} = $allparams{'test_id'};
+				$template_params->{test_progress} = $progress;
+				template 'nojs_main_view', $template_params, { layout => undef };
+			}
+			else {
+				say "get_test_results: ".Dumper($c->get_test_results( { id => $allparams{'test_id'}, language => 'en' } ));
+				my $test_result = $c->get_test_results( { id => $allparams{'test_id'}, language => 'en' } );
+				my $backend_params = $test_result->{params};
+				my $test_results;
+				my $previous_module = '';
+				my $template_params = params_backend2template($backend_params);
+				foreach my $result (@{$test_result->{results}}) {
+					if ($previous_module ne $result->{module}) {
+						$test_results .= $result->{module}."<br>";
+						$previous_module = $result->{module};
+					}
+					$test_results .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$result->{message}.'<br>';
+				}
+				$template_params->{test_results} = $test_results;
+				$template_params->{test_running} = 0;
+				$template_params->{test_id} = $allparams{'test_id'};
+				$template_params->{test_progress} = 100;
+				template 'nojs_main_view', $template_params, { layout => undef };
+			}
+		}
+		else {
+			template 'nojs_main_view', {}, { layout => undef };
+		}
 	}
 	else {
 		template 'nojs_error_page', { error => 'ERROR'}, { layout => undef };

@@ -17,13 +17,16 @@
 			</button>
 			<br>
 			
+			<% IF test_running %>
+			<br>
 			<table>
 				<tr>
-					<td style="border: 0px;padding:none">60%</td>
-					<td width=400 style="border: 2px solid silver;padding:none"><hr style="color:#c00;background-color:#c00;height:20px; border:none;margin:0;" align="left" width=60% /></td>   
+					<td style="border: 0px;padding:none"><% test_progress %>%</td>
+					<td width=400 style="border: 2px solid silver;padding:none"><hr style="color:#c00;background-color:#c00;height:20px; border:none;margin:0;" align="left" width=<% test_progress %>% /></td>   
 				</tr>
 			</table>
-    
+			<% END %>
+
 			<br>
 			<button type="submit" name="button" value="Add NS" />
 			+
@@ -107,12 +110,20 @@
 			<input type="submit" name="button" value="Load from Backend" />
 		</form>
 		<hr>
+		
 		<p>
 		<% text %>
 		</p>
+		
 		<hr>
+
 		<p>
 		<% text1 %>
+		</p>
+		
+		<hr>
+		<p>
+		<% test_results %>
 		</p>
 	</body>
 </html>

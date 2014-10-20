@@ -55,6 +55,11 @@ my $router = router {
 		action => "test_progress"
 	};
 	
+	connect "get_test_params" => {
+		handler => "+Engine",
+		action => "get_test_params"
+	};
+
 	connect "get_test_results" => {
 		handler => "+Engine",
 		action => "get_test_results"
