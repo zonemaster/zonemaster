@@ -288,9 +288,8 @@ dnscheck.directive('domainCheck',function(){
 				data : { data: JSON.stringify($scope.form) },
 				dataType : 'json',
 				success: function(data){
-					alert(JSON.stringify(data.result));
 					if(data.result.status === 'nok') {
-						$scope.$apply($scope.showSyntaxErrors(data.result));
+						alert(data.result.message);
 					}
 					else {
 						$scope.$apply($scope.startTest(data.result));
@@ -302,7 +301,6 @@ dnscheck.directive('domainCheck',function(){
 			});
 
 			$scope.startTest = function () {
-				alert('Syntax OK, starting tests');
 				$scope.result = null;
 				if( (typeof $scope.form.domain === 'undefined') || ($scope.form.domain === '') ){
 					alert('Can\'t run test for unspecified domain name');
@@ -325,10 +323,6 @@ dnscheck.directive('domainCheck',function(){
 						alert('Can\'t run test');
 					}
 				});
-			};
-			
-			$scope.showSyntaxErrors = function () {
-				alert('Found Syntax Errors');
 			};
 		};
     }],

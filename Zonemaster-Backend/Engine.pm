@@ -7,6 +7,7 @@ use 5.14.0;
 
 # Public Modules
 use Data::Dumper;
+use Encode;
 use Net::DNS;
 use Net::DNS::SEC;
 use Net::DNS::Keyset;
@@ -16,6 +17,7 @@ use Digest::MD5 qw(md5_hex);
 use String::ShellQuote;
 use File::Slurp qw(append_file);
 use Net::LDNS;
+use Net::IP qw(:PROC);
 
 use FindBin qw($RealScript $Script $RealBin $Bin);
 ##################################################################
@@ -77,21 +79,6 @@ sub new{
 	}
 
 	return($self);
-}
-
-sub _to_idn {
-	my ( $self, $str ) = @_;
-	
-	if ($str =~ m/^[[:ascii:]]+$/) {
-		return $str;
-	}
-
-	if (Net::LDNS::has_idn()) {
-		return Net::LDNS::to_idn(encode_utf8($str));
-	}
-	else {
-		return "ERROR: No IDN support installed";
-	}
 }
 
 sub version_info {
@@ -210,34 +197,88 @@ sub get_data_from_parent_zone_1 {
 	return \%result;
 }
 
+sub _check_domain {
+	my($self, $dn, $type) = @_;
+
+	if (!defined($dn)) {
+		return ($dn, { status => 'nok', message => "$type required" });
+	}
+	
+    if ($dn =~ m/^[^[:ascii:]]+$/) {
+		if (Net::LDNS::has_idn()) {
+			$dn = Net::LDNS::to_idn(encode_utf8($dn));
+		}
+		else {
+			return ($dn, { status => 'nok', message => "$type contains non-ascii characters and IDN conversion is not installed" });
+		}
+    }
+
+	if (length($dn) < 2 && $dn ne '.') {
+		return ($dn, { status => 'nok', message => "$type name too short" });
+	}
+	
+	$dn =~ s/\.$// unless($dn eq '.');
+	
+	if (length($dn) > 253) {
+		return ($dn, { status => 'nok', message => "$type name too long" });
+	}
+
+	foreach my $label (split(/\./, $dn)) {
+		if (length($label) > 63) {
+			return ($dn, { status => 'nok', message => "$type name label too long" });
+		}
+	}
+
+	foreach my $label (split(/\./, $dn)) {
+		if ($label =~ /[^0-9a-zA-Z\-]/) {
+			return ($dn, { status => 'nok', message => "$type name contains invalid characters" });
+		}
+	}
+	
+	return ($dn, { status => 'ok', message => 'Syntax ok' });
+}
+
 sub validate_syntax {
 	my($self, $syntax_input) = @_;
 
-	my $result = { status => 'ok' };
-	$result->{message} = "Syntax message".Dumper($syntax_input);
-=coment
-	my $dn = Zonemaster::DNSName->new( $domain );
+	my ($dn, $dn_syntax) = $self->_check_domain($syntax_input->{domain}, 'Domain name');
 
-	my @test_syntax01 = Zonemaster->test_method('Syntax', 'syntax01', $dn);
-	print Dumper(\@test_syntax01);
-	if ($test_syntax01[0]->{tag} eq 'ONLY_ALLOWED_CHARS') {
-		my @test_syntax02 = Zonemaster->test_method('Syntax', 'syntax02', $dn);
-		print Dumper(\@test_syntax02);
-		unless (@test_syntax02) {
-			my @test_syntax03 = Zonemaster->test_method('Syntax', 'syntax03', $dn);
-			print Dumper(\@test_syntax03);
-			unless (@test_syntax03) {
-				my @test_syntax04 = Zonemaster->test_method('Syntax', 'syntax04', $dn);
-				print Dumper(\@test_syntax04);
-				unless (@test_syntax04) {
-					$result = 'syntax_ok';
-				}
+	return $dn_syntax if ($dn_syntax->{status} eq 'nok');
+
+	if (defined $syntax_input->{nameservers} && @{$syntax_input->{nameservers}}) {
+		foreach my $ns_ip (@{$syntax_input->{nameservers}}) {
+			my ($ns, $ns_syntax) = $self->_check_domain($ns_ip->{ns}, "NS [$ns_ip->{ns}]");
+			return $ns_syntax if ($ns_syntax->{status} eq 'nok');
+		}
+		
+		foreach my $ns_ip (@{$syntax_input->{nameservers}}) {
+			return { status => 'nok', message => "Invalid IP address: [$ns_ip->{ip}]" } unless (ip_is_ipv4($ns_ip->{ip}) || ip_is_ipv6($ns_ip->{ip}));
+		}
+
+		foreach my $ds_digest (@{$syntax_input->{ds_digest_pairs}}) {
+			return { status => 'nok', message => "Invalid algorithm type: [$ds_digest->{algorithm}]" } unless ($ds_digest->{algorithm} eq 'sha1' || $ds_digest->{algorithm} eq 'sha256');
+		}
+
+		foreach my $ds_digest (@{$syntax_input->{ds_digest_pairs}}) {
+			if ($ds_digest->{algorithm} eq 'sha1') {
+				return { status => 'nok', message => "Invalid digest format: [$ds_digest->{digest}]" } 
+					if (length($ds_digest->{digest}) != 40 || $ds_digest->{digest} =~ /[^A-Fa-f0-9]/ );
+			}
+			elsif ($ds_digest->{algorithm} eq 'sha256') {
+				return { status => 'nok', message => "Invalid digest format: [$ds_digest->{digest}]" } 
+					if (length($ds_digest->{digest}) != 64 || $ds_digest->{digest} =~ /[^A-Fa-f0-9]/ );
 			}
 		}
 	}
-=cut
-	
-	return $result;
+	else {
+		my $res   = Net::DNS::Resolver->new;                                                                                                                                                                                                                                   
+		my $reply = $res->search($dn);                                                                                                                                                                                                                  
+		if (!$reply) {
+			return { status => 'nok', message => 'Domain doesn\'t exist' };
+		}
+	}
+
+	return { status => 'ok', message => 'Syntax ok' };
 }
 
 sub start_domain_test {
@@ -349,7 +390,8 @@ sub add_batch_job {
 	
 	return $batch_id;
 }
-	
+
+
 sub api1 {
 	my($self, $p) = @_;
 	

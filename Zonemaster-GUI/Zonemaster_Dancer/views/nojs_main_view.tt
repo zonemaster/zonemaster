@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="<% request.uri_base %>/css/nojs_style.css" />
 		<% IF test_running %>
 			<meta http-equiv="refresh" content="5;url=/nojs?test_id=<% test_id %>">
 		<% END %>
@@ -104,11 +105,15 @@
 				</select>
 			</label>
 			<br>
+			<% IF debug_mode %>
 			<br>
 			<br>
 			<input type="submit" name="button" value="Send to Backend" />
 			<input type="submit" name="button" value="Load from Backend" />
+			<% END %>
 		</form>
+
+		<% IF debug_mode %>
 		<hr>
 		
 		<p>
@@ -120,10 +125,21 @@
 		<p>
 		<% text1 %>
 		</p>
-		
+		<% END %>
+
 		<hr>
 		<p>
-		<% test_results %>
+			<% FOREACH test_res IN test_results %>
+				<% IF test_res.is_module %>
+					<br>
+					<br>
+					<span class="<% test_res.type %>"><% test_res.message %><br></span>
+				<% ELSE %>
+					<span class="tab">
+						<span class="<% test_res.type %>"><% test_res.message %><br></span>
+					</span>
+				<% END %>
+			<% END %>
 		</p>
 	</body>
 </html>

@@ -153,7 +153,7 @@ any ['get', 'post'] => '/nojs' => sub {
 	elsif ($allparams{'button'} eq 'Add DS') {
 		my $backend_params = params_template2backend(\%allparams);
 		say Dumper($backend_params);
- 		push(@{$backend_params->{ds_digest_pairs}}, { ds_id => scalar(@{$backend_params->{ds_digest_pairs}})+1, algorithm => '', digest => '' });
+		push(@{$backend_params->{ds_digest_pairs}}, { ds_id => scalar(@{$backend_params->{ds_digest_pairs}})+1, algorithm => '', digest => '' });
 		template 'nojs_main_view', params_backend2template($backend_params), { layout => undef };
 	}
 	elsif ($allparams{'button'} =~ /^Delete DS\s+([\d]+)/) {
@@ -193,7 +193,7 @@ any ['get', 'post'] => '/nojs' => sub {
 			template 'nojs_main_view', $template_params, { layout => undef };
 		}
 		else {
-			template 'nojs_error_page', { error => 'ERROR 3: parameters are invalid'}, { layout => undef };
+			template 'nojs_error_page', { error => "ERROR 3: parameters are invalid ->[$syntax->{message}]"}, { layout => undef };
 		}
 	}
 	elsif (request->method() eq 'GET') {
@@ -212,17 +212,27 @@ any ['get', 'post'] => '/nojs' => sub {
 				say "get_test_results: ".Dumper($c->get_test_results( { id => $allparams{'test_id'}, language => 'en' } ));
 				my $test_result = $c->get_test_results( { id => $allparams{'test_id'}, language => 'en' } );
 				my $backend_params = $test_result->{params};
-				my $test_results;
 				my $previous_module = '';
 				my $template_params = params_backend2template($backend_params);
+				my @test_results;
+				my $last_module_index = 0;
+				my $module_type;
+				my %severity = ( INFO => 0, NOTICE => 1, WARNING => 2, ERROR => 3);
 				foreach my $result (@{$test_result->{results}}) {
 					if ($previous_module ne $result->{module}) {
-						$test_results .= $result->{module}."<br>";
+						push(@test_results, { is_module => 1, message => $result->{module} });
+						$test_results[$last_module_index]->{type} = lc($module_type);
+						$last_module_index = $#test_results;
 						$previous_module = $result->{module};
+						undef($module_type);
 					}
-					$test_results .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$result->{message}.'<br>';
+					$module_type = $result->{level} if ($severity{$module_type} < $severity{$result->{level}});
+
+					push(@test_results, { is_module => 0, message => $result->{message}, type => lc($result->{level}) });
 				}
-				$template_params->{test_results} = $test_results;
+				$test_results[$last_module_index]->{type} = lc($module_type);
+
+				$template_params->{test_results} = \@test_results;
 				$template_params->{test_running} = 0;
 				$template_params->{test_id} = $allparams{'test_id'};
 				$template_params->{test_progress} = 100;
