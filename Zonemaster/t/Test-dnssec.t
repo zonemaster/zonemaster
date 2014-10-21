@@ -63,6 +63,9 @@ zone_gives( 'dnssec05', $zone, 'ALGORITHM_OK' );
 zone_gives( 'dnssec06', $zone, 'EXTRA_PROCESSING_OK' );
 
 zone_gives( 'dnssec07', $zone, 'DNSKEY_AND_DS' );
+zone_gives_not( 'dnssec07', $zone, q{NEITHER_DNSKEY_NOR_DS} );
+zone_gives_not( 'dnssec07', $zone, q{DNSKEY_BUT_NOT_DS} );
+zone_gives_not( 'dnssec07', $zone, q{DS_BUT_NOT_DNSKEY} );
 
 zone_gives( 'dnssec08', $zone, 'DNSKEY_SIGNATURE_OK' );
 zone_gives( 'dnssec08', $zone, 'DNSKEY_SIGNED' );
@@ -148,26 +151,65 @@ zone_gives_not( 'dnssec05', $zone, q{ALGORITHM_UNASSIGNED} );
 zone_gives( 'dnssec05', $zone, q{ALGORITHM_PRIVATE} );
 zone_gives_not( 'dnssec05', $zone, q{ALGORITHM_UNKNOWN} );
 
+# dnssec06
+$zone = Zonemaster->zone( 'dnssec06-extra-processing-broken-1.zut-root.rd.nic.fr' );
+zone_gives( 'dnssec06', $zone, q{EXTRA_PROCESSING_BROKEN} );
+zone_gives_not( 'dnssec06', $zone, q{EXTRA_PROCESSING_OK} );
+
+$zone = Zonemaster->zone( 'dnssec06-extra-processing-broken-2.zut-root.rd.nic.fr' );
+zone_gives( 'dnssec06', $zone, q{EXTRA_PROCESSING_BROKEN} );
+zone_gives_not( 'dnssec06', $zone, q{EXTRA_PROCESSING_OK} );
+
+# dnssec07
+$zone = Zonemaster->zone( 'dnssec07-dnskey-but-not-ds.zut-root.rd.nic.fr' );
+zone_gives( 'dnssec07', $zone, q{DNSKEY_BUT_NOT_DS} );
+zone_gives_not( 'dnssec07', $zone, q{DNSKEY_AND_DS} );
+zone_gives_not( 'dnssec07', $zone, q{DS_BUT_NOT_DNSKEY} );
+zone_gives_not( 'dnssec07', $zone, q{NEITHER_DNSKEY_NOR_DS} );
+
+$zone = Zonemaster->zone( 'dnssec07-neither-dnskey-nor-ds.zut-root.rd.nic.fr' );
+zone_gives( 'dnssec07', $zone, q{NEITHER_DNSKEY_NOR_DS} );
+zone_gives_not( 'dnssec07', $zone, q{DNSKEY_BUT_NOT_DS} );
+zone_gives_not( 'dnssec07', $zone, q{DNSKEY_AND_DS} );
+zone_gives_not( 'dnssec07', $zone, q{DS_BUT_NOT_DNSKEY} );
+
+$zone = Zonemaster->zone( 'dnssec07-ds-but-not-dnskey.zut-root.rd.nic.fr' );
+zone_gives( 'dnssec07', $zone, q{DS_BUT_NOT_DNSKEY} );
+zone_gives_not( 'dnssec07', $zone, q{NEITHER_DNSKEY_NOR_DS} );
+zone_gives_not( 'dnssec07', $zone, q{DNSKEY_BUT_NOT_DS} );
+zone_gives_not( 'dnssec07', $zone, q{DNSKEY_AND_DS} );
+
+# dnssec08
+$zone = Zonemaster->zone( 'dnssec08-dnskey-not-signed.zut-root.rd.nic.fr' );
+zone_gives( 'dnssec08', $zone, q{DNSKEY_NOT_SIGNED} );
+zone_gives( 'dnssec08', $zone, q{DNSKEY_SIGNATURE_NOT_OK} );
+
+$zone = Zonemaster->zone( 'dnssec08-dnskey-signature-not-ok.zut-root.rd.nic.fr' );
+zone_gives( 'dnssec08', $zone, q{DNSKEY_SIGNED} );
+zone_gives( 'dnssec08', $zone, q{DNSKEY_SIGNATURE_NOT_OK} );
+zone_gives( 'dnssec08', $zone, q{DNSKEY_SIGNATURE_OK} );
+
+$zone = Zonemaster->zone( 'dnssec08-no-keys-or-no-sigs-1.zut-root.rd.nic.fr' );
+zone_gives( 'dnssec08', $zone, q{NO_KEYS_OR_NO_SIGS} );
+zone_gives( 'dnssec09', $zone, q{NO_KEYS_OR_NO_SIGS_OR_NO_SOA} );
+
+$zone = Zonemaster->zone( 'dnssec08-no-keys-or-no-sigs-2.zut-root.rd.nic.fr' );
+zone_gives( 'dnssec08', $zone, q{NO_KEYS_OR_NO_SIGS} );
+
+# dnssec09
+$zone = Zonemaster->zone( 'dnssec09-soa-signature-not-ok.zut-root.rd.nic.fr' );
+zone_gives( 'dnssec09', $zone, q{SOA_NOT_SIGNED} );
+zone_gives( 'dnssec09', $zone, q{SOA_SIGNATURE_NOT_OK} );
+
 TODO: {
-    local $TODO = "Need to find domain name with that error";
+    local $TODO = "Need to find/create zones with that error";
 
     # dnssec05 (can not exist in a live domain...)
     ok( $tag{ALGORITHM_UNKNOWN}, q{ALGORITHM_UNKNOWN} );
     # dnssec06
     ok( $tag{EXTRA_PROCESSING_BROKEN}, q{EXTRA_PROCESSING_BROKEN} );
-    # dnssec07
+    # dnssec07 (need complete analyze with broken zone)
     ok( $tag{ADDITIONAL_DNSKEY_SKIPPED}, q{ADDITIONAL_DNSKEY_SKIPPED} );
-    ok( $tag{DNSKEY_BUT_NOT_DS}, q{DNSKEY_BUT_NOT_DS} );
-    ok( $tag{NEITHER_DNSKEY_NOR_DS}, q{NEITHER_DNSKEY_NOR_DS} );
-    ok( $tag{DS_BUT_NOT_DNSKEY}, q{DS_BUT_NOT_DNSKEY} );
-    # dnssec08
-    ok( $tag{DNSKEY_SIGNATURE_NOT_OK}, q{DNSKEY_SIGNATURE_NOT_OK} );
-    ok( $tag{DNSKEY_NOT_SIGNED}, q{DNSKEY_NOT_SIGNED} );
-    ok( $tag{NO_KEYS_OR_NO_SIGS}, q{NO_KEYS_OR_NO_SIGS} );
-    # dnssec09
-    ok( $tag{NO_KEYS_OR_NO_SIGS_OR_NO_SOA}, q{NO_KEYS_OR_NO_SIGS_OR_NO_SOA} );
-    ok( $tag{SOA_SIGNATURE_NOT_OK}, q{SOA_SIGNATURE_NOT_OK} );
-    ok( $tag{SOA_NOT_SIGNED}, q{SOA_NOT_SIGNED} );
     # dnssec10
     ok( $tag{INVALID_NAME_FOUND}, q{INVALID_NAME_FOUND} );
     ok( $tag{INVALID_NAME_RCODE}, q{INVALID_NAME_RCODE} );
