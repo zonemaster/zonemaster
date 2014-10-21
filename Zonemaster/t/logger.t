@@ -14,6 +14,10 @@ isa_ok( $log, 'Zonemaster::Logger' );
 
 $log->add( 'TAG', { seventeen => 17 } );
 
+# Make sure all our policy comes from our config file.
+$Zonemaster::Config::policy = {};
+Zonemaster->config->load_policy_file('t/policy.json');
+
 my $e = $log->entries->[-1];
 isa_ok( $e, 'Zonemaster::Logger::Entry' );
 is( $e->module, 'SYSTEM', 'module ok' );
@@ -44,7 +48,6 @@ $log->callback(
 $log->add( CALLBACK => { canary => 1 } );
 ok( $canary, 'canary set' );
 
-Zonemaster->config->policy->{SYSTEM}{LOGGER_CALLBACK_ERROR} = 'ERROR';
 $log->callback( sub { die "in callback" } );
 $log->add( DO_CRASH => {} );
 my %res = map { $_->tag => 1 } @{ $log->entries };

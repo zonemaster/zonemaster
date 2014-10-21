@@ -1,5 +1,11 @@
 {
     "EXAMPLE": {
         "EXAMPLE_TAG": "WARNING"
+    },
+    "BASIC": {
+        "NS_FAILED": "ERROR"
+    },
+    "SYSTEM": {
+        "LOGGER_CALLBACK_ERROR": "ERROR"
     }
 }
