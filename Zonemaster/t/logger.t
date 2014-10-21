@@ -29,8 +29,8 @@ like( "$entry", qr/SYSTEM:TEST an=argument/, 'stringification overload' );
 
 is( $entry->level, 'DEBUG', 'right level' );
 my $example = Zonemaster::Logger::Entry->new( { module => 'BASIC', tag => 'NS_FAILED' } );
-is( $example->level,         'WARNING', 'expected level' );
-is( $example->numeric_level, 3,         'expected numeric level' );
+is( $example->level,         'ERROR', 'expected level' );
+is( $example->numeric_level, 4,         'expected numeric level' );
 
 my $canary = 0;
 $log->callback(
@@ -44,6 +44,7 @@ $log->callback(
 $log->add( CALLBACK => { canary => 1 } );
 ok( $canary, 'canary set' );
 
+Zonemaster->config->policy->{SYSTEM}{LOGGER_CALLBACK_ERROR} = 'ERROR';
 $log->callback( sub { die "in callback" } );
 $log->add( DO_CRASH => {} );
 my %res = map { $_->tag => 1 } @{ $log->entries };
@@ -81,6 +82,7 @@ ok( @{ $log->entries } > 0, 'There are log entries' );
 my $all_json  = $log->json;
 my $some_json = $log->json( 'ERROR' );
 ok( length( $all_json ) > length( $some_json ), 'All longer than some' );
+
 like(
     $some_json,
 qr[[{"args":{"exception":"in callback at t/logger.t line 47, <DATA> line 1.\n"},"level":"ERROR","module":"SYSTEM","tag":"LOGGER_CALLBACK_ERROR","timestamp":0.\d+}]],
