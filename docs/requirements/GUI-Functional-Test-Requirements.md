@@ -17,14 +17,10 @@ Security and Performance testing are not included.
 
 |Req| Test requirement                           |How Verified|Status|
 |:--|:-------------------------------------------|------------|------|
-|GR01|Supports Swedish language
-|../Zonemaster-GUI/FunctionalTests/GR01-test-swedish-language.js| KO |
-|GR02|Supports French language
-|../Zonemaster-GUI/FunctionalTests/GR01-test-french-language.js| KO |
-|GR03|Supports English language
-|../Zonemaster-GUI/FunctionalTests/GR01-test-english-language.js| Ok |
-|GR04|On launching the URL opens with a default simple view  |
-../Zonemaster-GUI/FunctionalTests/GR04-main-page.js| OK |
+|GR01|Supports Swedish language|[Script](../../Zonemaster-GUI/FunctionalTests/GR01-test-swedish-language.js)| KO |
+|GR02|Supports French language|[Script](../../Zonemaster-GUI/FunctionalTests/GR01-test-french-language.js)| KO |
+|GR03|Supports English language |[Script](../../Zonemaster-GUI/FunctionalTests/GR01-test-english-language.js)| Ok |
+|GR04|On launching the URL opens with a default simple view | [Script](../../Zonemaster-GUI/FunctionalTests/GR04-main-page.js)| OK |
 |GR05|The simple view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.   |            |
 |GR06|The simple view should support an advanced view expanding when the checkbox is enabled|            |
 |GR07|The advanced view should support the possibility of enabling or disabling IPv4 or IPv6 |            |
