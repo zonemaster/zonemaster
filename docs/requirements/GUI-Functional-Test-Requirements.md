@@ -22,12 +22,14 @@ Security and Performance testing are not included.
 |GR03|Supports English language |[Script](../../Zonemaster-GUI/FunctionalTests/GR01-test-english-language.js)| Ok |
 |GR04|On launching the URL opens with a default simple view | [Script](../../Zonemaster-GUI/FunctionalTests/GR04-main-page.js)| OK |
 |GR05|The simple view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.   |            |
-|GR06|The simple view should support an advanced view expanding when the checkbox is enabled|            |
-|GR07|The advanced view should support the possibility of enabling or disabling IPv4 or IPv6 |            |
-|GR08|The advanced view should support the possibility of choosing a profile from multiple profiles|            |
+|GR06|The simple view should support an advanced view expanding when the checkbox is
+enabled|[Script](../../Zonemaster-GUI/FunctionalTests/GR06-basic-view-advanced-options.js)|OK |
+|GR07|The advanced view should support the possibility of enabling or disabling
+IPv4 or IPv6 |[Script](../../Zonemaster-GUI/FunctionalTests/GR07-advanced-checkbox-verification.js)|OK|
+|GR08|The advanced view should support the possibility of choosing a profile from multiple profiles|[Script](../../Zonemaster-GUI/FunctionalTests/GR08-advanced-profile-verification.js)|OK|            
 |GR09|The advanced view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.   |            |
-|GR10|The simple view should have a shortcut to undelegated view and FAQ|            |
-|GR11|The undelegated view must inherit all of the advanced view options  |            |
+|GR10|The simple view should have a shortcut to undelegated view and FAQ|pt](../../Zonemaster-GUI/FunctionalTests/GR10-undelegated-and-faq-links.js)|OK|            
+|GR11|The undelegated view must inherit all of the advanced view options |
 |GR12|The undelegated view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.   |            |
 |GR13|The undelegated view should have a text describing what undelegated means?   |            |
 |GR14|The undelegated view should have a shortcut to simple view and FAQ|            |
@@ -35,16 +37,16 @@ Security and Performance testing are not included.
 |GR16|All menus should be clickable in latest version of different browsers such as Firefox, IE, Chrome, Safari etc. |            |
 |GR17|All buttons should be clickable in latest version of different browsers such as Firefox, IE, Chrome, Safari etc. |            |
 |GR18|All fields (both simple and undelegated) should be writable |            |
-|GR19|Capable to enable and disable checkboxes in advanced option |            |
-|GR20|Capable to select one of the drop down menu in the advanced option|            |
-|GR21|Check the existence of broken links|            |
-|GR22|Check the display of appropriate content on clicking each link |            |
+|GR19|Capable to enable and disable checkboxes in advanced option|[Script](../../Zonemaster-GUI/FunctionalTests/GR19-advanced-checkbox-verification.js)|OK|
+|GR20|Capable to select one of the drop down menu in the advanced option|[Script](../../Zonemaster-GUI/FunctionalTests/GR19-advanced-checkbox-verification.js)|OK|
+|GR21|Check the existence of broken links|[Script](../../Zonemaster-GUI/FunctionalTests/GR21-check-broken-links.js)|KO|
+|GR22|Check the display of appropriate content on clicking each link |[Script](../../Zonemaster-GUI/FunctionalTests/GR22-link-content.js)|KO|
 |GR23|Check the tool displays the client IP address  |            |
 |GR24|Able to specify delegation parameters  |            |
 |GR25|Able to specify to stop the test on a fatal error (For release 1.1)   |            |
 |GR26|Check all the terms (such as menus, input fields) are appropriate   |            |
-|GR27|Afnic and .SE logo in the main page   |            |
-|GR28|Check the existence of correct title for the web site   |            |
+|GR27|Afnic and .SE logo in the main page|[Script](../../Zonemaster-GUI/FunctionalTests/GR27-logo-verification.js)|KO|   
+|GR28|Check the existence of correct title for the web site|[Script](../../Zonemaster-GUI/FunctionalTests/GR27-logo-verification.js)|OK|
 |FR01|Identifies the preference of connected user's language |            |
 |FR02|Presence of a default fallback language |            |
 |FR03|Support IDN2.0 domains as input |            |
