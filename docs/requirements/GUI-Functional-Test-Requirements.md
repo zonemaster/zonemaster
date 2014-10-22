@@ -22,13 +22,12 @@ Security and Performance testing are not included.
 |GR03|Supports English language |[Script](../../Zonemaster-GUI/FunctionalTests/GR01-test-english-language.js)| Ok |
 |GR04|On launching the URL opens with a default simple view | [Script](../../Zonemaster-GUI/FunctionalTests/GR04-main-page.js)| OK |
 |GR05|The simple view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.   |            |
-|GR06|The simple view should support an advanced view expanding when the checkbox is
-enabled|[Script](../../Zonemaster-GUI/FunctionalTests/GR06-basic-view-advanced-options.js)|OK |
+|GR06|The simple view should support an advanced view expanding when the checkbox is enabled|[Script](../../Zonemaster-GUI/FunctionalTests/GR06-basic-view-advanced-options.js)|OK |
 |GR07|The advanced view should support the possibility of enabling or disabling
 IPv4 or IPv6 |[Script](../../Zonemaster-GUI/FunctionalTests/GR07-advanced-checkbox-verification.js)|OK|
 |GR08|The advanced view should support the possibility of choosing a profile from multiple profiles|[Script](../../Zonemaster-GUI/FunctionalTests/GR08-advanced-profile-verification.js)|OK|            
 |GR09|The advanced view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.   |            |
-|GR10|The simple view should have a shortcut to undelegated view and FAQ|pt](../../Zonemaster-GUI/FunctionalTests/GR10-undelegated-and-faq-links.js)|OK|            
+|GR10|The simple view should have a shortcut to undelegated view and FAQ|[Script](../../Zonemaster-GUI/FunctionalTests/GR10-undelegated-and-faq-links.js)|OK|            
 |GR11|The undelegated view must inherit all of the advanced view options |
 |GR12|The undelegated view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.   |            |
 |GR13|The undelegated view should have a text describing what undelegated means?   |            |
