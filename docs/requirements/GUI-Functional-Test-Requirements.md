@@ -27,22 +27,22 @@ Security and Performance testing are not included.
 |GR08|The advanced view should support the possibility of choosing a profile from multiple profiles|[Script](../../Zonemaster-GUI/FunctionalTests/GR08-advanced-profile-verification.js)|OK|            
 |GR09|The advanced view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.   |            |
 |GR10|The simple view should have a shortcut to undelegated view and FAQ|[Script](../../Zonemaster-GUI/FunctionalTests/GR10-undelegated-and-faq-links.js)|OK|            
-|GR11|The undelegated view must inherit all of the advanced view options |
+|GR11|The undelegated view must inherit all of the advanced view options |Manually|OK|
 |GR12|The undelegated view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.   |            |
-|GR13|The undelegated view should have a text describing what undelegated means?   |            |
-|GR14|The undelegated view should have a shortcut to simple view and FAQ|            |
-|GR15|A Home button that sends the user to the default simple view   |            |
+|GR13|The undelegated view should have a text describing what undelegated means? |Manually|KO|
+|GR14|The undelegated view should have a shortcut to simple view and FAQ|Manually|OK|
+|GR15|A Home button that sends the user to the default simple view |Manually|OK|
 |GR16|All menus should be clickable in latest version of different browsers such as Firefox, IE, Chrome, Safari etc. |            |
 |GR17|All buttons should be clickable in latest version of different browsers such as Firefox, IE, Chrome, Safari etc. |            |
-|GR18|All fields (both simple and undelegated) should be writable |            |
+|GR18|All appropriate fields (both simple and undelegated) should be writable |Manually|OK|
 |GR19|Capable to enable and disable checkboxes in advanced option|[Script](../../Zonemaster-GUI/FunctionalTests/GR19-advanced-checkbox-verification.js)|OK|
 |GR20|Capable to select one of the drop down menu in the advanced option|[Script](../../Zonemaster-GUI/FunctionalTests/GR19-advanced-checkbox-verification.js)|OK|
 |GR21|Check the existence of broken links|[Script](../../Zonemaster-GUI/FunctionalTests/GR21-check-broken-links.js)|KO|
 |GR22|Check the display of appropriate content on clicking each link |[Script](../../Zonemaster-GUI/FunctionalTests/GR22-link-content.js)|KO|
-|GR23|Check the tool displays the client IP address  |            |
+|GR23|Check the tool displays the client IP address  |Does not display the correct IPv6 address | KO|
 |GR24|Able to specify delegation parameters  |            |
 |GR25|Able to specify to stop the test on a fatal error (For release 1.1)   |            |
-|GR26|Check all the terms (such as menus, input fields) are appropriate   |            |
+|GR26|Check all the terms (such as menus, input fields) are appropriate   | Change "Inactive Domain Check -> Pre-delegated domain"|KO|
 |GR27|Afnic and .SE logo in the main page|[Script](../../Zonemaster-GUI/FunctionalTests/GR27-logo-verification.js)|KO|   
 |GR28|Check the existence of correct title for the web site|[Script](../../Zonemaster-GUI/FunctionalTests/GR27-logo-verification.js)|OK|
 |FR01|Identifies the preference of connected user's language |Manually|OK|
@@ -69,6 +69,6 @@ Security and Performance testing are not included.
 |FR22|Check domain length not greater than 256  |Manually|OK|
 |FR23|Check whether a default "test profile"  is mandatorily selected in the advanced view |Manually|KO|
 |FR24|Compare the results of a well configured domain name with ZC and DC |Inconsistent for iis.se|KO|  
-|FR25|Compare the results of different broken  domain names with ZC and DC |            |
+|FR25|Compare the results of different broken  domain names with ZC and DC |Does not run for "broken.dnssec.ee"|KO|
 |FR26|In the undelegated domain check whether IP fields autocomplete when the associated NS field is added |Manually|OK|
 
