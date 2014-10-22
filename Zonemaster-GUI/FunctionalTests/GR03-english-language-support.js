@@ -11,7 +11,7 @@ casper.test.begin('Zonemaster test GR01 - [Supports English language]', 3, funct
 
 	//
 	casper.then(function() {
-		test.assertExists(x('//lang[@lang="en"]'), "Link fro English language exists");
+		test.assertExists(x('//lang[@lang="en"]'), "Link for English language exists");
 	});
 
 	//start the tests

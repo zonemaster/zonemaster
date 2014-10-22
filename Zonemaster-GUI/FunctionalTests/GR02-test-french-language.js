@@ -1,7 +1,7 @@
 var main_url = 'http://zonemaster.rd.nic.fr:5080/';
 
 var x = require('casper').selectXPath;
-casper.test.begin('Zonemaster test GR01 - [Supports French language]', 3, function suite(test) {
+casper.test.begin('Zonemaster test GR02 - [Supports French language]', 3, function suite(test) {
 
 	casper.start();
 
@@ -11,7 +11,7 @@ casper.test.begin('Zonemaster test GR01 - [Supports French language]', 3, functi
 
 	//
 	casper.then(function() {
-		test.assertExists(x('//lang[@lang="fr"]'), "Link fro French language exists");
+		test.assertExists(x('//lang[@lang="fr"]'), "Link for French language exists");
 	});
 
 	//start the tests
@@ -22,7 +22,7 @@ casper.test.begin('Zonemaster test GR01 - [Supports French language]', 3, functi
 	);
 
 	casper.then(function() {
-		test.assertExists(x('//h1[.="Noom de domaine"]'), "The interface seems to speak French");
+		test.assertExists(x('//h1[.="Nom de domaine"]'), "The interface seems to speak French");
 	});
 
 	casper.run(function() {

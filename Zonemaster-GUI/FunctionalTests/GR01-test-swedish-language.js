@@ -11,7 +11,7 @@ casper.test.begin('Zonemaster test GR01 - [Supports Swedish language]', 3, funct
 
 	//
 	casper.then(function() {
-		test.assertExists(x('//lang[@lang="sw"]'), "Link fro Swedish language exists");
+		test.assertExists(x('//lang[@lang="sw"]'), "Link for Swedish language exists");
 	});
 
 	//start the tests
