@@ -98,6 +98,7 @@ sub _recurse {
 
         if ( $p->is_redirect ) {
             my $zname = name(lc(( $p->get_records( 'ns' ) )[0]->name));
+
             next if $state->{seen}{$zname};    # We followed this redirect before
 
             $state->{seen}{$zname} = 1;
@@ -109,14 +110,15 @@ sub _recurse {
             $state->{common} = $common;
             $state->{ns} = $self->get_ns_from( $p, $state );    # Follow redirect
             $state->{count} += 1;
-            return if $state->{count} > 20;    # Loop protection
+            return (undef, $state) if $state->{count} > 20;    # Loop protection
             unshift @{ $state->{trace} }, $zname;
+
             next;
         }
     } ## end while ( my $ns = pop @{ $state...})
     return ( $state->{candidate}, $state ) if $state->{candidate};
 
-    return;
+    return (undef, $state);
 } ## end sub _recurse
 
 sub _do_query {

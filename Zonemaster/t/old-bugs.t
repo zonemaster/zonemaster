@@ -37,6 +37,9 @@ my $rootfr = Zonemaster->zone('root.fr');
 @res = Zonemaster->test_method('DNSSEC', 'dnssec02', $rootfr);
 ok((none {$_->tag eq 'MODULE_ERROR'} @res), 'No crash in dnssec02');
 
+my $gnames = Zonemaster->zone('nameserver06-no-resolution.zut-root.rd.nic.fr')->glue_names;
+is(scalar(@$gnames), 2, 'Two glue names');
+
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
 }
