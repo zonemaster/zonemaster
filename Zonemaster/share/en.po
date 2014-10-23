@@ -469,7 +469,7 @@ msgstr "Cannot test SOA signatures, because we got {keys} DNSKEY records, {sigs}
 msgid  "{server} returned no NSEC3PARAM records."
 msgstr "{server} returned no NSEC3PARAM records."
 
-#: DNSSEC:NSE3C_SIG_VERIFY_ERROR
+#: DNSSEC:NSEC3_SIG_VERIFY_ERROR
 msgid  "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'."
 msgstr "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'."
 

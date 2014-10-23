@@ -251,7 +251,7 @@ sub metadata {
               HAS_NSEC
               NSEC3_COVERS
               NSEC3_COVERS_NOT
-              NSE3C_SIG_VERIFY_ERROR
+              NSEC3_SIG_VERIFY_ERROR
               NSEC3_SIGNED
               NSEC3_NOT_SIGNED
               HAS_NSEC3 )
@@ -305,7 +305,7 @@ sub translation {
         "NO_KEYS_OR_NO_SIGS_OR_NO_SOA" =>
 "Cannot test SOA signatures, because we got {keys} DNSKEY records, {sigs} RRSIG records and {soas} SOA records.",
         "NO_NSEC3PARAM"          => "{server} returned no NSEC3PARAM records.",
-        "NSE3C_SIG_VERIFY_ERROR" => "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'.",
+        "NSEC3_SIG_VERIFY_ERROR" => "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'.",
         "NSEC3_COVERS"           => "NSEC3 record covers {name}.",
         "NSEC3_COVERS_NOT"       => "NSEC3 record does not cover {name}.",
         "NSEC3_NOT_SIGNED"       => "No signature correctly signed the NSEC3 RRset.",
@@ -363,7 +363,7 @@ sub policy {
         "NO_KEYS_OR_NO_SIGS"           => "ERROR",
         "NO_KEYS_OR_NO_SIGS_OR_NO_SOA" => "ERROR",
         "NO_NSEC3PARAM"                => "DEBUG",
-        "NSE3C_SIG_VERIFY_ERROR"       => "ERROR",
+        "NSEC3_SIG_VERIFY_ERROR"       => "ERROR",
         "NSEC3_COVERS"                 => "DEBUG",
         "NSEC3_COVERS_NOT"             => "WARNING",
         "NSEC3_NOT_SIGNED"             => "ERROR",
