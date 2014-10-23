@@ -699,109 +699,109 @@ msgstr "Ingen av följande namnservrar är rekursiv : {names}."
 
 #: ADDRESS:NO_RESPONSE_PTR_QUERY
 msgid  "No response from nameserver(s) on PTR query ({reverse})."
-msgstr "ADDRESS:NO_RESPONSE_PTR_QUERY needs translation..."
+msgstr "Inget svar från namnservern på PTR-fråga."
 
 #: ZONE:MNAME_HAS_NO_ADDRESS
 msgid  "No IP address found for SOA 'mname' nameserver ({mname})."
-msgstr "ZONE:MNAME_HAS_NO_ADDRESS needs translation..."
+msgstr "Ingen IP-adress hittades för servern angiven som SOA MNAME ({mname})."
 
 #: DELEGATION:ENOUGH_NS_TOTAL
 msgid  "Parent and child list enough nameservers ({ns}). Lower limit set to {minimum}."
-msgstr "DELEGATION:ENOUGH_NS_TOTAL needs translation..."
+msgstr "Förälder- och barnzonerna listar tillräckligt många namnservrar ({ns})."
 
 #: DELEGATION:NOT_ENOUGH_NS_TOTAL
 msgid  "Parent and child do not list enough nameservers ({ns}). Lower limit set to {minimum}."
-msgstr "DELEGATION:NOT_ENOUGH_NS_TOTAL needs translation..."
+msgstr "Förälder- och barnzonerna listar inte tillräckligt många namnservrar ({ns}). Måste vara minst {minimum} stycken."
 
 #: CONSISTENCY:NO_RESPONSE_SOA_QUERY
 msgid  "No response from nameserver {ns}/{address} on SOA queries."
-msgstr "CONSISTENCY:NO_RESPONSE_SOA_QUERY needs translation..."
+msgstr "Inget svar från namnservern på fråga om SOA-record."
 
 #: CONSISTENCY:SOA_SERIAL_VARIATION
 msgid  "Difference between the smaller serial ({serial_min}) and the bigger one ({serial_max}) is greater than the maximum allowed ({max_variation})."
-msgstr "CONSISTENCY:SOA_SERIAL_VARIATION needs translation..."
+msgstr "Spannet mellan högsta och lägsta SOA-serienummer är större än {max_variation}."
 
 #: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK
 msgid  "SOA 'minimum' value ({minimum}) is between the recommended ones ({lowest_minimum}/{highest_minimum})."
-msgstr "ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK needs translation..."
+msgstr "SOA minimum-värdet ligger i det rekommenderade spannet."
 
 #: ZONE:EXPIRE_MINIMUM_VALUE_OK
 msgid  "SOA 'expire' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than 'refresh' value."
-msgstr "ZONE:EXPIRE_MINIMUM_VALUE_OK needs translation..."
+msgstr "SOA expire-värdet ligger i det rekommenderade spannet (högre än {required_expire} och lägre än refresh-värdet)."
 
 #: ZONE:MNAME_IS_NOT_CNAME
 msgid  "SOA 'mname' value ({mname}) refers to a NS which is not an alias (CNAME)."
-msgstr "ZONE:MNAME_IS_NOT_CNAME needs translation..."
+msgstr "SOA MNAME-namnet {mname} pekar inte ut ett CNAME."
 
 #: CONSISTENCY:MULTIPLE_NS_SET
 msgid  "Saw {count} NS set."
-msgstr "CONSISTENCY:MULTIPLE_NS_SET needs translation..."
+msgstr "{count} NS-uppsättningar hittades."
 
 #: CONSISTENCY:NO_RESPONSE_NS_QUERY
 msgid  "No response from nameserver {ns}/{address} on NS queries."
-msgstr "CONSISTENCY:NO_RESPONSE_NS_QUERY needs translation..."
+msgstr "Inget svar från namnservern på NS-fråga."
 
 #: CONSISTENCY:NS_SET
 msgid  "Saw NS set ({nsset}) on following nameserver set : {servers}."
-msgstr "CONSISTENCY:NS_SET needs translation..."
+msgstr "Såg NS-uppsättningen {nsset} på dessa namnservrar: {servers}"
 
 #: CONSISTENCY:ONE_NS_SET
 msgid  "A unique NS set was seen ({nsset})."
-msgstr "CONSISTENCY:ONE_NS_SET needs translation..."
+msgstr "En unik uppsättning namnservrar sågs ({nsset})."
 
 #: SYNTAX:MNAME_NON_ALLOWED_CHARS
 msgid  "Found illegal characters in SOA MNAME ({name})."
-msgstr "SYNTAX:MNAME_NON_ALLOWED_CHARS needs translation..."
+msgstr "Otillåtna tecken hittades i SOA MNAME ({name})."
 
 #: SYNTAX:MX_NON_ALLOWED_CHARS
 msgid  "Found illegal characters in MX ({name})."
-msgstr "SYNTAX:MX_NON_ALLOWED_CHARS needs translation..."
+msgstr "Otillåtna tecken hittades i MX ({name})."
 
 #: SYNTAX:NAMESERVER_NON_ALLOWED_CHARS
 msgid  "Found illegal characters in the nameserver ({name})."
-msgstr "SYNTAX:NAMESERVER_NON_ALLOWED_CHARS needs translation..."
+msgstr "Otillåtna tecken hittades i namnservernamnet {name}."
 
 #: BASIC:DOMAIN_NAME_LABEL_TOO_LONG
 msgid  "Domain name ({name}) has a label ({label}) too long ({length}/{max})."
-msgstr "BASIC:DOMAIN_NAME_LABEL_TOO_LONG needs translation..."
+msgstr "Labeln {label} i domännamnet {name} är för lång."
 
 #: BASIC:DOMAIN_NAME_TOO_LONG
 msgid  "Domain name is too long ({length}/{max})."
-msgstr "BASIC:DOMAIN_NAME_TOO_LONG needs translation..."
+msgstr "Domännamnet är för långt."
 
 #: SYNTAX:MNAME_SYNTAX_OK
 msgid  "SOA MNAME ({name}) syntax is valid."
-msgstr "SYNTAX:MNAME_SYNTAX_OK needs translation..."
+msgstr "SOA MNAME ser bra ut."
 
 #: SYNTAX:MX_SYNTAX_OK
 msgid  "Domain name MX ({name}) syntax is valid."
-msgstr "SYNTAX:MX_SYNTAX_OK needs translation..."
+msgstr "MX-namnet ser bra ut."
 
 #: SYNTAX:NAMESERVER_SYNTAX_OK
 msgid  "Nameserver ({name}) syntax is valid."
-msgstr "SYNTAX:NAMESERVER_SYNTAX_OK needs translation..."
+msgstr "Namnserver-namnet ser OK ut."
 
 #: SYNTAX:NO_DOUBLE_DASH
 msgid  "Domain name ({name}) has no label with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
-msgstr "SYNTAX:NAMESERVER_SYNTAX_OK needs translation..."
+msgstr "Domännamnet har ingen del med bindestreck i position 3 och 4."
 
 #: SYNTAX:NO_ENDING_HYPHENS
 msgid  "Both ends of all labels of the domain name ({name}) have no hyphens."
-msgstr "SYNTAX:NO_ENDING_HYPHENS needs translation..."
+msgstr "Domännamnet varken börjar eller slutar med ett bindestreck."
 
 #: SYNTAX:NO_RESPONSE_MX_QUERY
 msgid  "No response from nameserver(s) on MX queries."
-msgstr "SYNTAX:NO_RESPONSE_MX_QUERY needs translation..."
+msgstr "Inget svar gavs på fråga om MX-record."
 
 #: SYNTAX:NO_RESPONSE_SOA_QUERY
 msgid  "No response from nameserver(s) on SOA queries."
-msgstr "SYNTAX:NO_RESPONSE_SOA_QUERY needs translation..."
+msgstr "Inget svar gavs på fråga om SOA-record."
 
 #: SYNTAX:RNAME_NO_AT_SIGN
 msgid  "There is no misused '@' character in the SOA RNAME field ({rname})."
-msgstr "SYNTAX:RNAME_NO_AT_SIGN needs translation..."
+msgstr "Inga felanvända @-tecken hittades if ROA RNAME."
 
 #: SYNTAX:RNAME_RFC822_VALID
 msgid  "The SOA RNAME field ({rname}) is compliant with RFC2822."
-msgstr "SYNTAX:RNAME_RFC822_VALID needs translation..."
+msgstr "Adressen i SOA RNAME är giltig enligt RFC822."
 
