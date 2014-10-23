@@ -41,8 +41,8 @@ sub params_backend2template {
 	my %template_params;
 	
 	$template_params{domain} = $params->{domain} if ($params->{domain});
-	$template_params{ipv4} = 'checked' if ($params->{ipv4});
-	$template_params{ipv6} = 'checked' if ($params->{ipv6});
+	$template_params{ipv4} = ($params->{ipv4})?('checked'):('unchecked');
+	$template_params{ipv6} = ($params->{ipv6})?('checked'):('unchecked');
 
 	if ($params->{test_profile} eq 'test_profile_1') {
 		$template_params{profile_1_selected} = 'selected="selected"';
@@ -70,6 +70,7 @@ sub params_backend2template {
 	}
 	$template_params{ds_digest_pairs} = \@ds_digest_pairs if (@ds_digest_pairs);
 
+#	$template_params{debug_mode} = 1;
 	$template_params{text1} = 'params_backend2template:'.Dumper(\%template_params);
 
 	return \%template_params;
@@ -96,8 +97,6 @@ sub params_template2backend {
 		$ds_id++;
 	}
 
-	$backend_params{text} = 'params_template2backend:'.Dumper(\%backend_params);
-	
 	return \%backend_params;
 }
 

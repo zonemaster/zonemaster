@@ -241,6 +241,8 @@ sub _check_domain {
 sub validate_syntax {
 	my($self, $syntax_input) = @_;
 
+	return { status => 'nok', message => "At least one transport protocol required (IPv4 or IPv6)" } unless ( $syntax_input->{ipv4} || $syntax_input->{ipv6});
+	
 	my ($dn, $dn_syntax) = $self->_check_domain($syntax_input->{domain}, 'Domain name');
 
 	return $dn_syntax if ($dn_syntax->{status} eq 'nok');
