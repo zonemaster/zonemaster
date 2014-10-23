@@ -97,7 +97,7 @@ sub translation {
         'CAN_BE_RESOLVED'     => 'All nameservers succeeded to resolve to an IP address.',
         'NO_RESOLUTION'       => 'No nameservers succeeded to resolve to an IP address.',
     };
-}
+} ## end sub translation
 
 sub version {
     return "$Zonemaster::Test::Nameserver::VERSION";
@@ -369,24 +369,21 @@ sub nameserver06 {
     delete @diff{@all_nsnames_with_ip};
 
     @all_nsnames_without_ip = keys %diff;
-
-    if ( scalar @all_nsnames_without_ip ) {
-        if ( scalar @all_nsnames_with_ip ) {
-            push @results,
-              info(
-                CAN_NOT_BE_RESOLVED => {
-                    names => join( q{,}, @all_nsnames_without_ip ),
-                }
-              );
-        }
-        else {
-            push @results,
-              info(
-                NO_RESOLUTION => {
-                    names => join( q{,}, @all_nsnames_without_ip ),
-                }
-              );
-        }
+    if ( scalar @all_nsnames_without_ip and scalar @all_nsnames_with_ip ) {
+        push @results,
+          info(
+            CAN_NOT_BE_RESOLVED => {
+                names => join( q{,}, @all_nsnames_without_ip ),
+            }
+          );
+    }
+    elsif ( not scalar @all_nsnames_with_ip ) {
+        push @results,
+          info(
+            NO_RESOLUTION => {
+                names => join( q{,}, @all_nsnames_without_ip ),
+            }
+          );
     }
     else {
         push @results, info( CAN_BE_RESOLVED => {} );
