@@ -109,4 +109,10 @@ sub LogDir {
 	return $cfg->val( 'LOG', 'log_dir' );
 }
 
+sub PerlIntereter {
+	my $cfg = _load_config();
+
+	return $cfg->val( 'PERL', 'interpreter' );
+}
+
 1;

@@ -41,6 +41,7 @@ require BackendConfig;
 my $JOB_RUNNER_DIR = $PROD_DIR."Zonemaster-Backend/JobRunner";
 my $LOG_DIR = BackendConfig->LogDir();
 
+my $perl_command = BackendConfig->PerlIntereter();
 
 my $connection_string = BackendConfig->DB_connection_string();
 my $dbh = DBI->connect($connection_string, BackendConfig->DB_user(), BackendConfig->DB_password(), {RaiseError => 1, AutoCommit => 1});
@@ -73,7 +74,7 @@ do {
 	$sth1->execute;
 	while (my $h = $sth1->fetchrow_hashref) {
 		if (can_start_new_worker(10, $h->{id})) {
-			my $command = "perl $JOB_RUNNER_DIR/execute_zonemaster_P10.pl $h->{id} > $LOG_DIR/execute_zonemaster_P10_$h->{id}_$start_time.log 2>&1 &";
+			my $command = "$perl_command $JOB_RUNNER_DIR/execute_zonemaster_P10.pl $h->{id} > $LOG_DIR/execute_zonemaster_P10_$h->{id}_$start_time.log 2>&1 &";
 			say $command;
 			system($command);
 		}
@@ -85,7 +86,7 @@ do {
 	$sth1->execute;
 	while (my $h = $sth1->fetchrow_hashref) {
 		if (can_start_new_worker(5, $h->{id})) {
-			my $command = "perl $JOB_RUNNER_DIR/execute_zonemaster_P5.pl $h->{id} > $LOG_DIR/execute_zonemaster_P5_$h->{id}_$start_time.log 2>&1 &";
+			my $command = "$perl_command $JOB_RUNNER_DIR/execute_zonemaster_P5.pl $h->{id} > $LOG_DIR/execute_zonemaster_P5_$h->{id}_$start_time.log 2>&1 &";
 			say $command;
 			system($command);
 		}
