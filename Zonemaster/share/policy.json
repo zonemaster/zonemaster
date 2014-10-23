@@ -149,6 +149,7 @@
       "LOOKUP_ERROR" : "DEBUG",
       "MODULE_ERROR" : "CRITICAL",
       "MODULE_VERSION" : "DEBUG",
+      "NO_NETWORK": "CRITICAL",
       "NO_SUCH_NAME" : "DEBUG2",
       "NO_SUCH_RECORD" : "DEBUG2",
       "NS_CREATED" : "DEBUG2",

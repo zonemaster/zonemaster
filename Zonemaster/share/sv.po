@@ -521,6 +521,10 @@ msgstr "Fatalt fel i {module}: {msg}"
 msgid  "Using module {module} version {version}."
 msgstr "Använder version {version} av modulen {module}."
 
+#:SYSTEM:NO_NETWORK
+msgid "Both IPv4 and IPv6 are disabled."
+msgstr "Både IPv4 och IPv6 är avstängda."
+
 #: SYSTEM:POLICY_FILE
 msgid  "Policy was read from {name}."
 msgstr "Policy lästes från {name}."

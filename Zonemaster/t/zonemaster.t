@@ -92,6 +92,23 @@ Zonemaster->logger->callback(
 isa_ok( exception { Zonemaster->test_zone( 'nic.se' ) }, 'Zonemaster::Exception' );
 isa_ok( exception { Zonemaster->test_module( 'SyNtAx', 'nic.se' ) }, 'Zonemaster::Exception' );
 isa_ok( exception { Zonemaster->test_method( 'Syntax', 'syntax01', 'nic.se' ) }, 'Zonemaster::Exception' );
+Zonemaster->logger->clear_callback;
+
+Zonemaster->config->ipv4_ok(0);
+Zonemaster->config->ipv6_ok(0);
+my ($msg) = Zonemaster->test_zone('nic.se');
+ok(!!$msg, 'Got a message.');
+is($msg->tag, 'NO_NETWORK', 'It is the right message.');
+
+($msg) = Zonemaster->test_module('Basic', 'nic.se');
+ok(!!$msg, 'Got a message.');
+is($msg->tag, 'NO_NETWORK', 'It is the right message.');
+
+($msg) = Zonemaster->test_method('Basic', 'basic01', 'nic.se');
+ok(!!$msg, 'Got a message.');
+is($msg->tag, 'NO_NETWORK', 'It is the right message.');
+Zonemaster->config->ipv4_ok(1);
+Zonemaster->config->ipv6_ok(1);
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );

@@ -745,6 +745,10 @@ msgstr "Fatal error in {module}: {msg}"
 msgid  "Using module {module} version {version}."
 msgstr "Using module {module} version {version}."
 
+#:SYSTEM:NO_NETWORK
+msgid "Both IPv4 and IPv6 are disabled."
+msgstr "Both IPv4 and IPv6 are disabled."
+
 #: SYSTEM:POLICY_DISABLED
 msgid  "The module {name} was disabled by the policy."
 msgstr "The module {name} was disabled by the policy."

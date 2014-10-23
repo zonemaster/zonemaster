@@ -59,6 +59,11 @@ sub run_all_for {
         }
     );
     _log_dependency_versions();
+
+    if (not (Zonemaster->config->ipv4_ok or Zonemaster->config->ipv6_ok)) {
+        return info( NO_NETWORK => {});
+    }
+
     @results = Zonemaster::Test::Basic->all( $zone );
 
     if ( Zonemaster::Test::Basic->can_continue( @results ) ) {
@@ -101,6 +106,10 @@ sub run_module {
     $module = 'Basic' if ( not $module and lc( $requested ) eq 'basic' );
 
     Zonemaster->start_time_now();
+    if (not (Zonemaster->config->ipv4_ok or Zonemaster->config->ipv6_ok)) {
+        return info( NO_NETWORK => {});
+    }
+
     if ( $module ) {
         Zonemaster->config->load_module_policy($module);
         my $m = "Zonemaster::Test::$module";
@@ -131,6 +140,10 @@ sub run_one {
     $module = 'Basic' if ( not $module and lc( $requested ) eq 'basic' );
 
     Zonemaster->start_time_now();
+    if (not (Zonemaster->config->ipv4_ok or Zonemaster->config->ipv6_ok)) {
+        return info( NO_NETWORK => {});
+    }
+
     if ( $module ) {
         Zonemaster->config->load_module_policy($module);
         my $m = "Zonemaster::Test::$module";
