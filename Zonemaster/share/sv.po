@@ -333,7 +333,7 @@ msgstr "Kan inte testa SOA-signaturer, eftersom vi fick {keys} DNSKEY-poster, {s
 msgid  "{server} returned no NSEC3PARAM records."
 msgstr "{server} returnerade inga NSEC3PARAM-poster."
 
-#: DNSSEC:NSE3C_SIG_VERIFY_ERROR
+#: DNSSEC:NSEC3_SIG_VERIFY_ERROR
 msgid  "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'."
 msgstr "Försök att verifiera NSEC3-mängden med RRSIG {sig} gav felet '{error}'."
 

@@ -54,9 +54,20 @@ $zone = Zonemaster->zone( 'nameserver03-axfr-failure.zut-root.rd.nic.fr' );
 zone_gives( 'nameserver03', $zone, [q{AXFR_FAILURE}] );
 zone_gives_not( 'nameserver03', $zone, [q{AXFR_AVAILABLE}] );
 
+# nameserver04
+$zone = Zonemaster->zone( 'afnic.fr' );
+zone_gives( 'nameserver04', $zone, [q{SAME_SOURCE_IP}] );
+
+# nameserver05
+$zone = Zonemaster->zone( 'afnic.fr' );
+zone_gives( 'nameserver05', $zone, [q{AAAA_WELL_PROCESSED}] );
+
 # nameserver06
 $zone = Zonemaster->zone( 'nameserver06-can-not-be-resolved.zut-root.rd.nic.fr' );
 zone_gives( 'nameserver06', $zone, [q{CAN_NOT_BE_RESOLVED}] );
+
+$zone = Zonemaster->zone( 'nameserver06-no-resolution.zut-root.rd.nic.fr' );
+zone_gives( 'nameserver06', $zone, [q{NO_RESOLUTION}] );
 
 TODO: {
     local $TODO = "Need to find/create zones with that error";
@@ -72,15 +83,12 @@ TODO: {
 
     # nameserver04
     ok( $tag{DIFFERENT_SOURCE_IP}, q{DIFFERENT_SOURCE_IP} );
-    ok( $tag{SAME_SOURCE_IP}, q{SAME_SOURCE_IP} );
 
     # nameserver05
     ok( $tag{QUERY_DROPPED}, q{QUERY_DROPPED} );
     ok( $tag{ANSWER_BAD_RCODE}, q{ANSWER_BAD_RCODE} );
-    ok( $tag{AAAA_WELL_PROCESSED}, q{AAAA_WELL_PROCESSED} );
 
-    # nameserver06
-    ok( $tag{NO_RESOLUTION}, q{NO_RESOLUTION} );
+    # nameserver06 does not work with saved data ???
 #   $zone = Zonemaster->zone( 'nameserver06-can-be-resolved.zut-root.rd.nic.fr' );
 #   zone_gives( 'nameserver06', $zone, [q{CAN_BE_RESOLVED}] );
 

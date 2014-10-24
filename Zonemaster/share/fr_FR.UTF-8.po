@@ -473,7 +473,7 @@ msgstr "Impossible de tester les signatures des enregistrements de type \"SOA\" 
 msgid  "{server} returned no NSEC3PARAM records."
 msgstr "Le serveur de noms {server} ne retourne pas d'enregistrements de type \"NSEC3PARAM\"."
 
-#: DNSSEC:NSE3C_SIG_VERIFY_ERROR
+#: DNSSEC:NSEC3_SIG_VERIFY_ERROR
 msgid  "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'."
 msgstr "Une erreur '{error}' a été obtenue en essayant de vérifier l'ensemble des enregistrements de type \"NSEC3\" avec la signature {sig}."
 
