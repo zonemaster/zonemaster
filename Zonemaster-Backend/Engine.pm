@@ -204,7 +204,7 @@ sub _check_domain {
 		return ($dn, { status => 'nok', message => "$type required" });
 	}
 	
-    if ($dn =~ m/^[^[:ascii:]]+$/) {
+    if ($dn =~ m/[^[:ascii:]]+/) {
 		if (Net::LDNS::has_idn()) {
 			$dn = Net::LDNS::to_idn(encode_utf8($dn));
 		}

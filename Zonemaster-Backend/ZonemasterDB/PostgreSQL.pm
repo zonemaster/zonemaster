@@ -7,6 +7,7 @@ use Data::Dumper;
 use DBI qw(:utils);
 use JSON;
 use Digest::MD5 qw(md5_hex);
+use Encode;
 
 use ZonemasterDB;
 
@@ -194,7 +195,7 @@ sub get_test_params {
 	
 	my ($params_json) = $self->dbh->selectrow_array("SELECT params FROM test_results WHERE id=$test_id");
 	eval {
-		$result = decode_json($params_json);
+		$result = decode_json(encode_utf8($params_json));
 	};
 	die $@ if $@;
 	
@@ -211,8 +212,8 @@ sub test_results {
 	eval {
 		my ($hrefs) = $self->dbh->selectall_hashref("SELECT * FROM test_results WHERE id=$test_id", 'id');
 		$result = $hrefs->{$test_id};
-		$result->{params} = decode_json($result->{params});
-		$result->{results} = decode_json($result->{results});
+		$result->{params} = decode_json(encode_utf8($result->{params}));
+		$result->{results} = decode_json(encode_utf8($result->{results}));
 	};
 	die $@ if $@;
 	

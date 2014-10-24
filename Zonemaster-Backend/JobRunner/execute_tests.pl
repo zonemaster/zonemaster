@@ -66,7 +66,6 @@ sub can_start_new_worker {
 	$result = 1 if (scalar @nb_instances < $max_slots && !@same_test_id);
 }
 
-#TODO: read paths from config file
 my $start_time = time();
 do {
 	my $query = "SELECT id FROM test_results WHERE progress=0 AND priority=10 ORDER BY id LIMIT 10";

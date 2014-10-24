@@ -3,6 +3,7 @@ use Dancer ':syntax';
 use Plack::Builder;
 #use PocketIO;
 use Data::Dumper;
+use Encode;
 use Client;
 
 no warnings;
@@ -40,7 +41,6 @@ get '/version' => sub {
   my $c = Client->new({url => $url });
   
   my $result = $c->version_info({ });
-  debug Dumper($result);
   content_type 'application/json';
   return to_json ({ result => $result . ", IP address: " . request->address }, {allow_blessed => 1, convert_blessed => 1});
 };
@@ -48,7 +48,7 @@ get '/version' => sub {
 get '/check_syntax' => sub {
   my $c = Client->new({url => $url });
   
-  my $data = from_json(param('data')); 
+  my $data = from_json(encode_utf8(param('data'))); 
   my $result = $c->validate_syntax({ %$data });
   content_type 'application/json';
   return to_json ({ result => $result }, {allow_blessed => 1, convert_blessed => 1});
@@ -57,7 +57,7 @@ get '/check_syntax' => sub {
 get '/history' => sub {
   my $c = Client->new({url => $url });
   
-  my $data = from_json(param('data')); 
+  my $data = from_json(encode_utf8(param('data'))); 
   my $result = $c->get_test_history({ frontend_params => { %$data }, limit=>200, offset=>0 });
   content_type 'application/json';
   return to_json ({ result => $result }, {allow_blessed => 1, convert_blessed => 1});
@@ -75,7 +75,7 @@ get '/resolve' => sub {
 post '/run' => sub {
   my $c = Client->new({url => $url });
   
-  my $data = from_json(param('data')); 
+  my $data = from_json(encode_utf8(param('data'))); 
   my $job_id = $c->start_domain_test({ %$data });
   content_type 'application/json';
   return to_json ({ job_id => $job_id }, {allow_blessed => 1, convert_blessed => 1});
