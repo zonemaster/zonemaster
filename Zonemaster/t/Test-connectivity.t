@@ -29,12 +29,14 @@ ok( !$res{NAMESERVERS_WITH_MULTIPLE_AS}, q{Nameservers with Uniq AS (double chec
 ok( $res{NAMESERVER_NO_UDP_53},   q{Nameserver UDP port 53 unreachabale} );
 ok( $res{NAMESERVER_NO_TCP_53},   q{Nameserver TCP port 53 unreachabale} );
 
+%res = map { $_->tag => 1 } Zonemaster->test_module( q{connectivity}, q{zut-root.rd.nic.fr} );
+ok( $res{NAMESERVERS_WITH_UNIQ_AS}, q{Nameservers with Uniq AS} );
+ok( $res{NAMESERVERS_IPV4_WITH_UNIQ_AS}, q{Nameservers IPv4 with Uniq AS} );
+
 TODO: {
     local $TODO = "Need to find domain name with that error";
 
     ok( $res{ADDRESS_TYPE_NOT_IMPLEMENTED}, q{ADDRESS_TYPE_NOT_IMPLEMENTED} );
-
-    ok( $res{NAMESERVERS_IPV4_WITH_UNIQ_AS}, q{Nameservers IPv4 with Uniq AS} );
 
     ok( $res{NAMESERVER_WITH_UNALLOCATED_ADDRESS}, q{NAMESERVER_WITH_UNALLOCATED_ADDRESS} );
 
