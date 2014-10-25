@@ -104,6 +104,7 @@ sub metadata {
         ],
         connectivity03 => [
             qw(
+              ADDRESS_TYPE_NOT_IMPLEMENTED
               NAMESERVER_WITH_UNALLOCATED_ADDRESS
               NAMESERVERS_WITH_UNIQ_AS
               NAMESERVERS_IPV4_WITH_UNIQ_AS
