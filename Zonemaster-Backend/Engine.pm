@@ -333,6 +333,7 @@ sub get_test_results {
 		$res->{module} = $test_res->{module};
 		$res->{message} = $translator->translate_tag( $test_res )."\n";
 		$res->{message} =~ s/,/, /isg;
+		$res->{message} =~ s/;/; /isg;
 		$res->{level} = $test_res->{level};
 		push(@zm_results, $res);
 	}
