@@ -757,6 +757,18 @@ msgstr "Request to run unknown method {method} in module {module}."
 msgid  "Request to run {method} in unknown module {module}. Known modules: {known}."
 msgstr "Request to run {method} in unknown module {module}. Known modules: {known}."
 
+#: SYSTEM:FAKE_DELEGATION
+msgid  "Followed a fake delegation."
+msgstr "Followed a fake delegation."
+
+#: SYSTEM:ADDED_FAKE_DELEGATION
+msgid  "Added a fake delegation for domain {domain} to name server {ns}."
+msgstr "Added a fake delegation for domain {domain} to name server {ns}."
+
+#: SYSTEM:FAKE_DELEGATION_TO_SELF
+msgid  "Name server {ns} not adding fake delegation for domain {domain} to itself."
+msgstr "Name server {ns} not adding fake delegation for domain {domain} to itself."
+
 #: ZONE:EXPIRE_LOWER_THAN_REFRESH
 msgid  "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh})."
 msgstr "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh})."

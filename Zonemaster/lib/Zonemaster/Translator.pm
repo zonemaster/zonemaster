@@ -92,6 +92,9 @@ sub _system_translation {
         "UNKNOWN_MODULE"        => "Request to run {method} in unknown module {module}. Known modules: {known}.",
         "SKIP_IPV4_DISABLED"    => "IPv4 is disabled, not sending query to {ns}.",
         "SKIP_IPV6_DISABLED"    => "IPv6 is disabled, not sending query to {ns}.",
+        "FAKE_DELEGATION"       => "Followed a fake delegation.",
+        "ADDED_FAKE_DELEGATION" => "Added a fake delegation for domain {domain} to name server {ns}.",
+        "FAKE_DELEGATION_TO_SELF" => "Name server {ns} not adding fake delegation for domain {domain} to itself.",
     };
 }
 

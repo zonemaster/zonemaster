@@ -529,6 +529,18 @@ msgstr "Begäran om att köra den okända metoden {method} i modulen {module}."
 msgid  "Request to run {method} in unknown module {module}. Known modules: {known}."
 msgstr "Begäran om att köra metoden {method} i den okända modulen {module}. Kända moduler: {known}."
 
+#: SYSTEM:FAKE_DELEGATION
+msgid  "Followed a fake delegation."
+msgstr "Följde en artificiell delegering."
+
+#: SYSTEM:ADDED_FAKE_DELEGATION
+msgid  "Added a fake delegation for domain {domain} to name server {ns}."
+msgstr "Lade till en artificiell delegering för domänen {domain} hos namnserver {ns}."
+
+#: SYSTEM:FAKE_DELEGATION_TO_SELF
+msgid  "Name server {ns} not adding fake delegation for domain {domain} to itself."
+msgstr "Namnservern {ns} lade inte till en artificiell delegering för domänen {domain}."
+
 #: ZONE:EXPIRE_LOWER_THAN_REFRESH
 msgid  "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh})."
 msgstr "Värdet för SOA 'expire' ({expire}) är lägre än värdet för SOA 'refresh' ({refresh})."

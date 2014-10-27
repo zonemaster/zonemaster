@@ -51,6 +51,16 @@ my ( $ds ) = $ds_p->answer;
 isa_ok( $ds, 'Net::LDNS::RR::DS' );
 is( $ds->hexdigest, 'faceb00c', 'Correct digest' );
 
+Zonemaster->logger->clear_history;
+Zonemaster->add_fake_delegation(
+    'nic.se.' => {
+        'ns.nic.se'  => [ '212.247.7.228',  '2a00:801:f0:53::53' ],
+        'i.ns.se'    => [ '194.146.106.22', '2001:67c:1010:5::53' ],
+        'ns3.nic.se' => [ '212.247.8.152',  '2a00:801:f0:211::152' ]
+    }
+);
+ok(!!(grep {$_->tag eq 'FAKE_DELEGATION_TO_SELF'} @{Zonemaster->logger->entries}), 'Refused adding circular fake delegation.');
+
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
 }

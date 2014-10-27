@@ -154,8 +154,9 @@ sub query {
             $p->aa( 0 );
             $p->do( $dnssec );
             $p->rd( $recurse );
+            $p->answerfrom($self->address->ip);
             Zonemaster->logger->add(
-                'fake_delegation',
+                'FAKE_DELEGATION',
                 {
                     name  => "$name",
                     type  => $type,
@@ -186,16 +187,21 @@ sub add_fake_delegation {
     my %delegation;
 
     $domain = ''.Zonemaster::DNSName->new($domain);
-    Zonemaster->logger->add( FAKE_DELEGATION => { domain => $domain, data => $href } );
     foreach my $name ( keys %$href ) {
         push @{ $delegation{authority} }, Net::LDNS::RR->new( sprintf( '%s IN NS %s', $domain, $name ) );
         foreach my $ip ( @{ $href->{$name} } ) {
+            if (Net::IP->new($ip)->ip eq $self->address->ip) {
+                Zonemaster->logger->add( FAKE_DELEGATION_TO_SELF => { ns => "$self", domain => $domain, data => $href } );
+                return;
+            }
+
             push @{ $delegation{additional} },
               Net::LDNS::RR->new( sprintf( '%s IN %s %s', $name, ( ip_is_ipv6( $ip ) ? 'AAAA' : 'A' ), $ip ) );
         }
     }
 
     $self->fake_delegations->{$domain} = \%delegation;
+    Zonemaster->logger->add( ADDED_FAKE_DELEGATION => { ns => "$self", domain => $domain, data => $href } );
 
     # We're changing the world, so the cache can't be trusted
     Zonemaster::Recursor->clear_cache;
