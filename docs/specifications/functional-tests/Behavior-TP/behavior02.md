@@ -26,9 +26,9 @@ the queried record type should not exist.
 ### Ordered description of steps to be taken to execute the test case
 
 1. A standard query for the domain is made, querying for the record type that
-does not exist in the zone
+does not exist in the zone 
 2. The response should contain an RCODE NOERROR 
-3. The response should contain an AUTHORITY section but no ANSWER section
+3. The response should contain an AUTHORITY section for the domain queried but no ANSWER section
 4. If the response contains data contrary to steps 2 and 3, the test returns with FAIL
 
 ### Outcome(s)

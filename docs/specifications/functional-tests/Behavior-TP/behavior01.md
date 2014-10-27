@@ -1,5 +1,4 @@
-## BEHAVIOR01: NXDOMAIN returned in response in the event of querying a 
-domain name that does not exist
+## BEHAVIOR01: NXDOMAIN returned in response in the event of querying a domain name that does not exist
 
 ### Test case identifier
 
@@ -20,7 +19,7 @@ The domain to be tested. The domain should not be already delegated in the DNS.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. A standard query for the domain is made 
+1. A standard query for the domain is made (zonemaster-cli afnics.fr)
 2. If the query don’t receive an RCODE NXDOMAIN, the test returns with FAIL
 
 ### Outcome(s)

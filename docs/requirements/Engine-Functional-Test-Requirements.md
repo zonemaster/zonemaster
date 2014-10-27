@@ -37,18 +37,19 @@ functional tests for the test engine, following steps should be followed:
    results of the test with the results of both Zonecheck and DNScheck
 
 
-|Req| Test requirement                           |Explanation|
-|:--|:-------------------------------------------|-----------|
-|FR01|A DNS query with a label that exceeds the maximum length - 63 characters|[RESTRICTION01](../specifications/functional-tests/Restriction-TP/restriction01.md)|
-|FR02|A FQDN that exceeds the maximum length - 255 octets|[RESTRICTION02](../specifications/functional-tests/Restriction-TP/restriction02.md)|
-|FR03|A host name label with other than letters, digits and '-' character|[RESTRICTION03](../specifications/functional-tests/Restriction-TP/restriction03.md)|
-|FR04|CNAME RRs collision (If a CNAME RR is present at a node, no other data should be present; (3.6.2) - RFC 1034) |[CONFIGURATION01](../specifications/functional-tests/Configuration-TP/configuration01.md)|
-|FR05|Zone cyclic dependency|[CONFIGURATION02](../specifications/functional-tests/Configuration-TP/configuration02.md)|
-|FR06|Lame delegation | [CONFIGURATION03](../specifications/functional-tests/Configuration-TP/configuration03.md)|
-|FR07|Delegation Inconsistency|[CONFIGURATION04](../specifications/functional-tests/Configuration-TP/configuration04.md)|
-|FR08|Test whether the tool correctly treats the name error with "NXDOMAIN" in response|[BEHAVIOR01](../specifications/functional-tests/Behavior-TP/behavior01.md)|
-|FR09|Test whether the tool correctly treats when "no such data exist"  with "NODATA" in response|[BEHAVIOR02](../specifications/functional-tests/Behavior-TP/behavior02.md)|
-|FR10|Match the results with existing ZC/DC when certain protocols are disabled (e.g. IPv6|[BEHAVIOR03](../specifications/functional-tests/BEHAVIOR-TP/behavior03.md)|
+|Req| Test requirement                           |Explanation|Status|
+|:--|:-------------------------------------------|-----------|------|
+|FR01|A DNS query with a label that exceeds the maximum length - 63
+characters|[RESTRICTION01](../specifications/functional-tests/Restriction-TP/restriction01.md)||
+|FR02|A FQDN that exceeds the maximum length - 255 octets|[RESTRICTION02](../specifications/functional-tests/Restriction-TP/restriction02.md)||
+|FR03|A host name label with other than letters, digits and '-'character|[RESTRICTION03](../specifications/functional-tests/Restriction-TP/restriction03.md)||
+|FR04|CNAME RRs collision (If a CNAME RR is present at a node, no other data should be present; (3.6.2) - RFC 1034)|[CONFIGURATION01](../specifications/functional-tests/Configuration-TP/configuration01.md)||
+|FR05|Zone cyclic dependency|[CONFIGURATION02](../specifications/functional-tests/Configuration-TP/configuration02.md)||
+|FR06|Lame delegation |[CONFIGURATION03](../specifications/functional-tests/Configuration-TP/configuration03.md)||
+|FR07|Delegation Inconsistency|[CONFIGURATION04](../specifications/functional-tests/Configuration-TP/configuration04.md)||
+|FR08|Test whether the tool correctly treats the name error with "NXDOMAIN" in response|[BEHAVIOR01](../specifications/functional-tests/Behavior-TP/behavior01.md)|OK|
+|FR09|Test whether the tool correctly treats when "no such data exist"  with "NODATA" in response|[BEHAVIOR02](../specifications/functional-tests/Behavior-TP/behavior02.md)||
+|FR10|Match the results with existing ZC/DC when certain protocols are disabled (e.g. IPv6)|[BEHAVIOR03](../specifications/functional-tests/BEHAVIOR-TP/behavior03.md)|
 |FR11|Test whether the tool Run only appropriate tests when the default test profile is modified|[BEHAVIOR04](../specifications/functional-tests/BEHAVIOR-TP/behavior04.md)|
 |FR12|Capable of running the test when the delegation parameters are specified|[BEHAVIOR05](../specifications/functional-tests/BEHAVIOR-TP/behavior05.md)|
 |FR13|Able to test non delegated domain|[BEHAVIOR06](../specifications/functional-tests/BEHAVIOR-TP/behavior06.md)|
