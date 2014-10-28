@@ -86,6 +86,7 @@ sub _system_translation {
         "LOOKUP_ERROR"          => "DNS query to {ns} for {name}/{type}/{class} failed with error: {message}",
         "MODULE_ERROR"          => "Fatal error in {module}: {msg}",
         "MODULE_VERSION"        => "Using module {module} version {version}.",
+        "MODULE_ENDED"          => "Module {module} stopped running.",
         "POLICY_FILE"           => "Policy was read from {name}.",
         "POLICY_DISABLED"       => "The module {name} was disabled by the policy.",
         "UNKNOWN_METHOD"        => "Request to run unknown method {method} in module {module}.",
