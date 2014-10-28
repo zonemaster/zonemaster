@@ -28,7 +28,9 @@ then the test fails
 If the test returns FAIL, then the engine does not capture the expected behavior
 
 ### Results in comparison to ZC/DC	
- zonemaster-cli --show_module iis.se
+``` 
+zonemaster-cli --show_module iis.se
+
 Seconds Level     Module       Message
 ======= ========= ============ =======
    5.38 NOTICE    SYNTAX       No illegal characters in the domain name
@@ -43,8 +45,9 @@ Seconds Level     Module       Message
 (212.247.8.152) without PTR configured.
   40.81 WARNING   ZONE         SOA 'refresh' value (10800) is less than the
 recommended one (14400).
-
+```
 -------------------
+```
 dnscheck iis.se
 
   0.000: iis.se INFO Begin testing zone iis.se with version 1.6.6.
@@ -267,4 +270,4 @@ child: DS(iis.se/5/1/18937)
  24.316: iis.se INFO DNSSEC parent checks for iis.se complete.
  24.316: iis.se INFO Done testing DNSSEC for iis.se.
  24.316: iis.se INFO Test completed for zone iis.se.
-
+```
