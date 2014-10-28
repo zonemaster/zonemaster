@@ -65,6 +65,7 @@ sub run_all_for {
     }
 
     @results = Zonemaster::Test::Basic->all( $zone );
+    info( MODULE_ENDED => { module => 'Zonemaster::Test::Basic' } );
 
     if ( Zonemaster::Test::Basic->can_continue( @results ) ) {
         ## no critic (Modules::RequireExplicitInclusion)
@@ -88,6 +89,7 @@ sub run_all_for {
                     push @res, info( MODULE_ERROR => { module => $module, msg => "$err" } );
                 }
             }
+            info( MODULE_ENDED => { module => $module } );
 
             push @results, @res;
         }
@@ -124,6 +126,7 @@ sub run_module {
                 push @res, info( MODULE_ERROR => { module => $module, msg => "$err" } );
             }
         }
+        info( MODULE_ENDED => { module => $module } );
         return @res;
     }
     else {
