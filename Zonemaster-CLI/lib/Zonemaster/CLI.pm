@@ -257,6 +257,16 @@ sub run {
 
             $self->print_spinner();
 
+            if ($self->progress and $entry->tag eq 'MODULE_VERSION') {
+                if ($self->time) {
+                    printf "%7.2f ", $entry->timestamp;
+                }
+                my $m = $entry->args->{module};
+                $m =~ s/^Zonemaster::Test:://;
+                print " " x 10 if $self->level;
+                printf "Starting module %s.\n", $m;
+            }
+
             $counter{ uc $entry->level } += 1;
 
             if ( $numeric{ uc $entry->level } >= $numeric{ uc $self->level } ) {
