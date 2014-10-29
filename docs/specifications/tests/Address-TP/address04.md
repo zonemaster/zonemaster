@@ -25,16 +25,14 @@ The domain to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtains the IPv6 addresss of the name servers from [Method4]
+1. Obtain the IPv6 addresss of the name servers from [Method4]
    (../Methods.md) and [Method5](../Methods.md)
-2. If any of the addresses obtained from the name servers is part of a bogon
-prefix [Match with Team-cymru IPv6 bogon prefixes as explained here :
-   (https://www.team-cymru.org/Services/Bogons/dns.html)]
+2. Check if the addresses obtained in step1 is part of a bogon prefix by
+matching them with a bogon database 
 
 ### Outcome(s)
 
-If there is no match in the IPv6 bogon prefix blacklist for all the listed
-name servers then the test case passes.
+If there is no match for all the obtained IPv6 addresses, then the test case passes.
 
 ### Special procedural requirements
 
