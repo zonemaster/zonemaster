@@ -68,13 +68,13 @@ sub to_string {
 sub translate_tag {
     my ( $self, $entry ) = @_;
 
-    my $string = $self->data->{ $entry->{module} }{ $entry->{tag} };
+    my $string = $self->data->{ $entry->module }{ $entry->tag };
 
     if ( not $string ) {
-        return $entry->{string};
+        return $entry->string;
     }
 
-    return __x( $string, %{ $entry->{args} } );
+    return __x( $string, %{ $entry->args } );
 }
 
 sub _system_translation {

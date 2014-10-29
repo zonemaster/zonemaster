@@ -24,4 +24,12 @@ like(
     'string to_stringd as expected'
 );
 
+my $untranslated = Zonemaster::Logger::Entry->new({
+    module => 'SYSTEM',
+    tag => 'QUERY',
+    args => { some => 'data'}
+});
+
+ok($trans->translate_tag($untranslated), 'Untranslated tag gets output');
+
 done_testing;
