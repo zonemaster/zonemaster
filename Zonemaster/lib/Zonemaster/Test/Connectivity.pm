@@ -194,8 +194,8 @@ sub connectivity03 {
     my @v4ips = values %{$ips{4}};
     my @v6ips = values %{$ips{6}};
 
-    my @v4asns   = uniq map {Zonemaster::ASNLookup->get($_)} @v4ips;
-    my @v6asns   = uniq map {Zonemaster::ASNLookup->get($_)} @v6ips;
+    my @v4asns   = uniq grep {$_} map {Zonemaster::ASNLookup->get($_)} @v4ips;
+    my @v6asns   = uniq grep {$_} map {Zonemaster::ASNLookup->get($_)} @v6ips;
     my @all_asns = uniq(@v4asns, @v6asns);
 
     if (@v4asns == 1) {
