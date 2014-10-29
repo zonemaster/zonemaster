@@ -10,11 +10,11 @@ use Zonemaster::Nameserver;
 
 our @roots;
 
-sub get {
+sub get_with_prefix {
     my ( $class, $ip ) = @_;
 
     if (not @roots) {
-        @roots = @{ Zonemaster->config->asnroots() };
+        @roots = map {Zonemaster->zone($_)} @{Zonemaster->config->asnroots};
     }
 
     if ( not ref( $ip ) or not $ip->isa( 'Net::IP' ) ) {
@@ -22,10 +22,15 @@ sub get {
     }
 
     my $reverse = $ip->reverse_ip;
-    foreach my $pair ( @roots ) {
+    foreach my $zone ( @roots ) {
+        my $domain = $zone->name->string;
+        my $pair = {
+            'in-addr.arpa.' => "origin.$domain",
+            'ip6.arpa.' => "origin6.$domain",
+        };
         foreach my $root ( keys %$pair ) {
             if ( $reverse =~ s/$root/$pair->{$root}/i ) {
-                my $p = Zonemaster->recurse( $reverse, 'TXT' );
+                my $p = $zone->query_persistent( $reverse, 'TXT' );
                 next if not $p;
 
                 my ( $rr ) = $p->get_records( 'TXT' );
@@ -35,17 +40,20 @@ sub get {
                 $str =~ s/"([^"]+)"/$1/;
                 my @fields = split( / \| ?/, $str );
 
-                if ( wantarray() ) {
-                    return $fields[0], Net::IP->new( $fields[1] );
-                }
-                else {
-                    return $fields[0];
-                }
+                return $fields[0], Net::IP->new( $fields[1] );
             }
         } ## end foreach my $root ( keys %$pair)
     } ## end foreach my $pair ( @roots )
     return;
 } ## end sub get
+
+sub get {
+    my ( $class, $ip ) = @_;
+
+    my ( $asn, $prefix ) = $class->get_with_prefix($ip);
+
+    return $asn;
+}
 
 1;
 
@@ -64,11 +72,14 @@ Zonemaster::ASNLookup - do lookups of ASNs for IP addresses
 
 =item get($addr)
 
-Takes a string (or a L<Net::IP> object) with a single IP address, does a lookup
-in a Cymru-style DNS zone and returns the result. If called in scalar context,
-it returns only the AS number. If called in a list context it returns a list of
-the AS number and a Net::IP object representing the prefix of the AS. If no AS
-was found for the IP address, it returns nothing;
+Takes a string (or a L<Net::IP> object) with a single IP address, does a
+lookup in a Cymru-style DNS zone and returns the AS number for the address, if
+one can be found.
+
+=item get_with_prefix($addr)
+
+As L<get()>, except it returns a list of the AS number and a Net::IP object
+representing the prefix of the AS.
 
 =back
 

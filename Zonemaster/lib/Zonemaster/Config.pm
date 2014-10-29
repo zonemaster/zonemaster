@@ -353,11 +353,9 @@ If set to a true value, network traffic is forbidden. Use when you want to be su
 
 =head2 asnroots
 
-This key must be a list of hashes. In the hashes the keys should be domain
-suffixes, and the value the new suffix to replace the first one with. Normally,
-there should be two keys, C<in-addr.arpa.> and C<ip6.arpa.>, that get replaced
-with Team Cymru-style DNS zones for IP to AS lookup. The ASN lookup code will
-try to use each hash in turn, and quit when one answers.
+This key must be a list of domain names. The domains will be assumed to be
+Cymru-style AS lookup zones. Normally only the first name in the list will be
+used, the rest are backups in case the earlier ones don't work.
 
 =head2 logfilter
 
@@ -392,16 +390,7 @@ This would set the level to C<INFO> for any C<SYSTEM:FILTER_THIS> messages that 
 
 __DATA__
 {
-   "asnroots" : [
-      {
-         "in-addr.arpa." : "origin.asnlookup.iis.se",
-         "ip6.arpa." : "origin6.asnlookup.iis.se"
-      },
-      {
-         "in-addr.arpa." : "origin.asn.cymru,com",
-         "ip6.arpa." : "origin6.asn.cymru.com"
-      }
-   ],
+   "asnroots" : [ "asnlookup.zonemaster.net", "asnlookup.iis.se", "asn.cymru,com"],
    "net" : {
       "ipv4" : 1,
       "ipv6" : 1
