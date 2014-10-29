@@ -359,7 +359,7 @@ Verify that nameservers addresses are not part of a bogon prefix.
 
 =item find_special_address($ip)
 
-Verify that an address (Net::IP) given is a special (private, reserved, ...) one.
+Verify that an address (Net::IP::XS) given is a special (private, reserved, ...) one.
 
 =back
 

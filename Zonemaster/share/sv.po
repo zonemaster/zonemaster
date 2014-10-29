@@ -61,21 +61,41 @@ msgstr "Namnservern {source} svarade inte med några NS-poster. RCODE var {rcode
 msgid  "Nameserver {source} did not respond to NS query."
 msgstr "Namnservern {source} svarade inte på en NS-fråga."
 
-#: CONNECTIVITY:ADDRESS_TYPE_NOT_IMPLEMENTED
-msgid  "Service provided by - {service} - does not work with IPv{type} addresses"
-msgstr "ASN-uppslagningstjänsten {service} stödjer inte IPv{type}."
+#: CONNECTIVITY:NAMESERVERS_IPV4_NO_AS
+msgid  "No IPv4 nameserver address is in an AS."
+msgstr "Ingen namnserver har någon IPv4-adress i ett AS."
+
+#: CONNECTIVITY:NAMESERVERS_IPV4_WITH_MULTIPLE_AS
+msgid  "Authoritative IPv4 nameservers are in more than one AS."
+msgstr "IPv4-adresser för namnservrar finns i mer än ett AS ({asn})."
 
 #: CONNECTIVITY:NAMESERVERS_IPV4_WITH_UNIQ_AS
 msgid  "All nameservers IPv4 addresses are in the same AS ({asn})."
-msgstr "Alla namnserverars IPv4-adresser finns i samma AS ({asn})."
+msgstr "Alla IPv4-adresser för namnservrar finns i samma AS ({asn})."
+
+#: CONNECTIVITY:NAMESERVERS_IPV6_NO_AS
+msgid  "No IPv6 nameserver address is in an AS."
+msgstr "Ingen namnserver har någon IPv6-adress i ett AS."
+
+#: CONNECTIVITY:NAMESERVERS_IPV6_WITH_MULTIPLE_AS
+msgid  "Authoritative IPv6 nameservers are in more than one AS."
+msgstr "IPv6-adresser för namnservrar finns i mer än ett AS ({asn})."
 
 #: CONNECTIVITY:NAMESERVERS_IPV6_WITH_UNIQ_AS
 msgid  "All nameservers IPv6 addresses are in the same AS ({asn})."
-msgstr "Alla namnservrars IPv6-adresser finns i samma AS ({asn})."
+msgstr "Alla IPv6-adresser för namnservrar finns i samma AS ({asn})."
+
+#: CONNECTIVITY:NAMESERVERS_NO_AS
+msgid  "No nameserver address is in an AS."
+msgstr "Ingen namnserver har någon adress i ett AS."
+
+#: CONNECTIVITY:NAMESERVERS_WITH_MULTIPLE_AS
+msgid  "Domain's authoritative nameservers do not belong to the same AS."
+msgstr "Domänens namnservrar finns i mer än ett AS."
 
 #: CONNECTIVITY:NAMESERVERS_WITH_UNIQ_AS
 msgid  "All nameservers are in the same AS ({asn})."
-msgstr "Alla namnservrar finns i samma AS ({asn})."
+msgstr "Alla namnservrar för domänen finns i samma AS ({asn})."
 
 #: CONNECTIVITY:NAMESERVER_HAS_TCP_53
 msgid  "Nameserver {ns}/{address} accessible over TCP on port 53."
@@ -92,10 +112,6 @@ msgstr "Namnservern {ns}/{address} är inte åtkomlig över TCP på port 53."
 #: CONNECTIVITY:NAMESERVER_NO_UDP_53
 msgid  "Nameserver {ns}/{address} not accessible over UDP on port 53."
 msgstr "Namnservern {ns}/{address} är inte åtkomlig över UDP på port 53."
-
-#: CONNECTIVITY:NAMESERVER_WITH_UNALLOCATED_ADDRESS
-msgid  "Nameserver {ns}/{address} uses an unassigned/unannounced address."
-msgstr "Namnservern {ns}/{address} använder en oallokerad eller otillåten adress."
 
 #: CONSISTENCY:MULTIPLE_SOA_RNAMES
 msgid  "Saw {count} SOA rname."
@@ -505,6 +521,10 @@ msgstr "Fatalt fel i {module}: {msg}"
 msgid  "Using module {module} version {version}."
 msgstr "Använder version {version} av modulen {module}."
 
+#:SYSTEM:NO_NETWORK
+msgid "Both IPv4 and IPv6 are disabled."
+msgstr "Både IPv4 och IPv6 är avstängda."
+
 #: SYSTEM:POLICY_FILE
 msgid  "Policy was read from {name}."
 msgstr "Policy lästes från {name}."
@@ -648,10 +668,6 @@ msgstr "Namnserver för zonen {parent} svarade på försök att hämta glue."
 #: EXAMPLE:EXAMPLE_TAG
 msgid  "This is an example tag."
 msgstr "Detta är en exempel-tagg."
-
-#: CONNECTIVITY:NAMESERVERS_WITH_MULTIPLE_AS
-msgid  "Domain's authoritative nameservers do not belong to the same AS."
-msgstr "Domänens servrar finns inte alla i samma AS."
 
 #: DELEGATION:ARE_AUTHORITATIVE
 msgid  "All the nameservers are authoritative."

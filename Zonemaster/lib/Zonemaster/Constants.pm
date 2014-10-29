@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use parent 'Exporter';
-use Net::IP;
+use Net::IP::XS;
 use Readonly;
 
 our @EXPORT_OK = qw[
@@ -74,45 +74,45 @@ Readonly our $SOA_RETRY_MINIMUM_VALUE       => 3_600;      # 1 hour
 Readonly our $UDP_PAYLOAD_LIMIT => 512;
 
 Readonly::Array our @IPV4_SPECIAL_ADDRESSES => (
-    { ip => Net::IP->new( q{0.0.0.0/8} ),          name => q{This host on this network}, reference => q{RFC 1122} },
-    { ip => Net::IP->new( q{10.0.0.0/8} ),         name => q{Private-Use},               reference => q{RFC 1918} },
-    { ip => Net::IP->new( q{192.168.0.0/16} ),     name => q{Private-Use},               reference => q{RFC 1918} },
-    { ip => Net::IP->new( q{172.16.0.0/12} ),      name => q{Private-Use},               reference => q{RFC 1918} },
-    { ip => Net::IP->new( q{100.64.0.0/10} ),      name => q{Shared Address Space},      reference => q{RFC 6598} },
-    { ip => Net::IP->new( q{127.0.0.0/8} ),        name => q{Loopback},                  reference => q{RFC 1122} },
-    { ip => Net::IP->new( q{169.254.0.0/16} ),     name => q{Link Local},                reference => q{RFC 3927} },
-    { ip => Net::IP->new( q{192.0.0.0/24} ),       name => q{IETF Protocol Assignments}, reference => q{RFC 6890} },
-    { ip => Net::IP->new( q{192.0.0.0/29} ),       name => q{DS Lite},                   reference => q{RFC 6333} },
-    { ip => Net::IP->new( q{192.0.0.170/32} ),     name => q{NAT64/DNS64 Discovery},     reference => q{RFC 7050} },
-    { ip => Net::IP->new( q{192.0.0.171/32} ),     name => q{NAT64/DNS64 Discovery},     reference => q{RFC 7050} },
-    { ip => Net::IP->new( q{192.0.2.0/24} ),       name => q{Documentation},             reference => q{RFC 5737} },
-    { ip => Net::IP->new( q{198.51.100.0/24} ),    name => q{Documentation},             reference => q{RFC 5737} },
-    { ip => Net::IP->new( q{203.0.113.0/24} ),     name => q{Documentation},             reference => q{RFC 5737} },
-    { ip => Net::IP->new( q{192.88.99.0/24} ),     name => q{6to4 Relay Anycast},        reference => q{RFC 3068} },
-    { ip => Net::IP->new( q{198.18.0.0/15} ),      name => q{Benchmarking},              reference => q{RFC 2544} },
-    { ip => Net::IP->new( q{240.0.0.0/4} ),        name => q{Reserved},                  reference => q{RFC 1112} },
-    { ip => Net::IP->new( q{255.255.255.255/32} ), name => q{Limited Broadcast},         reference => q{RFC 919} },
-    { ip => Net::IP->new( q{224.0.0.0/4} ),        name => q{IPv4 multicast addresses},  reference => q{RFC 5771} },
+    { ip => Net::IP::XS->new( q{0.0.0.0/8} ),          name => q{This host on this network}, reference => q{RFC 1122} },
+    { ip => Net::IP::XS->new( q{10.0.0.0/8} ),         name => q{Private-Use},               reference => q{RFC 1918} },
+    { ip => Net::IP::XS->new( q{192.168.0.0/16} ),     name => q{Private-Use},               reference => q{RFC 1918} },
+    { ip => Net::IP::XS->new( q{172.16.0.0/12} ),      name => q{Private-Use},               reference => q{RFC 1918} },
+    { ip => Net::IP::XS->new( q{100.64.0.0/10} ),      name => q{Shared Address Space},      reference => q{RFC 6598} },
+    { ip => Net::IP::XS->new( q{127.0.0.0/8} ),        name => q{Loopback},                  reference => q{RFC 1122} },
+    { ip => Net::IP::XS->new( q{169.254.0.0/16} ),     name => q{Link Local},                reference => q{RFC 3927} },
+    { ip => Net::IP::XS->new( q{192.0.0.0/24} ),       name => q{IETF Protocol Assignments}, reference => q{RFC 6890} },
+    { ip => Net::IP::XS->new( q{192.0.0.0/29} ),       name => q{DS Lite},                   reference => q{RFC 6333} },
+    { ip => Net::IP::XS->new( q{192.0.0.170/32} ),     name => q{NAT64/DNS64 Discovery},     reference => q{RFC 7050} },
+    { ip => Net::IP::XS->new( q{192.0.0.171/32} ),     name => q{NAT64/DNS64 Discovery},     reference => q{RFC 7050} },
+    { ip => Net::IP::XS->new( q{192.0.2.0/24} ),       name => q{Documentation},             reference => q{RFC 5737} },
+    { ip => Net::IP::XS->new( q{198.51.100.0/24} ),    name => q{Documentation},             reference => q{RFC 5737} },
+    { ip => Net::IP::XS->new( q{203.0.113.0/24} ),     name => q{Documentation},             reference => q{RFC 5737} },
+    { ip => Net::IP::XS->new( q{192.88.99.0/24} ),     name => q{6to4 Relay Anycast},        reference => q{RFC 3068} },
+    { ip => Net::IP::XS->new( q{198.18.0.0/15} ),      name => q{Benchmarking},              reference => q{RFC 2544} },
+    { ip => Net::IP::XS->new( q{240.0.0.0/4} ),        name => q{Reserved},                  reference => q{RFC 1112} },
+    { ip => Net::IP::XS->new( q{255.255.255.255/32} ), name => q{Limited Broadcast},         reference => q{RFC 919} },
+    { ip => Net::IP::XS->new( q{224.0.0.0/4} ),        name => q{IPv4 multicast addresses},  reference => q{RFC 5771} },
 );
 
 Readonly::Array our @IPV6_SPECIAL_ADDRESSES => (
-    { ip => Net::IP->new( q{::1/128} ),       name => q{Loopback Address},           reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{::/128} ),        name => q{Unspecified Address},        reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{::ffff:0:0/96} ), name => q{IPv4-mapped Address},        reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{64:ff9b::/96} ),  name => q{IPv4-IPv6 Translation},      reference => q{RFC 6052} },
-    { ip => Net::IP->new( q{100::/64} ),      name => q{Discard-Only Address Block}, reference => q{RFC 6666} },
-    { ip => Net::IP->new( q{2001::/23} ),     name => q{IETF Protocol Assignments},  reference => q{RFC 2928} },
-    { ip => Net::IP->new( q{2001::/32} ),     name => q{TEREDO},                     reference => q{RFC 4380} },
-    { ip => Net::IP->new( q{2001:2::/48} ),   name => q{Benchmarking},               reference => q{RFC 5180} },
-    { ip => Net::IP->new( q{2001:db8::/32} ), name => q{Documentation},              reference => q{RFC 3849} },
-    { ip => Net::IP->new( q{2001:10::/28} ),  name => q{Deprecated (ORCHID)},        reference => q{RFC 4843} },
-    { ip => Net::IP->new( q{2002::/16} ),     name => q{6to4},                       reference => q{RFC 3056} },
-    { ip => Net::IP->new( q{fc00::/7} ),      name => q{Unique-Local},               reference => q{RFC 4193} },
-    { ip => Net::IP->new( q{fe80::/10} ),     name => q{Linked-Scoped Unicast},      reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{::/96} ),     name => q{Deprecated (IPv4-compatible Address)}, reference => q{RFC 4291} },
-    { ip => Net::IP->new( q{5f00::/8} ),  name => q{unallocated (ex 6bone)},               reference => q{RFC 3701} },
-    { ip => Net::IP->new( q{3ffe::/16} ), name => q{unallocated (ex 6bone)},               reference => q{RFC 3701} },
-    { ip => Net::IP->new( q{ff00::/8} ),  name => q{IPv6 multicast addresses},             reference => q{RFC 4291} },
+    { ip => Net::IP::XS->new( q{::1/128} ),       name => q{Loopback Address},           reference => q{RFC 4291} },
+    { ip => Net::IP::XS->new( q{::/128} ),        name => q{Unspecified Address},        reference => q{RFC 4291} },
+    { ip => Net::IP::XS->new( q{::ffff:0:0/96} ), name => q{IPv4-mapped Address},        reference => q{RFC 4291} },
+    { ip => Net::IP::XS->new( q{64:ff9b::/96} ),  name => q{IPv4-IPv6 Translation},      reference => q{RFC 6052} },
+    { ip => Net::IP::XS->new( q{100::/64} ),      name => q{Discard-Only Address Block}, reference => q{RFC 6666} },
+    { ip => Net::IP::XS->new( q{2001::/23} ),     name => q{IETF Protocol Assignments},  reference => q{RFC 2928} },
+    { ip => Net::IP::XS->new( q{2001::/32} ),     name => q{TEREDO},                     reference => q{RFC 4380} },
+    { ip => Net::IP::XS->new( q{2001:2::/48} ),   name => q{Benchmarking},               reference => q{RFC 5180} },
+    { ip => Net::IP::XS->new( q{2001:db8::/32} ), name => q{Documentation},              reference => q{RFC 3849} },
+    { ip => Net::IP::XS->new( q{2001:10::/28} ),  name => q{Deprecated (ORCHID)},        reference => q{RFC 4843} },
+    { ip => Net::IP::XS->new( q{2002::/16} ),     name => q{6to4},                       reference => q{RFC 3056} },
+    { ip => Net::IP::XS->new( q{fc00::/7} ),      name => q{Unique-Local},               reference => q{RFC 4193} },
+    { ip => Net::IP::XS->new( q{fe80::/10} ),     name => q{Linked-Scoped Unicast},      reference => q{RFC 4291} },
+    { ip => Net::IP::XS->new( q{::/96} ),     name => q{Deprecated (IPv4-compatible Address)}, reference => q{RFC 4291} },
+    { ip => Net::IP::XS->new( q{5f00::/8} ),  name => q{unallocated (ex 6bone)},               reference => q{RFC 3701} },
+    { ip => Net::IP::XS->new( q{3ffe::/16} ), name => q{unallocated (ex 6bone)},               reference => q{RFC 3701} },
+    { ip => Net::IP::XS->new( q{ff00::/8} ),  name => q{IPv6 multicast addresses},             reference => q{RFC 4291} },
 );
 
 1;

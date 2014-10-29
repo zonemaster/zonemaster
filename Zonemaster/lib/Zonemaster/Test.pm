@@ -28,7 +28,7 @@ sub _log_dependency_versions {
     info( DEPENDENCY_VERSION => { name => 'JSON',                 version => $JSON::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'File::ShareDir',       version => $File::ShareDir::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'File::Slurp',          version => $File::Slurp::VERSION } );
-    info( DEPENDENCY_VERSION => { name => 'Net::IP',              version => $Net::IP::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'Net::IP::XS',              version => $Net::IP::XS::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'List::MoreUtils',      version => $List::MoreUtils::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'Mail::RFC822::Address', version => $Mail::RFC822::Address::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'Scalar::Util',         version => $Scalar::Util::VERSION } );
@@ -59,6 +59,11 @@ sub run_all_for {
         }
     );
     _log_dependency_versions();
+
+    if (not (Zonemaster->config->ipv4_ok or Zonemaster->config->ipv6_ok)) {
+        return info( NO_NETWORK => {});
+    }
+
     @results = Zonemaster::Test::Basic->all( $zone );
 
     if ( Zonemaster::Test::Basic->can_continue( @results ) ) {
@@ -101,6 +106,10 @@ sub run_module {
     $module = 'Basic' if ( not $module and lc( $requested ) eq 'basic' );
 
     Zonemaster->start_time_now();
+    if (not (Zonemaster->config->ipv4_ok or Zonemaster->config->ipv6_ok)) {
+        return info( NO_NETWORK => {});
+    }
+
     if ( $module ) {
         Zonemaster->config->load_module_policy($module);
         my $m = "Zonemaster::Test::$module";
@@ -131,6 +140,10 @@ sub run_one {
     $module = 'Basic' if ( not $module and lc( $requested ) eq 'basic' );
 
     Zonemaster->start_time_now();
+    if (not (Zonemaster->config->ipv4_ok or Zonemaster->config->ipv6_ok)) {
+        return info( NO_NETWORK => {});
+    }
+
     if ( $module ) {
         Zonemaster->config->load_module_policy($module);
         my $m = "Zonemaster::Test::$module";

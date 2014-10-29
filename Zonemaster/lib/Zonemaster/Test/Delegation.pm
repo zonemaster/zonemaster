@@ -11,7 +11,7 @@ use Zonemaster::Test::Syntax;
 use Zonemaster::TestMethods;
 use Zonemaster::Constants ':all';
 
-use Net::IP;
+use Net::IP::XS;
 use List::MoreUtils qw[uniq];
 use Net::LDNS::Packet;
 use Net::LDNS::RR;

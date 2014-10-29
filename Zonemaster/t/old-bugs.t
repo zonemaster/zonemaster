@@ -31,7 +31,7 @@ my $azn = Zonemaster->zone('asnlookup.zonemaster.net');
 is(scalar(@{$azn->glue_names}), 4, 'All glue names');
 is(scalar(@{$azn->glue}), 2, 'All glue objects');
 is(scalar(@{$azn->ns_names}), 4, 'All NS names');
-is(scalar(@{$azn->ns}), 2, 'All glue names');
+is(scalar(@{$azn->ns}), 2, 'All NS objects');
 
 my $rootfr = Zonemaster->zone('root.fr');
 @res = Zonemaster->test_method('DNSSEC', 'dnssec02', $rootfr);

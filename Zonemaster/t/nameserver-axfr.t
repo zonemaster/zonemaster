@@ -49,6 +49,7 @@ done_testing;
 sub setup {
     my ( $datafile ) = @_;
     my $meta = Class::MOP::Class->initialize( 'Zonemaster::Nameserver' );
+    $meta->make_mutable;
     if ( not $ENV{ZONEMASTER_RECORD} ) {
 
         # Replay

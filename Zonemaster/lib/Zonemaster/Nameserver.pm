@@ -12,7 +12,7 @@ use Zonemaster::Recursor;
 
 use Net::LDNS;
 
-use Net::IP qw(:PROC);
+use Net::IP::XS qw(:PROC);
 use Time::HiRes qw[time];
 use JSON::XS;
 use MIME::Base64;
@@ -24,11 +24,11 @@ use overload
   '""'  => \&string,
   'cmp' => \&compare;
 
-subtype 'Zonemaster::Net::IP', as 'Object', where { $_->isa( 'Net::IP' ) };
-coerce 'Zonemaster::Net::IP', from 'Str', via { Net::IP->new( $_ ) };
+subtype 'Zonemaster::Net::IP::XS', as 'Object', where { $_->isa( 'Net::IP::XS' ) };
+coerce 'Zonemaster::Net::IP::XS', from 'Str', via { Net::IP::XS->new( $_ ) };
 
 has 'name'    => ( is => 'ro', isa => 'Zonemaster::DNSName', coerce => 1, required => 0 );
-has 'address' => ( is => 'ro', isa => 'Zonemaster::Net::IP', coerce => 1, required => 1 );
+has 'address' => ( is => 'ro', isa => 'Zonemaster::Net::IP::XS', coerce => 1, required => 1 );
 
 has 'dns'   => ( is => 'ro', isa => 'Net::LDNS',                     lazy_build => 1 );
 has 'cache' => ( is => 'ro', isa => 'Zonemaster::Nameserver::Cache', lazy_build => 1 );
@@ -60,7 +60,6 @@ around 'new' => sub {
         $object_cache{$name}{ $obj->address->ip } = $obj;
     }
 
-    Zonemaster->logger->add( NS_FETCHED => { name => $name, ip => $obj->address->ip } );
     return $object_cache{$name}{ $obj->address->ip };
 };
 
@@ -190,7 +189,7 @@ sub add_fake_delegation {
     foreach my $name ( keys %$href ) {
         push @{ $delegation{authority} }, Net::LDNS::RR->new( sprintf( '%s IN NS %s', $domain, $name ) );
         foreach my $ip ( @{ $href->{$name} } ) {
-            if (Net::IP->new($ip)->ip eq $self->address->ip) {
+            if (Net::IP::XS->new($ip)->ip eq $self->address->ip) {
                 Zonemaster->logger->add( FAKE_DELEGATION_TO_SELF => { ns => "$self", domain => $domain, data => $href } );
                 return;
             }
@@ -358,7 +357,7 @@ sub restore {
             {
                 name    => $name,
                 address => $addr,
-                cache   => Zonemaster::Nameserver::Cache->new( { data => $ref, address => Net::IP->new( $addr ) } )
+                cache   => Zonemaster::Nameserver::Cache->new( { data => $ref, address => Net::IP::XS->new( $addr ) } )
             }
         );
     }
@@ -458,6 +457,9 @@ sub empty_cache {
     return;
 }
 
+no Moose;
+__PACKAGE__->meta->make_immutable(inline_constructor => 0);
+
 1;
 
 =head1 NAME
@@ -479,7 +481,7 @@ A L<Zonemaster::DNSName> object holding the nameserver's name.
 
 =item address
 
-A L<Net::IP> object holding the nameserver's address.
+A L<Net::IP::XS> object holding the nameserver's address.
 
 =item dns
 

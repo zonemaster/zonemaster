@@ -8,7 +8,7 @@ use Zonemaster;
 our %object_cache;
 
 has 'data' => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
-has 'address' => ( is => 'ro', isa => 'Net::IP', required => 1 );
+has 'address' => ( is => 'ro', isa => 'Net::IP::XS', required => 1 );
 
 around 'new' => sub {
     my $orig = shift;
@@ -24,6 +24,9 @@ around 'new' => sub {
     Zonemaster->logger->add( CACHE_FETCHED => { ip => $obj->address->ip } );
     return $object_cache{ $obj->address->ip };
 };
+
+no Moose;
+__PACKAGE__->meta->make_immutable(inline_constructor => 0);
 
 1;
 
@@ -41,7 +44,7 @@ Zonemaster::Nameserver::Cache - shared caches for nameserver objects
 
 =item address
 
-A L<Net::IP> object holding the nameserver's address.
+A L<Net::IP::XS> object holding the nameserver's address.
 
 =item data
 

@@ -1,6 +1,6 @@
 use Test::More;
 
-use Net::IP;
+use Net::IP::XS;
 
 BEGIN {
     use_ok( q{Zonemaster} );
@@ -15,43 +15,43 @@ if ( not $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster->config->no_network( 1 );
 }
 
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{0.255.255.255} ) ) ),   q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{10.255.255.255} ) ) ),  q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{192.168.255.255} ) ) ), q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{172.17.255.255} ) ) ),  q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{100.65.255.255} ) ) ),  q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{127.255.255.255} ) ) ), q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{169.254.255.255} ) ) ), q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{192.0.0.255} ) ) ),     q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{192.0.0.7} ) ) ),       q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{192.0.0.170} ) ) ),     q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{192.0.0.171} ) ) ),     q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{192.0.2.255} ) ) ),     q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{198.51.100.255} ) ) ),  q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{203.0.113.255} ) ) ),   q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{192.88.99.255} ) ) ),   q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{198.19.255.255} ) ) ),  q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{240.255.255.255} ) ) ), q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{255.255.255.255} ) ) ), q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{0.255.255.255} ) ) ),   q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{10.255.255.255} ) ) ),  q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{192.168.255.255} ) ) ), q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{172.17.255.255} ) ) ),  q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{100.65.255.255} ) ) ),  q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{127.255.255.255} ) ) ), q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{169.254.255.255} ) ) ), q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{192.0.0.255} ) ) ),     q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{192.0.0.7} ) ) ),       q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{192.0.0.170} ) ) ),     q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{192.0.0.171} ) ) ),     q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{192.0.2.255} ) ) ),     q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{198.51.100.255} ) ) ),  q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{203.0.113.255} ) ) ),   q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{192.88.99.255} ) ) ),   q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{198.19.255.255} ) ) ),  q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{240.255.255.255} ) ) ), q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{255.255.255.255} ) ) ), q{bad address} );
 
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{::1} ) ) ),              q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{::} ) ) ),               q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{::ffff:cafe:cafe} ) ) ), q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{64:ff9b::cafe:cafe} ) ) ), q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{100::cafe:cafe:cafe:cafe} ) ) ), q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{2001:1ff:cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{2001::cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{2001:2::cafe:cafe:cafe:cafe:cafe} ) ) ), q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{2001:db8:cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{2001:1f::cafe:cafe:cafe:cafe:cafe} ) ) ), q{bad address});
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{2002:cafe:cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{fdff:cafe:cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{febf:cafe:cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{::cafe:cafe} ) ) ), q{bad address} );
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{5fff:cafe:cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
-ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{ffff:cafe:cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{::1} ) ) ),              q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{::} ) ) ),               q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{::ffff:cafe:cafe} ) ) ), q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{64:ff9b::cafe:cafe} ) ) ), q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{100::cafe:cafe:cafe:cafe} ) ) ), q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{2001:1ff:cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{2001::cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{2001:2::cafe:cafe:cafe:cafe:cafe} ) ) ), q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{2001:db8:cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{2001:1f::cafe:cafe:cafe:cafe:cafe} ) ) ), q{bad address});
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{2002:cafe:cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{fdff:cafe:cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{febf:cafe:cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{::cafe:cafe} ) ) ), q{bad address} );
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{5fff:cafe:cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
+ok( defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{ffff:cafe:cafe:cafe:cafe:cafe:cafe:cafe} ) )), q{bad address});
 
-ok( !defined( Zonemaster::Test::Address->find_special_address( Net::IP->new( q{192.134.4.45} ) ) ), q{good address} );
+ok( !defined( Zonemaster::Test::Address->find_special_address( Net::IP::XS->new( q{192.134.4.45} ) ) ), q{good address} );
 
 my %res;
 

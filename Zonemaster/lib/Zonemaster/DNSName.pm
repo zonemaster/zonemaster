@@ -104,6 +104,7 @@ sub TO_JSON {
 }
 
 ## no critic (Modules::RequireExplicitInclusion)
+no Moose;
 __PACKAGE__->meta->make_immutable;
 
 1;

@@ -3,7 +3,7 @@ package Zonemaster::ASNLookup v0.0.1;
 use 5.014002;
 use warnings;
 
-use Net::IP;
+use Net::IP::XS;
 
 use Zonemaster;
 use Zonemaster::Nameserver;
@@ -17,8 +17,8 @@ sub get_with_prefix {
         @roots = map {Zonemaster->zone($_)} @{Zonemaster->config->asnroots};
     }
 
-    if ( not ref( $ip ) or not $ip->isa( 'Net::IP' ) ) {
-        $ip = Net::IP->new( $ip );
+    if ( not ref( $ip ) or not $ip->isa( 'Net::IP::XS' ) ) {
+        $ip = Net::IP::XS->new( $ip );
     }
 
     my $reverse = $ip->reverse_ip;
@@ -40,7 +40,7 @@ sub get_with_prefix {
                 $str =~ s/"([^"]+)"/$1/;
                 my @fields = split( / \| ?/, $str );
 
-                return $fields[0], Net::IP->new( $fields[1] );
+                return $fields[0], Net::IP::XS->new( $fields[1] );
             }
         } ## end foreach my $root ( keys %$pair)
     } ## end foreach my $pair ( @roots )

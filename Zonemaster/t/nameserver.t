@@ -17,7 +17,7 @@ my $nsv4 = new_ok( 'Zonemaster::Nameserver' => [ { name => 'ns.nic.se', address 
 eval { Zonemaster::Nameserver->new( { name => 'dummy' } ); };
 like( $@, qr/Attribute \(address\) is required/, 'create fails without address.' );
 
-isa_ok( $nsv6->address, 'Net::IP' );
+isa_ok( $nsv6->address, 'Net::IP::XS' );
 isa_ok( $nsv6->name,    'Zonemaster::DNSName' );
 is( $nsv6->dns->retry, 2 );
 
