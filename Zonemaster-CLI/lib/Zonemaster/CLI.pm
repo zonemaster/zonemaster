@@ -42,7 +42,7 @@ has 'level' => (
     isa           => 'Str',
     required      => 0,
     default       => 'NOTICE',
-    documentation => __('The minimum severity level to display'),
+    documentation => __('The minimum severity level to display. Must be one of CRITICAL, ERROR, WARNING, NOTICE, INFO or DEBUG.'),
 );
 
 has 'locale' => (
@@ -140,7 +140,7 @@ has 'stop_level' => (
     is            => 'ro',
     isa           => 'Str',
     required      => 0,
-    documentation => __('As soon as a message at this level or higher is logged, execution will stop.')
+    documentation => __('As soon as a message at this level or higher is logged, execution will stop. Must be one of CRITICAL, ERROR, WARNING, NOTICE, INFO or DEBUG.')
 );
 
 has 'config' => (
