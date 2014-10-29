@@ -51,12 +51,15 @@ sub metadata {
         ],
         connectivity03 => [
             qw(
-              ADDRESS_TYPE_NOT_IMPLEMENTED
-              NAMESERVER_WITH_UNALLOCATED_ADDRESS
-              NAMESERVERS_WITH_UNIQ_AS
-              NAMESERVERS_IPV4_WITH_UNIQ_AS
-              NAMESERVERS_IPV6_WITH_UNIQ_AS
-              NAMESERVERS_WITH_MULTIPLE_AS
+                NAMESERVERS_IPV4_NO_AS
+                NAMESERVERS_IPV4_WITH_MULTIPLE_AS
+                NAMESERVERS_IPV4_WITH_UNIQ_AS
+                NAMESERVERS_IPV6_NO_AS
+                NAMESERVERS_IPV6_WITH_MULTIPLE_AS
+                NAMESERVERS_IPV6_WITH_UNIQ_AS
+                NAMESERVERS_NO_AS
+                NAMESERVERS_WITH_MULTIPLE_AS
+                NAMESERVERS_WITH_UNIQ_AS
               )
         ],
     };
@@ -64,16 +67,19 @@ sub metadata {
 
 sub translation {
     return {
-        'NAMESERVER_WITH_UNALLOCATED_ADDRESS' => 'Nameserver {ns}/{address} uses an unassigned/unannounced address.',
-        'NAMESERVER_HAS_UDP_53'               => 'Nameserver {ns}/{address} accessible over UDP on port 53.',
-        'NAMESERVERS_WITH_UNIQ_AS'            => 'All nameservers are in the same AS ({asn}).',
-        'NAMESERVERS_IPV4_WITH_UNIQ_AS'       => 'All nameservers IPv4 addresses are in the same AS ({asn}).',
-        'NAMESERVER_NO_UDP_53'                => 'Nameserver {ns}/{address} not accessible over UDP on port 53.',
-        'ADDRESS_TYPE_NOT_IMPLEMENTED'  => 'Service provided by - {service} - does not work with IPv{type} addresses',
-        'NAMESERVER_HAS_TCP_53'         => 'Nameserver {ns}/{address} accessible over TCP on port 53.',
-        'NAMESERVERS_IPV6_WITH_UNIQ_AS' => 'All nameservers IPv6 addresses are in the same AS ({asn}).',
-        'NAMESERVER_NO_TCP_53'          => 'Nameserver {ns}/{address} not accessible over TCP on port 53.',
-        'NAMESERVERS_WITH_MULTIPLE_AS'  => 'Domain\'s authoritative nameservers do not belong to the same AS.',
+        'NAMESERVERS_IPV4_WITH_UNIQ_AS'     => 'All nameservers IPv4 addresses are in the same AS ({asn}).',
+        'NAMESERVERS_IPV6_WITH_UNIQ_AS'     => 'All nameservers IPv6 addresses are in the same AS ({asn}).',
+        'NAMESERVERS_WITH_MULTIPLE_AS'      => 'Domain\'s authoritative nameservers do not belong to the same AS.',
+        'NAMESERVERS_WITH_UNIQ_AS'          => 'All nameservers are in the same AS ({asn}).',
+        'NAMESERVERS_IPV4_NO_AS'            => 'No IPv4 nameserver address is in an AS.',
+        'NAMESERVERS_IPV4_WITH_MULTIPLE_AS' => 'Authoritative IPv4 nameservers are in more than one AS.',
+        'NAMESERVERS_IPV6_NO_AS'            => 'No IPv6 nameserver address is in an AS.',
+        'NAMESERVERS_IPV6_WITH_MULTIPLE_AS' => 'Authoritative IPv6 nameservers are in more than one AS.',
+        'NAMESERVERS_NO_AS'                 => 'No nameserver address is in an AS.',
+        'NAMESERVER_HAS_TCP_53'             => 'Nameserver {ns}/{address} accessible over TCP on port 53.',
+        'NAMESERVER_HAS_UDP_53'             => 'Nameserver {ns}/{address} accessible over UDP on port 53.',
+        'NAMESERVER_NO_TCP_53'              => 'Nameserver {ns}/{address} not accessible over TCP on port 53.',
+        'NAMESERVER_NO_UDP_53'              => 'Nameserver {ns}/{address} not accessible over UDP on port 53.',
     };
 }
 
