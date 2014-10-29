@@ -1,4 +1,4 @@
-package Zonemaster::Zone v0.0.3;
+package Zonemaster::Zone v0.0.4;
 
 use 5.14.2;
 use strict;
@@ -10,6 +10,7 @@ use List::MoreUtils qw[uniq];
 
 use Zonemaster::DNSName;
 use Zonemaster::Recursor;
+use Zonemaster::NSArray;
 
 has 'name' => ( is => 'ro', isa => 'Zonemaster::DNSName', required => 1, coerce => 1 );
 has 'parent' => ( is => 'ro', isa => 'Maybe[Zonemaster::Zone]', lazy_build => 1 );
@@ -50,15 +51,11 @@ sub _build_glue_names {
 
 sub _build_glue {
     my ( $self ) = @_;
-    my %res;
 
-    foreach my $name (@{$self->glue_names}) {
-        foreach my $addr (Zonemaster::Recursor->get_addresses_for($name)) {
-            $res{$name . '-' . $addr->ip} = Zonemaster::Nameserver->new({ name => $name, address => $addr });
-        }
-    }
+    my $aref = [];
+    tie @$aref, 'Zonemaster::NSArray', @{$self->glue_names};
 
-    return [sort values %res];
+    return $aref;
 }
 
 sub _build_ns_names {
@@ -71,9 +68,11 @@ sub _build_ns_names {
     }
 
     my $p;
-    foreach my $s ( @{ $self->glue } ) {
+    my $i = 0;
+    while (my $s = $self->glue->[$i] ) {
         $p = $s->query( $self->name, 'NS' );
         last if defined( $p );
+        $i += 1;
     }
     return [] if not defined $p;
 
@@ -87,14 +86,10 @@ sub _build_ns {
         return [ Zonemaster::Recursor->root_servers ];
     }
 
-    my %res;
-    foreach my $name (@{$self->ns_names}) {
-        foreach my $addr (Zonemaster::Recursor->get_addresses_for($name)) {
-            $res{$name . '-' . $addr->ip} = Zonemaster::Nameserver->new({ name => $name, address => $addr });
-        }
-    }
+    my $aref = [];
+    tie @$aref, 'Zonemaster::NSArray', @{$self->ns_names};
 
-    return [sort values %res];
+    return $aref;
 }
 
 sub _build_glue_addresses {
@@ -118,7 +113,8 @@ sub query_one {
     my ( $self, $name, $type, $flags ) = @_;
 
     # Return response from the first server that gives one
-    foreach my $ns ( @{ $self->ns } ) {
+    my $i = 0;
+    while( my $ns = $self->ns->[$i] ) {
         if (not Zonemaster->config->ipv4_ok and $ns->address->version == 4) {
             Zonemaster->logger->add( SKIP_IPV4_DISABLED => { ns => "$ns"} );
             next;
@@ -131,6 +127,7 @@ sub query_one {
 
         my $p = $ns->query( $name, $type, $flags );
         return $p if defined( $p );
+        $i += 1;
     }
 
     return;
@@ -160,7 +157,8 @@ sub query_auth {
     my ( $self, $name, $type, $flags ) = @_;
 
     # Return response from the first server that replies with AA set
-    foreach my $ns ( @{ $self->ns } ) {
+    my $i = 0;
+    while ( my $ns = $self->ns->[$i] ) {
         if (not Zonemaster->config->ipv4_ok and $ns->address->version == 4) {
             Zonemaster->logger->add( SKIP_IPV4_DISABLED => { ns => "$ns"} );
             next;
@@ -175,6 +173,7 @@ sub query_auth {
         if ($p and $p->aa) {
             return $p
         }
+        $i += 1;
     }
 
     return;
@@ -184,7 +183,8 @@ sub query_persistent {
     my ( $self, $name, $type, $flags ) = @_;
 
     # Return response from the first server that has a record like the one asked for
-    foreach my $ns ( @{ $self->ns } ) {
+    my $i = 0;
+    while ( my $ns = $self->ns->[$i] ) {
         if (not Zonemaster->config->ipv4_ok and $ns->address->version == 4) {
             Zonemaster->logger->add( SKIP_IPV4_DISABLED => { ns => "$ns"} );
             next;
@@ -199,6 +199,7 @@ sub query_persistent {
         if ($p and scalar($p->get_records_for_name($type, $name)) > 0) {
             return $p
         }
+        $i += 1;
     }
 
     return;
