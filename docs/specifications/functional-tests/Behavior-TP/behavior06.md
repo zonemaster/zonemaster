@@ -1,5 +1,4 @@
-## BEHAVIOR06: Able to test un delegated domains
-displayed
+## BEHAVIOR06: Able to test un-delegated domains
 
 ### Test case identifier
 
@@ -19,6 +18,7 @@ The domain to be tested.
 ### Ordered description of steps to be taken to execute the test case
 
 1. A standard query for the domain is made with appropriate NS and IP as inputs. 
+
 a. A delegated domain, but with NS/IP as inputs
 ```
 zonemaster-cli --ns i.ns.se/194.146.106.22 --ns
