@@ -39,7 +39,7 @@ sub _build_trace {
     #        0          1      2            3         4           5          6            7       8         9         10
     # $package, $filename, $line, $subroutine, $hasargs, $wantarray, $evaltext, $is_require, $hints, $bitmask, $hinthash
     while ( my @line = caller( $i++ ) ) {
-        next unless $line[3] =~ /^Zonemaster/;
+        next unless index($line[3], 'Zonemaster') == 0;
         push @trace, [ @line[ 0, 3 ] ];
     }
 

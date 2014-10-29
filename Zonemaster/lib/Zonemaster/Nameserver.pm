@@ -60,7 +60,6 @@ around 'new' => sub {
         $object_cache{$name}{ $obj->address->ip } = $obj;
     }
 
-    Zonemaster->logger->add( NS_FETCHED => { name => $name, ip => $obj->address->ip } );
     return $object_cache{$name}{ $obj->address->ip };
 };
 
