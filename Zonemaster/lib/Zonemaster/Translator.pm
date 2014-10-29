@@ -99,6 +99,9 @@ sub _system_translation {
     };
 }
 
+no Moose;
+__PACKAGE__->meta->make_immutable;
+
 1;
 
 =head1 NAME

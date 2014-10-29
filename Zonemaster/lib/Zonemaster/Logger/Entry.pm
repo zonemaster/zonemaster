@@ -112,6 +112,9 @@ sub start_time_now {
     $start_time = time();
 }
 
+no Moose;
+__PACKAGE__->meta->make_immutable;
+
 1;
 
 =head1 NAME

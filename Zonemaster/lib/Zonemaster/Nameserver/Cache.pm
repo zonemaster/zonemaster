@@ -25,6 +25,9 @@ around 'new' => sub {
     return $object_cache{ $obj->address->ip };
 };
 
+no Moose;
+__PACKAGE__->meta->make_immutable(inline_constructor => 0);
+
 1;
 
 =head1 NAME

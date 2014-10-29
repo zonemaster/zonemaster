@@ -293,4 +293,7 @@ Calle Dybedahl, C<< <calle at init.se> >>
 
 =cut
 
+no Moose;
+__PACKAGE__->meta->make_immutable;
+
 1;

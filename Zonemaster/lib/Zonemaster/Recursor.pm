@@ -248,6 +248,9 @@ sub root_servers {
       sort { $a->{name} cmp $b->{name} } @{ $seed_data->{'.'} };
 }
 
+no Moose;
+__PACKAGE__->meta->make_immutable;
+
 1;
 
 =head1 NAME

@@ -133,6 +133,9 @@ sub TO_JSON {
     return { 'Zonemaster::Packet' => $self->packet };
 }
 
+no Moose;
+__PACKAGE__->meta->make_immutable;
+
 1;
 
 =head1 NAME
