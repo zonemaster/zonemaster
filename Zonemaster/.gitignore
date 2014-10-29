@@ -17,3 +17,5 @@ Zonemaster-*
 Zonemaster-*.tar.gz
 *.bak
 *~
+dev.pl
+bug.pl
