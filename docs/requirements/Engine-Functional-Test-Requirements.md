@@ -50,12 +50,12 @@ functional tests for the test engine, following steps should be followed:
 |FR09|Test whether the tool correctly treats when "no such data exist"  with "NODATA" in response|[BEHAVIOR02](../specifications/functional-tests/Behavior-TP/behavior02.md)||
 |FR10|Match the results with existing ZC when certain protocols are disabled (e.g.IPv6)|[BEHAVIOR03](../specifications/functional-tests/Behavior-TP/behavior03.md)||
 |FR11|Test whether the tool run only appropriate tests when the default test profile is modified|[BEHAVIOR04](../specifications/functional-tests/Behavior-TP/behavior04.md)|KO|
-|FR12|Capable of running the test when the delegation parameters are specified|[BEHAVIOR05](../specifications/functional-tests/Behavior-TP/behavior05.md)|
+|FR12|Capable of running the test when the delegation parameters are specified|[BEHAVIOR05](../specifications/functional-tests/Behavior-TP/behavior06.md)|OK|
 |FR13|Able to test un-delegated domain|[BEHAVIOR06](../specifications/functional-tests/Behavior-TP/behavior06.md)|OK|
 |FR14|Check whether timestamps on the test being run are being displayed|[BEHAVIOR07](../specifications/functional-tests/Behavior-TP/behavior07.md)|KO|
 |FR15|With the report flag enabled check whether the tool reports tests as they are being run|[BEHAVIOR08](../specifications/functional-tests/Behavior-TP/behavior08.md)|
 |FR16|IDN verification |[BEHAVIOR09](../specifications/functional-tests/Behavior-TP/behavior09.md)|OK|
-|FR17|Test whether the tool displays verbose information when launched with appropriate flags|[BEHAVIOR10](../specifications/functional-tests/Behavior-TP/behavior10.md)|
+|FR17|Displays verbose information when launched with appropriate flags|[BEHAVIOR10](../specifications/functional-tests/Behavior-TP/behavior10.md)|OK|
 |FR18|Test whether the tool triggers appropriate error code when the server is misconfigured|[BEHAVIOR11](../specifications/functional-tests/Behavior-TP/behavior11.md)|
 |FR19|Test whether the tool respond with one or more RRs if data does exist for the DNS query in question|[BEHAVIOR12](../specifications/functional-tests/Behavior-TP/behavior12.md)|
 
