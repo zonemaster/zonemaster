@@ -232,7 +232,7 @@ Nothing, if the IP address is not in any AS.
 
 =item
 
-If called in list context, a list of AS number and a L<Net::IP> object representing the prefix it's in.
+If called in list context, a list of AS number and a L<Net::IP::XS> object representing the prefix it's in.
 
 =item
 

@@ -4,7 +4,7 @@ use 5.14.2;
 use Moose;
 use JSON::PP;
 use Zonemaster::Util;
-use Net::IP;
+use Net::IP::XS;
 use Zonemaster;
 
 my $seed_data;
@@ -227,7 +227,7 @@ sub get_addresses_for {
         grep { name( $_->name ) eq $name } @rrs
       )
     {
-        push @res, Net::IP->new( $rr->address );
+        push @res, Net::IP::XS->new( $rr->address );
     }
 
     return @res;

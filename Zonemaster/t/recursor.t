@@ -50,7 +50,7 @@ is( $name, 'iis.se', 'name ok' );
 ok( $packet->no_such_record, 'expected packet content' );
 
 my @addr = Zonemaster::Recursor->get_addresses_for( 'ns.nic.se' );
-isa_ok( $_, 'Net::IP' ) for @addr;
+isa_ok( $_, 'Net::IP::XS' ) for @addr;
 is( $addr[0]->short, '212.247.7.228',      'expected address' );
 is( $addr[1]->short, '2a00:801:f0:53::53', 'expected address' );
 

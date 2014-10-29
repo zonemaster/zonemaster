@@ -28,7 +28,7 @@ sub _log_dependency_versions {
     info( DEPENDENCY_VERSION => { name => 'JSON',                 version => $JSON::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'File::ShareDir',       version => $File::ShareDir::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'File::Slurp',          version => $File::Slurp::VERSION } );
-    info( DEPENDENCY_VERSION => { name => 'Net::IP',              version => $Net::IP::VERSION } );
+    info( DEPENDENCY_VERSION => { name => 'Net::IP::XS',              version => $Net::IP::XS::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'List::MoreUtils',      version => $List::MoreUtils::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'Mail::RFC822::Address', version => $Mail::RFC822::Address::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'Scalar::Util',         version => $Scalar::Util::VERSION } );
