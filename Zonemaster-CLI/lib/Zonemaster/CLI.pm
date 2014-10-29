@@ -24,6 +24,7 @@ use Scalar::Util qw[blessed];
 use Encode;
 use Net::LDNS;
 use POSIX qw[setlocale LC_MESSAGES];
+use List::Util qw[max];
 
 our %numeric = Zonemaster::Logger::Entry->levels;
 
@@ -188,6 +189,14 @@ has 'encoding' => (
         return $e;
     },
     documentation => __('Name of the character encoding used for command line arguments'),
+);
+
+has 'nstimes' => (
+    is => 'ro',
+    isa => 'Bool',
+    required => 0,
+    default => 0,
+    documentation => 'At the end of a run, print a summary of the times the zone\'s name servers took to answer.',
 );
 
 sub run {
@@ -377,6 +386,25 @@ sub run {
         say        "   =====\t=====================";
         foreach my $level ( sort { $numeric{$b} <=> $numeric{$a} } keys %counter ) {
             printf __("%8s\t%5d entries.\n"), __($level), $counter{$level};
+        }
+    }
+
+    if ( $self->nstimes ) {
+        my $zone = Zonemaster->zone($domain);
+        my $max = max map {length("$_")} @{$zone->ns};
+
+        print "\n";
+        printf "%${max}s %s\n", 'Server',   ' Max (ms)      Min      Avg   Stddev   Median     Total';
+        printf "%${max}s %s\n", '=' x $max, ' ======== ======== ======== ======== ======== =========';
+
+        foreach my $ns (@{$zone->ns}) {
+            printf "%${max}s ", $ns->string;
+            printf "%9.2f ", 1000*$ns->max_time;
+            printf "%8.2f ", 1000*$ns->min_time;
+            printf "%8.2f ", 1000*$ns->average_time;
+            printf "%8.2f ", 1000*$ns->stddev_time;
+            printf "%8.2f ", 1000*$ns->median_time;
+            printf "%9.2f\n", 1000*$ns->sum_time;
         }
     }
 
