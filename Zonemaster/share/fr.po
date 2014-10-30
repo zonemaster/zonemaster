@@ -63,7 +63,7 @@ msgstr "Le serveur de noms {source} renvoit un enregistrement de type \"A\" en r
 
 #: BASIC:HAS_GLUE
 msgid  "Nameserver for zone {parent} listed these nameservers as glue: {ns}."
-msgstr "Le serveur de nom pour la zone {parent} renvoit la liste de serveurs de noms suivants: {ns}."
+msgstr "Le serveur de noms pour la zone {parent} renvoit la liste de serveurs de noms suivants: {ns}."
 
 #: BASIC:HAS_NAMESERVERS
 msgid  "Nameserver {source} listed these servers as glue: {ns}."
@@ -71,7 +71,7 @@ msgstr "Un requête NS sur le serveur de noms {source} renvoit la liste de serve
 
 #: BASIC:HAS_NAMESERVER_NO_WWW_A_TEST
 msgid  "Functional nameserver found. \"A\" query for www.{name} test aborted."
-msgstr "Un serveur de nom fonctionnel a été trouvé. Inutile de réaliser une requête de type \"A\" sur www.{name}."
+msgstr "Un serveur de noms fonctionnel a été trouvé. Inutile de réaliser une requête de type \"A\" sur www.{name}."
 
 #: BASIC:IPV4_DISABLED
 msgid  "IPv4 is disabled, not sending \"{type}\" query to {ns}."
@@ -95,7 +95,7 @@ msgstr "Le serveur de noms {source} ne renvoit pas d'enregistrement de type \"A\
 
 #: BASIC:NO_DOMAIN
 msgid  "Nameserver for zone {parent} responded with NXDOMAIN to query for glue."
-msgstr "Le serveur de nom pour la zone {parent} retourne un code NXDOMAIN à une requête de type \"NS\" pour la zone testée."
+msgstr "Le serveur de noms pour la zone {parent} retourne un code NXDOMAIN à une requête de type \"NS\" pour la zone testée."
 
 #: BASIC:NO_GLUE
 msgid  "Nameservers for \"{parent}\" provided no NS records for tested zone. RCODE given was {rcode}."
@@ -459,7 +459,7 @@ msgstr "Aucun enregistrement de type \"DNSKEY\" n'a été retourné."
 
 #: DNSSEC:NO_DS
 msgid  "{from} returned no DS records for {zone}."
-msgstr "Le serveur de nom {from} ne retourne aucun enregistrement de type \"DS\" pour la zone {zone}."
+msgstr "Le serveur de noms {from} ne retourne aucun enregistrement de type \"DS\" pour la zone {zone}."
 
 #: DNSSEC:NO_KEYS_OR_NO_SIGS
 msgid  "Cannot test DNSKEY signatures, because we got {keys} DNSKEY records and {sigs} RRSIG records."
@@ -635,7 +635,7 @@ msgstr "La syntaxe du nom du relais de messagerie ({name}) est valide."
 
 #: SYNTAX:NAMESERVER_DISCOURAGED_DOUBLE_DASH
 msgid  "Nameserver ({name}) has a label ({label}) with a double hyphen ('--') in position 3 and 4 (with a prefix which is not 'xn--')."
-msgstr "Le serveur de nom ({name}) contient un label ({label}) avec un double tiret ('--') en positions 3 et 4 (avec un préfixe différent de 'xn--')."
+msgstr "Le serveur de noms ({name}) contient un label ({label}) avec un double tiret ('--') en positions 3 et 4 (avec un préfixe différent de 'xn--')."
 
 #: SYNTAX:NAMESERVER_NON_ALLOWED_CHARS
 msgid  "Found illegal characters in the nameserver ({name})."
@@ -643,11 +643,11 @@ msgstr "Des caractèrs interdits ont été trouvés dans le nom du serveur de no
 
 #: SYNTAX:NAMESERVER_NUMERIC_TLD
 msgid  "Nameserver ({name}) within a 'numeric only' TLD ({tld})."
-msgstr "Le serveur de nom ({name}) se trouve dans un TLD 'numeric only' ({tld})."
+msgstr "Le serveur de noms ({name}) se trouve dans un TLD 'numeric only' ({tld})."
 
 #: SYNTAX:NAMESERVER_SYNTAX_OK
 msgid  "Nameserver ({name}) syntax is valid."
-msgstr "La syntaxe du nom du serveur de nom ({name}) est valide."
+msgstr "La syntaxe du nom du serveur de noms ({name}) est valide."
 
 #: SYNTAX:NON_ALLOWED_CHARS
 msgid  "Found illegal characters in the domain name ({name})"
