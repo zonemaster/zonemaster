@@ -721,6 +721,10 @@ msgstr "Erreur fatale dans le module {module}: {msg}"
 msgid  "Using module {module} version {version}."
 msgstr "Utilisation du module {module} version {version}."
 
+#:SYSTEM:NO_NETWORK
+msgid "Both IPv4 and IPv6 are disabled."
+msgstr "IPv6 et IPv4 sont désactivés."
+
 #: SYSTEM:POLICY_DISABLED
 msgid  "The module {name} was disabled by the policy."
 msgstr "Le module {name} a été désactivé par la politique en cours."
