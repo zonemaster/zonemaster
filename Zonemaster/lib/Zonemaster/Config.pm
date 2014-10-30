@@ -121,9 +121,28 @@ sub load_config_file {
 }
 
 sub load_policy_file {
-    my ( $class, $filename ) = @_;
+    my ( $self, $filename ) = @_;
+
+    if (not -r $filename) {
+        foreach my $dir (_config_directory_list()) {
+            my $name = File::Spec->catfile($dir, $filename);
+            if (-r $name) {
+                $filename = $name;
+                last;
+            } else {
+                if (-r $name . '.json') {
+                    $filename = $name . '.json';
+                    last;
+                }
+            }
+        }
+    }
+
     my $new = decode_json read_file $filename;
-    $policy = $merger->merge( $policy, $new ) if $new;
+    if ($new) {
+        $policy = $merger->merge( $policy, $new );
+        push @{$self->pfiles}, $filename;
+    }
 
     return !!$new;
 }
@@ -279,7 +298,15 @@ Returns a reference to the current policy data. The format of that data is yet t
 
 =item load_policy_file($filename)
 
-Load policy information from the given file and merge it into the pre-loaded policy. Information from the loaded file overrides the pre-loaded information when the same keys exist in both places.
+Load policy information from the given file and merge it into the pre-loaded
+policy. Information from the loaded file overrides the pre-loaded information
+when the same keys exist in both places.
+
+If the given name does not lead directly to a readable file, each of the usual
+directories will be checked if the name is there. If the plain name isn't, the
+suffix C<.json> will be appended and another try will be done. For example, a
+file F<$HOME/.zonemaster/Example.json> will be loaded by calling this method
+with the string C<"Example">.
 
 =item load_config_file($filename)
 
