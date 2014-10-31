@@ -208,7 +208,7 @@ sub run {
     if ($self->locale) {
         my $loc = setlocale(LC_MESSAGES,$self->locale);
         if (not defined $loc) {
-            printf STDERR __("Warning: setting locale %s failed.\n\n"), $self->locale;
+            printf STDERR __("Warning: setting locale %s failed (is it installed on this system?).\n\n"), $self->locale;
         }
     }
 

@@ -111,8 +111,8 @@ msgstr "%8s\t%5d entries.\n"
 msgid "Warning: Net::LDNS not compiled with libidn, cannot handle non-ASCII names correctly."
 msgstr "Warning: Net::LDNS not compiled with libidn, cannot handle non-ASCII names correctly."
 
-msgid "Warning: setting locale %s failed.\n\n"
-msgstr "Warning: setting locale %s failed.\n\n"
+msgid "Warning: setting locale %s failed (is it installed on this system?).\n\n"
+msgstr "Warning: setting locale %s failed (is it installed on this system?).\n\n"
 
 msgid "CRITICAL"
 msgstr "CRITICAL"
