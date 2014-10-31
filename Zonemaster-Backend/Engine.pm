@@ -145,11 +145,15 @@ sub get_data_from_parent_zone_1 {
 	
 	my @ns_list;
 	my @ns_names;
-	my $res_ns   = Net::DNS::Resolver->new;
-	my $query = $res_ns->search($domain, 'NS');
-	if ($query) {
-		foreach my $rr ($query->answer) {
-			push(@ns_names, $rr->nsdname);
+	
+	my $r = Net::LDNS->new();
+	$r->cd(1);
+	$r->dnssec(0);
+	my $p = $r->query($domain,"NS"); 
+	
+	if ($p) {
+		foreach my $ns ($p->answer()) {
+			push(@ns_names, $ns->nsdname());
 		}
 		
 		foreach my $ns_name (@ns_names) {
@@ -162,32 +166,18 @@ sub get_data_from_parent_zone_1 {
 	
 	
 	my %algorithm_ids = ( 
-		1 => 'sha1',
-		2 => 'sha1',
-		3 => 'sha1',
-		4 => 'sha1',
-		5 => 'sha1',
-		6 => 'sha1',
-		7 => 'sha1',
 		8 => 'sha1',
-		9 => 'sha1',
-		10 => 'sha1',
 	);
 	my @ds_list;
-	my $res_ds = Net::DNS::Resolver->new;
+	
+	my $r_ds = Net::LDNS->new();
+	$r_ds->cd(1);
+	$r_ds->dnssec(0);
+	my $p_ds = $r_ds->query($domain,"DNSKEY"); 
 
-	$res_ds->dnssec(1);
-	my $packet = $res_ds->query($domain, 'DNSKEY', 'IN');
-
-	if (defined $packet) {
-		my $keyset=Net::DNS::Keyset->new($packet) ;
-
-		if ( $keyset ){
-			my @ds=$keyset->extract_ds;
-			foreach my $ds ( @ds ) {
-				my ($dn, $num, $in, $type, $key_tag, $algorithm, $digest_type, $digest) = split(/\s+/, $ds->string);
-				push(@ds_list, { algorithm => $algorithm_ids{$algorithm}, digest => $digest });
-			}
+	if ($p_ds) {
+		foreach my $dnssec ($p_ds->answer()) {
+			push(@ds_list, { algorithm => $algorithm_ids{$dnssec->ds('sha1')->algorithm()}, digest => $dnssec->ds('sha1')->hexdigest() });
 		}
 	}
 	
@@ -273,9 +263,11 @@ sub validate_syntax {
 		}
 	}
 	else {
-		my $res   = Net::DNS::Resolver->new;                                                                                                                                                                                                                                   
-		my $reply = $res->search($dn);                                                                                                                                                                                                                  
-		if (!$reply) {
+		my $r = Net::LDNS->new();
+		$r->cd(1);
+		$r->dnssec(0);
+		my $p = $r->query($dn,"NS");
+		if (!$p) {
 			return { status => 'nok', message => 'Domain doesn\'t exist' };
 		}
 	}
