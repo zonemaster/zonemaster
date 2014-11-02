@@ -601,6 +601,10 @@ msgstr "Aucun des serveurs de noms suivants n'est récursif : {names}."
 msgid  "Nameserver {ns}/{address} dropped AAAA query."
 msgstr "Le serveur de noms {ns}/{address} ne répond pas aux requêtes portant sur le type \"AAAA\"."
 
+#: NAMESERVER:SAME_SOURCE_IP
+msgid  "All nameservers reply with same IP used to query them."
+msgstr "Tous les serveurs de noms répondent avec la même adresse IP que celle utilisée lors de leur requêtage."
+
 #: NAMESERVER:CAN_NOT_BE_RESOLVED
 msgid  "The following nameservers failed to resolve to an IP address : {names}."
 msgstr "Aucune adresse IP n'a pu être trouvée pour les serveurs de noms suivants : {names}."
