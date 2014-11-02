@@ -63,15 +63,15 @@ msgstr "Le nom de domaine ({name}) a un label de taille zéro."
 
 #: BASIC:HAS_A_RECORDS
 msgid  "Nameserver {source} returned A record(s) for {name}."
-msgstr "Le serveur de noms {source} renvoit un enregistrement de type \"A\" en réponse à une requête pour {name}."
+msgstr "Le serveur de noms {source} renvoie un enregistrement de type \"A\" en réponse à une requête pour {name}."
 
 #: BASIC:HAS_GLUE
 msgid  "Nameserver for zone {parent} listed these nameservers as glue: {ns}."
-msgstr "Le serveur de noms pour la zone {parent} renvoit la liste de serveurs de noms suivants: {ns}."
+msgstr "Le serveur de noms pour la zone {parent} renvoie la liste de serveurs de noms suivants: {ns}."
 
 #: BASIC:HAS_NAMESERVERS
 msgid  "Nameserver {source} listed these servers as glue: {ns}."
-msgstr "Un requête NS sur le serveur de noms {source} renvoit la liste de serveurs de noms suivants: {ns}."
+msgstr "Une requête NS sur le serveur de noms {source} renvoie la liste de serveurs de noms suivants: {ns}."
 
 #: BASIC:HAS_NAMESERVER_NO_WWW_A_TEST
 msgid  "Functional nameserver found. \"A\" query for www.{name} test aborted."
@@ -95,7 +95,7 @@ msgstr "IPv6 est activé, il est possible de réaliser une requête de type \"{t
 
 #: BASIC:NO_A_RECORDS
 msgid  "Nameserver {source} did not return A record(s) for {name}."
-msgstr "Le serveur de noms {source} ne renvoit pas d'enregistrement de type \"A\" en réponse à une requête pour {name}."
+msgstr "Le serveur de noms {source} ne renvoie pas d'enregistrement de type \"A\" en réponse à une requête pour {name}."
 
 #: BASIC:NO_DOMAIN
 msgid  "Nameserver for zone {parent} responded with NXDOMAIN to query for glue."
@@ -119,7 +119,7 @@ msgstr "Aucune réponse obtenue des serveurs de noms de la zone {parent} en essa
 
 #: BASIC:NS_FAILED
 msgid  "Nameserver {source} did not return NS records. RCODE was {rcode}."
-msgstr "Le serveur de noms {source} ne renvoit pas d'enregistrements de type \"NS\" pour la zone testée. Le code {rcode} a été retourné."
+msgstr "Le serveur de noms {source} ne renvoie pas d'enregistrements de type \"NS\" pour la zone testée. Le code {rcode} a été retourné."
 
 #: BASIC:NS_NO_RESPONSE
 msgid  "Nameserver {source} did not respond to NS query."
