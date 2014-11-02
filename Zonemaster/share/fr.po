@@ -783,7 +783,15 @@ msgstr "Dans le SOA, la valeur du champ 'expire' ({expire}) est plus petite que 
 
 #: ZONE:EXPIRE_MINIMUM_VALUE_OK
 msgid  "SOA 'expire' value ({expire}) is higher than the minimum recommended value ({required_expire}) and lower than 'refresh' value."
-msgstr "Dans le SOA, la valeur du champ 'expire' ({expire}) est plus grande que la valeur minimum recommandée ({required_expire}) et plus petite que la valeur du champ 'refresh'."
+msgstr "Dans le SOA, la valeur du champ 'expire' ({expire}) est plus grande que la valeur minimale recommandée ({required_expire}) et plus petite que la valeur du champ 'refresh'."
+
+#: ZONE:MNAME_HAS_NO_ADDRESS
+msgid  "No IP address found for SOA 'mname' nameserver ({mname})."
+msgstr "Aucune adresse IP trouvée pour le serveur maître défini dans le SOA, 'mname' ({mname})."
+
+#: ZONE:MNAME_IS_AUTHORITATIVE
+msgid  "SOA 'mname' nameserver ({mname}) is authoritative for '{zone}' zone."
+msgstr "Le serveur maître défini dans le SOA, 'mname' {ns}}, fait autorité pour la zone '{zone}'."
 
 #: ZONE:MNAME_IS_CNAME
 msgid  "SOA 'mname' value ({mname}) refers to a NS which is an alias (CNAME)."
@@ -809,25 +817,47 @@ msgstr "Le serveur maître défini dans le SOA, 'mname' {ns}/{address}, ne répo
 msgid  "SOA 'mname' field does not exist"
 msgstr "Le champ 'mname' n'est pas présent dans le SOA."
 
+#: ZONE:MX_RECORD_EXISTS
+msgid  "Target ({info}) found to deliver e-mail for the domain name."
+msgstr "Aucune cible ({info}) n'a été trouvée pour faire parvenir un message à ce nom de domaine."
+
 #: ZONE:MX_RECORD_IS_CNAME
 msgid  "MX record for the domain is pointing to a CNAME."
 msgstr "L'enregistrement de type \"MX\" pour le domaine pointe sur un alias (CNAME)."
+
+#: ZONE:MX_RECORD_IS_NOT_CNAME
+msgid  "MX record for the domain is not pointing to a CNAME."
+msgstr "L'enregistrement de type \"MX\" pour le domaine ne pointe pas sur un alias (CNAME)."
 
 #: ZONE:NO_MX_RECORD
 msgid  "No target (MX, A or AAAA record) to deliver e-mail for the domain name."
 msgstr "Aucune possibilité (enregistrement de type \"MX\", \"A\" ou \"AAAA\") de faire parvenir un message à ce nom de domaine."
 
+#: ZONE:NO_RESPONSE_MX_QUERY
+#: ZONE:NO_RESPONSE_SOA_QUERY
+#: ZONE:REFRESH_HIGHER_THAN_RETRY
+msgid  "SOA 'refresh' value ({refresh}) is higher than the SOA 'retry' value ({retry})."
+msgstr "Dans le SOA, la valeur du champ 'refresh' ({refresh}) est plus grande que la valeur du champ 'retry' ({retry})."
+
 #: ZONE:REFRESH_LOWER_THAN_RETRY
 msgid  "SOA 'refresh' value ({refresh}) is lower than the SOA 'retry' value ({retry})."
-msgstr "Dans le SOA, la valeur du champ 'refresh' ({refresh}) est plus grande que la valeur du champ 'retry' ({retry})."
+msgstr "Dans le SOA, la valeur du champ 'refresh' ({refresh}) est plus petite que la valeur du champ 'retry' ({retry})."
 
 #: ZONE:REFRESH_MINIMUM_VALUE_LOWER
 msgid  "SOA 'refresh' value ({refresh}) is less than the recommended one ({required_refresh})."
 msgstr "Dans le SOA, la valeur du champ 'refresh' ({refresh}) est plus petite que la valeur recommandée ({required_refresh})."
 
+#: ZONE:REFRESH_MINIMUM_VALUE_OK
+msgid  "SOA 'refresh' value ({refresh}) is higher than the minimum recommended value ({required_refresh})."
+msgstr "Dans le SOA, la valeur du champ 'refresh' ({refresh}) est plus grande que la valeur minimale recommandée ({required_refresh})."
+
 #: ZONE:RETRY_MINIMUM_VALUE_LOWER
 msgid  "SOA 'retry' value ({retry}) is less than the recommended one ({required_retry})."
 msgstr "Dans le SOA, la valeur du champ 'retry' ({retry}) est plus petite que la valeur recommandée ({required_retry})."
+
+#: ZONE:RETRY_MINIMUM_VALUE_OK
+msgid  "SOA 'retry' value ({retry}) is more than the minimum recommended value ({required_retry})."
+msgstr "Dans le SOA, la valeur du champ 'retry' ({retry}) est plus grande que la valeur minimale recommandée ({required_retry})."
 
 #: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_HIGHER
 msgid  "SOA 'minimum' value ({minimum}) is higher than the recommended one ({highest_minimum})."
@@ -840,8 +870,4 @@ msgstr "Dans le SOA, la valeur du champ 'minimum' ({minimum}) est plus petite qu
 #: ZONE:SOA_DEFAULT_TTL_MAXIMUM_VALUE_OK
 msgid  "SOA 'minimum' value ({minimum}) is between the recommended ones ({lowest_minimum}/{highest_minimum})."
 msgstr "Dans le SOA, la valeur du champ 'minimum' ({minimum}) est comprise dans l'interval de valeurs recommandées ({lowest_minimum}/{highest_minimum})."
-
-#: ZONE:MNAME_HAS_NO_ADDRESS
-msgid  "No IP address found for SOA 'mname' nameserver ({mname})."
-msgstr "Pas d'adresse IP pour le serveur maître défini dans le SOA, 'mname' ({mname})."
 
