@@ -57,7 +57,7 @@ has 'json' => (
     is => 'ro',
     isa => 'Bool',
     default => 0,
-    documentation => __('Flag indicating of output should be in JSON or not.'),
+    documentation => __('Flag indicating if output should be in JSON or not.'),
 );
 
 has 'raw' => (
@@ -84,7 +84,7 @@ has 'show_level' => (
 has 'show_module' => (
     is            => 'ro',
     isa           => 'Bool',
-    documentation => __('Print the name of the maodule on entries.'),
+    documentation => __('Print the name of the module on entries.'),
     default       => 0,
 );
 
