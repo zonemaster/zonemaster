@@ -481,10 +481,6 @@ msgstr "Cannot test SOA signatures, because we got {keys} DNSKEY records, {sigs}
 msgid  "{server} returned no NSEC3PARAM records."
 msgstr "{server} returned no NSEC3PARAM records."
 
-#: DNSSEC:NSEC3_SIG_VERIFY_ERROR
-msgid  "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'."
-msgstr "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'."
-
 #: DNSSEC:NSEC3_COVERS
 msgid  "NSEC3 record covers {name}."
 msgstr "NSEC3 record covers {name}."
@@ -500,6 +496,10 @@ msgstr "No signature correctly signed the NSEC3 RRset."
 #: DNSSEC:NSEC3_SIGNED
 msgid  "At least one signature correctly signed the NSEC3 RRset."
 msgstr "At least one signature correctly signed the NSEC3 RRset."
+
+#: DNSSEC:NSEC3_SIG_VERIFY_ERROR
+msgid  "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'."
+msgstr "Trying to verify NSEC3 RRset with RRSIG {sig} gave error '{error}'."
 
 #: DNSSEC:NSEC_COVERS
 msgid  "NSEC covers {name}."
@@ -717,6 +717,10 @@ msgstr "The SOA RNAME field ({rname}) is compliant with RFC2822."
 msgid  "Domain name ({name}) has a label ({label}) ending with an hyphen ('-')."
 msgstr "Domain name ({name}) has a label ({label}) ending with an hyphen ('-')."
 
+#: SYSTEM:ADDED_FAKE_DELEGATION
+msgid  "Added a fake delegation for domain {domain} to name server {ns}."
+msgstr "Added a fake delegation for domain {domain} to name server {ns}."
+
 #: SYSTEM:CANNOT_CONTINUE
 msgid  "Not enough data about {zone} was found to be able to run tests."
 msgstr "Not enough data about {zone} was found to be able to run tests."
@@ -728,6 +732,14 @@ msgstr "Configuration was read from {name}."
 #: SYSTEM:DEPENDENCY_VERSION
 msgid  "Using prerequisite module {name} version {version}."
 msgstr "Using prerequisite module {name} version {version}."
+
+#: SYSTEM:FAKE_DELEGATION
+msgid  "Followed a fake delegation."
+msgstr "Followed a fake delegation."
+
+#: SYSTEM:FAKE_DELEGATION_TO_SELF
+msgid  "Name server {ns} not adding fake delegation for domain {domain} to itself."
+msgstr "Name server {ns} not adding fake delegation for domain {domain} to itself."
 
 #: SYSTEM:LOGGER_CALLBACK_ERROR
 msgid  "Logger callback died with error: {exception}"
@@ -745,8 +757,8 @@ msgstr "Fatal error in {module}: {msg}"
 msgid  "Using module {module} version {version}."
 msgstr "Using module {module} version {version}."
 
-#:SYSTEM:NO_NETWORK
-msgid "Both IPv4 and IPv6 are disabled."
+#: SYSTEM:NO_NETWORK
+msgid  "Both IPv4 and IPv6 are disabled."
 msgstr "Both IPv4 and IPv6 are disabled."
 
 #: SYSTEM:POLICY_DISABLED
@@ -772,18 +784,6 @@ msgstr "Request to run unknown method {method} in module {module}."
 #: SYSTEM:UNKNOWN_MODULE
 msgid  "Request to run {method} in unknown module {module}. Known modules: {known}."
 msgstr "Request to run {method} in unknown module {module}. Known modules: {known}."
-
-#: SYSTEM:FAKE_DELEGATION
-msgid  "Followed a fake delegation."
-msgstr "Followed a fake delegation."
-
-#: SYSTEM:ADDED_FAKE_DELEGATION
-msgid  "Added a fake delegation for domain {domain} to name server {ns}."
-msgstr "Added a fake delegation for domain {domain} to name server {ns}."
-
-#: SYSTEM:FAKE_DELEGATION_TO_SELF
-msgid  "Name server {ns} not adding fake delegation for domain {domain} to itself."
-msgstr "Name server {ns} not adding fake delegation for domain {domain} to itself."
 
 #: ZONE:EXPIRE_LOWER_THAN_REFRESH
 msgid  "SOA 'expire' value ({expire}) is lower than the SOA 'refresh' value ({refresh})."
