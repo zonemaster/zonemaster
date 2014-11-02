@@ -57,6 +57,10 @@ msgstr "Le nom de domaine ({name}) a un label ({label}) trop long ({length}/{max
 msgid  "Domain name is too long ({length}/{max})."
 msgstr "Le nom de domaine est trop long ({length}/{max})."
 
+#: BASIC:DOMAIN_NAME_ZERO_LENGTH_LABEL
+msgid  "Domain name ({name}) has a zero length label."
+msgstr "Le nom de domaine ({name}) a un label de taille zéro."
+
 #: BASIC:HAS_A_RECORDS
 msgid  "Nameserver {source} returned A record(s) for {name}."
 msgstr "Le serveur de noms {source} renvoit un enregistrement de type \"A\" en réponse à une requête pour {name}."
@@ -104,6 +108,10 @@ msgstr "Les serveurs de noms pour la zone \"{parent}\" ne renvoient pas d'enregi
 #: BASIC:NO_GLUE_PREVENTS_NAMESERVER_TESTS
 msgid  "No NS records for tested zone from parent. NS tests aborted."
 msgstr "Aucun enregistrement de type \"NS\" renvoyé par la zone parente pour la zone testée. Les tests complémentaires sur ces serveurs sont annulés."
+
+#: BASIC:NO_PARENT
+msgid  "No parent domain could be found for the tested domain."
+msgstr "Aucune zone parente n'a pu être trouvée pour le nom de domaine testé."
 
 #: BASIC:NO_PARENT_RESPONSE
 msgid  "No response from nameserver for zone {parent} when trying to fetch glue."
