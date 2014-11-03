@@ -1,7 +1,7 @@
 Zonemaster
 ==========
 
-1.	[What is ZoneMaster?]
+1.	What is ZoneMaster?
 2. 	Who is behind ZoneMaster?
 3. 	Why a new tool instead of modifying existing ones?
 4.	What is DNS?
@@ -22,7 +22,7 @@ Zonemaster
 ZoneMaster
 ----------
 
-**[1. What is ZoneMaster?][]**  
+**1. What is ZoneMaster?**  
 ZoneMaster is a program that was designed to help people check, measure and
 hopefully also understand the workings of the DNS (Domain Name System). When a
 domain (aka zone) is submitted to ZoneMaster it will investigate the domain’s
@@ -34,12 +34,12 @@ will also be performed.
 
 **2. Who is behind ZoneMaster?**
 ZoneMaster is a joint project between the Swedish and French ccTLD's and their
-similar respective delegation checking tools DNSCheck (http://dnscheck.iis.se)
-and ZoneCheck (http://zonecheck.fr). ZoneMaster has the ambition to incorporate
+similar respective delegation checking tools [DNSCheck](http://dnscheck.iis.se/)
+and [ZoneCheck](http://zonecheck.fr/). ZoneMaster has the ambition to incorporate
 all the good parts from both these tools and at the same time outperform them in
 speed and resource use.
 
-**3. Why a new tool instead of modifying existing ones?**
+**3. Why a new tool instead of modifying existing ones?**  
 The first part of the ZoneMaster project involved a thourough investigation of
 the tools we had. During this we asked ourselves what the pros and cons would be
 to either improve or redesign one of the existing tools versus building one from
@@ -60,9 +60,8 @@ working and efficient operation.
 
 **5. How does ZoneMaster work?**  
 If you want the technical information about how ZoneMaster operates you are
-advised to check the specification of the tests here:
-(https://github.com/dotse/zonemaster/tree/master/docs/specifications/tests). If
-you want a less technical answer you should check the first FAQ-question: “What
+advised to check the [specification of the tests](https://github.com/dotse/zonemaster/tree/master/docs/specifications/tests).
+If you want a less technical answer you should check the first FAQ-question: “What
 is ZoneMaster”.
 
 **6. How can ZoneMaster help me?**  
@@ -72,17 +71,16 @@ charge of your domain (the tech-c or technical staff at your name server
 provider) that there in fact is a problem with your domain you can use the link
 that appears on the bottom of the page after each test. So if you have run a
 test and want to show someone the result of that specific test you can just copy
-the link at the bottom of the page that displays your test results. The link
-below, for example, points at a previous test on "iis.se":
-
- http://zonemaster.net/test/200
+the link at the bottom of the page that displays your test results. This link,
+for example, points at a previous test on "iis.se":
+http://zonemaster.net/test/200
 
 **7. ZoneMaster goes "Error"/"Warning" on my domain, what does it mean?**  
 Of course, this depends on what kind of test failed for your zone. In most cases
 you can press the actual error/warning-message and in so doing get more detailed
 information about what kind of problem that was found.
 
- As an example if we test the domain "iis.se" and recieve an error titled "Name
+As an example if we test the domain "iis.se" and recieve an error titled "Name
 server ns.nic.se (212.247.7.228) does not answer queries over UDP". What does
 this mean? After we click this message more detailed information become visible.
 More specific this: "The name server failed to answer queries sent over UDP.
@@ -100,7 +98,7 @@ best to create a default policy for found errors within this project. Hopefully
 this have made sure of a good compromise between what is an actual potentially
 dangerous error and what could be merely seen as a notice or warning.
 
- But as with all things as evolving as DNS the situation is most likely
+But as with all things as evolving as DNS the situation is most likely
 changing, what is a notice today could be an error tomorrow. If you really think
 we've made a mistake in our judgement please don't hesitate to drop us an email
 at dnscheck@iis.se with a link to your test and an explanation why you think it
@@ -120,13 +118,13 @@ First of all ZoneMaster saves all history from earlier tests based on the tested
 domain, which means you can go back to a test you did a week ago and compare it
 to the test you ran a moment ago.
 
- ZoneMaster will also try and explain the error/warning to you in a good way,
+ZoneMaster will also try and explain the error/warning to you in a good way,
 although these messages can be difficult to understand for a non-technician. 
 
- There's an "advanced" tab for technicians who might want to use ZoneMaster
+There's an "advanced" tab for technicians who might want to use ZoneMaster
 without the "basic" view.
 
- Lastly, this open source version of ZoneMaster was built using modular code
+Lastly, this open source version of ZoneMaster was built using modular code
 which, basically, means you can use parts of it in your systems, if you'd want
 to. It's quite rare that you'd want a complete program just to check for example
 redelegations.
