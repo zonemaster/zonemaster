@@ -42,7 +42,9 @@ get '/version' => sub {
   
   my $result = $c->version_info({ });
   content_type 'application/json';
-  return to_json ({ result => $result . ", IP address: " . request->address }, {allow_blessed => 1, convert_blessed => 1});
+  my $ip = request->address;
+  $ip =~ s/::ffff:// if ($ip =~ /::ffff:/);
+  return to_json ({ result => $result . ", IP address: $ip" }, {allow_blessed => 1, convert_blessed => 1});
 };
 
 get '/check_syntax' => sub {
