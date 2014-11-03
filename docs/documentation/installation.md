@@ -43,6 +43,10 @@ Unfortunately `Net::LDNS` has not been packaged for Ubuntu yet. So you need to i
 
     $ sudo perl -MCPAN -e 'install Net::LDNS'
 
+You also need Net::IP::XS from CPAN:
+
+	$ sudo perl -MCPAN -e 'install Net::IP::XS'
+
 If all package dependencies are already installed from the previous section, this should compile and install after configuration of your CPAN module installer.
 
 **Build source code**
@@ -71,8 +75,9 @@ If all package dependencies are already installed from the previous section, thi
 
 **Install CPAN dependencies**
 
-Unfortunately `Locale::TextDomain` and `Net::LDNS` have not been packaged for Debian yet. So you need to install these dependencies from CPAN:
+Unfortunately `Net::IP::XS`, `Locale::TextDomain` and `Net::LDNS` have not been packaged for Debian yet. So you need to install these dependencies from CPAN:
 
+	$ sudo perl -MCPAN -e 'install Net::IP::XS'
 	$ sudo perl -MCPAN -e 'install Locale::TextDomain'
 
 The version of ldns that Net::LDNS is based on is too old for Zonemaster, thus it has to be installed from source. However, ldns requires some more packages to be installed.
