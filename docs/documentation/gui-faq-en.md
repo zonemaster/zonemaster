@@ -33,13 +33,16 @@ host connectivity, validity of IP-addresses and control of DNSSEC signatures
 will also be performed.
 
 **2. Who is behind ZoneMaster?**
-ZoneMaster is a joint project between the Swedish and French ccTLD's and their
-similar respective delegation checking tools [DNSCheck](http://dnscheck.iis.se/)
-and [ZoneCheck](http://zonecheck.fr/). ZoneMaster has the ambition to incorporate
-all the good parts from both these tools and at the same time outperform them in
-speed and resource use.
+ZoneMaster is a joint project between .SE (** ToDo **) and Afnic (registry
+operator of .fr TLD and those of the overseas territories of France). 
 
-**3. Why a new tool instead of modifying existing ones?**  
+**3. Why a new tool instead of modifying existing ones?**
+Similar to Zonemaster, both Afnic and .SE have developed their respective delegation
+checking tools - ZoneCheck (http://zonecheck.fr) and DNSCheck
+(http://dnscheck.iis.se), which has been in use for a number of years. The
+decision to create a new tool is to incorporate all the good functionalities
+from both the existing tools and outperform them in speed and resource use.
+
 The first part of the ZoneMaster project involved a thourough investigation of
 the tools we had. During this we asked ourselves what the pros and cons would be
 to either improve or redesign one of the existing tools versus building one from
@@ -71,9 +74,10 @@ charge of your domain (the tech-c or technical staff at your name server
 provider) that there in fact is a problem with your domain you can use the link
 that appears on the bottom of the page after each test. So if you have run a
 test and want to show someone the result of that specific test you can just copy
-the link at the bottom of the page that displays your test results. This link,
-for example, points at a previous test on "iis.se":
-http://zonemaster.net/test/200
+the link at the bottom of the page that displays your test results. The link
+below, for example, points at a previous test on "iis.se":
+
+ http://zonemaster.net/test/200 [Verify Link later]
 
 **7. ZoneMaster goes "Error"/"Warning" on my domain, what does it mean?**  
 Of course, this depends on what kind of test failed for your zone. In most cases
@@ -91,7 +95,7 @@ error around.
 
 **8. How can DNSCheck judge what is right and wrong?**  
 There is no final judgement of the health of a domain that can be bestowed by
-anyone. This is very important. .SE, AFNIC and the people behind ZoneMaster do
+anyone. This is very important. .SE, Afnic and the people behind ZoneMaster do
 not claim that ZoneMaster is correct in every aspect. Sometimes opinions differ,
 especially between countries, but sometimes also locally. We've done our very
 best to create a default policy for found errors within this project. Hopefully
@@ -101,7 +105,7 @@ dangerous error and what could be merely seen as a notice or warning.
 But as with all things as evolving as DNS the situation is most likely
 changing, what is a notice today could be an error tomorrow. If you really think
 we've made a mistake in our judgement please don't hesitate to drop us an email
-at dnscheck@iis.se with a link to your test and an explanation why you think it
+at zonemaster-devel@lists.iis.se with a link to your test and an explanation why you think it
 shows something that you consider incorrect. ( If you don't know how to find the
 link to your test, check the "How can ZoneMaster help me"-part of this FAQ ).
 
@@ -152,7 +156,7 @@ the last results will be displayed instead.
    in a domain (like www.iis.se) the ZoneMaster webpage will do a pre-check of
 your domain before it sends it on to the engine for testing. This shouldn't
 effect the great majority of domains out there but it CAN do so, because if the
-webpage decides a domain doesn't exist the check wont run. Sofar the only time
+webpage decides a domain doesn't exist the check wont run. So far the only time
 we've seen this is when a domains' nameservers all lie within the domain that's
 being tested and these are very broken. We need to fix this, and please do
 report if you cannot check your domain so that we can see if anything else is
