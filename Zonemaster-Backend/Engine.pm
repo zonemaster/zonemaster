@@ -47,10 +47,10 @@ unshift(@INC, $PROD_DIR."Zonemaster/lib") unless $INC{$PROD_DIR."Zonemaster/lib"
 require Zonemaster;
 require Zonemaster::Nameserver;
 require Zonemaster::DNSName;
-require Zonemaster::Translator;
 
 unshift(@INC, $PROD_DIR."Zonemaster-Backend") unless $INC{$PROD_DIR."Zonemaster-Backend"};
 require BackendConfig;
+require BackendTranslator;
 
 sub new{
 	my($type, $params) = @_;
@@ -229,7 +229,7 @@ sub _check_domain {
 }
 
 sub validate_syntax {
-	my($self, $syntax_input) = @_;
+	my($self, $syntax_input, $is_internal_check) = @_;
 
 	return { status => 'nok', message => "At least one transport protocol required (IPv4 or IPv6)" } unless ( $syntax_input->{ipv4} || $syntax_input->{ipv6});
 	
@@ -237,7 +237,7 @@ sub validate_syntax {
 
 	return $dn_syntax if ($dn_syntax->{status} eq 'nok');
 
-	if (defined $syntax_input->{nameservers} && @{$syntax_input->{nameservers}}) {
+	if ( ( defined $syntax_input->{nameservers} && @{$syntax_input->{nameservers}} ) || $is_internal_check ) {
 		foreach my $ns_ip (@{$syntax_input->{nameservers}}) {
 			my ($ns, $ns_syntax) = $self->_check_domain($ns_ip->{ns}, "NS [$ns_ip->{ns}]");
 			return $ns_syntax if ($ns_syntax->{status} eq 'nok');
@@ -279,6 +279,9 @@ sub start_domain_test {
 	my($self, $params) = @_;
 	my $result = 0;
 	
+	my $syntax_result = $self->validate_syntax($params);
+	die $syntax_result->{message} unless ($syntax_result && $syntax_result->{status} eq 'ok');
+	
 	die "No domain in parameters\n" unless ($params->{domain});
 	
 	$result = $self->{db}->create_new_test($params->{domain}, $params, 10, 10);
@@ -310,8 +313,11 @@ sub get_test_results {
 	my($self, $params) = @_;
 	my $result;
 	
-    my $translator;
-    $translator = Zonemaster::Translator->new;
+#	my $syntax_result = $self->validate_syntax($params);
+#	die $syntax_result->{message} unless ($syntax_result && $syntax_result->{status} eq 'ok');
+
+	my $translator;
+    $translator = BackendTranslator->new;
 #    $translator->locale('fr-FR');
     eval { $translator->data } if $translator;    # Provoke lazy loading of translation data
 

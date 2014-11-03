@@ -133,9 +133,9 @@ sub user_authorized {
 sub test_progress {
 	my($self, $test_id, $progress) = @_;
 	
-	$self->dbh->do("UPDATE test_results SET progress=$progress WHERE id=$test_id") if ($progress);
+	$self->dbh->do("UPDATE test_results SET progress=$progress WHERE id=".$self->dbh->quote($test_id)) if ($progress);
 	
-	my ($result) = $self->dbh->selectrow_array("SELECT progress FROM test_results WHERE id=$test_id");
+	my ($result) = $self->dbh->selectrow_array("SELECT progress FROM test_results WHERE id=".$self->dbh->quote($test_id));
 	
 	return $result;
 }
@@ -172,7 +172,7 @@ sub create_new_test {
 	my $js = JSON->new;
 	$js->canonical(1);
 	my $encoded_params = $js->encode($test_params);
-	my $test_params_deterministic_hash = md5_hex($encoded_params);
+	my $test_params_deterministic_hash = md5_hex(encode_utf8($encoded_params));
 	
 	my $query = "INSERT INTO test_results (batch_id, priority, params_deterministic_hash, params) SELECT ".
 				$self->dbh->quote($batch_id).", ".
@@ -193,7 +193,7 @@ sub get_test_params {
 	
 	my $result;
 	
-	my ($params_json) = $self->dbh->selectrow_array("SELECT params FROM test_results WHERE id=$test_id");
+	my ($params_json) = $self->dbh->selectrow_array("SELECT params FROM test_results WHERE id=".$self->dbh->quote($test_id));
 	eval {
 		$result = decode_json(encode_utf8($params_json));
 	};
@@ -206,11 +206,11 @@ sub get_test_params {
 sub test_results {
 	my($self, $test_id, $results) = @_;
 	
-	$self->dbh->do( "UPDATE test_results SET progress=100, test_end_time=NOW(), results = ".$self->dbh->quote($results)." WHERE id=$test_id " ) if ($results);
+	$self->dbh->do( "UPDATE test_results SET progress=100, test_end_time=NOW(), results = ".$self->dbh->quote($results)." WHERE id=".$self->dbh->quote($test_id) ) if ($results);
 	
 	my $result;
 	eval {
-		my ($hrefs) = $self->dbh->selectall_hashref("SELECT * FROM test_results WHERE id=$test_id", 'id');
+		my ($hrefs) = $self->dbh->selectall_hashref("SELECT * FROM test_results WHERE id=".$self->dbh->quote($test_id), 'id');
 		$result = $hrefs->{$test_id};
 		$result->{params} = decode_json(encode_utf8($result->{params}));
 		$result->{results} = decode_json(encode_utf8($result->{results}));

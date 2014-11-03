@@ -9,6 +9,7 @@ use 5.10.1;
 use LWP::UserAgent;
 use JSON;
 use Time::HiRes qw(gettimeofday);
+use Encode;
 
 our $AUTOLOAD;
 
@@ -32,7 +33,7 @@ sub pretty_print_json {
 	$j->pretty(1);
 	
 	say "------------------------ $title ------------------------";
-	say $j->encode($param);
+	say encode_utf8($j->encode($param));
 	say "--------------------------------------------------------";
 }
 
