@@ -7,6 +7,7 @@ use Data::Dumper;
 use DBI qw(:utils);
 use IO::CaptureOutput qw/capture_exec/;
 use POSIX;
+use Time::HiRes;
 
 local $| = 1;
 
@@ -40,8 +41,8 @@ require BackendConfig;
 
 my $JOB_RUNNER_DIR = $PROD_DIR."Zonemaster-Backend/JobRunner";
 my $LOG_DIR = BackendConfig->LogDir();
-
 my $perl_command = BackendConfig->PerlIntereter();
+my $polling_interval = BackendConfig->PollingInterval();
 
 my $connection_string = BackendConfig->DB_connection_string();
 my $dbh = DBI->connect($connection_string, BackendConfig->DB_user(), BackendConfig->DB_password(), {RaiseError => 1, AutoCommit => 1});
@@ -92,7 +93,7 @@ do {
 	}
 	$sth1->finish();
 	say '----------------------- '.strftime("%F %T", localtime()).' ------------------------';
-	sleep (10);
+	Time::HiRes::sleep($polling_interval);
 } while (time() - $start_time < (15*60 - 15));
 
 say "WORKED FOR 15 minutes LEAVING";

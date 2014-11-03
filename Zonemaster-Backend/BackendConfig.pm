@@ -115,4 +115,10 @@ sub PerlIntereter {
 	return $cfg->val( 'PERL', 'interpreter' );
 }
 
+sub PollingInterval {
+	my $cfg = _load_config();
+
+	return $cfg->val( 'DB', 'polling_interval' );
+}
+
 1;
