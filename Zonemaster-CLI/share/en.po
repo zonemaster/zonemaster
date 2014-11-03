@@ -18,8 +18,8 @@ msgstr "The minimum severity level to display"
 msgid "The locale to use for messages translation."
 msgstr "The locale to use for messages translation."
 
-msgid "Flag indicating of output should be in JSON or not."
-msgstr "Flag indicating of output should be in JSON or not."
+msgid "Flag indicating if output should be in JSON or not."
+msgstr "Flag indicating if output should be in JSON or not."
 
 msgid "Flag indicating if output should be translated to human language or dumped raw."
 msgstr "Flag indicating if output should be translated to human language or dumped raw."
@@ -30,8 +30,8 @@ msgstr "Print timestamp on entries."
 msgid "Print level on entries."
 msgstr "Print level on entries."
 
-msgid "Print the name of the maodule on entries."
-msgstr "Print the name of the maodule on entries."
+msgid "Print the name of the module on entries."
+msgstr "Print the name of the module on entries."
 
 msgid "A name/ip string giving a nameserver for undelegated tests. Can be given multiple times."
 msgstr "A name/ip string giving a nameserver for undelegated tests. Can be given multiple times."
