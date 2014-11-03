@@ -358,9 +358,9 @@ sub nameserver05 {
 sub nameserver06 {
     my ( $class, $zone ) = @_;
     my @results;
-    my @all_nsnames = uniq map { $_->string } @{ Zonemaster::TestMethods->method2( $zone ) },
+    my @all_nsnames = uniq map { lc($_->string) } @{ Zonemaster::TestMethods->method2( $zone ) },
       @{ Zonemaster::TestMethods->method3( $zone ) };
-    my @all_nsnames_with_ip = uniq map { $_->name->string } @{ Zonemaster::TestMethods->method4( $zone ) },
+    my @all_nsnames_with_ip = uniq map { lc($_->name->string) } @{ Zonemaster::TestMethods->method4( $zone ) },
       @{ Zonemaster::TestMethods->method5( $zone ) };
     my @all_nsnames_without_ip;
     my %diff;
