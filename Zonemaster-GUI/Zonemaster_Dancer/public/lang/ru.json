@@ -1,6 +1,6 @@
 {
 "Domain check"                              : "Проверка домена"
-,"Inactive domain check"                    : "Проверка неделегированного домена"
+,"Pre-delegated domain"                     : "Проверка неделегированного домена"
 ,"Domain name"                              : "Имя домена"
 ,"Basic"                                    : "Результат"
 ,"Advanced"                                 : "Подробно"

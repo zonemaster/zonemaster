@@ -318,7 +318,7 @@ sub get_test_results {
 
 	my $translator;
     $translator = BackendTranslator->new;
-#    $translator->locale('fr-FR');
+#    $translator->locale('fr');
     eval { $translator->data } if $translator;    # Provoke lazy loading of translation data
 
     my $test_info = $self->{db}->test_results($params->{id});
