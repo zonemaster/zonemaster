@@ -4,7 +4,8 @@
     <img src="/images/dns.svg" alt="DNS check" width="100">
     <div class="pull-right">
       <lang lang="en">en</lang> |
-      <lang lang="ru">ru</lang>
+      <lang lang="fr">fr</lang> |
+      <lang lang="sw">sw</lang>
       &nbsp;
     </div>
     <div style="position:absolute;display:inline-block;margin-top:30px;">
