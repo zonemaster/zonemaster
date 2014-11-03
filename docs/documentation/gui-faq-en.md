@@ -33,26 +33,16 @@ host connectivity, validity of IP-addresses and control of DNSSEC signatures
 will also be performed.
 
 **2. Who is behind ZoneMaster?**
-<<<<<<< HEAD
 ZoneMaster is a joint project between .SE (** ToDo **) and Afnic (registry
 operator of .fr TLD and those of the overseas territories of France). 
 
 **3. Why a new tool instead of modifying existing ones?**
-Similar to Zonemaster, both Afnic and IIS have developed their respective delegation
+Similar to Zonemaster, both Afnic and .SE have developed their respective delegation
 checking tools - ZoneCheck (http://zonecheck.fr) and DNSCheck
 (http://dnscheck.iis.se), which has been in use for a number of years. The
 decision to create a new tool is to incorporate all the good functionalities
 from both the existing tools and outperform them in speed and resource use.
 
-=======
-ZoneMaster is a joint project between the Swedish and French ccTLD's and their
-similar respective delegation checking tools [DNSCheck](http://dnscheck.iis.se/)
-and [ZoneCheck](http://zonecheck.fr/). ZoneMaster has the ambition to incorporate
-all the good parts from both these tools and at the same time outperform them in
-speed and resource use.
-
-**3. Why a new tool instead of modifying existing ones?**  
->>>>>>> 791d4a1cc122ff90c0abba9b4b90646112a28914
 The first part of the ZoneMaster project involved a thourough investigation of
 the tools we had. During this we asked ourselves what the pros and cons would be
 to either improve or redesign one of the existing tools versus building one from
@@ -84,16 +74,10 @@ charge of your domain (the tech-c or technical staff at your name server
 provider) that there in fact is a problem with your domain you can use the link
 that appears on the bottom of the page after each test. So if you have run a
 test and want to show someone the result of that specific test you can just copy
-<<<<<<< HEAD
 the link at the bottom of the page that displays your test results. The link
 below, for example, points at a previous test on "iis.se":
 
- http://zonemaster.net/test/200 [** Verify Link later **]
-=======
-the link at the bottom of the page that displays your test results. This link,
-for example, points at a previous test on "iis.se":
-http://zonemaster.net/test/200
->>>>>>> 791d4a1cc122ff90c0abba9b4b90646112a28914
+ http://zonemaster.net/test/200 [Verify Link later]
 
 **7. ZoneMaster goes "Error"/"Warning" on my domain, what does it mean?**  
 Of course, this depends on what kind of test failed for your zone. In most cases
