@@ -11,7 +11,7 @@
     </div>
     <navigation nav-id="main">
       <tab tab-title="{{'Domain check'|translate}}" tab-id="domain_check"></tab>
-      <tab tab-title="{{'Inactive domain check'|translate}}" tab-id="inactive_domain_check"></tab>
+      <tab tab-title="{{'Pre-delegated domain'|translate}}" tab-id="inactive_domain_check"></tab>
       <tab tab-title="{{'FAQ'|translate}}" tab-id="faq"></tab>
     </navigation>
   </div>
