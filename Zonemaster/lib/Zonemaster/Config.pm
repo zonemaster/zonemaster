@@ -141,7 +141,7 @@ sub load_policy_file {
     my $new = decode_json read_file $filename;
     if ($new) {
         $policy = $merger->merge( $policy, $new );
-        push @{$self->pfiles}, $filename;
+        push @{$self->pfiles}, $filename if (ref($self) and $self->isa(__PACKAGE__));
     }
 
     return !!$new;
