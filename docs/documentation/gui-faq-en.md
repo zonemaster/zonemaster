@@ -22,7 +22,7 @@ Zonemaster
 ZoneMaster
 --------
 
-[What] **1. What is ZoneMaster?**  
+   [What]: **1. What is ZoneMaster?**  
 ZoneMaster is a program that was designed to help people check, measure and
 hopefully also understand the workings of the DNS (Domain Name System). When a
 domain (aka zone) is submitted to ZoneMaster it will investigate the domain’s
