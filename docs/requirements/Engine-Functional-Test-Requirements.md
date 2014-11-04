@@ -48,7 +48,7 @@ functional tests for the test engine, following steps should be followed:
 |FR07|Delegation Inconsistency|[CONFIGURATION04](../specifications/functional-tests/Configuration-TP/configuration04.md)||
 |FR08|Test whether the tool correctly treats the name error with "NXDOMAIN" in response|[BEHAVIOR01](../specifications/functional-tests/Behavior-TP/behavior01.md)|OK|
 |FR09|Test whether the tool correctly treats when "no such data exist"  with "NODATA" in response|[BEHAVIOR02](../specifications/functional-tests/Behavior-TP/behavior02.md)||
-|FR10|Match the results with existing ZC when certain protocols are disabled (e.g.IPv6)|[BEHAVIOR03](../specifications/functional-tests/Behavior-TP/behavior03.md)||
+|FR10|Appropriate results when certain protocols are disabled (e.g.IPv6)|[BEHAVIOR03](../specifications/functional-tests/Behavior-TP/behavior03.md)|OK|
 |FR11|Test whether the tool run only appropriate tests when the default test profile is modified|[BEHAVIOR04](../specifications/functional-tests/Behavior-TP/behavior04.md)|KO|
 |FR12|Capable of running the test when the delegation parameters are specified|[BEHAVIOR05](../specifications/functional-tests/Behavior-TP/behavior05.md)||
 |FR13|Able to test non delegated domain|[BEHAVIOR06](../specifications/functional-tests/BEHAVIOR-TP/behavior06.md)||
