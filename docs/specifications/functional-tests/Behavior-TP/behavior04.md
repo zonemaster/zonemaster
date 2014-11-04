@@ -1,4 +1,5 @@
-## BEHAVIOR04: Able to test a particular profile from the CLI using an option
+## BEHAVIOR04: Able to test a particular profile from the CLI using an option 
+which selects a particular test profile
 
 ### Test case identifier
 
@@ -22,10 +23,6 @@ as of not we do not have different profiles to test.
 
 The domain to be tested with a profile option
 
-### Results
-
-Not able to use the functionality as described in the objective (above) as of
-now from the Zonemaster CLI.
 
 
 

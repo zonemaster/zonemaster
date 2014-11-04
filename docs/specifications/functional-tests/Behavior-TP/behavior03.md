@@ -1,8 +1,8 @@
-## BEHAVIOR03: The bhavior of the engine when IPv6 or IPv4 is disabled
+## BEHAVIOR03: The behavior of the engine when IPv6 or IPv4 is disabled
 
 ### Test case identifier
 
-**BEHAVIOR03:** The bhavior of the engine when IPv6 or IPv4 is disabled
+**BEHAVIOR03:** The behavior of the engine when IPv6 or IPv4 is disabled
 
 ### Objective 
 This test is to verify whether appropriate results are displayed when
@@ -10,7 +10,7 @@ querying a domain name from the CLI with IPv6 or IPv4 disabled.
 
 ### Inputs
 
-The domain to be tested. The domain should not be already delegated in the DNS.
+The domain to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 

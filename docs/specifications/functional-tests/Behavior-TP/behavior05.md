@@ -3,7 +3,7 @@ specified
 
 ### Test case identifier
 
-**BEHAVIOR03:** Capable of running the test when the delegation parameters are
+**BEHAVIOR05:** Capable of running the test when the delegation parameters are
 specified
 
 ### Objective 
@@ -12,7 +12,8 @@ test
 
 ### Inputs
 
-The domain to be tested. The domain should not be already delegated in the DNS.
+The domain to be tested with NS and IP addresses. It could be either a delegated
+or un delegated domain
 
 ### Ordered description of steps to be taken to execute the test case
 

@@ -20,7 +20,7 @@ The  domain to be tested.
 seen in the appendix. The options --level (CRITICAL, ERROR, WARNING, NOTICE, INFO, 
 DEBUG, DEBUG2 or DEBUG3) provides different levels of information for the zone being tested
 
-2. If the query doesn't have results with level to the verbose option thn the
+2. If the query doesn't have results with level to the verbose option then the
 test return FAIL.
 
 ### Appendix

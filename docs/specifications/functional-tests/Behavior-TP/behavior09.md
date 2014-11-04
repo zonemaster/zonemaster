@@ -1,35 +1,49 @@
-## BEHAVIOR09: IDN Verification 
+## BEHAVIOR09: Appropriate error code when the zone is misconfigured
 
 ### Test case identifier
 
-**BEHAVIOR07:** IDN Verification 
+**BEHAVIOR09:** Appropriate error code when the zone is misconfigured
 
 ### Objective 
 
-The objective of this test is to verify the engine verfies IDN domains
+The objective of this test is to verify that the engine catches the zone
+mis-configurations appropriately
 
 ### Inputs
 
-The IDN domain to be tested.
+The broken domain to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
 1. A standard query for the domain is made using the zonemaster CLI
-2. If the output from the CLI does not verify the IDN domain as in the case of
-normal domain names, then the test fails 
+2. If the output from the CLI does not catch the expected errors, then the test
+returns FAIL
 
-### Outcome(s)
-
-If the test returns FAIL, then the engine is not capable of verifying IDN 2.0
-domains
-
-### Results
+### Appendix
 ``` 
-zonemaster-cli café.fr
+zonemaster-cli broken.dnssec.ee
 Seconds Level     Message
 ======= ========= =======
-  25.67 WARNING   All nameservers are in the same AS (16509).
-  25.67 WARNING   All nameservers IPv4 addresses are in the same AS (16509).
-  25.70 NOTICE    192.5.4.2 returned no DS records for xn--caf-dma.fr.
+   6.12 WARNING   All nameservers are in the same AS (51349).
+   6.12 WARNING   All nameservers IPv4 addresses are in the same AS (51349).
+   6.23 ERROR     DS record with keytag 57307 does not match the DNSKEY with the
+same tag.
+   6.24 ERROR     No DS record with a matching DNSKEY record was found.
+   6.34 ERROR     RRSIG with keytag 57307 and covering type(s) DNSKEY has
+already expired (expiration is: 1393471638).
+   6.34 ERROR     RRSIG with keytag 48381 and covering type(s) SOA has already
+expired (expiration is: 1393882163).
+   6.41 ERROR     Signature for DNSKEY with tag 57307 failed to verify with
+error 'Bogus DNSSEC signature'.
+   6.41 ERROR     The apex DNSKEY RRset was not correctly signed.
+   6.41 ERROR     Trying to verify SOA RRset with signature 48381 gave error
+'Bogus DNSSEC signature'.
+   6.41 ERROR     No RRSIG correctly signed the SOA RRset.
+   6.47 ERROR     Trying to verify NSEC3 RRset with RRSIG 48381 gave error
+'Bogus DNSSEC signature'.
+   7.33 NOTICE    SOA 'refresh' value (10800) is less than the recommended one
+(14400).
+
+``` 
 
 

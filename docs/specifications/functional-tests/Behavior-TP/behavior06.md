@@ -10,7 +10,7 @@ run
 
 ### Inputs
 
-The domain to be tested. The domain should not be already delegated in the DNS.
+The domain to be tested. 
 
 ### Ordered description of steps to be taken to execute the test case
 
