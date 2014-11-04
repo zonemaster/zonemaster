@@ -127,6 +127,8 @@ sub query_one {
 
         my $p = $ns->query( $name, $type, $flags );
         return $p if defined( $p );
+    }
+    continue {
         $i += 1;
     }
 
@@ -173,6 +175,8 @@ sub query_auth {
         if ($p and $p->aa) {
             return $p
         }
+    }
+    continue {
         $i += 1;
     }
 
@@ -199,6 +203,8 @@ sub query_persistent {
         if ($p and scalar($p->get_records_for_name($type, $name)) > 0) {
             return $p
         }
+    }
+    continue {
         $i += 1;
     }
 
