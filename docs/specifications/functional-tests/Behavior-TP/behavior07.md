@@ -18,11 +18,6 @@ The IDN domain to be tested.
 2. If the output from the CLI does not verify the IDN domain as in the case of
 normal domain names, then the test fails 
 
-### Outcome(s)
-
-If the test returns FAIL, then the engine is not capable of verifying IDN 2.0
-domains
-
 ### Appendix
 ``` 
 zonemaster-cli café.fr

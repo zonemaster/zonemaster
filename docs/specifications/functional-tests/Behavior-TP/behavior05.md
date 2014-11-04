@@ -17,7 +17,7 @@ The domain to be tested. The domain should not be already delegated in the DNS.
 ### Ordered description of steps to be taken to execute the test case
 
 1. A valid domain is verified using Zonemaster CLI with appropriate options as
-see in the appendix
+seen in the appendix
 2. If the query don’t receive a CRITICAL or ERROR notice, the test returns PASS
 
 

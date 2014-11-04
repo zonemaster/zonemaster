@@ -53,8 +53,8 @@ functional tests for the test engine, following steps should be followed:
 |FR12|Capable of running the test when the delegation parameters are specified|[BEHAVIOR05](../specifications/functional-tests/Behavior-TP/behavior05.md)|OK|
 |FR13|Able to test non delegated domain|[BEHAVIOR06](../specifications/functional-tests/Behavior-TP/behavior05.md)|OK|
 |FR14|Check whether timestamps on the test being run are being displayed|[BEHAVIOR06](../specifications/functional-tests/Behavior-TP/behavior06.md)|OK|
-|FR15|IDN verification|[BEHAVIOR07](../specifications/functional-tests/Behavior-TP/behavior07.md)||
-|FR16|Test whether the tool displays verbose information when launched with appropriate flags|[BEHAVIOR09](../specifications/functional-tests/Behavior-TP/behavior09.md)||
-|FR17|Test whether the tool triggers appropriate error code when the server is misconfigured|[BEHAVIOR10](../specifications/functional-tests/Behavior-TP/behavior10.md)||
-|FR18|Test whether the tool respond with one or more RRs if data does exist for the DNS query in question|[BEHAVIOR11](../specifications/functional-tests/Behavioe-TP/behavior11.md)||
+|FR15|IDN verification|[BEHAVIOR07](../specifications/functional-tests/Behavior-TP/behavior07.md)|OK|
+|FR16|Displays verbose information when launched with appropriate flags|[BEHAVIOR08](../specifications/functional-tests/Behavior-TP/behavior08.md)||
+|FR17|Triggers appropriate error code when the server is misconfigured|[BEHAVIOR10](../specifications/functional-tests/Behavior-TP/behavior09.md)||
+|FR18|Responds with one or more RRs if data does exist for the DNS query in question|[BEHAVIOR11](../specifications/functional-tests/Behavioe-TP/behavior10.md)||
 
