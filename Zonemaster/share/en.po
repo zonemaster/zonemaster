@@ -129,6 +129,8 @@ msgstr "Nameserver {source} did not respond to NS query."
 msgid  "Nameserver for zone {parent} replies when trying to fetch glue."
 msgstr "Nameserver for zone {parent} replies when trying to fetch glue."
 
+#: CONNECTIVITY:IPV4_DISABLED
+#: CONNECTIVITY:IPV6_DISABLED
 #: CONNECTIVITY:NAMESERVERS_IPV4_NO_AS
 msgid  "No IPv4 nameserver address is in an AS."
 msgstr "No IPv4 nameserver address is in an AS."
@@ -181,6 +183,8 @@ msgstr "Nameserver {ns}/{address} not accessible over TCP on port 53."
 msgid  "Nameserver {ns}/{address} not accessible over UDP on port 53."
 msgstr "Nameserver {ns}/{address} not accessible over UDP on port 53."
 
+#: CONSISTENCY:IPV4_DISABLED
+#: CONSISTENCY:IPV6_DISABLED
 #: CONSISTENCY:MULTIPLE_NS_SET
 msgid  "Saw {count} NS set."
 msgstr "Saw {count} NS set."
@@ -273,6 +277,8 @@ msgstr "Child has nameserver(s) not listed at parent ({extra})."
 msgid  "Parent has nameserver(s) not listed at the child ({extra})."
 msgstr "Parent has nameserver(s) not listed at the child ({extra})."
 
+#: DELEGATION:IPV4_DISABLED
+#: DELEGATION:IPV6_DISABLED
 #: DELEGATION:IS_NOT_AUTHORITATIVE
 msgid  "Nameserver {ns} response is not authoritative on {proto} port 53."
 msgstr "Nameserver {ns} response is not authoritative on {proto} port 53."
@@ -597,6 +603,8 @@ msgstr "Nameserver {ns}/{address} does not support EDNS0 (replies with FORMERR).
 msgid  "The following nameservers support EDNS0 : {names}."
 msgstr "The following nameservers support EDNS0 : {names}."
 
+#: NAMESERVER:IPV4_DISABLED
+#: NAMESERVER:IPV6_DISABLED
 #: NAMESERVER:IS_A_RECURSOR
 msgid  "Nameserver {ns}/{address} answered with a RCODE NXDOMAIN to SOA query on {dname}."
 msgstr "Nameserver {ns}/{address} answered with a RCODE NXDOMAIN to SOA query on {dname}."

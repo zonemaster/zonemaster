@@ -1,4 +1,4 @@
-package Zonemaster::Test::Delegation v0.0.2;
+package Zonemaster::Test::Delegation v0.0.3;
 
 use 5.14.2;
 use strict;
@@ -67,6 +67,8 @@ sub metadata {
         delegation04 => [
             qw(
               IS_NOT_AUTHORITATIVE
+              IPV4_DISABLED
+              IPV6_DISABLED
               )
         ],
         delegation05 => [
@@ -77,6 +79,8 @@ sub metadata {
         delegation06 => [
             qw(
               SOA_NOT_EXISTS
+              IPV4_DISABLED
+              IPV6_DISABLED
               )
         ],
         delegation07 => [
@@ -112,6 +116,8 @@ sub translation {
         "SOA_EXISTS"             => "All the nameservers have SOA record.",
         "ENOUGH_NS_TOTAL"        => "Parent and child list enough nameservers ({ns}). Lower limit set to {minimum}.",
         "NOT_ENOUGH_NS_TOTAL"    => "Parent and child do not list enough nameservers ({ns}). Lower limit set to {minimum}.",
+        'IPV4_DISABLED'          => 'IPv4 is disabled, not sending "{type}" query to {ns}.',
+        'IPV6_DISABLED'          => 'IPv6 is disabled, not sending "{type}" query to {ns}.',
     };
 }
 
@@ -304,9 +310,27 @@ sub delegation04 {
 
     foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
-        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+        if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 ) {
+            push @results,
+              info(
+                IPV6_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
 
-        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
+        if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 ) {
+            push @results,
+              info(
+                IPV4_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
 
         next if $nsnames{ $local_ns->name };
 
@@ -378,9 +402,27 @@ sub delegation06 {
 
     foreach my $local_ns ( @{ Zonemaster::TestMethods->method4($zone) }, @{ Zonemaster::TestMethods->method5($zone) } ) {
 
-        next if (not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6);
+        if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 ) {
+            push @results,
+              info(
+                IPV6_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
 
-        next if (not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4);
+        if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 ) {
+            push @results,
+              info(
+                IPV4_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
 
         next if $nsnames{ $local_ns->name };
 

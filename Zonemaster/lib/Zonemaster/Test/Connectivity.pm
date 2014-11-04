@@ -1,4 +1,4 @@
-package Zonemaster::Test::Connectivity v0.0.5;
+package Zonemaster::Test::Connectivity v0.0.6;
 
 use 5.14.2;
 use strict;
@@ -41,12 +41,16 @@ sub metadata {
             qw(
               NAMESERVER_HAS_UDP_53
               NAMESERVER_NO_UDP_53
+              IPV4_DISABLED
+              IPV6_DISABLED
               )
         ],
         connectivity02 => [
             qw(
               NAMESERVER_HAS_TCP_53
               NAMESERVER_NO_TCP_53
+              IPV4_DISABLED
+              IPV6_DISABLED
               )
         ],
         connectivity03 => [
@@ -80,6 +84,8 @@ sub translation {
         'NAMESERVER_HAS_UDP_53'             => 'Nameserver {ns}/{address} accessible over UDP on port 53.',
         'NAMESERVER_NO_TCP_53'              => 'Nameserver {ns}/{address} not accessible over TCP on port 53.',
         'NAMESERVER_NO_UDP_53'              => 'Nameserver {ns}/{address} not accessible over UDP on port 53.',
+        'IPV4_DISABLED'                     => 'IPv4 is disabled, not sending "{type}" query to {ns}.',
+        'IPV6_DISABLED'                     => 'IPv6 is disabled, not sending "{type}" query to {ns}.',
     };
 }
 
@@ -101,9 +107,27 @@ sub connectivity01 {
       my $local_ns ( @{ Zonemaster::TestMethods->method4( $zone ) }, @{ Zonemaster::TestMethods->method5( $zone ) } )
     {
 
-        next if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 );
+        if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 ) {
+            push @results,
+              info(
+                IPV6_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
 
-        next if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 );
+        if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 ) {
+            push @results,
+              info(
+                IPV4_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
 
         next if $ips{ $local_ns->address->short };
 
@@ -144,9 +168,27 @@ sub connectivity02 {
       my $local_ns ( @{ Zonemaster::TestMethods->method4( $zone ) }, @{ Zonemaster::TestMethods->method5( $zone ) } )
     {
 
-        next if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 );
+        if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 ) {
+            push @results,
+              info(
+                IPV6_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
 
-        next if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 );
+        if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 ) {
+            push @results,
+              info(
+                IPV4_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
 
         next if $ips{ $local_ns->address->short };
 

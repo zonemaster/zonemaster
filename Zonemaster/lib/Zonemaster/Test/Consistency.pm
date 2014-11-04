@@ -1,4 +1,4 @@
-package Zonemaster::Test::Consistency v0.0.7;
+package Zonemaster::Test::Consistency v0.0.8;
 
 use 5.14.2;
 use strict;
@@ -43,6 +43,8 @@ sub metadata {
               MULTIPLE_SOA_SERIALS
               SOA_SERIAL
               SOA_SERIAL_VARIATION
+              IPV4_DISABLED
+              IPV6_DISABLED
               )
         ],
         consistency02 => [
@@ -52,6 +54,8 @@ sub metadata {
               ONE_SOA_RNAME
               MULTIPLE_SOA_RNAMES
               SOA_RNAME
+              IPV4_DISABLED
+              IPV6_DISABLED
               )
         ],
         consistency03 => [
@@ -61,6 +65,8 @@ sub metadata {
               ONE_SOA_TIME_PARAMETER_SET
               MULTIPLE_SOA_TIME_PARAMETER_SET
               SOA_TIME_PARAMETER_SET
+              IPV4_DISABLED
+              IPV6_DISABLED
               )
         ],
         consistency04 => [
@@ -70,6 +76,8 @@ sub metadata {
               ONE_NS_SET
               MULTIPLE_NS_SET
               NS_SET
+              IPV4_DISABLED
+              IPV6_DISABLED
               )
         ],
     };
@@ -96,6 +104,8 @@ sub translation {
         'ONE_NS_SET'           => 'A unique NS set was seen ({nsset}).',
         'MULTIPLE_NS_SET'      => 'Saw {count} NS set.',
         'NS_SET'               => 'Saw NS set ({nsset}) on following nameserver set : {servers}.',
+        'IPV4_DISABLED'        => 'IPv4 is disabled, not sending "{type}" query to {ns}.',
+        'IPV6_DISABLED'        => 'IPv6 is disabled, not sending "{type}" query to {ns}.',
     };
 } ## end sub translation
 
@@ -117,11 +127,29 @@ sub consistency01 {
       my $local_ns ( @{ Zonemaster::TestMethods->method4( $zone ) }, @{ Zonemaster::TestMethods->method5( $zone ) } )
     {
 
-        next if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 );
-
-        next if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 );
-
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
+
+        if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 ) {
+            push @results,
+              info(
+                IPV6_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
+
+        if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 ) {
+            push @results,
+              info(
+                IPV4_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
 
         my $p = $local_ns->query( $zone->name, q{SOA} );
 
@@ -204,11 +232,29 @@ sub consistency02 {
       my $local_ns ( @{ Zonemaster::TestMethods->method4( $zone ) }, @{ Zonemaster::TestMethods->method5( $zone ) } )
     {
 
-        next if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 );
-
-        next if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 );
-
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
+
+        if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 ) {
+            push @results,
+              info(
+                IPV6_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
+
+        if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 ) {
+            push @results,
+              info(
+                IPV4_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
 
         my $p = $local_ns->query( $zone->name, q{SOA} );
 
@@ -280,11 +326,29 @@ sub consistency03 {
       my $local_ns ( @{ Zonemaster::TestMethods->method4( $zone ) }, @{ Zonemaster::TestMethods->method5( $zone ) } )
     {
 
-        next if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 );
-
-        next if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 );
-
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
+
+        if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 ) {
+            push @results,
+              info(
+                IPV6_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
+
+        if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 ) {
+            push @results,
+              info(
+                IPV4_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
 
         my $p = $local_ns->query( $zone->name, q{SOA} );
 
@@ -367,11 +431,29 @@ sub consistency04 {
       my $local_ns ( @{ Zonemaster::TestMethods->method4( $zone ) }, @{ Zonemaster::TestMethods->method5( $zone ) } )
     {
 
-        next if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 );
-
-        next if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 );
-
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
+
+        if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 ) {
+            push @results,
+              info(
+                IPV6_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
+
+        if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 ) {
+            push @results,
+              info(
+                IPV4_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{SOA},
+                }
+              );
+            next;
+        }
 
         my $p = $local_ns->query( $zone->name, q{NS} );
 

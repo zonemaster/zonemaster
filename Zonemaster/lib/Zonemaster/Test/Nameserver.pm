@@ -1,4 +1,4 @@
-package Zonemaster::Test::Nameserver v0.0.2;
+package Zonemaster::Test::Nameserver v0.0.3;
 
 use 5.14.2;
 use strict;
@@ -66,6 +66,8 @@ sub metadata {
             qw(
               QUERY_DROPPED
               ANSWER_BAD_RCODE
+              IPV4_DISABLED
+              IPV6_DISABLED
               )
         ],
         nameserver06 => [
@@ -96,6 +98,8 @@ sub translation {
         'CAN_NOT_BE_RESOLVED' => 'The following nameservers failed to resolve to an IP address : {names}.',
         'CAN_BE_RESOLVED'     => 'All nameservers succeeded to resolve to an IP address.',
         'NO_RESOLUTION'       => 'No nameservers succeeded to resolve to an IP address.',
+        'IPV4_DISABLED'       => 'IPv4 is disabled, not sending "{type}" query to {ns}.',
+        'IPV6_DISABLED'       => 'IPv6 is disabled, not sending "{type}" query to {ns}.',
     };
 } ## end sub translation
 
@@ -302,11 +306,29 @@ sub nameserver05 {
       my $local_ns ( @{ Zonemaster::TestMethods->method4( $zone ) }, @{ Zonemaster::TestMethods->method5( $zone ) } )
     {
 
-        next if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 );
-
-        next if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 );
-
         next if $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short };
+
+        if ( not Zonemaster->config->ipv6_ok and $local_ns->address->version == $IP_VERSION_6 ) {
+            push @results,
+              info(
+                IPV6_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{AAAA},
+                }
+              );
+            next;
+        }
+
+        if ( not Zonemaster->config->ipv4_ok and $local_ns->address->version == $IP_VERSION_4 ) {
+            push @results,
+              info(
+                IPV4_DISABLED => {
+                    ns   => "$local_ns",
+                    type => q{AAAA},
+                }
+              );
+            next;
+        }
 
         $nsnames_and_ip{ $local_ns->name->string . q{/} . $local_ns->address->short }++;
 

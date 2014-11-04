@@ -32,6 +32,8 @@
       "PARENT_REPLIES" : "INFO"
    },
    "CONNECTIVITY" : {
+      "IPV4_DISABLED" : "DEBUG",
+      "IPV6_DISABLED" : "DEBUG",
       "NAMESERVER_HAS_TCP_53" : "INFO",
       "NAMESERVER_HAS_UDP_53" : "INFO",
       "NAMESERVER_NO_TCP_53" : "ERROR",
@@ -43,6 +45,8 @@
       "NAMESERVERS_WITH_MULTIPLE_AS" : "INFO"
    },
    "CONSISTENCY" : {
+      "IPV4_DISABLED" : "DEBUG",
+      "IPV6_DISABLED" : "DEBUG",
       "MULTIPLE_NS_SET" : "NOTICE",
       "MULTIPLE_SOA_RNAMES" : "NOTICE",
       "MULTIPLE_SOA_SERIALS" : "WARNING",
@@ -68,6 +72,8 @@
       "ENOUGH_NS_TOTAL" : "INFO",
       "EXTRA_NAME_CHILD" : "NOTICE",
       "EXTRA_NAME_PARENT" : "ERROR",
+      "IPV4_DISABLED" : "DEBUG",
+      "IPV6_DISABLED" : "DEBUG",
       "IS_NOT_AUTHORITATIVE" : "WARNING",
       "NAMES_MATCH" : "INFO",
       "NOT_ENOUGH_NS" : "INFO",
@@ -97,6 +103,8 @@
       "EDNS0_BAD_ANSWER" : "WARNING",
       "EDNS0_BAD_QUERY" : "NOTICE",
       "EDNS0_SUPPORT" : "INFO",
+      "IPV4_DISABLED" : "DEBUG",
+      "IPV6_DISABLED" : "DEBUG",
       "IS_A_RECURSOR" : "ERROR",
       "NO_RECURSOR" : "INFO",
       "NO_RESOLUTION" : "ERROR",
