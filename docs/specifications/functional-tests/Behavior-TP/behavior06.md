@@ -1,42 +1,36 @@
-## BEHAVIOR06: Able to test un-delegated domains
+## BEHAVIOR06: Timestamps on the test being run 
 
 ### Test case identifier
 
-**BEHAVIOR07:** Able to test un delegated domains
+**BEHAVIOR06:** Timestamps on the test being run
 
 ### Objective 
-
-Testing un-delegated domains is a functionality that is available both in ZC and
-DC. 
-
-Ths objective of this test is to verify whether ZM is having this functionality.
+This test is to verify whether the engine displays timestamps on the test being
+run
 
 ### Inputs
 
-The domain to be tested.
+The domain to be tested. The domain should not be already delegated in the DNS.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. A standard query for the domain is made with appropriate NS and IP as inputs. 
+1. A valid domain is verified using Zonemaster CLI with appropriate options as
+see in the appendix
+2. If the query don’t show timestamp on each test run,  the test returns FAIL
 
-a. A delegated domain, but with NS/IP as inputs
+
+### Appendix
 ```
-zonemaster-cli --ns i.ns.se/194.146.106.22 --ns
+zonemaster-cli iis.se  --ns i.ns.se/194.146.106.22 --ns
 i.ns.se/2001:67c:1010:5::53 --ns ns.nic.se/212.247.7.228 --ns
 ns.nic.se/2a00:801:f0:53::53 --ns ns3.nic.se/212.247.8.152 --ns
-ns3.nic.se/2a00:801:f0:211::152 iis.se
+ns3.nic.se/2a00:801:f0:211::152  IIS.SE
+Seconds Level     Message
+======= ========= =======
+   6.20 WARNING   Nameserver ns3.nic.se has an IP address (212.247.8.152)
+without PTR configured.
+  10.45 NOTICE    192.36.144.107 returned no DS records for iis.se.
+  11.51 NOTICE    SOA 'refresh' value (10800) is less than the recommended one
+(14400).
+
 ```
-b. An un-delegated domain with NS/IP as inputs
-```
-zonemaster-cli motounit.de --ns sdns2.ovh.net/213.251.188.141 --ns
-ns3000952.ovh.net/37.59.47.185
-```
-
-2. If the output from the CLI does not contain appropriate results for each test being run,
-then the test fails 
-
-### Outcome(s)
-
-If the test returns FAIL, then the engine does not provide the functionality of
-testing un-delegated domains
-
