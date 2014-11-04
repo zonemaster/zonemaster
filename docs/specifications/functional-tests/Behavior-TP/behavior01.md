@@ -22,15 +22,18 @@ The domain to be tested. The domain should not be already delegated in the DNS.
 1. A standard query for the domain is made (zonemaster-cli afnics.fr)
 2. If the query don’t receive an RCODE NXDOMAIN, the test returns with FAIL
 
-### Outcome(s)
+### Result 
 
 If the test does not return FAIL, then the engine does not capture the correct
 RCODE in the event of testing a non existant domain name
 
-### Special procedural requirements	
-
-None
-
-### Intercase dependencies
-
-None
+### Appendix
+```
+zonemaster-cli afnics.fr
+Seconds Level     Message
+======= ========= =======
+   1.17 CRITICAL  Nameserver for zone fr responded with NXDOMAIN to query for
+glue.
+   1.17 CRITICAL  Not enough data about afnics.fr was found to be able to run
+tests.
+```
