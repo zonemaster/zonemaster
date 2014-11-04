@@ -25,6 +25,7 @@ use Encode;
 use Net::LDNS;
 use POSIX qw[setlocale LC_MESSAGES];
 use List::Util qw[max];
+use Text::Reflow qw[reflow_string];
 
 our %numeric = Zonemaster::Logger::Entry->levels;
 
@@ -218,19 +219,7 @@ sub run {
     }
 
     if ( $self->list_tests ) {
-        my %methods = Zonemaster->all_methods;
-        foreach my $module ( sort keys %methods ) {
-            say $module;
-            my $doc = pod_extract_for( $module );
-            foreach my $method ( sort @{ $methods{$module} } ) {
-                print "\t$method";
-                if ( $doc and $doc->{$method} ) {
-                    print "\t" . $doc->{$method};
-                }
-                print "\n";
-            }
-        }
-        exit( 0 );
+        print_test_list();
     }
 
     my ( $domain ) = @{ $self->extra_argv };
@@ -489,6 +478,25 @@ sub to_idn {
         say __("Warning: Net::LDNS not compiled with libidn, cannot handle non-ASCII names correctly.");
         return $str;
     }
+}
+
+sub print_test_list {
+    my %methods = Zonemaster->all_methods;
+    my $maxlen = max map { map { length($_) } @$_ } values %methods;
+
+    foreach my $module ( sort keys %methods ) {
+        say $module;
+        my $doc = pod_extract_for( $module );
+        foreach my $method ( sort @{ $methods{$module} } ) {
+            printf "  %${maxlen}s ", $method;
+            if ( $doc and $doc->{$method} ) {
+                print reflow_string( $doc->{$method}, optimum => 65, maximum => 75, indent1 => '   ', indent2 => (' ' x ($maxlen + 6)) );
+            }
+            print "\n";
+        }
+        print "\n";
+    }
+    exit( 0 );
 }
 
 1;
