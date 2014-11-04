@@ -420,7 +420,7 @@ This would set the level to C<INFO> for any C<SYSTEM:FILTER_THIS> messages that 
 
 __DATA__
 {
-   "asnroots" : [ "asnlookup.zonemaster.net", "asnlookup.iis.se", "asn.cymru,com"],
+   "asnroots" : [ "asnlookup.zonemaster.net", "asnlookup.iis.se"],
    "net" : {
       "ipv4" : 1,
       "ipv6" : 1
