@@ -28,13 +28,7 @@ component provides the correct output for a given input.
 
 Functional tests are intended to verify whether the code (written as part of
 the test engine) accurately detects the DNS problem's it is meant to detect
-with neither false positive nor false negative. As part of writing the
-functional tests for the test engine, following steps should be followed:
-   * Write the functional test requirements
-   * Follow the method (as done for unit tests) to elaborate the test
-   requirements
-   * Write simple scripts to launch the test or use the CLI.  Compare the 
-   results of the test with the results of both Zonecheck and DNScheck
+with neither false positive nor false negative. 
 
 
 |Req| Test requirement                           |Explanation|Status|
