@@ -17,10 +17,8 @@ Security and Performance testing are not included.
 
 |Req| Test requirement                           |How Verified|Status|
 |:--|:-------------------------------------------|------------|------|
-|GR01|Supports Swedish
-language|[Script](../../Zonemaster-GUI/FunctionalTests/GR01-test-swedish-language.js)| KO - noJS |
-|GR02|Supports French
-language|[Script](../../Zonemaster-GUI/FunctionalTests/GR01-test-french-language.js)| KO - noJS|
+|GR01|Supports Swedish language|[Script](../../Zonemaster-GUI/FunctionalTests/GR01-test-swedish-language.js)| KO - noJS |
+|GR02|Supports French language|[Script](../../Zonemaster-GUI/FunctionalTests/GR01-test-french-language.js)| KO - noJS|
 |GR03|Supports English language |[Script](../../Zonemaster-GUI/FunctionalTests/GR01-test-english-language.js)| Ok |
 |GR04|On launching the URL opens with a default simple view | [Script](../../Zonemaster-GUI/FunctionalTests/GR04-main-page.js)| OK |
 |GR05|The simple view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.   | ToDo |
@@ -41,7 +39,7 @@ language|[Script](../../Zonemaster-GUI/FunctionalTests/GR01-test-french-language
 |GR20|Capable to select one of the drop down menu in the advanced option|[Script](../../Zonemaster-GUI/FunctionalTests/GR19-advanced-checkbox-verification.js)|OK|
 |GR21|Check the existence of broken links|[Script](../../Zonemaster-GUI/FunctionalTests/GR21-check-broken-links.js)|OK|
 |GR22|Check the display of appropriate content on clicking each link |[Script](../../Zonemaster-GUI/FunctionalTests/GR22-link-content.js)|OK|
-|GR23|Check the tool displays the client IP address  |Does not display the correct IPv6 address |OK|
+|GR23|Check the tool displays the client IP address  |Manually|OK|
 |GR24|Able to specify delegation parameters  |Manually|OK|
 |GR25|Able to specify to stop the test on a fatal error | For release 1.1 |Wishlist|
 |GR26|Check all the terms (such as menus, input fields) are appropriate   | Manually |OK|
