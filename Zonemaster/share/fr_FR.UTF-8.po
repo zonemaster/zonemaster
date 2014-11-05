@@ -13,14 +13,6 @@ msgstr ""
 msgid  "Reverse DNS entry exist for all Nameserver IP addresses."
 msgstr "Les différentes adresses IP des serveurs de noms ont toutes un enregistrement \"PTR\" (reverse) associé dans le DNS."
 
-#: ADDRESS:NAMESERVER_IPV6_ADDRESSES_NOT_BOGON
-msgid  "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix."
-msgstr "Aucune des {nb} adresses IPv6 des serveurs de noms ne fait partie des 'bogon'."
-
-#: ADDRESS:NAMESERVER_IPV6_ADDRESS_BOGON
-msgid  "Nameserver {ns} IPv6 address {address} is part of a bogon prefix."
-msgstr "L'adresse IPv6 {address} du serveur de noms {ns} fait partie des 'bogon'."
-
 #: ADDRESS:NAMESERVER_IP_PRIVATE_NETWORK
 msgid  "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'."
 msgstr "Le serveur de noms {ns} a une adresse IP ({address}) dont le préfixe est référéncé dans le {reference} sous le libellé '{name}'."

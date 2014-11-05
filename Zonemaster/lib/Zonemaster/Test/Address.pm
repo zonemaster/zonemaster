@@ -26,7 +26,6 @@ sub all {
     if ( any { $_->tag eq q{NAMESERVERS_IP_WITH_REVERSE} } @results ) {
         push @results, $class->address03( $zone );
     }
-    push @results, $class->address04( $zone );
 
     return @results;
 }
@@ -60,12 +59,6 @@ sub metadata {
               NO_RESPONSE_PTR_QUERY
               )
         ],
-        address04 => [
-            qw(
-              NAMESERVER_IPV6_ADDRESS_BOGON
-              NAMESERVER_IPV6_ADDRESSES_NOT_BOGON
-              )
-        ],
     };
 } ## end sub metadata
 
@@ -74,9 +67,6 @@ sub translation {
         'NAMESERVER_IP_WITHOUT_REVERSE' => 'Nameserver {ns} has an IP address ({address}) without PTR configured.',
         'NAMESERVER_IP_PTR_MISMATCH' =>
           'Nameserver {ns} has an IP address ({address}) with mismatched PTR result ({names}).',
-        'NAMESERVER_IPV6_ADDRESSES_NOT_BOGON' =>
-          'None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix.',
-        'NAMESERVER_IPV6_ADDRESS_BOGON' => 'Nameserver {ns} IPv6 address {address} is part of a bogon prefix.',
         'NAMESERVER_IP_PRIVATE_NETWORK' =>
 'Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a \'{name}\'.',
         'NO_IP_PRIVATE_NETWORK'       => 'All Nameserver addresses are in the routable public addressing space.',
@@ -252,58 +242,6 @@ sub address03 {
     return @results;
 } ## end sub address03
 
-sub address04 {
-    my ( $class, $zone ) = @_;
-    my @results;
-    my %ips;
-    my $ipv6_nb = 0;
-
-    foreach
-      my $local_ns ( @{ Zonemaster::TestMethods->method4( $zone ) }, @{ Zonemaster::TestMethods->method5( $zone ) } )
-    {
-
-        next if not $local_ns->address->version == $IP_VERSION_6;
-        next if $ips{ $local_ns->address->short };
-
-        $ipv6_nb++;
-
-        my $reverse_ip_query = $local_ns->address->reverse_ip;
-        $reverse_ip_query =~ s/ip6.arpa./v6.fullbogons.cymru.com./smx;
-
-        my $p = Zonemaster::Recursor->recurse( $reverse_ip_query );
-
-        if ( $p ) {
-            if ( $p->rcode ne q{NXDOMAIN} ) {
-                foreach my $rr ( $p->answer ) {
-                    if ( $rr->type eq q{A} and $rr->address eq q{127.0.0.2} ) {
-                        push @results,
-                          info(
-                            NAMESERVER_IPV6_ADDRESS_BOGON => {
-                                ns      => $local_ns->name->string,
-                                address => $local_ns->address->short,
-                            }
-                          );
-                    }
-                }
-            }
-        }
-
-        $ips{ $local_ns->address->short }++;
-
-    } ## end foreach my $local_ns ( @{ Zonemaster::TestMethods...})
-
-    if ( $ipv6_nb > 0 and none { $_->tag eq q{NAMESERVER_IPV6_ADDRESS_BOGON} } @results ) {
-        push @results,
-          info(
-            NAMESERVER_IPV6_ADDRESSES_NOT_BOGON => {
-                nb => $ipv6_nb,
-            }
-          );
-    }
-
-    return @results;
-} ## end sub address04
-
 1;
 
 =head1 NAME
@@ -352,10 +290,6 @@ Verify reverse DNS entries exist for nameservers IP addresses.
 =item address03($zone)
 
 Verify that reverse DNS entries match nameservers names.
-
-=item address04($zone)
-
-Verify that nameservers addresses are not part of a bogon prefix.
 
 =item find_special_address($ip)
 
