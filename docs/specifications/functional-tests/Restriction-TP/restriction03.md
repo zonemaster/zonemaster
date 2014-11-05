@@ -17,27 +17,8 @@ format.
 The objective for this test is verify whether the engine identifies the
 domain names which is not in the LDH format. 
 
-### Inputs
+### Result
 
-The domain to be tested.
+The engine does not capture the restriction for LDH and the explanation is
+provided here : https://github.com/dotse/zonemaster/issues/153 
 
-### Ordered description of steps to be taken to execute the test case
-
-1. Configure a live zone, wherein the label for the domain has characters
-other than LDH
-2. A standard query for the domain is made
-3. If the query don't receive Error response, the test returns with FAIL 
-
-### Outcome(s)
-
-The engine should capture the LDH limitation and return PASS and if not, 
-returns FAIL
-
-### Special procedural requirements	
-
-A FAIL for this test does not automatically indicate there is a procedural
-failure
-
-### Intercase dependencies
-
-None
