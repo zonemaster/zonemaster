@@ -13,14 +13,6 @@ msgstr ""
 msgid  "Reverse DNS entry exist for all Nameserver IP addresses."
 msgstr "Reverse DNS entry exist for all Nameserver IP addresses."
 
-#: ADDRESS:NAMESERVER_IPV6_ADDRESSES_NOT_BOGON
-msgid  "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix."
-msgstr "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix."
-
-#: ADDRESS:NAMESERVER_IPV6_ADDRESS_BOGON
-msgid  "Nameserver {ns} IPv6 address {address} is part of a bogon prefix."
-msgstr "Nameserver {ns} IPv6 address {address} is part of a bogon prefix."
-
 #: ADDRESS:NAMESERVER_IP_PRIVATE_NETWORK
 msgid  "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'."
 msgstr "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'."

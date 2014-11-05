@@ -9,14 +9,6 @@ msgstr ""
 "Language-Team: Zonemaster Team\n"
 "MIME-Version: 1.0\n"
 
-#: ADDRESS:NAMESERVER_IPV6_ADDRESSES_NOT_BOGON
-msgid  "None of the {nb} nameserver(s) with IPv6 addresses is part of a bogon prefix."
-msgstr "Ingen av de {nb} namnservrarna med IPv6-addresser är en del av ett bogon-prefix."
-
-#: ADDRESS:NAMESERVER_IPV6_ADDRESS_BOGON
-msgid  "Nameserver {ns} IPv6 address {address} is part of a bogon prefix."
-msgstr "En IPv6-address för namnservern {ns} ({address}) ingår i ett bogon-prefix."
-
 #: ADDRESS:NAMESERVER_IP_PRIVATE_NETWORK
 msgid  "Nameserver {ns} has an IP address ({address}) with prefix {prefix} referenced in {reference} as a '{name}'."
 msgstr "Namnservern {ns} har en IP-adress ({address}) med prefixet {prefix}, som {reference} klassificerar som '{name}'."
