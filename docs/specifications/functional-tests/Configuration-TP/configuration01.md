@@ -1,5 +1,4 @@
-## CONFIGURATION01: The data for a canonical name and its aliases cannot be
-different
+## CONFIGURATION01: The data for a canonical name and its aliases cannot be different
 
 ### Test case identifier
 
@@ -25,20 +24,7 @@ The domain to be tested.
 1. Configure a live zone, wherein the CNAME record coexist with any other data
 
 ```
-For example (Zone "nic.fr"): 
-
-rd    IN  NS     ns1
-      IN  NS     ns2
-      IN  CNAME  labs.nic.fr.
-labs  IN  A      1.2.3.4
-```
-
-```
-Another example (Zone "rd.nic.fr"):
-
-      IN  MX    10  mail.rd.nic.fr.
-mail  IN  CNAME     labs        
-labs  IN  A         1.2.3.4 
+configuration02-z1.zft-root.rd.nic.fr.
 ```
 
 2. A standard query for the domain is made 
@@ -51,7 +37,7 @@ The engine should capture the CNAME collision in a DNS zone as specified in RFC
 
 ### Results
 Current DNS softwares does not allow a zone to be loaded wherein a CNAME coexist
-with other RR. The only solution to emulate this behavior is to use an old DNS
-software versions or write our own implementation. It has been decided that such
+with other RR. The only way to emulate this behavior is to use an old DNS
+software version or write our own implementation. It has been decided that such
 efforts are not necessary at this stage and hence this test is not run.	
 
