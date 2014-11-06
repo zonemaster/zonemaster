@@ -31,14 +31,14 @@ the test engine) accurately detects the DNS problem's it is meant to detect
 with neither false positive nor false negative. 
 
 
-|Req| Test requirement                           |Explanation|Status|
-|:--|:-------------------------------------------|-----------|------|
-|FR01|A DNS query with a label that exceeds the maximum length - 63 characters|[RESTRICTION01](../specifications/functional-tests/Restriction-TP/restriction01.md)|Cannot test|N/A|
-|FR02|A FQDN that exceeds the maximum length - 255 octets|[RESTRICTION02](../specifications/functional-tests/Restriction-TP/restriction02.md)|Cannot test|N/A|
-|FR03|A host name label with other than letters, digits and '-'character|[RESTRICTION03](../specifications/functional-tests/Restriction-TP/restriction03.md)|Not Verified|N/A|
-|FR04|CNAME RRs collision (If a CNAME RR is present at a node, no other data should be present; (3.6.2) - RFC 1034)|[CONFIGURATION01](../specifications/functional-tests/Configuration-TP/configuration01.md)|Did not test|N/A|
+|Req| Test requirement                           |Explanation|
+|:--|:-------------------------------------------|-----------|
+|FR01|A DNS query with a label that exceeds the maximum length - 63 characters|[RESTRICTION01](../specifications/functional-tests/Restriction-TP/restriction01.md)|Cannot test
+|FR02|A FQDN that exceeds the maximum length - 255 octets|[RESTRICTION02](../specifications/functional-tests/Restriction-TP/restriction02.md)|Cannot test
+|FR03|A host name label with other than letters, digits and '-'character|[RESTRICTION03](../specifications/functional-tests/Restriction-TP/restriction03.md)|Not Verified
+|FR04|CNAME RRs collision (If a CNAME RR is present at a node, no other data should be present; (3.6.2) - RFC 1034)|[CONFIGURATION01](../specifications/functional-tests/Configuration-TP/configuration01.md)|Did not test|
 |FR05|Zone cyclic dependency|[CONFIGURATION02](../specifications/functional-tests/Configuration-TP/configuration02.md)|Results inconclusive|
-|FR06|Lame delegation |[CONFIGURATION03](../specifications/functional-tests/Configuration-TP/configuration03.md)||
+|FR06|Lame delegation |[CONFIGURATION03](../specifications/functional-tests/Configuration-TP/configuration03.md)|OK|
 |FR07|Delegation Inconsistency|[CONFIGURATION04](../specifications/functional-tests/Configuration-TP/configuration04.md)||
 |FR08|Test whether the tool correctly treats the name error with "NXDOMAIN" in response|[BEHAVIOR01](../specifications/functional-tests/Behavior-TP/behavior01.md)|OK|
 |FR09|Test whether the tool correctly treats when "no such data exist"  with "NODATA" in response|[BEHAVIOR02](../specifications/functional-tests/Behavior-TP/behavior02.md)||

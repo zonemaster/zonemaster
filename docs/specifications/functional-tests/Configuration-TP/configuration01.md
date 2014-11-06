@@ -30,14 +30,10 @@ configuration02-z1.zft-root.rd.nic.fr.
 2. A standard query for the domain is made 
 3. If the query don’t receive Error response, the test returns with FAIL
 
-### Outcome(s)
-
-The engine should capture the CNAME collision in a DNS zone as specified in RFC
-1034 and return FAIL, if there is a coexistance.
-
 ### Results
 Current DNS softwares does not allow a zone to be loaded wherein a CNAME coexist
 with other RR. The only way to emulate this behavior is to use an old DNS
 software version or write our own implementation. It has been decided that such
 efforts are not necessary at this stage and hence this test is not run.	
+
 
