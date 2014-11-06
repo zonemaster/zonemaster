@@ -19,6 +19,10 @@ The domain to be tested. The domain should not be already delegated in the DNS.
 2. If the query don’t receive an RCODE NXDOMAIN, the test returns FAIL
 
 
+### Results
+Verifying the invalid domain with zonemaster CLI does provide conclusive errors as you
+could see from the appendix
+
 ### Appendix
 ```
 zonemaster-cli afnics.fr

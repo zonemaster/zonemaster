@@ -18,6 +18,9 @@ The IDN domain to be tested.
 2. If the output from the CLI does not verify the IDN domain as in the case of
 normal domain names, then the test fails 
 
+### Results
+As seen in the appendix, the engine is capable of verifying IDN domains
+
 ### Appendix
 ``` 
 zonemaster-cli café.fr

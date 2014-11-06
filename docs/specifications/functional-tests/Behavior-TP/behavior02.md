@@ -21,25 +21,20 @@ querying a domain name that exists, but the queried record type does not exist.
 ### Inputs
 
 The domain to be tested. The domain should be already delegated in the DNS, but
-the queried record type should not exist.
+should not contain delegation RRs or the queried RRs
 
-### Ordered description of steps to be taken to execute the test case
+### Results
+Verifying a domain such as "gouv.fr" which does not have delegation RRs results
+in expected results as you can see from the appendix.
 
-1. A standard query for the domain is made, querying for the record type that
-does not exist in the zone 
-2. The response should contain an RCODE NOERROR 
-3. The response should contain an AUTHORITY section for the domain queried but no ANSWER section
-4. If the response contains data contrary to steps 2 and 3, the test returns with FAIL
 
-### Outcome(s)
-
-If the test does not return FAIL, then the engine does not capture correctly
-NODATA scenario
-
-### Special procedural requirements	
-
-None
-
-### Intercase dependencies
-
-None
+### Appendix
+```
+zonmaster-cli gouv.fr
+Seconds Level     Message
+======= ========= =======
+   1.16 CRITICAL  Nameservers for "fr" provided no NS records for tested zone.
+RCODE given was NOERROR.
+   1.16 CRITICAL  Not enough data about gouv.fr was found to be able to run
+tests.
+```

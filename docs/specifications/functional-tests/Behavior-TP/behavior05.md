@@ -20,6 +20,10 @@ seen in the appendix
 2. If the query don’t receive a CRITICAL or ERROR notice, the test returns PASS
 
 
+### Results
+As viewed in the appendix, the engine is capable of testing un delegated
+domains.
+
 ### Appendix
 ```
 zonemaster-cli iis.se  --ns i.ns.se/194.146.106.22 --ns

@@ -18,19 +18,26 @@ The domain to be tested.
 see in the appendix
 2. If the query don’t show timestamp on each test run,  the test returns FAIL
 
+### Results
 
 ### Appendix
 ```
-zonemaster-cli iis.se  --ns i.ns.se/194.146.106.22 --ns
-i.ns.se/2001:67c:1010:5::53 --ns ns.nic.se/212.247.7.228 --ns
-ns.nic.se/2a00:801:f0:53::53 --ns ns3.nic.se/212.247.8.152 --ns
-ns3.nic.se/2a00:801:f0:211::152  IIS.SE
+zonemaster-cli --time afnic.fr
 Seconds Level     Message
 ======= ========= =======
-   6.20 WARNING   Nameserver ns3.nic.se has an IP address (212.247.8.152)
-without PTR configured.
-  10.45 NOTICE    192.36.144.107 returned no DS records for iis.se.
-  11.51 NOTICE    SOA 'refresh' value (10800) is less than the recommended one
+  17.89 NOTICE    SOA 'mname' nameserver (dnsmaster.nic.fr) is not listed in
+"parent" NS records for tested zone (ns1.nic.fr;ns2.nic.fr;ns3.nic.fr).
+  17.90 NOTICE    SOA 'refresh' value (7200) is less than the recommended one
 (14400).
-
+  17.90 NOTICE    SOA 'retry' value (1800) is less than the recommended one
+(3600).
+sandoche@eryx:~$ zonemaster-cli afnic.fr
+Seconds Level     Message
+======= ========= =======
+   8.16 NOTICE    SOA 'mname' nameserver (dnsmaster.nic.fr) is not listed in
+"parent" NS records for tested zone (ns1.nic.fr;ns2.nic.fr;ns3.nic.fr).
+   8.16 NOTICE    SOA 'refresh' value (7200) is less than the recommended one
+(14400).
+   8.17 NOTICE    SOA 'retry' value (1800) is less than the recommended one
+(3600).
 ```

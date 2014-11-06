@@ -14,9 +14,14 @@ The domain to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. A valid domain is verified using Zonemaster CLI
+1. A valid domain is verified with corresponding options "--no-ipv6" or "--no-ipv4" using Zonemaster CLI
 2. If the query don’t receive a CRITICAL or ERROR notice, the test returns PASS
 
+### Results
+
+Verifying a valid zone with either IPv4 or IPV6 disabled using the zonemaster
+CLI does provide expected results without false positive or false negative as
+seen in the appendix. 
 
 ### Appendix
 ```
