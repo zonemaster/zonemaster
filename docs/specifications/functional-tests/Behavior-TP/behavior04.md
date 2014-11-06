@@ -19,10 +19,11 @@ suggested the requirements of such a functionality.
 The WEB-GUI seems to have taken into account of this functionality even though
 as of not we do not have different profiles to test.
 
-### Inputs
+### Results
 
-The domain to be tested with a profile option
-
+Further information on this test can be found here :
+https://github.com/dotse/zonemaster/issues/167. As of now this issue has moved
+to post release 1.0 
 
 
 
