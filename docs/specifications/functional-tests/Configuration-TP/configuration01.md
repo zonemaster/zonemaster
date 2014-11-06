@@ -49,10 +49,9 @@ labs  IN  A         1.2.3.4
 The engine should capture the CNAME collision in a DNS zone as specified in RFC
 1034 and return FAIL, if there is a coexistance.
 
-### Special procedural requirements	
+### Results
+Current DNS softwares does not allow a zone to be loaded wherein a CNAME coexist
+with other RR. The only solution to emulate this behavior is to use an old DNS
+software versions or write our own implementation. It has been decided that such
+efforts are not necessary at this stage and hence this test is not run.	
 
-None
-
-### Intercase dependencies
-
-None
