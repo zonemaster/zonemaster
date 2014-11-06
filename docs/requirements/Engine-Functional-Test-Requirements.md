@@ -31,8 +31,8 @@ the test engine) accurately detects the DNS problem's it is meant to detect
 with neither false positive nor false negative. 
 
 
-|Req| Test requirement                           |Explanation|
-|:--|:-------------------------------------------|-----------|
+|Req| Test requirement                           |Explanation|Status|
+|:--|:-------------------------------------------|-----------|------|
 |FR01|A DNS query with a label that exceeds the maximum length - 63 characters|[RESTRICTION01](../specifications/functional-tests/Restriction-TP/restriction01.md)|Cannot
 test|
 |FR02|A FQDN that exceeds the maximum length - 255 octets|[RESTRICTION02](../specifications/functional-tests/Restriction-TP/restriction02.md)|Cannot test|
