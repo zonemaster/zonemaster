@@ -13,5 +13,5 @@ The objective for this test is verify whether the engine conforms to the
 specification described in the previous paragraph.
 
 ### Results
-Since it is not possible to fit in more than 63 octets in a label
-, this test is not done
+Since it is not possible to fit in more than 63 octets in a DNS label
+, it is impossible to run this test. 

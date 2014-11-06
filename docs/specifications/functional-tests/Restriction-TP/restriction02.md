@@ -14,4 +14,4 @@ specification described in the previous paragraph
 
 ### Results
 Since it is not possible to fit in more than 255 octets in a DNS 
-packet, this test is not done.
+packet, this test is not run.
