@@ -26,7 +26,6 @@ Security and Performance testing are not included.
 |GR07|The advanced view should support the possibility of enabling or disabling IPv4 or IPv6 |[Script](../../Zonemaster-GUI/FunctionalTests/GR07-advanced-checkbox-verification.js)|OK|
 |GR08|The advanced view should support the possibility of choosing a profile from multiple profiles|[Script](../../Zonemaster-GUI/FunctionalTests/GR08-advanced-profile-verification.js)|OK|            
 |GR09|The advanced view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.   |   ToDo         |
-|GR10|The simple view should have a shortcut to undelegated view and FAQ|[Script](../../Zonemaster-GUI/FunctionalTests/GR10-undelegated-and-faq-links.js)|K0 - noJS|            
 |GR11|The undelegated view must inherit all of the advanced view options |Manually|OK|
 |GR12|The undelegated view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.   | ToDo    |
 |GR13|The undelegated view should have a text describing what undelegated means? |Manually|KO|
@@ -58,7 +57,7 @@ Security and Performance testing are not included.
 |FR11|For delegated zones, the GUI should be able to run tests by just providing the domain name |Manually|OK|
 |FR12|For undelegated zones, the GUI should be able to run the test with atleast one name server as input |Manually|OK|
 |FR13|For undelegated zones, the user must be able to submit one or more DS record(s) for use with DNSSEC | Manually |OK |
-|FR14|Verify the GUI runs with different test profiles|Manually| KO - No test profiles created |
+|FR14|Verify the GUI runs with different test profiles|Manually| KO - No test profiles created (Issue https://github.com/dotse/zonemaster/issues/167)|
 |FR15|Should be able to export the result in HTML format|Manually|KO|
 |FR16|Should be able to export the result in TEXT format|Manually|OK|
 |FR17|Should be able to show a progress bar with a rough estimate of the total test progress|Manually|OK|
