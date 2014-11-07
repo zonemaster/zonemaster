@@ -34,6 +34,7 @@ Seconds Level     Message
 Looks OK.
 
 ```
+```
 zonemaster-cli --level INFO iis.se    
 Seconds Level     Message
 ======= ========= =======
