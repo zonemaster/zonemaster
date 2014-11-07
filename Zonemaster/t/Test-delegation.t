@@ -18,7 +18,11 @@ ok( $res{ENOUGH_NS},        q{ENOUGH_NS} );
 ok( $res{ENOUGH_NS_GLUE},   q{ENOUGH_NS_GLUE} );
 ok( $res{ENOUGH_NS_TOTAL},  q{ENOUGH_NS_TOTAL} );
 ok( $res{NAMES_MATCH},      q{NAMES_MATCH} );
-ok( $res{REFERRAL_SIZE_OK}, q{REFERRAL_SIZE_OK} );
+
+LDNS: {
+    local $TODO = 'Waiting for next release of the ldns C library.';
+    ok( $res{REFERRAL_SIZE_OK}, q{REFERRAL_SIZE_OK} );
+}
 
 %res = map { $_->tag => 1 } Zonemaster->test_module( q{delegation}, q{crystone.se} );
 ok( $res{SAME_IP_ADDRESS},    q{SAME_IP_ADDRESS} );
