@@ -464,8 +464,9 @@ sub dnssec02 {
             }
           );
         my $dnskey_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
-        die "No response from child nameservers" if not $dnskey_p;
-        my %dnskey = map { $_->keytag => $_ } $dnskey_p->get_records( 'DNSKEY', 'answer' );
+
+        my %dnskey;
+        %dnskey = map { $_->keytag => $_ } $dnskey_p->get_records( 'DNSKEY', 'answer' ) if $dnskey_p;
 
         if ( scalar( keys %dnskey ) == 0 ) {
             push @results,
@@ -536,19 +537,21 @@ sub dnssec03 {
     my @results;
 
     my $param_p = $zone->query_one( $zone->name, 'NSEC3PARAM', { dnssec => 1 } );
-    die "No response from child zone nameservers" if not $param_p;
-    my @nsec3params = $param_p->get_records( 'NSEC3PARAM', 'answer' );
+
+    my @nsec3params;
+    @nsec3params = $param_p->get_records( 'NSEC3PARAM', 'answer' ) if $param_p;
 
     my $dk_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
-    die "No response from child zone nameservers" if not $dk_p;
-    my @dnskey = $dk_p->get_records( 'DNSKEY', 'answer' );
+
+    my @dnskey;
+    @dnskey = $dk_p->get_records( 'DNSKEY', 'answer' ) if $dk_p;
     my $min_len = min map { $_->keysize } @dnskey;
 
     if ( @nsec3params == 0 ) {
         push @results,
           info(
             NO_NSEC3PARAM => {
-                server => $param_p->answerfrom,
+                server => ($param_p ? $param_p->answerfrom : '<no response>'),
             }
           );
     }
@@ -595,14 +598,14 @@ sub dnssec04 {
 
     my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
     if ( not $key_p ) {
-        die "No response from child nameservers";
+        return;
     }
     my @keys     = $key_p->get_records( 'DNSKEY', 'answer' );
     my @key_sigs = $key_p->get_records( 'RRSIG',  'answer' );
 
     my $soa_p = $zone->query_one( $zone->name, 'SOA', { dnssec => 1 } );
     if ( not $soa_p ) {
-        die "No response from child nameservers";
+        return;
     }
     my @soas     = $soa_p->get_records( 'SOA',   'answer' );
     my @soa_sigs = $soa_p->get_records( 'RRSIG', 'answer' );
@@ -671,7 +674,7 @@ sub dnssec05 {
 
     my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
     if ( not $key_p ) {
-        die "No response from child nameservers";
+        return;
     }
     my @keys = $key_p->get_records( 'DNSKEY', 'answer' );
 
@@ -783,13 +786,13 @@ sub dnssec07 {
     return if not $zone->parent;
     my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
     if ( not $key_p ) {
-        die "No response from child nameservers";
+        return;
     }
     my ( $dnskey ) = $key_p->get_records( 'DNSKEY', 'answer' );
 
     my $ds_p = $zone->parent->query_one( $zone->name, 'DS', { dnssec => 1 } );
     if ( not $ds_p ) {
-        die "No response from parent nameservers";
+        return;
     }
     my ( $ds ) = $ds_p->get_records( 'DS', 'answer' );
 
@@ -839,7 +842,7 @@ sub dnssec08 {
 
     my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
     if ( not $key_p ) {
-        die "No response from child servers";
+        return;
     }
     my @dnskeys = $key_p->get_records( 'DNSKEY', 'answer' );
     my @sigs    = $key_p->get_records( 'RRSIG',  'answer' );
@@ -904,13 +907,13 @@ sub dnssec09 {
 
     my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
     if ( not $key_p ) {
-        die "No response from child servers for DNSKEY";
+        return;
     }
     my @dnskeys = $key_p->get_records( 'DNSKEY', 'answer' );
 
     my $soa_p = $zone->query_one( $zone->name, 'SOA', { dnssec => 1 } );
     if ( not $soa_p ) {
-        die "No response from child servers for SOA";
+        return;
     }
     my @soa  = $soa_p->get_records( 'SOA',   'answer' );
     my @sigs = $soa_p->get_records( 'RRSIG', 'answer' );
@@ -975,14 +978,14 @@ sub dnssec10 {
 
     my $key_p = $zone->query_one( $zone->name, 'DNSKEY', { dnssec => 1 } );
     if ( not $key_p ) {
-        die "No response from child servers for DNSKEY";
+        return;
     }
     my @dnskeys = $key_p->get_records( 'DNSKEY', 'answer' );
 
     my $name = $zone->name->prepend( 'xx--example' );
     my $test_p = $zone->query_one( $name, 'A', { dnssec => 1 } );
     if ( not $test_p ) {
-        die "No response from child servers for A";
+        return;
     }
 
     if ( $test_p->rcode eq 'NOERROR' ) {
