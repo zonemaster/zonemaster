@@ -99,6 +99,8 @@ sub _recurse {
         if ( $p->is_redirect ) {
             my $zname = name(lc(( $p->get_records( 'ns' ) )[0]->name));
 
+            next if $zname eq '.'; # Redirect to root is never right.
+
             next if $state->{seen}{$zname};    # We followed this redirect before
 
             $state->{seen}{$zname} = 1;

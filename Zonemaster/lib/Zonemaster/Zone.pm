@@ -222,7 +222,7 @@ sub is_in_zone {
         return 0;    # Zone name cannot be a suffix of tested name
     }
 
-    my $p = $self->query_persistent( "$name", 'SOA' );
+    my $p = $self->query_auth( "$name", 'SOA' );
     if (not $p) {
         return;
     }
