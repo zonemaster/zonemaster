@@ -188,7 +188,7 @@ First install the Zonemaster Engine, following the instructions above.
 
 **Install package dependencies**
 
-    $ sudo apt-get install libmoosex-getopt-perl
+    $ sudo apt-get install libmoosex-getopt-perl libtext-reflow-perl
 
 **Build source code**
 
@@ -207,7 +207,7 @@ First install the Zonemaster Engine, following the instructions above.
 
 **Install package dependencies**
 
-    $ sudo aptitude install libmoosex-getopt-perl
+    $ sudo aptitude install libmoosex-getopt-perl libtext-reflow-perl
 
 **Build source code**
 
@@ -220,13 +220,13 @@ Now you are ready to run the zonemaster-cli command:
 
     $ zonemaster-cli example.com
 
-### Instructions for FreeBSD 1.0
+### Instructions for FreeBSD 10.0
 
 First install the Zonemaster Engine, following the instructions above.
 
 **Install package dependencies**
 
-	$ sudo pkg install p5-MooseX-Getopt
+	$ sudo pkg install p5-MooseX-Getopt p5-Text-Reflow
 
 **Build source code**
 
@@ -250,6 +250,7 @@ First install the Zonemaster Engine, following the instructions above.
 
 	$ sudo perl -MCPAN -e 'install Getopt::Long::Descriptive'
 	$ sudo perl -MCPAN -e 'install MooseX::Getopt'
+	$ sudo perl -MCPAN -e 'install Text::Reflow'
 
 **Build source code**
 
