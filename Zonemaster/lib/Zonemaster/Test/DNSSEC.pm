@@ -612,7 +612,7 @@ sub dnssec04 {
 
     foreach my $sig ( @key_sigs, @soa_sigs ) {
         my $duration = $sig->expiration - $sig->inception;
-        my $remaining = $sig->expiration - int(time());
+        my $remaining = $sig->expiration - int($key_p->timestamp);
         if ( $remaining < 0 ) {    # already expired
             push @results,
               info(
