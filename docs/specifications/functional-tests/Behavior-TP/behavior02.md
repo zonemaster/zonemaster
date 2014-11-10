@@ -1,5 +1,4 @@
-## BEHAVIOR02: NODATA returned in response in the event of querying a 
-domain name that exists but no relevant answers in the answer section
+## BEHAVIOR02: NODATA returned in response in the event of querying a domain name that exists but no relevant answers in the answer section
 
 ### Test case identifier
 

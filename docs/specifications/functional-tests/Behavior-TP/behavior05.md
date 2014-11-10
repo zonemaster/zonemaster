@@ -2,7 +2,7 @@
 
 ### Test case identifier
 
-**BEHAVIOR05:** Capable of running the test when the delegation parameters arie specified
+**BEHAVIOR05:** Capable of running the test when the delegation parameters are specified
 
 ### Objective 
 This test is to verify whether the engine is capable of running an undelegated

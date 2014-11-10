@@ -45,8 +45,8 @@ with neither false positive nor false negative.
 |FR10|Appropriate results when certain protocols are disabled (e.g.IPv6)|[BEHAVIOR03](../specifications/functional-tests/Behavior-TP/behavior03.md)|OK|
 |FR11|Test whether the tool run only appropriate tests when the default test profile is modified|[BEHAVIOR04](../specifications/functional-tests/Behavior-TP/behavior04.md)|KO|
 |FR12|Capable of running the test when the delegation parameters are specified|[BEHAVIOR05](../specifications/functional-tests/Behavior-TP/behavior05.md)|OK|
-|FR13|Able to test non delegated domain|[BEHAVIOR06](../specifications/functional-tests/Behavior-TP/behavior05.md)|OK|
-|FR14|Check whether timestamps on the test being run are being displayed|[BEHAVIOR06](../specifications/functional-tests/Behavior-TP/behavior06.md)||
+|FR13|Able to test non delegated domain|[BEHAVIOR05](../specifications/functional-tests/Behavior-TP/behavior05.md)|OK|
+|FR14|Check whether timestamps are being displayed|[BEHAVIOR06](../specifications/functional-tests/Behavior-TP/behavior06.md)|OK|
 |FR15|IDN verification|[BEHAVIOR07](../specifications/functional-tests/Behavior-TP/behavior07.md)|OK|
 |FR16|Displays verbose information when launched with appropriate flags|[BEHAVIOR08](../specifications/functional-tests/Behavior-TP/behavior08.md)|OK|
 |FR17|Triggers appropriate error code when the zone is misconfigured|[BEHAVIOR09](../specifications/functional-tests/Behavior-TP/behavior09.md)|OK|

@@ -1,8 +1,8 @@
-## BEHAVIOR06: Timestamps on the test being run 
+## BEHAVIOR06: Timestamps display
 
 ### Test case identifier
 
-**BEHAVIOR06:** Timestamps on the test being run
+**BEHAVIOR06:** Timestamps display
 
 ### Objective 
 This test is to verify whether the engine displays timestamps on the test being
@@ -16,7 +16,7 @@ The domain to be tested.
 
 1. A valid domain is verified using Zonemaster CLI with appropriate options as
 see in the appendix
-2. If the query don’t show timestamp on each test run,  the test returns FAIL
+2. If the query don’t show timestamp in the results,  the test returns FAIL
 
 ### Results
 
