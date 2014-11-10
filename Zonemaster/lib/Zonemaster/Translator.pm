@@ -87,6 +87,7 @@ sub _system_translation {
         "MODULE_ERROR"          => "Fatal error in {module}: {msg}",
         "MODULE_VERSION"        => "Using module {module} version {version}.",
         "NO_NETWORK"            => "Both IPv4 and IPv6 are disabled.",
+        "MODULE_ENDED"          => "Module {module} stopped running.",
         "POLICY_FILE"           => "Policy was read from {name}.",
         "POLICY_DISABLED"       => "The module {name} was disabled by the policy.",
         "UNKNOWN_METHOD"        => "Request to run unknown method {method} in module {module}.",
