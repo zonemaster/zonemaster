@@ -96,9 +96,9 @@
 			<br>
 			<br>
 			<br>
-			<label for="test_profile">
+			<label for="profile">
 				Test profile
-				<select id="test_profile" name="test_profile">
+				<select id="profile" name="profile">
 					<option <% default_profile_selected %> value="default_profile">Default</option>
 					<option <% profile_1_selected %> value="test_profile_1">Test Profile 1</option>
 					<option <% profile_2_selected %> value="test_profile_2">Test Profile 2</option>

@@ -18,6 +18,7 @@ use String::ShellQuote;
 use File::Slurp qw(append_file);
 use Net::LDNS;
 use Net::IP qw(:PROC);
+use HTML::Entities;
 
 use FindBin qw($RealScript $Script $RealBin $Bin);
 ##################################################################
@@ -142,7 +143,9 @@ sub get_data_from_parent_zone_1 {
 
 	my %result;
 	
-	
+	my ($dn, $dn_syntax) = $self->_check_domain($domain, 'Domain name');
+	return $dn_syntax if ($dn_syntax->{status} eq 'nok');
+
 	my @ns_list;
 	my @ns_names;
 	
@@ -191,7 +194,7 @@ sub _check_domain {
 	my($self, $dn, $type) = @_;
 
 	if (!defined($dn)) {
-		return ($dn, { status => 'nok', message => "$type required" });
+		return ($dn, { status => 'nok', message => encode_entities("$type required") });
 	}
 	
     if ($dn =~ m/[^[:ascii:]]+/) {
@@ -199,29 +202,29 @@ sub _check_domain {
 			$dn = Net::LDNS::to_idn(encode_utf8($dn));
 		}
 		else {
-			return ($dn, { status => 'nok', message => "$type contains non-ascii characters and IDN conversion is not installed" });
+			return ($dn, { status => 'nok', message => encode_entities("$type contains non-ascii characters and IDN conversion is not installed") });
 		}
     }
 
 	if (length($dn) < 2 && $dn ne '.') {
-		return ($dn, { status => 'nok', message => "$type name too short" });
+		return ($dn, { status => 'nok', message => encode_entities("$type name too short") });
 	}
 	
 	$dn =~ s/\.$// unless($dn eq '.');
 	
 	if (length($dn) > 253) {
-		return ($dn, { status => 'nok', message => "$type name too long" });
+		return ($dn, { status => 'nok', message => encode_entities("$type name too long") });
 	}
 
 	foreach my $label (split(/\./, $dn)) {
 		if (length($label) > 63) {
-			return ($dn, { status => 'nok', message => "$type name label too long" });
+			return ($dn, { status => 'nok', message => encode_entities("$type name label too long") });
 		}
 	}
 
 	foreach my $label (split(/\./, $dn)) {
 		if ($label =~ /[^0-9a-zA-Z\-]/) {
-			return ($dn, { status => 'nok', message => "$type name contains invalid characters" });
+			return ($dn, { status => 'nok', message => encode_entities("$type name contains invalid characters") });
 		}
 	}
 	
@@ -230,9 +233,47 @@ sub _check_domain {
 
 sub validate_syntax {
 	my($self, $syntax_input, $is_internal_check) = @_;
-
-	return { status => 'nok', message => "At least one transport protocol required (IPv4 or IPv6)" } unless ( $syntax_input->{ipv4} || $syntax_input->{ipv6});
 	
+	my @allowed_params_keys = ('domain', 'ipv4', 'ipv6', 'ds_digest_pairs', 'nameservers', 'profile', 'advanced');
+
+	foreach my $k (keys %$syntax_input) {
+		return { status => 'nok', message => encode_entities("Unknown option in parameters") } unless (grep { $_ eq $k } @allowed_params_keys );
+	}
+	
+	if ( ( defined $syntax_input->{nameservers} && @{$syntax_input->{nameservers}} )) {
+		foreach my $ns_ip (@{$syntax_input->{nameservers}}) {
+			foreach my $k (keys %$ns_ip) {
+				delete($ns_ip->{$k}) unless ($k eq 'ns' || $k eq 'ip')
+			}
+		}
+	}
+
+	if ( ( defined $syntax_input->{ds_digest_pairs} && @{$syntax_input->{ds_digest_pairs}} )) {
+		foreach my $ds_digest (@{$syntax_input->{ds_digest_pairs}}) {
+			foreach my $k (keys %$ds_digest) {
+				delete($ds_digest->{$k}) unless ($k eq 'algorithm' || $k eq 'digest')
+			}
+		}
+	}
+
+	return { status => 'nok', message => encode_entities("At least one transport protocol required (IPv4 or IPv6)") } unless ( $syntax_input->{ipv4} || $syntax_input->{ipv6});
+
+	if ( defined $syntax_input->{advanced} ) {
+		return { status => 'nok', message => encode_entities("Invalid 'advanced' option format") } unless ( $syntax_input->{advanced} ne JSON::false || $syntax_input->{advanced} ne JSON::true );
+	}
+
+	if ( defined $syntax_input->{ipv4} ) {
+		return { status => 'nok', message => encode_entities("Invalid IPv4 transport option format") } unless ( $syntax_input->{ipv4} ne JSON::false || $syntax_input->{ipv4} ne JSON::true || $syntax_input->{ipv4} ne '1' || $syntax_input->{ipv4} ne '0' );
+	}
+	
+	if ( defined $syntax_input->{ipv6} ) {
+		return { status => 'nok', message => encode_entities("Invalid IPv6 transport option format") } unless ( $syntax_input->{ipv6} ne JSON::false || $syntax_input->{ipv6} ne JSON::true || $syntax_input->{ipv6} ne '1' || $syntax_input->{ipv6} ne '0' );
+	}
+	
+	if ( defined $syntax_input->{profile} ) {
+		return { status => 'nok', message => encode_entities("Invalid profile option format") } unless ( $syntax_input->{profile} ne 'default_profile' || $syntax_input->{profile} ne 'test_profile_1' || $syntax_input->{profile} ne 'test_profile_2');
+	}
+
 	my ($dn, $dn_syntax) = $self->_check_domain($syntax_input->{domain}, 'Domain name');
 
 	return $dn_syntax if ($dn_syntax->{status} eq 'nok');
@@ -244,20 +285,20 @@ sub validate_syntax {
 		}
 		
 		foreach my $ns_ip (@{$syntax_input->{nameservers}}) {
-			return { status => 'nok', message => "Invalid IP address: [$ns_ip->{ip}]" } unless (ip_is_ipv4($ns_ip->{ip}) || ip_is_ipv6($ns_ip->{ip}));
+			return { status => 'nok', message => encode_entities("Invalid IP address: [$ns_ip->{ip}]") } unless (ip_is_ipv4($ns_ip->{ip}) || ip_is_ipv6($ns_ip->{ip}));
 		}
 
 		foreach my $ds_digest (@{$syntax_input->{ds_digest_pairs}}) {
-			return { status => 'nok', message => "Invalid algorithm type: [$ds_digest->{algorithm}]" } unless ($ds_digest->{algorithm} eq 'sha1' || $ds_digest->{algorithm} eq 'sha256');
+			return { status => 'nok', message => encode_entities("Invalid algorithm type: [$ds_digest->{algorithm}]") } unless ($ds_digest->{algorithm} eq 'sha1' || $ds_digest->{algorithm} eq 'sha256');
 		}
 
 		foreach my $ds_digest (@{$syntax_input->{ds_digest_pairs}}) {
 			if ($ds_digest->{algorithm} eq 'sha1') {
-				return { status => 'nok', message => "Invalid digest format: [$ds_digest->{digest}]" } 
+				return { status => 'nok', message => encode_entities("Invalid digest format: [$ds_digest->{digest}]") } 
 					if (length($ds_digest->{digest}) != 40 || $ds_digest->{digest} =~ /[^A-Fa-f0-9]/ );
 			}
 			elsif ($ds_digest->{algorithm} eq 'sha256') {
-				return { status => 'nok', message => "Invalid digest format: [$ds_digest->{digest}]" } 
+				return { status => 'nok', message => encode_entities("Invalid digest format: [$ds_digest->{digest}]") } 
 					if (length($ds_digest->{digest}) != 64 || $ds_digest->{digest} =~ /[^A-Fa-f0-9]/ );
 			}
 		}
@@ -268,11 +309,11 @@ sub validate_syntax {
 		$r->dnssec(0);
 		my $p = $r->query($dn,"NS");
 		if (!$p) {
-			return { status => 'nok', message => 'Domain doesn\'t exist' };
+			return { status => 'nok', message => encode_entities('Domain doesn\'t exist') };
 		}
 	}
 
-	return { status => 'ok', message => 'Syntax ok' };
+	return { status => 'ok', message => encode_entities('Syntax ok') };
 }
 
 sub start_domain_test {

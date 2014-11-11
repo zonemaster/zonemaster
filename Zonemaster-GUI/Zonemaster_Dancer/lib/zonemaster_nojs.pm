@@ -7,6 +7,7 @@ use 5.10.1;
 use Dancer ':syntax';
 use Plack::Builder;
 use Data::Dumper;
+use HTML::Entities;
 use Client;
 
 no warnings;
@@ -24,7 +25,7 @@ my $frontend_params = {
         advanced_options => 1,                          # 0 or 1, is the advanced options checkbox checked
         ipv4 => 1,                                                      # 0 or 1, is the ipv4 checkbox checked
         ipv6 => 1,                                                      # 0 or 1, is the ipv6 checkbox checked
-        test_profile => 'test_profile_1',       # the id if the Test profile listbox
+        profile => 'test_profile_1',       # the id if the Test profile listbox
         nameservers => [                                        # list of the namaserves up to 32
                 { ns => 'ns1.nic.fr', ip => '1.2.3.4'},                   # key values pairs representing nameserver => namesterver_ip
                 { ns => 'ns2.nic.fr', ip => '192.134.4.1'},
@@ -40,14 +41,14 @@ sub params_backend2template {
 	
 	my %template_params;
 	
-	$template_params{domain} = $params->{domain} if ($params->{domain});
+	$template_params{domain} = encode_entities($params->{domain}) if ($params->{domain});
 	$template_params{ipv4} = ($params->{ipv4})?('checked'):('unchecked');
 	$template_params{ipv6} = ($params->{ipv6})?('checked'):('unchecked');
 
-	if ($params->{test_profile} eq 'test_profile_1') {
+	if ($params->{profile} eq 'test_profile_1') {
 		$template_params{profile_1_selected} = 'selected="selected"';
 	}
-	elsif ($params->{test_profile} eq 'test_profile_2') {
+	elsif ($params->{profile} eq 'test_profile_2') {
 		$template_params{profile_2_selected} = 'selected="selected"';
 	}
 	else {
@@ -58,7 +59,7 @@ sub params_backend2template {
 	my @nameservers;
 	foreach my $ns ( @{$params->{nameservers}} ) {
 		$ns_id++;
-		push(@nameservers, { ns_id => $ns_id, ns => $ns->{ns}, ip => $ns->{ip} });
+		push(@nameservers, { ns_id => $ns_id, ns => encode_entities($ns->{ns}), ip => encode_entities($ns->{ip}) });
 	}
 	$template_params{nameservers} = \@nameservers if (@nameservers);
 	
@@ -66,7 +67,7 @@ sub params_backend2template {
 	my @ds_digest_pairs;
 	foreach my $ds ( @{$params->{ds_digest_pairs}} ) {
 		$ds_id++;
- 		push(@ds_digest_pairs, { ds_id => $ds_id, algorithm => $ds->{algorithm}, digest => $ds->{digest} });
+ 		push(@ds_digest_pairs, { ds_id => $ds_id, algorithm => encode_entities($ds->{algorithm}), digest => encode_entities($ds->{digest}) });
 	}
 	$template_params{ds_digest_pairs} = \@ds_digest_pairs if (@ds_digest_pairs);
 
@@ -83,7 +84,7 @@ sub params_template2backend {
 	$backend_params{domain} = $params->{domain_name};
 	$backend_params{ipv4} = $params->{ipv4} if ($params->{ipv4});
 	$backend_params{ipv6} = $params->{ipv6} if ($params->{ipv6});
-	$backend_params{test_profile} = $params->{test_profile} if ($params->{test_profile});
+	$backend_params{profile} = $params->{profile} if ($params->{profile});
 	
 	my $ns_id = 1;
 	while (defined $params->{"ns$ns_id"}) {
