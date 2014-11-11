@@ -30,6 +30,9 @@ a.bigbutton {
 a.bigbutton:hover {
   color       : #fff;
 }
+a.nojs {
+  color       : #fff;
+}
 .head {
   width   : 100%;
   border  : 1px solid #fff;
