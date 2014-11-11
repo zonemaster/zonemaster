@@ -224,8 +224,10 @@ sub test_results {
 sub get_test_history {
 	my($self, $p) = @_;
 	
+	my $undelegated = (defined $p->{frontend_params}->{nameservers})?("AND (params->'nameservers') IS NOT NULL"):("AND (params->'nameservers') IS NULL");
+
 	my @results;
-	my $query = "SELECT id, creation_time, params->>'advanced_options' AS advanced_options from test_results WHERE params->>'domain'=".$self->dbh->quote($p->{frontend_params}->{domain})." ORDER BY id DESC OFFSET $p->{offset} LIMIT $p->{limit}";
+	my $query = "SELECT id, creation_time, params->>'advanced_options' AS advanced_options from test_results WHERE params->>'domain'=".$self->dbh->quote($p->{frontend_params}->{domain})." $undelegated ORDER BY id DESC OFFSET $p->{offset} LIMIT $p->{limit}";
 	print "$query\n";
 	my $sth1 = $self->dbh->prepare($query);
 	$sth1->execute;
