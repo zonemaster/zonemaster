@@ -15,6 +15,10 @@
       <tab tab-title="{{'Pre-delegated domain'|translate}}" tab-id="inactive_domain_check"></tab>
       <tab tab-title="{{'FAQ'|translate}}" tab-id="faq"></tab>
     </navigation>
+    <div class="pull-right">
+      <a class="nojs" href="/nojs">Non-Javascript Interface</a>
+      &nbsp;
+    </div>
   </div>
   <div class="shadow">&nbsp;</div>
 <div class="container-fluid">
