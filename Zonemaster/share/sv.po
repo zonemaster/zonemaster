@@ -497,6 +497,10 @@ msgstr "Konfiguration lästes från {name}."
 msgid  "Using prerequisite module {name} version {version}."
 msgstr "Använder version {version} av modulen {name}."
 
+#: SYSTEM:GLOBAL_VERSION
+msgid "Using version {version} of the Zonemaster engine."
+msgstr "Använder version {version} av Zonemasters testmotor."
+
 #: SYSTEM:LOGGER_CALLBACK_ERROR
 msgid  "Logger callback died with error: {exception}"
 msgstr "Callback-funktionen för log-modulen dog med felmeddelandet: {exception}"
@@ -512,6 +516,10 @@ msgstr "Fatalt fel i {module}: {msg}"
 #: SYSTEM:MODULE_VERSION
 msgid  "Using module {module} version {version}."
 msgstr "Använder version {version} av modulen {module}."
+
+#: SYSTEM:MODULE_END
+msgid  "Module {module} finished running."
+msgstr "Modulen {module} avslutades."
 
 #:SYSTEM:NO_NETWORK
 msgid "Both IPv4 and IPv6 are disabled."
