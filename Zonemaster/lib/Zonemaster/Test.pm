@@ -20,7 +20,9 @@ my @all_test_modules;
   map { my $f = $_; $f =~ s|^Zonemaster::Test::||; $f }
   grep { $_ ne 'Zonemaster::Test::Basic' } useall( 'Zonemaster::Test' );
 
-sub _log_dependency_versions {
+sub _log_versions {
+    info( GLOBAL_VERSION     => { version => Zonemaster->VERSION });
+
     info( DEPENDENCY_VERSION => { name => 'Net::LDNS',            version => $Net::LDNS::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'IO::Socket::INET6',    version => $IO::Socket::INET6::VERSION } );
     info( DEPENDENCY_VERSION => { name => 'Moose',                version => $Moose::VERSION } );
@@ -58,13 +60,14 @@ sub run_all_for {
             version => Zonemaster::Test::Basic->version
         }
     );
-    _log_dependency_versions();
+    _log_versions();
 
     if (not (Zonemaster->config->ipv4_ok or Zonemaster->config->ipv6_ok)) {
         return info( NO_NETWORK => {});
     }
 
     @results = Zonemaster::Test::Basic->all( $zone );
+    info( MODULE_END => { module => 'Zonemaster::Test::Basic' });
 
     if ( Zonemaster::Test::Basic->can_continue( @results ) ) {
         ## no critic (Modules::RequireExplicitInclusion)
@@ -88,6 +91,7 @@ sub run_all_for {
                     push @res, info( MODULE_ERROR => { module => $module, msg => "$err" } );
                 }
             }
+            info( MODULE_END => { module => $module });
 
             push @results, @res;
         }
@@ -106,6 +110,7 @@ sub run_module {
     $module = 'Basic' if ( not $module and lc( $requested ) eq 'basic' );
 
     Zonemaster->start_time_now();
+    _log_versions();
     if (not (Zonemaster->config->ipv4_ok or Zonemaster->config->ipv6_ok)) {
         return info( NO_NETWORK => {});
     }
@@ -124,6 +129,7 @@ sub run_module {
                 push @res, info( MODULE_ERROR => { module => $module, msg => "$err" } );
             }
         }
+        info( MODULE_END => { module => $module });
         return @res;
     }
     else {
@@ -140,6 +146,7 @@ sub run_one {
     $module = 'Basic' if ( not $module and lc( $requested ) eq 'basic' );
 
     Zonemaster->start_time_now();
+    _log_versions();
     if (not (Zonemaster->config->ipv4_ok or Zonemaster->config->ipv6_ok)) {
         return info( NO_NETWORK => {});
     }
@@ -159,6 +166,7 @@ sub run_one {
                     push @res, info( MODULE_ERROR => { module => $module, msg => "$err" } );
                 }
             }
+            info( MODULE_CALL_END => { module => $module, method => $test });
             return @res;
         }
         else {

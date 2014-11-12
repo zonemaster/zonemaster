@@ -33,7 +33,10 @@ my @tags = Zonemaster->all_tags;
 ok( ( grep { /BASIC:HAS_NAMESERVERS/ } @tags ), 'all_tags' );
 
 my $disabled = 0;
+my $dependency_version = 0;
+my $global_version = 0;
 %module = ();
+%end = ();
 Zonemaster->logger->callback(
     sub {
         my ( $e ) = shift;
@@ -45,9 +48,25 @@ Zonemaster->logger->callback(
         if ( $e->tag eq 'MODULE_VERSION' ) {
             $module{ $e->args->{module} } = $e->args->{version};
         }
+
+        if ( $e->tag eq 'MODULE_END' ) {
+            $end{ $e->args->{module}} = 1;
+        }
+
+        if ( $e->tag eq 'GLOBAL_VERSION' ) {
+            $global_version = $e->args->{version};
+        }
+
+        if ( $e->tag eq 'DEPENDENCY_VERSION' ) {
+            $dependency_version = 1;
+        }
+
     }
 );
 my @results = Zonemaster->test_zone( 'nic.se' );
+
+ok( $global_version, "Global version: $global_version");
+ok( $dependency_version, 'At least one dependency version logged');
 
 ok( $module{'Zonemaster::Test::Address'},      'Zonemaster::Test::Address did run.' );
 ok( $module{'Zonemaster::Test::Basic'},        'Zonemaster::Test::Basic did run.' );
@@ -58,6 +77,16 @@ ok( $module{'Zonemaster::Test::Delegation'},   'Zonemaster::Test::Delegation did
 ok( $module{'Zonemaster::Test::Nameserver'},   'Zonemaster::Test::Nameserver did run.' );
 ok( $module{'Zonemaster::Test::Syntax'},       'Zonemaster::Test::Syntax did run.' );
 ok( $module{'Zonemaster::Test::Zone'},         'Zonemaster::Test::Zone did run.' );
+
+ok( $end{'Zonemaster::Test::Address'},      'Zonemaster::Test::Address did end.' );
+ok( $end{'Zonemaster::Test::Basic'},        'Zonemaster::Test::Basic did end.' );
+ok( $end{'Zonemaster::Test::Connectivity'}, 'Zonemaster::Test::Connectivity did end.' );
+ok( $end{'Zonemaster::Test::Consistency'},  'Zonemaster::Test::Consistency did end.' );
+ok( $end{'Zonemaster::Test::DNSSEC'},       'Zonemaster::Test::DNSSEC did end.' );
+ok( $end{'Zonemaster::Test::Delegation'},   'Zonemaster::Test::Delegation did end.' );
+ok( $end{'Zonemaster::Test::Nameserver'},   'Zonemaster::Test::Nameserver did end.' );
+ok( $end{'Zonemaster::Test::Syntax'},       'Zonemaster::Test::Syntax did end.' );
+ok( $end{'Zonemaster::Test::Zone'},         'Zonemaster::Test::Zone did end.' );
 
 ok( $disabled, 'Blocking of disabled module was logged.' );
 
