@@ -203,7 +203,7 @@ has 'nstimes' => (
     isa           => 'Bool',
     required      => 0,
     default       => 0,
-    documentation => 'At the end of a run, print a summary of the times the zone\'s name servers took to answer.',
+    documentation => __('At the end of a run, print a summary of the times the zone\'s name servers took to answer.'),
 );
 
 sub run {

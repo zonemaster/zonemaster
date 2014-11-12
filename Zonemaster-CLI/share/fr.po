@@ -1,0 +1,152 @@
+msgid ""
+msgstr ""
+"Language: fr\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: 0.0.5\n"
+"PO-Revision-Date: 2014-08-28\n"
+"Last-Translator: vincent.levigneron@afnic.fr\n"
+"Language-Team: Zonemaster Team\n"
+"MIME-Version: 1.0\n"
+
+msgid  "Print version information and exit."
+msgstr "Affichage des informations sur les versions de l'outil et des modules de tests."
+
+msgid  "The minimum severity level to display. Must be one of CRITICAL, ERROR, WARNING, NOTICE, INFO or DEBUG."
+msgstr "Option avec comme argument le niveau de gravité minimum qui sera affiché. Doit avoir pour valeur CRITICAL, ERROR, WARNING, NOTICE, INFO ou DEBUG."
+
+msgid  "The locale to use for messages translation."
+msgstr "La \"locale\" à utiliser pour la traduction des messages."
+
+msgid  "Flag indicating if output should be in JSON or not."
+msgstr "Option signalant que le format de sortie utilisé sera du JSON ou non."
+
+msgid  "Flag indicating if output should be translated to human language or dumped raw."
+msgstr "Option signalant que le format de sortie sera traduit en langage humain ou affiché en mode brut."
+
+msgid  "Print timestamp on entries."
+msgstr "Affichage de l'horodatage (en secondes) pour suivre l'état de l'avancement de l'analyse."
+
+msgid  "Print level on entries."
+msgstr "Affichage du niveau de gravité pour chaque résultat de test."
+
+msgid  "Print the name of the module on entries."
+msgstr "Pour chaque résultat de test, affichage du nom du module qui en est à l'origine."
+
+msgid  "A name/ip string giving a nameserver for undelegated tests. Can be given multiple times."
+msgstr "Un nom ou une adresse IP correspondant à un serveur de noms pour les tests sur des zones non déléguées. Peut être utilisée plusieurs fois."
+
+msgid  "Name of a file to save DNS data to after running tests."
+msgstr "Option avec comme argument le nom du fichier dans lequel seront sauvegardés les résultats des requêtes DNS nécessaires à l'analyse de la zone."
+
+msgid  "Name of a file to restore DNS data from before running test."
+msgstr "Option avec comme argument le nom du fichier à partir duquel seront restaurés les résultats des requêtes DNS nécessaires à l'analyse de la zone."
+
+msgid  "Flag to permit or deny queries being sent via IPv4. --ipv4 permits IPv4 traffic, --no-ipv4 forbids it."
+msgstr "Option signalant que les requêtes pourront ou non être transmises en IPv4. --ipv4 autorise l'usage d'IPv4, alors que --no-ipv4 l'interdit."
+
+msgid  "Flag to permit or deny queries being sent via IPv6. --ipv6 permits IPv6 traffic, --no-ipv6 forbids it."
+msgstr "Option signalant que les requêtes pourront ou non être transmises en IPv6. --ipv6 autorise l'usage d'IPv6, alors que --no-ipv6 l'interdit."
+
+msgid  "Instead of running a test, list all available tests."
+msgstr "Cette option permet d'afficher la liste de tous les tests disponibles. Ceux-ci ne seront pas exécutés."
+
+msgid  "Specify test to run. Should be either the name of a module, or the name of a module and the name of a method in that module separated by a \"/\" character (Example: \"Basic/basic1\"). The method specified must be one that takes a zone object as its single argument. This switch can be repeated."
+msgstr "Permet d'indiquer quel test doit être exécuté. Peut être un nom de module seul, ou celui-ci associé à un nom de test, les deux étant séparés par le caractère \"/\" (Exemple: \"Basic/basic1\"). Cette option peut être répétée plusieurs fois."
+
+msgid  "As soon as a message at this level or higher is logged, execution will stop. Must be one of CRITICAL, ERROR, WARNING, NOTICE, INFO or DEBUG."
+msgstr "Dès qu'un résultat de test avec ce niveau de gravité ou supérieur sera rencontré, l'exécution s'arrêtera. Doit avoir pour valeur CRITICAL, ERROR, WARNING, NOTICE, INFO ou DEBUG."
+
+msgid  "Name of configuration file to load."
+msgstr "Option avec comme argument le nom du fichier de configuration à charger."
+
+msgid  "Name of policy file to load."
+msgstr "Option avec comme argument le nom du fichier contenant la politique de tests qui sera appliquée."
+
+msgid  "Strings with DS data on the form \"keytag,algorithm,type,digest\""
+msgstr "Option avec comme argument les informations pour le traitement de la DS. Le format à utiliser est \"keytag,algorithm,type,digest\"."
+
+msgid  "Print a count of the number of messages at each level"
+msgstr "Affichage du nombre total de résultats, pour chaque niveau de gravité, présents dans le journal (log)."
+
+msgid  "Boolean flag for activity indicator. Defaults to on if STDOUT is a tty, off if it is not."
+msgstr "Cette option permet d'activer ou non l'indicateur de progression (défaut=activé si STDOUT est un terminal)."
+
+msgid  "Name of the character encoding used for command line arguments"
+msgstr "Nom de l'encodage de caractères utilisé pour les arguments de la ligne de commande."
+
+msgid  "Must give the name of a domain to test.\n"
+msgstr "Il est nécessaire d'indiquer un nom de domaine pour lancer le test.\n"
+
+msgid  "Failed to recognize stop level '"
+msgstr "Impossible de reconnaître le niveau de gravité provoquant l'arrêt de l'analyse '"
+
+msgid  "--level must be one of CRITICAL, ERROR, WARNING, NOTICE, INFO, DEBUG, DEBUG2 or DEBUG3.\n"
+msgstr "--level doit avoir pour valeur CRITICAL, ERROR, WARNING, NOTICE, INFO, DEBUG, DEBUG2 ou DEBUG3.\n"
+
+msgid  "Loading policy from "
+msgstr "Chargement de la politique de tests depuis le fichier "
+
+msgid  "Loading configuration from "
+msgstr "Chargement de la configuration depuis le fichier "
+
+msgid  "Seconds "
+msgstr "Durée   "
+
+msgid  "Level     "
+msgstr "Niveau    "
+
+msgid  "Module       "
+msgstr "Module       "
+
+msgid  "Message"
+msgstr "Message"
+
+msgid  "\n\n   Level\tNumber of log entries"
+msgstr "\n\n   Niveau\tOccurences dans le log"
+
+msgid  "%8s\t%5d entries.\n"
+msgstr "%8s\t%5d entrées.\n"
+
+msgid  "Warning: Net::LDNS not compiled with libidn, cannot handle non-ASCII names correctly."
+msgstr "Attention: Net::LDNS n'est pas compilé avec libidn, impossible de traiter correctement les noms non ASCII."
+
+msgid  "Warning: setting locale %s failed (is it installed on this system?).\n\n"
+msgstr "Attention: La \"locale\" positionnée %s n'est pas correctement prise en compte (Est-elle installée sur votre système ?).\n\n"
+
+msgid  "CRITICAL"
+msgstr "CRITICAL"
+
+msgid  "ERROR"
+msgstr "ERROR"
+
+msgid  "WARNING"
+msgstr "WARNING"
+
+msgid  "NOTICE"
+msgstr "NOTICE"
+
+msgid  "INFO"
+msgstr "INFO"
+
+msgid  "DEBUG"
+msgstr "DEBUG"
+
+msgid  "======= "
+msgstr "======= "
+
+msgid  "========= "
+msgstr "========= "
+
+msgid  "============ "
+msgstr "============ "
+
+msgid  "======="
+msgstr "======="
+
+msgid  "Looks OK."
+msgstr "Le résultat semble concluant."
+
+msgid  "At the end of a run, print a summary of the times the zone's name servers took to answer."
+msgstr "A la fin de l'exécution, affichage d'un récapitulatif sur les temps de réponses des serveurs de noms de la eone interrogés au cours de l'analyse."
+

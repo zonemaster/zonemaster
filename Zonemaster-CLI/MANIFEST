@@ -11,4 +11,6 @@ share/en.po
 share/locale/en/LC_MESSAGES/Zonemaster-CLI.mo
 share/sv.po
 share/locale/sv/LC_MESSAGES/Zonemaster-CLI.mo
+share/fr.po
+share/locale/fr/LC_MESSAGES/Zonemaster-CLI.mo
 share/Makefile
