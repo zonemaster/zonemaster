@@ -147,3 +147,6 @@ msgstr "======="
 msgid "Looks OK."
 msgstr "Looks OK."
 
+msgid "At the end of a run, print a summary of the times the zone's name servers took to answer."
+msgstr "At the end of a run, print a summary of the times the zone's name servers took to answer."
+

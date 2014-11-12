@@ -146,3 +146,6 @@ msgstr "=========="
 
 msgid "Looks OK."
 msgstr "Ser OK ut."
+
+msgid "At the end of a run, print a summary of the times the zone's name servers took to answer."
+msgstr "Efter att körningen avslutats, skriv ut en summering av zonens namnservrars svarstider."
