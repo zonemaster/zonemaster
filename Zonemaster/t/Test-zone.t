@@ -55,16 +55,12 @@ ok( $res{MNAME_IS_AUTHORITATIVE}, q{SOA 'mname' nameserver is authoritative zone
 %res = map { $_->tag => 1 } Zonemaster->test_module( q{Zone}, q{zone04.zut-root.rd.nic.fr} );
 ok( $res{MNAME_HAS_NO_ADDRESS},           q{No IP address found for SOA 'mname' nameserver} );
 
-TODO: {
-    local $TODO = "Need to find domain name with that error";
+$zone = Zonemaster->zone( 'flen.se' );
+%res = map { $_->tag => 1 } Zonemaster->test_method( q{Zone}, q{zone07}, $zone );
+ok( $res{NO_RESPONSE_SOA_QUERY}, q{No response from nameserver(s) on SOA queries} );
 
-    %res = map { $_->tag => 1 } Zonemaster->test_method( q{Zone}, q{zone07}, $zone );
-
-    ok( $res{NO_RESPONSE_SOA_QUERY}, q{No response from nameserver(s) on SOA queries} );
-
-    ok( $res{NO_RESPONSE_MX_QUERY}, q{No response from nameserver(s) on MX queries} );
-
-}
+%res = map { $_->tag => 1 } Zonemaster->test_method( q{Zone}, q{zone08}, $zone );
+ok( $res{NO_RESPONSE_MX_QUERY}, q{No response from nameserver(s) on MX queries} );
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
