@@ -48,6 +48,6 @@ with neither false positive nor false negative.
 |FR13|Able to test non delegated domain|[BEHAVIOR05](../specifications/functional-tests/Behavior-TP/behavior05.md)|OK|
 |FR14|Check whether timestamps are being displayed|[BEHAVIOR06](../specifications/functional-tests/Behavior-TP/behavior06.md)|OK|
 |FR15|IDN verification|[BEHAVIOR07](../specifications/functional-tests/Behavior-TP/behavior07.md)|OK|
-|FR16|Displays verbose information when launched with appropriate flags|[BEHAVIOR08](../specifications/functional-tests/Behavior-TP/behavior08.md)|OK|
+|FR16|Displays verbose information when it is launched with appropriate flags|[BEHAVIOR08](../specifications/functional-tests/Behavior-TP/behavior08.md)|OK|
 |FR17|Triggers appropriate error code when the zone is misconfigured|[BEHAVIOR09](../specifications/functional-tests/Behavior-TP/behavior09.md)|OK|
 
