@@ -1,7 +1,10 @@
 package BackendTranslator;
 
+use 5.14.0;
+
 use Moose;
 use Locale::TextDomain 'Zonemaster';
+use Encode;
 
 use FindBin qw($RealScript $Script $RealBin $Bin);
 ##################################################################
@@ -41,7 +44,9 @@ sub translate_tag {
         return $entry->{string};
     }
 
-    return __x( $string, %{ $entry->{args} } );
+	my $str = decode_utf8(__x( $string, %{ $entry->{args} } ));
+
+	return $str;
 }
 
 1;
