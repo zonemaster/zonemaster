@@ -29,8 +29,8 @@ When a domain (such as "zonemaster.net") is submitted to Zonemaster interfaces (
 Web) it will investigate the domain’s general health by traversing the DNS from root 
 (.) to the TLD (Top Level Domain, like .net) to eventually the nameserver(s) that holds 
 the information about the specified domain (zonemaster.net). The different sanity checks 
-conducted by the zonemaster tool is mentioned here :
-https://github.com/dotse/zonemaster/blob/master/docs/requirements/TestRequirements.md
+conducted by the zonemaster tool is documented in the [Test Requirements
+document](https://github.com/dotse/zonemaster/blob/master/docs/requirements/TestRequirements.md)
 
 **2. Who is behind Zonemaster?**
 
@@ -114,7 +114,6 @@ who has run a specific test since nothing is logged except the time of the test.
 If we skip the situation where the domain doesn't exist, as in you input a
 non-existing domain to Zonemaster, there are 2 other possibilites: 
 
---> Do we have this in Zonemaster -->
  - To protect the engine from multiple identical inputs, that is the same IP
    checking the same zone several times, there is a delay of 5 minutes between
 identical subsequent tests. Which practically means that you can only test the
