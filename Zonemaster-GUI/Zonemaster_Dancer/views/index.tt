@@ -13,7 +13,7 @@
     <navigation nav-id="main">
       <tab tab-title="{{'Domain check'|translate}}" tab-id="domain_check"></tab>
       <tab tab-title="{{'Pre-delegated domain'|translate}}" tab-id="inactive_domain_check"></tab>
-      <tab tab-title="{{'FAQ'|translate}}" tab-id="faq"></tab>
+      <tab tab-title="{{'FAQ'|translate}}" tab-id="faq-en"></tab>
     </navigation>
     <div class="pull-right">
       <a class="nojs" href="/nojs">Non-Javascript Interface</a>
