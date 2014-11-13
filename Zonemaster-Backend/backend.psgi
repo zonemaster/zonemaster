@@ -12,6 +12,8 @@ use FindBin;
 
 use Plack::Builder;
 
+use Engine;
+
 local $| = 1;
 
 builder {
