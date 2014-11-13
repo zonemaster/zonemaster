@@ -70,7 +70,7 @@ zone_gives( q{basic02}, $zone, q{NS_NO_RESPONSE} );
 ok( $res{HAS_NAMESERVERS}, q{HAS_NAMESERVERS} );
 ok( $res{HAS_NAMESERVER_NO_WWW_A_TEST}, q{HAS_NAMESERVER_NO_WWW_A_TEST} );
 
-$zone = Zonemaster->zone( q{yes.tf} );
+$zone = Zonemaster->zone( q{svtbarn.se} );
 zone_gives( q{basic01}, $zone, q{NO_DOMAIN} );
 
 Zonemaster->config->ipv4_ok( 1 );
@@ -97,19 +97,20 @@ zone_gives( q{basic03}, $zone, q{IPV6_DISABLED} );
 zone_gives_not( q{basic03}, $zone, q{IPV4_DISABLED} );
 zone_gives_not( q{basic03}, $zone, q{IPV6_ENABLED} );
 
+%res = map { $_->tag => 1 } Zonemaster->test_module( q{basic}, q{melbourneit.com.au} );
+ok( $res{NO_GLUE}, q{NO_GLUE} );
+ok( $res{NO_GLUE_PREVENTS_NAMESERVER_TESTS}, q{NO_GLUE_PREVENTS_NAMESERVER_TESTS} );
+
+%res = map { $_->tag => 1 } Zonemaster->test_module( q{basic}, q{maxan.se} );
+ok( $res{HAS_A_RECORDS}, q{HAS_A_RECORDS} );
+
+%res = map { $_->tag => 1 } Zonemaster->test_module( q{basic}, q{birgerjarlhotel.se} );
+ok( $res{A_QUERY_NO_RESPONSES}, q{A_QUERY_NO_RESPONSES} );
+
 TODO: {
     local $TODO = "Need to find domain name with that error";
 
-    ok( $res{NO_GLUE}, q{NO_GLUE} );
-
-    ok( $res{NO_GLUE_PREVENTS_NAMESERVER_TESTS}, q{NO_GLUE_PREVENTS_NAMESERVER_TESTS} );
-
-    ok( $res{HAS_A_RECORDS}, q{HAS_A_RECORDS} );
-
     ok( $res{NO_PARENT_RESPONSE}, q{NO_PARENT_RESPONSE} );
-
-    ok( $res{A_QUERY_NO_RESPONSES}, q{A_QUERY_NO_RESPONSES} );
-
 };
 
 if ( $ENV{ZONEMASTER_RECORD} ) {

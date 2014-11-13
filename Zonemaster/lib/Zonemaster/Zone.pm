@@ -232,6 +232,11 @@ sub is_in_zone {
     }
 
     my ( $soa ) = $p->get_records( 'SOA' );
+
+    if (not $soa) {
+        return 0;    # Auth server is broken, call it a "no".
+    }
+
     if ( Zonemaster::DNSName->new($soa->name) eq $self->name ) {
         return 1;
     }
