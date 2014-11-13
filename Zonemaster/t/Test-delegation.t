@@ -39,19 +39,18 @@ ok( $res{NOT_ENOUGH_NS_TOTAL}, q{NOT_ENOUGH_NS_TOTAL} );
 ok( $res{NOT_ENOUGH_NS}, q{NOT_ENOUGH_NS} );
 ok( $res{NOT_ENOUGH_NS_GLUE}, q{NOT_ENOUGH_NS_GLUE} );
 
+%res = map { $_->tag => 1 } Zonemaster->test_module( q{delegation}, q{flen.se} );
+ok( $res{SOA_NOT_EXISTS}, q{SOA_NOT_EXISTS} );
+
+%res = map { $_->tag => 1 } Zonemaster->test_module( q{delegation}, q{elsine.se} );
+ok( $res{IS_NOT_AUTHORITATIVE}, q{IS_NOT_AUTHORITATIVE} );
+
 TODO: {
     local $TODO = "Need to find domain name with that error";
-
-    ok( $res{IS_NOT_AUTHORITATIVE}, q{IS_NOT_AUTHORITATIVE} );
 
     ok( $res{NS_RR_IS_CNAME}, q{NS_RR_IS_CNAME} );
 
     ok( $res{REFERRAL_SIZE_LARGE}, q{REFERRAL_SIZE_LARGE} );
-
-    ok( $res{SOA_NOT_EXISTS}, q{SOA_NOT_EXISTS} );
-
-    ok( $res{IS_NOT_AUTHORITATIVE}, q{IS_NOT_AUTHORITATIVE} );
-
 };
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
