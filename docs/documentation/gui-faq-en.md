@@ -17,7 +17,6 @@ Zonemaster
 
 Zonemaster
 ----------
-
 **1. What is Zonemaster?**  
 
 Zonemaster is a program that was designed to help people check, measure and
