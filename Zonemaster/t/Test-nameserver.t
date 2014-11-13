@@ -41,11 +41,11 @@ my @res;
 my %tag;
 
 # nameserver01
-$zone = Zonemaster->zone( 'nameserver01-no-recursor.zut-root.rd.nic.fr' );
+$zone = Zonemaster->zone( 'dyad.se' );
 zone_gives( 'nameserver01', $zone, [q{NO_RECURSOR}] );
 zone_gives_not( 'nameserver01', $zone, [q{IS_A_RECURSOR}] );
 
-$zone = Zonemaster->zone( 'nameserver01-is-a-recursor.zut-root.rd.nic.fr' );
+$zone = Zonemaster->zone( 'vasa.se' );
 zone_gives_not( 'nameserver01', $zone, [q{NO_RECURSOR}] );
 zone_gives( 'nameserver01', $zone, [q{IS_A_RECURSOR}] );
 
@@ -69,13 +69,25 @@ zone_gives( 'nameserver06', $zone, [q{CAN_NOT_BE_RESOLVED}] );
 $zone = Zonemaster->zone( 'nameserver06-no-resolution.zut-root.rd.nic.fr' );
 zone_gives( 'nameserver06', $zone, [q{NO_RESOLUTION}] );
 
+$zone = Zonemaster->zone( 'scanjack.se' );
+zone_gives( 'nameserver02', $zone, ['EDNS0_BAD_QUERY']);
+
+$zone = Zonemaster->zone( 'dyad.se' );
+zone_gives( 'nameserver02', $zone, ['EDNS0_SUPPORT']);
+
+$zone = Zonemaster->zone( 'traxia.se' );
+zone_gives( 'nameserver05', $zone, ['QUERY_DROPPED']);
+
+$zone = Zonemaster->zone( 'escargot.se' );
+zone_gives( 'nameserver05', $zone, ['ANSWER_BAD_RCODE']);
+
+$zone = Zonemaster->zone( 'nameserver06-can-be-resolved.zut-root.rd.nic.fr' );
+zone_gives( 'nameserver06', $zone, [q{CAN_BE_RESOLVED}] );
+
 TODO: {
     local $TODO = "Need to find/create zones with that error";
 
-    # nameserver02
-    ok( $tag{EDNS0_BAD_QUERY}, q{EDNS0_BAD_QUERY} );
-    ok( $tag{EDNS0_BAD_ANSWER}, q{EDNS0_BAD_ANSWER} );
-    ok( $tag{EDNS0_SUPPORT}, q{EDNS0_SUPPORT} );
+    # zone_gives( 'nameserver02', $zone, ['EDNS0_BAD_ANSWER']);
 
     # nameserver03 does not work with saved data ???
 #    $zone = Zonemaster->zone( 'nameserver03-axfr-available.zut-root.rd.nic.fr' );
@@ -83,15 +95,6 @@ TODO: {
 
     # nameserver04
     ok( $tag{DIFFERENT_SOURCE_IP}, q{DIFFERENT_SOURCE_IP} );
-
-    # nameserver05
-    ok( $tag{QUERY_DROPPED}, q{QUERY_DROPPED} );
-    ok( $tag{ANSWER_BAD_RCODE}, q{ANSWER_BAD_RCODE} );
-
-    # nameserver06 does not work with saved data ???
-#   $zone = Zonemaster->zone( 'nameserver06-can-be-resolved.zut-root.rd.nic.fr' );
-#   zone_gives( 'nameserver06', $zone, [q{CAN_BE_RESOLVED}] );
-
 }
 
 if ( $ENV{ZONEMASTER_RECORD} ) {
