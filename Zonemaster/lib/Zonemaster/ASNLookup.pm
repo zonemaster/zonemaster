@@ -39,8 +39,9 @@ sub get_with_prefix {
                 my $str = $rr->txtdata;
                 $str =~ s/"([^"]+)"/$1/;
                 my @fields = split( / \| ?/, $str );
+                my @asns = split(/\s+/, $fields[0]);
 
-                return $fields[0], Net::IP::XS->new( $fields[1] );
+                return \@asns, Net::IP::XS->new( $fields[1] );
             }
         } ## end foreach my $root ( keys %$pair)
     } ## end foreach my $pair ( @roots )
@@ -50,9 +51,9 @@ sub get_with_prefix {
 sub get {
     my ( $class, $ip ) = @_;
 
-    my ( $asn, $prefix ) = $class->get_with_prefix($ip);
+    my ( $asnref, $prefix ) = $class->get_with_prefix($ip);
 
-    return $asn;
+    return @$asnref;
 }
 
 1;
@@ -72,14 +73,14 @@ Zonemaster::ASNLookup - do lookups of ASNs for IP addresses
 
 =item get($addr)
 
-Takes a string (or a L<Net::IP> object) with a single IP address, does a
-lookup in a Cymru-style DNS zone and returns the AS number for the address, if
-one can be found.
+Takes a string (or a L<Net::IP> object) with a single IP address, does a lookup
+in a Cymru-style DNS zone and returns a list of AS numbers for the address, if
+any can be found.
 
 =item get_with_prefix($addr)
 
-As L<get()>, except it returns a list of the AS number and a Net::IP object
-representing the prefix of the AS.
+As L<get()>, except it returns a list of a reference to a list with the AS
+numbers, and a Net::IP object representing the prefix of the AS.
 
 =back
 
