@@ -2,13 +2,27 @@
 
 var dnscheck = angular.module('dnscheck',['ngResource','pascalprecht.translate']);
 
+dnscheck.factory('customLoader', function ($http, $q, $timeout) {
+  // return loaderFn
+  return function (options) {
+    var deferred = $q.defer(); 
+    var data = {
+    };
+    $http.get('/lang/' + options.key + '.json').success(function(interface_language_data){
+		angular.extend(data, interface_language_data);
+		$http.get('/faq?lang=' + options.key ).success(function(faq){
+			angular.extend(data, faq);
+			deferred.resolve(data);
+		});
+    });
+	
+	return deferred.promise;  
+  };
+});
+
 dnscheck.config(function($translateProvider) {
-  $translateProvider.useStaticFilesLoader({
-      prefix: '/lang/',
-      suffix: '.json'
-  });
-  $translateProvider.preferredLanguage(navigator.language || navigator.userLanguage);
-//  $translateProvider.useLocalStorage();
+	$translateProvider.useLoader('customLoader');
+	$translateProvider.preferredLanguage(navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2) );
 });
 
 dnscheck.filter("asDate", function () {
@@ -95,7 +109,7 @@ dnscheck.directive('domainCheck',function(){
         $scope.form.ipv4 = true;
         $scope.form.ipv6 = true;
         $scope.location = $window.location.href;
-        if(typeof $rootScope.language === 'undefined') $rootScope.language = navigator.language || navigator.userLanguage;
+        if(typeof $rootScope.language === 'undefined') $rootScope.language = navigator.language.substring(0, 2) || navigator.userLanguage.substring(0, 2);
 
         if($scope.inactive) {
           $scope.contentUrl = '/ang/inactive_domain_check'
@@ -350,4 +364,3 @@ dnscheck.directive('version',function(){
     template: '{{version}}'
   };
 });
-

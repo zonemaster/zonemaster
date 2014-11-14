@@ -1,10 +1,36 @@
 package dnscheck;
+
 use Dancer ':syntax';
 use Plack::Builder;
-#use PocketIO;
 use Data::Dumper;
 use Encode;
+use Text::Markdown 'markdown';
+use File::Slurp;
+
 use Client;
+
+use FindBin qw($RealScript $Script $RealBin $Bin);
+##################################################################
+my $PROJECT_NAME = "Zonemaster-GUI/Zonemaster_Dancer";
+
+my $SCRITP_DIR = __FILE__;
+$SCRITP_DIR = $Bin unless ($SCRITP_DIR =~ /^\//);
+
+#warn "SCRITP_DIR:$SCRITP_DIR\n";
+#warn "RealScript:$RealScript\n";
+#warn "Script:$Script\n";
+#warn "RealBin:$RealBin\n";
+#warn "Bin:$Bin\n";
+#warn "__PACKAGE__:".__PACKAGE__;
+#warn "__FILE__:".__FILE__;
+
+my ($PROD_DIR) = ($SCRITP_DIR =~ /(.*?\/)$PROJECT_NAME/);
+#warn "PROD_DIR:$PROD_DIR\n";
+
+my $PROJECT_BASE_DIR = $PROD_DIR.$PROJECT_NAME."/";
+#warn "PROJECT_BASE_DIR:$PROJECT_BASE_DIR\n";
+unshift(@INC, $PROJECT_BASE_DIR);
+##################################################################
 
 no warnings;
 our $VERSION = '0.1';
@@ -97,6 +123,14 @@ get '/result' => sub {
   my $result = $c->get_test_results({ params });
   content_type 'application/json';
   return to_json ({ result => $result }, {allow_blessed => 1, convert_blessed => 1});
+};
+
+get '/faq' => sub {
+	my %allparams = params;
+	$allparams{lang} =~ s/sw/sv/;
+	my $md = read_file("$PROD_DIR/docs/documentation/gui-faq-$allparams{lang}.md");
+	my $html = decode_utf8(markdown($md));
+	return to_json ({ FAQ_CONTENT => $html }, {allow_blessed => 1, convert_blessed => 1});
 };
 
 true;

@@ -6,6 +6,7 @@ use Plack::App::File;
 use dnscheck;
 #use sockets;
 use zonemaster_nojs;
+use FindBin;
 
 #my $websockets = PocketIO->new(class => 'sockets', method => 'run');
 
