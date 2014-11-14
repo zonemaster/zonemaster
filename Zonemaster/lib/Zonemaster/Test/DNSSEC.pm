@@ -988,17 +988,7 @@ sub dnssec10 {
         return;
     }
 
-    if ( $test_p->rcode eq 'NOERROR' ) {
-        push @results,
-          info(
-            INVALID_NAME_FOUND => {
-                name => $name,
-            }
-          );
-        return @results;
-    }
-
-    if ( $test_p->rcode ne 'NXDOMAIN' ) {
+    if ( $test_p->rcode ne 'NXDOMAIN' and $test_p->rcode ne 'NOERROR' ) {
         push @results,
           info(
             INVALID_NAME_RCODE => {
