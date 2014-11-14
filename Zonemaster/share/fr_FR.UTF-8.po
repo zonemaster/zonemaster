@@ -441,10 +441,6 @@ msgstr "La zone a des enregistrements de type \"NSEC\"."
 msgid  "The zone has NSEC3 records."
 msgstr "La zone a des enregistrements de type \"NSEC3\"."
 
-#: DNSSEC:INVALID_NAME_FOUND
-msgid  "When asked for the name {name}, which must not exist, the response was not an error."
-msgstr "Lors d'une requête sur un nom de domaine qui ne devrait pas exister, on obtient une réponse qui n'est pas une erreur."
-
 #: DNSSEC:INVALID_NAME_RCODE
 msgid  "When asked for the name {name}, which must not exist, the response had RCODE {rcode}."
 msgstr "Lors d'une requête sur un nom de domaine qui ne devrait pas exister, on obtient une réponse avec le code retour (RCODE) {rcode}."

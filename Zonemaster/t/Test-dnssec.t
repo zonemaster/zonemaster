@@ -180,7 +180,6 @@ TODO: {
     # dnssec07 (need complete analyze with broken zone)
     ok( $tag{ADDITIONAL_DNSKEY_SKIPPED}, q{ADDITIONAL_DNSKEY_SKIPPED} );
     # dnssec10
-    ok( $tag{INVALID_NAME_FOUND}, q{INVALID_NAME_FOUND} );
     ok( $tag{INVALID_NAME_RCODE}, q{INVALID_NAME_RCODE} );
     ok( $tag{NSEC_COVERS_NOT}, q{NSEC_COVERS_NOT} );
     ok( $tag{NSEC_SIG_VERIFY_ERROR}, q{NSEC_SIG_VERIFY_ERROR} );
