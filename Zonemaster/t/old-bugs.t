@@ -44,6 +44,11 @@ ok((none {$_->tag eq 'MODULE_ERROR'} @res), 'No crash in dnssec02');
 my $gnames = Zonemaster->zone('nameserver06-no-resolution.zut-root.rd.nic.fr')->glue_names;
 is(scalar(@$gnames), 2, 'Two glue names');
 
+my $tld = Zonemaster->zone( 'abogado' );
+@res = Zonemaster->test_method( 'DNSSEC', 'dnssec10', $tld);
+ok( (none {$_->tag eq 'INVALID_NAME_FOUND'} @res), 'NSEC3 test works for domain with wildcard.' );
+ok( (any  {$_->tag eq 'NSEC3_COVERS'}       @res), 'NSEC3 test works for domain with wildcard.' );
+
 if ( $ENV{ZONEMASTER_RECORD} ) {
     Zonemaster::Nameserver->save( $datafile );
 }

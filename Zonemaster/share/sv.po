@@ -297,10 +297,6 @@ msgstr "Zonen har NSEC-poster."
 msgid  "The zone has NSEC3 records."
 msgstr "Zonen har NSEC3-poster."
 
-#: DNSSEC:INVALID_NAME_FOUND
-msgid  "When asked for the name {name}, which must not exist, the response was not an error."
-msgstr "Svaret på en fråga om namnet {name}, som inte får existera, var inte ett felmeddelande."
-
 #: DNSSEC:INVALID_NAME_RCODE
 msgid  "When asked for the name {name}, which must not exist, the response had RCODE {rcode}."
 msgstr "Svaret på en fråga om namnet {name}, som inte får existera, hade RCODE {rcode}."

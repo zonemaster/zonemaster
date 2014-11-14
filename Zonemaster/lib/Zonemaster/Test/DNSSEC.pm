@@ -241,7 +241,6 @@ sub metadata {
         ],
         dnssec10 => [
             qw(
-              INVALID_NAME_FOUND
               INVALID_NAME_RCODE
               NSEC_COVERS
               NSEC_COVERS_NOT
@@ -292,7 +291,6 @@ sub translation {
         "EXTRA_PROCESSING_OK"     => "Server at {server} sent {keys} DNSKEY records and {sigs} RRSIG records.",
         "HAS_NSEC"                => "The zone has NSEC records.",
         "HAS_NSEC3"               => "The zone has NSEC3 records.",
-        "INVALID_NAME_FOUND" => "When asked for the name {name}, which must not exist, the response was not an error.",
         "INVALID_NAME_RCODE" => "When asked for the name {name}, which must not exist, the response had RCODE {rcode}.",
         "ITERATIONS_OK"      => "The number of NSEC3 iterations is {count}, which is OK.",
         "MANY_ITERATIONS"    => "The number of NSEC3 iterations is {count}, which is on the high side.",
@@ -352,7 +350,6 @@ sub policy {
         "EXTRA_PROCESSING_OK"          => "DEBUG",
         "HAS_NSEC"                     => "INFO",
         "HAS_NSEC3"                    => "INFO",
-        "INVALID_NAME_FOUND"           => "NOTICE",
         "INVALID_NAME_RCODE"           => "NOTICE",
         "ITERATIONS_OK"                => "DEBUG",
         "MANY_ITERATIONS"              => "NOTICE",
@@ -988,17 +985,7 @@ sub dnssec10 {
         return;
     }
 
-    if ( $test_p->rcode eq 'NOERROR' ) {
-        push @results,
-          info(
-            INVALID_NAME_FOUND => {
-                name => $name,
-            }
-          );
-        return @results;
-    }
-
-    if ( $test_p->rcode ne 'NXDOMAIN' ) {
+    if ( $test_p->rcode ne 'NXDOMAIN' and $test_p->rcode ne 'NOERROR' ) {
         push @results,
           info(
             INVALID_NAME_RCODE => {

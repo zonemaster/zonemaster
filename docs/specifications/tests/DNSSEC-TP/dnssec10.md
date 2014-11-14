@@ -28,22 +28,16 @@ The domain name to be tested.
 ### Ordered description of steps to be taken to execute the test case
 
 1. A query is made asking for the A RR with the qname xx--example.[domain].
-2. If the answer is with the RCODE NOERROR, this test case ends here (TODO:
-   what would we like to do here?).
-3. If the answer is with the RCODE NXDOMAIN, the answer must contain a
-   NSEC or NSEC3 RR. If no such RR is present, this test case fails.
-4. The NSEC or NSEC3 RR returned must cover the qname, if they do not,
-   this test case fail.s
-5. The NSEC or NSEC3 RRs must have valid RRSIGs. Match against DNSKEY
-   and check that the RRSIG is within the validity period.
-6. If the RRSIG(s) over the NSEC or NSEC3 RRs does not validate, this test
-   case fails.
+2. If the answer does not have RCODE NOERROR or NXDOMAIN, the test ends.
+3. If the answer does not contain an NSEC or NSEC3 RR in the Authority section, this test case fails.
+4. The NSEC or NSEC3 RR returned must cover the qname, if they do not, this test case fails.
+5. The NSEC or NSEC3 RRs must have valid RRSIGs. Match against DNSKEY and check that the RRSIG is within the validity period.
+6. If the RRSIG(s) over the NSEC or NSEC3 RRs does not validate, this test case fails.
 
 ### Outcome(s)
 
-If the RCODE from the query is NXDOMAIN and the answer contains NSEC or
-NSEC3 records that covers the qname, and the RRs also have valid RRSIGs,
-this test case pass.
+If the answer contains NSEC or NSEC3 records that covers the qname, and the RRs
+also have valid RRSIGs, this test case passes.
 
 ### Special procedural requirements
 
