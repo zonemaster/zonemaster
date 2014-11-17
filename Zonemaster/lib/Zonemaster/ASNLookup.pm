@@ -53,7 +53,12 @@ sub get {
 
     my ( $asnref, $prefix ) = $class->get_with_prefix($ip);
 
-    return @$asnref;
+    if ($asnref) {
+        return @$asnref;
+    }
+    else {
+        return;
+    }
 }
 
 1;
