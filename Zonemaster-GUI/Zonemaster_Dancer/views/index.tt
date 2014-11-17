@@ -31,7 +31,7 @@
         <domain_check inactive="yes"></domain_check>
       </div>
       <div ng-show="main_currentTab == 'faq'">
-      
+         <p translate="{{'FAQ_CONTENT'|translate}}"></p>
       </div>
     </div>
   </div>
