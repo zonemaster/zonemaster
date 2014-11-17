@@ -1,5 +1,5 @@
 {
-   "asnroots" : [ "asnlookup.zonemaster.net", "asnlookup.iis.se", "asn.cymru,com"],
+   "asnroots" : [ "asnlookup.zonemaster.net", "asnlookup.iis.se", "asn.cymru.com"],
    "net" : {
       "ipv4" : 1,
       "ipv6" : 1
