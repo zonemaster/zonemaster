@@ -9,7 +9,7 @@ the JSON-RPC protocol.
 
 ## Web GUI API
 
-JSON-RPC Call 1: version\_info
+### JSON-RPC Call 1: version\_info
 
 ```
 Request:
@@ -39,7 +39,7 @@ Response
 -   id : any kind of unique id allowing to match requests and responses
 -   result: the version string
 
-JSON-RPC Call 2 get\_ns\_ips
+### JSON-RPC Call 2: get\_ns\_ips
 
 ```
 Request:
@@ -76,7 +76,7 @@ Response
 -   result: a list of one or two IP addresses (if 2 one is for IPv4 the
     other for IPv6)
 
-*JSON-RPC Call 3*: get\_data\_from\_parent\_zone
+### *JSON-RPC Call 3*: get\_data\_from\_parent\_zone
 
 ```
 Request:
@@ -139,7 +139,7 @@ Response
 -   id : any kind of unique id allowing to match requests and responses
 -   result: a list of several { nameserver =\> IP\_adress } pairs.
 
-*JSON-RPC Call 3*: get\_data\_from\_parent\_zone\_1
+### *JSON-RPC Call 3*: get\_data\_from\_parent\_zone\_1
 
 ```
 Request:
@@ -218,7 +218,8 @@ Response
     -   a list of several { ds\_id =\> digest} pairs in the ds\_list
         parameter
 
-*JSON-RPC Call 4*: validate\_domain\_syntax
+### *JSON-RPC Call 4*: validate\_domain\_syntax
+
 ```
 Request:
 {
@@ -240,12 +241,13 @@ Response
 "id" : 140717126101894,
 "result" : "syntax\_ok"
 }
+```
 
 -   jsonrpc : « 2.0 »
 -   id : any kind of unique id allowing to match requests and responses
 -   result: either “syntax\_ok” or “syntax\_not\_ok”.
 
-*JSON-RPC Call 5*: start\_domain\_test
+### *JSON-RPC Call 5*: start\_domain\_test
 
 ```
 Request:
@@ -330,7 +332,7 @@ Response
 -   result: the id of the test\_result (this id will be used in the
     other APIs related to the same test result).
 
-*JSON-RPC Call 6*: test\_progress
+### *JSON-RPC Call 6*: test\_progress
 
 ```
 Request:
@@ -361,7 +363,7 @@ Response
 -   id : any kind of unique id allowing to match requests and responses
 -   result: the % of completion of the test from 0% to 100%
 
-*JSON-RPC Call 7*: get\_test\_results
+### *JSON-RPC Call 7*: get\_test\_results
 
 ```
 Request:
@@ -466,7 +468,7 @@ The **level** is the level of criticity of the message
 -   WARNING as warning -\> orange
 -   ERROR as error -\> red
 
-*JSON-RPC Call 8*: get\_test\_history
+### *JSON-RPC Call 8*: get\_test\_history
 
 ```
 Request:
@@ -549,7 +551,7 @@ Response
 
 ## Batch mode API
 
-*JSON-RPC Call*: create\_user
+### *JSON-RPC Call*: create\_user
 
 ```
 Request:
