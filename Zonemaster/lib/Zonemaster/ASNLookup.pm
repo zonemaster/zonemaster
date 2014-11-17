@@ -1,4 +1,4 @@
-package Zonemaster::ASNLookup v0.0.1;
+package Zonemaster::ASNLookup v0.1.0;
 
 use 5.014002;
 use warnings;
