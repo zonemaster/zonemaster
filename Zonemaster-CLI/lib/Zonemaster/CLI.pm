@@ -9,7 +9,7 @@ package Zonemaster::CLI;
 use 5.014002;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = v0.1.0;
 
 use Locale::TextDomain 'Zonemaster-CLI';
 use Moose;
