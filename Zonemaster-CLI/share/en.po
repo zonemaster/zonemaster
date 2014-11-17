@@ -150,3 +150,9 @@ msgstr "Looks OK."
 msgid "At the end of a run, print a summary of the times the zone's name servers took to answer."
 msgstr "At the end of a run, print a summary of the times the zone's name servers took to answer."
 
+msgid  "Print the effective configuration used in JSON format, then exit."
+msgstr "Print the effective configuration used in JSON format, then exit."
+
+msgid  "Print the effective policy used in JSON format, then exit."
+msgstr "Print the effective policy used in JSON format, then exit."
+

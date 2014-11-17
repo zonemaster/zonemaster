@@ -149,3 +149,9 @@ msgstr "Ser OK ut."
 
 msgid "At the end of a run, print a summary of the times the zone's name servers took to answer."
 msgstr "Efter att körningen avslutats, skriv ut en summering av zonens namnservrars svarstider."
+
+msgid  "Print the effective configuration used in JSON format, then exit."
+msgstr "Skriv ut den effektiva konfigurationen i JSON-format, sedan avsluta."
+
+msgid  "Print the effective policy used in JSON format, then exit."
+msgstr "Skriv ut den effektiva policyn i JSON-format, sedan avsluta."

@@ -26,6 +26,7 @@ use Net::LDNS;
 use POSIX qw[setlocale LC_MESSAGES];
 use List::Util qw[max];
 use Text::Reflow qw[reflow_string];
+use JSON::XS;
 
 our %numeric = Zonemaster::Logger::Entry->levels;
 
@@ -206,6 +207,22 @@ has 'nstimes' => (
     documentation => __('At the end of a run, print a summary of the times the zone\'s name servers took to answer.'),
 );
 
+has 'dump_config' => (
+    is => 'ro',
+    isa => 'Bool',
+    required => 0,
+    default => 0,
+    documentation => __( 'Print the effective configuration used in JSON format, then exit.' ),
+);
+
+has 'dump_policy' => (
+    is => 'ro',
+    isa => 'Bool',
+    required => 0,
+    default => 0,
+    documentation => __( 'Print the effective policy used in JSON format, then exit.' ),
+);
+
 sub run {
     my ( $self ) = @_;
     my @accumulator;
@@ -229,11 +246,26 @@ sub run {
         print_test_list();
     }
 
-    my ( $domain ) = @{ $self->extra_argv };
-    if ( not $domain ) {
-        die __( "Must give the name of a domain to test.\n" );
+    Zonemaster->config->get->{net}{ipv4} = 0+$self->ipv4;
+    Zonemaster->config->get->{net}{ipv6} = 0+$self->ipv6;
+
+    if ( $self->policy ) {
+        say __( "Loading policy from " ) . $self->policy;
+        Zonemaster->config->load_policy_file( $self->policy );
     }
-    $domain = $self->to_idn( $domain );
+
+    if ( $self->config ) {
+        say __( "Loading configuration from " ) . $self->config;
+        Zonemaster->config->load_config_file( $self->config );
+    }
+
+    if ( $self->dump_config ) {
+        do_dump_config();
+    }
+
+    if ( $self->dump_policy ) {
+        do_dump_policy();
+    }
 
     if ( $self->stop_level and not defined( $numeric{ $self->stop_level } ) ) {
         die __( "Failed to recognize stop level '" ) . $self->stop_level . "'.\n";
@@ -242,9 +274,6 @@ sub run {
     if ( not defined $numeric{ $self->level } ) {
         die __( "--level must be one of CRITICAL, ERROR, WARNING, NOTICE, INFO, DEBUG, DEBUG2 or DEBUG3.\n" );
     }
-
-    Zonemaster->config->get->{net}{ipv4} = $self->ipv4;
-    Zonemaster->config->get->{net}{ipv6} = $self->ipv6;
 
     my $translator;
     $translator = Zonemaster::Translator->new unless ( $self->raw or $self->json );
@@ -298,16 +327,6 @@ sub run {
         }
     );
 
-    if ( $self->policy ) {
-        say __( "Loading policy from " ) . $self->policy;
-        Zonemaster->config->load_policy_file( $self->policy );
-    }
-
-    if ( $self->config ) {
-        say __( "Loading configuration from " ) . $self->config;
-        Zonemaster->config->load_config_file( $self->config );
-    }
-
     if ( $self->config or $self->policy ) {
         print "\n";    # Cosmetic
     }
@@ -335,6 +354,12 @@ sub run {
         }
         say __( '=======' );
     } ## end if ( $translator )
+
+    my ( $domain ) = @{ $self->extra_argv };
+    if ( not $domain ) {
+        die __( "Must give the name of a domain to test.\n" );
+    }
+    $domain = $self->to_idn( $domain );
 
     if ( $self->ns and @{ $self->ns } > 0 ) {
         $self->add_fake_delegation( $domain );
@@ -518,5 +543,17 @@ sub print_test_list {
     }
     exit( 0 );
 } ## end sub print_test_list
+
+sub do_dump_policy {
+    my $json = JSON::XS->new->canonical->pretty;
+    print $json->encode(Zonemaster->config->policy);
+    exit;
+}
+
+sub do_dump_config {
+    my $json = JSON::XS->new->canonical->pretty;
+    print $json->encode(Zonemaster->config->get);
+    exit;
+}
 
 1;
