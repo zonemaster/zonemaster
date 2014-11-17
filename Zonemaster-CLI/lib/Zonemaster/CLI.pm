@@ -450,7 +450,7 @@ sub add_fake_ds {
 }
 
 sub print_versions {
-    say 'CLI version:    ' . $VERSION;
+    say 'CLI version:    ' . __PACKAGE__->VERSION;
     say 'Engine version: ' . $Zonemaster::VERSION;
     say "\nTest module versions:";
 
