@@ -1,4 +1,4 @@
-package Zonemaster::Nameserver v0.0.2;
+package Zonemaster::Nameserver v0.1.0;
 
 use 5.14.2;
 use Moose;

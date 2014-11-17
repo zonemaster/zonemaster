@@ -1,4 +1,4 @@
-package Zonemaster::Test v0.0.3;
+package Zonemaster::Test v0.1.0;
 
 use 5.14.2;
 use strict;

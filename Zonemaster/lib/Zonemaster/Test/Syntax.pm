@@ -1,4 +1,4 @@
-package Zonemaster::Test::Syntax v0.0.2;
+package Zonemaster::Test::Syntax v0.1.0;
 
 use 5.14.2;
 use strict;
