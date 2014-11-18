@@ -1144,17 +1144,17 @@ sub dnssec10 {
 ### the test case is to give a pass/fail test for the delegation step from the
 ### parent as a whole.
 sub dnssec11 {
-    my ( undef, $zone ) = @_;
+    my ( $class, $zone ) = @_;
     my @results;
 
     my $ds_p = $zone->parent->query_auth( $zone->name->string, 'DS' );
-    if (no $ds_p) {
-        return info( DELEGATION_NOT_SIGNED => { keytag => $tag, reason => 'no_ds_packet' } )
+    if (not $ds_p) {
+        return info( DELEGATION_NOT_SIGNED => { keytag => 'none', reason => 'no_ds_packet' } )
     }
 
     my $dnskey_p = $zone->query_auth( $zone->name->string, 'DNSKEY', { dnssec => 1 } );
-    if (no $dnskey_p) {
-        return info( DELEGATION_NOT_SIGNED => { keytag => $tag, reason => 'no_dnskey_packet' } )
+    if (not $dnskey_p) {
+        return info( DELEGATION_NOT_SIGNED => { keytag => 'none', reason => 'no_dnskey_packet' } )
     }
 
     my %ds = map { $_->keytag => $_ } $ds_p->get_records_for_name( 'DS', $zone->name->string );
@@ -1174,7 +1174,7 @@ sub dnssec11 {
                         my $ok =
                           $sig->verify_time( [ values %dnskey ], [ values %dnskey ], $dnskey_p->timestamp, $msg );
                         if ( $ok ) {
-                            push @results, info( DELEGATION_SIGNED => { keytag => $tag } );
+                            return info( DELEGATION_SIGNED => { keytag => $tag } );
                         }
                         else {
                             push @results,
