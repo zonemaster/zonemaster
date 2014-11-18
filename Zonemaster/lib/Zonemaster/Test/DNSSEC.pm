@@ -1285,6 +1285,10 @@ Check that the SOA RRset is signed.
 
 Check for the presence of either NSEC or NSEC3, with proper coverage and signatures.
 
+=item dnssec11($zone)
+
+Check that the delegation step from parent is properly signed.
+
 =back
 
 =cut
