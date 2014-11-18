@@ -547,6 +547,14 @@ msgstr "At least one RRSIG correctly signs the SOA RRset."
 msgid  "The number of NSEC3 iterations is {count}, which is too high for key length {keylength}."
 msgstr "The number of NSEC3 iterations is {count}, which is too high for key length {keylength}."
 
+#: DNSSEC:DELEGATION_NOT_SIGNED
+msgid  "Delegation from parent to child is not properly signed {reason}."
+msgstr "Delegation from parent to child is not properly signed {reason}."
+
+#: DNSSEC:DELEGATION_SIGNED
+msgid  "Delegation from parent to child is properly signed."
+msgstr "Delegation from parent to child is properly signed."
+
 #: EXAMPLE:EXAMPLE_TAG
 msgid  "This is an example tag."
 msgstr "This is an example tag."
