@@ -264,6 +264,9 @@ sub run {
     }
 
     if ( $self->dump_policy ) {
+        foreach my $mod (Zonemaster->modules) {
+            Zonemaster->config->load_module_policy($mod)
+        }
         do_dump_policy();
     }
 
