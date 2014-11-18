@@ -33,6 +33,7 @@ requires (
     'Net::LDNS' => 0.65,
     'Locale::TextDomain' => 0,
     'Text::Reflow' => 0,
+    'JSON::XS' => 0,
 );
 
 install_script 'zonemaster-cli';
