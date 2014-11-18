@@ -250,12 +250,12 @@ sub run {
     Zonemaster->config->get->{net}{ipv6} = 0+$self->ipv6;
 
     if ( $self->policy ) {
-        say __( "Loading policy from " ) . $self->policy;
+        say __( "Loading policy from " ) . $self->policy . '.' if not ($self->dump_config or $self->dump_policy);
         Zonemaster->config->load_policy_file( $self->policy );
     }
 
     if ( $self->config ) {
-        say __( "Loading configuration from " ) . $self->config;
+        say __( "Loading configuration from " ) . $self->config . '.' if not ($self->dump_config or $self->dump_policy);
         Zonemaster->config->load_config_file( $self->config );
     }
 
@@ -331,6 +331,11 @@ sub run {
         print "\n";    # Cosmetic
     }
 
+    my ( $domain ) = @{ $self->extra_argv };
+    if ( not $domain ) {
+        die __( "Must give the name of a domain to test.\n" );
+    }
+
     if ( $translator ) {
         if ( $self->time ) {
             print __( 'Seconds ' );
@@ -355,10 +360,6 @@ sub run {
         say __( '=======' );
     } ## end if ( $translator )
 
-    my ( $domain ) = @{ $self->extra_argv };
-    if ( not $domain ) {
-        die __( "Must give the name of a domain to test.\n" );
-    }
     $domain = $self->to_idn( $domain );
 
     if ( $self->ns and @{ $self->ns } > 0 ) {
