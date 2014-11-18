@@ -146,6 +146,7 @@ sub all {
         push @results, $class->dnssec08( $zone );
         push @results, $class->dnssec09( $zone );
         push @results, $class->dnssec10( $zone );
+        push @results, $class->dnssec11( $zone );
     }
 
     return @results;
@@ -255,6 +256,12 @@ sub metadata {
               NSEC3_NOT_SIGNED
               HAS_NSEC3 )
         ],
+        dnssec11 => [
+            qw(
+                DELEGATION_NOT_SIGNED
+                DELEGATION_SIGNED
+            ),
+        ],
     };
 } ## end sub metadata
 
@@ -319,6 +326,8 @@ sub translation {
         "SOA_SIGNED"             => "At least one RRSIG correctly signs the SOA RRset.",
         "TOO_MANY_ITERATIONS" =>
           "The number of NSEC3 iterations is {count}, which is too high for key length {keylength}.",
+        "DELEGATION_NOT_SIGNED" => "Delegation from parent to child is not properly signed {reason}.",
+        "DELEGATION_SIGNED" => "Delegation from parent to child is properly signed.",
     };
 } ## end sub translation
 
@@ -378,6 +387,8 @@ sub policy {
         "SOA_SIGNATURE_OK"             => "DEBUG",
         "SOA_SIGNED"                   => "DEBUG",
         "TOO_MANY_ITERATIONS"          => "WARNING",
+        "DELEGATION_NOT_SIGNED"        => "ERROR",
+        "DELEGATION_SIGNED"            => "INFO",
     };
 } ## end sub policy
 
@@ -1127,6 +1138,68 @@ sub dnssec10 {
 
     return @results;
 } ## end sub dnssec10
+
+
+### The error reporting in dnssec11 is deliberately simple, since the point of
+### the test case is to give a pass/fail test for the delegation step from the
+### parent as a whole.
+sub dnssec11 {
+    my ( undef, $zone ) = @_;
+    my @results;
+
+    my $ds_p = $zone->parent->query_auth( $zone->name->string, 'DS' );
+    if (no $ds_p) {
+        return info( DELEGATION_NOT_SIGNED => { keytag => $tag, reason => 'no_ds_packet' } )
+    }
+
+    my $dnskey_p = $zone->query_auth( $zone->name->string, 'DNSKEY', { dnssec => 1 } );
+    if (no $dnskey_p) {
+        return info( DELEGATION_NOT_SIGNED => { keytag => $tag, reason => 'no_dnskey_packet' } )
+    }
+
+    my %ds = map { $_->keytag => $_ } $ds_p->get_records_for_name( 'DS', $zone->name->string );
+    my %dnskey = map { $_->keytag => $_ } $dnskey_p->get_records_for_name( 'DNSKEY', $zone->name->string );
+    my %rrsig  = map { $_->keytag => $_ } $dnskey_p->get_records_for_name( 'RRSIG',  $zone->name->string );
+
+    if ( scalar( keys %ds ) > 0 ) {
+        foreach my $tag ( keys %ds ) {
+            my $ds  = $ds{$tag};
+            my $key = $dnskey{$tag};
+            my $sig = $rrsig{$tag};
+
+            if ( $key ) {
+                if ( $ds->verify( $key ) ) {
+                    if ( $sig ) {
+                        my $msg = '';
+                        my $ok =
+                          $sig->verify_time( [ values %dnskey ], [ values %dnskey ], $dnskey_p->timestamp, $msg );
+                        if ( $ok ) {
+                            push @results, info( DELEGATION_SIGNED => { keytag => $tag } );
+                        }
+                        else {
+                            push @results,
+                              info( DELEGATION_NOT_SIGNED => { keytag => $tag, reason => "signature: $msg" } );
+                        }
+                    }
+                    else {
+                        push @results, info( DELEGATION_NOT_SIGNED => { keytag => $tag, reason => 'no_signature' } );
+                    }
+                }
+                else {
+                    push @results, info( DELEGATION_NOT_SIGNED => { keytag => $tag, reason => 'dnskey_no_match' } );
+                }
+            } ## end if ( $key )
+            else {
+                push @results, info( DELEGATION_NOT_SIGNED => { keytag => $tag, reason => 'no_dnskey' } );
+            }
+        } ## end foreach my $tag ( keys %ds )
+    } ## end if ( scalar( keys %ds ...))
+    else {
+        push @results, info( DELEGATION_NOT_SIGNED => { keytag => 'none', reason => 'no_ds' } );
+    }
+
+    return @results;
+} ## end sub dnssec11
 
 1;
 
