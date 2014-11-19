@@ -557,7 +557,7 @@ msgstr "The number of NSEC3 iterations is {count}, which is too high for key len
 
 #: DNSSEC:DELEGATION_NOT_SIGNED
 msgid  "Delegation from parent to child is not properly signed {reason}."
-msgstr "Delegation from parent to child is not properly signed {reason}."
+msgstr "Delegation from parent to child is not properly signed ({reason})."
 
 #: DNSSEC:DELEGATION_SIGNED
 msgid  "Delegation from parent to child is properly signed."

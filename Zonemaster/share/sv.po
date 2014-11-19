@@ -407,7 +407,7 @@ msgstr "Antalet NSEC3-iterationer är {count}, vilket är för mycket för nycke
 
 #: DNSSEC:DELEGATION_NOT_SIGNED
 msgid  "Delegation from parent to child is not properly signed {reason}."
-msgstr "Delegeringen från föräldra- till barn-zon är inte korrekt signerad {reason}."
+msgstr "Delegeringen från föräldra- till barn-zon är inte korrekt signerad ({reason})."
 
 #: DNSSEC:DELEGATION_SIGNED
 msgid  "Delegation from parent to child is properly signed."
