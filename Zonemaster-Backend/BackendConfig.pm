@@ -121,4 +121,22 @@ sub PollingInterval {
 	return $cfg->val( 'DB', 'polling_interval' );
 }
 
+sub MaxZonemasterExecutionTime {
+	my $cfg = _load_config();
+
+	return $cfg->val( 'ZONEMASTER', 'max_zonemaster_execution_time' );
+}
+
+sub NumberOfProfessesForFrontendTesting {
+	my $cfg = _load_config();
+
+	return $cfg->val( 'ZONEMASTER', 'number_of_professes_for_frontend_testing' );
+}
+
+sub NumberOfProfessesForBatchTesting {
+	my $cfg = _load_config();
+
+	return $cfg->val( 'ZONEMASTER', 'number_of_professes_for_batch_testing' );
+}
+
 1;

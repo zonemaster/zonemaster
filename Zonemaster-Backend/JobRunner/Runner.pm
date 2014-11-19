@@ -70,6 +70,7 @@ sub new{
 
 
 	bless($self,$class);
+	say "Runner::New OK";
 	return $self;
 }
 
@@ -81,7 +82,8 @@ sub run {
 
 	my $params;
 
-	$self->{db}->test_progress($test_id, 1);
+	my $progress = $self->{db}->test_progress($test_id, 1);
+	say "test [$test_id] test_progress returned [$progress]";
 	
 	$params = $self->{db}->get_test_params($test_id);
 
