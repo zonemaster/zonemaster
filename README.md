@@ -1,4 +1,4 @@
-Zonemaster
+![Zonemaster](docs/images/zonemaster_logo_black.png)
 ==========
 
 ### Background
