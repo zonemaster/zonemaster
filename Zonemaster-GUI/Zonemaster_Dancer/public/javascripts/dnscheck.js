@@ -28,7 +28,7 @@ dnscheck.config(function($translateProvider) {
 dnscheck.filter("asDate", function () {
       return function (input) {
         if (typeof input ==='undefined') return new Date(); 
-        input = input.replace(/\..*$/,"Z");
+        input = input.replace(/\..*$/,"+0100");
         input = input.replace(" ","T");
         return new Date(input);
       }
