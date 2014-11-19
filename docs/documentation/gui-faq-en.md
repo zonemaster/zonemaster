@@ -21,14 +21,14 @@ Zonemaster
 
 Zonemaster is a program that was designed to help people check, measure and
 hopefully also understand the workings of the DNS (Domain Name System). 
-It consists of three basic modules: 1.Engine (a test framework that supports all
-functionality to perform DNS tests), 2. The CLI interface and 3. the web
+It consists of three basic modules: 1. Engine (a test framework that supports all
+functionality to perform DNS tests), 2. The CLI interface and 3. The web
 interface.
 When a domain (such as "zonemaster.net") is submitted to Zonemaster interfaces (CLI or
 Web) it will investigate the domain’s general health by traversing the DNS from root 
 (.) to the TLD (Top Level Domain, like .net) to eventually the nameserver(s) that holds 
 the information about the specified domain (zonemaster.net). The different sanity checks 
-conducted by the zonemaster tool is documented in the [Test Requirements
+conducted by the zonemaster tool are documented in the [Test Requirements
 document](https://github.com/dotse/zonemaster/blob/master/docs/requirements/TestRequirements.md)
 
 **2. Who is behind Zonemaster?**
@@ -38,7 +38,7 @@ Zonemaster is a joint project between .SE (registry operator of .se and .nu TLD)
 
 **3. How can Zonemaster help me?**  
 
-The Zonemaster tool is oriented towards two types of population. 1. People who
+The Zonemaster tool is oriented towards two types of users. 1. People who
 are knowledgable about the DNS protocol and 2. People who just want to know
 whether the domain's owned/used by them did not have any issues. 
 
@@ -62,7 +62,7 @@ this project. Hopefully this have made sure of a good compromise between what is
 potentially dangerous error and what could be merely seen as a notice or warning.
 
 The added advantage of the tool is that one can add a policy file suited to
-one's necessity to a specified directory and ask the tool to use that policy
+one's needs to a specified directory and ask the tool to use that policy
 file for running the tests.
 
 But as with all things as evolving as DNS the situation is most likely
@@ -74,7 +74,7 @@ link to your test, check the "How can Zonemaster help me"-part of this FAQ ).
 
 **6. Does Zonemaster handle IPv6?**  
 
-Yes, it does. All tests run over IPv4 will also be run over IPv6 if ZoneMsater
+Yes, it does. All tests run over IPv4 will also be run over IPv6 if Zonemaster
 is configured to do so.
 
 **7. Does Zonemaster handle DNSSEC?**  
