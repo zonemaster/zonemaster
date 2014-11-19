@@ -1,28 +1,28 @@
-# ZoneMaster technical maintenance plan
+# Zonemaster technical maintenance plan
 
 ## Background
 
-The ZoneMaster project has been developed by AFNIC and .SE. The first part of the project has been to finish the release of version 1.0. This is the technical maintenance plan put in place to ensure a long term support for the software, including all relevant parts for the development of the software.
+The Zonemaster project has been developed by AFNIC and .SE. The first part of the project has been to finish the release of version 1.0. This is the technical maintenance plan put in place to ensure a long term support for the software, including all relevant parts for the development of the software.
 
-This document outlines the continuous development of the ZoneMaster open source project, what is included and what the development entails.
+This document outlines the continual development of the Zonemaster open source project, what is included and what the development entails.
 
 ## Change management
 
-Any change in the software except minor improvements or bug fixes requires a change in the list of requirements. Change requests can come from anywhere, such as the users mailinglist, the steering committe or the development team. A bug or minor improvement should close a ticket in the Issues functionality of Github.
+Any change in the software except minor improvements or bug fixes requires a change in the list of requirements. Change requests can come from anywhere such as the users mailinglist, the steering committe or the development team. A bug or minor improvement should close a ticket in the Issues functionality of Github.
 
 A change is approved by the development team, and added to the roadmap and the current set of requirements.
 
 ## Development
 
-Any new development for Zonemaster must follow the strict process where we have formal requirements, have specifications implementing the requirements and then any design and architecture fulfilling the specifications, and finally the implemenation and QA. When all this is performed successully, we have a release being performing using the release process.
+Any new development for Zonemaster must follow the strict process where there are formal requirements, specifications for implementing the requirements and then any design and architecture fulfilling the specifications, and finally the implementation and quality assurance. When all this is performed successully the software package is relased using the release process.
 
-The developers are responsible for the specifications that implements the requirements, and that the code follows the specifications. All code should be reviewed by a developer other than the developer himself, this could either be the Release manager or another developer acting as a Code reviewer.
+The developers are responsible for the specifications that implements the requirements and that the code follows the specifications. All code should be reviewed by a developer other than the developer himself, this could either be the Release manager or another developer acting as a Code reviewer.
 
 ### Requirements
 
 Formal requirements comes from "some kind of managament or governance of the project", the team and any users requesting new functionality. Requirements should be ranked in importance depending on a number of factors such as complexity, amount of work, risk, architectural changes, relevance to the product and so on.
 
-New requirements that are acknowledged make it to the roadmap, and planned for specification and implementation, and are also added to the current set of requirements.  
+New requirements that are acknowledged make it to the roadmap and planned for specification and implementation. They are also added to the current set of requirements.  
 
 ### Specification
 
@@ -32,7 +32,7 @@ All specified tests must have a requirement that matches the specification, and 
 
 ### Design and architecture
 
-Any change and specifiation that requires architectural changes creates changes in the software architecture. These arhitectural changes must by documented and any decision to implement the specification is made by ... who?
+Any change and specifiation that requires architectural changes creates changes in the software architecture. These arhitectural changes must by documented and any decision to implement the specification is made by the development team with support from the steering committee.
 
 A more detailed design can be created once the architecture has been set. This is done within the development team. The aim is to describe each component and its internal structures.
 
@@ -58,7 +58,6 @@ The changes in this release are tested against the requirements and the specific
 
  * Regression tests should then also be put in place to cover the functionality.
 
-
 ## Bug fixing
 
 Any bug fixes the team or any user discovers should be published in the Github issue tracker.
@@ -67,7 +66,7 @@ Not all issues in the tracker are bugs, and not all reported bugs are software b
 
 Errors in the documentation, any language translation, requirements and specifications are also going into the Github issue tracker.
 
-All developers are responsible for going through the Github issue tracker for any new issues and delegate the issue to a responsible person for fixing the problem. When possible, the full dialogue with the reporter of the issue should go into this Github issue.
+The release managers are responsible for going through the Github issue tracker for any new issues and delegate the issue to a responsible developer for fixing the problem. The issue should also be prioritized and planned for a release. When possible, the full dialogue with the reporter of the issue should go into this Github issue.
 
 ## Minor changes
 
@@ -75,7 +74,7 @@ Minor changes are new features, changes or deprecated functionality that do not 
 
 See the Version numbering policy on the management of version numbers.
 
-Minor changes and bug fixes are included in minor releases
+Minor changes and bug fixes are included in minor releases.
 
 ## Major changes
 
@@ -104,11 +103,7 @@ The Release Manager is responsible for the Release Process and the Relase Manage
 
 ## Version numbering policy
 
-We can copy the version numbering policy from the OpenDNSSEC project, as it is the most common in the open source world:  
-[OpenDNSSEC Release Management Policy](https://wiki.opendnssec.org/display/OpenDNSSEC/Release+Management+Policy)
-
-See the Wikipedia page for variations on the theme:  
-[Wikipedia on Software versioning](http://en.wikipedia.org/wiki/Software_versioning)
+Our current [version numbering policy](../design/Versions%20and%20Releases.md) is in the development documentation.
 
 ## Release process
 
@@ -147,23 +142,23 @@ The initial translations of the software, FAQs, web interfaces and so on, are fo
 
 Any new language added to the software requires a person to be responsible for that translation. Since strings may change between releases, it is important that the new strings will be translated for all the languages.
 
-There might be a need to have somebody to be responsible for translations, and that this responsibility includes having personal contacts with the translators.
+There might be a need to have somebody to be responsible for translations, and that this responsibility includes having personal contacts with the translators. This role also has the responsibility for the translation documentation and processes.
 
 ## Packaging
 
 Open source software is often shipped as software included in different operating system distributions. There are many people packaging software for these systems. Sometimes the open source projects takes its own responsibility to provide OS packages, especially if they have not yet been included in any distribution.
 
-We should not package the software for any target OS, but we should have a friendly dialogue with the people that want to package ZoneMaster in any distribution.
+We should not package the software for any target OS, but we should have a friendly dialogue with the people that want to package Zonemaster in any distribution.
 
-In the release process, there are often release candidate versions release before the actual release. These *rc* versions are often tested by the package maintainers, and it is also a good way to see that the release are working on the platforms that the software is distributed with. Therefore we want the package maintainers to test the package before we release any final version.
+In the release process, there are often Release Candidate versions release before the actual release. These *RC* versions are often tested by the package maintainers, and it is also a good way to see that the release are working on the platforms that the software is distributed with. Therefore we want the package maintainers to test the package before we release any final version.
 
 ## Operational systems
 
-A number of systems has to be maintained during the lifetime of the ZoneMaster software.
+A number of systems has to be maintained during the lifetime of the Zonemaster software.
 
 ### ASN Lookup
 
-The ASN Lookup service asnlookup.zonemaster.net is (is going to be) hosted by .SE, och is being managed alongside the current asnlookup.iis.se service. The operations department within .SE is running this service, and ZoneMaster need an SLA for this service. Regular reports on the status of the operations is needed from the operations department.
+The ASN Lookup service asnlookup.zonemaster.net is (going to be) hosted by .SE, och is being managed alongside the current asnlookup.iis.se service. The operations department within .SE is running this service, and Zonemaster need an SLA for this service. Regular reports on the status of the operations is needed from the operations department.
 
 This service might also be used as a collector for the statistics on the number of users of the software, since the default configuration for the software is to do ASN lookups from this service (the default can however be changed).
 
@@ -171,7 +166,7 @@ The software that runs the ASN Lookup service is rbldnsd, and the software itsel
 
 ### Github
 
-The Github repository is a service run by the GitHub company. However, our repository for the ZoneMaster software is belongning to the "dotse"-organization within GitHub, and the "dotse" organization is being managed by people from .SE. The ZoneMaster repository is a separate source code versioning repository under "dotse", and is being separately managed by its own repository managers.
+The Github repository is a service run by the GitHub company. However, our repository for the Zonemaster software is belongning to the "dotse"-organization within GitHub, and the "dotse" organization is being managed by people from .SE. The Zonemaster repository is a separate source code versioning repository under "dotse", and is being separately managed by its own repository managers.
 
 The role of the repository manager is to add and remove members who have (write-)access the repository, the issues and the wiki.
 
