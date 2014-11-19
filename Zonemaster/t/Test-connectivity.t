@@ -17,6 +17,8 @@ my %res = map { $_->tag => 1 } Zonemaster->test_module( q{connectivity}, q{afnic
 ok( $res{NAMESERVER_HAS_UDP_53}, q{Nameserver has UDP port 53 reachabale} );
 ok( $res{NAMESERVER_HAS_TCP_53}, q{Nameserver has TCP port 53 reachabale} );
 ok( $res{NAMESERVERS_WITH_MULTIPLE_AS}, q{Nameservers with multiple AS} );
+ok( $res{IPV4_ASN}, 'IPv4 AS list' );
+ok( $res{IPV6_ASN}, 'IPv6 AS list' );
 
 %res = map { $_->tag => 1 } Zonemaster->test_module( q{connectivity}, q{001.tf} );
 ok( $res{NAMESERVERS_IPV6_WITH_UNIQ_AS}, q{Nameservers IPv6 with Uniq AS} );

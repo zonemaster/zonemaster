@@ -64,6 +64,8 @@ sub metadata {
                 NAMESERVERS_NO_AS
                 NAMESERVERS_WITH_MULTIPLE_AS
                 NAMESERVERS_WITH_UNIQ_AS
+                IPV4_ASN
+                IPV6_ASN
               )
         ],
     };
@@ -86,6 +88,8 @@ sub translation {
         'NAMESERVER_NO_UDP_53'              => 'Nameserver {ns}/{address} not accessible over UDP on port 53.',
         'IPV4_DISABLED'                     => 'IPv4 is disabled, not sending "{type}" query to {ns}.',
         'IPV6_DISABLED'                     => 'IPv6 is disabled, not sending "{type}" query to {ns}.',
+        'IPV4_ASN'                          => 'Name servers have IPv4 addresses in the following ASs: {asn}.',
+        'IPV6_ASN'                          => 'Name servers have IPv6 addresses in the following ASs: {asn}.',
     };
 }
 
@@ -239,6 +243,9 @@ sub connectivity03 {
     my @v4asns   = uniq grep {$_} map {Zonemaster::ASNLookup->get($_)} @v4ips;
     my @v6asns   = uniq grep {$_} map {Zonemaster::ASNLookup->get($_)} @v6ips;
     my @all_asns = uniq(@v4asns, @v6asns);
+
+    push @results, info( IPV4_ASN => { asn => join(',', @v4asns) } );
+    push @results, info( IPV6_ASN => { asn => join(',', @v6asns) } );
 
     if (@v4asns == 1) {
         push @results, info( NAMESERVERS_IPV4_WITH_UNIQ_AS => { asn => $v4asns[0] } );

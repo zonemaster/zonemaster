@@ -105,6 +105,14 @@ msgstr "Namnservern {ns}/{address} är inte åtkomlig över TCP på port 53."
 msgid  "Nameserver {ns}/{address} not accessible over UDP on port 53."
 msgstr "Namnservern {ns}/{address} är inte åtkomlig över UDP på port 53."
 
+#: CONNECTIVITY:IPV4_ASN
+msgid  "Name servers have IPv4 addresses in the following ASs: {asn}."
+msgstr "Namnservrarna har IPv4-adresser i följande AS: {asn}."
+
+#: CONNECTIVITY:IPV6_ASN
+msgid  "Name servers have IPv6 addresses in the following ASs: {asn}."
+msgstr "Namnservrarna har IPv6-adresser i följande AS: {asn}."
+
 #: CONSISTENCY:MULTIPLE_SOA_RNAMES
 msgid  "Saw {count} SOA rname."
 msgstr "Såg {count} olika SOA RNAME."
