@@ -152,7 +152,6 @@ sub get_data_from_parent_zone_1 {
 	my @ns_names;
 	
 	my $r = Net::LDNS->new();
-	$r->timeout(1);
 	$r->cd(1);
 	$r->dnssec(0);
 	my $p = $r->query($domain,"NS"); 
@@ -177,7 +176,6 @@ sub get_data_from_parent_zone_1 {
 	my @ds_list;
 	
 	my $r_ds = Net::LDNS->new();
-	$r_ds->timeout(1);
 	$r_ds->cd(1);
 	$r_ds->dnssec(0);
 	my $p_ds = $r_ds->query($domain,"DNSKEY"); 
