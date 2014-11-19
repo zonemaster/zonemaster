@@ -175,6 +175,14 @@ msgstr "Nameserver {ns}/{address} not accessible over TCP on port 53."
 msgid  "Nameserver {ns}/{address} not accessible over UDP on port 53."
 msgstr "Nameserver {ns}/{address} not accessible over UDP on port 53."
 
+#: CONNECTIVITY:IPV4_ASN
+msgid  "Name servers have IPv4 addresses in the following ASs: {asn}."
+msgstr "Name servers have IPv4 addresses in the following ASs: {asn}."
+
+#: CONNECTIVITY:IPV6_ASN
+msgid  "Name servers have IPv6 addresses in the following ASs: {asn}."
+msgstr "Name servers have IPv6 addresses in the following ASs: {asn}."
+
 #: CONSISTENCY:IPV4_DISABLED
 #: CONSISTENCY:IPV6_DISABLED
 #: CONSISTENCY:MULTIPLE_NS_SET
