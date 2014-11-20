@@ -152,6 +152,7 @@ sub get_data_from_parent_zone_1 {
 	my @ns_names;
 	
 	my $r = Net::LDNS->new();
+	$r->timeout(1);
 	$r->cd(1);
 	$r->dnssec(0);
 	my $p = $r->query($domain,"NS"); 
@@ -171,12 +172,12 @@ sub get_data_from_parent_zone_1 {
 	
 	
 	my %algorithm_ids = ( 
-		5 => 'sha1',
-		8 => 'sha256',
+		8 => 'sha1',
 	);
 	my @ds_list;
 	
 	my $r_ds = Net::LDNS->new();
+	$r_ds->timeout(1);
 	$r_ds->cd(1);
 	$r_ds->dnssec(0);
 	my $p_ds = $r_ds->query($domain,"DNSKEY"); 
@@ -215,22 +216,17 @@ sub _check_domain {
 	
 	$dn =~ s/\.$// unless($dn eq '.');
 	
-	my @labels = split(/\./, $dn);
-	unless ($labels[-1] =~ /[^0-9]/) {
-		return ($dn, { status => 'nok', message => encode_entities("Numeric TLD is not allowed") });
-	}
-	
 	if (length($dn) > 253) {
 		return ($dn, { status => 'nok', message => encode_entities("$type name too long") });
 	}
 
-	foreach my $label (@labels) {
+	foreach my $label (split(/\./, $dn)) {
 		if (length($label) > 63) {
 			return ($dn, { status => 'nok', message => encode_entities("$type name label too long") });
 		}
 	}
 
-	foreach my $label (@labels) {
+	foreach my $label (split(/\./, $dn)) {
 		if ($label =~ /[^0-9a-zA-Z\-]/) {
 			return ($dn, { status => 'nok', message => encode_entities("$type name contains invalid characters") });
 		}
