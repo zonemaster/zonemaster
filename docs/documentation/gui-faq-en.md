@@ -45,8 +45,7 @@ Zonemaster is a joint project between .SE (registry operator of .se and .nu TLD)
 The Zonemaster tool is oriented towards two types of population: 
 <ol>
  <li> People who are knowledgable about the DNS protocol and </li>
- <li> People who just want to know whether the domain's owned/used by them did
-not have any issues </li>
+ <li> People who just want to know whether the domain's owned/used by them did not have any issues </li>
 </ol>
 The second category population described above should contact the first
 category population once they have the results other than in green for any
@@ -154,14 +153,8 @@ To test the reverse zone of an IPv6 network, just as for IPv4, take the network
 address, reverse the bytes and add the suffix ip6.arpa.
 
 <ol>
-<li> *Example 1* - Reverse for an IPv4 network: network address of the installation:
-194.98.30.0. The corresponding reverse zone is: 30.98.194.in-addr.arpa. This
-reverse zone can be tested by the Zonemaster tool to check its operation </li>
-
-<li> *Example 2* - Reverse for an IPv6 network: network address of the installation:
-2001:660:3003::/24. The corresponding reverse zone is:
-3.0.0.3.0.6.6.0.1.0.0.2.ip6.arpa. This reverse zone can be tested by the
-Zonemaster tool to check its operation </li>
+<li> *Example 1* - Reverse for an IPv4 network: network address of the installation: 194.98.30.0. The corresponding reverse zone is: 30.98.194.in-addr.arpa. This reverse zone can be tested by the Zonemaster tool to check its operation </li>
+<li> *Example 2* - Reverse for an IPv6 network: network address of the installation: 2001:660:3003::/24. The corresponding reverse zone is: 3.0.0.3.0.6.6.0.1.0.0.2.ip6.arpa. This reverse zone can be tested by the Zonemaster tool to check its operation </li>
 </ol>
 
 
