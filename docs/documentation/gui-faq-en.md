@@ -19,7 +19,6 @@ software?](#what-makes-zonemaster-differ-from-other-dns-zone-validating-software
 
 Zonemaster
 ----------
-
 #### 1. What is Zonemaster?
 Zonemaster is a program that was designed to help people check, measure and
 hopefully also understand the workings of the DNS (Domain Name System). 
