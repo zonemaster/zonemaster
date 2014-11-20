@@ -379,11 +379,28 @@ sub get_test_results {
 		if ($test_res->{module} eq 'NAMESERVER') {
 			$res->{ns} = ($test_res->{args}->{ns})?($test_res->{args}->{ns}):('All');
 		}
+		
 		$res->{module} = $test_res->{module};
 		$res->{message} = $translator->translate_tag( $test_res )."\n";
 		$res->{message} =~ s/,/, /isg;
 		$res->{message} =~ s/;/; /isg;
 		$res->{level} = $test_res->{level};
+		
+		if ($test_res->{module} eq 'SYSTEM') {
+			if ($res->{message} =~ /policy\.json/) {
+				my ($policy) = ($res->{message} =~ /\s(\/.*)$/);
+				my $policy_description = 'DEFAULT POLICY';
+				$policy_description = 'SOME OTHER POLICY' if ($policy =~ /some\/other\/policy\path/);
+				$res->{message} =~ s/$policy/$policy_description/;
+			}
+			elsif ($res->{message} =~ /config\.json/) {
+				my ($config) = ($res->{message} =~ /\s(\/.*)$/);
+				my $config_description = 'DEFAULT CONFIGURATION';
+				$config_description = 'SOME OTHER CONFIGURATION' if ($config =~ /some\/other\/configuration\path/);
+				$res->{message} =~ s/$config/$config_description/;
+			}
+		}
+		
 		push(@zm_results, $res);
 	}
 
