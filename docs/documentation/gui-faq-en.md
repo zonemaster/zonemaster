@@ -1,7 +1,7 @@
 Zonemaster
 ==========
 
-1.	What is Zonemaster?
+1.	[What is Zonemaster?](#1-what-is-zonemaster)
 2. 	Who is behind Zonemaster?
 3.	How can Zonemaster help me?
 4.	Zonemaster goes "Error"/"Warning" on my domain, what does it mean?
@@ -18,7 +18,7 @@ Zonemaster
 Zonemaster
 ----------
 
-#### 1. What is Zonemaster?**  
+#### 1. What is Zonemaster?
 
 Zonemaster is a program that was designed to help people check, measure and
 hopefully also understand the workings of the DNS (Domain Name System). 
