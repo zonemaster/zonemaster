@@ -171,7 +171,8 @@ sub get_data_from_parent_zone_1 {
 	
 	
 	my %algorithm_ids = ( 
-		8 => 'sha1',
+		5 => 'sha1',
+		8 => 'sha256',
 	);
 	my @ds_list;
 	
@@ -214,17 +215,22 @@ sub _check_domain {
 	
 	$dn =~ s/\.$// unless($dn eq '.');
 	
+	my @labels = split(/\./, $dn);
+	unless ($labels[-1] =~ /[^0-9]/) {
+		return ($dn, { status => 'nok', message => encode_entities("Numeric TLD is not allowed") });
+	}
+	
 	if (length($dn) > 253) {
 		return ($dn, { status => 'nok', message => encode_entities("$type name too long") });
 	}
 
-	foreach my $label (split(/\./, $dn)) {
+	foreach my $label (@labels) {
 		if (length($label) > 63) {
 			return ($dn, { status => 'nok', message => encode_entities("$type name label too long") });
 		}
 	}
 
-	foreach my $label (split(/\./, $dn)) {
+	foreach my $label (@labels) {
 		if ($label =~ /[^0-9a-zA-Z\-]/) {
 			return ($dn, { status => 'nok', message => encode_entities("$type name contains invalid characters") });
 		}
