@@ -152,10 +152,12 @@ reverse the numbers in your IP address and add a suffix: in-addr.arpa. This
 gives you your "reverse zone".
 To test the reverse zone of an IPv6 network, just as for IPv4, take the network
 address, reverse the bytes and add the suffix ip6.arpa.
+
 <ol>
 <li> *Example 1* - Reverse for an IPv4 network: network address of the installation:
 194.98.30.0. The corresponding reverse zone is: 30.98.194.in-addr.arpa. This
 reverse zone can be tested by the Zonemaster tool to check its operation </li>
+
 <li> *Example 2* - Reverse for an IPv6 network: network address of the installation:
 2001:660:3003::/24. The corresponding reverse zone is:
 3.0.0.3.0.6.6.0.1.0.0.2.ip6.arpa. This reverse zone can be tested by the
