@@ -1,3 +1,0 @@
-<a style="color:white" href="#" ng-click="setLang(lang)" ng-transclude>
-</a>
-
