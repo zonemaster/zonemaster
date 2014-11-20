@@ -1,5 +1,0 @@
-Zonemaster-CLI
-==============
-
-This module provides a command-line interface to the Zonemaster test engine. Install it as any Perl module, and run "zonemaster-cli --help" to see what documentation there is.
-
