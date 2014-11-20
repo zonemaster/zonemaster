@@ -8,6 +8,7 @@ use DBI qw(:utils);
 use IO::CaptureOutput qw/capture_exec/;
 use POSIX;
 use Time::HiRes;
+use Proc::ProcessTable;
 
 local $| = 1;
 
@@ -43,11 +44,26 @@ my $JOB_RUNNER_DIR = $PROD_DIR."Zonemaster-Backend/JobRunner";
 my $LOG_DIR = BackendConfig->LogDir();
 my $perl_command = BackendConfig->PerlIntereter();
 my $polling_interval = BackendConfig->PollingInterval();
+my $zonemaster_timeout_interval = BackendConfig->MaxZonemasterExecutionTime();
+my $frontend_slots = BackendConfig->NumberOfProfessesForFrontendTesting();
+my $batch_slots = BackendConfig->NumberOfProfessesForBatchTesting();
 
 my $connection_string = BackendConfig->DB_connection_string();
 my $dbh = DBI->connect($connection_string, BackendConfig->DB_user(), BackendConfig->DB_password(), {RaiseError => 1, AutoCommit => 1});
 
-my ($frontend_slots, $batch_slots) = (2, 4);
+
+sub clean_hung_processes {
+	my $t = new Proc::ProcessTable;
+
+	foreach my $p (@{$t->table}) {
+		if (($p->cmndline =~ /execute_zonemaster_P10\.pl/ || $p->cmndline =~ /execute_zonemaster_P5\.pl/) && $p->cmndline !~ /sh -c/) {
+			if (time() - $p->start > $zonemaster_timeout_interval) {
+				say "Killing hung Zonemaster test process: [".$p->cmndline."]";
+				$p->kill(9);
+			}
+		}
+	}
+}
 
 sub can_start_new_worker {
 	my ($priority, $test_id) = @_;
@@ -67,31 +83,27 @@ sub can_start_new_worker {
 	$result = 1 if (scalar @nb_instances < $max_slots && !@same_test_id);
 }
 
-my $start_time = time();
-do {
-	my $query = "SELECT id FROM test_results WHERE progress=0 AND priority=10 ORDER BY id LIMIT 10";
+sub process_jobs {
+	my ($priority, $start_time) = @_;
+
+	my $query = "SELECT id FROM test_results WHERE progress=0 AND priority=$priority ORDER BY id LIMIT 10";
 	my $sth1 = $dbh->prepare($query);
 	$sth1->execute;
 	while (my $h = $sth1->fetchrow_hashref) {
-		if (can_start_new_worker(10, $h->{id})) {
-			my $command = "$perl_command $JOB_RUNNER_DIR/execute_zonemaster_P10.pl $h->{id} > $LOG_DIR/execute_zonemaster_P10_$h->{id}_$start_time.log 2>&1 &";
+		if (can_start_new_worker($priority, $h->{id})) {
+			my $command = "$perl_command $JOB_RUNNER_DIR/execute_zonemaster_P$priority.pl $h->{id} > $LOG_DIR/execute_zonemaster_P$priority"."_$h->{id}_$start_time.log 2>&1 &";
 			say $command;
 			system($command);
 		}
 	}
 	$sth1->finish();
+}
 
-	$query = "SELECT id FROM test_results WHERE progress=0 AND priority=5 ORDER BY id LIMIT 10";
-	$sth1 = $dbh->prepare($query);
-	$sth1->execute;
-	while (my $h = $sth1->fetchrow_hashref) {
-		if (can_start_new_worker(5, $h->{id})) {
-			my $command = "$perl_command $JOB_RUNNER_DIR/execute_zonemaster_P5.pl $h->{id} > $LOG_DIR/execute_zonemaster_P5_$h->{id}_$start_time.log 2>&1 &";
-			say $command;
-			system($command);
-		}
-	}
-	$sth1->finish();
+my $start_time = time();
+do {
+	clean_hung_processes();
+	process_jobs(10, $start_time);
+	process_jobs(5, $start_time);
 	say '----------------------- '.strftime("%F %T", localtime()).' ------------------------';
 	Time::HiRes::sleep($polling_interval);
 } while (time() - $start_time < (15*60 - 15));
