@@ -2,20 +2,20 @@ Zonemaster
 ==========
 
 1. [What is Zonemaster?](#1-what-is-zonemaster)
-2. [Who is behind Zonemaster?](#who-is-behind-zonemaster)
-3. [How can Zonemaster help me?](#how-can-zonemaster-help-me)
+2. [Who is behind Zonemaster?](#2-who-is-behind-zonemaster)
+3. [How can Zonemaster help me?](#3-how-can-zonemaster-help-me)
 4. [Zonemaster goes "Error"/"Warning" on my domain, what does it
-mean?](#zonemaster-goes-errorwarning-on-my-domain-what-does-it-mean)
-5. [How can Zonemaster judge what is right and wrong?](#how-can-zonemaster-judge-what-is-right-and-wrong)
-6. [Does Zonemaster handle IPv6?](#does-zonemaster-handle-ipv6)
-7. [Does Zonemaster handle DNSSEC?](#does-zonemaster-handle-dnssec) 
+mean?](#4-zonemaster-goes-errorwarning-on-my-domain-what-does-it-mean)
+5. [How can Zonemaster judge what is right and wrong?](#5-how-can-zonemaster-judge-what-is-right-and-wrong)
+6. [Does Zonemaster handle IPv6?](#6-does-zonemaster-handle-ipv6)
+7. [Does Zonemaster handle DNSSEC?](#7-does-zonemaster-handle-dnssec) 
 8. [What makes Zonemaster differ from other DNS zone validating
-software?](#what-makes-zonemaster-differ-from-other-dns-zone-validating-software)
-9. [Zonemaster and privacy](#zonemaster-and-privacy)
-10. [How come I can't test my domain?](#how-come-i-cant-test-my-domain)
-11. [What kind of queries does Zonemaster generate?](#what-kind-of-queries-does-zonemaster-generate)
-12. [What is an undelegated domain test?](#what-is-an-undelegated-domain-test)
-13. [How can I test a reverse zone with Zonemaster?](#how-can-i-test-a-reverse-zone-with-zonemaster)
+software?](#8-what-makes-zonemaster-differ-from-other-dns-zone-validating-software)
+9. [Zonemaster and privacy](#9-zonemaster-and-privacy)
+10. [How come I can't test my domain?](#10-how-come-i-cant-test-my-domain)
+11. [What kind of queries does Zonemaster generate?](#11-what-kind-of-queries-does-zonemaster-generate)
+12. [What is an undelegated domain test?](#12-what-is-an-undelegated-domain-test)
+13. [How can I test a reverse zone with Zonemaster?](#13-how-can-i-test-a-reverse-zone-with-zonemaster)
 
 Zonemaster
 ----------
