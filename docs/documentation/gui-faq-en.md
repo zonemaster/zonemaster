@@ -1,7 +1,7 @@
 Zonemaster
 ==========
 
-1. [What is Zonemaster?](#what-is-zonemaster)
+1. [What is Zonemaster?](#1-what-is-zonemaster)
 2. [Who is behind Zonemaster?](#who-is-behind-zonemaster)
 3. [How can Zonemaster help me?](#how-can-zonemaster-help-me)
 4. [Zonemaster goes "Error"/"Warning" on my domain, what does it
