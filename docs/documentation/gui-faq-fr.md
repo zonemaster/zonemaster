@@ -8,6 +8,7 @@ Zonemaster
 ?](#3-quest-ce-que-zonemaster-peut-faire-pour-moi-)
 4. [Zonemaster indique des "Erreurs"/"Avertissements" sur ma zone, qu'est ce que
 cela signifie ?](#4-zonemaster-indique-des-erreursavertissements-sur-ma-zone-quest-ce-que-cela-signifie-)
+
 [5. Comment Zonemaster peut décider ce qui est correct de ce qui ne l'est pas
 ?](#5-comment-zonemaster-peut-d%C3%A9cider-ce-qui-est-correct-de-ce-qui-ne-lest-pas-)
 [6. Est-ce que Zonemaster supporte IPv6 ?](#6-est-ce-que-zonemaster-supporte-ipv6-)
