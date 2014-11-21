@@ -2,7 +2,7 @@ Zonemaster
 ==========
 
 1. [Zonemaster, c'est quoi ?](#1-zonemaster-cest-quoi-)
-2. [Qui se cache derrière Zonemaster ?](#2-qui-se-cache-derri&egravere-zonemaster-)
+2. [Qui se cache derrière Zonemaster ?](#2-qui-se-cache-derri%C3%A8re-zonemaster-)
 3. [Qu'est-ce que Zonemaster peut faire pour moi
 ?](#3-quest-ce-que-zonemaster-peut-faire-pour-moi-)
 4. [Zonemaster indique des "Erreurs"/"Avertissements" sur ma zone, qu'est ce que cela signifie ?](#4-zonemaster-indique-des-erreursavertissements-sur-ma-zone-quest-ce-que-cela-signifie-)
