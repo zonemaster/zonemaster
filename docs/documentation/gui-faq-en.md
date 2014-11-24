@@ -24,12 +24,10 @@ Zonemaster
 Zonemaster is a program that was designed to help people check, measure and
 hopefully also understand the workings of the DNS (Domain Name System). 
 It consists of three basic modules: 
-<ol>
- <li> Engine (a test framework that supports all functionality to perform DNS
-   tests)</li>
- <li> The CLI interface and </li>
- <li> The web interface </li>
-</ol>
+  - Engine (a test framework that supports all functionality to perform DNS tests)
+  - The CLI interface and 
+  - The web interface 
+
 When a domain (such as "zonemaster.net") is submitted to Zonemaster interfaces (CLI or
 Web) it will investigate the domain’s general health by traversing the DNS from root 
 (.) to the TLD (Top Level Domain, like .net) to eventually the nameserver(s) that holds 
@@ -43,11 +41,10 @@ Zonemaster is a joint project between .SE (registry operator of .se and .nu TLD)
 
 #### 3. How can Zonemaster help me?  
 The Zonemaster tool is oriented towards two types of population: 
-<ol>
- <li> People who are knowledgable about the DNS protocol and </li>
- <li> People who just want to know whether the domain's owned/used by them did
-not have any issues </li>
-</ol>
+
+  - People who are knowledgable about the DNS protocol and 
+  - People who just want to know whether the domain's owned/used by them did not have any issues
+
 The second category population described above should contact the first
 category population once they have the results other than in green for any
 debugging of their DNS zones.
@@ -105,16 +102,15 @@ who has run a specific test since nothing is logged except the time of the test.
 ####10. How come I can't test my domain?
 If we skip the situation where the domain doesn't exist, as in you input a
 non-existing domain to Zonemaster, there are 2 other possibilites: 
-<ol>
- <li>To protect the engine from multiple identical inputs, that is the same IP
-   checking the same zone several times, there is a delay of 5 minutes between
-identical subsequent tests. Which practically means that you can only test the
-same domain once every 5 minutes, if you try and test it again within 5 minutes
-the last results will be displayed instead </li>
- <li> Because Zonemaster was made to check domains (like zonemaster.net) and not hostnames
-   in a domain (like www.zonemaster.net) the Zonemaster web interface will do a pre-check of
-your domain before it sends it on to the engine for testing </li>
-</ol>
+  - To protect the engine from multiple identical inputs, that is the same IP
+    checking the same zone several times, there is a delay of 5 minutes between
+    identical subsequent tests. Which practically means that you can only test the
+    same domain once every 5 minutes, if you try and test it again within 5 minutes
+    the last results will be displayed instead </li>
+  - Because Zonemaster was made to check domains (like zonemaster.net) and not hostnames
+    in a domain (like www.zonemaster.net) the Zonemaster web interface will do a pre-check of
+    your domain before it sends it on to the engine for testing 
+
 This shouldn't effect the great majority of domains out there but it CAN do so, because if the
 webpage decides a domain doesn't exist the check wont run. So far the only time
 we've seen this is when a domains' nameservers all lie within the domain that's
