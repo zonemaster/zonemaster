@@ -1,7 +1,7 @@
 Zonemaster
 ==========
 
-1. [Vad är Zonemaster?](#1-vad-C3%A4r-zonemaster)
+1. [Vad är Zonemaster?](#1-vad-%C3%A4r-zonemaster)
 2. [Vem har utvecklat Zonemaster?](#2-vem-har-utvecklat-zonemaster)
 3. [Hur kan Zonemaster hjälpa mig?](#3-hur-kan-zonemaster-hj%C3%A4lpa-mig)
 4. [Zonemaster visar "Fel"/"Varning" när jag testar min domän, vad betyder

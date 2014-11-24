@@ -144,22 +144,28 @@ that the domain's new location is supposed to be replying to queries . However t
 might still be other problems in the zone data itself that this test is unaware of.
 
 ####13. How can I test a "reverse" zone with Zonemaster?
-Zonemaster can be used to check various technical points before installing a
-zone. It can also be used to check a reverse zone. To do this with an IPv4
-network address, you need to know the network address of your system, which
-almost always ends with a 0. You need to remove the 0 at the end of address, to
-reverse the numbers in your IP address and add a suffix: in-addr.arpa. This
-gives you your "reverse zone".
-To test the reverse zone of an IPv6 network, just as for IPv4, take the network
-address, reverse the bytes and add the suffix ip6.arpa.
-<ol>
-<li> *Example 1* - Reverse for an IPv4 network: network address of the installation:
-194.98.30.0. The corresponding reverse zone is: 30.98.194.in-addr.arpa. This
-reverse zone can be tested by the Zonemaster tool to check its operation </li>
-<li> *Example 2* - Reverse for an IPv6 network: network address of the installation:
-2001:660:3003::/24. The corresponding reverse zone is:
-3.0.0.3.0.6.6.0.1.0.0.2.ip6.arpa. This reverse zone can be tested by the
-Zonemaster tool to check its operation </li>
-</ol>
+To check a reverse zone with zonemaster one need to first know the network
+address (i.e. IPv4 or IPv6) of your system. Then find the subnet mask. Then
+follow the procedure explained below for IPv4 and IPv6
+
+For IPv4 addresses:
+  - If the subnet mask is /24 and the network address is for example is
+    "1.2.3.0", remove the last digit (here '0') and revese the numbers and add a suffix :
+    "in-addr.arpa". The resulting is the "reverse zone" which is
+    "3.2.1.in-addr.arpa".
+  - If the subnet mask is smaller that /24 such as /28, and the network address
+    for example is "1.2.3.4", the reverse zone is obtained by reversing the IP
+    address as it is and add the suffix such as "4.3.2.1.in-addr.arpa"
+
+The reverse zone can then be introduced to the zonemaster tool for verification
+
+For IPv6 addresses:
+  - Reverse the IPV6 address and add the suffix "ip6.arpa" 
+  - One trick to find the reverse IPv6 address is to use the tool "dig"
+  - for example "dig -x 2001:660:3003:2::4:1" results in a response
+  - Copy the "authority section" from the response which is the reverse zone - "6.0.1.0.0.2.ip6.arpa"
+
+The reverse zone can then be introduced to the Zonemaster tool for verification
+
 
 

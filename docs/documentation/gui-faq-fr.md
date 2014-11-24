@@ -10,8 +10,7 @@ Zonemaster
 ?](#5-comment-zonemaster-peut-décider-ce-qui-est-correct-de-ce-qui-ne-lest-pas-)
 6. [Est-ce que Zonemaster supporte IPv6 ?](#6-est-ce-que-zonemaster-supporte-ipv6-)
 7. [Est-ce que Zonemaster supporte DNSSEC ?](#7-est-ce-que-zonemaster-supporte-dnssec-)
-8. [Qu'est ce qui fait que Zonemaster est différent des outils existants
-?](#8-quest-ce-qui-fait-que-zonemaster-est-diff&#233rent-des-outils-existants-)
+8. [Qu'est ce qui fait que Zonemaster est différent des outils existants ?](#8-quest-ce-qui-fait-que-zonemaster-est-différent-des-outils-existants-)
 9. [Zonemaster et confidentialité](#9-zonemaster-et-confidentialit%C3%A9)
 10. [Comment se fait-il que je ne puisse pas tester mon nom de domaine ?](#10-quest-ce-qui-fait-que-je-ne-peux-pas-tester-mon-nom-de-domaine-)
 11. [Quels genres de requêtes Zonemaster génère t-il ?](#11-quels-genres-de-requ%C3%AAtes-zonemaster-g%C3%A9n%C3%A8re-t-il-)
