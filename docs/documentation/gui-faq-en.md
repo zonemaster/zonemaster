@@ -1,21 +1,21 @@
 Zonemaster
 ==========
 
-1. [What is Zonemaster?](#what-is-zonemaster)
-2. [Who is behind Zonemaster?](#who-is-behind-zonemaster)
-3. [How can Zonemaster help me?](#how-can-zonemaster-help-me)
+1. [What is Zonemaster?](#1-what-is-zonemaster)
+2. [Who is behind Zonemaster?](#2-who-is-behind-zonemaster)
+3. [How can Zonemaster help me?](#3-how-can-zonemaster-help-me)
 4. [Zonemaster goes "Error"/"Warning" on my domain, what does it
-mean?](#zonemaster-goes-errorwarning-on-my-domain-what-does-it-mean)
-5. [How can Zonemaster judge what is right and wrong?](#how-can-zonemaster-judge-what-is-right-and-wrong)
-6. [Does Zonemaster handle IPv6?](#does-zonemaster-handle-ipv6)
-7. [Does Zonemaster handle DNSSEC?](#does-zonemaster-handle-dnssec) 
+mean?](#4-zonemaster-goes-errorwarning-on-my-domain-what-does-it-mean)
+5. [How can Zonemaster judge what is right and wrong?](#5-how-can-zonemaster-judge-what-is-right-and-wrong)
+6. [Does Zonemaster handle IPv6?](#6-does-zonemaster-handle-ipv6)
+7. [Does Zonemaster handle DNSSEC?](#7-does-zonemaster-handle-dnssec) 
 8. [What makes Zonemaster differ from other DNS zone validating
-software?](#what-makes-zonemaster-differ-from-other-dns-zone-validating-software)
-9. [Zonemaster and privacy](#zonemaster-and-privacy)
-10. [How come I can't test my domain?](#how-come-i-cant-test-my-domain)
-11. [What kind of queries does Zonemaster generate?](#what-kind-of-queries-does-zonemaster-generate)
-12. [What is an undelegated domain test?](#what-is-an-undelegated-domain-test)
-13. [How can I test a reverse zone with Zonemaster?](#how-can-i-test-a-reverse-zone-with-zonemaster)
+software?](#8-what-makes-zonemaster-differ-from-other-dns-zone-validating-software)
+9. [Zonemaster and privacy](#9-zonemaster-and-privacy)
+10. [How come I can't test my domain?](#10-how-come-i-cant-test-my-domain)
+11. [What kind of queries does Zonemaster generate?](#11-what-kind-of-queries-does-zonemaster-generate)
+12. [What is an undelegated domain test?](#12-what-is-an-undelegated-domain-test)
+13. [How can I test a reverse zone with Zonemaster?](#13-how-can-i-test-a-reverse-zone-with-zonemaster)
 
 Zonemaster
 ----------
@@ -23,12 +23,10 @@ Zonemaster
 Zonemaster is a program that was designed to help people check, measure and
 hopefully also understand the workings of the DNS (Domain Name System). 
 It consists of three basic modules: 
-<ol>
- <li> Engine (a test framework that supports all functionality to perform DNS
-   tests)</li>
- <li> The CLI interface and </li>
- <li> The web interface </li>
-</ol>
+  - Engine (a test framework that supports all functionality to perform DNS tests)
+  - The CLI interface and 
+  - The web interface 
+
 When a domain (such as "zonemaster.net") is submitted to Zonemaster interfaces (CLI or
 Web) it will investigate the domain’s general health by traversing the DNS from root 
 (.) to the TLD (Top Level Domain, like .net) to eventually the nameserver(s) that holds 
@@ -42,11 +40,10 @@ Zonemaster is a joint project between .SE (registry operator of .se and .nu TLD)
 
 #### 3. How can Zonemaster help me?  
 The Zonemaster tool is oriented towards two types of population: 
-<ol>
- <li> People who are knowledgable about the DNS protocol and </li>
- <li> People who just want to know whether the domain's owned/used by them did
-not have any issues </li>
-</ol>
+
+  - People who are knowledgable about the DNS protocol and 
+  - People who just want to know whether the domain's owned/used by them did not have any issues
+
 The second category population described above should contact the first
 category population once they have the results other than in green for any
 debugging of their DNS zones.
@@ -104,16 +101,15 @@ who has run a specific test since nothing is logged except the time of the test.
 ####10. How come I can't test my domain?
 If we skip the situation where the domain doesn't exist, as in you input a
 non-existing domain to Zonemaster, there are 2 other possibilites: 
-<ol>
- <li>To protect the engine from multiple identical inputs, that is the same IP
-   checking the same zone several times, there is a delay of 5 minutes between
-identical subsequent tests. Which practically means that you can only test the
-same domain once every 5 minutes, if you try and test it again within 5 minutes
-the last results will be displayed instead </li>
- <li> Because Zonemaster was made to check domains (like zonemaster.net) and not hostnames
-   in a domain (like www.zonemaster.net) the Zonemaster web interface will do a pre-check of
-your domain before it sends it on to the engine for testing </li>
-</ol>
+  - To protect the engine from multiple identical inputs, that is the same IP
+    checking the same zone several times, there is a delay of 5 minutes between
+    identical subsequent tests. Which practically means that you can only test the
+    same domain once every 5 minutes, if you try and test it again within 5 minutes
+    the last results will be displayed instead </li>
+  - Because Zonemaster was made to check domains (like zonemaster.net) and not hostnames
+    in a domain (like www.zonemaster.net) the Zonemaster web interface will do a pre-check of
+    your domain before it sends it on to the engine for testing 
+
 This shouldn't effect the great majority of domains out there but it CAN do so, because if the
 webpage decides a domain doesn't exist the check wont run. So far the only time
 we've seen this is when a domains' nameservers all lie within the domain that's
@@ -143,22 +139,28 @@ that the domain's new location is supposed to be replying to queries . However t
 might still be other problems in the zone data itself that this test is unaware of.
 
 ####13. How can I test a "reverse" zone with Zonemaster?
-Zonemaster can be used to check various technical points before installing a
-zone. It can also be used to check a reverse zone. To do this with an IPv4
-network address, you need to know the network address of your system, which
-almost always ends with a 0. You need to remove the 0 at the end of address, to
-reverse the numbers in your IP address and add a suffix: in-addr.arpa. This
-gives you your "reverse zone".
-To test the reverse zone of an IPv6 network, just as for IPv4, take the network
-address, reverse the bytes and add the suffix ip6.arpa.
-<ol>
-<li> *Example 1* - Reverse for an IPv4 network: network address of the installation:
-194.98.30.0. The corresponding reverse zone is: 30.98.194.in-addr.arpa. This
-reverse zone can be tested by the Zonemaster tool to check its operation </li>
-<li> *Example 2* - Reverse for an IPv6 network: network address of the installation:
-2001:660:3003::/24. The corresponding reverse zone is:
-3.0.0.3.0.6.6.0.1.0.0.2.ip6.arpa. This reverse zone can be tested by the
-Zonemaster tool to check its operation </li>
-</ol>
+To check a reverse zone with zonemaster one need to first know the network
+address (i.e. IPv4 or IPv6) of your system. Then find the subnet mask. Then
+follow the procedure explained below for IPv4 and IPv6
+
+For IPv4 addresses:
+  - If the subnet mask is /24 and the network address is for example is
+    "1.2.3.0", remove the last digit (here '0') and revese the numbers and add a suffix :
+    "in-addr.arpa". The resulting is the "reverse zone" which is
+    "3.2.1.in-addr.arpa".
+  - If the subnet mask is smaller that /24 such as /28, and the network address
+    for example is "1.2.3.4", the reverse zone is obtained by reversing the IP
+    address as it is and add the suffix such as "4.3.2.1.in-addr.arpa"
+
+The reverse zone can then be introduced to the zonemaster tool for verification
+
+For IPv6 addresses:
+  - Reverse the IPV6 address and add the suffix "ip6.arpa" 
+  - One trick to find the reverse IPv6 address is to use the tool "dig"
+  - for example "dig -x 2001:660:3003:2::4:1" results in a response
+  - Copy the "authority section" from the response which is the reverse zone - "6.0.1.0.0.2.ip6.arpa"
+
+The reverse zone can then be introduced to the Zonemaster tool for verification
+
 
 
