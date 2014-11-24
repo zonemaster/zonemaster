@@ -1,26 +1,26 @@
 Zonemaster
 ==========
 
-1. [Vad är Zonemaster?](#1-vad-%C3%A4r-zonemaster)
-2. [Vem har utvecklat Zonemaster?](#2-vem-har-utvecklat-zonemaster)
-3. [Hur kan Zonemaster hjälpa mig?](#3-hur-kan-zonemaster-hj%C3%A4lpa-mig)
+1. [Vad är Zonemaster?](#vad-%C3%A4r-zonemaster)
+2. [Vem har utvecklat Zonemaster?](#vem-har-utvecklat-zonemaster)
+3. [Hur kan Zonemaster hjälpa mig?](#hur-kan-zonemaster-hj%C3%A4lpa-mig)
 4. [Zonemaster visar "Fel"/"Varning" när jag testar min domän, vad betyder
-det?](#4-zonemaster-visar-felvarning-n%C3%A4r-jag-testar-min-dom%C3%A4n-vad-betyder-det)
+det?](#zonemaster-visar-felvarning-n%C3%A4r-jag-testar-min-dom%C3%A4n-vad-betyder-det)
 5. [Hur kan Zonemaster bedömma vad som är rätt eller fel
-konfigurerat?](#5-hur-kan-zonemaster-bed%C3%B6mma-vad-som-%C3%A4r-r%C3%A4tt-och-fel)
-6. [Kan Zonemaster hantera IPv6?](#6-kan-zonemaster-hantera-ipv6)
-7. [Kan Zonemaster hantera DNSSEC?](#7-kan-zonemaster-hantera-dnssec) 
+konfigurerat?](#hur-kan-zonemaster-bed%C3%B6mma-vad-som-%C3%A4r-r%C3%A4tt-och-fel)
+6. [Kan Zonemaster hantera IPv6?](#kan-zonemaster-hantera-ipv6)
+7. [Kan Zonemaster hantera DNSSEC?](#kan-zonemaster-hantera-dnssec) 
 8. [Vad skiljer Zonemaster från annan mjukvara som testar
-domäner?](#8-vad-skiljer-zonemaster-fr%C3%A5n-annan-mjukvara-som-testar-dom%C3%A4ner)
-9. [Zonemaster och integritet](#9-zonemaster-och-integritet) 
+domäner?](#vad-skiljer-zonemaster-fr%C3%A5n-annan-mjukvara-som-testar-dom%C3%A4ner)
+9. [Zonemaster och integritet](#zonemaster-och-integritet) 
 10. [Varför kan jag inte testa min
-domän?](#10-varf%C3%B6r-kan-jag-inte-testa-min-dom%C3%A4n)
+domän?](#varf%C3%B6r-kan-jag-inte-testa-min-dom%C3%A4n)
 11. [Vilken typ av DNS-frågor genererar
-Zonemaster?](#11-vilken-typ-av-dns-fr%C3%A5gor-genererar-zonemaster)
+Zonemaster?](#vilken-typ-av-dns-fr%C3%A5gor-genererar-zonemaster)
 12. [Vad är ett odelegerat
-domäntest?](#12-vad-%C3%A4r-ett-odelegerat-dom%C3%A4ntest)
+domäntest?](#vad-%C3%A4r-ett-odelegerat-dom%C3%A4ntest)
 13. [ Hur kan jag testa en domän som är en
-baklängesuppslagningsdomän?](#13-hur-kan-jag-testa-en-dom%C3%A4n-som-%C3%A4r-en-bakl%C3%A4ngesuppslagningsdom%C3%A4n)
+baklängesuppslagningsdomän?](#hur-kan-jag-testa-en-dom%C3%A4n-som-%C3%A4r-en-bakl%C3%A4ngesuppslagningsdom%C3%A4n)
 
 Zonemaster
 ----------
