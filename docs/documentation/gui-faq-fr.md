@@ -171,7 +171,7 @@ de manipuler des données liées au DNS quotidiennement, ce niveau de détail
 pourra être considéré trop technique et réservé à un public averti, les autres 
 pourront se contenter de l'interface "classique".
 
-#### 12. C'est quoi un test sur un nom de domaine non délégué ? 
+#### 12. C'est quoi un test sur un nom de domaine non délégué ? <a name="undelegated"></a>
 
 On va appeler, test sur un nom de domaine non délégué, un test réalisé sur
 une zone non complètement publiée dans le DNS. Cela est particulièrement
