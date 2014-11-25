@@ -126,7 +126,7 @@ complete package and install it). This will result in quite thorough information
 is happening. However the output from this CLI-tool is quite heavily technical
 so unless you're into bits and bytes you might want to skip this step.
 
-####12. What is an undelegated domain test?
+####12. What is an undelegated domain test? <a name="undelegated"></a>
 An undelegated domain test is a test performed on a domain that may, or may not,
 be fully published in the DNS. This can be quite useful if one is going to move
 one's domain from one registrar to another. 

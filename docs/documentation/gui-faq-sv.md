@@ -101,7 +101,7 @@ Om vi utgår från att domänen du försöker testa faktiskt existerar så finns
 
 Det här är en svår fråga att svara på eftersom Zonemaster kommer att generera olika typer av anrop beroende på hur dina DNS-servrar svarar. Det enklaste sättet att se exakt vad Zonemaster testar är att köra ”zonemaster-cli” CLI-kommandot. Resultatet ger grundlig information om vad som händer under testet. Det bör dock nämnas att utmatningen från CLI-verktyget är väldigt tekniskt utmanande så ifall du inte gillar bits och bytes kanske du vill undvika det.
 
-#### 12. Vad är ett odelegerat domäntest? 
+#### 12. Vad är ett odelegerat domäntest? <a name="undelegated"></a>
 
 Ett odelegerat domäntest är ett test som genomförs på en domän som kan (men inte måste) vara fullständigt publicerad i DNS. Detta kan vara mycket användbart om du tänker flytta din domän från en registrar till en annan. Låt oss ta som exempel att din domän example.se ska flyttas från namnservern ’ns.nic.se’ till namnservern ’ns.iis.se’. I detta fall skulle du kunna köra ett odelegerat domäntest på domänen (example.se) med den namnservern du ska flytta till (ns.iis.se) INNAN du genomför själva flytten. När testet visar grönt så kan du vara tämligen säker på att den nya hemvisten för din domän åtminstone vet att den ska svara på frågor om din domän. Det kan emellertid fortfarande finnas fel i zoninformationen som detta test inte känner till.
 
