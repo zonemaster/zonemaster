@@ -26,8 +26,7 @@ Another application is the web interface which is split in two parts. The user v
 **To get the source code**
 
     $ sudo apt-get install git build-essential
-    $ git clone https://github.com/dotse/zonemaster.git
-
+    $ git clone https://github.com/dotse/zonemaster-engine.git
 
 **Install package dependencies**
 
@@ -51,7 +50,7 @@ If all package dependencies are already installed from the previous section, thi
 
 **Build source code**
 
-    $ cd zonemaster/Zonemaster
+	$ cd zonemaster-engine
     $ perl Makefile.PL
     Writing Makefile for Zonemaster
     Writing MYMETA.yml and MYMETA.json
@@ -63,7 +62,7 @@ If all package dependencies are already installed from the previous section, thi
 **To get the source code**
 
     $ sudo aptitude install git build-essential
-    $ git clone https://github.com/dotse/zonemaster.git
+    $ git clone https://github.com/dotse/zonemaster-engine.git
 
 **Install package dependencies**
 
@@ -102,7 +101,7 @@ If all package dependencies are already installed from the previous section, thi
 
 **Build source code**
 
-    $ cd zonemaster/Zonemaster
+	$ cd zonemaster-engine
     $ perl Makefile.PL
 	Checking if your kit is complete...
 	Looks good
@@ -117,7 +116,7 @@ If all package dependencies are already installed from the previous section, thi
 **To get the source code**
 
 	$ sudo pkg install git
-	$ git clone https://github.com/dotse/zonemaster.git
+    $ git clone https://github.com/dotse/zonemaster-engine.git
 
 **Install package dependencies**
 
@@ -132,7 +131,7 @@ If all package dependencies are already installed from the previous section, thi
 
 **Build source code**
 
-    $ cd zonemaster/Zonemaster
+	$ cd zonemaster-engine
     $ perl Makefile.PL
 	Checking if your kit is complete...
 	Looks good
@@ -147,7 +146,7 @@ If all package dependencies are already installed from the previous section, thi
 **To get the source code**
 
 	$ sudo yum install git
-	$ git clone https://github.com/dotse/zonemaster.git
+    $ git clone https://github.com/dotse/zonemaster-engine.git
 
 **Install package dependencies**
 
@@ -174,7 +173,7 @@ Unfortunately a lot of Perl modules has not been packaged for Debian yet. So you
 
 **Build source code**
 
-    $ cd zonemaster/Zonemaster
+	$ cd zonemaster-engine
     $ perl Makefile.PL
 	Writing Makefile for Zonemaster
 	Writing MYMETA.yml and MYMETA.json	$ make test
@@ -186,13 +185,17 @@ Unfortunately a lot of Perl modules has not been packaged for Debian yet. So you
 
 First install the Zonemaster Engine, following the instructions above.
 
+**To get the source code**
+
+    $ git clone https://github.com/dotse/zonemaster-cli.git
+
 **Install package dependencies**
 
     $ sudo apt-get install libmoosex-getopt-perl libtext-reflow-perl
 
 **Build source code**
 
-    $ cd zonemaster/Zonemaster-CLI
+    $ cd zonemaster-cli
     $ perl Makefile.PL
     $ make test
     $ sudo make install
@@ -205,13 +208,17 @@ Now you are ready to run the zonemaster-cli command:
 
 First install the Zonemaster Engine, following the instructions above.
 
+**To get the source code**
+
+    $ git clone https://github.com/dotse/zonemaster-cli.git
+
 **Install package dependencies**
 
     $ sudo aptitude install libmoosex-getopt-perl libtext-reflow-perl
 
 **Build source code**
 
-    $ cd zonemaster/Zonemaster-CLI
+    $ cd zonemaster-cli
     $ perl Makefile.PL
     $ make test
     $ sudo make install
@@ -224,13 +231,17 @@ Now you are ready to run the zonemaster-cli command:
 
 First install the Zonemaster Engine, following the instructions above.
 
+**To get the source code**
+
+    $ git clone https://github.com/dotse/zonemaster-cli.git
+
 **Install package dependencies**
 
 	$ sudo pkg install p5-MooseX-Getopt p5-Text-Reflow
 
 **Build source code**
 
-    $ cd zonemaster/Zonemaster-CLI
+    $ cd zonemaster-cli
     $ perl Makefile.PL
     $ make test
     $ sudo make install
@@ -243,6 +254,10 @@ Now you are ready to run the zonemaster-cli command:
 
 First install the Zonemaster Engine, following the instructions above.
 
+**To get the source code**
+
+    $ git clone https://github.com/dotse/zonemaster-cli.git
+
 **Install package dependencies**
 
 	$ sudo yum install perl-Module-Install
@@ -254,7 +269,7 @@ First install the Zonemaster Engine, following the instructions above.
 
 **Build source code**
 
-    $ cd zonemaster/Zonemaster-CLI
+    $ cd zonemaster-cli
     $ perl Makefile.PL
     $ make test
     $ sudo make install
@@ -263,8 +278,6 @@ Now you are ready to run the zonemaster-cli command:
 
     $ zonemaster-cli example.com
 
-## Zonemaster Web interface installation
+## Zonemaster Web Interface installation
 
-### Backend
-
-### Frontend
+TODO.
