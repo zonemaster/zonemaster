@@ -189,21 +189,35 @@ serveur est correctement configuré.
 
 Zonemaster peut être utilisé pour valider un certain nombre d'éléments lors
 de la configuration d'une zone. Parmi ces éléments, il y a les vérifications
-des zones inverses. Pour réaliser cela pour des adresses en IPv4, il faut
-déjà connaître l'adresse réseau utilisée par votre système. Celle-ci se
-termine quasiment toujours par un 0. Pour créer le nom de la zone à tester,
-il faut supprimer ce zéro, inverse l'ordre des champs de l'adresse IP puis
-ajouter le suffixe .in-addr.arpa. ce qui vous donne finalement le nom de 
-la zone inverse.
-Pour IPv6, c'est très semblable, mais ce sont les octets dont il faudra
-inversé l'ordre et le suffixe à utiliser est .ip6.arpa. (consultez l'exemple 
-fournit pour une illustration plus claire).
+des zones inverses. Pour réaliser cela pour des adresses en IPv4 ou IPv6, il faut
+déjà connaître l'adresse réseau utilisée par votre système ainsi que le masque
+de sous réseau de celui-ci. Ensuite il suffit de suivre la procédure décrite
+ci-après pour les adresses IPv4 d'une part, et IPv6 d'autre part.
 
- *Exemple 1* - Cas d'une adresse réseau IPv4: L'adresse réseau du système est
-194.98.30.0. Le nom de la zone inverse correspondante est 30.98.194.in-addr.arpa.
-qui peut ensuite être analysée à l'aide de Zonemaster.
+Pour les adresses de type IPv4:
+  - Le cas sera différent selon que la taille du masque est un multiple de
+    8 ou non, à titre d'illustration, nous ne parlons que du cas /24 (mais
+    le raisonnement peut tout aussi bien s'appliquer avec un masque de type
+    /8 ou /16).
+  - Si le masque de sous réseau est /24 et que l'adresse réseau est, disons,
+    "1.2.3.0", supprimer le dernier champ (ici "0"), inverser l'ordre des
+    champs restants et y adjoindre le suffixe "in-addr.arpa". Dans ce cas,
+    la zone inverse est "3.2.1.in-addr.arpa.". Celle-ci peut ensuite être
+    soumise à Zonemaster pour vérification.
+  - Dans le cas d'un sous réseau plus petit ayant un masque /28 par exemple,
+    avec une adresse réseau "1.2.3.4", la zone inverse est obtenue en
+    inversant l'ordre de l'ensemble des champs de l'adresse IP puis en
+    ajoutant le suffixe "in-addr.arpa". Dans ce cas, "4.3.2.1.in-addr.arpa.".
+    Celle-ci peut ensuite être soumise à Zonemaster pour vérification.
 
- *Exemple 2* - Cas d'une adresse réseau IPv6: L'adresse réseau du système est
-2001:660:3003::/24. Le nom de la zone inverse correspondante est 
-3.0.0.3.0.6.6.0.1.0.0.2.ip6.arpa. qui peut ensuite être analysée à l'aide de Zonemaster.
-
+Pour les adresses de type IPv6:
+  - Il faut dans un premier temps les écrire en mode "non abrégé". Inverser
+    l'ordre de chaque lettre/chiffre que l'on séparera par un point, puis 
+    ajouter le suffixe "ip6.arpa.".
+  - C'est un peu compliqué, c'est pourquoi il existe une astuce simple pour
+    trouver la zone "reverse" à l'aide de la commande "dig".
+  - Faire la commande "dig -x 2001:660:3003:2::4:1" (l'adresse sera remplacée
+    par l'adresse que l'on souhaite vérifier).
+  - Dans la partie "authority section" de la réponse on trouve la zone inverse,
+    soit "6.0.1.0.0.2.ip6.arpa." dans le cas présent. Celle-ci peut ensuite
+    être soumise à Zonemaster pour vérification.
