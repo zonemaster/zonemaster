@@ -280,4 +280,9 @@ Now you are ready to run the zonemaster-cli command:
 
 ## Zonemaster Web Interface installation
 
-TODO.
+In order to install the Web Interface you need to install the backend
+and the frontend systems. The documentation is located in the repositories
+for those components:
+
+ * [Install the Backend](https://github.com/dotse/zonemaster-backend/blob/master/Doc/zonemaster-backend-installation-instructions.md)
+ * [Install the Frontend](https://github.com/dotse/zonemaster-gui/blob/master/Zonemaster_Dancer/Doc/zonemaster-frontend-installation-instructions.md)
