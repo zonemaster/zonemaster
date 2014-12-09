@@ -123,4 +123,21 @@ DS record and no NS records on the command line.
 
 ## Using the Web Interface
 
+The web interface allow to run the Zonemaster Engine tests on domains from a simple web interface.
+
+The interface has 2 main tabs and one tab with a FAQ/Documentation.
+
+The first tab called "Domain check" in the English version of the interface allows to enter a domain name in an input field and start the test. The user can enable or disable IPv4 or IPv6 transport protocol if he checks the advanced options check-box.
+
+The second tab called "Pre-delegated domain" in the English version of the interface allow to run the Zonemaster Engine on a domain and offers the user the possibility to change Nameservers and Digests.
+To start a test in this tab the user must first enter the domain name he wants to test and then press the “Fetch data from parent zone” button. He can then change the nameservers and digests.
+Another way to run start the test is to manually input at least one namesterver.
+
+After starting the test a progress bar appears. Once it reaches 100% (usually a test takes around 30 seconds to complete) the test results are displayed. 
+
+The test result component has 4 tabs. The first tab (named “Basic”) shows the results categories each category can e extended to see the tests it contains. Each category is either green if all tests it contains finished without error nor warning, orange if it contains at least one warning or red if it contains at least one “error” or “critical” result for a test.
+The advanced tab contains the results all extended. 
+The export tab allows to download the results in text format.
+The History tab shows previously run tests on this domain.
+
 ## Test Results
