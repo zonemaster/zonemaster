@@ -1,24 +1,22 @@
 Zonemaster
 ==========
 
-1. [Zonemaster, c'est quoi ?](#zonemaster-cest-quoi)
-2. [Qui se cache derrière Zonemaster ?](#qui-se-cache-derri%C3%A8re-zonemaster)
-3. [Qu'est-ce que Zonemaster peut faire pour moi
-?](#quest-ce-que-zonemaster-peut-faire-pour-moi)
-4. [Zonemaster indique des "Erreurs"/"Avertissements" sur ma zone, qu'est ce que cela signifie ?](#zonemaster-indique-des-erreursavertissements-sur-ma-zone-quest-ce-que-cela-signifie)
-5. [Comment Zonemaster peut décider ce qui est correct de ce qui ne l'est pas
-?](#comment-zonemaster-peut-décider-ce-qui-est-correct-de-ce-qui-ne-lest-pas)
-6. [Est-ce que Zonemaster supporte IPv6 ?](#est-ce-que-zonemaster-supporte-ipv6)
-7. [Est-ce que Zonemaster supporte DNSSEC ?](#est-ce-que-zonemaster-supporte-dnssec)
-8. [Qu'est ce qui fait que Zonemaster est différent des outils existants ?](#quest-ce-qui-fait-que-zonemaster-est-différent-des-outils-existants)
-9. [Zonemaster et confidentialité](#zonemaster-et-confidentialit%C3%A9)
-10. [Comment se fait-il que je ne puisse pas tester mon nom de domaine ?](#quest-ce-qui-fait-que-je-ne-peux-pas-tester-mon-nom-de-domaine)
-11. [Quels genres de requêtes Zonemaster génère t-il ?](#quels-genres-de-requ%C3%AAtes-zonemaster-g%C3%A9n%C3%A8re-t-il)
-12. [C'est quoi un test sur un domaine non délégué?](#cest-quoi-un-test-sur-un-nom-de-domaine-non-d%C3%A9l%C3%A9gu%C3%A9)
-13. [Comment tester une zone "reverse" avec Zonemaster ?](#comment-tester-une-zone-reverse-avec-zonemaster)
+1. [Zonemaster, c'est quoi ?](#q1)
+2. [Qui se cache derrière Zonemaster ?](#q2)
+3. [Qu'est-ce que Zonemaster peut faire pour moi?](#q3)
+4. [Zonemaster indique des "Erreurs"/"Avertissements" sur ma zone, qu'est ce que cela signifie ?](#q4)
+5. [Comment Zonemaster peut décider ce qui est correct de ce qui ne l'est pas?](#q5)
+6. [Est-ce que Zonemaster supporte IPv6 ?](#q6)
+7. [Est-ce que Zonemaster supporte DNSSEC ?](#q7)
+8. [Qu'est ce qui fait que Zonemaster est différent des outils existants ?](#q8)
+9. [Zonemaster et confidentialité](#q9)
+10. [Comment se fait-il que je ne puisse pas tester mon nom de domaine ?](#q10)
+11. [Quels genres de requêtes Zonemaster génère t-il ?](#q11)
+12. [C'est quoi un test sur un domaine non délégué?](#undelegated)
+13. [Comment tester une zone "reverse" avec Zonemaster ?](#q13)
 
 
-#### 1. Zonemaster c'est quoi ?  
+#### 1. Zonemaster c'est quoi ? <a name="q1"></a>
 
 Zonemaster est un outil qui a été créé dans le but d'aider au diagnostique,
 de mesurer et aussi permettre à ses utilisateurs de mieux comprendre le
@@ -43,13 +41,13 @@ IP, de contrôle de validité des signatures DNSSEC...
 L'ensemble des tests réalisés par Zonemaster est décrit au sein du document
 [Test Requirements document](https://github.com/dotse/zonemaster/blob/master/docs/requirements/TestRequirements.md).
 
-#### 2. Qui se cache derrière Zonemaster ?
+#### 2. Qui se cache derrière Zonemaster ? <a name="q2"></a>
 
 Zonemaster est un projet conjoint entre l'Afnic (multi-registre français de 
 ccTLDs .fr, .re, .pm, .tf, .wf, .yt et de gTLDs .paris, ...) d'une part et
 le .SE (registre suédois des ccTLDs .se et .nu) d'autre part.
 
-#### 3. Qu'est-ce que Zonemaster peut faire pour moi ? 
+#### 3. Qu'est-ce que Zonemaster peut faire pour moi ? <a name="q3"></a>
 
 Zonemaster a été créé pour un public de techniciens, ou tout du moins pour
 les personnes s'intéressant à la manière dont le DNS fonctionne. Il peut
@@ -61,13 +59,13 @@ montrer à quelqu'un le résultat de celle-ci vous pouvez juste copier le lien
 fourni sur la page des résultats de tests. Le lien suivant, par exemple, 
 renvoie sur les résultats de la dernière analyse de "afnic.fr":
 
-#### 4. Zonemaster indique des "Erreurs"/"Avertissements" sur ma zone, qu'est ce que cela signifie ? 
+#### 4. Zonemaster indique des "Erreurs"/"Avertissements" sur ma zone, qu'est ce que cela signifie ? <a name="q4"></a>
 
 Bien évidemment, cela dépend du type des tests qui ont échoué lors de l'analyse
 de la zone. Dans la plupart des cas, vous pouvez cliquer sur le message d'erreur
 ou d'avertissement pour obtenir plus de détails sur le problème qui a été détecté.
 
-#### 5. Comment Zonemaster peut décider ce qui est correct de ce qui ne l'est pas ?  
+#### 5. Comment Zonemaster peut décider ce qui est correct de ce qui ne l'est pas ?  <a name="q5"></a>
 
 Personne ne peut donner de jugement définitif quand à la bonne configuration
 d'une zone (même si certaines erreurs font toutefois consensus). Il est très 
@@ -94,17 +92,17 @@ indiquant ce que vous pensez être incorrect dans notre diagnostique. (Si vous
 ne savez pas quel lien envoyer, consulter la réponse à la question "Qu'est-ce 
 que Zonemaster peut faire pour moi ?" qui se trouve dans cette FAQ)
 
-#### 6. Est-ce que Zonemaster supporte IPv6 ? 
+#### 6. Est-ce que Zonemaster supporte IPv6 ? <a name="q6"></a>
 
 Oui, bien sûr. Tous les tests exécutés en IPv4, le seront aussi en IPv6, dans
 la mesure ou Zonemaster est configuré pour le faire.
 
-#### 7. Est-ce que Zonemaster supporte DNSSEC ?  
+#### 7. Est-ce que Zonemaster supporte DNSSEC ? <a name="q7"></a>
 
 Oui, si des informations relatives à DNSSEC sont détectées au cours de l'analyse
 de la zone à tester, leur conformité sera automatiquement vérifiée.
 
-#### 8. Qu'est ce qui fait que Zonemaster est différent des outils existants ?  
+#### 8. Qu'est ce qui fait que Zonemaster est différent des outils existants ? <a name="q8"></a>
 
 Avant toute chose, Zonemaster conserve un historique des derniers tests 
 réalisés sur une zone. Concrètement, cela signifie que vous pouvez revenir
@@ -126,14 +124,14 @@ Pour finir, cette version "open source" de Zonemaster a été écrite de
 manière modulaire afin de permettre son intégration en tout ou partie dans
 des systèmes existants.
 
-#### 9. Zonemaster et confidentialité  
+#### 9. Zonemaster et confidentialité <a name="q9"></a>
 
 Puisque Zonemaster est accessible à tous, n'importe qui, peut vérifier
 votre nom de domaine et consulter les historiques afférents. Toutefois, il
 n'est pas possible de savoir qui a réalisé ces tests puisque cette information
 n'est pas conservée (contrairement à l'heure et au jour du test).
 
-#### 10. Qu'est-ce qui fait que je ne peux pas tester mon nom de domaine ? 
+#### 10. Qu'est-ce qui fait que je ne peux pas tester mon nom de domaine ?  <a name="q10"></a>
 
 Si nous occultons le cas où le nom de domaine n'a pas d'existence au moment 
 où le test est réalisé, il peut y avoir 2 raisons qui peuvent conduire à ce
@@ -159,7 +157,7 @@ résultat:
    contacter si vous pensez que ce problème empêche l'analyse de votre zone.
    Ce contrôle sera amélioré par la suite, nous vous le garantissons.
 
-#### 11. Quels genres de requêtes Zonemaster génère t-il ?
+#### 11. Quels genres de requêtes Zonemaster génère t-il ? <a name="q11"></a>
 
 C'est une question à laquelle il est difficile d'apporter une réponse précise
 puisqu'elle dépend de la configuration de la zone testée mais aussi de la zone
@@ -185,7 +183,7 @@ effectué. Un résultat d'analyse positif (toutes les catégories de résultat
 aparaissent en vert) vous permet d'être à peu près certain que le nouveau 
 serveur est correctement configuré. 
 
-#### 13. Comment tester une zone "reverse" avec ZoneMaster ?
+#### 13. Comment tester une zone "reverse" avec ZoneMaster ? <a name="q13"></a>
 
 Zonemaster peut être utilisé pour valider un certain nombre d'éléments lors
 de la configuration d'une zone. Parmi ces éléments, il y a les vérifications

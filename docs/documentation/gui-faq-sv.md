@@ -1,52 +1,45 @@
 Zonemaster
 ==========
 
-1. [Vad är Zonemaster?](#vad-%C3%A4r-zonemaster)
-2. [Vem har utvecklat Zonemaster?](#vem-har-utvecklat-zonemaster)
-3. [Hur kan Zonemaster hjälpa mig?](#hur-kan-zonemaster-hj%C3%A4lpa-mig)
-4. [Zonemaster visar "Fel"/"Varning" när jag testar min domän, vad betyder
-det?](#zonemaster-visar-felvarning-n%C3%A4r-jag-testar-min-dom%C3%A4n-vad-betyder-det)
-5. [Hur kan Zonemaster bedömma vad som är rätt eller fel
-konfigurerat?](#hur-kan-zonemaster-bed%C3%B6mma-vad-som-%C3%A4r-r%C3%A4tt-och-fel)
-6. [Kan Zonemaster hantera IPv6?](#kan-zonemaster-hantera-ipv6)
-7. [Kan Zonemaster hantera DNSSEC?](#kan-zonemaster-hantera-dnssec) 
-8. [Vad skiljer Zonemaster från annan mjukvara som testar
-domäner?](#vad-skiljer-zonemaster-fr%C3%A5n-annan-mjukvara-som-testar-dom%C3%A4ner)
-9. [Zonemaster och integritet](#zonemaster-och-integritet) 
-10. [Varför kan jag inte testa min
-domän?](#varf%C3%B6r-kan-jag-inte-testa-min-dom%C3%A4n)
-11. [Vilken typ av DNS-frågor genererar
-Zonemaster?](#vilken-typ-av-dns-fr%C3%A5gor-genererar-zonemaster)
-12. [Vad är ett odelegerat
-domäntest?](#vad-%C3%A4r-ett-odelegerat-dom%C3%A4ntest)
-13. [ Hur kan jag testa en domän som är en
-baklängesuppslagningsdomän?](#hur-kan-jag-testa-en-dom%C3%A4n-som-%C3%A4r-en-bakl%C3%A4ngesuppslagningsdom%C3%A4n)
+1. [Vad är Zonemaster?](#q1)
+2. [Vem har utvecklat Zonemaster?](#q2)
+3. [Hur kan Zonemaster hjälpa mig?](#q3)
+4. [Zonemaster visar "Fel"/"Varning" när jag testar min domän, vad betyder det?](#q4)
+5. [Hur kan Zonemaster bedömma vad som är rätt eller fel konfigurerat?](#q5)
+6. [Kan Zonemaster hantera IPv6?](#q6)
+7. [Kan Zonemaster hantera DNSSEC?](#q7)
+8. [Vad skiljer Zonemaster från annan mjukvara som testar domäner?](#q8)
+9. [Zonemaster och integritet](#q9)
+10. [Varför kan jag inte testa min domän?](#q10)
+11. [Vilken typ av DNS-frågor genererar Zonemaster?](#q11)
+12. [Vad är ett odelegerat domäntest?](#undelegated)
+13. [ Hur kan jag testa en domän som är en baklängesuppslagningsdomän?](#q13)
 
 Zonemaster
 ----------
 
-#### 1. Vad är Zonemaster? 
+#### 1. Vad är Zonemaster? <a name="q1"></a>
 
 Zonemaster är ett program designat för att hjälpa människor att kontrollera, mäta och förhoppningsvis också bättre förstå hur DNS, domain name system, fungerar. Zonemaster består av 3 huvuddelar: 1. Motorn (all kod som genomför alla tester), 2. Kommandoradsinterfacet (CLI) samt 3. webbgränssnittet. När en domän (även kallad zon) skickas till Zonemaster så kommer programmet att undersöka domänens hälsotillstånd genom att gå igenom DNS från roten (.) till TLD:n (toppdomänen, till exempel .NET) och till slut de DNS-servrar som innehåller information om den specificerade domänen (till exempel zonemaster.net). Zonemaster utför även en hel del andra tester och alla dessa är dokumenterade här: [Test Requirements document](https://github.com/dotse/zonemaster/blob/master/docs/requirements/TestRequirements.md)
 
-#### 2. Vem har utvecklat Zonemaster?
+#### 2. Vem har utvecklat Zonemaster? <a name="q2"></a>
 
 Zonemaster är ett samarbetsprojekt mellan .SE (Registry för TLD:erna .SE och .NU) och AFNIC
 (Registry för TLD:n .FR och de mindre TLD:er som tillhör Frankfrike).
 
-#### 3. Hur kan Zonemaster hjälpa mig?  
+#### 3. Hur kan Zonemaster hjälpa mig? <a name="q3"></a>
 
 Zonemaster är designat för 2 typer av människor: 1. Människor som vet hur DNS-protokollet fungerar och 2. Människor som enbart vill veta om deras domän är korrekt uppsatt och inte kommer få några problem i framtiden.
 
 Ni som hör till kategori 2 bör kontakta de i kategori 1 för att felsöka er(a) domäner om ni får resultat ni inte förstår eller är nöjda med (allt grönt). Detta görs enklast genom att skicka med länken till ert test när ni kontakter er DNS-operatör/registrar.
 
-#### 4. Zonemaster visar "Fel"/"Varning" när jag testar min domän, vad betyder det?  
+#### 4. Zonemaster visar "Fel"/"Varning" när jag testar min domän, vad betyder det? <a name="q4"></a>
 
 Det beror på vilket test det gäller. I de flesta fall kan du klicka på fel- eller varningsmeddelandet för att få mer information om vad det var för problem.
 
 Till exempel, om vi skulle testa domänen ”iis.se” och få ett felmeddelande som säger ”DNS-servern ns.nic.se (212.247.7.228) svarar inte på anrop över UDP”. Vad innebär detta? Efter att vi klickar på meddelandet får vi mer detaljerad information. I det här fallet: ”DNS-servern svarade inte på anrop över UDP. Detta beror troligtvis på att DNS-servern inte är korrekt uppsatt eller en felaktigt konfigurerad brandvägg.” Lyckligtvis var detta bara ett exempel eftersom det där felet i praktiken betyder att en DNS-server är otillgänglig, så det är inte direkt ett harmlöst fel.
 
-#### 5. Hur kan Zonemaster bedömma vad som är rätt och fel?  
+#### 5. Hur kan Zonemaster bedömma vad som är rätt och fel? <a name="q5"></a>
 
 Ingen kan ge ett definitivt, slutgiltigt utlåtande om en domäns hälsa. Detta är 
 viktigt att poängtera. .SE, AFNIC och människorna bakom Zonemaster påstår inte 
@@ -65,15 +58,15 @@ länk till ditt test och en förklaring av varför du anser att resultatet inte 
 korrekt. (Hur man länkar till ett test hittar du i ”Hur kan Zonemaster hjälpa mig?”
 -delen av denna FAQ.)
 
-#### 6. Kan Zonemaster hantera IPv6? 
+#### 6. Kan Zonemaster hantera IPv6? <a name="q6"></a>
 
 Ja. Alla tester som körs över IPv4 kommer även köras över IPv6 om Zonemaster är konfigurerad att göra det.
 
-#### 7. Kan Zonemaster hantera DNSSEC?  
+#### 7. Kan Zonemaster hantera DNSSEC? <a name="q7"></a>
 
 Ja. Om en domän som testas av Zonemaster har DNSSEC konfigurerat så kommer det testas automatiskt.
 
-#### 8. Vad skiljer Zonemaster från annan mjukvara som testar domäner? 
+#### 8. Vad skiljer Zonemaster från annan mjukvara som testar domäner? <a name="q8"></a>
 
 Först och främst sparar Zonemaster all testhistoria. Det innebär att du kan gå tillbaka och titta på ett test du gjorde för en vecka sedan och jämföra det med ett test du nyss gjorde.
 
@@ -85,11 +78,11 @@ Det finns en ”avancerad” flik tillgänglig för de tekniker som föredrar me
 
 Zonemaster är dessutom öppen källkod och är modulärt uppbyggd. Du kan med andra ord återanvända delar av koden i dina egna system om du vill.
 
-#### 9. Zonemaster och integritet  
+#### 9. Zonemaster och integritet <a name="q9"></a>
 
 Eftersom Zonemaster är tillgänglig för alla är det också möjligt för vem som helst att kontrollera din domän och också se testhistoria för din domän. Det finns dock inget sätt att se vem som har gjort ett test eftersom det enda som loggas är tidpunken då testet gjordes.
 
-#### 10. Varför kan jag inte testa min domän? 
+#### 10. Varför kan jag inte testa min domän? <a name="q10"></a>
 
 Om vi utgår från att domänen du försöker testa faktiskt existerar så finns det två saker som kan orsaka detta:
 
@@ -97,7 +90,7 @@ Om vi utgår från att domänen du försöker testa faktiskt existerar så finns
 
 2. Eftersom Zonemaster är designad för att testa domäner (som zonemaster.net) och inte värdnamn i en domän (som www.zonemaster.net) kontrollerar Zonemaster webbsida domänen du skrivit in innan den skickas vidare till Zonemasters testmotor för att se att det verkligen är en domän. Denna kontroll kan i vissa sällsynta fall misslyckas (och zonen således inte godkänns som korrekt). De enda gånger vi sett detta hända är ifall de DNS-servrar som tillhör den zon du försöker testa är väldigt trasiga. Hör gärna av dig ifall detta hänt dig så vi får mer information om hur vi kan korrigera hur detta test av domänen utförs. Det här testet kommer att förbättras, det lovar vi.
 
-#### 11. Vilken typ av DNS-frågor genererar Zonemaster? 
+#### 11. Vilken typ av DNS-frågor genererar Zonemaster? <a name="q11"></a>
 
 Det här är en svår fråga att svara på eftersom Zonemaster kommer att generera olika typer av anrop beroende på hur dina DNS-servrar svarar. Det enklaste sättet att se exakt vad Zonemaster testar är att köra ”zonemaster-cli” CLI-kommandot. Resultatet ger grundlig information om vad som händer under testet. Det bör dock nämnas att utmatningen från CLI-verktyget är väldigt tekniskt utmanande så ifall du inte gillar bits och bytes kanske du vill undvika det.
 
@@ -105,7 +98,7 @@ Det här är en svår fråga att svara på eftersom Zonemaster kommer att genere
 
 Ett odelegerat domäntest är ett test som genomförs på en domän som kan (men inte måste) vara fullständigt publicerad i DNS. Detta kan vara mycket användbart om du tänker flytta din domän från en registrar till en annan. Låt oss ta som exempel att din domän example.se ska flyttas från namnservern ’ns.nic.se’ till namnservern ’ns.iis.se’. I detta fall skulle du kunna köra ett odelegerat domäntest på domänen (example.se) med den namnservern du ska flytta till (ns.iis.se) INNAN du genomför själva flytten. När testet visar grönt så kan du vara tämligen säker på att den nya hemvisten för din domän åtminstone vet att den ska svara på frågor om din domän. Det kan emellertid fortfarande finnas fel i zoninformationen som detta test inte känner till.
 
-#### 13. Hur kan jag testa en domän som är en baklängesuppslagningsdomän?
+#### 13. Hur kan jag testa en domän som är en baklängesuppslagningsdomän? <a name="q13"></a>
 
 Zonemaster kan användas för att testa diverse tekniska kriterier innan en zon publiceras i DNS.
 Den kan även användas för att testa en baklängesuppslagningszon. För att göra detta med en IPv4-adress
