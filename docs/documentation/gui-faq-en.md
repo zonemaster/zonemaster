@@ -1,25 +1,23 @@
 Zonemaster
 ==========
 
-1. [What is Zonemaster?](#what-is-zonemaster)
-2. [Who is behind Zonemaster?](#who-is-behind-zonemaster)
-3. [How can Zonemaster help me?](#how-can-zonemaster-help-me)
-4. [Zonemaster goes "Error"/"Warning" on my domain, what does it
-mean?](#zonemaster-goes-errorwarning-on-my-domain-what-does-it-mean)
-5. [How can Zonemaster judge what is right and wrong?](#how-can-zonemaster-judge-what-is-right-and-wrong)
-6. [Does Zonemaster handle IPv6?](#does-zonemaster-handle-ipv6)
-7. [Does Zonemaster handle DNSSEC?](#does-zonemaster-handle-dnssec) 
-8. [What makes Zonemaster differ from other DNS zone validating
-software?](#what-makes-zonemaster-differ-from-other-dns-zone-validating-software)
-9. [Zonemaster and privacy](#zonemaster-and-privacy)
-10. [How come I can't test my domain?](#how-come-i-cant-test-my-domain)
-11. [What kind of queries does Zonemaster generate?](#what-kind-of-queries-does-zonemaster-generate)
-12. [What is an undelegated domain test?](#what-is-an-undelegated-domain-test)
-13. [How can I test a reverse zone with Zonemaster?](#how-can-i-test-a-reverse-zone-with-zonemaster)
+1. [What is Zonemaster?](#q1)
+2. [Who is behind Zonemaster?](#q2)
+3. [How can Zonemaster help me?](#q3)
+4. [Zonemaster goes "Error"/"Warning" on my domain, what does it mean?](#q4)
+5. [How can Zonemaster judge what is right and wrong?](#q5)
+6. [Does Zonemaster handle IPv6?](#q6)
+7. [Does Zonemaster handle DNSSEC?](#q7) 
+8. [What makes Zonemaster differ from other DNS zone validating software?](#q8)
+9. [Zonemaster and privacy](#q9)
+10. [How come I can't test my domain?](#q10)
+11. [What kind of queries does Zonemaster generate?](#q11)
+12. [What is an undelegated domain test?](#undelegated)
+13. [How can I test a reverse zone with Zonemaster?](#q13)
 
 Zonemaster
 ----------
-#### 1. What is Zonemaster?
+#### 1. What is Zonemaster? <a name="q1"></a>
 Zonemaster is a program that was designed to help people check, measure and
 hopefully also understand the workings of the DNS (Domain Name System). 
 It consists of three basic modules: 
@@ -34,11 +32,11 @@ the information about the specified domain (zonemaster.net). The different sanit
 conducted by the zonemaster tool is documented in the [Test Requirements
 document](https://github.com/dotse/zonemaster/blob/master/docs/requirements/TestRequirements.md)
 
-#### 2. Who is behind Zonemaster?
+#### 2. Who is behind Zonemaster? <a name="q2"></a>
 Zonemaster is a joint project between .SE (registry operator of .se and .nu TLD) and Afnic 
 (registry operator of .fr TLD and those of the overseas territories of France). 
 
-#### 3. How can Zonemaster help me?  
+#### 3. How can Zonemaster help me? <a name="q3"></a>
 The Zonemaster tool is oriented towards two types of population: 
 
   - People who are knowledgable about the DNS protocol and 
@@ -48,12 +46,12 @@ The second category population described above should contact the first
 category population once they have the results other than in green for any
 debugging of their DNS zones.
 
-#### 4. Zonemaster goes "Error"/"Warning" on my domain, what does it mean?
+#### 4. Zonemaster goes "Error"/"Warning" on my domain, what does it mean? <a name="q4"></a>
 Of course, this depends on what kind of test failed for your zone. In most cases
 you can press the actual error/warning-message and in so doing get more detailed
 information about what kind of problem that was found.
 
-#### 5. How can Zonemaster judge what is right and wrong?  
+#### 5. How can Zonemaster judge what is right and wrong? <a name="q5"></a>
 There is no final judgement of the health of a domain that can be bestowed by
 anyone. The people behind Zonemaster do not claim that the tool is correct in 
 every aspect. Sometimes opinions differ, especially between countries, but sometimes 
@@ -70,15 +68,15 @@ at zonemaster-devel@lists.iis.se with a link to your test and an explanation why
 shows something that you consider incorrect. ( If you don't know how to find the
 link to your test, check the "How can Zonemaster help me"-part of this FAQ ).
 
-####6. Does Zonemaster handle IPv6?
+####6. Does Zonemaster handle IPv6? <a name="q6"></a>
 Yes, it does. All tests run over IPv4 will also be run over IPv6 if ZoneMsater
 is configured to do so.
 
-####7. Does Zonemaster handle DNSSEC?
+####7. Does Zonemaster handle DNSSEC? <a name="q7"></a>
 Yes, if DNSSEC is available on a domain that is sent to Zonemaster, it will be
 checked automatically.
 
-####8. What makes Zonemaster differ from other DNS zone validating software?
+####8. What makes Zonemaster differ from other DNS zone validating software? <a name="q8"></a>
 First of all Zonemaster saves all history from earlier tests based on the tested
 domain, which means you can go back to a test you did a week ago and compare it
 to the test you ran a moment ago.
@@ -93,12 +91,12 @@ which, basically, means you can use parts of it in your systems, if you'd want
 to. It's quite rare that you'd want a complete program just to check for example
 redelegations.
 
-####9. Zonemaster and privacy
+####9. Zonemaster and privacy <a name="q9"></a>
 Since Zonemaster is open to everyone it is possible for anyone to check your
 domain and also see history from previous tests, however there is no way to tell
 who has run a specific test since nothing is logged except the time of the test.
 
-####10. How come I can't test my domain?
+####10. How come I can't test my domain? <a name="q10"></a>
 If we skip the situation where the domain doesn't exist, as in you input a
 non-existing domain to Zonemaster, there are 2 other possibilites: 
   - To protect the engine from multiple identical inputs, that is the same IP
@@ -117,7 +115,7 @@ being tested and these are very broken. We need to fix this, and please do
 report if you cannot check your domain so that we can see if anything else is
 wrong. This control will be improved, that's a promise.
 
-####11. What kind of queries does Zonemaster generate?
+####11. What kind of queries does Zonemaster generate? <a name="q11"></a>
 This question is very hard to answer since Zonemaster will generate different
 queries depending on how your name servers answer. The easiest way to get a full
 view of what queries and results are generated is to run the
@@ -138,7 +136,7 @@ When the results of the test are colour coded in green one can be fairly certain
 that the domain's new location is supposed to be replying to queries . However there 
 might still be other problems in the zone data itself that this test is unaware of.
 
-####13. How can I test a "reverse" zone with Zonemaster?
+####13. How can I test a "reverse" zone with Zonemaster? <a name="q13"></a>
 To check a reverse zone with zonemaster one need to first know the network
 address (i.e. IPv4 or IPv6) of your system. Then find the subnet mask. Then
 follow the procedure explained below for IPv4 and IPv6
