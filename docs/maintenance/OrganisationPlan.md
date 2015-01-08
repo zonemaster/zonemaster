@@ -117,10 +117,31 @@ The Content editor has responsibility to update the content on the web site.
 Service managers activity includes for instance the promotion of Zonemaster in a collaborative way and through multiple channels (dedicated web site, meetings, workshops…) during the maintenance cycles;
 
 ### Technical manager
-ToDo
 
-### Project manager
-ToDo
+Responsibilities essentially include: 
+•	Being responsible for the Zonemaster’s software published as open source in accordance with the requirements of Zonemaster’s Maintenance Plan.
+•	Leading the development teams work.
+•	Keep the Service Manager updated on the work of the development teams the status of the Zonemaster software.
+•	Assist the Service Manager in hers/his work to produce Zonemaster’s Service Plan.
+
+
+### Service manager
+
+Responsibilities essentially include: 
+•	Being responsible for Zonemaster’s day to day business with the Internet community and ensure that it is run and developed optimally in accordance with the approved Service Plan.
+•	Being the document owner of Zonemaster’s Service Plan. 
+•	Ongoing Status reporting to the steering committee including progress and financial monitoring of the service.
+•	Participate in the steering committee’s meetings.
+•	Delegate the technical issues conserving the Zonemaster’s software to the Technical Manager and keep a close cooperation with him/hear in common matters.
+•	Prioritizing the work of the development team and provide the Technical Manager with work orders regarding larger functional changes (Major releases) of the Zonemaster software and approve the delivery of the results.
+•	Cooperate with Afnic’s and .SE’s internal marketing and communication teams. 
 
 ### Steering Committee
-ToDo 
+
+Responsibilities essentially include: 
+•	Evaluate the effectiveness and adherence to the MoU.
+•	Appoint the roles within Zonemaster’s organization, including the Service manager, Technical Manager and Test specification document owner.
+•	Responsible for the strategic direction of Zonemaster. 
+•	Approve Zonemaster’s Service Plan including budget, goals, product roadmap, and a promotion and communication plan.
+•	Meet on a monthly bases, evaluate status reports, and if needed handle escalated issues. 
+
