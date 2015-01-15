@@ -30,3 +30,17 @@ You can follow the project in these two mailinglists:
 
  * [zonemaster-users](http://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-users)
  * [zonemaster-devel](http://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-devel)
+
+### Repositories
+
+The repository you are looking at is the main project repository. However,
+the code has split into different repositories. In order to install and run
+the software, have a look at the [installation documentation]
+(https://github.com/dotse/zonemaster/blob/master/docs/documentation/installation.md).
+
+The other repositories:
+
+ * [zonemaster-engine](https://github.com/dotse/zonemaster-engine)
+ * [zonemaster-cli](https://github.com/dotse/zonemaster-cli)
+ * [zonemaster-backend](https://github.com/dotse/zonemaster-backend)
+ * [zonemaster-gui](https://github.com/dotse/zonemaster-gui)
