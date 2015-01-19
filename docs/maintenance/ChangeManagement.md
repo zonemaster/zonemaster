@@ -1,7 +1,7 @@
 # Zonemaster - Change management
 
-## Scope The release version 1.0 of the Zonemaster project will be on
-december 11, 2014. 
+## Scope
+The release version 1.0 of the Zonemaster project was on december 11, 2014. 
 
 This document outlines how the changes during the technical maintenance
 period will be classified and the process to implement these changes.
@@ -9,8 +9,10 @@ period will be classified and the process to implement these changes.
 ## Input for change Change requests can come from anywhere such as the users
 mailinglist, the steering committe or the development team. 
 
-The change requests could be classified into two broad categories: 1. Minor
-change 2. Major change
+The change requests could be classified into two broad categories:
+
+1. Minor change
+2. Major change
 
 ## Minor change The nature of minor change requests are explained in the
 following subsection: 
@@ -34,42 +36,13 @@ Minor changes are included in minor releases. See the "Version numbering
 policy" on the management of version numbers for releases.
 
 ## Major changes 
-A major change should only be performed when there is an API change or there
-are new major features. Things that might break backwards compatibility, or
-force users to change parts or all of their environment running the
-software. (In relation to the "other" maintenance plain, this has nothing to
-do with the amount of work needed to break backwards compatibility.)
-
-Any change and specification that requires architectural changes creates
-changes in the software architecture and therefore be classified under the
-category "Major change". These architectural changes must be documented and
-any decision to implement the specification is made by the development team
-with support from the steering committee.
-
-A detailed design can be created once the architecture has been set. This is
-done within the development team. The aim is to describe each component and
-its internal structures.
+Any change and specification that requires changes in the software architecture, an API change or new major features could be classified under the category "Major change".
 
 Major changes are included in major releases. See the "Version numbering
 policy" on the management of version numbers.
 
-## Decision on whether  or not to include the change during the technical maintenance period
-
-As mentioned earlier, change requests can come from anywhere such as the
-users mailinglist, the steering committe or the development team.
-
-Whatever be the type of change request, it should go through the "Issues
-tracker" in the Github project. All requests should be promptly responded
-to, even if the decision to acknowledge the request is postponed (or) not
-taken into consideration.
-
-Any change should be  approved by the development team, and added to the
-roadmap and the current set of requirements.
-
-
 ## Process to implement the change
-Change requests can come from anywhere such as the users mailinglist, the
-steering committe or the development team. 
+Change requests can come from anywhere such as the users mailinglist, the steering committe or the development team. 
 
 ### Minor changes
 A "bug  fix" or "minor change" should be added as an issue in Github. Then
@@ -89,15 +62,14 @@ all this is performed successully the software package is relased using the
 release process.
 
 #### Requirements
-Formal requirements comes from "some kind of management or governance of the
-project", the team and any users requesting new functionality. Requirements
-should be ranked in importance depending on a number of factors such as
-complexity, amount of work, risk, architectural changes, relevance to the
-product and so on.
+Formal requirements comes from "some kind of management or governance of the project", the team and any users requesting new functionality. 
 
-New requirements that are acknowledged make it to the roadmap and planned
-for specification and implementation. They are also added to the current set
-of requirements.
+#### Decision on whether  or not to include the change during the technical maintenance period
+Whatever be the type of change request, it should go through the "Issues tracker" in the Github project. All requests should be promptly responded to, even if the decision to acknowledge the request is postponed (or) not taken into consideration.
+
+Requirements should then be ranked in importance depending on a number of factors such as complexity, amount of work, risk, architectural changes, relevance to the product and so on.
+
+New requirements that are acknowledged (by the development team and the steering committee)  make it to the roadmap and planned for specification and implementation. They are also added to the current set of requirements.
 
 #### Specification 
 A set of functional specifications can be derived from the requirements. It
