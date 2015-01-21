@@ -6,9 +6,7 @@ The release version 1.0 of the Zonemaster project was on december 11, 2014.
 This document outlines how the changes during the technical maintenance period will be classified and the process to implement these changes.
 
 ## Input for change 
-Change requests can come from anywhere such as the users mailinglist, the steering committe or the development team. 
-
-The change requests could be classified into two broad categories:
+Change requests can come from anywhere such as the users mailinglist, the steering committe or the development team. The change requests could be classified into two broad categories:
 
 1. Minor change
 2. Major change
