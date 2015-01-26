@@ -17,6 +17,7 @@ A number of roles have been identified during the maintenance period :
 * Support for questions on Github and mailinglists
 * Operator of website and ASN lookup service
 * Content editor, web site
+* Test Specification Manager
 * Service manager
 * Technical manager
 * Steering Committee
@@ -130,23 +131,28 @@ The web site needs content, and it has to be regularly updated to reflect change
 * Download links
 The Content editor has responsibility to update the content on the web site. 
 
+### Test Specification Manager
+The Test specification Manager responsibilities essentially include: 
+* Being responsible for the Zonemaster’s Test Specification document and keep a dialog with the Internet community on its development. Specifically shall the Test specification Manager lead the work within Centr’s TRTF (Tests Requirements Task Force).
+* Ongoing Status reporting to the Service Manager.
+
 ### Service manager
 Responsibilities essentially include:
-* Being responsible for Zonemaster’s day to day business with the Internet community and ensure that it is run and developed optimally in accordance with the approved Service Plan
-* Being the document owner of Zonemaster’s Service Plan
+* Responsible for Zonemaster’s day to day business with the Internet community and ensure that it is run and developed optimally in accordance with the approved Service Plan
+* Owner of Zonemaster’s Service Plan
+* Prioritize the work of the development team and provide the Technical Manager with a road map for the development of Zonemaster software and approve the delivery of the results
 * Ongoing Status reporting to the steering committee including progress and financial monitoring of the service
 * Participate in the steering committee’s meetings
-* Delegate the technical issues conserving the Zonemaster’s software to the Technical Manager and keep a close cooperation with him/hear in common matters
-* Prioritizing the work of the development team and provide the Technical Manager with work orders regarding larger functional changes (Major releases) of the Zonemaster software and approve the delivery of the results
-* Cooperate with Afnic’s and .SE’s internal marketing and communication teams
-* Promotion of Zonemaster in a collaborative way and through multiple channels (dedicated web site, meetings, workshops etc..)
+* Communicate the Steering Committee’s decisions and to the technical team and other concerned parties
+* Accountable of and delegate the technical issues concerning the Zonemaster’s software to the Technical Manager and keep a close cooperation with him/her
+* Involve both Afnic’s and .SE’s internal marketing and communication teams. 
 
 ### Technical manager
 
 Responsibilities essentially include: 
-* Being responsible for the Zonemaster’s software published as open source in accordance with the requirements of Zonemaster’s Maintenance Plan
+* Responsible for the Zonemaster’s software published as open source in accordance with the requirements of Zonemaster’s Service Plan
 * Leading the development teams work
-* Keep the Service Manager updated on the work of the development teams the status of the Zonemaster software
+* Keep the Service Manager updated on the work of the development teams the status of the Zonemaster software, by notably reporting on achieved milestones and resources consumed (e.g. the monthly time report)
 * Assist the Service Manager in hers/his work to produce Zonemaster’s Service Plan
 * Organise fortnightly meetings with the team and the service manager
 
@@ -154,8 +160,22 @@ Responsibilities essentially include:
 
 Responsibilities essentially include: 
 * Evaluate the effectiveness and adherence to the MoU.
-* Appoint the roles within Zonemaster’s organization, including the Service manager, Technical Manager and Test specification document owner (TRTF)
+* Appoint the roles within Zonemaster’s organization, including the Service manager, Technical Manager and Test specification document owner 
 * Responsible for the strategic direction of Zonemaster
 * Approve Zonemaster’s Service Plan including budget, goals, product roadmap, and a promotion and communication plan
-* Meet on a monthly bases, evaluate status reports, and if needed handle escalated issues
+* Meet on a monthly bases, evaluate status reports, and if needed handle escalated issues and make decisions
 
+## Responsibility assignment matrix (RACI)
+
+|Tasks|Steering Committee|Service Manager|Technical Manager|Test Specification Manager|
+|-----|:----------------:|:-------------:|:---------------:|-------------------------:|
+|Adherence to the MoU| AR | I | I | I |
+|Organization for ZM | AR | I | I | I |
+|ZM's Service Plan   | A  | R | C | C |
+|ZM's Software       | I  | A | R | I |
+|ZM's Test Specification| I | A | I | R |
+
+* R : Responsible
+* A : Accountable
+* C : Consulted
+* I : Informed
