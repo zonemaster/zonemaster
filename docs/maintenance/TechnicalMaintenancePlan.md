@@ -8,9 +8,16 @@ This document outlines the continual development of the Zonemaster open source p
 
 ## Change management
 
-Any change in the software except minor improvements or bug fixes requires a change in the list of requirements. Change requests can come from anywhere such as the users mailinglist, the steering committe or the development team. A bug or minor improvement should close a ticket in the Issues functionality of Github.
+The process for Change management is described in the
+[Change Management](ChangeManagemend.md) document.
 
-A change is approved by the development team, and added to the roadmap and the current set of requirements.
+In short:
+
+> A change is approved by the development team, and added to the
+> roadmap and the current set of requirements.
+
+Changes are assigned to minor or major releases depending on the extent
+of the change.
 
 ## Development
 
@@ -67,22 +74,6 @@ Not all issues in the tracker are bugs, and not all reported bugs are software b
 Errors in the documentation, any language translation, requirements and specifications are also going into the Github issue tracker.
 
 The release managers are responsible for going through the Github issue tracker for any new issues and delegate the issue to a responsible developer for fixing the problem. The issue should also be prioritized and planned for a release. When possible, the full dialogue with the reporter of the issue should go into this Github issue.
-
-## Minor changes
-
-Minor changes are new features, changes or deprecated functionality that do not break backwards compatibility, neither force any user to change or update their environment that currently runs the software. (In relation to the "other" maintenance plain, this has nothing to do with the amount of work needed fix a bug, add a feature request or improve functionality or performance.)
-
-See the Version numbering policy on the management of version numbers.
-
-Minor changes and bug fixes are included in minor releases.
-
-## Major changes
-
-A major release should only be performed when there is an API change or there are new major features. Things that might break backwards compatibility, or force users to change parts or all of their environment running the software. (In relation to the "other" maintenance plain, this has nothing to do with the amount of work needed to break backwards compatibility.)
-
-See the Version numbering policy on the management of version numbers.
-
-Major and minor changes and bug fixes are included in minor releases.
 
 ## Release management process
 
