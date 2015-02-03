@@ -70,7 +70,7 @@ If all package dependencies are already installed from the previous section, thi
 	  liblist-moreutils-perl libio-socket-inet6-perl libmodule-find-perl \
 	  libmoose-perl libnet-ip-perl libfile-sharedir-perl libhash-merge-perl \
 	  libreadonly-perl libldns-dev libmodule-install-perl \
-	  libmail-rfc822-address-perl
+	  libmail-rfc822-address-perl libjson-xs-perl
 
 **Install CPAN dependencies**
 
