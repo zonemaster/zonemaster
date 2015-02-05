@@ -286,3 +286,14 @@ for those components:
 
  * [Install the Backend](https://github.com/dotse/zonemaster-backend/blob/master/Doc/zonemaster-backend-installation-instructions.md)
  * [Install the Frontend](https://github.com/dotse/zonemaster-gui/blob/master/Zonemaster_Dancer/Doc/zonemaster-frontend-installation-instructions.md)
+
+
+
+-------
+
+Copyright (c) 2013, 2014, 2015, .SE (The Internet Infrastructure Foundation)  
+Copyright (c) 2013, 2014, 2015, AFNIC  
+Creative Commons Attribution 4.0 International License
+
+You should have received a copy of the license along with this
+work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.

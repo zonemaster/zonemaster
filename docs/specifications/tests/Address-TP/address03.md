@@ -63,3 +63,12 @@ None.
 Some of the input of this test comes as the result of test case
 [ADDRESS02](address02.md). [ADDRESS02](address02.md) must succeed
 prior to proceed with this test case [ADDRESS03](address03.md).
+
+-------
+
+Copyright (c) 2013, 2014, 2015, .SE (The Internet Infrastructure Foundation)  
+Copyright (c) 2013, 2014, 2015, AFNIC  
+Creative Commons Attribution 4.0 International License
+
+You should have received a copy of the license along with this
+work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.

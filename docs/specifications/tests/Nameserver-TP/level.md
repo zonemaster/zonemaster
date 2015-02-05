@@ -17,3 +17,12 @@ These documents use the terminology defined in the
 |R74|Same source address                       |[NAMESERVER04](nameserver04.md)|
 |R53|behaviour against AAAA query              |[NAMESERVER05](nameserver05.md)|
 |R19|NS can be resolved                        |[NAMESERVER06](nameserver06.md)|
+
+-------
+
+Copyright (c) 2013, 2014, 2015, .SE (The Internet Infrastructure Foundation)  
+Copyright (c) 2013, 2014, 2015, AFNIC  
+Creative Commons Attribution 4.0 International License
+
+You should have received a copy of the license along with this
+work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.

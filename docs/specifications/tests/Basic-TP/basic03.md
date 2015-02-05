@@ -39,3 +39,12 @@ This test should only be performed if the BASIC02 test has failed.
 ### Intercase dependencies
 
 Only perform this test if BASIC02 fails.
+
+-------
+
+Copyright (c) 2013, 2014, 2015, .SE (The Internet Infrastructure Foundation)  
+Copyright (c) 2013, 2014, 2015, AFNIC  
+Creative Commons Attribution 4.0 International License
+
+You should have received a copy of the license along with this
+work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.
