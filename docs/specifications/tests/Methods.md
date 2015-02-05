@@ -58,3 +58,12 @@ the child zone.
 2. Record the list of unique IPv4 addreses in the answer section.
 3. Send an AAAA query to all name servers obtained in Method 3.
 4. Record the list of unique IPv6 addresses in the answer section.
+
+-------
+
+Copyright (c) 2013, 2014, 2015, .SE (The Internet Infrastructure Foundation)  
+Copyright (c) 2013, 2014, 2015, AFNIC  
+Creative Commons Attribution 4.0 International License
+
+You should have received a copy of the license along with this
+work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.

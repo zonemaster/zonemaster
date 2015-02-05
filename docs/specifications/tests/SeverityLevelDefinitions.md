@@ -35,3 +35,12 @@ These are the different severity levels that can be assigned to test result mess
 8. DEBUG3
 
     Results at level DEBUG3 have all the same attributes as those for DEBUG2, and are even more voluminous. At this level, full string representations of all recieved DNS packets will be included. At the time of writing, a test run for the same domain produces about fifty times as much output on level DEBUG3 as it does on level DEBUG and a thousand times as much as on the default NOTICE level.
+
+-------
+
+Copyright (c) 2013, 2014, 2015, .SE (The Internet Infrastructure Foundation)  
+Copyright (c) 2013, 2014, 2015, AFNIC  
+Creative Commons Attribution 4.0 International License
+
+You should have received a copy of the license along with this
+work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.

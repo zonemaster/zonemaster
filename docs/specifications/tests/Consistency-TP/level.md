@@ -11,3 +11,12 @@ This document uses the terminology defined in the [Master Test Plan](../Master%2
 |R36|Coherence of SOA with primary nameserver                      |[CONSISTENCY03](consistency03.md)|
 |R70|Coherence of all other SOA-fields where SOA Serial is the same|[CONSISTENCY03](consistency03.md)|
 |R78|All authoritative nameservers reply with same set             |[CONSISTENCY04](consistency04.md)|
+
+-------
+
+Copyright (c) 2013, 2014, 2015, .SE (The Internet Infrastructure Foundation)  
+Copyright (c) 2013, 2014, 2015, AFNIC  
+Creative Commons Attribution 4.0 International License
+
+You should have received a copy of the license along with this
+work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.
