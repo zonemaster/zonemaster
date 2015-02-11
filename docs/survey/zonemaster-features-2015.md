@@ -16,7 +16,7 @@ input a set of domains and have a summarized result)*
 	* From an API
   * Able to test with different profiles both in GUI as well as in the CLI *(Ability 
 for an user to creates his/her own profile (such as "de.profile" and
-"afnic.profile" here: https://github.com/mat813/ZoneCheck/tree/master/etc/zonecheck)
+"afnic.profile" here:https://github.com/mat813/ZoneCheck/tree/master/etc/zonecheck)*
   * Able to test with different policies for both GUI and CLI *(Ability for an
 user to define his/her policy set. Policy here defines classification of issues
 from the zonemaster result as Error/warning/Notice etc.)* 
