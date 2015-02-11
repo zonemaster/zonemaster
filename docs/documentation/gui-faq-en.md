@@ -65,11 +65,11 @@ But as with all things as evolving as DNS the situation is most likely
 changing, what is a notice today could be an error tomorrow. If you really think
 we've made a mistake in our judgement please don't hesitate to drop us an email
 at zonemaster-devel@lists.iis.se with a link to your test and an explanation why you think it
-shows something that you consider incorrect. ( If you don't know how to find the
-link to your test, check the "How can Zonemaster help me"-part of this FAQ ).
+shows something that you consider incorrect. (If you don't know how to find the
+link to your test, check the "How can Zonemaster help me"-part of this FAQ).
 
 ####6. Does Zonemaster handle IPv6? <a name="q6"></a>
-Yes, it does. All tests run over IPv4 will also be run over IPv6 if ZoneMsater
+Yes, it does. All tests run over IPv4 will also be run over IPv6 if ZoneMaster
 is configured to do so.
 
 ####7. Does Zonemaster handle DNSSEC? <a name="q7"></a>
@@ -103,7 +103,7 @@ non-existing domain to Zonemaster, there are 2 other possibilites:
     checking the same zone several times, there is a delay of 5 minutes between
     identical subsequent tests. Which practically means that you can only test the
     same domain once every 5 minutes, if you try and test it again within 5 minutes
-    the last results will be displayed instead </li>
+    the last results will be displayed instead
   - Because Zonemaster was made to check domains (like zonemaster.net) and not hostnames
     in a domain (like www.zonemaster.net) the Zonemaster web interface will do a pre-check of
     your domain before it sends it on to the engine for testing 
@@ -142,10 +142,9 @@ address (i.e. IPv4 or IPv6) of your system. Then find the subnet mask. Then
 follow the procedure explained below for IPv4 and IPv6
 
 For IPv4 addresses:
-  - If the subnet mask is /24 and the network address is for example is
-    "1.2.3.0", remove the last digit (here '0') and revese the numbers and add a suffix :
-    "in-addr.arpa". The resulting is the "reverse zone" which is
-    "3.2.1.in-addr.arpa".
+  - If the subnet mask is /24 and the network address is for example
+    "1.2.3.0", remove the last digit (here '0') and reverse the numbers and add a suffix:
+    "in-addr.arpa". The result is the "reverse zone" which is "3.2.1.in-addr.arpa".
   - If the subnet mask is smaller that /24 such as /28, and the network address
     for example is "1.2.3.4", the reverse zone is obtained by reversing the IP
     address as it is and add the suffix such as "4.3.2.1.in-addr.arpa"
@@ -159,6 +158,4 @@ For IPv6 addresses:
   - Copy the "authority section" from the response which is the reverse zone - "6.0.1.0.0.2.ip6.arpa"
 
 The reverse zone can then be introduced to the Zonemaster tool for verification
-
-
 
