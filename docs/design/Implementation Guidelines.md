@@ -42,6 +42,10 @@ The intention is that as often occuring patterns are found, they will be extract
 
 There are basically two levels at which a user is interested in the result of a test: only the plain results, or the results plus intermediate and debugging information created during the testing process. They way this separation is intended to work in Zonemaster is by a test implementation creating log entry objects for all information that might be interesting, but only return a list of the ones representing actual test results to the caller. The other ones will be kept track of by the framework, and a user can ask to get them if and when they so desire. So a user who is only interested in the results will run the test(s) and get the results as a list of log entry objects as the return value. A user who has more complex needs can ask the framework to also get the rest of the log entries.
 
+### Test Policy
+
+It is recommended, although not required, that each test case be implemented as its own method. What _is_ required is that a test module check with the global configuration that a certain test case should be executed before it does so.
+
 ### Code formatting
 
 The top level of the Zonemaster git repository contains `.perltidyrc`, a config file for [Perl::Tidy](http://search.cpan.org/~shancock/Perl-Tidy-20130922/lib/Perl/Tidy.pod). Please use it before you push, make a pull request or otherwise send code outside of your own repository.
