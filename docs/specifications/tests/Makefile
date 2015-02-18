@@ -5,6 +5,7 @@ all: mtp address basic connectivity consistency delegation dnssec nameserver syn
 map:
 	../../../utils/maprequirement.pl --reqfile ../../requirements/TestRequirements.md \
 	--specdir ./ > Report.md
+	../../../utils/maptestmessages.pl > TestMessages.md
 
 mtp:
 	cat MasterTestPlan.md > $(DOC)
