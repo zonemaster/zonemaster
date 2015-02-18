@@ -142,6 +142,22 @@ The History tab shows previously run tests on this domain.
 
 ## Test Results
 
+In the default mode of the CLI the result is plain text messages in verbose
+language. If you run any test and find out that you need the definition of
+the test result, you can run the tests using the --raw flag, which emits the
+log in a raw format, 
+
+    $ zonemaster-cli example.com
+
+The log looks like this:
+
+    expo$~>zonemaster-cli --raw iis.se
+       4.90 NOTICE    ADDRESS:NAMESERVER_IP_PTR_MISMATCH address=123.456.789.123, names=ns1.example.com., ns=ns2.example.com
+      17.51 NOTICE    ZONE:REFRESH_MINIMUM_VALUE_LOWER refresh=10800, required_refresh=14400
+
+All the specifications of each test can be found by using the [table map](https://github.com/dotse/zonemaster/blob/master/docs/specifications/tests/TestMessages.md),
+and from there you can find the test specifications for the test emitting
+the log message.
 
 
 -------
