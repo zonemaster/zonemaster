@@ -9,7 +9,7 @@ This document outlines the continual development of the Zonemaster open source p
 ## Change management
 
 The process for Change management is described in the
-[Change Management](ChangeManagemend.md) document.
+[Change Management](ChangeManagement.md) document.
 
 In short:
 
