@@ -35,10 +35,15 @@
       * No idea
       * Comments
   * Able to conduct test for a batch of domains (Would you prefer to provide as
-    input a set of domains and have a summarized result)
+    input a set of domains and have a summarized result?)
       * Yes, From the Web interface
       * Yes, From the CLI
       * Yes, From an API 
+      * Not needed
+      * No idea
+      * Comments
+  * Able to conduct test for a single domain using a public API
+      * Yes
       * Not needed
       * No idea
       * Comments
@@ -56,7 +61,7 @@
      * No idea
      * Comments 
   * Alert if the domain does not use DNSSEC (Would you like Zonemaster to
-    encourage the use of DNSSEC)
+    encourage the use of DNSSEC?)
      * Yes
      * Not needed
      * No idea
@@ -70,6 +75,13 @@
      * Comments
   * Loading history of previous tests (Reviewing results of previous tests
     without running a new test)
+     * Yes
+     * Not needed
+     * No idea
+     * Comments
+  * A "Twitter-Bot" type plugin that will answer tweets sent to the
+     @Zonemaster.net account with results of a Zonemaster test and a link to the
+     detailed results on zonemaster.net
      * Yes
      * Not needed
      * No idea
