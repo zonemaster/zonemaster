@@ -1,7 +1,7 @@
 # Features
 
 *INSTRUCTIONS: If you are answering "Yes", please click on the circle "1" to "5"
-(with 1 being the lowest and 5 being the highest) 
+(with 1 being the lowest and 5 being the highest)* 
 
   * Test from multiple nodes on the network (Able to launch Zonemaster from
      multiple points in the network for the same domain and have a summarized
