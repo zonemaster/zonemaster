@@ -13,7 +13,7 @@
         * Maybe
         * Should have
         * Must have 
-	* Comments
+        * Comments
   * 4. Zonemaster should test all the tests cases required by the IANA profile
     (IANA test profile is here:"https://www.iana.org/help/nameserver-requirements")
         * No
