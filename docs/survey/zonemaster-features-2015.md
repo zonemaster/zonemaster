@@ -8,20 +8,20 @@
   * 3. Test from multiple nodes on the network (Able to launch Zonemaster from
      multiple points in the network for the same domain and have a summarized
      result)
-	* No 
-	* No idea
-        * Maybe
-        * Should have
-        * Must have 
-        * Comments
+       * No 
+       * No idea
+       * Maybe
+       * Should have
+       * Must have 
+       * Comments
   * 4. Zonemaster should test all the tests cases required by the IANA profile
     (IANA test profile is here:"https://www.iana.org/help/nameserver-requirements")
-        * No
-        * No idea
-        * Maybe
-        * Should have
-        * Must have
-        * Comments
+       * No
+       * No idea
+       * Maybe
+       * Should have
+       * Must have
+       * Comments
   * 5. The Zonemaster GUI should be ergonomically adapted to a mobile device (Able
      to easily test a domain, view the results, history etc. from a mobile
      device)
