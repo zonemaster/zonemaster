@@ -34,7 +34,7 @@ Another application is the web interface which is split in two parts. The user v
     liblist-moreutils-perl libio-socket-inet6-perl libmodule-find-perl \
     libmoose-perl libnet-ip-perl libfile-sharedir-perl libhash-merge-perl \
     libreadonly-perl libldns-dev libmodule-install-perl \
-	libmail-rfc822-address-perl libintl-xs-perl
+	libmail-rfc822-address-perl libintl-xs-perl libidn11-dev
 
 **Install CPAN dependencies**
 
@@ -70,7 +70,7 @@ If all package dependencies are already installed from the previous section, thi
 	  liblist-moreutils-perl libio-socket-inet6-perl libmodule-find-perl \
 	  libmoose-perl libnet-ip-perl libfile-sharedir-perl libhash-merge-perl \
 	  libreadonly-perl libldns-dev libmodule-install-perl \
-	  libmail-rfc822-address-perl libjson-xs-perl
+	  libmail-rfc822-address-perl libjson-xs-perl libidn11-dev
 
 **Install CPAN dependencies**
 
