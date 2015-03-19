@@ -21,95 +21,22 @@ Another application is the web interface which is split in two parts. The user v
 
 ## Zonemaster Engine installation
 
-### Instructions for Ubuntu 14.04
+### Instructions for Debian 7, Ubuntu 14.04 and Ubuntu 12.04
 
-**To get the source code**
+1) Make sure the package database is up to date.
 
-    $ sudo apt-get install git build-essential
-    $ git clone https://github.com/dotse/zonemaster-engine.git
+`sudo apt-get update`
 
-**Install package dependencies**
+2) Install all necessary packages.
 
-    $ sudo apt-get install libfile-slurp-perl libjson-perl \
-    liblist-moreutils-perl libio-socket-inet6-perl libmodule-find-perl \
-    libmoose-perl libnet-ip-perl libfile-sharedir-perl libhash-merge-perl \
-    libreadonly-perl libldns-dev libmodule-install-perl \
-	libmail-rfc822-address-perl libintl-xs-perl libidn11-dev
+`sudo apt-get install build-essential libfile-slurp-perl libjson-perl liblist-moreutils-perl libio-socket-inet6-perl libmodule-find-perl libmoose-perl libfile-sharedir-perl libhash-merge-perl libreadonly-perl libmail-rfc822-address-perl libintl-xs-perl libssl-dev libdevel-checklib-perl libtest-fatal-perl libtie-simple-perl libio-capture-perl libgeography-countries-perl libidn11-dev`
 
-**Install CPAN dependencies**
+3) Install non-packaged software.
 
-Unfortunately `Net::LDNS` has not been packaged for Ubuntu yet. So you need to install this dependency from CPAN:
+`sudo cpan -i Zonemaster`
 
-    $ sudo perl -MCPAN -e 'install Net::LDNS'
+If necessary, answer any questions from the cpan script by accepting the default value (just press enter).
 
-You also need Net::IP::XS from CPAN:
-
-	$ sudo perl -MCPAN -e 'install Net::IP::XS'
-
-If all package dependencies are already installed from the previous section, this should compile and install after configuration of your CPAN module installer.
-
-**Build source code**
-
-	$ cd zonemaster-engine
-    $ perl Makefile.PL
-    Writing Makefile for Zonemaster
-    Writing MYMETA.yml and MYMETA.json
-    $ make test
-    $ sudo make install
-
-### Instructions for Debian Wheezy (version 7)
-
-**To get the source code**
-
-    $ sudo aptitude install git build-essential
-    $ git clone https://github.com/dotse/zonemaster-engine.git
-
-**Install package dependencies**
-
-      $ sudo aptitude install libfile-slurp-perl libjson-perl \
-	  liblist-moreutils-perl libio-socket-inet6-perl libmodule-find-perl \
-	  libmoose-perl libnet-ip-perl libfile-sharedir-perl libhash-merge-perl \
-	  libreadonly-perl libldns-dev libmodule-install-perl \
-	  libmail-rfc822-address-perl libjson-xs-perl libidn11-dev
-
-**Install CPAN dependencies**
-
-Unfortunately `Net::IP::XS`, `Locale::TextDomain` and `Net::LDNS` have not been packaged for Debian yet. So you need to install these dependencies from CPAN:
-
-	$ sudo perl -MCPAN -e 'install Net::IP::XS'
-	$ sudo perl -MCPAN -e 'install Locale::TextDomain'
-
-The version of ldns that Net::LDNS is based on is too old for Zonemaster, thus it has to be installed from source. However, ldns requires some more packages to be installed.
-
-	$ sudo aptitude install libssl-dev zlib1g-dev
-
-Fetch the lates version of ldns (as of this writing 1.6.17):
-
-	$ wget http://www.nlnetlabs.nl/downloads/ldns/ldns-1.6.17.tar.gz
-	$ tar zxf ldns-1.6.17.tar.gz
-	$ cd ldns-1.6.17
-	$ ./configure
-	$ make
-	$ sudo make install
-	$ sudo ldconfig
-
-Now that ldns has been installed, install Net::LDNS:
-
-    $ sudo perl -MCPAN -e 'install Net::LDNS'
-
-If all package dependencies are already installed from the previous section, this should compile and install after configuration of your CPAN module installer.
-
-**Build source code**
-
-	$ cd zonemaster-engine
-    $ perl Makefile.PL
-	Checking if your kit is complete...
-	Looks good
-	Generating a Unix-style Makefile
-	Writing Makefile for Zonemaster
-	Writing MYMETA.yml and MYMETA.json
-	$ make test
-    $ sudo make install
 
 ### Instructions for FreeBSD 10.0
 
