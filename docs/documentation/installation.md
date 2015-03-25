@@ -6,9 +6,10 @@ have to install most of it from the source code.
 
 The documentation covers the following operating systems:
 
+ * Ubuntu 12.04 (LTS)
  * Ubuntu 14.04 (LTS)
  * Debian Wheezy (version 7)
- * FreeBSD 10.0
+ * FreeBSD 10.1
  * CentOS 7
 
 ## Components
@@ -38,142 +39,71 @@ Another application is the web interface which is split in two parts. The user v
 If necessary, answer any questions from the cpan script by accepting the default value (just press enter).
 
 
-### Instructions for FreeBSD 10.0
+### Instructions for FreeBSD 10.1
 
-**To get the source code**
+1) Become root.
 
-	$ sudo pkg install git
-    $ git clone https://github.com/dotse/zonemaster-engine.git
+`su`
 
-**Install package dependencies**
+2) Install all necessary packages
 
-	$ sudo pkg install p5-File-ShareDir p5-File-Slurp p5-Hash-Merge \
-	p5-IO-Socket-INET6 p5-JSON p5-List-MoreUtils p5-Moose p5-Net-IP \
-	p5-Readonly p5-Module-Find p5-Module-Install p5-Devel-CheckLib \
-	ldns p5-Mail-RFC822-Address-0.3 p5-Locale-libintl
+`pkg install libidn p5-Devel-CheckLib p5-MIME-Base64 p5-Test-Fatal p5-JSON-PP p5-IO-Socket-INET6 p5-Moose p5-Module-Find p5-JSON p5-File-ShareDir p5-File-Slurp p5-Mail-RFC822-Address p5-Hash-Merge p5-Time-HiRes p5-Locale-libintl p5-JSON-XS p5-Readonly-XS p5-Tie-Simple p5-Math-BigInt p5-IP-Country p5-IO-Capture`
 
-**Install CPAN dependencies**
+3) Install non-packaged-software.
 
-	$ sudo perl -MCPAN -e 'install Net::LDNS'
+`cpan -i Zonemaster`
 
-**Build source code**
-
-	$ cd zonemaster-engine
-    $ perl Makefile.PL
-	Checking if your kit is complete...
-	Looks good
-	Generating a Unix-style Makefile
-	Writing Makefile for Zonemaster
-	Writing MYMETA.yml and MYMETA.json
-	$ make test
-    $ sudo make install
+If necessary, answer any questions from the cpan script by accepting the default value (just press enter).
 
 ### Instructions for CentOS 7
 
-**To get the source code**
+1) Make sure the development environment is installed.
 
-	$ sudo yum install git
-    $ git clone https://github.com/dotse/zonemaster-engine.git
+`sudo yum groupinstall "Development Tools"`
 
-**Install package dependencies**
+2) Install packages.
 
-	$ sudo yum install perl perl-ExtUtils-MakeMaker perl-File-ShareDir \
-	perl-File-Slurp perl-IO-Socket-INET6 perl-JSON perl-List-MoreUtils \
-	perl-Readonly perl-Time-HiRes perl-YAML ldns-devel
+`sudo yum install perl-core perl-ExtUtils-MakeMaker perl-File-ShareDir perl-File-Slurp perl-IO-Socket-INET6 perl-JSON perl-List-MoreUtils perl-Readonly perl-Time-HiRes perl-YAML libidn-devel perl-libintl perl-Devel-CheckLib openssl-devel perl-Test-Fatal`
 
-Zonemaster works better with ldns version 1.6.17 and up, CentOS includes
-ldns 1.6.16 that works.
+3) Install CPAN modules.
 
-**Install CPAN dependencies**
+If it's the first time you use the CPAN module, it will ask three questions.
+For the first and third, the default responses are fine. For the second, answer
+"sudo" (the default is "local::lib", which you do not want).
 
-Unfortunately a lot of Perl modules has not been packaged for Debian yet. So you need to install these dependencies from CPAN:
-
-	$ sudo yum install perl-CPAN gcc
-
-	$ sudo perl -MCPAN -e 'install Hash::Merge'
-	$ sudo perl -MCPAN -e 'install Locale::TextDomain'
-	$ sudo perl -MCPAN -e 'install Mail::RFC822::Address'
-	$ sudo perl -MCPAN -e 'install Module::Find'
-	$ sudo perl -MCPAN -e 'install Moose'
-	$ sudo perl -MCPAN -e 'install Net::IP'
-    $ sudo perl -MCPAN -e 'install Net::LDNS'
-
-**Build source code**
-
-	$ cd zonemaster-engine
-    $ perl Makefile.PL
-	Writing Makefile for Zonemaster
-	Writing MYMETA.yml and MYMETA.json	$ make test
-    $ sudo make install
+`sudo cpan -i Zonemaster`
 
 ## Zonemaster CLI installation
 
-### Instructions for Ubuntu 14.04
+### Instructions for Debian 7, Ubuntu 14.04 and Ubuntu 12.04
 
 First install the Zonemaster Engine, following the instructions above.
 
-**To get the source code**
+1) Install necessary packages.
 
-    $ git clone https://github.com/dotse/zonemaster-cli.git
+`sudo aptitude install libmoosex-getopt-perl libtext-reflow-perl libmodule-install-perl`
 
-**Install package dependencies**
+2) Install non-packaged software
 
-    $ sudo apt-get install libmoosex-getopt-perl libtext-reflow-perl
+`sudo cpan -i Zonemaster::CLI`
 
-**Build source code**
+3) Now you are ready to run the zonemaster-cli command:
 
-    $ cd zonemaster-cli
-    $ perl Makefile.PL
-    $ make test
-    $ sudo make install
+`zonemaster-cli example.com`
 
-Now you are ready to run the zonemaster-cli command:
+### Instructions for FreeBSD 10.1
 
-    $ zonemaster-cli example.com
+1) First install the Zonemaster Engine, following the instructions above.
 
-### Instructions for Debian Wheezy (version 7)
+2) Still as root, install necessary packages.
 
-First install the Zonemaster Engine, following the instructions above.
+`pkg install p5-MooseX-Getopt p5-Text-Reflow p5-Module-Install`
 
-**To get the source code**
+3) Still as root, install non-packaged software.
 
-    $ git clone https://github.com/dotse/zonemaster-cli.git
+`cpan -i Zonemaster::CLI`
 
-**Install package dependencies**
-
-    $ sudo aptitude install libmoosex-getopt-perl libtext-reflow-perl
-
-**Build source code**
-
-    $ cd zonemaster-cli
-    $ perl Makefile.PL
-    $ make test
-    $ sudo make install
-
-Now you are ready to run the zonemaster-cli command:
-
-    $ zonemaster-cli example.com
-
-### Instructions for FreeBSD 10.0
-
-First install the Zonemaster Engine, following the instructions above.
-
-**To get the source code**
-
-    $ git clone https://github.com/dotse/zonemaster-cli.git
-
-**Install package dependencies**
-
-	$ sudo pkg install p5-MooseX-Getopt p5-Text-Reflow
-
-**Build source code**
-
-    $ cd zonemaster-cli
-    $ perl Makefile.PL
-    $ make test
-    $ sudo make install
-
-Now you are ready to run the zonemaster-cli command:
+4) The CLI tool is now installed and can be run by any user.
 
     $ zonemaster-cli example.com
 
@@ -181,29 +111,9 @@ Now you are ready to run the zonemaster-cli command:
 
 First install the Zonemaster Engine, following the instructions above.
 
-**To get the source code**
+1) Install the CPAN packages.
 
-    $ git clone https://github.com/dotse/zonemaster-cli.git
-
-**Install package dependencies**
-
-	$ sudo yum install perl-Module-Install
-	$ sudo yum install perl-Getopt-Long
-
-	$ sudo perl -MCPAN -e 'install Getopt::Long::Descriptive'
-	$ sudo perl -MCPAN -e 'install MooseX::Getopt'
-	$ sudo perl -MCPAN -e 'install Text::Reflow'
-
-**Build source code**
-
-    $ cd zonemaster-cli
-    $ perl Makefile.PL
-    $ make test
-    $ sudo make install
-
-Now you are ready to run the zonemaster-cli command:
-
-    $ zonemaster-cli example.com
+`cpan -i Zonemaster::CLI`
 
 ## Zonemaster Web Interface installation
 
