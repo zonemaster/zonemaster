@@ -61,12 +61,12 @@ If all package dependencies are already installed from the previous section, thi
 
 **To get the source code**
 
-    $ sudo aptitude install git build-essential
+    $ sudo apt-get install git build-essential
     $ git clone https://github.com/dotse/zonemaster-engine.git
 
 **Install package dependencies**
 
-      $ sudo aptitude install libfile-slurp-perl libjson-perl \
+      $ sudo apt-get install libfile-slurp-perl libjson-perl \
 	  liblist-moreutils-perl libio-socket-inet6-perl libmodule-find-perl \
 	  libmoose-perl libnet-ip-perl libfile-sharedir-perl libhash-merge-perl \
 	  libreadonly-perl libldns-dev libmodule-install-perl \
@@ -81,7 +81,7 @@ Unfortunately `Net::IP::XS`, `Locale::TextDomain` and `Net::LDNS` have not been 
 
 The version of ldns that Net::LDNS is based on is too old for Zonemaster, thus it has to be installed from source. However, ldns requires some more packages to be installed.
 
-	$ sudo aptitude install libssl-dev zlib1g-dev
+	$ sudo apt-get install libssl-dev zlib1g-dev
 
 Fetch the lates version of ldns (as of this writing 1.6.17):
 
@@ -214,7 +214,7 @@ First install the Zonemaster Engine, following the instructions above.
 
 **Install package dependencies**
 
-    $ sudo aptitude install libmoosex-getopt-perl libtext-reflow-perl
+    $ sudo apt-get install libmoosex-getopt-perl libtext-reflow-perl
 
 **Build source code**
 
@@ -284,7 +284,7 @@ In order to install the Web Interface you need to install the backend
 and the frontend systems. The documentation is located in the repositories
 for those components:
 
- * [Install the Backend](https://github.com/dotse/zonemaster-backend/blob/master/Doc/zonemaster-backend-installation-instructions.md)
+ * [Install the Backend](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md)
  * [Install the Frontend](https://github.com/dotse/zonemaster-gui/blob/master/Zonemaster_Dancer/Doc/zonemaster-frontend-installation-instructions.md)
 
 
