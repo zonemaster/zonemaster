@@ -42,10 +42,10 @@ percentage of respondants who thought that the feature (in the question) is a
 But since "must have" carries more weight that than "should have", the
 percentage values of "must have" is multiplied by "2" in the graph below
 
-https://cloud.githubusercontent.com/assets/5484470/7046843/f8b3c4c6-de08-11e4-88ce-4b964d59892b.png
+![Figure1](https://cloud.githubusercontent.com/assets/5484470/7046843/f8b3c4c6-de08-11e4-88ce-4b964d59892b.png)
 
 The figure 2 adds up the values of "must have" and "should have", thus providing
 a pictorial representation of the priority for each feature.
 
-https://cloud.githubusercontent.com/assets/5484470/7046846/fe99582e-de08-11e4-8732-ddb5fcdc86cb.png
+![Figure2](https://cloud.githubusercontent.com/assets/5484470/7046846/fe99582e-de08-11e4-8732-ddb5fcdc86cb.png)
 
