@@ -32,14 +32,14 @@ had different categories from from "No" to "Must Have".
 
 As the objective of the survey is to identify the features most needed by the
 user's external to the the team involved in developing Zonemaster, the result
-below (Figure) concentrate on only two aspects from the response, i.e
+below (Figure) concentrates on only two aspects from the response, i.e
 the percentage of "Should Have" and "Must Have" for each question. 
 
 The "X" axis points to the question number. The values in the "Y" axis represent the
 percentage of respondants who thought that the feature (in the question) is a
 "must have" or "should have".
 
-But since "must have" carries more weight that than "should have", the
+Since "must have" carries more weight that than "should have", the
 percentage values of "must have" is multiplied by "2" in the graph below
 
 ![Figure1](https://cloud.githubusercontent.com/assets/5484470/7046843/f8b3c4c6-de08-11e4-88ce-4b964d59892b.png)
@@ -49,3 +49,5 @@ a pictorial representation of the priority for each feature.
 
 ![Figure2](https://cloud.githubusercontent.com/assets/5484470/7046846/fe99582e-de08-11e4-8732-ddb5fcdc86cb.png)
 
+As could be seen from the figure 2, the top 5 features that stands out in the
+survey results are : Q4, Q14, Q5, Q13, Q15.
