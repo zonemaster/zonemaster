@@ -17,6 +17,26 @@ survey](https://github.com/sandoche2k/zonemaster/blob/master/docs/survey/zonemas
 
 The user survey was performed between 2015-03-10 and 2015-04-06
 
+Summary of the questions
+-------------------------
+   * Q1  : Name & Organisation
+   * Q2  : Are you representing the organisation?
+   * Q3  : Test from multiple nodes on the network
+   * Q4  : Include all test cases from the IANA profile
+   * Q5  : Able to view the Web Interface in mobile devices
+   * Q6  : Developing mobile application that could be used with Zonemaster
+   * Q7  : Having a test suite of deliberately broken zones
+   * Q8  : Testing a batch of domains from the CLI
+   * Q9  : Testing a batch of domains from the web interface
+   * Q10 : Testing a batch of domains from an API
+   * Q11 : Testing a single domain from an API
+   * Q12 : Testing different profiles
+   * Q13 : Testing different policies
+   * Q14 : Alert for a non DNSSEC domain
+   * Q15 : Export results in different formats such as HTML etc.
+   * Q16 : Loading history of previous results
+   * Q17 : Twitter bot
+   * Q18 : User input
 
 Results
 -------
