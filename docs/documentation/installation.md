@@ -113,7 +113,7 @@ First install the Zonemaster Engine, following the instructions above.
 
 1) Install the CPAN packages.
 
-`cpan -i Zonemaster::CLI`
+`sudo cpan -i Zonemaster::CLI`
 
 ## Zonemaster Web Interface installation
 
