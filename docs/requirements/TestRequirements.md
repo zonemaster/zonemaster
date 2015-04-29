@@ -93,6 +93,7 @@ Tests to implement
 |R77|Perform input validation on the domain name             |[BASIC](../specifications/tests/Basic-TP/basic00.md)|
 |R78|All authoritative nameservers reply with same set       |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency04.md)|
 |R79|If DS at parent, child zone must be signed              |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec11.md)|
+|R80|Preservation of wname case in DNS answers               |Not yet specified|
 
 Future tests
 ------------
