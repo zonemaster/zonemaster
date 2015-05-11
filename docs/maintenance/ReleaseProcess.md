@@ -93,6 +93,11 @@ Change it here:
 
 https://github.com/dotse/zonemaster/wiki/Zonemaster-Distribution-Releases
 
+
+Too see tags for a repository:
+
+git show-ref --tags
+
 -------
 
 Copyright (c) 2013, 2014, 2015, .SE (The Internet Infrastructure Foundation)  
