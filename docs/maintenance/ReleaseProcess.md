@@ -7,8 +7,11 @@ The version numbers can be found in these Perl modules:
 
  * zonemaster-engine - [Zonemaster.pm](https://github.com/dotse/zonemaster-engine/blob/master/lib/Zonemaster.pm)  
  * zonemaster-cli - [CLI.pm](https://github.com/dotse/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)  
- * zonemaster-backend - maybe [Engine.pm](https://github.com/dotse/zonemaster-backend/blob/master/Engine.pm)  
- * zonemaster-gui - maybe [Frontend.pm](https://github.com/dotse/zonemaster-gui/blob/master/Zonemaster_Dancer/lib/Zonemaster/GUI/Dancer/Frontend.pm)  
+ * zonemaster-backend - [Config.pm](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/WebBackend/Config.pm) and
+   [DB.pm](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/WebBackend/DB.pm)
+ * zonemaster-gui - [Client.pm](https://github.com/dotse/zonemaster-gui/blob/master/lib/Zonemaster/GUI/Dancer/Client.pm),
+   [Frontend.pm](https://github.com/dotse/zonemaster-gui/blob/master/lib/Zonemaster/GUI/Dancer/Frontend.pm) and
+   [NoJsFrontend.pm](https://github.com/dotse/zonemaster-gui/blob/master/lib/Zonemaster/GUI/Dancer/NoJsFrontend.pm)
 
 ## 2. Update the Changes file
 
@@ -17,8 +20,8 @@ Please refer to any Github issues related to the change by the issue number.
 
  * zonemaster-engine - [Changes](https://github.com/dotse/zonemaster-engine/blob/master/Changes)
  * zonemaster-cli - [Changes](https://github.com/dotse/zonemaster-cli/blob/master/Changes)
- * zonemaster-backend - TBD
- * zonemaster-gui - TBD
+ * zonemaster-backend - [Changes](https://github.com/dotse/zonemaster-backend/blob/master/CHANGES)
+ * zonemaster-gui - [Changes](https://github.com/dotse/zonemaster-gui/blob/master/Changes)
 
 ## 3. Verify that MANIFEST is up to date
 
@@ -28,7 +31,7 @@ to be the complete set of files to be included.
  * zonemaster-engine - [MANIFEST](https://github.com/dotse/zonemaster-engine/blob/master/MANIFEST)
  * zonemaster-cli - [MANIFEST](https://github.com/dotse/zonemaster-cli/blob/master/MANIFEST)
  * zonemaster-backend - [MANIFEST](https://github.com/dotse/zonemaster-backend/blob/master/MANIFEST)
- * zonemaster-gui - [MANIFEST](https://github.com/dotse/zonemaster-gui/blob/master/Zonemaster_Dancer/MANIFEST)
+ * zonemaster-gui - [MANIFEST](https://github.com/dotse/zonemaster-gui/blob/master/MANIFEST)
 
 ## 4. Verify that Makefile.PL has all the correct data
 
@@ -39,7 +42,7 @@ other metadata about the component.
  * zonemaster-engine - [Makefile.PL](https://github.com/dotse/zonemaster-engine/blob/master/Makefile.PL)
  * zonemaster-cli - [Makefile.PL](https://github.com/dotse/zonemaster-cli/blob/master/Makefile.PL)
  * zonemaster-backend - [Makefile.PL](https://github.com/dotse/zonemaster-backend/blob/master/Makefile.PL)
- * zonemaster-gui - [Makefile.PL](https://github.com/dotse/zonemaster-gui/blob/master/Zonemaster_Dancer/Makefile.PL)
+ * zonemaster-gui - [Makefile.PL](https://github.com/dotse/zonemaster-gui/blob/master/Makefile.PL)
 
 ## 5. Test to create a distribution file
 
