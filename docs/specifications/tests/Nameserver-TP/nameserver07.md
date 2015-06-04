@@ -1,5 +1,4 @@
-## NAMESERVER07:  To check whether authoritative name servers return an upward
-referral
+## NAMESERVER07:  To check whether authoritative name servers return an upward referral
 
 ### Test case identifier
 NAMESERVER07 To check whether authoritative name servers return an upward

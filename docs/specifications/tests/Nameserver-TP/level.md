@@ -17,6 +17,7 @@ These documents use the terminology defined in the
 |R74|Same source address                       |[NAMESERVER04](nameserver04.md)|
 |R53|behaviour against AAAA query              |[NAMESERVER05](nameserver05.md)|
 |R19|NS can be resolved                        |[NAMESERVER06](nameserver06.md)|
+|R81|Test upward referral                      |[NAMESERVER07](nameserver07.md)|
 
 -------
 
