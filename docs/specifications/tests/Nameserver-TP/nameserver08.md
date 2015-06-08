@@ -1,5 +1,4 @@
-## NAMESERVER08:  Verify whether the authoritative nameserver response match the
-case of every letter in the query name
+## NAMESERVER08: Testing QNAME case sensitivity
 
 ### Test case identifier
 NAMESERVER08 Verify whether the authoritative nameserver response match the 
