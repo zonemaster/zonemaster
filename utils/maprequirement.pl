@@ -83,14 +83,14 @@ sub readRequirements {
 
 	# extract requirements
 	foreach my $line (@content) {
-		if ( $line =~ /^\|(R.*)\|(.*)\|(.*)\|(.*)\|$/ ) {
-			next if $1 eq 'Req';
-			print "$1 ($4): $2\n" if $DEBUG;
-			my $req  = $1;
-			my $desc = $2;
-			$req  =~ s/\s*$//; # strip whitespace at end of line
-			$desc =~ s/\s*$//; # strip whitespace at end of line
-			$reqs->{$req} = $desc;
+	    if ( $line =~ /^\|(R.*)\|(.*)\|(.*)\|$/ ) {
+		next if $1 eq 'Req';
+		print "$1 $2: ($3)\n" if $DEBUG;
+		my $req  = $1;
+		my $desc = $2;
+		$req  =~ s/\s*$//; # strip whitespace at end of line
+		$desc =~ s/\s*$//; # strip whitespace at end of line
+		$reqs->{$req} = $desc;
 		}
 	}
 
