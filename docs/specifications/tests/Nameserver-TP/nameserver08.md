@@ -28,8 +28,8 @@ The domain name to be tested.
 using [Method 2](../Methods.md#method-2-obtain-name-servers-from-parent) and
 [Method 3](../Methods.md#method-3-obtain-name-servers-from-child)
 2. A random query with mixed case (e.g. Www.iETF.oRG) is sent to each of the name server found in step 1.
-3. Remember the case of the query sent.
-4. Compare the QNAME in the question section with the string in step3. 
+3. Remember the case of the QNAME in the query sent.
+4. Compare the QNAME in the question section of the response with the string in step3. 
 5. If the string in step3 and step4 are not equal with respect to case
 sensitivity, the test fails.
 
