@@ -18,6 +18,7 @@ These documents use the terminology defined in the
 |R53|behaviour against AAAA query              |[NAMESERVER05](nameserver05.md)|
 |R19|NS can be resolved                        |[NAMESERVER06](nameserver06.md)|
 |R81|Test upward referral                      |[NAMESERVER07](nameserver07.md)|
+|R82|Test QNAME case sensitivity               |[NAMESERVER08](nameserver08.md)|
 
 -------
 
