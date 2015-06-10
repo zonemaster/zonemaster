@@ -93,9 +93,9 @@ Tests to implement
 |R77|Perform input validation on the domain name             |[BASIC](../specifications/tests/Basic-TP/basic00.md)|
 |R78|All authoritative nameservers reply with same set       |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency04.md)|
 |R79|If DS at parent, child zone must be signed              |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec11.md)|
-|R80|Preservation of wname case in DNS answers               |Not yet specified|
-|R81|Test Upward referral         |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver07.md)|
-|R82|Test QNAME Case sensitivity  |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver08.md)|
+|R80|Test QNAME case sensitivity                             |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver09.md)|
+|R81|Test Upward referral         			      |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver07.md)|
+|R82|Test QNAME Case insensitivity                            |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver08.md)|
 
 
 Future tests
