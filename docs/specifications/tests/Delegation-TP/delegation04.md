@@ -19,10 +19,11 @@ The domain name to be tested.
 
 1. Obtain the complete set of name servers from the parent using
    [Method2](../Methods.md) and the child using [Method3](../Methods.md).
-2. All name servers queried for the SOA record over TCP and UDP on port 53.
+2. All name servers are queried for the SOA record over TCP and UDP on port 53.
 3. For each query in step 2, check whether DNS answer (bogus response are not
-   checked here) is obtained. If any of the query fails, then do not proceed to
-   step 4 for that query. Exit from the test without any exceptions.
+   checked here) is obtained. If any of the query fails to respond with an
+   answer, then do not proceed to step 4 for that query. Exit from the test
+   without any exceptions.
 4. If any name server fail to give an authoritative answer ("AA-bit" is set
    in the answer), the test fails.
 
