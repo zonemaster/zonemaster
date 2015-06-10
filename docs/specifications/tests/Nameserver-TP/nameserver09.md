@@ -1,4 +1,4 @@
-## NAMESERVER08: Testing QNAME case in-sensitivity
+## NAMESERVER08: Testing QNAME case insensitivity
 
 ### Test case identifier
 NAMESERVER08 Verify whether the authoritative nameserver returns same results

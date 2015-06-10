@@ -95,7 +95,7 @@ Tests to implement
 |R79|If DS at parent, child zone must be signed              |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec11.md)|
 |R80|Test QNAME case sensitivity                             |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver09.md)|
 |R81|Test Upward referral         			      |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver07.md)|
-|R82|Test QNAME Case in-sensitivity  |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver08.md)|
+|R82|Test QNAME Case insensitivity                            |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver08.md)|
 
 
 Future tests
