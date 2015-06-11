@@ -1,15 +1,15 @@
-## NAMESERVER08: Testing QNAME case insensitivity
+## NAMESERVER09: Testing QNAME case sensitivity
 
 ### Test case identifier
-NAMESERVER08 Verify whether the authoritative nameserver returns same results
+NAMESERVER09 Verify whether the authoritative nameserver returns same results
 for equivalent names with different cases in the request.
 
 
 ### Objective
-There has been cases where the nameservers respond with complete case-sensitivity (in violation of the DNS standards): that is, they match the exact case of the name in the response; but
-return different results for equivalent names with different cases in the
-request (typically NXDOMAIN).
-
+There has been cases where the nameservers respond with complete
+case-sensitivity (in violation of the DNS standards): that is, they match the
+exact case of the name in the response; but return different results for
+equivalent names with different cases in the request (typically NXDOMAIN). 
 
 
 ### Inputs
@@ -19,10 +19,16 @@ The domain name to be tested.
 1. Find all hostnames for all the name servers used for the domain
 using [Method 2](../Methods.md#method-2-obtain-name-servers-from-parent) and
 [Method 3](../Methods.md#method-3-obtain-name-servers-from-child)
-2. Different queries for the same FQDN with mixed cases (e.g. Www.iETF.oRG,
-www.ietf.org, WWW.IETF.ORG) are sent to each of the name server found in step 1.
-3. Verify that all queries in step 2 return exact results.
-4. If all the results in step 3 are not same, the test case fails.
+2. Send a query with the input string in a mixed case (e.g. wWW.iETF.oRG) to
+   each of the name server found in step 1. 
+3. If the "answer" flag is greater than 0, remember the "answer" section, else
+   remember the status flag. 
+4. Send another query with an alternative mixed case (e.g. Www.Ietf.Org) to each
+   of the name server found in step 1.
+5. If the "answer" flag is greater than 0, remember the "answer" section, else
+   remember the status flag. 
+6. Compare the results remembered in step3 and step5.
+7. If the results in step 6 are not equal, the test case fails.
 
 ### Outcome(s)
 The test case passes only if the results of all queries are exactly the same. 
