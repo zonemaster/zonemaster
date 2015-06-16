@@ -1,8 +1,7 @@
 ## NAMESERVER09: Testing QNAME case sensitivity
 
 ### Test case identifier
-NAMESERVER09 Verify whether the authoritative nameserver returns same results
-for equivalent names with different cases in the request.
+NAMESERVER09 Verify whether the authoritative nameserver returns same results for equivalent names with different cases in the request.
 
 
 ### Objective
