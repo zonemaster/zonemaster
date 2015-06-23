@@ -2,8 +2,7 @@
 case of every letter in the query name
 
 ### Test case identifier
-NAMESERVER08 Verify whether the authoritative nameserver response match the 
-case of every letter in the query name
+NAMESERVER08 Verify whether the authoritative nameserver response match the case of every letter in the query name
 
 
 ### Objective
@@ -28,10 +27,13 @@ The domain name to be tested.
 1. Find all hostnames for all the name servers used for the domain
 using [Method 2](../Methods.md#method-2-obtain-name-servers-from-parent) and
 [Method 3](../Methods.md#method-3-obtain-name-servers-from-child)
-3. A random query with mixed case (e.G Www.iETf.Org) is sent to each name server
+2. A random query with mixed case (e.G Www.iETf.Org) is sent to each unique name server
 found in step 1.
-4. Remember the case of the query name sent.
-5. 
+3. Remember the case of the QNAME in the query sent.
+4. Compare the QNAME in the question section of the response with the string in
+step3. 
+5. If the string in step3 and step4 are not equal with respect to case
+sensitivity, the test fails.
 
 ### Outcome(s)
 The test case is Ok only if there are no responses in the authority section 
