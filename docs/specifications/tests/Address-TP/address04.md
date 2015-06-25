@@ -25,7 +25,7 @@ The domain to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the IPv6 addresss of the name servers from [Method4]
+1. Obtain the IPv6 addressses of the name servers from [Method4]
    (../Methods.md) and [Method5](../Methods.md)
 2. Check if the addresses obtained in step1 is part of a bogon prefix by
 matching them with a bogon database 
