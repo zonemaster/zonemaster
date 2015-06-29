@@ -20,20 +20,18 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the name servers list using [Method3](../Methods.md).
-
-2. For each name server found in step 1, obtain the name server address 
-   records from child using [Method5](../Methods.md). 
+1. Obtain the IP addresses of each name server of the domain from the child
+   using [Method5](../Methods.md).
    These IP addresses can be associated to the name servers through a hash 
    table where each address is a key and the name server it's unique value.
    Let's call this hash table HASH1.
 
-3. Obtain the reverse DNS entries associated to name servers names as described
+2. Obtain the reverse DNS entries associated to name servers names as described
    in test case [ADDRESS02](address02.md). Let's call its outcome HASH2 which
    consists of IP adresses as keys and hostnames as values. As multiple PTR
    records are allowed, an IP address can have several corresponding hostnames.
 
-4. Compare HASH2 to HASH1. 
+3. Compare HASH2 to HASH1. 
 
    Parse the address list of HASH1. 
 

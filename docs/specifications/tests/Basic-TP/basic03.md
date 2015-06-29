@@ -17,8 +17,7 @@ The label of the domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Retrieve the IP addresses from the parent delegation using [Method 2]
-   (../Methods.md#method-2-obtain-name-servers-from-parent) and and [Method 4]
+1. Retrieve the IP addresses from the parent delegation using [Method 4]
    (../Methods.md##method-4-obtain-glue-address-records-from-parent). For name
    server that are out-of-bailiwick, do separate recursive queries to retrieve
    the IP addresses of those names.
