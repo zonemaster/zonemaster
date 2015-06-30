@@ -15,12 +15,10 @@ clarified in section 4 of
 The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
-
-1. Obtain the list of name servers for the domain using [Method 2]
-   (../Methods.md#method-2-obtain-name-servers-from-parent) and [Method 3]
-   (../Methods.md#method-3-obtain-name-servers-from-child).
-2. A SOA query for the domain name sent to the each name server found in
-   step 1.
+1. Retrieve all address records for all the name servers using [Method 
+   4](../Methods.md) and [Method 5](../Methods.md).
+2. A SOA query for the domain name sent to the each name server IP address 
+   found in step 1.
 3. Any answer received from the SOA query must come from the same source IP address
    as the query was sent to. If there is a mismatch, this test case fails.
 

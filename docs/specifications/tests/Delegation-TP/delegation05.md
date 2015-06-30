@@ -18,9 +18,9 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the complete set of name servers from the parent using
-   [Method2](../Methods.md) and the child using [Method3](../Methods.md).
-2. All name servers are queried for A and AAAA records.
+1. Obtain the complete set of name server address records from the parent using
+   [Method4](../Methods.md) and the child using [Method5](../Methods.md).
+2. All the uniquely obtained address records are queried for A and AAAA records.
 3. If any of the name server queried responded with the resource record type
    CNAME, then this test case fails.
 
