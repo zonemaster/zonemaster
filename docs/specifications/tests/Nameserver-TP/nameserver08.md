@@ -24,15 +24,14 @@ for the top-level and root domains, but it's effective for most hostnames.
 The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
-1. Find all hostnames for all the name servers used for the domain
-using [Method 2](../Methods.md#method-2-obtain-name-servers-from-parent) and
-[Method 3](../Methods.md#method-3-obtain-name-servers-from-child)
+1. Retrieve all address records for all the name servers using [Method 
+   4](../Methods.md) and [Method 5](../Methods.md).
 2. A random query with mixed case (e.G Www.iETf.Org) is sent to each unique name
-server found in step 1.
+   server IP address found in step 1.
 3. Remember the case of the QNAME in the query sent.
-4. Compare the QNAME in the question section of the response with the string in step3. 
+4. Compare the QNAME in the question section of the response with the string in    step3. 
 5. If the string in step3 and step4 are not equal with respect to case in
-sensitivity, the test fails.
+   sensitivity, the test fails.
 
 
 ### Outcome(s)

@@ -16,13 +16,12 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 1. If the input domain to be tested is the root, exit from the test.
-2. Find all hostnames for all the name servers used for the domain
-using [Method 2](../Methods.md#method-2-obtain-name-servers-from-parent) and
-[Method 3](../Methods.md#method-3-obtain-name-servers-from-child)
-3. An NS query is sent to each name server found in step 1,
-with the root “.” as the destination 
+2. Retrieve all address records for all the name servers using [Method 
+   4](../Methods.md) and [Method 5](../Methods.md).
+3. An NS query is sent to each name server IP address found in step 2,
+   with the root “.” as the destination 
 4. If any of the query returns with one or more responses in the
-authority section, then this test case fails.
+   authority section, then this test case fails.
 
 ### Outcome(s)
 The test case is Ok only if there are no responses in the authority section 

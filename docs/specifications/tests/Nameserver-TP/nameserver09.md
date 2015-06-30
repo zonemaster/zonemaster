@@ -16,11 +16,10 @@ equivalent names with different cases in the request (typically NXDOMAIN).
 The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
-1. Find all hostnames for all the name servers used for the domain
-using [Method 2](../Methods.md#method-2-obtain-name-servers-from-parent) and
-[Method 3](../Methods.md#method-3-obtain-name-servers-from-child)
+1. Retrieve all address records for all the name servers using [Method 
+   4](../Methods.md) and [Method 5](../Methods.md).
 2. Send a query with the input string in a mixed case (e.g. wWW.iETF.oRG) to
-   each of the name server found in step 1. 
+   each of the name server IP address found in step 1. 
 3. If the "answer" flag is greater than 0, remember the "answer" section, else
    remember the status flag. 
 4. Send another query with an alternative mixed case (e.g. Www.Ietf.Org) to each
