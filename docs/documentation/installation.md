@@ -35,6 +35,7 @@ Another application is the web interface which is split in two parts. The user v
 3) Install non-packaged software.
 
 `sudo cpan -i Text::Capitalize`
+
 `sudo cpan -i Zonemaster`
 
 If necessary, answer any questions from the cpan script by accepting the default value (just press enter).
@@ -53,6 +54,7 @@ If necessary, answer any questions from the cpan script by accepting the default
 3) Install non-packaged-software.
 
 `cpan -i Text::Capitalize`
+
 `cpan -i Zonemaster`
 
 If necessary, answer any questions from the cpan script by accepting the default value (just press enter).
@@ -74,6 +76,7 @@ For the first and third, the default responses are fine. For the second, answer
 "sudo" (the default is "local::lib", which you do not want).
 
 `sudo cpan -i Text::Capitalize`
+
 `sudo cpan -i Zonemaster`
 
 ## Zonemaster CLI installation
