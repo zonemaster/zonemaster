@@ -83,7 +83,14 @@ zonemaster-gui:
     git tag v1.0.0
 	git push origin --tags
 
-## 8. Update the Distribution Release
+## 8. Upload to CPAN
+
+For the CLI and the Engine, we have published the code on CPAN. Currently
+we use the organizational account IIS on PAUSE for doing this. If the release
+is ok, upload it now to CPAN - use make dist and upload the resulting tar
+ball.
+
+## 9. Update the Distribution Release
 
 If the release is for the whole Distribution (all components), the version
 numbers on the Distribution Wiki page must be updated with all new compnent
