@@ -6,7 +6,7 @@
 ### Objective
 
 In order to begin testing the domain name from the input must be a valid
-domain name. The domain name must follow the rules defined in section 2.3.1
+domain name. The domain name must follow the rules defined in section 2.1
 of [RFC 1123](https://tools.ietf.org/html/rfc1123#section-2.1). The
 objective of this test is to see if it is possible to have the domain name
 mapped into a DNS packet in order to proceed with further testing.
