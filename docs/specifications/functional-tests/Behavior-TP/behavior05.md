@@ -29,7 +29,7 @@ domains.
 zonemaster-cli iis.se  --ns i.ns.se/194.146.106.22 --ns
 i.ns.se/2001:67c:1010:5::53 --ns ns.nic.se/212.247.7.228 --ns
 ns.nic.se/2a00:801:f0:53::53 --ns ns3.nic.se/212.247.8.152 --ns
-ns3.nic.se/2a00:801:f0:211::152  IIS.SE
+ns3.nic.se/2a00:801:f0:211::152  IISIIS
 Seconds Level     Message
 ======= ========= =======
    6.20 WARNING   Nameserver ns3.nic.se has an IP address (212.247.8.152)

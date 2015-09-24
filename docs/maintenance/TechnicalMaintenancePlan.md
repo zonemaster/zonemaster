@@ -2,7 +2,7 @@
 
 ## Background
 
-The Zonemaster project has been developed by AFNIC and .SE. The first part of the project has been to finish the release of version 1.0. This is the technical maintenance plan put in place to ensure a long term support for the software, including all relevant parts for the development of the software.
+The Zonemaster project has been developed by AFNIC and IIS. The first part of the project has been to finish the release of version 1.0. This is the technical maintenance plan put in place to ensure a long term support for the software, including all relevant parts for the development of the software.
 
 This document outlines the continual development of the Zonemaster open source project, what is included and what the development entails.
 
@@ -149,7 +149,7 @@ A number of systems has to be maintained during the lifetime of the Zonemaster s
 
 ### ASN Lookup
 
-The ASN Lookup service asnlookup.zonemaster.net is (going to be) hosted by .SE, och is being managed alongside the current asnlookup.iis.se service. The operations department within .SE is running this service, and Zonemaster need an SLA for this service. Regular reports on the status of the operations is needed from the operations department.
+The ASN Lookup service asnlookup.zonemaster.net is (going to be) hosted by IIS, och is being managed alongside the current asnlookup.iis.se service. The operations department within IIS is running this service, and Zonemaster need an SLA for this service. Regular reports on the status of the operations is needed from the operations department.
 
 This service might also be used as a collector for the statistics on the number of users of the software, since the default configuration for the software is to do ASN lookups from this service (the default can however be changed).
 
@@ -157,7 +157,7 @@ The software that runs the ASN Lookup service is rbldnsd, and the software itsel
 
 ### Github
 
-The Github repository is a service run by the GitHub company. However, our repository for the Zonemaster software is belongning to the "dotse"-organization within GitHub, and the "dotse" organization is being managed by people from .SE. The Zonemaster repository is a separate source code versioning repository under "dotse", and is being separately managed by its own repository managers.
+The Github repository is a service run by the GitHub company. However, our repository for the Zonemaster software is belongning to the "dotse"-organization within GitHub, and the "dotse" organization is being managed by people from IIS. The Zonemaster repository is a separate source code versioning repository under "dotse", and is being separately managed by its own repository managers.
 
 The role of the repository manager is to add and remove members who have (write-)access the repository, the issues and the wiki.
 
@@ -170,7 +170,7 @@ Two other mailinglists have been set up, that are more publically available:
  * zonemaster-users@lists.iis.se (the users list)
  * zonemaster-devel@lists.iis.se (the developers list, for dev talk and commit messages)
  
-All lists are being maintained by the operations department within .SE.
+All lists are being maintained by the operations department within IIS.
 
 The moderator and owner of the mailinglists have the responsibility to add and remove users on the lists (although the two public lists are open for subscription), and to moderate the lists if needed (remove spam and so on).
 
@@ -212,7 +212,7 @@ A number of roles have been identified by the above processes and systems:
 
 -------
 
-Copyright (c) 2013, 2014, 2015, .SE (The Internet Infrastructure Foundation)  
+Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
 Copyright (c) 2013, 2014, 2015, AFNIC  
 Creative Commons Attribution 4.0 International License
 

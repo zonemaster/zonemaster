@@ -42,7 +42,7 @@ Security and Performance testing are not included.
 |GR24|Able to specify delegation parameters  |Manually|OK|
 |GR25|Able to specify to stop the test on a fatal error | For release 1.1 |Wishlist|
 |GR26|Check all the terms (such as menus, input fields) are appropriate   | Manually |OK|
-|GR27|Afnic and .SE logo in the main page|[Script](../../Zonemaster-GUI/FunctionalTests/GR27-logo-verification.js)|KO|   
+|GR27|Afnic and IIS logo in the main page|[Script](../../Zonemaster-GUI/FunctionalTests/GR27-logo-verification.js)|KO|   
 |GR28|Check the existence of correct title for the web site|[Script](../../Zonemaster-GUI/FunctionalTests/GR27-logo-verification.js)|OK|
 |FR01|Identifies the preference of connected user's language |Manually|OK|
 |FR02|Presence of a default fallback language |Manually|OK|

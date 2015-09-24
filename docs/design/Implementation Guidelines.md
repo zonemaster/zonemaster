@@ -1,6 +1,6 @@
 # Guidelines to implementing tests with Zonemaster
 
-Zonemaster is a Perl framework meant to aid the implementation of DNS tests. The design of the framework is based primarily on .SE's experiences with the DNSCheck tool and the top-level-domain Pre-Delegation Testing platform. This document aims to present the rationales for the various design decisions in Zonemaster.
+Zonemaster is a Perl framework meant to aid the implementation of DNS tests. The design of the framework is based primarily on IIS's experiences with the DNSCheck tool and the top-level-domain Pre-Delegation Testing platform. This document aims to present the rationales for the various design decisions in Zonemaster.
 
 ## Goals of the system as a whole
 
@@ -63,7 +63,7 @@ The top level of the Zonemaster git repository also contains `.perlcriticrc`, a 
 
 -------
 
-Copyright (c) 2013, 2014, 2015, .SE (The Internet Infrastructure Foundation)  
+Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
 Copyright (c) 2013, 2014, 2015, AFNIC  
 Creative Commons Attribution 4.0 International License
 
