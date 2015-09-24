@@ -46,7 +46,7 @@ on the ignored result.
 
 -------
 
-Copyright (c) 2013, 2014, 2015, .SE (The Internet Infrastructure Foundation)  
+Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
 Copyright (c) 2013, 2014, 2015, AFNIC  
 Creative Commons Attribution 4.0 International License
 

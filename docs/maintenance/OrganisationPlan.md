@@ -145,7 +145,7 @@ Responsibilities essentially include:
 * Participate in the steering committee’s meetings
 * Communicate the Steering Committee’s decisions and to the technical team and other concerned parties
 * Accountable of and delegate the technical issues concerning the Zonemaster’s software to the Technical Manager and keep a close cooperation with him/her
-* Involve both Afnic’s and .SE’s internal marketing and communication teams. 
+* Involve both Afnic’s and IIS’s internal marketing and communication teams. 
 
 ### Technical manager
 
@@ -182,7 +182,7 @@ Responsibilities essentially include:
 
 -------
 
-Copyright (c) 2013, 2014, 2015, .SE (The Internet Infrastructure Foundation)  
+Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
 Copyright (c) 2013, 2014, 2015, AFNIC  
 Creative Commons Attribution 4.0 International License
 

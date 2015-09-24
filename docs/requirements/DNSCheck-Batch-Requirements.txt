@@ -2,7 +2,7 @@ Requirements for batch functionality (taken from DNSCheck 1.*'s) for the Zonemas
 
 Today we have several users of batch functionality, for example:
 1. The Web interface uses the batch functionality to queue tests and to display history of test results. 
-2. The automatic support emails going out to .SE's Registrars to test and track domains as they change.
+2. The automatic support emails going out to IIS's Registrars to test and track domains as they change.
 3. To generate DNS delegation quality statistics.
 
 A batch function could be called a user of the Zonemaster test framework with the ultimate goal of easily accessing stored test results in an efficient way for statistics or reporting purposes.
@@ -19,5 +19,5 @@ Functions:
  [1.7] The batch function MUST support a queue system, running tests based on the level of priority as per [1.4].
  [1.9] The batch function MUST support a configurable maximum number of concurrent domain tests it starts and maintains until completed, also based on priority as per [1.4].
 
-[ future .SE special re-delegation test ]
+[ future IIS special re-delegation test ]
 [1.8] The batch function MUST be able to use information (if available) of previously used name servers for any domain being tested (HISTORY #2).

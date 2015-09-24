@@ -8,7 +8,7 @@ This section gives a brief introduction to Zonemaster.
 
 ### Background
 
-DNSCheck from .SE and Zonecheck from AFNIC are two different software
+DNSCheck from IIS and Zonecheck from AFNIC are two different software
 packages that do DNS validation of the quality of a DNS
 delegation. The Zonemaster implementation intends to be a major
 rewrite of these software packages, and implement the best parts of
@@ -397,7 +397,7 @@ cases.
 
 -------
 
-Copyright (c) 2013, 2014, 2015, .SE (The Internet Infrastructure Foundation)  
+Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
 Copyright (c) 2013, 2014, 2015, AFNIC  
 Creative Commons Attribution 4.0 International License
 

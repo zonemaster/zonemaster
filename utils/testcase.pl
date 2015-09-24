@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# Copyright (c) 2014, .SE (The Internet Infrastructure Foundation)
+# Copyright (c) 2014, IIS (The Internet Infrastructure Foundation)
 # Copyright (c) 2014, AFNIC
 # All rights reserved.
 #

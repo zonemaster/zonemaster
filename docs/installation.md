@@ -31,13 +31,15 @@ dependent on the Zonemaster Engine.
 ## Zonemaster Engine installation instructions
 
 The instructions on how to install the Zonemaster Engine are available in the
-[Zonemaster Engine installation instructions document](https://github.com/dotse/zonemaster-engine/blob/master/doc/installation.md).
+[Zonemaster Engine installation instructions
+document](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md).
 
 
 ## Zonemaster CLI installation instructions
 
 The instructions on how to install the Zonemaster CLI are available in the
-[Zonemaster CLI installation instructions document](https://github.com/dotse/zonemaster-cli/blob/master/doc/installation.md).
+[Zonemaster CLI installation instructions
+document](https://github.com/dotse/zonemaster-cli/blob/master/docs/installation.md).
 
 
 ## Zonemaster Web Interface installation
@@ -47,13 +49,14 @@ and the frontend systems. First you must install the Zonemaster Engine,
 and then follow these instructions:
 
  * [Install the Backend](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md)
- * [Install the Frontend](https://github.com/dotse/zonemaster-gui/blob/master/Zonemaster_Dancer/Doc/zonemaster-frontend-installation-instructions.md)
+ * [Install the
+ * Frontend](https://github.com/dotse/zonemaster-gui/blob/master/docs/installation.md)
 
 
 
 -------
 
-Copyright (c) 2013, 2014, 2015, .SE (The Internet Infrastructure Foundation)  
+Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
 Copyright (c) 2013, 2014, 2015, AFNIC  
 Creative Commons Attribution 4.0 International License
 
