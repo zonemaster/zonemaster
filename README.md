@@ -23,7 +23,7 @@ repository documentation regarding the [design](docs/design),
 [requirements](docs/requirements) and [specifications](docs/specifications)
 for the zonemaster implementation are available.
 
-Also, in this repository, you can find a brief [user guide](docs/documentation/using.md) and [installation guide](docs/installation.md) on how on how to install and use the Zonemaster software.
+Also, in this repository, you can find a brief [user guide](docs/using.md) and [installation guide](docs/installation.md) on how on how to install and use the Zonemaster software.
 
 ### Repositories
 
