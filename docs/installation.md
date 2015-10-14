@@ -1,29 +1,29 @@
 # Zonemaster installation guide
 
-This is the installation instructions for the Zonemaster software. The
-software has not yet been packaged for any operating systems, and you
-have to install most of it from the source code.
+This document provides links on how to install the different components of the
+Zonemaster software. The software has not yet been packaged for any operating
+systems, and you have to install most of it from the source code.
 
-There is installation support available for the following operating systems:
+There is installation support available for all the four components of the
+Zonemaster software for the following operating systems:
 
- * Ubuntu 12.04 (LTS)
- * Ubuntu 14.04 (LTS)
- * Debian Wheezy (version 7)
- * FreeBSD 10.1
- * CentOS 7
+ * Ubuntu 
+ * Debian Wheezy 
+ * FreeBSD 
+ * CentOS 
 
 
 ## Components
 
-The Zonemaster software contains of several different components. The
+The Zonemaster software contains four different components. The
 most important component is the Zonemaster Engine, which is the core
 library that implements the DNS test framework and all the test cases.
 
-In order to use the Zonemaster Engine you must install one of the
+In order to use the Zonemaster Engine you *must* install one of the
 applications, the simplest being the CLI interface.
 
 Another application is the web interface which is split in two
-parts. The user visible component is the Web Frontent, and the backend
+parts. The user visible component is the Web Frontend, and the backend
 is responsible for the testing. The CLI and the web interface are both
 dependent on the Zonemaster Engine.
 
@@ -49,8 +49,7 @@ and the frontend systems. First you must install the Zonemaster Engine,
 and then follow these instructions:
 
  * [Install the Backend](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md)
- * [Install the
- * Frontend](https://github.com/dotse/zonemaster-gui/blob/master/docs/installation.md)
+ * [Install the Frontend](https://github.com/dotse/zonemaster-gui/blob/master/docs/installation.md)
 
 
 
