@@ -49,6 +49,7 @@ other metadata about the component.
 Create with make dist and verify that it can be used to successfully
 build and test in a clean Perl installation.
 
+    make manifest
     make dist
 
 ## 6. Verify that the module builds and all tests pass
