@@ -21,8 +21,8 @@ consistent between all the authoritative name servers.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the list of name servers from [Method4](../Methods.md) and
-   [Method5](../Methods.md).
+1. Obtain the list of name servers from [Method2](../Methods.md) and
+   [Method3](../Methods.md).
 2. Retrieve the NS RR set from all the name servers. 
 3. If the NS RR set is not give the same answer from all the name
    servers, this test case fails.
