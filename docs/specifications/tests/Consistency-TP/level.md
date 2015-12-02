@@ -11,6 +11,7 @@ This document uses the terminology defined in the [Master Test Plan](../Master%2
 |R36|Coherence of SOA with primary nameserver                      |[CONSISTENCY03](consistency03.md)|
 |R70|Coherence of all other SOA-fields where SOA Serial is the same|[CONSISTENCY03](consistency03.md)|
 |R78|All authoritative nameservers reply with same set             |[CONSISTENCY04](consistency04.md)|
+|R83|Consistency between glue and authoritative data               |[CONSISTENCY05](consistency05.md)|
 
 -------
 
