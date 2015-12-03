@@ -3,12 +3,7 @@
 
 ### Purpose of this directory
 
-This contents of this directory includes different files which were used by the
-AFNIC and IIS team internally for collecting the requirements for different
-components of the ZM project.
+The "TestRequirements.md" provides a list of tests that has been run by the
+Zonemaster engine for validating a domain.
 
-The contents of this directory will *only* be useful for users who are planning
-to develop a software similar to Zonemaster (or) to the users who want to
-validate whether the ZM software has taken all requirements into consideration
-while development.
 
