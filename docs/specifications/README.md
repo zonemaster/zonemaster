@@ -1,4 +1,4 @@
-![Zonemaster](docs/images/zonemaster_logo_black.png)
+![Zonemaster](../docs/images/zonemaster_logo_black.png)
 ==========
 
 ### Purpose of this directory
