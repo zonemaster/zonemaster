@@ -6,7 +6,7 @@
 
 ### Objective
 
-For the data served by the authoritative name servers for a desginated zone
+For the data served by the authoritative name servers for a designated zone
 to be consistent, all authoritative name servers must serve the same SOA
 record for the designated zone.   
 
