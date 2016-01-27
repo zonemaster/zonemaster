@@ -34,6 +34,7 @@ Tests to implement
 |R05|Illegal symbols in domain name                          |[SYNTAX](../specifications/tests/Syntax-TP/syntax01.md)|
 |R06|Dash ('-') at start or beginning of domain name         |[SYNTAX](../specifications/tests/Syntax-TP/syntax02.md)|
 |R07|Double dash in domain name                              |[SYNTAX](../specifications/tests/Syntax-TP/syntax03.md)|
+|R08|The child domain has atleast one working name server    |[BASIC](../specifications/tests/Basic-TP/basic02.md)|
 |R09|At least two nameservers for the domain                 |[DELEGATION](../specifications/tests/Delegation-TP/delegation01.md)|
 |R10|Identical addresses                                     |[DELEGATION](../specifications/tests/Delegation-TP/delegation02.md)|
 |R11|Nameserver addresses on same subnet                     |[CONNECTIVITY](../specifications/tests/Connectivity-TP/connectivity03.md)|
