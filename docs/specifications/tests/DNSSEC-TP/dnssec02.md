@@ -29,20 +29,34 @@ a quicker matching of the keys. This is however not a reliable method for
 identifiying keys. A description of this is found in section 5.2 of
 [RFC 4035](https://tools.ietf.org/html/rfc4035#section-5.2).
 
+While matching DS RRset with DNSKEY, implementations must support the 
+use of the SHA-256 algorithm in DS RRs.  Validator implementations should 
+ignore DS RRs containing SHA-1 digests if DS RRs with SHA-256 digests are 
+present in the DS RRset as specified in section 3 of RFC 4509.
+
 ### Inputs
 
 The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Retrieve the DS RR set from the parent zone.
-2. Retrieve the DNSKEY RR set from the child zone.
-3. If no Key Tag from the DS RR matches any Key Tag from the DNSKEY RR,
-   this test case fails.
-3. Convert the DNSKEY RR set to DS records with the same algorithms as
-   those from the parent zone.
-4. If none of the converted DNSKEY RR matches with any of the DS from the
-   parent zone, this test case fails.
+1. Retrieve the DS RRset which supports SHA-256 algorithm (digest type '2') from
+the parent zone. 
+2. If SHA-256 digests are present in the DS RRset shortlist only those DS RR or 
+else go to step 6
+3. If no Key Tag from the DS RR matches any Key Tag from the DNSKEY RR, this
+test case fails
+4. Convert the DNSKEY RR set to DS records with the same algorithms as those
+from the parent zone
+5. If none of the converted DNSKEY RR matches with any of the DS from the parent
+zone, this test case fails
+6. Retrieve the DNSKEY RR set from the child zone 
+7. If no Key Tag from the DS RR matches any Key Tag from the DNSKEY RR, this
+test case fails
+8. Convert the DNSKEY RR set to DS records with the same algorithms as those
+from the parent zone
+9. If none of the converted DNSKEY RR matches with any of the DS from the parent
+zone, this test case fails
 
 ### Outcome(s)
 
