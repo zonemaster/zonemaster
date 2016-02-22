@@ -30,7 +30,7 @@ identifiying keys. A description of this is found in section 5.2 of
 [RFC 4035](https://tools.ietf.org/html/rfc4035#section-5.2).
 
 While matching DS RRset with DNSKEY, implementations must support the 
-use of the SHA-256 algorithm in DS RRs.  Validator implementations SHOULD 
+use of the SHA-256 algorithm in DS RRs.  Validator implementations should 
 ignore DS RRs containing SHA-1 digests if DS RRs with SHA-256 digests are 
 present in the DS RRset as specified in section 3 of RFC 4509.
 
