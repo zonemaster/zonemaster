@@ -23,8 +23,7 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the IP addresses of the name servers from [Method4](../Methods.md)
-   and [Method5](../Methods.md).
+1. Obtain the IP addresses of the name servers from [Method4](../Methods.md).
 2. Obtain the list of ASN lookup domains from the configuration of Zonemaster.
 3. For obtaining the AS numbers for IPv6 addresses; first reverse its eight
 4-character hexadecimal numbers and place dots between each. It is important 
