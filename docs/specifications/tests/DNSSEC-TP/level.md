@@ -20,6 +20,7 @@ This document uses the terminology defined in the
 |R66|RRSIG(SOA) must be valid and created by a valid DNSKEY       |[DNSSEC09](dnssec09.md)|
 |R76|Zone contains NSEC or NSEC3 records                          |[DNSSEC10](dnssec10.md)|
 |R79|If DS at parent, child zone must be signed                   |[DNSSEC11](dnssec11.md)|
+|R84|Test for DNSSEC Algorithm Completeness (DS->DNSKEY->RRSIG)   |[DNSSEC12](dnssec12.md)|
 
 ## Default DNS query flags for all DNSSEC tests
 
