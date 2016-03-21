@@ -29,20 +29,29 @@ a quicker matching of the keys. This is however not a reliable method for
 identifiying keys. A description of this is found in section 5.2 of
 [RFC 4035](https://tools.ietf.org/html/rfc4035#section-5.2).
 
+Section 3 of [RFC 4509](https://tools.ietf.org/html/rfc4509#section-3) states
+that Validator implementations SHOULD ignore DS RRs containing SHA-1 digests
+if DS RRs with SHA-256 digests are present in the DS RRset. The algorithms
+are tested separately.
+
 ### Inputs
 
 The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Retrieve the DS RR set from the parent zone.
-2. Retrieve the DNSKEY RR set from the child zone.
+1. Retrieve the DS RR set from the parent zone. If there are no DS RR
+   present, exit the test
+2. Retrieve the DNSKEY RR set from the child zone. If there are no
+   DNSKEY RR present, then the test case fails
 3. If no Key Tag from the DS RR matches any Key Tag from the DNSKEY RR,
    this test case fails.
-3. Convert the DNSKEY RR set to DS records with the same algorithms as
-   those from the parent zone.
-4. If none of the converted DNSKEY RR matches with any of the DS from the
-   parent zone, this test case fails.
+4. Match all DS RR with type digest algorithm “2” with DNSKEY RR from the
+   child. If no DS RRs with algorithm 2 matches a DNSKEY RR from the child,
+   this test case fails.
+5. Match all DS RR with type digest algorithm “1” with DNSKEY RR from the
+   child. If no DS RRs with algorithm 1 matches a DNSKEY RR from the child,
+   this test case fails.
 
 ### Outcome(s)
 
