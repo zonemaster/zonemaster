@@ -9,7 +9,7 @@ delegation. AFNIC and IIS decided to develop a new DNS validation tool from the
 scratch under the name "Zonemaster". 
 
 The Zonemaster implementation intends to be a major
-rewrite of the existing DNS validation tools developed by AFNIC (Zonecheck and
+rewrite of the existing DNS validation tools developed by AFNIC (Zonecheck) and
 IIS (DNSCheck), and implement the best parts of both.
 
 ### Purpose
