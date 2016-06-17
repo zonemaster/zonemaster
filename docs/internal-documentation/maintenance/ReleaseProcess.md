@@ -49,6 +49,8 @@ other metadata about the component.
 Create with make dist and verify that it can be used to successfully
 build and test in a clean Perl installation.
 
+    make Makefile.PL
+    make all
     make manifest
     make dist
 
