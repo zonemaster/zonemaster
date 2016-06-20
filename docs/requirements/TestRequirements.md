@@ -108,11 +108,6 @@ Future tests
    [RFC 5936](https://tools.ietf.org/html/rfc5936).
  * Check for algorithm completeness (DS->DNSKEY->RRSIG) as per section 2.2 of
    [RFC 4035](http://tools.ietf.org/html/rfc4035#section-2.2).
- * domain of the hostmaster email is not an openrelay
- * can deliver email to 'postmaster'
- * can deliver email to hostmaster
- * domain able to receive email (delivery using MX, A, AAAA)
- * test if mail delivery possible
  * ICMP answer
  * Test for referral to root (possible DDoS vector for authoritative name servers)
  * Check to see if removed authoritative name server is still authoritative (requires
