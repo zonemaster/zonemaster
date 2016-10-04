@@ -1,4 +1,4 @@
-# Zonemaster Engine installation guide before release
+# Zonemaster components installation instruction before release for Debian/Ubuntu
 
 
 The documentation covers the following operating systems:
@@ -14,12 +14,12 @@ The Engine Perl module name is 'Zonemaster'.
 
 ### <a name="Debian"></a> Instructions for Debian 7
 
-1) Adding an user and required access rights
+1) On a clean installation we might need adding an user and required access rights
 
 `adduser username`
-- Provide the password
+- Provide the passworda
 - Add user to the sudoer list using `visudo`
-- copy the contents of the ‘root’ and change ‘root’ to ‘username’
+- copy the contents of the ‘root’ in 'visudo' and change ‘root’ to ‘username’
 - exit
 
 
@@ -70,7 +70,7 @@ following command
 `sudo make install`
 
 
-##### Installing the CLI
+### Installing the CLI
 
 1) Install/Configure Git 
 `git clone https://github.com/dotse/zonemaster-cli.git` from your home directory
@@ -89,7 +89,7 @@ libmodule-install-perl`
 `sudo make install`
 
  
-Verify the CLI and Engine 
+### Verify the CLI and Engine works 
 
-zoenmaster-cli afnok.fr
+zoenmaster-cli afnic.fr
 
