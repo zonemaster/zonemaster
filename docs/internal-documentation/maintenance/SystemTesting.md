@@ -160,6 +160,7 @@ For each configuration:
 3. Smoke testing
 ----------------
 This test level validates that fundamental use cases:
+
 * work independent of specific configurations
 * weren't broken by new changes
 
@@ -187,8 +188,9 @@ For each configuration:
 4. Acceptance testing
 ---------------------
 This test level validates that new changes:
- * work independent of specific configurations
- * weren't broken by other new changes
+
+* work independent of specific configurations
+* weren't broken by other new changes
 
 
 ### Configurations
