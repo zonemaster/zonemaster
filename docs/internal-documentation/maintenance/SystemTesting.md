@@ -15,8 +15,8 @@ A configuration is a tuple of the following parameters:
 
 * architecture (e.g. x86_64)
 * operating system version (e.g. Ubuntu 14.04)
-* locale (e.g. en_US.UTF-8)
 * database engine version (e.g. PostgreSQL 9.3)
+* system locale (e.g. en_US.UTF-8)
 
 Each parameter has a section below definig the parameters more closely.
 
@@ -69,12 +69,6 @@ the following criteria.
     https://wiki.ubuntu.com/Releases
 
 
-### Locale
-
-The "C" locale is supported along with the locales supported for language
-translation.
-
-
 ### Database engine version
 
 The following database engines are supported:
@@ -85,6 +79,16 @@ The following database engines are supported:
 
 ... To be specified. It's slightly complicated.
 
+
+### System locale
+
+Zonemaster promises to behave correctly when the system locale is set to one of
+these locales.
+
+... Do we support all possible locales in this sense? Since we cannot reasonably
+perform testing for all possible locales, supported system locales are grouped
+into a small set of "tier 1" system locales to be used in test configurations,
+and the remaining "tier 2" system locales.
 
 
 2. Installation testing
