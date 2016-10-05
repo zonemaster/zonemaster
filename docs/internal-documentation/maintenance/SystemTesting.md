@@ -8,6 +8,9 @@ reserved for the concept of Configurations, which is used by other sections.
 
 1. Configurations
 -----------------
+The purpose of configurations is to provide different contexts for the tests to
+run in.
+
 A configuration is a tuple of the following parameters:
 
 * architecture (e.g. x86_64)
@@ -17,8 +20,10 @@ A configuration is a tuple of the following parameters:
 
 Each parameter has a section below definig the parameters more closely.
 
-The complete configuration space consists of all combinations of the
-parameters. Each test level section specifies a part of the configuration space
+The set of possible values for each configuration parameter is declared in the
+README.md of the top-level zonemaster repository.
+
+Each test level section specifies a subset of all possible configuration tuple
 to test.
 
 
