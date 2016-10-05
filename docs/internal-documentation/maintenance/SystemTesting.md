@@ -6,8 +6,8 @@ Each test level is described in a separate section below. A separate section is
 reserved for the concept of Configurations, which is used by other sections.
 
 
-1. Configurations
------------------
+## 1. Configurations
+
 The purpose of configurations is to provide different contexts for the tests to
 run in.
 
@@ -91,8 +91,8 @@ into a small set of "tier 1" system locales to be used in test configurations,
 and the remaining "tier 2" system locales.
 
 
-2. Installation testing
------------------------
+## 2. Installation testing
+
 This test level validates that all components of Zonemaster can be installed
 according to their respective installation instructions.
 
@@ -133,7 +133,7 @@ For each configuration:
 
       The command is expected to give an immediate JSON response.
 
-3. Install Zonemaster GUI
+4. Install Zonemaster GUI
    1. Follow the installation instruction at zonemaster-gui/docs/installation.md
       to the letter.
    2. Perform a sanity check. Point your browser to this URL:
@@ -145,7 +145,7 @@ For each configuration:
       You should be presented with a page showing, among other things the
       Zonemaster logotype.
 
-4. Install Zonemaster CLI
+5. Install Zonemaster CLI
    1. Follow the installation instruction at zonemaster-cli/docs/installation.md
       to the letter.
    2. Perform a sanity check.
@@ -157,8 +157,8 @@ For each configuration:
       The command is expected to list various version number information.
 
 
-3. Smoke testing
-----------------
+## 3. Smoke testing
+
 This test level validates that fundamental use cases:
 
 * work independent of specific configurations
@@ -185,8 +185,8 @@ For each configuration:
    ... Test a number of basic/important use cases.
 
 
-4. Acceptance testing
----------------------
+## 4. Acceptance testing
+
 This test level validates that new changes:
 
 * work independent of specific configurations
