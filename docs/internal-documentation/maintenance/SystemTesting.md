@@ -17,6 +17,7 @@ A configuration is a tuple of the following parameters:
 * operating system version (e.g. Ubuntu 14.04)
 * database engine version (e.g. PostgreSQL 9.3)
 * system locale (e.g. en_US.UTF-8)
+* Perl version (e.g. 5.20)
 
 The set of possible values for the following configuration parameters (except
 for system locale) are declared in the README.md of the top-level zonemaster
@@ -35,7 +36,10 @@ according to their respective installation instructions.
 
 ### Configurations
 
-This test level gives at least full coverage for each individual parameter.
+The set of configurations must include at least:
+* One configuration for each supported architecture.
+* One configuration for each supported operating system version.
+* One configuration for each supported database engine version.
 
 
 ### Procedure
