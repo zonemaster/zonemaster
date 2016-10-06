@@ -32,20 +32,44 @@ for the zonemaster implementation are available.
 
 Also, in this repository, you can find a brief [user guide](USING.md).
 
+### Prerequisites
+
+Zonemaster comes with documentation for and has been tested with these
+technologies:
+
+Supported processor architectures:
+
+* x86_64 / amd64
+
+Supported operating system versions:
+
+* CentOS 7
+* Debian 7.11
+* Debian 8.6
+* FreeBSD 10.1
+* FreeBSD 10.3
+* Ubuntu 14.04
+* Ubuntu 16.04
+
+Supported database engine versions:
+
+* MySQL 5.5, 5.7
+* PostgreSQL 9.3, 9.4, 9.5
+
+### Localization
+
+Zonemaster comes with localization for these locales:
+
+* en.UTF-8
+* fr.UTF-8
+* sv.UTF-8
+
 ### Repositories
 
 The Zonemaster project has four different repositories. All the software for
 the Zonemaster project lies in these four repositories. The software has not yet
 been packaged for any operating systems, and you have to install most of it from
 the source code.
-
-There is installation support available for all the four components of the
-Zonemaster software for the following operating systems:
-
-   * Ubuntu
-   * Debian Wheezy
-   * FreeBSD
-   * CentOS
 
 In order to install and run the different components, have a look at the
 installation documentation under each of the repositories below:
