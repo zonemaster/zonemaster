@@ -18,13 +18,13 @@ A configuration is a tuple of the following parameters:
 * database engine version (e.g. PostgreSQL 9.3)
 * system locale (e.g. en_US.UTF-8)
 
-Each parameter has a section below definig the parameters more closely.
+The set of possible values for the following configuration parameters (except
+for system locale) are declared in the README.md of the top-level zonemaster
+repository.
 
-The set of possible values for each configuration parameter is declared in the
-README.md of the top-level zonemaster repository.
-
-Each test level section specifies a subset of all possible configuration tuple
-to test.
+The set of possible values for the system locale configuration parameter is:
+* C
+* sv_SE.UTF-8
 
 
 ## 2. Installation testing

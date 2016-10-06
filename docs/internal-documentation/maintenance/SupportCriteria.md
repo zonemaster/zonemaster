@@ -97,12 +97,8 @@ Can we say something about how the current triple of locales was chosen? How
 about including new languages?
 
 
-## System locale
+## System locales
 
-Zonemaster promises to behave correctly when the system locale is set to one of
-these locales.
+A base line locale should be included.
 
-... Do we support all possible locales in this sense? Since we cannot reasonably
-perform testing for all possible locales, supported system locales are grouped
-into a small set of "tier 1" system locales to be used in test configurations,
-and the remaining "tier 2" system locales.
+Locales that expose classes of bugs should be included.
