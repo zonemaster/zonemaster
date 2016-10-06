@@ -102,3 +102,23 @@ about including new languages?
 A base line locale should be included.
 
 Locales that expose classes of bugs should be included.
+
+
+## Perl versions
+
+The Perl versions that are provided by the respecive supported operating system
+version should be supported.
+
+The point release should not be specified.
+
+* Perl versions provided by CentOS 7 are listed here:
+  * http://mirror.centos.org/centos/7/os/x86_64/Packages/
+
+* Perl versions provided by each version of Debian are listed here:
+  * https://packages.debian.org/search?searchon=names&keywords=perl
+
+* Perl versions provided FreeBSD are listed here:
+  * https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=lang&query=perl
+
+* Perl versions provided by each version of Ubuntu are listed here:
+  * http://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=perl

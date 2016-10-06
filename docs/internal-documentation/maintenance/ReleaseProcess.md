@@ -56,9 +56,11 @@ build and test in a clean Perl installation.
 
 ## 6. Verify that the module builds and all tests pass
 
-Verify that the module builds and all tests pass with the latest point release for every supported major Perl version. This can be done quite easily with something like this:
+Verify that the module builds and all tests pass with the latest point release
+for every supported major Perl version and for every supported system locale.
+This can be done quite easily with something like this command for each locale:
 
-    perlbrew exec --with 5.14.4,5.16.3,5.18.4,5.20.1 '( git clean -dfx && perl Makefile.PL && make ) >& /dev/null && prove -bQ'
+    LC_ALL=en.UTF-8 LC_MESSAGES=en.UTF-8 LC_NUMERIC=en.UTF-8 LANG=en.UTF-8 perlbrew exec --with 5.14.4,5.16.3,5.18.4,5.20.1 '( git clean -dfx && perl Makefile.PL && make ) >& /dev/null && prove -bQ'
 
 ## 7. Tag the release with git
 
