@@ -56,6 +56,10 @@ Supported database engine versions:
 * MySQL 5.5, 5.7
 * PostgreSQL 9.3, 9.4, 9.5
 
+Supported Perl versions:
+
+* Perl 5.14, 5.16, 5.18, 5.20, 5.22
+
 ### Localization
 
 Zonemaster comes with localization for these locales:
