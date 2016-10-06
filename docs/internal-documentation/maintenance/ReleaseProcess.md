@@ -23,7 +23,12 @@ Please refer to any Github issues related to the change by the issue number.
  * zonemaster-backend - [Changes](https://github.com/dotse/zonemaster-backend/blob/master/CHANGES)
  * zonemaster-gui - [Changes](https://github.com/dotse/zonemaster-gui/blob/master/Changes)
 
-## 3. Verify that MANIFEST is up to date
+## 3. Update prerequisites
+
+Make sure the prerequisites section in [README.md](https://github.com/dotse/zonemaster/blob/master/README.md)
+is up to date with regard to [https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SupportCriteria.md].
+
+## 4. Verify that MANIFEST is up to date
 
 In order to have a complete installation from a package, the MANIFEST needs
 to be the complete set of files to be included.
@@ -33,7 +38,7 @@ to be the complete set of files to be included.
  * zonemaster-backend - [MANIFEST](https://github.com/dotse/zonemaster-backend/blob/master/MANIFEST)
  * zonemaster-gui - [MANIFEST](https://github.com/dotse/zonemaster-gui/blob/master/MANIFEST)
 
-## 4. Verify that Makefile.PL has all the correct data
+## 5. Verify that Makefile.PL has all the correct data
 
 The Makefile.PL contains all the modules required by the component to
 function, with all the version numbers needed as well. It also has some
@@ -44,7 +49,7 @@ other metadata about the component.
  * zonemaster-backend - [Makefile.PL](https://github.com/dotse/zonemaster-backend/blob/master/Makefile.PL)
  * zonemaster-gui - [Makefile.PL](https://github.com/dotse/zonemaster-gui/blob/master/Makefile.PL)
 
-## 5. Test to create a distribution file
+## 6. Test to create a distribution file
 
 Create with make dist and verify that it can be used to successfully
 build and test in a clean Perl installation.
@@ -54,7 +59,7 @@ build and test in a clean Perl installation.
     make manifest
     make dist
 
-## 6. Verify that the module builds and all tests pass
+## 7. Verify that the module builds and all tests pass
 
 Verify that the module builds and all tests pass with the latest point release
 for every supported major Perl version and for every supported system locale.
@@ -62,7 +67,11 @@ This can be done quite easily with something like this command for each locale:
 
     LC_ALL=en.UTF-8 LC_MESSAGES=en.UTF-8 LC_NUMERIC=en.UTF-8 LANG=en.UTF-8 perlbrew exec --with 5.14.4,5.16.3,5.18.4,5.20.1 '( git clean -dfx && perl Makefile.PL && make ) >& /dev/null && prove -bQ'
 
-## 7. Tag the release with git
+## 8. Verify that Zonemaster works with the declared prerequisites
+
+Follow the procedures in [SystemTesting.md](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SystemTesting.md).
+
+## 9. Tag the release with git
 
 Tag the release with these git commands, and push the tag to Github.
 
@@ -88,14 +97,14 @@ zonemaster-gui:
     git tag v1.0.0
 	git push origin --tags
 
-## 8. Upload to CPAN
+## 10. Upload to CPAN
 
 For the CLI and the Engine, we have published the code on CPAN. Currently
 we use the organizational account IIS on PAUSE for doing this. If the release
 is ok, upload it now to CPAN - use make dist and upload the resulting tar
 ball.
 
-## 9. Update the Distribution Release
+## 11. Update the Distribution Release
 
 If the release is for the whole Distribution (all components), the version
 numbers on the Distribution Wiki page must be updated with all new compnent
