@@ -44,58 +44,76 @@ The set of configurations must include at least:
 
 ### Procedure
 
-For each configuration:
+1. Build a preliminary distribution tarball for each component
 
-1. Prepare a machine
-   1. Allocate a machine with the architecture specified by the configuration.
-   2. Install the OS as specified by the configuration on the machine.
+2. For each configuration:
 
-2. Install Zonemaster Engine
-   1. Follow the installation instruction at zonemaster-engine/docs/installation.md
-      to the letter.
-   2. Perform a sanity check.
+   1. Prepare a machine
+      1. Allocate a machine with the architecture specified by the configuration.
+      2. Follow the preparation document for the operating system specified by the configuration.
+         * [FreeBSD-Preparation.md](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/distrib-testing/FreeBSD-Preparation.md)
 
-      ```
-      time perl -MZonemaster -e 'print scalar Zonemaster->test_zone("zonemaster.net"), "\n"'
-      ```
+   2. Install Zonemaster Engine
+      1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md)
+         to the letter.
+      2. Install the preliminary distribution tarball for zonemaster-engine.
+      3. Follow the sanity check section of [installation.md](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md)
+         to the letter.
 
-      The command is expected to take very roughly 15 seconds and print a number
-      greater than one.
+         *The following should be put into a sanity check section of [installation.md](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md).*
 
-3. Install Zonemaster Backend
-   1. Follow the installation instruction at zonemaster-backend/docs/installation.md
-      to the letter.
-   2. Perform a sanity check. 
+         > ```
+         > time perl -MZonemaster -e 'print scalar Zonemaster->test_zone("zonemaster.net"), "\n"'
+         > ```
+         >
+         > The command is expected to take very roughly 15 seconds and print a number
+         > greater than one.
 
-      ```
-      curl -s -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"version_info","id":"1"}' http://localhost:5000/ && echo
-      ```
+   3. Install Zonemaster Backend
+      1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md)
+         to the letter.
+      2. Install the preliminary distribution tarball for zonemaster-backend.
+      3. Follow the configuration, startup and sanity check sections of [installation.md](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md)
+         to the letter.
 
-      The command is expected to give an immediate JSON response.
+         *The following should be put into a sanity check section of [installation.md](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md).*
 
-4. Install Zonemaster GUI
-   1. Follow the installation instruction at zonemaster-gui/docs/installation.md
-      to the letter.
-   2. Perform a sanity check. Point your browser to this URL:
+         > ```
+         > curl -s -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"version_info","id":"1"}' http://localhost:5000/ && echo
+         > ```
+         >
+         > The command is expected to give an immediate JSON response.
 
-      ```
-      http://localhost/
-      ```
+   4. Install Zonemaster GUI
+      1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-gui/blob/master/docs/installation.md)
+         to the letter.
+      2. Install the preliminary distribution tarball for zonemaster-backend.
+      3. Follow the configuration, startup and sanity check sections of [installation.md](https://github.com/dotse/zonemaster-gui/blob/master/docs/installation.md)
+         to the letter.
 
-      You should be presented with a page showing, among other things the
-      Zonemaster logotype.
+         *The following should be put into a sanity check section of [installation.md](https://github.com/dotse/zonemaster-gui/blob/master/docs/installation.md).*
 
-5. Install Zonemaster CLI
-   1. Follow the installation instruction at zonemaster-cli/docs/installation.md
-      to the letter.
-   2. Perform a sanity check.
+         > ```
+         > http://localhost/
+         > ```
+         >
+         > You should be presented with a page showing, among other things the
+         > Zonemaster logotype.
 
-      ```
-      zonemaster-cli --version
-      ```
+   5. Install Zonemaster CLI
+      1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-cli/blob/master/docs/installation.md)
+         to the letter.
+      2. Install the preliminary distribution tarball for zonemaster-backend.
+      3. Follow the configuration and sanity check sections of [installation.md](https://github.com/dotse/zonemaster-cli/blob/master/docs/installation.md)
+         to the letter.
 
-      The command is expected to list various version number information.
+         *The following should be put into a sanity check section of [installation.md](https://github.com/dotse/zonemaster-cli/blob/master/docs/installation.md).*
 
+         > ```
+         > zonemaster-cli --version
+         > ```
+         >
+         > The command is expected to list various version number information.
 
 ## 3. Smoke testing
 
