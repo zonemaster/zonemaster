@@ -27,8 +27,10 @@ The domain name to be tested.
 1. Obtain the IP addresses of each name server of the domain from the parent using
    [Method4](../Methods.md) and child using [Method5](../Methods.md)
 
-2. Each IP address has to be checked against the blocks listed in the three
-   tables below.
+2. Each IP address has to be checked against the blocks listed in the IANA
+   registry for IPv4
+(https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xml)
+and IPv6  
  
 3. If any IP address matches one of the blocks, the test case fails.
 
