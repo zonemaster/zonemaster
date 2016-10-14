@@ -136,12 +136,25 @@ For each configuration:
 
 2. Smoke test of Zonemaster CLI
 
-   ... Test a number of basic/important use cases.
+   * Test a working domain
+     E.g. afnic.fr
+   * Test working IDN
+     E.g. президент.рф
+   * Test a broken domain
+     E.g. error.com
+   * Working domains not signed with DNSSEC
+     E.g. google.com
+   * Working domains signed with DNSSEC
+     E.g. iis.se
+   * Broken DNSSEC domains
+     E.g. broken.dnssec.ee
 
 3. Smoke test of Zonemaster GUI
 
-   ... Test a number of basic/important use cases.
-
+   * Test progress bar
+   * Test presentation of results
+   * Test export
+   * Test history
 
 ## 4. Acceptance testing
 
