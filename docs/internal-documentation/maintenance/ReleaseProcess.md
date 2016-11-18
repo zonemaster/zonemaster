@@ -67,7 +67,7 @@ This can be done quite easily with something like this command for each locale:
 
     LC_ALL=en.UTF-8 LC_MESSAGES=en.UTF-8 LC_NUMERIC=en.UTF-8 LANG=en.UTF-8 perlbrew exec --with 5.14.4,5.16.3,5.18.4,5.20.1 '( git clean -dfx && perl Makefile.PL && make ) >& /dev/null && prove -bQ'
 
-## 8. Verify that Zonemaster works with the declared prerequisites
+## 8. Verify that Zonemaster works when installed according to the documented installation procedures
 
 Follow the procedures in [SystemTesting.md](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SystemTesting.md).
 
