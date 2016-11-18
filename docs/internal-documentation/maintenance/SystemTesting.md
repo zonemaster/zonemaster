@@ -54,20 +54,9 @@ The set of configurations must include at least:
          * [FreeBSD-Preparation.md](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/distrib-testing/FreeBSD-Preparation.md)
 
    2. Install Zonemaster Engine
-      1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md)
-         to the letter.
+      1. Follow the [dependencies](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md#dependencies) section of the installation guide to the letter.
       2. Install the preliminary distribution tarball for zonemaster-engine.
-      3. Follow the sanity check section of [installation.md](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md)
-         to the letter.
-
-         *The following should be put into a sanity check section of [installation.md](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md).*
-
-         > ```
-         > time perl -MZonemaster -e 'print scalar Zonemaster->test_zone("zonemaster.net"), "\n"'
-         > ```
-         >
-         > The command is expected to take very roughly 15 seconds and print a number
-         > greater than one.
+      3. Follow the [post-installation sanity check](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md#post-installation-sanity-check) section of the installation guide to the letter.
 
    3. Install Zonemaster Backend
       1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md)
