@@ -13,14 +13,17 @@ tuples.
 
 ## Architectures
 
-Can we say something about how we chose to support only amd64/x86_64 and nothing
-else?
+Zonemaster is actively tested on the amd64/x86_64 processor architecture.
 
 
 ## Operating systems
 
-Can we say something about how the current quartet of operating systems was
-chosen?
+Zonesmaster is actively tested on these operating systems:
+
+* CentOS
+* Debian
+* FreeBSD
+* Ubuntu
 
 
 ## Operating system versions
@@ -61,8 +64,11 @@ Operating system specific guidelines:
 
 ## Database engines
 
-Can we say something about how the current triple of database engines was
-chosen?
+Zonemaster provides database integrations for these database engines:
+
+* MySQL
+* PostgreSQL
+* SQLite
 
 
 ## Database engine versions
