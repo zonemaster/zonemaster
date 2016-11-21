@@ -31,7 +31,7 @@ The domain name to be tested.
    tables below.
  
 3. If any IP address (IPv4 or IPv6) falls within any of the blocks in the below
-mentioned IANA links, the test case fails:
+   mentioned IANA links, the test case fails:
    * http://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml
    * http://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xhtml
 
@@ -43,7 +43,7 @@ forbidden blocks, the test case succeeds.
 
 ### Special procedural requirements
 
-Should automatically fetches the registry mentioned above when need for testing 
+The registries listed in bullet 3 above must be fetched prior to testing 
 
 ### Intercase dependencies
 
