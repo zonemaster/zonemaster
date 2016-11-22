@@ -59,19 +59,12 @@ The set of configurations must include at least:
       3. Follow the [post-installation sanity check](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md#post-installation-sanity-check) section of the installation guide to the letter.
 
    3. Install Zonemaster Backend
-      1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md)
-         to the letter.
+      1. Follow the [dependencies](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#dependencies)
+         section of the installation guide to the letter.
       2. Install the preliminary distribution tarball for zonemaster-backend.
-      3. Follow the configuration, startup and sanity check sections of [installation.md](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md)
-         to the letter.
-
-         *The following should be put into a sanity check section of [installation.md](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md).*
-
-         > ```
-         > curl -s -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"version_info","id":"1"}' http://localhost:5000/ && echo
-         > ```
-         >
-         > The command is expected to give an immediate JSON response.
+      3. Follow the [configuration](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#configuration) section of the installation guide to the letter.
+      4. Follow the [startup](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#startup) section of the installation guide to the letter.
+      5. Follow the [post-installation sanity check](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#post-installation-sanity-check) section of the installation guide to the letter.
 
    4. Install Zonemaster GUI
       1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-gui/blob/master/docs/installation.md)
