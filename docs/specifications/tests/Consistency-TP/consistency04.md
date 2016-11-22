@@ -21,16 +21,21 @@ consistent between all the authoritative name servers.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the list of name servers from [Method2](../Methods.md) and
-   [Method3](../Methods.md).
-2. Retrieve the NS RR set from all the name servers. 
-3. If the NS RR set is not give the same answer from all the name
+1. Obtain the list of name servers for the domain name to be tested 
+   from [Method2](../Methods.md) (delegation) and
+   [Method3](../Methods.md) (in child zone).
+2. Retrieve the IP addresses for the obtained name servers using
+   [Method4](../Methods.md) (glue at parent) and [Method5](../Methods.md)
+   (address record in child zone) if the name server name is in-zone.
+3. Retrieve the IP addresses for the obtained name servers by doing
+   a lookup on public Internet if the name server name is out-of-zone.
+4. Retrieve the NS RR set from all retrieved name server IP address. 
+5. If the NS RR set is not give the same answer from all the name
    servers, this test case fails.
 
 ### Outcome(s)
 
-If not all the designated authoritative name servers answer with the
-same NS RR set, this test case fails.
+The outcome is PASS or FAIL.
 
 ### Special procedural requirements	
 
