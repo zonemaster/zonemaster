@@ -25,7 +25,7 @@ repository.
 
 The set of possible values for the system locale configuration parameter is:
 * C
-* sv_SE.UTF-8
+* en_US.UTF-8
 
 
 ## 2. Installation testing
