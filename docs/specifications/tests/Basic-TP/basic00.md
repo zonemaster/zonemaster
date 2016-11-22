@@ -15,8 +15,11 @@ section 2.3.2.3), or
 The ASCII domain name is valid if follows the rules defined in section 2.1
 of [RFC 1123](https://tools.ietf.org/html/rfc1123#section-2.1), i.e. only
 consists of the ASCII characters "a-z", "A-Z", "0-9", "." and "-" with the
-extension of "_", standardized for SRV records 
-([RFC 2782](https://tools.ietf.org/html/rfc2782)).
+extension of the "_" character, standardized for SRV records 
+([RFC 2782](https://tools.ietf.org/html/rfc2782)). The "." character is 
+the delimiter between labels, and a label must not start or end with a 
+"-" character. There are also lenght limitation of the domain names and 
+its labels (specified below).
 
 A valid IDN name with non-ASCII code points can always be converted 
 to a valid ASCII domain meeting the requirement above.
@@ -31,26 +34,24 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. If the domain name has more than one tailing dot, the test case
-fails.
-2. Remove any trailing dot from the input domain name.
+1. If the input domain name starts with a "." character or has two or more consecutive 
+"." characters the test case fails.
+2. Remove any trailing "." character from the input domain name.
 3. If the domain name contains non-ASCII characters, try to convert
-it to an ASCII domain with the IDN rules. If the conversion fails,
-then this test case fails.
-4. If the domain name does not meet the requirement of an ASCII domain
-above, then this test case fails.
+it to an ASCII domain, without a trailing "." character, with the IDN rules (see above). 
+If the conversion fails, then this test case fails.
+4. If the domain name does not meet the requirement of permissible characters of
+an ASCII domain above, this test case fails.
 5. If the total length of the input is more than 253 octets, this test
    case fails.
 6. Separate the input by the dividing it into labels separated by the "."
    character.
-7. If any of the labels from step 3 is more than 63 octets, this test case fails.
-8. If any of the labels from step 3 is zero octets in length, this test
-   case fails.
+7. If any of the labels from step 6 has more than 63 octets, this test case fails.
+
 
 ### Outcome(s)
 
-If the total length of the input is more than 253 octets or any label is
-longer than 63 octets, this test case fails.
+The outcome is PASS or FAIL.
 
 ### Special procedural requirements
 
