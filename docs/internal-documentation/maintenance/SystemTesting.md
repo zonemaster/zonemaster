@@ -51,7 +51,10 @@ The set of configurations must include at least:
    1. Prepare a machine
       1. Allocate a machine with the architecture specified by the configuration.
       2. Follow the preparation document for the operating system specified by the configuration.
+         * CentOS-Preparation.md (unavailable at this time)
+         * Debian-Preparation.md (unavailable at this time)
          * [FreeBSD-Preparation.md](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/distrib-testing/FreeBSD-Preparation.md)
+         * Ubuntu-Preparation.md (unavailable at this time)
 
    2. Install Zonemaster Engine
       1. Follow the [dependencies](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md#dependencies) section of the installation guide to the letter.
