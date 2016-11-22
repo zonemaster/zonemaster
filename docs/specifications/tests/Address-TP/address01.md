@@ -27,10 +27,7 @@ The domain name to be tested.
 1. Obtain the IP addresses of each name server of the domain from the parent using
    [Method4](../Methods.md) and child using [Method5](../Methods.md)
 
-2. Each IP address has to be checked against the blocks listed in the three
-   tables below.
- 
-3. If any IP address (IPv4 or IPv6) falls within any of the blocks in the below
+2. If any IP address (IPv4 or IPv6) falls within any of the blocks in the below
    mentioned IANA links, the test case fails:
    * http://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml
    * http://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xhtml
@@ -43,7 +40,7 @@ forbidden blocks, the test case succeeds.
 
 ### Special procedural requirements
 
-The registries listed in bullet 3 above must be fetched prior to testing 
+The registries listed in bullet 2 above must be fetched prior to testing 
 
 ### Intercase dependencies
 
