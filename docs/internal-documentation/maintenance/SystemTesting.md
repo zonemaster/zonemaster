@@ -100,6 +100,7 @@ The set of configurations must include at least:
          >
          > The command is expected to list various version number information.
 
+
 ## 3. Smoke testing
 
 This test level validates that fundamental use cases:
@@ -121,25 +122,20 @@ For each configuration:
 
 2. Smoke test of Zonemaster CLI
 
-   * Test a working domain
-     E.g. afnic.fr
-   * Test working IDN
-     E.g. президент.рф
-   * Test a broken domain
-     E.g. error.com
-   * Working domains not signed with DNSSEC
-     E.g. google.com
-   * Working domains signed with DNSSEC
-     E.g. iis.se
-   * Broken DNSSEC domains
-     E.g. broken.dnssec.ee
+   1. Test a working domain (e.g. `afnic.fr`)
+   2. Test working IDN (e.g. `президент.рф`)
+   3. Test a broken domain (e.g. `error.com`)
+   4. Working domains not signed with DNSSEC (e.g. `google.com`)
+   5. Working domains signed with DNSSEC (e.g. `iis.se`)
+   6. Broken DNSSEC domains (e.g. `broken.dnssec.ee`)
 
 3. Smoke test of Zonemaster GUI
 
-   * Test progress bar
-   * Test presentation of results
-   * Test export
-   * Test history
+   1. Test progress bar
+   2. Test presentation of results
+   3. Test export
+   4. Test history
+
 
 ## 4. Acceptance testing
 
