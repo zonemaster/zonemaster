@@ -52,7 +52,7 @@ The set of configurations must include at least:
       1. Allocate a machine with the architecture specified by the configuration.
       2. Follow the preparation document for the operating system specified by the configuration.
          * CentOS-Preparation.md (unavailable at this time)
-         * Debian-Preparation.md (unavailable at this time)
+         * [Debian-Preparation.md](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/distrib-testing/Debian-Preparation.md)
          * [FreeBSD-Preparation.md](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/distrib-testing/FreeBSD-Preparation.md)
          * Ubuntu-Preparation.md (unavailable at this time)
 
