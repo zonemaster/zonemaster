@@ -139,15 +139,15 @@ For each configuration:
 
 ## 4. Acceptance testing
 
-This test level validates that new changes:
+This test level validates that each change since last release:
 
-* work independent of specific configurations
+* works independent of specific configurations
 * weren't broken by other new changes
 
 
 ### Configurations
 
-...
+... To be specified.
 
 
 ### Procedure
@@ -156,8 +156,12 @@ This test level validates that new changes:
 
 2. Acceptance testing through Zonemaster CLI
 
-   ... Test each new entry in the zonemaster-cli and zonemaster-engine components.
+   Test each new entry in the Changes files of *Zonemaster CLI* and *Zonemaster Engine*.
 
-3. Acceptance testing through Zonemaster GUI
+4. Acceptance testing through Zonemaster Backend
 
-   ... Test each new entry in the zonemaster-gui, zonemaster-backend and zonemaster-engine components.
+   Test each new entry in the Changes file of *Zonemaster Backend*.
+
+4. Acceptance testing through Zonemaster GUI
+
+   Test each new entry in the Changes file of *Zonemaster GUI*.
