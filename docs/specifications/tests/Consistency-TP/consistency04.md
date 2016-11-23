@@ -30,7 +30,7 @@ consistent between all the authoritative name servers.
 3. Retrieve the IP addresses for the obtained name servers by doing
    a lookup on public Internet if the name server name is out-of-zone.
 4. Retrieve the NS RR set from all retrieved name server IP address. 
-5. If the NS RR set is not give the same answer from all the name
+5. If the NS RR set does not give the same answer from all the name
    servers, this test case fails.
 
 ### Outcome(s)
