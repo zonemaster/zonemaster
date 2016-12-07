@@ -26,14 +26,15 @@ Please refer to any Github issues related to the change by the issue number.
 ## 3. Update prerequisites
 
 Make sure the prerequisites section in [README.md](https://github.com/dotse/zonemaster/blob/master/README.md)
-is up to date with regard to [https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SupportCriteria.md].
+is up to date with regard to [Support
+Criteria](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SupportCriteria.md).
 
 ## 4. Verify that MANIFEST is up to date
 
 In order to have a complete installation from a package, the MANIFEST needs
 to be the complete set of files to be included.
 
- * zonemaster-engine - [MANIFEST](https://github.com/dotse/zonemaster-engine/blob/master/MANIFEST) (make manifest)
+ * zonemaster-engine - [MANIFEST](https://github.com/dotse/zonemaster-engine/blob/master/MANIFEST)
  * zonemaster-cli - [MANIFEST](https://github.com/dotse/zonemaster-cli/blob/master/MANIFEST)
  * zonemaster-backend - [MANIFEST](https://github.com/dotse/zonemaster-backend/blob/master/MANIFEST)
  * zonemaster-gui - [MANIFEST](https://github.com/dotse/zonemaster-gui/blob/master/MANIFEST)
@@ -54,7 +55,7 @@ other metadata about the component.
 Create with make dist and verify that it can be used to successfully
 build and test in a clean Perl installation.
 
-    make Makefile.PL
+    perl Makefile.PL
     make all
     make manifest
     make dist
