@@ -33,7 +33,7 @@ is up to date with regard to [https://github.com/dotse/zonemaster/blob/master/do
 In order to have a complete installation from a package, the MANIFEST needs
 to be the complete set of files to be included.
 
- * zonemaster-engine - [MANIFEST](https://github.com/dotse/zonemaster-engine/blob/master/MANIFEST) (make manifest)
+ * zonemaster-engine - (it will be created by the `make manifest` command below)
  * zonemaster-cli - [MANIFEST](https://github.com/dotse/zonemaster-cli/blob/master/MANIFEST)
  * zonemaster-backend - [MANIFEST](https://github.com/dotse/zonemaster-backend/blob/master/MANIFEST)
  * zonemaster-gui - [MANIFEST](https://github.com/dotse/zonemaster-gui/blob/master/MANIFEST)
