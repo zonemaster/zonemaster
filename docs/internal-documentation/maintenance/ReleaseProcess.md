@@ -26,7 +26,7 @@ Please refer to any Github issues related to the change by the issue number.
 ## 3. Update prerequisites
 
 Make sure the prerequisites section in [README.md](https://github.com/dotse/zonemaster/blob/master/README.md)
-is up to date with regard to [https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SupportCriteria.md].
+is up to date with regard to [SupportCriteria](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SupportCriteria.md).
 
 ## 4. Verify that MANIFEST is up to date
 
