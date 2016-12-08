@@ -26,14 +26,14 @@ Please refer to any Github issues related to the change by the issue number.
 ## 3. Update prerequisites
 
 Make sure the prerequisites section in [README.md](https://github.com/dotse/zonemaster/blob/master/README.md)
-is up to date with regard to [https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SupportCriteria.md].
+is up to date with regard to [SupportCriteria](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SupportCriteria.md).
 
 ## 4. Verify that MANIFEST is up to date
 
 In order to have a complete installation from a package, the MANIFEST needs
 to be the complete set of files to be included.
 
- * zonemaster-engine - [MANIFEST](https://github.com/dotse/zonemaster-engine/blob/master/MANIFEST) (make manifest)
+ * zonemaster-engine - (it will be created by the `make manifest` command below)
  * zonemaster-cli - [MANIFEST](https://github.com/dotse/zonemaster-cli/blob/master/MANIFEST)
  * zonemaster-backend - [MANIFEST](https://github.com/dotse/zonemaster-backend/blob/master/MANIFEST)
  * zonemaster-gui - [MANIFEST](https://github.com/dotse/zonemaster-gui/blob/master/MANIFEST)
@@ -49,12 +49,14 @@ other metadata about the component.
  * zonemaster-backend - [Makefile.PL](https://github.com/dotse/zonemaster-backend/blob/master/Makefile.PL)
  * zonemaster-gui - [Makefile.PL](https://github.com/dotse/zonemaster-gui/blob/master/Makefile.PL)
 
-## 6. Test to create a distribution file
+## 6. Create a distribution tarball
 
-Create with make dist and verify that it can be used to successfully
-build and test in a clean Perl installation.
+Verify that a distribution tarball can be successfully
+built. This will be the preliminary
+distribution tarball until steps 7 and 8 below have passed. Redo this step if
+necessary.
 
-    make Makefile.PL
+    perl Makefile.PL
     make all
     make manifest
     make dist
@@ -100,9 +102,8 @@ zonemaster-gui:
 ## 10. Upload to CPAN
 
 For the CLI and the Engine, we have published the code on CPAN. Currently
-we use the organizational account IIS on PAUSE for doing this. If the release
-is ok, upload it now to CPAN - use make dist and upload the resulting tar
-ball.
+we use the organizational account ZNMSTR on PAUSE for doing this. Use the
+last distribution tarball created in step 6 above.
 
 ## 11. Update the Distribution Release
 
