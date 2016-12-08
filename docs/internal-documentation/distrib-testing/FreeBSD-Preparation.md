@@ -18,10 +18,10 @@
    visudo
    ```
 
-4. Use latest patch level when testing FreeBSD.
+4. Use latest patch level and ports database when testing FreeBSD.
 
    ```sh
-   freebsd-update fetch
-   freebsd-update install
+   freebsd-update fetch install
+   portsnap fetch extract
    shutdown -r now
    ```
