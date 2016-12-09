@@ -10,7 +10,7 @@
 2. Install prerequisites
 
    ```sh
-   pkg install curl sudo
+   pkg install curl sudo p5-App-cpanminus
    ```
 
 3. Create a new user
