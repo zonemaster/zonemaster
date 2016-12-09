@@ -1,8 +1,19 @@
 # FreeBSD system preparation for Zonemaster
 
-1. Make a clean installation of FreeBSD.
+1. Use latest patch level and ports database
 
-2. Create a new user.
+   ```sh
+   freebsd-update fetch install
+   portsnap fetch extract
+   ```
+
+2. Install prerequisites
+
+   ```sh
+   pkg install curl sudo
+   ```
+
+3. Create a new user
 
    Make sure to add `wheel` as an additional group for the user.
 
@@ -10,7 +21,7 @@
    adduser
    ```
 
-3. Allow users in the wheel group to run all commands.
+4. Allow users in the wheel group to run all commands
 
    Uncomment the line `%wheel ALL=(ALL) ALL`.
 
@@ -18,11 +29,7 @@
    visudo
    ```
 
-4. Complete the system preparation.
-
+5. Reboot into latest patch level
    ```sh
-   freebsd-update fetch install  # Update to latest patch level
-   portsnap fetch extract        # Update to latest ports database
-   pkg install curl              # Install prerequisites
-   shutdown -r now               # Reboot into latest patch level
+   shutdown -r now
    ```
