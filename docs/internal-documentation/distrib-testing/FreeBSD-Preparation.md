@@ -18,10 +18,11 @@
    visudo
    ```
 
-4. Use latest patch level and ports database when testing FreeBSD.
+4. Complete the system preparation.
 
    ```sh
-   freebsd-update fetch install
-   portsnap fetch extract
-   shutdown -r now
+   freebsd-update fetch install  # Update to latest patch level
+   portsnap fetch extract        # Update to latest ports database
+   pkg install curl              # Install prerequisites
+   shutdown -r now               # Reboot into latest patch level
    ```
