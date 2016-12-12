@@ -81,7 +81,7 @@ installation documentation under each of the repositories below:
  * [net-ldns](https://github.com/dotse/net-ldns) - which is a fork of
    of [ldns](https://www.nlnetlabs.nl/projects/ldns/). with a Perl frontend
  * [zonemaster-engine](https://github.com/dotse/zonemaster-engine) - which
-   contains the libraries doing the acutal tests.
+   contains the libraries doing the actual tests.
  * [zonemaster-cli](https://github.com/dotse/zonemaster-cli) - a Command Line
    Interface for the engine.
  * [zonemaster-backend](https://github.com/dotse/zonemaster-backend) - which
@@ -92,8 +92,9 @@ installation documentation under each of the repositories below:
 ### Versions
 
 Go to the [release list](https://github.com/dotse/zonemaster/releases) 
-of this repository to find the latest
-version of Zonemaster and the versions of the specific components. Be
+of this repository to find the 
+[latest version](https://github.com/dotse/zonemaster/releases/latest) of 
+Zonemaster and the versions of the specific components. Be
 sure to read the release note of each component before installing or
 upgrading.
 
