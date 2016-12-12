@@ -78,14 +78,23 @@ the source code.
 In order to install and run the different components, have a look at the
 installation documentation under each of the repositories below:
 
+ * [net-ldns](https://github.com/dotse/net-ldns) - which is a fork of
+   of ldns with a Perl frontend
  * [zonemaster-engine](https://github.com/dotse/zonemaster-engine) - which
-   contains the test framework.
+   contains the libraries doing the acutal tests.
  * [zonemaster-cli](https://github.com/dotse/zonemaster-cli) - a Command Line
    Interface for the engine.
  * [zonemaster-backend](https://github.com/dotse/zonemaster-backend) - which
    interfaces between the GUI and an API with the engine.
  * [zonemaster-gui](https://github.com/dotse/zonemaster-gui) - A graphical user
    interface for the engine.
+
+### Versions
+
+Go to the [release list](releases) of this repository to find the latest
+version of Zonemaster and the versions of the specific components. Be
+sure to read the release note of each component before installing or
+upgrading.
 
 ### Participation
 
