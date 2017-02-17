@@ -3,16 +3,15 @@ Modifying the default features in Zonemaster
 
 We have different ways of modifying the default features in Zonemaster:
 
-1. Config
+## 1. Config
 
 Wherever in the code, when the configuration object is used, the system will
 look for a file named "config.json"
 
 Examples of overriding the config file:
-1. "no_network" : 0 (use network traffic)
-2. "no_network" : 0 (Forbid network traffic)
-3. "retry" : 2  (retry twice) 
-etc..
+ * 1. "no_network" : 0 (use network traffic)
+ * 2. "no_network" : 0 (Forbid network traffic)
+ * 3. "retry" : 2  (retry twice) etc..
 
 If one wants to override the internal configurations, they should modify the
 "values" in the "config.json" file. The possibility of overriding basic
@@ -21,7 +20,7 @@ the "resolver", "log filters", "network features", "IPv4", "IPv6"and "asnroots".
 
 Question : Why do we have different config file in "t" and "share" directory.
 
-2. Policy
+## 2. Policy
 
 Zonemaster engine runs a certain number of tests. It is possible to configure
 which tests needs to be run and also the severity level of the results that will
@@ -35,9 +34,10 @@ have a file which groups all the tests for each test case category (such as
 "Test-nameserver-all.json". In this file, the top-level key is "__testcases__".
 The value of that must be a hash, where the keys are names (e.g. "syntax01") of
 test cases from the test specifications, and the corresponding values are
-booleans specifying if the test case in question should be executed or not. If
+booleans specifying if the test case in question should be executed or not. If 
 the boolean value is "0", the particular test will not be run.
----
+
+```sh
 {
     "__testcases__": {
         "syntax01": 1,
@@ -50,7 +50,8 @@ the boolean value is "0", the particular test will not be run.
         "syntax08": 1
     }
 }
----
+```
+
 Any missing test cases are treated as if they had the value true set.
 
 b). To decide on the severity of the results of the tests:
@@ -59,7 +60,8 @@ being failed, they are classified into different error levels : "NOTICE",
 "INFO", "WARNING", "ERROR", "CRITICAL" etc. This classification of the severity
 level is done in the file "policy.json". An example for a test category
 ("syntax") is as follows:
----
+
+```sh
  "SYNTAX" : {
       "DISCOURAGED_DOUBLE_DASH" : "WARNING",
       "INITIAL_HYPHEN" : "ERROR",
@@ -68,7 +70,8 @@ level is done in the file "policy.json". An example for a test category
       "MNAME_NUMERIC_TLD" : "WARNING",
       "MNAME_SYNTAX_OK" : "INFO",
 [...]
----
+```
+
 The top-level keys (e.g. "SYNTAX") are upper-case-only versions of test module
 names, and under them is all the policy data for that particular module. The
 keys in the next level down are, with one exception, logger tags
@@ -77,7 +80,7 @@ if given a true value will prevent the module from being executed. The values
 for the tag keys should be the severity level ("WARNING") for that tag.
 
 
-3. Profile  
+## 3. Profile  
 
 The "engine" is the core which runs the tests. The engine is called by different
 interfaces (CLI, Web, API etc..). Also, the "engine" could be accessed by
@@ -100,9 +103,11 @@ file in the appropriate directory following the default "config" and "profile"
 format. The easiest way to create a modified policy/config is to copy the
 default one and change the relevant values. He should be able to load the
 profile file using the following command from the command line:
----
+
+```sh
 zonemaster-cli --profile "profilename"
----
+```
+
 
 E.g:3 A user installs the engine, the CLI (optional), the backend and the GUI in
 his own machine. Now he can access his own web interface (e.g:
@@ -113,7 +118,8 @@ menu and run the appropriate tests.
 E.g:4 A user installs the engine, the CLI (optional) and the backend. He can add
 his own profile as described in e.g:2. He should be able to load the profile
 through the API call as follows:
----
+
+```sh
 {
   "jsonrpc": "2.0",
   "id": 4,
@@ -139,9 +145,10 @@ through the API call as follows:
     "ipv4": true
   }
 }
----
+```
 
-4. Translator: 
+
+## 4. Translator: 
 
 This section is useful in the case, when an user wants to add a new language
 (english, French and Swedish are already available) and have the results of the
@@ -171,7 +178,7 @@ make install process will install it.
 
 Don't forget to commit the new po and mo files to git.
 
-5. Filter
+## 5. Filter
 
 This feature is intended to allow more fine-grained control over certain tests,
 which cannot be done by the "policy" file.  The intended use is to remove known
@@ -186,30 +193,34 @@ engine.
 
 This filter feature will not be accessible for an end-user using the public web
 GUI. It can be accessible via the CLI as follows:
----
+
+```sh
 zonemaster-cli --config filter_config_file 
----
+```
+
 
 To access this file from the backend, modify the following line in the
 "backend_config.ini" file in the backend by providing the appropriate path ot
 your filter config file. 
----
+
+```sh
 config_logfilter_1=/full/path/to/a/config_file.json
----
+```
 
 The top-level key is the "loggilter". The keys in the next level down (e.g.
 "BASIC") are upper-case-only versions of test module names and then logger tags
 ("IPV6_ENABLED")
 
 The the data under the logfilter key should be structured like this:
----
+
+```sh
 Module
     Tag
        "when"
           Hash with conditions
         "set"
           Level to set if all conditions match
----
+```
 
 The hash with conditions should have keys matching the attributes of the log
 entry that's being filtered (check the translation files to see what they are).
@@ -217,7 +228,8 @@ The values for the keys should be either a single value that the attribute
 should be, or an array of values any one of which the attribute should be.
 
 A complete entry might could look like this:
----
+
+```sh
 "logfilter" : {
       "BASIC" : {
          "IPV6_ENABLED" : [
@@ -237,12 +249,11 @@ A complete entry might could look like this:
             }
          ]
       },
----
+```
 
-[1].
-https://github.com/dotse/zonemaster-engine/blob/master/docs/ConfigAndPolicy.pod
-[2]. http://search.cpan.org/~znmstr/Zonemaster-v1.0.16/lib/Zonemaster/Config.pm
-[3]. https://github.com/dotse/zonemaster-engine/blob/master/docs/Translation.pod
-[4].
-http://search.cpan.org/~znmstr/Zonemaster-v1.0.16/lib/Zonemaster/Config.pm#logfilter
+
+ * [1]. https://github.com/dotse/zonemaster-engine/blob/master/docs/ConfigAndPolicy.pod
+ * [2]. http://search.cpan.org/~znmstr/Zonemaster-v1.0.16/lib/Zonemaster/Config.pm
+ * [3] . https://github.com/dotse/zonemaster-engine/blob/master/docs/Translation.pod
+ * [4]. http://search.cpan.org/~znmstr/Zonemaster-v1.0.16/lib/Zonemaster/Config.pm#logfilter
 
