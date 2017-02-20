@@ -8,9 +8,32 @@ We have different ways of modifying the default features in Zonemaster:
 Wherever in the code, when the configuration object is used, the system will
 look for a file named "config.json"
 
+```sh
+{
+   "asnroots" : [ "asnlookup.zonemaster.net", "asnlookup.iis.se",
+"asn.cymru.com"],
+   "net" : {
+      "ipv4" : 1,
+      "ipv6" : 1
+   },
+   "no_network" : 0,
+   "resolver" : {
+      "defaults" : {
+         "debug" : 0,
+         "dnssec" : 0,
+         "edns_size" : 0,
+         "igntc" : 0,
+         "recurse" : 0,
+         "retrans" : 3,
+         "retry" : 2,
+         "usevc" : 0
+      }
+   }
+}
+```
 Examples of overriding the config file:
  * 1. "no_network" : 0 (use network traffic)
- * 2. "no_network" : 0 (Forbid network traffic)
+ * 2. "no_network" : 1 (Forbid network traffic)
  * 3. "retry" : 2  (retry twice) etc..
 
 If one wants to override the internal configurations, they should modify the
@@ -18,19 +41,36 @@ If one wants to override the internal configurations, they should modify the
 configuration using the "config.json" file is limited to basic features such as
 the "resolver", "log filters", "network features", "IPv4", "IPv6"and "asnroots".
 
-Question : Why do we have different config file in "t" and "share" directory.
+There are three places for config.json:
+
+ * 1. The default place (installed by package) is in
+/usr/local/share/perl/5.18.2/auto/share/dist/Zonemaster on Ubuntu (perl
+-MFile::ShareDir=dist_dir -E 'say dist_dir( "Zonemaster" )').
+ * 2. A config.json in /etc/zonemaster will override the default file. This the place
+to do local settings.
+ * 3. A config.json in ~/.zonemaster will override the the other. This is for personal
+settings, or settings for a system user.
+
+To override the three files, a config file can be loaded with
+load_config_file().
+
+When overriding, only the defined keys will be replaced with new value.
+
+The "config.json" file under the directory "/t" is for the unnit tests.
 
 ## 2. Policy
 
 Zonemaster engine runs a certain number of tests. It is possible to configure
 which tests needs to be run and also the severity level of the results that will
-be reported via the "policy" files. There are two ways that the policy files can
-be overridden. 
+be reported via the "policy" files. 
+
+There are two places where we find "policy" related files in the engine:
+
+ * 1. In the "t/policies directory/" there are a number of policy files. Those are only
+used by the unit tests. There are two ways that the policy files in this directory can be overridden. 
 
 a). To decide which tests to run: 
-In the Zonemaster engine, we have a "policies" directory. In this directory, we
-have a file which groups all the tests for each test case category (such as
-"nameserver, dnssec etc..). For example, for "nameserver" category,  we have
+In the "t/policies/" directory, we have a file which groups all the tests for each test case category (such as "nameserver, dnssec etc..). For example, for "nameserver" category,  we have
 "Test-nameserver-all.json". In this file, the top-level key is "__testcases__".
 The value of that must be a hash, where the keys are names (e.g. "syntax01") of
 test cases from the test specifications, and the corresponding values are
@@ -79,6 +119,60 @@ keys in the next level down are, with one exception, logger tags
 if given a true value will prevent the module from being executed. The values
 for the tag keys should be the severity level ("WARNING") for that tag.
 
+ * 2. In the "/share/" directory, there is a "policy.json" file. The paramters
+ to decide which tests to run and the severity of the results of the tests are
+ grouped in the same file:
+  
+
+```sh
+{
+   "ADDRESS" : {
+      "NAMESERVER_IP_PRIVATE_NETWORK" : "ERROR",
+      "NAMESERVER_IP_PTR_MISMATCH" : "NOTICE",
+      "NAMESERVER_IP_PTR_MATCH" : "INFO",
+      "NAMESERVER_IP_WITHOUT_REVERSE" : "WARNING",
+      "NAMESERVERS_IP_WITH_REVERSE" : "INFO",
+      "NO_IP_PRIVATE_NETWORK" : "INFO",
+      "NO_RESPONSE_PTR_QUERY" : "WARNING"
+   },
+   "BASIC" : {
+      "A_QUERY_NO_RESPONSES" : "INFO",
+      "DOMAIN_NAME_LABEL_TOO_LONG" : "CRITICAL",
+      "DOMAIN_NAME_ZERO_LENGTH_LABEL" : "CRITICAL",
+      "DOMAIN_NAME_TOO_LONG" : "CRITICAL",
+      "HAS_A_RECORDS" : "ERROR",
+[..]
+```
+The top-level keys (e.g. "ADDRESS") are upper-case-only versions of test module
+names, and under them is all the policy data for that particular module. The
+keys in the next level down are, severity levels ("INFO").
+
+```sh
+ "__testcases__": {
+        "address01": true,
+        "address02": true,
+        "address03": true,
+        "basic03": true,
+        "connectivity01": true,
+        "connectivity02": true,
+        "connectivity03": true,
+        "consistency01": true,
+        "consistency02": true,
+        "consistency03": true,
+        "consistency04": true,
+        "consistency05": true,
+        "dnssec01": true,
+        "dnssec02": true,
+        "dnssec03": true,
+        "dnssec04": true,
+        "dnssec05": true,
+        "dnssec07": true,
+```
+In this file, the top-level key is "testcases". The value of that must be a
+hash, where the keys are names (e.g. "address01") of test cases from the test
+specifications, and the corresponding values specifying if the test
+case in question should be executed or not. If the value is "false", the
+particular test will not be run.
 
 ## 3. Profile  
 
@@ -250,7 +344,9 @@ A complete entry might could look like this:
          ]
       },
 ```
-
+It is worth mentioning that the filtering is defined in the same config file as
+described in the "config" section. This means that system wide filtering could be achieved by
+creating or updating e.g. /etc/zonemaster/config.json.
 
  * [1]. https://github.com/dotse/zonemaster-engine/blob/master/docs/ConfigAndPolicy.pod
  * [2]. http://search.cpan.org/~znmstr/Zonemaster-v1.0.16/lib/Zonemaster/Config.pm
