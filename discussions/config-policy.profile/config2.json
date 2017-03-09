@@ -1,0 +1,21 @@
+{
+   "asnroots" : [ "asnlookup.zonemaster.net", "asnlookup.iis.se", "asn.cymru.com"],
+   "net" : {
+      "ipv4" : 1,
+      "ipv6" : 1
+   },
+   "no_network" : 0,
+   "resolver" : {
+      "defaults" : {
+         "debug" : 0,
+         "dnssec" : 0,
+         "edns_size" : 0,
+         "igntc" : 0,
+         "recurse" : 0,
+         "retrans" : 3,
+         "retry" : 2,
+         "usevc" : 0
+      }
+   }
+}
+
