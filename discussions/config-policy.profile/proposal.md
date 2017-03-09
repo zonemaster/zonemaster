@@ -7,9 +7,8 @@ The following files illustrates what is said below.
  
 * [config1.json](config1.json) - Engine default config in Config.pm
 * [config2.json](config2.json) - Engine default config file
-* [config3.json](config3.json) - Engine example config file with filer
+* [config3.json](config3.json) - Engine example config file with filter
 * [policy1.json](policy1.json) - Engine default policy file
- 
 * [profile1.json](profile1.json) - Alternative 1 of merged files
 * [profile2.json](profile2.json) - Alternative 2 of merged files (preferred solution)
  
