@@ -1,5 +1,10 @@
 # Proposal of merging Config and Policy into Profile
 
+## Background
+
+This document assumes that we have agreed to merge Config and Policy in Engine and CLI to Profile (updating Backend is the second step). How should the merge be done? Below is a proposal.
+
+This document is not meant to be merged into the Zonemaster repo. It is here for discussions.
 
 ## Enclosed files
 
