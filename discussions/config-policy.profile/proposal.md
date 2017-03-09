@@ -6,13 +6,13 @@
 
 The following files illustrates what is said below.
  
-config1.json - Engine default config in Config.pm
-config2.json - Engine default config file
-config3.json - Engine example config file with filer
-policy1.json - Engine default policy file
+      config1.json - Engine default config in Config.pm
+      config2.json - Engine default config file
+      config3.json - Engine example config file with filer
+      policy1.json - Engine default policy file
  
-profile1.json - Alternative 1 of merged files
-profile2.json - Alternative 2 of merged files (preferred solution)
+      profile1.json - Alternative 1 of merged files
+      profile2.json - Alternative 2 of merged files (preferred solution)
  
 
 ## Current Config
