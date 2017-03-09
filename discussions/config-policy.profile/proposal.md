@@ -23,7 +23,7 @@ Current config has the following top-level keys (description in parenthesis):
       resolver    (resolver settings)
       logfilter   (filter settings)
  
-"logfilter" is unset and not present in default configuration in Config.pm and in default config file.
+`logfilter` is unset and not present in default configuration in Config.pm and in default config file.
 
 ## Current Policy
 
@@ -66,7 +66,7 @@ Directly merge config and policy into one structure. Since the top level keys of
  
 ## Alternative 2 (preferred solution)
  
-Create categories for the data in profile first and then merge ([profile2.json](profile2.json)). We would get a cleaner division between categories and data. Create category "test_levels" for the Test Levels and rename `__testcases__` to `test_cases` for consistency. It has the following top-level keys:
+Create categories for the data in profile first and then merge ([profile2.json](profile2.json)). We would get a cleaner division between categories and data. Create category `test_levels` for the Test Levels and rename `__testcases__` to `test_cases` for consistency. It has the following top-level keys:
  
       asnroots
       logfilter
