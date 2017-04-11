@@ -1,0 +1,30 @@
+Release history for Zonemaster
+
+v2017.2 2017-04-11 (Pre-release)
+	This version of Zonemaster consists of the parts listed below. Note the pre-releases of 
+	Zonemaster Engine, Zonemaster CLI and Zonemaster Backend, not ready for production.
+    	     net-ldns v0.75 https://github.com/dotse/net-ldns
+    	     zonemaster-engine v1.1.0 https://github.com/dotse/zonemaster-engine (Pre-Release)
+    	     zonemaster-cli v1.1.0 https://github.com/dotse/zonemaster-cli (Pre-Release)
+    	     zonemaster-backend v1.2.0 https://github.com/dotse/zonemaster-backend (Pre-Release)
+    	     zonemaster-gui v1.0.7 https://github.com/dotse/zonemaster-gui
+
+v2017.1 2017-04-04 (Pre-release)
+	Updates in this release (pre-release):
+    	     Update basic00.md (#479)
+	This version of Zonemaster also consists of the parts listed below. Note the pre-releases of 
+	Zonemaster Engine and Zonemaster CLI, not ready for production.
+    	     net-ldns v0.75 https://github.com/dotse/net-ldns
+    	     zonemaster-engine v1.1.0 https://github.com/dotse/zonemaster-engine (Pre-Release)
+    	     zonemaster-cli v1.1.0 https://github.com/dotse/zonemaster-cli (Pre-Release)
+    	     zonemaster-backend v1.1.0 https://github.com/dotse/zonemaster-backend
+    	     zonemaster-gui v1.0.7 https://github.com/dotse/zonemaster-gui
+
+v2016.2 2016-12-12 Public release
+	This version of Zonemaster consists of
+    	     net-ldns v0.75 https://github.com/dotse/net-ldns
+    	     zonemaster-engine v1.0.16 https://github.com/dotse/zonemaster-engine
+    	     zonemaster-cli v1.0.5 https://github.com/dotse/zonemaster-cli
+    	     zonemaster-backend v1.1.0 https://github.com/dotse/zonemaster-backend
+    	     zonemaster-gui v1.0.7 https://github.com/dotse/zonemaster-gui
+
