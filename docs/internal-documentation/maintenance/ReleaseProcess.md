@@ -49,17 +49,27 @@ other metadata about the component.
  * zonemaster-backend - [Makefile.PL](https://github.com/dotse/zonemaster-backend/blob/master/Makefile.PL)
  * zonemaster-gui - [Makefile.PL](https://github.com/dotse/zonemaster-gui/blob/master/Makefile.PL)
 
-## 6. Create a distribution tarball
+## 6. Produce distribution tarballs
 
-Verify that a distribution tarball can be successfully
-built. This will be the preliminary
-distribution tarball until steps 7 and 8 below have passed. Redo this step if
-necessary.
+This step serves double purposes.
+First, it verifies that a distribution tarball can be successfully
+built for each component that is to be updated in this release.
+Second, it produces the preliminary distribution tarballs to be used in step 8
+below (either by building or retrieving them).
+
+For each component that **is** to be updated in this release, build a new
+distribution tarball:
 
     perl Makefile.PL
     make all
     make manifest
     make dist
+
+For each component that **is not** to be updated in this release, retreive their
+respective latest released distribution tarballs from the [ZNMSTR account at
+CPAN].
+
+[ZNMSTR account at CPAN]: http://search.cpan.org/~znmstr/
 
 ## 7. Verify that the module builds and all tests pass
 
@@ -71,7 +81,21 @@ This can be done quite easily with something like this command for each locale:
 
 ## 8. Verify that Zonemaster works when installed according to the documented installation procedures
 
-Follow the procedures in [SystemTesting.md](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SystemTesting.md).
+Using the preliminary distribution tarballs produced in step 6 above, follow the
+procedures in [SystemTesting.md].
+
+If the system testing fails in a way that requires updated distribution
+tarballs:
+ 1. Get the changes merged.
+ 2. Consider whether the actions taken in steps 1–5 above need amendment.
+ 3. Make new distribution tarballs for the affected components according to step
+    6 above.
+ 4. Resume this document from step 7 above.
+
+If the system testing is successful, the preliminary distribution tarballs used
+in this step become accepted distribution tarballs to be used in step 10 below.
+
+[SystemTesting.md]: https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SystemTesting.md
 
 ## 9. Tag the release with git
 
@@ -101,9 +125,9 @@ zonemaster-gui:
 
 ## 10. Upload to CPAN
 
-For the CLI and the Engine, we have published the code on CPAN. Currently
-we use the organizational account ZNMSTR on PAUSE for doing this. Use the
-last distribution tarball created in step 6 above.
+For each component that is to be updated in this release, publish the
+corresponding accepted distribution tarball on CPAN.
+Currently we use the organizational account ZNMSTR on PAUSE for doing this.
 
 ## 11. Update the Distribution Release
 

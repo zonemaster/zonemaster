@@ -44,7 +44,8 @@ The set of configurations must include at least:
 
 ### Procedure
 
-1. Build a preliminary distribution tarball for each component
+1. Make sure you have the correct preliminary distribution tarball for each
+   component.
 
 2. For each configuration:
 
