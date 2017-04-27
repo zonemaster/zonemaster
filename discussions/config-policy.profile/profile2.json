@@ -1,5 +1,5 @@
 {
-    "asnroots" : [ "asnlookup.zonemaster.net", "asnlookup.iis.se", "asn.cymru.com"],
+    "asn_roots" : [ "asnlookup.zonemaster.net", "asnlookup.iis.se", "asn.cymru.com"],
     "net" : {
 	"ipv4" : 1,
 	"ipv6" : 1
@@ -17,7 +17,7 @@
             "usevc" : 0
 	}
     },
-    "logfilter" : {
+    "log_filter" : {
 	"BASIC" : {
             "IPV6_ENABLED" : [
 		{
