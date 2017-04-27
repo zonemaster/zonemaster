@@ -73,8 +73,8 @@ Directly merge config and policy into one structure. Since the top level keys of
  
 Create categories for the data in profile first and then merge ([profile2.json](profile2.json)). We would get a cleaner division between categories and data. Create category `test_levels` for the Test Levels and rename `__testcases__` to `test_cases` for consistency. It has the following top-level keys:
  
-      asnroots
-      logfilter
+      asn_roots
+      log_filter
       net
       no_network
       resolver
