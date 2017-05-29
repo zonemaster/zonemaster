@@ -1,0 +1,44 @@
+# Undelegated tests
+
+## Background
+
+The purpose of an undelegated test is the test a future delegation before it is
+put in production.
+
+## Specification
+
+An undelegated test should mimic the a delegated test. The information for the 
+test must be provided when starting the test.
+
+Information that is part of the delegation must be provided with the initiation of
+the test. That includes the following information:
+
+* NS records. No NS records may be looked up before the test
+starts, the complete RR set must be provided.
+
+* Glue records. Name server names (RDATA of the NS records) that belong to the delegated
+zone or below must be provided. They must not be looked up before the test starts.
+
+* DS records. If no DS records are provided, then it is assumed that there are no DS
+records for the zone. They must not be looked up.
+
+* Name server addresses. Addresses of name server names that belong to the delegated
+zone is covered under "glue redords" above. Addresses of other name servers may be
+provided, of else they are looked up. If at least one address (IPv4 or IPv6) is provided
+for a name server, then no further lookup shall be done for that name during the 
+test (neither IPv4 nor IPv6).
+
+The complete set of "NS records", the "Glue records" and the "DS records" is considered
+to be equivalent to what must be provided by the delegating zone, and replaces that, if
+the delegation exists. If the delegation does not exists, the provided set works as if 
+the delegation existed.
+
+
+-------
+
+Copyright (c) 2017, IIS (The Internet Foundation In Sweden)  
+Copyright (c) 2017, AFNIC  
+Creative Commons Attribution 4.0 International License
+
+You should have received a copy of the license along with this
+work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.
