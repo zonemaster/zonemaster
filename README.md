@@ -108,7 +108,7 @@ You can follow the project in these two mailinglists:
  * [zonemaster-users](http://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-users)
  * [zonemaster-devel](http://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-devel)
 
-### Contact or Bug reporting 
+### Contact or Bug reporting 
 
 For any contacts or bug reporting, please send a mail to
 "contact@zonemaster.net".
