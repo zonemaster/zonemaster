@@ -1,17 +1,29 @@
 # Undelegated tests
 
-## Background
+## Objective
 
 The purpose of an undelegated test is the test a future delegation before it is
 put in production.
+
+The purpose of an undelegated test is to test a possible future delegation 
+before it is put in production. Hence, while testing an undelegated test, 
+extra information (such as name servers, IP addresses) must be provided 
+as input, and Zonemaster should run the test cases with the provided
+information.
 
 ## Specification
 
 An undelegated test should mimic the a delegated test. The information for the 
 test must be provided when starting the test.
 
+An undelegated test can be run on a already delegated domain, but then
+Zonemaster must disregard the specific information for that domain found
+in public DNS.
+
 Information that is part of the delegation must be provided with the initiation of
 the test. That includes the following information:
+
+* Domain (zone) to be tested.
 
 * NS records. No NS records may be looked up before the test
 starts, the complete RR set must be provided.
