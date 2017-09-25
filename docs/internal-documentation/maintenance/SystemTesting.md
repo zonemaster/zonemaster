@@ -44,7 +44,8 @@ The set of configurations must include at least:
 
 ### Procedure
 
-1. Build a preliminary distribution tarball for each component
+1. Make sure you have the correct preliminary distribution tarball for each
+   component.
 
 2. For each configuration:
 
@@ -59,12 +60,22 @@ The set of configurations must include at least:
    2. Install Zonemaster Engine
       1. Follow the [dependencies](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md#dependencies) section of the installation guide to the letter.
       2. Install the preliminary distribution tarball for zonemaster-engine.
+
+         ```sh
+         sudo cpanm Zonemaster-${ENGINE_VERSION}.tar.gz
+         ```
+
       3. Follow the [post-installation sanity check](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md#post-installation-sanity-check) section of the installation guide to the letter.
 
    3. Install Zonemaster Backend
       1. Follow the [dependencies](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#dependencies)
          section of the installation guide to the letter.
       2. Install the preliminary distribution tarball for zonemaster-backend.
+
+         ```sh
+         sudo cpanm Zonemaster-WebBackend-${BACKEND_VERSION}.tar.gz
+         ```
+
       3. Follow the [configuration](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#configuration) section of the installation guide to the letter.
       4. Follow the [startup](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#startup) section of the installation guide to the letter.
       5. Follow the [post-installation sanity check](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#post-installation-sanity-check) section of the installation guide to the letter.
@@ -73,6 +84,11 @@ The set of configurations must include at least:
       1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-gui/blob/master/docs/installation.md)
          to the letter.
       2. Install the preliminary distribution tarball for zonemaster-backend.
+
+         ```sh
+         sudo cpanm Zonemaster-GUI-${GUI_VERSION}.tar.gz
+         ```
+
       3. Follow the configuration, startup and sanity check sections of [installation.md](https://github.com/dotse/zonemaster-gui/blob/master/docs/installation.md)
          to the letter.
 
@@ -89,6 +105,11 @@ The set of configurations must include at least:
       1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-cli/blob/master/docs/installation.md)
          to the letter.
       2. Install the preliminary distribution tarball for zonemaster-backend.
+
+         ```sh
+         sudo cpanm Zonemaster-CLI-${CLI_VERSION}.tar.gz
+         ```
+
       3. Follow the configuration and sanity check sections of [installation.md](https://github.com/dotse/zonemaster-cli/blob/master/docs/installation.md)
          to the letter.
 
