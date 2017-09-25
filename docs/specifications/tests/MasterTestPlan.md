@@ -29,8 +29,8 @@ and the test levels. Each of the requirements will be broken down into
 a set of test procedures. The process of doing this will be done in
 accordance with the standard IEEE 829-2008.
 
-The test requirements are all documented in the [Test Requirements]
-(../requirements/TestRequirements.md) document.
+The test requirements are all documented in the 
+[Test Requirements](../requirements/TestRequirements.md) document.
 
 ### Scope
 
@@ -397,8 +397,8 @@ cases.
 
 -------
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
+Copyright (c) 2013-2017, IIS (The Internet Foundation in Sweden)  
+Copyright (c) 2013-2017, AFNIC  
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
