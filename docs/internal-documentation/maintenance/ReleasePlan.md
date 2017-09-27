@@ -1,9 +1,7 @@
 # Zonemaster - Release Plan
 
 ## Scope
-The release version 1.0 of the Zonemaster project will be on december 11, 2014. The technical maintenance period is fixed for two years until december 2016.
-
-This document outlines the release management process followed during this two year period.
+This document outlines the release management process.
 
 ## Release features
 * a. Classify the issues from the "issue tracker" based on "minor" and
@@ -16,18 +14,21 @@ the respective "release schedule"
 The minor or major features that are part of each release are determined by the development team.
 
 ## Release schedule
-* a. Minor release schedule (TBD)
-* b. Major release schedule (TBD)
+The release schedule is to be created based on _minor releases_ of the Zonemaster parts, i.e. releases that changes then functionality but not the outward-facing API.
 
-The release schedule is determined by the development team. The release date is announce to the steering committee before "x" weeks. 
+When needed, _minor releases_ are changed to _major releases_ of one or more parts, i.e. when functionality changes require changes to the outward-facing API.
+
+When needed, _patch releases_ are published.
+
+When one or more parts are published as new release, the main Zonemaster repository is released listing the including components. At such event, there could be a mixture of major, minor and patch releases of the components.
 
 ### Version numbering policy
-	How to number each release
+See [Versions and Releases](https://github.com/dotse/zonemaster/blob/master/docs/design/Versions%20and%20Releases.md) for how to number each release.
 
 ## Release process
 
 In order to create a release, there are a number of tasks that has to be done in the chronological order:
-* Agree the release type (major/minor) release
+* Agree the release type (major/minor/patch) release
 * Agree under which schedule the release will be done
 * Announce to the steering committee
 * Implementation
@@ -45,8 +46,8 @@ In order to create a release, there are a number of tasks that has to be done in
 
 -------
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
+Copyright (c) 2013-2017, IIS (The Internet Foundation in Sweden)  
+Copyright (c) 2013-2017, AFNIC  
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
