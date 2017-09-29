@@ -24,7 +24,7 @@ seen in the appendix
 As viewed in the appendix, the engine is capable of testing un delegated
 domains.
 
-### Appendix
+### Appendix
 ```
 zonemaster-cli iis.se  --ns i.ns.se/194.146.106.22 --ns
 i.ns.se/2001:67c:1010:5::53 --ns ns.nic.se/212.247.7.228 --ns

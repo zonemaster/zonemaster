@@ -23,7 +23,7 @@ Verifying a valid zone with either IPv4 or IPV6 disabled using the zonemaster
 CLI does provide expected results without false positive or false negative as
 seen in the appendix. 
 
-### Appendix
+### Appendix
 ```
 zonemaster-cli --no-ipv6 afnic.fr
 Seconds Level     Message
