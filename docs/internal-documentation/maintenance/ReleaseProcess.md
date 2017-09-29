@@ -27,8 +27,8 @@ Please refer to any Github issues related to the change by the issue number.
 
 ## 3. Update prerequisites
 
-Make sure the prerequisites section in [README.md](https://github.com/dotse/zonemaster/blob/master/README.md)
-is up to date with regard to [SupportCriteria](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SupportCriteria.md).
+Make sure the [declaration of prerequisites](../../../README.md#prerequisites)
+is up to date with regard to [SupportCriteria](SupportCriteria.md).
 
 ## 4. Update CI configuration
 
@@ -94,12 +94,12 @@ and the list of supported Perl versions:
 
     LC_ALL=en.UTF-8 LC_MESSAGES=en.UTF-8 LC_NUMERIC=en.UTF-8 LANG=en.UTF-8 perlbrew exec --with 5.14.4,5.16.3,5.18.4,5.20.1 '( git clean -dfx && perl Makefile.PL && make ) >& /dev/null && prove -bQ'
 
-The list of supported Perl versions and locales can be found in the [declaration of prerequisites](https://github.com/dotse/zonemaster#prerequisites).
+The list of supported Perl versions and locales can be found in the [declaration of prerequisites](../../../README.md#prerequisites).
 
 ## 9. Verify that Zonemaster works when installed according to the documented installation procedures
 
 Using the preliminary distribution tarballs produced in step 7 above, follow the
-procedures in [SystemTesting.md].
+procedures in [SystemTesting](SystemTesting.md).
 
 If the system testing fails in a way that requires updated distribution
 tarballs:
@@ -111,8 +111,6 @@ tarballs:
 
 If the system testing is successful, the preliminary distribution tarballs used
 in this step become accepted distribution tarballs to be used in step 11 below.
-
-[SystemTesting.md]: https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SystemTesting.md
 
 ## 10. Tag the release with git
 
