@@ -89,9 +89,12 @@ CPAN].
 
 Verify that the module builds and all tests pass with the latest point release
 for every supported major Perl version and for every supported system locale.
-This can be done quite easily with something like this command for each locale:
+This can be done quite easily with something like this command for each locale
+and the list of supported Perl versions:
 
     LC_ALL=en.UTF-8 LC_MESSAGES=en.UTF-8 LC_NUMERIC=en.UTF-8 LANG=en.UTF-8 perlbrew exec --with 5.14.4,5.16.3,5.18.4,5.20.1 '( git clean -dfx && perl Makefile.PL && make ) >& /dev/null && prove -bQ'
+
+The list of supported Perl versions and locales can be found in the [declaration of prerequisites](https://github.com/dotse/zonemaster#prerequisites).
 
 ## 9. Verify that Zonemaster works when installed according to the documented installation procedures
 
