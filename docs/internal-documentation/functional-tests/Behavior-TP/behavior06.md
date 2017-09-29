@@ -18,9 +18,9 @@ The domain to be tested.
 see in the appendix
 2. If the query don’t show timestamp in the results,  the test returns FAIL
 
-### Results
+### Results
 
-### Appendix
+### Appendix
 ```
 zonemaster-cli --time afnic.fr
 Seconds Level     Message

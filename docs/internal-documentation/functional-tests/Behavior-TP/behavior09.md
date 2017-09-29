@@ -19,7 +19,7 @@ The broken domain to be tested.
 2. If the output from the CLI does not catch the expected errors, then the test
 returns FAIL
 
-### Results
+### Results
 Even though exhaustive tests are not run, for the tests being run the eingine
 seems to capture the errors.
 
