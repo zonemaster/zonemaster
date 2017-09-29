@@ -30,7 +30,17 @@ Please refer to any Github issues related to the change by the issue number.
 Make sure the prerequisites section in [README.md](https://github.com/dotse/zonemaster/blob/master/README.md)
 is up to date with regard to [SupportCriteria](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SupportCriteria.md).
 
-## 4. Verify that MANIFEST is up to date
+## 4. Update CI configuration
+
+Make sure the Travis configuration for each repo is up to date with the supported Perl versions.
+
+ * zonemaster-ldns - [.travis.yml](https://github.com/dotse/zonemaster-ldns/blob/master/.travis.yml)
+ * zonemaster-engine - [.travis.yml](https://github.com/dotse/zonemaster-engine/blob/master/.travis.yml)
+ * zonemaster-cli - [.travis.yml](https://github.com/dotse/zonemaster-cli/blob/master/.travis.yml)
+ * zonemaster-backend - [.travis.yml](https://github.com/dotse/zonemaster-backend/blob/master/.travis.yml)
+ * zonemaster-gui - [.travis.yml](https://github.com/dotse/zonemaster-gui/blob/master/.travis.yml)
+
+## 5. Verify that MANIFEST is up to date
 
 In order to have a complete installation from a package, the MANIFEST needs
 to be the complete set of files to be included.
@@ -41,7 +51,7 @@ to be the complete set of files to be included.
  * zonemaster-backend - [MANIFEST](https://github.com/dotse/zonemaster-backend/blob/master/MANIFEST)
  * zonemaster-gui - [MANIFEST](https://github.com/dotse/zonemaster-gui/blob/master/MANIFEST)
 
-## 5. Verify that Makefile.PL has all the correct data
+## 6. Verify that Makefile.PL has all the correct data
 
 The Makefile.PL contains all the modules required by the component to
 function, with all the version numbers needed as well. It also has some
@@ -53,7 +63,7 @@ other metadata about the component.
  * zonemaster-backend - [Makefile.PL](https://github.com/dotse/zonemaster-backend/blob/master/Makefile.PL)
  * zonemaster-gui - [Makefile.PL](https://github.com/dotse/zonemaster-gui/blob/master/Makefile.PL)
 
-## 6. Produce distribution tarballs
+## 7. Produce distribution tarballs
 
 This step serves double purposes.
 First, it verifies that a distribution tarball can be successfully
@@ -75,7 +85,7 @@ CPAN].
 
 [ZNMSTR account at CPAN]: http://search.cpan.org/~znmstr/
 
-## 7. Verify that the module builds and all tests pass
+## 8. Verify that the module builds and all tests pass
 
 Verify that the module builds and all tests pass with the latest point release
 for every supported major Perl version and for every supported system locale.
@@ -83,25 +93,25 @@ This can be done quite easily with something like this command for each locale:
 
     LC_ALL=en.UTF-8 LC_MESSAGES=en.UTF-8 LC_NUMERIC=en.UTF-8 LANG=en.UTF-8 perlbrew exec --with 5.14.4,5.16.3,5.18.4,5.20.1 '( git clean -dfx && perl Makefile.PL && make ) >& /dev/null && prove -bQ'
 
-## 8. Verify that Zonemaster works when installed according to the documented installation procedures
+## 9. Verify that Zonemaster works when installed according to the documented installation procedures
 
-Using the preliminary distribution tarballs produced in step 6 above, follow the
+Using the preliminary distribution tarballs produced in step 7 above, follow the
 procedures in [SystemTesting.md].
 
 If the system testing fails in a way that requires updated distribution
 tarballs:
  1. Get the changes merged.
- 2. Consider whether the actions taken in steps 1–5 above need amendment.
+ 2. Consider whether the actions taken in steps 1–6 above need amendment.
  3. Make new distribution tarballs for the affected components according to step
-    6 above.
- 4. Resume this document from step 7 above.
+    7 above.
+ 4. Resume this document from step 8 above.
 
 If the system testing is successful, the preliminary distribution tarballs used
-in this step become accepted distribution tarballs to be used in step 10 below.
+in this step become accepted distribution tarballs to be used in step 11 below.
 
 [SystemTesting.md]: https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SystemTesting.md
 
-## 9. Tag the release with git
+## 10. Tag the release with git
 
 Tag the release with these git commands, and push the tag to Github.
 
@@ -132,13 +142,13 @@ zonemaster-gui:
     git tag v1.0.0
 	git push origin --tags
 
-## 10. Upload to CPAN
+## 11. Upload to CPAN
 
 For each component that is to be updated in this release, publish the
 corresponding accepted distribution tarball on CPAN.
 Currently we use the organizational account ZNMSTR on PAUSE for doing this.
 
-## 11. Update the Distribution Release
+## 12. Update the Distribution Release
 
 If the release is for the whole Distribution (all components), the version
 numbers on the Distribution Wiki page must be updated with all new compnent
@@ -155,8 +165,8 @@ git show-ref --tags
 
 -------
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
+Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)
+Copyright (c) 2013, 2014, 2015, AFNIC
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
