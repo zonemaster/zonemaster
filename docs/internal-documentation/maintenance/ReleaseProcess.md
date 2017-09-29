@@ -6,7 +6,7 @@ Release process
 The version numbers can be found in these Perl modules:
 
  * zonemaster-ldns - [LDNS.pm](https://github.com/dotse/zonemaster-ldns/blob/master/lib/Zonemaster/LDNS.pm)
- * zonemaster-engine - [Zonemaster.pm](https://github.com/dotse/zonemaster-engine/blob/master/lib/Zonemaster.pm)
+ * zonemaster-engine - [Engine.pm](https://github.com/dotse/zonemaster-engine/blob/master/lib/Zonemaster/Engine.pm)
  * zonemaster-cli - [CLI.pm](https://github.com/dotse/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)
  * zonemaster-backend - [Config.pm](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/WebBackend/Config.pm) and
    [DB.pm](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/WebBackend/DB.pm)
