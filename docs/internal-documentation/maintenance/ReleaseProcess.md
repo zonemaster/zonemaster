@@ -5,8 +5,9 @@ Release process
 
 The version numbers can be found in these Perl modules:
 
- * zonemaster-engine - [Zonemaster.pm](https://github.com/dotse/zonemaster-engine/blob/master/lib/Zonemaster.pm)  
- * zonemaster-cli - [CLI.pm](https://github.com/dotse/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)  
+ * zonemaster-ldns - [LDNS.pm](https://github.com/dotse/zonemaster-ldns/blob/master/lib/Zonemaster/LDNS.pm)
+ * zonemaster-engine - [Zonemaster.pm](https://github.com/dotse/zonemaster-engine/blob/master/lib/Zonemaster.pm)
+ * zonemaster-cli - [CLI.pm](https://github.com/dotse/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)
  * zonemaster-backend - [Config.pm](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/WebBackend/Config.pm) and
    [DB.pm](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/WebBackend/DB.pm)
  * zonemaster-gui - [Client.pm](https://github.com/dotse/zonemaster-gui/blob/master/lib/Zonemaster/GUI/Dancer/Client.pm),
@@ -18,6 +19,7 @@ The version numbers can be found in these Perl modules:
 Any changes since the last release must be documented in the Changes files.
 Please refer to any Github issues related to the change by the issue number.
 
+ * zonemaster-ldns - [Changes](https://github.com/dotse/zonemaster-ldns/blob/master/Changes)
  * zonemaster-engine - [Changes](https://github.com/dotse/zonemaster-engine/blob/master/Changes)
  * zonemaster-cli - [Changes](https://github.com/dotse/zonemaster-cli/blob/master/Changes)
  * zonemaster-backend - [Changes](https://github.com/dotse/zonemaster-backend/blob/master/CHANGES)
@@ -33,6 +35,7 @@ is up to date with regard to [SupportCriteria](https://github.com/dotse/zonemast
 In order to have a complete installation from a package, the MANIFEST needs
 to be the complete set of files to be included.
 
+ * zonemaster-ldns - [MANIFEST](https://github.com/dotse/zonemaster-ldns/blob/master/MANIFEST)
  * zonemaster-engine - (it will be created by the `make manifest` command below)
  * zonemaster-cli - [MANIFEST](https://github.com/dotse/zonemaster-cli/blob/master/MANIFEST)
  * zonemaster-backend - [MANIFEST](https://github.com/dotse/zonemaster-backend/blob/master/MANIFEST)
@@ -44,6 +47,7 @@ The Makefile.PL contains all the modules required by the component to
 function, with all the version numbers needed as well. It also has some
 other metadata about the component.
 
+ * zonemaster-ldns - [Makefile.PL](https://github.com/dotse/zonemaster-ldns/blob/master/Makefile.PL)
  * zonemaster-engine - [Makefile.PL](https://github.com/dotse/zonemaster-engine/blob/master/Makefile.PL)
  * zonemaster-cli - [Makefile.PL](https://github.com/dotse/zonemaster-cli/blob/master/Makefile.PL)
  * zonemaster-backend - [Makefile.PL](https://github.com/dotse/zonemaster-backend/blob/master/Makefile.PL)
@@ -102,6 +106,11 @@ in this step become accepted distribution tarballs to be used in step 10 below.
 Tag the release with these git commands, and push the tag to Github.
 
 **Change the version number below to the correct version for this release**
+
+zonemaster-ldns:
+
+    git tag v1.0.0
+	git push <repository> --tags
 
 zonemaster-engine:
 
