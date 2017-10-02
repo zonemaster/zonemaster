@@ -1,19 +1,38 @@
 # Introduction
 
-This document is intended to specify the semantics of the versions numbers used for the Zonemaster Git Repositories and their main Perl modules. There are two different version schema, one for the main Zonemaster Git Repository [zonemaster](https://github.com/dotse/zonemaster), which has documents but no Perl code, and the other for the other Zonemaster Git Repositories ([zonemaster-ldns](https://github.com/dotse/zonemaster-ldns), [zonemaster-engine](https://github.com/dotse/zonemaster-engine), [zonemaster-backend](https://github.com/dotse/zonemaster-backend) and [zonemaster-gui](https://github.com/dotse/zonemaster-gui)) and their main Perl modules (Zonemaster::LDNS, Zonemaster::Engine, Zonemaster::CLI, Zonemaster::Backend and Zonemaster::GUI). It will also discuss how we intend to do new relases.
+This document is intended to specify the semantics of the versions numbers used for the Zonemaster Product and its
+components. There are two different version schema, one for the Zonemaster Product, and one for its components.
 
-# Version Number Syntax for Zonemaster main repository
+The main Zonemaster Github Repository ([zonemaster](https://github.com/dotse/zonemaster)) stores the specifications
+and documentation for the Zonemaster Product. There is no direct Perl code for Zonemaster in that repository. The Zonemaster
+components are part of the Zonemaster Product, but stored in separate Github repositories 
+([zonemaster-ldns](https://github.com/dotse/zonemaster-ldns), 
+[zonemaster-engine](https://github.com/dotse/zonemaster-engine), 
+[zonemaster-backend](https://github.com/dotse/zonemaster-backend) and 
+[zonemaster-gui](https://github.com/dotse/zonemaster-gui)). In each component Github repository the main Perl module of 
+the component (Zonemaster::LDNS, Zonemaster::Engine, Zonemaster::CLI, Zonemaster::Backend and Zonemaster::GUI,
+respectivey) can be found. 
 
-Published version numbers of the main Zonemaster Git Repository will be in the _vYYYY.I_ format, where "v" is the literal character, "YYYY" is the year in four digits, "." is the literal dot and "I" is a whole number counter starting with 1, which is incremented for each release, e.g. _v2016.1_ and _v2017.2_. They year is the year when the release is created.
+This document also discusses how the Zonemaster project intend to do new relases.
+
+# Version Number Syntax for Zonemaster product
+
+Published version numbers of the Zonemaster Product (stored in the main Github Repository) will be in the _vYYYY.I_ format,
+where "v" is the literal character, "YYYY" is the year in four digits, "." is the literal dot and "I" is an interger
+counter starting with 1, and is incremented for each release, e.g. _v2016.1_ and _v2017.2_. They year is the year when 
+the release is created.
 
 ## Versioning principle
 
-The release of the main Zonemaster repository includeds all documents up to the release tag and points at the versions of the other Zonemaster repository release versions. This means that the main Zonemaster release includes the specific versions of the other Zonemaster repositories and main Perl modules.
+A specific version of the Zonemaster Product will, besides specifications and other documents, include a specific
+version of each of the Zonemaster components. The specifications and other documents are stored in the main Github
+repository, and the version is defined in Git by a tag on the last commit. The included versions of the components is
+defined by the [CHANGES.txt](https://github.com/dotse/zonemaster/blob/master/CHANGES.txt) file.
 
+# Version Number Syntax for Zonemaster components
 
-# Version Number Syntax for other Zonemaster repository
-
-Published version numbers will be on the common x.y.z triplet form. We will refer to the x part as the _major version_, the y part as the _minor version_ and the z part as the _patch version_. 
+Published version numbers will be on the common x.y.z triplet form. We will refer to the x part as the _major version_, 
+the y part as the _minor version_ and the z part as the _patch version_. 
 
 ## Versioning principle
 
@@ -29,19 +48,31 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 
 ## Major version
 
-Changes in this number indicate changes in the outward-facing interface, and will almost certainly mean that users of the interface will have to do significant changes to their code.
+Changes in this number indicate changes in the outward-facing interface, and it means that users of 
+the interface probably have to do changes to their code, or changes of the usage.
 
 ## Minor Version
 
-Changes in the minor version number indicate that there are functional changes that might change outward-facing interface, but only in an additional fashion. A user of the interface should inform themselves on what the changes are, but does not have to make any modifications to their own code.
+Changes in the minor version number indicate that there are functional changes that might change outward-facing interface,
+but not in a breaking fashion. A user of the interface should inform themselves on what the changes are, but does not have
+to make any modifications to their own code, unless the user wants to utilize updates that require changes to the code.
 
 ## Patch Version
 
-Changes in the patch version number indicate internal changes in the library, that need not be visible to an external user in any way other than the reported test results being more correct. Small interface changes are permitted, as long as they are of such a nature that they do not affect current users. That is, the interface after a patch version upgrade should be a strict superset of the interface as it was before. Adding new result messages is explicitly permitted at this level, and external code using Zonemaster must always be prepared to handle messages it has not seen before.
+Changes in the patch version number indicate internal changes in the library, that need not be visible to an external user
+in any way other than the reported test results being more correct. Small interface changes are permitted, as long as they
+are of such a nature that they do not affect current users. That is, the interface after a patch version upgrade should be
+a strict superset of the interface as it was before. Adding new result messages is explicitly permitted at this level, and
+external code using Zonemaster must always be prepared to handle messages it has not seen before.
 
 ## Development Releases
 
-Interim releases for development use (that is, intended for developers working on the versioned component itself rather than developers using the component) will use the CPAN convention of appending an underscore followed by a number. Perl's own version parsing and handling routines will treat a version on this form as comparing in between the version number without the underscore part and the version number before it. That is, all versions of the form 1.0.1\_nn compare as being between 1.0.1 and 1.0.0. Or, to look at it slightly differently, all 1.0.1\_nn versions are steps towards what is going to be 1.0.1.
+Interim releases for development use (that is, intended for developers working on the versioned component itself rather 
+than developers using the component) will use the CPAN convention of appending an underscore followed by a number. Perl's
+own version parsing and handling routines will treat a version on this form as comparing in between the version number
+without the underscore part and the version number before it. That is, all versions of the form 1.0.1\_nn compare as being
+between 1.0.1 and 1.0.0. Or, to look at it slightly differently, all 1.0.1\_nn versions are steps towards what is going to
+be 1.0.1.
 
 # Release Handling
 
@@ -51,11 +82,15 @@ Issued as needed.
 
 ## Patch Versions
 
-Should be easy to do, in order to encourage fixing problems quickly. All unit tests must pass, and all changes must be properly documented.
+The goal is that it should be easi to do patch releases, in order to encourage fixing problems quickly. All unit tests 
+must pass, and all changes must be properly documented. Besides that, enough testing should be completed before a new
+version is released.
 
 ## Minor Versions
 
-These should be done with more care. Not only must all unit tests pass and everything be documented, but release candidates should be produced and known major users of the component should be encouraged to test the release candidates.
+These should be done with more care. Not only must all unit tests pass and everything be documented, but release 
+candidates should be produced and known major users of the component should be encouraged to test the release 
+candidates.
 
 ## Major version
 
