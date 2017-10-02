@@ -23,10 +23,10 @@ DEBUG, DEBUG2 or DEBUG3) provides different levels of information for the zone b
 2. If the query doesn't have results with level to the verbose option then the
 test return FAIL.
 
-### Results
+### Results
 The engine passes the test as can be verified from the appendix
 
-### Appendix
+### Appendix
 ```
 zonemaster-cli --level CRITICAL iis.se
 Seconds Level     Message

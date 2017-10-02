@@ -3,7 +3,7 @@
 
 The documentation covers the following operating systems:
 
- * [1] <a href="#Debian">Debian Wheezy (version 7)</a>
+ * [1] <a href="#Debian">Debian Wheezy (version 7)</a>
 
 
 The Engine Perl module name is 'Zonemaster'.
