@@ -1,7 +1,10 @@
 # Zonemaster - Release Plan
 
 ## Scope
-This document outlines the release management process.
+This document outlines the release management process. The 
+[Release Process document](
+https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess.md) outlines the
+release process steps.
 
 ## Release features
 * a. Classify the issues from the "issue tracker" based on "minor" and
