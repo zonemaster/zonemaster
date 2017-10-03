@@ -17,13 +17,14 @@ the respective "release schedule"
 The minor or major features that are part of each release are determined by the development team.
 
 ## Release schedule
-The release schedule is to be created based on _minor releases_ of the Zonemaster parts, i.e. releases that changes then functionality but not the outward-facing API.
+The release schedule is to be created based on _minor releases_ or _major releases_ of the Zonemaster components, i.e.
+releases that changes functionality, and not only fixes bugs or erros.
 
-When needed, _minor releases_ are changed to _major releases_ of one or more parts, i.e. when functionality changes require changes to the outward-facing API.
+When needed, _patch releases_ of the components are published.
 
-When needed, _patch releases_ are published.
-
-When one or more parts are published as new release, the main Zonemaster repository is released listing the including components. At such event, there could be a mixture of major, minor and patch releases of the components.
+When one or more components have been updated (release has been published), the Zonemaster product is also
+released. Such a release of the Zonemaster product, could include a mixture of major, minor and patch releases of 
+the components.
 
 ### Version numbering policy
 See [Versions and Releases](https://github.com/dotse/zonemaster/blob/master/docs/design/Versions%20and%20Releases.md) for how to number each release.
