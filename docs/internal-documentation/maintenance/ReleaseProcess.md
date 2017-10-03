@@ -45,17 +45,27 @@ Perform the following for each component except Zonemaster::Engine.
 > included in the repo, but created dynamically in step 7 below. This is subject
 > to change.
 
-Make sure your working directory is clean, or that all listed changes are
-covered by MANIFEST.SKIP:
+For all components, make sure your working directory is clean, or that all
+listed changes are covered by MANIFEST.SKIP:
 
     git status --ignored
 
 > **Note:** To throw away any and all changes to tracked and untracked files you
 > can run `git clean -dfx ; git reset --hard`.
 
-Make sure that all files are covered by MANIFEST and/or MANIFEST.SKIP:
+For the Zonemaster::LDNS component, manually allow META.yml to be created:
+
+    mkdir -p inc/.author
+
+> **Note:** META.yml is only generated in the next step if Module::Install
+> determines that you are an author based on [the existence of inc/.author].
+
+For all components, generate Makefile, META.yml and others.
 
     perl Makefile.PL
+
+Make sure that all files are covered by MANIFEST and/or MANIFEST.SKIP:
+
     make distcheck
 
 Also make sure the MANIFEST file includes exactly the files that are supposed to
@@ -193,6 +203,8 @@ git show-ref --tags
 [CI]: https://github.com/travis-ci/travis-ci
 [declaration of prerequisites]: ../../../README.md#prerequisites
 [latest releases in each branch of Perl]: http://www.cpan.org/src/README.html
+[the existence of inc/.author]: http://search.cpan.org/~ether/Module-Install-1.18/lib/Module/Install.pod#Standard_Extensions
+
 
 Copyright (c) 2013-2017, IIS (The Internet Foundation in Sweden)\
 Copyright (c) 2013-2017, AFNIC\
