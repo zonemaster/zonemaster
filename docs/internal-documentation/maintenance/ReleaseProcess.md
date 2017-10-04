@@ -39,11 +39,8 @@ Make sure the Travis configuration for each repo is up to date with the supporte
 
 ## 5. Verify that MANIFEST is up to date
 
-Perform the following for each component except Zonemaster::Engine.
-
-> **Note:** For the Zonemaster::Engine component, the MANIFEST file is not
-> included in the repo, but created dynamically in step 7 below. This is subject
-> to change.
+> **Note:** The MANIFEST file lists the files that will be included in the dist
+> tarball.
 
 For all components, make sure your working directory is clean, or that all
 listed changes are covered by MANIFEST.SKIP:
@@ -64,12 +61,18 @@ For all components, generate Makefile, META.yml and others.
 
     perl Makefile.PL
 
-Make sure that all files are covered by MANIFEST and/or MANIFEST.SKIP:
+For all components except Zonemaster::Engine, make sure that all files are
+covered by MANIFEST and/or MANIFEST.SKIP:
 
     make distcheck
 
-Also make sure the MANIFEST file includes exactly the files that are supposed to
-be included in the dist tarball.
+For the Zonemaster::Engine component, generate the complete MANIFEST file.
+
+    make all
+    make manifest
+
+For all components, review the MANIFEST file if in doubt or if there seems to be
+missing or extra files.
 
 ## 6. Verify that Makefile.PL has all the correct data
 
@@ -94,9 +97,7 @@ below (either by building or retrieving them).
 For each component that **is** to be updated in this release, build a new
 distribution tarball:
 
-    perl Makefile.PL
     make all
-    make manifest
     make dist
 
 For each component that **is not** to be updated in this release, retreive their
