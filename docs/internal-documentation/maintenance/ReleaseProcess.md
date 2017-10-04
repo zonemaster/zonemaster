@@ -116,7 +116,7 @@ Make sure you've set up perlbrew and installed the latest point-release of each
 supported Perl version for perlbrew.
 
     perlbrew init
-    perlbrew install perl-5.14.4  # etc
+    perlbrew install perl-5.14.4  # For every supported version of Perl
 
 Perform the following for each component.
 
@@ -125,7 +125,7 @@ for every supported major Perl version and for every supported system locale.
 For each supported locale and the set of supported point-releases, modify and
 run the folloing command:
 
-    LC_ALL=en.UTF-8 LC_MESSAGES=en.UTF-8 LC_NUMERIC=en.UTF-8 LANG=en.UTF-8 perlbrew exec --with 5.14.4,5.16.3,5.18.4 '( git clean -dfx && perl Makefile.PL && make ) >/dev/null && prove -bQ'
+    LC_ALL=en.UTF-8 LC_MESSAGES=en.UTF-8 LC_NUMERIC=en.UTF-8 LANG=en.UTF-8 perlbrew exec --with 5.14.4,5.16.3,5.18.4,5.20.3,5.22.4,5.24.3 '( git clean -dfx && perl Makefile.PL && make ) >/dev/null && prove -bQ'
 
 ## 9. Verify that Zonemaster works when installed according to the documented installation procedures
 
