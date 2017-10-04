@@ -46,10 +46,9 @@ the y part as the _minor version_ and the z part as the _patch version_.
 We will follow the ideas of [Semantic Versioning](http://semver.org/). This is how they state it (version 2.0.0):
 
 >Given a version number MAJOR.MINOR.PATCH, increment the:
->
->    MAJOR version when you make incompatible API changes,
->    MINOR version when you add functionality in a backwards-compatible manner, and
->    PATCH version when you make backwards-compatible bug fixes.
+>1. MAJOR version when you make incompatible API changes,
+>2. MINOR version when you add functionality in a backwards-compatible manner, and
+>3. PATCH version when you make backwards-compatible bug fixes.
 
 ### Major version
 
@@ -70,15 +69,15 @@ external code using Zonemaster must always be prepared to handle messages it has
 Changes in the patch version number indicate internal changes in the library, that need not be visible to an external user
 in any way other than the reported test results being more correct or previous bug does not show up.
 
-### Publication of releases
-
-Major, minor and patch releases of the Zonemaster Components are normally published at [CPAN](https://www.cpan.org/). The
-rest of the Zonemaster Product (specifications and documentation) is only available in the repository.
-
 ### Development Releases
 
 Interim releases for development use (that is, intended for developers working on the versioned component itself rather 
 than developers using the component) will created directly from the repository, and is not published in CPAN.
+
+## Publication of releases
+
+Major, minor and patch releases of the Zonemaster Components are normally published at [CPAN](https://www.cpan.org/). The
+rest of the Zonemaster Product (specifications and documentation) is only available in the repository.
 
 ## Release Handling
 
