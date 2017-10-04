@@ -37,7 +37,19 @@ Make sure the Travis configuration for each repo is up to date with the supporte
  * zonemaster-backend - [.travis.yml](https://github.com/dotse/zonemaster-backend/blob/master/.travis.yml)
  * zonemaster-gui - [.travis.yml](https://github.com/dotse/zonemaster-gui/blob/master/.travis.yml)
 
-## 5. Verify that MANIFEST is up to date
+## 5. Verify that Makefile.PL has all the correct data
+
+The Makefile.PL contains all the modules required by the component to
+function, with all the version numbers needed as well. It also has some
+other metadata about the component.
+
+ * zonemaster-ldns - [Makefile.PL](https://github.com/dotse/zonemaster-ldns/blob/master/Makefile.PL)
+ * zonemaster-engine - [Makefile.PL](https://github.com/dotse/zonemaster-engine/blob/master/Makefile.PL)
+ * zonemaster-cli - [Makefile.PL](https://github.com/dotse/zonemaster-cli/blob/master/Makefile.PL)
+ * zonemaster-backend - [Makefile.PL](https://github.com/dotse/zonemaster-backend/blob/master/Makefile.PL)
+ * zonemaster-gui - [Makefile.PL](https://github.com/dotse/zonemaster-gui/blob/master/Makefile.PL)
+
+## 6. Verify that MANIFEST is up to date
 
 > **Note:** The MANIFEST file lists the files that will be included in the dist
 > tarball.
@@ -73,18 +85,6 @@ For the Zonemaster::Engine component, generate the complete MANIFEST file.
 
 For all components, review the MANIFEST file if in doubt or if there seems to be
 missing or extra files.
-
-## 6. Verify that Makefile.PL has all the correct data
-
-The Makefile.PL contains all the modules required by the component to
-function, with all the version numbers needed as well. It also has some
-other metadata about the component.
-
- * zonemaster-ldns - [Makefile.PL](https://github.com/dotse/zonemaster-ldns/blob/master/Makefile.PL)
- * zonemaster-engine - [Makefile.PL](https://github.com/dotse/zonemaster-engine/blob/master/Makefile.PL)
- * zonemaster-cli - [Makefile.PL](https://github.com/dotse/zonemaster-cli/blob/master/Makefile.PL)
- * zonemaster-backend - [Makefile.PL](https://github.com/dotse/zonemaster-backend/blob/master/Makefile.PL)
- * zonemaster-gui - [Makefile.PL](https://github.com/dotse/zonemaster-gui/blob/master/Makefile.PL)
 
 ## 7. Produce distribution tarballs
 
