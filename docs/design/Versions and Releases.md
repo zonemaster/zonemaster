@@ -61,8 +61,7 @@ Changes in the minor version number indicate that there are functional changes t
 If the user wants to utilize the new features and functions, calls to Zonemaster might have to be changed.
 Interface changes are permitted, as long as they
 are of such a nature that they do not affect current users. That is, the interface after a minor version upgrade should be
-a strict superset of the interface as it was before. Adding new result messages is explicitly permitted at this level, and
-external code using Zonemaster must always be prepared to handle messages it has not seen before.
+a strict superset of the interface as it was before.
 
 ### Patch Version
 
