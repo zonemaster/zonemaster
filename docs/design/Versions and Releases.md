@@ -24,10 +24,15 @@ This document also discusses how the Zonemaster project intend to do new relases
 
 ## Version Number Syntax for Zonemaster product
 
-Published version numbers of the Zonemaster Product (stored in the main Repository) will be in the _vYYYY.I_ format,
-where "v" is the literal character, "YYYY" is the year in four digits, "." is the literal dot and "I" is an interger
-counter starting with 1, and is incremented for each release, e.g. _v2016.1_ and _v2017.2_. They year is the year when 
-the release is created.
+Published version numbers of the Zonemaster Product (stored in the main Repository) will be in the _vYYYY.I.i_ format,
+where "v" is the literal character, "YYYY" is the year in four digits, "." is the literal dot and "I" and "i" are
+interger counters starting with 1. "I" or "i" is incremented for each release. If "I" is incremented, then ".i" is
+empty, e.g. from _v2016.1.2_ to _v2016.2_. If "i" is incremented, then "I" remains the same as the previous version, e.g. _v2016.1.1_ to _v2016.1.2_. "I" can be incremented even if there is no ".i", e.g. _v2016.3_ to _v2016.4_. They year is 
+the year when the release is created.
+
+A release when no component has been updated on major or minor version, then the product version is normally incremented
+with the "i" only, e.g. _v2016.3_ to _v2016.3.1_. If any component has been updated on major or minor version, then
+the "I" must be updated in the product version.
 
 ### Versioning principle
 
