@@ -2,9 +2,6 @@
 
 ## Objective
 
-The purpose of an undelegated test is the test a future delegation before it is
-put in production.
-
 The purpose of an undelegated test is to test a possible future delegation 
 before it is put in production. Hence, while testing an undelegated test, 
 extra information (such as name servers, IP addresses) must be provided 
@@ -21,15 +18,17 @@ Zonemaster must disregard the specific information for that domain found
 in public DNS.
 
 Information that is part of the delegation must be provided with the initiation of
-the test. That includes the following information:
+the test. That following information is used for the undelegated test:
 
-* Domain (zone) to be tested.
+* Domain (zone) to be tested. Mandatory information.
 
 * NS records. No NS records may be looked up before the test
-starts, the complete RR set must be provided.
+starts, the complete RR set must be provided. Mandatory information.
 
-* Glue records. Name server names (RDATA of the NS records) that belong to the delegated
-zone or below must be provided. They must not be looked up before the test starts.
+* Glue records. The IP addresses of the name server names that belong to the delegated
+zone or below must be provided. They must not be looked up before the test starts. If
+not provided or only partly provided, the information will be treated as an incomplete 
+delegation.
 
 * DS records. If no DS records are provided, then it is assumed that there are no DS
 records for the zone. They must not be looked up.
@@ -45,6 +44,8 @@ to be equivalent to what must be provided by the delegating zone, and replaces t
 the delegation exists. If the delegation does not exists, the provided set works as if 
 the delegation existed.
 
+The Name server addresses provided, if any, are considered to replace the real IP
+addresses for those name server names.
 
 -------
 

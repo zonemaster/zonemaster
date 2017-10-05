@@ -3,7 +3,8 @@
 
 ### Purpose of this directory
 
-This contents of this directory includes contains other specification, currently only 
+This includes contains Test Type specifications, currently only 
 specification for undelegated tests.
 
 * [undelegated-test.md](undelegated-test.md)
+
