@@ -1,18 +1,17 @@
-# Zonemaster Test Specifications
+# Zonemaster Test Case Specifications
 
-This is the collection of test specifications for the Zonemaster
-project. All the details are in the 
-[Master Test Plan](MasterTestPlan.md).
+This is the collection of **Test Case** specifications for the Zonemaster
+project. All the details are in the [Master Test Plan](MasterTestPlan.md).
 
 
 ## Background
 
-1. The tests that has to be elaborated as test specifications has been
-   defined as a list of 
-   [test requirements](../../requirements/TestRequirements.md). Each test 
-   falls under a specific category.
+1. The Test Cases that has to be elaborated as Test Case specifications 
+   have been defined as a list of 
+   [test requirements](../../requirements/TestRequirements.md). 
+   Each test falls under a specific category.
 
-2. The document hierarchy of the test specifications could be found in
+2. The document hierarchy of the Test Case specifications could be found in
    the [Master Test Plan](MasterTestPlan.md).
 
 ## Mapping the Test Requirements to Test Case
@@ -30,8 +29,7 @@ project. All the details are in the
 1. Test cases should be written for each Test Requirement. There could
    be the case that a requirement can be implemented by doing more test
    cases than one, or that several requirements are solved by only one
-   test case.  
-   Example: [Syntax-TP/syntax01.md](Syntax-TP/syntax01.md).
+   test case. Example: [Syntax-TP/syntax01.md](Syntax-TP/syntax01.md).
 
 ## Document Hierarchy
 
@@ -42,8 +40,8 @@ project. All the details are in the
 
 -------
 
-Copyright (c) 2013-2017, IIS (The Internet Foundation in Sweden)  
-Copyright (c) 2013-2017, AFNIC  
+Copyright (c) 2013-2017, IIS (The Internet Foundation in Sweden)
+Copyright (c) 2013-2017, AFNIC
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
