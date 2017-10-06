@@ -8,8 +8,8 @@ The version numbers can be found in these Perl modules:
  * zonemaster-ldns - [LDNS.pm](https://github.com/dotse/zonemaster-ldns/blob/master/lib/Zonemaster/LDNS.pm)
  * zonemaster-engine - [Engine.pm](https://github.com/dotse/zonemaster-engine/blob/master/lib/Zonemaster/Engine.pm)
  * zonemaster-cli - [CLI.pm](https://github.com/dotse/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)
- * zonemaster-backend - [Backend.pm](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/Backend.pm) and
- * zonemaster-gui - [GUI.pm](https://github.com/dotse/zonemaster-gui/blob/master/lib/Zonemaster/GUI.pm),
+ * zonemaster-backend - [Backend.pm](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/Backend.pm)
+ * zonemaster-gui - [GUI.pm](https://github.com/dotse/zonemaster-gui/blob/master/lib/Zonemaster/GUI.pm)
 
 ## 2. Update the Changes file
 
@@ -194,10 +194,9 @@ Change it here:
 
 https://github.com/dotse/zonemaster/wiki/Zonemaster-Distribution-Releases
 
+To see tags for a repository:
 
-Too see tags for a repository:
-
-git show-ref --tags
+    git show-ref --tags
 
 -------
 
