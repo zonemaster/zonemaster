@@ -196,13 +196,10 @@ zonemaster-gui:
 
 Write a description how to set release in Github to get a nice presentation.
 
-## 13. Update the Distribution Release
+## 13. Release the Zonemaster Product
 
-If the release is for the whole Distribution (all components), the version
-numbers on the Distribution Wiki page must be updated with all new compnent
-releases.
-
-Change it here:
+If there are no more components to release, go to the Zonemaster repository an
+make a release.
 
 https://github.com/dotse/zonemaster/wiki/Zonemaster-Distribution-Releases
 
