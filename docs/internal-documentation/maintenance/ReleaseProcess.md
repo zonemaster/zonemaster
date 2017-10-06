@@ -73,6 +73,10 @@ For all components, generate Makefile, META.yml and others.
 
     perl Makefile.PL
 
+> **Note:** The above command may give a warning about a missing META.yml file
+> and urge informing the author. Instead of immediately informing the author,
+> verify that META.yml was created by the command at a later stage.
+
 For all components except Zonemaster::Engine, make sure that all files are
 covered by MANIFEST and/or MANIFEST.SKIP:
 
