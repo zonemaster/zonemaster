@@ -64,7 +64,7 @@ listed changes are covered by MANIFEST.SKIP:
 
 For the Zonemaster::LDNS component, manually allow META.yml to be created:
 
-    mkdir -p inc/.author
+    mkdir -p inc/.author  # LDNS only
 
 > **Note:** META.yml is only generated in the next step if Module::Install
 > determines that you are an author based on [the existence of inc/.author].
@@ -84,8 +84,8 @@ covered by MANIFEST and/or MANIFEST.SKIP:
 
 For the Zonemaster::Engine component, generate the complete MANIFEST file.
 
-    make all
-    make manifest
+    make all       # Engine only
+    make manifest  # Engine only
 
 For all components, review the MANIFEST file if in doubt or if there seems to be
 missing or extra files.
