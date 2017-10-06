@@ -53,23 +53,33 @@ Supported operating system versions:
 * Ubuntu 16.04
 
 _Currently, Debian 9 is not supported due to a known bug in Zonemaster::LDNS. That has to be resolved 
-before we can include Debian 9 as supported OS._
+before we can include support for Debian 9._
 
 Supported database engine versions:
 
-* MySQL 5.5, 5.7
-* PostgreSQL 9.3, 9.4, 9.5
+OS version   |  Supported MySQL version |  Supported Maria DB version  | Supported PostgreSQL
+-----------  | ------------------------ | ---------------------------- | --------------------
+CentOS 7     |                          |             5.5              |          9.2
+Debian 7.11  |           5.5            |                              |          9.1
+Debian 8.9   |           5.5            |                              |          9.4
+Ubuntu 14.04 |           5.5            |                              |          9.3
+Ubuntu 16.04 |           5.7            |                              |          9.5
+FreeBSD 10.3 |    5.5, 5.6, 5.7, 8.0    |                              |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0       
+FreeBSD 11   |    5.5, 5.6, 5.7, 8.0    |                              |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0      
+
+_TOO MANY VERSIONS ON FREEBSD?_
 
 Supported Perl versions:
 
-Perl version | CentOS version | Debian version | Ubuntu version |FreeBSD version
------------- | ---------------| -------------- | -------------- | --------------
-5.14         |        -       |        7       |         -      |        -
-5.16         |        7       |        -       |         -      |        -
-5.18         |        -       |        -       |       14.04    |        -
-5.20         |        -       |       8.9      |         -      |        -
-5.22         |        -       |        -       |       16.04    |        -
-5.24         |        -       |      (9.1)     |         -      |    10.3, 11
+OS version   |  Supported Perl version
+-----------  | -------------------------
+CentOS 7     |          5.16                        
+Debian 7.11  |          5.14
+Debian 8.9   |          5.20
+Ubuntu 14.04 |          5.18
+Ubuntu 16.04 |          5.22
+FreeBSD 10.3 |          5.24
+FreeBSD 11   |          5.24
 
 ### Localization
 
@@ -89,13 +99,13 @@ the source code.
 In order to install and run the different components, have a look at the
 installation documentation under each of the repositories below:
 
- * [net-ldns](https://github.com/dotse/net-ldns) - which is a fork of
-   of [ldns](https://www.nlnetlabs.nl/projects/ldns/). with a Perl frontend
- * [zonemaster-engine](https://github.com/dotse/zonemaster-engine) - which
+ * [zonemaster-ldns] - which is a fork of
+   of [ldns] with a Perl frontend.
+ * [zonemaster-engine] - which
    contains the libraries doing the actual tests.
- * [zonemaster-cli](https://github.com/dotse/zonemaster-cli) - a Command Line
+ * [zonemaster-cli] - a Command Line
    Interface for the engine.
- * [zonemaster-backend](https://github.com/dotse/zonemaster-backend) - which
+ * [zonemaster-backend] - which
    interfaces between the GUI and an API with the engine.
  * [zonemaster-gui](https://github.com/dotse/zonemaster-gui) - A graphical user
    interface for the engine.
@@ -119,16 +129,28 @@ You can follow the project in these two mailinglists:
  * [zonemaster-users](http://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-users)
  * [zonemaster-devel](http://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-devel)
 
-### Contact or Bug reporting 
+If you create a pull request, please select the "develop" branch in the relevant
+Zonemaster repository.
 
-For any contacts or bug reporting, please send a mail to
+### Bug reporting 
+
+For bug reporting go to the relevant Zonemaster repository ([zonemaster-ldns], [zonemaster-engine],
+[zonemaster-backend] or [zonemaster-gui]) and create a Github issue. Before creating the issue,
+please search for the problem, and if you find an open issue covering your issue, please add
+a comment with additional information, if any.
+
+If you cannot determine which repository to create the issue in, please select the main [zonemaster] 
+repository.
+
+### Contact 
+
+For contacting the Zonemaster project, please send a mail to
 "contact@zonemaster.net".
 
-
-
-
- 
-
-
-
-
+[zonemaster]: https://github.com/dotse/zonemaster
+[zonemaster-ldns]: https://github.com/dotse/zonemaster-ldns
+[zonemaster-engine]: https://github.com/dotse/zonemaster-engine 
+[zonemaster-cli]: https://github.com/dotse/zonemaster-cli
+[zonemaster-backend]: https://github.com/dotse/zonemaster-backend
+[zonemaster-gui]: https://github.com/dotse/zonemaster-gui
+[ldns]: https://www.nlnetlabs.nl/projects/ldns/
