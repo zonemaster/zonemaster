@@ -147,7 +147,21 @@ tarballs:
 If the system testing is successful, the preliminary distribution tarballs used
 in this step become accepted distribution tarballs to be used in step 11 below.
 
-## 10. Tag the release with git
+## 10. Upload to CPAN
+
+For each component that is to be updated in this release, publish the
+corresponding accepted distribution tarball on CPAN.
+Currently we use the organizational account ZNMSTR on PAUSE for doing this.
+
+## 11. Merge develop branc into master
+
+Merge the develop branch into master on Github.
+
+### ToDo
+
+Write a detailed instruction with commands.
+
+## 12. Tag the release with git
 
 Tag the release with these git commands, and push the tag to Github.
 
@@ -182,13 +196,7 @@ zonemaster-gui:
 
 Write a description how to set release in Github to get a nice presentation.
 
-## 11. Upload to CPAN
-
-For each component that is to be updated in this release, publish the
-corresponding accepted distribution tarball on CPAN.
-Currently we use the organizational account ZNMSTR on PAUSE for doing this.
-
-## 12. Update the Distribution Release
+## 13. Update the Distribution Release
 
 If the release is for the whole Distribution (all components), the version
 numbers on the Distribution Wiki page must be updated with all new compnent
