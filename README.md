@@ -45,11 +45,15 @@ Supported operating system versions:
 
 * CentOS 7
 * Debian 7.11
-* Debian 8.6
-* FreeBSD 10.1
+* Debian 8.9
+* (Debian 9.1)
 * FreeBSD 10.3
+* FreeBSD 11
 * Ubuntu 14.04
 * Ubuntu 16.04
+
+_Currently, Debian 9 is not supported due to a known bug in Zonemaster::LDNS. That has to be resolved 
+before we can include Debian 9 as supported OS._
 
 Supported database engine versions:
 
@@ -58,7 +62,14 @@ Supported database engine versions:
 
 Supported Perl versions:
 
-* Perl 5.14, 5.16, 5.18, 5.20, 5.22
+Perl version | CentOS version | Debian version | Ubuntu version |FreeBSD version
+------------ | ---------------| -------------- | -------------- | --------------
+5.14         |        -       |        7       |         -      |        -
+5.16         |        7       |        -       |         -      |        -
+5.18         |        -       |        -       |       14.04    |        -
+5.20         |        -       |       8.9      |         -      |        -
+5.22         |        -       |        -       |       16.04    |        -
+5.24         |        -       |      (9.1)     |         -      |    10.3, 11
 
 ### Localization
 
@@ -108,8 +119,16 @@ You can follow the project in these two mailinglists:
  * [zonemaster-users](http://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-users)
  * [zonemaster-devel](http://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-devel)
 
-### Contact or Bug reporting 
+### Contact or Bug reporting 
 
 For any contacts or bug reporting, please send a mail to
 "contact@zonemaster.net".
+
+
+
+
+ 
+
+
+
 
