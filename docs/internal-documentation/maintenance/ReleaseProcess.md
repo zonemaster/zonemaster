@@ -5,19 +5,18 @@ Release process
 
 The version numbers can be found in these Perl modules:
 
- * zonemaster-engine - [Zonemaster.pm](https://github.com/dotse/zonemaster-engine/blob/master/lib/Zonemaster.pm)  
- * zonemaster-cli - [CLI.pm](https://github.com/dotse/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)  
- * zonemaster-backend - [Config.pm](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/WebBackend/Config.pm) and
-   [DB.pm](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/WebBackend/DB.pm)
- * zonemaster-gui - [Client.pm](https://github.com/dotse/zonemaster-gui/blob/master/lib/Zonemaster/GUI/Dancer/Client.pm),
-   [Frontend.pm](https://github.com/dotse/zonemaster-gui/blob/master/lib/Zonemaster/GUI/Dancer/Frontend.pm) and
-   [NoJsFrontend.pm](https://github.com/dotse/zonemaster-gui/blob/master/lib/Zonemaster/GUI/Dancer/NoJsFrontend.pm)
+ * zonemaster-ldns - [LDNS.pm](https://github.com/dotse/zonemaster-ldns/blob/master/lib/Zonemaster/LDNS.pm)
+ * zonemaster-engine - [Engine.pm](https://github.com/dotse/zonemaster-engine/blob/master/lib/Zonemaster/Engine.pm)
+ * zonemaster-cli - [CLI.pm](https://github.com/dotse/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)
+ * zonemaster-backend - [Backend.pm](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/Backend.pm)
+ * zonemaster-gui - [GUI.pm](https://github.com/dotse/zonemaster-gui/blob/master/lib/Zonemaster/GUI.pm)
 
 ## 2. Update the Changes file
 
 Any changes since the last release must be documented in the Changes files.
 Please refer to any Github issues related to the change by the issue number.
 
+ * zonemaster-ldns - [Changes](https://github.com/dotse/zonemaster-ldns/blob/master/Changes)
  * zonemaster-engine - [Changes](https://github.com/dotse/zonemaster-engine/blob/master/Changes)
  * zonemaster-cli - [Changes](https://github.com/dotse/zonemaster-cli/blob/master/Changes)
  * zonemaster-backend - [Changes](https://github.com/dotse/zonemaster-backend/blob/master/CHANGES)
@@ -25,18 +24,18 @@ Please refer to any Github issues related to the change by the issue number.
 
 ## 3. Update prerequisites
 
-Make sure the prerequisites section in [README.md](https://github.com/dotse/zonemaster/blob/master/README.md)
-is up to date with regard to [SupportCriteria](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SupportCriteria.md).
+Make sure the [declaration of prerequisites] is up to date with regard to
+[SupportCriteria](SupportCriteria.md).
 
-## 4. Verify that MANIFEST is up to date
+## 4. Update [CI] configuration
 
-In order to have a complete installation from a package, the MANIFEST needs
-to be the complete set of files to be included.
+Make sure the Travis configuration for each repo is up to date with the supported Perl versions.
 
- * zonemaster-engine - (it will be created by the `make manifest` command below)
- * zonemaster-cli - [MANIFEST](https://github.com/dotse/zonemaster-cli/blob/master/MANIFEST)
- * zonemaster-backend - [MANIFEST](https://github.com/dotse/zonemaster-backend/blob/master/MANIFEST)
- * zonemaster-gui - [MANIFEST](https://github.com/dotse/zonemaster-gui/blob/master/MANIFEST)
+ * zonemaster-ldns - [.travis.yml](https://github.com/dotse/zonemaster-ldns/blob/master/.travis.yml)
+ * zonemaster-engine - [.travis.yml](https://github.com/dotse/zonemaster-engine/blob/master/.travis.yml)
+ * zonemaster-cli - [.travis.yml](https://github.com/dotse/zonemaster-cli/blob/master/.travis.yml)
+ * zonemaster-backend - [.travis.yml](https://github.com/dotse/zonemaster-backend/blob/master/.travis.yml)
+ * zonemaster-gui - [.travis.yml](https://github.com/dotse/zonemaster-gui/blob/master/.travis.yml)
 
 ## 5. Verify that Makefile.PL has all the correct data
 
@@ -44,12 +43,54 @@ The Makefile.PL contains all the modules required by the component to
 function, with all the version numbers needed as well. It also has some
 other metadata about the component.
 
+ * zonemaster-ldns - [Makefile.PL](https://github.com/dotse/zonemaster-ldns/blob/master/Makefile.PL)
  * zonemaster-engine - [Makefile.PL](https://github.com/dotse/zonemaster-engine/blob/master/Makefile.PL)
  * zonemaster-cli - [Makefile.PL](https://github.com/dotse/zonemaster-cli/blob/master/Makefile.PL)
  * zonemaster-backend - [Makefile.PL](https://github.com/dotse/zonemaster-backend/blob/master/Makefile.PL)
  * zonemaster-gui - [Makefile.PL](https://github.com/dotse/zonemaster-gui/blob/master/Makefile.PL)
 
-## 6. Produce distribution tarballs
+## 6. Verify that MANIFEST is up to date
+
+> **Note:** The MANIFEST file lists the files that will be included in the dist
+> tarball.
+
+For all components, make sure your working directory is clean, or that all
+listed changes are covered by MANIFEST.SKIP:
+
+    git status --ignored
+
+> **Note:** To throw away any and all changes to tracked and untracked files you
+> can run `git clean -dfx ; git reset --hard`.
+
+For the Zonemaster::LDNS component, manually allow META.yml to be created:
+
+    mkdir -p inc/.author  # LDNS only
+
+> **Note:** META.yml is only generated in the next step if Module::Install
+> determines that you are an author based on [the existence of inc/.author].
+
+For all components, generate Makefile, META.yml and others.
+
+    perl Makefile.PL
+
+> **Note:** The above command may give a warning about a missing META.yml file
+> and urge informing the author. Instead of immediately informing the author,
+> verify that META.yml was created by the command at a later stage.
+
+For all components except Zonemaster::Engine, make sure that all files are
+covered by MANIFEST and/or MANIFEST.SKIP:
+
+    make distcheck
+
+For the Zonemaster::Engine component, generate the complete MANIFEST file.
+
+    make all       # Engine only
+    make manifest  # Engine only
+
+For all components, review the MANIFEST file if in doubt or if there seems to be
+missing or extra files.
+
+## 7. Produce distribution tarballs
 
 This step serves double purposes.
 First, it verifies that a distribution tarball can be successfully
@@ -60,9 +101,7 @@ below (either by building or retrieving them).
 For each component that **is** to be updated in this release, build a new
 distribution tarball:
 
-    perl Makefile.PL
     make all
-    make manifest
     make dist
 
 For each component that **is not** to be updated in this release, retreive their
@@ -71,37 +110,67 @@ CPAN].
 
 [ZNMSTR account at CPAN]: http://search.cpan.org/~znmstr/
 
-## 7. Verify that the module builds and all tests pass
+## 8. Verify that the module builds and all tests pass
+
+Find the list of supported Perl versions and locales in the [declaration of
+prerequisites]. Then find the latest point-release of each supported Perl
+version in the table of [latest releases in each branch of Perl].
+
+Make sure you've set up perlbrew and installed the latest point-release of each
+supported Perl version for perlbrew.
+
+    perlbrew init
+    perlbrew install perl-5.14.4  # For every supported version of Perl
+
+Perform the following for each component.
 
 Verify that the module builds and all tests pass with the latest point release
 for every supported major Perl version and for every supported system locale.
-This can be done quite easily with something like this command for each locale:
+For each supported locale and the set of supported point-releases, modify and
+run the folloing command:
 
-    LC_ALL=en.UTF-8 LC_MESSAGES=en.UTF-8 LC_NUMERIC=en.UTF-8 LANG=en.UTF-8 perlbrew exec --with 5.14.4,5.16.3,5.18.4,5.20.1 '( git clean -dfx && perl Makefile.PL && make ) >& /dev/null && prove -bQ'
+    LC_ALL=en.UTF-8 LC_MESSAGES=en.UTF-8 LC_NUMERIC=en.UTF-8 LANG=en.UTF-8 perlbrew exec --with 5.14.4,5.16.3,5.18.4,5.20.3,5.22.4,5.24.3 '( git clean -dfx && perl Makefile.PL && make ) >/dev/null && prove -bQ'
 
-## 8. Verify that Zonemaster works when installed according to the documented installation procedures
+## 9. Verify that Zonemaster works when installed according to the documented installation procedures
 
-Using the preliminary distribution tarballs produced in step 6 above, follow the
-procedures in [SystemTesting.md].
+Using the preliminary distribution tarballs produced in step 7 above, follow the
+procedures in [SystemTesting](SystemTesting.md).
 
 If the system testing fails in a way that requires updated distribution
 tarballs:
  1. Get the changes merged.
- 2. Consider whether the actions taken in steps 1–5 above need amendment.
+ 2. Consider whether the actions taken in steps 1–6 above need amendment.
  3. Make new distribution tarballs for the affected components according to step
-    6 above.
- 4. Resume this document from step 7 above.
+    7 above.
+ 4. Resume this document from step 8 above.
 
 If the system testing is successful, the preliminary distribution tarballs used
-in this step become accepted distribution tarballs to be used in step 10 below.
+in this step become accepted distribution tarballs to be used in step 11 below.
 
-[SystemTesting.md]: https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/SystemTesting.md
+## 10. Upload to CPAN
 
-## 9. Tag the release with git
+For each component that is to be updated in this release, publish the
+corresponding accepted distribution tarball on CPAN.
+Currently we use the organizational account ZNMSTR on PAUSE for doing this.
+
+## 11. Merge develop branc into master
+
+Merge the develop branch into master on Github.
+
+### ToDo
+
+Write a detailed instruction with commands.
+
+## 12. Tag the release with git
 
 Tag the release with these git commands, and push the tag to Github.
 
 **Change the version number below to the correct version for this release**
+
+zonemaster-ldns:
+
+    git tag v1.0.0
+	git push <repository> --tags
 
 zonemaster-engine:
 
@@ -123,31 +192,31 @@ zonemaster-gui:
     git tag v1.0.0
 	git push origin --tags
 
-## 10. Upload to CPAN
+### ToDo
 
-For each component that is to be updated in this release, publish the
-corresponding accepted distribution tarball on CPAN.
-Currently we use the organizational account ZNMSTR on PAUSE for doing this.
+Write a description how to set release in Github to get a nice presentation.
 
-## 11. Update the Distribution Release
+## 13. Release the Zonemaster Product
 
-If the release is for the whole Distribution (all components), the version
-numbers on the Distribution Wiki page must be updated with all new compnent
-releases.
-
-Change it here:
+If there are no more components to release, go to the Zonemaster repository an
+make a release.
 
 https://github.com/dotse/zonemaster/wiki/Zonemaster-Distribution-Releases
 
+To see tags for a repository:
 
-Too see tags for a repository:
-
-git show-ref --tags
+    git show-ref --tags
 
 -------
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
+[CI]: https://github.com/travis-ci/travis-ci
+[declaration of prerequisites]: ../../../README.md#prerequisites
+[latest releases in each branch of Perl]: http://www.cpan.org/src/README.html
+[the existence of inc/.author]: http://search.cpan.org/~ether/Module-Install-1.18/lib/Module/Install.pod#Standard_Extensions
+
+
+Copyright (c) 2013-2017, IIS (The Internet Foundation in Sweden)\
+Copyright (c) 2013-2017, AFNIC\
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
