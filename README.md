@@ -57,29 +57,29 @@ before we can include support for Debian 9._
 
 Supported database engine versions:
 
-OS version   |  Supported MySQL version |  Supported MariaDB version  | Supported PostgreSQL
------------  | ------------------------ | ---------------------------- | --------------------
-CentOS 7     |                          |             5.5              |          9.2
-Debian 7.11  |           5.5            |                              |          9.1
-Debian 8.9   |           5.5            |                              |          9.4
-Ubuntu 14.04 |           5.5            |                              |          9.3
-Ubuntu 16.04 |           5.7            |                              |          9.5
-FreeBSD 10.3 |    5.5, 5.6, 5.7, 8.0    |                              |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0       
-FreeBSD 11.1 |    5.5, 5.6, 5.7, 8.0    |                              |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0      
+OS           |  MySQL                |  MariaDB | PostgreSQL
+-----------  | ----------------------| -------- | -----------
+CentOS 7     |                       |   5.5    |   9.2
+Debian 7.11  |           5.5         |          |   9.1
+Debian 8.9   |           5.5         |          |   9.4
+Ubuntu 14.04 |           5.5         |          |   9.3
+Ubuntu 16.04 |           5.7         |          |   9.5
+FreeBSD 10.3 |    5.5, 5.6, 5.7, 8.0 |          |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0       
+FreeBSD 11.1 |    5.5, 5.6, 5.7, 8.0 |          |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0      
 
 _TOO MANY VERSIONS ON FREEBSD?_
 
 Supported Perl versions:
 
-OS version   |  Supported Perl version
------------  | -------------------------
-CentOS 7     |          5.16                        
-Debian 7.11  |          5.14
-Debian 8.9   |          5.20
-Ubuntu 14.04 |          5.18
-Ubuntu 16.04 |          5.22
-FreeBSD 10.3 |          5.24
-FreeBSD 11.1 |          5.24
+OS           | Perl
+-----------  | ----
+CentOS 7     | 5.16                        
+Debian 7.11  | 5.14
+Debian 8.9   | 5.20
+Ubuntu 14.04 | 5.18
+Ubuntu 16.04 | 5.22
+FreeBSD 10.3 | 5.24
+FreeBSD 11.1 | 5.24
 
 ### Localization
 
