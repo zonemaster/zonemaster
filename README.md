@@ -57,15 +57,15 @@ before we can include support for Debian 9._
 
 ### Supported database engine versions
 
-Operating System |  MySQL                |  MariaDB | PostgreSQL
----------------  | ----------------------| -------- | -----------
-CentOS 7         |                       |   5.5    |   9.2
-Debian 7.11      |           5.5         |          |   9.1
-Debian 8.9       |           5.5         |          |   9.4
-Ubuntu 14.04     |           5.5         |          |   9.3
-Ubuntu 16.04     |           5.7         |          |   9.5
-FreeBSD 10.3     |    5.5, 5.6, 5.7, 8.0 |          |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0       
-FreeBSD 11.1     |    5.5, 5.6, 5.7, 8.0 |          |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0      
+Operating System |  MariaDB | MySQL              | PostgreSQL
+---------------  | -------- | ------------------ | -----------
+CentOS 7         |   5.5    |                    |   9.2
+Debian 7.11      |          | 5.5                |   9.1
+Debian 8.9       |          | 5.5                |   9.4
+FreeBSD 10.3     |          | 5.5, 5.6, 5.7, 8.0 |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0       
+FreeBSD 11.1     |          | 5.5, 5.6, 5.7, 8.0 |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0      
+Ubuntu 14.04     |          | 5.5                |   9.3
+Ubuntu 16.04     |          | 5.7                |   9.5
 
 _TOO MANY VERSIONS ON FREEBSD?_
 
@@ -76,10 +76,10 @@ Operating System | Perl
 CentOS 7         | 5.16                        
 Debian 7.11      | 5.14
 Debian 8.9       | 5.20
-Ubuntu 14.04     | 5.18
-Ubuntu 16.04     | 5.22
 FreeBSD 10.3     | 5.24
 FreeBSD 11.1     | 5.24
+Ubuntu 14.04     | 5.18
+Ubuntu 16.04     | 5.22
 
 ## Localization
 
@@ -91,20 +91,27 @@ Zonemaster comes with localization for these locales:
 
 ## Repositories
 
-The Zonemaster project has four different repositories. All the software for
-the Zonemaster project lies in these four repositories. The software has not yet
-been packaged for any operating systems, and you have to install most of it from
-the source code.
+The Zonemaster Product uses six different Github repositories. The repository that
+this file is found in is the main repository that holds specifications and documentation
+for the Zonemaster product. All the software for the Zonemaster project lies in five 
+repositories, one for each Zonemaster component. The software has not yet been packaged 
+for any operating systems, and you have to install most of it from the source code. The
+recommended method is to install from [CPAN], but it is possible to install directly from 
+clones of the Github repositories.
 
-In order to install and run the different components, have a look at the
-installation documentation under each of the repositories below:
+The Zonemaster Product includes the following components:
 
  * [zonemaster-ldns] - which is a fork of of [ldns] with a Perl frontend.
  * [zonemaster-engine] - which contains the libraries doing the actual tests.
  * [zonemaster-cli] - a Command Line Interface for the engine.
  * [zonemaster-backend] - which interfaces between the GUI and an API with the engine.
- * [zonemaster-gui](https://github.com/dotse/zonemaster-gui) - A graphical user
-   interface for the engine.
+ * [zonemaster-gui] - A graphical user interface for the engine.
+
+## Installation
+
+To install Zonemaster, start with installation of [zonemaster-engine] (which will
+draw in Zonemaster-LDNS) and then continue with the other parts. From the links above
+you will find installation instructions.
 
 ## Versions
 
@@ -151,3 +158,4 @@ For contacting the Zonemaster project, please send a mail to
 [zonemaster-backend]: https://github.com/dotse/zonemaster-backend
 [zonemaster-gui]: https://github.com/dotse/zonemaster-gui
 [ldns]: https://www.nlnetlabs.nl/projects/ldns/
+[CPAN]: http://search.cpan.org/search?query=Zonemaster&mode=dist
