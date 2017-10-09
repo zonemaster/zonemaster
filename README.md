@@ -48,7 +48,7 @@ Supported operating system versions:
 * Debian 8.9
 * (Debian 9.1)
 * FreeBSD 10.3
-* FreeBSD 11
+* FreeBSD 11.1
 * Ubuntu 14.04
 * Ubuntu 16.04
 
@@ -65,7 +65,7 @@ Debian 8.9   |           5.5            |                              |        
 Ubuntu 14.04 |           5.5            |                              |          9.3
 Ubuntu 16.04 |           5.7            |                              |          9.5
 FreeBSD 10.3 |    5.5, 5.6, 5.7, 8.0    |                              |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0       
-FreeBSD 11   |    5.5, 5.6, 5.7, 8.0    |                              |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0      
+FreeBSD 11.1 |    5.5, 5.6, 5.7, 8.0    |                              |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0      
 
 _TOO MANY VERSIONS ON FREEBSD?_
 
@@ -79,7 +79,7 @@ Debian 8.9   |          5.20
 Ubuntu 14.04 |          5.18
 Ubuntu 16.04 |          5.22
 FreeBSD 10.3 |          5.24
-FreeBSD 11   |          5.24
+FreeBSD 11.1 |          5.24
 
 ### Localization
 
@@ -99,14 +99,10 @@ the source code.
 In order to install and run the different components, have a look at the
 installation documentation under each of the repositories below:
 
- * [zonemaster-ldns] - which is a fork of
-   of [ldns] with a Perl frontend.
- * [zonemaster-engine] - which
-   contains the libraries doing the actual tests.
- * [zonemaster-cli] - a Command Line
-   Interface for the engine.
- * [zonemaster-backend] - which
-   interfaces between the GUI and an API with the engine.
+ * [zonemaster-ldns] - which is a fork of of [ldns] with a Perl frontend.
+ * [zonemaster-engine] - which contains the libraries doing the actual tests.
+ * [zonemaster-cli] - a Command Line Interface for the engine.
+ * [zonemaster-backend] - which interfaces between the GUI and an API with the engine.
  * [zonemaster-gui](https://github.com/dotse/zonemaster-gui) - A graphical user
    interface for the engine.
 
