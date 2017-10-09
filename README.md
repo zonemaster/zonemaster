@@ -57,7 +57,7 @@ before we can include support for Debian 9._
 
 Supported database engine versions:
 
-OS version   |  Supported MySQL version |  Supported Maria DB version  | Supported PostgreSQL
+OS version   |  Supported MySQL version |  Supported MariaDB version  | Supported PostgreSQL
 -----------  | ------------------------ | ---------------------------- | --------------------
 CentOS 7     |                          |             5.5              |          9.2
 Debian 7.11  |           5.5            |                              |          9.1
