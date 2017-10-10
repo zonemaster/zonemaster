@@ -89,29 +89,33 @@ Zonemaster comes with localization for these locales:
 * fr.UTF-8
 * sv.UTF-8
 
-## Repositories
+## Zonemaster and its components
 
-The Zonemaster Product uses six different Github repositories. The repository that
-this file is found in is the main repository that holds specifications and documentation
-for the Zonemaster product. All the software for the Zonemaster project lies in five 
-repositories, one for each Zonemaster component. The software has not yet been packaged 
-for any operating systems, and you have to install most of it from the source code. The
-recommended method is to install from [CPAN], but it is possible to install directly from 
-clones of the Github repositories.
+The Zonemaster Product consists of the main part and five components. The main part
+consists of specifications and documentation for the Zonemaster product, and is
+stored in main Zonemaster Github repository ([zonemaster]).
+
+All the software for the Zonemaster project belong to the five components, each
+component being stored in its own Github repository (listed below).
+
+The software has not yet been packaged for any operating systems, and you have to 
+install most of it from the source code. The recommended method is to install 
+from [CPAN], but it is possible to install directly from clones of the Github 
+repositories.
 
 The Zonemaster Product includes the following components:
 
- * [zonemaster-ldns] - which is a fork of of [ldns] with a Perl frontend.
- * [zonemaster-engine] - which contains the libraries doing the actual tests.
- * [zonemaster-cli] - a Command Line Interface for the engine.
- * [zonemaster-backend] - which interfaces between the GUI and an API with the engine.
- * [zonemaster-gui] - A graphical user interface for the engine.
+ * [zonemaster-ldns] - A fork of of [ldns] with a Perl frontend used by [zonemaster-engine].
+ * [zonemaster-engine] - The Zonemaster test library.
+ * [zonemaster-cli] - A Command Line Interface (CLI) to the test library ([zonemaster-engine]).
+ * [zonemaster-backend] - A JSON/RPC interface with database to the test library ([zonemaster-engine]).
+ * [zonemaster-gui] - A web user interface to the test library via [zonemaster-backend].
 
 ## Installation
 
 To install Zonemaster, start with installation of [zonemaster-engine] (which will
-draw in Zonemaster-LDNS) and then continue with the other parts. From the links above
-you will find installation instructions.
+draw in Zonemaster-LDNS) and then continue with the other parts. You will find 
+installation instructions from the links above.
 
 ## Versions
 
