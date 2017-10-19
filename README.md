@@ -57,17 +57,15 @@ before we can include support for Debian 9._
 
 ### Supported database engine versions
 
-Operating System |  MariaDB | MySQL              | PostgreSQL
----------------  | -------- | ------------------ | -----------
-CentOS 7         |   5.5    |                    |   9.2
-Debian 7.11      |          | 5.5                |   9.1
-Debian 8.9       |          | 5.5                |   9.4
-FreeBSD 10.3     |          | 5.5, 5.6, 5.7, 8.0 |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0       
-FreeBSD 11.1     |          | 5.5, 5.6, 5.7, 8.0 |   9.2, 9.3, 9.4, 9.5, 9.6, 10.0      
-Ubuntu 14.04     |          | 5.5                |   9.3
-Ubuntu 16.04     |          | 5.7                |   9.5
-
-_TOO MANY VERSIONS ON FREEBSD?_
+Operating System | MariaDB  | MySQL | PostgreSQL
+---------------- | -------- | ------| -----------
+CentOS 7         |   5.5    |       |   9.2
+Debian 7.11      |          | 5.5   |   9.1
+Debian 8.9       |          | 5.5   |   9.4
+FreeBSD 10.3     |          | 5.6   |   9.5       
+FreeBSD 11.1     |          | 5.6   |   9.5      
+Ubuntu 14.04     |          | 5.5   |   9.3
+Ubuntu 16.04     |          | 5.7   |   9.5
 
 ### Supported Perl versions
 
