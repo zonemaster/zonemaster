@@ -28,6 +28,14 @@ Zonesmaster is actively tested on these operating systems:
 
 ## Operating system versions
 
+### List of versions is set
+
+The criteria below are used at the time of release of Zonemaster to determine what versions
+that are supported for the version of Zonemaster to be released. That list of versions is
+fixed for the lifetime of the Zonemaster version.
+
+### Criteria
+
 Minor version/point releases should be specified. Patch levels should not be specified.
 
 Operating system versions without long term support form their vendor should not be supported.
@@ -51,8 +59,10 @@ Operating system specific guidelines:
     https://wiki.debian.org/DebianReleases/PointReleases
 
 * FreeBSD:
-  * Extended releases are listed here:
+  * Supported releases are listed here:
     https://www.freebsd.org/security/
+  * FreeBSD 10: Releases that are supported by FreeBSD and being "extended" are supported by Zonemaster.
+  * FreeBSD 11: Latest release version is supported.
   * Patch level should not be specified.
 
 * Ubuntu:
