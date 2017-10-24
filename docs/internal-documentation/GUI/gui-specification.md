@@ -5,7 +5,7 @@ The web framework must separate code from web page design. If possible, the syst
 
 No 3rd party resources should be loaded by the web client, all resources should be hosted on the same domain address as the rest of the web interface (this also makes it transport protocol independent).
 
-This specification has been created based on the requirements found in this document: [Combined-GUI-Requirements](../../requirements/GUI-Combined-Requirements.txt)
+This specification has been created based on the requirements found in this document: [Combined-GUI-Requirements](../requirements/GUI-Combined-Requirements.txt)
 
 **Functionality on the first page the user encounters are the following:**
 * Language selection (defined languages in v1.0 must be at least English, French and Swedish)

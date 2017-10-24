@@ -6,7 +6,7 @@
 
 ### Objective
 
-Section 6.1 of the [RFC 2181](http://tools.ietf.org/html/rfc2181) specifies
+Section 6.1 of the [RFC 2181](https://tools.ietf.org/html/rfc2181) specifies
 that the SOA record is mandatory for every zone. 
 
 This test is intended to verify the prescence of a SOA record for the
@@ -45,4 +45,4 @@ Copyright (c) 2013, 2014, 2015, AFNIC
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
-work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.
+work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.

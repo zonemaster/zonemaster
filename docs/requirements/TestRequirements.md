@@ -102,12 +102,12 @@ Tests to implement
 
 Future tests
 ------------
- * Case insensitivity in a name server, [RFC 4343](http://tools.ietf.org/html/rfc4343).
- * More tests of EDNS(0), [RFC 6891](http://tools.ietf.org/search/rfc6891) and http://ednscomp.isc.org/.
+ * Case insensitivity in a name server, [RFC 4343](https://tools.ietf.org/html/rfc4343).
+ * More tests of EDNS(0), [RFC 6891](https://tools.ietf.org/search/rfc6891) and http://ednscomp.isc.org/.
  * AXFR is complex, perhaps do more inspection of data coming from AXFR,
    [RFC 5936](https://tools.ietf.org/html/rfc5936).
  * Check for algorithm completeness (DS->DNSKEY->RRSIG) as per section 2.2 of
-   [RFC 4035](http://tools.ietf.org/html/rfc4035#section-2.2).
+   [RFC 4035](https://tools.ietf.org/html/rfc4035#section-2.2).
  * ICMP answer
  * Test for referral to root (possible DDoS vector for authoritative name servers)
  * Check to see if removed authoritative name server is still authoritative (requires
@@ -162,4 +162,4 @@ Copyright (c) 2013, 2014, 2015, AFNIC
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
-work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.
+work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.

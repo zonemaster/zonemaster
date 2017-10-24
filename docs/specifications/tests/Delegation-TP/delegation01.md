@@ -6,7 +6,7 @@
 
 ### Objective
 
-Section 4.1 of [RFC 1034](http://tools.ietf.org/html/rfc1034) specifies that
+Section 4.1 of [RFC 1034](https://tools.ietf.org/html/rfc1034) specifies that
 there must be at least minimum two name servers for a domain. This test is
 done to verify this condition
 
@@ -46,4 +46,4 @@ Copyright (c) 2013-2017, AFNIC
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
-work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.
+work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
