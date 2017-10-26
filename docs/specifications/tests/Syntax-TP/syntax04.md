@@ -8,7 +8,7 @@
 The Name Server name must be a valid hostname according to the rules defined
 in [RFC 952](https://tools.ietf.org/html/rfc952),
 in section 2.1 in [RFC 1123](https://tools.ietf.org/html/rfc1123#section-2.1),
-section 11 in [RFC 2182](http://tools.ietf.org/html/rfc2181#section-11) and
+section 11 in [RFC 2182](https://tools.ietf.org/html/rfc2181#section-11) and
 section 2 and 5 in [RFC 3696](https://tools.ietf.org/html/rfc3696#section-2).
 Newer RFCs may override some rules defined in earlier documents.
 
@@ -52,4 +52,4 @@ Copyright (c) 2013, 2014, 2015, AFNIC
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
-work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.
+work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.

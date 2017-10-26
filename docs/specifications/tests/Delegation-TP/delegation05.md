@@ -6,7 +6,7 @@
 
 ### Objective
 
-[RFC 1912](http://tools.ietf.org/html/rfc1912) mentions that NS records
+[RFC 1912](https://tools.ietf.org/html/rfc1912) mentions that NS records
 pointing to CNAME is forbidden. 
 
 The objective of this test is to verify that name servers does not point to
@@ -44,4 +44,4 @@ Copyright (c) 2013, 2014, 2015, AFNIC
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
-work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.
+work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
