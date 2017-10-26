@@ -75,7 +75,7 @@ The set of configurations must include at least:
          The output from command should be "1".
 
    3. Install Zonemaster Engine
-      1. Follow the [dependencies](https://github.com/dotse/zonemaster-engine/blob/master/docs/Installation.md#dependencies) section of the installation guide to the letter.
+      1. Install dependencies according to the [installation instruction](https://github.com/dotse/zonemaster-engine/blob/master/docs/Installation.md).
       2. Install the preliminary distribution tarball for zonemaster-engine.
 
          ```sh
@@ -85,8 +85,7 @@ The set of configurations must include at least:
       3. Follow the [post-installation sanity check](https://github.com/dotse/zonemaster-engine/blob/master/docs/Installation.md#post-installation-sanity-check) section of the installation guide to the letter.
 
    4. Install Zonemaster Backend
-      1. Follow the [dependencies](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#dependencies)
-         section of the installation guide to the letter.
+      1. Install dependencies according to the [installation instruction](https://github.com/dotse/zonemaster-backend/blob/master/docs/Installation.md).
       2. Install the preliminary distribution tarball for zonemaster-backend.
 
          ```sh
