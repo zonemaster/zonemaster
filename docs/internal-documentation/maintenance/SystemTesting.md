@@ -90,7 +90,7 @@ The set of configurations must include at least:
       2. Install the preliminary distribution tarball for zonemaster-backend.
 
          ```sh
-         sudo cpanm Zonemaster-WebBackend-${BACKEND_VERSION}.tar.gz
+         sudo cpanm Zonemaster-Backend-${BACKEND_VERSION}.tar.gz
          ```
 
       3. Follow the [configuration](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#configuration) section of the installation guide to the letter.
