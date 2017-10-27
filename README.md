@@ -59,13 +59,19 @@ before we can include support for Debian 9._
 
 Operating System | MySQL | PostgreSQL
 ---------------- | ------| -----------
-CentOS 7         | 5.6   |   -
-Debian 7.11      | 5.5   |   -
+CentOS 7         | 5.6   |   (9.3)
+Debian 7.11      | 5.5   |   (9.3)
 Debian 8.9       | 5.5   |   9.4
-FreeBSD 10.3     | 5.6   |   9.5       
-FreeBSD 11.1     | 5.6   |   9.5      
+FreeBSD 10.3     | (5.6) |   9.5       
+FreeBSD 11.1     | (5.6) |   9.5      
 Ubuntu 14.04     | 5.5   |   9.3
 Ubuntu 16.04     | 5.7   |   9.5
+
+_PostgreSQL has not been tested on CentOS and Debian 7.11, but we have no reason
+to beleive that the version listed for the OS would not work._
+
+_MySQL has not been tested on FreeBSD, but we have not reason to beleive that
+that the version listed for FreeBSD would not work._
 
 ### Supported Perl versions
 
