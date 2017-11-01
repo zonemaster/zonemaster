@@ -1,4 +1,32 @@
-Release history for Zonemaster
+Release history of Zonemaster
+
+v2017.3 2017-11-02 Public release
+
+Fixes:
+
+- Update README.md (#519)
+- Fix links (#517) 
+- Update README.md (#516) 
+- Update the release process for LDNS (#512) 
+- Updated release plan and version principles solving issue #506 (#510) 
+- Fix Commonmark rendering on Github.Replace NBSP with SPACE.
+- Update README.md. Corrected links that were not working and made a head line 
+  to be a head line. No content change.
+- Update MasterTestPlan.md. Corrected a link that was not a link.
+- Be more explicit about the system testing procedure (#489) 
+- Specify how to install tarballs in system testing (#488)
+- Update delegation01.md Clarified how name servers should be counted. (#501)
+- Corrected issue in Markdown heading
+
+This version of Zonemaster also consists of the following components. For each
+component, see its Changes file.
+
+  zonemaster-ldns     v1.0.1  https://github.com/dotse/zonemaster-ldns
+  zonemaster-engine   v2.0.1  https://github.com/dotse/zonemaster-engine
+  zonemaster-cli      v1.1.1  https://github.com/dotse/zonemaster-cli
+  zonemaster-backend  v2.0.0  https://github.com/dotse/zonemaster-backend
+  zonemaster-gui      v1.0.8  https://github.com/dotse/zonemaster-gui
+
 
 v2017.2 2017-04-11 (Pre-release)
 	This version of Zonemaster consists of the parts listed below. Note the pre-releases of 
