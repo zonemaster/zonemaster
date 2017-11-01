@@ -39,7 +39,7 @@ the "I" must be updated in the product version.
 A specific version of the Zonemaster Product will, besides specifications and other documents, include a specific
 version of each of the Zonemaster components. The specifications and other documents are stored in the main
 repository, and the version is defined in Git by a tag on the last commit. The included versions of the components is
-defined by the [CHANGES.txt](https://github.com/dotse/zonemaster/blob/master/CHANGES.txt) file.
+defined by the [Changes](https://github.com/dotse/zonemaster/blob/master/Changes) file.
 
 ## Version Number Syntax for Zonemaster components
 
