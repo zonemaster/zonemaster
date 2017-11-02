@@ -142,7 +142,6 @@ You can follow the project in these two mailinglists:
  * [zonemaster-devel](http://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-devel)
 
 
-
 ## Bug reporting 
 
 For bug reporting go to the relevant Zonemaster repository ([zonemaster-ldns], [zonemaster-engine],
