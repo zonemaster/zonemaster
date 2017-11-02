@@ -30,7 +30,7 @@ software bugs, but can be protocol errors in DNS, or user or documentation
 errors.
 
 Bug fixes are included in minor releases. See the
-[version numbering policy](../design/Versions%20and%20Releases.md)
+[version numbering policy](../../design/Versions%20and%20Releases.md)
 document for documentation on version numbers for releases.
 
 ### Minor Changes
@@ -40,7 +40,7 @@ do not break backwards compatibility, neither force any user to change or
 update their environment that currently runs the software. 
 
 Minor changes are included in minor releases. See the
-[version numbering policy](../design/Versions%20and%20Releases.md)
+[version numbering policy](../../design/Versions%20and%20Releases.md)
 document for documentation on version numbers for releases.
 
 ## Major changes 
@@ -50,7 +50,7 @@ architecture, an API change or new major features could be classified
 under the category "Major change".
 
 Major changes are included in major releases. See the
-[version numbering policy](../design/Versions%20and%20Releases.md)
+[version numbering policy](../../design/Versions%20and%20Releases.md)
 document for documentation on version numbers for releases.
 
 ## Process to implement the change
@@ -102,4 +102,4 @@ Copyright (c) 2013, 2014, 2015, AFNIC
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
-work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.
+work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.

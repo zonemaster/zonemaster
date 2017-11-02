@@ -3,7 +3,7 @@
 These are the DNSSEC tests for a domain.
 
 This document uses the terminology defined in the
-[Master Test Plan](../Master%20Test%20Plan.md).
+[Master Test Plan](../MasterTestPlan.md).
 
 ## Mapping from Requirements to Test Case
 
@@ -32,7 +32,7 @@ This document uses the terminology defined in the
     * rd -- Recursion Desired (0)
     * ad -- Authenticated Data (0)
 
-See section 3.2 of [RFC 4035](http://tools.ietf.org/html/rfc4035#section-3.2)
+See section 3.2 of [RFC 4035](https://tools.ietf.org/html/rfc4035#section-3.2)
 for a description of the flags used by a recursive name server.
 
 ## Key, hash and signature algorithms
@@ -52,4 +52,4 @@ Copyright (c) 2013, 2014, 2015, AFNIC
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
-work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.
+work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.

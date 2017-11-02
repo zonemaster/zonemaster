@@ -10,7 +10,7 @@ how often a secondary name server will poll the primary name server
 to see if there is any updates. The SOA refresh value is described
 in section 3.3.13 in [RFC 1035](https://tools.ietf.org/html/rfc1035),
 and clarified in section 2.2 of
-[RFC 1912](http://tools.ietf.org/html/rfc1912).
+[RFC 1912](https://tools.ietf.org/html/rfc1912).
 Setting the refresh value low will increase the DNS traffic between
 the servers, and also increase the load on the master name server.
 The primary name server will in most cases send DNS notifications to
@@ -53,4 +53,4 @@ Copyright (c) 2013, 2014, 2015, AFNIC
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
-work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.
+work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.

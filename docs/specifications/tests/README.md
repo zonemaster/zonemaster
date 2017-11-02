@@ -1,16 +1,16 @@
 # Zonemaster Test Specifications
 
 This is the collection of test specifications for the Zonemaster
-project. All the details are in the [Master Test Plan]
-(MasterTestPlan.md).
+project. All the details are in the 
+[Master Test Plan](MasterTestPlan.md).
 
 
-##Background
+## Background
 
 1. The tests that has to be elaborated as test specifications has been
-   defined as a list of [test requirements]
-   (../../requirements/TestRequirements.md). Each test falls under a
-   specific category.
+   defined as a list of 
+   [test requirements](../../requirements/TestRequirements.md). Each test 
+   falls under a specific category.
 
 2. The document hierarchy of the test specifications could be found in
    the [Master Test Plan](MasterTestPlan.md).
@@ -42,9 +42,9 @@ project. All the details are in the [Master Test Plan]
 
 -------
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
+Copyright (c) 2013-2017, IIS (The Internet Foundation in Sweden)  
+Copyright (c) 2013-2017, AFNIC  
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
-work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.
+work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.

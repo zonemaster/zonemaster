@@ -29,8 +29,8 @@ and the test levels. Each of the requirements will be broken down into
 a set of test procedures. The process of doing this will be done in
 accordance with the standard IEEE 829-2008.
 
-The test requirements are all documented in the [Test Requirements]
-(../requirements/TestRequirements.md) document.
+The test requirements are all documented in the 
+[Test Requirements](../../requirements/TestRequirements.md) document.
 
 ### Scope
 
@@ -40,7 +40,7 @@ documents will not describe the functionality of any software
 implementing the test cases. Some test cases derived from the current
 software will not be implemented as test cases in the New DNSCheck.
 
-The [current requirements](../requirements/Test%20requirements.md)
+The [current requirements](../../requirements/TestRequirements.md)
 documents is the base directive on what these test specifications
 will implement.
 
@@ -397,9 +397,9 @@ cases.
 
 -------
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
+Copyright (c) 2013-2017, IIS (The Internet Foundation in Sweden)  
+Copyright (c) 2013-2017, AFNIC  
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
-work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.
+work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.

@@ -57,30 +57,46 @@ The set of configurations must include at least:
          * [FreeBSD-Preparation.md](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/distrib-testing/FreeBSD-Preparation.md)
          * Ubuntu-Preparation.md (unavailable at this time)
 
-   2. Install Zonemaster Engine
-      1. Follow the [dependencies](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md#dependencies) section of the installation guide to the letter.
+   2. Install Zonemaster LDNS
+      1. Make sure the requirements for IDN support in [the IDN section](https://github.com/dotse/zonemaster-ldns/blob/master/README.md#idn) section are satisfied.
+      2. Make sure that OpenSSL is installed.
+      3. Install the preliminary distribution tarball for zonemaster-ldns.
+
+         ```sh
+         sudo cpanm Zonemaster-LDNS-${LDNS_VERSION}.tar.gz
+         ```
+
+      3. Make sure Zonemaster LDNS was properly installed.
+
+         ```sh
+         perl -MZonemaster::LDNS -le 'print Zonemaster::LDNS::has_idn()'
+         ```
+
+         The output from command should be "1".
+
+   3. Install Zonemaster Engine
+      1. Install dependencies according to the [installation instruction](https://github.com/dotse/zonemaster-engine/blob/master/docs/Installation.md).
       2. Install the preliminary distribution tarball for zonemaster-engine.
 
          ```sh
-         sudo cpanm Zonemaster-${ENGINE_VERSION}.tar.gz
+         sudo cpanm Zonemaster-Engine-${ENGINE_VERSION}.tar.gz
          ```
 
-      3. Follow the [post-installation sanity check](https://github.com/dotse/zonemaster-engine/blob/master/docs/installation.md#post-installation-sanity-check) section of the installation guide to the letter.
+      3. Follow the [post-installation sanity check](https://github.com/dotse/zonemaster-engine/blob/master/docs/Installation.md#post-installation-sanity-check) section of the installation guide to the letter.
 
-   3. Install Zonemaster Backend
-      1. Follow the [dependencies](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#dependencies)
-         section of the installation guide to the letter.
+   4. Install Zonemaster Backend
+      1. Install dependencies according to the [installation instruction](https://github.com/dotse/zonemaster-backend/blob/master/docs/Installation.md).
       2. Install the preliminary distribution tarball for zonemaster-backend.
 
          ```sh
-         sudo cpanm Zonemaster-WebBackend-${BACKEND_VERSION}.tar.gz
+         sudo cpanm Zonemaster-Backend-${BACKEND_VERSION}.tar.gz
          ```
 
       3. Follow the [configuration](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#configuration) section of the installation guide to the letter.
       4. Follow the [startup](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#startup) section of the installation guide to the letter.
       5. Follow the [post-installation sanity check](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#post-installation-sanity-check) section of the installation guide to the letter.
 
-   4. Install Zonemaster GUI
+   5. Install Zonemaster GUI
       1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-gui/blob/master/docs/installation.md)
          to the letter.
       2. Install the preliminary distribution tarball for zonemaster-backend.
@@ -101,7 +117,7 @@ The set of configurations must include at least:
          > You should be presented with a page showing, among other things the
          > Zonemaster logotype.
 
-   5. Install Zonemaster CLI
+   6. Install Zonemaster CLI
       1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-cli/blob/master/docs/installation.md)
          to the letter.
       2. Install the preliminary distribution tarball for zonemaster-backend.

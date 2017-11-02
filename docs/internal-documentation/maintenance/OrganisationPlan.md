@@ -136,7 +136,7 @@ The Test specification Manager responsibilities essentially include:
 * Being responsible for the Zonemaster’s Test Specification document and keep a dialog with the Internet community on its development. Specifically shall the Test specification Manager lead the work within Centr’s TRTF (Tests Requirements Task Force).
 * Ongoing Status reporting to the Service Manager.
 
-### Service manager
+### Service manager
 Responsibilities essentially include:
 * Responsible for Zonemaster’s day to day business with the Internet community and ensure that it is run and developed optimally in accordance with the approved Service Plan
 * Owner of Zonemaster’s Service Plan
@@ -165,14 +165,14 @@ Responsibilities essentially include:
 * Approve Zonemaster’s Service Plan including budget, goals, product roadmap, and a promotion and communication plan
 * Meet on a monthly bases, evaluate status reports, and if needed handle escalated issues and make decisions
 
-## Responsibility assignment matrix (RACI)
+## Responsibility assignment matrix (RACI)
 
 |Tasks|Steering Committee|Service Manager|Technical Manager|Test Specification Manager|
 |-----|:----------------:|:-------------:|:---------------:|-------------------------:|
 |Adherence to the MoU| AR | I | I | I |
 |Organization for ZM | AR | I | I | I |
 |ZM's Service Plan   | A  | R | C | C |
-|ZM's Software       | I  | A | R | I |
+|ZM's Software       | I  | A | R | I |
 |ZM's Test Specification| I | A | I | R |
 
 * R : Responsible
@@ -187,4 +187,4 @@ Copyright (c) 2013, 2014, 2015, AFNIC
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
-work.  If not, see <http://creativecommons.org/licenses/by/4.0/>.
+work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.

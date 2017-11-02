@@ -3,7 +3,7 @@
 
 The documentation covers the following operating systems:
 
- * [1] <a href="#Debian">Debian Wheezy (version 7)</a>
+ * [1] <a href="#Debian">Debian Wheezy (version 7)</a>
 
 
 The Engine Perl module name is 'Zonemaster'.
@@ -230,7 +230,7 @@ can, and all of the real work will be done as that user.
 
 ## Testing the setup
 
-You can look into the [API documentation](API.md) to see how you can use the
+You can look into the [API documentation](https://github.com/dotse/zonemaster-backend/blob/master/docs/API.md) to see how you can use the
 API for your use. If you followed the instructions to the minute, you should
 be able to use the API och localhost port 5000, like this:
 
