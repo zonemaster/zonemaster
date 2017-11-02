@@ -19,7 +19,7 @@ Please refer to any Github issues related to the change by the issue number.
  * zonemaster-ldns - [Changes](https://github.com/dotse/zonemaster-ldns/blob/master/Changes)
  * zonemaster-engine - [Changes](https://github.com/dotse/zonemaster-engine/blob/master/Changes)
  * zonemaster-cli - [Changes](https://github.com/dotse/zonemaster-cli/blob/master/Changes)
- * zonemaster-backend - [Changes](https://github.com/dotse/zonemaster-backend/blob/master/CHANGES)
+ * zonemaster-backend - [Changes](https://github.com/dotse/zonemaster-backend/blob/master/Changes)
  * zonemaster-gui - [Changes](https://github.com/dotse/zonemaster-gui/blob/master/Changes)
 
 ## 3. Update prerequisites
