@@ -10,7 +10,6 @@ project. All the details are in the [Master Test Plan](MasterTestPlan.md).
    have been defined as a list of 
    [test requirements](../../requirements/TestRequirements.md). 
    Each test falls under a specific category.
-
 2. The document hierarchy of the Test Case specifications could be found in
    the [Master Test Plan](MasterTestPlan.md).
 
