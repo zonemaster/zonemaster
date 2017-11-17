@@ -23,8 +23,10 @@ The domain name to be tested.
 1. Obtain the IP addresss of the name servers from the parent using  [Method
 4](../Methods.md#method-4-obtain-glue-address-records-from-parent) and the child using
    [Method 5](../Methods.md#method-5-obtain-the-name-server-address-records-from-child).
-2. If any of the IP addresses resolved in step 1 is not unique, then this
-   test case fails.
+2. If the number of IP addresses obtained is less than two, this test case fails
+with an error.  
+3. If any of the IP addresses resolved in step 1 is not unique, then this test
+case fails with a warning.
 
 ### Outcome(s)
 
