@@ -26,7 +26,7 @@ Tests to implement
 ------------------
 
 |Req| Requirement description                                | Level and Test Case      | 
-|:--|:-------------------------------------------------------|:--------------------------------------------|:------------|
+|:--|:-------------------------------------------------------|:--------------------------------------------|
 |R01|UDP connectivity                                        |[CONNECTIVITY](../specifications/tests/Connectivity-TP/connectivity01.md)|
 |R02|TCP connectivity                                        |[CONNECTIVITY](../specifications/tests/Connectivity-TP/connectivity02.md)|
 |R03|Address in a private network                            |[ADDRESS](../specifications/tests/Address-TP/address01.md)|
