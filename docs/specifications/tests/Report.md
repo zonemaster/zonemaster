@@ -5,7 +5,7 @@
 |R01|       UDP connectivity|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY01](.//Connectivity-TP/connectivity01.md)| UDP connectivity|
 |R02|       TCP connectivity|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY02](.//Connectivity-TP/connectivity02.md)| TCP connectivity|
 |R03|Address in a private network|[Address-TP](Address-TP/level.md)|[ADDRESS01](.//Address-TP/address01.md)|Name server address must be globally routable|
-|R04|Address should not be part of a bogon prefix|[Address-TP](Address-TP/level.md)|[ADDRESS04](.//Address-TP/address04.md)|IPv6 address not part of bogon prefix|
+|R04|Address should not be part of a bogon prefix|[Address-TP](Address-TP/level.md)|[ADDRESS04](.//Address-TP/address01.md)|IPv6 address not part of bogon prefix|
 |R05|Illegal symbols in domain name|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX01](.//Syntax-TP/syntax01.md)|No illegal characters in the domain name|
 |R06|Dash ('-') at start or beginning of domain name|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX02](.//Syntax-TP/syntax02.md)|No hyphen ('-') at the start or end of the domain name|
 |R07|Double dash in domain name|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX03](.//Syntax-TP/syntax03.md)|There must be no double hyphen ('--') in position 3 and 4 of the domain name|
