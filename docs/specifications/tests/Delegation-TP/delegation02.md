@@ -20,11 +20,14 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the IP addresss of the name servers from the parent using  [Method
-4](../Methods.md#method-4-obtain-glue-address-records-from-parent) and the child using
-   [Method 5](../Methods.md#method-5-obtain-the-name-server-address-records-from-child).
-2. If any of the IP addresses resolved in step 1 is not unique, then this
-   test case fails.
+1. Record the list of nameservers from the parent using [Method
+2](../Methods.md) and the child using [Method3](../Methods.md)
+
+2. Query the servers in step 1 for A and AAAA addresses.
+
+3. Record the list of unique A and AAAA addresses in the answer section.
+
+4. If the count of the A or AAAA addresses obtained in step 3 is more than '1', then this  test case fails with a warning.
 
 ### Outcome(s)
 
