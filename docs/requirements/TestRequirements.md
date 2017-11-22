@@ -30,7 +30,7 @@ Tests to implement
 |R01|UDP connectivity                                        |[CONNECTIVITY](../specifications/tests/Connectivity-TP/connectivity01.md)|
 |R02|TCP connectivity                                        |[CONNECTIVITY](../specifications/tests/Connectivity-TP/connectivity02.md)|
 |R03|Address in a private network                            |[ADDRESS](../specifications/tests/Address-TP/address01.md)|
-|R04|Address should not be part of a bogon prefix            |[ADDRESS](../specifications/tests/Address-TP/address04.md)|
+|R04|Address should not be part of a bogon prefix            |[ADDRESS](../specifications/tests/Address-TP/address01.md)|
 |R05|Illegal symbols in domain name                          |[SYNTAX](../specifications/tests/Syntax-TP/syntax01.md)|
 |R06|Dash ('-') at start or beginning of domain name         |[SYNTAX](../specifications/tests/Syntax-TP/syntax02.md)|
 |R07|Double dash in domain name                              |[SYNTAX](../specifications/tests/Syntax-TP/syntax03.md)|
