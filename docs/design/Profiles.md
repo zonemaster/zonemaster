@@ -9,7 +9,8 @@ Each of Zonemaster CLI, Backend and GUI allow users and administrators to config
 ## Background
 
 The Zonemaster requirements and specification documents speak of user-configurable profiles and policies for Zonemaster Engine and CLI.
-The Profiles feature integrates both of those into a single data structure.
+
+In release 2017.4 the profile and policy concept from the requirements and specifications were integrated into single data structure, also called a profile.
 
 
 ## Profiles in Zonemaster Engine
