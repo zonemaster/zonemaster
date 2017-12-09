@@ -10,13 +10,14 @@ Each of Zonemaster CLI, Backend and GUI allow users and administrators to config
 
 The Zonemaster requirements and specification documents speak of user-configurable profiles and policies for Zonemaster Engine and CLI.
 
-In release 2017.4 the profile and policy concept from the requirements and specifications were integrated into single data structure, also called a profile.
+In release 2017.4 all of the configurable features "config", "filter", "policy" and "profile" from the requirements and specifications were integrated into a single data structure, also called "profile".
+This document provides a high-level view of the new "profile" feature.
 
 
 ## Profiles in Zonemaster Engine
 
 Zonemaster Engine has an effective profile that guides how it performs its tests and analyzes their results.
-It comes with a sensible default profile while allowing applications to override the default behvior.
+It comes with a sensible default profile while allowing applications to override the default behavior.
 This is described in greater detail in the [Zonemaster::Engine::Config] documentation.
 
 
