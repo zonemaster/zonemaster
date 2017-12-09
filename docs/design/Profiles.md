@@ -5,13 +5,16 @@
 Profiles is a configuration format and feature of Zonemaster Engine.
 Each of Zonemaster CLI, Backend and GUI allow users and administrators to configure Zonemaster Engine with different profiles.
 
+This document provides a high-level view of how profiles are applied across the different Zonemaster components.
+For details on how profiles integrate with a given component, refer to the respective component documentations.
+Links to the relevant sections are provided below.
+
 
 ## Background
 
 The Zonemaster requirements and specification documents speak of user-configurable profiles and policies for Zonemaster Engine and CLI.
 
 In release 2017.4 all of the configurable features "config", "filter", "policy" and "profile" from the requirements and specifications were integrated into a single data structure, also called "profile".
-This document provides a high-level view of the new "profile" feature.
 
 
 ## Profiles in Zonemaster Engine
