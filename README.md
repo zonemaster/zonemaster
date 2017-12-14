@@ -91,7 +91,9 @@ Zonemaster comes with localization for these locales:
 * en.UTF-8
 * fr.UTF-8
 * sv.UTF-8
-* da.UTF-8
+* da.UTF-8 (*)
+
+*) All strings in the Danish translation are not yet translated.
 
 ## Zonemaster and its components
 
