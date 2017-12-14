@@ -67,7 +67,7 @@ FreeBSD 11.1     | (5.6) |   9.5
 Ubuntu 14.04     | 5.5   |   9.3
 Ubuntu 16.04     | 5.7   |   (9.5)
 
-_PostgreSQL has not been tested on neither CentOS 7 nor Debian 7. We had issues
+_PostgreSQL has not been tested on CentOS 7 and Debian 7. We had issues
 on Debian 8 and Ubuntu 16.04 that we could not resolve before release._
 
 _MySQL has not been tested on FreeBSD._
@@ -93,7 +93,7 @@ Zonemaster comes with localization for these locales:
 * sv.UTF-8
 * da.UTF-8 (*)
 
-*) All strings in the Danish translation are not yet translated.
+*) Some strings have not yet been translated to Danish.
 
 ## Zonemaster and its components
 
