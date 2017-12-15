@@ -44,9 +44,9 @@ architecture listed below.
 ### Supported operating system versions
 
 * CentOS 7
-* Debian 7.11
-* Debian 8.9
-* (Debian 9.1)
+* Debian 7
+* Debian 8
+* (Debian 9)
 * FreeBSD 10.3
 * FreeBSD 11.1
 * Ubuntu 14.04
@@ -60,15 +60,15 @@ before we can include support for Debian 9._
 Operating System | MySQL | PostgreSQL
 ---------------- | ------| -----------
 CentOS 7         | 5.6   |   (9.3)
-Debian 7.11      | 5.5   |   (9.3)
-Debian 8.9       | 5.5   |   (9.4)
+Debian 7         | 5.5   |   (9.3)
+Debian 8         | 5.5   |   (9.4)
 FreeBSD 10.3     | (5.6) |   9.5       
 FreeBSD 11.1     | (5.6) |   9.5      
 Ubuntu 14.04     | 5.5   |   9.3
 Ubuntu 16.04     | 5.7   |   (9.5)
 
-_PostgreSQL has not been tested on CentOS and Debian 7.11. We had issues
-on Debian 8.9 and Ubuntu 16.04 that we could not resolve before release._
+_PostgreSQL has not been tested on CentOS 7 and Debian 7. We had issues
+on Debian 8 and Ubuntu 16.04 that we could not resolve before release._
 
 _MySQL has not been tested on FreeBSD._
 
@@ -77,8 +77,8 @@ _MySQL has not been tested on FreeBSD._
 Operating System | Perl
 ---------------- | ----
 CentOS 7         | 5.16                        
-Debian 7.11      | 5.14
-Debian 8.9       | 5.20
+Debian 7         | 5.14
+Debian 8         | 5.20
 FreeBSD 10.3     | 5.24
 FreeBSD 11.1     | 5.24
 Ubuntu 14.04     | 5.18
@@ -91,6 +91,9 @@ Zonemaster comes with localization for these locales:
 * en.UTF-8
 * fr.UTF-8
 * sv.UTF-8
+* da.UTF-8 (*)
+
+*) Some strings have not yet been translated to Danish.
 
 ## Zonemaster and its components
 
