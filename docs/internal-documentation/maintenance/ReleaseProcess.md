@@ -95,8 +95,7 @@ missing or extra files.
 This step serves double purposes.
 First, it verifies that a distribution tarball can be successfully
 built for each component that is to be updated in this release.
-Second, it produces the preliminary distribution tarballs to be used in step 8
-below (either by building or retrieving them).
+Second, it produces the *preliminary distribution tarballs*.
 
 For each component that **is** to be updated in this release, build a new
 distribution tarball:
@@ -112,8 +111,8 @@ CPAN].
 
 ## 8. Verify that Zonemaster works when installed according to the documented installation procedures
 
-Using the preliminary distribution tarballs produced in step 7 above, follow the
-procedures in [SystemTesting](SystemTesting.md).
+Using the *preliminary distribution tarballs* produced in step 7 above,
+follow the procedures in [SystemTesting](SystemTesting.md).
 
 If the system testing fails in a way that requires updated distribution
 tarballs:
@@ -123,16 +122,17 @@ tarballs:
     7 above.
  4. Resume this document from step 8 above.
 
-If the system testing is successful, the preliminary distribution tarballs used
-in this step become accepted distribution tarballs to be used in step 11 below.
+If the system testing is successful, the *preliminary distribution tarballs* used
+in this step become *accepted distribution tarballs*.
 
 ## 9. Upload to CPAN
 
 For each component that is to be updated in this release, publish the
-corresponding accepted distribution tarball on CPAN.
-Currently we use the organizational account ZNMSTR on PAUSE for doing this.
+corresponding *accepted distribution tarball* on CPAN.
+Currently we use the organizational account ZNMSTR on PAUSE for doing
+this.
 
-## 10. Merge develop branc into master
+## 10. Merge develop branch into master
 
 Merge the develop branch into master on Github.
 
