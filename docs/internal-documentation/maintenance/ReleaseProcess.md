@@ -77,15 +77,9 @@ For all components, generate Makefile, META.yml and others.
 > and urge informing the author. Instead of immediately informing the author,
 > verify that META.yml was created by the command at a later stage.
 
-For all components except Zonemaster::Engine, make sure that all files are
-covered by MANIFEST and/or MANIFEST.SKIP:
+For all components, make sure that all files are covered by MANIFEST and/or MANIFEST.SKIP:
 
     make distcheck
-
-For the Zonemaster::Engine component, generate the complete MANIFEST file.
-
-    make all       # Engine only
-    make manifest  # Engine only
 
 For all components, review the MANIFEST file if in doubt or if there seems to be
 missing or extra files.
