@@ -114,9 +114,7 @@ If the system testing fails in a way that requires updated distribution
 tarballs:
  1. Get the changes merged.
  2. Consider whether the actions taken in steps 1–6 above need amendment.
- 3. Make new distribution tarballs for the affected components according to step
-    7 above.
- 4. Resume this document from step 8 above.
+ 3. Resume this document from step 7 above.
 
 If the system testing is successful, the *preliminary distribution tarballs* used
 in this step become *accepted distribution tarballs*.
