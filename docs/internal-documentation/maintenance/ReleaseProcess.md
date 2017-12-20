@@ -110,28 +110,7 @@ CPAN].
 
 [ZNMSTR account at CPAN]: http://search.cpan.org/~znmstr/
 
-## 8. Verify that the module builds and all tests pass
-
-Find the list of supported Perl versions and locales in the [declaration of
-prerequisites]. Then find the latest point-release of each supported Perl
-version in the table of [latest releases in each branch of Perl].
-
-Make sure you've set up perlbrew and installed the latest point-release of each
-supported Perl version for perlbrew.
-
-    perlbrew init
-    perlbrew install perl-5.14.4  # For every supported version of Perl
-
-Perform the following for each component.
-
-Verify that the module builds and all tests pass with the latest point release
-for every supported major Perl version and for every supported system locale.
-For each supported locale and the set of supported point-releases, modify and
-run the folloing command:
-
-    LC_ALL=en.UTF-8 LC_MESSAGES=en.UTF-8 LC_NUMERIC=en.UTF-8 LANG=en.UTF-8 perlbrew exec --with 5.14.4,5.16.3,5.18.4,5.20.3,5.22.4,5.24.3 '( git clean -dfx && perl Makefile.PL && make ) >/dev/null && prove -bQ'
-
-## 9. Verify that Zonemaster works when installed according to the documented installation procedures
+## 8. Verify that Zonemaster works when installed according to the documented installation procedures
 
 Using the preliminary distribution tarballs produced in step 7 above, follow the
 procedures in [SystemTesting](SystemTesting.md).
@@ -147,13 +126,13 @@ tarballs:
 If the system testing is successful, the preliminary distribution tarballs used
 in this step become accepted distribution tarballs to be used in step 11 below.
 
-## 10. Upload to CPAN
+## 9. Upload to CPAN
 
 For each component that is to be updated in this release, publish the
 corresponding accepted distribution tarball on CPAN.
 Currently we use the organizational account ZNMSTR on PAUSE for doing this.
 
-## 11. Merge develop branc into master
+## 10. Merge develop branc into master
 
 Merge the develop branch into master on Github.
 
@@ -161,7 +140,7 @@ Merge the develop branch into master on Github.
 
 Write a detailed instruction with commands.
 
-## 12. Tag the release with git
+## 11. Tag the release with git
 
 Tag the release with these git commands, and push the tag to Github.
 
@@ -196,7 +175,7 @@ zonemaster-gui:
 
 Write a description how to set release in Github to get a nice presentation.
 
-## 13. Release the Zonemaster Product
+## 12. Release the Zonemaster Product
 
 If there are no more components to release, go to the Zonemaster repository an
 make a release.
