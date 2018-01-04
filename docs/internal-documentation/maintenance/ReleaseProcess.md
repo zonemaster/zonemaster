@@ -77,14 +77,14 @@ For all components, generate Makefile, META.yml and others.
 > and urge informing the author. Instead of immediately informing the author,
 > verify that META.yml was created by the command at a later stage.
 
-Create derived files (if any) and verify that a distribution tarball can be 
+Build generated files (if any) and verify that a distribution tarball can be 
 successfully built for each component that is to be updated in this release.
 
     make all
 
 ## 7. Produce distribution tarballs
 
-In this step, produces the *preliminary distribution tarballs*.
+In this step produce the *preliminary distribution tarballs*.
 
 For all components, make sure that all files are covered by MANIFEST and/or MANIFEST.SKIP:
 
