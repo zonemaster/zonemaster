@@ -37,22 +37,7 @@ Make sure the Travis configuration for each repo is up to date with the supporte
  * zonemaster-backend - [.travis.yml](https://github.com/dotse/zonemaster-backend/blob/master/.travis.yml)
  * zonemaster-gui - [.travis.yml](https://github.com/dotse/zonemaster-gui/blob/master/.travis.yml)
 
-## 5. Verify that Makefile.PL has all the correct data
-
-The Makefile.PL contains all the modules required by the component to
-function, with all the version numbers needed as well. It also has some
-other metadata about the component.
-
- * zonemaster-ldns - [Makefile.PL](https://github.com/dotse/zonemaster-ldns/blob/master/Makefile.PL)
- * zonemaster-engine - [Makefile.PL](https://github.com/dotse/zonemaster-engine/blob/master/Makefile.PL)
- * zonemaster-cli - [Makefile.PL](https://github.com/dotse/zonemaster-cli/blob/master/Makefile.PL)
- * zonemaster-backend - [Makefile.PL](https://github.com/dotse/zonemaster-backend/blob/master/Makefile.PL)
- * zonemaster-gui - [Makefile.PL](https://github.com/dotse/zonemaster-gui/blob/master/Makefile.PL)
-
-## 6. Verify that MANIFEST is up to date and that tarball can be built
-
-> **Note:** The MANIFEST file lists the files that will be included in the dist
-> tarball.
+## 5. Verify that META.yml has all the correct data
 
 For all components, make sure your working directory is clean, or that all
 listed changes are covered by MANIFEST.SKIP:
@@ -73,9 +58,27 @@ For all components, generate Makefile, META.yml and others.
 
     perl Makefile.PL
 
-> **Note:** The above command may give a warning about a missing META.yml file
-> and urge informing the author. Instead of immediately informing the author,
-> verify that META.yml was created by the command at a later stage.
+> **Note:** Ignore the warning from the above command about the missing
+> META.yml. The META.yml is created by the same command at a later stage.
+
+Verify that META.yml contains all the paths in the following table and
+that the value at each path matches the listed requirement.
+
+Property             | Requirement
+---------------------|----------------------------------------------------------------------
+abstract             | component tag line
+author               | current maintainer and original author
+license              | [license string]
+name                 | name of the component
+recommends           | all modules that aren't strictly required but still used if available
+requires             | all required modules
+requires.perl        | minimum perl version
+resources.bugtracker | link to the bug tracker
+resources.license    | link to the license text
+resources.repository | link to the repository
+version              | version number of the new release
+
+## 6. Verify that MANIFEST is up to date and that tarball can be built
 
 Build generated files (if any) and verify that a distribution tarball can be 
 successfully built for each component that is to be updated in this release.
@@ -184,6 +187,7 @@ To see tags for a repository:
 [CI]: https://github.com/travis-ci/travis-ci
 [declaration of prerequisites]: ../../../README.md#prerequisites
 [latest releases in each branch of Perl]: http://www.cpan.org/src/README.html
+[license string]: https://metacpan.org/pod/CPAN::Meta::Spec#license
 [the existence of inc/.author]: http://search.cpan.org/~ether/Module-Install-1.18/lib/Module/Install.pod#Standard_Extensions
 
 
