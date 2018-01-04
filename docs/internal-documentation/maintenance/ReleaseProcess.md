@@ -77,6 +77,15 @@ For all components, generate Makefile, META.yml and others.
 > and urge informing the author. Instead of immediately informing the author,
 > verify that META.yml was created by the command at a later stage.
 
+Create derived files (if any) and verify that a distribution tarball can be 
+successfully built for each component that is to be updated in this release.
+
+    make all
+
+## 7. Produce distribution tarballs
+
+In this step, produces the *preliminary distribution tarballs*.
+
 For all components, make sure that all files are covered by MANIFEST and/or MANIFEST.SKIP:
 
     make distcheck
@@ -84,17 +93,9 @@ For all components, make sure that all files are covered by MANIFEST and/or MANI
 For all components, review the MANIFEST file if in doubt or if there seems to be
 missing or extra files.
 
-## 7. Produce distribution tarballs
-
-This step serves double purposes.
-First, it verifies that a distribution tarball can be successfully
-built for each component that is to be updated in this release.
-Second, it produces the *preliminary distribution tarballs*.
-
 For each component that **is** to be updated in this release, build a new
 distribution tarball:
 
-    make all
     make dist
 
 For each component that **is not** to be updated in this release, retreive their
