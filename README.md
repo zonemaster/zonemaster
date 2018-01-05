@@ -147,13 +147,36 @@ You can follow the project in these two mailinglists:
 
 ## Bug reporting 
 
-For bug reporting go to the relevant Zonemaster repository ([zonemaster-ldns], [zonemaster-engine],
-[zonemaster-backend] or [zonemaster-gui]) and create a Github issue. Before creating the issue,
-please search for the problem, and if you find an open issue covering your issue, please add
+For bug reporting go to the relevant Zonemaster repository
+and create a Github issue there. Before creating the issue,
+please search for the problem in the issue tracker in the relevant repository, 
+and if you find an open issue covering your issue, please add
 a comment with additional information, if any.
 
+The available Zonemaster repositories are
+* [zonemaster-ldns]
+* [zonemaster-engine]
+* [zonemaster-cli]
+* [zonemaster-backend]
+* [zonemaster-gui])
+
 If you cannot determine which repository to create the issue in, please select the main [zonemaster] 
-repository.
+repository, i.e. this repository.
+
+
+## Notable bugs and issues
+
+### Selecting language with zonemaster-cli
+
+The command line tool `zonemaster-cli` has an option `--locale` with which you can select the language
+the output is written (currently English (the default), French, Swedish or Danish). If the environment
+variable `LANGUAGE` is set, then that might not work. The work-around is to unset the variable before
+running the `zonemaster-cli` command, e.g.
+
+```sh
+unset LANGUAGE
+zonemaster-cli zonemaster.net --locale sv_SE.utf8
+```
 
 ## Contact 
 
