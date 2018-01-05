@@ -83,12 +83,9 @@ successfully built for each component that is to be updated in this release.
     make all
 
 For all components, make sure that all files are covered by MANIFEST and/or 
-MANIFEST.SKIP:
+MANIFEST.SKIP, i.e. no missing or extra files:
 
     make distcheck
-
-> For all components, review the MANIFEST file if in doubt or if there seems to be
-> missing or extra files.
 
 ## 7. Produce distribution tarballs
 
