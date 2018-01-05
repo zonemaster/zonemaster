@@ -49,7 +49,7 @@ other metadata about the component.
  * zonemaster-backend - [Makefile.PL](https://github.com/dotse/zonemaster-backend/blob/master/Makefile.PL)
  * zonemaster-gui - [Makefile.PL](https://github.com/dotse/zonemaster-gui/blob/master/Makefile.PL)
 
-## 6. Verify that MANIFEST is up to date
+## 6. Verify that MANIFEST is up to date and that tarball can be built
 
 > **Note:** The MANIFEST file lists the files that will be included in the dist
 > tarball.
@@ -82,16 +82,17 @@ successfully built for each component that is to be updated in this release.
 
     make all
 
-## 7. Produce distribution tarballs
-
-In this step produce the *preliminary distribution tarballs*.
-
-For all components, make sure that all files are covered by MANIFEST and/or MANIFEST.SKIP:
+For all components, make sure that all files are covered by MANIFEST and/or 
+MANIFEST.SKIP:
 
     make distcheck
 
-For all components, review the MANIFEST file if in doubt or if there seems to be
-missing or extra files.
+> For all components, review the MANIFEST file if in doubt or if there seems to be
+> missing or extra files.
+
+## 7. Produce distribution tarballs
+
+In this step produce the *preliminary distribution tarballs*.
 
 For each component that **is** to be updated in this release, build a new
 distribution tarball:
