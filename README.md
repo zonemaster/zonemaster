@@ -153,15 +153,14 @@ please search for the problem in the issue tracker in the relevant repository,
 and if you find an open issue covering your issue, please add
 a comment with additional information, if any.
 
-The available Zonemaster repositories are
-* [zonemaster-ldns]
-* [zonemaster-engine]
-* [zonemaster-cli]
-* [zonemaster-backend]
-* [zonemaster-gui])
+* [Issues in Zonemaster::LDNS](https://github.com/dotse/zonemaster-ldns/issues)
+* [Issues in Zonemaster::Engine](https://github.com/dotse/zonemaster-engine/issues)
+* [Issues in Zonemaster::CLI](https://github.com/dotse/zonemaster-cli/issues)
+* [Issues in Zonemaster::Backend](https://github.com/dotse/zonemaster-backend/issues)
+* [Issues in zonemaster::GUI](https://github.com/dotse/zonemaster-gui/issues)
 
 If you cannot determine which repository to create the issue in, please select the main [zonemaster] 
-repository, i.e. this repository.
+repository, i.e. [general issues in Zonemaster](https://github.com/dotse/zonemaster/issues).
 
 
 ## Notable bugs and issues
