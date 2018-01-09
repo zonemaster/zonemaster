@@ -169,7 +169,8 @@ repository, i.e. [general issues in Zonemaster](https://github.com/dotse/zonemas
 
 The command line tool `zonemaster-cli` has an option `--locale` with which you can select the language
 the output is written (currently English (the default), French, Swedish or Danish). If the environment
-variable `LANGUAGE` is set, then that might not work, see issue https://github.com/dotse/zonemaster-cli/issues/46. 
+variable `LANGUAGE` is set, then that might not work, see issue 
+[dotse/zonemaster-cli#46](https://github.com/dotse/zonemaster-cli/issues/46).
 The work-around is to unset the variable before running the `zonemaster-cli` command, e.g.
 
 ```sh
@@ -183,11 +184,14 @@ LANGUAGE=sv_SE.utf8 zonemaster-cli zonemaster.net
 
 ### Selecting language under FreeBSD
 Selecting language does not work in the Zonemaster Backend, see issue 
-https://github.com/dotse/zonemaster-backend/issues/315. There is currently no work-around.
+[dotse/zonemaster-backend#315](https://github.com/dotse/zonemaster-backend/issues/315). 
+There is currently no work-around.
 
 The command line tool `zonemaster-cli` has an option `--locale` with which you can select the language
 the output is written (currently English (the default), French, Swedish or Danish). The option does
-not currently work under FreeBSD. You can use the following work-around:
+not currently work under FreeBSD. See issue 
+[dotse/zonemaster-cli#64](https://github.com/dotse/zonemaster-cli/issues/64).
+You can use the following work-around:
 
 ```sh
 LC_ALL=sv_SE.utf8 zonemaster-cli zonemaster.net
