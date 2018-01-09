@@ -45,32 +45,27 @@ architecture listed below.
 
 * CentOS 7
 * Debian 7
-* Debian 8
+* (Debian 8)
 * (Debian 9)
 * FreeBSD 10.3
 * FreeBSD 11.1
 * Ubuntu 14.04
 * Ubuntu 16.04
 
-_Currently, Debian 9 is not supported due to a known bug in Zonemaster::LDNS. That has to be resolved 
-before we can include support for Debian 9._
+_Currently, Debian 8 and Debian 9 are not supported due to a known bug in Zonemaster::LDNS, see [Zonemaster-LDNS issue 10] and [Zonemaster-LDNS issue 30]. 
+That has to be resolved 
+before we can include support for Debian 8 and Debian, respectively._
 
 ### Supported database engine versions
 
 Operating System | MySQL | PostgreSQL
 ---------------- | ------| -----------
-CentOS 7         | 5.6   |   (9.3)
-Debian 7         | 5.5   |   (9.3)
-Debian 8         | 5.5   |   (9.4)
-FreeBSD 10.3     | (5.6) |   9.5       
-FreeBSD 11.1     | (5.6) |   9.5      
+CentOS 7         | 5.6   |   9.3
+Debian 7         | 5.5   |   9.3
+FreeBSD 10.3     | 5.6   |   9.5       
+FreeBSD 11.1     | 5.6   |   9.5      
 Ubuntu 14.04     | 5.5   |   9.3
-Ubuntu 16.04     | 5.7   |   (9.5)
-
-_PostgreSQL has not been tested on CentOS 7 and Debian 7. We had issues
-on Debian 8 and Ubuntu 16.04 that we could not resolve before release._
-
-_MySQL has not been tested on FreeBSD._
+Ubuntu 16.04     | 5.7   |   9.5
 
 ### Supported Perl versions
 
@@ -78,7 +73,6 @@ Operating System | Perl
 ---------------- | ----
 CentOS 7         | 5.16                        
 Debian 7         | 5.14
-Debian 8         | 5.20
 FreeBSD 10.3     | 5.24
 FreeBSD 11.1     | 5.24
 Ubuntu 14.04     | 5.18
@@ -168,3 +162,7 @@ For contacting the Zonemaster project, please send a mail to
 [zonemaster-gui]: https://github.com/dotse/zonemaster-gui
 [ldns]: https://www.nlnetlabs.nl/projects/ldns/
 [CPAN]: http://search.cpan.org/search?query=Zonemaster&mode=dist
+
+[Zonemaster-LDNS issue 10]: https://github.com/dotse/zonemaster-ldns/issues/10
+[Zonemaster-LDNS issue 30]: https://github.com/dotse/zonemaster-ldns/issues/30. 
+
