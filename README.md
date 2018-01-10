@@ -141,13 +141,28 @@ You can follow the project in these two mailinglists:
 
 ## Bug reporting 
 
-For bug reporting go to the relevant Zonemaster repository ([zonemaster-ldns], [zonemaster-engine],
-[zonemaster-backend] or [zonemaster-gui]) and create a Github issue. Before creating the issue,
-please search for the problem, and if you find an open issue covering your issue, please add
+For bug reporting go to the relevant Zonemaster repository
+and create a Github issue there. Before creating the issue,
+please search for the problem in the issue tracker in the relevant repository, 
+and if you find an open issue covering your issue, please add
 a comment with additional information, if any.
 
+* [Issues in Zonemaster::LDNS](https://github.com/dotse/zonemaster-ldns/issues)
+* [Issues in Zonemaster::Engine](https://github.com/dotse/zonemaster-engine/issues)
+* [Issues in Zonemaster::CLI](https://github.com/dotse/zonemaster-cli/issues)
+* [Issues in Zonemaster::Backend](https://github.com/dotse/zonemaster-backend/issues)
+* [Issues in zonemaster::GUI](https://github.com/dotse/zonemaster-gui/issues)
+
 If you cannot determine which repository to create the issue in, please select the main [zonemaster] 
-repository.
+repository, i.e. [general issues in Zonemaster](https://github.com/dotse/zonemaster/issues).
+
+
+## Notable bugs and issues
+
+* Selecting language in Zonemaster CLI tool `zonemaster-cli` sometimes does not work, see issues 
+[dotse/zonemaster-cli#46](https://github.com/dotse/zonemaster-cli/issues/46) and [dotse/zonemaster-cli#64](https://github.com/dotse/zonemaster-cli/issues/64).
+* Selecting language in Zonemaster Backend RPC API under FreeBSD does not work, see issue
+[dotse/zonemaster-backend#315](https://github.com/dotse/zonemaster-backend/issues/315). 
 
 ## Contact 
 

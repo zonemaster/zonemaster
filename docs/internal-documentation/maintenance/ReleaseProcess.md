@@ -121,14 +121,20 @@ tarballs:
 If the system testing is successful, the *preliminary distribution tarballs* used
 in this step become *accepted distribution tarballs*.
 
-## 9. Upload to CPAN
+## 9. Update Zonemaster repository main _README.md_
+
+If needed, update the following section of the Zonemaster repository main _README.MD_ file:
+
+* Notable bugs and issues
+
+## 10. Upload to CPAN
 
 For each component that is to be updated in this release, publish the
 corresponding *accepted distribution tarball* on CPAN.
 Currently we use the organizational account ZNMSTR on PAUSE for doing
 this.
 
-## 10. Merge develop branch into master
+## 11. Merge develop branch into master
 
 Merge the develop branch into master on Github.
 
@@ -136,7 +142,7 @@ Merge the develop branch into master on Github.
 
 Write a detailed instruction with commands.
 
-## 11. Tag the release with git
+## 12. Tag the release with git
 
 Tag the release with these git commands, and push the tag to Github.
 
@@ -171,7 +177,7 @@ zonemaster-gui:
 
 Write a description how to set release in Github to get a nice presentation.
 
-## 12. Release the Zonemaster Product
+## 13. Release the Zonemaster Product
 
 If there are no more components to release, go to the Zonemaster repository an
 make a release.
