@@ -61,7 +61,7 @@ before we can include support for Debian 8 and Debian, respectively._
 Operating System | MySQL | PostgreSQL
 ---------------- | ------| -----------
 CentOS 7         | 5.6   |   9.3
-Debian 7         | 5.5   |   9.3
+Debian 7         | 5.5   |  10.1
 FreeBSD 10.3     | 5.6   |   9.5       
 FreeBSD 11.1     | 5.6   |   9.5      
 Ubuntu 14.04     | 5.5   |   9.3
