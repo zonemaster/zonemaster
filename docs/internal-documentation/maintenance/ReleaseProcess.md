@@ -120,12 +120,8 @@ in this step become *accepted distribution tarballs*.
 
 ## 9. Update Zonemaster repository main _README.md_
 
-If needed, update the following sections of the Zonemaster repository main _README.MD_ file:
+If needed, update the following section of the Zonemaster repository main _README.MD_ file:
 
-* Supported operating system versions
-* Supported database engine versions
-* Supported Perl versions
-* Localization
 * Notable bugs and issues
 
 ## 10. Upload to CPAN
