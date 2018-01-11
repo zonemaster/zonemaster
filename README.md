@@ -67,6 +67,10 @@ FreeBSD 11.1     | 5.6   |   9.5
 Ubuntu 14.04     | 5.5   |   9.3
 Ubuntu 16.04     | 5.7   |   9.5
 
+Zonemaster Backend has been tested with the combination of OS and database engine version
+listed in the table above. Other versions of the database engines might work. PostgreSQL 
+version 9.2 or earlier will _NOT_ work.
+
 ### Supported Perl versions
 
 Operating System | Perl
@@ -77,6 +81,9 @@ FreeBSD 10.3     | 5.24
 FreeBSD 11.1     | 5.24
 Ubuntu 14.04     | 5.18
 Ubuntu 16.04     | 5.22
+
+Zonemaster has been tested with the combination of OS and Perl version listed in the table
+above. Other versions of Perl might work. Earlier version of Perl than 5.14.2 will _NOT_ work.
 
 ## Localization
 
