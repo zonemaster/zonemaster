@@ -44,45 +44,46 @@ architecture listed below.
 ### Supported operating system versions
 
 * CentOS 7
-* Debian 7.11
-* Debian 8.9
-* (Debian 9.1)
+* Debian 7
+* (Debian 8)
+* (Debian 9)
 * FreeBSD 10.3
 * FreeBSD 11.1
 * Ubuntu 14.04
 * Ubuntu 16.04
 
-_Currently, Debian 9 is not supported due to a known bug in Zonemaster::LDNS. That has to be resolved 
-before we can include support for Debian 9._
+_Currently, Debian 8 and Debian 9 are not supported due to a known bug in Zonemaster::LDNS, see [Zonemaster-LDNS issue 10] and [Zonemaster-LDNS issue 30]. 
+That has to be resolved 
+before we can include support for Debian 8 and Debian, respectively._
 
 ### Supported database engine versions
 
 Operating System | MySQL | PostgreSQL
 ---------------- | ------| -----------
-CentOS 7         | 5.6   |   (9.3)
-Debian 7.11      | 5.5   |   (9.3)
-Debian 8.9       | 5.5   |   (9.4)
-FreeBSD 10.3     | (5.6) |   9.5       
-FreeBSD 11.1     | (5.6) |   9.5      
+CentOS 7         | 5.6   |   9.3
+Debian 7         | 5.5   |  10.1
+FreeBSD 10.3     | 5.6   |   9.5       
+FreeBSD 11.1     | 5.6   |   9.5      
 Ubuntu 14.04     | 5.5   |   9.3
-Ubuntu 16.04     | 5.7   |   (9.5)
+Ubuntu 16.04     | 5.7   |   9.5
 
-_PostgreSQL has not been tested on CentOS and Debian 7.11. We had issues
-on Debian 8.9 and Ubuntu 16.04 that we could not resolve before release._
-
-_MySQL has not been tested on FreeBSD._
+Zonemaster Backend has been tested with the combination of OS and database engine version
+listed in the table above. Other versions of the database engines might work. PostgreSQL 
+version 9.2 or earlier will _NOT_ work.
 
 ### Supported Perl versions
 
 Operating System | Perl
 ---------------- | ----
 CentOS 7         | 5.16                        
-Debian 7.11      | 5.14
-Debian 8.9       | 5.20
+Debian 7         | 5.14
 FreeBSD 10.3     | 5.24
 FreeBSD 11.1     | 5.24
 Ubuntu 14.04     | 5.18
 Ubuntu 16.04     | 5.22
+
+Zonemaster has been tested with the combination of OS and Perl version listed in the table
+above. Other versions of Perl might work. Perl versions earlier than 5.14.2 will _NOT_ work.
 
 ## Localization
 
@@ -91,6 +92,9 @@ Zonemaster comes with localization for these locales:
 * en.UTF-8
 * fr.UTF-8
 * sv.UTF-8
+* da.UTF-8 (*)
+
+*) Some strings have not yet been translated to Danish.
 
 ## Zonemaster and its components
 
@@ -144,13 +148,28 @@ You can follow the project in these two mailinglists:
 
 ## Bug reporting 
 
-For bug reporting go to the relevant Zonemaster repository ([zonemaster-ldns], [zonemaster-engine],
-[zonemaster-backend] or [zonemaster-gui]) and create a Github issue. Before creating the issue,
-please search for the problem, and if you find an open issue covering your issue, please add
+For bug reporting go to the relevant Zonemaster repository
+and create a Github issue there. Before creating the issue,
+please search for the problem in the issue tracker in the relevant repository, 
+and if you find an open issue covering your issue, please add
 a comment with additional information, if any.
 
+* [Issues in Zonemaster::LDNS](https://github.com/dotse/zonemaster-ldns/issues)
+* [Issues in Zonemaster::Engine](https://github.com/dotse/zonemaster-engine/issues)
+* [Issues in Zonemaster::CLI](https://github.com/dotse/zonemaster-cli/issues)
+* [Issues in Zonemaster::Backend](https://github.com/dotse/zonemaster-backend/issues)
+* [Issues in zonemaster::GUI](https://github.com/dotse/zonemaster-gui/issues)
+
 If you cannot determine which repository to create the issue in, please select the main [zonemaster] 
-repository.
+repository, i.e. [general issues in Zonemaster](https://github.com/dotse/zonemaster/issues).
+
+
+## Notable bugs and issues
+
+* Selecting language in Zonemaster CLI tool `zonemaster-cli` sometimes does not work, see issues 
+[dotse/zonemaster-cli#46](https://github.com/dotse/zonemaster-cli/issues/46) and [dotse/zonemaster-cli#64](https://github.com/dotse/zonemaster-cli/issues/64).
+* Selecting language in Zonemaster Backend RPC API under FreeBSD does not work, see issue
+[dotse/zonemaster-backend#315](https://github.com/dotse/zonemaster-backend/issues/315). 
 
 ## Contact 
 
@@ -165,3 +184,7 @@ For contacting the Zonemaster project, please send a mail to
 [zonemaster-gui]: https://github.com/dotse/zonemaster-gui
 [ldns]: https://www.nlnetlabs.nl/projects/ldns/
 [CPAN]: http://search.cpan.org/search?query=Zonemaster&mode=dist
+
+[Zonemaster-LDNS issue 10]: https://github.com/dotse/zonemaster-ldns/issues/10
+[Zonemaster-LDNS issue 30]: https://github.com/dotse/zonemaster-ldns/issues/30. 
+

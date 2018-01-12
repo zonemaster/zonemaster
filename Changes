@@ -1,5 +1,27 @@
 Release history of Zonemaster
 
+v2017.4 2018-01-12 Public release
+
+Changes:
+
+- Added specification for undelegated test (#495, #526)
+- Removed address04.md and editorial changes (#491, #532)
+- Updated OS, DB, issue and "notables bugs" information in README.md (#540, #548, #547)
+- Remove perlbrew step from release process (#542)
+- Update of ReleaseProcess.md (#543, #545, #549)
+- Update the procedure for verifying metadata (#546)
+
+This version of Zonemaster also consists of the following components. For each
+component, see its Changes file.
+
+  zonemaster-ldns     v1.0.2  https://github.com/dotse/zonemaster-ldns
+  zonemaster-engine   v2.0.6  https://github.com/dotse/zonemaster-engine
+  zonemaster-cli      v1.1.2  https://github.com/dotse/zonemaster-cli
+  zonemaster-backend  v2.0.1  https://github.com/dotse/zonemaster-backend
+  zonemaster-gui      v1.0.9  https://github.com/dotse/zonemaster-gui
+
+
+
 v2017.3 2017-11-02 Public release
 
 Fixes:
