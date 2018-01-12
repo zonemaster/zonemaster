@@ -83,7 +83,7 @@ Ubuntu 14.04     | 5.18
 Ubuntu 16.04     | 5.22
 
 Zonemaster has been tested with the combination of OS and Perl version listed in the table
-above. Other versions of Perl might work. Earlier version of Perl than 5.14.2 will _NOT_ work.
+above. Other versions of Perl might work. Perl versions earlier than 5.14.2 will _NOT_ work.
 
 ## Localization
 
