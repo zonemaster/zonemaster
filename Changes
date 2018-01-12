@@ -9,7 +9,7 @@ Changes:
 - Updated OS, DB, issue and "notables bugs" information in README.md (#540, #548, #547)
 - Remove perlbrew step from release process (#542)
 - Update of ReleaseProcess.md (#543, #545, #549)
-- Update the procedure for verifying metadata (#546
+- Update the procedure for verifying metadata (#546)
 
 This version of Zonemaster also consists of the following components. For each
 component, see its Changes file.
