@@ -44,14 +44,12 @@ architecture listed below.
 
 * CentOS 7
 * Debian 7
+* Debian 8
+* Debian 9
 * FreeBSD 10.3
 * FreeBSD 11.1
 * Ubuntu 14.04
 * Ubuntu 16.04
-
-_Currently, Debian 8 and Debian 9 are not supported due to a known bug in Zonemaster::LDNS, see [Zonemaster-LDNS issue 10] and [Zonemaster-LDNS issue 30]. 
-These have to be resolved 
-before we can include support for Debian 8 and Debian 9._
 
 ### Supported database engine versions
 
@@ -78,8 +76,7 @@ FreeBSD 11.1     | 5.24
 Ubuntu 14.04     | 5.18
 Ubuntu 16.04     | 5.22
 
-Zonemaster has been tested with the combination of OS and Perl version listed in the table
-above. Perl versions earlier than 5.14.2 are not supported.
+Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been tested with the default version of Perl in the OSs as listed in the table above.
 
 ## Localization
 
