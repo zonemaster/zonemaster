@@ -2,7 +2,7 @@
 
 ## Scope
 
-The following style guide applies only to document text and certain file names specified below.
+The following style guide applies to document text and certain file names specified below.
 
 ## Guidelines
 
