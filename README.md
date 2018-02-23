@@ -167,10 +167,16 @@ repository, i.e. [general issues in Zonemaster](https://github.com/dotse/zonemas
 ## Notable bugs and issues
 
 * Selecting language in Zonemaster CLI tool `zonemaster-cli` sometimes does not work, see issues 
-[dotse/zonemaster-cli#46](https://github.com/dotse/zonemaster-cli/issues/46) and [dotse/zonemaster-cli#64](https://github.com/dotse/zonemaster-cli/issues/64).
+  [dotse/zonemaster-cli#46](https://github.com/dotse/zonemaster-cli/issues/46) and
+  [dotse/zonemaster-cli#64](https://github.com/dotse/zonemaster-cli/issues/64).
 * Selecting language in Zonemaster Backend RPC API under FreeBSD does not work, see issue
-[dotse/zonemaster-backend#315](https://github.com/dotse/zonemaster-backend/issues/315).
-* [Zonemaster-GUI version v1.0.10](https://github.com/dotse/zonemaster-gui/releases/tag/v1.0.10) fixes a vulnerability in non-Javascript GUI. This is part of Zonemaster version v2017.4.1.
+  [dotse/zonemaster-backend#315](https://github.com/dotse/zonemaster-backend/issues/315).
+* [Zonemaster-GUI version v1.0.10](https://github.com/dotse/zonemaster-gui/releases/tag/v1.0.10) fixes a
+  vulnerability in non-Javascript GUI. This is part of Zonemaster version
+  [v2017.4.1](https://github.com/dotse/zonemaster/releases/tag/v2017.4.1).
+* [Zonemaster-GUI version v1.0.11](https://github.com/dotse/zonemaster-gui/releases/tag/v1.0.11) fixes a
+  vulnerability in GUI. This is part of Zonemaster version
+  [v2017.4.2](https://github.com/dotse/zonemaster/releases/tag/v2017.4.2).
 
 ## Contact 
 
