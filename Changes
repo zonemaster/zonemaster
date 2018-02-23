@@ -5,7 +5,7 @@ v2017.4.2 2018-02-23 Security release
 Changes:
 
 - Security release of zonemaster-gui
-- Update of validation in zonemaster-backend
+- Update of input validation of domain name in zonemaster-backend
 
 This version of Zonemaster also consists of the following components. For each
 component, see its Changes file.
