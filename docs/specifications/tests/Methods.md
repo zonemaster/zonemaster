@@ -25,10 +25,10 @@ Obtain the parent zone of the given domain.
 Obtain the authoritative name servers for the given zone as defined in
 its delegation in the parent zone.
 
-1. Obtain the parent domain as input from Method 1.
-2. Send a query to the parent domain asking for the list of name servers
-   authoritative for the domain that is being tested 
-3. Record the list of name servers obtained from the authority section 
+1. Obtain parent zone using Method 1.
+2. Send an NS query for the given domain name to one of the authoritative
+   name servers for the parent zone.
+3. Record all NS records in the authority section and all glue records.
 
 
 ## Method 3: In-zone name servers
@@ -36,10 +36,12 @@ its delegation in the parent zone.
 Obtain the authoritative name servers for the given zone as defined in
 the zone itself.
 
-1. A NS query for the domain is made to all listed name servers obtained
-   from Method 2. 
-2. Record all the unique name servers from the answers received from the query in 
-   step 1.
+1. Obtain name servers using Method 2.
+2. Look up addresses for all obtained name servers that are
+   out-of-bailiwick.
+3. Send an NS query for the given domain to all obtained name servers.
+4. Record all the unique NS records in the answer sections of the
+   responses in step 3, as well as all unique glue records.
 
 
 ## Method 4: Delegation NS addresses
