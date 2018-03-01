@@ -2,7 +2,7 @@
 
 use 5.14.2;
 use warnings;
-use Zonemaster;
+use Zonemaster::Engine;
 
 # page header
 print "# Mapping test messages to test module\n\n";
@@ -12,8 +12,8 @@ print "| Log message identifier        | Implemented test case         |\n";
 print "|:------------------------------|:------------------------------|\n";
 
 # table content
-foreach my $module ( 'Basic', sort { $a cmp $b } Zonemaster::Test->modules ) {
-    my $full = "Zonemaster::Test::$module";
+foreach my $module ( 'Basic', sort { $a cmp $b } Zonemaster::Engine::Test->modules ) {
+    my $full = "Zonemaster::Engine::Test::$module";
     my $ref  = $full->metadata;
     while ( my ($key, $list) = each %$ref ) {
         for my $tag (map { uc( $module ) . ':' . $_ } sort { $a cmp $b } @$list) {
