@@ -1,16 +1,15 @@
 ![Zonemaster](docs/images/zonemaster_logo_black.png)
 ==========
 
+## Introduction
+
+Zonemaster is a software package that validates the quality of a DNS delegation. The ambition of the Zonemaster project is to develop and maintain an open source DNS validation tool, offering improved performance over existing tools and providing extensive documentation which could be re-used by similar projects in the future.
+
+Zonemaster consists of several modules or components. The components will help different types of users to check domain servers for configuration errors and generate a report that will assist in fixing the errors.
+
 ## Background
 
-DNSCheck from IIS and Zonecheck from AFNIC are two different software
-packages that validates the quality of a DNS
-delegation. AFNIC and IIS came together to develop a new DNS validation tool from
-scratch under the name Zonemaster. 
-
-The Zonemaster implementation intends to be a major
-rewrite of the existing DNS validation tools developed by AFNIC (Zonecheck) and
-IIS (DNSCheck), and implement the best parts of both.
+DNSCheck from IIS and Zonecheck from AFNIC are two old software packages that validate the quality of a DNS delegation. AFNIC and IIS came together to develop a new DNS validation tool from scratch under the name Zonemaster. Zonemaster intends to be a major rewrite of Zonecheck and DNSCheck, and aims to implement the best parts of both.
 
 ## Purpose
 
