@@ -21,7 +21,7 @@ The domain name to be tested.
 ### Ordered description of steps to be taken to execute the test case
 
 1. Obtain the list of name servers for the domain using [Method 2](
-   ../Methods.md#method-2-obtain-name-servers-from-parent) and [Method 3](
+   ../Methods.md#method-2-obtain-glue-name-records-from-parent) and [Method 3](
    ../Methods.md#method-3-obtain-name-servers-from-child).
 2. Use [Method 4](
    ../Methods.md#method-4-obtain-glue-address-records-from-parent) and
