@@ -5,10 +5,11 @@
 |R01|       UDP connectivity|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY01](.//Connectivity-TP/connectivity01.md)| UDP connectivity|
 |R02|       TCP connectivity|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY02](.//Connectivity-TP/connectivity02.md)| TCP connectivity|
 |R03|Address in a private network|[Address-TP](Address-TP/level.md)|[ADDRESS01](.//Address-TP/address01.md)|Name server address must be globally routable|
-|R04|Address should not be part of a bogon prefix|[Address-TP](Address-TP/level.md)|[ADDRESS01](.//Address-TP/address01.md)|IPv6 address not part of bogon prefix|
+|R04|Address should not be part of a bogon prefix|[Address-TP](Address-TP/level.md)|[ADDRESS01](.//Address-TP/address01.md)|Name server address must be globally routable|
 |R05|Illegal symbols in domain name|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX01](.//Syntax-TP/syntax01.md)|No illegal characters in the domain name|
 |R06|Dash ('-') at start or beginning of domain name|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX02](.//Syntax-TP/syntax02.md)|No hyphen ('-') at the start or end of the domain name|
 |R07|Double dash in domain name|[ Syntax-TP](Syntax-TP/level.md)|[SYNTAX03](.//Syntax-TP/syntax03.md)|There must be no double hyphen ('--') in position 3 and 4 of the domain name|
+|R08|The child domain has atleast one working name server|[  Basic-TP](Basic-TP/level.md)|[BASIC02](.//Basic-TP/basic02.md)|The domain must have at least one working name server|
 |R09|At least two nameservers for the domain|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION01](.//Delegation-TP/delegation01.md)|Minimum number of name servers   |
 |R10|    Identical addresses|[Delegation-TP](Delegation-TP/level.md)|[DELEGATION02](.//Delegation-TP/delegation02.md)|Name servers must have distinct IP addresses|
 |R11|Nameserver addresses on same subnet|[Connectivity-TP](Connectivity-TP/level.md)|[CONNECTIVITY03](.//Connectivity-TP/connectivity03.md)|     AS Diversity|
@@ -67,6 +68,8 @@
 |R77|Perform input validation on the domain name|[  Basic-TP](Basic-TP/level.md)|[BASIC00](.//Basic-TP/basic00.md)|Domain name must be valid|
 |R78|All authoritative nameservers reply with same set|[Consistency-TP](Consistency-TP/level.md)|[CONSISTENCY04](.//Consistency-TP/consistency04.md)|Name server NS consistency|
 |R79|If DS at parent, child zone must be signed|[ DNSSEC-TP](DNSSEC-TP/level.md)|[DNSSEC11](.//DNSSEC-TP/dnssec11.md)|Delegation from parent to child is properly signed|
-|R80|Preservation of wname case in DNS answers|**missing**|**missing**|      **missing**|
+|R80|Test QNAME case sensitivity|[Nameserver-TP](Nameserver-TP/level.md)|[NAMESERVER09](.//Nameserver-TP/nameserver09.md)|Testing QNAME case sensitivity|
 |R81|   Test Upward referral|[Nameserver-TP](Nameserver-TP/level.md)|[NAMESERVER07](.//Nameserver-TP/nameserver07.md)|To check whether authoritative name servers return an upward referral|
-|R82|Test QNAME Case sensitivity|[Nameserver-TP](Nameserver-TP/level.md)|[NAMESERVER08](.//Nameserver-TP/nameserver08.md)|Testing QNAME case sensitivity|
+|R82|Test QNAME Case insensitivity|[Nameserver-TP](Nameserver-TP/level.md)|[NAMESERVER08](.//Nameserver-TP/nameserver08.md)|Testing QNAME case insensitivity  |
+|R83|Consistency between glue and authoritative data|[Consistency-TP](Consistency-TP/level.md)|[CONSISTENCY05](.//Consistency-TP/consistency05.md)|Consistency between glue and authoritative data|
+|R84|Test for DNSSEC Algorithm Completeness (DS->DNSKEY->RRSIG)|[ DNSSEC-TP](DNSSEC-TP/level.md)|[missing](.//DNSSEC-TP/dnssec12.md)|          missing|
