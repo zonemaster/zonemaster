@@ -8,8 +8,8 @@ use Zonemaster::Engine;
 print "# Mapping test messages to test module\n\n";
 
 # table header
-print "| Log message identifier        | Implemented test case         |\n";
-print "|:------------------------------|:------------------------------|\n";
+print "| Log message identifier                         | Implemented test case         |\n";
+print "|:-----------------------------------------------|:------------------------------|\n";
 
 # table content
 foreach my $module ( 'Basic', sort { fc $a cmp fc $b } Zonemaster::Engine::Test->modules ) {
@@ -23,7 +23,7 @@ foreach my $module ( 'Basic', sort { fc $a cmp fc $b } Zonemaster::Engine::Test-
             my $testlevel = "$module-TP";
             my $testcase = "$key.md";
             my $testlink = "$testlevel/$testcase";
-            printf "| %-30s | [%s](%s) |\n", $tag, $testmodule, $testlink;
+            printf "| %-46s | [%s](%s) |\n", $tag, $testmodule, $testlink;
         }
     }
 }
