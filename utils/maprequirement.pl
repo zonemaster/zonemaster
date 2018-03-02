@@ -143,7 +143,7 @@ sub readTCFiles {
 	my $result;
 	foreach my $level (keys %{$fileinfo}){
 		print "LEVEL $level\n" if $DEBUG;
-		foreach my $req ( keys $fileinfo->{$level}->{'file'} ) {
+		foreach my $req ( keys %{ $fileinfo->{$level}->{'file'} } ) {
 			my $files = $fileinfo->{$level}->{'file'}->{$req};
 			foreach my $file (@$files) {
 				my $tcid;   # test case id
@@ -180,7 +180,7 @@ sub readTCFiles {
 					$result->{$req}->{$tcid} = [];
 				}
 				my $tc = { 'desc' => $tcdesc, 'file' => $tcFile, 'level' => $level };
-				push $result->{$req}->{$tcid}, $tc;
+				push @{ $result->{$req}->{$tcid} }, $tc;
 				
 			}
 		}
