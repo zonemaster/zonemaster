@@ -7,11 +7,11 @@
 
 The domain should only use DNSKEY algorithms that are defined by IANA.
 
-The DNSKEY record is described in section 2 of [RFC 4034]
-(https://tools.ietf.org/html/rfc4034#section-2).
+The DNSKEY record is described in section 2 of [RFC 4034](
+https://tools.ietf.org/html/rfc4034#section-2).
 
-The IANA registry of DNSKEY algorithm numbers is in the [dns-sec-alg-numbers]
-(https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml).
+The IANA registry of DNSKEY algorithm numbers is in the [dns-sec-alg-numbers](
+https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml).
 
 ### Inputs
 

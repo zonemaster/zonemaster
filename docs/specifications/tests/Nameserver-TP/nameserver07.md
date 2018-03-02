@@ -8,7 +8,8 @@ referral
 ### Objective
 The configuration and/or implementation of some authoritative name servers
 causes them to return an upward referral to the root zone. There are proofs that
-such a [behaviour could be used for DDoS attacks] (https://www.dns-oarc.net/oarc/articles/upward-referrals-considered-harmful)
+such a [behaviour could be used for DDoS attacks](
+https://www.dns-oarc.net/oarc/articles/upward-referrals-considered-harmful)
 
 
 ### Inputs
