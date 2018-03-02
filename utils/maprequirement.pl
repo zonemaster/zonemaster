@@ -152,9 +152,13 @@ sub readTCFiles {
 
 				my $tcFile = "$specdir/$level/$file";
 				my @content = ();
-				open my $File, "$tcFile" or warn "cannot open $tcFile: $!";
-				@content = <$File>;
-				close $File;
+				if ( open my $File, "$tcFile" ) {
+					@content = <$File>;
+					close $File;
+				}
+				else {
+					warn "cannot open $tcFile: $!";
+				}
 
 				# TC id and TC desc only on first line of TC file:
 				if ( defined $content[0] and $content[0] =~ /^##\s*(.*)\s*\:\s*(.*)/ ) {
