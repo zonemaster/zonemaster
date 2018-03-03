@@ -1,4 +1,4 @@
-# List of basic DNS tests
+# List of Delegation DNS tests
 
 This document uses the terminology defined in the [Master Test Plan](../MasterTestPlan.md).
 
