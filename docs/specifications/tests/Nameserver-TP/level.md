@@ -1,4 +1,4 @@
-# List of Nameserver tests
+# List of Name Server tests
 
 These are tests of the properties of a name server.
 
