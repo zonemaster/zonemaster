@@ -1,4 +1,4 @@
-# List of Consistency DNS tests
+# List of Consistency tests
 
 This document uses the terminology defined in the [Master Test Plan](../MasterTestPlan.md).
 

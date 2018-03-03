@@ -1,4 +1,4 @@
-# List of Connectivity DNS tests
+# List of Connectivity tests
 
 This document uses the terminology defined in the [Master Test Plan](../MasterTestPlan.md).
 

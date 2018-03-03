@@ -1,4 +1,4 @@
-# List of Basic DNS tests
+# List of Basic tests
 
 These are tests of a domain's most basic functionality. If these fail,
 it will be hard or impossible to perform any other tests at all. The
