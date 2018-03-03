@@ -57,7 +57,7 @@ Security and Performance testing are not included.
 |FR11|For delegated zones, the GUI should be able to run tests by just providing the domain name |Manually|OK|
 |FR12|For undelegated zones, the GUI should be able to run the test with atleast one name server as input |Manually|OK|
 |FR13|For undelegated zones, the user must be able to submit one or more DS record(s) for use with DNSSEC | Manually |OK |
-|FR14|Verify the GUI runs with different test profiles|Manually| KO - No test profiles created (Issue https://github.com/dotse/zonemaster/issues/167)|
+|FR14|Verify the GUI runs with different test profiles|Manually| KO - No test profiles created (Issue <https://github.com/dotse/zonemaster/issues/167>)|
 |FR15|Should be able to export the result in HTML format|Manually|KO|
 |FR16|Should be able to export the result in TEXT format|Manually|OK|
 |FR17|Should be able to show a progress bar with a rough estimate of the total test progress|Manually|OK|

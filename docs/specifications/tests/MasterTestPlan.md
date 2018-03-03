@@ -48,8 +48,8 @@ will implement.
 #### External
 
 The current implemented tests in DNSCheck are described here:  
-https://github.com/dotse/dnscheck/wiki/Tests  
-https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages
+<https://github.com/dotse/dnscheck/wiki/Tests>  
+<https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages>
 
 The current implemented tests in Zonecheck are described here:
 http://www.zonecheck.fr/features.shtml
@@ -294,8 +294,8 @@ TODO: do we need a separate requirements document?
 #### DNSCheck
 
 These are the current documented test cases from DNSCheck:  
-https://github.com/dotse/dnscheck/wiki/Tests  
-https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages
+<https://github.com/dotse/dnscheck/wiki/Tests>  
+<https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages>
 
 #### Zonecheck
 

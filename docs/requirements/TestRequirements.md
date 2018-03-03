@@ -103,7 +103,7 @@ Tests to implement
 Future tests
 ------------
  * Case insensitivity in a name server, [RFC 4343](https://tools.ietf.org/html/rfc4343).
- * More tests of EDNS(0), [RFC 6891](https://tools.ietf.org/search/rfc6891) and http://ednscomp.isc.org/.
+ * More tests of EDNS(0), [RFC 6891](https://tools.ietf.org/search/rfc6891) and <http://ednscomp.isc.org/>.
  * AXFR is complex, perhaps do more inspection of data coming from AXFR,
    [RFC 5936](https://tools.ietf.org/html/rfc5936).
  * Check for algorithm completeness (DS->DNSKEY->RRSIG) as per section 2.2 of
