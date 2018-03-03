@@ -31,8 +31,8 @@ delegation:
 	cat Delegation-TP/delegation*.md >> $(DOC)
 
 dnssec:
-	cat DNSSEC-TP/level.md > $(DOC)
-	cat DNSSEC-TP/dnssec*.md > $(DOC)
+	cat DNSSEC-TP/level.md >> $(DOC)
+	cat DNSSEC-TP/dnssec*.md >> $(DOC)
 
 nameserver:
 	cat Nameserver-TP/level.md >> $(DOC)
