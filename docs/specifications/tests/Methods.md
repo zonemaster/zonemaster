@@ -4,11 +4,6 @@ This is a list of generic methods used in many test case specifications. The
 test cases that makes use of any of these methods should link directly to
 this text.
 
-For all methods, take note if name server does not respond (time out), if
-it responds with any other RCODE than NXDOMAIN and NOERROR or if it responds
-with an expected or illegal format.
-
-
 ## Method 1: Parent zone
 
 Obtain the parent zone of the given domain (zone).
@@ -20,41 +15,30 @@ Obtain the parent zone of the given domain (zone).
 3. If the lookup reaches a name server that responds with a redirect (delegation)
    directly to the requested child zone:
 
-   3.1 The method succeeds.
-   
-   3.2 The zone in which the delegation was found is considered to be the parent zone.
-   
-   3.3 Collect all NS records in the authority section and store them 
+   1. The method succeeds.
+   2. The zone in which the delegation was found is considered to be the parent zone.
+   3. Collect all NS records in the authority section and store them 
        in a cache that method 2 can use.
-
-   3.4 Collect all A and AAAA records in the additional section and store them 
+   4. Collect all A and AAAA records in the additional section and store them 
        in a cache that method 4 can use.
-
-   3.5 The existance of the child zone has been determined.
-   
-   3.6 Return the name of the parent zone and the fact that the child zone exists.
+   5. The existance of the child zone has been determined.
+   6. Return the name of the parent zone and the fact that the child zone exists.
 
 4. If the recursive lookup reaches a name server that authoritatively responds
    (AA flag set) with NXDOMAIN for the child domain (child zone): 
    
-   4.1 The method succeeds.
-   
-   4.2 The zone returning NXDOMAIN is considered to be the parent zone.
-   
-   4.3 The non-existance of the child zone has been determined.
-
-   4.4 Return the name of the parent zone and the fact that the child zone does not exist.
+   1. The method succeeds.
+   2. The zone returning NXDOMAIN is considered to be the parent zone.
+   3. The non-existance of the child zone has been determined.
+   4. Return the name of the parent zone and the fact that the child zone does not exist.
 
 5. If the recursive lookup reaches authorititative NOERROR answer (AA flag set), 
    with or without records in the answer section:
    
-   5.1 The method succeeds.
-   
-   5.2 The zone returning authoritative data is considered to be the parent zone.
-   
-   4.3 The non-existance of the child zone has been determined.
-
-   4.4 Return the name of the parent zone and the fact that the child zone does not exist.
+   1. The method succeeds.
+   2. The zone returning authoritative data is considered to be the parent zone.
+   3. The non-existance of the child zone has been determined.
+   4. Return the name of the parent zone and the fact that the child zone does not exist.
    
 6. If the recurse lookup ends with server or zone error or in a loop, then the method fails
    and no parent zone is found.
