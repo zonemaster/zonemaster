@@ -143,7 +143,7 @@ sub readTCFiles {
 	my $result;
 	foreach my $level (keys %{$fileinfo}){
 		print "LEVEL $level\n" if $DEBUG;
-		foreach my $req ( keys $fileinfo->{$level}->{'file'} ) {
+		foreach my $req ( keys %{ $fileinfo->{$level}->{'file'} } ) {
 			my $files = $fileinfo->{$level}->{'file'}->{$req};
 			foreach my $file (@$files) {
 				my $tcid;   # test case id
@@ -152,9 +152,13 @@ sub readTCFiles {
 
 				my $tcFile = "$specdir/$level/$file";
 				my @content = ();
-				open my $File, "$tcFile" or warn "cannot open $tcFile: $!";
-				@content = <$File>;
-				close $File;
+				if ( open my $File, "$tcFile" ) {
+					@content = <$File>;
+					close $File;
+				}
+				else {
+					warn "cannot open $tcFile: $!";
+				}
 
 				# TC id and TC desc only on first line of TC file:
 				if ( defined $content[0] and $content[0] =~ /^##\s*(.*)\s*\:\s*(.*)/ ) {
@@ -180,7 +184,7 @@ sub readTCFiles {
 					$result->{$req}->{$tcid} = [];
 				}
 				my $tc = { 'desc' => $tcdesc, 'file' => $tcFile, 'level' => $level };
-				push $result->{$req}->{$tcid}, $tc;
+				push @{ $result->{$req}->{$tcid} }, $tc;
 				
 			}
 		}
