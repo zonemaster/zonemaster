@@ -13,13 +13,13 @@ in the child zone.
 
 The method for authentication a DNS response is described in section 5 of
 [RFC 4035](https://tools.ietf.org/html/rfc4035#section-5). The DS record
-is described in section 5 of [RFC 4034]
-(https://tools.ietf.org/html/rfc4034#section-5) and the DNSKEY record is
-described in section 2 of [RFC 4034]
-(https://tools.ietf.org/html/rfc4034#section-2).
+is described in section 5 of [RFC 4034](
+https://tools.ietf.org/html/rfc4034#section-5) and the DNSKEY record is
+described in section 2 of [RFC 4034](
+https://tools.ietf.org/html/rfc4034#section-2).
 
-The IANA registry of DNSKEY algorithm numbers is in the [dns-sec-alg-numbers]
-(https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml).
+The IANA registry of DNSKEY algorithm numbers is in the [dns-sec-alg-numbers](
+https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml).
 The allowed Digest Algorithms in a DS record published by the parent are
 published by IANA in [Delegation Signer (DS) Resource Record (RR) Type
 Digest Algorithms](https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xml). 

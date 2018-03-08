@@ -14,8 +14,8 @@ DNSSEC. Shorter validity than 12 hours until expiration will give a serious
 operational problem just in case of temporary network problems, and longer
 than 180 days will create wide open holes for replay attacks.
 
-The considerations are described in [RFC6781]
-(https://tools.ietf.org/html/rfc6781).
+The considerations are described in [RFC6781](
+https://tools.ietf.org/html/rfc6781).
 
 ### Inputs
 
