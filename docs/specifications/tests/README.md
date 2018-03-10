@@ -17,10 +17,10 @@ project. All the details are in the [Master Test Plan](MasterTestPlan.md).
 
 1. Each test level has been separated into a separate directory below
    this directory.
-2. Under each test level directory there is a level.md document
+2. Under each test level directory there is a level document (README.md)
    describing the test level. See for example the level document from
-   [Syntax-TP](Syntax-TP/level.md).
-3. The level.md document describes the mapping from Test Requirement
+   [Syntax-TP](Syntax-TP/README.md).
+3. The level document (README.md) describes the mapping from Test Requirement
    to each individual Test Case document.
 
 ## Elaboration of the test case
@@ -33,7 +33,7 @@ project. All the details are in the [Master Test Plan](MasterTestPlan.md).
 ## Document Hierarchy
 
 1. Each Test Level described in [Master Test Plan](MasterTestPlan.md)
-   should be linked directly to the correct level.md document.
+   should be linked directly to the correct level document (README.md).
 2. Each Test Case in the Test Level document should be linked directly
    to the correct Test Case document.
 
