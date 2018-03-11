@@ -19,7 +19,7 @@ Source documents
 Most of the requirements are derived from these documents:
 
 Type of document             |Copied from where      |Document
------------------------------|-----------------------|------------------------------------
+:-----------------------------|:-----------------------|:------------------------------------
 Source document for Zonecheck|Previois Zonecheck site|[Features](ExistingZCFeaturesCLI.md)
 Policy document for Zonecheck|Previois Zonecheck site|[Test Policy](ExistingZCPolicy.md)
 Source document for DNSCheck |DNSCheck Github Wiki   |[Detailes list of all messages](Detailed-list-of-all-possible-dnscheck-messages.md)
