@@ -60,7 +60,7 @@ child zone, this test case fails.
 
 ### Special procedural requirements
 
-See the [level document](level.md) about DNSSEC algorithms.
+See the [level document](README.md) about DNSSEC algorithms.
 
 Test case is only performed if DS records are found.
 

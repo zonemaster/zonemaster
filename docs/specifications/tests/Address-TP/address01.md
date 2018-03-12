@@ -29,8 +29,8 @@ The domain name to be tested.
 
 2. If any IP address (IPv4 or IPv6) falls within any of the blocks in the below
    mentioned IANA links, the test case fails:
-   * http://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml
-   * http://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xhtml
+   * <http://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml>
+   * <http://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xhtml>
 
 ### Outcome(s)
 

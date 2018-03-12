@@ -43,6 +43,7 @@ my $DEBUG = 0;
 # global variables
 my $tcCounter = 0;
 #my $reqs = {}; # { 'Rxx' => 'desc' }
+my $levelfile = 'README.md'; # Name of common file for test level
 
 sub main {
     GetOptions(
@@ -110,7 +111,7 @@ sub readTCLevels {
 			my $tclevel = $_;
 			my $tcDir = "$specdir/$tclevel";
 		    print "Level $tclevel\n" if $DEBUG;
-			open my $lFile, "$tcDir/level.md" or die "cannot open $tcDir/level.md: $!";
+			open my $lFile, "$tcDir/$levelfile" or die "cannot open $tcDir/$levelfile: $!";
 			my @content = <$lFile>;
 			close $lFile;
 			$result->{$tclevel} = TCFileFromLevel(\@content);
@@ -228,8 +229,8 @@ sub outputResult {
 				$otcDesc = $testInfo->{'desc'};
 				$oLevel  = $testInfo->{'level'};
 				my $linkID = "[$otcID]($otcLink)";
-				printf "|%3s|%23s|[%10s](%s/level.md)|%-10s|%17s|\n",
-						$oReqID,$oReqText,$oLevel,$oLevel,$linkID,$otcDesc;
+				printf "|%3s|%23s|[%10s](%s/%s)|%-10s|%17s|\n",
+						$oReqID,$oReqText,$oLevel,$oLevel,$levelfile,$linkID,$otcDesc;
 			}
 		}
 	}
