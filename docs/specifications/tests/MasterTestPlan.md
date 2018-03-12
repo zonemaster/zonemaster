@@ -95,7 +95,6 @@ include:
  * [**Zone**](Zone-TP/README.md) properties (are data controlling the zone
    sane)
  * [**Syntax**](Syntax-TP/README.md) (illegal hostnames and characters)
- * (not mandatory) [**Resolver**](Resolver-TP/README.md) properties
 
 A domain can be given to the testing system and all DNS information
 will be retrieved from the public global DNS hierarchy, or a set of
