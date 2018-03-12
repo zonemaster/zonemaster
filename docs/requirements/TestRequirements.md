@@ -18,9 +18,12 @@ Source documents
 
 Most of the requirements are derived from these documents:
 
- * Source document for Zonecheck: [Features](internal-documentation/requirements/ExistingZCFeaturesCLI.md )
- * Policy document for Zonecheck: [Test Policy](internal-documentation/requirements/ExistingZCPolicy.md )
- * Source document for DNSCheck: [Detailes list of all possible DNSCheck messages](https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages)
+Type of document             |Document copied from   |Document
+:----------------------------|:----------------------|:------------------------------------
+Source document for Zonecheck|Previois Zonecheck site|[Features](ExistingZCFeaturesCLI.md)
+Policy document for Zonecheck|Previois Zonecheck site|[Test Policy](ExistingZCPolicy.md)
+Source document for DNSCheck |DNSCheck Github Wiki   |[Detailes list of all messages](Detailed-list-of-all-possible-dnscheck-messages.md)
+
 
 Tests to implement
 ------------------
