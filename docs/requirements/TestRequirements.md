@@ -18,8 +18,8 @@ Source documents
 
 Most of the requirements are derived from these documents:
 
- * Source document for Zonecheck: [features.shtml](http://www.zonecheck.fr/features.shtml)
- * Policy document for Zonecheck: [tests-policy-2.html](http://www.afnic.fr/en/products-and-services/services/zonecheck/tests-policy-2.html)
+ * Source document for Zonecheck: [Features](internal-documentation/requirements/ExistingZCFeaturesCLI.md )
+ * Policy document for Zonecheck: [Test Policy](internal-documentation/requirements/ExistingZCPolicy.md )
  * Source document for DNSCheck: [Detailes list of all possible DNSCheck messages](https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages)
 
 Tests to implement
@@ -103,7 +103,7 @@ Tests to implement
 Future tests
 ------------
  * Case insensitivity in a name server, [RFC 4343](https://tools.ietf.org/html/rfc4343).
- * More tests of EDNS(0), [RFC 6891](https://tools.ietf.org/search/rfc6891) and http://ednscomp.isc.org/.
+ * More tests of EDNS(0), [RFC 6891](https://tools.ietf.org/search/rfc6891) and <http://ednscomp.isc.org/>.
  * AXFR is complex, perhaps do more inspection of data coming from AXFR,
    [RFC 5936](https://tools.ietf.org/html/rfc5936).
  * Check for algorithm completeness (DS->DNSKEY->RRSIG) as per section 2.2 of

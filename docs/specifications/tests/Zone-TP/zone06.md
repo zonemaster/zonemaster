@@ -19,7 +19,7 @@ The description of the implementation of negative caching is in
 updated by several DNSSEC related RFCs, it is still relevant for this
 purpose).
 
-The [RIPE-203](https://www.ripe.net/ripe/docs/ripe-203) recommendation
+The [RIPE-203](https://www.ripe.net/publications/docs/ripe-203) recommendation
 for the minimum value 2 days, but the negative caching is now the norm.
 DNSCheck has a recommended value of between 300 seconds (5 minutes) and
 86400 seconds (1 day).
