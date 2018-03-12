@@ -2,7 +2,7 @@
 
 The list is in alphabetical order.
 
-##Address module
+## Address module
 
 * ADDRESS:INVALID
 
@@ -42,7 +42,7 @@ The list is in alphabetical order.
 
     As for UNSUITABLE_IPV4, but for IPv6 addresses. Example is 2001::/32, the range assigned to the Teredo system.
 
-##Connectivity module
+## Connectivity module
 
 * CONNECTIVITY:ANNOUNCED_BY_ASN
 
@@ -103,7 +103,7 @@ The list is in alphabetical order.
     The total number of ASNs in which the nameservers for the zone being tested 
     has listed IPv6 addresses is exactly one.
 
-##Consistency module
+## Consistency module
 
 * CONSISTENCY:MULTIPLE_NS_SETS
 
@@ -151,7 +151,7 @@ The list is in alphabetical order.
     zone itself and its parent, were not all the same. The number of different 
     serial numbers seen is included in this message.
 
-##Delegation module
+## Delegation module
 
 * DELEGATION:BROKEN_UNDELEGATED
 
@@ -335,7 +335,7 @@ The list is in alphabetical order.
     or the zone name with "www." prepended. That is, it is probably possible to
     access a web site at the zone, even though it does not properly exist.
 
-##DNS Lookup module
+## DNS Lookup module
 
 * DNS:LOOKUP_ERROR
 
@@ -386,7 +386,7 @@ The list is in alphabetical order.
     The Net::IP module did not consider the address to be of type "PUBLIC" or 
     "GLOBAL-UNICAST".
 
-##DNSSEC module
+## DNSSEC module
 
 * DNSSEC:ADDITIONAL_PROCESSING_BROKEN
 
@@ -622,7 +622,7 @@ The list is in alphabetical order.
     records, at least one of which was within its validity period and 
     cryptographically matched the correct DNSKEY.
 
-##Host module
+## Host module
 
 * HOST:CNAME_FOUND
 
@@ -651,7 +651,7 @@ The list is in alphabetical order.
     Global recursive A and AAAA queries for the given name did not return any 
     records in the ANSWER sections of the responses.
 
-##Mail module
+## Mail module
 
 * MAIL:ADDRESS_SYNTAX
 
@@ -698,7 +698,7 @@ The list is in alphabetical order.
 
     This message lists all the potential mailhosts found.
 
-##Nameserver module
+## Nameserver module
 
 * NAMESERVER:AUTH
 
@@ -800,7 +800,7 @@ The list is in alphabetical order.
     A SOA query for the zone being tested sent to the indicated nameserver over 
     UDP did return a response packet
 
-##SMTP module
+## SMTP module
 
 * SMTP:BANNER
 
@@ -838,7 +838,7 @@ The list is in alphabetical order.
 
     An SMTP command timed out rather than get an answer.
 
-##SOA module
+## SOA module
 
 * SOA:EXPIRE_OK
 
@@ -991,7 +991,7 @@ The list is in alphabetical order.
 
     The SOA ttl value is smaller than the SOA:MIN_TTL configuration parameter.
 
-##Zone module
+## Zone module
 
 * ZONE:FATAL_DELEGATION
 
@@ -1007,7 +1007,7 @@ The list is in alphabetical order.
     The name of the zone to the be tested did not pass the DNSCheck hostname 
     syntax tests.
 
-##Messages not included in the policy file
+## Messages not included in the policy file
 
 *  ASN:ANNOUNCE_BY
 
