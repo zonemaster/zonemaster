@@ -36,35 +36,35 @@ This sub-algorithm is used repeatedly by the larger algorithm, so we descibe it 
 
 2. Initialize nameservers for the zone found.
 
-  1. Do a global recursive NS query for the zone name.
+   1. Do a global recursive NS query for the zone name.
   
-  2. For every NS record in the Answer section of the response, add the nameserver name to the cached list of nameservers for the zone name.
+   2. For every NS record in the Answer section of the response, add the nameserver name to the cached list of nameservers for the zone name.
   
-  3. For every cached name, sorted in standard lexicographic order, so global recursive A and AAAA queries. For all A and AAAA records in the Answer sections of the responses, add the addresses to the cache in hash-key order (that is, essentially random order). 
+   3. For every cached name, sorted in standard lexicographic order, so global recursive A and AAAA queries. For all A and AAAA records in the Answer sections of the responses, add the addresses to the cache in hash-key order (that is, essentially random order). 
 
 3. Get nameservers IPv4
 
-  1. Initialize nameservers for the zone found
+   1. Initialize nameservers for the zone found
   
-  2. Return nameserver addresses from cache
+   2. Return nameserver addresses from cache
 
 4. Get nameservers IPv6
 
-  1. Initialize nameservers for the zone found
+   1. Initialize nameservers for the zone found
   
-  2. Return nameserver addresses from cache.
+   2. Return nameserver addresses from cache.
 
 5. Randomize the order of the combined list of addresses.
 
 6. Send the query.
 
-  1. Go through the servers in the given order. Send the given query to each one.
+   1. Go through the servers in the given order. Send the given query to each one.
   
-  2. If there is no response due to a timeout, increase a counter. If there is an answer and it does not have rcode SERVFAIL, exit the loop.
+   2. If there is no response due to a timeout, increase a counter. If there is an answer and it does not have rcode SERVFAIL, exit the loop.
   
-  3. Outside the loop, no matter if it exited due to a response or ran out of servers, if the timeout counter is larger than zero, log a DNS timeout message.
+   3. Outside the loop, no matter if it exited due to a response or ran out of servers, if the timeout counter is larger than zero, log a DNS timeout message.
   
-  4. Return the response (or undef if there wasn't one) to the caller.
+   4. Return the response (or undef if there wasn't one) to the caller.
 
 ## Querying the child-side servers
 
