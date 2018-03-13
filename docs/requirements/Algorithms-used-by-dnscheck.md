@@ -1,12 +1,12 @@
-#Algorithms
+# Algorithms
 
 These are attempts to describe a handful of algorithms that are used by a lot of DNSCheck tests. Since the descriptions are reverse-engineered from the code, the descriptions may sometimes be vagues and/or not match what was originally intended.
 
-##Finding the parent zone
+## Finding the parent zone
 
 This algorithm is used at least up to DNSCheck version 1.2.5. An alternate algorithm exists as a branch, and will probably be merged into the main branch in the future, that works by keeping track of the steps taken while recursing down from the root to the given zone.
 
-###Find a SOA record for a name
+### Find a SOA record for a name
 
 This sub-algorithm is used repeatedly by the larger algorithm, so we descibe it separately.
 
@@ -20,7 +20,7 @@ This sub-algorithm is used repeatedly by the larger algorithm, so we descibe it 
 
 5. Return the undefined value.
 
-###Find parent for a zone name
+### Find parent for a zone name
 
 1. Execute the SOA-finding algorithm for the zone name. If no name is returned by it, return the undefined value.
 
@@ -30,7 +30,7 @@ This sub-algorithm is used repeatedly by the larger algorithm, so we descibe it 
 
 4. If the final label of the original name is removed and there still is no equality, return the root zone name (".").
 
-##Querying the parent-side servers
+## Querying the parent-side servers
 
 1. Find the parent zone, using the above alorithm. Fail if no parent is found.
 
@@ -66,6 +66,6 @@ This sub-algorithm is used repeatedly by the larger algorithm, so we descibe it 
   
   4. Return the response (or undef if there wasn't one) to the caller.
 
-##Querying the child-side servers
+## Querying the child-side servers
 
 This works exactly the same as for the parent side, except the zone name itself is used instead of the parent zone name.
