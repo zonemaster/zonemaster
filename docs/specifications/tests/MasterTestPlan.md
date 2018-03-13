@@ -47,13 +47,16 @@ will implement.
 ### References
 #### External
 
-The current implemented tests in DNSCheck are described here:  
-<https://github.com/dotse/dnscheck/wiki/Tests>  
-<https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages>
+The current implemented tests in DNSCheck are described here (copied
+from the DNSCheck Github Wiki):
 
-The current implemented tests in Zonecheck
-are described in [ExistingZCPolicy.md](
-../../internal-documentation/requirements/ExistingZCPolicy.md).
+* [DNSCheck-Tests.md](../../requirements/DNSCheck-Tests.md)
+* [Detailed-list-of-all-possible-dnscheck-messages.md](../../requirements/Detailed-list-of-all-possible-dnscheck-messages.md)
+* [Algorithms-used-by-dnscheck.md](../../requirements/Algorithms-used-by-dnscheck.md)
+
+The current implemented tests in Zonecheck are described in here (copied from previous Zonecheck site):
+* [ExistingZCPolicy.md](../../requirements/ExistingZCPolicy.md)
+
 
 #### Internal
 No internal requirements.
