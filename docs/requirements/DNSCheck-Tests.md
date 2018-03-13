@@ -1,4 +1,4 @@
-The DNSCheck tests can be found in the [[DNSCheck::Test|http://github.com/dotse/dnscheck/tree/master/engine/lib/DNSCheck/Test/]] namespace. The following tests are implemented:
+The DNSCheck tests can be found in the [DNSCheck::Test](http://github.com/dotse/dnscheck/tree/master/engine/lib/DNSCheck/Test/) namespace. The following tests are implemented:
 
 ## Address
 Tests for valid (and resonable) IP addresses.
@@ -11,7 +11,7 @@ The following tests are made:
 * Special-Use IPv6 Addresses must not be used.
 * There should exist a PTR record for the address.
 * The hostname(s) pointed to by the PTR record(s) should exist.
-* This test is implemented by [[DNSCheck::Test::Address|http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Address.pm]].
+* This test is implemented by [DNSCheck::Test::Address](http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Address.pm).
 
 ## Connectivity
 Test zone connectivity.
@@ -21,7 +21,7 @@ The following tests are made:
  * A name server should not be announced by more than one AS.
  * A name server must be announced.
  * Domain name servers should live in more than one AS.
- * This test is implemented by [[DNSCheck::Test::Connectivity|http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Connectivity.pm]].
+ * This test is implemented by [DNSCheck::Test::Connectivity](http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Connectivity.pm).
 
 ## Consistency
 Test the zone for consistency.
@@ -30,7 +30,7 @@ The following tests are made:
 
  * The serial number of the zone must be the same at all listed name servers.
 
-This test is implemented by [[DNSCheck::Test::Consistency|http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Consistency.pm]].
+This test is implemented by [DNSCheck::Test::Consistency](http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Consistency.pm).
 
 ## DNSSEC
 Test DNSSEC.
@@ -49,7 +49,7 @@ The following tests are made:
  * At least one DS algorithm should be of type RSA/SHA1.
  * Verify DNSSEC additional processing.
  
-This test is implemented by [[DNSCheck::Test::DNSSEC|http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/DNSSEC.pm]].
+This test is implemented by [DNSCheck::Test::DNSSEC](http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/DNSSEC.pm).
 
 ## Delegation
 The following tests are made:
@@ -59,7 +59,7 @@ The following tests are made:
  * At least two NS records at parent.
  * Check for inconsistent glue.
 
-This test is implemented by [[DNSCheck::Test::Delegation|http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Delegation.pm]].
+This test is implemented by [DNSCheck::Test::Delegation](http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Delegation.pm).
 
 ## Host
 Test host names and addresses.
@@ -72,7 +72,7 @@ The following tests are made:
  * Hostname must not point to a CNAME.
  * All host addresses (IPv4 and IPv6) must be valid.
 
-This test is implemented by [[DNSCheck::Test::Host|http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Host.pm]].
+This test is implemented by [DNSCheck::Test::Host](http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Host.pm).
 
 ## Mail
 Test email addresses.
@@ -84,7 +84,7 @@ The following tests are made:
  * The mail exchanger should be reachable by IPv4.
  * Mail for the email address must be deliverable via SMTP.
 
-This test is implemented by [[DNSCheck::Test::Mail|http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Mail.pm]].
+This test is implemented by [DNSCheck::Test::Mail](http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Mail.pm).
 
 ## Nameserver
 Test a single name server for a specific zone.
@@ -97,12 +97,12 @@ The following tests are made:
  * The SOA record for the zone must be fetchable over both UDP and TCP.
  * The nameserver may provide AXFR for the zone.
 
-This test is implemented by [[DNSCheck::Test::Nameserver|http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Nameserver.pm]].
+This test is implemented by [DNSCheck::Test::Nameserver](http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Nameserver.pm).
 
 ## SMTP
 Test if an email address is deliverable using SMTP.
 
-This test is implemented by [[DNSCheck::Test::SMTP|http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/SMTP.pm]].
+This test is implemented by [DNSCheck::Test::SMTP](http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/SMTP.pm).
 
 ## SOA
 Test zone connectivity.
@@ -125,14 +125,14 @@ The following tests are made:
  * SOA 'expire' should be at least 7 times SOA 'refresh'.
  * SOA 'minimum' should be less than 1 day.
 
-This test is implemented by [[DNSCheck::Test::SOA|http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/SOA.pm]].
+This test is implemented by [DNSCheck::Test::SOA](http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/SOA.pm).
 
 ## Zone
 Test a zone using all DNSCheck modules.
 
-This test is implemented by [[DNSCheck::Test::Zone|http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Zone.pm]].
+This test is implemented by [DNSCheck::Test::Zone](http://github.com/dotse/dnscheck/blob/master/engine/lib/DNSCheck/Test/Zone.pm).
 
 ## Details
 
-* [[Detailed list of all possible DNSCheck messages]].
-* [[Algorithms used by DNSCheck]].
+* [Detailed list of all possible DNSCheck messages](Detailed-list-of-all-possible-dnscheck-messages.md).
+* [Algorithms used by DNSCheck](Algorithms-used-by-dnscheck.md).
