@@ -5,38 +5,137 @@
 
 ### Objective
 
-In order for a domain to work, it must be delegated to from a domain higher
-up in the DNS hierarchy (a parent domain). However, note that this
-requirement does not concern the root domain.
+In order for a domain (zone) to work, it must be delegated to from a 
+domain (zone) higher up in the DNS hierarchy (a parent domain/zone). 
+This Test Case will determine if the parent zone exists and if the
+child zone exists (is delegated).
+
+If the zone to be tested is the root zone it has no parent and no
+delegation and will always pass this Test Case.
+
+If the child zone does not exists, then only BASIC03 will be run,
+unless the test type is an undelegated test, which can always be 
+run.
 
 ### Inputs
 
-The label of the domain name to be tested.
+Input for this Test Case:
+* The label of the domain name (zone) to be tested.
+* The fact if the test is an undelegated test or not.
 
 ### Ordered description of steps to be taken to execute the test case
 
-A recursive NS-record lookup for the child domain name starting at the
-root domain should be done, and the steps of the process recorded.
+1. The domain to be tested is assumed to be apex of a zone with the same
+   name, and is here refered to as the _child zone_.
 
-1. If the recursion reaches a name server that responds with a redirect
-   directly to the requested domain, including functional glue, the test
-   succeeds. The domain through which the name server was found is
-   considered the parent domain.
-2. If the recursion reaches a name server that authoritatively responds
-   with NXDOMAIN for the child domain, the test succeeds. The domain
-   through which the name server was found is considered the parent domain.
-3. If the recursion reaches a point where the recursion for some reason
-   cannot continue before either case 1 or 2 happens, the test fails. 
+2. If the zone to be tested is the root zone ("."):
+   1. The parent zone is set to the root zone (".") and the zone to be tested
+      is assumed to exists.
+   2. Processing the steps is stopped.
+
+3. A recursive lookup for the SOA record of the child zone with the RD bit unset
+   starting from the root zone is done to find the parent zone.
+
+4. If the lookup reaches a name server that responds with a redirect (delegation)
+   directly to the requested child zone:
+
+   1. The zone in which the delegation was found is considered to be the parent 
+      zone.
+   2. The existance of the child zone has been determined.
+   3. The name of the parent zone and the fact that the child zone exists 
+      are returned.
+   4. Processing the steps is stopped.
+
+5. If the recursive lookup reaches a name server that authoritatively responds
+   (AA flag set) with NXDOMAIN for the child domain (child zone): 
+   
+   1. The zone returning NXDOMAIN is considered to be the parent zone.
+   2. The non-existance of the child zone has been determined.
+   3. The name of the parent zone and the fact that the child zone does not 
+      exist are returned.
+   4. Processing the steps is stopped.
+
+6. If the recursive lookup reaches authorititative NOERROR answer (AA flag set), 
+   with no record in the answer section (NODATA):
+   
+   1. The zone returning authoritative data is considered to be the parent zone.
+   2. The non-existance of the child zone has been determined.
+   3. The name of the parent zone and the fact that the child zone does not exist 
+      are returned.
+   4. Processing the steps is stopped.
+
+7. If the recursive lookup reaches a non-authorititative NOERROR answer (AA flag 
+   unset), with a CNAME or DNAME record in the answer section:
+
+   1. A CNAME (DNAME) query with the RD flag unset is sent to the same server.
+   2. If the lookup returns an authoritative answer with a CNAME (DNAME) with
+      child zone name as owner name, then continue with steps 8, else continue
+      with next server in step 2.
+
+8. If the recursive lookup reaches an authorititative NOERROR answer (AA flag 
+   set), with a CNAME or DNAME record in the answer section:
+
+   1. The zone returning authoritative data is considered to be the parent zone.
+   2. The non-existance of the child zone has been determined.
+   3. The name of the parent zone and the fact that the child zone does not exist 
+      are returned.
+   4. Processing the steps is stopped.
+
+9. If the recursive lookup reaches an authorititative NOERROR answer (AA flag 
+   set), with an SOA record with owner name child domain in the answer section:
+
+   1. The zone the previous delegation is considered to be the parent zone.
+   2. The existance of the child zone has been determined.
+   3. The name of the parent zone and the fact that the child zone exists 
+      are returned.
+   4. Processing the steps is stopped.
+
+10. If the server does not respond, the respond contain an unexpected RCODE or
+    any other error, try next server at step 2. 
+
+11. If delegation to a zone at a higher level is returned, then follow the
+    delegation.
+
+12. If all servers are exhausted: 
+    1. The parent zone cannot be determined.
+    2. The child zone cannot be determined.
+    3. Processing the steps is closed.
+
+
+Parent zone     |Child zone        |Run normal test?|Run undelegated test
+----------------|------------------|----------------|---------------------------------
+Determined      |Exists            |Yes             |Yes (1)
+Determined      |Does not exist (2)|No              |Yes
+Indetermined (3)|Indetermined      |No              |Yes
+
+  (1) Ignore delegation data and used provided data.
+
+  (2) Parent zone returns an authoritative NXDOMAIN, SOA record or nodata on the 
+      child zone name.
+  
+  (3) Server or zone error prevents the existence of parent zone to be determined.
+
 
 ### Outcome(s)
 
-If the recursive lookup of the domain is successful, this test cases passes.
-If the test cannot continue (step 3), this test case fails.
+If the test type is a regular test (non-undelegated test) and the child
+zone does not exist, then this Test Case fails, else it passes.
+
+The name of the parent zone (or emty if it cannot be determined) plus the
+fact if the child zone exists or not is returned together with relevant messages.
+
+Criteria                                  |Messege                |Default level
+------------------------------------------|-----------------------|------------------
+The zone to test is the root zone         |ROOT_HAS_NO_PARENT     |INFO
+Parent zone cannot be determined          |PERENT_INDETERMINED    |FAIL
+Normal test and child zone does not exist |NO_CHILD               |FAIL
+Undelegated test and no child zone        |UNDELEGATED_NO_CHILD   |NOTICE
+Error in parent server                    |PARENT_SERVER_ERROR    |NOTICE
+
 
 ### Special procedural requirements
 
-If this test fails, it's impossible to continue and the whole testing process
-is aborted.
+If this test fails, only BASIC03 will be run.
 
 ### Intercase dependencies
 
@@ -44,8 +143,8 @@ None.
 
 -------
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
+Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden)  
+Copyright (c) 2013-2018, AFNIC  
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this

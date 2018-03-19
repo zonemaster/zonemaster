@@ -1,144 +1,239 @@
 # Methods common to Test Case Specifications
 
-This is a list of generic methods used in many test case specifications. The
-test cases that makes use of any of these methods should link directly to
+This is a list of generic methods used in many Test Case specifications. The
+Test Cases that makes use of any of these methods refer directly to
 this text.
 
 ## Method 1: Parent zone
 
-Obtain the parent zone of the given domain (zone).
-
-1. The given domain is assumed to be apex of a zone with the same
-   name, and is here refered to as the _child zone_.
-2. A recursive lookup for the SOA record of the child zone starting from the
-   root zone is done, and the steps of the process are recorded.
-3. If the lookup reaches a name server that responds with a redirect (delegation)
-   directly to the requested child zone:
-
-   1. The method succeeds.
-   2. The zone in which the delegation was found is considered to be the parent zone.
-   3. Collect all NS records in the authority section and store them 
-       in a cache that method 2 can use.
-   4. Collect all A and AAAA records in the additional section and store them 
-       in a cache that method 4 can use.
-   5. The existance of the child zone has been determined.
-   6. Return the name of the parent zone and the fact that the child zone exists.
-
-4. If the recursive lookup reaches a name server that authoritatively responds
-   (AA flag set) with NXDOMAIN for the child domain (child zone): 
-   
-   1. The method succeeds.
-   2. The zone returning NXDOMAIN is considered to be the parent zone.
-   3. The non-existance of the child zone has been determined.
-   4. Return the name of the parent zone and the fact that the child zone does not exist.
-
-5. If the recursive lookup reaches authorititative NOERROR answer (AA flag set), 
-   with or without records in the answer section:
-   
-   1. The method succeeds.
-   2. The zone returning authoritative data is considered to be the parent zone.
-   3. The non-existance of the child zone has been determined.
-   4. Return the name of the parent zone and the fact that the child zone does not exist.
-   
-6. If the recurse lookup ends with server or zone error or in a loop, then the method fails
-   and no parent zone is found.
-
-Parent zone     |Child zone        |Run normal test?|Run undelegated test
-----------------|------------------|----------------|---------------------------------
-Determined      |Exists            |Yes             |Yes (1)
-Determined      |Does not exist (2)|No              |Yes
-Indetermined (3)|Indetermined      |No              |Yes
-
-  (1) Ignore delegation data and used provided data.
-
-  (2) Parent zone returns an authoritative NXDOMAIN, data or nodata on the child zone name.
-  
-  (3) Server or zone error prevents the existence of parent zone to be determined.
+The method does not exist anymore. It is included 
+[BASIC01](Basic-TP/basic01.md) instead.
 
 
 ## Method 2: Delegation name servers
 
+### Method identifier
+**METHOD2** Delegation name servers
+
+### Objective
+
 Obtain the name servers names (extracted from the NS records) for 
 the given zone (child zone) as defined in the delegation from the parent zone.
 
-1. Obtain parent zone and existence of child zone using Method 1.
+### Inputs
 
-A. Normal test. For undelegated test go to B.
+The name servers to the parent zone as found in [BASIC01](Basic-TP/basic01.md),
+the name of the child zone, the fact if the test type is undelegated test 
+or not.
 
-2. If parent zone could not be determined, method fails.
+If the test is an undelegated test, then the submitted data for that is also
+input to this method.
 
-3. If no child zone exists, method fails.
+### Ordered description of steps to be taken to execute the method
 
-4. Fetch the name server names for child zone from the cache provided by method 1.
-   Return the name server names.
+1. Normal test. For undelegated test go to 2.
 
-B. Undelegated test.
+   1. If child zone does not exists then return error.
+   2. These steps assume that the servers of the parent zone behaves the
+      same way as when [BASIC01](Basic-TP/basic01.md) was run.
+   3. Create an SOA query for the child zone and send that to a parent server
+      with RD flag unset.
+   4. If the response response contains a referal to the child zone:
+      1. Extract the RDATA (name server names) from the NS record in
+         the authority section.
+      2. Return the set of name servers (name server names).
+      3. Processing the steps is stopped.
+   5. If the response is authoritative (AA bit set) and the answer section
+      contains the SOA record of the child zone:
+      1. Repeat the query with the next server until a server has responded
+         with a referal or no more servers are available.
+      2. If a referal was found, follow the steps above when referal was
+         found in first server.
+      3. If no referal was found, send a query for the NS records instead,
+         and use them as if it was a referal.
+      4. Return the set of name servers (name server names).
+      5. Processing the steps is stopped.
 
-2. Ignore if parent zone or child zone does not exist or cannot be determined.
+2. Undelegated test.
 
-3. Ignore any name servers provided by delegation from parent zone.
+   1. Collect the name server names provided as indata for the test.
+   2. Return the set of name servers (name server names).
+   3. Processing the steps is stopped.
 
-4. Collect the name server names provided as indata for the test.
 
-3. Collect all IPv4 and IPv6 addresses in the input to the undelegated test and 
-   store in a cache where the connection between name server name and IP address
-   is kept. The cache overwrites the cache from method 1 and is to be used by method 4.
+### Outcome(s)
+
+Outcome is the set of name servers, unless this method was called
+when the test type as normal (non-undelegated test) and child zone does
+not exist, for which the outcome is ERROR.
+
+### Special procedural requirements
+
+None.
+
+### Dependencies
+
+Test Case BASIC01 must have been run.
+
 
 ## Method 3: In-zone name servers
 
+### Method identifier
+**METHOD3** In-zone name servers
+
+
+### Objective
 Obtain the names of the authoritative name servers for the given zone 
 (child zone) as defined in the NS records in the zone itself.
 
-1. Obtain name server addresses using Method 4.
-2. Send an NS query for the given zone to all obtained name server addresses.
+### Inputs
+
+The name of the child zone and the addresses to the name servers of
+the child zone, as given by METHOD4. The child zone must exist as
+defined by [BASIC01](Basic-TP/basic01.md).
+
+### Ordered description of steps to be taken to execute the method
+
+1. If the child zone does not exist, end with an ERROR.
+2. Create an NS query for the child zone with the RD flag unset
+   and send that to a name server of the child zone.
 3. Ignore response unless AA flag is set.
 4. Collect all the unique NS records in the answer sections of the
-   responses.
-5. Return all name server names from the NS records.
+   responses and extract the name server names.
+5. Repeat for all name servers.
+6. Create a set of name servers (name server names) as collected
+   from the zone.
+7. If the set is empty, then return an empty set and an ERROR, else
+   return the set of name servers (name server names).
+
+### Outcome(s)
+
+Outcome is a set of nameservers or ERROR.
+
+### Special procedural requirements
+
+None.
+
+### Dependencies
+
+Test Case BASIC01 and METHOS4 must have been run first.
+
 
 
 ## Method 4: Delegation name server addresses
 
+### Method identifier
+**METHOD4** Delegation name server addresses
+
+### Objective
+
 Obtain the addresses of the authoritative name servers for the given
 zone as defined in the delegation from the parent zone.
 
-1. Obtain the NS records from method 2. This method fails if method
-   2 failed.
-2. For all in-bailiwick name servers, find the matching A and AAAA
-   records in the cache created by method 1 or 2. For in-bailiwick name
-   servers, recursive lookup must not be done.
+### Inputs
 
-A. Normal test. For undelegated test go to B.
+The name of the child zone and the addresses to the name servers of 
+the parent zone, unless the test type is undelegated test. The child 
+zone must exist as defined by [BASIC01](Basic-TP/basic01.md), unless
+the test type is undelegated test.
 
-3. For all out-of-bailiwick name servers, first look in the cache
-   created by mothod 1. If any name server does not have both A and
-   AAAA records, then do a recursive lookup for those.
-4. Return a stucture where name server name is connected to its
-   address or addresses. If a name server does not have any, that
-   name server must be returned with a empty address field.
+If the test type is undelegated test, then the input data must be
+provided.
 
-B. Undelegated test.
 
-3. For all out-of-bailiwick name servers, first look in the cache
-   created by mothod 2. If any name server exists in the cache,
-   use that data, and do not do any recursive lookup of those names.
-   For other out-of-bailiwick do a recursive lookup for for A and
-   AAAA records.
-4. Return a stucture where name server name is connected to its
-   address or addresses. If a name server does not have any, that
-   name server must be returned with a empty address field.
+### Ordered description of steps to be taken to execute the method
+
+1. Normal test. For undelegated test go to 2.
+
+   1. If child zone does not exists then return error.
+   2. These steps assume that the servers of the parent zone behaves the
+      same way as when [BASIC01](Basic-TP/basic01.md) was run.
+   3. Create an NS query for the child zone and send that to a parent server
+      with RD flag unset.
+   4. If the response response contains a referal to the child zone:
+      1. Extract the RDATA (name server names) from the NS record in
+         the authority section.
+      2. Extract all A and AAAA records from the additional section.
+   5. If the response is authoritative (AA bit set) and the answer section
+      contains the NS record of the child zone:
+      1. Repeat the query with the next server until a server has responded
+         with a referal or no more servers are available.
+      2. If a referal was found, follow the steps above when referal was
+         found in first server.
+      3. If no referal was found, extract the name server names from the
+         NS records in the answer section.
+      4. For each in-bailiwick name server, query the name server for A and
+         AAAA and extract the record in the answer or additional section.
+	 Follow any referal to sub-zone if needed.
+   6. For each out-of-bailiwick name servers do a normal recursive lookup 
+      for those to a resolver by querying for A and AAAA.
+   7. Collect all matching A and AAAA records from the responses.
+   8. Return a stucture where name server name is connected to its
+      address or addresses. If a name server does not have any, that
+      name server must be returned with a empty address field.
+   9. Processing the steps is stopped.
+
+2. Undelegated test.
+
+   1. For every in-bailiwick name server in input data, collect IPv4 and
+      IPv6 address for the server name.
+   2. For all out-of-bailiwick name servers in input data, if it has 
+      neither IPv4 nor IPv6 data, do a normal recursive lookup for 
+      the address to a resolver by querying for A and AAAA. 
+   3. If a name server has either IPv4 or IPv6 data, do not query for
+      any data.
+   4. Return a stucture where name server name is connected to its
+      address or addresses. If a name server does not have any, that
+      name server must be returned with a empty address field.
+   5. Processing the steps is stopped.
+
+
+### Outcome(s)
+
+Outcome is the set of name servers and for each name server a possibly
+emty set of IP addresses. When the test type as normal (non-undelegated 
+test) and child zone does not exist, for which the outcome is ERROR.
+
+### Special procedural requirements
+
+None.
+
+### Dependencies
+
+Test Case BASIC01 must have been run.
 
 
 
 ## Method 5: In-zone addresses records of name servers
 
-Obtain the addresses of the in-bailiwick name servers for the given
-zone as defined in the zone itself.
+### Method identifier
+**METHOD5** In-zone addresses records of name servers
 
-1. Obtain all the name server names using method 2. This method fails
-   if method 2 failed.
-2. Obtain all the name server IP addresses using method 4.
-3. For each name server name, determine if the name server is
+
+### Objective
+
+Obtain the addresses of the in-bailiwick name servers, if any, for 
+the child zone as defined in the zone itself. This method will
+ignore any addresses of out-of-bailiwick name servers.
+
+
+### Inputs
+
+* The name of the child zone.
+* The addresses to the name servers of the child zone, as given by 
+  METHOD4. 
+* The name server names defined in the zone as defined by METHOD2.
+* Test type (normal/undelegated).
+
+The child zone must exist as defined by 
+[BASIC01](Basic-TP/basic01.md) unless the test type is undelegated.
+
+
+### Ordered description of steps to be taken to execute the method
+
+1. If the child zone does not exist, end with an ERROR unless the
+   test type is undelegated.
+2. For each name server name in the zone, determine if the name server is
    in-biliwick or out-of-bailiwick. If it is out-of-bailiwick,
    go to next server.
 4. Send an A and an AAAA query to all name server addresses.
@@ -153,6 +248,22 @@ zone as defined in the zone itself.
 8. Return a stucture where name server name is connected to its
    address or addresses. If a name server does not have any, that
    name server must be returned with a empty address field.
+
+### Outcome(s)
+
+
+
+### Special procedural requirements
+
+None.
+
+### Dependencies
+
+Test Case BASIC01, METHOS4 and METHOD2 must have been run first.
+
+
+
+
 
 
 
