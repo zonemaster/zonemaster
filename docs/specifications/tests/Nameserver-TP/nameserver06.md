@@ -20,13 +20,13 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the list of name servers for the domain using [Method 2]
-   (../Methods.md#method-2-obtain-name-servers-from-parent) and [Method 3]
-   (../Methods.md#method-3-obtain-name-servers-from-child).
-2. Use [Method 4]
-   (../Methods.md#method-4-obtain-glue-address-records-from-parent) and
-   [Method 5]
-   (../Methods.md#method-5-obtain-the-name-server-address-records-from-child)
+1. Obtain the list of name servers for the domain using [Method 2](
+   ../Methods.md#method-2-obtain-glue-name-records-from-parent) and [Method 3](
+   ../Methods.md#method-3-obtain-name-servers-from-child).
+2. Use [Method 4](
+   ../Methods.md#method-4-obtain-glue-address-records-from-parent) and
+   [Method 5](
+   ../Methods.md#method-5-obtain-the-name-server-address-records-from-child)
    to resolve all the name server names obtained in step 1.
 3. If any name does not resolve to either an A RR or AAAA RR, this test
    case fails.

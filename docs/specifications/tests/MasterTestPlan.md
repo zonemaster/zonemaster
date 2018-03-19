@@ -48,32 +48,34 @@ will implement.
 #### External
 
 The current implemented tests in DNSCheck are described here:  
-https://github.com/dotse/dnscheck/wiki/Tests  
-https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages
+<https://github.com/dotse/dnscheck/wiki/Tests>  
+<https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages>
 
-The current implemented tests in Zonecheck are described here:
-http://www.zonecheck.fr/features.shtml
+The current implemented tests in Zonecheck
+are described in [ExistingZCPolicy.md](
+../../internal-documentation/requirements/ExistingZCPolicy.md).
+
 #### Internal
 No internal requirements.
 #### Document hieararchy
 * Master Test Plan  
-    * [Basic Test Plan](Basic-TP/level.md)
+    * [Basic Test Plan](Basic-TP/README.md)
         * Test Case x
-    * [Delegation Test Plan](Delegation-TP/level.md)
+    * [Delegation Test Plan](Delegation-TP/README.md)
         * Test Case x
-    * [Consistency Test Plan](Consistency-TP/level.md)
+    * [Consistency Test Plan](Consistency-TP/README.md)
         * Test Case x
-    * [DNSSEC Test Plan](DNSSEC-TP/level.md)
+    * [DNSSEC Test Plan](DNSSEC-TP/README.md)
         * Test Case x
-    * [Address Test Plan](Address-TP/level.md)
+    * [Address Test Plan](Address-TP/README.md)
         * Test Case x
-    * [Name Server Test Plan](Nameserver-TP/level.md)
+    * [Name Server Test Plan](Nameserver-TP/README.md)
         * Test Case x
-    * [Connectivity Test Plan](Connectivity-TP/level.md)
+    * [Connectivity Test Plan](Connectivity-TP/README.md)
         * Test Case x
-    * [Zone Test Plan](Zone-TP/level.md)
+    * [Zone Test Plan](Zone-TP/README.md)
         * Test Case x
-    * [Syntax Test Plan](Syntax-TP/level.md)
+    * [Syntax Test Plan](Syntax-TP/README.md)
 	    * Test Case x
 
 ### System overview and key features
@@ -82,20 +84,19 @@ A domain will be tested for the quality of the delegation in the DNS
 hierarchy. Some of the high level properties that will be tested
 include:
 
- * [**Basic**](Basic-TP/level.md) (initial tests)
- * [**Delegation**](Delegation-TP/level.md) properties (parent and child
+ * [**Basic**](Basic-TP/README.md) (initial tests)
+ * [**Delegation**](Delegation-TP/README.md) properties (parent and child
    name servers)  
- * [**Consistency**](Consistency-TP/level.md) (all name have consistent
+ * [**Consistency**](Consistency-TP/README.md) (all name have consistent
    answers)
- * [**DNSSEC**](DNSSEC-TP/level.md) properties (algorithms, secure
+ * [**DNSSEC**](DNSSEC-TP/README.md) properties (algorithms, secure
    delegation)  
- * [**Address**](Address-TP/level.md) properties (IP addresses)  
- * [**Name server**](Nameserver-TP/level.md) properties 
- * Name server [**Connectivity**](Connectivity-TP/level.md)
- * [**Zone**](Zone-TP/level.md) properties (are data controlling the zone
+ * [**Address**](Address-TP/README.md) properties (IP addresses)  
+ * [**Name server**](Nameserver-TP/README.md) properties 
+ * Name server [**Connectivity**](Connectivity-TP/README.md)
+ * [**Zone**](Zone-TP/README.md) properties (are data controlling the zone
    sane)
- * [**Syntax**](Syntax-TP/level.md) (illegal hostnames and characters)
- * (not mandatory) [**Resolver**](Resolver-TP/level.md) properties
+ * [**Syntax**](Syntax-TP/README.md) (illegal hostnames and characters)
 
 A domain can be given to the testing system and all DNS information
 will be retrieved from the public global DNS hierarchy, or a set of
@@ -294,13 +295,14 @@ TODO: do we need a separate requirements document?
 #### DNSCheck
 
 These are the current documented test cases from DNSCheck:  
-https://github.com/dotse/dnscheck/wiki/Tests  
-https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages
+<https://github.com/dotse/dnscheck/wiki/Tests>  
+<https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages>
 
 #### Zonecheck
 
-The current implemented tests in Zonecheck are described here:  
-http://www.zonecheck.fr/features.shtml
+The current implemented tests in Zonecheck
+are described in [ExistingZCPolicy.md](
+../../internal-documentation/requirements/ExistingZCPolicy.md).
 
 #### RFCs
 

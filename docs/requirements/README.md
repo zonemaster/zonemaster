@@ -1,9 +1,9 @@
-![Zonemaster](docs/images/zonemaster_logo_black.png)
+![Zonemaster](/docs/images/zonemaster_logo_black.png)
 ==========
 
 ### Purpose of this directory
 
-The "TestRequirements.md" provides a list of tests that has been run by the
-Zonemaster engine for validating a domain.
+[TestRequirements.md](TestRequirements.md) provides a list of the tests performed when the
+Zonemaster engine validates a domain.
 
 

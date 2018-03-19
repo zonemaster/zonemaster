@@ -16,7 +16,7 @@ Quote from 2.4 in [RFC 1912](https://tools.ietf.org/html/rfc1912):
 The SOA MNAME field is described in section 3.3.13 in
 [RFC 1035](https://tools.ietf.org/html/rfc1035).
 
-The [RIPE-203](https://www.ripe.net/ripe/docs/ripe-203) recommendation
+The [RIPE-203](https://www.ripe.net/publications/docs/ripe-203) recommendation
 for the minimum value 2 days, but the negative caching is now the norm.
 DNSCheck has a recommended value of between 300 seconds (5 minutes) and
 86400 seconds (1 day).

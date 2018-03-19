@@ -1,5 +1,22 @@
 Release history of Zonemaster
 
+v2017.4.2 2018-02-23 Security release
+
+Changes:
+
+- Security release of zonemaster-gui
+- Update of input validation of domain name in zonemaster-backend
+
+This version of Zonemaster also consists of the following components. For each
+component, see its Changes file.
+
+  zonemaster-ldns     v1.0.2   https://github.com/dotse/zonemaster-ldns
+  zonemaster-engine   v2.0.6   https://github.com/dotse/zonemaster-engine
+  zonemaster-cli      v1.1.2   https://github.com/dotse/zonemaster-cli
+  zonemaster-backend  v2.0.2   https://github.com/dotse/zonemaster-backend
+  zonemaster-gui      v1.0.11  https://github.com/dotse/zonemaster-gui
+
+
 v2017.4.1 2018-01-26 Security release
 
 Changes:
