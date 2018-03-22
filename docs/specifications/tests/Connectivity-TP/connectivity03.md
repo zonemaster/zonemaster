@@ -14,7 +14,7 @@ all of them.
 
 The objective in this test is to verify that all IP addresses of the domain's
 authoritative name servers are not announced from the same 
-[ASN](https://tools.ietf.org/html/rfc1930]. This test is done separtly on IPv4 
+[ASN](https://tools.ietf.org/html/rfc1930). This test is done separtly on IPv4 
 and IPv6, and both must match the criterion.
 
 ### Inputs
