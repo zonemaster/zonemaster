@@ -76,8 +76,14 @@ The Cymru lookup method is described on the Team Cymru
 using DNS lookup.
 
 1. Prepend the basename (from input) with the label "origin" (IPv4) or 
-   "origin6" (IPv6). If basename is "asn.cymru.com" we get 
-   "origin.asn.cymru.com" and "origin6.asn.cymru.com", respectively.
+   "origin6" (IPv6). If basename is "asn.cymru.com" we get the following
+   expanded basenames:
+   
+```
+origin.asn.cymru.com
+origin6.asn.cymru.com
+```
+
 2. Reverse the IP address with the same method as is used for
    reverse lookup. E.g.: 
  
