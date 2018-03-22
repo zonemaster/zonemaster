@@ -106,6 +106,9 @@ using DNS lookup.
 
 ## RIPE ASN lookup
 
+The RIPE ASN lookup is described on the RIPE 
+[RISwhois](http://www.ripe.net/ris/riswhois.html) page.
+
 1. Construct a query string by prepending the IP adress with
    " -F -M ". Using "192.0.2.10" as an example, the query string will
    be " -F -M 192.0.2.10" (the leading space is intentional).
