@@ -79,11 +79,21 @@ using DNS lookup.
    "origin6" (IPv6). If basename is "asn.cymru.com" we get 
    "origin.asn.cymru.com" and "origin6.asn.cymru.com", respectively.
 2. Reverse the IP address with the same method as is used for
-   reverse lookup. E.g. "192.0.2.10" => "10.2.0.192" and "2001:db8::10"
-   => "0.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.b.d.0.1.0.0.2".
-3. Prepend the expanded basename with the reversed IP address, e.g., with
-   the examples above, "10.2.0.192.origin.asn.cymru.com" and
-   "0.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.b.d.0.1.0.0.2.origin6.asn.cymru.com"
+   reverse lookup. E.g.: 
+ 
+ ```
+ "192.0.2.10" => "10.2.0.192"
+ "2001:db8::10" => "0.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.b.d.0.1.0.0.2"
+ ```
+ 
+3. Prepend the expanded basename with the reversed IP address, using
+   the examples above: 
+
+```
+10.2.0.192.origin.asn.cymru.com
+0.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.b.d.0.1.0.0.2.origin6.asn.cymru.com
+```
+
 4. Send a DNS query for the TXT record of the full name created in step 3.
 5. Verify if the response is empty, i.e. dns response with RCODE NXDOMAIN
    or a response with RCODE NOERROR but empty answer section. If so, end
@@ -91,8 +101,8 @@ using DNS lookup.
 6. Verify if there is no response or responds with any other RCODE. If so,
    end these steps.
 8. The expected response is a string in the TXT record or records. Remove 
-   any leading and terminal '"' or leading and terminal "'".
-9. Split the string or strings into fields with "|" as field separator.
+   any leading and terminal `"` or leading and terminal `'`.
+9. Split the string or strings into fields with `|` as field separator.
 10. If there are multiple strings (TXT records), ignore all strings
     except for the string with the most specific subnet in field two 
     (ignoring any leading and trailing space characters).
@@ -111,7 +121,12 @@ The RIPE ASN lookup is described on the RIPE
 
 1. Construct a query string by prepending the IP adress with
    " -F -M ". Using "192.0.2.10" as an example, the query string will
-   be " -F -M 192.0.2.10" (the leading space is intentional).
+   be the following (the leading space is intentional)
+   
+   ```
+   " -F -M 192.0.2.10" 
+   ```
+   
 2. Send the query string to the Whois server (from input) on port
    43 with the nicname (whois) protocol. If the server is 
    "riswhois.ripe.net" (default) then the command line command on
@@ -129,7 +144,7 @@ whois -h riswhois.ripe.net " -F -M 192.0.2.10"
    end these steps.
 6. Split the string with data into two fields with horizontal tab
    as field separator. The first field has the ASN or list of ASNs.
-7. Split the ASN fields into ASNs with "/" as field separtor.
+7. Split the ASN fields into ASNs with `/` as field separator.
 8. Verify if steps 3-7 could be processed. If not, end these steps 
    (the response was malformed).
 9. From the ASN or ASNs from step 7 create the ASN set for the IP
