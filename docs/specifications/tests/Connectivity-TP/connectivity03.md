@@ -27,16 +27,20 @@ and IPv6, and both must match the criterion.
 
 1. Obtain the total set of IP addresses of the name servers using 
    [Method4](../Methods.md) and [Method5](../Methods.md).
-2. For each IP address in the set from step 1 above, determine the set of ASNs
+2. For each IP address in the set from step 1 above, determine the ASN set
    announcing the IP address using either the Cymru database or the RIPE
    database as described in separate sections below. 
 3. For each IP protokoll (IPv4, IPv6) do:
-   1. Compare the ASN sets for all IP addresses.
-   2. Check if all addresses are announced from one and the same ASN.
-   3. Check if all addresses are announced from ASN set but from more than one ASN.
-   4. Check if the addresses are announced from overlapping ASN sets, i.e. every set is either a subset, identical or superset of all other sets, but there are at least two IPv4 addresses with non-identical ASN sets.
-   5. Check if the IPv4 addresses are announced from overlapping ASN sets, i.e. every set is either a subset, identical or superset of all other sets, but there are at least two IPv4 addresses with non-identical ASN sets.
-   6. Check if there are at least two IPv4 addresses for which the ASN sets are neither a subset, identical or superset of the other.
+   1. Check if all addresses are announced from one and the same ASN.
+   2. Check if all addresses are announced from ASN set but from more than one ASN.
+   3. Check if the addresses are announced from overlapping ASN sets, i.e. 
+      every set is either a subset, identical or superset of all other sets, 
+      but there are at least two IPv4 addresses with non-identical ASN sets.
+   4. Check if the IPv4 addresses are announced from overlapping ASN sets, i.e. 
+      every set is either a subset, identical or superset of all other sets, but 
+      there are at least two IPv4 addresses with non-identical ASN sets.
+   5. Check if there are at least two IPv4 addresses for which the ASN sets are 
+      neither a subset, identical or superset of the other.
 
 
 ## Outcome(s)
@@ -65,7 +69,7 @@ ASN lookup, RIPE or Cymru. The service must be available over the network.
 
 ### Cymru ASN lookup
 
-The Cymru lookup method is described on the Team Cymru [IP to ASN Mappin]
+The Cymru lookup method is described on the Team Cymru [IP to ASN Mapping]
 using DNS lookup.
 
 1. Prepend the basename (from input) with the label "origin" (IPv4) or 
@@ -82,7 +86,7 @@ origin6.asnlookup.zonemaster.net
    [RFC 3596] (IPv6)
  
 3. Prepend the expanded basename with the reversed IP address. For
-   description see [IP to ASN Mappin].
+   description see [IP to ASN Mapping].
 4. Send a DNS query for the TXT record of the full name created in step 3.
 5. Check if the response is empty, i.e. dns response with RCODE NXDOMAIN
    or a response with RCODE NOERROR but empty answer section. If so, end
@@ -90,7 +94,7 @@ origin6.asnlookup.zonemaster.net
 6. Check if there is no response or responds with any other RCODE. If so,
    end these steps.
 8. The expected response is a non-empty string in the TXT record or 
-   records. See [IP to ASN Mappin] for examples.
+   records. See [IP to ASN Mapping] for examples.
 9. Split the string or strings into fields.
 10. If there are multiple strings (TXT records), ignore all strings
     except for the string with the most specific subnet.
@@ -143,7 +147,7 @@ None
 [ASN]:      https://tools.ietf.org/html/rfc1930
 [RFC 1035]: https://tools.ietf.org/html/rfc1035
 [RFC 3596]: https://tools.ietf.org/html/rfc3596
-[IP to ASN Mappin]: https://team-cymru.org/IP-ASN-mapping.html#dns
+[IP to ASN Mapping]: https://team-cymru.org/IP-ASN-mapping.html#dns
 [RISwhois]: http://www.ripe.net/ris/riswhois.html
 
 -------
