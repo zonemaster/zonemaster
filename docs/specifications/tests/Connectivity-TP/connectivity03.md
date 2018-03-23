@@ -6,22 +6,23 @@
 
 ## Objective
 
-[RFC 2182], section 3.1
-clearly specifies that distinct authoritative name servers for a child
-domain should be placed in different topological and geographical locations.
-The objective is to minimise the likelihood of a single failure disabling
-all of them. 
-
 The objective in this test is to verify that all IP addresses of the domain's
-authoritative name servers are not announced from the same 
-[ASN]. This test is done separtly on IPv4 
-and IPv6, and both must match the criterion.
+authoritative name servers are not announced from the same [ASN]. 
+
+This test is done separately on IPv4 and IPv6, and both must match the criterion.
+
+[RFC 2182], section 3.1 clearly specifies that distinct authoritative name 
+servers for a child domain should be placed in different topological and 
+geographical locations. The objective is to minimise the likelihood of a single 
+failure disabling all of them. 
+
 
 ## Inputs
 
 * The domain name to be tested.
 * The ASN database to be used (RIPE or Cymru).
 * The base name (Cymru) or Whois server (RIPE) to be used.
+
 
 ## Ordered description of steps to be taken to execute the test case
 
@@ -32,7 +33,8 @@ and IPv6, and both must match the criterion.
    database as described in separate sections below. 
 3. For each IP protokoll (IPv4, IPv6) do:
    1. Check if all addresses are announced from one and the same ASN.
-   2. Check if all addresses are announced from ASN set but from more than one ASN.
+   2. Check if all addresses are announced from ASN set but from more than 
+      one ASN.
    3. Check if the addresses are announced from overlapping ASN sets, i.e. 
       every set is either a subset, identical or superset of all other sets, 
       but there are at least two IPv4 addresses with non-identical ASN sets.
@@ -50,13 +52,13 @@ generated.
 
 Message            |Default level|Criteria
 :------------------|:------------|:-----------------------------------------------------------------
-NO_ASN             |FAIL         |The ASN database replies with empty reply.
-ERROR_ASN_DATABASE |FAIL         |The ASN database does not reply, replies with unexpected status or with a malformed message.
-IPV4_ONLY_ONE_ASN  |FAIL         |All IPv4 addresses are announced from one and the same ASN.
+EMPTY_ASN_SET      |ERROR        |The ASN database replies with empty reply.
+ERROR_ASN_DATABASE |ERROR        |The ASN database does not reply, replies with unexpected status or with a malformed message.
+IPV4_ONLY_ONE_ASN  |ERROR        |All IPv4 addresses are announced from one and the same ASN.
 IPV4_SAME_ASN      |NOTICE       |All IPv4 addresses are announced from the one ASN set but from more than one ASN.
 IPV4_OVERLAP_ASN   |NOTICE       |The IPv4 addresses are announced from overlapping ASN sets, i.e. every set is either a subset, identical or superset of all other sets, but there are at least two IPv4 addresses with non-identical ASN sets.
 IPV4_DIFFERENT_ASN |INFO         |There are at least two IPv4 addresses for which the ASN sets are neither a subset, identical or superset of the other.
-IPV6_ONLY_ONE_ASN  |FAIL         |All IPv6 addresses are announced from one and the same ASN.
+IPV6_ONLY_ONE_ASN  |ERROR        |All IPv6 addresses are announced from one and the same ASN.
 IPV6_SAME_ASN      |NOTICE       |All IPv6 addresses are announced from the one ASN set but from more than one ASN.
 IPV6_OVERLAP_ASN   |NOTICE       |The IPv6 addresses are announced from overlapping ASN sets, i.e. every set is either a subset, identical or superset of all other sets, but there are at least two IPv6 addresses with non-identical ASN sets.
 IPV6_DIFFERENT_ASN |INFO         |There are at least two IPv6 addresses for which the ASN sets are neither a subset, identical or superset of the other.
@@ -66,6 +68,7 @@ IPV6_DIFFERENT_ASN |INFO         |There are at least two IPv6 addresses for whic
 
 This test case is dependent on one of two possible services that can provide
 ASN lookup, RIPE or Cymru. The service must be available over the network.
+
 
 ### Cymru ASN lookup
 
@@ -103,7 +106,6 @@ origin6.asnlookup.zonemaster.net
     (the response was malformed).
 13. The ASN or ASNs from step 11 is the ASN set for that IP address.
 
- 
 
 ### RIPE ASN lookup
 
