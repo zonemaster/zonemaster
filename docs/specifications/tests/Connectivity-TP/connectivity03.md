@@ -94,15 +94,15 @@ origin6.asnlookup.zonemaster.net
 5. Check if the response is empty, i.e. dns response with RCODE NXDOMAIN
    or a response with RCODE NOERROR but empty answer section. If so, end
    these steps.
-6. Check if there is no response or responds with any other RCODE. If so,
-   end these steps.
+6. Check if there is no response (timeout) or responds with any other 
+   RCODE (unknown status of service). If so, end these steps.
 8. The expected response is a non-empty string in the TXT record or 
    records. See [IP to ASN Mapping] for examples.
 9. Split the string or strings into fields.
 10. If there are multiple strings (TXT records), ignore all strings
     except for the string with the most specific subnet.
 11. Extract the ASN or ASNs.
-12. Check if steps 8-11 could be processed. If not, end these steps 
+12. Check if steps 8-10 could be processed. If not, end these steps 
     (the response was malformed).
 13. The ASN or ASNs from step 11 is the ASN set for that IP address.
 
@@ -128,8 +128,8 @@ The RIPE ASN lookup is described on the RIPE [RISwhois] page.
 whois -h riswhois.ripe.net " -F -M 192.0.2.10"
 ```
 
-3. In the non-empty line not prepended with "%" contains the string
-   with data (none or one such line).
+3. The non-empty line not prepended with "%" contains the string
+   with data (no or one such line).
 4. Check if there is no string with data (empty reply). If so, 
    end these steps.
 5. Check if there is no response from the Whois server. If so,
