@@ -47,13 +47,16 @@ will implement.
 ### References
 #### External
 
-The current implemented tests in DNSCheck are described here:  
-<https://github.com/dotse/dnscheck/wiki/Tests>  
-<https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages>
+The current implemented tests in DNSCheck are described here (copied
+from the DNSCheck Github Wiki):
 
-The current implemented tests in Zonecheck
-are described in [ExistingZCPolicy.md](
-../../internal-documentation/requirements/ExistingZCPolicy.md).
+* [DNSCheck-Tests.md](../../requirements/supporting-documents/DNSCheck-Tests.md)
+* [Detailed-list-of-all-possible-dnscheck-messages.md](../../requirements/supporting-documents/Detailed-list-of-all-possible-dnscheck-messages.md)
+* [Algorithms-used-by-dnscheck.md](../../requirements/supporting-documents/Algorithms-used-by-dnscheck.md)
+
+The current implemented tests in Zonecheck are described in here (copied from previous Zonecheck site):
+* [ExistingZCPolicy.md](../../requirements/supporting-documents/ExistingZCPolicy.md)
+
 
 #### Internal
 No internal requirements.
@@ -294,15 +297,16 @@ TODO: do we need a separate requirements document?
 
 #### DNSCheck
 
-These are the current documented test cases from DNSCheck:  
-<https://github.com/dotse/dnscheck/wiki/Tests>  
-<https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages>
+These are the current documented test cases from DNSCheck (copied
+from DNSCheck Github Wiki):  
+* [DNSCheck-Tests.md](../../requirements/supporting-documents/DNSCheck-Tests.md)
+* [Detailed-list-of-all-possible-dnscheck-messages.md](../../requirements/supporting-documents/Detailed-list-of-all-possible-dnscheck-messages.md)
 
 #### Zonecheck
 
-The current implemented tests in Zonecheck
-are described in [ExistingZCPolicy.md](
-../../internal-documentation/requirements/ExistingZCPolicy.md).
+The current implemented tests in Zonecheck are described in (copied from previous Zonecheck site):
+* [ExistingZCPolicy.md](../../requirements/supporting-documents/ExistingZCPolicy.md)
+
 
 #### RFCs
 
