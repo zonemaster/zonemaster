@@ -48,7 +48,7 @@ Tests to implement
 |R16|NS authoritative answer                                 |[DELEGATION](../specifications/tests/Delegation-TP/delegation04.md)|
 |R17|NS name has a valid domain/hostname syntax              |[SYNTAX](../specifications/tests/Syntax-TP/syntax04.md)|
 |R18|NS is not an alias                                      |[DELEGATION](../specifications/tests/Delegation-TP/delegation05.md)|
-|R19|NS can be resolved 				     |[DELEGATION](../specifications/tests/Delegation-TP/delegation01.md)|
+|R19|NS can be resolved					     |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver06.md)|
 |R20|SOA record present                                      |[DELEGATION](../specifications/tests/Delegation-TP/delegation06.md)|
 |R21|SOA authoritative answer                                |[DELEGATION](../specifications/tests/Delegation-TP/delegation06.md)|
 |R22|Missused '@' characters in SOA contact name             |[SYNTAX](../specifications/tests/Syntax-TP/syntax05.md)|
