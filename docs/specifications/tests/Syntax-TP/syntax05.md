@@ -24,7 +24,7 @@ The domain name to be tested.
 
 ### Outcome(s)
 
-If there is any '@' character in any RNAME field, this test case fails.
+If there is any '@' character in any SOA/RNAME field, this test case fails.
 
 ### Special procedural requirements
 
