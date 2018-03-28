@@ -35,43 +35,25 @@ Verifying the zone with zonemaster CLI does provide conclusive errors as
 you could see from the appendix
 
 ### Appendix
-zonemaster-cli configuration04-1.zft-root.rd.nic.fr
-Seconds Level     Message
-======= ========= =======
-  20.36 ERROR     Nameserver ns2.rd.nic.fr/192.134.4.81 did not return NS
-records. RCODE was NOERROR.
-  20.36 ERROR     Nameserver ns2.rd.nic.fr/2001:67c:2218:3::1:7 did not return
-NS records. RCODE was NOERROR.
-  30.39 NOTICE    Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 did not
-respond to NS query.
-  31.23 ERROR     Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 not
-accessible over UDP on port 53.
-  31.28 ERROR     Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 not
-accessible over TCP on port 53.
-  32.37 WARNING   All nameservers IPv6 addresses are in the same AS (2485).
-  32.38 WARNING   Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 did not
-respond.
-  32.38 WARNING   Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 did not
-respond.
-  32.38 WARNING   Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 did not
-respond.
-  32.38 WARNING   Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 did not
-respond.
-  32.39 NOTICE    176.31.226.223 returned no DS records for
-configuration04-1.zft-root.rd.nic.fr.
-  32.40 WARNING   Nameserver ns2.rd.nic.fr response is not authoritative on UDP
-port 53.
-  32.40 WARNING   Nameserver ns2.rd.nic.fr response is not authoritative on TCP
-port 53.
-  32.40 WARNING   Nameserver ns334987.ip-46-105-116.eu response is not
-authoritative on UDP port 53.
-  32.40 WARNING   Nameserver ns334987.ip-46-105-116.eu response is not
-authoritative on TCP port 53.
-  32.40 ERROR     A SOA query NOERROR response from ns2.rd.nic.fr was received
-empty.
-  32.40 ERROR     Parent has nameserver(s) not listed at the child
-(ns2.rd.nic.fr;ns324830.ip-178-33-232.eu;ns334987.ip-46-105-116.eu).
-  32.40 ERROR     None of the nameservers listed at the parent are listed at the
-child.
-  62.52 NOTICE    Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 dropped
-AAAA query.
+
+Seconds  |Level     |Message
+:--------|:---------|-----------------------------------------------------------------------------------------------
+20.36    |ERROR     |Nameserver ns2.rd.nic.fr/192.134.4.81 did not return NS records. RCODE was NOERROR.
+20.36    |ERROR     |Nameserver ns2.rd.nic.fr/2001:67c:2218:3::1:7 did not return NS records. RCODE was NOERROR.
+30.39    |NOTICE    |Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 did not respond to NS query.
+31.23    |ERROR     |Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 not accessible over UDP on port 53.
+31.28    |ERROR     |Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 not accessible over TCP on port 53.
+32.37    |WARNING   |All nameservers IPv6 addresses are in the same AS (2485).
+32.38    |WARNING   |Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 did not respond.
+32.38    |WARNING   |Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 did not respond.
+32.38    |WARNING   |Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 did not respond.
+32.38    |WARNING   |Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 did not respond.
+32.39    |NOTICE    |176.31.226.223 returned no DS records for configuration04-1.zft-root.rd.nic.fr.
+32.40    |WARNING   |Nameserver ns2.rd.nic.fr response is not authoritative on UDP port 53.
+32.40    |WARNING   |Nameserver ns2.rd.nic.fr response is not authoritative on TCP port 53.
+32.40    |WARNING   |Nameserver ns334987.ip-46-105-116.eu response is not authoritative on UDP port 53.
+32.40    |WARNING   |Nameserver ns334987.ip-46-105-116.eu response is not authoritative on TCP port 53.
+32.40    |ERROR     |A SOA query NOERROR response from ns2.rd.nic.fr was received empty.
+32.40    |ERROR     |Parent has nameserver(s) not listed at the child (ns2.rd.nic.fr;ns324830.ip-178-33-232.eu;ns334987.ip-46-105-116.eu).
+32.40    |ERROR     |None of the nameservers listed at the parent are listed at the child.
+62.52    |NOTICE    |Nameserver ns334987.ip-46-105-116.eu/46.105.116.200 dropped AAAA query.
