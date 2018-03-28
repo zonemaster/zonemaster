@@ -6,8 +6,8 @@
 
 ### Objective
 
-All authoritative name servers must serve the same SOA record for the
-designated domain.
+All SOA record fields except SERIAL, RNAME and MNAME must be consistent
+across all authoritative name servers.
 
 The inconsistency in these different fields for the designated zone (*Got to
 Verify*) might result in operational inconsistencies.
@@ -18,8 +18,10 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
- 1. Obtain a set of name server IP addresses using [Method4] and [Method5].
- 2. Send a SOA query for TLD over UDP to each unique name server IP address.
+ 1. Obtain a set of name server IP addresses using [Method4] and
+    [Method5].
+ 2. Send a SOA query for the zone over UDP to each unique name server
+    IP address.
  3. Verify that a response is received for each SOA query.
  4. Collect all SOA records from the answer section of all responses.
  5. Verify that all SOA records have the same REFRESH value.
