@@ -7,14 +7,7 @@
 ### Objective
 
 All authoritative name servers must serve the same SOA record for the
-designated domain. As per section 3.3.13 of [RFC 1035](https://tools.ietf.org/html/rfc1035),
-the field "REFRESH" in the SOA RDATA refers to the 32 bit time interval before the
-zone should be refereshed. The field "RETRY" refers to the 32 bit interval
-before a failed refresh should be retried, the field "EXPIRE" refers to a 32
-bit time value that specifies the upper limit on the time interval that can
-elapse before the zone is no longer authoritative and the field "MINIMUM" is
-the unsigned 32 bit minimum TTL field that should be exported with any
-resource record from the domain's zone
+designated domain.
 
 The inconsistency in these different fields for the designated zone (*Got to
 Verify*) might result in operational inconsistencies.
@@ -25,15 +18,20 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the list of name servers from [Method4](../Methods.md) and
-   [Method5](../Methods.md).
-2. Retrieve the SOA RR from all the name servers. 
-3. If the SOA RNAME field is not the same from all the answers
-   received from step 2, then the test case fails.
+ 1. Obtain a set of name server IP addresses using [Method4] and [Method5].
+ 2. Send a SOA query for TLD over UDP to each unique name server IP address.
+ 3. Verify that a response is received for each SOA query.
+ 4. Collect all SOA records from the answer section of all responses.
+ 5. Verify that all SOA records have the same REFRESH value.
+ 6. Verify that all SOA records have the same RETRY value.
+ 7. Verify that all SOA records have the same EXPIRE value.
+ 8. Verify that all SOA records have the same MINIMUM value.
+
 
 ### Outcome(s)
 
-All authoritative name servers must have consistent RNAME field.
+All authoritative name servers must have consistent REFRESH, RETRY,
+EXPIRE and MINIMUM fields.
 If the test does not find any inconsistency, then the test succeeds.
 
 ### Special procedural requirements	
@@ -45,6 +43,9 @@ on the ignored result.
 ### Intercase dependencies
 
 -------
+
+[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
 Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
 Copyright (c) 2013, 2014, 2015, AFNIC  
