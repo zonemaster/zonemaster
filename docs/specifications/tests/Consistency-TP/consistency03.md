@@ -12,6 +12,10 @@ across all authoritative name servers.
 The inconsistency in these different fields for the designated zone (*Got to
 Verify*) might result in operational inconsistencies.
 
+There are other test cases that provide consistency tests for other
+SOA fields.
+
+
 ### Inputs
 
 The domain name to be tested.
