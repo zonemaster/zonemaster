@@ -1,7 +1,7 @@
-![Zonemaster](docs/images/zonemaster_logo_black.png)
-==========
+Requirements (internal)
+=======================
 
-### Purpose of this directory
+## Purpose of this directory
 
 This contents of this directory includes different files which were used by the
 AFNIC and IIS team internally for the ZM project. Any of the contents of this
