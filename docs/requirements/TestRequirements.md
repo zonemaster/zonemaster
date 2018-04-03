@@ -20,9 +20,9 @@ Most of the requirements are derived from these documents:
 
 Type of document             |Document copied from   |Document
 :----------------------------|:----------------------|:------------------------------------
-Source document for Zonecheck|Previois Zonecheck site|[Features](ExistingZCFeaturesCLI.md)
-Policy document for Zonecheck|Previois Zonecheck site|[Test Policy](ExistingZCPolicy.md)
-Source document for DNSCheck |DNSCheck Github Wiki   |[Detailes list of all messages](Detailed-list-of-all-possible-dnscheck-messages.md)
+Source document for Zonecheck|Previois Zonecheck site|[Features](supporting-documents/ExistingZCFeaturesCLI.md)
+Policy document for Zonecheck|Previois Zonecheck site|[Test Policy](supporting-documents/ExistingZCPolicy.md)
+Source document for DNSCheck |DNSCheck Github Wiki   |[Detailes list of all messages](supporting-documents/Detailed-list-of-all-possible-dnscheck-messages.md)
 
 
 Tests to implement
@@ -130,13 +130,13 @@ Requirements on writing test specifications
 These are some requirements for writing specifications for "Zonemaster":
 
  1. Follow the framework of the IEEE 829-2008.
- 2. The documents must be in [Markdown Syntax]
-    (http://daringfireball.net/projects/markdown/syntax).
+ 2. The documents must be in 
+    [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax).
  3. Keep the columns in the document below 80, preferrably shorter than 74
     columns. (Much easier to see changes in documents using the tools
 	available for diffing).
- 4. Use [normative language]
-   (http://en.wikipedia.org/wiki/Normative#Standards_documents).
+ 4. Use 
+    [normative language](http://en.wikipedia.org/wiki/Normative#Standards_documents).
  5. Refer to any reference that is the rationale for implementing the test
     case. If there are no reference to any standards, describe the reason
     for implementing the test. For most references, we use RFCs from IETF.
@@ -160,8 +160,8 @@ These are some requirements for writing specifications for "Zonemaster":
 
 -------
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
+Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden)  
+Copyright (c) 2013-2018, AFNIC  
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
