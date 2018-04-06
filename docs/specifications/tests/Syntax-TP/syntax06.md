@@ -19,7 +19,8 @@ The domain name to be tested.
 
 1. Obtain a set of name server IP addresses using [Method4] and [Method5].
 2. Create a SOA query for the zone.
-3. Send the SOA query over UDP to each unique name server IP address.
+3. Send the SOA query over UDP to each name server IP address until a
+   response is received or until the set is exhausted.
 4. Get the RNAME from the SOA record.
 5. Convert the first non-escaped "." to an "@" in the RNAME.
 6. De-escape the RNAME, converting a "\." to ".".

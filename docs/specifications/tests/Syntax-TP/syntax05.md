@@ -18,9 +18,9 @@ The domain name to be tested.
 
 1. Obtain a set of name server IP addresses using [Method4] and [Method5].
 2. Create a SOA query for the zone.
-3. Send the SOA query over UDP to each unique name server IP address.
-4. For each response:
-    1. Check if the RNAME field contains a '@' character.
+3. Send the SOA query over UDP to each name server IP address until a
+   response is received or until the set is exhausted.
+4. Check if the RNAME field contains a '@' character.
 
 
 ### Outcome(s)
