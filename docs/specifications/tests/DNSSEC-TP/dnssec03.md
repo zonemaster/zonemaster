@@ -40,8 +40,8 @@ The domain name to be tested.
 ### Ordered description of steps to be taken to execute the test case
 
  1. Obtain a set of name server IP addresses using [Method4] and [Method5].
- 2. Create an NSEC3PARAM query for the zone.
- 3. Create a DNSKEY query for the zone.
+ 2. Create an NSEC3PARAM query for the apex of the child zone.
+ 3. Create a DNSKEY query for the apex of the child zone.
  4. Send the NSEC3PARAM query over UDP to one of the name server IP addresses.
  5. If there is not use of NSEC3 there is no NSEC3PARAM RR in the child zone,
     and this test case ends here.

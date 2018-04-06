@@ -20,7 +20,7 @@ The domain name to be tested.
 ### Ordered description of steps to be taken to execute the test case
 
 1. Obtain a set of name server IP addresses using [Method4] and [Method5].
-2. Create a DNSKEY query for the zone with DO flag set.
+2. Create a DNSKEY query with DO flag set for the apex of the the zone.
 3. Send the DNSKEY query over UDP to one the name server IP addresses.
 4. The DNSKEY algorithm numbers are derived from all the DNSKEY RRs.
 5. The algorithm numbers are matched with the IANA DNSKEY algorithm table.

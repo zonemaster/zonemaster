@@ -24,8 +24,8 @@ The domain name to be tested.
 ### Ordered description of steps to be taken to execute the test case
 
 1. Obtain a set of name server IP addresses using [Method4] and [Method5].
-2. Create a DNSKEY query for the zone with DO flag set.
-3. Create a SOA query for the zone with DO flag set.
+2. Create a DNSKEY query with DO flag set for the apex of the child zone.
+3. Create a SOA query with DO flag set for the apex of the child zone.
 4. Send the DNSKEY query over UDP to one of the name server IP addresses.
 5. Send the SOA query over UDP to one of the name server IP addresses.
 6. If any RRSIG validity is found where the expiration time already has
