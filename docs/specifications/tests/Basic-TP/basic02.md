@@ -19,16 +19,20 @@ The label of the domain name to be tested (the child zone).
    from input data. 
 2. If the NS set is empty (no delegation), this test case fails
    ("domain name does not exist").
-3. Retrieve the IP addresses (glue records) for all in-bailiwick name
-   servers using [Method 4]. For out-of-bailiwick name servers, do 
-   recursive queries to retrieve the IP addresses.
-4. If no IP addresses could be trieved, this test case fails ("no
+3. Retrieve the IP addresses (glue records) for any in-bailiwick name
+   servers using [Method 4]. If the test is an undelegated test, use 
+   the IP addresses from input data. 
+4. Retriev the IP addresses for any out-of-bailiwick name servers
+   using recursive queries. If the test is an undelegated test, use 
+   the IP addresses from input data for all such name servers that 
+   have IP address data.
+5. If no IP addresses could be trieved, this test case fails ("no
    IP addresses to name servers").
-5. Create an NS query for the apex of the child zone.
-6. Send the query to each available name server IP address.
-7. If there is no response on any query this test case fails 
+6. Create an NS query for the apex of the child zone.
+7. Send the query to each available name server IP address.
+8. If there is no response on any query this test case fails 
    ("no response from name servers").
-8. If there is no valid response containing the NS records of the
+9. If there is no valid response containing the NS records of the
    child zone and with the AA bit set this test case fails ("error
    in response from name servers").
 
