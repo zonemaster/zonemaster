@@ -10,22 +10,27 @@ can answer queries about the domain.
 
 ## Inputs
 
-The label of the domain name to be tested (the child zone).
+* The label of the domain name to be tested ("child zone").
+* If undelegated test, the list of name servers ("undelegated NS").
+* If undelegated test, the IP addresses of the in-bailiwick undelegated 
+  NS, if any ("undelegated glue IP").
+* If undelegated test, the IP addresses of the out-of-bailiwick
+  undelegated NS, if any ("undelegated non-glue IP").
 
 ## Ordered description of steps to be taken to execute the test case
 
 1. Retrieve the NS records for the child zone (the delegation) using
-   [Method 2]. If the test is an undelegated test, use the name servers
-   from input data. 
+   [Method 2]. If the test is an undelegated test, use _undelegated
+   NS_.
 2. If the NS set is empty (no delegation), this test case fails
    ("domain name does not exist").
 3. Retrieve the IP addresses (glue records) for any in-bailiwick name
    servers using [Method 4]. If the test is an undelegated test, use 
-   the IP addresses from input data. 
-4. Retriev the IP addresses for any out-of-bailiwick name servers
+   _undelegated glue IP_.
+4. Retrieve the IP addresses for any out-of-bailiwick name servers
    using recursive queries. If the test is an undelegated test, use 
-   the IP addresses from input data for all such name servers that 
-   have IP address data.
+   _undelegated non-glue IP_ all such name servers that have IP 
+   address data and do a recursive lookup for the rest.
 5. If no IP addresses could be trieved, this test case fails ("no
    IP addresses to name servers").
 6. Create an NS query for the apex of the child zone.
@@ -39,7 +44,7 @@ The label of the domain name to be tested (the child zone).
 ## Outcome(s)
 
 If at least one recorded response is a valid DNS response holding 
-one or more NS records for the child domain and with the AA flag
+one or more NS records for the child zone and with the AA flag
 set, this test succeeds.
 
 ## Special procedural requirements
