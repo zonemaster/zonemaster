@@ -52,6 +52,9 @@ set, this test succeeds.
 If this test fails, it's impossible to continue and the whole testing
 process (except for the BASIC03 test) is aborted.
 
+Understanding "in-bailiwick" and "out-of-bailiwick" is necessary
+to follow the steps above, see [RFC 7719].
+
 ## Intercase dependencies
 
 None.
@@ -59,7 +62,7 @@ None.
 
 [Method 2]: ../Methods.md#method-2-obtain-glue-name-records-from-parent
 [Method 4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
-
+[RFC 7719]: https://tools.ietf.org/html/rfc7719
 
 -------
 
