@@ -49,7 +49,8 @@ The domain name to be tested.
  6. The iterations value is extracted from the NSEC3PARAM RR.
  7. If the number of iterations is higher than 100, this test case emits
     at least a warning.
- 8. Send the DNSKEY query over UDP to one of the name server IP addresses.
+ 8. Send the DNSKEY query over UDP to each name server IP address
+    until a response is received or until the set is exhausted.
  9. Extract the smallest key from the zone.
 10. Depending on the key sizes listed in section 10.3 of RFC 5155, if the
     number of iterations is larger than the corresponding key size of

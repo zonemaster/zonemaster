@@ -21,7 +21,8 @@ The domain name to be tested.
 
 1. Obtain a set of name server IP addresses using [Method4] and [Method5].
 2. Create a DNSKEY query with DO flag set for the apex of the the zone.
-3. Send the DNSKEY query over UDP to one the name server IP addresses.
+3. Send the DNSKEY query over UDP to each name server IP address until
+   a response is received or until the set is exhausted.
 4. The DNSKEY algorithm numbers are derived from all the DNSKEY RRs.
 5. The algorithm numbers are matched with the IANA DNSKEY algorithm table.
 6. If any the algorithm numbers is unassigned, reserved, a private algorithm

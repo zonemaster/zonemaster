@@ -26,8 +26,10 @@ The domain name to be tested.
 1. Obtain a set of name server IP addresses using [Method4] and [Method5].
 2. Create a DNSKEY query with DO flag set for the apex of the child zone.
 3. Create a SOA query with DO flag set for the apex of the child zone.
-4. Send the DNSKEY query over UDP to one of the name server IP addresses.
-5. Send the SOA query over UDP to one of the name server IP addresses.
+4. Send the DNSKEY query over UDP to each name server IP address until
+   a response is received or until the set is exhausted.
+5. Send the SOA query over UDP to each name server IP address until
+   a response is received or until the set is exhausted.
 6. If any RRSIG validity is found where the expiration time already has
    passed, this test case fails.
 7. If any RRSIG validity time is shorter than 12 hours (from "now"),
