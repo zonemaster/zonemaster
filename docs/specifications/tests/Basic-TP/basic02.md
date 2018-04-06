@@ -19,7 +19,7 @@ can answer queries about the domain.
 
 ## Ordered description of steps to be taken to execute the test case
 
-1. Retrieve the NS records for the child zone (the delegation) using
+1. Retrieve the NS records for _the child zone_ (the delegation) using
    [Method 2]. If the test is an undelegated test, use _undelegated
    NS_.
 2. If the NS set is empty (no delegation), this test case fails
@@ -33,18 +33,18 @@ can answer queries about the domain.
    address data and do a recursive lookup for the rest.
 5. If no IP addresses could be trieved, this test case fails ("no
    IP addresses to name servers").
-6. Create an NS query for the apex of the child zone.
+6. Create an NS query for the apex of _the child zone_.
 7. Send the query to each available name server IP address.
 8. If there is no response on any query this test case fails 
    ("no response from name servers").
-9. If there is no valid response containing the NS records of the
-   child zone and with the AA bit set this test case fails ("error
-   in response from name servers").
+9. If there is no valid response containing the NS records of 
+   _the child zone_ and with the AA bit set this test case fails 
+   ("error in response from name servers").
 
 ## Outcome(s)
 
 If at least one recorded response is a valid DNS response holding 
-one or more NS records for the child zone and with the AA flag
+one or more NS records for _the child zone_ and with the AA flag
 set, this test succeeds.
 
 ## Special procedural requirements
