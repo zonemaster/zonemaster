@@ -39,16 +39,21 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Query the NSEC3PARAM RR from the child zone.
-2. If there is not use of NSEC3 there is no NSEC3PARAM RR in the child zone,
-   and this test case ends here.
-3. The iterations value is extracted from the NSEC3PARAM RR.
-4. If the number of iterations is higher than 100, this test case emits
-   at least a warning.
-5. Query the DNSKEY RR, and extract the smallest key from the zone.
-6. Depending on the key sizes listed in section 10.3 of RFC 5155, if the
-   number of iterations is larger than the corresponding key size of
-   the smallest key, this test case fails.
+ 1. Obtain a set of name server IP addresses using [Method4] and [Method5].
+ 2. Create an NSEC3PARAM query for the zone.
+ 3. Create a DNSKEY query for the zone.
+ 4. Send the NSEC3PARAM query over UDP to one of the name server IP addresses.
+ 5. If there is not use of NSEC3 there is no NSEC3PARAM RR in the child zone,
+    and this test case ends here.
+ 6. The iterations value is extracted from the NSEC3PARAM RR.
+ 7. If the number of iterations is higher than 100, this test case emits
+    at least a warning.
+ 8. Send the DNSKEY query over UDP to one of the name server IP addresses.
+ 9. Extract the smallest key from the zone.
+10. Depending on the key sizes listed in section 10.3 of RFC 5155, if the
+    number of iterations is larger than the corresponding key size of
+    the smallest key, this test case fails.
+
 
 ### Outcome(s)
 
@@ -66,6 +71,8 @@ NSEC3PARAM RR in the zone).
 None.
 
 -------
+[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
 Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden)  
 Copyright (c) 2013-2018, AFNIC  
