@@ -11,7 +11,8 @@ can answer queries about the domain.
 ## Inputs
 
 * The label of the domain name to be tested ("child zone").
-* If undelegated test, the list of name servers ("undelegated NS").
+* If undelegated test, the list of name servers ("undelegated NS") for 
+  _the child zone_.
 * If undelegated test, any IP addresses of the [in-bailiwick] 
   _undelegated NS_ ("undelegated glue IP").
 * If undelegated test, any IP addresses of the [out-of-bailiwick]
@@ -22,7 +23,7 @@ can answer queries about the domain.
 1. Retrieve the NS records for _the child zone_ (the delegation) using
    [Method 2]. If the test is an undelegated test, use _undelegated
    NS_.
-2. If the NS set is empty (no delegation), this test case fails
+2. If no NS records could be retrieved this test case fails
    ("domain name does not exist").
 3. Retrieve the IP addresses (glue records) for any [in-bailiwick] name
    servers using [Method 4]. If the test is an undelegated test, use 
@@ -31,10 +32,10 @@ can answer queries about the domain.
    using recursive queries. If the test is an undelegated test, use 
    _undelegated non-glue IP_ all such name servers that have IP 
    address data and do a recursive lookup for the rest.
-5. If no IP addresses could be trieved, this test case fails ("no
+5. If no IP addresses could be retrieved, this test case fails ("no
    IP addresses to name servers").
 6. Create an NS query for the apex of _the child zone_.
-7. Send the query to each available name server IP address.
+7. Send the NS query to each available name server IP address.
 8. If there is no response on any query this test case fails 
    ("no response from name servers").
 9. If there is no valid response containing the NS records of 
