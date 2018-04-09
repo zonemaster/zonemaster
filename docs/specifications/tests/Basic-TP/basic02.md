@@ -38,9 +38,13 @@ can answer queries about the domain.
 7. Send the NS query to each available name server IP address.
 8. If there is no response on any query this test case fails 
    ("no response from name servers").
-9. If there is no valid response containing the NS records of 
-   _the child zone_ this test case fails 
-   ("error in response from name servers").
+9. At least one name server IP must meet the following requirements or
+   else this test case fails ("error in response from name servers"):
+   1. The response must be a valid DNS response.
+   2. The response must have at least one NS record.
+   3. The owner name of the NS record or records must be identical 
+      to the apex of _the child zone_.
+   
 
 ## Outcome(s)
 
