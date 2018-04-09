@@ -12,10 +12,10 @@ can answer queries about the domain.
 
 * The label of the domain name to be tested ("child zone").
 * If undelegated test, the list of name servers ("undelegated NS").
-* If undelegated test, the IP addresses of the [in-bailiwick] undelegated 
-  NS, if any ("undelegated glue IP").
-* If undelegated test, the IP addresses of the [out-of-bailiwick]
-  undelegated NS, if any ("undelegated non-glue IP").
+* If undelegated test, any IP addresses of the [in-bailiwick] 
+  _undelegated NS_ ("undelegated glue IP").
+* If undelegated test, any IP addresses of the [out-of-bailiwick]
+  _undelegated NS_ ("undelegated non-glue IP").
 
 ## Ordered description of steps to be taken to execute the test case
 
