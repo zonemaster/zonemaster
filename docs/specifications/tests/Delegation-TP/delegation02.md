@@ -58,10 +58,15 @@ None
 
 
 [RFC 1034]: https://tools.ietf.org/html/rfc1034
+
 [Method2]:  ../Methods.md#method-2-obtain-glue-name-records-from-parent
+
 [Method3]:  ../Methods.md#method-3-obtain-name-servers-from-child
+
 [Method4]:  ../Methods.md#method-4-obtain-glue-address-records-from-parent
+
 [Method5]:  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+
 -------
 
 Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden)  
