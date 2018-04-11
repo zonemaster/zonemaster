@@ -20,29 +20,49 @@ The domain name to be tested ("child zone").
 
 ## Ordered description of steps to be taken to execute the test case
 
- 1. Using [Method2], obtain the set of "in-delegation name server names" for the *child zone* (distinct NS records).
- 2. Count the *in-delegation name server names*:
+ 1. Using [Method2], obtain the complete set of the names of the name servers 
+    from parent for the *child zone* (distinct NS records).
+
+ 2. Count the name server names:
     1. If zero or one, emit *NOT_ENOUGH_NS_PARENT*.
-    2. If two or more, emit the *ENOUGH_NS_PARENT*.
- 3. Using [Method4], obtain the set of "in-delegation glue addresses" for the *child zone*.
- 4. Count the IPv4 addresses among the *in-delegation glue addresses*:
+    2. If two or more, emit *ENOUGH_NS_PARENT*.
+
+ 3. Obtain the IP addresses for the set of the name servers from parent for the 
+    *child zone*.
+
+ 4. Count the number of name server names that resolve into at least one IPv4 
+    addresse:
     1. If zero, emit *NO_IPV4_NS_PARENT*.
     2. If one, emit *NOT_ENOUGH_IPV4_NS_PARENT*.
     3. If two or more, emit *ENOUGH_IPV4_NS_PARENT*.
- 5. Count the IPv6 addresses among the *in-delegation glue addresses*:
+
+ 5. Count the number of name server names that resolve into at least one IPv6 
+    addresse:
     1. If zero, emit *NO_IPV6_NS_PARENT*.
     2. If one, emit *NOT_ENOUGH_IPV6_NS_PARENT*.
     3. If two or more, emit *ENOUGH_IPV6_NS_PARENT*.
- 6. Using [Method3], obtain the set of "in-zone name server names".
- 7. Count the *in-delegation name server addresses*:
+
+ 6. Using [Method3], obtain the complete set of the names of the name servers
+    from the *child zone* for the *child zone*.
+
+ 7. Count the name server names:
     1. If zero or one, emit *NOT_ENOUGH_NS_CHILD*.
     2. If two or more, emit *ENOUGH_NS_CHILD*.
- 8. Using [Method4] and [Method5], obtain the set of "in-zone name server addresses".
- 9. Count the IPv4 addresses among the *in-zone name server addresses*:
+
+ 8. Using [Method4], obtain the IP addresses for the in-bailiwick name servers 
+    from the *child zone* for the *child zone*. 
+
+ 9. Using [Method5], obtain the IP addresses for the out-of-bailiwick name 
+    servers for the *child zone*.
+
+10. Count the number of name server names that resolve into at least one IPv4 
+    addresse:
     1. If zero, emit *NO_IPV4_NS_CHILD*.
     2. If one, emit *NOT_ENOUGH_IPV4_NS_CHILD*.
     3. If two or more, emit *ENOUGH_IPV4_NS_CHILD*.
-10. Count the IPv6 addresses among the *in-zone name server addresses*:
+
+11. Count the number of name server names that resolve into at least one IPv6 
+    addresse:
     1. If zero, emit *NO_IPV6_NS_CHILD*.
     2. If one, emit *NOT_ENOUGH_IPV6_NS_CHILD*.
     3. If two or more, emit *ENOUGH_IPV6_NS_CHILD*.
