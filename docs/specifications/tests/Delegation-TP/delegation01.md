@@ -20,45 +20,33 @@ The domain name to be tested ("child zone").
 
 ## Ordered description of steps to be taken to execute the test case
 
-1. Obtain the complete set of the names of the name servers for the *child 
-   zone* (distinct NS records) from parent using [Method2].
-2. If the number of name servers from parent is at least two, emit the
-   *ENOUGH_NS_PARENT*, else emit *NOT_ENOUGH_NS_PARENT*.
-3. Obtain the IP addresses for the set of the name servers from parent 
-   using [Method4].
-4. If there are no name servers from parent resolving to an IPv4 
-   address then emit *NO_IPV4_NS_PARENT*.
-5. If the number of name servers from parent resolving to an IPv4 
-   address is one then emit *NOT_ENOUGH_IPV4_NS_PARENT*.
-6. If the number of name servers from parent resolving to an IPv4 
-   address is at least two then emit *ENOUGH_IPV4_NS_PARENT*.
-7. If there are no name servers from parent resolving to an IPv6 
-   address then emit *NO_IPV6_NS_PARENT*.
-8. If the number of name servers from parent resolving to an IPv6 
-   address is one then emit *NOT_ENOUGH_IPV6_NS_PARENT*.
-9. If the number of name servers from parent resolving to an IPv6 
-   address is at least two then emit *ENOUGH_IPV6_NS_PARENT*.
-10. Obtain the complete set of the names of the name servers for the 
-    *child zone* from the *child zone* using [Method3].
-11. If the number of name servers from child is at least two emit the
-   *ENOUGH_NS_CHILD*, else emit *NOT_ENOUGH_NS_CHILD*.
-12. Obtain the IP addresses for the set of the name servers from 
-    *child zone* using [Method5] and, for 
-    out-of-bailiwick NS, using [Method4].
-13. If there are no name servers from child resolving to an IPv4 
-   address then emit *NO_IPV4_NS_CHILD*.
-14. If the number of name servers from child resolving to an IPv4 
-   address is one then emit *NOT_ENOUGH_IPV4_NS_CHILD*.
-15. If the number of name servers from child resolving to an IPv4 
-   address is two then emit *ENOUGH_IPV4_NS_CHILD*.
-16. If there are no name servers from child resolving to an IPv6 
-   address then emit *NO_IPV6_NS_CHILD*.
-17. If the number of name servers from child resolving to an IPv6 
-   address is one then emit *NOT_ENOUGH_IPV6_NS_CHILD*.
-18. If the number of name servers from child resolving to an IPv6 
-   address is two then emit *ENOUGH_IPV6_NS_CHILD*.
+ 1. Using [Method2], obtain the set of "in-delegation name server names" for the *child zone* (distinct NS records).
+ 2. Count the *in-delegation name server names*:
+    1. If zero or one, emit *NOT_ENOUGH_NS_PARENT*.
+    2. If two or more, emit the *ENOUGH_NS_PARENT*.
+ 3. Using [Method4], obtain the set of "in-delegation glue addresses" for the *child zone*.
+ 4. Count the IPv4 addresses among the *in-delegation glue addresses*:
+    1. If zero, emit *NO_IPV4_NS_PARENT*.
+    2. If one, emit *NOT_ENOUGH_IPV4_NS_PARENT*.
+    3. If two or more, emit *ENOUGH_IPV4_NS_PARENT*.
+ 5. Count the IPv6 addresses among the *in-delegation glue addresses*:
+    1. If zero, emit *NO_IPV6_NS_PARENT*.
+    2. If one, emit *NOT_ENOUGH_IPV6_NS_PARENT*.
+    3. If two or more, emit *ENOUGH_IPV6_NS_PARENT*.
+ 6. Using [Method3], obtain the set of "in-zone name server names".
+ 7. Count the *in-delegation name server addresses*:
+    1. If zero or one, emit *NOT_ENOUGH_NS_CHILD*.
+    2. If two or more, emit *ENOUGH_NS_CHILD*.
+ 8. Using [Method4] and [Method5], obtain the set of "in-zone name server addresses".
+ 9. Count the IPv4 addresses among the *in-zone name server addresses*:
+    1. If zero, emit *NO_IPV4_NS_CHILD*.
+    2. If one, emit *NOT_ENOUGH_IPV4_NS_CHILD*.
+    3. If two or more, emit *ENOUGH_IPV4_NS_CHILD*.
+10. Count the IPv6 addresses among the *in-zone name server addresses*:
+    1. If zero, emit *NO_IPV6_NS_CHILD*.
+    2. If one, emit *NOT_ENOUGH_IPV6_NS_CHILD*.
+    3. If two or more, emit *ENOUGH_IPV6_NS_CHILD*.
 
- 
 ## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
