@@ -1,10 +1,10 @@
-## DELEGATION01: Minimum number of name servers   
+# DELEGATION01: Minimum number of name servers   
 
-### Test case identifier
+## Test case identifier
 
 **DELEGATION01:** Minimum number of name servers
 
-### Objective
+## Objective
 
 Section 4.1 of [RFC 1034] specifies that there must be at least minimum two name servers 
 for a domain. This test is done to verify this condition.
@@ -14,46 +14,46 @@ test case has been extended to test for for two name servers that resolv into IP
 and IPv6 addresses respectively.
 
 
-### Inputs
+## Inputs
 
 The domain name to be tested.
 
-### Ordered description of steps to be taken to execute the test case
+## Ordered description of steps to be taken to execute the test case
 
 1. Obtain the complete set of name servers (distinct NS records) from 
    parent using [Method2](../Methods.md).
 2. If the number of name servers from parent is at least two emit the
-   message **ENOUGH_NS_PARENT** else emit the message 
-   **NOT_ENOUGH_NS_PARENT**.
+   message *ENOUGH_NS_PARENT* else emit  
+   *NOT_ENOUGH_NS_PARENT*.
 3. Obtain the IP addresses for the set of the name servers from parent 
    using [Method4](../Methods.md).
 4. If the number of name servers from parent resolving to an IPv4 
-   address is none then emit the message **NO_IPV4_NS_PARENT**, else 
-   if it is one emit **NOT_ENOUGH_IPV4_NS_PARENT** else emit
-   **ENOUGH_IPV4_NS_PARENT**.
+   address is none then emit  *NO_IPV4_NS_PARENT*, else 
+   if it is one emit *NOT_ENOUGH_IPV4_NS_PARENT* else emit
+   *ENOUGH_IPV4_NS_PARENT*.
 5. If the number of name servers from parent resolving to an IPv6 
-   address is none then emit the message **NO_IPV6_NS_PARENT**, else 
-   if it is one emit **NOT_ENOUGH_IPV6_NS_PARENT** else emit
-   **ENOUGH_IPV6_NS_PARENT**.
+   address is none then emit  *NO_IPV6_NS_PARENT*, else 
+   if it is one emit *NOT_ENOUGH_IPV6_NS_PARENT* else emit
+   *ENOUGH_IPV6_NS_PARENT*.
 6. Obtain the complete set of name servers from the child using 
    [Method3](../Methods.md).
 7. If the number of name servers from child is at least two emit the
-   message **ENOUGH_NS_CHILD** else emit the message 
-   **NOT_ENOUGH_NS_CHILD**.
+   message *ENOUGH_NS_CHILD* else emit  
+   *NOT_ENOUGH_NS_CHILD*.
 8. Obtain the IP addresses for the set of the name servers from child 
    using [Method5](../Methods.md) and, for out-of-bailiwick NS, using
    [Method4](../Methods.md).
 9. If the number of name servers from child resolving to an IPv4 
-   address is none then emit the message **NO_IPV4_NS_CHILD**, else 
-   if it is one emit **NOT_ENOUGH_IPV4_NS_CHILD** else emit
-   **ENOUGH_IPV4_NS_CHILD**.
+   address is none then emit  *NO_IPV4_NS_CHILD*, else 
+   if it is one emit *NOT_ENOUGH_IPV4_NS_CHILD* else emit
+   *ENOUGH_IPV4_NS_CHILD*.
 9. If the number of name servers from child resolving to an IPv6 
-   address is none then emit the message **NO_IPV6_NS_CHILD**, else 
-   if it is one emit **NOT_ENOUGH_IPV6_NS_CHILD** else emit
-   **ENOUGH_IPV6_NS_CHILD**.
+   address is none then emit  *NO_IPV6_NS_CHILD*, else 
+   if it is one emit *NOT_ENOUGH_IPV6_NS_CHILD* else emit
+   *ENOUGH_IPV6_NS_CHILD*.
 
  
-### Outcome(s)
+## Outcome(s)
 
 The outcome of the test case depends on the highest level of the messages 
 generated.
@@ -78,11 +78,11 @@ NOT_ENOUGH_IPV6_NS_CHILD      | NOTICE
 ENOUGH_IPV6_NS_CHILD          | INFO
 
 
-### Special procedural requirements
+## Special procedural requirements
 
 None 
 
-### Intercase dependencies
+## Intercase dependencies
 
 None
 
