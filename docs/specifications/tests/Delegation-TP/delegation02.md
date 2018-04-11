@@ -39,10 +39,16 @@ The domain name to be tested.
 
 ## Outcome(s)
 
-The outcome of the test case depends on the highest level of the messages 
-generated.
+The outcome of this Test Case is "fail" if there is at least one message
+with the severity level *ERROR* or *CRITICAL*.
 
-Message                       | Default level (if message is emitted)
+The outcome of this Test Case is "warning" if there is at least one message
+with the severity level *WARNING*, but no message with severity level
+*ERROR* or *CRITICAL*.
+
+In other cases the outcome of this Test Case is "pass".
+
+Message                       | Default severity level (if message is emitted)
 :-----------------------------|:-----------------------------------
 PARENT_NS_SAME_IP_ADDRESS     | ERROR
 CHILD_NS_SAME_IP_ADDRESS      | ERROR
