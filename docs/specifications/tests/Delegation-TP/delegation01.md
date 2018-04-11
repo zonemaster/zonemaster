@@ -6,9 +6,13 @@
 
 ### Objective
 
-Section 4.1 of [RFC 1034](https://tools.ietf.org/html/rfc1034) specifies that
-there must be at least minimum two name servers for a domain. This test is
-done to verify this condition
+Section 4.1 of [RFC 1034] specifies that there must be at least minimum two name servers 
+for a domain. This test is done to verify this condition.
+
+The RFC ([RFC 1034]) pre-dates IPv6. Sinces IPv4 and IPv6 work as separate networks, this
+test case has been extended to test for for two name servers that resolv into IPv4 addresses
+and IPv6 addresses respectively.
+
 
 ### Inputs
 
@@ -16,20 +20,55 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the complete set of name servers from parent using
-   [Method2](../Methods.md).
-2. If the number of name servers (distinct NS records) returned in previous step is less than two, the
-   record as an error.
-3. Obtain the complete set of name servers from the child 
-   using [Method3](../Methods.md).
-4. If the number of name servers (distinct NS records) returned in the previous step is less than two, the
-   record as an error.
-5. If an error was recorded in step 2 or step 4, then the test case fails.
+1. Obtain the complete set of name servers (distinct NS records) from 
+   parent using [Method2](../Methods.md).
+2. If the number of name servers from parent is at least two emit the
+   message **ENOUGH_NS_PARENT** else emit the message 
+   **NOT_ENOUGH_NS_PARENT**.
+3. Obtain the IP addresses for the set of the name servers from parent 
+   using [Method4](../Methods.md).
+4. If the number of name servers from parent resolving to an IPv4 
+   address is at least two **ENOUGH_IPV4_NS_PARENT** else emit the
+   message **NOT_ENOUGH_IPV4_NS_PARENT**.
+5. If the number of name servers from parent resolving to an IPv6 
+   address is at least two **ENOUGH_IPV6_NS_PARENT** else emit the
+   message **NOT_ENOUGH_IPV6_NS_PARENT**.
+6. Obtain the complete set of name servers from the child using 
+   [Method3](../Methods.md).
+7. If the number of name servers from child is at least two emit the
+   message **ENOUGH_NS_CHILD** else emit the message 
+   **NOT_ENOUGH_NS_CHILD**.
+8. Obtain the IP addresses for the set of the name servers from child 
+   using [Method5](../Methods.md) and, for out-of-bailiwick NS, using
+   [Method4](../Methods.md).
+9. If the number of name servers from child resolving to an IPv4 
+   address is at least two **ENOUGH_IPV4_NS_CHILD** else emit the
+   message **NOT_ENOUGH_IPV4_NS_CHILD**.
+10. If the number of name servers from child resolving to an IPv6 
+    address is at least two **ENOUGH_IPV6_NS_CHILD** else emit the
+    message **NOT_ENOUGH_IPV6_NS_CHILD**.
+
  
 ### Outcome(s)
 
-If the total amount of name servers used for the domain are two or more,
-then the test case succeeds.
+The outcome of the test case depends on the highest level of the messages 
+generated.
+
+Message                       | Default level (if message is emitted)
+:-----------------------------|:-----------------------------------
+ENOUGH_NS_PARENT              | INFO
+NOT_ENOUGH_NS_PARENT          | ERROR
+ENOUGH_IPV4_NS_PARENT         | INFO
+NOT_ENOUGH_IPV4_NS_PARENT     | ERROR
+ENOUGH_IPV6_NS_PARENT         | INFO
+NOT_ENOUGH_IPV6_NS_PARENT     | NOTICE
+ENOUGH_NS_CHILD               | INFO
+NOT_ENOUGH_NS_CHILD           | ERROR
+ENOUGH_IPV4_NS_CHILD          | INFO
+NOT_ENOUGH_IPV4_NS_CHILD      | ERROR
+ENOUGH_IPV6_NS_CHILD          | INFO
+NOT_ENOUGH_IPV6_NS_CHILD      | NOTICE
+
 
 ### Special procedural requirements
 
@@ -39,10 +78,13 @@ None
 
 None
 
+
+[RFC 1034]: https://tools.ietf.org/html/rfc1034
+
 -------
 
-Copyright (c) 2013-2017, IIS (The Internet Foundation in Sweden )  
-Copyright (c) 2013-2017, AFNIC  
+Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden )  
+Copyright (c) 2013-2018, AFNIC  
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
