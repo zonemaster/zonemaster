@@ -28,11 +28,13 @@ The domain name to be tested.
 3. Obtain the IP addresses for the set of the name servers from parent 
    using [Method4](../Methods.md).
 4. If the number of name servers from parent resolving to an IPv4 
-   address is at least two **ENOUGH_IPV4_NS_PARENT** else emit the
-   message **NOT_ENOUGH_IPV4_NS_PARENT**.
+   address is none then emit the message **NO_IPV4_NS_PARENT**, else 
+   if it is one emit **NOT_ENOUGH_IPV4_NS_PARENT** else emit
+   **ENOUGH_IPV4_NS_PARENT**.
 5. If the number of name servers from parent resolving to an IPv6 
-   address is at least two **ENOUGH_IPV6_NS_PARENT** else emit the
-   message **NOT_ENOUGH_IPV6_NS_PARENT**.
+   address is none then emit the message **NO_IPV6_NS_PARENT**, else 
+   if it is one emit **NOT_ENOUGH_IPV6_NS_PARENT** else emit
+   **ENOUGH_IPV6_NS_PARENT**.
 6. Obtain the complete set of name servers from the child using 
    [Method3](../Methods.md).
 7. If the number of name servers from child is at least two emit the
@@ -42,11 +44,13 @@ The domain name to be tested.
    using [Method5](../Methods.md) and, for out-of-bailiwick NS, using
    [Method4](../Methods.md).
 9. If the number of name servers from child resolving to an IPv4 
-   address is at least two **ENOUGH_IPV4_NS_CHILD** else emit the
-   message **NOT_ENOUGH_IPV4_NS_CHILD**.
-10. If the number of name servers from child resolving to an IPv6 
-    address is at least two **ENOUGH_IPV6_NS_CHILD** else emit the
-    message **NOT_ENOUGH_IPV6_NS_CHILD**.
+   address is none then emit the message **NO_IPV4_NS_CHILD**, else 
+   if it is one emit **NOT_ENOUGH_IPV4_NS_CHILD** else emit
+   **ENOUGH_IPV4_NS_CHILD**.
+9. If the number of name servers from child resolving to an IPv6 
+   address is none then emit the message **NO_IPV6_NS_CHILD**, else 
+   if it is one emit **NOT_ENOUGH_IPV6_NS_CHILD** else emit
+   **ENOUGH_IPV6_NS_CHILD**.
 
  
 ### Outcome(s)
@@ -56,18 +60,22 @@ generated.
 
 Message                       | Default level (if message is emitted)
 :-----------------------------|:-----------------------------------
-ENOUGH_NS_PARENT              | INFO
 NOT_ENOUGH_NS_PARENT          | ERROR
-ENOUGH_IPV4_NS_PARENT         | INFO
+ENOUGH_NS_PARENT              | INFO
+NO_IPV4_NS_PARENT             | ERROR
 NOT_ENOUGH_IPV4_NS_PARENT     | ERROR
-ENOUGH_IPV6_NS_PARENT         | INFO
+ENOUGH_IPV4_NS_PARENT         | INFO
+NO_IPV6_NS_PARENT             | NOTICE
 NOT_ENOUGH_IPV6_NS_PARENT     | NOTICE
-ENOUGH_NS_CHILD               | INFO
+ENOUGH_IPV6_NS_PARENT         | INFO
 NOT_ENOUGH_NS_CHILD           | ERROR
-ENOUGH_IPV4_NS_CHILD          | INFO
+ENOUGH_NS_CHILD               | INFO
+NO_IPV4_NS_CHILD              | ERROR
 NOT_ENOUGH_IPV4_NS_CHILD      | ERROR
-ENOUGH_IPV6_NS_CHILD          | INFO
+ENOUGH_IPV4_NS_CHILD          | INFO
+NO_IPV6_NS_CHILD              | NOTICE
 NOT_ENOUGH_IPV6_NS_CHILD      | NOTICE
+ENOUGH_IPV6_NS_CHILD          | INFO
 
 
 ### Special procedural requirements
