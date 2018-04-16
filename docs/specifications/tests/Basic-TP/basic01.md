@@ -41,7 +41,7 @@ Input for this Test Case:
 4. If the lookup reaches a name server that responds with a redirect (delegation)
    directly to the requested *child zone*:
    1. The zone in which the delegation was found is considered to be the parent 
-      zone. Emit the message *[PARENT_FOUND*.
+      zone. Emit the message *[PARENT_FOUND]*.
    2. The existance of the *child zone* has been determined. Emit the message
       *[CHILD_FOUND]*.
    3. Exit the steps.
@@ -52,7 +52,7 @@ Input for this Test Case:
       message *[PARENT_FOUND]*.
    2. The non-existance of the *child zone* has been determined. 
    3. If *normal test* emit the message *[NO_CHILD]*, if *undelegated test*
-      emit the message *[UNDELEGATED_NO_CHILD]*.
+      emit the message *[UNDEL_AND_NO_CHILD]*.
    4. Exit the steps.
 
 6. If the recursive lookup reaches authorititative NOERROR answer (AA flag set), 
@@ -61,7 +61,7 @@ Input for this Test Case:
       message *[PARENT_FOUND]*.
    2. The non-existance of the *child zone* has been determined.
    3. If *normal test* emit the message *[NO_CHILD]*, if *undelegated test*
-      emit the message *[UNDELEGATED_NO_CHILD]*.
+      emit the message *[UNDEL_AND_NO_CHILD]*.
    4. Exit the steps.
 
 7. If the recursive lookup reaches a non-authorititative NOERROR answer (AA flag 
@@ -77,7 +77,7 @@ Input for this Test Case:
       message *[PARENT_FOUND]*.
    2. The non-existance of the *child zone* has been determined.
    3. If *normal test* emit the message *[NO_CHILD]*, if *undelegated test*
-      emit the message *[UNDELEGATED_NO_CHILD]*.
+      emit the message *[UNDEL_AND_NO_CHILD]*.
    4. Exit the steps.
 
 9. If the recursive lookup reaches an authorititative NOERROR answer (AA flag 
@@ -98,8 +98,8 @@ Input for this Test Case:
     1. The parent zone cannot be determined.
     2. The *child zone* cannot be determined.
     3. If *normal test* emit the messages *[NO_CHILD]* and *[PARENT_INDETERMINED]*.
-    4. If *undelegated test* emit the messages *[UNDELEGATED_NO_CHILD]* and
-       *[UNDELEGATED_AND_PARENT_INDETERMINED]*.
+    4. If *undelegated test* emit the messages *[UNDEL_AND_NO_CHILD]* and
+       *[UNDEL_AND_PARENT_INDETERMINED]*.
     5. Exit the steps.
 
 
@@ -132,15 +132,15 @@ The name of the parent zone (or empty if it cannot be determined) plus the
 fact if the *child zone* exists or not is returned together with relevant 
 messages.
 
-Messege                              |Default severity level (if message is emitted)
--------------------------------------|----------------------------------------------
-ROOT_HAS_NO_PARENT                   |INFO
-PARENT_FOUND                         |INFO
-PERENT_INDETERMINED                  |FAIL
-UNDELEGATED_AND_PARENT_INDETERMINED  |NOTICE
-CHILD_FOUND                          |INFO
-NO_CHILD                             |FAIL
-UNDELEGATED_NO_CHILD                 |NOTICE
+Messege                        |Default severity level (if message is emitted)
+-------------------------------|----------------------------------------------
+ROOT_HAS_NO_PARENT             |INFO
+PARENT_FOUND                   |INFO
+PARENT_INDETERMINED            |FAIL
+UNDEL_AND_PARENT_INDETERMINED  |NOTICE
+CHILD_FOUND                    |INFO
+NO_CHILD                       |FAIL
+UNDEL_AND_NO_CHILD             |NOTICE
 
 
 ### Special procedural requirements
@@ -158,12 +158,12 @@ None.
 
 [PARENT_FOUND]: #outcomes
 
-[PERENT_INDETERMINED]: #outcomes
+[PARENT_INDETERMINED]: #outcomes
 
-[UNDELEGATED_AND_PARENT_INDETERMINED]: #outcomes
+[UNDEL_AND_PARENT_INDETERMINED]: #outcomes
 
 [CHILD_FOUND]: #outcomes
 
 [NO_CHILD]: #outcomes
 
-[UNDELEGATED_NO_CHILD]: #outcomes
+[UNDEL_AND_NO_CHILD]: #outcomes

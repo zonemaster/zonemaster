@@ -125,8 +125,8 @@ Test Case [BASIC01] and [METHOD4] must have been run first.
 
 Obtain the addresses of the name servers for the given
 zone (child zone) as defined in the delegation from the parent 
-zone (in-bailiwick name servers) and on public DNS 
-(out-of-bailiwick name servers).
+zone ([in-bailiwick] name servers) and on public DNS 
+([out-of-bailiwick] name servers).
 
 ### Inputs
 
@@ -159,19 +159,19 @@ zone (in-bailiwick name servers) and on public DNS
       2. If a referal was found go to step 4.
       3. If no referal was found, extract the name server names from the
          RDATA of the NS records in the answer section.
-      4. For each in-bailiwick name server, query the name server for A and
+      4. For each [in-bailiwick] name server, query the name server for A and
          AAAA and extract the record in the answer or additional section.
 	 Follow any referal to sub-zone if needed.
-   6. For each out-of-bailiwick name servers do a normal recursive lookup 
+   6. For each [out-of-bailiwick] name servers do a normal recursive lookup 
       for those to a resolver by querying for A and AAAA.
    7. Collect all matching A and AAAA records from the responses.
    8. If no IP addresses have been collected, return with ERROR.
 
 2. Undelegated test.
 
-   1. For every in-bailiwick name server in input data, collect IPv4 and
+   1. For every [in-bailiwick] name server in input data, collect IPv4 and
       IPv6 address for the server name.
-   2. For all out-of-bailiwick name servers in input data, if it has 
+   2. For all [out-of-bailiwick] name servers in input data, if it has 
       neither IPv4 nor IPv6 data, do a normal recursive lookup for 
       the address to a resolver by querying for A and AAAA. 
    3. If a name server has either IPv4 or IPv6 data, do not query for
@@ -204,9 +204,9 @@ Test Case [BASIC01] must have been run.
 
 ### Objective
 
-Obtain the addresses of the in-bailiwick name servers, if any, for 
+Obtain the addresses of the [in-bailiwick] name servers, if any, for 
 the child zone as defined in the child zone itself. This method will
-ignore any addresses of out-of-bailiwick name servers.
+ignore any addresses of [out-of-bailiwick] name servers.
 
 
 ### Inputs
@@ -226,7 +226,7 @@ ignore any addresses of out-of-bailiwick name servers.
 
 1. If the child zone does not exist, end with an ERROR unless the
    test is *undelegated test*.
-2. For each *child zone name server name* that is an in-bailiwick
+2. For each *child zone name server name* that is an [in-bailiwick]
    name server:
    1. Send an A and an AAAA query to all servers in *name server IPs*.
    2. If a delegation (referal) to a sub-zone of child zone is returned, 
@@ -276,3 +276,5 @@ in [RFC 7719], section 6, page 15.
 
 [METHOD5]: #method-5-in-zone-addresses-records-of-name-servers
 
+[in-bailiwick]:     #terminology
+[out-of-bailiwick]: #terminology
