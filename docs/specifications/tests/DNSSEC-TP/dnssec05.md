@@ -19,10 +19,13 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Retrieve the DNSKEY RR set from the child zone.
-2. The DNSKEY algorithm numbers are derived from all the DNSKEY RRs.
-3. The algorithm numbers are matched with the IANA DNSKEY algorithm table.
-4. If any the algorithm numbers is unassigned, reserved, a private algorithm
+1. Obtain a set of name server IP addresses using [Method4] and [Method5].
+2. Create a DNSKEY query with DO flag set for the apex of the the zone.
+3. Send the DNSKEY query over UDP to each name server IP address until
+   a response is received or until the set is exhausted.
+4. The DNSKEY algorithm numbers are derived from all the DNSKEY RRs.
+5. The algorithm numbers are matched with the IANA DNSKEY algorithm table.
+6. If any the algorithm numbers is unassigned, reserved, a private algorithm
    or deprecated, this test case fails.
 
 ### Outcome(s)
@@ -41,9 +44,11 @@ Test case is only performed if DNSKEY records are found.
 None.
 
 -------
+[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
+Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden)  
+Copyright (c) 2013-2018, AFNIC  
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this

@@ -23,15 +23,20 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Retrieve the DNSKEY RR set from the child zone, including RRSIG.
-2. Retrieve the SOA RR set from the child zone, including RRSIG.
-3. If any RRSIG validity is found where the expiration time already has
+1. Obtain a set of name server IP addresses using [Method4] and [Method5].
+2. Create a DNSKEY query with DO flag set for the apex of the child zone.
+3. Create a SOA query with DO flag set for the apex of the child zone.
+4. Send the DNSKEY query over UDP to each name server IP address until
+   a response is received or until the set is exhausted.
+5. Send the SOA query over UDP to each name server IP address until
+   a response is received or until the set is exhausted.
+6. If any RRSIG validity is found where the expiration time already has
    passed, this test case fails.
-4. If any RRSIG validity time is shorter than 12 hours (from "now"),
+7. If any RRSIG validity time is shorter than 12 hours (from "now"),
    this test case fails.
-5. If any RRSIG validity time is longer than 180 days (from "now"), this
+8. If any RRSIG validity time is longer than 180 days (from "now"), this
    test fails.
-6. If any RRSIG validity from inception to expiration is longer than 180
+9. If any RRSIG validity from inception to expiration is longer than 180
    days, this test case fails.
 
 ### Outcome(s)
@@ -48,9 +53,11 @@ Test case is only performed if RRSIG RRs are found in the answers.
 None.
 
 -------
+[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
+Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden)  
+Copyright (c) 2013-2018, AFNIC  
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this
