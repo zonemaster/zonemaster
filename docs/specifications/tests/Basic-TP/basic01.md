@@ -31,9 +31,9 @@ Input for this Test Case:
 
 2. If the zone to be tested is the root zone ("."):
    1. The parent zone is set to the root zone (".") and the zone to be tested
-      is assumed to exists.
-      Emit the message *ROOT_HAS_NO_PARENT*.
-   2. Processing the steps is stopped.
+      is assumed to exist.
+      Emit the message *[ROOT_HAS_NO_PARENT]*.
+   2. Exit the steps.
 
 3. A recursive lookup for the SOA record of the *child zone* with the RD bit unset
    starting from the root zone is done to find the parent zone.
@@ -41,34 +41,28 @@ Input for this Test Case:
 4. If the lookup reaches a name server that responds with a redirect (delegation)
    directly to the requested *child zone*:
    1. The zone in which the delegation was found is considered to be the parent 
-      zone. Emit the message *PARENT_FOUND*.
+      zone. Emit the message *[PARENT_FOUND*.
    2. The existance of the *child zone* has been determined. Emit the message
-      *CHILD_FOUND*.
-   3. The name of the parent zone and the fact that the *child zone* exists 
-      are returned.
-   4. Processing the steps is stopped.
+      *[CHILD_FOUND]*.
+   3. Exit the steps.
 
 5. If the recursive lookup reaches a name server that authoritatively responds
    (AA flag set) with NXDOMAIN for the child domain (*child zone*): 
    1. The zone returning NXDOMAIN is considered to be the parent zone. Emit the
-      message *PARENT_FOUND*.
+      message *[PARENT_FOUND]*.
    2. The non-existance of the *child zone* has been determined. 
-   3. If *normal test* emit the message *NO_CHILD*, if *undelegated test*
-      emit the message *UNDELEGATED_NO_CHILD*.
-   4. The name of the parent zone and the fact that the *child zone* does not 
-      exist are returned.
-   5. Processing the steps is stopped.
+   3. If *normal test* emit the message *[NO_CHILD]*, if *undelegated test*
+      emit the message *[UNDELEGATED_NO_CHILD]*.
+   4. Exit the steps.
 
 6. If the recursive lookup reaches authorititative NOERROR answer (AA flag set), 
    with no record in the answer section (NODATA):
    1. The zone returning authoritative data is considered to be the parent zone. Emit the
-      message *PARENT_FOUND*.
+      message *[PARENT_FOUND]*.
    2. The non-existance of the *child zone* has been determined.
-   3. If *normal test* emit the message *NO_CHILD*, if *undelegated test*
-      emit the message *UNDELEGATED_NO_CHILD*.
-   3. The name of the parent zone and the fact that the *child zone* does not exist 
-      are returned.
-   4. Processing the steps is stopped.
+   3. If *normal test* emit the message *[NO_CHILD]*, if *undelegated test*
+      emit the message *[UNDELEGATED_NO_CHILD]*.
+   4. Exit the steps.
 
 7. If the recursive lookup reaches a non-authorititative NOERROR answer (AA flag 
    unset), with a CNAME or DNAME record in the answer section:
@@ -80,23 +74,19 @@ Input for this Test Case:
 8. If the recursive lookup reaches an authorititative NOERROR answer (AA flag 
    set), with a CNAME or DNAME record in the answer section:
    1. The zone returning authoritative data is considered to be the parent zone. Emit the
-      message *PARENT_FOUND*.
+      message *[PARENT_FOUND]*.
    2. The non-existance of the *child zone* has been determined.
-   3. If *normal test* emit the message *NO_CHILD*, if *undelegated test*
-      emit the message *UNDELEGATED_NO_CHILD*.
-   4. The name of the parent zone and the fact that the *child zone* does not exist 
-      are returned.
-   5. Processing the steps is stopped.
+   3. If *normal test* emit the message *[NO_CHILD]*, if *undelegated test*
+      emit the message *[UNDELEGATED_NO_CHILD]*.
+   4. Exit the steps.
 
 9. If the recursive lookup reaches an authorititative NOERROR answer (AA flag 
    set), with an SOA record with owner name child domain in the answer section:
    1. The zone the previous delegation is considered to be the parent zone. Emit the
-      message *PARENT_FOUND*.
+      message *[PARENT_FOUND]*.
    2. The existance of the *child zone* has been determined. Emit the message
-      *CHILD_FOUND*.
-   3. The name of the parent zone and the fact that the *child zone* exists 
-      are returned.
-   4. Processing the steps is stopped.
+      *[CHILD_FOUND]*.
+   3. Exit the steps.
 
 10. If the server does not respond, the respond contain an unexpected RCODE or
     any other error, try next server at step 2. 
@@ -107,10 +97,10 @@ Input for this Test Case:
 12. If all servers are exhausted: 
     1. The parent zone cannot be determined.
     2. The *child zone* cannot be determined.
-    3. If *normal test* emit the messages *NO_CHILD* and *PARENT_INDETERMINED*.
-    4. If *undelegated test* emit the messages *UNDELEGATED_NO_CHILD* and
-       *UNDELEGATED_AND_PARENT_INDETERMINED*.
-    5. Processing the steps is closed.
+    3. If *normal test* emit the messages *[NO_CHILD]* and *[PARENT_INDETERMINED]*.
+    4. If *undelegated test* emit the messages *[UNDELEGATED_NO_CHILD]* and
+       *[UNDELEGATED_AND_PARENT_INDETERMINED]*.
+    5. Exit the steps.
 
 
 Parent zone     |*child zone*        |Run normal test?|Run undelegated test
@@ -155,9 +145,25 @@ UNDELEGATED_NO_CHILD                 |NOTICE
 
 ### Special procedural requirements
 
-If this test fails, only BASIC03 will be run.
+If this test fails, only [BASIC03] will be run.
 
 ### Intercase dependencies
 
 None.
 
+
+[BASIC03]: basic03.md
+
+[ROOT_HAS_NO_PARENT]: #outcomes
+
+[PARENT_FOUND]: #outcomes
+
+[PERENT_INDETERMINED]: #outcomes
+
+[UNDELEGATED_AND_PARENT_INDETERMINED]: #outcomes
+
+[CHILD_FOUND]: #outcomes
+
+[NO_CHILD]: #outcomes
+
+[UNDELEGATED_NO_CHILD]: #outcomes

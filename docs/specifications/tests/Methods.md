@@ -6,7 +6,7 @@ this text.
 
 ## Method 1: Parent zone
 
-The method has been removed. It is included in [BASIC01] instead.
+The method has been removed. The function is integrated in [BASIC01] instead.
 
 
 ## Method 2: Delegation name servers
@@ -71,7 +71,7 @@ None.
 
 ### Dependencies
 
-Test Case BASIC01 must have been run.
+Test Case [BASIC01] must have been run.
 
 
 ## Method 3: In-zone name servers
@@ -88,7 +88,7 @@ Obtain the names of the authoritative name servers for the given zone
 
 * The name of the child zone ("child zone").
 * The addresses to the name servers of the child zone, as given by 
-  METHOD4 ("name server IPs").
+  [METHOD4] ("name server IPs").
 
 ### Ordered description of steps to be taken to execute the method
 
@@ -112,7 +112,7 @@ None.
 
 ### Dependencies
 
-Test Case BASIC01 and METHOD4 must have been run first.
+Test Case [BASIC01] and [METHOD4] must have been run first.
 
 
 
@@ -192,7 +192,7 @@ Test Case [DELEGATION05].
 
 ### Dependencies
 
-Test Case BASIC01 must have been run.
+Test Case [BASIC01] must have been run.
 
 
 
@@ -216,8 +216,8 @@ ignore any addresses of out-of-bailiwick name servers.
 * The fact if the test type is undelegated test ("undelegate test") or not
   ("normal test").
 * The addresses to the name servers of the child zone, as given by 
-  METHOD4 ("name server IPs").
-* The name server names defined in the zone as defined by METHOD2
+  [METHOD4] ("name server IPs").
+* The name server names defined in the zone as defined by [METHOD2]
   ("child zone name server names").
 * The fact if the test type is undelegated test ("undelegate test") or not
   ("normal test").
@@ -253,7 +253,7 @@ Test Case [DELEGATION05].
 
 ### Dependencies
 
-Test Cases BASIC01, METHOD4 and METHOD2 must have been run first.
+Test Cases [BASIC01], [METHOD4] and [METHOD2] must have been run first.
 
 ## Terminology
 
@@ -263,7 +263,16 @@ in [RFC 7719], section 6, page 15.
 
 
 [RFC 7719]: https://tools.ietf.org/html/rfc7719
+
 [BASIC01]: Basic-TP/basic01.md
+
 [DELEGATION05]: Delegation-TP/delegation05.md
 
+[METHOD2]: #method-2-delegation-name-servers
+
+[METHOD3]: #method-3-in-zone-name-servers
+
+[METHOD4]: #method-4-delegation-name-server-addresses
+
+[METHOD5]: #method-5-in-zone-addresses-records-of-name-servers
 
