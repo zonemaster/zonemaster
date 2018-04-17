@@ -36,11 +36,19 @@ the given zone (child zone) as defined in the delegation from the parent zone.
    1. If child zone does not exists then return ERROR.
    2. These steps assume that the servers of the parent zone behaves the
       same way as when [BASIC01] was run.
-   3. Create an SOA query for the child zone and send that one server of
+   3. Create an SOA query for the *child zone* and send that one server of
       *parent NS* with RD flag unset.
    4. If the response response contains a referal to the child zone:
       1. Extract the name server names from the RDATA of the NS records in
          the authority section.
+      2. Repeat the SOA query for *child zone* to the other name servers in
+         "parent NS":
+	 1. If the response from a server has the AA bit set, ignore that
+	    response.
+	 2. If the response is a referal with other NS than found above, 
+            then add the name
+	    server names of the NS to the list of name servers of the
+	    delegation for the *child zone*.
       2. Return the set of name servers (name server names).
       3. Processing the steps is stopped.
    5. If the response is authoritative (AA bit set) and the answer section
