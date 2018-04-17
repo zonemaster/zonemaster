@@ -173,13 +173,18 @@ INCONSISTENT_DELEGATION        |ERROR
 
 ### Special procedural requirements
 
-If this test fails, only [BASIC03] will be run.
+None.
 
 ### Intercase dependencies
 
-None.
+[BASIC00] must have been run with "pass" outcome before this test case
+can be run.
+
+
 
 [List of Root Servers]: https://www.iana.org/domains/root/servers
+
+[BASIC00]: basic00.md
 
 [BASIC03]: basic03.md
 

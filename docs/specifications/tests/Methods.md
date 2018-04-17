@@ -12,7 +12,7 @@ The method has been removed. The function is integrated in [BASIC01] instead.
 ## Method 2: Delegation name servers
 
 ### Method identifier
-**METHOD2** Delegation name servers
+**Method2** Delegation name servers
 
 ### Objective
 
@@ -21,61 +21,60 @@ the given zone (child zone) as defined in the delegation from the parent zone.
 
 ### Inputs
 
-* Unless *undelegated test*, the name servers to the parent zone as found 
-  in [BASIC01] ("parent NS").
 * The name of the child zone ("child zone").
 * The fact if the child zone exists from [BASIC01].
-* The fact if the test type is undelegated test ("undelegate test") or not
-  ("normal test").
-* If *undelegated test*, the submitted name server data.
+* The test type, "undelegate test" or "normal test".
+* If *normal test*, the name servers to the parent zone as found 
+  in [BASIC01] ("parent NS").
+* If *undelegated test*, the submitted delegation data, name server names
+  and IP addresses for *child zone* ("undelegated data").
 
 ### Ordered description of steps to be taken to execute the method
 
 1. *Normal test*. For *undelegated test* go to 2.
-
    1. If child zone does not exists then return ERROR.
-   2. These steps assume that the servers of the parent zone behaves the
-      same way as when [BASIC01] was run.
-   3. Create an SOA query for the *child zone* and send that one server of
+   2. Create an SOA query for the *child zone* and send that one server of
       *parent NS* with RD flag unset.
-   4. If the response response contains a referal to the child zone:
+   3. If the response response contains a referral to the child zone:
       1. Extract the name server names from the RDATA of the NS records in
          the authority section.
       2. Repeat the SOA query for *child zone* to the other name servers in
          "parent NS":
 	 1. If the response from a server has the AA bit set, ignore that
 	    response.
-	 2. If the response is a referal with other NS than found above, 
+	 2. If the response is a referral with other NS than found above, 
             then add the name
 	    server names of the NS to the list of name servers of the
 	    delegation for the *child zone*.
-      2. Return the set of name servers (name server names).
-      3. Processing the steps is stopped.
-   5. If the response is authoritative (AA bit set) and the answer section
+      3. Return the set of name servers (name server names).
+      4. Processing the steps is stopped.
+   4. If the response is authoritative (AA bit set) and the answer section
       contains the SOA record of the child zone:
       1. Repeat the query with the next server of *parent NS* until a 
-         server has responded with a referal or no more servers are available.
-      2. If a referal was found, go to step 4.
-      3. If no referal was found, send a query for the NS records instead,
-         and use them as if it was a referal.
+         server has responded with a referral or no more servers are available.
+      2. If a referral was found, go to step 3.
+      3. If no referral was found, send a query for the NS records instead,
+         and use them as if it was a referral.
       4. Return the set of name servers (name server names).
       5. Processing the steps is stopped.
 
 2. *Undelegated test*.
 
-   1. Collect the name server names provided as indata for the test.
+   1. Collect the name server names from the *undelegated data*.
    2. Return the set of name servers (name server names).
    3. Processing the steps is stopped.
 
 
 ### Outcome(s)
 
-Unless ERROR was returned in the steps, outcome is the set of name 
-servers.
+Unless ERROR was returned in the steps, outcome is the non-empty
+set of name servers.
 
 ### Special procedural requirements
 
-None.
+The method assumes that the servers of the parent zone behaves the
+same way as when [BASIC01] was run. It also assumes that for an
+*undelegated test* the *undelegated data* must be non-empty.
 
 ### Dependencies
 
@@ -85,7 +84,7 @@ Test Case [BASIC01] must have been run.
 ## Method 3: In-zone name servers
 
 ### Method identifier
-**METHOD3** In-zone name servers
+**Method3** In-zone name servers
 
 
 ### Objective
@@ -96,12 +95,12 @@ Obtain the names of the authoritative name servers for the given zone
 
 * The name of the child zone ("child zone").
 * The addresses to the name servers of the child zone, as given by 
-  [METHOD4] ("name server IPs").
+  [Method4] ("name server IPs").
 
 ### Ordered description of steps to be taken to execute the method
 
 1. Create an NS query for apex of the child zone with the RD flag 
-   unset and send that to the *name server IPs".
+   unset and send that to the *name server IPs*.
 2. Ignore response unless AA flag is set.
 3. Collect all the unique NS records in the answer sections of the
    responses and extract the name server names.
@@ -120,14 +119,14 @@ None.
 
 ### Dependencies
 
-Test Case [BASIC01] and [METHOD4] must have been run first.
+Test Case [BASIC01] and [Method4] must have been run first.
 
 
 
 ## Method 4: Delegation name server addresses
 
 ### Method identifier
-**METHOD4** Delegation name server addresses
+**Method4** Delegation name server addresses
 
 ### Objective
 
@@ -142,8 +141,7 @@ zone ([in-bailiwick] name servers) and on public DNS
   [BASIC01] ("parent NS").
 * The name of the child zone ("child zone").
 * The fact if the child zone exists from [BASIC01].
-* The fact if the test type is undelegated test ("undelegate test") or not
-  ("normal test").
+* The test type, "undelegate test" or "normal test".
 * If *undelegated test*, the submitted name server data.
 
 ### Ordered description of steps to be taken to execute the method
@@ -155,7 +153,7 @@ zone ([in-bailiwick] name servers) and on public DNS
       same way as when [BASIC01] was run.
    3. Create an NS query for the *child zone* and send that to a server
       of *parent NS* with RD flag unset.
-   4. If the response response contains a referal to the child zone:
+   4. If the response response contains a referral to the child zone:
       1. Extract the name server names from the RDATA in the NS record in
          the authority section.
       2. Extract all A and AAAA records from the additional section.
@@ -163,19 +161,19 @@ zone ([in-bailiwick] name servers) and on public DNS
       contains the NS record of the child zone:
       1. Repeat the query with the next server in *parent NS* until a server 
          has responded
-         with a referal or no more servers are available.
-      2. If a referal was found go to step 4.
-      3. If no referal was found, extract the name server names from the
+         with a referral or no more servers are available.
+      2. If a referral was found go to step 4.
+      3. If no referral was found, extract the name server names from the
          RDATA of the NS records in the answer section.
       4. For each [in-bailiwick] name server, query the name server for A and
          AAAA and extract the record in the answer or additional section.
-	 Follow any referal to sub-zone if needed.
+	 Follow any referral to sub-zone if needed.
    6. For each [out-of-bailiwick] name servers do a normal recursive lookup 
       for those to a resolver by querying for A and AAAA.
    7. Collect all matching A and AAAA records from the responses.
    8. If no IP addresses have been collected, return with ERROR.
 
-2. Undelegated test.
+2. *Undelegated test*.
 
    1. For every [in-bailiwick] name server in input data, collect IPv4 and
       IPv6 address for the server name.
@@ -207,7 +205,7 @@ Test Case [BASIC01] must have been run.
 ## Method 5: In-zone addresses records of name servers
 
 ### Method identifier
-**METHOD5** In-zone addresses records of name servers
+**Method5** In-zone addresses records of name servers
 
 
 ### Objective
@@ -221,14 +219,11 @@ ignore any addresses of [out-of-bailiwick] name servers.
 
 * The name of the child zone ("child zone").
 * The fact if the child zone exists from [BASIC01].
-* The fact if the test type is undelegated test ("undelegate test") or not
-  ("normal test").
+* The test type, "undelegate test" or "normal test".
 * The addresses to the name servers of the child zone, as given by 
-  [METHOD4] ("name server IPs").
-* The name server names defined in the zone as defined by [METHOD2]
+  [Method4] ("name server IPs").
+* The name server names defined in the zone as defined by [Method2]
   ("child zone name server names").
-* The fact if the test type is undelegated test ("undelegate test") or not
-  ("normal test").
 
 ### Ordered description of steps to be taken to execute the method
 
@@ -237,10 +232,10 @@ ignore any addresses of [out-of-bailiwick] name servers.
 2. For each *child zone name server name* that is an [in-bailiwick]
    name server:
    1. Send an A and an AAAA query to all servers in *name server IPs*.
-   2. If a delegation (referal) to a sub-zone of child zone is returned, 
+   2. If a delegation (referral) to a sub-zone of child zone is returned, 
       follow that delegation, possibly in several steps, by repeating the
       A and AAAA queries.
-   3. Ignore non-referal responses unless AA flag is set. Cached data
+   3. Ignore non-referral responses unless AA flag is set. Cached data
       is not accepted.
 3. Create a list of unique IPv4 addreses and unique IPv6 addresses,
    respectively, found in the answer sections of the responses for
@@ -249,6 +244,7 @@ ignore any addresses of [out-of-bailiwick] name servers.
 
 ### Outcome(s)
 
+Unless ERROR was returned in the steps, outcome is a set of IP addresses.
 
 
 ### Special procedural requirements
@@ -261,7 +257,7 @@ Test Case [DELEGATION05].
 
 ### Dependencies
 
-Test Cases [BASIC01], [METHOD4] and [METHOD2] must have been run first.
+Test Cases [BASIC01], [Method4] and [Method2] must have been run first.
 
 ## Terminology
 
@@ -276,13 +272,13 @@ in [RFC 7719], section 6, page 15.
 
 [DELEGATION05]: Delegation-TP/delegation05.md
 
-[METHOD2]: #method-2-delegation-name-servers
+[Method2]: #method-2-delegation-name-servers
 
-[METHOD3]: #method-3-in-zone-name-servers
+[Method3]: #method-3-in-zone-name-servers
 
-[METHOD4]: #method-4-delegation-name-server-addresses
+[Method4]: #method-4-delegation-name-server-addresses
 
-[METHOD5]: #method-5-in-zone-addresses-records-of-name-servers
+[Method5]: #method-5-in-zone-addresses-records-of-name-servers
 
 [in-bailiwick]:     #terminology
 [out-of-bailiwick]: #terminology
