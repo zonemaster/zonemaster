@@ -20,7 +20,7 @@ failure disabling all of them.
 ## Inputs
 
 * The domain name to be tested ("child zone");
-* The ASN database to be used (RIPE or Cymru).
+* The ASN database to be used ("RIPE database" or "Cymru database").
 * The base name (Cymru) or Whois server (RIPE) to be used.
 
 
@@ -30,8 +30,8 @@ failure disabling all of them.
    *child zone* using [Method4] and [Method5].
 
 2. For each IP address in the set from step 1 above, determine the ASN set
-   announcing the IP address using either the Cymru database or the RIPE
-   database as described in separate sections below. 
+   announcing the IP address using either the *[Cymru database]* or the 
+   *[RIPE database]* as described in separate sections below. 
 
 3. For each IP protokoll (IPv4, IPv6) do:
    1. If all addresses are announced from one and the same ASN emit
@@ -180,7 +180,6 @@ None
 
 [RISwhois]: http://www.ripe.net/ris/riswhois.html
 
-
 [Method2]:  ../Methods.md#method-2-obtain-glue-name-records-from-parent
 
 [Method3]:  ../Methods.md#method-3-obtain-name-servers-from-child
@@ -189,18 +188,27 @@ None
 
 [Method5]:  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
-
-
-#outcomes
-
-
 [EMPTY_ASN_SET]: #outcomes 
+
 [ERROR_ASN_DATABASE]: #outcomes 
+
 [IPV4_ONLY_ONE_ASN]: #outcomes 
+
 [IPV4_SAME_ASN]: #outcomes 
+
 [IPV4_OVERLAP_ASN]: #outcomes 
+
 [IPV4_DIFFERENT_ASN]: #outcomes 
+
 [IPV6_ONLY_ONE_ASN]: #outcomes 
+
 [IPV6_SAME_ASN]: #outcomes 
+
 [IPV6_OVERLAP_ASN]: #outcomes 
+
 [IPV6_DIFFERENT_ASN]: #outcomes 
+
+[RIPE database]: #ripe-asn-lookup
+
+[Cymru database]: #cymru-asn-lookup
+
