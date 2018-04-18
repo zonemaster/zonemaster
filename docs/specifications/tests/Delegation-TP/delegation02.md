@@ -20,22 +20,19 @@ The domain name to be tested.
 
 ## Ordered description of steps to be taken to execute the test case
 
-1. Obtain the complete set of name servers (distinct NS records) from 
-   parent using [Method2].
-2. Obtain the IP addresses for the set of the name servers from parent 
-   using [Method4]. (This should include all IP address
-   for both in-bailiwick and out-of-bailiwick name servers.)
-3. If the same IP address is found for two or more name servers then 
-   emit *PARENT_NS_SAME_IP_ADDRESS* and the IP address.
-4. Repeat step 3 for all IP addresses obtained in step 2.
-5. Obtain the complete set of name servers from the child using 
-   [Method3].
-6. Obtain the IP addresses for the set of the name servers from child 
-   using [Method5] and, for out-of-bailiwick NS, using
-   [Method4].
-7. If the same IP address is found for two or more name servers then 
-   emit *CHILD_NS_SAME_IP_ADDRESS* and the IP address.
-8. Repeat step 7 for all IP addresses obtained in step 6.
+1. Obtain the complete set of name server names from parent using 
+   [Method2] and the IP addresses for each name using [Method4].
+
+2. If the same IP address is found for two or more name server names 
+   then emit *PARENT_NS_SAME_IP_ADDRESS* for each repeated address.
+
+3. Obtain the complete set of name server names from the child using 
+   [Method3] and the IP addresses for each name using [Method5] for
+   [in-bailiwick] names and using [Method4] for [out-of-bailiwick] 
+   names only.
+
+4. If the same IP address is found for two or more name server names 
+   then emit *CHILD_NS_SAME_IP_ADDRESS* for each repeated address.
 
 ## Outcome(s)
 
@@ -63,6 +60,13 @@ None
 None
 
 
+## Terminology
+
+The terms "in-bailiwick" and "out-of-bailiwick" are used as defined
+in [RFC 7719], section 6, page 15.
+
+[RFC 7719]: https://tools.ietf.org/html/rfc7719
+
 [RFC 1034]: https://tools.ietf.org/html/rfc1034
 
 [Method2]:  ../Methods.md#method-2-obtain-glue-name-records-from-parent
@@ -73,11 +77,7 @@ None
 
 [Method5]:  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
--------
+[in-bailiwick]:     #terminology
 
-Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden)  
-Copyright (c) 2013-2018, AFNIC  
-Creative Commons Attribution 4.0 International License
+[out-of-bailiwick]: #terminology
 
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
