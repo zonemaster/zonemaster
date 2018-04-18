@@ -19,30 +19,32 @@ failure disabling all of them.
 
 ## Inputs
 
-* The domain name to be tested.
+* The domain name to be tested ("child zone");
 * The ASN database to be used (RIPE or Cymru).
 * The base name (Cymru) or Whois server (RIPE) to be used.
 
 
 ## Ordered description of steps to be taken to execute the test case
 
-1. Obtain the total set of IP addresses of the name servers using 
-   [Method4](../Methods.md) and [Method5](../Methods.md).
+1. Obtain the total set of IP addresses of the name servers for the 
+   *child zone* using [Method4] and [Method5].
+
 2. For each IP address in the set from step 1 above, determine the ASN set
    announcing the IP address using either the Cymru database or the RIPE
    database as described in separate sections below. 
+
 3. For each IP protokoll (IPv4, IPv6) do:
-   1. Check if all addresses are announced from one and the same ASN.
-   2. Check if all addresses are announced from ASN set but from more than 
-      one ASN.
-   3. Check if the addresses are announced from overlapping ASN sets, i.e. 
+   1. If all addresses are announced from one and the same ASN emit
+      *[IPV4_ONLY_ONE_ASN]* or *[IPV6_ONLY_ONE_ASN]*.
+   2. If all addresses are announced from the same ASN set but from more than 
+      one ASN emit *[IPV4_SAME_ASN]* or *[IPV6_SAME_ASN]*.
+   3. If the addresses are announced from overlapping ASN sets, i.e. 
       every set is either a subset, identical or superset of all other sets, 
-      but there are at least two IPv4 addresses with non-identical ASN sets.
-   4. Check if the IPv4 addresses are announced from overlapping ASN sets, i.e. 
-      every set is either a subset, identical or superset of all other sets, but 
-      there are at least two IPv4 addresses with non-identical ASN sets.
-   5. Check if there are at least two IPv4 addresses for which the ASN sets are 
-      neither a subset, identical or superset of the other.
+      but there are at least two IP addresses with non-identical ASN sets,
+      emit *[IPV4_OVERLAP_ASN]* or *[IPV6_OVERLAP_ASN]*.
+   4. If there are at least two IP addresses for which the ASN sets are 
+      neither a subset, identical or superset of the other emit
+      *[IPV4_DIFFERENT_ASN]* or *[IPV6_DIFFERENT_ASN]*.
 
 
 ## Outcome(s)
@@ -50,18 +52,18 @@ failure disabling all of them.
 The outcome of the test case depends on the highest level of the messages
 generated.
 
-Message            |Default level|Criteria
-:------------------|:------------|:-----------------------------------------------------------------
-EMPTY_ASN_SET      |ERROR        |The ASN database replies with empty reply.
-ERROR_ASN_DATABASE |ERROR        |The ASN database does not reply, replies with unexpected status or with a malformed message.
-IPV4_ONLY_ONE_ASN  |ERROR        |All IPv4 addresses are announced from one and the same ASN.
-IPV4_SAME_ASN      |NOTICE       |All IPv4 addresses are announced from the one ASN set but from more than one ASN.
-IPV4_OVERLAP_ASN   |NOTICE       |The IPv4 addresses are announced from overlapping ASN sets, i.e. every set is either a subset, identical or superset of all other sets, but there are at least two IPv4 addresses with non-identical ASN sets.
-IPV4_DIFFERENT_ASN |INFO         |There are at least two IPv4 addresses for which the ASN sets are neither a subset, identical or superset of the other.
-IPV6_ONLY_ONE_ASN  |ERROR        |All IPv6 addresses are announced from one and the same ASN.
-IPV6_SAME_ASN      |NOTICE       |All IPv6 addresses are announced from the one ASN set but from more than one ASN.
-IPV6_OVERLAP_ASN   |NOTICE       |The IPv6 addresses are announced from overlapping ASN sets, i.e. every set is either a subset, identical or superset of all other sets, but there are at least two IPv6 addresses with non-identical ASN sets.
-IPV6_DIFFERENT_ASN |INFO         |There are at least two IPv6 addresses for which the ASN sets are neither a subset, identical or superset of the other.
+Message            |Default severity level (if message is emitted)
+:------------------|:------------
+EMPTY_ASN_SET      |ERROR        
+ERROR_ASN_DATABASE |ERROR        
+IPV4_ONLY_ONE_ASN  |ERROR        
+IPV4_SAME_ASN      |NOTICE       
+IPV4_OVERLAP_ASN   |NOTICE       
+IPV4_DIFFERENT_ASN |INFO         
+IPV6_ONLY_ONE_ASN  |ERROR        
+IPV6_SAME_ASN      |NOTICE       
+IPV6_OVERLAP_ASN   |NOTICE       
+IPV6_DIFFERENT_ASN |INFO         
 
 
 ## Special procedural requirements
@@ -90,20 +92,30 @@ origin6.asnlookup.zonemaster.net
  
 3. Prepend the expanded basename with the reversed IP address. For
    description see [IP to ASN Mapping].
+
 4. Send a DNS query for the TXT record of the full name created in step 3.
-5. Check if the response is empty, i.e. dns response with RCODE NXDOMAIN
-   or a response with RCODE NOERROR but empty answer section. If so, end
-   these steps.
-6. Check if there is no response (timeout) or responds with any other 
-   RCODE (unknown status of service). If so, end these steps.
+
+5. If the response is empty, i.e. dns response with RCODE NXDOMAIN
+   or a response with RCODE NOERROR but empty answer section emit
+   *[EMPTY_ASN_SET]* and end these steps.
+
+6. If there is no response (timeout) or responds with any other 
+   RCODE (unknown status of service) emit *[ERROR_ASN_DATABASE]* and 
+   end these steps.
+
 8. The expected response is a non-empty string in the TXT record or 
    records. See [IP to ASN Mapping] for examples.
+
 9. Split the string or strings into fields.
+
 10. If there are multiple strings (TXT records), ignore all strings
     except for the string with the most specific subnet.
+
 11. Extract the ASN or ASNs.
-12. Check if steps 8-10 could be processed. If not, end these steps 
-    (the response was malformed).
+
+12. If steps 8-10 could not be processed emit *[ERROR_ASN_DATABASE]*
+    and end these steps (the response was malformed).
+
 13. The ASN or ASNs from step 11 is the ASN set for that IP address.
 
 
@@ -130,13 +142,18 @@ whois -h riswhois.ripe.net " -F -M 192.0.2.10"
 
 3. The non-empty line not prepended with "%" contains the string
    with data (no or one such line).
+
 4. Check if there is no string with data (empty reply). If so, 
-   end these steps.
-5. Check if there is no response from the Whois server. If so,
-   end these steps.
+   emit *[EMPTY_ASN_SET]* and end these steps.
+
+5. If there is no response from the Whois server emit 
+   *[ERROR_ASN_DATABASE]* and end these steps.
+
 6. The first field has the ASN or list of ASNs. Split that into ASNs.
-7. Check if steps 3-6 could be processed. If not, end these steps 
-   (the response was malformed).
+
+7. If steps 3-6 could not be processed emit *[ERROR_ASN_DATABASE]*
+   and end these steps (the response was malformed).
+
 8. From the ASN or ASNs from step 6 create the ASN set for the IP
    address.
 
@@ -146,17 +163,38 @@ whois -h riswhois.ripe.net " -F -M 192.0.2.10"
 None
 
 [RFC 2182]: https://tools.ietf.org/html/rfc2182
+
 [ASN]:      https://tools.ietf.org/html/rfc1930
+
 [RFC 1035]: https://tools.ietf.org/html/rfc1035
+
 [RFC 3596]: https://tools.ietf.org/html/rfc3596
+
 [IP to ASN Mapping]: https://team-cymru.org/IP-ASN-mapping.html#dns
+
 [RISwhois]: http://www.ripe.net/ris/riswhois.html
 
--------
 
-Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden)  
-Copyright (c) 2013-2018, AFNIC  
-Creative Commons Attribution 4.0 International License
+[Method2]:  ../Methods.md#method-2-obtain-glue-name-records-from-parent
 
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
+[Method3]:  ../Methods.md#method-3-obtain-name-servers-from-child
+
+[Method4]:  ../Methods.md#method-4-obtain-glue-address-records-from-parent
+
+[Method5]:  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+
+
+
+#outcomes
+
+
+[EMPTY_ASN_SET]: #outcomes 
+[ERROR_ASN_DATABASE]: #outcomes 
+[IPV4_ONLY_ONE_ASN]: #outcomes 
+[IPV4_SAME_ASN]: #outcomes 
+[IPV4_OVERLAP_ASN]: #outcomes 
+[IPV4_DIFFERENT_ASN]: #outcomes 
+[IPV6_ONLY_ONE_ASN]: #outcomes 
+[IPV6_SAME_ASN]: #outcomes 
+[IPV6_OVERLAP_ASN]: #outcomes 
+[IPV6_DIFFERENT_ASN]: #outcomes 
