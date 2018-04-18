@@ -1,57 +1,84 @@
-## CONSISTENCY04: Name server NS consistency
+# CONSISTENCY04: Name server NS consistency
 
-### Test case identifier
+## Test case identifier
 
 **CONSISTENCY04:** Name server NS consistency
 
-### Objective
+## Objective
 
 All authoritative name servers must serve the same NS record set
-(section 4.2.2) of [RFC 1034](https://tools.ietf.org/html/rfc1034)
-for the tested domain. Any inconsistency of NS records descibed in
-section 3.3.11 of [RFC 1035](https://tools.ietf.org/html/rfc1035)
-might result in operational failures.
+for the tested domain, child zone ([RFC 1034], section 4.2.2).
+Any inconsistency of NS records described in [RFC 1035], 
+section 3.3.11, might result in operational failures.
 
 The objective of this test is to verify that the NS records are
-consistent between all the authoritative name servers.
+consistent between all authoritative name servers of the child zone.
 
-### Inputs
+## Inputs
 
-1. The domain name to be tested
+The domain name to be tested ("child zone").
 
-### Ordered description of steps to be taken to execute the test case
+## Ordered description of steps to be taken to execute the test case
 
-1. Obtain the list of name servers for the domain name to be tested 
-   from [Method2](../Methods.md) (delegation) and
-   [Method3](../Methods.md) (in child zone).
-2. Retrieve the IP addresses for the obtained name servers using
-   [Method4](../Methods.md) (glue at parent) and [Method5](../Methods.md)
-   (address record in child zone) if the name server name is in-zone.
-3. Retrieve the IP addresses for the obtained name servers by doing
-   a lookup on public Internet if the name server name is out-of-zone.
-4. Retrieve the NS RR set from all retrieved name server IP address. 
-5. If the NS RR set does not give the same answer from all the name
-   servers, this test case fails.
+1. Obtain the set of name server IPs for the *child zone* using
+   [Method4] and [Method5]. 
 
-### Outcome(s)
+2. Retrieve the NS RR set for the *child zone* from all retrieved 
+   name server IP address.
 
-The outcome is PASS or FAIL.
+3. If a name server IP does not respond emit *[NO_RESPONSE]*.
 
-### Special procedural requirements	
+4. If the response from a name server IP does not include an 
+   NS RRset for the *child zone* with the AA flag set emit 
+   *[NO_RESPONSE_NS_QUERY]*.
+
+5. If the NS RRsets from all servers are equal emit *[ONE_NS_SET]* 
+   else emit *[MULTIPLE_NS_SET]*.
+
+
+## Outcome(s)
+
+The outcome of this Test Case is "fail" if there is at least one message
+with the severity level *ERROR* or *CRITICAL*.
+
+The outcome of this Test Case is "warning" if there is at least one message
+with the severity level *WARNING*, but no message with severity level
+*ERROR* or *CRITICAL*.
+
+In other cases the outcome of this Test Case is "pass".
+
+Message                       | Default severity level (if message is emitted)
+:-----------------------------|:-----------------------------------
+NO_RESPONSE                   | WARNING
+NO_RESPONSE_NS_QUERY          | WARNING
+ONE_NS_SET                    | INFO
+MULTIPLE_NS_SET               | NOTICE
+
+
+## Special procedural requirements	
 
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol. Log a message reporting
 on the ignored result.
 
-### Intercase dependencies
+
+## Intercase dependencies
 
 None
 
--------
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
-Creative Commons Attribution 4.0 International License
+[RFC 1034]: https://tools.ietf.org/html/rfc1034
 
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
+[RFC 1035]: https://tools.ietf.org/html/rfc1035
+
+[Method4]:  ../Methods.md#method-4-obtain-glue-address-records-from-parent
+
+[Method5]:  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+
+[NO_RESPONSE]: #outcomes
+
+[NO_RESPONSE_NS_QUERY]: #outcomes
+
+[ONE_NS_SET]: #outcomes
+
+[MULTIPLE_NS_SET]: #outcomes
