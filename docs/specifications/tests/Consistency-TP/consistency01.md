@@ -2,7 +2,7 @@
 
 ## Test case identifier
 
-**CONSISTENCY01:** SOA serial number consistency
+**CONSISTENCY01**
 
 ## Objective
 
