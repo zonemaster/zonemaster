@@ -27,12 +27,12 @@ consistent between different authoritative name servers.
  2. Create an SOA query for *child zone* apex and send it to all name 
     server IPs.
  3. Retrieve the SOA RR from the responses from all name server IPs.
- 4. If a name server does not respond, emit *NO_RESPONSE*.
+ 4. If a name server does not respond, emit *[NO_RESPONSE]*.
  5. If a name server does not include a SOA record in the response,
-    emit *NO_RESPONSE_SOA_QUERY*.
- 6. If RNAME is identical in all SOA records emit *ONE_SOA_RNAME*.
+    emit *[NO_RESPONSE_SOA_QUERY]*.
+ 6. If RNAME is identical in all SOA records emit *[ONE_SOA_RNAME]*.
  7. If RNAME is not identical in all SOA records emit 
-    *MULTIPLE_SOA_RNAMES*.
+    *[MULTIPLE_SOA_RNAMES]*.
 
 ## Outcome(s)
 
@@ -74,4 +74,8 @@ None
 
 [Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
+[NO_RESPONSE]: #outcomes
+[NO_RESPONSE_SOA_QUERY]: #outcomes
+[ONE_SOA_RNAME]: #outcomes
+[MULTIPLE_SOA_RNAMES]: #outcomes
 
