@@ -36,22 +36,22 @@ serial number consistency.
  2. Create an SOA query for *child zone* apex and send it to all name 
     server IPs.
  3. Retrieve the SOA RR from the responses from all name server IPs.
- 4. If a name server does not respond, emit *NO_RESPONSE*.
+ 4. If a name server does not respond, emit *[NO_RESPONSE]*.
  5. If a name server does not include a SOA record in the response,
-    emit *NO_RESPONSE_SOA_QUERY*.
- 6. If all serial numbers are identical, emit *ONE_SOA_SERIAL* and stop
+    emit *[NO_RESPONSE_SOA_QUERY]*.
+ 6. If all serial numbers are identical, emit *[ONE_SOA_SERIAL]* and stop
     processing these steps.
  7. If at least two serial numbers are different:
     1. Order the serial number values from smallest to largest following
        the arithmetic for serial number.
        If there is not a single, uniquely defined order of the serial 
-       numbers, emit *SOA_SERIAL_VARIATION* and *MULTIPLE_SOA_SERIALS*, 
+       numbers, emit *[SOA_SERIAL_VARIATION]* and *[MULTIPLE_SOA_SERIALS]*, 
        and end processing these steps.
     2. If the difference between the first and the last serial number
        is larger than *accepted serial difference*, using arithemtic
-       for serial number, emit *SOA_SERIAL_VARIATION* and 
-       *MULTIPLE_SOA_SERIALS*, and end processing these steps.
-    3. Emit *MULTIPLE_SOA_SERIALS_OK*.
+       for serial number, emit *[SOA_SERIAL_VARIATION]* and 
+       *[MULTIPLE_SOA_SERIALS]*, and end processing these steps.
+    3. Emit *[MULTIPLE_SOA_SERIALS_OK]*.
 
 
 ## Outcome(s)
@@ -104,4 +104,11 @@ None
 
 [Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
+[NO_RESPONSE]: #outcomes
+[NO_RESPONSE_SOA_QUERY]: #outcomes
+[ONE_SOA_SERIAL]: #outcomes
+[MULTIPLE_SOA_SERIALS]: #outcomes
+[MULTIPLE_SOA_SERIALS_OK]: #outcomes
+[SOA_SERIAL]: #outcomes
+[SOA_SERIAL_VARIATION]: #outcomes
 
