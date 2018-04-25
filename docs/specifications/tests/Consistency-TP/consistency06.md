@@ -1,8 +1,8 @@
-# CONSISTENCY02: SOA MNAME consistency
+# CONSISTENCY06: SOA MNAME consistency
 
 ## Test case identifier
 
-**CONSISTENCY02**
+**CONSISTENCY06**
 
 ## Objective
 
