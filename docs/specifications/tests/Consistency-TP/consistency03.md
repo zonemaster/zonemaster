@@ -32,10 +32,11 @@ SOA fields.
 
  4. If a name server does not respond, emit *[NO_RESPONSE]*.
 
- 5. If a name server does not include a SOA record in the response,
-    emit *[NO_RESPONSE_SOA_QUERY]*.
+ 5. If a name server responds but not include a SOA record in the 
+    response, emit *[NO_RESPONSE_SOA_QUERY]*.
 
- 6. Emit *[ONE_SOA_TIME_PARAMETER_SET]* if all SOA records have 
+ 6. If at least one SOA record has been retrieved, emit 
+    *[ONE_SOA_TIME_PARAMETER_SET]* if all SOA records have 
     1. the same REFRESH value, 
     2. the same RETRY value, 
     3. the same EXPIRE value, and 
