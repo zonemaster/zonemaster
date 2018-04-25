@@ -37,9 +37,10 @@ serial number consistency.
     server IPs.
  3. Retrieve the SOA RR from the responses from all name server IPs.
  4. If a name server does not respond, emit *[NO_RESPONSE]*.
- 5. If a name server does not include a SOA record in the response,
-    emit *[NO_RESPONSE_SOA_QUERY]*.
- 6. If all serial numbers are identical, emit *[ONE_SOA_SERIAL]* and stop
+ 5. If a name server responds but does not include a SOA record in 
+    the response, emit *[NO_RESPONSE_SOA_QUERY]*.
+ 6. If at least one SOA record has been retrieved and all serial 
+    numbers are identical, emit *[ONE_SOA_SERIAL]* and stop
     processing these steps.
  7. If at least two serial numbers are different:
     1. Order the serial number values from smallest to largest following
