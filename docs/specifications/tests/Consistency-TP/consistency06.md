@@ -25,9 +25,10 @@ operational failures for applications that uses MNAME.
     server IPs.
  3. Retrieve the SOA RR from the responses from all name server IPs.
  4. If a name server does not respond, emit *[NO_RESPONSE]*.
- 5. If a name server does not include a SOA record in the response,
-    emit *[NO_RESPONSE_SOA_QUERY]*.
- 6. If MNAME is identical in all SOA records emit *[ONE_SOA_MNAME]*.
+ 5. If a name server responds but does not include a SOA record in 
+    the response, emit *[NO_RESPONSE_SOA_QUERY]*.
+ 6. If at least one SOA record has been retrieved and MNAME is 
+    identical in all SOA records emit *[ONE_SOA_MNAME]*.
  7. If MNAME is not identical in all SOA records emit 
     *[MULTIPLE_SOA_MNAMES]*.
 
