@@ -68,14 +68,19 @@ consistent between glue and authoritative data.
       *[CHILD_NS_NO_RESPONSE]* and go to next server (see above).
    5. If there is response from the server, but not expect response, emit
       *[CHILD_NS_FAILED]* and go to next server (see above).
-   6. Tag the data as "NS IP from child".
+   6. If a delegation (referral) to a sub-zone of child zone is returned, 
+      follow that delegation, possibly in several steps, by repeating the
+      A and AAAA queries.
+   7. Ignore non-referral responses unless AA flag is set. Cached data
+      is not accepted.
+   8. Tag the data as "NS IP from child".
 
 5. Compare the IP address for the [in-bailiwick] name servers from 
    *NS IP from parent* with *NS IP from child*
 
    1. If an IP from *NS IP from parent* is not listed in 
       *NS IP from child* with that same name server name then emit
-      *[PARENT_ADDRESS_MISMATCH]*.
+      *[IN_BAILIIWICK_ADDR_MISMATCH]*.
 
    2. If an IP from *NS IP from child* is not listed in
       *NS IP from parent* with that same name server name then emit
@@ -87,7 +92,7 @@ consistent between glue and authoritative data.
 
    1. If the IP in *NS IP from parent* does not match any of the 
       listed A or AAAA records listed in the response, or no response
-      with such records, emit *[PARENT_ADDRESS_MISMATCH]* (if a *normal 
+      with such records, emit *[OUT_OF_BAILIIWICK_ADDR_MISMATCH]* (if a *normal 
       test*) or *[UNDEL_PAR_ADDR_MISMATCH]* (if an *undelegated test*).
 
 ## Outcome(s)
@@ -101,16 +106,17 @@ with the severity level *WARNING*, but no message with severity level
 
 In other cases the outcome of this Test Case is "pass".
 
-Message                       | Default severity level (if message is emitted)
-:-----------------------------|:-----------------------------------
-DELEGATION_NOT_DETERMINED     | INFO
-PARENT_NS_FAILED              | NOTICE
-PARENT_NS_NO_RESPONSE         | NOTICE
-CHILD_NS_FAILED               | NOTICE
-CHILD_NS_NO_RESPONSE          | NOTICE
-PARENT_ADDRESS_MISMATCH       | ERROR
-EXTRA_ADDRESS_CHILD           | NOTICE
-UNDEL_PAR_ADDR_MISMATCH       | NOTICE  
+Message                           | Default severity level (if message is emitted)
+:---------------------------------|:-----------------------------------
+DELEGATION_NOT_DETERMINED         | INFO
+PARENT_NS_FAILED                  | NOTICE
+PARENT_NS_NO_RESPONSE             | NOTICE
+CHILD_NS_FAILED                   | NOTICE
+CHILD_NS_NO_RESPONSE              | NOTICE
+IN_BAILIIWICK_ADDR_MISMATCH       | ERROR
+OUT_OF_BAILIIWICK_ADDR_MISMATCH   | ERROR
+EXTRA_ADDRESS_CHILD               | NOTICE
+UNDEL_PAR_ADDR_MISMATCH           | NOTICE  
 
 
 ## Special procedural requirements	
@@ -162,7 +168,9 @@ Here we use "glue" in the wider sence.
 
 [CHILD_NS_NO_RESPONSE]: #outcomes
 
-[PARENT_ADDRESS_MISMATCH]: #outcomes
+[IN_BAILIIWICK_ADDR_MISMATCH]: #outcomes
+
+[OUT_OF_BAILIIWICK_ADDR_MISMATCH]: #outcomes
 
 [EXTRA_ADDRESS_CHILD]: #outcomes
 
