@@ -84,4 +84,8 @@ in [RFC 7719], section 6, page 15.
 
 [Method4]: #method-4-delegation-name-server-addresses
 
+[REFERRAL_SIZE_LARGE]: #outcomes
+
+[REFERRAL_SIZE_OK]: #outcomes
+
 
