@@ -50,14 +50,16 @@ want to install
    git clone -b develop git@github.com:dotse/zonemaster-ldns.git
    ```
 
-2. Install the dependencies 
+2. Install the binary packages in the engine
+
+3. Install the dependencies 
 
    ```sh
    sudo apt-get install build-essential libtool m4 autoconf automake
    sudo cpan -i inc::Module::Install Devel::CheckLib
    ```
 
-3. Create the distribution file
+4. Create the distribution file
 
    ```sh
    cd zonemaster-ldns
@@ -66,13 +68,13 @@ want to install
    make dist
    ```
 
-4. scp the compressed directory to the testing machine
+5. scp the compressed directory to the testing machine
 
    ```sh
    scp Zonemaster-LDNS-1.0.2.tar.gz user@machine:/path/to directory/
    ```
 
-5. Install Zonemaster LDNS
+6. Install Zonemaster LDNS
 
    ```sh
    sudo cpanm Zonemaster-LDNS-1.0.2.tar.gz
@@ -103,7 +105,8 @@ want to install
    ```
 4. Follow the
 [link](https://github.com/dotse/zonemaster-engine/blob/develop/docs/Installation.md#installation-on-debian)
-until step 3. *Do not install Zonemaster::LDNS*
+until step 3. *Do not install Zonemaster::LDNS and also the binary packages. The
+binary packages are installed while installing LDNS*
 
 5. Install Zonemaster Engine 
 
