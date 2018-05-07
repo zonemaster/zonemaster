@@ -48,28 +48,28 @@ Operating system specific guidelines:
 
 * CentOS:
   * Base Distributions are listed here:
-    https://en.wikipedia.org/wiki/CentOS#End-of-support_schedule
+    <https://en.wikipedia.org/wiki/CentOS#End-of-support_schedule>
   * The current minor releases are listed at:
-    https://wiki.centos.org/Download
+    <https://wiki.centos.org/Download>
 
 * Debian:
   * Current versions of "stable" and "oldstable" are listed here:
-    https://wiki.debian.org/DebianReleases#Current_Releases.2FRepositories
+    <https://wiki.debian.org/DebianReleases#Current_Releases.2FRepositories>
   * The current point releases are listed here:
-    https://wiki.debian.org/DebianReleases/PointReleases
+    <https://wiki.debian.org/DebianReleases/PointReleases>
 
 * FreeBSD:
   * Supported releases are listed here:
-    https://www.freebsd.org/security/
+    <https://www.freebsd.org/security/>
   * FreeBSD 10: Releases that are supported by FreeBSD and being "extended" are supported by Zonemaster.
   * FreeBSD 11: Latest release version is supported.
   * Patch level should not be specified.
 
 * Ubuntu:
   * LTS releases are listed here:
-    https://wiki.ubuntu.com/Releases
+    <https://wiki.ubuntu.com/Releases>
   * The supported patch level is the one specified at:
-    https://wiki.ubuntu.com/Releases
+    <https://wiki.ubuntu.com/Releases>
 
 
 ## Database engines
@@ -92,19 +92,19 @@ Database engine versions that lack required features cannot be supported.
   * http://mirror.centos.org/centos/7/os/x86_64/Packages/
 
 * Database engine versions provided by each version of Debian are listed here:
-  * https://packages.debian.org/search?searchon=names&keywords=mysql-server
-  * https://packages.debian.org/search?searchon=names&keywords=postgresql
-  * https://packages.debian.org/search?searchon=names&keywords=sqlite3
+  * <https://packages.debian.org/search?searchon=names&keywords=mysql-server>
+  * <https://packages.debian.org/search?searchon=names&keywords=postgresql>
+  * <https://packages.debian.org/search?searchon=names&keywords=sqlite3>
 
 * Database engine versions provided FreeBSD are listed here:
-  * https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=mysql
-  * https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=postgresql
-  * https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=sqlite3
+  * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=mysql>
+  * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=postgresql>
+  * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=sqlite3>
 
 * Database engine versions provided by each version of Ubuntu are listed here:
-  * http://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=mysql-server
-  * http://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=postgresql
-  * http://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=sqlite3
+  * <http://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=mysql-server>
+  * <http://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=postgresql>
+  * <http://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=sqlite3>
 
 
 ## Translation locales
@@ -128,13 +128,13 @@ version should be supported.
 The point release should not be specified.
 
 * Perl versions provided by CentOS 7 are listed here:
-  * http://mirror.centos.org/centos/7/os/x86_64/Packages/
+  * <http://mirror.centos.org/centos/7/os/x86_64/Packages/>
 
 * Perl versions provided by each version of Debian are listed here:
-  * https://packages.debian.org/search?searchon=names&keywords=perl
+  * <https://packages.debian.org/search?searchon=names&keywords=perl>
 
 * Perl versions provided FreeBSD are listed here:
-  * https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=lang&query=perl
+  * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=lang&query=perl>
 
 * Perl versions provided by each version of Ubuntu are listed here:
-  * http://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=perl
+  * <http://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=perl>

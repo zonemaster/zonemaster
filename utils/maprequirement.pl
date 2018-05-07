@@ -43,6 +43,7 @@ my $DEBUG = 0;
 # global variables
 my $tcCounter = 0;
 #my $reqs = {}; # { 'Rxx' => 'desc' }
+my $levelfile = 'README.md'; # Name of common file for test level
 
 sub main {
     GetOptions(
@@ -110,7 +111,7 @@ sub readTCLevels {
 			my $tclevel = $_;
 			my $tcDir = "$specdir/$tclevel";
 		    print "Level $tclevel\n" if $DEBUG;
-			open my $lFile, "$tcDir/level.md" or die "cannot open $tcDir/level.md: $!";
+			open my $lFile, "$tcDir/$levelfile" or die "cannot open $tcDir/$levelfile: $!";
 			my @content = <$lFile>;
 			close $lFile;
 			$result->{$tclevel} = TCFileFromLevel(\@content);
@@ -143,7 +144,7 @@ sub readTCFiles {
 	my $result;
 	foreach my $level (keys %{$fileinfo}){
 		print "LEVEL $level\n" if $DEBUG;
-		foreach my $req ( keys $fileinfo->{$level}->{'file'} ) {
+		foreach my $req ( keys %{ $fileinfo->{$level}->{'file'} } ) {
 			my $files = $fileinfo->{$level}->{'file'}->{$req};
 			foreach my $file (@$files) {
 				my $tcid;   # test case id
@@ -152,9 +153,13 @@ sub readTCFiles {
 
 				my $tcFile = "$specdir/$level/$file";
 				my @content = ();
-				open my $File, "$tcFile" or warn "cannot open $tcFile: $!";
-				@content = <$File>;
-				close $File;
+				if ( open my $File, "$tcFile" ) {
+					@content = <$File>;
+					close $File;
+				}
+				else {
+					warn "cannot open $tcFile: $!";
+				}
 
 				# TC id and TC desc only on first line of TC file:
 				if ( defined $content[0] and $content[0] =~ /^##\s*(.*)\s*\:\s*(.*)/ ) {
@@ -180,7 +185,7 @@ sub readTCFiles {
 					$result->{$req}->{$tcid} = [];
 				}
 				my $tc = { 'desc' => $tcdesc, 'file' => $tcFile, 'level' => $level };
-				push $result->{$req}->{$tcid}, $tc;
+				push @{ $result->{$req}->{$tcid} }, $tc;
 				
 			}
 		}
@@ -224,8 +229,8 @@ sub outputResult {
 				$otcDesc = $testInfo->{'desc'};
 				$oLevel  = $testInfo->{'level'};
 				my $linkID = "[$otcID]($otcLink)";
-				printf "|%3s|%23s|[%10s](%s/level.md)|%-10s|%17s|\n",
-						$oReqID,$oReqText,$oLevel,$oLevel,$linkID,$otcDesc;
+				printf "|%3s|%23s|[%10s](%s/%s)|%-10s|%17s|\n",
+						$oReqID,$oReqText,$oLevel,$oLevel,$levelfile,$linkID,$otcDesc;
 			}
 		}
 	}

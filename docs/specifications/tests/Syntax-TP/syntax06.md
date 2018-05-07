@@ -17,17 +17,21 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Retrieve the SOA record from the zone being tested.
-2. Get the RNAME from the SOA record.
-3. Convert the first non-escaped "." to an "@" in the RNAME.
-4. De-escape the RNAME, converting a "\." to ".".
-5. Verify the result from step 3 and 4 according to the Addr-spec
+1. Obtain a set of name server IP addresses using [Method4] and [Method5].
+2. Create a SOA query for the zone.
+3. Send the SOA query over UDP to each name server IP address until a
+   response is received or until the set is exhausted.
+4. Get the RNAME from the SOA record.
+5. Convert the first non-escaped "." to an "@" in the RNAME.
+6. De-escape the RNAME, converting a "\." to ".".
+7. Verify the result from step 3 and 4 according to the Addr-spec
    specification in RFC 2822 section 3.4.1. If this verification fails,
    this test case failes.
 
+
 ### Outcome(s)
 
-If the RNAME field does not validate according to the RFC 2822 specification,
+If there is any SOA/RNAME field that is invalid according to RFC 2822,
 this test case fails.
 
 ### Special procedural requirements
@@ -39,9 +43,11 @@ None.
 None.
 
 -------
+[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
+Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden)  
+Copyright (c) 2013-2018, AFNIC  
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this

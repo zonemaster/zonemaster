@@ -17,7 +17,7 @@ The primary name server will in most cases send DNS notifications to
 tell the secondary name servers that zone content has been updated,
 as described in [RFC 1996](https://tools.ietf.org/html/rfc1996).
 
-The [RIPE-203](https://www.ripe.net/ripe/docs/ripe-203) recommendation
+The [RIPE-203](https://www.ripe.net/publications/docs/ripe-203) recommendation
 for the refresh value is 24 hours (86400 seconds). Older DNSCheck code
 had a four hour minimum value, and this is the minimum value we
 recommend.

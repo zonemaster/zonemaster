@@ -1,17 +1,7 @@
 Release process
 ===============
 
-## 1. Set all version numbers, if component is to be released
-
-The version numbers can be found in these Perl modules:
-
- * zonemaster-ldns - [LDNS.pm](https://github.com/dotse/zonemaster-ldns/blob/master/lib/Zonemaster/LDNS.pm)
- * zonemaster-engine - [Engine.pm](https://github.com/dotse/zonemaster-engine/blob/master/lib/Zonemaster/Engine.pm)
- * zonemaster-cli - [CLI.pm](https://github.com/dotse/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)
- * zonemaster-backend - [Backend.pm](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/Backend.pm)
- * zonemaster-gui - [GUI.pm](https://github.com/dotse/zonemaster-gui/blob/master/lib/Zonemaster/GUI.pm)
-
-## 2. Update the Changes file
+## 1. Update the Changes file
 
 Any changes since the last release must be documented in the Changes files.
 Please refer to any Github issues related to the change by the issue number.
@@ -21,6 +11,16 @@ Please refer to any Github issues related to the change by the issue number.
  * zonemaster-cli - [Changes](https://github.com/dotse/zonemaster-cli/blob/master/Changes)
  * zonemaster-backend - [Changes](https://github.com/dotse/zonemaster-backend/blob/master/Changes)
  * zonemaster-gui - [Changes](https://github.com/dotse/zonemaster-gui/blob/master/Changes)
+
+## 2. Set all version numbers
+
+The version numbers can be found in these Perl modules:
+
+ * zonemaster-ldns - [LDNS.pm](https://github.com/dotse/zonemaster-ldns/blob/master/lib/Zonemaster/LDNS.pm)
+ * zonemaster-engine - [Engine.pm](https://github.com/dotse/zonemaster-engine/blob/master/lib/Zonemaster/Engine.pm)
+ * zonemaster-cli - [CLI.pm](https://github.com/dotse/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)
+ * zonemaster-backend - [Backend.pm](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/Backend.pm)
+ * zonemaster-gui - [GUI.pm](https://github.com/dotse/zonemaster-gui/blob/master/lib/Zonemaster/GUI.pm)
 
 ## 3. Update prerequisites
 
@@ -114,9 +114,7 @@ If the system testing fails in a way that requires updated distribution
 tarballs:
  1. Get the changes merged.
  2. Consider whether the actions taken in steps 1–6 above need amendment.
- 3. Make new distribution tarballs for the affected components according to step
-    7 above.
- 4. Resume this document from step 8 above.
+ 3. Resume this document from step 7 above.
 
 If the system testing is successful, the *preliminary distribution tarballs* used
 in this step become *accepted distribution tarballs*.
