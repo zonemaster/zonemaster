@@ -35,7 +35,7 @@
    ```
 
 
-## Preparing to install the Zonemaster-LDNS
+## Preparing to install the Zonemaster-LDNS
 
 1. Clone the develop directory in a machine different from the machine where you
 want to install
@@ -74,7 +74,7 @@ want to install
    ```
 
 
-## Preparing to install the Zonemaster-Engine
+## Preparing to install the Zonemaster-Engine
 
 1. Clone the develop directory in a machine different from the machine where you
 want to install
@@ -108,7 +108,7 @@ they are already installed while installing LDNS*
    ```
 
 
-## Preparing to install the Zonemaster-CLI
+## Preparing to install the Zonemaster-CLI
 
 1. Clone the develop directory in a machine different from the machine where you
 want to install
@@ -147,7 +147,7 @@ want to install
    ```
 
 
-## Preparing to install the Zonemaster-Backend
+## Preparing to install the Zonemaster-Backend
 
 1. Clone the develop directory in a machine different from the machine where you
 want to install
@@ -212,7 +212,7 @@ password with the following commands, before initializing the database:
 install instruction
 
 
-## Preparing to install the Zonemaster-gui
+## Preparing to install the Zonemaster-gui
 
 1. Follow the installation instructions as mentioned here:
 [link](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md#1-centos)
