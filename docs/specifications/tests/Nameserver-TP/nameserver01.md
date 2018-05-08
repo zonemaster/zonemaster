@@ -82,7 +82,7 @@ None.
 
 ## Terminology
 
-Valid domain names according to the IDNA 2008 specification is found in
+Valid domain names according to the "IDNA 2008 specification" is found in
 [RFC 5890], section 2.3.1, page 7.
  
 
