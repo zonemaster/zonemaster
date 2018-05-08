@@ -23,10 +23,7 @@ servers.
 
 ## Ordered description of steps to be taken to execute the test case
 
-1. Create A queries for the following domain names, or other almost 
-   certainly nonexistent name under different TLDs, with the RD flag
-   set (the names are chosen to violate the 
-   [IDNA 2008 specification]):
+1. Create A queries for the following domain names:
    1. xn--nameservertest.iis.se
    2. xn--nameservertest.icann.org
    3. xn--nameservertest.ripe.net
@@ -36,19 +33,19 @@ servers.
 
 3. Repeat the following steps for each retrieved name server IP.
 
-3. Send the three A queries over UDP.
+   1. Send the three A queries over UDP.
 
-4. If the name server does not respond with a to a query with a DNS
-   response, then emit *[NO_RESPONSE]*.
+   2. If the name server does not respond with a to a query with a 
+      DNS response, then emit *[NO_RESPONSE]*.
 
-5. If the name server sends a response with the RA flag set, then 
-   emit *[IS_A_RECURSOR]*.
+   3. If the response comes with the RA flag set, then 
+      emit *[IS_A_RECURSOR]*.
 
-6. If the server responds with the RCODE NXDOMAIN in all DNS 
-   responses then emit *[IS_A_RECURSOR]*.
+   4. If the RCODE is NXDOMAIN in all DNS responses then 
+      emit *[IS_A_RECURSOR]*.
 
-7. If no message has been emitted for the server, then emit 
-   *[NO_RECURSOR]*.
+   5. If no message has been emitted for the server, then emit 
+      *[NO_RECURSOR]*.
 
 ## Outcome(s)
 
@@ -69,13 +66,19 @@ NO_RECURSOR                   | INFO
 
 ## Special procedural requirements
 
-None.
-
-## Intercase dependencies
-
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol. Log a message reporting
 on the ignored result.
+
+The domain names used in the queries are selected to be almost certainly 
+non-existent name since the names are chosen to violate the 
+[IDNA 2008 specification] under SLDs (second-level domains) expected to 
+respect that specification. The SLDs are selected so that the chance that 
+they are all hosted on the same servers is low.
+
+## Intercase dependencies
+
+None.
 
 ## Terminology
 
