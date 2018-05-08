@@ -82,9 +82,6 @@ on the ignored result.
 Valid domain names according to the IDNA 2008 specification is found in
 [RFC 5890], section 2.3.1, page 7.
  
-The terms "in-bailiwick" and "out-of-bailiwick" are used as defined
-in [RFC 7719], section 6, page 15.
-
 
 [RFC 2870]: https://tools.ietf.org/html/rfc2870
 
