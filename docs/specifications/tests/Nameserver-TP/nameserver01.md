@@ -30,8 +30,8 @@ servers.
    2. xn--nameservertest.icann.org
    3. xn--nameservertest.ripe.net
 
-2. Retrieve all address records for all the name servers using 
-   [Method4] and [Method5].
+2. Retrieve all address records for all the name servers for the
+   *Child Zone* using [Method4] and [Method5].
 
 3. Repeat the following steps for each retrieved name server IP.
 
