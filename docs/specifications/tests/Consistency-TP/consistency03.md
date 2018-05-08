@@ -22,27 +22,28 @@ SOA fields.
 
 ## Ordered description of steps to be taken to execute the test case
 
- 1. Obtain the list of name server IPs for the *child zone* from [Method4] 
+ 1. Create an SOA query for *child zone* apex.
+
+ 2. Obtain the list of name server IPs for the *child zone* from [Method4] 
     and [Method5].
 
- 2. Create an SOA query for *child zone* apex and send it to all name 
-    server IPs.
-
- 3. Retrieve the SOA RR from the responses from all name server IPs.
+ 3. Send the SOA query to all name server IPs.
 
  4. If a name server does not respond, emit *[NO_RESPONSE]*.
 
- 5. If a name server responds but not include a SOA record in the 
+ 5. If a name server responds but no SOA record is included in the 
     response, emit *[NO_RESPONSE_SOA_QUERY]*.
 
- 6. If at least one SOA record has been retrieved, emit 
-    *[ONE_SOA_TIME_PARAMETER_SET]* if all SOA records have 
+ 6. Retrieve the SOA RR from the responses from all name server IPs.
+
+ 7. Emit *[ONE_SOA_TIME_PARAMETER_SET]* if at least one SOA record has 
+    been retrieved and all SOA records have:
     1. the same REFRESH value, 
     2. the same RETRY value, 
     3. the same EXPIRE value, and 
     4. the same MINIMUM value.
 
- 7. Emit *[MULTIPLE_SOA_TIME_PARAMETER_SET]* if any two SOA
+ 8. Emit *[MULTIPLE_SOA_TIME_PARAMETER_SET]* if any two SOA
     records had different values in previous step.
 
 ## Outcome(s)
