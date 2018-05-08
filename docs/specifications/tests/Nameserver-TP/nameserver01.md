@@ -25,7 +25,8 @@ servers.
 
 1. Create A queries for the following domain names, or other almost 
    certainly nonexistent name under different TLDs, with the RD flag
-   set (the names are chosen to violate the IDNA 2008 standard):
+   set (the names are chosen to violate the 
+   [IDNA 2008 specification]):
    1. xn--nameservertest.iis.se
    2. xn--nameservertest.icann.org
    3. xn--nameservertest.ripe.net
@@ -76,12 +77,22 @@ If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol. Log a message reporting
 on the ignored result.
 
+## Terminology
+
+Valid domain names according to the IDNA 2008 specification is found in
+[RFC 5890], section 2.3.1, page 7.
+ 
+The terms "in-bailiwick" and "out-of-bailiwick" are used as defined
+in [RFC 7719], section 6, page 15.
+
+
+[RFC 2870]: https://tools.ietf.org/html/rfc2870
 
 [RFC 5358]: https://tools.ietf.org/html/rfc5358
 
-[D.J. Bernstein]: http://cr.yp.to/djbdns/separation.html
+[RFC 5890]: https://tools.ietf.org/html/rfc5890
 
-[RFC 2870]: https://tools.ietf.org/html/rfc2870
+[D.J. Bernstein]: http://cr.yp.to/djbdns/separation.html
 
 [Method4]: #method-4-delegation-name-server-addresses
 
@@ -93,3 +104,4 @@ on the ignored result.
 
 [NO_RECURSOR]: #outcomes
 
+[IDNA 2008 specification]: #terminology
