@@ -2,7 +2,7 @@
 
 ## Test case identifier
 
-**CONSISTENCY04:** Name server NS consistency
+**CONSISTENCY04**
 
 ## Objective
 
