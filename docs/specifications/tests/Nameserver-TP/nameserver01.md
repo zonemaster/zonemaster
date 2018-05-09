@@ -34,17 +34,14 @@ servers.
 3. Repeat the following steps for each retrieved name server IP.
 
    1. Send the three A queries over UDP.
-
-   2. If the name server does not respond with a to a query with a 
-      DNS response, then emit *[NO_RESPONSE]*.
-
-   3. If the response comes with the RA flag set, then 
+   2. For each query do the following steps:
+      1. If the name server does not respond with a DNS 
+      	 response, then emit *[NO_RESPONSE]*.
+      2. If the DNS response comes with the RA flag set, then 
+      	 emit *[IS_A_RECURSOR]*.
+   3. If the RCODE is NXDOMAIN in all DNS responses then 
       emit *[IS_A_RECURSOR]*.
-
-   4. If the RCODE is NXDOMAIN in all DNS responses then 
-      emit *[IS_A_RECURSOR]*.
-
-   5. If no message has been emitted for the server, then emit 
+   4. If no message has been emitted for the server, then emit 
       *[NO_RECURSOR]*.
 
 ## Outcome(s)
