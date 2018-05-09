@@ -2,7 +2,7 @@
 
 ## Test case identifier
 
-**CONNECTIVITY03:**
+**CONNECTIVITY03**
 
 ## Objective
 
