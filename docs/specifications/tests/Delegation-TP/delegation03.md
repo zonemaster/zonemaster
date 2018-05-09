@@ -26,20 +26,26 @@ response from the domain must fit into a 512 byte UDP packet.
 ## Ordered description of steps to be taken to execute the test case
 
 1. Create a DNS packet holding a query for a maximally long subdomain
-   under the *Child Zone* apes (that is, 255 octets including label 
+   under the *Child Zone* apex (that is, 255 octets including label 
    separators).
-2. Obtains the name server names from the delegation from the parent 
+
+2. Obtain the name server names from the delegation from the parent 
    using [Method2].
+
 3. Add all unique NS records for the *Child Zone* using the name server
    names fetched.
-4. Obtains the name server IP addresser per name server names from 
+
+4. Obtains the name server IP addresses per name server names from 
    the delegation from the parent using [Method4]. Discard any
    [out-of-bailiwick] name servers.
+
 5. For each [in-bailiwick] name server name and for all IP addresses 
    for the name, add the name server as A or AAAA record in the
    Additional section of the DNS packet.
+
 6. If size the DNS packet after encoding is larger than 512 octets 
-   then emit *[REFERRAL_SIZE_LARGE]* else emit *[REFERRAL_SIZE_OK]*.
+   then emit *[REFERRAL_SIZE_LARGE]*, otherwise emit 
+   *[REFERRAL_SIZE_OK]*.
 
 ## Outcome(s)
 
