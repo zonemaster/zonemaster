@@ -32,7 +32,6 @@ servers.
    *Child Zone* using [Method4] and [Method5].
 
 3. Repeat the following steps for each retrieved name server IP.
-
    1. Send the three A queries over UDP.
    2. For each query do the following steps:
       1. If the name server does not respond with a DNS 
