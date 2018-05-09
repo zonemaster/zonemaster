@@ -1,7 +1,7 @@
 # DNSSEC05: Check for invalid DNSKEY algorithms
 
 ## Test case identifier
-**DNSSEC05** Check for invalid DNSKEY algorithms
+**DNSSEC05**
 
 ## Objective
 
@@ -31,8 +31,8 @@ The DNSKEY record is defined in [RFC 4034, section 2].
    3. If the DNS response does not contain an DNSKEY RRset,
       then emit *[NO_RESPONSE_DNSKEY]*.
    4. Extract the algorithm numbers from the DNSKEY records.
-   5. Compare each extracted algorithm number to the
-      [DNSSEC Algorithm Numbers].
+   5. Compare each extracted algorithm number to the IANA
+      [DNSSEC Algorithm Numbers] registry.
       1. If the algorithm is classified as "deprecated",
       	 emit *[ALGORITHM_DEPRECATED]*.
       2. If the algorithm is classified as "reserved",
