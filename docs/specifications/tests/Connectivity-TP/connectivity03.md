@@ -2,7 +2,7 @@
 
 ## Test case identifier
 
-**CONNECTIVITY03:** AS Diversity
+**CONNECTIVITY03:**
 
 ## Objective
 
@@ -33,17 +33,17 @@ failure disabling all of them.
    announcing the IP address using either the *[Cymru database]* or the 
    *[RIPE database]* as described in separate sections below. 
 
-3. For each IP protokoll (IPv4, IPv6) do:
+3. For each IP protocol (IPv4, IPv6) do:
    1. If all addresses are announced from one and the same ASN emit
       *[IPV4_ONLY_ONE_ASN]* or *[IPV6_ONLY_ONE_ASN]*.
-   2. If all addresses are announced from the same ASN set but from more than 
-      one ASN emit *[IPV4_SAME_ASN]* or *[IPV6_SAME_ASN]*.
+   2. If all addresses are announced from the same ASN set of multiple 
+      ASNs, emit *[IPV4_SAME_ASN]* or *[IPV6_SAME_ASN]*.
    3. If the addresses are announced from overlapping ASN sets, i.e. 
       every set is either a subset, identical or superset of all other sets, 
       but there are at least two IP addresses with non-identical ASN sets,
       emit *[IPV4_OVERLAP_ASN]* or *[IPV6_OVERLAP_ASN]*.
    4. If there are at least two IP addresses for which the ASN sets are 
-      neither a subset, identical or superset of the other emit
+      neither a subset, identical nor superset of the other emit
       *[IPV4_DIFFERENT_ASN]* or *[IPV6_DIFFERENT_ASN]*.
 
 
