@@ -21,7 +21,7 @@ The DNSKEY record is defined in [RFC 4034, section 2].
 1. Create a DNSKEY query with DO flag set for the apex of the 
    *Child Zone*.
 
-2. Retrieve all name serve IP addresses for the
+2. Retrieve all name server IP addresses for the
    *Child Zone* using [Method4] and [Method5].
 
 3. Repeat the following steps for each name server IP address:
@@ -30,8 +30,8 @@ The DNSKEY record is defined in [RFC 4034, section 2].
    2. If no DNS response is returned, then emit *[NO_RESPONSE]*.
    3. If the DNS response does not contain an DNSKEY RRset,
       then emit *[NO_RESPONSE_DNSKEY]*.
-   4. Extract the algorithm numbers from the DNSKEY records.
-   5. Compare each extracted algorithm number to the IANA
+   4. Extract the algorithm numbers from each DNSKEY record and
+      compare the extracted algorithm number to the IANA
       [DNSSEC Algorithm Numbers] registry.
       1. If the algorithm is classified as "deprecated",
       	 emit *[ALGORITHM_DEPRECATED]*.
@@ -39,18 +39,16 @@ The DNSKEY record is defined in [RFC 4034, section 2].
       	 emit *[ALGORITHM_RESERVED]*.
       3. If the algorithm is classified as "unassigned",
       	 emit *[ALGORITHM_UNASSIGNED]*.
-      4. If the algorithm is classified as "unassigned",
-      	 emit *[ALGORITHM_UNASSIGNED]*.
-      5. If the algorithm is classified as "private algorithm",
+      4. If the algorithm is classified as "private algorithm",
       	 emit *[ALGORITHM_PRIVATE]*.
-      6. If the algorithm is classified as "delete DS",
+      5. If the algorithm is classified as "delete DS",
       	 emit *[ALGORITHM_DELETE_DS]*.
-      7. If the algorithm is classified as "indirect key",
+      6. If the algorithm is classified as "indirect key",
       	 emit *[ALGORITHM_INDIRECT_KEY]*.
-      8. If the algorithm is not meant for zone signing,
+      7. If the algorithm is not meant for zone signing,
       	 emit *[ALGORITHM_NOT_ZONE_SIGN]*.
-      9. If no message has been emitted for the algorithm 
-      	 and it is meant for zone signing,
+      8. If no message has been emitted for the DNSKEY 
+      	 and its algorithm is meant for zone signing,
       	 emit *[ALGORITHM_OK]*.
 
 ## Outcome(s)
@@ -78,16 +76,17 @@ ALGORITHM_INDIRECT_KEY        | WARNING
 ALGORITHM_OK                  | INFO
 
 
-
 ## Special procedural requirements
 
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol. Log a message reporting
 on the ignored result.
 
-See the [DNSSEC README] document] about DNSSEC algorithms.
+See the [DNSSEC README] document about DNSSEC algorithms.
 
-The test case is only performed if DNSKEY records are found.
+The test case is only performed if some DNSKEY record is found in the
+*Child Zone*.
+
 
 ## Intercase dependencies
 
