@@ -44,20 +44,17 @@ want to install
    git clone -b develop git@github.com:dotse/zonemaster-ldns.git
    ```
 
-2. Install the binary packages in the engine
+2. Install the binary packages in the zonemaster-engine.
 
-3. Install the dependencies 
-
-   ```sh
-   sudo cpanm inc::Module::Install Devel::CheckLib
-   ```
+3. Install the CPAN packages except Zonemaster::LDNS
 
 4. Create the distribution file
 
    ```sh
    cd zonemaster-ldns
    perl Makefile.PL
-   make
+   make all
+   make distcheck
    make dist
    ```
 
@@ -72,6 +69,8 @@ want to install
    ```sh
    sudo cpanm Zonemaster-LDNS-1.0.2.tar.gz
    ```
+7. Test the installation by running the Post-Sanity check command here :
+https://github.com/dotse/zonemaster-ldns/blob/develop/README.md
 
 
 ## Preparing to install the Zonemaster-Engine
@@ -88,7 +87,8 @@ want to install
    ```sh
    cd zonemaster-engine
    perl Makefile.PL
-   make
+   make all
+   make distcheck
    make dist
    ```
 3. scp the compressed directory to the testing machine 
@@ -122,7 +122,8 @@ want to install
    ```sh
    cd zonemaster-cli
    perl Makefile.PL
-   make
+   make all
+   make distcheck
    make dist
    ```
 
@@ -131,16 +132,14 @@ want to install
    ```sh
    scp Zonemaster-CLI-v1.1.2.tar.gz user@machine:/path/to directory/
    ```
-4. Install the dependencies as mentioned here: 
-[link](https://github.com/dotse/zonemaster-cli/blob/develop/docs/Installation.md#1-centos)
 
-
-5. Install Zonemaster CLI
+4. Install Zonemaster CLI
 
    ```sh
    sudo cpanm Zonemaster-CLI-v1.1.2.tar.gz
    ```
-6. Check proper installation of engine and the CLI by the following command 
+
+5. Check proper installation of engine and the CLI by the following command 
    
    ```sh
    zonemaster-cli afnic.fr
@@ -161,7 +160,8 @@ want to install
    ```sh
    cd zonemaster-backend
    perl Makefile.PL
-   make
+   make all
+   make distcheck
    make dist
    ```
 
@@ -181,35 +181,9 @@ want to install
    sudo cpanm Zonemaster-Backend-2.0.2.tar.gz
    ```
 
-6. Add Zonemaster user and the files to the proper locations 
+6. Follow the install instructions for backend config, installation, testing and
+post-sanity check 
 
-   ```sh
-   sudo useradd -r -c "Zonemaster daemon user" zonemaster
-   cd `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")'`
-   sudo install -m 755 -d /etc/zonemaster
-   sudo install -m 640 -g zonemaster ./backend_config.ini /etc/zonemaster/
-   sudo install -m 775 -g zonemaster -d /var/log/zonemaster
-   sudo install -m 775 -g zonemaster -d /var/run/zonemaster
-   sudo install -m 755 ./zm-backend.sh /etc/init.d/
-   ```
-
-7. Database engine selection (PostgreSQL, MySQL...), installation and
-configuration as in the install doc. For MySQL, you may need to set the root
-password with the following commands, before initializing the database:
-
-  ```sh
-   If you know the root password 
-	mysql -u root
-   In MySQL 
-	SET PASSWORD FOR 'ENTER-USER-NAME-HERE'@'localhost' =PASSWORD("newpass");'
-        flush privileges;
-        quit;
-   ```
-
-8. Service configuration and startup as in the install doc. 
-
-9. Test proper installation with the commands from post-sanity check in the
-install instruction
 
 
 ## Preparing to install the Zonemaster-gui

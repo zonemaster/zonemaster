@@ -50,21 +50,16 @@ want to install
    git clone -b develop git@github.com:dotse/zonemaster-ldns.git
    ```
 
-2. Install the binary packages in the engine
+2. Refresh and install the necessary packages in the zonemaster-engine (Step
+1,2,3)(https://github.com/dotse/zonemaster-engine/blob/develop/docs/Installation.md#installation-on-debian)
 
-3. Install the dependencies 
-
-   ```sh
-   sudo apt-get install build-essential libtool m4 autoconf automake
-   sudo cpan -i inc::Module::Install Devel::CheckLib
-   ```
-
-4. Create the distribution file
+3. Create the distribution file
 
    ```sh
    cd zonemaster-ldns
    perl Makefile.PL
-   make
+   make all 
+   make distcheck
    make dist
    ```
 
@@ -95,20 +90,18 @@ want to install
    ```sh
    cd zonemaster-engine
    perl Makefile.PL
-   make
+   make all
+   make distcheck
    make dist
    ```
+
 3. scp the compressed directory to the testing machine 
 
    ```sh
    scp Zonemaster-Engine-v2.0.6.tar.gz user@machine:/path/to directory/
    ```
-4. Follow the
-[link](https://github.com/dotse/zonemaster-engine/blob/develop/docs/Installation.md#installation-on-debian)
-until step 3. *Do not install Zonemaster::LDNS and also the binary packages. The
-binary packages are installed while installing LDNS*
 
-5. Install Zonemaster Engine 
+4. Install Zonemaster Engine 
 
    ```sh
    sudo cpanm Zonemaster-Engine-v2.0.6.tar.gz
@@ -129,7 +122,8 @@ want to install
    ```sh
    cd zonemaster-cli
    perl Makefile.PL
-   make
+   make all
+   make distcheck
    make dist
    ```
 
@@ -138,6 +132,7 @@ want to install
    ```sh
    scp Zonemaster-CLI-v1.1.2.tar.gz user@machine:/path/to directory/
    ```
+
 4. Install the dependencies as mentioned here: 
 [link](https://github.com/dotse/zonemaster-cli/blob/develop/docs/Installation.md#2-debian)
 
@@ -168,7 +163,8 @@ want to install
    ```sh
    cd zonemaster-backend
    perl Makefile.PL
-   make
+   make all
+   make distcheck
    make dist
    ```
 
@@ -187,25 +183,7 @@ want to install
    sudo cpanm Zonemaster-Backend-2.0.2.tar.gz
    ```
 
-6. Add Zonemaster user and the files to the proper locations 
-
-   ```sh
-   sudo useradd -r -c "Zonemaster daemon user" zonemaster
-   cd `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")'`
-   sudo install -m 755 -d /etc/zonemaster
-   sudo install -m 640 -g zonemaster ./backend_config.ini /etc/zonemaster/
-   sudo install -m 775 -g zonemaster -d /var/log/zonemaster
-   sudo install -m 775 -g zonemaster -d /var/run/zonemaster
-   sudo install -m 755 ./zm-backend.sh /etc/init.d/
-   ```
-
-7. Database engine selection (PostgreSQL, MySQL...), installation and
-configuration as in the install doc.
-
-8. Service configuration and startup as in the install doc. 
-
-9. Test proper installation with the commands from post-sanity check in the
-install instruction
+6. Follow the install doc for debian for database installation/configuration 
 
 
 ## Preparing to install the Zonemaster-gui
