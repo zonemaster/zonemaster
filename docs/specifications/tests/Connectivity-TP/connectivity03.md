@@ -20,8 +20,12 @@ failure disabling all of them.
 ## Inputs
 
 * The domain name to be tested ("child zone");
-* The ASN database to be used ("RIPE database" or "Cymru database").
-* The base name (Cymru) or Whois server (RIPE) to be used.
+* The ASN database to be used ("ASN database"). Possible values
+  are "RIPE" and "Cymru".
+* If the *ASN Database* is "Cymru", the base name to be used 
+  ("base name"). Default is "asnlookup.zonemaster.net".
+* If the *ASN Database* is "RIPE", the name of the Whois server
+  to be used ("Whois server"). Default is "riswhois.ripe.net".
 
 
 ## Ordered description of steps to be taken to execute the test case
@@ -83,9 +87,9 @@ ASN lookup, RIPE or Cymru. The service must be available over the network.
 The Cymru lookup method is described on the Team Cymru [IP to ASN Mapping]
 using DNS lookup.
 
-1. Prepend the basename (from input) with the label "origin" (IPv4) or 
-   "origin6" (IPv6). If basename is "asnlookup.zonemaster.net" we get 
-   the following expanded basenames:
+1. Prepend the *base name* with the label "origin" (IPv4) or 
+   "origin6" (IPv6). Example of expanded basenames 
+   ("expanded base name"):
    
 ```
 origin.asnlookup.zonemaster.net
@@ -96,7 +100,7 @@ origin6.asnlookup.zonemaster.net
    reverse lookup. For description see [RFC 1035] (IPv4) and 
    [RFC 3596] (IPv6)
  
-3. Prepend the expanded basename with the reversed IP address. For
+3. Prepend the *expanded base name* with the reversed IP address. For
    description see [IP to ASN Mapping].
 
 4. Send a DNS query for the TXT record of the full name created in step 3.
@@ -122,7 +126,8 @@ origin6.asnlookup.zonemaster.net
 12. If steps 8-10 could not be processed emit *[ERROR_ASN_DATABASE]*
     and end these steps (the response was malformed).
 
-13. The ASN or ASNs from step 11 is the ASN set for that IP address.
+13. The ASN or ASNs from step 11 is the ASN set for that IP address
+    and is used for the further processing above.
 
 
 ### RIPE ASN lookup
@@ -137,10 +142,9 @@ The RIPE ASN lookup is described on the RIPE [RISwhois] page.
    " -F -M 192.0.2.10" 
    ```
    
-2. Send the query string to the Whois server (from input) on port
-   43 with the nicname (whois) protocol. If the server is 
-   "riswhois.ripe.net" (default) then the command line command on
-   unix will normally be
+2. Send the query string to the *Whois server* on port
+   43 with the nicname (whois) protocol. Example of command
+   line command on unix:
 
 ```
 whois -h riswhois.ripe.net " -F -M 192.0.2.10"
@@ -152,7 +156,7 @@ whois -h riswhois.ripe.net " -F -M 192.0.2.10"
 4. Check if there is no string with data (empty reply). If so, 
    emit *[EMPTY_ASN_SET]* and end these steps.
 
-5. If there is no response from the Whois server emit 
+5. If there is no response from the *Whois server* emit 
    *[ERROR_ASN_DATABASE]* and end these steps.
 
 6. The first field has the ASN or list of ASNs. Split that into ASNs.
@@ -161,7 +165,7 @@ whois -h riswhois.ripe.net " -F -M 192.0.2.10"
    and end these steps (the response was malformed).
 
 8. From the ASN or ASNs from step 6 create the ASN set for the IP
-   address.
+   address and is used for the further processing above.
 
 
 ## Intercase dependencies
