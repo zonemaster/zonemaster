@@ -16,23 +16,24 @@ consistent between all authoritative name servers of the child zone.
 
 ## Inputs
 
-The domain name to be tested ("child zone").
+The domain name to be tested ("Child Zone").
 
 ## Ordered description of steps to be taken to execute the test case
 
-1. Obtain the set of name server IPs for the *child zone* using
+1. Obtain the set of name server IPs for the *Child Zone* using
    [Method4] and [Method5]. 
 
-2. Retrieve the NS RR set for the *child zone* from all retrieved 
-   name server IP address.
+2. Create an NS query for the apex of the *Child Zone*.
 
-3. If a name server IP does not respond emit *[NO_RESPONSE]*.
+3. Send the NS query to each of the retrieved name server IPs.
 
-4. If the response from a name server IP does not include an 
-   NS RRset for the *child zone* with the AA flag set emit 
+4. If a name server IP does not respond emit *[NO_RESPONSE]*.
+
+5. If the response from a name server IP does not include an 
+   NS RR set for the *Child Zone* with the AA flag set emit 
    *[NO_RESPONSE_NS_QUERY]*.
 
-5. If the NS RRsets from all servers are equal emit *[ONE_NS_SET]* 
+5. If all retreived NS RR sets are equal emit *[ONE_NS_SET]* 
    else emit *[MULTIPLE_NS_SET]*.
 
 
