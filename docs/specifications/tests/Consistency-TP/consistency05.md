@@ -2,7 +2,7 @@
 
 ## Test case identifier
 
-**CONSISTENCY05:**
+**CONSISTENCY05**
 
 ## Objective
 
@@ -15,35 +15,37 @@ consistent between glue and authoritative data.
 
 ## Inputs
 
-* The domain name to be tested ("child zone").
+* The domain name to be tested ("Child Zone").
 * The test type, "undelegate test" or "normal test".
 * If *normal test*, the name servers for the parent zone as found 
   in [BASIC01] ("parent NS").
 * If *undelegated test*, the submitted delegation data, name server names
-  and IP addresses for *child zone* ("undelegated data").
+  and IP addresses for *Child Zone* ("undelegated data").
 
 ## Ordered description of steps to be taken to execute the test case
 1. Obtain the IP addresses provided in the additional section in the 
    delegation ("[glue records]" in the wide sense) performning step 2 or 3.
 
 2. If the test is a *normal test*:
-   1. Create an NS query for the *child zone* and send that all servers
-      of *parent NS* with RD flag unset.
-   2. For each response that contains a referral to the child zone:
+   1. Create an NS query for the *Child Zone* with RD flag unset and 
+      send that to each server of *parent NS*.
+   2. If there is no response from the a server emit 
+      *[PARENT_NS_NO_RESPONSE]* and go to next server.
+   3. For each response that contains a referral to the *Child Zone*:
       1. Extract the name server names from the RDATA in the NS record in
          the authority section.
       2. Extract all A and AAAA records from the additional section.
-   3. If the response is authoritative (AA bit set) and the answer section
-      contains the NS record of the child zone:
-      1. Remember this fact (server is authoritative for *child zone*).
-   4. If there is no response from the a server emit 
-      *[PARENT_NS_NO_RESPONSE]* and go to next server (see above).
-   5. If there is response from a server, but not expect response, emit
-      *[PARENT_NS_FAILED]* and go to next server (see above).
-   6. If all servers from *parent NS* have been queried and all servers
-      that returned a valid answer were authorititative for the *child
-      zone* then emit *[DELEGATION_NOT_DETERMINED]* and exit these steps.
-   7. Tag the data as "NS IP from parent".
+   4. If the response is authoritative (AA bit set) and the answer section
+      contains the NS record of the *Child Zone*, then remember this 
+      fact (server is authoritative for *Child Zone*) and go to next 
+      server.
+   5. If there is a DNS response from a server, but no NS records in
+      neither answer section (authoritative answer) nor authority section
+      (referral), emit *[PARENT_NS_FAILED]* and go to next server.
+   6. If all servers that returned a valid answer were authorititative for 
+      the *Child Zone* then emit *[DELEGATION_NOT_DETERMINED]*.
+   7. Tag any extracted data (A and AAAA from additional section) 
+      as "NS IP from parent".
 
 3. If the test is an *undelegated test*:
 
@@ -51,25 +53,29 @@ consistent between glue and authoritative data.
       ("NS IP from parent").
 
 4. Obtain the IP addresses of the [in-bailiwick] name servers from the
-   *child zone*:
+   *Child Zone*:
 
-   1. Obtain the set of name server names for the *child zone* from the
-      *child zone* itself by using [Method3]. From that extract the
-      [in-bailiwick] name servers. If there are no such name servers, 
-      skip the steps to extract IP address from *child zone*.
-   2. Obtain the set of NS IP for *child zone* from [Method4].
-   3. For each NS IP query the *child zone* for the [in-bailiwick] 
-      name server names for A and AAAA.
-   4. If there is no response from the server emit 
+   1. Obtain the set of name server names for the *Child Zone* from the
+      *Child Zone* itself by using [Method3]. 
+   2. Extract the [in-bailiwick] name servers. If there are no such 
+      name servers, skip the steps to extract IP address from *Child 
+      Zone*.
+   3. For each [in-bailiwick] name server names create one A query and 
+      one AAAA query.
+   3. Obtain the set of NS IP for *Child Zone* from [Method4].
+   4. Send the A and AAAA queries created above to each NS IP. 
+   5. If there is no response from a server emit 
       *[CHILD_NS_NO_RESPONSE]* and go to next server (see above).
-   5. If there is response from the server, but not expect response, emit
+   6. If there is DNS response from the server, but not an 
+      authoritative answer with RCODE NOERROR or NXDOMAIN, emit
       *[CHILD_NS_FAILED]* and go to next server (see above).
-   6. If a delegation (referral) to a sub-zone of child zone is returned, 
+   7. If a delegation (referral) to a sub-zone of *Child Zone* is returned, 
       follow that delegation, possibly in several steps, by repeating the
       A and AAAA queries.
-   7. Ignore non-referral responses unless AA flag is set. Cached data
-      is not accepted.
-   8. Tag the data as "NS IP from child".
+   8. Extract the IP addresses from A and AAAA records from responses 
+      that have the AA flag set if the owner name matches the that of 
+      the of the query
+   9. Tag any extracted data (A and AAAA) as "NS IP from child".
 
 5. Compare the IP address for the [in-bailiwick] name servers from 
    *NS IP from parent* with *NS IP from child*
@@ -88,8 +94,9 @@ consistent between glue and authoritative data.
 
    1. If the IP in *NS IP from parent* does not match any of the 
       listed A or AAAA records listed in the response, or no response
-      with such records, emit *[OUT_OF_BAILIIWICK_ADDR_MISMATCH]* (if a *normal 
-      test*) or *[UNDEL_PAR_ADDR_MISMATCH]* (if an *undelegated test*).
+      with such records, emit *[OUT_OF_BAILIIWICK_ADDR_MISMATCH]* 
+      (if a *normal test*) or *[UNDEL_PAR_ADDR_MISMATCH]* (if an 
+      *undelegated test*).
 
 ## Outcome(s)
 
