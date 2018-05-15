@@ -16,7 +16,7 @@ consistent between all authoritative name servers of the child zone.
 
 ## Inputs
 
-The domain name to be tested ("Child Zone").
+* The domain name to be tested ("Child Zone").
 
 ## Ordered description of steps to be taken to execute the test case
 
@@ -33,7 +33,7 @@ The domain name to be tested ("Child Zone").
    NS RR set for the *Child Zone* with the AA flag set emit 
    *[NO_RESPONSE_NS_QUERY]*.
 
-5. If all retreived NS RR sets are equal emit *[ONE_NS_SET]* 
+6. If all retreived NS RR sets are equal emit *[ONE_NS_SET]* 
    else emit *[MULTIPLE_NS_SET]*.
 
 
