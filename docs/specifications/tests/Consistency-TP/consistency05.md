@@ -142,7 +142,7 @@ The terms "in-bailiwick" and "out-of-bailiwick" are used as defined
 in [RFC 7719], section 6, page 15.
 
 The term "glue records" is defined in [RFC 7719], section 6, page 15.
-Here we use "glue" in the wider sence.
+Here we use "glue" in the wider sense.
 
 [RFC 7719]: https://tools.ietf.org/html/rfc7719
 
