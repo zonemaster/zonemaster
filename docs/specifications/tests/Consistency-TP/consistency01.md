@@ -26,26 +26,30 @@ serial number consistency.
 
 ## Inputs
 
-* The domain name to be tested ("child zone")
-* Accepted SOA serial difference, default 0 ("accepted serial difference")
+* The domain name to be tested ("Child Zone").
+* Accepted SOA serial difference ("Accepted Serial Difference"). Default value
+  is 0.
 
 ## Ordered description of steps to be taken to execute the test case
 
- 1. Obtain the list of name server IPs for the *child zone* from [Method4] 
+ 1. Obtain the list of name server IPs for the *Child Zone* from [Method4] 
     and [Method5].
 
- 2. Create an SOA query for *child zone* apex and send it to all name 
-    server IPs.
+ 2. Create an SOA query for *Child Zone* apex and send it to each name 
+    server IP.
 
- 3. Retrieve the SOA RR from the responses from all name server IPs.
+ 3. If the name server does not respond with a DNS response, emit 
+    *[NO_RESPONSE]* and go to next name server.
 
- 4. If a name server does not respond, emit *[NO_RESPONSE]*.
+ 4. If the name server responds with a DNS response but no a SOA record 
+    is included, emit *[NO_RESPONSE_SOA_QUERY]* and got to next name 
+    server.
 
- 5. If a name server responds but does not include a SOA record in 
-    the response, emit *[NO_RESPONSE_SOA_QUERY]*.
+ 5. Retrieve the SOA SERIAL from the responses and go to next name server
+    until all name server IPs have been queried.
 
- 6. If at least one SOA record has been retrieved and all serial 
-    numbers are identical, emit *[ONE_SOA_SERIAL]*;
+ 6. If at least one SOA SERIAL has been retrieved and all serial 
+    numbers are identical, emit *[ONE_SOA_SERIAL]*.
 
  7. If at least two serial numbers are different:
     1. Order the serial number values from smallest to largest following
@@ -53,11 +57,11 @@ serial number consistency.
     2. If there is not a single, uniquely defined order of the serial 
        numbers, emit *[SOA_SERIAL_VARIATION]* and *[MULTIPLE_SOA_SERIALS]*.
     3. If the difference between the first and the last serial number
-       is larger than *accepted serial difference*, using arithemtic
+       is larger than *Accepted Serial Difference*, using arithemtic
        for serial number, emit *[SOA_SERIAL_VARIATION]* and 
        *[MULTIPLE_SOA_SERIALS]*.
     4. If the difference between the first and the last serial number
-       is not larger than *accepted serial difference*, using arithemtic
+       is not larger than *Accepted Serial Difference*, using arithemtic
        for serial number, emit *[MULTIPLE_SOA_SERIALS_OK]*.
 
  8. For each found serial number, emit *[SOA_SERIAL]* with the serial
@@ -116,10 +120,16 @@ None
 [Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
 [NO_RESPONSE]: #outcomes
+
 [NO_RESPONSE_SOA_QUERY]: #outcomes
+
 [ONE_SOA_SERIAL]: #outcomes
+
 [MULTIPLE_SOA_SERIALS]: #outcomes
+
 [MULTIPLE_SOA_SERIALS_OK]: #outcomes
+
 [SOA_SERIAL]: #outcomes
+
 [SOA_SERIAL_VARIATION]: #outcomes
 
