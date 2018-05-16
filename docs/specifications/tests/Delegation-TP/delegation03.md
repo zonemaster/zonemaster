@@ -35,7 +35,7 @@ response from the domain must fit into a 512 byte UDP packet.
 3. Add all unique NS records for the *Child Zone* using the name server
    names fetched.
 
-4. Obtains the name server IP addresses per name server names from 
+4. Obtain the name server IP addresses per name server names from 
    the delegation from the parent using [Method4]. Discard any
    [out-of-bailiwick] name servers.
 
