@@ -39,14 +39,14 @@ serial number consistency.
     server IP.
 
  3. If the name server does not respond with a DNS response, emit 
-    *[NO_RESPONSE]* and go to next name server.
+    *[NO_RESPONSE]* and go to next name server IP.
 
  4. If the name server responds with a DNS response but no a SOA record 
     is included, emit *[NO_RESPONSE_SOA_QUERY]* and got to next name 
-    server.
+    server IP.
 
  5. Retrieve the SOA SERIAL from the responses and go to next name server
-    until all name server IPs have been queried.
+    IP until all name server IPs have been queried.
 
  6. If at least one SOA SERIAL has been retrieved and all serial 
     numbers are identical, emit *[ONE_SOA_SERIAL]*.
