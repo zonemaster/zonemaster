@@ -13,9 +13,9 @@ inconsistencies for the designated zone.
 There are other test cases that provide consistency tests for the other
 SOA fields:
 
-* [Consistency01] (SOA Serial)
-* [Consistency02] (RNAME)
-* [Consistency06] (MNAME)
+* [CONSISTENCY01] (SOA Serial)
+* [CONSISTENCY02] (RNAME)
+* [CONSISTENCY06] (MNAME)
 
 ## Inputs
 
@@ -88,10 +88,10 @@ None.
 
 [MULTIPLE_SOA_TIME_PARAMETER_SET]: #outcomes
 
-[Consistency01]: consistency01.md
+[CONSISTENCY01]: consistency01.md
 
-[Consistency02]: consistency02.md
+[CONSISTENCY02]: consistency02.md
 
-[Consistency06]: consistency06.md
+[CONSISTENCY06]: consistency06.md
 
 
