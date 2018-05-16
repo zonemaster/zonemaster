@@ -6,25 +6,25 @@
 
 ## Objective
 
-All SOA record timers fields must be consistent
+All SOA record timer fields must be consistent
 across all authoritative name servers.
 
-The inconsistency in these different fields for the designated zone
-might result in operational inconsistencies.
+An inconsistency in these fields might result in operational inconsistencies 
+for the designated zone.
 
 There are other test cases that provide consistency tests for other
-SOA fields.
+SOA fields. **(Suggest either mentioning which test cases this refers to, or removing this statement.)**
 
 
 ## Inputs
 
-* The domain name to be tested ("child zone")
+* The domain name to be tested ("Child Zone").
 
 ## Ordered description of steps to be taken to execute the test case
 
- 1. Create an SOA query for *child zone* apex.
+ 1. Create an SOA query for *Child Zone* apex.
 
- 2. Obtain the list of name server IPs for the *child zone* from [Method4] 
+ 2. Obtain the list of name server IPs for the *Child Zone* from [Method4] 
     and [Method5].
 
  3. Send the SOA query to all name server IPs.
