@@ -42,7 +42,7 @@ serial number consistency.
     *[NO_RESPONSE]* and go to next name server IP.
 
  4. If the name server responds with a DNS response but no a SOA record 
-    is included, emit *[NO_RESPONSE_SOA_QUERY]* and got to next name 
+    is included, emit *[NO_RESPONSE_SOA_QUERY]* and go to next name 
     server IP.
 
  5. Retrieve the SOA SERIAL from the responses and go to next name server
@@ -57,11 +57,11 @@ serial number consistency.
     2. If there is not a single, uniquely defined order of the serial 
        numbers, emit *[SOA_SERIAL_VARIATION]* and *[MULTIPLE_SOA_SERIALS]*.
     3. If the difference between the first and the last serial number
-       is larger than *Accepted Serial Difference*, using arithemtic
+       is larger than *Accepted Serial Difference*, using arithmetic
        for serial number, emit *[SOA_SERIAL_VARIATION]* and 
        *[MULTIPLE_SOA_SERIALS]*.
     4. If the difference between the first and the last serial number
-       is not larger than *Accepted Serial Difference*, using arithemtic
+       is not larger than *Accepted Serial Difference*, using arithmetic
        for serial number, emit *[MULTIPLE_SOA_SERIALS_OK]*.
 
  8. For each found serial number, emit *[SOA_SERIAL]* with the serial
@@ -101,7 +101,7 @@ A manual inspection of the SOA serial may be needed to determine if the zone
 updates work properly or not, and if the serial values are within a
 reasonable range, then the test is OK.
 
-When comparing SOA serial it must be done using the aritmetic defined in
+When comparing SOA serial it must be done using the arithmetic defined in
 [RFC 1982].
 
 
