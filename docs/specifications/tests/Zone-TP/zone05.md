@@ -17,7 +17,7 @@ Setting the expire value low will increase the risk of any unwanted
 non-availability of the zone because of any failures in contacting
 the primary name server.
 
-The [RIPE-203](https://www.ripe.net/ripe/docs/ripe-203) recommendation
+The [RIPE-203](https://www.ripe.net/publications/docs/ripe-203) recommendation
 for the expire value is 1000 hours (roughly 41 days). Older DNSCheck code
 had a 7 day minimum value (604800 seconds), and this is the minimum
 value we recommend as an absolut minimum.

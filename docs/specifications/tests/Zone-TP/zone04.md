@@ -15,7 +15,7 @@ and clarified in section 2.2 of
 Setting the retry value low will increase the DNS traffic between
 the servers, and also increase the load on the master name server.
 
-The [RIPE-203](https://www.ripe.net/ripe/docs/ripe-203) recommendation
+The [RIPE-203](https://www.ripe.net/publications/docs/ripe-203) recommendation
 for the retry value is 2 hours (7200 seconds). Older DNSCheck code
 had a one hour minimum value (3600 seconds), and this is the minimum
 value we recommend.

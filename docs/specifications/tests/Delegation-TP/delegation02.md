@@ -20,7 +20,7 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the IP addresss of the name servers from the parent using  [Method
+1. Obtain the IP addresss of the name servers from the parent using [Method
 4](../Methods.md#method-4-obtain-glue-address-records-from-parent) and the child using
    [Method 5](../Methods.md#method-5-obtain-the-name-server-address-records-from-child).
 2. If any of the IP addresses resolved in step 1 is not unique, then this
