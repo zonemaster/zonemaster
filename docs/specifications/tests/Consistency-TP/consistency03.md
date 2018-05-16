@@ -6,15 +6,16 @@
 
 ## Objective
 
-All SOA record timer fields must be consistent
-across all authoritative name servers.
+All SOA record timer fields must be consistent across all authoritative 
+name servers. An inconsistency in these fields might result in operational 
+inconsistencies for the designated zone.
 
-An inconsistency in these fields might result in operational inconsistencies 
-for the designated zone.
+There are other test cases that provide consistency tests for the other
+SOA fields:
 
-There are other test cases that provide consistency tests for other
-SOA fields. **(Suggest either mentioning which test cases this refers to, or removing this statement.)**
-
+* [Consistency01] (SOA Serial)
+* [Consistency02] (RNAME)
+* [Consistency06] (MNAME)
 
 ## Inputs
 
@@ -86,3 +87,11 @@ None.
 [ONE_SOA_TIME_PARAMETER_SET]: #outcomes
 
 [MULTIPLE_SOA_TIME_PARAMETER_SET]: #outcomes
+
+[Consistency01]: consistency01.md
+
+[Consistency02]: consistency02.md
+
+[Consistency06]: consistency06.md
+
+
