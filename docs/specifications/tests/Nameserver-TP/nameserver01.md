@@ -8,14 +8,12 @@
 To ensure consistency in DNS, an authoritative name server should not be
 configured to do recursive lookups. Also, open recursive resolvers are
 considered bad internet practice due to their capability of assisting in
-large scale DDoS attacks. The introduction to [RFC 5358]
-elaborates on mixing recursor and
-authoritative functionality, and the issue is further elaborated by
-[D.J. Bernstein].
+large scale DDoS attacks. The introduction to [RFC 5358] elaborates on 
+mixing recursor and authoritative functionality, and the issue is further 
+elaborated by [D.J. Bernstein].
 
-Section 2.5 of [RFC 2870] have very
-specific requirement on disabling recursion functionality on root name
-servers.
+Section 2.5 of [RFC 2870] have very specific requirement on disabling 
+recursion functionality on root name servers.
 
 ## Inputs
 
@@ -28,10 +26,10 @@ servers.
    2. xn--nameservertest.icann.org
    3. xn--nameservertest.ripe.net
 
-2. Retrieve all address records for all the name servers for the
-   *Child Zone* using [Method4] and [Method5].
+2. Retrieve all name server IPs for the *Child Zone* using 
+   [Method4] and [Method5].
 
-3. Repeat the following steps for each retrieved name server IP.
+3. Repeat the following steps for each name server IP.
    1. Send the three A queries over UDP.
    2. For each query do the following steps:
       1. If the name server does not respond with a DNS 
@@ -40,8 +38,8 @@ servers.
       	 emit *[IS_A_RECURSOR]*.
    3. If the RCODE is NXDOMAIN in all DNS responses then 
       emit *[IS_A_RECURSOR]*.
-   4. If no message has been emitted for the server, then emit 
-      *[NO_RECURSOR]*.
+   4. If neither *[NO_RESPONSE]* nor *[IS_A_RECURSOR]* has been emitted 
+      for that server, then emit *[NO_RECURSOR]*.
 
 ## Outcome(s)
 
