@@ -6,10 +6,10 @@
 
 ## Objective
 
-If the domain have several different name server names used, they can all
+If the domain's name servers use several different names, they can all
 be using the same IP address. This may be due to a configuration error, or
-a workaround to a certain policy restriction. This test case checks that
-the name servers used does not resolve to reuse the same IP addresses.
+a workaround for a certain policy restriction. This test case checks that
+the name servers used do not reuse the same IP addresses.
 
 Section 4.1 of [RFC 1034] says at least
 two name servers must be used for a delegation.
@@ -23,16 +23,16 @@ The domain name to be tested.
 1. Obtain the complete set of name server names from parent using 
    [Method2] and the IP addresses for each name using [Method4].
 
-2. If the same IP address is found for two or more name server names 
-   then emit *PARENT_NS_SAME_IP_ADDRESS* for each repeated address.
+2. If the same IP address is found for two or more name server names, 
+   emit *PARENT_NS_SAME_IP_ADDRESS* for each repeated address.
 
 3. Obtain the complete set of name server names from the child using 
    [Method3] and the IP addresses for each name using [Method5] for
    [in-bailiwick] names and using [Method4] for [out-of-bailiwick] 
-   names only.
+   names only. 
 
-4. If the same IP address is found for two or more name server names 
-   then emit *CHILD_NS_SAME_IP_ADDRESS* for each repeated address.
+4. If the same IP address is found for two or more name server names, 
+   emit *CHILD_NS_SAME_IP_ADDRESS* for each repeated address.
 
 ## Outcome(s)
 
