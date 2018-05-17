@@ -14,6 +14,11 @@ section 3.3.11, might result in operational failures.
 The objective of this test is to verify that the NS records are
 consistent between all authoritative name servers of the child zone.
 
+Two NS RR sets are considered to be equal if both sets have the 
+same number of NS records, and for each NS record in one of the 
+sets there is exactly one NS record with identical owner name, 
+class, TTL and RDATA in the other NS set.
+
 ## Inputs
 
 * The domain name to be tested ("Child Zone").
