@@ -6,63 +6,63 @@
 
 ## Objective
 
-Section 4.1 of [RFC 1034] specifies that there must be at least minimum two name servers 
+Section 4.1 of [RFC 1034] specifies that there must be a minimum of two name servers 
 for a domain. This test is done to verify this condition.
 
-The RFC ([RFC 1034]) pre-dates IPv6. Sinces IPv4 and IPv6 work as separate networks, this
-test case has been extended to test for for two name servers that resolv into IPv4 addresses
+The RFC ([RFC 1034]) predates IPv6. Since IPv4 and IPv6 work as separate networks, this
+test case has been extended to test for two name servers that resolve into IPv4 addresses
 and IPv6 addresses respectively.
 
 
 ## Inputs
 
-The domain name to be tested ("child zone").
+The domain name to be tested ("Child Zone").
 
 ## Ordered description of steps to be taken to execute the test case
 
- 1. Using [Method2], obtain the complete set of the names of the name servers 
-    from parent for the *child zone* (distinct NS records).
+ 1. Using [Method2], obtain the complete set of names of the name servers 
+    from parent for the *Child Zone* (distinct NS records).
 
  2. Count the name server names:
     1. If zero or one, emit *NOT_ENOUGH_NS_PARENT*.
     2. If two or more, emit *ENOUGH_NS_PARENT*.
 
- 3. Obtain the IP addresses for the set of the name servers from parent for the 
-    *child zone*.
+ 3. Obtain the IP addresses for the set of name servers from the parent for the 
+    *Child Zone*.
 
  4. Count the number of name server names that resolve into at least one IPv4 
-    addresse:
+    address:
     1. If zero, emit *NO_IPV4_NS_PARENT*.
     2. If one, emit *NOT_ENOUGH_IPV4_NS_PARENT*.
     3. If two or more, emit *ENOUGH_IPV4_NS_PARENT*.
 
  5. Count the number of name server names that resolve into at least one IPv6 
-    addresse:
+    address:
     1. If zero, emit *NO_IPV6_NS_PARENT*.
     2. If one, emit *NOT_ENOUGH_IPV6_NS_PARENT*.
     3. If two or more, emit *ENOUGH_IPV6_NS_PARENT*.
 
- 6. Using [Method3], obtain the complete set of the names of the name servers
-    from the *child zone* for the *child zone*.
+ 6. Using [Method3], obtain the complete set of names of the name servers
+    from the *Child Zone* for the *Child Zone*. 
 
  7. Count the name server names:
     1. If zero or one, emit *NOT_ENOUGH_NS_CHILD*.
     2. If two or more, emit *ENOUGH_NS_CHILD*.
 
  8. Using [Method4], obtain the IP addresses for the in-bailiwick name servers 
-    from the *child zone* for the *child zone*. 
+    from the *Child Zone* for the *Child Zone*. **(Suggest that we find a more common word than "bailiwick" to raise readability.)**
 
  9. Using [Method5], obtain the IP addresses for the out-of-bailiwick name 
-    servers for the *child zone*.
+    servers for the *Child Zone*. **(Suggest that we find a more common word than "bailiwick" to raise readability.)**
 
 10. Count the number of name server names that resolve into at least one IPv4 
-    addresse:
+    address:
     1. If zero, emit *NO_IPV4_NS_CHILD*.
     2. If one, emit *NOT_ENOUGH_IPV4_NS_CHILD*.
     3. If two or more, emit *ENOUGH_IPV4_NS_CHILD*.
 
 11. Count the number of name server names that resolve into at least one IPv6 
-    addresse:
+    address:
     1. If zero, emit *NO_IPV6_NS_CHILD*.
     2. If one, emit *NOT_ENOUGH_IPV6_NS_CHILD*.
     3. If two or more, emit *ENOUGH_IPV6_NS_CHILD*.
