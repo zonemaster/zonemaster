@@ -2,7 +2,7 @@
 
 ## Test case identifier
 
-**DELEGATION01:** Minimum number of name servers
+**DELEGATION01**
 
 ## Objective
 
@@ -49,11 +49,11 @@ The domain name to be tested ("Child Zone").
     1. If zero or one, emit *NOT_ENOUGH_NS_CHILD*.
     2. If two or more, emit *ENOUGH_NS_CHILD*.
 
- 8. Using [Method4], obtain the IP addresses for the in-bailiwick name servers 
-    from the *Child Zone* for the *Child Zone*. **(Suggest that we find a more common word than "bailiwick" to raise readability.)**
+ 8. Using [Method4], obtain the IP addresses for the [in-bailiwick] name servers 
+    from the *Child Zone* for the *Child Zone*.
 
- 9. Using [Method5], obtain the IP addresses for the out-of-bailiwick name 
-    servers for the *Child Zone*. **(Suggest that we find a more common word than "bailiwick" to raise readability.)**
+ 9. Using [Method5], obtain the IP addresses for the [out-of-bailiwick] name 
+    servers for the *Child Zone*.
 
 10. Count the number of name server names that resolve into at least one IPv4 
     address:
@@ -106,8 +106,15 @@ None
 
 None
 
+## Terminology
+
+The terms "in-bailiwick" and "out-of-bailiwick" are used as defined
+in [RFC 7719], section 6, page 15.
+
 
 [RFC 1034]: https://tools.ietf.org/html/rfc1034
+
+[RFC 7719]: https://tools.ietf.org/html/rfc7719
 
 [Method2]:  ../Methods.md#method-2-obtain-glue-name-records-from-parent
 
@@ -117,12 +124,7 @@ None
 
 [Method5]:  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
+[in-bailiwick]:     #terminology
 
--------
+[out-of-bailiwick]: #terminology
 
-Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden )  
-Copyright (c) 2013-2018, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
