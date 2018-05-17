@@ -2,7 +2,7 @@
 
 ## Test case identifier
 
-**DELEGATION03:**
+**DELEGATION03**
 
 ## Objective
 
@@ -43,7 +43,7 @@ response from the domain must fit into a 512 byte UDP packet.
    for the name, add the name server as A or AAAA record in the
    Additional section of the DNS packet.
 
-6. If size the DNS packet after encoding is larger than 512 octets 
+6. If size of the DNS packet after encoding is larger than 512 octets 
    then emit *[REFERRAL_SIZE_LARGE]*, otherwise emit 
    *[REFERRAL_SIZE_OK]*.
 
