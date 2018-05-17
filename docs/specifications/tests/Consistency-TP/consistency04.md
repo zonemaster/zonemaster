@@ -8,7 +8,7 @@
 
 All authoritative name servers must serve the same NS record set
 for the tested domain, child zone ([RFC 1034], section 4.2.2).
-Any inconsistency of NS records described in [RFC 1035], 
+Any inconsistencies in NS records described in [RFC 1035], 
 section 3.3.11, might result in operational failures.
 
 The objective of this test is to verify that the NS records are
@@ -32,14 +32,14 @@ class, TTL and RDATA in the other NS set.
 
 3. Send the NS query to each of the retrieved name server IPs.
 
-4. If a name server IP does not respond emit *[NO_RESPONSE]*.
+4. If a name server IP does not respond, emit *[NO_RESPONSE]*.
 
 5. If the response from a name server IP does not include an 
-   NS RR set for the *Child Zone* with the AA flag set emit 
+   NS RR set for the *Child Zone* with the AA flag set, emit 
    *[NO_RESPONSE_NS_QUERY]*.
 
-6. If all retreived NS RR sets are equal emit *[ONE_NS_SET]* 
-   else emit *[MULTIPLE_NS_SET]*.
+6. If all retreived NS RR sets are equal, emit *[ONE_NS_SET]*. Otherwise, 
+   emit *[MULTIPLE_NS_SET]*.
 
 
 ## Outcome(s)
