@@ -27,8 +27,8 @@ The domain name to be tested ("Child Zone").
     1. If zero or one, emit *NOT_ENOUGH_NS_PARENT*.
     2. If two or more, emit *ENOUGH_NS_PARENT*.
 
- 3. Obtain the IP addresses for the set of name servers from the parent for the 
-    *Child Zone*.
+ 3. Using [Method4], obtain the IP addresses for the set of name servers 
+    from the parent for the *Child Zone*.
 
  4. Count the number of name server names that resolve into at least one IPv4 
     address:
@@ -49,10 +49,10 @@ The domain name to be tested ("Child Zone").
     1. If zero or one, emit *NOT_ENOUGH_NS_CHILD*.
     2. If two or more, emit *ENOUGH_NS_CHILD*.
 
- 8. Using [Method4], obtain the IP addresses for the [in-bailiwick] name servers 
+ 8. Using [Method5], obtain the IP addresses for the [in-bailiwick] name servers 
     from the *Child Zone* for the *Child Zone*.
 
- 9. Using [Method5], obtain the IP addresses for the [out-of-bailiwick] name 
+ 9. Using [Method4], obtain the IP addresses for the [out-of-bailiwick] name 
     servers for the *Child Zone*.
 
 10. Count the number of name server names that resolve into at least one IPv4 
@@ -76,7 +76,7 @@ The outcome of this Test Case is "warning" if there is at least one message
 with the severity level *WARNING*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
-In other cases the outcome of this Test Case is "pass".
+Else the outcome of this Test Case is "pass".
 
 Message                       | Default severity level (if message is emitted)
 :-----------------------------|:-----------------------------------
