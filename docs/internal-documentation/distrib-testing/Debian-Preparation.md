@@ -1,4 +1,4 @@
-# Debian system preparation for Zonemaster
+# Debian system preparation for installing Zonemaster components
 
 1. Make a clean installation of Debian.
 
@@ -31,7 +31,6 @@
 6. Generate all locales needed by test configurations.
 
    ```sh
-   locale-gen C en_US.UTF-8
    dpkg-reconfigure locales
    ```
 
@@ -40,3 +39,13 @@
    ```sh
    exit
    ```
+
+
+## Preparing to install the repositories
+
+1. Follow the steps (1-7) of the [release
+process](https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess.md)
+to prepare the tarballs in a separate machine
+
+2. Install the modules as per the respective installation instructions
+
