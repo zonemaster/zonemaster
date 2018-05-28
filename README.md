@@ -52,16 +52,18 @@ architecture listed below.
 
 ### Supported database engine versions
 
-Operating System | MySQL | PostgreSQL
----------------- | ------| -----------
-CentOS 7         | 5.6   |   9.3
-Debian 8         | TBD   |   TBD
-Debian 9         | TBD   |   TBD
-FreeBSD 10.3     | 5.6   |   9.5       
-FreeBSD 11.1     | 5.6   |   9.5      
-Ubuntu 14.04     | 5.5   |   9.3
-Ubuntu 16.04     | 5.7   |   9.5
-Ubuntu 18.04     | TBD   |   TBD
+Operating System | MySQL    | PostgreSQL
+---------------- | ---------| -----------
+CentOS 7         | 5.6      |   9.3
+Debian 8         | 5.5      |   9.4
+Debian 9         | 10.1 (*) |   9.6
+FreeBSD 10.4     | 5.6      |   9.5       
+FreeBSD 11.1     | 5.6      |   9.5      
+Ubuntu 14.04     | 5.5      |   9.3
+Ubuntu 16.04     | 5.7      |   9.5
+Ubuntu 18.04     | TBD      |   TBD
+
+*) MariaDB, not MySQL
 
 Zonemaster Backend has been tested with the combination of OS and database engine version
 listed in the table above. Zonemaster uses functionality introduced in PostgreSQL version 9.3, and earlier versions are as such not supported.
@@ -71,8 +73,8 @@ listed in the table above. Zonemaster uses functionality introduced in PostgreSQ
 Operating System | Perl
 ---------------- | ----
 CentOS 7         | 5.16                        
-Debian 8         | TBD
-Debian 9         | TBD
+Debian 8         | 5.20
+Debian 9         | 5.24
 FreeBSD 10.4     | 5.26
 FreeBSD 11.1     | 5.26
 Ubuntu 14.04     | 5.18
