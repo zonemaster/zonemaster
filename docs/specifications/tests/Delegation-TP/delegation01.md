@@ -21,26 +21,26 @@ The domain name to be tested ("Child Zone").
 ## Ordered description of steps to be taken to execute the test case
 
  1. Using [Method2], obtain the complete set of names of the name servers 
-    from parent for the *Child Zone* (distinct NS records).
+    from the delegation of the *Child Zone*.
 
  2. Count the name server names:
-    1. If zero or one, emit *NOT_ENOUGH_NS_PARENT*.
-    2. If two or more, emit *ENOUGH_NS_PARENT*.
+    1. If zero or one, emit *NOT_ENOUGH_NS_DEL*.
+    2. If two or more, emit *ENOUGH_NS_DEL*.
 
- 3. Using [Method4], obtain the IP addresses for the set of name servers 
-    from the parent for the *Child Zone*.
+ 3. Using [Method4], obtain the IP addresses for the name servers of the 
+    delegation of the *Child Zone*.
 
  4. Count the number of name server names that resolve into at least one IPv4 
     address:
-    1. If zero, emit *NO_IPV4_NS_PARENT*.
-    2. If one, emit *NOT_ENOUGH_IPV4_NS_PARENT*.
-    3. If two or more, emit *ENOUGH_IPV4_NS_PARENT*.
+    1. If zero, emit *NO_IPV4_NS_DEL*.
+    2. If one, emit *NOT_ENOUGH_IPV4_NS_DEL*.
+    3. If two or more, emit *ENOUGH_IPV4_NS_DEL*.
 
  5. Count the number of name server names that resolve into at least one IPv6 
     address:
-    1. If zero, emit *NO_IPV6_NS_PARENT*.
-    2. If one, emit *NOT_ENOUGH_IPV6_NS_PARENT*.
-    3. If two or more, emit *ENOUGH_IPV6_NS_PARENT*.
+    1. If zero, emit *NO_IPV6_NS_DEL*.
+    2. If one, emit *NOT_ENOUGH_IPV6_NS_DEL*.
+    3. If two or more, emit *ENOUGH_IPV6_NS_DEL*.
 
  6. Using [Method3], obtain the complete set of names of the name servers
     from the *Child Zone* for the *Child Zone*. 
@@ -77,14 +77,14 @@ Else the outcome of this Test Case is "pass".
 
 Message                       | Default severity level (if message is emitted)
 :-----------------------------|:-----------------------------------
-NOT_ENOUGH_NS_PARENT          | ERROR
-ENOUGH_NS_PARENT              | INFO
-NO_IPV4_NS_PARENT             | ERROR
-NOT_ENOUGH_IPV4_NS_PARENT     | ERROR
-ENOUGH_IPV4_NS_PARENT         | INFO
-NO_IPV6_NS_PARENT             | NOTICE
-NOT_ENOUGH_IPV6_NS_PARENT     | NOTICE
-ENOUGH_IPV6_NS_PARENT         | INFO
+NOT_ENOUGH_NS_DEL             | ERROR
+ENOUGH_NS_DEL                 | INFO
+NO_IPV4_NS_DEL                | ERROR
+NOT_ENOUGH_IPV4_NS_DEL        | ERROR
+ENOUGH_IPV4_NS_DEL            | INFO
+NO_IPV6_NS_DEL                | NOTICE
+NOT_ENOUGH_IPV6_NS_DEL        | NOTICE
+ENOUGH_IPV6_NS_DEL            | INFO
 NOT_ENOUGH_NS_CHILD           | ERROR
 ENOUGH_NS_CHILD               | INFO
 NO_IPV4_NS_CHILD              | ERROR
