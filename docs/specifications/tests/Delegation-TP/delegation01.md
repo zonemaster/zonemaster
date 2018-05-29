@@ -83,16 +83,16 @@ ENOUGH_IPV6_NS_CHILD          | INFO
 ENOUGH_IPV6_NS_DEL            | INFO
 ENOUGH_NS_CHILD               | INFO
 ENOUGH_NS_DEL                 | INFO
-NO_IPV4_NS_CHILD              | ERROR
-NO_IPV6_NS_CHILD              | NOTICE
-NO_IPV4_NS_DEL                | ERROR
-NO_IPV6_NS_DEL                | NOTICE
 NOT_ENOUGH_IPV4_NS_CHILD      | ERROR
-NOT_ENOUGH_IPV6_NS_CHILD      | ERROR
 NOT_ENOUGH_IPV4_NS_DEL        | ERROR
+NOT_ENOUGH_IPV6_NS_CHILD      | ERROR
 NOT_ENOUGH_IPV6_NS_DEL        | ERROR
 NOT_ENOUGH_NS_CHILD           | ERROR
 NOT_ENOUGH_NS_DEL             | ERROR
+NO_IPV4_NS_CHILD              | ERROR
+NO_IPV4_NS_DEL                | ERROR
+NO_IPV6_NS_CHILD              | NOTICE
+NO_IPV6_NS_DEL                | NOTICE
 
 
 ## Special procedural requirements
