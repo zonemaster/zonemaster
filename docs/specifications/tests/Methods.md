@@ -13,7 +13,7 @@ The method has been removed. The function is integrated in [BASIC01] instead.
 ## Method: Get delegation NS names and IP addresses
 
 ### Method identifier
-**method-get-del-ns-names-and-ips**
+**get-del-ns-names-and-ips**
 
 ### Objective
 
@@ -31,19 +31,19 @@ This is an external method to be used by test cases.
 
 ### Prerequisite
 
-* As specified in [method-get-delegation].
+* As specified in [get-delegation].
 
 ### Ordered description of steps to be taken to execute the method
 
 1. Get the name servers set ("Name Servers") where each unique name 
    server name is linked to a set of its possibly empty set of IP 
-   addresses by running [method-get-delegation].
+   addresses by running [get-delegation].
 
 2. Extract the set of name server names ("Names") from 
    *Name Servers*.
 
 3. Get IP addresses for any [out-of-bailiwick] name server
-   names in *Names* by running [method-get-oob-ips] with *Names*
+   names in *Names* by running [get-oob-ips] with *Names*
    as input.
 
 4. Merge the set returned with *Name Servers*.
@@ -68,7 +68,7 @@ Test Case [BASIC01] must have been run.
 ## Method: Get delegation NS names
 
 ### Method identifier
-**method-get-del-ns-names**
+**get-del-ns-names**
 
 ### Objective
 
@@ -79,17 +79,17 @@ This is an external method to be used by test cases.
 
 ### Inputs
 
-* As specified in [method-get-delegation].
+* As specified in [get-delegation].
 
 ### Prerequisite
 
-* As specified in [method-get-delegation].
+* As specified in [get-delegation].
 
 ### Ordered description of steps to be taken to execute the method
 
 1. Get the name servers set where each unique name server name is 
    linked to a set of its possibly empty set of IP addresses by running
-   [method-get-delegation].
+   [get-delegation].
 
 2. Extract the set of name server names.
 
@@ -113,7 +113,7 @@ Test Case [BASIC01] must have been run.
 ## Method: Get delegation NS IP addresses
 
 ### Method identifier
-**method-get-del-ns-ips**
+**get-del-ns-ips**
 
 ### Objective
 
@@ -130,19 +130,19 @@ This is an external method to be used by test cases.
 
 ### Prerequisite
 
-* As specified in [method-get-del-ns-names-and-ips].
+* As specified in [get-del-ns-names-and-ips].
 
 
 ### Ordered description of steps to be taken to execute the method
 
 1. Get the name servers set ("Name Servers") where each unique name 
    server name is linked to a set of its possibly empty set of IP 
-   addresses by running [method-get-del-ns-names-and-ips].
+   addresses by running [get-del-ns-names-and-ips].
 
 2. Extract the IP addresses from *Name Servers* and create a set of 
    unique addresses ("NS IPs").
 
-5. Return *NS IPs*.
+3. Return *NS IPs*.
 
 ### Outcome(s)
 
@@ -162,7 +162,7 @@ Test Case [BASIC01] must have been run.
 ## Method: Get zone NS names
 
 ### Method identifier
-**method-get-zone-ns-names**
+**get-zone-ns-names**
 
 ### Objective
 Obtain the names of the authoritative name servers for the given zone 
@@ -176,25 +176,25 @@ This is an external method to be used by test cases.
 
 ### Prerequisite
 
-* As specified in [method-get-del-ns-ips].
+* As specified in [get-del-ns-ips].
 
 ### Ordered description of steps to be taken to execute the method
 
-1. Using [method-get-del-ns-ips] get the IP addresses to the
+1. Using [get-del-ns-ips] get the IP addresses to the
    name servers ("name server IPs").
 
-1. Create an NS query for apex of the Child Zone with the RD flag 
+2. Create an NS query for apex of the Child Zone with the RD flag 
    unset and send that to the *name server IPs*.
 
-2. Ignore response unless AA flag is set.
+3. Ignore response unless AA flag is set.
 
-3. Collect all the unique NS records in the answer sections of the
+4. Collect all the unique NS records in the answer sections of the
    responses and extract the name server names.
 
-4. Create a set of name servers names ("Name Server Names") as 
+5. Create a set of name servers names ("Name Server Names") as 
    collected from zone.
 
-5. Return *Name Server Names*.
+6. Return *Name Server Names*.
 
 ### Outcome(s)
 
@@ -213,7 +213,7 @@ Test Case [BASIC01] must have been run first.
 ## Method: Get zone NS names and IP addresses
 
 ### Method identifier
-**method-get-zone-ns-names-and-ips**
+**get-zone-ns-names-and-ips**
 
 ### Objective
 
@@ -230,24 +230,29 @@ This is an external method to be used by test cases.
 
 ### Prerequisite
 
-* As specified in [method-get-delegation].
+* As specified in [get-delegation].
 
 ### Ordered description of steps to be taken to execute the method
 
 1. Get the name servers set ("Name Servers") where each unique name 
    server name is linked to a set of its possibly empty set of IP 
-   addresses by running [method-get-delegation].
+   addresses by running [get-delegation].
 
-2. Extract the set of name server names ("Names") from 
+2. Get IP addresses for any [in-bailiwick] name server
+   names by running [get-ib-addr-in-zone].
+
+3. Merge the set returned with *Name Servers*.
+
+4. Extract the set of name server names ("Names") from 
    *Name Servers*.
 
-3. Get IP addresses for any [out-of-bailiwick] name server
-   names in *Names* by running [method-get-oob-ips] with *Names*
+5. Get IP addresses for any [out-of-bailiwick] name server
+   names in *Names* by running [get-oob-ips] with *Names*
    as input.
 
-4. Merge the set returned with *Name Servers*.
+6. Merge the set returned with *Name Servers*.
 
-5. Return *Name Servers*.
+7. Return *Name Servers*.
 
 ### Outcome(s)
 
@@ -267,7 +272,7 @@ Test Case [BASIC01] must have been run.
 ## Method: Get zone NS IP addresses
 
 ### Method identifier
-**method-get-zone-ns-ips**
+**get-zone-ns-ips**
 
 ### Objective
 
@@ -282,27 +287,18 @@ This is an external method to be used by test cases.
 
 ### Prerequisite
 
-* As specified in [method-get-delegation].
+* As specified in [get-zone-ns-names-and-ips].
 
 ### Ordered description of steps to be taken to execute the method
 
 1. Get the name servers set ("Name Servers") where each unique name 
    server name is linked to a set of its possibly empty set of IP 
-   addresses by running [method-get-delegation].
+   addresses by running [get-zone-ns-names-and-ips].
 
-2. Extract the set of name server names ("Names") from 
-   *Name Servers*.
-
-3. Get IP addresses for any [out-of-bailiwick] name server
-   names in *Names* by running [method-get-oob-ips] with *Names*
-   as input.
-
-4. Merge the set returned with *Name Servers*.
-
-5. Extract the IP addresses from *Name Servers* and create a
+2. Extract the IP addresses from *Name Servers* and create a
    set of unique IP addresses.
 
-5. Return set of IP addresses.
+3. Return set of IP addresses.
 
 ### Outcome(s)
 
@@ -321,12 +317,12 @@ Test Case [BASIC01] must have been run.
 ## Method: Get in-bailiwick address records in zone
 
 ### Method identifier
-**method-get-ib-addr-in-zone**
+**get-ib-addr-in-zone**
 
 ### Objective
 
 From the child zone, obtain the address records matching the
-in-bailiwick name server names found in the zone itself.
+[in-bailiwick] name server names found in the zone itself.
 
 This is an internal method to be used by other methods.
 
@@ -336,14 +332,14 @@ This is an internal method to be used by other methods.
 
 ### Prerequisite
 
-* As specified in [method-get-del-ns-ips].
+* As specified in [get-del-ns-ips].
 
 ### Ordered description of steps to be taken to execute the method
 
-1. Using [method-get-del-ns-ips] get the IP addresses to the
+1. Using [get-del-ns-ips] get the IP addresses to the
    name servers ("Name Server IPs").
 
-2. Using [method-get-zone-ns-names] get the names of the name
+2. Using [get-zone-ns-names] get the names of the name
    servers according to *Child Zone* itself 
    ("Child Zone name server name").
 
@@ -381,14 +377,14 @@ Test Case [DELEGATION05].
 
 ### Dependencies
 
-Test Cases [BASIC01], [Method4] and [Method2] must have been run first.
+Test Cases [BASIC01] must have been run first.
 
 -------------------------------------------------------------
 
 ## Method: Get delegation
 
 ### Method identifier
-**method-get-delegation**
+**get-delegation**
 
 ### Objective
 
@@ -397,8 +393,8 @@ addresses from any glue records for [in-bailiwick] name server names
 from the delegation of the given zone (child zone) from the parent zone.
 
 IP addresses for [out-of-bailiwick] name server names are not extracted
-with this methon. To get those see [method-get-del-ns-ips] or
-[method-get-del-ns-names-and-ips].
+with this methon. To get those see [get-del-ns-ips] or
+[get-del-ns-names-and-ips].
 
 This is an internal method to be used by other methods.
 
@@ -501,7 +497,7 @@ Test Case [BASIC01] must have been run.
 ## Method: Get out-of-bailiwick ip addresses
 
 ### Method identifier
-**method-get-oob-ips**
+**get-oob-ips**
 
 ### Objective
 
@@ -530,7 +526,7 @@ This is an internal method to be used by other methods.
    [out-of-bailiwick] name server name is linked to an empty set of IP 
    addresses. 
 
-2. For each [out-of-bailiwick] the name server do:
+3. For each [out-of-bailiwick] the name server do:
 
    1. If *Test Type* is "undelegated test" then if the name server
       has IP address specification (IPv4 or IPv6) in *Undelegated Data* 
@@ -544,7 +540,7 @@ This is an internal method to be used by other methods.
    4. Collect all IP addresses for the name server name add the 
       address or addresses to *Name Servers* and go to next server.
 
-3. Return the *Name Servers*.
+4. Return the *Name Servers*.
 
 ### Outcome(s)
 
@@ -575,6 +571,24 @@ in [RFC 7719], section 6, page 15.
 [BASIC01]: Basic-TP/basic01.md
 
 [DELEGATION05]: Delegation-TP/delegation05.md
+
+[get-del-ns-names-and-ips]: #method-get-delegation-ns-names-and-ip-addresses
+
+[get-del-ns-names]: #method-get-delegation-ns-names
+
+[get-del-ns-ips]: #method-get-delegation-ns-ip-addresses
+
+[get-zone-ns-names]: #method-get-zone-ns-names
+
+[get-zone-ns-names-and-ips]: #method-get-zone-ns-names-and-ip-addresses
+
+[get-zone-ns-ips]: #method-get-zone-ns-ip-addresses
+
+[get-ib-addr-in-zone]: #method-get-in-bailiwick-address-records-in-zone
+
+[get-delegation]: #method-get-delegation
+
+[get-oob-ips]: #method-get-out-of-bailiwick-ip-addresses
 
 [Method2]: #method-2-delegation-name-servers
 
