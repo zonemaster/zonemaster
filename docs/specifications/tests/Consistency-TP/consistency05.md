@@ -95,8 +95,15 @@ consistent between glue and authoritative data.
    1. If the IP in *NS IP from parent* does not match any of the 
       listed A or AAAA records listed in the response, or no response
       with such records, emit *[OUT_OF_BAILIWICK_ADDR_MISMATCH]* 
-      (if a *normal test*) or *[UNDEL_PAR_ADDR_MISMATCH]* (if an 
+      (if a *normal test*) or *[UNDEL_OOB_ADDR_MISMATCH]* (if an 
       *undelegated test*).
+
+7. If none of the messages *[IN_BAILIWICK_ADDR_MISMATCH]*, 
+   *[EXTRA_ADDRESS_CHILD]*, *[OUT_OF_BAILIWICK_ADDR_MISMATCH]* or
+   *[UNDEL_OOB_ADDR_MISMATCH]* has been emitted, emit 
+   *[ADDRESSES_MATCH]*.
+
+ADDRESSES_MATCH
 
 ## Outcome(s)
 
@@ -119,8 +126,8 @@ CHILD_NS_NO_RESPONSE              | NOTICE
 IN_BAILIWICK_ADDR_MISMATCH        | ERROR
 OUT_OF_BAILIWICK_ADDR_MISMATCH    | ERROR
 EXTRA_ADDRESS_CHILD               | NOTICE
-UNDEL_PAR_ADDR_MISMATCH           | NOTICE  
-
+UNDEL_OOB_ADDR_MISMATCH           | NOTICE  
+ADDRESSES_MATCH                   | INFO
 
 ## Special procedural requirements	
 
@@ -180,4 +187,7 @@ Here we use "glue" in the wider sense.
 
 [EXTRA_ADDRESS_CHILD]: #outcomes
 
-[UNDEL_PAR_ADDR_MISMATCH]: #outcomes
+[UNDEL_OOB_ADDR_MISMATCH]: #outcomes
+
+[ADDRESSES_MATCH]: #outcomes
+
