@@ -24,8 +24,8 @@ The domain name to be tested.
    [Method2] and the IP addresses for each name using [Method4].
 
 2. If the same IP address is found for two or more name server names, 
-   emit *DEL_NS_SAME_IP* for each repeated address, else emit
-   *DEL_DISTINCT_NS_IP*.
+   emit *[DEL_NS_SAME_IP]* for each repeated address, else emit
+   *[DEL_DISTINCT_NS_IP]*.
 
 3. Obtain the complete set of name server names from the child using 
    [Method3] and the IP addresses for each name using [Method5] for
@@ -33,8 +33,8 @@ The domain name to be tested.
    names only. 
 
 4. If the same IP address is found for two or more name server names, 
-   emit *CHILD_NS_SAME_IP* for each repeated address, else emit
-   *CHILD_DISTINCT_NS_IP*.
+   emit *[CHILD_NS_SAME_IP]* for each repeated address, else emit
+   *[CHILD_DISTINCT_NS_IP]*.
 
 ## Outcome(s)
 
@@ -84,3 +84,10 @@ in [RFC 7719], section 6, page 15.
 
 [out-of-bailiwick]: #terminology
 
+[DEL_NS_SAME_IP]: #outcomes
+
+[CHILD_NS_SAME_IP]: #outcomes
+
+[DEL_DISTINCT_NS_IP]: #outcomes
+
+[CHILD_DISTINCT_NS_IP]: #outcomes
