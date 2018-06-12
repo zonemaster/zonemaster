@@ -82,19 +82,19 @@ consistent between glue and authoritative data.
 
    1. If an IP from *NS IP from parent* is not listed in 
       *NS IP from child* with that same name server name then emit
-      *[IN_BAILIIWICK_ADDR_MISMATCH]*.
+      *[IN_BAILIWICK_ADDR_MISMATCH]*.
 
    2. If an IP from *NS IP from child* is not listed in
       *NS IP from parent* with that same name server name then emit
       *[EXTRA_ADDRESS_CHILD]*.
 
 6. For each [out-of-bailiwick] name server IP in *NS IP from parent* 
-   do a DNS lookup (type A or AAA) of the name server name on public 
+   do a DNS lookup (type A or AAAA) of the name server name on public 
    DNS.
 
    1. If the IP in *NS IP from parent* does not match any of the 
       listed A or AAAA records listed in the response, or no response
-      with such records, emit *[OUT_OF_BAILIIWICK_ADDR_MISMATCH]* 
+      with such records, emit *[OUT_OF_BAILIWICK_ADDR_MISMATCH]* 
       (if a *normal test*) or *[UNDEL_PAR_ADDR_MISMATCH]* (if an 
       *undelegated test*).
 
@@ -116,8 +116,8 @@ PARENT_NS_FAILED                  | NOTICE
 PARENT_NS_NO_RESPONSE             | NOTICE
 CHILD_NS_FAILED                   | NOTICE
 CHILD_NS_NO_RESPONSE              | NOTICE
-IN_BAILIIWICK_ADDR_MISMATCH       | ERROR
-OUT_OF_BAILIIWICK_ADDR_MISMATCH   | ERROR
+IN_BAILIWICK_ADDR_MISMATCH        | ERROR
+OUT_OF_BAILIWICK_ADDR_MISMATCH    | ERROR
 EXTRA_ADDRESS_CHILD               | NOTICE
 UNDEL_PAR_ADDR_MISMATCH           | NOTICE  
 
@@ -174,9 +174,9 @@ Here we use "glue" in the wider sense.
 
 [CHILD_NS_NO_RESPONSE]: #outcomes
 
-[IN_BAILIIWICK_ADDR_MISMATCH]: #outcomes
+[IN_BAILIWICK_ADDR_MISMATCH]: #outcomes
 
-[OUT_OF_BAILIIWICK_ADDR_MISMATCH]: #outcomes
+[OUT_OF_BAILIWICK_ADDR_MISMATCH]: #outcomes
 
 [EXTRA_ADDRESS_CHILD]: #outcomes
 
