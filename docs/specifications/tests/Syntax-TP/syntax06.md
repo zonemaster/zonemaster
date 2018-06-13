@@ -1,20 +1,20 @@
-## SYNTAX06: No illegal characters in the SOA RNAME field
+# SYNTAX06: No illegal characters in the SOA RNAME field
 
-### Test case identifier
+## Test case identifier
 **SYNTAX06**
 
-### Objective
+## Objective
 
 The SOA RNAME field is a mailbox address. The SOA RNAME field is defined
 in section 3.3.13 of [RFC 1035] and section 2.2 of [RFC 1912]. The RNAME
 field should follow the rules of an e-mail address also defined in 
 [RFC 5322, section 3.4.1].
 
-### Inputs
+## Inputs
 
 * "Child Zone" - The domain name to be tested.
 
-### Ordered description of steps to be taken to execute the test case
+## Ordered description of steps to be taken to execute the test case
 
 1. Obtain the set of name server IP addresses using [Method4] and [Method5]
    ("Name Server IP").
@@ -77,13 +77,13 @@ RNAME_RFC822_VALID            | INFO
 
 
 
-### Special procedural requirements
+## Special procedural requirements
 
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol. Log a message reporting
 on the ignored result.
 
-### Intercase dependencies
+## Intercase dependencies
 
 None.
 
