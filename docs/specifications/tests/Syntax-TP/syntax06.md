@@ -19,14 +19,15 @@ field should follow the rules of an e-mail address also defined in
 1. Obtain the set of name server IP addresses using [Method4] and [Method5]
    ("Name Server IP").
 
-2. Create a SOA query for the apex of the *Child Zone* with rd flag unset.
+2. Create a SOA query for the apex of the *Child Zone* with "rd" flag unset.
 
 3. For each name server in *Name Server IP* do:
    1. Send the SOA query over UDP to the name server.
    2. If the name server does not respond, emit *[NO_RESPONSE]* and go
       to next server.
-   3. If the name server responds but does not include a SOA record in 
-      the response, emit *[NO_RESPONSE_SOA_QUERY]* and go to next server.
+   3. If the name server responds with DNS response but does not 
+      include a SOA record in the answer section, emit 
+      *[NO_RESPONSE_SOA_QUERY]* and go to next server.
    4. Extract the RNAME from the SOA record.
    5. Convert the first "." without backslash quoting to an "@" in 
       the RNAME.
