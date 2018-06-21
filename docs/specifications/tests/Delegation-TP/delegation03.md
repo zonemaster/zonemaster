@@ -29,19 +29,27 @@ response from the domain must fit into a 512 byte UDP packet.
    under the *Child Zone* apex (that is, 255 octets including label 
    separators).
 
-2. Obtain the name server names from the delegation from the parent 
-   using [Method2].
+2. Obtain the set of name server names from the delegation of 
+   the *Child Zone* from the parent using [Method2].
 
-3. Add all unique NS records for the *Child Zone* using the name server
-   names fetched.
+3. For each name server names obtained in the previous step:
+   1. Create an NS record with the *Child Zone* apex as owner name
+      and the name server name as RDATA.
+   2. Add the NS record to the Authority section of the DNS packet
+      created above using the message compression schema defined
+      in section 4.1.4 of [RFC 1035] where applicable.
 
 4. Obtain the name server IP addresses per name server names from 
-   the delegation from the parent using [Method4]. Discard any
-   [out-of-bailiwick] name servers.
+   the delegation from the parent using [Method4].
 
-5. For each [in-bailiwick] name server name and for all IP addresses 
-   for the name, add the name server as A or AAAA record in the
-   Additional section of the DNS packet.
+5. For each [in-bailiwick] name server name for which IP addresses
+   were obtained in the previous step do:
+   1. For each IP address obtained in the previous step, for that 
+      name server name, create an A or a AAAA record.
+   2. Add the A and AAAA records to the Additional section of 
+      the DNS packet created above using the message compression 
+      schema defined in section 4.1.4 of [RFC 1035] where
+      applicable.
 
 6. If size of the DNS packet after encoding is larger than 512 octets 
    then emit *[REFERRAL_SIZE_LARGE]*, otherwise emit 
@@ -79,6 +87,8 @@ in [RFC 7719], section 6, page 15.
 
 
 [RFC 7719]: https://tools.ietf.org/html/rfc7719
+
+[RFC 1035]: https://tools.ietf.org/html/rfc1035
 
 [IANA]: https://www.iana.org/help/nameserver-requirements
 
