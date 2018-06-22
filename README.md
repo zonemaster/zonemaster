@@ -109,7 +109,7 @@ The software has not yet been packaged for any operating systems, and you have t
 install most of it from the source code. The recommended method is to install 
 from [CPAN] (except for [Zonemaster-GUI]), but it is possible to install directly 
 from clones of the Github repositories. [Zonemaster-GUI] has no Perl code, and is
-installed directly from its repository in Github.
+installed directly from its repository at Github.
 
 The Zonemaster Product includes the following components:
 
