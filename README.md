@@ -61,12 +61,13 @@ FreeBSD 10.4     | 5.6      |   9.5
 FreeBSD 11.1     | 5.6      |   9.5      
 Ubuntu 14.04     | 5.5      |   9.3
 Ubuntu 16.04     | 5.7      |   9.5
-Ubuntu 18.04     | TBD      |   TBD
+Ubuntu 18.04     | 5.7      |  10.3
 
 *) MariaDB, not MySQL
 
-Zonemaster Backend has been tested with the combination of OS and database engine version
-listed in the table above. Zonemaster uses functionality introduced in PostgreSQL version 9.3, and earlier versions are as such not supported.
+Zonemaster Backend has been tested with the combination of OS and database 
+engine version listed in the table above. Zonemaster uses functionality 
+introduced in PostgreSQL version 9.3, and earlier versions are as such not supported.
 
 ### Supported Perl versions
 
@@ -79,9 +80,10 @@ FreeBSD 10.4     | 5.26
 FreeBSD 11.1     | 5.26
 Ubuntu 14.04     | 5.18
 Ubuntu 16.04     | 5.22
-Ubuntu 18.04     | TBD
+Ubuntu 18.04     | 5.26
 
-Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been tested with the default version of Perl in the OSs as listed in the table above.
+Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been 
+tested with the default version of Perl in the OSs as listed in the table above.
 
 ## Localization
 
@@ -98,27 +100,28 @@ Zonemaster comes with localization for these locales:
 
 The Zonemaster product consists of the main part and five components. The main part
 consists of specifications and documentation for the Zonemaster product, and is
-stored in main Zonemaster Github repository ([zonemaster]).
+stored in main Zonemaster Github repository ([Zonemaster]).
 
 All the software for the Zonemaster project belong to the five components, each
 component being stored in its own Github repository (listed below).
 
 The software has not yet been packaged for any operating systems, and you have to 
 install most of it from the source code. The recommended method is to install 
-from [CPAN], but it is possible to install directly from clones of the Github 
-repositories.
+from [CPAN] (except for [Zonemaster-GUI]), but it is possible to install directly 
+from clones of the Github repositories. [Zonemaster-GUI] has no Perl code, and is
+installed directly from its repository in Github.
 
 The Zonemaster Product includes the following components:
 
- * [zonemaster-ldns] - A fork of [ldns] with a Perl frontend used by [zonemaster-engine].
- * [zonemaster-engine] - The Zonemaster test library.
- * [zonemaster-cli] - A Command Line Interface (CLI) to the test library ([zonemaster-engine]).
- * [zonemaster-backend] - A JSON/RPC interface with database to the test library ([zonemaster-engine]).
- * [zonemaster-gui] - **MUST BE UPDATED!** A web user interface to the test library via [zonemaster-backend]. 
+ * [Zonemaster-LDNS] - [LDNS] with a Perl frontend used by [Zonemaster-Engine].
+ * [Zonemaster-Engine] - The Zonemaster test library.
+ * [Zonemaster-CLI] - A Command Line Interface (CLI) to the test library ([Zonemaster-Engine]).
+ * [Zonemaster-Backend] - A JSON/RPC interface with database to the test library ([Zonemaster-Engine]).
+ * [Zonemaster-GUI] - A web user interface to the test library via [Zonemaster-Backend]. 
 
 ## Installation
 
-To install Zonemaster, start with installation of [zonemaster-engine] (which will
+To install Zonemaster, start with installation of [Zonemaster-Engine] (which will
 draw in Zonemaster-LDNS) and then continue with the other parts. You will find 
 installation instructions from the links above.
 
@@ -154,9 +157,9 @@ a comment with any additional information.
 * [Issues in Zonemaster::Engine](https://github.com/dotse/zonemaster-engine/issues)
 * [Issues in Zonemaster::CLI](https://github.com/dotse/zonemaster-cli/issues)
 * [Issues in Zonemaster::Backend](https://github.com/dotse/zonemaster-backend/issues)
-* [Issues in zonemaster::GUI](https://github.com/dotse/zonemaster-gui/issues)
+* [Issues in zonemaster::GUI](https://github.com/zonemaster/zonemaster-gui/issues)
 
-If you cannot determine which repository to create the issue in, please select the main [zonemaster] 
+If you cannot determine which repository to create the issue in, please select the main [Zonemaster] 
 repository (i.e. [general issues in Zonemaster](https://github.com/dotse/zonemaster/issues)).
 
 
@@ -170,11 +173,11 @@ None.
 For contacting the Zonemaster project, please send an e-mail to
 contact@zonemaster.net.
 
-[zonemaster]: https://github.com/dotse/zonemaster
-[zonemaster-ldns]: https://github.com/dotse/zonemaster-ldns
-[zonemaster-engine]: https://github.com/dotse/zonemaster-engine 
-[zonemaster-cli]: https://github.com/dotse/zonemaster-cli
-[zonemaster-backend]: https://github.com/dotse/zonemaster-backend
-[zonemaster-gui]: https://github.com/dotse/zonemaster-gui
-[ldns]: https://www.nlnetlabs.nl/projects/ldns/
+[Zonemaster]: https://github.com/dotse/zonemaster
+[Zonemaster-LDNS]: https://github.com/dotse/zonemaster-ldns
+[Zonemaster-Engine]: https://github.com/dotse/zonemaster-engine 
+[Zonemaster-CLI]: https://github.com/dotse/zonemaster-cli
+[Zonemaster-Backend]: https://github.com/dotse/zonemaster-backend
+[Zonemaster-GUI]: https://github.com/zonemaster/zonemaster-gui
+[LDNS]: https://www.nlnetlabs.nl/projects/ldns/
 [CPAN]: http://search.cpan.org/search?query=Zonemaster&mode=dist
