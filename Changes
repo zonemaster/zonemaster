@@ -1,5 +1,23 @@
 Release history of Zonemaster
 
+v2018.1 2018-06-25 Public release
+
+High lights:
+
+- Zonemaster-LDNS is now built on latest version if LDNS and has been
+  modulized to make it possible to use available LDNS library.
+- Zonemaster-GUI has been rewritten from ground up.
+
+This version of Zonemaster also consists of the following components. For each
+component, see its Changes file.
+
+  Zonemaster-LDNS     v1.1.0   https://github.com/dotse/zonemaster-ldns
+  Zonemaster-Engine   v2.0.7   https://github.com/dotse/zonemaster-engine
+  Zonemaster-CLI      v1.1.3   https://github.com/dotse/zonemaster-cli
+  Zonemaster-Backend  v2.1.0   https://github.com/dotse/zonemaster-backend
+  Zonemaster-GUI      v2.0.0   https://github.com/zonemaster/zonemaster-gui
+
+
 v2017.4.2 2018-02-23 Security release
 
 Changes:
