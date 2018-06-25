@@ -30,17 +30,16 @@ The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
 
-1. Obtain the list of name servers from [Method4](../Methods.md) and
-   [Method5](../Methods.md)
-2. Retrieve the SOA RR from all the name servers. 
-3. If the SOA serial number is not the same from all the answers received
-   from step 2, then
-	3.a. Check if the difference is minor (An integer should be added to
-	define what is the minor value)
-	3.b. If the difference is greater than the minor value, then the
-	test case fails
-	3.c. If the difference is less than or equal to the minor value,
-	then the test is passed
+ 1. Obtain the list of name servers from [Method4] and [Method5].
+ 2. Retrieve the SOA RR from all the name servers.
+ 3. If the SOA serial number is not the same from all the answers received
+    from step 2, then:
+     1. Check if the difference is minor (An integer should be added to
+        define what is the minor value).
+     2. If the difference is greater than the minor value, then the test
+        case fails.
+     3. If the difference is less than or equal to the minor value,
+        then the test is passed.
 
 ### Outcome(s)
 
@@ -62,6 +61,8 @@ reasonable range, then the test is OK.
 None
 
 -------
+[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
 Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
 Copyright (c) 2013, 2014, 2015, AFNIC  

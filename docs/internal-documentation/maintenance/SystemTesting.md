@@ -92,12 +92,12 @@ The set of configurations must include at least:
          sudo cpanm Zonemaster-Backend-${BACKEND_VERSION}.tar.gz
          ```
 
-      3. Follow the [configuration](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#configuration) section of the installation guide to the letter.
-      4. Follow the [startup](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#startup) section of the installation guide to the letter.
-      5. Follow the [post-installation sanity check](https://github.com/dotse/zonemaster-backend/blob/master/docs/installation.md#post-installation-sanity-check) section of the installation guide to the letter.
+      3. Follow the [configuration](https://github.com/dotse/zonemaster-backend/blob/master/docs/Installation.md#configuration) section of the installation guide to the letter.
+      4. Follow the [startup](https://github.com/dotse/zonemaster-backend/blob/master/docs/Installation.md#startup) section of the installation guide to the letter.
+      5. Follow the [post-installation sanity check](https://github.com/dotse/zonemaster-backend/blob/master/docs/Installation.md#post-installation-sanity-check) section of the installation guide to the letter.
 
    5. Install Zonemaster GUI
-      1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-gui/blob/master/docs/installation.md)
+      1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-gui/blob/master/docs/Installation.md)
          to the letter.
       2. Install the preliminary distribution tarball for zonemaster-backend.
 
@@ -105,10 +105,10 @@ The set of configurations must include at least:
          sudo cpanm Zonemaster-GUI-${GUI_VERSION}.tar.gz
          ```
 
-      3. Follow the configuration, startup and sanity check sections of [installation.md](https://github.com/dotse/zonemaster-gui/blob/master/docs/installation.md)
+      3. Follow the configuration, startup and sanity check sections of [installation.md](https://github.com/dotse/zonemaster-gui/blob/master/docs/Installation.md)
          to the letter.
 
-         *The following should be put into a sanity check section of [installation.md](https://github.com/dotse/zonemaster-gui/blob/master/docs/installation.md).*
+         *The following should be put into a sanity check section of [installation.md](https://github.com/dotse/zonemaster-gui/blob/master/docs/Installation.md).*
 
          > ```
          > http://localhost/
@@ -118,7 +118,7 @@ The set of configurations must include at least:
          > Zonemaster logotype.
 
    6. Install Zonemaster CLI
-      1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-cli/blob/master/docs/installation.md)
+      1. Follow the prerequisites section of [installation.md](https://github.com/dotse/zonemaster-cli/blob/master/docs/Installation.md)
          to the letter.
       2. Install the preliminary distribution tarball for zonemaster-backend.
 
@@ -126,10 +126,10 @@ The set of configurations must include at least:
          sudo cpanm Zonemaster-CLI-${CLI_VERSION}.tar.gz
          ```
 
-      3. Follow the configuration and sanity check sections of [installation.md](https://github.com/dotse/zonemaster-cli/blob/master/docs/installation.md)
+      3. Follow the configuration and sanity check sections of [installation.md](https://github.com/dotse/zonemaster-cli/blob/master/docs/Installation.md)
          to the letter.
 
-         *The following should be put into a sanity check section of [installation.md](https://github.com/dotse/zonemaster-cli/blob/master/docs/installation.md).*
+         *The following should be put into a sanity check section of [installation.md](https://github.com/dotse/zonemaster-cli/blob/master/docs/Installation.md).*
 
          > ```
          > zonemaster-cli --version

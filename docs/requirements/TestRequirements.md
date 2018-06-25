@@ -18,9 +18,12 @@ Source documents
 
 Most of the requirements are derived from these documents:
 
- * Source document for Zonecheck: [features.shtml](http://www.zonecheck.fr/features.shtml)
- * Policy document for Zonecheck: [tests-policy-2.html](http://www.afnic.fr/en/products-and-services/services/zonecheck/tests-policy-2.html)
- * Source document for DNSCheck: [Detailes list of all possible DNSCheck messages](https://github.com/dotse/dnscheck/wiki/Detailed-list-of-all-possible-dnscheck-messages)
+Type of document             |Document copied from   |Document
+:----------------------------|:----------------------|:------------------------------------
+Source document for Zonecheck|Previois Zonecheck site|[Features](supporting-documents/ExistingZCFeaturesCLI.md)
+Policy document for Zonecheck|Previois Zonecheck site|[Test Policy](supporting-documents/ExistingZCPolicy.md)
+Source document for DNSCheck |DNSCheck Github Wiki   |[Detailes list of all messages](supporting-documents/Detailed-list-of-all-possible-dnscheck-messages.md)
+
 
 Tests to implement
 ------------------
@@ -103,7 +106,7 @@ Tests to implement
 Future tests
 ------------
  * Case insensitivity in a name server, [RFC 4343](https://tools.ietf.org/html/rfc4343).
- * More tests of EDNS(0), [RFC 6891](https://tools.ietf.org/search/rfc6891) and http://ednscomp.isc.org/.
+ * More tests of EDNS(0), [RFC 6891](https://tools.ietf.org/search/rfc6891) and <http://ednscomp.isc.org/>.
  * AXFR is complex, perhaps do more inspection of data coming from AXFR,
    [RFC 5936](https://tools.ietf.org/html/rfc5936).
  * Check for algorithm completeness (DS->DNSKEY->RRSIG) as per section 2.2 of
@@ -127,13 +130,13 @@ Requirements on writing test specifications
 These are some requirements for writing specifications for "Zonemaster":
 
  1. Follow the framework of the IEEE 829-2008.
- 2. The documents must be in [Markdown Syntax]
-    (http://daringfireball.net/projects/markdown/syntax).
+ 2. The documents must be in 
+    [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax).
  3. Keep the columns in the document below 80, preferrably shorter than 74
     columns. (Much easier to see changes in documents using the tools
 	available for diffing).
- 4. Use [normative language]
-   (http://en.wikipedia.org/wiki/Normative#Standards_documents).
+ 4. Use 
+    [normative language](http://en.wikipedia.org/wiki/Normative#Standards_documents).
  5. Refer to any reference that is the rationale for implementing the test
     case. If there are no reference to any standards, describe the reason
     for implementing the test. For most references, we use RFCs from IETF.
@@ -157,8 +160,8 @@ These are some requirements for writing specifications for "Zonemaster":
 
 -------
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
+Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden)  
+Copyright (c) 2013-2018, AFNIC  
 Creative Commons Attribution 4.0 International License
 
 You should have received a copy of the license along with this

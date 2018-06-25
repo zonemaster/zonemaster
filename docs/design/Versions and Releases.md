@@ -48,7 +48,7 @@ the y part as the _minor version_ and the z part as the _patch version_.
 
 ### Versioning principle
 
-We will follow the ideas of [Semantic Versioning](http://semver.org/). This is how they state it (version 2.0.0):
+We will follow the ideas of [Semantic Versioning](https://semver.org/). This is how they state it (version 2.0.0):
 
 >Given a version number MAJOR.MINOR.PATCH, increment the:
 >1. MAJOR version when you make incompatible API changes,

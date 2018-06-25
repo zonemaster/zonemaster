@@ -29,7 +29,7 @@ The domain name to be tested.
 
 1. Retrieve all address records for all the name servers using
    [Method 4](../Methods.md#method-4-obtain-glue-address-records-from-parent) and
-   [Method 5](../Methods.md##method-5-obtain-the-name-server-address-records-from-child),
+   [Method 5](../Methods.md#method-5-obtain-the-name-server-address-records-from-child),
    and do recursive lookups for the name servers that are out of bailiwick.
 2. Send a DNS query to each name server IP address querying the SOA record
    of the domain name with EDNS0 option of payload size ("bufsize")
