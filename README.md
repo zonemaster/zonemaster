@@ -127,9 +127,9 @@ installation instructions from the links above.
 
 ## Versions
 
-Go to the [release list](https://github.com/dotse/zonemaster/releases) 
+Go to the [release list](https://github.com/zonemaster/zonemaster/releases) 
 of this repository to find the 
-[latest version](https://github.com/dotse/zonemaster/releases/latest) of 
+[latest version](https://github.com/zonemaster/zonemaster/releases/latest) of 
 Zonemaster and the versions of the specific components. Be
 sure to read the release note of each component before installing or
 upgrading.
@@ -153,14 +153,14 @@ please search for the problem in the issue tracker in the relevant repository.
 If you find an open issue covering your issue, please add
 a comment with any additional information.
 
-* [Issues in Zonemaster::LDNS](https://github.com/dotse/zonemaster-ldns/issues)
-* [Issues in Zonemaster::Engine](https://github.com/dotse/zonemaster-engine/issues)
-* [Issues in Zonemaster::CLI](https://github.com/dotse/zonemaster-cli/issues)
-* [Issues in Zonemaster::Backend](https://github.com/dotse/zonemaster-backend/issues)
+* [Issues in Zonemaster::LDNS](https://github.com/zonemaster/zonemaster-ldns/issues)
+* [Issues in Zonemaster::Engine](https://github.com/zonemaster/zonemaster-engine/issues)
+* [Issues in Zonemaster::CLI](https://github.com/zonemaster/zonemaster-cli/issues)
+* [Issues in Zonemaster::Backend](https://github.com/zonemaster/zonemaster-backend/issues)
 * [Issues in zonemaster::GUI](https://github.com/zonemaster/zonemaster-gui/issues)
 
 If you cannot determine which repository to create the issue in, please select the main [Zonemaster] 
-repository (i.e. [general issues in Zonemaster](https://github.com/dotse/zonemaster/issues)).
+repository (i.e. [general issues in Zonemaster](https://github.com/zonemaster/zonemaster/issues)).
 
 
 ## Notable bugs and issues
@@ -173,11 +173,11 @@ None.
 For contacting the Zonemaster project, please send an e-mail to
 contact@zonemaster.net.
 
-[Zonemaster]: https://github.com/dotse/zonemaster
-[Zonemaster-LDNS]: https://github.com/dotse/zonemaster-ldns
-[Zonemaster-Engine]: https://github.com/dotse/zonemaster-engine 
-[Zonemaster-CLI]: https://github.com/dotse/zonemaster-cli
-[Zonemaster-Backend]: https://github.com/dotse/zonemaster-backend
+[Zonemaster]: https://github.com/zonemaster/zonemaster
+[Zonemaster-LDNS]: https://github.com/zonemaster/zonemaster-ldns
+[Zonemaster-Engine]: https://github.com/zonemaster/zonemaster-engine 
+[Zonemaster-CLI]: https://github.com/zonemaster/zonemaster-cli
+[Zonemaster-Backend]: https://github.com/zonemaster/zonemaster-backend
 [Zonemaster-GUI]: https://github.com/zonemaster/zonemaster-gui
 [LDNS]: https://www.nlnetlabs.nl/projects/ldns/
 [CPAN]: http://search.cpan.org/search?query=Zonemaster&mode=dist

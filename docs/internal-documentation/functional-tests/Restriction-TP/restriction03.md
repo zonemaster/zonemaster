@@ -20,5 +20,5 @@ domain names which is not in the LDH format.
 ### Result
 
 The engine does not capture the restriction for LDH and the explanation is
-provided here : https://github.com/dotse/zonemaster/issues/153 
+provided here : https://github.com/zonemaster/zonemaster/issues/153 
 
