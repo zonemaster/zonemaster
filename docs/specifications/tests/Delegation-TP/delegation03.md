@@ -54,7 +54,7 @@ test performed for the delegation of top-level domains by [IANA].
 
 7. For the [in-bailiwick] name server names for which IPv6 address
    or addresses were obtained, take the shortest name and add the 
-   IPv6 address or one of the IPv6 addresses to a complete A record.
+   IPv6 address or one of the IPv6 addresses to a complete AAAA record.
 
 8. Add the A record and the AAAA record from the previous two steps, if
    any, to the Additional section of the DNS packet created above 
@@ -78,7 +78,7 @@ test performed for the delegation of top-level domains by [IANA].
 
 13. For the [in-bailiwick] or [out-of-bailiwick] name server names 
     for which IPv6 address or addresses were obtained, take the 
-    shortest name and add the IPv4 address or one of the IPv6 
+    shortest name and add the IPv6 address or one of the IPv6 
     addresses to a complete AAAA record.
 
 14. Add the A record and the AAAA record, if any, from the previous 
@@ -139,7 +139,9 @@ in [RFC 7719], section 6, page 15.
 
 [Method4]: #method-4-delegation-name-server-addresses
 
-[REFERRAL_SIZE_LARGE]: #outcomes
+[REFERRAL_TYPE1_SIZE_LARGE]: #outcomes
+
+[REFERRAL_TYPE2_SIZE_LARGE]: #outcomes
 
 [REFERRAL_SIZE_OK]: #outcomes
 
