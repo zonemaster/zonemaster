@@ -33,23 +33,24 @@ The DNSKEY record is defined in [RFC 4034, section 2].
    4. Extract the algorithm numbers from each DNSKEY record and
       compare the extracted algorithm number to the IANA
       [DNSSEC Algorithm Numbers] registry.
-      1. If the algorithm is classified as "deprecated",
-      	 emit *[ALGORITHM_DEPRECATED]*.
-      2. If the algorithm is classified as "reserved",
-      	 emit *[ALGORITHM_RESERVED]*.
-      3. If the algorithm is classified as "unassigned",
-      	 emit *[ALGORITHM_UNASSIGNED]*.
-      4. If the algorithm is classified as "private algorithm",
-      	 emit *[ALGORITHM_PRIVATE]*.
-      5. If the algorithm is classified as "delete DS",
-      	 emit *[ALGORITHM_DELETE_DS]*.
-      6. If the algorithm is classified as "indirect key",
-      	 emit *[ALGORITHM_INDIRECT_KEY]*.
-      7. If the algorithm is not meant for zone signing,
-      	 emit *[ALGORITHM_NOT_ZONE_SIGN]*.
+      1. If the algorithm is classified as "deprecated" (algorithm 
+         1), emit *[ALGORITHM_DEPRECATED]*.
+      2. If the algorithm is classified as "reserved" (algorithm 
+         4, 9, 11, 123-251 or 255), emit *[ALGORITHM_RESERVED]*.
+      3. If the algorithm is classified as "unassigned" (algorithm
+         17-122), emit *[ALGORITHM_UNASSIGNED]*.
+      4. If the algorithm is classified as "private algorithm"
+         (algorithm 253 or 254), emit *[ALGORITHM_PRIVATE]*.
+      5. If the algorithm is classified as "delete DS" (algorithm
+         0), emit *[ALGORITHM_DELETE_DS]*.
+      6. If the algorithm is classified as "indirect key" (algoritm
+         252), emit *[ALGORITHM_INDIRECT_KEY]*.
+      7. If the algorithm is not meant for zone signing (algorithm
+         other than 3, 5-8, 10, 12-16, 253 and 254), emit 
+         *[ALGORITHM_NOT_ZONE_SIGN]*.
       8. If no message has been emitted for the DNSKEY 
-      	 and its algorithm is meant for zone signing,
-      	 emit *[ALGORITHM_OK]*.
+         and its algorithm is meant for zone signing,
+         emit *[ALGORITHM_OK]*.
 
 ## Outcome(s)
 
