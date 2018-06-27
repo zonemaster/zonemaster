@@ -48,9 +48,8 @@ The DNSKEY record is defined in [RFC 4034, section 2].
       7. If the algorithm is not meant for zone signing (algorithm
          other than 3, 5-8, 10, 12-16, 253 and 254), emit 
          *[ALGORITHM_NOT_ZONE_SIGN]*.
-      8. If no message has been emitted for the DNSKEY 
-         and its algorithm is meant for zone signing,
-         emit *[ALGORITHM_OK]*.
+      8. If no message has been emitted for the DNSKEY, emit 
+         *[ALGORITHM_OK]*.
 
 ## Outcome(s)
 
