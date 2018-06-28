@@ -40,14 +40,13 @@ field should follow the rules of an e-mail address also defined in
       address.
    9. Create an MX query for the domain part and send it to a resolving
       name server. If the lookup does not return a DNS response with
-      with either RCODE "NOERROR" or "NXDOMAIN" emit 
-      *[RNAME_MAIL_DOMAIN_INVALID]*.
+      with RCODE "NOERROR" emit *[RNAME_MAIL_DOMAIN_INVALID]*.
    10. If the lookup in previous step returned MX record or records for 
        the mail domain, then replace the mail domain with the mail 
        exchange or exchanges from RDATA of the MX record or records in
        next step.
    11. Create address querie (A and AAAA) for the mail domain or mail
-       exchage in previous steps (multiple queries of there are multiple
+       exchage in previous steps (multiple queries if there are multiple
        mail exchanges). At least one query must successfully return
        an IP address or else emit *[RNAME_MAIL_DOMAIN_INVALID]*.
 
