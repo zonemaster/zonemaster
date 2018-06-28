@@ -43,55 +43,58 @@ test performed for the delegation of top-level domains by [IANA].
 
 4. The test case will test packet size twice in two different ways, 
    and the packet created above (without the A and AAAA records) will 
-   be used a second time.
+   be used for both tests.
 
-5. Obtain the name server IP addresses per name server names for
-   the delegation using [Method4].
+5. Create packet using [in-bailiwick] name server names only for
+   glue:
 
-6. For the [in-bailiwick] name server names for which IPv4 address
-   or addresses were obtained, take the shortest name and add the 
-   IPv4 address or one of the IPv4 addresses to a complete A record.
+   1. Obtain the name server IP addresses per name server names for
+      the delegation using [Method4].
 
-7. For the [in-bailiwick] name server names for which IPv6 address
-   or addresses were obtained, take the shortest name and add the 
-   IPv6 address or one of the IPv6 addresses to a complete AAAA record.
+   2. For the [in-bailiwick] name server names for which IPv4 address
+      or addresses were obtained, take the shortest name and add the 
+      IPv4 address or one of the IPv4 addresses to a complete A record.
 
-8. Add the A record and the AAAA record from the previous two steps, if
-   any, to the Additional section of the DNS packet created above 
-   using the message compression schema defined in section 4.1.4 of 
-   [RFC 1035] where applicable.
+   3. For the [in-bailiwick] name server names for which IPv6 address
+      or addresses were obtained, take the shortest name and add the 
+      IPv6 address or one of the IPv6 addresses to a complete AAAA record.
 
-9. If size of the DNS packet after encoding is larger than 512 octets 
-   then emit *[REFERRAL_TYPE1_SIZE_LARGE]*.
+   4. Add the A record and the AAAA record from the previous two steps, if
+      any, to the Additional section of the DNS packet created above 
+      using the message compression schema defined in section 4.1.4 of 
+      [RFC 1035] where applicable.
 
-10. Reuse the packet as it was before the A or AAAA records were
-    added.
+   5. If size of the DNS packet after encoding is larger than 512 octets 
+      then emit *[REFERRAL_TYPE1_SIZE_LARGE]*.
 
-11. Obtain the name server IP addresses per name server names for
-    the delegation -- both for [in-bailiwick] and [out-of-bailiwick] 
-    name server names) -- using [Method4].
+6. Create packet using [in-bailiwick] or [out-of-bailiwick] name server 
+   names for glue:
 
-12. For the [in-bailiwick] or [out-of-bailiwick] name server names 
-    for which IPv4 address or addresses were obtained, take the 
-    shortest name and add the IPv4 address or one of the IPv4 
-    addresses to a complete A record.
+   1. Obtain the name server IP addresses per name server names for
+      the delegation -- both for [in-bailiwick] and [out-of-bailiwick] 
+      name server names) -- using [Method4].
 
-13. For the [in-bailiwick] or [out-of-bailiwick] name server names 
-    for which IPv6 address or addresses were obtained, take the 
-    shortest name and add the IPv6 address or one of the IPv6 
-    addresses to a complete AAAA record.
+   2. For the [in-bailiwick] or [out-of-bailiwick] name server names 
+      for which IPv4 address or addresses were obtained, take the 
+      shortest name and add the IPv4 address or one of the IPv4 
+      addresses to a complete A record.
 
-14. Add the A record and the AAAA record, if any, from the previous 
-    two steps to the Additional section of the DNS packet created above 
-    using the message compression schema defined in section 4.1.4 of 
-    [RFC 1035] where applicable.
+   3. For the [in-bailiwick] or [out-of-bailiwick] name server names 
+      for which IPv6 address or addresses were obtained, take the 
+      shortest name and add the IPv6 address or one of the IPv6 
+      addresses to a complete AAAA record.
 
-15. If size of the DNS packet after encoding is larger than 512 octets 
-    then emit *[REFERRAL_TYPE2_SIZE_LARGE]*.
+   4. Add the A record and the AAAA record, if any, from the previous 
+      two steps to the Additional section of the DNS packet created above 
+      using the message compression schema defined in section 4.1.4 of 
+      [RFC 1035] where applicable.
 
-16. If if neither *[REFERRAL_TYPE1_SIZE_LARGE]* nor 
-    *[REFERRAL_TYPE2_SIZE_LARGE]* was emitted, emit 
-    *[REFERRAL_SIZE_OK]*.
+   5. If size of the DNS packet after encoding is larger than 512 octets 
+      then emit *[REFERRAL_TYPE2_SIZE_LARGE]*.
+
+7. If if neither *[REFERRAL_TYPE1_SIZE_LARGE]* nor 
+   *[REFERRAL_TYPE2_SIZE_LARGE]* was emitted, emit 
+   *[REFERRAL_SIZE_OK]*.
 
 ## Outcome(s)
 
