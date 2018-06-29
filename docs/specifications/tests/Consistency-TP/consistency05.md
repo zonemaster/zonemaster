@@ -185,9 +185,13 @@ Here we use "glue" in the wider sense.
 
 [PARENT_NS_NO_RESPONSE]: #outcomes
 
+[PARENT_NO_DELEGATION]: #outcomes
+
 [CHILD_NS_FAILED]: #outcomes
 
 [CHILD_NS_NO_RESPONSE]: #outcomes
+
+[CHILD_ZONE_LAME]: #outcomes
 
 [IN_BAILIWICK_ADDR_MISMATCH]: #outcomes
 
