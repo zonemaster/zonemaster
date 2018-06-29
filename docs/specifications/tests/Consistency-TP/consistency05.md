@@ -16,46 +16,22 @@ consistent between glue and authoritative data.
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
-* "Test Type" - "undelegate test" or "normal test".
-* "Parent NS IP" - The name servers for the parent zone as found 
-  in [BASIC01] (if *Type Type* is "normal test").
-* "Undelegated Data" - The submitted delegation data, name server names
-  and IP addresses for *Child Zone* (if *Test Type* is "undelegated test").
+* "Test Type" - "undelegate" or "normal".
 
 ## Ordered description of steps to be taken to execute the test case
-1. Obtain the IP addresses provided in the additional section in the 
-   delegation ("[glue records]" in the wide sense) performning step 2 or 3.
+1. Obtain the set of name server names and its IP addresses of the 
+   delegation of *Child Zone* using [Method2] and [Method4], respectively.
 
-2. If the *Test Type* is a "normal test":
-   1. Create an NS query for the *Child Zone* with RD flag unset and 
-      send that to each server of *parent NS IP*.
-   2. If there is no response from the a server emit 
-      *[PARENT_NS_NO_RESPONSE]* and go to next server.
-   3. For each response that contains a referral to the *Child Zone*:
-      1. Extract the name server names from the RDATA in the NS record in
-         the authority section.
-      2. Extract all A and AAAA records from the additional section.
-   4. If the response is authoritative (AA bit set) and the answer section
-      contains the NS record of the *Child Zone*, then remember this 
-      fact (server is authoritative for *Child Zone*) and go to next 
-      server.
-   5. If there is a DNS response from a server, but no NS records in
-      neither answer section (authoritative answer) nor authority section
-      (referral), emit *[PARENT_NS_FAILED]* and go to next server.
-   6. If all servers that returned a valid answer were authorititative for 
-      the *Child Zone* then emit *[DELEGATION_NOT_DETERMINED]*.
-   7. Tag any extracted data (A and AAAA from additional section) 
-      as "NS IP from parent".
-   8. If all servers emit *[PARENT_NS_NO_RESPONSE]* or *[PARENT_NS_FAILED]*, 
-      then emit *[PARENT_NO_DELEGATION]* and completely stop processing 
-      this test case.
+   1. Extract the [in-bailiwick] name servers names and create a set
+      "Delegation Strict Glue" of those, were each name server name 
+      is matched with its IP address or addresses, if available. The 
+      set might be empty.
+   2. Extract the [out-of-bailiwick] name servers names and create a set
+      "Delegation Extended Glue" of those, were each name server name 
+      is matched with its IP address or addresses, if available. The 
+      set might be empty.
 
-3. If the test is an *undelegated test*:
-
-   1. Collect IPv4 and IPv6 address for the name servers in input data
-      ("NS IP from parent").
-
-4. Obtain the IP addresses of the [in-bailiwick] name servers from the
+2. Obtain the IP addresses of the [in-bailiwick] name servers from the
    *Child Zone*:
 
    1. Obtain the set of name server names for the *Child Zone* from the
@@ -65,8 +41,9 @@ consistent between glue and authoritative data.
       Zone*.
    3. For each [in-bailiwick] name server names create one A query and 
       one AAAA query.
-   3. Obtain the set of NS IP for *Child Zone* from [Method4].
-   4. Send the A and AAAA queries created above to each NS IP. 
+   3. Obtain the set of "NS IP" for *Child Zone* from [Method4] and
+      [Method5].
+   4. Send the A and AAAA queries created above to each *NS IP*. 
       1. If there is no response from a server emit 
          *[CHILD_NS_NO_RESPONSE]* and go to next server.
       2. If there is DNS response from the server, but not an 
@@ -81,28 +58,30 @@ consistent between glue and authoritative data.
       4. Extract the IP addresses from A and AAAA records from responses 
          that have the AA flag set if the owner name matches the that of 
          the of the query
-      5. Tag any extracted data (A and AAAA) as "NS IP from child".
+      5. Tag any extracted data (A and AAAA) as 
+         "Address Records From Child".
 
-5. Compare the IP address for the [in-bailiwick] name servers from 
-   *NS IP from parent* with *NS IP from child*
+5. Compare the IP address for the name servers from 
+   *Delegation Strict Glue* with *Address Records From Child*
+   (i.e. [in-bailiwick] only).
 
-   1. If an IP from *NS IP from parent* is not listed in 
-      *NS IP from child* with that same name server name then emit
-      *[IN_BAILIWICK_ADDR_MISMATCH]*.
+   1. If an IP from *Delegation Strict Glue* is not listed in 
+      *Address Records From Child* with that same name server name 
+      then emit *[IN_BAILIWICK_ADDR_MISMATCH]*.
 
-   2. If an IP from *NS IP from child* is not listed in
-      *NS IP from parent* with that same name server name then emit
-      *[EXTRA_ADDRESS_CHILD]*.
+   2. If an IP from *Address Records From Child* is not listed in
+      *Delegation Strict Glue* with that same name server name then 
+      emit *[EXTRA_ADDRESS_CHILD]*.
 
-6. For each [out-of-bailiwick] name server IP in *NS IP from parent* 
-   do a DNS lookup (type A or AAAA) of the name server name on public 
-   DNS.
+6. For each  name server name in *Delegation Extended Glue* 
+   (i.e. [out-of-bailiwick] only) do a DNS lookup, type A or AAAA, 
+   on public DNS.
 
-   1. If the IP in *NS IP from parent* does not match any of the 
-      listed A or AAAA records listed in the response, or no response
-      with such records, emit *[OUT_OF_BAILIWICK_ADDR_MISMATCH]* 
-      (if a *normal test*) or *[UNDEL_OOB_ADDR_MISMATCH]* (if an 
-      *undelegated test*).
+   1. If the IP in *Delegation Extended Glue* does not match any of the 
+      listed A or AAAA records listed in the response for the same
+      name, or no response with such records, emit 
+      *[OUT_OF_BAILIWICK_ADDR_MISMATCH]*, if the *Test Type* is "normal",
+      or *[UNDEL_OOB_ADDR_MISMATCH]*, if *Test Type* is "undelegated".
 
 7. If none of the messages *[IN_BAILIWICK_ADDR_MISMATCH]*, 
    *[EXTRA_ADDRESS_CHILD]*, *[OUT_OF_BAILIWICK_ADDR_MISMATCH]* or
@@ -124,10 +103,6 @@ In other cases the outcome of this Test Case is "pass".
 
 Message                           | Default severity level (if message is emitted)
 :---------------------------------|:-----------------------------------
-DELEGATION_NOT_DETERMINED         | INFO
-PARENT_NS_FAILED                  | NOTICE
-PARENT_NS_NO_RESPONSE             | NOTICE
-PARENT_NO_DELEGATION              | ERROR
 CHILD_NS_FAILED                   | NOTICE
 CHILD_NS_NO_RESPONSE              | NOTICE
 CHILD_ZONE_LAME                   | ERROR
@@ -142,6 +117,10 @@ ADDRESSES_MATCH                   | INFO
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol. Log a message reporting
 on the ignored result.
+
+If the Test Type is "undelegated" then [Method2] and [Method4] will 
+include the provided input data instead of data from any real delegation
+and authoritative data.
 
 It is assumed that the name servers of the parent zone behave the same way 
 for the parent zone as when [BASIC01] was run.
@@ -178,14 +157,6 @@ Here we use "glue" in the wider sense.
 [out-of-bailiwick]: #terminology
 
 [glue records]: #terminology
-
-[DELEGATION_NOT_DETERMINED]: #outcomes
-
-[PARENT_NS_FAILED]: #outcomes
-
-[PARENT_NS_NO_RESPONSE]: #outcomes
-
-[PARENT_NO_DELEGATION]: #outcomes
 
 [CHILD_NS_FAILED]: #outcomes
 
