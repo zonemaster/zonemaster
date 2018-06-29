@@ -15,20 +15,20 @@ consistent between glue and authoritative data.
 
 ## Inputs
 
-* The domain name to be tested ("Child Zone").
-* The test type, "undelegate test" or "normal test".
-* If *normal test*, the name servers for the parent zone as found 
-  in [BASIC01] ("parent NS").
-* If *undelegated test*, the submitted delegation data, name server names
-  and IP addresses for *Child Zone* ("undelegated data").
+* "Child Zone" - The domain name to be tested.
+* "Test Type" - "undelegate test" or "normal test".
+* "Parent NS IP" - The name servers for the parent zone as found 
+  in [BASIC01] (if *Type Type* is "normal test").
+* "Undelegated Data" - The submitted delegation data, name server names
+  and IP addresses for *Child Zone* (if *Test Type* is "undelegated test").
 
 ## Ordered description of steps to be taken to execute the test case
 1. Obtain the IP addresses provided in the additional section in the 
    delegation ("[glue records]" in the wide sense) performning step 2 or 3.
 
-2. If the test is a *normal test*:
+2. If the *Test Type* is a "normal test":
    1. Create an NS query for the *Child Zone* with RD flag unset and 
-      send that to each server of *parent NS*.
+      send that to each server of *parent NS IP*.
    2. If there is no response from the a server emit 
       *[PARENT_NS_NO_RESPONSE]* and go to next server.
    3. For each response that contains a referral to the *Child Zone*:
@@ -46,6 +46,9 @@ consistent between glue and authoritative data.
       the *Child Zone* then emit *[DELEGATION_NOT_DETERMINED]*.
    7. Tag any extracted data (A and AAAA from additional section) 
       as "NS IP from parent".
+   8. If all servers emit *[PARENT_NS_NO_RESPONSE]* or *[PARENT_NS_FAILED]*, 
+      then emit *[PARENT_NO_DELEGATION]* and completely stop processing 
+      this test case.
 
 3. If the test is an *undelegated test*:
 
@@ -64,18 +67,21 @@ consistent between glue and authoritative data.
       one AAAA query.
    3. Obtain the set of NS IP for *Child Zone* from [Method4].
    4. Send the A and AAAA queries created above to each NS IP. 
-   5. If there is no response from a server emit 
-      *[CHILD_NS_NO_RESPONSE]* and go to next server (see above).
-   6. If there is DNS response from the server, but not an 
-      authoritative answer with RCODE NOERROR or NXDOMAIN, emit
-      *[CHILD_NS_FAILED]* and go to next server (see above).
-   7. If a delegation (referral) to a sub-zone of *Child Zone* is returned, 
-      follow that delegation, possibly in several steps, by repeating the
-      A and AAAA queries.
-   8. Extract the IP addresses from A and AAAA records from responses 
-      that have the AA flag set if the owner name matches the that of 
-      the of the query
-   9. Tag any extracted data (A and AAAA) as "NS IP from child".
+      1. If there is no response from a server emit 
+         *[CHILD_NS_NO_RESPONSE]* and go to next server.
+      2. If there is DNS response from the server, but not an 
+         authoritative answer with RCODE NOERROR or NXDOMAIN, emit
+         *[CHILD_NS_FAILED]* and go to next server.
+      3. If all servers emit *[CHILD_NS_NO_RESPONSE]* or 
+         *[CHILD_NS_FAILED]*, then emit *[CHILD_ZONE_LAME]* and
+         completely stop processing this test case.
+      3. If a delegation (referral) to a sub-zone of *Child Zone* is returned, 
+         follow that delegation, possibly in several steps, by repeating the
+         A and AAAA queries.
+      4. Extract the IP addresses from A and AAAA records from responses 
+         that have the AA flag set if the owner name matches the that of 
+         the of the query
+      5. Tag any extracted data (A and AAAA) as "NS IP from child".
 
 5. Compare the IP address for the [in-bailiwick] name servers from 
    *NS IP from parent* with *NS IP from child*
@@ -121,8 +127,10 @@ Message                           | Default severity level (if message is emitte
 DELEGATION_NOT_DETERMINED         | INFO
 PARENT_NS_FAILED                  | NOTICE
 PARENT_NS_NO_RESPONSE             | NOTICE
+PARENT_NO_DELEGATION              | ERROR
 CHILD_NS_FAILED                   | NOTICE
 CHILD_NS_NO_RESPONSE              | NOTICE
+CHILD_ZONE_LAME                   | ERROR
 IN_BAILIWICK_ADDR_MISMATCH        | ERROR
 OUT_OF_BAILIWICK_ADDR_MISMATCH    | ERROR
 EXTRA_ADDRESS_CHILD               | NOTICE
