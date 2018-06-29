@@ -16,7 +16,7 @@ consistent between glue and authoritative data.
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
-* "Test Type" - "undelegate" or "normal".
+* "Test Type" - "undelegated" or "normal".
 
 ## Ordered description of steps to be taken to execute the test case
 1. Obtain the set of name server names and its IP addresses of the 
@@ -88,7 +88,6 @@ consistent between glue and authoritative data.
    *[UNDEL_OOB_ADDR_MISMATCH]* has been emitted, emit 
    *[ADDRESSES_MATCH]*.
 
-ADDRESSES_MATCH
 
 ## Outcome(s)
 
