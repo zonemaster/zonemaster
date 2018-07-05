@@ -60,8 +60,9 @@ field should follow the rules of an e-mail address also defined in
           resolving name server.
        2. If the mail exchange name is "localhost" then consider all 
           A and AAAA lookups as failing.
-       3. If the mail exchange name points at a CNAME, then ignore
-          any A or AAAA records, i.e. consider them as not existing.
+       3. Disregard all A and AAAA records that do not have the same
+          owner name as the mail exchange name, i.e. do not follow
+          any CNAME.
        4. Disregard any A record with 127.0.0.1 or AAAA with ::1.
        5. If all MX have been processed and neither A or AAAA record 
           was returned in the answer section for any mail exchange then 
