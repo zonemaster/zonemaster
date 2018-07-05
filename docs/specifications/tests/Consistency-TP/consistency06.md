@@ -29,15 +29,19 @@ operational failures for applications that uses MNAME.
     1. Send the query to name server.
     2. If the name server does not respond with a DNS response, 
        emit *[NO_RESPONSE]* for that name server and go to next server.
-    3. Retrieve the SOA RR from the response from the name server.
-    4. If the response does not include a SOA record in the ansser section
-       then emit *[NO_RESPONSE_SOA_QUERY]* for that server and go to next
-       server.
+    3. If the DNS response does not include a SOA record in the answer 
+       section then emit *[NO_RESPONSE_SOA_QUERY]* for that server and go 
+       to next server.
+    4. Retrieve the MNAME field from the SOA RR from the DNS response
+       and save that to compare it with the MNAME from the other name
+       servers.
+
+ 5. Compare the MNAME fields retreived from all name servers.
 
  4. If at least one name server has responded with a SOA record and the 
     MNAME is identical in all SOA records retrieved, emit *[ONE_SOA_MNAME]*.
 
- 5. If MNAME is not identical in all SOA records retrieved emit 
+ 5. If MNAME is not identical in all SOA records retrieved, emit 
     *[MULTIPLE_SOA_MNAMES]*.
 
 ## Outcome(s)
