@@ -23,11 +23,13 @@ field should follow the rules of an e-mail address also defined in
 
 3. For each name server in *Name Server IP* do:
    1. Send the SOA query over UDP to the name server.
-   2. If the name server does not respond, emit *[NO_RESPONSE]* and go
-      to next server.
-   3. If the name server responds with DNS response but does not 
-      include a SOA record in the answer section, emit 
-      *[NO_RESPONSE_SOA_QUERY]* and go to next server.
+   2. If the name server does not respond with a DNS response, then:
+      1. Emit *[NO_RESPONSE]*.
+      2. Go to next server.
+   3. If the DNS response does not include a SOA record in the 
+      answer section, then:
+      1. Emit *[NO_RESPONSE_SOA_QUERY]*.
+      2. Go to next server.
    4. Extract the RNAME from the SOA record.
    5. Convert the first "." without backslash quoting to an "@" in 
       the RNAME.
@@ -39,16 +41,30 @@ field should follow the rules of an e-mail address also defined in
    8. Extract the domain part (to the right of "@") from the mail 
       address.
    9. Create an MX query for the domain part and send it to a resolving
-      name server. If the lookup does not return a DNS response with
-      with RCODE "NOERROR" emit *[RNAME_MAIL_DOMAIN_INVALID]*.
-   10. If the lookup in previous step returned MX record or records for 
-       the mail domain, then replace the mail domain with the mail 
-       exchange or exchanges from RDATA of the MX record or records in
-       next step.
-   11. Create address querie (A and AAAA) for the mail domain or mail
-       exchage in previous steps (multiple queries if there are multiple
-       mail exchanges). At least one query must successfully return
-       an IP address or else emit *[RNAME_MAIL_DOMAIN_INVALID]*.
+       name server. 
+   10. If the MX lookup does not return a DNS response with with RCODE 
+       "NOERROR" emit *[RNAME_MAIL_DOMAIN_INVALID]*.
+   11. If the MX lookup returned a CNAME or a chain of CNAMEs then
+       use the final name instead of the domain part in the steps below.
+   12. If the MX lookup returned no MX record, then 
+       1. Create address queries (A and AAAA) for the domain part and
+          send it to a resolving name server.
+       2. If the domain part is "localhost" then consider all A and
+          AAAA lookups as failing.
+       3. Disregard any A record with 127.0.0.1 or AAAA with ::1.
+       4. If neither A or AAAA record was returned for the domain part
+          in the answer section then emit *[RNAME_MAIL_DOMAIN_INVALID]*.
+   14. If the MX lookup returned one or more MX records, then for each
+       mail exchange (domain name in RDATA of the MX record) do:
+       1. Create address queries (A and AAAA) and send it to a 
+          resolving name server.
+       2. If the mail exchange is "localhost" then consider all A and
+          AAAA lookups as failing.
+       3. Ignore any CNAME replies (i.e. do not follow them).
+       4. Disregard any A record with 127.0.0.1 or AAAA with ::1.
+       5. If all MX have been processed and neither A or AAAA record 
+          was returned in the answer section for any mail exchange then 
+          emit *[RNAME_MAIL_DOMAIN_INVALID]*.
 
 4. If at least one RNAME has been fully validated and no 
    *[RNAME_RFC822_INVALID]* or *[RNAME_MAIL_DOMAIN_INVALID]*
