@@ -15,21 +15,29 @@ operational failures for applications that uses MNAME.
 
 ## Inputs
 
-* The domain name to be tested ("child zone")
+* "Child Zone" - The domain name to be tested.
 
 ## Ordered description of steps to be taken to execute the test case
 
- 1. Obtain the list of name server IPs for the *child zone* from [Method4] 
-    and [Method5].
- 2. Create an SOA query for *child zone* apex and send it to all name 
-    server IPs.
- 3. Retrieve the SOA RR from the responses from all name server IPs.
- 4. If a name server does not respond, emit *[NO_RESPONSE]*.
- 5. If a name server responds but does not include a SOA record in 
-    the response, emit *[NO_RESPONSE_SOA_QUERY]*.
- 6. If at least one SOA record has been retrieved and MNAME is 
-    identical in all SOA records emit *[ONE_SOA_MNAME]*.
- 7. If MNAME is not identical in all SOA records emit 
+ 1. Obtain the set of name server IPs for the *Child Zone* from [Method4] 
+    and [Method5] ("Name Server IP").
+
+ 2. Create an SOA query for *Child Zone* apex.
+
+ 3. For each name server in *Name Server IP* do:
+
+    1. Send the query to name server.
+    2. If the name server does not respond with a DNS response, 
+       emit *[NO_RESPONSE]* for that name server and go to next server.
+    3. Retrieve the SOA RR from the response from the name server.
+    4. If the response does not include a SOA record in the ansser section
+       then emit *[NO_RESPONSE_SOA_QUERY]* for that server and go to next
+       server.
+
+ 4. If at least one name server has responded with a SOA record and the 
+    MNAME is identical in all SOA records retrieved, emit *[ONE_SOA_MNAME]*.
+
+ 5. If MNAME is not identical in all SOA records retrieved emit 
     *[MULTIPLE_SOA_MNAMES]*.
 
 ## Outcome(s)
