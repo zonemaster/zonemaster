@@ -6,21 +6,21 @@ Release process
 Any changes since the last release must be documented in the Changes files.
 Please refer to any Github issues related to the change by the issue number.
 
- * zonemaster-ldns - [Changes](https://github.com/dotse/zonemaster-ldns/blob/master/Changes)
- * zonemaster-engine - [Changes](https://github.com/dotse/zonemaster-engine/blob/master/Changes)
- * zonemaster-cli - [Changes](https://github.com/dotse/zonemaster-cli/blob/master/Changes)
- * zonemaster-backend - [Changes](https://github.com/dotse/zonemaster-backend/blob/master/Changes)
- * zonemaster-gui - [Changes](https://github.com/dotse/zonemaster-gui/blob/master/Changes)
+ * zonemaster-ldns - [Changes](https://github.com/zonemaster/zonemaster-ldns/blob/master/Changes)
+ * zonemaster-engine - [Changes](https://github.com/zonemaster/zonemaster-engine/blob/master/Changes)
+ * zonemaster-cli - [Changes](https://github.com/zonemaster/zonemaster-cli/blob/master/Changes)
+ * zonemaster-backend - [Changes](https://github.com/zonemaster/zonemaster-backend/blob/master/Changes)
+ * zonemaster-gui - [Changes](https://github.com/zonemaster/zonemaster-gui/blob/master/Changes)
 
 ## 2. Set all version numbers
 
 The version numbers can be found in these Perl modules:
 
- * zonemaster-ldns - [LDNS.pm](https://github.com/dotse/zonemaster-ldns/blob/master/lib/Zonemaster/LDNS.pm)
- * zonemaster-engine - [Engine.pm](https://github.com/dotse/zonemaster-engine/blob/master/lib/Zonemaster/Engine.pm)
- * zonemaster-cli - [CLI.pm](https://github.com/dotse/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)
- * zonemaster-backend - [Backend.pm](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/Backend.pm)
- * zonemaster-gui - [GUI.pm](https://github.com/dotse/zonemaster-gui/blob/master/lib/Zonemaster/GUI.pm)
+ * zonemaster-ldns - [LDNS.pm](https://github.com/zonemaster/zonemaster-ldns/blob/master/lib/Zonemaster/LDNS.pm)
+ * zonemaster-engine - [Engine.pm](https://github.com/zonemaster/zonemaster-engine/blob/master/lib/Zonemaster/Engine.pm)
+ * zonemaster-cli - [CLI.pm](https://github.com/zonemaster/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)
+ * zonemaster-backend - [Backend.pm](https://github.com/zonemaster/zonemaster-backend/blob/master/lib/Zonemaster/Backend.pm)
+ * zonemaster-gui - [GUI.pm](https://github.com/zonemaster/zonemaster-gui/blob/master/lib/Zonemaster/GUI.pm)
 
 ## 3. Update prerequisites
 
@@ -31,11 +31,11 @@ Make sure the [declaration of prerequisites] is up to date with regard to
 
 Make sure the Travis configuration for each repo is up to date with the supported Perl versions.
 
- * zonemaster-ldns - [.travis.yml](https://github.com/dotse/zonemaster-ldns/blob/master/.travis.yml)
- * zonemaster-engine - [.travis.yml](https://github.com/dotse/zonemaster-engine/blob/master/.travis.yml)
- * zonemaster-cli - [.travis.yml](https://github.com/dotse/zonemaster-cli/blob/master/.travis.yml)
- * zonemaster-backend - [.travis.yml](https://github.com/dotse/zonemaster-backend/blob/master/.travis.yml)
- * zonemaster-gui - [.travis.yml](https://github.com/dotse/zonemaster-gui/blob/master/.travis.yml)
+ * zonemaster-ldns - [.travis.yml](https://github.com/zonemaster/zonemaster-ldns/blob/master/.travis.yml)
+ * zonemaster-engine - [.travis.yml](https://github.com/zonemaster/zonemaster-engine/blob/master/.travis.yml)
+ * zonemaster-cli - [.travis.yml](https://github.com/zonemaster/zonemaster-cli/blob/master/.travis.yml)
+ * zonemaster-backend - [.travis.yml](https://github.com/zonemaster/zonemaster-backend/blob/master/.travis.yml)
+ * zonemaster-gui - [.travis.yml](https://github.com/zonemaster/zonemaster-gui/blob/master/.travis.yml)
 
 ## 5. Verify that META.yml has all the correct data
 
@@ -180,7 +180,7 @@ Write a description how to set release in Github to get a nice presentation.
 If there are no more components to release, go to the Zonemaster repository an
 make a release.
 
-https://github.com/dotse/zonemaster/wiki/Zonemaster-Distribution-Releases
+https://github.com/zonemaster/zonemaster/wiki/Zonemaster-Distribution-Releases
 
 To see tags for a repository:
 

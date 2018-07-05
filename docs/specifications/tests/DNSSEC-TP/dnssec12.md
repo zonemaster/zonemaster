@@ -13,10 +13,10 @@ Test for DNSSEC Algorithm Completeness (DS->DNSKEY->RRSIG)
 
 See issues [#588], [#528], [#529] and [#231].
 
-[#588]: https://github.com/dotse/zonemaster/issues/588
-[#528]: https://github.com/dotse/zonemaster/issues/528
-[#529]: https://github.com/dotse/zonemaster/issues/529
-[#231]: https://github.com/dotse/zonemaster/issues/231
+[#588]: https://github.com/zonemaster/zonemaster/issues/588
+[#528]: https://github.com/zonemaster/zonemaster/issues/528
+[#529]: https://github.com/zonemaster/zonemaster/issues/529
+[#231]: https://github.com/zonemaster/zonemaster/issues/231
 
 
 ### Inputs

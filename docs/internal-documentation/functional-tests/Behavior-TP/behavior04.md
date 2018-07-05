@@ -19,7 +19,7 @@ as of not we do not have different profiles to test.
 This issues has been moved to post release 1.0
 
 Further information on the reason to move to post release 1.0 can be found here :
-https://github.com/dotse/zonemaster/issues/167.
+https://github.com/zonemaster/zonemaster/issues/167.
 
 
 
