@@ -16,7 +16,7 @@ and IPv6 addresses respectively.
 
 ## Inputs
 
-The domain name to be tested ("Child Zone").
+"Child Zone" - The domain name to be tested
 
 ## Ordered description of steps to be taken to execute the test case
 
@@ -24,45 +24,45 @@ The domain name to be tested ("Child Zone").
     from the delegation of the *Child Zone*.
 
  2. Count the name server names:
-    1. If zero or one, emit *NOT_ENOUGH_NS_DEL*.
-    2. If two or more, emit *ENOUGH_NS_DEL*.
+    1. If zero or one, emit *[NOT_ENOUGH_NS_DEL]*.
+    2. If two or more, emit *[ENOUGH_NS_DEL]*.
 
  3. Using [Method4], obtain the IP addresses for the name servers of the 
     delegation of the *Child Zone*.
 
  4. Count the number of name server names that resolve into at least one IPv4 
     address:
-    1. If zero, emit *NO_IPV4_NS_DEL*.
-    2. If one, emit *NOT_ENOUGH_IPV4_NS_DEL*.
-    3. If two or more, emit *ENOUGH_IPV4_NS_DEL*.
+    1. If zero, emit *[NO_IPV4_NS_DEL]*.
+    2. If one, emit *[NOT_ENOUGH_IPV4_NS_DEL]*.
+    3. If two or more, emit *[ENOUGH_IPV4_NS_DEL]*.
 
  5. Count the number of name server names that resolve into at least one IPv6 
     address:
-    1. If zero, emit *NO_IPV6_NS_DEL*.
-    2. If one, emit *NOT_ENOUGH_IPV6_NS_DEL*.
-    3. If two or more, emit *ENOUGH_IPV6_NS_DEL*.
+    1. If zero, emit *[NO_IPV6_NS_DEL]*.
+    2. If one, emit *[NOT_ENOUGH_IPV6_NS_DEL]*.
+    3. If two or more, emit *[ENOUGH_IPV6_NS_DEL]*.
 
  6. Using [Method3], obtain the complete set of names of the name servers
     from the *Child Zone* for the *Child Zone*. 
 
  7. Count the name server names:
-    1. If zero or one, emit *NOT_ENOUGH_NS_CHILD*.
-    2. If two or more, emit *ENOUGH_NS_CHILD*.
+    1. If zero or one, emit *[NOT_ENOUGH_NS_CHILD]*.
+    2. If two or more, emit *[ENOUGH_NS_CHILD]*.
 
  8. Using [Method5], obtain the IP addresses for the name servers from 
     the *Child Zone* for the *Child Zone*.
 
  9. Count the number of name server names that resolve into at least one IPv4 
     address:
-    1. If zero, emit *NO_IPV4_NS_CHILD*.
-    2. If one, emit *NOT_ENOUGH_IPV4_NS_CHILD*.
-    3. If two or more, emit *ENOUGH_IPV4_NS_CHILD*.
+    1. If zero, emit *[NO_IPV4_NS_CHILD]*.
+    2. If one, emit *[NOT_ENOUGH_IPV4_NS_CHILD]*.
+    3. If two or more, emit *[ENOUGH_IPV4_NS_CHILD]*.
 
 10. Count the number of name server names that resolve into at least one IPv6 
     address:
-    1. If zero, emit *NO_IPV6_NS_CHILD*.
-    2. If one, emit *NOT_ENOUGH_IPV6_NS_CHILD*.
-    3. If two or more, emit *ENOUGH_IPV6_NS_CHILD*.
+    1. If zero, emit *[NO_IPV6_NS_CHILD]*.
+    2. If one, emit *[NOT_ENOUGH_IPV6_NS_CHILD]*.
+    3. If two or more, emit *[ENOUGH_IPV6_NS_CHILD]*.
 
 ## Outcome(s)
 
@@ -115,4 +115,21 @@ None
 
 [Method5]:  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
+
+[ENOUGH_IPV4_NS_CHILD]: #outcomes
+[ENOUGH_IPV4_NS_DEL]: #outcomes
+[ENOUGH_IPV6_NS_CHILD]: #outcomes
+[ENOUGH_IPV6_NS_DEL]: #outcomes
+[ENOUGH_NS_CHILD]: #outcomes
+[ENOUGH_NS_DEL]: #outcomes
+[NOT_ENOUGH_IPV4_NS_CHILD]: #outcomes
+[NOT_ENOUGH_IPV4_NS_DEL]: #outcomes
+[NOT_ENOUGH_IPV6_NS_CHILD]: #outcomes
+[NOT_ENOUGH_IPV6_NS_DEL]: #outcomes
+[NOT_ENOUGH_NS_CHILD]: #outcomes
+[NOT_ENOUGH_NS_DEL]: #outcomes
+[NO_IPV4_NS_CHILD]: #outcomes
+[NO_IPV4_NS_DEL]: #outcomes
+[NO_IPV6_NS_CHILD]: #outcomes
+[NO_IPV6_NS_DEL]: #outcomes
 
