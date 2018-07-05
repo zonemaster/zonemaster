@@ -36,12 +36,12 @@ operational failures for applications that uses MNAME.
        and save that to compare it with the MNAME from the other name
        servers.
 
- 5. Compare the MNAME fields retreived from all name servers.
+ 4. Compare the MNAME fields retreived from all name servers.
 
- 4. If at least one name server has responded with a SOA record and the 
+ 5. If at least one name server has responded with a SOA record and the 
     MNAME is identical in all SOA records retrieved, emit *[ONE_SOA_MNAME]*.
 
- 5. If MNAME is not identical in all SOA records retrieved, emit 
+ 6. If MNAME is not identical in all SOA records retrieved, emit 
     *[MULTIPLE_SOA_MNAMES]*.
 
 ## Outcome(s)
