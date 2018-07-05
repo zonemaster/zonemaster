@@ -54,7 +54,7 @@ field should follow the rules of an e-mail address also defined in
        3. Disregard any A record with 127.0.0.1 or AAAA with ::1.
        4. If neither A or AAAA record was returned for the domain part
           in the answer section then emit *[RNAME_MAIL_DOMAIN_INVALID]*.
-   14. If the MX lookup returned one or more MX records, then for each
+   13. If the MX lookup returned one or more MX records, then for each
        mail exchange (domain name in RDATA of the MX record) do:
        1. Create address queries (A and AAAA) and send it to a 
           resolving name server.
