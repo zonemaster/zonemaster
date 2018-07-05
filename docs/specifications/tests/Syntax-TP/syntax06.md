@@ -51,9 +51,13 @@ field should follow the rules of an e-mail address also defined in
           send it to a resolving name server.
        2. If the domain part is "localhost" then consider all A and
           AAAA lookups as failing.
-       3. Disregard any A record with 127.0.0.1 or AAAA with ::1.
-       4. If neither A or AAAA record was returned for the domain part
-          in the answer section then emit *[RNAME_MAIL_DOMAIN_INVALID]*.
+       3. Disregard all A and AAAA records that do not have the same
+          owner name as the mail domain (i.e. do not follow
+          any CNAME).
+       4. Disregard any A record with 127.0.0.1 or AAAA with ::1.
+       5. Disregard any A or AAAA records outside the Answer section.
+       6. If no A or AAAA was returned then emit 
+          *[RNAME_MAIL_DOMAIN_INVALID]*.
    13. If the MX lookup returned one or more MX records, then for each
        mail exchange (domain name in RDATA of the MX record) do:
        1. Create address queries (A and AAAA) and send it to a 
@@ -64,9 +68,10 @@ field should follow the rules of an e-mail address also defined in
           owner name as the mail exchange name (i.e. do not follow
           any CNAME).
        4. Disregard any A record with 127.0.0.1 or AAAA with ::1.
-       5. If all MX have been processed and neither A or AAAA record 
-          was returned in the answer section for any mail exchange then 
-          emit *[RNAME_MAIL_DOMAIN_INVALID]*.
+       5. Disregard any A or AAAA records outside the Answer section.
+       6. If all MX have been processed and neither A or AAAA record 
+          was returned for any mail exchange then emit 
+          *[RNAME_MAIL_DOMAIN_INVALID]*.
 
 4. If at least one RNAME has been fully validated and no 
    *[RNAME_RFC822_INVALID]* or *[RNAME_MAIL_DOMAIN_INVALID]*
