@@ -127,9 +127,7 @@ names are below the root apex '.'.
 
 [Method4]: #method-4-delegation-name-server-addresses
 
-[REFERRAL_TYPE1_SIZE_LARGE]: #outcomes
-
-[REFERRAL_TYPE2_SIZE_LARGE]: #outcomes
+[REFERRAL_SIZE_TOO_LARGE]: #outcomes
 
 [REFERRAL_SIZE_OK]: #outcomes
 
