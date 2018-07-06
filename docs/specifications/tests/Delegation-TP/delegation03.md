@@ -96,6 +96,14 @@ test performed for the delegation of top-level domains by [IANA].
    *[REFERRAL_TYPE2_SIZE_LARGE]* was emitted, emit 
    *[REFERRAL_SIZE_OK]*.
 
+8. If *[REFERRAL_TYPE1_SIZE_LARGE]* was not emitted, then emit 
+   *[REFERRAL_TYPE1_SIZE_OK]*.
+
+8. If *[REFERRAL_TYPE2_SIZE_LARGE]* was not emitted, then emit 
+   *[REFERRAL_TYPE2_SIZE_OK]*.
+
+
+
 ## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
@@ -111,6 +119,8 @@ Message                           | Default severity level (if message is emitte
 :---------------------------------|:-----------------------------------
 REFERRAL_TYPE1_SIZE_LARGE         | WARNING
 REFERRAL_TYPE2_SIZE_LARGE         | WARNING
+REFERRAL_TYPE1_SIZE_OK            | DEBUG
+REFERRAL_TYPE2_SIZE_OK            | DEBUG
 REFERRAL_SIZE_OK                  | INFO
 
 
