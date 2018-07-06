@@ -19,7 +19,7 @@ field should follow the rules of an e-mail address also defined in
 1. Obtain the set of name server IP addresses using [Method4] and [Method5]
    ("Name Server IP").
 
-2. Create a SOA query for the apex of the *Child Zone* with "rd" flag unset.
+2. Create a SOA query for the apex of the *Child Zone* with RD flag unset.
 
 3. For each name server in *Name Server IP* do:
    1. Send the SOA query over UDP to the name server.
@@ -43,10 +43,13 @@ field should follow the rules of an e-mail address also defined in
    9. Create an MX query for the domain part and send it to a resolving
        name server. 
    10. If the MX lookup does not return a DNS response with with RCODE 
-       "NOERROR" emit *[RNAME_MAIL_DOMAIN_INVALID]*.
+       "NOERROR", then:
+       1. Emit *[RNAME_MAIL_DOMAIN_INVALID]*.
+       2. Go to next server.
    11. If the MX lookup returned a CNAME or a chain of CNAMEs then
        use the final name instead of the domain part in the steps below.
-   12. If the MX lookup returned no MX record, then 
+   12. If the MX lookup returned a NO DATA response (no MX record), 
+       then 
        1. Create address queries (A and AAAA) for the domain part and
           send it to a resolving name server.
        2. Disregard any A record with 127.0.0.1 or AAAA with ::1.
@@ -65,10 +68,8 @@ field should follow the rules of an e-mail address also defined in
        5. If all MX have been processed and neither A or AAAA record 
           was returned for any mail exchange then emit 
           *[RNAME_MAIL_DOMAIN_INVALID]*.
-
-4. If at least one RNAME has been fully validated and no 
-   *[RNAME_RFC822_INVALID]* or *[RNAME_MAIL_DOMAIN_INVALID]*
-   has not been emitted, then emit *[RNAME_RFC822_VALID]*.
+   14. If no *[RNAME_MAIL_DOMAIN_INVALID]* has not been emitted, 
+       then emit *[RNAME_RFC822_VALID]* for that RNAME.
 
 
 ## Outcome(s)
