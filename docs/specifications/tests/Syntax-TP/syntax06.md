@@ -36,8 +36,9 @@ field should follow the rules of an e-mail address also defined in
    6. Convert any backslash quoted "." to a single "." without quoting
       (see section 5.1, 5.3 and 8 in [RFC1035] for the use of backslash).
    7. If the converted string (mail address) does not meet the 
-      specification in [RFC 5322, section 3.4.1], then emit 
-      *[RNAME_RFC822_INVALID]* and go to next server.
+      specification in [RFC 5322, section 3.4.1], then 
+      1. Emit *[RNAME_RFC822_INVALID]*.
+      2. Go to next server.
    8. Extract the domain part (to the right of "@") from the mail 
       address.
    9. Create an MX query for the domain part and send it to a resolving
