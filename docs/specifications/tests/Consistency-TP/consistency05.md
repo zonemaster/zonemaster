@@ -16,7 +16,6 @@ consistent between glue and authoritative data.
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
-* "Test Type" - "undelegated" or "normal".
 
 ## Ordered description of steps to be taken to execute the test case
 1. Obtain the set of name server names and its IP addresses of the 
@@ -80,13 +79,11 @@ consistent between glue and authoritative data.
    1. If the IP in *Delegation Extended Glue* does not match any of the 
       listed A or AAAA records listed in the response for the same
       name, or no response with such records, emit 
-      *[OUT_OF_BAILIWICK_ADDR_MISMATCH]*, if the *Test Type* is "normal",
-      or *[UNDEL_OOB_ADDR_MISMATCH]*, if *Test Type* is "undelegated".
+      *[OUT_OF_BAILIWICK_ADDR_MISMATCH]*.
 
 7. If none of the messages *[IN_BAILIWICK_ADDR_MISMATCH]*, 
-   *[EXTRA_ADDRESS_CHILD]*, *[OUT_OF_BAILIWICK_ADDR_MISMATCH]* or
-   *[UNDEL_OOB_ADDR_MISMATCH]* has been emitted, emit 
-   *[ADDRESSES_MATCH]*.
+   *[EXTRA_ADDRESS_CHILD]* or *[OUT_OF_BAILIWICK_ADDR_MISMATCH]* has 
+   been emitted, emit *[ADDRESSES_MATCH]*.
 
 
 ## Outcome(s)
@@ -108,7 +105,6 @@ CHILD_ZONE_LAME                   | ERROR
 IN_BAILIWICK_ADDR_MISMATCH        | ERROR
 OUT_OF_BAILIWICK_ADDR_MISMATCH    | ERROR
 EXTRA_ADDRESS_CHILD               | NOTICE
-UNDEL_OOB_ADDR_MISMATCH           | NOTICE  
 ADDRESSES_MATCH                   | INFO
 
 ## Special procedural requirements	
@@ -117,9 +113,9 @@ If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol. Log a message reporting
 on the ignored result.
 
-If the Test Type is "undelegated" then [Method2] and [Method4] will 
+If the test is an undelegated test then [Method2] and [Method4] will 
 include the provided input data instead of data from any real delegation
-and authoritative data.
+and authoritative data. 
 
 It is assumed that the name servers of the parent zone behave the same way 
 for the parent zone as when [BASIC01] was run.
