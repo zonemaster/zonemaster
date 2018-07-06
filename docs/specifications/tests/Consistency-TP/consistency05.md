@@ -113,9 +113,14 @@ If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol. Log a message reporting
 on the ignored result.
 
-If the test is an undelegated test then [Method2] and [Method4] will 
+If the test is an [undelegated test] then [Method2] and [Method4] will 
 include the provided input data instead of data from any real delegation
-and authoritative data. 
+and authoritative data.
+
+For an [undelegated test] it is possible to intentionally insert data
+for [out-of-bailiwick] name servers that do not match what is found in
+public DNS. This Test Case will then report this as an ERROR which
+might not match the users expectation.
 
 It is assumed that the name servers of the parent zone behave the same way 
 for the parent zone as when [BASIC01] was run.
@@ -168,4 +173,6 @@ Here we use "glue" in the wider sense.
 [UNDEL_OOB_ADDR_MISMATCH]: #outcomes
 
 [ADDRESSES_MATCH]: #outcomes
+
+[undelegated test]: ../../test-types/undelegated-test.md
 
