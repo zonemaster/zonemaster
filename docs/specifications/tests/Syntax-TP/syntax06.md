@@ -51,12 +51,13 @@ field should follow the rules of an e-mail address also defined in
        use the final name instead of the domain part in the steps below.
    12. If the MX lookup returned a NO DATA response (no MX record), 
        then 
-       1. Create address queries (A and AAAA) for the domain part and
-          send it to a resolving name server.
+       1. Create address queries (A and AAAA) for the domain part (or 
+          updated by CNAMEs above) and send it to a resolving 
+          name server.
        2. Disregard any A record with 127.0.0.1 or AAAA with ::1.
-       3. Disregard any A or AAAA records outside the Answer section.
-       4. If no A or AAAA was returned then emit 
-          *[RNAME_MAIL_DOMAIN_INVALID]*.
+       3. If no A or AAAA records with the same owner name as domain
+          part (or updated by CNAMEs above) were found in the responses 
+          then emit *[RNAME_MAIL_DOMAIN_INVALID]*.
    13. If the MX lookup returned one or more MX records, then for each
        mail exchange (domain name in RDATA of the MX record) do:
        1. Create address queries (A and AAAA) and send it to a 
@@ -65,11 +66,10 @@ field should follow the rules of an e-mail address also defined in
           owner name as the mail exchange name (i.e. do not follow
           any CNAME).
        3. Disregard any A record with 127.0.0.1 or AAAA with ::1.
-       4. Disregard any A or AAAA records outside the Answer section.
-       5. If all MX have been processed and neither A or AAAA record 
+       4. If all MX have been processed and neither A or AAAA record 
           was returned for any mail exchange then emit 
           *[RNAME_MAIL_DOMAIN_INVALID]*.
-   14. If no *[RNAME_MAIL_DOMAIN_INVALID]* has not been emitted, 
+   14. If no *[RNAME_MAIL_DOMAIN_INVALID]* has been emitted, 
        then emit *[RNAME_RFC822_VALID]* for that RNAME.
 
 
