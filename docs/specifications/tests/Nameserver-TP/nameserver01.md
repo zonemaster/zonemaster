@@ -36,8 +36,8 @@ recursion functionality on root name servers.
       	 response, then emit *[NO_RESPONSE]*.
       2. If the DNS response comes with the RA flag set, then 
       	 emit *[IS_A_RECURSOR]*.
-   3. If the RCODE is NXDOMAIN in all DNS responses then 
-      emit *[IS_A_RECURSOR]*.
+   3. If the RCODE is NXDOMAIN in the responses for all three
+      queries then emit *[IS_A_RECURSOR]*.
    4. If neither *[NO_RESPONSE]* nor *[IS_A_RECURSOR]* has been emitted 
       for that server, then emit *[NO_RECURSOR]*.
 
