@@ -38,7 +38,7 @@ consistent between glue and authoritative data.
    2. Extract the [in-bailiwick] name servers. If there are no such 
       name servers, skip the steps to extract IP address of the 
       [in-bailiwick] name servers from *Child Zone*.
-   3. For each [in-bailiwick] name server names create one A query and 
+   3. For each [in-bailiwick] name server name create one A query and 
       one AAAA query with the RD flag unset.
    4. Obtain the set of "NS IP" for *Child Zone* from [Method4] and
       [Method5].
@@ -47,7 +47,7 @@ consistent between glue and authoritative data.
    6. Send the address query to the name server.
    7. If there is no DNS response from the server then:
       1. Emit *[NO_RESPONSE]*.
-      2. Go to next server.
+      2. Go to the next server.
    8. If the response is a delegation (referral) to a sub-zone of 
       *Child Zone*, then:
       1. Copy the adress query (A, AAAA) that gave the referral
@@ -57,25 +57,26 @@ consistent between glue and authoritative data.
          on the public DNS.
          * The lookup must take into account changes that
            undelegated data has created, if any.
-      4. If the lookup returns the relevant address record with the
-         same owner name as in the query, then extract those to be
-         collected below.
-      5. Go to next server.
+      4. If the lookup returns the relevant address record or records
+         with the same owner name as in the query, then extract those 
+         to be collected below.
+      5. Go to the next server.
    9. If the response has the AA flag unset, then:
       1. Emit *[CHILD_NS_FAILED]*. 
-      2. Go to next server.
+      2. Go to the next server.
    10. If the RCODE of the response is neither NOERROR nor NXDOMAIN, 
        then:
        1. Emit *[CHILD_NS_FAILED]*.
-       2. Go to next server.
-   11. If the RCODE if the response is NXDOMAIN, go to next server.
+       2. Go to the next server.
+   11. If the RCODE of the response is NXDOMAIN, then go to the next 
+       server.
    12. If the RCODE is NOERROR (with the AA flag set), then:
-       1. Extract the addresses records (A, AAAA) from the answer
+       1. Extract any addresses records (A, AAAA) from the answer
           section response if the owner name matches the that of 
           the of the query.
-       2. Go to next server.
-   13. When all servers are processed, then go to next step.
-   14. If all servers emit *[NO_RESPONSE]* or 
+       2. Go to the next server.
+   13. When all servers are processed, then go to the next step.
+   14. If all servers emitted *[NO_RESPONSE]* or 
        *[CHILD_NS_FAILED]*, then emit *[CHILD_ZONE_LAME]* and
        completely stop processing this test case.
    15. Tag any extracted address records (A and AAAA) as 
