@@ -24,9 +24,7 @@ these methods refer directly to this document.
 ## Method: Get parent zone
 
 ### Method identifier
-**Get-Parent-Zone** (external)
-
-(Former Method 1)
+**Get-Parent-Zone** (former *Method 1*)
 
 ### Objective
 
@@ -36,8 +34,8 @@ the testing of the child zone.
 
 This is an external method that can be used by test cases.
 
-This method mirrors, and must mirror, Test Case [BASIC01], but without 
-the messages.
+This method must, in general, use the same algorithm as Test Case [BASIC01], but
+without the messages.
 
 ### Inputs
 
@@ -214,7 +212,7 @@ The *Child Zone* name must be a legal name.
 ## Method: Get delegation NS names and IP addresses
 
 ### Method identifier
-**Get-Del-NS-Names-and-IPs** (external)
+**Get-Del-NS-Names-and-IPs**
 
 ### Objective
 
@@ -274,9 +272,7 @@ for the existence of *Child Zone*
 ## Method: Get delegation NS names 
 
 ### Method identifier
-**Get-Del-NS-Names** (external)
-
-(Former Method 2)
+**Get-Del-NS-Names** (former *Method 2*)
 
 ### Objective
 
@@ -322,9 +318,7 @@ for the existence of *Child Zone*
 ## Method: Get delegation NS IP addresses
 
 ### Method identifier
-**Get-Del-NS-IPs** (external)
-
-(Former Method 4)
+**Get-Del-NS-IPs** (former *Method 4*)
 
 ### Objective
 
@@ -343,7 +337,7 @@ This method inherits the inputs of method [Get-Del-NS-Names-and-IPs].
 
 ### Prerequisite
 
-As specified in [Get-Del-NS-Names-and-IPs].
+As specified in method [Get-Del-NS-Names-and-IPs].
 
 ### Ordered description of steps to be taken to execute the method
 
@@ -375,9 +369,7 @@ for the existence of *Child Zone*
 ## Method: Get zone NS names
 
 ### Method identifier
-**Get-Zone-NS-Names** (external)
-
-(Former Method 3)
+**Get-Zone-NS-Names** (former *Method 3*)
 
 ### Objective
 Obtain the names of the authoritative name servers for the given zone 
@@ -393,11 +385,11 @@ This method also inherits the inputs of method [Get-Del-NS-IPs].
 
 ### Prerequisite
 
-As specified in [Get-Del-NS-IPs].
+As specified in method [Get-Del-NS-IPs].
 
 ### Ordered description of steps to be taken to execute the method
 
-1. Using [Get-Del-NS-IPs] get the IP addresses to the
+1. Using method [Get-Del-NS-IPs] get the IP addresses to the
    name servers ("Name Server IPs").
 
 2. Create an NS query for apex of the Child Zone with the RD flag 
@@ -429,7 +421,7 @@ for the existence of *Child Zone*
 ## Method: Get zone NS names and IP addresses
 
 ### Method identifier
-**Get-Zone-NS-Names-and-IPs** (external)
+**Get-Zone-NS-Names-and-IPs**
 
 ### Objective
 
@@ -494,9 +486,7 @@ for the existence of *Child Zone*
 ## Method: Get zone NS IP addresses
 
 ### Method identifier
-**Get-Zone-NS-IPs** (external)
-
-(Former Method 5)
+**Get-Zone-NS-IPs** (former *Method 5*)
 
 ### Objective
 
@@ -545,7 +535,7 @@ for the existence of *Child Zone*
 ## Method: Get in-bailiwick address records in zone
 
 ### Method identifier
-**Get-IB-Addr-in-Zone** (internal)
+**Get-IB-Addr-in-Zone**
 
 ### Objective
 
@@ -570,7 +560,7 @@ As specified in method [Get-Del-NS-IPs].
 
 ### Ordered description of steps to be taken to execute the method
 
-1. Using [Get-Del-NS-IPs] get the IP addresses to the name servers 
+1. Using method [Get-Del-NS-IPs] get the IP addresses to the name servers 
    ("Name Server IPs").
 
 2. Using method [Get-Zone-NS-Names] get the names of the name servers
@@ -618,7 +608,7 @@ for the existence of *Child Zone*
 ## Method: Get delegation
 
 ### Method identifier
-**Get-Delegation** (internal)
+**Get-Delegation**
 
 ### Objective
 
@@ -626,11 +616,12 @@ Obtain the name server names (from the NS records) and the IP addresses (from
 glue records) from from the delegation of the given zone (child zone) from 
 the parent zone. Glue records are address records for [in-bailiwick] name 
 server names, if any. Extract addresses even if the resolution goes through 
-CNAME or DNAME.
+CNAME or DNAME. It is, however, not permitted for a NS record to point at a name
+that has a CNAME or DNAME, but that test iS covered by Test Case [DELEGATION05].
 
 IP addresses for [out-of-bailiwick] name server names are not extracted
-with this method. To get those use [Get-Del-NS-IPs] or
-[Get-Del-NS-Names-and-IPs].
+with this method. To get those use method [Get-Del-NS-IPs] or
+method [Get-Del-NS-Names-and-IPs].
 
 This is an internal method to be used by other methods.
 
@@ -739,13 +730,8 @@ As specified in method [Get-Undel-Data] if *Test Type* is
 
 ### Special procedural requirements
 
-If a name server name points at a CNAME or DNAME follow that to extract
-an IP address, if possible. It is, however, not permitted for a NS record
-to point at a name that has a CNAME or DNAME, but that test iS covered by
-Test Case [DELEGATION05].
-
 The method assumes that the servers of the parent zone behaves the
-same way as when [Get-Parent-Zone] was run.
+same way as when method [Get-Parent-Zone] was run.
 
 ### Dependencies
 
@@ -756,13 +742,15 @@ Method [Get-Parent-Zone] must have been run.
 ## Method: Get out-of-bailiwick ip addresses
 
 ### Method identifier
-**Get-OOB-IPs** (internal)
+**Get-OOB-IPs**
 
 ### Objective
 
 Obtain the IP addresses of the out-of-bailiwick name servers for the 
 given zone (child zone) and a given set of name server names. Extract 
-addresses even if the resolution goes through CNAME or DNAME.
+addresses even if the resolution goes through CNAME or DNAME. It is,
+however, not permitted for a NS record to point at a name that has a
+CNAME or DNAME, but that test is covered by Test Case [DELEGATION05].
 
 This is an internal method to be used by other methods.
 
@@ -822,10 +810,7 @@ As specified in method [Get-Undel-Data] if *Test Type* is
 
 ### Special procedural requirements
 
-If a name server name points at a CNAME or DNAME follow that to extract
-an IP address, if possible. It is, however, not permitted for a NS record
-to point at a name that has a CNAME or DNAME, but that test is covered by
-Test Case [DELEGATION05].
+None.
 
 ### Dependencies
 
@@ -836,7 +821,7 @@ Method [Get-Parent-Zone] must have been run.
 ## Method: Get data for undelegated test
 
 ### Method identifier
-**Get-Undel-Data** (internal)
+**Get-Undel-Data**
 
 ### Objective
 
@@ -886,19 +871,19 @@ None.
 
 ## Method inter-dependencies
 
-Method and level             | Dependent on method (with level)
------------------------------|----------------------------------------
-Get-Parent-Zone(2)           | Get-Undel-Data(1)
-Get-Del-NS-Names-and-IPs(4)  | Get-Delegation(3) Get-OOB-IPs(2)
-Get-Del-NS-Names(5)          | Get-Del-NS-Names-and-Ips(4)
-Get-Del-NS-IPs(5)            | Get-Del-NS-Names-and-IPs(4)
-Get-Zone-NS-Names(6)         | Get-Del-NS-IPs(5)
-Get-Zone-NS-Names-and-IPs(7) | Get-Zone-NS-Names(6) Get-IB-Addr-in-Zone(6) Get-OOB-Ips(2)
-Get-Zone-NS-IPs(8)           | Get-Zone-NS-Names-and-Ips(7)
-Get-IB-Addr-in-Zone(6)       | Get-Del-NS-IPs(5)
-Get-Delegation(3)            | Get-Undel-Data(1) Get-Parent-Zone(2)
-Get-OOB-IPs(2)               | Get-Undel-Data(1)
-Get-Undel-Data(1)            | -
+Method                   | Level | Dependent on method (with level)
+-------------------------|-------|---------------------------------
+Get-Undel-Data           | 1     | -
+Get-Parent-Zone          | 2     | Get-Undel-Data(1)
+Get-OOB-IPs              | 2     | Get-Undel-Data(1)
+Get-Delegation           | 3     | Get-Undel-Data(1) Get-Parent-Zone(2)
+Get-Del-NS-Names-and-IPs | 4     | Get-Delegation(3) Get-OOB-IPs(2)
+Get-Del-NS-Names         | 5     | Get-Del-NS-Names-and-Ips(4)
+Get-Del-NS-IPs           | 5     | Get-Del-NS-Names-and-IPs(4)
+Get-Zone-NS-Names        | 6     | Get-Del-NS-IPs(5)
+Get-IB-Addr-in-Zone      | 6     | Get-Del-NS-IPs(5)
+Get-Zone-NS-Names-and-IPs| 7     | Get-Zone-NS-Names(6) Get-IB-Addr-in-Zone(6) Get-OOB-Ips(2)
+Get-Zone-NS-IPs          | 8     | Get-Zone-NS-Names-and-Ips(7)
 
 -------------------------------------------------------------
 
@@ -912,6 +897,8 @@ are used as defined in [RFC 7719], section 6, page 15.
 [BASIC01]: Basic-TP/basic01.md
 
 [DELEGATION05]: Delegation-TP/delegation05.md
+
+[Get-Parent-Zone]: #method-get-parent-zone
 
 [Get-Del-NS-Names-and-IPs]: #method-get-delegation-ns-names-and-ip-addresses
 
@@ -931,13 +918,7 @@ are used as defined in [RFC 7719], section 6, page 15.
 
 [Get-OOB-IPs]: #method-get-out-of-bailiwick-ip-addresses
 
-[Method2]: #method-2-delegation-name-servers
-
-[Method3]: #method-3-in-zone-name-servers
-
-[Method4]: #method-4-delegation-name-server-addresses
-
-[Method5]: #method-5-in-zone-addresses-records-of-name-servers
+[Get-Undel-Data]:#method-get-data-for-undelegated-test
 
 [in-bailiwick]:     #terminology
 
@@ -946,4 +927,6 @@ are used as defined in [RFC 7719], section 6, page 15.
 [glue records]:     #terminology
 
 [Glue records]:     #terminology
+
+[List of Root Servers]: https://www.iana.org/domains/root/servers
 
