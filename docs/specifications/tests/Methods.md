@@ -1,24 +1,25 @@
 # Methods common to Test Case Specifications
 
-**Table of contents**
-
 This is a list of generic methods directly or indirectly used in many 
 Test Case specifications. The Test Cases that makes use of any of 
 these methods refer directly to this document.
 
-[Method: Get parent zone]
-[Method: Get delegation NS names and IP addresses]
-[Method: Get delegation NS names ]
-[Method: Get delegation NS IP addresses]
-[Method: Get zone NS names]
-[Method: Get zone NS names and IP addresses]
-[Method: Get zone NS IP addresses]
-[Method: Get in-bailiwick address records in zone]
-[Method: Get delegation]
-[Method: Get out-of-bailiwick ip addresses]
-[Method: Get data for undelegated test]
-[Method inter-dependencies]
-[Terminology]
+**Table of contents**
+
+* [Method: Get parent zone](#method-get-parent-zone)
+* [Method: Get delegation NS names and IP addresses](#method-get-delegation-ns-names-and-ip-addresses)
+* [Method: Get delegation NS names](#method-get-delegation-ns-names)
+* [Method: Get delegation NS IP addresses](#method-get-delegation-ns-ip-addresses)
+* [Method: Get zone NS names](#method-get-zone-ns-names)
+* [Method: Get zone NS names and IP addresses](#method-get-zone-ns-names-and-ip-addresses)
+* [Method: Get zone NS IP addresses](#method-get-zone-ns-ip-addresses)
+* [Method: Get in-bailiwick address records in zone](#method-get-in-bailiwick-address-records-in-zone)
+* [Method: Get delegation](#method-get-delegation)
+* [Method: Get out-of-bailiwick ip addresses](#method-get-out-of-bailiwick-ip-addresses)
+* [Method: Get data for undelegated test](#method-get-data-for-undelegated-test)
+* [Method inter-dependencies](#method-inter-dependencies)
+* [Terminology](#terminology)
+-------------------------------------------------------------
 
 ## Method: Get parent zone
 
@@ -207,8 +208,6 @@ None.
 ### Dependencies
 
 The *Child Zone* name must be a legal name.
-
-
 -------------------------------------------------------------
 
 ## Method: Get delegation NS names and IP addresses
@@ -268,7 +267,6 @@ None.
 
 Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
-
 -------------------------------------------------------------
 
 ## Method: Get delegation NS names 
@@ -316,7 +314,6 @@ same way as when method [Get-Parent-Zone] was run.
 
 Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
-
 -------------------------------------------------------------
 
 ## Method: Get delegation NS IP addresses
@@ -369,7 +366,6 @@ None.
 
 Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
-
 -------------------------------------------------------------
 
 ## Method: Get zone NS names
@@ -423,7 +419,6 @@ None.
 
 Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
-
 -------------------------------------------------------------
 
 ## Method: Get zone NS names and IP addresses
@@ -488,7 +483,6 @@ None.
 
 Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
-
 -------------------------------------------------------------
 
 ## Method: Get zone NS IP addresses
@@ -539,7 +533,6 @@ None.
 
 Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
-
 -------------------------------------------------------------
 
 ## Method: Get in-bailiwick address records in zone
@@ -612,7 +605,6 @@ None.
 
 Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
-
 -------------------------------------------------------------
 
 ## Method: Get delegation
@@ -750,7 +742,6 @@ same way as when [Get-Parent-Zone] was run.
 ### Dependencies
 
 Method [Get-Parent-Zone] must have been run.
-
 -------------------------------------------------------------
 
 ## Method: Get out-of-bailiwick ip addresses
@@ -830,7 +821,6 @@ Test Case [DELEGATION05].
 ### Dependencies
 
 Method [Get-Parent-Zone] must have been run.
-
 -------------------------------------------------------------
 
 ## Method: Get data for undelegated test
@@ -881,13 +871,12 @@ None.
 ### Dependencies
 
 None.
-
 -------------------------------------------------------------
 
 ## Method inter-dependencies
 
 Method and level             | Dependent on method (with level)
-----------------------------------------------------------------
+-----------------------------|----------------------------------------
 Get-Parent-Zone(2)           | Get-Undel-Data(1)
 Get-Del-NS-Names-and-IPs(4)  | Get-Delegation(3) Get-OOB-IPs(2)
 Get-Del-NS-Names(5)          | Get-Del-NS-Names-and-Ips(4)
@@ -899,7 +888,6 @@ Get-IB-Addr-in-Zone(6)       | Get-Del-NS-IPs(5)
 Get-Delegation(3)            | Get-Undel-Data(1) Get-Parent-Zone(2)
 Get-OOB-IPs(2)               | Get-Undel-Data(1)
 Get-Undel-Data(1)            | -
-
 -------------------------------------------------------------
 
 ## Terminology
