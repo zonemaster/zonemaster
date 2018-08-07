@@ -19,6 +19,7 @@ these methods refer directly to this document.
 * [Method: Get data for undelegated test](#method-get-data-for-undelegated-test)
 * [Method inter-dependencies](#method-inter-dependencies)
 * [Terminology](#terminology)
+
 -------------------------------------------------------------
 
 ## Method: Get parent zone
@@ -62,8 +63,7 @@ If *Test Type* is "undelegated test", then as specified in method
 
 2. Find the parent zone of the *Child Zone* by performing recursive 
    lookup for the SOA record of the *Child Zone* with the RD bit unset.
-   Start by using a nameserver from the *root name servers*, ignore
-   errors if there are more name servers available for the same zone.
+   Start by using a nameserver from the *Root Name Servers*.
 
 3. Continue, step by step, until the parent zone (of the *Child Zone*) has 
    been reached by using the redirects (delegations) found.
@@ -79,8 +79,9 @@ If *Test Type* is "undelegated test", then as specified in method
    2. Exit.
 
 5. If the lookup reaches a name server that authoritatively responds
-   (AA flag set) with NXDOMAIN for the child domain (*Child Zone*): 
-   1. The zone returning NXDOMAIN is defined to be the parent zone.
+   (AA flag set) and either with NXDOMAIN for the *Child Zone* or
+   with NOERROR and no record in the answer section (NODATA): 
+   1. The zone returning NXDOMAIN or NODATA is defined to be the parent zone.
    2. Repeat the SOA query for the *Child Zone* to all name servers for the
       parent zone.
       1. If any server returns a redirect (delegation) directly to the *Child
@@ -99,36 +100,14 @@ If *Test Type* is "undelegated test", then as specified in method
          of servers for the parent zone.
    5. Exit.
 
-6. If the lookup reaches a name server that authoritatively responds
-   (AA flag set) with no record in the answer section (NODATA):
-   1. The zone returning authoritative data is defined to be the parent 
-      zone. 
-   2. Repeat the SOA query for the *Child Zone* to all name servers for the
-      parent zone.
-      1. If any server returns a redirect (delegation) directly to the *Child
-      	 Zone* then go back to step 4 with the found delegation.
-   3. If *Test Type* is "normal test" then return the following from the 
-      method:
-      1. The parent zone as defined above.
-      2. The existence of the *Child Zone* is set to be false.
-      3. The parent name server IP list is set to be the available list
-         of servers for the parent zone.
-   4. If *Test Type* is "undelegated test" then return the following from 
-      the method:
-      1. The parent zone as defined above.
-      2. The existence of the *Child Zone* is set to be true.
-      3. The parent name server IP list is set to be the available list
-         of servers for the parent zone.
-   5. Exit.
-
-7. If the lookup reaches a name server that non-authoritatively responds
+6. If the lookup reaches a name server that non-authoritatively responds
    (AA flag unset) with a CNAME or DNAME record in the answer section:
    1. A CNAME (DNAME) query with the RD flag unset is sent to the same server.
    2. If the lookup returns an authoritative answer with a CNAME (DNAME) with
-      *Child Zone* name as owner name, then continue to step 8, else repeat 
+      *Child Zone* name as owner name, then continue to step 7, else repeat 
       from step 3 using the next server. 
 
-8. If the lookup reaches a name server that authoritatively responds
+7. If the lookup reaches a name server that authoritatively responds
    (AA flag set) with a CNAME or DNAME record in the answer section:
    1. The zone returning authoritative data is defined to be the parent zone. 
    2. Repeat the SOA query for the *Child Zone* to all name servers for the
@@ -149,7 +128,7 @@ If *Test Type* is "undelegated test", then as specified in method
          of servers for the parent zone.
    5. Exit.
 
-9. If the lookup reaches a name server that authoritatively responds
+8. If the lookup reaches a name server that authoritatively responds
    (AA flag set) with an SOA record with owner name child domain in the 
    answer section:
    1. The zone in the previous delegation is defined to be the parent 
@@ -161,13 +140,13 @@ If *Test Type* is "undelegated test", then as specified in method
          of servers for the parent zone.
    3. Exit.
 
-10. If the server does not respond, the response contains an unexpected 
-    RCODE or any other error, repeat from step 3 using the next server. 
+9. If the server does not respond, the response contains an unexpected 
+   RCODE or any other error, repeat from step 3 using the next server. 
 
-11. If delegation to a zone at a higher level than *Child Zone* is returned, 
+10. If delegation to a zone at a higher level than *Child Zone* is returned, 
     then follow the delegation.
 
-12. If all servers above are exhausted then:
+11. If all servers above are exhausted then:
    1. If *Test Type* is "normal test" then return the following from the 
       method:
       1. The parent zone as empty (undefined).
@@ -180,17 +159,25 @@ If *Test Type* is "undelegated test", then as specified in method
       3. The parent name server IP list is set to be empty.
    3. Exit.
 
-Parent zone     |*Child Zone*      |Run normal test?|Run undelegated test?
-----------------|------------------|----------------|---------------------
-Determined      |Exists            |Yes             |Yes
-Determined      |Does not exist (1)|No              |N/A (2)
-Indetermined (3)|Indetermined      |No              |Yes
+### Test Type and existence of parent and child 
+
+Parent zone     | *Child Zone*       | *Test Type* | Run test?
+----------------|--------------------|-------------|---------------------
+Determined      | Exists             | Normal      | Yes
+Determined      | Exists             | Undelegated | Yes
+Determined      | Does not exist (1) | Normal      | No
+Determined      | Does not exist (1) | Undelegated | N/A (2)
+Indetermined (3)| Indetermined       | Normal      | No
+Indetermined (3)| Indetermined       | Undelegated | N/A (2)
+Indetermined (3)| Exists (2)         | Undelegated | Yes
 
 1. Parent zone returns an authoritative NXDOMAIN or NODATA on the 
-   *Child Zone* name and *Test Type* is "normal test".
-2. When *Test Type* is "undelegated test" the *Child Zone* is
+   *Child Zone* name.
+2. If *Test Type* is "undelegated test" the *Child Zone* is
    defined to exist even if there is no delegation.
 3. Server or zone error prevents determination of parent zone.
+4. If *Test Type* is "normal test" then it is impossible to find the *Child Zone*
+   and the delegation to it when the parent zone cannot be determined.
 
 ### Outputs
 
@@ -207,6 +194,7 @@ None.
 
 The *Child Zone* name must be a legal name.
 
+[To top]
 -------------------------------------------------------------
 
 ## Method: Get delegation NS names and IP addresses
@@ -267,6 +255,7 @@ None.
 Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
 
+[To top]
 -------------------------------------------------------------
 
 ## Method: Get delegation NS names 
@@ -313,6 +302,7 @@ same way as when method [Get-Parent-Zone] was run.
 Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
 
+[To top]
 -------------------------------------------------------------
 
 ## Method: Get delegation NS IP addresses
@@ -364,6 +354,7 @@ None.
 Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
 
+[To top]
 -------------------------------------------------------------
 
 ## Method: Get zone NS names
@@ -416,6 +407,7 @@ None.
 Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
 
+[To top]
 -------------------------------------------------------------
 
 ## Method: Get zone NS names and IP addresses
@@ -481,6 +473,7 @@ None.
 Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
 
+[To top]
 -------------------------------------------------------------
 
 ## Method: Get zone NS IP addresses
@@ -530,6 +523,7 @@ None.
 Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
 
+[To top]
 -------------------------------------------------------------
 
 ## Method: Get in-bailiwick address records in zone
@@ -603,6 +597,7 @@ None.
 Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
 
+[To top]
 -------------------------------------------------------------
 
 ## Method: Get delegation
@@ -737,6 +732,7 @@ same way as when method [Get-Parent-Zone] was run.
 
 Method [Get-Parent-Zone] must have been run.
 
+[To top]
 -------------------------------------------------------------
 
 ## Method: Get out-of-bailiwick ip addresses
@@ -816,6 +812,7 @@ None.
 
 Method [Get-Parent-Zone] must have been run.
 
+[To top]
 -------------------------------------------------------------
 
 ## Method: Get data for undelegated test
@@ -867,6 +864,7 @@ None.
 
 None.
 
+[To top]
 -------------------------------------------------------------
 
 ## Method inter-dependencies
@@ -885,6 +883,7 @@ Get-IB-Addr-in-Zone      | 6     | Get-Del-NS-IPs(5)
 Get-Zone-NS-Names-and-IPs| 7     | Get-Zone-NS-Names(6) Get-IB-Addr-in-Zone(6) Get-OOB-Ips(2)
 Get-Zone-NS-IPs          | 8     | Get-Zone-NS-Names-and-Ips(7)
 
+[To top]
 -------------------------------------------------------------
 
 ## Terminology
@@ -897,6 +896,8 @@ are used as defined in [RFC 7719], section 6, page 15.
 [BASIC01]: Basic-TP/basic01.md
 
 [DELEGATION05]: Delegation-TP/delegation05.md
+
+[To top]: #methods-common-to-test-case-specifications
 
 [Get-Parent-Zone]: #method-get-parent-zone
 
