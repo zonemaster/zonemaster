@@ -116,6 +116,8 @@ Input for this Test Case:
     1. If *Test Type* is "normal test", emit *[NO_CHILD]*.
     2. If *Test Type* is "undelegated test", emit *[CHILD_NOT_DELEGATED]*.
 
+### Test Type and existence of parent and child 
+
 Parent zone     | *Child Zone*       | *Test Type* | Run test?
 ----------------|--------------------|-------------|---------------------
 Determined      | Exists             | Normal      | Yes
@@ -149,7 +151,7 @@ The name of the parent zone (or empty if it cannot be determined), plus
 verification of whether or not the *Child Zone* exists is returned together 
 with relevant messages.
 
-Messege                        |Default severity level (if message is emitted)
+Message                        |Default severity level of message
 -------------------------------|----------------------------------------------
 ROOT_HAS_NO_PARENT             |INFO
 PARENT_FOUND                   |INFO
