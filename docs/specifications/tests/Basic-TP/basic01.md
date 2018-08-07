@@ -48,7 +48,7 @@ Input for this Test Case:
    (delegation) directly to the requested *Child Zone*:
    1. The zone in which the delegation was found is considered to be the 
       parent zone. Emit *[PARENT_FOUND]*.
-   2. The existance of the *Child Zone* has been determined. Emit 
+   2. The existence of the *Child Zone* has been determined. Emit 
       *[CHILD_FOUND]*.
    3. Repeat the SOA query for the *Child Zone* to all name servers for 
       the parent zone.
@@ -66,7 +66,7 @@ Input for this Test Case:
       1. If any server returns a redirect (delegation) directly to the *Child
       	 Zone*, emit *[INCONSISTENT_DELEGATION]* and go back to step 4 with 
       	 the found delegation.
-   3. The non-existance of the *Child Zone* has been determined. 
+   3. The non-existence of the *Child Zone* has been determined. 
       1. If *Test Type* is "normal test", emit *[NO_CHILD]*.
       2. If *Test Type* is "undelegated test, emit *[CHILD_NOT_DELEGATED]*.
    4. Exit.
@@ -87,7 +87,7 @@ Input for this Test Case:
       1. If any server returns a redirect (delegation) directly to the *Child
       	 Zone*, emit *[INCONSISTENT_DELEGATION]* and go back to step 4 with 
       	 the found delegation.
-   3. The non-existance of the *Child Zone* has been determined. 
+   3. The non-existence of the *Child Zone* has been determined. 
       1. If *Test Type* is "normal test", emit *[NO_CHILD]*. 
       2. If *Test Type* is "undelegated test", emit *[CHILD_NOT_DELEGATED]*.
    4. Exit.
@@ -97,7 +97,7 @@ Input for this Test Case:
    answer section:
    1. The zone in the previous delegation is considered to be the parent 
       zone. Emit *[PARENT_FOUND]*.
-   2. The existance of the *Child Zone* has been determined. Emit
+   2. The existence of the *Child Zone* has been determined. Emit
       *[CHILD_FOUND]*.
    3. Repeat the SOA query for the *Child Zone* to all name servers for the
       parent zone.
@@ -116,22 +116,23 @@ Input for this Test Case:
     1. If *Test Type* is "normal test", emit *[NO_CHILD]*.
     2. If *Test Type* is "undelegated test", emit *[CHILD_NOT_DELEGATED]*.
 
-
-Parent zone     | *Child Zone*      | Run normal test?| Run undelegated test?
-----------------|-------------------|-----------------|---------------------
-Determined      | Exists            | Yes             | Yes
-Determined      | Does not exist (1)| No              | N/A (2)
-Indetermined (3)| Indetermined      | No              | Yes
-Indetermined (3)| Exists (2)        | N/A (4)         | Yes
+Parent zone     | *Child Zone*       | *Test Type* | Run test?
+----------------|--------------------|-------------|---------------------
+Determined      | Exists             | Normal      | Yes
+Determined      | Exists             | Undelegated | Yes
+Determined      | Does not exist (1) | Normal      | No
+Determined      | Does not exist (1) | Undelegated | N/A (2)
+Indetermined (3)| Indetermined       | Normal      | No
+Indetermined (3)| Indetermined       | Undelegated | N/A (2)
+Indetermined (3)| Exists (2)         | Undelegated | Yes
 
 1. Parent zone returns an authoritative NXDOMAIN or NODATA on the 
-   *Child Zone* name and *Test Type* is "normal test".
+   *Child Zone* name.
 2. If *Test Type* is "undelegated test" the *Child Zone* is
    defined to exist even if there is no delegation.
 3. Server or zone error prevents determination of parent zone.
 4. If *Test Type* is "normal test" then it is impossible to find the *Child Zone*
    and the delegation to it when the parent zone cannot be determined.
-
 
 ### Outcome(s)
 
