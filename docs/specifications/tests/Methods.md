@@ -195,6 +195,7 @@ None.
 The *Child Zone* name must be a legal name.
 
 [To top]
+
 -------------------------------------------------------------
 
 ## Method: Get delegation NS names and IP addresses
@@ -256,6 +257,7 @@ Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
 
 [To top]
+
 -------------------------------------------------------------
 
 ## Method: Get delegation NS names 
@@ -303,6 +305,7 @@ Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
 
 [To top]
+
 -------------------------------------------------------------
 
 ## Method: Get delegation NS IP addresses
@@ -355,6 +358,7 @@ Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
 
 [To top]
+
 -------------------------------------------------------------
 
 ## Method: Get zone NS names
@@ -408,6 +412,7 @@ Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
 
 [To top]
+
 -------------------------------------------------------------
 
 ## Method: Get zone NS names and IP addresses
@@ -474,6 +479,7 @@ Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
 
 [To top]
+
 -------------------------------------------------------------
 
 ## Method: Get zone NS IP addresses
@@ -524,6 +530,7 @@ Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
 
 [To top]
+
 -------------------------------------------------------------
 
 ## Method: Get in-bailiwick address records in zone
@@ -598,6 +605,7 @@ Method [Get-Parent-Zone] must have been run and returned "true"
 for the existence of *Child Zone*
 
 [To top]
+
 -------------------------------------------------------------
 
 ## Method: Get delegation
@@ -733,6 +741,7 @@ same way as when method [Get-Parent-Zone] was run.
 Method [Get-Parent-Zone] must have been run.
 
 [To top]
+
 -------------------------------------------------------------
 
 ## Method: Get out-of-bailiwick ip addresses
@@ -813,6 +822,7 @@ None.
 Method [Get-Parent-Zone] must have been run.
 
 [To top]
+
 -------------------------------------------------------------
 
 ## Method: Get data for undelegated test
@@ -865,6 +875,7 @@ None.
 None.
 
 [To top]
+
 -------------------------------------------------------------
 
 ## Method inter-dependencies
@@ -884,6 +895,7 @@ Get-Zone-NS-Names-and-IPs| 7     | Get-Zone-NS-Names(6) Get-IB-Addr-in-Zone(6) G
 Get-Zone-NS-IPs          | 8     | Get-Zone-NS-Names-and-Ips(7)
 
 [To top]
+
 -------------------------------------------------------------
 
 ## Terminology
