@@ -35,10 +35,7 @@ must fit into a non-EDNS0 UDP DNS packet.
       created above using the message compression schema defined
       in section 4.1.4 of [RFC 1035] where applicable.
 
-4. Get the parent zone of *Child Zone*. If the parent zone is undefined
-   then assume that the parent is acheived by stripping the least 
-   significant label from the *Child Zone*. (If the *Child Zone*
-   is a TLD then the root zone is the parent.)
+4. Using [Method1], get the parent zone of *Child Zone*.
 
 5. Obtain the name server IP addresses per name server names for
    the delegation using [Method4].
@@ -123,9 +120,15 @@ names are below the root apex '.'.
 [In-Bailiwick of Parent]: #in-bailiwick-of-parent
 
 
-[Method2]: #method-2-delegation-name-servers
+[Method1]: ../Methods.md#method-1-obtain-the-parent-domain
 
-[Method4]: #method-4-delegation-name-server-addresses
+
+[Method2]: ../Methods.md#method-2-obtain-glue-name-records-from-parent
+
+
+[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
+
+
 
 [REFERRAL_SIZE_TOO_LARGE]: #outcomes
 
