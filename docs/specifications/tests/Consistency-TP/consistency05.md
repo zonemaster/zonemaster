@@ -18,8 +18,9 @@ consistent between glue and authoritative data.
 * "Child Zone" - The domain name to be tested.
 
 ## Ordered description of steps to be taken to execute the test case
-1. Obtain the set of name server names and its IP addresses of the 
-   delegation of *Child Zone* using [Method2] and [Method4], respectively.
+1. Obtain the set of name server names (using [Method2]) and the IP 
+   addresses for those (using [Method4]) for the delegation of 
+   *Child Zone*.
 
    1. Extract the [in-bailiwick] name servers names and create a set
       "Delegation Strict Glue" of those, were each name server name 
@@ -30,59 +31,61 @@ consistent between glue and authoritative data.
       is matched with its IP address or addresses, if available. The 
       set might be empty.
 
-2. Obtain the IP addresses of the [in-bailiwick] name servers from the
-   *Child Zone*:
+2. Obtain the set of name server names for the *Child Zone* using
+   [Method2] and [Method3] and extract the [in-bailiwick] name 
+   server names, "IB NS Name Set".
 
-   1. Obtain the set of name server names for the *Child Zone* using
-      [Method2] and [Method3].
-   2. Extract the [in-bailiwick] name servers. If there are no such 
-      name servers, skip the steps to extract IP address of the 
-      [in-bailiwick] name servers from *Child Zone*.
-   3. For each [in-bailiwick] name server name create one A query and 
-      one AAAA query with the RD flag unset.
-   4. Obtain the set of "NS IP" for *Child Zone* from [Method4] and
-      [Method5].
-   5. Repeat the steps below for each name server in *NS IP* and for
-      each address (A, AAAA) query.
-   6. Send the address query to the name server.
-   7. If there is no DNS response from the server then:
-      1. Emit *[NO_RESPONSE]*.
-      2. Go to the next server.
-   8. If the response is a delegation (referral) to a sub-zone of 
-      *Child Zone*, then:
-      1. Copy the adress query (A, AAAA) that gave the referral
-         response.
-      2. Set the RD flag in the copied query (from unset to set).
-      3. Do a DNS lookup of the the query using a resolving name server 
-         on the public DNS.
-         * The lookup must take into account changes that
-           undelegated data has created, if any.
-      4. If the lookup returns the relevant address record or records
-         with the same owner name as in the query, then extract those 
-         to be collected below.
-      5. Go to the next server.
-   9. If the response has the AA flag unset, then:
-      1. Emit *[CHILD_NS_FAILED]*. 
-      2. Go to the next server.
-   10. If the RCODE of the response is neither NOERROR nor NXDOMAIN, 
-       then:
-       1. Emit *[CHILD_NS_FAILED]*.
-       2. Go to the next server.
-   11. If the RCODE of the response is NXDOMAIN, then go to the next 
-       server.
-   12. If the RCODE is NOERROR (with the AA flag set), then:
-       1. Extract any addresses records (A, AAAA) from the answer
-          section response if the owner name matches the that of 
-          the of the query.
-       2. Go to the next server.
-   13. When all servers are processed, then go to the next step.
-   14. If all servers emitted *[NO_RESPONSE]* or 
-       *[CHILD_NS_FAILED]*, then emit *[CHILD_ZONE_LAME]* and
-       completely stop processing this test case.
-   15. Tag any extracted address records (A and AAAA) as 
-       "Address Records From Child".
+3. Create an empty set of name server name with associated IP address
+   or addresses, "Address Records From Child".
 
-3. Compare the IP address for the name servers from 
+5. Obtain the set of name server IP addresses for *Child Zone* 
+   using [Method4] and [Method5], "NS IP", if *IB NS Name Set* is 
+   non-empty.
+
+6. If *IB NS Name Set* is non-empty, then for each name server name in
+   that set do:
+
+   1. Create one A query and one AAAA query with the RD flag unset
+      and name server name as owner name.
+   2. For each name server in *NS IP* and query type (A, AAAA):
+      1. Send the address query to the name server.
+      2. If there is no DNS response from the server then:
+         1. Emit *[NO_RESPONSE]*.
+         2. Go to the next server.
+      3. If the response is a delegation (referral) to a sub-zone of 
+         *Child Zone*, then:
+         1. Copy the adress query (A, AAAA) that gave the referral
+            response.
+         2. Set the RD flag in the copied query (from unset to set).
+         3. Do a DNS lookup of the the query using a resolving name server 
+            on the public DNS.
+            * The lookup must take into account changes that
+              undelegated data has created, if any.
+         4. If the lookup returns the relevant address record or records
+            with the same owner name as in the query, then extract those 
+            and add to *Address Records From Child* with name and IP 
+            address or addresses.
+         5. Go to the next server.
+      4. If the response has the AA flag unset, then:
+         1. Emit *[CHILD_NS_FAILED]*. 
+         2. Go to the next server.
+      5. If the RCODE of the response is neither NOERROR nor NXDOMAIN, 
+         then:
+         1. Emit *[CHILD_NS_FAILED]*.
+         2. Go to the next server.
+      6. If the RCODE of the response is NXDOMAIN, then: 
+         1  Go to the next server.
+      7. If the RCODE is NOERROR (with the AA flag set), then:
+         1. Extract any addresses records (A, AAAA) from the answer
+            section response if the owner name matches the that of 
+            the of the query and add to *Address Records From Child* 
+            with name and IP 
+         2. Go to the next server.
+   3. If all servers emitted *[NO_RESPONSE]* or *[CHILD_NS_FAILED]*, 
+      then emit *[CHILD_ZONE_LAME]* and completely stop processing 
+      this test case.
+
+7. Compare the IP address for the name servers from 
    *Delegation Strict Glue* with *Address Records From Child*
    (i.e. [in-bailiwick] only).
 
@@ -94,7 +97,7 @@ consistent between glue and authoritative data.
       *Delegation Strict Glue* with that same name server name then 
       emit *[EXTRA_ADDRESS_CHILD]*.
 
-4. For each  name server name in *Delegation Extended Glue* 
+8. For each  name server name in *Delegation Extended Glue* 
    (i.e. [out-of-bailiwick] only) do a DNS lookup, type A or AAAA, 
    on public DNS.
 
@@ -103,7 +106,7 @@ consistent between glue and authoritative data.
       name, or no response with such records, emit 
       *[OUT_OF_BAILIWICK_ADDR_MISMATCH]*.
 
-5. If none of the messages *[IN_BAILIWICK_ADDR_MISMATCH]*, 
+9. If none of the messages *[IN_BAILIWICK_ADDR_MISMATCH]*, 
    *[EXTRA_ADDRESS_CHILD]* or *[OUT_OF_BAILIWICK_ADDR_MISMATCH]* has 
    been emitted, emit *[ADDRESSES_MATCH]*.
 
@@ -162,17 +165,17 @@ Here we use "glue" in the wider sense.
 
 [RFC 7719]: https://tools.ietf.org/html/rfc7719
 
-[BASIC01]: Basic-TP/basic01.md
+[BASIC01]: ../Basic-TP/basic01.md
 
-[DELEGATION05]: Delegation-TP/delegation05.md
+[DELEGATION05]: ../Delegation-TP/delegation05.md
 
-[Method2]: #method-2-delegation-name-servers
+[Method2]: ../Methods.md#method-2-delegation-name-servers
 
-[Method3]: #method-3-in-zone-name-servers
+[Method3]: ../Methods.md#method-3-in-zone-name-servers
 
-[Method4]: #method-4-delegation-name-server-addresses
+[Method4]: ../Methods.md#method-4-delegation-name-server-addresses
 
-[Method5]: #method-5-in-zone-addresses-records-of-name-servers
+[Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
 
 [in-bailiwick]:     #terminology
 
