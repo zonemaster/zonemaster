@@ -7,8 +7,8 @@
 ## Objective
 
 For name servers that have IP addresses listed as glue, the IP addresses must
-match the authoritative A and AAAA records for that host. This is an IANA
-requirement (https://www.iana.org/help/nameserver-requirements).
+match the authoritative A and AAAA records for that host. This is an IANA 
+[name server requirement].
 
 The objective of this test is to verify that the glue records are
 consistent between glue and authoritative data.
@@ -38,11 +38,11 @@ consistent between glue and authoritative data.
 3. Create an empty set of name server name with associated IP address
    or addresses, "Address Records From Child".
 
-5. Obtain the set of name server IP addresses for *Child Zone* 
+4. Obtain the set of name server IP addresses for *Child Zone* 
    using [Method4] and [Method5], "NS IP", if *IB NS Name Set* is 
    non-empty.
 
-6. If *IB NS Name Set* is non-empty, then for each name server name in
+5. If *IB NS Name Set* is non-empty, then for each name server name in
    that set do:
 
    1. Create one A query and one AAAA query with the RD flag unset
@@ -85,7 +85,7 @@ consistent between glue and authoritative data.
       then emit *[CHILD_ZONE_LAME]* and completely stop processing 
       this test case.
 
-7. Compare the IP address for the name servers from 
+6. Compare the IP address for the name servers from 
    *Delegation Strict Glue* with *Address Records From Child*
    (i.e. [in-bailiwick] only).
 
@@ -97,7 +97,7 @@ consistent between glue and authoritative data.
       *Delegation Strict Glue* with that same name server name then 
       emit *[EXTRA_ADDRESS_CHILD]*.
 
-8. For each  name server name in *Delegation Extended Glue* 
+7. For each  name server name in *Delegation Extended Glue* 
    (i.e. [out-of-bailiwick] only) do a DNS lookup, type A or AAAA, 
    on public DNS.
 
@@ -106,7 +106,7 @@ consistent between glue and authoritative data.
       name, or no response with such records, emit 
       *[OUT_OF_BAILIWICK_ADDR_MISMATCH]*.
 
-9. If none of the messages *[IN_BAILIWICK_ADDR_MISMATCH]*, 
+8. If none of the messages *[IN_BAILIWICK_ADDR_MISMATCH]*, 
    *[EXTRA_ADDRESS_CHILD]* or *[OUT_OF_BAILIWICK_ADDR_MISMATCH]* has 
    been emitted, emit *[ADDRESSES_MATCH]*.
 
@@ -162,6 +162,8 @@ in [RFC 7719], section 6, page 15.
 
 The term "glue records" is defined in [RFC 7719], section 6, page 15.
 Here we use "glue" in the wider sense.
+
+[name server requirement]: https://www.iana.org/help/nameserver-requirements
 
 [RFC 7719]: https://tools.ietf.org/html/rfc7719
 
