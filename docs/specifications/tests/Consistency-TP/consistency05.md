@@ -47,13 +47,13 @@ consistent between glue and authoritative data.
 
    1. Create one A query and one AAAA query with the RD flag unset
       and name server name as owner name.
-   2. For each name server in *NS IP* and query type (A, AAAA):
+   2. For each name server in *NS IP* and and for each record 
+      types (A, AAAA):
       1. Send the address query to the name server.
-      2. If there is no DNS response from the server then:
-         1. Emit *[NO_RESPONSE]*.
-         2. Go to the next server.
-      3. If the response is a delegation (referral) to a sub-zone of 
-         *Child Zone*, then:
+      2. If there is no DNS response from the server then
+         emit *[NO_RESPONSE]*.
+      3. Else, if the response is a delegation (referral) to a 
+         sub-zone of *Child Zone*, then:
          1. Copy the adress query (A, AAAA) that gave the referral
             response.
          2. Set the RD flag in the copied query (from unset to set).
@@ -65,22 +65,16 @@ consistent between glue and authoritative data.
             with the same owner name as in the query, then extract those 
             and add to *Address Records From Child* with name and IP 
             address or addresses.
-         5. Go to the next server.
-      4. If the response has the AA flag unset, then:
-         1. Emit *[CHILD_NS_FAILED]*. 
-         2. Go to the next server.
-      5. If the RCODE of the response is neither NOERROR nor NXDOMAIN, 
-         then:
-         1. Emit *[CHILD_NS_FAILED]*.
-         2. Go to the next server.
-      6. If the RCODE of the response is NXDOMAIN, then: 
-         1  Go to the next server.
-      7. If the RCODE is NOERROR (with the AA flag set), then:
-         1. Extract any addresses records (A, AAAA) from the answer
-            section response if the owner name matches the that of 
-            the of the query and add to *Address Records From Child* 
-            with name and IP 
-         2. Go to the next server.
+      4. Else, if the response has the AA flag unset, then
+         emit *[CHILD_NS_FAILED]*. 
+      5. Else, if the RCODE of the response is neither NOERROR nor 
+         NXDOMAIN, then emit *[CHILD_NS_FAILED]*.
+      6. Else, if the RCODE is NOERROR (with the AA flag set), then
+         extract any addresses records (A, AAAA) from the answer
+         section response whose owner name matches the owner name 
+         of the of the query and add that or those to 
+         *Address Records From Child* with name and IP.
+      7. Else, if the RCODE is NXDOMAIN, there is nothing to do.
    3. If all servers emitted *[NO_RESPONSE]* or *[CHILD_NS_FAILED]*, 
       then emit *[CHILD_ZONE_LAME]* and completely stop processing 
       this test case.
