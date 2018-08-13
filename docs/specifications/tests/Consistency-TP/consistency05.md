@@ -26,6 +26,7 @@ consistent between glue and authoritative data.
       "Delegation Strict Glue" of those, were each name server name 
       is matched with its IP address or addresses, if available. The 
       set might be empty.
+
    2. Extract the [out-of-bailiwick] name servers names and create a set
       "Delegation Extended Glue" of those, were each name server name 
       is matched with its IP address or addresses, if available. The 
@@ -47,6 +48,7 @@ consistent between glue and authoritative data.
 
    1. Create one A query and one AAAA query with the RD flag unset
       and name server name as owner name.
+
    2. For each name server in *NS IP* and for each record 
       types (A, AAAA):
       1. Send the address query to the name server.
@@ -75,6 +77,7 @@ consistent between glue and authoritative data.
          of the of the query and add that or those to 
          *Address Records From Child* with name and IP.
       7. Or, if the RCODE is NXDOMAIN, there is nothing to do.
+
    3. If all servers emitted *[NO_RESPONSE]* or *[CHILD_NS_FAILED]*, 
       then emit *[CHILD_ZONE_LAME]* and completely stop processing 
       this test case.
@@ -91,14 +94,17 @@ consistent between glue and authoritative data.
       *Delegation Strict Glue* with that same name server name then 
       emit *[EXTRA_ADDRESS_CHILD]*.
 
-7. For each  name server name in *Delegation Extended Glue* 
-   (i.e. [out-of-bailiwick] only) do a DNS lookup, type A or AAAA, 
-   on public DNS.
+7. For each name server name in *Delegation Extended Glue* 
+   (i.e. [out-of-bailiwick] only) do: 
 
-   1. If the IP in *Delegation Extended Glue* does not match any of the 
-      listed A or AAAA records listed in the response for the same
-      name, or no response with such records, emit 
-      *[OUT_OF_BAILIWICK_ADDR_MISMATCH]*.
+   1. Do two DNS lookups, one record type A and one record type 
+      AAAA for name server name as owner name on public DNS.
+
+   2. For each IP address for name server name in in 
+      *Delegation Extended Glue* do:
+      1. If the address is not listed with the same owner name in 
+         the responses of the DNS lookups, or if there was no
+         response, emit *[OUT_OF_BAILIWICK_ADDR_MISMATCH]*.
 
 8. If none of the messages *[IN_BAILIWICK_ADDR_MISMATCH]*, 
    *[EXTRA_ADDRESS_CHILD]* or *[OUT_OF_BAILIWICK_ADDR_MISMATCH]* has 
