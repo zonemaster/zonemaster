@@ -125,7 +125,7 @@ In other cases the outcome of this Test Case is "pass".
 Message                           | Default severity level (if message is emitted)
 :---------------------------------|:-----------------------------------
 CHILD_NS_FAILED                   | NOTICE
-NO_RESPONSE                       | NOTICE
+NO_RESPONSE                       | WARNING
 CHILD_ZONE_LAME                   | ERROR
 IN_BAILIWICK_ADDR_MISMATCH        | ERROR
 OUT_OF_BAILIWICK_ADDR_MISMATCH    | ERROR
