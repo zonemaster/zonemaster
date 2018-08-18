@@ -10,8 +10,8 @@ For name servers that have IP addresses listed as glue, the IP addresses must
 match the authoritative A and AAAA records for that host. This is an IANA 
 [name server requirement].
 
-The objective of this test is to verify that the glue records are
-consistent between glue and authoritative data.
+The objective of this test is to verify that the glue address records 
+in the delegation are consistent with authoritative data.
 
 ## Inputs
 
@@ -23,14 +23,14 @@ consistent between glue and authoritative data.
    *Child Zone*.
 
    1. Extract the [in-bailiwick] name servers names and create a set
-      "Delegation Strict Glue" of those, were each name server name 
+      "Delegation Strict Glue" of those, where each name server name 
       is matched with its IP address or addresses, if available. The 
-      set might be empty.
+      set may be empty.
 
    2. Extract the [out-of-bailiwick] name servers names and create a set
-      "Delegation Extended Glue" of those, were each name server name 
+      "Delegation Extended Glue" of those, where each name server name 
       is matched with its IP address or addresses, if available. The 
-      set might be empty.
+      set may be empty.
 
 2. Obtain the set of name server names for the *Child Zone* using
    [Method2] and [Method3] and extract the [in-bailiwick] name 
@@ -120,7 +120,7 @@ The outcome of this Test Case is "warning" if there is at least one message
 with the severity level *WARNING*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
-In other cases the outcome of this Test Case is "pass".
+The outcome of this Test case is "pass" in all other cases.
 
 Message                           | Default severity level (if message is emitted)
 :---------------------------------|:-----------------------------------
@@ -135,8 +135,8 @@ ADDRESSES_MATCH                   | INFO
 ## Special procedural requirements	
 
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
-result of any test using this transport protocol. Log a message reporting
-on the ignored result.
+result of any test using this transport protocol and log a message reporting
+the ignored result.
 
 If the test is an [undelegated test] then [Method2] and [Method4] will 
 include the provided input data instead of data from any real delegation
@@ -145,7 +145,7 @@ and authoritative data.
 For an [undelegated test] it is possible to intentionally insert data
 for [out-of-bailiwick] name servers that do not match what is found in
 public DNS. This Test Case will then report this as an ERROR which
-might not match the users expectation.
+may not match the users expectation.
 
 It is assumed that the name servers of the parent zone behave the same way 
 for the parent zone as when [BASIC01] was run.
