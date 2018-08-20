@@ -53,7 +53,7 @@ in the delegation are consistent with authoritative data.
       types (A, AAAA):
       1. Send the address query to the name server.
       2. If there is no DNS response from the server then
-         emit *[NO_RESPONSE]*.
+         output *[NO_RESPONSE]*.
       3. Or, if the response is a delegation (referral) to a 
          sub-zone of *Child Zone*, then:
          1. Copy the adress query (A, AAAA) that gave the referral
@@ -68,9 +68,9 @@ in the delegation are consistent with authoritative data.
             and add to *Address Records From Child* with name and IP 
             address or addresses.
       4. Or, if the response has the AA flag unset, then
-         emit *[CHILD_NS_FAILED]*. 
+         output *[CHILD_NS_FAILED]*. 
       5. Or, if the RCODE of the response is neither NOERROR nor 
-         NXDOMAIN, then emit *[CHILD_NS_FAILED]*.
+         NXDOMAIN, then output *[CHILD_NS_FAILED]*.
       6. Or, if the RCODE is NOERROR (with the AA flag set), then
          extract any addresses records (A, AAAA) from the answer
          section response whose owner name matches the owner name 
@@ -78,8 +78,8 @@ in the delegation are consistent with authoritative data.
          *Address Records From Child* with name and IP.
       7. Or, if the RCODE is NXDOMAIN, there is nothing to do.
 
-   3. If all servers emitted *[NO_RESPONSE]* or *[CHILD_NS_FAILED]*, 
-      then emit *[CHILD_ZONE_LAME]* and completely stop processing 
+   3. If all servers outputted *[NO_RESPONSE]* or *[CHILD_NS_FAILED]*, 
+      then output *[CHILD_ZONE_LAME]* and completely stop processing 
       this test case.
 
 6. Compare the IP address for the name servers from 
@@ -88,11 +88,11 @@ in the delegation are consistent with authoritative data.
 
    1. If an IP from *Delegation Strict Glue* is not listed in 
       *Address Records From Child* with that same name server name 
-      then emit *[IN_BAILIWICK_ADDR_MISMATCH]*.
+      then output *[IN_BAILIWICK_ADDR_MISMATCH]*.
 
    2. If an IP from *Address Records From Child* is not listed in
       *Delegation Strict Glue* with that same name server name then 
-      emit *[EXTRA_ADDRESS_CHILD]*.
+      output *[EXTRA_ADDRESS_CHILD]*.
 
 7. For each name server name in *Delegation Extended Glue* 
    (i.e. [out-of-bailiwick] only) do: 
@@ -104,11 +104,11 @@ in the delegation are consistent with authoritative data.
       *Delegation Extended Glue* do:
       1. If the address is not listed with the same owner name in 
          the responses of the DNS lookups, or if there was no
-         response, emit *[OUT_OF_BAILIWICK_ADDR_MISMATCH]*.
+         response, output *[OUT_OF_BAILIWICK_ADDR_MISMATCH]*.
 
-8. If none of the messages *[IN_BAILIWICK_ADDR_MISMATCH]*, 
-   *[EXTRA_ADDRESS_CHILD]* or *[OUT_OF_BAILIWICK_ADDR_MISMATCH]* has 
-   been emitted, emit *[ADDRESSES_MATCH]*.
+8. If none of *[IN_BAILIWICK_ADDR_MISMATCH]*, *[EXTRA_ADDRESS_CHILD]* 
+   or *[OUT_OF_BAILIWICK_ADDR_MISMATCH]* has been outputted, output 
+   *[ADDRESSES_MATCH]*.
 
 
 ## Outcome(s)
@@ -122,7 +122,7 @@ with the severity level *WARNING*, but no message with severity level
 
 The outcome of this Test case is "pass" in all other cases.
 
-Message                           | Default severity level (if message is emitted)
+Message                           | Default severity level (when message is outputted)
 :---------------------------------|:-----------------------------------
 CHILD_NS_FAILED                   | NOTICE
 NO_RESPONSE                       | WARNING
