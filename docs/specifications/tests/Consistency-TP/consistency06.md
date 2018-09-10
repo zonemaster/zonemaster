@@ -25,7 +25,7 @@ The domain name to be tested.
 ### Ordered description of steps to be taken to execute the test case
 
  1. Obtain the list of name servers from [Method4] and [Method5].
- 2. Retrieve the CDS RR from all the name servers.
+ 2. Retrieve the CDS RR from all the name servers using TCP.
  3. The CDS RR RDATA value in its "string representation" must be the
     same for all servers from step 2.
 
@@ -43,6 +43,12 @@ on the ignored result.
 If there's no CDS record in the zone, we consider such absence as a normal
 answer, so it should be consistent between all the authoritative
 nameservers to pass the test.
+
+When bootstraping a new CDS key for setting up a DNSSEC delegation for
+the first time, there's a need to have extra security defenses against
+UDP injection attacks. Therefore, the transport for the query should be
+forced to TCP. If there's no TCP response from any nameserver, the test
+should fail.
 
 ### Intercase dependencies
 
