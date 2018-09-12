@@ -1,8 +1,8 @@
-## CONSISTENCY06: CDS record consistency
+## CONSISTENCY07: CDS record consistency
 
 ### Test case identifier
 
-**CONSISTENCY06:** CDS record consistency
+**CONSISTENCY07:** CDS record consistency
 
 ### Objective
 
