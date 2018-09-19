@@ -18,9 +18,9 @@ in the delegation are consistent with authoritative data.
 * "Child Zone" - The domain name to be tested.
 
 ## Ordered description of steps to be taken to execute the test case
-1. Obtain the set of name server names (using [Method2]) and the IP 
-   addresses for those (using [Method4]) for the delegation of 
-   *Child Zone*.
+1. Obtain the set of name server names from the NS records in the 
+   delegation of *Child Zone* using [Method2] and any glue IP addresses
+   from the same delegation using [Method4].
 
    1. Extract the [in-bailiwick] name servers names and create a set
       "Delegation Strict Glue" of those, where each name server name 
