@@ -7,7 +7,7 @@
 ## Objective
 
 The Domain Name System defaults to using UDP for queries and answers with a
-DNS payload limit of 512 octets (bytse). Larger replies cause an initial 
+DNS payload limit of 512 octets (bytes). Larger replies cause an initial 
 truncation indication leading to a subsequent handling via TCP with 
 substantially higher overhead. EDNS0 is used to allow for larger UDP 
 responses thus reducing the need for use of TCP.
