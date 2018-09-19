@@ -42,7 +42,7 @@ without the messages.
 
 * "Child Zone" - The name of the child zone.
 * "Root Name Servers" - The IANA [List of Root Servers].
-* "Test Type" - The test type with values "undelegate test" or 
+* "Test Type" - The test type with values "undelegated test" or 
   "normal test".
 
 This method also inherits the inputs of method [Get-Undel-Data].
@@ -66,9 +66,9 @@ If *Test Type* is "undelegated test", then as specified in method
    Start by using a nameserver from the *Root Name Servers*.
 
 3. Continue, step by step, until the parent zone (of the *Child Zone*) has 
-   been reached by using the redirects (delegations) found.
+   been reached by using the referrals (delegations) found.
 
-4. If the lookup reaches a name server that responds with a redirect 
+4. If the lookup reaches a name server that responds with a referral 
    (delegation) directly to the requested *Child Zone*:
    1. Return the following from the method:
       1. The parent zone is set to be the name of the zone that returned
@@ -84,7 +84,7 @@ If *Test Type* is "undelegated test", then as specified in method
    1. The zone returning NXDOMAIN or NODATA is defined to be the parent zone.
    2. Repeat the SOA query for the *Child Zone* to all name servers for the
       parent zone.
-      1. If any server returns a redirect (delegation) directly to the *Child
+      1. If any server returns a referral (delegation) directly to the *Child
       	 Zone* then go back to step 4 with the found delegation.
    3. If *Test Type* is "normal test" then return the following from the 
       method:
@@ -112,7 +112,7 @@ If *Test Type* is "undelegated test", then as specified in method
    1. The zone returning authoritative data is defined to be the parent zone. 
    2. Repeat the SOA query for the *Child Zone* to all name servers for the
       parent zone.
-      1. If any server returns a redirect (delegation) directly to the *Child
+      1. If any server returns a referral (delegation) directly to the *Child
       	 Zone* then go back to step 4 with the found delegation.
    3. If *Test Type* is "normal test" then return the following from the 
       method:
@@ -631,7 +631,7 @@ This is an internal method to be used by other methods.
 ### Inputs
 
 * "Child Zone" - The name of the child zone.
-* "Test Type" - The test type with values "undelegate test" or "normal test".
+* "Test Type" - The test type with values "undelegated test" or "normal test".
 
 This method also inherits the inputs of method [Get-Undel-Data] if
 *Test Type* is "undelegated test" or else the inputs of method
@@ -764,7 +764,7 @@ This is an internal method to be used by other methods.
 * "Child Zone" - The name of the child zone.
 * "NS Set" - The names of the *Child Zone* name servers as given by the
   calling method.
-* "Test Type" - The test type with values "undelegate test" or 
+* "Test Type" - The test type with values "undelegated test" or 
   "normal test".
 
 This method also inherits the inputs of method [Get-Undel-Data] if
@@ -844,13 +844,12 @@ This is an internal method to be used by other methods.
 ### Inputs
 
 * "Child Zone" - The name of the child zone.
-* "Test Type" - The test type with values "undelegate test" or "normal test".
 * "Undelegated Data" - the submitted delegation data, name server names,
   IP addresses and any DS record data for *Child Zone*
 
 ### Prerequisite
 
-* The *Test Type* of *Child Zone* must be "undelegated test".
+* The Test Type of *Child Zone* must be "undelegated test".
 * The *Undelegated Data* must include at least one name server name.
 
 ### Ordered description of steps to be taken to execute the method
