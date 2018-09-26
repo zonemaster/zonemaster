@@ -31,8 +31,7 @@ Input for this Test Case:
 1. If the *Child Zone* is the root zone ("."):
    1. The parent zone is set to the root zone (".") and the zone to be 
       tested is assumed to exist. 
-   2. Emit *[ROOT_HAS_NO_PARENT]*.
-   3. Exit.
+   2. Output *[ROOT_HAS_NO_PARENT]* and exit.
 
 2. Find the parent zone of the *Child Zone* by performing recursive 
    lookup for the SOA record of the *Child Zone* with the RD bit unset.
@@ -44,29 +43,30 @@ Input for this Test Case:
 4. If the lookup reaches a name server that responds with a referral 
    (delegation) directly to the requested *Child Zone*:
    1. The zone in which the delegation was found is defined to be the 
-      parent zone. Emit *[PARENT_FOUND]*.
-   2. The existence of the *Child Zone* has been determined. Emit 
+      parent zone. Output *[PARENT_FOUND]*.
+   2. The existence of the *Child Zone* has been determined. Output 
       *[CHILD_FOUND]*.
-   3. Repeat the SOA query for the *Child Zone* to all name servers for 
-      the parent zone.
-      1. If any server returns NXDOMAIN, NODATA or CNAME/DNAME, 
-      	 emit *[INCONSISTENT_DELEGATION]*. 
+   3. Repeat the SOA query for the *Child Zone* to the remaining name 
+      servers for the parent zone.
+      1. If any server returns NXDOMAIN, NODATA or CNAME/DNAME, then
+      	 output *[INCONSISTENT_DELEGATION]*. 
    4. Exit.
 
 5. If the lookup reaches a name server that authoritatively responds
    (AA flag set) and either with NXDOMAIN for the *Child Zone* or
    with NOERROR and no record in the answer section (NODATA): 
    1. The zone returning NXDOMAIN or NODATA is defined to be the parent 
-      zone. Emit *[PARENT_FOUND]*.
-   2. Repeat the SOA query for the *Child Zone* to all name servers for the
-      parent zone.
+      zone. Output *[PARENT_FOUND]*.
+   2. Repeat the SOA query for the *Child Zone* to the remaining name 
+      servers for the parent zone.
       1. If any server returns a referral (delegation) directly to the *Child
-      	 Zone*, emit *[INCONSISTENT_DELEGATION]* and go back to step 4 with 
-      	 the found delegation.
+      	 Zone*, then output *[INCONSISTENT_DELEGATION]* and go back to 
+         step 4 with the found delegation.
    3. The non-existence of the *Child Zone* has been determined. 
-      1. If *Test Type* is "normal test", emit *[NO_CHILD]*.
-      2. If *Test Type* is "undelegated test, emit *[CHILD_NOT_DELEGATED]*.
-   4. Exit.
+      1. If *Test Type* is "normal test", then output *[NO_CHILD]* 
+         and exit.
+      2. Or, if *Test Type* is "undelegated test, then output 
+         *[CHILD_NOT_DELEGATED]* and exit.
 
 6. If the lookup reaches a name server that non-authoritatively responds
    (AA flag unset) with a CNAME or DNAME record in the answer section:
@@ -78,27 +78,30 @@ Input for this Test Case:
 7. If the lookup reaches a name server that authoritatively responds
    (AA flag set) with a CNAME or DNAME record in the answer section:
    1. The zone returning authoritative data is defined to be the parent zone. 
-      Emit *[PARENT_FOUND]*.
-   2. Repeat the SOA query for the *Child Zone* to all name servers for the
-      parent zone.
+      Output *[PARENT_FOUND]*.
+   2. Repeat the SOA query for the *Child Zone* to the remaining name servers 
+      for the parent zone.
       1. If any server returns a referral (delegation) directly to the *Child
-      	 Zone*, emit *[INCONSISTENT_DELEGATION]* and go back to step 4 with 
-      	 the found delegation.
+      	 Zone*, then output *[INCONSISTENT_DELEGATION]* and go back to step 4 
+         with the found delegation.
    3. The non-existence of the *Child Zone* has been determined. 
-      1. If *Test Type* is "normal test", emit *[NO_CHILD]*. 
-      2. If *Test Type* is "undelegated test", emit *[CHILD_NOT_DELEGATED]*.
-   4. Exit.
+      1. If *Test Type* is "normal test", then output *[NO_CHILD]*
+         and exit. 
+      2. Or, if *Test Type* is "undelegated test", then output 
+         *[CHILD_NOT_DELEGATED]* and exit.
 
 8. If the lookup reaches a name server that authoritatively responds
    (AA flag set) with an SOA record with owner name child domain in the 
    answer section:
    1. The zone in the previous delegation is defined to be the parent 
-      zone. Emit *[PARENT_FOUND]*.
-   2. The existence of the *Child Zone* has been determined. Emit
+      zone. Output *[PARENT_FOUND]*.
+   2. The existence of the *Child Zone* has been determined. Output
       *[CHILD_FOUND]*.
-   3. Repeat the SOA query for the *Child Zone* to all name servers for the
-      parent zone.
-      1. If any server returns NXDOMAIN, NODATA or CNAME/DNAME emit 
+   3. Repeat the SOA query for the *Child Zone* to remaining name servers 
+      for the parent zone.
+      1. If any server returns a referral (delegation) directly to the *Child
+      	 Zone*, then go back to step 4 with the found delegation.
+      2. Or, if any server returns NXDOMAIN, NODATA or CNAME/DNAME, then output 
       	 *[INCONSISTENT_DELEGATION]*.
    4. Exit.
 
@@ -109,9 +112,9 @@ Input for this Test Case:
     then follow the delegation.
 
 11. If all servers above are exhausted: 
-    1. Emit *[PARENT_INDETERMINED]*.
-    1. If *Test Type* is "normal test", emit *[NO_CHILD]*.
-    2. If *Test Type* is "undelegated test", emit *[CHILD_NOT_DELEGATED]*.
+    1. Output *[PARENT_INDETERMINED]*.
+    1. If *Test Type* is "normal test", output *[NO_CHILD]*.
+    2. If *Test Type* is "undelegated test", output *[CHILD_NOT_DELEGATED]*.
 
 ### Test Type and existence of parent and child 
 
