@@ -50,8 +50,6 @@ of the DS format RDATA, from which CDS is derived.
 
      1. Send the CDS query to the name server using TCP.
 
-> The RFC does not require TCP.
-
      2. If there is no DNS response from the server then
         output *[NO_RESPONSE]*.
      3. Or, if the RCODE is not NOERROR then output 
@@ -75,6 +73,10 @@ of the DS format RDATA, from which CDS is derived.
 
 11. If the number of sets in *CDS List* is greater than one, then output
     *[MULTIPLE_CDS_RRSET]*.
+
+> The RFC does not require TCP. Should this Test Case use TCP? UDP is used
+> in the Test Cases unless there is a reason for TCP.
+
 
 ## Outcome(s)
 
