@@ -24,11 +24,11 @@ field should follow the rules of an e-mail address also defined in
 3. For each name server in *Name Server IP* do:
    1. Send the SOA query over UDP to the name server.
    2. If the name server does not respond with a DNS response, then:
-      1. Emit *[NO_RESPONSE]*.
+      1. Output *[NO_RESPONSE]*.
       2. Go to next server.
    3. If the DNS response does not include a SOA record in the 
       answer section, then:
-      1. Emit *[NO_RESPONSE_SOA_QUERY]*.
+      1. Output *[NO_RESPONSE_SOA_QUERY]*.
       2. Go to next server.
    4. Extract the RNAME from the SOA record.
    5. Convert the first "." without backslash quoting to an "@" in 
@@ -37,7 +37,7 @@ field should follow the rules of an e-mail address also defined in
       (see section 5.1, 5.3 and 8 in [RFC1035] for the use of backslash).
    7. If the converted string (mail address) does not meet the 
       specification in [RFC 5322, section 3.4.1], then 
-      1. Emit *[RNAME_RFC822_INVALID]*.
+      1. Output *[RNAME_RFC822_INVALID]*.
       2. Go to next server.
    8. Extract the domain part (to the right of "@") from the mail 
       address.
@@ -45,7 +45,7 @@ field should follow the rules of an e-mail address also defined in
        name server. 
    10. If the MX lookup does not return a DNS response with with RCODE 
        "NOERROR", then:
-       1. Emit *[RNAME_MAIL_DOMAIN_INVALID]*.
+       1. Output *[RNAME_MAIL_DOMAIN_INVALID]*.
        2. Go to next server.
    11. If the MX lookup returned a CNAME or a chain of CNAMEs then
        use the final name instead of the domain part in the steps below.
@@ -57,7 +57,7 @@ field should follow the rules of an e-mail address also defined in
        2. Disregard any A record with 127.0.0.1 or AAAA with ::1.
        3. If no A or AAAA records with the same owner name as domain
           part (or updated by CNAMEs above) were found in the responses 
-          then emit *[RNAME_MAIL_DOMAIN_INVALID]*.
+          then output *[RNAME_MAIL_DOMAIN_INVALID]*.
    13. If the MX lookup returned one or more MX records, then for each
        mail exchange (domain name in RDATA of the MX record) do:
        1. Create address queries (A and AAAA) and send it to a 
@@ -67,10 +67,10 @@ field should follow the rules of an e-mail address also defined in
           any CNAME).
        3. Disregard any A record with 127.0.0.1 or AAAA with ::1.
        4. If all MX have been processed and neither A or AAAA record 
-          was returned for any mail exchange then emit 
+          was returned for any mail exchange then output 
           *[RNAME_MAIL_DOMAIN_INVALID]*.
-   14. If no *[RNAME_MAIL_DOMAIN_INVALID]* has been emitted, 
-       then emit *[RNAME_RFC822_VALID]* for that RNAME.
+   14. If no *[RNAME_MAIL_DOMAIN_INVALID]* has been outputted, 
+       then output *[RNAME_RFC822_VALID]* for that RNAME.
 
 
 ## Outcome(s)
@@ -84,15 +84,13 @@ with the severity level *WARNING*, but no message with severity level
 
 In other cases the outcome of this Test Case is "pass".
 
-Message                       | Default severity level (if message is emitted)
+Message                       | Default severity level of message
 :-----------------------------|:-----------------------------------
 NO_RESPONSE                   | WARNING
 NO_RESPONSE_SOA_QUERY         | DEBUG
 RNAME_RFC822_INVALID          | WARNING
 RNAME_MAIL_DOMAIN_INVALID     | NOTICE
 RNAME_RFC822_VALID            | INFO
-
-
 
 
 ## Special procedural requirements
