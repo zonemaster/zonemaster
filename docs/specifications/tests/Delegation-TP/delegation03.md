@@ -63,7 +63,7 @@ must fit into a non-EDNS0 UDP DNS packet.
       section 4.1.4 of [RFC 1035].
 
 10. If size of the DNS packet after encoding is larger than 512 octets 
-    then emit *[REFERRAL_SIZE_TOO_LARGE]* else emit 
+    then output *[REFERRAL_SIZE_TOO_LARGE]* else output 
     *[REFERRAL_SIZE_OK]*.
 
 
@@ -78,7 +78,7 @@ with the severity level *WARNING*, but no message with severity level
 
 In other cases the outcome of this Test Case is "pass".
 
-Message                           | Default severity level (if message is emitted)
+Message                           | Default severity level of message
 :---------------------------------|:-----------------------------------
 REFERRAL_SIZE_TOO_LARGE           | WARNING
 REFERRAL_SIZE_OK                  | INFO
