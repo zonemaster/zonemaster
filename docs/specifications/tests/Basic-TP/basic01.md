@@ -19,9 +19,6 @@ test case to be run after this test case is BASIC03. However,
 if the test type is an undelegated test, then all other test cases 
 can be run even if the child zone is not delegated.
 
-The Test Case must, in general, use the same algorithm as Method
-[Get-Parent-Zone].
-
 ### Inputs
 
 Input for this Test Case:
@@ -42,9 +39,9 @@ Input for this Test Case:
    Start by using a nameserver from the *Root Name Servers*.
 
 3. Continue, step by step, until the parent zone (of the *Child Zone*) has 
-   been reached by using the redirects (delegations) found.
+   been reached by using the referrals (delegations) found.
 
-4. If the lookup reaches a name server that responds with a redirect 
+4. If the lookup reaches a name server that responds with a referral 
    (delegation) directly to the requested *Child Zone*:
    1. The zone in which the delegation was found is defined to be the 
       parent zone. Emit *[PARENT_FOUND]*.
@@ -63,7 +60,7 @@ Input for this Test Case:
       zone. Emit *[PARENT_FOUND]*.
    2. Repeat the SOA query for the *Child Zone* to all name servers for the
       parent zone.
-      1. If any server returns a redirect (delegation) directly to the *Child
+      1. If any server returns a referral (delegation) directly to the *Child
       	 Zone*, emit *[INCONSISTENT_DELEGATION]* and go back to step 4 with 
       	 the found delegation.
    3. The non-existence of the *Child Zone* has been determined. 
@@ -84,7 +81,7 @@ Input for this Test Case:
       Emit *[PARENT_FOUND]*.
    2. Repeat the SOA query for the *Child Zone* to all name servers for the
       parent zone.
-      1. If any server returns a redirect (delegation) directly to the *Child
+      1. If any server returns a referral (delegation) directly to the *Child
       	 Zone*, emit *[INCONSISTENT_DELEGATION]* and go back to step 4 with 
       	 the found delegation.
    3. The non-existence of the *Child Zone* has been determined. 
@@ -158,7 +155,7 @@ PARENT_FOUND                   |INFO
 PARENT_INDETERMINED            |NOTICE
 CHILD_FOUND                    |INFO
 NO_CHILD                       |ERROR
-CHILD_NOT_DELEGATED            |NOTICE
+CHILD_NOT_DELEGATED            |INFO
 INCONSISTENT_DELEGATION        |ERROR
 
 ### Special procedural requirements
@@ -170,6 +167,10 @@ None.
 [BASIC00] must have been run with "pass" outcome before this test case
 can be run.
 
+### Special considerations
+
+The Test Case must, in general, use the same algorithm as Method
+[Get-Parent-Zone].
 
 
 [List of Root Servers]: https://www.iana.org/domains/root/servers
