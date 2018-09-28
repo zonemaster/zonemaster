@@ -1,4 +1,4 @@
-![Zonemaster](https://github.com/dotse/zonemaster/blob/master/docs/images/zonemaster_logo_black.png)
+![Zonemaster](https://github.com/zonemaster/zonemaster/blob/master/docs/images/zonemaster_logo_black.png)
 ==========
 
 ### Purpose of this directory

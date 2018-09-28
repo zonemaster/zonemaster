@@ -1,5 +1,41 @@
 Release history of Zonemaster
 
+v2018.1 2018-06-25 Public release
+
+Changes Zonemaster reposistory:
+
+- Create StyleGuide.md (#561)
+- Editorial updates (#562, #563, #582, #584, #577, #571, #579, #582, #589,
+  #590, #593, #583, #590, #595, #586, #602, #603, #604, 
+- Update test messages (#570, #560)
+- Fix perl warnings (#578)
+- Create TC dnssec12 placeholder (#591)
+- Delete GUI folder (#572)
+- Clarify record fetching in Syntax05 (#600)
+- Update TC basic02 (#608)
+- Bring Steps in line with Objective for Consistency03 (#601)
+- Clarify more record fetching in TCs Dnssec03-05, Syntax06 and Zone06 
+  (#607)
+- Updated testing preparation files for Debian and CentOS (#623)
+- Update README.md in prepartion for release (#622)
+- Updated Changes as preparation for release (#634)
+
+High lights:
+
+- Zonemaster-LDNS is now built on latest version of LDNS and has been
+  modulized to make it possible to use available LDNS library.
+- Zonemaster-GUI has been rewritten from ground up.
+
+This version of Zonemaster also consists of the following components. For each
+component, see its Changes file.
+
+  Zonemaster-LDNS     v1.1.0   https://github.com/dotse/zonemaster-ldns
+  Zonemaster-Engine   v2.0.7   https://github.com/dotse/zonemaster-engine
+  Zonemaster-CLI      v1.1.3   https://github.com/dotse/zonemaster-cli
+  Zonemaster-Backend  v2.1.0   https://github.com/dotse/zonemaster-backend
+  Zonemaster-GUI      v2.0.0   https://github.com/zonemaster/zonemaster-gui
+
+
 v2017.4.2 2018-02-23 Security release
 
 Changes:

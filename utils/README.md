@@ -22,7 +22,7 @@ Level Zone-TP
 
 This tools creates a map between the Zonemaster requirements and
 implemented test case. It is used in the Makefile in
-docs/specifications/tests to create the [Report](https://github.com/dotse/zonemaster/blob/master/docs/specifications/tests/Report.md)
+docs/specifications/tests to create the [Report](https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/Report.md)
 on implemented test requirements.
 
 
@@ -31,7 +31,7 @@ on implemented test requirements.
 This tools creates a map between the Zonemaster log message
 identifiers and the test specification that implements the test code
 for that message. Also used in the Makefile in
-docs/specifications/tests to create the [TestMessages.md](https://github.com/dotse/zonemaster/blob/master/docs/specifications/tests/TestMessages.md)
+docs/specifications/tests to create the [TestMessages.md](https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/TestMessages.md)
 file.
 
 
