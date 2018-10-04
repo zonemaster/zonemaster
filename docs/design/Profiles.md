@@ -12,9 +12,11 @@ Links to the relevant sections are provided below.
 
 ## Background
 
-The Zonemaster requirements and specification documents speak of user-configurable profiles and policies for Zonemaster Engine and CLI.
+The Zonemaster requirements and specification documents speak of user-configurable profiles and policies 
+for Zonemaster Engine and CLI.
 
-In release 2017.4 all of the configurable features "config", "filter", "policy" and "profile" from the requirements and specifications were integrated into a single data structure, also called "profile".
+In release v2018.2 all of the configurable features "config", "filter", "policy" and "profile" from the 
+requirements and specifications were integrated into a single data structure, also called "profile".
 
 
 ## Profiles in Zonemaster Engine
@@ -48,10 +50,3 @@ The available profile choices are configured in a JSON file that maps profile na
 [Zonemaster Backend configuration]: https://github.com/dotse/zonemaster-backend/blob/master/docs/Configuration.md#profiles-section
 [Zonemaster::Engine::Config]: https://metacpan.org/pod/Zonemaster::Engine::Config
 
-
-Copyright (c) 2017, IIS (The Internet Foundation in Sweden)\
-Copyright (c) 2017, AFNIC\
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work. If not, see <https://creativecommons.org/licenses/by/4.0/>.
