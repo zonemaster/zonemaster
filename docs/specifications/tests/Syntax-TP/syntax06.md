@@ -40,23 +40,23 @@ field should follow the rules of an e-mail address also defined in
       1. Output *[RNAME_RFC822_INVALID]*.
       2. Go to next server.
    8. Extract the domain part (to the right of "@") from the mail 
-      address.
-   9. Create an MX query for the domain part and send it to a resolving
+      address ("Domain Part").
+   9. Create an MX query for the *Domain Part* and send it to a resolving
        name server. 
-   10. If the MX lookup does not return a DNS response with with RCODE 
+   10. If the MX lookup does not return a DNS response with RCODE 
        "NOERROR", then:
        1. Output *[RNAME_MAIL_DOMAIN_INVALID]*.
        2. Go to next server.
    11. If the MX lookup returned a CNAME or a chain of CNAMEs then
-       use the final name instead of the domain part in the steps below.
+       set *Domain Part* to be the the final name instead of the
+       domain from the email address.
    12. If the MX lookup returned a NO DATA response (no MX record), 
-       then 
-       1. Create address queries (A and AAAA) for the domain part (or 
-          updated by CNAMEs above) and send it to a resolving 
-          name server.
+       then:
+       1. Create address queries (A and AAAA) for the *Domain Part
+          and send it to a resolving name server.
        2. Disregard any A record with 127.0.0.1 or AAAA with ::1.
-       3. If no A or AAAA records with the same owner name as domain
-          part (or updated by CNAMEs above) were found in the responses 
+       3. If no A or AAAA records with the same owner name as *Domain
+          Part* were found in the responses 
           then output *[RNAME_MAIL_DOMAIN_INVALID]*.
    13. If the MX lookup returned one or more MX records, then for each
        mail exchange (domain name in RDATA of the MX record) do:
@@ -67,7 +67,7 @@ field should follow the rules of an e-mail address also defined in
           any CNAME).
        3. Disregard any A record with 127.0.0.1 or AAAA with ::1.
        4. If all MX have been processed and neither A or AAAA record 
-          was returned for any mail exchange then output 
+          was returned for any mail exchange, then output 
           *[RNAME_MAIL_DOMAIN_INVALID]*.
    14. If no *[RNAME_MAIL_DOMAIN_INVALID]* has been outputted, 
        then output *[RNAME_RFC822_VALID]* for that RNAME.
