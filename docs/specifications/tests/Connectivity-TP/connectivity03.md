@@ -19,35 +19,35 @@ failure disabling all of them.
 
 ## Inputs
 
-* The domain name to be tested ("child zone");
-* The ASN database to be used ("ASN database"). Possible values
+* "Child Zone" - The domain name to be tested.
+* "ASN Database" - The database of [ASN] data to be used. Possible values
   are "RIPE" and "Cymru".
-* If the *ASN Database* is "Cymru", the base name to be used 
-  ("base name"). Default is "asnlookup.zonemaster.net".
-* If the *ASN Database* is "RIPE", the name of the Whois server
-  to be used ("Whois server"). Default is "riswhois.ripe.net".
+* "Cymru Base Name" - If the *ASN Database* is "Cymru", the 
+  *Cymru Base Name* is used with the default value "asnlookup.zonemaster.net".
+* "Ris Whois Server" - If the *ASN Database* is "RIPE", the 
+  *Ris Whois Server* with the default value "riswhois.ripe.net".
 
 
 ## Ordered description of steps to be taken to execute the test case
 
 1. Obtain the total set of IP addresses of the name servers for the 
-   *child zone* using [Method4] and [Method5].
+   *Child Zone* using [Method4] and [Method5].
 
 2. For each IP address in the set from step 1 above, determine the ASN set
    announcing the IP address using either the *[Cymru database]* or the 
    *[RIPE database]* as described in separate sections below. 
 
 3. For each IP protocol (IPv4, IPv6) do:
-   1. If all addresses are announced from one and the same ASN emit
+   1. If all addresses are announced from one and the same ASN, output
       *[IPV4_ONLY_ONE_ASN]* or *[IPV6_ONLY_ONE_ASN]*.
    2. If all addresses are announced from the same ASN set of multiple 
-      ASNs, emit *[IPV4_SAME_ASN]* or *[IPV6_SAME_ASN]*.
-   3. If the addresses are announced from overlapping ASN sets, i.e. 
-      every set is either a subset, identical or superset of all other sets, 
+      ASNs, output *[IPV4_SAME_ASN]* or *[IPV6_SAME_ASN]*.
+   3. If the addresses are announced ASN sets, where every set is 
+      either a subset, identical or superset of all other sets, 
       but there are at least two IP addresses with non-identical ASN sets,
-      emit *[IPV4_OVERLAP_ASN]* or *[IPV6_OVERLAP_ASN]*.
+      output *[IPV4_SIMILAR_ASN]* or *[IPV6_SIMILAR_ASN]*.
    4. If there are at least two IP addresses for which the ASN sets are 
-      neither a subset, identical nor superset of the other emit
+      neither a subset, identical nor superset of the other, output
       *[IPV4_DIFFERENT_ASN]* or *[IPV6_DIFFERENT_ASN]*.
 
 
@@ -62,17 +62,17 @@ severity level ERROR or CRITICAL.
 
 In other cases the outcome of this Test Case is "pass".
 
-Message            |Default severity level (if message is emitted)
+Message            |Default severity level (if message is outputted)
 :------------------|:------------
 EMPTY_ASN_SET      |ERROR        
 ERROR_ASN_DATABASE |ERROR        
 IPV4_ONLY_ONE_ASN  |ERROR        
 IPV4_SAME_ASN      |NOTICE       
-IPV4_OVERLAP_ASN   |NOTICE       
+IPV4_SIMILAR_ASN   |NOTICE       
 IPV4_DIFFERENT_ASN |INFO         
 IPV6_ONLY_ONE_ASN  |ERROR        
 IPV6_SAME_ASN      |NOTICE       
-IPV6_OVERLAP_ASN   |NOTICE       
+IPV6_SIMILAR_ASN   |NOTICE       
 IPV6_DIFFERENT_ASN |INFO         
 
 
@@ -87,7 +87,7 @@ ASN lookup, RIPE or Cymru. The service must be available over the network.
 The Cymru lookup method is described on the Team Cymru [IP to ASN Mapping]
 using DNS lookup.
 
-1. Prepend the *base name* with the label "origin" (IPv4) or 
+1. Prepend the *Cymru Base Name* with the label "origin" (IPv4) or 
    "origin6" (IPv6). Example of expanded basenames 
    ("expanded base name"):
    
@@ -106,11 +106,11 @@ origin6.asnlookup.zonemaster.net
 4. Send a DNS query for the TXT record of the full name created in step 3.
 
 5. If the response is empty, i.e. dns response with RCODE NXDOMAIN
-   or a response with RCODE NOERROR but empty answer section emit
+   or a response with RCODE NOERROR but empty answer section, output
    *[EMPTY_ASN_SET]* and end these steps.
 
 6. If there is no response (timeout) or responds with any other 
-   RCODE (unknown status of service) emit *[ERROR_ASN_DATABASE]* and 
+   RCODE (unknown status of service), output *[ERROR_ASN_DATABASE]* and 
    end these steps.
 
 8. The expected response is a non-empty string in the TXT record or 
@@ -123,7 +123,7 @@ origin6.asnlookup.zonemaster.net
 
 11. Extract the ASN or ASNs.
 
-12. If steps 8-10 could not be processed emit *[ERROR_ASN_DATABASE]*
+12. If steps 8-10 could not be processed, output *[ERROR_ASN_DATABASE]*
     and end these steps (the response was malformed).
 
 13. The ASN or ASNs from step 11 is the ASN set for that IP address
@@ -142,7 +142,7 @@ The RIPE ASN lookup is described on the RIPE [RISwhois] page.
    " -F -M 192.0.2.10" 
    ```
    
-2. Send the query string to the *Whois server* on port
+2. Send the query string to the *Ris Whois Server* on port
    43 with the nicname (whois) protocol. Example of command
    line command on unix:
 
@@ -154,14 +154,14 @@ whois -h riswhois.ripe.net " -F -M 192.0.2.10"
    with data (no or one such line).
 
 4. Check if there is no string with data (empty reply). If so, 
-   emit *[EMPTY_ASN_SET]* and end these steps.
+   output *[EMPTY_ASN_SET]* and end these steps.
 
-5. If there is no response from the *Whois server* emit 
+5. If there is no response from the *Ris Whois Server*, output 
    *[ERROR_ASN_DATABASE]* and end these steps.
 
 6. The first field has the ASN or list of ASNs. Split that into ASNs.
 
-7. If steps 3-6 could not be processed emit *[ERROR_ASN_DATABASE]*
+7. If steps 3-6 could not be processed, output *[ERROR_ASN_DATABASE]*
    and end these steps (the response was malformed).
 
 8. From the ASN or ASNs from step 6 create the ASN set for the IP
@@ -200,7 +200,7 @@ None
 
 [IPV4_SAME_ASN]: #outcomes 
 
-[IPV4_OVERLAP_ASN]: #outcomes 
+[IPV4_SIMILAR_ASN]: #outcomes 
 
 [IPV4_DIFFERENT_ASN]: #outcomes 
 
@@ -208,7 +208,7 @@ None
 
 [IPV6_SAME_ASN]: #outcomes 
 
-[IPV6_OVERLAP_ASN]: #outcomes 
+[IPV6_SIMILAR_ASN]: #outcomes 
 
 [IPV6_DIFFERENT_ASN]: #outcomes 
 
