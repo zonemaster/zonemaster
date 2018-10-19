@@ -22,13 +22,13 @@ in the delegation are consistent with authoritative data.
    delegation of *Child Zone* using [Method2] and any glue IP addresses
    from the same delegation using [Method4].
 
-   1. Extract the [in-bailiwick] name servers names and create a set
-      "Delegation Strict Glue" of those, where each name server name 
+   1. Extract the [in-bailiwick] name server names and create the set
+      "Delegation Strict Glue", where each name server name 
       is matched with its IP address or addresses, if available. The 
       set may be empty.
 
-   2. Extract the [out-of-bailiwick] name servers names and create a set
-      "Delegation Extended Glue" of those, where each name server name 
+   2. Extract the [out-of-bailiwick] name server names and create the 
+      set "Delegation Extended Glue", where each name server name 
       is matched with its IP address or addresses, if available. The 
       set may be empty.
 
@@ -52,7 +52,7 @@ in the delegation are consistent with authoritative data.
    2. For each name server in *NS IP* and for each record 
       types (A, AAAA):
       1. Send the address query to the name server.
-      2. If there is no DNS response from the server then
+      2. If there is no DNS response from the server, then
          output *[NO_RESPONSE]*.
       3. Or, if the response is a delegation (referral) to a 
          sub-zone of *Child Zone*, then:
@@ -72,9 +72,9 @@ in the delegation are consistent with authoritative data.
       5. Or, if the RCODE of the response is neither NOERROR nor 
          NXDOMAIN, then output *[CHILD_NS_FAILED]*.
       6. Or, if the RCODE is NOERROR (with the AA flag set), then
-         extract any addresses records (A, AAAA) from the answer
-         section response whose owner name matches the owner name 
-         of the of the query and add that or those to 
+         extract any address records (A, AAAA) from the answer
+         section whose owner name matches the owner name 
+         of the query and add that or those to 
          *Address Records From Child* with name and IP.
       7. Or, if the RCODE is NXDOMAIN, there is nothing to do.
 
@@ -87,11 +87,11 @@ in the delegation are consistent with authoritative data.
    (i.e. [in-bailiwick] only).
 
    1. If an IP from *Delegation Strict Glue* is not listed in 
-      *Address Records From Child* with that same name server name 
+      *Address Records From Child* with that same name server name, 
       then output *[IN_BAILIWICK_ADDR_MISMATCH]*.
 
    2. If an IP from *Address Records From Child* is not listed in
-      *Delegation Strict Glue* with that same name server name then 
+      *Delegation Strict Glue* with that same name server name, then 
       output *[EXTRA_ADDRESS_CHILD]*.
 
 7. For each name server name in *Delegation Extended Glue* 
@@ -100,7 +100,7 @@ in the delegation are consistent with authoritative data.
    1. Do two DNS lookups, one record type A and one record type 
       AAAA for name server name as owner name on public DNS.
 
-   2. For each IP address for name server name in in 
+   2. For each IP address for name server name in
       *Delegation Extended Glue* do:
       1. If the address is not listed with the same owner name in 
          the responses of the DNS lookups, or if there was no
