@@ -26,47 +26,55 @@ serial number consistency.
 
 ## Inputs
 
-* The domain name to be tested ("Child Zone").
-* Accepted SOA serial difference ("Accepted Serial Difference"). Default value
-  is 0.
+* "Child Zone" - The domain name to be tested 
+* "Accepted Serial Difference" - Accepted difference between SOA serial
+  values from SOA records of different name servers for *Child Zone*. 
+  Default value is 0, i.e. no difference.
 
 ## Ordered description of steps to be taken to execute the test case
 
- 1. Obtain the list of name server IPs for the *Child Zone* from [Method4] 
-    and [Method5].
+1. Obtain the list of name server IPs for the *Child Zone* from [Method4] 
+    and [Method5] ("Name Server IP").
 
- 2. Create an SOA query for *Child Zone* apex and send it to each name 
-    server IP.
+2. Create an SOA query for *Child Zone* name (the top of the zone).
 
- 3. If the name server does not respond with a DNS response, emit 
-    *[NO_RESPONSE]* and go to next name server IP.
+3. Create an empty set of pair of retrieved SOA serials and name server
+   name and IP ("SOA Serial Set"). 
 
- 4. If the name server responds with a DNS response but no a SOA record 
-    is included, emit *[NO_RESPONSE_SOA_QUERY]* and go to next name 
-    server IP.
+3. For each name server in *Name Server IP* do:
+    
+    1. Send the SOA query to the name server.
 
- 5. Retrieve the SOA SERIAL from the responses and go to next name server
-    IP until all name server IPs have been queried.
+    2. If the name server does not respond with a DNS response, then 
+       output *[NO_RESPONSE]*.
 
- 6. If at least one SOA SERIAL has been retrieved and all serial 
-    numbers are identical, emit *[ONE_SOA_SERIAL]*.
+    3. Or, if the name server returns a DNS response, but no SOA 
+       record is included, then output *[NO_RESPONSE_SOA_QUERY]*.
 
- 7. If at least two serial numbers are different:
-    1. Order the serial number values from smallest to largest following
-       the arithmetic for serial number.
+    4. Or, retrieve the SOA SERIAL from the response and add it to
+       *SOA Serial Set* (unless it is already there) and update the set
+       with the name server name and IP.
+
+4. If *SOA Serial Set* has exactly one SOA serial value, then output 
+   *[ONE_SOA_SERIAL]*.
+
+5. Or, if *SOA Serial Set* has at least two SOA serials values, then do:
+    1. Order the serial number values from *SOA Serial Set* from smallest 
+       to largest following the arithmetic for serial number, if possible.
     2. If there is not a single, uniquely defined order of the serial 
-       numbers, emit *[SOA_SERIAL_VARIATION]* and *[MULTIPLE_SOA_SERIALS]*.
-    3. If the difference between the first and the last serial number
-       is larger than *Accepted Serial Difference*, using arithmetic
-       for serial number, emit *[SOA_SERIAL_VARIATION]* and 
+       numbers, then output *[SOA_SERIAL_VARIATION]* and 
        *[MULTIPLE_SOA_SERIALS]*.
-    4. If the difference between the first and the last serial number
+    3. Or, if the difference between the first and the last serial number
+       is larger than *Accepted Serial Difference*, using arithmetic
+       for serial number, then output *[SOA_SERIAL_VARIATION]* and 
+       *[MULTIPLE_SOA_SERIALS]*.
+    4. Or, if the difference between the first and the last serial number
        is not larger than *Accepted Serial Difference*, using arithmetic
-       for serial number, emit *[MULTIPLE_SOA_SERIALS_OK]*.
+       for serial number, output *[MULTIPLE_SOA_SERIALS_OK]*.
 
- 8. For each found serial number, emit *[SOA_SERIAL]* with the serial
-    number and a semicolon separated list of name server names and IP
-    address pairs (name/IP).
+6. For each SOA serial value in *SOA Serial Set*, output *[SOA_SERIAL]* 
+   with the serial number and a semicolon separated list of name server 
+   names and IP address pairs (name/IP).
     
 
 ## Outcome(s)
