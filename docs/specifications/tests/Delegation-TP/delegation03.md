@@ -28,7 +28,7 @@ must fit into a non-EDNS0 UDP DNS packet.
 2. Obtain the set of name server names from the delegation of 
    the *Child Zone* from the parent using [Method2].
 
-3. For each name server names obtained in the previous step:
+3. For each name server name obtained in the previous step:
    1. Create an NS record with the *Child Zone* apex as owner name
       and the name server name as RDATA.
    2. Add the NS record to the Authority section of the DNS packet
@@ -37,7 +37,7 @@ must fit into a non-EDNS0 UDP DNS packet.
 
 4. Using [Method1], get the parent zone of *Child Zone*.
 
-5. Obtain the name server IP addresses per name server names for
+5. Obtain the name server IP addresses per name server name for
    the delegation using [Method4].
 
 6. Make a set of the name server names that resolve into at least one
@@ -62,7 +62,7 @@ must fit into a non-EDNS0 UDP DNS packet.
       created above using the message compression schema defined in 
       section 4.1.4 of [RFC 1035].
 
-10. If size of the DNS packet after encoding is larger than 512 octets 
+10. If the size of the DNS packet after encoding exceeds 512 octets
     then output *[REFERRAL_SIZE_TOO_LARGE]* else output 
     *[REFERRAL_SIZE_OK]*.
 
