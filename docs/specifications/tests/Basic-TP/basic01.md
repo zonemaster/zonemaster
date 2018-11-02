@@ -24,7 +24,8 @@ can be run even if the child zone is not delegated.
 Input for this Test Case:
 * "Child Zone" - The label of the domain name (zone) to be tested
 * "Root Name Servers" - The IANA [List of Root Servers] 
-* "Test Type" - The test type with values "undelegate test" or "normal test".
+* "Test Type" - The test type with values "undelegated test" or 
+  "normal test".
 
 ### Ordered description of steps to be taken to execute the test case
 
@@ -65,7 +66,7 @@ Input for this Test Case:
    3. The non-existence of the *Child Zone* has been determined. 
       1. If *Test Type* is "normal test", then output *[NO_CHILD]* 
          and exit.
-      2. Or, if *Test Type* is "undelegated test, then output 
+      2. Or, if *Test Type* is "undelegated test", then output 
          *[CHILD_NOT_DELEGATED]* and exit.
 
 6. If the lookup reaches a name server that non-authoritatively responds
@@ -91,8 +92,8 @@ Input for this Test Case:
          *[CHILD_NOT_DELEGATED]* and exit.
 
 8. If the lookup reaches a name server that authoritatively responds
-   (AA flag set) with an SOA record with owner name child domain in the 
-   answer section:
+   (AA flag set) with an SOA record with *Child Zone* as the owner name 
+   in the answer section, then:
    1. The zone in the previous delegation is defined to be the parent 
       zone. Output *[PARENT_FOUND]*.
    2. The existence of the *Child Zone* has been determined. Output
