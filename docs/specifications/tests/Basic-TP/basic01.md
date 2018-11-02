@@ -49,7 +49,7 @@ Input for this Test Case:
       *[CHILD_FOUND]*.
    3. Repeat the SOA query for the *Child Zone* to the remaining name 
       servers for the parent zone.
-      1. If any server returns NXDOMAIN, NODATA or CNAME/DNAME, then
+      1. If any server returns NXDOMAIN, NODATA or CNAME, then
       	 output *[INCONSISTENT_DELEGATION]*. 
    4. Exit.
 
@@ -70,14 +70,14 @@ Input for this Test Case:
          *[CHILD_NOT_DELEGATED]* and exit.
 
 6. If the lookup reaches a name server that non-authoritatively responds
-   (AA flag unset) with a CNAME or DNAME record in the answer section:
-   1. A CNAME (DNAME) query with the RD flag unset is sent to the same server.
-   2. If the lookup returns an authoritative answer with a CNAME (DNAME) with
+   (AA flag unset) with a CNAME record in the answer section:
+   1. A CNAME query with the RD flag unset is sent to the same server.
+   2. If the lookup returns an authoritative answer with a CNAME with
       *Child Zone* name as owner name, then continue to step 7, else repeat 
       from step 3 using the next server. 
 
 7. If the lookup reaches a name server that authoritatively responds
-   (AA flag set) with a CNAME or DNAME record in the answer section:
+   (AA flag set) with a CNAME record in the answer section:
    1. The zone returning authoritative data is defined to be the parent zone. 
       Output *[PARENT_FOUND]*.
    2. Repeat the SOA query for the *Child Zone* to the remaining name servers 
@@ -102,7 +102,7 @@ Input for this Test Case:
       for the parent zone.
       1. If any server returns a referral (delegation) directly to the *Child
       	 Zone*, then go back to step 4 with the found delegation.
-      2. Or, if any server returns NXDOMAIN, NODATA or CNAME/DNAME, then output 
+      2. Or, if any server returns NXDOMAIN, NODATA or CNAME, then output 
       	 *[INCONSISTENT_DELEGATION]*.
    4. Exit.
 
