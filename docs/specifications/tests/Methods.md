@@ -101,14 +101,14 @@ If *Test Type* is "undelegated test", then as specified in method
    5. Exit.
 
 6. If the lookup reaches a name server that non-authoritatively responds
-   (AA flag unset) with a CNAME or DNAME record in the answer section:
-   1. A CNAME (DNAME) query with the RD flag unset is sent to the same server.
-   2. If the lookup returns an authoritative answer with a CNAME (DNAME) with
+   (AA flag unset) with a CNAME record in the answer section:
+   1. A CNAME query with the RD flag unset is sent to the same server.
+   2. If the lookup returns an authoritative answer with a CNAME with
       *Child Zone* name as owner name, then continue to step 7, else repeat 
       from step 3 using the next server. 
 
 7. If the lookup reaches a name server that authoritatively responds
-   (AA flag set) with a CNAME or DNAME record in the answer section:
+   (AA flag set) with a CNAME record in the answer section:
    1. The zone returning authoritative data is defined to be the parent zone. 
    2. Repeat the SOA query for the *Child Zone* to all name servers for the
       parent zone.
@@ -539,9 +539,9 @@ for the existence of *Child Zone*
 
 From the child zone, obtain the address records matching the
 [in-bailiwick] name server names found in the zone itself.
-Extract addresses even if the resolution goes through CNAME or
-DNAME. It is, however, not permitted for a NS record
-to point at a name that has a CNAME or DNAME, but that test is
+Extract addresses even if the resolution goes through CNAME. 
+It is, however, not permitted for a NS record
+to point at a name that has a CNAME, but that test is
 covered by Test Case [DELEGATION05].
 
 This is an internal method to be used by other methods.
@@ -579,7 +579,7 @@ As specified in method [Get-Del-NS-IPs].
    2. If a delegation (referral) to a sub-zone of Child Zone is returned, 
       follow that delegation, possibly in several steps, by repeating the
       A and AAAA queries.
-   3. If a CNAME or DNAME is returned, follow that, possibly in several
+   3. If a CNAME is returned, follow that, possibly in several
       steps, to resolve the name to IP addresses, if possible.
    4. Ignore non-referral responses unless AA flag is set (cached data
       is not accepted).
@@ -616,8 +616,8 @@ Obtain the name server names (from the NS records) and the IP addresses (from
 glue records) from the delegation of the given zone (child zone) from 
 the parent zone. Glue records are address records for [in-bailiwick] name 
 server names, if any. Extract addresses even if the resolution goes through 
-CNAME or DNAME. It is, however, not permitted for a NS record to point at a name
-that has a CNAME or DNAME, but that test is covered by Test Case [DELEGATION05].
+CNAME. It is, however, not permitted for a NS record to point at a name
+that has a CNAME, but that test is covered by Test Case [DELEGATION05].
 
 IP addresses for [out-of-bailiwick] name server names are not extracted
 with this method. To get those use method [Get-Del-NS-IPs] or
@@ -707,7 +707,7 @@ As specified in method [Get-Undel-Data] if *Test Type* is
          2. If a delegation (referral) to a sub-zone of Child Zone is 
             returned, follow that delegation, possibly in several steps, by 
             repeating the A and AAAA queries.
-         3. If a CNAME or DNAME is returned, follow that, possibly in 
+         3. If a CNAME is returned, follow that, possibly in 
             several steps, to resolve the name to IP addresses, if 
             possible.
          4. Ignore non-referral responses unless AA flag is set (cached 
@@ -750,9 +750,9 @@ Method [Get-Parent-Zone] must have been run.
 
 Obtain the IP addresses of the out-of-bailiwick name servers for the 
 given zone (child zone) and a given set of name server names. Extract 
-addresses even if the resolution goes through CNAME or DNAME. It is,
+addresses even if the resolution goes through CNAME. It is,
 however, not permitted for a NS record to point at a name that has a
-CNAME or DNAME, but that test is covered by Test Case [DELEGATION05].
+CNAME, but that test is covered by Test Case [DELEGATION05].
 
 This is an internal method to be used by other methods.
 
@@ -795,7 +795,7 @@ As specified in method [Get-Undel-Data] if *Test Type* is
 
    3. Send the two queries doing normal recursive lookup to a resolver.
 
-   4. If CNAME or DNAME is returned for the *Name*, then follow that,
+   4. If CNAME is returned for the *Name*, then follow that,
       possibly in several steps, and use the resulting IP address or
       addresses.
 
