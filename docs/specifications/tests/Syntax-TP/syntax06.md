@@ -52,7 +52,7 @@ field should follow the rules of an e-mail address also defined in
        domain from the email address.
    12. If the MX lookup returned a NO DATA response (no MX record), 
        then:
-       1. Create address queries (A and AAAA) for the *Domain Part
+       1. Create address queries (A and AAAA) for the *Domain Part*
           and send it to a resolving name server.
        2. Disregard any A record with 127.0.0.1 or AAAA with ::1.
        3. If no A or AAAA records with the same owner name as *Domain
