@@ -1,4 +1,4 @@
-# NAMESERVER10: Undefined EDNS version
+# NAMESERVER10: Test for undefined EDNS version
 
 ## Test case identifier
 

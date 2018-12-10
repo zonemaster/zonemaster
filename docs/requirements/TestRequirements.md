@@ -11,7 +11,7 @@ describes the current set of requirements on the tests to implement for
 Zonemaster.
 
 Any previous mapping detailing the inheritance on the requirements from
-Zonecheck and DNSCheck can be found inolder versions of this document.
+Zonecheck and DNSCheck can be found in older versions of this document.
 
 Source documents
 ----------------
@@ -20,9 +20,13 @@ Most of the requirements are derived from these documents:
 
 Type of document             |Document copied from   |Document
 :----------------------------|:----------------------|:------------------------------------
-Source document for Zonecheck|Previois Zonecheck site|[Features](supporting-documents/ExistingZCFeaturesCLI.md)
-Policy document for Zonecheck|Previois Zonecheck site|[Test Policy](supporting-documents/ExistingZCPolicy.md)
+Source document for Zonecheck|Previous Zonecheck site|[Features]
+Policy document for Zonecheck|Previous Zonecheck site|[Test Policy]
 Source document for DNSCheck |DNSCheck Github Wiki   |[Detailes list of all messages](supporting-documents/Detailed-list-of-all-possible-dnscheck-messages.md)
+
+[Features]:                      supporting-documents/ExistingZCFeaturesCLI.md
+[Test Policy]:                   supporting-documents/ExistingZCPolicy.md
+[Detailes list of all messages]: supporting-documents/Detailed-list-of-all-possible-dnscheck-messages.md
 
 
 Tests to implement
@@ -101,7 +105,7 @@ Tests to implement
 |R82|Test QNAME Case insensitivity                            |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver08.md)|
 |R83|Consistency between glue and authoritative data          |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency05.md)|
 |R84|Test for DNSSEC Algorithm Completeness (DS->DNSKEY->RRSIG)|[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec12.md)|
-
+|R85|Test for undefined EDNS version                          |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver10.md)|
 
 Future tests
 ------------
