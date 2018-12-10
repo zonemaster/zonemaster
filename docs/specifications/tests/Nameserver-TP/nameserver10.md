@@ -22,7 +22,7 @@ EDNS.
 ## Ordered description of steps to be taken to execute the test case
 
 1. Created an SOA query for the *Child Zone* with an OPT record with 
-   ENDS version set to "1" and no other ENDS options or flags.
+   EDNS version set to "1" and no other EDNS options or flags.
 
 2. Obtain the set of name server IP addresses using [Method4] and [Method5]
    ("Name Server IP").
@@ -34,7 +34,7 @@ EDNS.
       next server.
    3. If the DNS response has the RCODE "FORMERR" then output
       *[NO_EDNS_SUPPORT]*.
-   4. Else, if the DNS response has the RCODE "NOERROR" or "NXDOMAIN"
+   4. Else, if the DNS response has the RCODE "NOERROR" then 
       output *[BAD_UNSUPPORTED_VER]*.
    5. Else, if the DNS response meet the following three criteria,
       then just go to the next name server (no error):
