@@ -101,6 +101,7 @@ Tests to implement
 |R82|Test QNAME Case insensitivity                            |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver08.md)|
 |R83|Consistency between glue and authoritative data          |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency05.md)|
 |R84|Test for DNSSEC Algorithm Completeness (DS->DNSKEY->RRSIG)|[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec12.md)|
+|R86|SOA MNAME consistency                                    |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency06.md)|
 
 
 Future tests
