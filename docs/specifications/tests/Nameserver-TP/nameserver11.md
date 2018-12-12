@@ -38,7 +38,7 @@ that the OPTION-CODE is not present in the response for the query.
 	3. If the DNS response has the RCODE "FORMERR" then output
       *[NO_EDNS_SUPPORT]*.
 
-4. Else, if the DNS response meet the following three criteria,
+4. Else, if the DNS response meet the following four criterias,
       then just go to the next name server (no error):
 	1. The SOA is obtained as response in the ANSWER section.
 	2. If the DNS response has the RCODE "NOERROR".
