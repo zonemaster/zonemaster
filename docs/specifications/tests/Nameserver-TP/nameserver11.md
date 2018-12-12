@@ -42,8 +42,7 @@ that the OPTION-CODE is not present in the response for the query.
       then just go to the next name server (no error):
 	1. The SOA is obtained as response in the ANSWER section.
 	2. If the DNS response has the RCODE "NOERROR".
-	3. If the pseudo-section response has an OPT record with version set to
-0.
+	3. If the pseudo-section response has an OPT record with version set to 0.
 	4. There is no "OPTION-CODE" present in the response.
 
 5. Else output *[NS_ERROR]*.
