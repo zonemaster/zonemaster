@@ -1,21 +1,21 @@
-## nameserver11: Test for undefined EDNS OPTION-CODe
+# Nameserver11: Test for undefined EDNS OPTION-CODe
 
 ### test case identifier
 
-Nameserver11: 
+**Nameserver11** 
 
 
 ### objective
 
-EDNS is a mechanism to announce capabilities of a dns implementation,
-and is now basically required by any new functionality in dns such as
-dnssec ([rfc 6891]).
+EDNS is a mechanism to announce capabilities of a DNS implementation,
+and is now basically required by any new functionality in DNS such as
+DNSSEC ([RFC 6891]).
 
 [RFC 6891, section 6.1.2] states that any OPTION-CODE values not understood by a
 responder or requestor MUST be ignored. Unknown OPTION-CODE values must be
 processed as though the OPTION-CODE was not even there.
 
-In this test case, we will query  wwith an unknown EDNS OPTION-CODE and expect
+In this test case, we will query  with an unknown EDNS OPTION-CODE and expect
 that the OPTION-CODE is not present in the response for the query.
 
 ### Inputs
@@ -34,14 +34,14 @@ that the OPTION-CODE is not present in the response for the query.
 	1. Send the SOA query to the name server and collect the response.
 	2. If there is no DNS response, output *[NO_RESPONSE]* and go to
       next server.
-	3. If the DNS response has the RCODE "FORMERR" then output
+	3. The DNS response has the RCODE "FORMERR" then output
       *[NO_EDNS_SUPPORT]*.
 
-4. Else, if the DNS response meet the following four criterias,
+4. Else, if the DNS response meet the following four criteria,
       then just go to the next name server (no error):
 	1. The SOA is obtained as response in the ANSWER section.
 	2. If the DNS response has the RCODE "NOERROR".
-	3. If the pseudo-section response has an OPT record with version set to 0.
+	3. The pseudo-section response has an OPT record with version set to 0.
 	4. There is no "OPTION-CODE" present in the response.
 
 5. Else output *[NS_ERROR]*.

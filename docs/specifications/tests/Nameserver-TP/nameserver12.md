@@ -1,8 +1,8 @@
-## nameserver12: Test for undefined EDNS flags
+# nameserver12: Test for undefined EDNS flags
 
 ### test case identifier
 
-Nameserver12: 
+**Nameserver12** 
 
 ### objective
 
@@ -13,7 +13,7 @@ dnssec ([rfc 6891]).
 [RFC 6891, section 6.1.4] states that "Z" flag set to zero by senders and ignored by
 receiver.
 
-In this test case, we will query  wwith an unknown EDNS  flag
+In this test case, we will query  with an unknown EDNS  flag
 and expect that "Z" bits to be clear in the response.
 
 ### Inputs
@@ -31,14 +31,14 @@ and expect that "Z" bits to be clear in the response.
 	1. Send the SOA query to the name server and collect the response.
 	2. If there is no DNS response, output *[NO_RESPONSE]* and go to
       next server.
-	3. If the DNS response has the RCODE "FORMERR" then output
+	3. The DNS response has the RCODE "FORMERR" then output
       *[NO_EDNS_SUPPORT]*.
 
-4. Else, if the DNS response meet the following four criterias,
+4. Else, if the DNS response meet the following four criteria,
       then just go to the next name server (no error):
 	1. The SOA is obtained as response in the ANSWER section.
 	2. If the DNS response has the RCODE "NOERROR".
-	3. If the pseudo-section response has an OPT record with version set to 0.
+	3. The pseudo-section response has an OPT record with version set to 0.
 	4. The "Z" bits are clear in the response
 
 5. Else output *[NS_ERROR]*.

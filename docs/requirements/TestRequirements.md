@@ -102,8 +102,8 @@ Tests to implement
 |R83|Consistency between glue and authoritative data          |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency05.md)|
 |R84|Test for DNSSEC Algorithm Completeness (DS->DNSKEY->RRSIG)|[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec12.md)|
 |R86|Test for undefined EDNS OPTION-CODE |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver11.md)|
-|R86|Test for unknown EDNS flags
-|[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver12.md)|
+|R87|Test for unknown EDNS flags |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver12.md)|
+|R88|Test for truncated EDNS responses |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver13.md)|
 
 Future tests
 ------------
