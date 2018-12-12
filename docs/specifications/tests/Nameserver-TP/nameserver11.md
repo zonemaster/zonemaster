@@ -1,11 +1,11 @@
 # Nameserver11: Test for undefined EDNS OPTION-CODe
 
-### test case identifier
+## test case identifier
 
-**Nameserver11** 
+**NAMESERVER11** 
 
 
-### objective
+### Objective
 
 EDNS is a mechanism to announce capabilities of a DNS implementation,
 and is now basically required by any new functionality in DNS such as
@@ -19,6 +19,7 @@ In this test case, we will query  with an unknown EDNS OPTION-CODE and expect
 that the OPTION-CODE is not present in the response for the query.
 
 ### Inputs
+
 "Child Zone" - The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
@@ -84,11 +85,3 @@ https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-paramet
 [BAD_UNSUPPORTED_VER]: #outcomes
 [NS_ERROR]: #outcomes
 
--------
-
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure
-Foundation) Copyright (c) 2013, 2014, 2015, AFNIC Creative Commons Attribution
-4.0 International License
-
-You should have received a copy of the license along with this work. If not,
-see <https://creativecommons.org/licenses/by/4.0/>.

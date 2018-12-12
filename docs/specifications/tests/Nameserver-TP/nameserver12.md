@@ -1,10 +1,10 @@
 # nameserver12: Test for undefined EDNS flags
 
-### test case identifier
+## test case identifier
 
-**Nameserver12** 
+**NAMESERVER12** 
 
-### objective
+### Objective
 
 EDNS is a mechanism to announce capabilities of a dns implementation,
 and is now basically required by any new functionality in dns such as
@@ -17,6 +17,7 @@ In this test case, we will query  with an unknown EDNS  flag
 and expect that "Z" bits to be clear in the response.
 
 ### Inputs
+
 "Child Zone" - The domain name to be tested.
 
 ### Ordered description of steps to be taken to execute the test case
@@ -77,13 +78,3 @@ None.
 [NO_RESPONSE]: #outcomes
 [NO_EDNS_SUPPORT]: #outcomes
 [BAD_UNSUPPORTED_VER]: #outcomes
-[NS_ERROR]: #outcomes
-
--------
-
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure
-Foundation) Copyright (c) 2013, 2014, 2015, AFNIC Creative Commons Attribution
-4.0 International License
-
-You should have received a copy of the license along with this work. If not,
-see <https://creativecommons.org/licenses/by/4.0/>.
