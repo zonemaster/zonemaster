@@ -58,9 +58,8 @@ with the severity level *WARNING*, but no message with severity level
 
 The outcome of this Test case is "pass" in all other cases.
 
-Message                           | Default severity level (when message is
-outputted)
-:---------------------------------|:-----------------------------------
+Message                           | Default severity level (when message is outputed)
+:---------------------------------|:--------------------------------------------------
 NO_RESPONSE                       | WARNING
 NO_EDNS_SUPPORT                   | NOTICE
 NS_ERROR			  | WARNING     
