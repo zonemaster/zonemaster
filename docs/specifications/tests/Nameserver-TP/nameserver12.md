@@ -1,9 +1,8 @@
-## nameserver11: Test for undefined EDNS OPTION-CODe
+## nameserver12: Test for undefined EDNS flags
 
 ### test case identifier
 
-Nameserver11: 
-
+Nameserver12: 
 
 ### objective
 
@@ -11,12 +10,11 @@ EDNS is a mechanism to announce capabilities of a dns implementation,
 and is now basically required by any new functionality in dns such as
 dnssec ([rfc 6891]).
 
-[RFC 6891, section 6.1.2] states that any OPTION-CODE values not understood by a
-responder or requestor MUST be ignored. Unknown OPTION-CODE values must be
-processed as though the OPTION-CODE was not even there.
+[RFC 6891, section 6.1.4] states that "Z" flag set to zero by senders and ignored by
+receiver.
 
-In this test case, we will query  wwith an unknown EDNS OPTION-CODE and expect
-that the OPTION-CODE is not present in the response for the query.
+In this test case, we will query  wwith an unknown EDNS  flag
+and expect that "Z" bits to be clear in the response.
 
 ### Inputs
 "Child Zone" - The domain name to be tested.
@@ -24,8 +22,7 @@ that the OPTION-CODE is not present in the response for the query.
 ### Ordered description of steps to be taken to execute the test case
 
 1. Create a SOA query for the *Child Zone* with an OPT record with 
-   EDNS OPTION-CODE set to anything other than it is already assigned as in the
-[IANA-DNSSYSTEM-PARAMETERS] and no other EDNS options or flags.
+   EDNS flag "Z" bit set to anything other than "0" and no other EDNS options or flags.
 
 2. Obtain the set of name server IP addresses using [Method4] and [Method5]
    ("Name Server IP").
@@ -42,7 +39,7 @@ that the OPTION-CODE is not present in the response for the query.
 	1. The SOA is obtained as response in the ANSWER section.
 	2. If the DNS response has the RCODE "NOERROR".
 	3. If the pseudo-section response has an OPT record with version set to 0.
-	4. There is no "OPTION-CODE" present in the response.
+	4. The "Z" bits are clear in the response
 
 5. Else output *[NS_ERROR]*.
  
@@ -74,9 +71,7 @@ the ignored result.
 None.
 
 [RFC 6891]: https://tools.ietf.org/html/rfc6891
-[RFC 6891, section 6.1.2]: https://tools.ietf.org/html/rfc6891#section-6.1.2
-[IANA-DNSSYSTEM-PARAMETERS]:
-https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-11
+[RFC 6891, section 6.1.4]: https://tools.ietf.org/html/rfc6891#section-6.1.2
 [Method4]: ../Methods.md#method-4-delegation-name-server-addresses
 [Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
 [NO_RESPONSE]: #outcomes
