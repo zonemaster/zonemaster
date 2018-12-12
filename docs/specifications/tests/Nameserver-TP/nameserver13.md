@@ -6,9 +6,9 @@
 
 ### objective
 
-EDNS is a mechanism to announce capabilities of a dns implementation,
-and is now basically required by any new functionality in dns such as
-dnssec ([rfc 6891]).
+EDNS is a mechanism to announce capabilities of a DNS implementation,
+and is now basically required by any new functionality in DNS such as
+DNSSEC ([rfc 6891]).
 
 [RFC 6891, section 7] states that an OPT record is supposed to be included
 in a truncated response, where-in in the request, an OPT pseudo-RR is present.
