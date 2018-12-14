@@ -1,10 +1,14 @@
 # Methods common to Test Case Specifications
 
-*Status of this document (MethodsNT): The methods defined in this document are planned to replace the
-old (current) methods defined in [Methods] in the Test Case specifications. Before the transistion
-all Test Cases still use the old methods ([Methods]). During the transitions it will be given from
-the specification if the Test Case uses the old methods or the methods in this document. When the
-transition has been completed, the old methods document will be removed.*
+*Status of this document (MethodsNT): 
+
+The methods are used in, and referred to, the Test 
+Case specifications as shortcuts for steps shared between several Test Cases. The methods 
+defined in this document are planned to replace the old (current) methods defined in 
+[Methods]. Before the transistion all Test Cases still use the old methods ([Methods]). 
+During the transitions it will be given from the specification if the Test Case uses the 
+old methods or the methods in this document. When the transition is completed, the 
+old methods document will be removed.*
 
 This is a list of generic methods directly or indirectly used in many 
 Test Case specifications. The Test Cases that makes use of any of 
@@ -891,19 +895,23 @@ None.
 
 ## Method inter-dependencies
 
-Method                      | Level | Dependent on method (with level)
-----------------------------|-------|-----------------------------------
-[Get-Undel-Data]            | 1     | -
-[Get-Parent-Zone]           | 2     | [Get-Undel-Data](1)
-[Get-OOB-IPs]               | 2     | [Get-Undel-Data](1)
-[Get-Delegation]            | 3     | [Get-Undel-Data](1) [Get-Parent-Zone](2)
-[Get-Del-NS-Names-and-IPs]  | 4     | [Get-Delegation](3) [Get-OOB-IPs](2)
-[Get-Del-NS-Names]          | 5     | [Get-Del-NS-Names-and-Ips](4)
-[Get-Del-NS-IPs]            | 5     | [Get-Del-NS-Names-and-IPs](4)
-[Get-Zone-NS-Names]         | 6     | [Get-Del-NS-IPs](5)
-[Get-IB-Addr-in-Zone]       | 6     | [Get-Del-NS-IPs](5)
-[Get-Zone-NS-Names-and-IPs] | 7     | [Get-Zone-NS-Names](6) [Get-IB-Addr-in-Zone](6) [Get-OOB-IPs](2)
-[Get-Zone-NS-IPs]           | 8     | [Get-Zone-NS-Names-and-IPs](7)
+Method                      | Level | Dependent on method        | Level
+----------------------------|-------|----------------------------|-------------
+[Get-Undel-Data]            | 1     | -                          |
+[Get-Parent-Zone]           | 2     | [Get-Undel-Data]           | 1
+[Get-OOB-IPs]               | 2     | [Get-Undel-Data]           | 1
+[Get-Delegation]            | 3     | [Get-Undel-Data]           | 1
+                            | 3     | [Get-Parent-Zone]          | 2
+[Get-Del-NS-Names-and-IPs]  | 4     | [Get-Delegation]           | 3
+                            | 4     | [Get-OOB-IPs]              | 2
+[Get-Del-NS-Names]          | 5     | [Get-Del-NS-Names-and-Ips] | 4
+[Get-Del-NS-IPs]            | 5     | [Get-Del-NS-Names-and-IPs] | 4
+[Get-Zone-NS-Names]         | 6     | [Get-Del-NS-IPs]           | 5
+[Get-IB-Addr-in-Zone]       | 6     | [Get-Del-NS-IPs]           | 5
+[Get-Zone-NS-Names-and-IPs] | 7     | [Get-Zone-NS-Names]        | 6
+                            | 7     | [Get-IB-Addr-in-Zone]      | 6
+                            | 7     | [Get-OOB-IPs]              | 2
+[Get-Zone-NS-IPs]           | 8     | [Get-Zone-NS-Names-and-IPs]| 7
 
 [To top]
 
