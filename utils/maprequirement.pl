@@ -208,12 +208,13 @@ main();
 
 =head1 DESCRIPTION
     
-This tools extracts all reuquirements from a requirements file and maps
+This tools extracts all requirements from a requirements file and maps
 the requirement to a test specification.
 
 =head1 USAGE
 
-maprequirement.pl --specdir docs/specifications --reqfile docs/requirements/Test\ Requirements.md
+./maprequirement.pl --specdir ../docs/specifications/tests \
+        --reqfile ../docs/requirements/TestRequirements.md
 
 Mandatory arguments:
 
