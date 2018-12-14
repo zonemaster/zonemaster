@@ -1,7 +1,7 @@
 # NAMESERVER02: Test of EDNS0 support
 
 ## Test case identifier
-*NAMESERVER02**
+**NAMESERVER02**
 
 ## Objective
 
@@ -10,7 +10,7 @@ and is now basically required by any new functionality in DNS such as
 DNSSEC. EDNS(0) is standardized in [RFC 6891].
 
 This test case checks that all name servers has the capability to do
-EDNS(0) or if not, correctly replies to queries containing ENDS
+EDNS(0) or if not, correctly replies to queries containing EDNS
 (OPT record).
 
 Servers not supporting EDNS(0) must return FORMERR 
@@ -21,6 +21,13 @@ Servers not supporting EDNS(0) must return FORMERR
 > FORMERR to messages containing an OPT record in the additional
 > section and MUST NOT include an OPT record in the response.
 
+Servers supporting EDNS(0) must reply with EDNS(0)
+([RFC 6891, section 6.1.1]):
+
+> If an OPT record is present in a received request, compliant
+> responders MUST include an OPT record in their respective responses.
+
+
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
@@ -28,7 +35,7 @@ Servers not supporting EDNS(0) must return FORMERR
 ## Ordered description of steps to be taken to execute the test case
 
 1. Created an SOA query for the *Child Zone* with an OPT record with 
-   ENDS version set to "0" and with EDNS0 option of payload size ("bufsize")
+   EDNS version set to "0" and with EDNS(0) option of payload size ("bufsize")
    set to 512.
 
 2. Create a second SOA query for the *Child Zone* without any OPT record.
@@ -52,7 +59,7 @@ Servers not supporting EDNS(0) must return FORMERR
       1. It has the RCODE "FORMERR" 
       2. It has no OPT record.
    4. Else, if the DNS response meet the following two criteria,
-      then just go to the next name server (no error):
+      then just go to the next name server (compliant server):
       1. It has the RCODE "NOERROR".
       2. It has OPT record with EDNS version 0.
    5. Else, if the DNS response meet the following two criteria,
@@ -63,7 +70,8 @@ Servers not supporting EDNS(0) must return FORMERR
       then output *[BROKEN_EDNS_SUPPORT]* and go to next server.
       1. It has the RCODE "NOERROR".
       2. It has OPT record with EDNS version other than 0.
-   7. Else output *[NS_ERROR]*.
+   7. Else output *[NS_ERROR]* (i.e. other erroneous or unexpected 
+      response).
 
 ## Outcome(s)
 
@@ -93,9 +101,9 @@ the ignored result.
 
 None
 
-
 [RFC 6891]: https://tools.ietf.org/html/rfc6891
-[RFC 6891, section 6.1.3]: https://tools.ietf.org/html/rfc6891#section-6.1.3
+[RFC 6891, section 7]: https://tools.ietf.org/html/rfc6891#section-7
+[RFC 6891, section 6.1.1]: https://tools.ietf.org/html/rfc6891#section-6.1.1
 [Method4]: ../Methods.md#method-4-delegation-name-server-addresses
 [Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
 [NO_RESPONSE]: #outcomes
@@ -103,6 +111,3 @@ None
 [BROKEN_EDNS_SUPPORT]: #outcomes
 [NS_ERROR]: #outcomes
 
-
-[RFC 6891]: https://tools.ietf.org/html/rfc6891
-[RFC 6891, section 7]: https://tools.ietf.org/html/rfc6891#section-7
