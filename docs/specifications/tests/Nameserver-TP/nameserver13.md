@@ -15,8 +15,8 @@ in a truncated response if the query includes an OPT pseudo record.
 The request will be queried with the only EDNS OPT pseudo-RR flag set; i.e. the
 'DO' bit. 
 
-The query will be tested on a DNSSEC signed zone. This test will not give a
-valid result if the zone is not signed.  
+This Test Case is not applicable unless the zone is DNSSEC signed. No DS records
+are needed in the parent zone
 
 In addition, the EDNS buffer size should be set to 512, since most signed DNSKEY
 responses are bigger than 512 bytes. 
@@ -30,7 +30,7 @@ from the server.
 
 ## Ordered description of steps to be taken to execute the test case
 
-1. Create a query for the *Child Zone* that is signed with 'DO' bit set to '1' and
+1. Create a DNSKEY query for the *Child Zone* that is signed with 'DO' bit set to '1' and
 setting the buffer size to 512 bytes
 
 2. Obtain the set of name server IP addresses using [Method4] and [Method5]
