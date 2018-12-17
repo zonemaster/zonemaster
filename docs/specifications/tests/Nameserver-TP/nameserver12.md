@@ -8,7 +8,7 @@
 
 EDNS is a mechanism to announce capabilities of a dns implementation,
 and is now basically required by any new functionality in dns such as
-dnssec ([rfc 6891]).
+DNSSEC ([RFC 6891]).
 
 [RFC 6891, section 6.1.4] states that "Z" flag set to zero by senders and ignored by
 receiver.
@@ -34,6 +34,8 @@ and expect that "Z" bits to be clear in the response.
       	next server.
 	3. Else, if the DNS response has the RCODE "FORMERR" then output
       	*[NO_EDNS_SUPPORT]*.
+	4. Else, if the pseudo-section has an OPT record with flags being set to
+	some value, then output [Z_FLAGS_NOTCLEAR]. 
 	4. Else, if the DNS response meet the following four criteria,
       	then just go to the next name server (no error):
 		1. The SOA is obtained as response in the ANSWER section.
@@ -59,6 +61,7 @@ Message                           | Default severity level (when message is outp
 NO_RESPONSE                       | WARNING
 NO_EDNS_SUPPORT                   | WARNING
 NS_ERROR			  | WARNING     
+Z_FLAGS_NOTCLEAR          	  | WARNING
 
 ## Special procedural requirements
 
@@ -76,3 +79,5 @@ None.
 [Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
 [NO_RESPONSE]: #outcomes
 [NO_EDNS_SUPPORT]: #outcomes
+[Z_FLAGS_NOTCLEAR]: #outcomes
+[NS_ERROR]: #outcomes
