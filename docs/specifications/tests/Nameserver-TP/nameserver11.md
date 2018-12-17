@@ -1,4 +1,4 @@
-# NAMESERVER11: Test for undefined EDNS OPTION-CODE
+# NAMESERVER11: Test for unknown EDNS OPTION-CODE
 
 ## Test case identifier
 
@@ -37,6 +37,8 @@ that the OPTION-CODE is not present in the response for the query.
 	next server.
 	3. Else, if the DNS response has the RCODE "FORMERR" then output
       	*[NO_EDNS_SUPPORT]*.
+	4. Else, if there is an "OPTION-CODE" present in tbe response, then
+	output *[UNKNOWN_OPTION_CODe]*. 
 	4. Else, if the DNS response meet the following four criteria,
       	then just go to the next name server (no error):
 		1. The SOA is obtained as response in the ANSWER section.
@@ -62,6 +64,7 @@ Message                           | Default severity level (when message is outp
 NO_RESPONSE                       | WARNING
 NO_EDNS_SUPPORT                   | NOTICE
 NS_ERROR			  | WARNING     
+UNKNOWN_OPTION-CODE		  | WARNING     
 
 ## Special procedural requirements
 
@@ -81,4 +84,4 @@ None.
 [NO_RESPONSE]: #outcomes
 [NO_EDNS_SUPPORT]: #outcomes
 [NS_ERROR]: #outcomes
-
+[UNKNOWN_OPTION_CODE]: #outcomes
