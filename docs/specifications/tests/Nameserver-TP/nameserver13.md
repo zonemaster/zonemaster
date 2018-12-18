@@ -39,7 +39,11 @@ set to '1' and setting the buffer size to 512 bytes
       	next server.
 	3. Else, if the DNS response has the RCODE "FORMERR" then output
       	*[NO_EDNS_SUPPORT]* and go to the next server. 
-	4. Else, if the DNS response meet the following criteria,
+	4. Else, if the DNS response meet the following criteria output 
+        *[MISSING_OPT_IN_TRUNCATED]*:
+	        1. The DNS response is truncated (the "TC" flag is set).
+	        2. The DNS response has no OPT record.
+	5. Else, if the DNS response meet the following criteria,
       	then just go to the next name server (no error):
 		1. The DNS response has the RCODE "NOERROR".
 		2. The header contains the 'TC' flag set.
@@ -63,6 +67,7 @@ Message                           | Default severity level (when message is outp
 NO_RESPONSE                       | WARNING
 NO_EDNS_SUPPORT                   | WARNING
 NS_ERROR			  | WARNING     
+MISSING_OPT_IN_TRUNCATED   	  | WARNING
 
 ## Special procedural requirements
 
@@ -82,4 +87,5 @@ None.
 [NO_EDNS_SUPPORT]: #outcomes
 [NO_TC_FLAG]: #outcomes
 [NS_ERROR]: #outcomes
+[MISSING_OPT_IN_TRUNCATED]: #outcomes
 
