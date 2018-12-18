@@ -2,7 +2,7 @@
 
 ## Test case identifier
 
-**Nameserver10**
+**NAMESERVER10**
 
 ## Objective
 
@@ -30,12 +30,11 @@ EDNS.
 3. For each name server in *Name Server IP* do:
 
    1. Send the SOA query to the name server and collect the response.
-   2. If there is no DNS response, output *[NO_RESPONSE]* and go to
-      next server.
-   3. If the DNS response has the RCODE "FORMERR" then output
+   2. If there is no DNS response, output *[NO_RESPONSE]*.
+   3. Else, if the DNS response has the RCODE "FORMERR" then output
       *[NO_EDNS_SUPPORT]*.
    4. Else, if the DNS response has the RCODE "NOERROR" then 
-      output *[BAD_UNSUPPORTED_VER]*.
+      output *[UNSUPPORTED_EDNS_VER]*.
    5. Else, if the DNS response meet the following three criteria,
       then just go to the next name server (no error):
       1. It has the RCODE "BADVERS".
@@ -58,8 +57,8 @@ The outcome of this Test case is "pass" in all other cases.
 Message                           | Default severity level (when message is outputted)
 :---------------------------------|:-----------------------------------
 NO_RESPONSE                       | WARNING
-NO_EDNS_SUPPORT                   | NOTICE
-BAD_UNSUPPORTED_VER               | WARNING
+NO_EDNS_SUPPORT                   | WARNING
+UNSUPPORTED_EDNS_VER              | WARNING
 NS_ERROR                          | WARNING
 
 ## Special procedural requirements	
@@ -79,6 +78,6 @@ None
 [Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
 [NO_RESPONSE]: #outcomes
 [NO_EDNS_SUPPORT]: #outcomes
-[BAD_UNSUPPORTED_VER]: #outcomes
+[UNSUPPORTED_EDNS_VER]: #outcomes
 [NS_ERROR]: #outcomes
 
