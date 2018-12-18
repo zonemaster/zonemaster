@@ -83,7 +83,6 @@ None.
 [Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
 [NO_RESPONSE]: #outcomes
 [NO_EDNS_SUPPORT]: #outcomes
-[NO_TC_FLAG]: #outcomes
 [NS_ERROR]: #outcomes
 [MISSING_OPT_IN_TRUNCATED]: #outcomes
 
