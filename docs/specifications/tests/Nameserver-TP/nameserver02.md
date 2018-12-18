@@ -27,6 +27,9 @@ Servers supporting EDNS(0) must reply with EDNS(0)
 > If an OPT record is present in a received request, compliant
 > responders MUST include an OPT record in their respective responses.
 
+To eliminating the risk of falsely classifying the server as not supporting
+ENDS due e.g. firewall issues, the UDP buffer size is set to 512 bytes 
+(octets).
 
 ## Inputs
 
@@ -36,7 +39,7 @@ Servers supporting EDNS(0) must reply with EDNS(0)
 
 1. Created an SOA query for the *Child Zone* with an OPT record with 
    EDNS version set to "0" and with EDNS(0) option of payload size ("bufsize")
-   set to 512.
+   set to 512 and "DO" bit unset.
 
 2. Create a second SOA query for the *Child Zone* without any OPT record.
 
@@ -58,15 +61,16 @@ Servers supporting EDNS(0) must reply with EDNS(0)
       then output *[NO_EDNS_SUPPORT]*:
       1. It has the RCODE "FORMERR" 
       2. It has no OPT record.
-   4. Else, if the DNS response meet the following two criteria,
+   4. Else, if the DNS response meet the following criteria,
       then just go to the next name server (compliant server):
       1. It has the RCODE "NOERROR".
-      2. It has OPT record with EDNS version 0.
-   5. Else, if the DNS response meet the following two criteria,
+      2. The answer section contains the SOA record for *Child Zone*.
+      3. It has OPT record with EDNS version 0.
+   5. Else, if the DNS response meet the following criteria,
       then output *[BROKEN_EDNS_SUPPORT]* and go to next server.
       1. It has the RCODE "NOERROR".
       2. It has no OPT record.
-   6. Else, if the DNS response meet the following two criteria,
+   6. Else, if the DNS response meet the following criteria,
       then output *[BROKEN_EDNS_SUPPORT]* and go to next server.
       1. It has the RCODE "NOERROR".
       2. It has OPT record with EDNS version other than 0.
