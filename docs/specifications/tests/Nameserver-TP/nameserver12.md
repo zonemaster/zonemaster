@@ -13,7 +13,7 @@ DNSSEC ([RFC 6891]).
 [RFC 6891, section 6.1.4] states that "Z" flag set to zero by senders and ignored by
 receiver.
 
-In this test case, we will query  with an unknown EDNS  flag
+In this test case, we will query with an unknown EDNS flag
 and expect that "Z" bits to be clear in the response.
 
 ## Inputs
