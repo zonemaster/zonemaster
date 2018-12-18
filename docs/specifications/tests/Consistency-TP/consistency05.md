@@ -64,8 +64,9 @@ in the delegation are consistent with authoritative data.
               undelegated data has created, if any.
          4. If the lookup returns the relevant address record or records,
             A for A record query and AAAA for AAAA record query, and 
-            with the same owner name as in the query, then extract those 
-            and add to *Address Records From Child* with name and IP 
+            with the same owner name as in the query (i.e. CNAME should
+            not be followed), then extract those and add to 
+            *Address Records From Child* with name and IP 
             address or addresses.
       4. Or, if the response has the AA flag unset, then
          output *[CHILD_NS_FAILED]*. 
@@ -74,8 +75,8 @@ in the delegation are consistent with authoritative data.
       6. Or, if the RCODE is NOERROR (with the AA flag set), then
          extract any address records (A, AAAA) from the answer
          section whose owner name matches the owner name 
-         of the query and add that or those to 
-         *Address Records From Child* with name and IP.
+         of the query (i.e. CNAME should not be followed) and add 
+         that or those to *Address Records From Child* with name and IP. 
       7. Else, there is nothing to do (i.e. RCODE is NXDOMAIN).
 
    3. If all servers outputted *[NO_RESPONSE]* or *[CHILD_NS_FAILED]*, 
@@ -99,8 +100,9 @@ in the delegation are consistent with authoritative data.
 
    1. Do two DNS lookups, one record type A and one record type 
       AAAA, for *DEG Name Server Name* on public DNS and create a
-      set of the IP addresses from the A an AAAA records, respectively,
-      from the answer sections of the responses. Do not follow any CNAME. 
+      set of the IP addresses from the A and AAAA records, respectively,
+      from the answer sections of the responses and that matches
+      the owner name of the query (i.e. CNAME should not be followed). 
       (The set will be empty if there are no relevant records in the
       answer sections or if there is no response, e.g. SERVFAIL.)
 
