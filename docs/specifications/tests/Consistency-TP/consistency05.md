@@ -40,7 +40,7 @@ in the delegation are consistent with authoritative data.
    or addresses, "Address Records From Child".
 
 4. If *IB NS Name Set* is non-empty, obtain the set of name server IP 
-   addresses for *Child Zone* using [Method4] and [Method5] ("NS IP"). 
+   addresses, "NS IP", for *Child Zone* using [Method4] and [Method5].
 
 5. If *IB NS Name Set* is non-empty, then for each name server name in
    that set do:
