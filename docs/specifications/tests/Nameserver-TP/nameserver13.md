@@ -8,21 +8,17 @@
 
 EDNS is a mechanism to announce capabilities of a DNS implementation,
 and is now basically required by any new functionality in DNS such as
-DNSSEC ([rfc 6891]).
+DNSSEC ([RFC 6891]).
 
 [RFC 6891, section 7] states that an OPT record must be included
-in a truncated response if the query includes an OPT pseudo record.
-The request will be queried with the only EDNS OPT pseudo-RR flag set; i.e. the
-'DO' bit. 
+in a truncated response, if the query includes an OPT pseudo record.
 
-This Test Case is not applicable unless the zone is DNSSEC signed. No DS records
-are needed in the parent zone
+This Test Case will try to verify that if the response to a query with an OPT
+record is truncated, then the response will contain an OPT record.
 
-In addition, the EDNS buffer size should be set to 512, since most signed DNSKEY
-responses are bigger than 512 bytes. 
-
-The objective  of the query in this test  is to elicit a truncated response
-from the server.
+To trigger a truncated response, the OPT pseudo record DO bit is set and the
+buffer size is limited to 512 bytes. If the zone is not signed with DNSSEC, the
+response will probably not be truncated anyway.
 
 ## Inputs
 
@@ -30,21 +26,20 @@ from the server.
 
 ## Ordered description of steps to be taken to execute the test case
 
-1. Create a DNSKEY query for the *Child Zone* that is signed with 'DO' bit set to '1' and
-setting the buffer size to 512 bytes
+1. Create a DNSKEY query for the *Child Zone* that is signed with 'DO' bit
+set to '1' and setting the buffer size to 512 bytes
 
 2. Obtain the set of name server IP addresses using [Method4] and [Method5]
    ("Name Server IP").
 
 3. For each name server in *Name Server IP* do:
+
 	1. Send the query to the name server and collect the response.
 	2. If there is no DNS response, output *[NO_RESPONSE]* and go to
       	next server.
 	3. Else, if the DNS response has the RCODE "FORMERR" then output
       	*[NO_EDNS_SUPPORT]* and go to the next server. 
-	4. Else, if the DNS response has no 'TC' flag, output *[NO_TC_FLAG]* and go to
-	the next server.
-	5. Else, if the DNS response meet the following criteria,
+	4. Else, if the DNS response meet the following criteria,
       	then just go to the next name server (no error):
 		1. The DNS response has the RCODE "NOERROR".
 		2. The header contains the 'TC' flag set.
@@ -67,7 +62,6 @@ Message                           | Default severity level (when message is outp
 :---------------------------------|:--------------------------------------------------
 NO_RESPONSE                       | WARNING
 NO_EDNS_SUPPORT                   | WARNING
-NO_TC_FLAG                        | WARNING
 NS_ERROR			  | WARNING     
 
 ## Special procedural requirements
