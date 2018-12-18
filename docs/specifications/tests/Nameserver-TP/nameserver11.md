@@ -46,8 +46,7 @@ that the OPTION-CODE is not present in the response for the query.
 		2. If the DNS response has the RCODE "NOERROR".
 		3. The pseudo-section response has an OPT record with version set to 0.
 		4. There is no "OPTION-CODE" present in the response.
-
-4. Else output *[NS_ERROR]*.
+	6. Else output *[NS_ERROR]*.
  
 ## Outcome(s)
 
