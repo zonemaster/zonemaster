@@ -1,4 +1,4 @@
-# NAEMSERVER13: Test for EDNS truncated response
+# NAMSERVER13: Test for EDNS truncated response
 
 ## Test case identifier
 
@@ -16,7 +16,7 @@ in a truncated response, if the query includes an OPT pseudo record.
 This Test Case will try to verify that if the response to a query with an OPT
 record is truncated, then the response will contain an OPT record.
 
-To trigger a truncated response, the OPT pseudo record DO bit is set and the
+To trigger a truncated response, the OPT pseudo record 'DO' bit is set and the
 buffer size is limited to 512 bytes. If the zone is not signed with DNSSEC, the
 response will probably not be truncated anyway.
 
@@ -46,10 +46,8 @@ set to '1' and setting the buffer size to 512 bytes
 	5. Else, if the DNS response meet the following criteria,
       	then just go to the next name server (no error):
 		1. The DNS response has the RCODE "NOERROR".
-		2. The header contains the 'TC' flag set.
-		3. The pseudo-section response has an OPT record with version set to 0.
-
-4. Else output *[NS_ERROR]*.
+		2. The pseudo-section response has an OPT record with version set to 0.
+	6. Else output *[NS_ERROR]*.
  
 ## Outcome(s)
 
