@@ -32,14 +32,15 @@ that the OPTION-CODE is not present in the response for the query.
    ("Name Server IP").
 
 3. For each name server in *Name Server IP* do:
+
 	1. Send the SOA query to the name server and collect the response.
 	2. If there is no DNS response, output *[NO_RESPONSE]* and go to
 	next server.
 	3. Else, if the DNS response has the RCODE "FORMERR" then output
       	*[NO_EDNS_SUPPORT]*.
-	4. Else, if there is an "OPTION-CODE" present in tbe response, then
-	output *[UNKNOWN_OPTION_CODe]*. 
-	4. Else, if the DNS response meet the following four criteria,
+	4. Else, if there is an "OPTION-CODE" present in the response, then
+	output *[UNKNOWN_OPTION_CODE]*. 
+	5. Else, if the DNS response meet the following four criteria,
       	then just go to the next name server (no error):
 		1. The SOA is obtained as response in the ANSWER section.
 		2. If the DNS response has the RCODE "NOERROR".
@@ -62,7 +63,7 @@ The outcome of this Test case is "pass" in all other cases.
 Message                           | Default severity level (when message is outputed)
 :---------------------------------|:--------------------------------------------------
 NO_RESPONSE                       | WARNING
-NO_EDNS_SUPPORT                   | NOTICE
+NO_EDNS_SUPPORT                   | WARNING
 NS_ERROR			  | WARNING     
 UNKNOWN_OPTION-CODE		  | WARNING     
 
