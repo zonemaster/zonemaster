@@ -74,4 +74,5 @@ https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-paramet
 [Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
 [NO_RESPONSE]: #outcomes
 [NO_EDNS_SUPPORT]: #outcomes
+[NS_ERROR]: #outcomes
 [EDNS_INCORRECT_OPTION]: #outcomes
