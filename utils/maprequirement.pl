@@ -86,7 +86,7 @@ sub readTCLevels {
             open my $lFile, "$tcDir/$levelfile" or die "cannot open $tcDir/$levelfile: $!";
             my @content = <$lFile>;
             close $lFile;
-            $result->{$tclevel} = TCFileFromLevel(\@content);
+            $result->{$tclevel} = TCFileFromLevel(\@content, "$tcDir/$levelfile");
         }
     }
     return $result;
@@ -95,15 +95,20 @@ sub readTCLevels {
 # given the content of a Test Level file, extract the Reqs and files for the TC
 sub TCFileFromLevel {
     my $content = shift;
+    my $tcfile = shift;
     my $result;
+    my $lnno = 0; # Line number
     print @$content if $DEBUG;
     foreach my $line (@$content) {
-        if ( $line =~ /^\|(R.*)\|(.*)\|(.*)\|/ ) {
-            next if $1 eq 'Req';
+        $lnno++;
+        if ( $line =~ /^\|(R\d+)\|(.*)\|(.*)\|/ ) {
             my $req = $1; # discard $2, we don't need it
             my $tmp = $3;
-            $tmp =~ /\((.*)\)/;
-            push @{$result->{'file'}->{$req}}, $1 if defined $1;
+            if ($tmp =~ /\((.*)\)/) {
+                push @{$result->{'file'}->{$req}}, $1 if defined $1;
+            } else {
+                warn "No file name found on line $lnno in file $tcfile.\n";
+            };
             print "Mapping Level Rxx to File: $req $1\n" if $DEBUG;
         }
     }
@@ -115,13 +120,14 @@ sub readTCFiles {
     my $fileinfo = shift;
     my $result;
     foreach my $level (keys %{$fileinfo}){
-        print "LEVEL $level\n" if $DEBUG;
+        print "LEVEL DIR $level\n" if $DEBUG;
+        (my $levelname = $level) =~ s/-TP$//; # Remove "-TP" from directory name to get level name
         foreach my $req ( keys %{ $fileinfo->{$level}->{'file'} } ) {
             my $files = $fileinfo->{$level}->{'file'}->{$req};
             foreach my $file (@$files) {
                 my $tcid;   # test case id
                 my $tcdesc; # test case desc
-                print "LEVEL $level $req $file\n" if $DEBUG;
+                print "LEVEL $levelname $req $file\n" if $DEBUG;
 
                 my $tcFile = "$specdir/$level/$file";
                 my @content = ();
@@ -142,6 +148,7 @@ sub readTCFiles {
                     $tcid = "missing";
                     $tcdesc = "missing";
                 }
+                warn "Mismatch: Expected level $levelname in $tcFile\n" unless $tcid =~ /^$levelname/i;
                 
                 # key on the Req
                 # stuff the test case in the result hash
@@ -228,6 +235,6 @@ Optional arguments:
 
 =head1 AUTHOR
 
-Patrik Wallstrom <pawal@iis.se>
+Patrik Wallstrom <pawal@iis.se> (original author)
 
 =cut
