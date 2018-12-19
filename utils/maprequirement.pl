@@ -140,8 +140,10 @@ sub readTCFiles {
                     warn "cannot open $tcFile: $!";
                 }
                 
-                # TC id and TC desc only on first line of TC file:
-                if ( defined $content[0] and $content[0] =~ /^##\s*(.*)\s*\:\s*(.*)/ ) {
+                # TC id and TC desc only on first line of TC file, e.g.
+                # >># NAMESERVER01: A name server should not be a recursor<<
+                # Accept both "#" (new format) and "##" (old format)                
+                if ( defined $content[0] and $content[0] =~ /^##?\s*(.*)\s*\:\s*(.*)/ ) {
                     $tcid   = $1 || "missing";
                     $tcdesc = $2 || "missing";
                     print "$tcid $tcdesc\n" if $DEBUG;
