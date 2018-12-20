@@ -62,8 +62,8 @@ Tests to implement
 |R31|SOA 'minimum' less than 1 day                           |[ZONE](../specifications/tests/Zone-TP/zone06.md)|
 |R32|SOA master is not an alias                              |[ZONE](../specifications/tests/Zone-TP/zone07.md)|
 |R33|Coherence of serial number with primary nameserver      |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency01.md)|
-|R34|Coherence of administrative contact with primary nameserver |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency02.md)|
-|R36|Coherence of SOA with primary nameserver                |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency03.md)|
+|R34|Coherence of administrative contact with primary nameserver (SOA RNAME) |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency02.md)|
+|R36|Coherence of SOA with primary nameserver (SOA timers)   |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency03.md)|
 |R40|Nameserver IP reverse                                   |[ADDRESS](../specifications/tests/Address-TP/address02.md)|
 |R41|Nameserver IP reverse matching nameserver name          |[ADDRESS](../specifications/tests/Address-TP/address03.md)|
 |R42|Check if server is really recursive                     |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver01.md)|
@@ -101,7 +101,7 @@ Tests to implement
 |R82|Test QNAME Case insensitivity                            |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver08.md)|
 |R83|Consistency between glue and authoritative data          |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency05.md)|
 |R84|Test for DNSSEC Algorithm Completeness (DS->DNSKEY->RRSIG)|[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec12.md)|
-|R89|SOA MNAME consistency                                    |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency06.md)|
+|R89|Coherence of SOA with primary nameserver (SOA MNAME)     |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency06.md)|
 
 
 Future tests
