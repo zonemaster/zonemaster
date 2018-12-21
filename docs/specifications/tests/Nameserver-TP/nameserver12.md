@@ -1,7 +1,6 @@
 # NAMESERVER12: Test for unknown EDNS flags
 
 ## Test case identifier
-
 **NAMESERVER12** 
 
 ## Objective
@@ -23,26 +22,27 @@ and expect that "Z" bits to be clear in the response.
 ## Ordered description of steps to be taken to execute the test case
 
 1. Create a SOA query for the *Child Zone* with an OPT record with 
-   EDNS flag "Z" bit set to anything other than "0" and no other EDNS options or flags.
+   EDNS flag "Z" bit set to anything other than "0" and no other EDNS options or 
+   flags.
 
 2. Obtain the set of name server IP addresses using [Method4] and [Method5]
    ("Name Server IP").
 
 3. For each name server in *Name Server IP* do:
-	1. Send the SOA query to the name server and collect the response.
-	2. If there is no DNS response, output *[NO_RESPONSE]* and go to
-      	next server.
-	3. Else, if the DNS response has the RCODE "FORMERR" then output
-      	*[NO_EDNS_SUPPORT]*.
-	4. Else, if the pseudo-section has an OPT record with flags being set to
-	some value, then output [Z_FLAGS_NOTCLEAR]. 
-	5. Else, if the DNS response meet the following four criteria,
-      	then just go to the next name server (no error):
-		1. The SOA is obtained as response in the ANSWER section.
-		2. If the DNS response has the RCODE "NOERROR".
-		3. The pseudo-section response has an OPT record with version set to 0.
-		4. The "Z" bits are clear in the response
-	6. Else output *[NS_ERROR]*.
+   1. Send the SOA query to the name server and collect the response.
+   2. If there is no DNS response, output *[NO_RESPONSE]* and go to
+      next server.
+   3. Else, if the DNS response has the RCODE "FORMERR" then output
+      *[NO_EDNS_SUPPORT]*.
+   4. Else, if the pseudo-section has an OPT record with flags being set to
+      some value, then output [Z_FLAGS_NOTCLEAR]. 
+   5. Else, if the DNS response meet the following four criteria,
+      then just go to the next name server (no error):
+      1. The SOA is obtained as response in the ANSWER section.
+      2. If the DNS response has the RCODE "NOERROR".
+      3. The pseudo-section response has an OPT record with version set to 0.
+      4. The "Z" bits are clear in the response
+   6. Else output *[NS_ERROR]*.
  
 ## Outcome(s)
 
@@ -59,8 +59,8 @@ Message                           | Default severity level (when message is outp
 :---------------------------------|:--------------------------------------------------
 NO_RESPONSE                       | WARNING
 NO_EDNS_SUPPORT                   | WARNING
-NS_ERROR			  | WARNING     
-Z_FLAGS_NOTCLEAR          	  | WARNING
+NS_ERROR           | WARNING     
+Z_FLAGS_NOTCLEAR               | WARNING
 
 ## Special procedural requirements
 
