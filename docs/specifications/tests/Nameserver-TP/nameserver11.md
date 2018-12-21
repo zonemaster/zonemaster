@@ -1,9 +1,7 @@
 # NAMESERVER11: Test for unknown EDNS OPTION-CODE
 
 ## Test case identifier
-
 **NAMESERVER11** 
-
 
 ## Objective
 
@@ -64,7 +62,7 @@ Message                           | Default severity level (when message is outp
 NO_RESPONSE                       | WARNING
 NO_EDNS_SUPPORT                   | WARNING
 NS_ERROR			  | WARNING     
-UNKNOWN_OPTION-CODE		  | WARNING     
+UNKNOWN_OPTION_CODE		  | WARNING     
 
 ## Special procedural requirements
 
