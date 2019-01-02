@@ -58,10 +58,7 @@ in the delegation are consistent with authoritative data.
          1. Copy the adress query (A, AAAA) that gave the referral
             response.
          2. Set the RD flag in the copied query (from unset to set).
-         3. Do a DNS lookup of the the query using a resolving name server 
-            on the public DNS.
-            * The lookup must take into account changes that
-              undelegated data has created, if any.
+         3. Do a [DNS Lookup] of the the query.
          4. If the lookup returns the relevant address record or records,
             A for A record query and AAAA for AAAA record query, and 
             with the same owner name as in the query (i.e. CNAME should
@@ -98,7 +95,7 @@ in the delegation are consistent with authoritative data.
 7. For each name server name in *Delegation Extended Glue* 
    (i.e. [out-of-bailiwick] only) ("DEG Name Server Name") do: 
 
-   1. Do two DNS lookups, one record type A and one record type 
+   1. Do two [DNS lookup]s, one record type A and one record type 
       AAAA, for *DEG Name Server Name* on public DNS and create a
       set of the IP addresses from the A and AAAA records, respectively,
       from the answer sections of the responses and that matches
@@ -169,43 +166,41 @@ in [RFC 7719], section 6, page 15.
 The term "glue records" is defined in [RFC 7719], section 6, page 15.
 Here we use "glue" in the wider sense.
 
+The term "using Method" is used, then names and IP addresses are fetch
+using the defined [Methods].
+
+The term "send" (to an IP address) is used when a DNS query is sent to
+a specific name server.
+
+The term "DNS Loockup" is used when a recursive lookup is used, though
+any changes to the DNS tree introduced by an undelegated test must be
+respected.
+
+
 [name server requirement]: https://www.iana.org/help/nameserver-requirements
-
 [RFC 7719]: https://tools.ietf.org/html/rfc7719
-
 [BASIC01]: ../Basic-TP/basic01.md
-
 [DELEGATION05]: ../Delegation-TP/delegation05.md
 
+[Methods]: ../Methods.md
 [Method2]: ../Methods.md#method-2-delegation-name-servers
-
 [Method3]: ../Methods.md#method-3-in-zone-name-servers
-
 [Method4]: ../Methods.md#method-4-delegation-name-server-addresses
-
 [Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
 
+[DNS Lookup]:       #terminology
 [in-bailiwick]:     #terminology
-
 [out-of-bailiwick]: #terminology
+[glue records]:     #terminology
 
-[glue records]: #terminology
-
-[CHILD_NS_FAILED]: #outcomes
-
-[NO_RESPONSE]: #outcomes
-
-[CHILD_ZONE_LAME]: #outcomes
-
-[IN_BAILIWICK_ADDR_MISMATCH]: #outcomes
-
+[CHILD_NS_FAILED]:                #outcomes
+[NO_RESPONSE]:                    #outcomes
+[CHILD_ZONE_LAME]:                #outcomes
+[IN_BAILIWICK_ADDR_MISMATCH]:     #outcomes
 [OUT_OF_BAILIWICK_ADDR_MISMATCH]: #outcomes
-
-[EXTRA_ADDRESS_CHILD]: #outcomes
-
-[UNDEL_OOB_ADDR_MISMATCH]: #outcomes
-
-[ADDRESSES_MATCH]: #outcomes
+[EXTRA_ADDRESS_CHILD]:            #outcomes
+[UNDEL_OOB_ADDR_MISMATCH]:        #outcomes
+[ADDRESSES_MATCH]:                #outcomes
 
 [undelegated test]: ../../test-types/undelegated-test.md
 
