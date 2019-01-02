@@ -172,7 +172,7 @@ using the defined [Methods].
 The term "send" (to an IP address) is used when a DNS query is sent to
 a specific name server.
 
-The term "DNS Loockup" is used when a recursive lookup is used, though
+The term "DNS Lookup" is used when a recursive lookup is used, though
 any changes to the DNS tree introduced by an undelegated test must be
 respected.
 
