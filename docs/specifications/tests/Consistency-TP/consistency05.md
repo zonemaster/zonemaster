@@ -95,7 +95,7 @@ in the delegation are consistent with authoritative data.
 7. For each name server name in *Delegation Extended Glue* 
    (i.e. [out-of-bailiwick] only) ("DEG Name Server Name") do: 
 
-   1. Do two [DNS lookup]s, one record type A and one record type 
+   1. Do two [DNS Lookups], one record type A and one record type 
       AAAA, for *DEG Name Server Name* on public DNS and create a
       set of the IP addresses from the A and AAAA records, respectively,
       from the answer sections of the responses and that matches
@@ -189,6 +189,7 @@ respected.
 [Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
 
 [DNS Lookup]:       #terminology
+[DNS Lookups]:      #terminology
 [in-bailiwick]:     #terminology
 [out-of-bailiwick]: #terminology
 [glue records]:     #terminology
