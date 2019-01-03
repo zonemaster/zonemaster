@@ -166,29 +166,28 @@ in [RFC 7719], section 6, page 15.
 The term "glue records" is defined in [RFC 7719], section 6, page 15.
 Here we use "glue" in the wider sense.
 
-The term "using Method" is used, then names and IP addresses are fetch
+When the term "using Method" is used, then names and IP addresses are fetch
 using the defined [Methods].
 
 The term "send" (to an IP address) is used when a DNS query is sent to
 a specific name server.
 
 The term "DNS Lookup" is used when a recursive lookup is used, though
-any changes to the DNS tree introduced by an undelegated test must be
+any changes to the DNS tree introduced by an [undelegated test] must be
 respected.
 
 
-[name server requirement]: https://www.iana.org/help/nameserver-requirements
-[RFC 7719]: https://tools.ietf.org/html/rfc7719
-[BASIC01]: ../Basic-TP/basic01.md
-[DELEGATION05]: ../Delegation-TP/delegation05.md
-
-[Methods]: ../Methods.md
-[Method2]: ../Methods.md#method-2-delegation-name-servers
-[Method3]: ../Methods.md#method-3-in-zone-name-servers
-[Method4]: ../Methods.md#method-4-delegation-name-server-addresses
-[Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
-
-[terminology]:      #terminology
+[BASIC01]:                  ../Basic-TP/basic01.md
+[DELEGATION05]:             ../Delegation-TP/delegation05.md
+[Methods]:                  ../Methods.md
+[Method2]:                  ../Methods.md#method-2-delegation-name-servers
+[Method3]:                  ../Methods.md#method-3-in-zone-name-servers
+[Method4]:                  ../Methods.md#method-4-delegation-name-server-addresses
+[Method5]:                  ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
+[name server requirement]:  https://www.iana.org/help/nameserver-requirements
+[RFC 7719]:                 https://tools.ietf.org/html/rfc7719
+[terminology]:              #terminology
+[undelegated test]:         ../../test-types/undelegated-test.md
 
 [CHILD_NS_FAILED]:                #outcomes
 [NO_RESPONSE]:                    #outcomes
@@ -198,6 +197,4 @@ respected.
 [EXTRA_ADDRESS_CHILD]:            #outcomes
 [UNDEL_OOB_ADDR_MISMATCH]:        #outcomes
 [ADDRESSES_MATCH]:                #outcomes
-
-[undelegated test]: ../../test-types/undelegated-test.md
 
