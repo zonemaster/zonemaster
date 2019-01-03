@@ -166,7 +166,7 @@ in [RFC 7719], section 6, page 15.
 The term "glue records" is defined in [RFC 7719], section 6, page 15.
 Here we use "glue" in the wider sense.
 
-When the term "using Method" is used, then names and IP addresses are fetch
+When the term "using Method" is used, names and IP addresses are fetch
 using the defined [Methods].
 
 The term "send" (to an IP address) is used when a DNS query is sent to
