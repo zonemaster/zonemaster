@@ -10,7 +10,7 @@ For name servers that have IP addresses listed as glue, the IP addresses must
 match the authoritative A and AAAA records for that host. This is an IANA 
 [name server requirement].
 
-The objective of this test is to verify that the glue address records 
+The objective of this test is to verify that the [glue records][terminology] 
 in the delegation are consistent with authoritative data.
 
 ## Inputs
@@ -22,18 +22,18 @@ in the delegation are consistent with authoritative data.
    delegation of *Child Zone* using [Method2] and any glue IP addresses
    from the same delegation using [Method4].
 
-   1. Extract the [in-bailiwick] name server names and create the set
+   1. Extract the [in-bailiwick][terminology] name server names and create the set
       "Delegation Strict Glue", where each name server name 
       is matched with its IP address or addresses, if available. (The 
       set may be empty.)
 
-   2. Extract the [out-of-bailiwick] name server names and create the 
+   2. Extract the [out-of-bailiwick][terminology] name server names and create the 
       set "Delegation Extended Glue", where each name server name 
       is matched with its IP address or addresses, if available. (The 
       set may be empty.)
 
 2. Obtain the set of name server names for the *Child Zone* using
-   [Method2] and [Method3] and extract the [in-bailiwick] name 
+   [Method2] and [Method3] and extract the [in-bailiwick][terminology] name 
    server names, "IB NS Name Set". (The set may be empty.)
 
 3. Create an empty set of name server name with associated IP address
@@ -58,7 +58,7 @@ in the delegation are consistent with authoritative data.
          1. Copy the adress query (A, AAAA) that gave the referral
             response.
          2. Set the RD flag in the copied query (from unset to set).
-         3. Do a [DNS Lookup] of the the query.
+         3. Do a [DNS Lookup][terminology] of the the query.
          4. If the lookup returns the relevant address record or records,
             A for A record query and AAAA for AAAA record query, and 
             with the same owner name as in the query (i.e. CNAME should
@@ -82,7 +82,7 @@ in the delegation are consistent with authoritative data.
 
 6. Compare the IP address for the name servers from 
    *Delegation Strict Glue* with *Address Records From Child*
-   (i.e. [in-bailiwick] only).
+   (i.e. [in-bailiwick][terminology] only).
 
    1. If an IP from *Delegation Strict Glue* is not listed in 
       *Address Records From Child* with that same name server name, 
@@ -93,9 +93,9 @@ in the delegation are consistent with authoritative data.
       output *[EXTRA_ADDRESS_CHILD]*.
 
 7. For each name server name in *Delegation Extended Glue* 
-   (i.e. [out-of-bailiwick] only) ("DEG Name Server Name") do: 
+   (i.e. [out-of-bailiwick][terminology] only) ("DEG Name Server Name") do: 
 
-   1. Do two [DNS Lookups], one record type A and one record type 
+   1. Do two [DNS Lookups][terminology], one record type A and one record type 
       AAAA, for *DEG Name Server Name* on public DNS and create a
       set of the IP addresses from the A and AAAA records, respectively,
       from the answer sections of the responses and that matches
@@ -146,7 +146,7 @@ include the provided input data instead of data from any real delegation
 and authoritative data.
 
 For an [undelegated test] it is possible to intentionally insert data
-for [out-of-bailiwick] name servers that do not match what is found in
+for [out-of-bailiwick][terminology] name servers that do not match what is found in
 public DNS. This Test Case will then report this as an ERROR which
 may not match the users expectation.
 
@@ -188,11 +188,7 @@ respected.
 [Method4]: ../Methods.md#method-4-delegation-name-server-addresses
 [Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
 
-[DNS Lookup]:       #terminology
-[DNS Lookups]:      #terminology
-[in-bailiwick]:     #terminology
-[out-of-bailiwick]: #terminology
-[glue records]:     #terminology
+[terminology]:      #terminology
 
 [CHILD_NS_FAILED]:                #outcomes
 [NO_RESPONSE]:                    #outcomes
