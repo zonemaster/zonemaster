@@ -10,7 +10,7 @@ For name servers that have IP addresses listed as glue, the IP addresses must
 match the authoritative A and AAAA records for that host. This is an IANA 
 [name server requirement].
 
-The objective of this test is to verify that the glue address records 
+The objective of this test is to verify that the [glue records][terminology] 
 in the delegation are consistent with authoritative data.
 
 ## Inputs
@@ -22,18 +22,18 @@ in the delegation are consistent with authoritative data.
    delegation of *Child Zone* using [Method2] and any glue IP addresses
    from the same delegation using [Method4].
 
-   1. Extract the [in-bailiwick] name server names and create the set
+   1. Extract the [in-bailiwick][terminology] name server names and create the set
       "Delegation Strict Glue", where each name server name 
       is matched with its IP address or addresses, if available. (The 
       set may be empty.)
 
-   2. Extract the [out-of-bailiwick] name server names and create the 
+   2. Extract the [out-of-bailiwick][terminology] name server names and create the 
       set "Delegation Extended Glue", where each name server name 
       is matched with its IP address or addresses, if available. (The 
       set may be empty.)
 
 2. Obtain the set of name server names for the *Child Zone* using
-   [Method2] and [Method3] and extract the [in-bailiwick] name 
+   [Method2] and [Method3] and extract the [in-bailiwick][terminology] name 
    server names, "IB NS Name Set". (The set may be empty.)
 
 3. Create an empty set of name server name with associated IP address
@@ -58,10 +58,7 @@ in the delegation are consistent with authoritative data.
          1. Copy the adress query (A, AAAA) that gave the referral
             response.
          2. Set the RD flag in the copied query (from unset to set).
-         3. Do a DNS lookup of the the query using a resolving name server 
-            on the public DNS.
-            * The lookup must take into account changes that
-              undelegated data has created, if any.
+         3. Do a [DNS Lookup][terminology] of the the query.
          4. If the lookup returns the relevant address record or records,
             A for A record query and AAAA for AAAA record query, and 
             with the same owner name as in the query (i.e. CNAME should
@@ -85,7 +82,7 @@ in the delegation are consistent with authoritative data.
 
 6. Compare the IP address for the name servers from 
    *Delegation Strict Glue* with *Address Records From Child*
-   (i.e. [in-bailiwick] only).
+   (i.e. [in-bailiwick][terminology] only).
 
    1. If an IP from *Delegation Strict Glue* is not listed in 
       *Address Records From Child* with that same name server name, 
@@ -96,9 +93,9 @@ in the delegation are consistent with authoritative data.
       output *[EXTRA_ADDRESS_CHILD]*.
 
 7. For each name server name in *Delegation Extended Glue* 
-   (i.e. [out-of-bailiwick] only) ("DEG Name Server Name") do: 
+   (i.e. [out-of-bailiwick][terminology] only) ("DEG Name Server Name") do: 
 
-   1. Do two DNS lookups, one record type A and one record type 
+   1. Do two [DNS Lookups][terminology], one record type A and one record type 
       AAAA, for *DEG Name Server Name* on public DNS and create a
       set of the IP addresses from the A and AAAA records, respectively,
       from the answer sections of the responses and that matches
@@ -149,7 +146,7 @@ include the provided input data instead of data from any real delegation
 and authoritative data.
 
 For an [undelegated test] it is possible to intentionally insert data
-for [out-of-bailiwick] name servers that do not match what is found in
+for [out-of-bailiwick][terminology] name servers that do not match what is found in
 public DNS. This Test Case will then report this as an ERROR which
 may not match the users expectation.
 
@@ -169,43 +166,35 @@ in [RFC 7719], section 6, page 15.
 The term "glue records" is defined in [RFC 7719], section 6, page 15.
 Here we use "glue" in the wider sense.
 
-[name server requirement]: https://www.iana.org/help/nameserver-requirements
+When the term "using Method" is used, names and IP addresses are fetched
+using the defined [Methods].
 
-[RFC 7719]: https://tools.ietf.org/html/rfc7719
+The term "send" (to an IP address) is used when a DNS query is sent to
+a specific name server.
 
-[BASIC01]: ../Basic-TP/basic01.md
+The term "DNS Lookup" is used when a recursive lookup is used, though
+any changes to the DNS tree introduced by an [undelegated test] must be
+respected.
 
-[DELEGATION05]: ../Delegation-TP/delegation05.md
 
-[Method2]: ../Methods.md#method-2-delegation-name-servers
+[BASIC01]:                  ../Basic-TP/basic01.md
+[DELEGATION05]:             ../Delegation-TP/delegation05.md
+[Methods]:                  ../Methods.md
+[Method2]:                  ../Methods.md#method-2-delegation-name-servers
+[Method3]:                  ../Methods.md#method-3-in-zone-name-servers
+[Method4]:                  ../Methods.md#method-4-delegation-name-server-addresses
+[Method5]:                  ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
+[name server requirement]:  https://www.iana.org/help/nameserver-requirements
+[RFC 7719]:                 https://tools.ietf.org/html/rfc7719
+[terminology]:              #terminology
+[undelegated test]:         ../../test-types/undelegated-test.md
 
-[Method3]: ../Methods.md#method-3-in-zone-name-servers
-
-[Method4]: ../Methods.md#method-4-delegation-name-server-addresses
-
-[Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
-
-[in-bailiwick]:     #terminology
-
-[out-of-bailiwick]: #terminology
-
-[glue records]: #terminology
-
-[CHILD_NS_FAILED]: #outcomes
-
-[NO_RESPONSE]: #outcomes
-
-[CHILD_ZONE_LAME]: #outcomes
-
-[IN_BAILIWICK_ADDR_MISMATCH]: #outcomes
-
+[CHILD_NS_FAILED]:                #outcomes
+[NO_RESPONSE]:                    #outcomes
+[CHILD_ZONE_LAME]:                #outcomes
+[IN_BAILIWICK_ADDR_MISMATCH]:     #outcomes
 [OUT_OF_BAILIWICK_ADDR_MISMATCH]: #outcomes
-
-[EXTRA_ADDRESS_CHILD]: #outcomes
-
-[UNDEL_OOB_ADDR_MISMATCH]: #outcomes
-
-[ADDRESSES_MATCH]: #outcomes
-
-[undelegated test]: ../../test-types/undelegated-test.md
+[EXTRA_ADDRESS_CHILD]:            #outcomes
+[UNDEL_OOB_ADDR_MISMATCH]:        #outcomes
+[ADDRESSES_MATCH]:                #outcomes
 
