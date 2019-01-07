@@ -31,14 +31,16 @@ This test case actually combines the test options in test cases
 	3. Else, if the DNS response has the RCODE "FORMERR" then output
       	*[NO_EDNS_SUPPORT]*.
 	4. Else, if the RCODE has "NOERROR", and it has an  OPT record with
-	any version, then output [EDNS_INCORRECT_OPTION]. 
-	5. Else, if the DNS response meet the following four criteria,
+	any version, then output [UNKNOWN_OPTION_CODE]. 
+	5. Else, if the DNS response has the RCODE "NOERROR" then output
+	[UNSUPPORTED_EDNS_VER].
+	6. Else, if the DNS response meet the following four criteria,
       	then just go to the next name server (no error):
 		1. If the SOA is not obtained as response in the ANSWER section.
 		2. It has the RCODE "BADVERS".
 		3. The pseudo-section response has an OPT record with version set to 0.
 		4. The option is not present in the response
-	6. Else output *[NS_ERROR]*.
+	7. Else output *[NS_ERROR]*.
  
 ### Outcome(s)
 
@@ -56,7 +58,8 @@ Message                           | Default severity level (when message is outp
 NO_RESPONSE                       | WARNING
 NO_EDNS_SUPPORT                   | WARNING
 NS_ERROR			  | WARNING     
-EDNS_INCORRECT_OPTION             | WARNING
+UNKNOWN_OPTION_CODE               | WARNING
+UNSUPPORTED_EDNS_VER      	  | WARNING
 
 ### Special procedural requirements
 
@@ -75,4 +78,5 @@ https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-paramet
 [NO_RESPONSE]: #outcomes
 [NO_EDNS_SUPPORT]: #outcomes
 [NS_ERROR]: #outcomes
-[EDNS_INCORRECT_OPTION]: #outcomes
+[UNKNOWN_OPTION_CODE]: #outcomes
+[UNSUPPORTED_EDNS_VER]: #outcomes
