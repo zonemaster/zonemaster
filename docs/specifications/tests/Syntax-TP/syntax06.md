@@ -30,7 +30,8 @@ field should follow the rules of an e-mail address also defined in
       answer section, then:
       1. Output *[NO_RESPONSE_SOA_QUERY]*.
       2. Go to next server.
-   4. Extract the RNAME from the SOA record.
+   4. Extract the RNAME from the SOA record (from the first SOA record if
+      multiple).
    5. Convert the first "." without backslash quoting to an "@" in 
       the RNAME.
    6. Convert any backslash quoted "." to a single "." without quoting
@@ -41,36 +42,39 @@ field should follow the rules of an e-mail address also defined in
       2. Go to next server.
    8. Extract the domain part (to the right of "@") from the *Mail 
       address* ("Domain Part").
-   9. Create an MX query for the *Domain Part* and do a [DNS Lookup]
-      of that query. 
+   9. Create an MX query for the *Domain Part* and do a
+      [DNS Lookup][terminology] of that query. 
    10. If the lookup of MX does not return a DNS response with RCODE 
        "NOERROR", then:
        1. Output *[RNAME_MAIL_DOMAIN_INVALID]*.
        2. Go to next server.
-   11. If the MX lookup returned a CNAME or a chain of CNAMEs then
-       set *Domain Part* to be the the final name instead of the
-       domain from the email address.
+   11. For the MX lookup, CNAME or a chain if CNAMEs is followed, if
+       any. If MX record or records are found via CNAME, then
+       set *Domain Part* to be the MX owner name (instead of the
+       domain part of *Mail Address*).
    12. If the MX lookup returned a NO DATA response (no MX record), 
        then:
        1. Create address queries (A and AAAA) for the *Domain Part*
-          and do [DNS Lookups][DNS Lookup] of those queries. 
-       2. Disregard any A record with 127.0.0.1 or AAAA with ::1.
-       3. If no A or AAAA records with the same owner name as *Domain
+          and do [DNS Lookup][terminology] of those queries. 
+       2. Disregard all A and AAAA records outside the answer section.
+       3. Disregard any A record with 127.0.0.1 or AAAA with ::1.
+       4. If no A or AAAA records with the same owner name as *Domain
           Part* were found in the responses 
           then output *[RNAME_MAIL_DOMAIN_INVALID]*.
-   13. If the MX lookup returned one or more MX records, then for each 
-       domain name in RDATA of the MX record ("Mail Exchange") do:
-       1. Create address queries (A and AAAA) and do 
-          [DNS Lookups][DNS Lookup] of those queries. 
-       2. Disregard all A and AAAA records that do not have the same
+   13. If the MX lookup returned one or more MX records, then for each
+       MX record extract the domain name in RDATA ("Mail Exchange") 
+       and do:
+       1. Create address queries (A and AAAA) of *Mail Exchange* 
+          and do [DNS Lookup][terminology] of those queries. 
+       2. Disregard all A and AAAA records outside the answer section.
+       3. Disregard any A record with 127.0.0.1 or AAAA with ::1.
+       4. Disregard all A and AAAA records that do not have the same
           owner name as *Mail Exchange* (i.e. do not follow
           any CNAME).
-       3. Disregard all A and AAAA records outside the answer section.
-       4. Disregard any A record with 127.0.0.1 or AAAA with ::1.
-       5. If all MX have been processed and neither A or AAAA record 
-          was returned for any mail exchange, then output 
+   14. If the MX lookup returned one or more MX records and neither 
+          A nor AAAA record was returned for any mail exchange, then output 
           *[RNAME_MAIL_DOMAIN_INVALID]*.
-   14. If no *[RNAME_MAIL_DOMAIN_INVALID]* has been outputted, 
+   15. If no *[RNAME_MAIL_DOMAIN_INVALID]* has been outputted, 
        then output *[RNAME_RFC822_VALID]* for that RNAME.
 
 
@@ -123,6 +127,7 @@ respected.
 [RFC 1035]:                https://tools.ietf.org/html/rfc1035
 [RFC 1912]:                https://tools.ietf.org/html/rfc1912
 [RFC 5322, section 3.4.1]: https://tools.ietf.org/html/rfc5322#section-3.4
+[terminology]:             #terminology
 
 [NO_RESPONSE]:               #outcomes
 [NO_RESPONSE_SOA_QUERY]:     #outcomes
