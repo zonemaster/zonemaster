@@ -66,8 +66,8 @@ Tests to implement
 |R31|SOA 'minimum' less than 1 day                           |[ZONE](../specifications/tests/Zone-TP/zone06.md)|
 |R32|SOA master is not an alias                              |[ZONE](../specifications/tests/Zone-TP/zone07.md)|
 |R33|Coherence of serial number with primary nameserver      |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency01.md)|
-|R34|Coherence of administrative contact with primary nameserver |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency02.md)|
-|R36|Coherence of SOA with primary nameserver                |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency03.md)|
+|R34|Coherence of administrative contact with primary nameserver (SOA RNAME) |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency02.md)|
+|R36|Coherence of SOA with primary nameserver (SOA timers)   |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency03.md)|
 |R40|Nameserver IP reverse                                   |[ADDRESS](../specifications/tests/Address-TP/address02.md)|
 |R41|Nameserver IP reverse matching nameserver name          |[ADDRESS](../specifications/tests/Address-TP/address03.md)|
 |R42|Check if server is really recursive                     |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver01.md)|
@@ -109,6 +109,7 @@ Tests to implement
 |R86|Test for unknown EDNS OPTION-CODE |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver11.md)|
 |R87|Test for unknown EDNS flags |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver12.md)|
 |R88|Test for truncated EDNS responses |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver13.md)|
+|R89|Coherence of SOA with primary nameserver (SOA MNAME)     |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency06.md)|
 
 Future tests
 ------------
