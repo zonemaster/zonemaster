@@ -55,7 +55,7 @@ field should follow the rules of an e-mail address also defined in
    12. If the MX lookup returned a NO DATA response (no MX record), 
        then:
        1. Create address queries (A and AAAA) for the *Domain Part*
-          and do [DNS Lookup][terminology] of those queries. 
+          and do [DNS Lookups][terminology] of those queries. 
        2. Disregard all A and AAAA records outside the answer section.
        3. Disregard any A record with 127.0.0.1 or AAAA with ::1.
        4. If no A or AAAA records with the same owner name as *Domain
@@ -65,7 +65,7 @@ field should follow the rules of an e-mail address also defined in
        MX record extract the domain name in RDATA ("Mail Exchange") 
        and do:
        1. Create address queries (A and AAAA) of *Mail Exchange* 
-          and do [DNS Lookup][terminology] of those queries. 
+          and do [DNS Lookups][terminology] of those queries. 
        2. Disregard all A and AAAA records outside the answer section.
        3. Disregard any A record with 127.0.0.1 or AAAA with ::1.
        4. Disregard all A and AAAA records that do not have the same
