@@ -31,7 +31,7 @@ This test case actually combines the test options in test cases
 	3. Else, if the DNS response has the RCODE "FORMERR" then output
       	*[NO_EDNS_SUPPORT]*.
 	4. Else, if the RCODE has "NOERROR", and has an "OPTION-CODE" and
-	"Version Number" present in the response,  then output
+	"Version Number" greater than zero,  then output
 	[UNKNOWN_OPTION_CODE_VERSION]. 
 	5. Else, if the DNS response has the RCODE "NOERROR" with an OPT record
 	with version greater than zero, then output [UNSUPPORTED_EDNS_VER]
