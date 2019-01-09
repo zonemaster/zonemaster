@@ -30,13 +30,13 @@ This test case actually combines the test options in test cases
       	next server.
 	3. Else, if the DNS response has the RCODE "FORMERR" then output
       	*[NO_EDNS_SUPPORT]*.
-	4. Else, if the RCODE has "NOERROR", and has an "OPTION-CODE" and
-	"Version Number" greater than zero,  then output
-	[UNKNOWN_OPTION_CODE_VERSION]. 
-	5. Else, if the DNS response has the RCODE "NOERROR" with an OPT record
-	with version greater than zero, then output [UNSUPPORTED_EDNS_VER]
-	6. Else, if the DNS response has the RCODE "NOERROR" and "OPTION-CODE"
-	present in the response then output [UNKNOWN_OPTION_CODE].
+	4. Else, if the RCODE is "NOERROR", and the response has EDNS version
+	number greater than zero and contains an "OPTION-CODE",  then output
+	*[UNSUPPORTED_EDNS_VER]* and *[UNKNOWN_OPTION_CODE]*. 
+	5. Else, if the RCODE is "NOERROR", and the response has EDNS version
+	number greater than zero,  then output *[UNSUPPORTED_EDNS_VER]* .
+	6. Else, if the RCODE is "NOERROR", and contains an "OPTION-CODE",  then
+	output *[UNKNOWN_OPTION_CODE]*.
 	7. Else, if the DNS response meet the following four criteria,
       	then just go to the next name server (no error):
 		1. If the SOA is not obtained as response in the ANSWER section.
@@ -63,7 +63,6 @@ NO_EDNS_SUPPORT                   | WARNING
 NS_ERROR			  | WARNING     
 UNKNOWN_OPTION_CODE               | WARNING
 UNSUPPORTED_EDNS_VER      	  | WARNING
-UNKNOWN_OPTION_CODE_VERSION       | WARNING
 
 ### Special procedural requirements
 
@@ -84,4 +83,3 @@ https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-paramet
 [NS_ERROR]: #outcomes
 [UNKNOWN_OPTION_CODE]: #outcomes
 [UNSUPPORTED_EDNS_VER]: #outcomes
-[UNKNOWN_OPTION_CODE_VERSION]: #outcomes
