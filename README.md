@@ -44,8 +44,8 @@ architecture listed below.
 * CentOS 7
 * Debian 8
 * Debian 9
-* FreeBSD 10.4
-* FreeBSD 11.1
+* FreeBSD 11.2
+* FreeBSD 12.0
 * Ubuntu 14.04
 * Ubuntu 16.04
 * Ubuntu 18.04
@@ -57,8 +57,8 @@ Operating System | MySQL    | PostgreSQL
 CentOS 7         | 5.6      |   9.3
 Debian 8         | 5.5      |   9.4
 Debian 9         | 10.1 (*) |   9.6
-FreeBSD 10.4     | 5.6      |   9.5       
-FreeBSD 11.1     | 5.6      |   9.5      
+FreeBSD 11.2     | 5.6      |   9.5      
+FreeBSD 12.0     | 5.6      |   9.5      
 Ubuntu 14.04     | 5.5      |   9.3
 Ubuntu 16.04     | 5.7      |   9.5
 Ubuntu 18.04     | 5.7      |  10.3
@@ -76,8 +76,8 @@ Operating System | Perl
 CentOS 7         | 5.16                        
 Debian 8         | 5.20
 Debian 9         | 5.24
-FreeBSD 10.4     | 5.26
-FreeBSD 11.1     | 5.26
+FreeBSD 11.2     | 5.28
+FreeBSD 12.0     | 5.28
 Ubuntu 14.04     | 5.18
 Ubuntu 16.04     | 5.22
 Ubuntu 18.04     | 5.26
