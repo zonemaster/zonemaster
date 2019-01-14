@@ -1,7 +1,12 @@
 Release process
 ===============
 
-## 1. Update the Changes file
+## 1. Update prerequisites
+
+Make sure the [declaration of prerequisites] is up to date with regard to
+[SupportCriteria](SupportCriteria.md).
+
+## 2. Update the Changes file
 
 Any changes since the last release must be documented in the Changes files.
 Please refer to any Github issues related to the change by the issue number.
@@ -12,7 +17,7 @@ Please refer to any Github issues related to the change by the issue number.
  * zonemaster-backend - [Changes](https://github.com/zonemaster/zonemaster-backend/blob/master/Changes)
  * zonemaster-gui - [Changes](https://github.com/zonemaster/zonemaster-gui/blob/master/Changes)
 
-## 2. Set all version numbers
+## 3. Set all version numbers
 
 The version numbers can be found in these Perl modules:
 
@@ -21,11 +26,6 @@ The version numbers can be found in these Perl modules:
  * zonemaster-cli - [CLI.pm](https://github.com/zonemaster/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)
  * zonemaster-backend - [Backend.pm](https://github.com/zonemaster/zonemaster-backend/blob/master/lib/Zonemaster/Backend.pm)
  * zonemaster-gui - [GUI.pm](https://github.com/zonemaster/zonemaster-gui/blob/master/lib/Zonemaster/GUI.pm)
-
-## 3. Update prerequisites
-
-Make sure the [declaration of prerequisites] is up to date with regard to
-[SupportCriteria](SupportCriteria.md).
 
 ## 4. Update [CI] configuration
 
