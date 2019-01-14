@@ -9,6 +9,7 @@ Make sure the [declaration of prerequisites] is up to date with regard to
 ## 2. Update the Changes file
 
 Any changes since the last release must be documented in the Changes files.
+The version number of the new release should be chosen according to [Versions and Releases] document.
 Please refer to any Github issues related to the change by the issue number.
 
  * zonemaster-ldns - [Changes](https://github.com/zonemaster/zonemaster-ldns/blob/master/Changes)
@@ -185,6 +186,7 @@ To see tags for a repository:
 [declaration of prerequisites]: ../../../README.md#prerequisites
 [latest releases in each branch of Perl]: http://www.cpan.org/src/README.html
 [license string]: https://metacpan.org/pod/CPAN::Meta::Spec#license
+[Versions and releases]: ../../design/Versions%20and%20Releases.md
 
 
 Copyright (c) 2013-2017, IIS (The Internet Foundation in Sweden)\
