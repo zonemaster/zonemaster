@@ -11,7 +11,7 @@ describes the current set of requirements on the tests to implement for
 Zonemaster.
 
 Any previous mapping detailing the inheritance on the requirements from
-Zonecheck and DNSCheck can be found inolder versions of this document.
+Zonecheck and DNSCheck can be found in older versions of this document.
 
 Source documents
 ----------------
@@ -20,9 +20,13 @@ Most of the requirements are derived from these documents:
 
 Type of document             |Document copied from   |Document
 :----------------------------|:----------------------|:------------------------------------
-Source document for Zonecheck|Previois Zonecheck site|[Features](supporting-documents/ExistingZCFeaturesCLI.md)
-Policy document for Zonecheck|Previois Zonecheck site|[Test Policy](supporting-documents/ExistingZCPolicy.md)
+Source document for Zonecheck|Previous Zonecheck site|[Features]
+Policy document for Zonecheck|Previous Zonecheck site|[Test Policy]
 Source document for DNSCheck |DNSCheck Github Wiki   |[Detailes list of all messages](supporting-documents/Detailed-list-of-all-possible-dnscheck-messages.md)
+
+[Features]:                      supporting-documents/ExistingZCFeaturesCLI.md
+[Test Policy]:                   supporting-documents/ExistingZCPolicy.md
+[Detailes list of all messages]: supporting-documents/Detailed-list-of-all-possible-dnscheck-messages.md
 
 
 Tests to implement
@@ -62,8 +66,8 @@ Tests to implement
 |R31|SOA 'minimum' less than 1 day                           |[ZONE](../specifications/tests/Zone-TP/zone06.md)|
 |R32|SOA master is not an alias                              |[ZONE](../specifications/tests/Zone-TP/zone07.md)|
 |R33|Coherence of serial number with primary nameserver      |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency01.md)|
-|R34|Coherence of administrative contact with primary nameserver |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency02.md)|
-|R36|Coherence of SOA with primary nameserver                |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency03.md)|
+|R34|Coherence of administrative contact with primary nameserver (SOA RNAME) |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency02.md)|
+|R36|Coherence of SOA with primary nameserver (SOA timers)   |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency03.md)|
 |R40|Nameserver IP reverse                                   |[ADDRESS](../specifications/tests/Address-TP/address02.md)|
 |R41|Nameserver IP reverse matching nameserver name          |[ADDRESS](../specifications/tests/Address-TP/address03.md)|
 |R42|Check if server is really recursive                     |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver01.md)|
@@ -98,13 +102,16 @@ Tests to implement
 |R79|If DS at parent, child zone must be signed              |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec11.md)|
 |R80|Test QNAME case sensitivity                             |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver09.md)|
 |R81|Test Upward referral         			      |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver07.md)|
-|R82|Test QNAME Case insensitivity                            |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver08.md)|
-|R83|Consistency between glue and authoritative data          |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency05.md)|
+|R82|Test QNAME Case insensitivity                           |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver08.md)|
+|R83|Consistency between glue and authoritative data         |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency05.md)|
 |R84|Test for DNSSEC Algorithm Completeness (DS->DNSKEY->RRSIG)|[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec12.md)|
-|R86|Test for undefined EDNS OPTION-CODE |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver11.md)|
-|R87|Test for unknown EDNS flags |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver12.md)|
-|R88|Test for truncated response on EDNS query |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver13.md)|
-|R88|Test for unknown version ansd OPTION-CODE |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver14.md)|
+|R85|Test for undefined EDNS version                         |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver10.md)|
+|R86|Test for unknown EDNS OPTION-CODE                       |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver11.md)|
+|R87|Test for unknown EDNS flags                             |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver12.md)|
+|R88|Test for truncated response on EDNS query               |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver13.md)|
+|R89|Coherence of SOA with primary nameserver (SOA MNAME)    |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency06.md)|
+|R90|Test for unknown version ansd OPTION-CODE               |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver14.md)|
+
 Future tests
 ------------
  * Case insensitivity in a name server, [RFC 4343](https://tools.ietf.org/html/rfc4343).

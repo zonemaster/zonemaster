@@ -3,7 +3,7 @@
 ## Scope
 This document outlines the release management process. The 
 [Release Process document](
-https://github.com/dotse/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess.md) outlines the
+https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess.md) outlines the
 release process steps.
 
 ## Release features
@@ -27,7 +27,7 @@ released. Such a release of the Zonemaster product, could include a mixture of m
 the components.
 
 ### Version numbering policy
-See [Versions and Releases](https://github.com/dotse/zonemaster/blob/master/docs/design/Versions%20and%20Releases.md) for how to number each release.
+See [Versions and Releases](https://github.com/zonemaster/zonemaster/blob/master/docs/design/Versions%20and%20Releases.md) for how to number each release.
 
 ## Release process
 

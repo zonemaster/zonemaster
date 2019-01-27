@@ -1,49 +1,81 @@
-## DELEGATION02: Name servers must have distinct IP addresses
+# DELEGATION02: Name servers must have distinct IP addresses
 
-### Test case identifier
+## Test case identifier
 
 **DELEGATION02:** Name servers must have distinct IP addresses
 
-### Objective
+## Objective
 
-If the domain have several different name server names used, they can all
+If the domain's name servers use several different names, they can all
 be using the same IP address. This may be due to a configuration error, or
-a workaround to a certain policy restriction. This test case checks that
-the name servers used does not resolve to reuse the same IP addresses.
+a workaround for a certain policy restriction. This test case checks that
+the name servers used do not reuse the same IP addresses.
 
-Section 4.1 of [RFC 1034](https://tools.ietf.org/html/rfc1034) says at least
-to name servers must be used for a delegation.
+Section 4.1 of [RFC 1034] says at least two name servers must be used 
+for a delegation.
 
-### Inputs
+## Inputs
 
-The domain name to be tested.
+"Child Zone" - The domain name to be tested.
 
-### Ordered description of steps to be taken to execute the test case
+## Ordered description of steps to be taken to execute the test case
 
-1. Obtain the IP addresss of the name servers from the parent using [Method
-4](../Methods.md#method-4-obtain-glue-address-records-from-parent) and the child using
-   [Method 5](../Methods.md#method-5-obtain-the-name-server-address-records-from-child).
-2. If any of the IP addresses resolved in step 1 is not unique, then this
-   test case fails.
+1. Obtain the complete set of name server names in the delegation of
+   the *Child Zone* using [Method2] and the IP addresses for each name 
+   using [Method4].
 
-### Outcome(s)
+2. If the same IP address is found for two or more name server names, 
+   emit *[DEL_NS_SAME_IP]* for each repeated address, else emit
+   *[DEL_DISTINCT_NS_IP]*.
 
-If all the IP addresses used by the name servers for the domain are unique,
-then the test succeeds.
+3. Obtain the complete set of name server names from the *Child Zone* 
+   using [Method3] and the IP addresses for each name using [Method5].
 
-### Special procedural requirements
+4. If the same IP address is found for two or more name server names, 
+   emit *[CHILD_NS_SAME_IP]* for each repeated address, else emit
+   *[CHILD_DISTINCT_NS_IP]*.
+
+## Outcome(s)
+
+The outcome of this Test Case is "fail" if there is at least one message
+with the severity level *ERROR* or *CRITICAL*.
+
+The outcome of this Test Case is "warning" if there is at least one message
+with the severity level *WARNING*, but no message with severity level
+*ERROR* or *CRITICAL*.
+
+In other cases the outcome of this Test Case is "pass".
+
+Message               | Default severity level (if message is emitted)
+:---------------------|:-----------------------------------
+DEL_NS_SAME_IP        | ERROR
+CHILD_NS_SAME_IP      | ERROR
+DEL_DISTINCT_NS_IP    | INFO
+CHILD_DISTINCT_NS_IP  | INFO
+
+## Special procedural requirements
 
 None 
 
-### Intercase dependencies
+## Intercase dependencies
 
 None
 
--------
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
-Creative Commons Attribution 4.0 International License
+[RFC 1034]: https://tools.ietf.org/html/rfc1034
 
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
+[Method2]:  ../Methods.md#method-2-obtain-glue-name-records-from-parent
+
+[Method3]:  ../Methods.md#method-3-obtain-name-servers-from-child
+
+[Method4]:  ../Methods.md#method-4-obtain-glue-address-records-from-parent
+
+[Method5]:  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+
+[DEL_NS_SAME_IP]: #outcomes
+
+[CHILD_NS_SAME_IP]: #outcomes
+
+[DEL_DISTINCT_NS_IP]: #outcomes
+
+[CHILD_DISTINCT_NS_IP]: #outcomes
