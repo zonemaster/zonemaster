@@ -102,14 +102,15 @@ Tests to implement
 |R79|If DS at parent, child zone must be signed              |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec11.md)|
 |R80|Test QNAME case sensitivity                             |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver09.md)|
 |R81|Test Upward referral         			      |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver07.md)|
-|R82|Test QNAME Case insensitivity                            |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver08.md)|
-|R83|Consistency between glue and authoritative data          |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency05.md)|
+|R82|Test QNAME Case insensitivity                           |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver08.md)|
+|R83|Consistency between glue and authoritative data         |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency05.md)|
 |R84|Test for DNSSEC Algorithm Completeness (DS->DNSKEY->RRSIG)|[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec12.md)|
-|R85|Test for undefined EDNS version                          |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver10.md)|
-|R86|Test for unknown EDNS OPTION-CODE |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver11.md)|
-|R87|Test for unknown EDNS flags |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver12.md)|
-|R88|Test for truncated EDNS responses |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver13.md)|
-|R89|Coherence of SOA with primary nameserver (SOA MNAME)     |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency06.md)|
+|R85|Test for undefined EDNS version                         |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver10.md)|
+|R86|Test for unknown EDNS OPTION-CODE                       |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver11.md)|
+|R87|Test for unknown EDNS flags                             |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver12.md)|
+|R88|Test for truncated response on EDNS query               |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver13.md)|
+|R89|Coherence of SOA with primary nameserver (SOA MNAME)    |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency06.md)|
+|R90|Test for unknown version ansd OPTION-CODE               |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver14.md)|
 
 Future tests
 ------------
