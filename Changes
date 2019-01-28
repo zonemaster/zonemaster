@@ -1,5 +1,60 @@
 Release history of Zonemaster
 
+v2018.2 2019-01-27 Pre-release
+
+Status
+- This is a pre-release version not fully tested on all supported
+  OS's and Perl versions. This version will not be available on
+  CPAN.
+
+Changes Zonemaster repository:
+- All link references on Github now to zonemaster/zonemaster instead
+  of old dotse/zonemaster #637
+- Updated specification of test case Nameserver01 (#625, #639)
+- Updated specification of test case DNSSEC05 #626
+- Updated specification of test case Delegation01 (#609, #638)
+- Updated specification of test case Delegation02 (#610)
+- Added new test case Consisteny06 (#619)
+- Updated specification of test case Consistency03 (#618)
+- Updated specification of test case Consistency02 (#616)
+- Updated specification of test case Consistency01 (#615)
+- Added new test case Nameserver10 (#650)
+- Added new test case Nameserver11 (#652, #661)
+- Added new test case Nameserver12 (#658, #662)
+- Added new test case Nameserver13 (#653)
+- Added new test case Nameserver14 (#654)
+- Updated specification of test case Consistency05 (#620, #663)
+- Updated specification of test case Nameserver02 (#655)
+- Updated specification of test case Syntax06 (#633)
+- Updated specification of test case Delegation03 (#621)
+- Replaced separate config and policy with a unified profile
+  - Various #644
+  - Updated specification #606
+- Added style guide entry regarding case-insensitive regexes #664
+- Updated maprequirement #659
+- Updated Report.md #660
+- Added Consistency06 to test requirements and update of 
+  Consistency README #651
+- Update main README.md #667
+
+High lights:
+- Unified profile has replaced config and policy in all components.
+- Updated test case specifications with stricter description of steps.
+- New test cases, especially test cases for EDNS and DNS Flagday
+  https://dnsflagday.net/
+
+
+This version of Zonemaster also consists of the following components. For each
+component, see its Changes file.
+
+  Zonemaster-LDNS     v2.0.0   https://github.com/zonemaster/zonemaster-ldns
+  Zonemaster-Engine   v3.0.0   https://github.com/zonemaster/zonemaster-engine
+  Zonemaster-CLI      v2.0.0   https://github.com/zonemaster/zonemaster-cli
+  Zonemaster-Backend  v3.0.0   https://github.com/zonemaster/zonemaster-backend
+  Zonemaster-GUI      v3.0.0   https://github.com/zonemaster/zonemaster-gui
+
+
+
 v2018.1 2018-06-25 Public release
 
 Changes Zonemaster reposistory:
