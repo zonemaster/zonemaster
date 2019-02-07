@@ -20,7 +20,19 @@ The version numbers can be found in these Perl modules:
  * zonemaster-engine - [Engine.pm](https://github.com/zonemaster/zonemaster-engine/blob/master/lib/Zonemaster/Engine.pm)
  * zonemaster-cli - [CLI.pm](https://github.com/zonemaster/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)
  * zonemaster-backend - [Backend.pm](https://github.com/zonemaster/zonemaster-backend/blob/master/lib/Zonemaster/Backend.pm)
+
+The GUI has no Perl. Update the following files:
+
  * zonemaster-gui - [GUI.pm](https://github.com/zonemaster/zonemaster-gui/blob/master/lib/Zonemaster/GUI.pm)
+
+ * zonemaster-gui - [Installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md):
+   The version is part of the download path (a diretory). It can be repeated several times.
+ * zonemaster-gui - [package.json](https://github.com/zonemaster/zonemaster-gui/blob/master/package.json):
+   In the top of the file, the version is given after "version".
+ * zonemaster-gui - [environment.prod.ts](https://github.com/zonemaster/zonemaster-gui/blob/master/src/environments/environment.prod.ts):
+   Under "client-info", "version" should point at the version number.
+ * zonemaster-gui - [environment.ts](https://github.com/zonemaster/zonemaster-gui/blob/master/src/environments/environment.ts):
+   Under "client-info", "version" should point at the version number.
 
 ## 3. Update prerequisites
 
@@ -35,9 +47,12 @@ Make sure the Travis configuration for each repo is up to date with the supporte
  * zonemaster-engine - [.travis.yml](https://github.com/zonemaster/zonemaster-engine/blob/master/.travis.yml)
  * zonemaster-cli - [.travis.yml](https://github.com/zonemaster/zonemaster-cli/blob/master/.travis.yml)
  * zonemaster-backend - [.travis.yml](https://github.com/zonemaster/zonemaster-backend/blob/master/.travis.yml)
- * zonemaster-gui - [.travis.yml](https://github.com/zonemaster/zonemaster-gui/blob/master/.travis.yml)
+ * zonemaster-gui - [.travis.yml](https://github.com/zonemaster/zonemaster-gui/blob/master/.travis.yml) --
+   Currently there is no Travis configured for GUI.
 
 ## 5. Verify that META.yml has all the correct data
+
+This section is not relevant for Zonemaster-GUI.
 
 For all components, make sure your working directory is clean, or that all
 listed changes are covered by MANIFEST.SKIP:
@@ -80,6 +95,8 @@ version              | version number of the new release
 
 ## 6. Verify that MANIFEST is up to date and that tarball can be built
 
+This section is not relevant for Zonemaster-GUI.
+
 Build generated files (if any) and verify that a distribution tarball can be 
 successfully built for each component that is to be updated in this release.
 
@@ -91,6 +108,8 @@ MANIFEST.SKIP, i.e. no missing or extra files:
     make distcheck
 
 ## 7. Produce distribution tarballs
+
+This section is not relevant for Zonemaster-GUI.
 
 In this step produce the *preliminary distribution tarballs*.
 
@@ -106,6 +125,9 @@ CPAN].
 [ZNMSTR account at CPAN]: http://search.cpan.org/~znmstr/
 
 ## 8. Verify that Zonemaster works when installed according to the documented installation procedures
+
+> For Zonemaster-GUI, the instructions below are not relevant. Please
+> provide instructions.
 
 Using the *preliminary distribution tarballs* produced in step 7 above,
 follow the procedures in [SystemTesting](SystemTesting.md).
@@ -127,6 +149,8 @@ If needed, update the following section of the Zonemaster repository main _READM
 
 ## 10. Upload to CPAN
 
+This section is not relevant for Zonemaster-GUI.
+
 For each component that is to be updated in this release, publish the
 corresponding *accepted distribution tarball* on CPAN.
 Currently we use the organizational account ZNMSTR on PAUSE for doing
@@ -142,49 +166,19 @@ Write a detailed instruction with commands.
 
 ## 12. Tag the release with git
 
-Tag the release with these git commands, and push the tag to Github.
-
-**Change the version number below to the correct version for this release**
-
-zonemaster-ldns:
-
-    git tag v1.0.0
-	git push <repository> --tags
-
-zonemaster-engine:
-
-    git tag v1.0.0
-	git push <repository> --tags
-
-zonemaster-cli:
-
-    git tag v1.0.0
-	git push <repository> --tags
-
-zonemaster-backend:
-
-    git tag v1.0.0
-	git push origin --tags
-
-zonemaster-gui:
-
-    git tag v1.0.0
-	git push origin --tags
-
-### ToDo
-
-Write a description how to set release in Github to get a nice presentation.
+For each repository, go to "releases" in Github and select "draft a new release".
+Use the version number as tag and create a new release description in the same
+format as previous releases. 
 
 ## 13. Release the Zonemaster Product
 
 If there are no more components to release, go to the Zonemaster repository an
 make a release.
 
-https://github.com/zonemaster/zonemaster/wiki/Zonemaster-Distribution-Releases
+https://github.com/zonemaster/zonemaster/releases
 
-To see tags for a repository:
-
-    git show-ref --tags
+Use the version number as tag and create a new release description in the same
+format as previous releases. 
 
 -------
 
@@ -195,9 +189,3 @@ To see tags for a repository:
 [the existence of inc/.author]: http://search.cpan.org/~ether/Module-Install-1.18/lib/Module/Install.pod#Standard_Extensions
 
 
-Copyright (c) 2013-2017, IIS (The Internet Foundation in Sweden)\
-Copyright (c) 2013-2017, AFNIC\
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
