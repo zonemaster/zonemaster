@@ -50,7 +50,7 @@ Make sure the Travis configuration for each repo is up to date with the supporte
 
 ## 5. Verify that META.yml has all the correct data
 
-This section is not relevant for Zonemaster-GUI.
+> This section is not relevant for Zonemaster-GUI.
 
 For all components, make sure your working directory is clean, or that all
 listed changes are covered by MANIFEST.SKIP:
@@ -93,7 +93,7 @@ version              | version number of the new release
 
 ## 6. Verify that MANIFEST is up to date and that tarball can be built
 
-This section is not relevant for Zonemaster-GUI.
+> This section is not relevant for Zonemaster-GUI.
 
 Build generated files (if any) and verify that a distribution tarball can be 
 successfully built for each component that is to be updated in this release.
@@ -137,9 +137,6 @@ Its name is `zonemaster_web_gui.zip`.
 
 ## 9. Verify that Zonemaster works when installed according to the documented installation procedures
 
-> For Zonemaster-GUI, the instructions below are not relevant. Please
-> provide instructions.
-
 Using the *preliminary distribution tarballs* produced in step 7 above
 and the *preliminary distribution zip file* produced in step 8 above,
 follow the procedures in [SystemTesting](SystemTesting.md).
@@ -153,22 +150,22 @@ tarballs (zip file):
 If the system testing is successful, the *preliminary distribution tarballs (zip file)* used
 in this step become *accepted distribution tarballs (zip file)*.
 
-## 9. Update Zonemaster repository main _README.md_
+## 10. Update Zonemaster repository main _README.md_
 
 If needed, update the following section of the Zonemaster repository main _README.MD_ file:
 
 * Notable bugs and issues
 
-## 10. Upload to CPAN
+## 11. Upload to CPAN
 
-This section is not relevant for Zonemaster-GUI.
+> This section is not relevant for Zonemaster-GUI.
 
 For each component that is to be updated in this release, publish the
 corresponding *accepted distribution tarball* on CPAN.
 Currently we use the organizational account ZNMSTR on PAUSE for doing
 this.
 
-## 11. Merge develop branch into master
+## 12. Merge develop branch into master
 
 Merge the develop branch into master on Github.
 
@@ -176,7 +173,7 @@ Merge the develop branch into master on Github.
 
 Write a detailed instruction with commands.
 
-## 12. Tag the release with git
+## 13. Tag the release with git
 
 For each repository, go to "releases" in Github and select "draft a new release".
 Use the version number as tag and create a new release description in the same
@@ -185,7 +182,7 @@ format as previous releases.
 For Zonemaster-GUI, add the *distribution zip file* as attached file to the
 release description in Github.
 
-## 13. Release the Zonemaster Product
+## 14. Release the Zonemaster Product
 
 If there are no more components to release, go to the Zonemaster repository an
 make a release.
