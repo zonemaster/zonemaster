@@ -23,8 +23,6 @@ The version numbers can be found in these Perl modules:
 
 The GUI has no Perl. Update the following files:
 
- * zonemaster-gui - [GUI.pm](https://github.com/zonemaster/zonemaster-gui/blob/master/lib/Zonemaster/GUI.pm)
-
  * zonemaster-gui - [Installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md):
    The version is part of the download path (a diretory). It can be repeated several times.
  * zonemaster-gui - [package.json](https://github.com/zonemaster/zonemaster-gui/blob/master/package.json):
@@ -107,9 +105,7 @@ MANIFEST.SKIP, i.e. no missing or extra files:
 
     make distcheck
 
-## 7. Produce distribution tarballs
-
-This section is not relevant for Zonemaster-GUI.
+## 7. Produce distribution tarballs (except Zonemaster-GUI)
 
 In this step produce the *preliminary distribution tarballs*.
 
@@ -124,22 +120,38 @@ CPAN].
 
 [ZNMSTR account at CPAN]: http://search.cpan.org/~znmstr/
 
-## 8. Verify that Zonemaster works when installed according to the documented installation procedures
+## 8. Produce distribution zip file (Zonemaster-GUI only)
+
+The requirements are nodejs and npm. There are available from the [official website]( https://nodejs.org/en/).
+Minimal version of Nodejs is 6.0 but install the last LTS version available.
+
+To build the tarballs, steps are: 
+
+1. `git clone https://github.com/zonemaster/zonemaster-gui.git`  
+2. `cd zonemaster-gui`
+3. `npm install` 
+4. `npm run release`
+
+The distribution zip file is in the root level of the zonemaster-gui folder. 
+Its name is `zonemaster_web_gui.zip`.
+
+## 9. Verify that Zonemaster works when installed according to the documented installation procedures
 
 > For Zonemaster-GUI, the instructions below are not relevant. Please
 > provide instructions.
 
-Using the *preliminary distribution tarballs* produced in step 7 above,
+Using the *preliminary distribution tarballs* produced in step 7 above
+and the *preliminary distribution zip file* produced in step 8 above,
 follow the procedures in [SystemTesting](SystemTesting.md).
 
 If the system testing fails in a way that requires updated distribution
-tarballs:
+tarballs (zip file):
  1. Get the changes merged.
  2. Consider whether the actions taken in steps 1–6 above need amendment.
  3. Resume this document from step 7 above.
 
-If the system testing is successful, the *preliminary distribution tarballs* used
-in this step become *accepted distribution tarballs*.
+If the system testing is successful, the *preliminary distribution tarballs (zip file)* used
+in this step become *accepted distribution tarballs (zip file)*.
 
 ## 9. Update Zonemaster repository main _README.md_
 
@@ -169,6 +181,9 @@ Write a detailed instruction with commands.
 For each repository, go to "releases" in Github and select "draft a new release".
 Use the version number as tag and create a new release description in the same
 format as previous releases. 
+
+For Zonemaster-GUI, add the *distribution zip file* as attached file to the
+release description in Github.
 
 ## 13. Release the Zonemaster Product
 
