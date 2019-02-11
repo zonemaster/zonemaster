@@ -1,9 +1,15 @@
 Release process
 ===============
 
-## 1. Update the Changes file
+## 1. Update prerequisites
+
+Make sure the [declaration of prerequisites] is up to date with regard to
+[SupportCriteria](SupportCriteria.md).
+
+## 2. Update the Changes file
 
 Any changes since the last release must be documented in the Changes files.
+The version number of the new release should be chosen according to [Versions and Releases] document.
 Please refer to any Github issues related to the change by the issue number.
 
  * zonemaster-ldns - [Changes](https://github.com/zonemaster/zonemaster-ldns/blob/master/Changes)
@@ -12,7 +18,7 @@ Please refer to any Github issues related to the change by the issue number.
  * zonemaster-backend - [Changes](https://github.com/zonemaster/zonemaster-backend/blob/master/Changes)
  * zonemaster-gui - [Changes](https://github.com/zonemaster/zonemaster-gui/blob/master/Changes)
 
-## 2. Set all version numbers
+## 3. Set all version numbers
 
 The version numbers can be found in these Perl modules:
 
@@ -21,11 +27,6 @@ The version numbers can be found in these Perl modules:
  * zonemaster-cli - [CLI.pm](https://github.com/zonemaster/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)
  * zonemaster-backend - [Backend.pm](https://github.com/zonemaster/zonemaster-backend/blob/master/lib/Zonemaster/Backend.pm)
  * zonemaster-gui - [GUI.pm](https://github.com/zonemaster/zonemaster-gui/blob/master/lib/Zonemaster/GUI.pm)
-
-## 3. Update prerequisites
-
-Make sure the [declaration of prerequisites] is up to date with regard to
-[SupportCriteria](SupportCriteria.md).
 
 ## 4. Update [CI] configuration
 
@@ -46,13 +47,6 @@ listed changes are covered by MANIFEST.SKIP:
 
 > **Note:** To throw away any and all changes to tracked and untracked files you
 > can run `git clean -dfx ; git reset --hard`.
-
-For the Zonemaster::LDNS component, manually allow META.yml to be created:
-
-    mkdir -p inc/.author  # LDNS only
-
-> **Note:** META.yml is only generated in the next step if Module::Install
-> determines that you are an author based on [the existence of inc/.author].
 
 For all components, generate Makefile, META.yml and others.
 
@@ -192,7 +186,7 @@ To see tags for a repository:
 [declaration of prerequisites]: ../../../README.md#prerequisites
 [latest releases in each branch of Perl]: http://www.cpan.org/src/README.html
 [license string]: https://metacpan.org/pod/CPAN::Meta::Spec#license
-[the existence of inc/.author]: http://search.cpan.org/~ether/Module-Install-1.18/lib/Module/Install.pod#Standard_Extensions
+[Versions and releases]: ../../design/Versions%20and%20Releases.md
 
 
 Copyright (c) 2013-2017, IIS (The Internet Foundation in Sweden)\
