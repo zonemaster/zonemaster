@@ -20,12 +20,3 @@ These documents use the terminology defined in the
 |R81|Test upward referral                      |[NAMESERVER07](nameserver07.md)|
 |R82|Test QNAME case insensitivity             |[NAMESERVER08](nameserver08.md)|
 |R80|Test QNAME case sensitivity               |[NAMESERVER09](nameserver09.md)|
-
--------
-
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
