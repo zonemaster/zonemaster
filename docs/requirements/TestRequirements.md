@@ -164,14 +164,3 @@ These are some requirements for writing specifications for "Zonemaster":
 	to use the same style as used in the other tests.
  10. Make sure to write the tests so that any implementer that implements
     the tests will have the same outcome as any other implementation.
-
-
-
--------
-
-Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden)  
-Copyright (c) 2013-2018, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
