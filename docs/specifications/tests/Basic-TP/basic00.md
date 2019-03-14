@@ -61,12 +61,3 @@ is aborted.
 ### Intercase dependencies
 
 None.
-
--------
-
-Copyright (c) 2013-2016, IIS (The Internet Foundation In Sweden)  
-Copyright (c) 2013-2016, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
