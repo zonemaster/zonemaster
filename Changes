@@ -1,5 +1,28 @@
 Release history of Zonemaster
 
+v2018.2.2 2019-03-15 Pre-release and bugfixes
+
+ [Status]
+ - This is a pre-release version not fully tested on all supported
+   OS's and Perl versions. This version will not be available on
+   CPAN. See comment in Github release notes for each component
+   for installation.
+
+ [Fixes]
+ - Corrections in Zonemaster-Engine. See Zonemaster-Engine release
+   notes on Github.
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components.
+   For each component, see its Changes file or Github release notes.
+
+   Zonemaster-LDNS     v2.0.0   https://github.com/zonemaster/zonemaster-ldns
+   Zonemaster-Engine   v3.0.2   https://github.com/zonemaster/zonemaster-engine
+   Zonemaster-CLI      v2.0.0   https://github.com/zonemaster/zonemaster-cli
+   Zonemaster-Backend  v3.0.0   https://github.com/zonemaster/zonemaster-backend
+   Zonemaster-GUI      v3.0.1   https://github.com/zonemaster/zonemaster-gui
+
+
 v2018.2.1 2019-01-31 Pre-release and bugfixes
 
 Status
