@@ -55,10 +55,3 @@ None.
 -------
 [Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-
-Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden)  
-Copyright (c) 2013-2018, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
