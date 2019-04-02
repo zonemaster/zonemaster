@@ -171,8 +171,8 @@ Write a detailed instruction with commands.
 
 For each repository, go to "releases" in Github and select "draft a new release".
 Use the version number as tag and create a new release description. Use the
-content of Changes file and make links of everything that can have meaningful
-links, especially make links to issues and PRs.
+section of Changes file for the relevant release and make links of everything 
+that can have meaningful links, especially make links to issues and PRs.
 
 For Zonemaster-GUI, add the *distribution zip file* as attached file to the
 release description in Github.
@@ -194,5 +194,4 @@ format as previous releases.
 [latest releases in each branch of Perl]: http://www.cpan.org/src/README.html
 [license string]: https://metacpan.org/pod/CPAN::Meta::Spec#license
 [Versions and releases]: ../../design/Versions%20and%20Releases.md
-
 
