@@ -170,8 +170,9 @@ Write a detailed instruction with commands.
 ## 13. Tag the release with git
 
 For each repository, go to "releases" in Github and select "draft a new release".
-Use the version number as tag and create a new release description in the same
-format as previous releases. 
+Use the version number as tag and create a new release description. Use the
+content of Changes file and make links of everything that can have meaningful
+links, especially make links to issues and PRs.
 
 For Zonemaster-GUI, add the *distribution zip file* as attached file to the
 release description in Github.
