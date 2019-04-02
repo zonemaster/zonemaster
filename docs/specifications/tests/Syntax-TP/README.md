@@ -18,12 +18,3 @@ This document uses the terminology defined in the
 |R23|There must be no illegal characters in the SOA RNAME field                |[SYNTAX06](syntax06.md)|
 |R24|There must be no illegal characters in the SOA MNAME field                |[SYNTAX07](syntax07.md)|
 |R49|The MX name must have a valid domain/hostname                             |[SYNTAX08](syntax08.md)|
-
--------
-
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
