@@ -46,12 +46,3 @@ the delegation existed.
 
 The Name server addresses provided, if any, are considered to replace the real IP
 addresses for those name server names.
-
--------
-
-Copyright (c) 2017, IIS (The Internet Foundation In Sweden)  
-Copyright (c) 2017, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
