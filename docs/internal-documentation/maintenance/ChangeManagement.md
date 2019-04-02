@@ -94,12 +94,3 @@ with the steering committee.
 New requirements that are acknowledged (by the development team and the
 steering committee)  make it to the roadmap and planned for specification
 and implementation. They are also added to the current set of requirements.
-
--------
-
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
