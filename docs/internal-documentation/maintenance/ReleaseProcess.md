@@ -170,8 +170,9 @@ Write a detailed instruction with commands.
 ## 13. Tag the release with git
 
 For each repository, go to "releases" in Github and select "draft a new release".
-Use the version number as tag and create a new release description in the same
-format as previous releases. 
+Use the version number as tag and create a new release description. Use the
+section of Changes file for the relevant release and make links of everything 
+that can have meaningful links, especially make links to issues and PRs.
 
 For Zonemaster-GUI, add the *distribution zip file* as attached file to the
 release description in Github.
@@ -193,5 +194,4 @@ format as previous releases.
 [latest releases in each branch of Perl]: http://www.cpan.org/src/README.html
 [license string]: https://metacpan.org/pod/CPAN::Meta::Spec#license
 [Versions and releases]: ../../design/Versions%20and%20Releases.md
-
 
