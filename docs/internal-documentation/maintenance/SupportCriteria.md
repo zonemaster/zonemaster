@@ -85,6 +85,7 @@ Database engine versions that lack required features cannot be supported.
   * http://mirror.centos.org/centos/7/os/x86_64/Packages/
 
 * Database engine versions provided by each version of Debian are listed here:
+  * <https://packages.debian.org/search?searchon=names&keywords=mariadb-server>
   * <https://packages.debian.org/search?searchon=names&keywords=mysql-server>
   * <https://packages.debian.org/search?searchon=names&keywords=postgresql>
   * <https://packages.debian.org/search?searchon=names&keywords=sqlite3>
