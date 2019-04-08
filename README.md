@@ -46,7 +46,6 @@ architecture listed below.
 * Debian 9
 * FreeBSD 11.2
 * FreeBSD 12.0
-* Ubuntu 14.04
 * Ubuntu 16.04
 * Ubuntu 18.04
 
@@ -54,13 +53,13 @@ architecture listed below.
 
 Operating System | MySQL    | PostgreSQL
 ---------------- | ---------| -----------
-CentOS 7         | 5.6      |   9.3
-Debian 8         | 5.5      |   9.4
-Debian 9         | 10.1 (*) |   9.6
-FreeBSD 11.2     | 5.6      |   9.5
-FreeBSD 12.0     | 5.6      |   9.5
-Ubuntu 16.04     | 5.7      |   9.5
-Ubuntu 18.04     | 5.7      |  10.3
+CentOS 7         | 5.6      | 9.3
+Debian 8         | 5.5      | 9.4
+Debian 9         | 10.1 (*) | 9.6
+FreeBSD 11.2     | 5.6      | 9.5
+FreeBSD 12.0     | 5.6      | 9.5
+Ubuntu 16.04     | 5.7      | 9.5
+Ubuntu 18.04     | 5.7      | 10
 
 *) MariaDB, not MySQL
 
