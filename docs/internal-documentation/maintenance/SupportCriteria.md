@@ -36,7 +36,7 @@ fixed for the lifetime of the Zonemaster version.
 
 ### Criteria
 
-Minor version/point releases should be specified. Patch levels should not be specified.
+Minor version/point release/patch level should not be specified.
 
 Operating system versions without long term support form their vendor should not be supported.
 
@@ -49,26 +49,19 @@ Operating system specific guidelines:
 * CentOS:
   * Base Distributions are listed here:
     <https://en.wikipedia.org/wiki/CentOS#End-of-support_schedule>
-  * The current minor releases are listed at:
-    <https://wiki.centos.org/Download>
 
 * Debian:
   * Current versions of "stable" and "oldstable" are listed here:
     <https://wiki.debian.org/DebianReleases#Current_Releases.2FRepositories>
-  * The current point releases are listed here:
-    <https://wiki.debian.org/DebianReleases/PointReleases>
 
 * FreeBSD:
   * Supported releases are listed here:
     <https://www.freebsd.org/security/>
   * FreeBSD 10: Releases that are supported by FreeBSD and being "extended" are supported by Zonemaster.
   * FreeBSD 11: Latest release version is supported.
-  * Patch level should not be specified.
 
 * Ubuntu:
   * LTS releases are listed here:
-    <https://wiki.ubuntu.com/Releases>
-  * The supported patch level is the one specified at:
     <https://wiki.ubuntu.com/Releases>
 
 
@@ -138,3 +131,10 @@ The point release should not be specified.
 
 * Perl versions provided by each version of Ubuntu are listed here:
   * <http://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=perl>
+
+
+## Nice-to-have resources
+
+* [CentOS minor releases](https://wiki.centos.org/Download)
+* [Debian point releases](https://wiki.debian.org/DebianReleases/PointReleases)
+* [Ubuntu patch levels](https://wiki.ubuntu.com/Releases)
