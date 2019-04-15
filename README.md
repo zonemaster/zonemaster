@@ -88,10 +88,12 @@ The Zonemaster GUI is tested against these configurations and should work perfec
 
 Operating System | Browser | Version
 ---------------- | ------- | -------
-Ubuntu 18.04     | Firefox | 64+
-Ubuntu 18.04     | Chrome  | 64+
-Widnows          | Firefox | 64+
-Widnows          | Chrome  | 64+
+Ubuntu 18.04     | Firefox | 64, 65, 66
+Ubuntu 18.04     | Chrome  | 66
+Windows 10       | Firefox | 64, 65, 66
+Windows 10       | Chrome  | 73
+MacOs            | Firefox | 65
+MacOs            | Chrome  | 73
 
 Zonemaster was tested manually or with testing tools. 
 See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for more details.
