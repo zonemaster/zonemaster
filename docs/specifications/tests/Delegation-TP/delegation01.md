@@ -14,7 +14,7 @@ test case has been extended to test for two name servers that resolve into IPv4 
 and IPv6 addresses respectively.
 
 Both [RFC 3901] (section 3) and [RFC 4472] (section 1.3) states that a domain 
-should be available over IPv4 for the time being. Therefore, it is by the 
+(zone) should be available over IPv4 for the time being. Therefore, it is by the 
 default level in this test case considered to be more problematic not being available 
 over IPv4 than not being available over IPv6.
 
