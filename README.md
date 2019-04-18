@@ -84,7 +84,7 @@ tested with the default version of Perl in the OSs as listed in the table above.
 
 ### Supported Client Browser versions
 
-The Zonemaster GUI is tested against these configurations and should work perfectly with close configuration.
+Zonemaster GUI is tested against the browsers, their versions and listed OS as indicated bellow and should work perfectly with similar configurations.
 
 Operating System | Browser | Version
 ---------------- | ------- | -------
@@ -95,7 +95,7 @@ Windows 10       | Chrome  | 73
 MacOs            | Firefox | 65
 MacOs            | Chrome  | 73
 
-Zonemaster was tested manually or with testing tools. 
+Zonemaster GUI was tested manually or with testing tools. 
 See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for more details.
 
 ## Localization
