@@ -13,6 +13,10 @@ The RFC ([RFC 1034]) predates IPv6. Since IPv4 and IPv6 work as separate network
 test case has been extended to test for two name servers that resolve into IPv4 addresses
 and IPv6 addresses respectively.
 
+Both [RFC 3901] (section 3) and [RFC 4472] (section 1.3) states that a domain 
+should be available over IPv4 for the time being. Therefore, it is by the 
+default level in this test case considered to be more problematic not being available 
+over IPv4 than not being available over IPv6.
 
 ## Inputs
 
@@ -75,7 +79,7 @@ with the severity level *WARNING*, but no message with severity level
 
 Else the outcome of this Test Case is "pass".
 
-Message                       | Default severity level (if message is emitted)
+Message                       | Default severity level
 :-----------------------------|:-----------------------------------
 ENOUGH_IPV4_NS_CHILD          | INFO
 ENOUGH_IPV4_NS_DEL            | INFO
@@ -89,8 +93,8 @@ NOT_ENOUGH_IPV6_NS_CHILD      | ERROR
 NOT_ENOUGH_IPV6_NS_DEL        | ERROR
 NOT_ENOUGH_NS_CHILD           | ERROR
 NOT_ENOUGH_NS_DEL             | ERROR
-NO_IPV4_NS_CHILD              | ERROR
-NO_IPV4_NS_DEL                | ERROR
+NO_IPV4_NS_CHILD              | WARNING
+NO_IPV4_NS_DEL                | WARNING
 NO_IPV6_NS_CHILD              | NOTICE
 NO_IPV6_NS_DEL                | NOTICE
 
@@ -104,17 +108,13 @@ None
 None
 
 [RFC 1034]: https://tools.ietf.org/html/rfc1034
-
-[RFC 7719]: https://tools.ietf.org/html/rfc7719
+[RFC 3901]: https://tools.ietf.org/html/rfc3901
+[RFC 4472]: https://tools.ietf.org/html/rfc4472
 
 [Method2]:  ../Methods.md#method-2-obtain-glue-name-records-from-parent
-
 [Method3]:  ../Methods.md#method-3-obtain-name-servers-from-child
-
 [Method4]:  ../Methods.md#method-4-obtain-glue-address-records-from-parent
-
 [Method5]:  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-
 
 [ENOUGH_IPV4_NS_CHILD]: #outcomes
 [ENOUGH_IPV4_NS_DEL]: #outcomes
