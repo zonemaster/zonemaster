@@ -63,7 +63,7 @@ Ubuntu 14.04     | 5.5      |   9.3
 Ubuntu 16.04     | 5.7      |   9.5
 Ubuntu 18.04     | 5.7      |  10.3
 
-*) MariaDB, not MySQL
+*) For Debian 9 MariaDB is supported, not MySQL.
 
 Zonemaster Backend has been tested with the combination of OS and database 
 engine version listed in the table above. Zonemaster uses functionality 
