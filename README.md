@@ -82,6 +82,22 @@ Ubuntu 18.04     | 5.26
 Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been 
 tested with the default version of Perl in the OSs as listed in the table above.
 
+### Supported Client Browser versions
+
+Zonemaster GUI is tested against the browsers, their versions and listed OS as indicated bellow and should work perfectly with similar configurations.
+
+Operating System | Browser | Version
+---------------- | ------- | -------
+Ubuntu 18.04     | Firefox | 64, 65, 66
+Ubuntu 18.04     | Chrome  | 66
+Windows 10       | Firefox | 64, 65, 66
+Windows 10       | Chrome  | 73
+MacOs            | Firefox | 65
+MacOs            | Chrome  | 73
+
+Zonemaster GUI was tested manually or with testing tools. 
+See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for more details.
+
 ## Localization
 
 Zonemaster comes with localization for these locales:
