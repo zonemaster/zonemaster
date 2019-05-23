@@ -1,5 +1,34 @@
 Release history of Zonemaster
 
+v2019.1 2019-05-23 (public release version)
+
+ [Status]
+ - This a public release fully tested before release. The components will
+   be available on CPAN, except Zonemaster-GUI that will be available from
+   its Github release notes.
+
+ [Fixes]
+ - Updated README (#759, #752, #751)
+
+ [Updates]
+ - Added supported browsers for Zonemaster-GUI (#756)
+ - Updated release process document (#750, #551, #677, #676)
+ - Dropped support for Ubuntu 14.04 (#751)
+ - Create new methods specification as work-in-progress (#656)
+ - Removing copyright footer (#678 to #747)
+ - Split message BROKEN_EDNS_SUPPORT in specification of Nameserver02 (#749, #672)
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components.
+   For each component, see its Changes file or Github release notes.
+
+   Zonemaster-LDNS     v2.0.1   https://github.com/zonemaster/zonemaster-ldns
+   Zonemaster-Engine   v3.0.3   https://github.com/zonemaster/zonemaster-engine
+   Zonemaster-CLI      v2.0.1   https://github.com/zonemaster/zonemaster-cli
+   Zonemaster-Backend  vx.x.x   https://github.com/zonemaster/zonemaster-backend
+   Zonemaster-GUI      v3.1.0   https://github.com/zonemaster/zonemaster-gui
+
+
 v2018.2.2 2019-03-15 Pre-release and bugfixes
 
  [Status]
