@@ -178,8 +178,12 @@ repository (i.e. [general issues in Zonemaster](https://github.com/zonemaster/zo
 
 ## Notable bugs and issues
 
-None.
+* Translation does not work poperly under FreeBSD11 ([zonemaster-backend#512], [zonemaster-engine#546])
+* Backend not starting after reboot on Debian ([zonemaster-backend#513])
 
+[zonemaster-backend#513]: https://github.com/zonemaster/zonemaster-backend/issues/513
+[zonemaster-backend#512]: https://github.com/zonemaster/zonemaster-backend/issues/512
+[zonemaster-engine#546]: https://github.com/zonemaster/zonemaster-engine/issues/546
 
 ## Contact 
 
