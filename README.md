@@ -46,7 +46,6 @@ architecture listed below.
 * Debian 9
 * FreeBSD 11.2
 * FreeBSD 12.0
-* Ubuntu 14.04
 * Ubuntu 16.04
 * Ubuntu 18.04
 
@@ -54,16 +53,15 @@ architecture listed below.
 
 Operating System | MySQL    | PostgreSQL
 ---------------- | ---------| -----------
-CentOS 7         | 5.6      |   9.3
-Debian 8         | 5.5      |   9.4
-Debian 9         | 10.1 (*) |   9.6
-FreeBSD 11.2     | 5.6      |   9.5      
-FreeBSD 12.0     | 5.6      |   9.5      
-Ubuntu 14.04     | 5.5      |   9.3
-Ubuntu 16.04     | 5.7      |   9.5
-Ubuntu 18.04     | 5.7      |  10.3
+CentOS 7         | 5.6      | 9.3
+Debian 8         | 5.5      | 9.4
+Debian 9         | 10.1 (*) | 9.6
+FreeBSD 11.2     | 5.6      | 9.5
+FreeBSD 12.0     | 5.6      | 9.5
+Ubuntu 16.04     | 5.7      | 9.5
+Ubuntu 18.04     | 5.7      | 10
 
-*) MariaDB, not MySQL
+*) For Debian 9 MariaDB is supported, not MySQL.
 
 Zonemaster Backend has been tested with the combination of OS and database 
 engine version listed in the table above. Zonemaster uses functionality 
@@ -73,17 +71,32 @@ introduced in PostgreSQL version 9.3, and earlier versions are as such not suppo
 
 Operating System | Perl
 ---------------- | ----
-CentOS 7         | 5.16                        
+CentOS 7         | 5.16
 Debian 8         | 5.20
 Debian 9         | 5.24
 FreeBSD 11.2     | 5.28
 FreeBSD 12.0     | 5.28
-Ubuntu 14.04     | 5.18
 Ubuntu 16.04     | 5.22
 Ubuntu 18.04     | 5.26
 
 Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been 
 tested with the default version of Perl in the OSs as listed in the table above.
+
+### Supported Client Browser versions
+
+Zonemaster GUI is tested against the browsers, their versions and listed OS as indicated bellow and should work perfectly with similar configurations.
+
+Operating System | Browser | Version
+---------------- | ------- | -------
+Ubuntu 18.04     | Firefox | 64, 65, 66
+Ubuntu 18.04     | Chrome  | 66
+Windows 10       | Firefox | 64, 65, 66
+Windows 10       | Chrome  | 73
+MacOs            | Firefox | 65
+MacOs            | Chrome  | 73
+
+Zonemaster GUI was tested manually or with testing tools. 
+See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for more details.
 
 ## Localization
 
@@ -165,8 +178,12 @@ repository (i.e. [general issues in Zonemaster](https://github.com/zonemaster/zo
 
 ## Notable bugs and issues
 
-None.
+* Translation does not work poperly under FreeBSD11 ([zonemaster-backend#512], [zonemaster-engine#546])
+* Backend not starting after reboot on Debian ([zonemaster-backend#513])
 
+[zonemaster-backend#513]: https://github.com/zonemaster/zonemaster-backend/issues/513
+[zonemaster-backend#512]: https://github.com/zonemaster/zonemaster-backend/issues/512
+[zonemaster-engine#546]: https://github.com/zonemaster/zonemaster-engine/issues/546
 
 ## Contact 
 

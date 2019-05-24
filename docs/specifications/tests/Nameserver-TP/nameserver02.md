@@ -56,7 +56,7 @@ ENDS due e.g. firewall issues, the UDP buffer size is set to 512 bytes
       2. If there is no DNS response, then output *[NO_RESPONSE]* and 
          go to next server.
       3. Else (there is a DNS response), then output 
-         *[BROKEN_EDNS_SUPPORT]* and go to next server.
+         *[BREAKS_ON_EDNS]* and go to next server.
    3. Else, if the DNS response meet the following two criteria,
       then output *[NO_EDNS_SUPPORT]*:
       1. It has the RCODE "FORMERR" 
@@ -67,11 +67,11 @@ ENDS due e.g. firewall issues, the UDP buffer size is set to 512 bytes
       2. The answer section contains the SOA record for *Child Zone*.
       3. It has OPT record with EDNS version 0.
    5. Else, if the DNS response meet the following criteria,
-      then output *[BROKEN_EDNS_SUPPORT]* and go to next server.
+      then output *[EDNS_RESPONSE_WITHOUT_EDNS]* and go to next server.
       1. It has the RCODE "NOERROR".
       2. It has no OPT record.
    6. Else, if the DNS response meet the following criteria,
-      then output *[BROKEN_EDNS_SUPPORT]* and go to next server.
+      then output *[EDNS_VERSION_ERROR]* and go to next server.
       1. It has the RCODE "NOERROR".
       2. It has OPT record with EDNS version other than 0.
    7. Else output *[NS_ERROR]* (i.e. other erroneous or unexpected 
@@ -92,7 +92,9 @@ Message                           | Default severity level (when message is outp
 :---------------------------------|:-----------------------------------
 NO_RESPONSE                       | WARNING
 NO_EDNS_SUPPORT                   | WARNING
-BROKEN_EDNS_SUPPORT               | ERROR
+BREAKS_ON_EDNS                    | ERROR
+EDNS_RESPONSE_WITHOUT_EDNS        | ERROR
+EDNS_VERSION_ERROR                | ERROR
 NS_ERROR                          | WARNING
 
 ## Special procedural requirements	

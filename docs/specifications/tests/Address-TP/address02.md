@@ -44,12 +44,3 @@ None.
 ### Intercase dependencies
 
 The outcomes of this test is used as the input of [ADDRESS03](address03.md) test case.
-
--------
-
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
