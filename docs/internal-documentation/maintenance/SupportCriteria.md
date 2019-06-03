@@ -96,9 +96,9 @@ Database engine versions that lack required features cannot be supported.
   * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=sqlite3>
 
 * Database engine versions provided by each version of Ubuntu are listed here:
-  * <http://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=mysql-server>
-  * <http://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=postgresql>
-  * <http://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=sqlite3>
+  * <https://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=mysql-server>
+  * <https://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=postgresql>
+  * <https://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=sqlite3>
 
 
 ## Translation locales
@@ -131,7 +131,7 @@ The point release should not be specified.
   * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=lang&query=perl>
 
 * Perl versions provided by each version of Ubuntu are listed here:
-  * <http://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=perl>
+  * <https://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=perl>
 
 
 ## Nice-to-have resources

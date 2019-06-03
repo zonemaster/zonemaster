@@ -80,22 +80,14 @@ Valid domain names according to the "IDNA 2008 specification" is found in
 [RFC 5890], section 2.3.1, page 7.
  
 
-[RFC 2870]: https://tools.ietf.org/html/rfc2870
-
-[RFC 5358]: https://tools.ietf.org/html/rfc5358
-
-[RFC 5890]: https://tools.ietf.org/html/rfc5890
 
 [D.J. Bernstein]: http://cr.yp.to/djbdns/separation.html
-
-[Method4]: #method-4-delegation-name-server-addresses
-
-[Method5]: #method-5-in-zone-addresses-records-of-name-servers
-
-[NO_RESPONSE]: #outcomes
-
-[IS_A_RECURSOR]: #outcomes
-
-[NO_RECURSOR]: #outcomes
-
 [IDNA 2008 specification]: #terminology
+[IS_A_RECURSOR]: #outcomes
+[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NO_RECURSOR]: #outcomes
+[NO_RESPONSE]: #outcomes
+[RFC 2870]: https://tools.ietf.org/html/rfc2870
+[RFC 5358]: https://tools.ietf.org/html/rfc5358
+[RFC 5890]: https://tools.ietf.org/html/rfc5890
