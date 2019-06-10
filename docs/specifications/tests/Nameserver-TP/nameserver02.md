@@ -107,13 +107,14 @@ the ignored result.
 
 None
 
-[RFC 6891]: https://tools.ietf.org/html/rfc6891
-[RFC 6891, section 7]: https://tools.ietf.org/html/rfc6891#section-7
-[RFC 6891, section 6.1.1]: https://tools.ietf.org/html/rfc6891#section-6.1.1
-[Method4]: ../Methods.md#method-4-delegation-name-server-addresses
-[Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
-[NO_RESPONSE]: #outcomes
-[NO_EDNS_SUPPORT]: #outcomes
-[BROKEN_EDNS_SUPPORT]: #outcomes
-[NS_ERROR]: #outcomes
 
+
+[BROKEN_EDNS_SUPPORT]: #outcomes
+[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NO_EDNS_SUPPORT]: #outcomes
+[NO_RESPONSE]: #outcomes
+[NS_ERROR]: #outcomes
+[RFC 6891, section 6.1.1]: https://tools.ietf.org/html/rfc6891#section-6.1.1
+[RFC 6891, section 7]: https://tools.ietf.org/html/rfc6891#section-7
+[RFC 6891]: https://tools.ietf.org/html/rfc6891

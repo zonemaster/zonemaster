@@ -46,8 +46,7 @@ Make sure the Travis configuration for each repo is up to date with the supporte
  * zonemaster-engine - [.travis.yml](https://github.com/zonemaster/zonemaster-engine/blob/master/.travis.yml)
  * zonemaster-cli - [.travis.yml](https://github.com/zonemaster/zonemaster-cli/blob/master/.travis.yml)
  * zonemaster-backend - [.travis.yml](https://github.com/zonemaster/zonemaster-backend/blob/master/.travis.yml)
- * zonemaster-gui - [.travis.yml](https://github.com/zonemaster/zonemaster-gui/blob/master/.travis.yml) --
-   Currently there is no Travis configured for GUI.
+ * zonemaster-gui - Currently there is no Travis configured for GUI.
 
 ## 5. Verify that META.yml has all the correct data
 
@@ -111,8 +110,6 @@ distribution tarball:
 For each component that **is not** to be updated in this release, retreive their
 respective latest released distribution tarballs from the [ZNMSTR account at
 CPAN].
-
-[ZNMSTR account at CPAN]: http://search.cpan.org/~znmstr/
 
 ## 8. Produce distribution zip file (Zonemaster-GUI only)
 
@@ -194,4 +191,4 @@ format as previous releases.
 [latest releases in each branch of Perl]: http://www.cpan.org/src/README.html
 [license string]: https://metacpan.org/pod/CPAN::Meta::Spec#license
 [Versions and releases]: ../../design/Versions%20and%20Releases.md
-
+[ZNMSTR account at CPAN]: https://metacpan.org/author/ZNMSTR

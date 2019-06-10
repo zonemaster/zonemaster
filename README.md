@@ -155,8 +155,8 @@ Zonemaster repository.
 
 You can follow the project in these two mailing lists:
 
- * [zonemaster-users](http://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-users)
- * [zonemaster-devel](http://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-devel)
+ * [zonemaster-users](https://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-users)
+ * [zonemaster-devel](https://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-devel)
 
 ## Bug reporting 
 
@@ -196,5 +196,5 @@ contact@zonemaster.net.
 [Zonemaster-CLI]: https://github.com/zonemaster/zonemaster-cli
 [Zonemaster-Backend]: https://github.com/zonemaster/zonemaster-backend
 [Zonemaster-GUI]: https://github.com/zonemaster/zonemaster-gui
-[LDNS]: https://www.nlnetlabs.nl/projects/ldns/
-[CPAN]: http://search.cpan.org/search?query=Zonemaster&mode=dist
+[LDNS]: https://www.nlnetlabs.nl/projects/ldns/about/
+[CPAN]: https://www.cpan.org/

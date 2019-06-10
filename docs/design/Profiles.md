@@ -23,7 +23,7 @@ requirements and specifications were integrated into a single data structure, al
 
 Zonemaster Engine has an effective profile that guides how it performs its tests and analyzes their results.
 It comes with a sensible default profile while allowing applications to override the default behavior.
-This is described in greater detail in the [Zonemaster::Engine::Config] documentation.
+This is described in greater detail in the [Zonemaster::Engine::Profile] documentation.
 
 
 ## Profiles in Zonemaster Backend
@@ -46,7 +46,7 @@ The available profile choices are configured in a JSON file that maps profile na
 
 
 -------
-[Zonemaster Backend RPC-API]: https://github.com/dotse/zonemaster-backend/blob/master/docs/API.md
-[Zonemaster Backend configuration]: https://github.com/dotse/zonemaster-backend/blob/master/docs/Configuration.md#profiles-section
-[Zonemaster::Engine::Config]: https://metacpan.org/pod/Zonemaster::Engine::Config
+[Zonemaster Backend RPC-API]: https://github.com/zonemaster/zonemaster-backend/blob/master/docs/API.md
+[Zonemaster Backend configuration]: https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Configuration.md#public-profiles-and-private-profiles-sections
+[Zonemaster::Engine::Profile]: https://metacpan.org/pod/Zonemaster::Engine::Profile
 

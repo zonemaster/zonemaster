@@ -75,13 +75,15 @@ the ignored result.
 
 None.
 
-[RFC 6891]: https://tools.ietf.org/html/rfc6891
-[RFC 6891, section 6.1.4]: https://tools.ietf.org/html/rfc6891#section-6.1.2
+
+
 [EDNS Header Flags]: https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-13
-[Method4]: ../Methods.md#method-4-delegation-name-server-addresses
-[Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
-[NO_RESPONSE]: #outcomes
-[NO_EDNS_SUPPORT]: #outcomes
-[Z_FLAGS_NOTCLEAR]: #outcomes
-[NS_ERROR]: #outcomes
 [IANA]: https://www.iana.org/
+[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NO_EDNS_SUPPORT]: #outcomes
+[NO_RESPONSE]: #outcomes
+[NS_ERROR]: #outcomes
+[RFC 6891, section 6.1.4]: https://tools.ietf.org/html/rfc6891#section-6.1.2
+[RFC 6891]: https://tools.ietf.org/html/rfc6891
+[Z_FLAGS_NOTCLEAR]: #outcomes

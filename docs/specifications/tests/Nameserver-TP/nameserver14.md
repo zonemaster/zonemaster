@@ -6,8 +6,8 @@
 
 ### Objective
 
-This test case actually combines the test options in test cases
-[NAMESERVER10](../nameserver10.md) and [NAMESERVER11](../nameserver11.md). 
+This test case actually combines the test options in test cases [NAMESERVER10]
+and [NAMESERVER11].
 
 ### Inputs
 
@@ -76,10 +76,12 @@ None.
 
 [IANA-DNSSYSTEM-PARAMETERS]:
 https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-11
-[Method4]: ../Methods.md#method-4-delegation-name-server-addresses
-[Method5]: ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
-[NO_RESPONSE]: #outcomes
+[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NAMESERVER10]: nameserver10.md
+[NAMESERVER11]: nameserver11.md
 [NO_EDNS_SUPPORT]: #outcomes
+[NO_RESPONSE]: #outcomes
 [NS_ERROR]: #outcomes
 [UNKNOWN_OPTION_CODE]: #outcomes
 [UNSUPPORTED_EDNS_VER]: #outcomes
