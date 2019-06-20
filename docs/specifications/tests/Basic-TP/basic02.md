@@ -71,12 +71,3 @@ None.
 [RFC 7719]:         https://tools.ietf.org/html/rfc7719
 [in-bailiwick]:     #glossary
 [out-of-bailiwick]: #glossary
-
--------
-
-Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden)  
-Copyright (c) 2013-2018, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.

@@ -72,7 +72,6 @@ on the ignored result.
 
 None
 
-
 [RFC 1034]: https://tools.ietf.org/html/rfc1034
 
 [RFC 1035]: https://tools.ietf.org/html/rfc1035

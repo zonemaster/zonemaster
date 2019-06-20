@@ -157,7 +157,9 @@ The software that runs the ASN Lookup service is rbldnsd, and the software itsel
 
 ### Github
 
-The Github repository is a service run by the GitHub company. However, our repository for the Zonemaster software is belongning to the "dotse"-organization within GitHub, and the "dotse" organization is being managed by people from IIS. The Zonemaster repository is a separate source code versioning repository under "dotse", and is being separately managed by its own repository managers.
+The Github repository is a service run by the GitHub company. However, our repositories for the 
+Zonemaster software belong to the Zonemaster organization within GitHub, and the Zonemaster 
+organization is being managed by people from Afnic and IIS. 
 
 The role of the repository manager is to add and remove members who have (write-)access the repository, the issues and the wiki.
 
@@ -209,12 +211,3 @@ A number of roles have been identified by the above processes and systems:
  * Support for questions on Github and mailinglists
  * Operator of website and ASN lookup service
  * Content editor, web site
-
--------
-
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.

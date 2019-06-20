@@ -42,40 +42,61 @@ architecture listed below.
 ### Supported operating system versions
 
 * CentOS 7
-* Debian 7
 * Debian 8
 * Debian 9
-* FreeBSD 10.3
-* FreeBSD 11.1
-* Ubuntu 14.04
+* FreeBSD 11.2
+* FreeBSD 12.0
 * Ubuntu 16.04
+* Ubuntu 18.04
 
 ### Supported database engine versions
 
-Operating System | MySQL | PostgreSQL
----------------- | ------| -----------
-CentOS 7         | 5.6   |   9.3
-Debian 7         | 5.5   |  10.1
-FreeBSD 10.3     | 5.6   |   9.5       
-FreeBSD 11.1     | 5.6   |   9.5      
-Ubuntu 14.04     | 5.5   |   9.3
-Ubuntu 16.04     | 5.7   |   9.5
+Operating System | MySQL    | PostgreSQL
+---------------- | ---------| -----------
+CentOS 7         | 5.6      | 9.3
+Debian 8         | 5.5      | 9.4
+Debian 9         | 10.1 (*) | 9.6
+FreeBSD 11.2     | 5.6      | 9.5
+FreeBSD 12.0     | 5.6      | 9.5
+Ubuntu 16.04     | 5.7      | 9.5
+Ubuntu 18.04     | 5.7      | 10
 
-Zonemaster Backend has been tested with the combination of OS and database engine version
-listed in the table above. Zonemaster uses functionality introduced in PostgreSQL version 9.3, and earlier versions are as such not supported.
+*) For Debian 9 MariaDB is supported, not MySQL.
+
+Zonemaster Backend has been tested with the combination of OS and database 
+engine version listed in the table above. Zonemaster uses functionality 
+introduced in PostgreSQL version 9.3, and earlier versions are as such not supported.
 
 ### Supported Perl versions
 
 Operating System | Perl
 ---------------- | ----
-CentOS 7         | 5.16                        
-Debian 7         | 5.14
-FreeBSD 10.3     | 5.24
-FreeBSD 11.1     | 5.24
-Ubuntu 14.04     | 5.18
+CentOS 7         | 5.16
+Debian 8         | 5.20
+Debian 9         | 5.24
+FreeBSD 11.2     | 5.28
+FreeBSD 12.0     | 5.28
 Ubuntu 16.04     | 5.22
+Ubuntu 18.04     | 5.26
 
-Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been tested with the default version of Perl in the OSs as listed in the table above.
+Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been 
+tested with the default version of Perl in the OSs as listed in the table above.
+
+### Supported Client Browser versions
+
+Zonemaster GUI is tested against the browsers, their versions and listed OS as indicated bellow and should work perfectly with similar configurations.
+
+Operating System | Browser | Version
+---------------- | ------- | -------
+Ubuntu 18.04     | Firefox | 64, 65, 66
+Ubuntu 18.04     | Chrome  | 66
+Windows 10       | Firefox | 64, 65, 66
+Windows 10       | Chrome  | 73
+MacOs            | Firefox | 65
+MacOs            | Chrome  | 73
+
+Zonemaster GUI was tested manually or with testing tools. 
+See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for more details.
 
 ## Localization
 
@@ -92,35 +113,36 @@ Zonemaster comes with localization for these locales:
 
 The Zonemaster product consists of the main part and five components. The main part
 consists of specifications and documentation for the Zonemaster product, and is
-stored in main Zonemaster Github repository ([zonemaster]).
+stored in main Zonemaster Github repository ([Zonemaster]).
 
 All the software for the Zonemaster project belong to the five components, each
 component being stored in its own Github repository (listed below).
 
 The software has not yet been packaged for any operating systems, and you have to 
 install most of it from the source code. The recommended method is to install 
-from [CPAN], but it is possible to install directly from clones of the Github 
-repositories.
+from [CPAN] (except for [Zonemaster-GUI]), but it is possible to install directly 
+from clones of the Github repositories. [Zonemaster-GUI] has no Perl code, and is
+installed directly from its repository at Github.
 
 The Zonemaster Product includes the following components:
 
- * [zonemaster-ldns] - A fork of [ldns] with a Perl frontend used by [zonemaster-engine].
- * [zonemaster-engine] - The Zonemaster test library.
- * [zonemaster-cli] - A Command Line Interface (CLI) to the test library.
- * [zonemaster-backend] - A JSON/RPC interface with database to the test library.
- * [zonemaster-gui] - A web user interface to the test library via [zonemaster-backend].
+ * [Zonemaster-LDNS] - [LDNS] with a Perl frontend used by [Zonemaster-Engine].
+ * [Zonemaster-Engine] - The Zonemaster test library.
+ * [Zonemaster-CLI] - A Command Line Interface (CLI) to the test library ([Zonemaster-Engine]).
+ * [Zonemaster-Backend] - A JSON/RPC interface with database to the test library ([Zonemaster-Engine]).
+ * [Zonemaster-GUI] - A web user interface to the test library via [Zonemaster-Backend]. 
 
 ## Installation
 
-To install Zonemaster, start with installation of [zonemaster-engine] (which will
+To install Zonemaster, start with installation of [Zonemaster-Engine] (which will
 draw in Zonemaster-LDNS) and then continue with the other parts. You will find 
 installation instructions from the links above.
 
 ## Versions
 
-Go to the [release list](https://github.com/dotse/zonemaster/releases) 
+Go to the [release list](https://github.com/zonemaster/zonemaster/releases) 
 of this repository to find the 
-[latest version](https://github.com/dotse/zonemaster/releases/latest) of 
+[latest version](https://github.com/zonemaster/zonemaster/releases/latest) of 
 Zonemaster and the versions of the specific components. Be
 sure to read the release note of each component before installing or
 upgrading.
@@ -133,8 +155,8 @@ Zonemaster repository.
 
 You can follow the project in these two mailing lists:
 
- * [zonemaster-users](http://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-users)
- * [zonemaster-devel](http://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-devel)
+ * [zonemaster-users](https://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-users)
+ * [zonemaster-devel](https://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-devel)
 
 ## Bug reporting 
 
@@ -144,45 +166,35 @@ please search for the problem in the issue tracker in the relevant repository.
 If you find an open issue covering your issue, please add
 a comment with any additional information.
 
-* [Issues in Zonemaster::LDNS](https://github.com/dotse/zonemaster-ldns/issues)
-* [Issues in Zonemaster::Engine](https://github.com/dotse/zonemaster-engine/issues)
-* [Issues in Zonemaster::CLI](https://github.com/dotse/zonemaster-cli/issues)
-* [Issues in Zonemaster::Backend](https://github.com/dotse/zonemaster-backend/issues)
-* [Issues in zonemaster::GUI](https://github.com/dotse/zonemaster-gui/issues)
+* [Issues in Zonemaster::LDNS](https://github.com/zonemaster/zonemaster-ldns/issues)
+* [Issues in Zonemaster::Engine](https://github.com/zonemaster/zonemaster-engine/issues)
+* [Issues in Zonemaster::CLI](https://github.com/zonemaster/zonemaster-cli/issues)
+* [Issues in Zonemaster::Backend](https://github.com/zonemaster/zonemaster-backend/issues)
+* [Issues in zonemaster::GUI](https://github.com/zonemaster/zonemaster-gui/issues)
 
-If you cannot determine which repository to create the issue in, please select the main [zonemaster] 
-repository (i.e. [general issues in Zonemaster](https://github.com/dotse/zonemaster/issues)).
+If you cannot determine which repository to create the issue in, please select the main [Zonemaster] 
+repository (i.e. [general issues in Zonemaster](https://github.com/zonemaster/zonemaster/issues)).
 
 
 ## Notable bugs and issues
 
-* Selecting language in Zonemaster CLI tool `zonemaster-cli` sometimes does not work, see issues 
-  [dotse/zonemaster-cli#46](https://github.com/dotse/zonemaster-cli/issues/46) and
-  [dotse/zonemaster-cli#64](https://github.com/dotse/zonemaster-cli/issues/64).
-* Selecting language in Zonemaster Backend RPC API under FreeBSD does not work, see issue
-  [dotse/zonemaster-backend#315](https://github.com/dotse/zonemaster-backend/issues/315).
-* [Zonemaster-GUI version v1.0.10](https://github.com/dotse/zonemaster-gui/releases/tag/v1.0.10) fixes a
-  vulnerability in non-Javascript GUI. This is part of Zonemaster version
-  [v2017.4.1](https://github.com/dotse/zonemaster/releases/tag/v2017.4.1).
-* [Zonemaster-GUI version v1.0.11](https://github.com/dotse/zonemaster-gui/releases/tag/v1.0.11) fixes a
-  vulnerability in GUI. This is part of Zonemaster version
-  [v2017.4.2](https://github.com/dotse/zonemaster/releases/tag/v2017.4.2).
+* Translation does not work poperly under FreeBSD11 ([zonemaster-backend#512], [zonemaster-engine#546])
+* Backend not starting after reboot on Debian ([zonemaster-backend#513])
 
+[zonemaster-backend#513]: https://github.com/zonemaster/zonemaster-backend/issues/513
+[zonemaster-backend#512]: https://github.com/zonemaster/zonemaster-backend/issues/512
+[zonemaster-engine#546]: https://github.com/zonemaster/zonemaster-engine/issues/546
 
 ## Contact 
 
 For contacting the Zonemaster project, please send an e-mail to
 contact@zonemaster.net.
 
-[zonemaster]: https://github.com/dotse/zonemaster
-[zonemaster-ldns]: https://github.com/dotse/zonemaster-ldns
-[zonemaster-engine]: https://github.com/dotse/zonemaster-engine 
-[zonemaster-cli]: https://github.com/dotse/zonemaster-cli
-[zonemaster-backend]: https://github.com/dotse/zonemaster-backend
-[zonemaster-gui]: https://github.com/dotse/zonemaster-gui
-[ldns]: https://www.nlnetlabs.nl/projects/ldns/
-[CPAN]: http://search.cpan.org/search?query=Zonemaster&mode=dist
-
-[Zonemaster-LDNS issue 10]: https://github.com/dotse/zonemaster-ldns/issues/10
-[Zonemaster-LDNS issue 30]: https://github.com/dotse/zonemaster-ldns/issues/30 
-
+[Zonemaster]: https://github.com/zonemaster/zonemaster
+[Zonemaster-LDNS]: https://github.com/zonemaster/zonemaster-ldns
+[Zonemaster-Engine]: https://github.com/zonemaster/zonemaster-engine 
+[Zonemaster-CLI]: https://github.com/zonemaster/zonemaster-cli
+[Zonemaster-Backend]: https://github.com/zonemaster/zonemaster-backend
+[Zonemaster-GUI]: https://github.com/zonemaster/zonemaster-gui
+[LDNS]: https://www.nlnetlabs.nl/projects/ldns/about/
+[CPAN]: https://www.cpan.org/

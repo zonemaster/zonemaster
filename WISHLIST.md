@@ -11,7 +11,7 @@ WishList for Version 2.0
 from another program (the library may be useful even if the tool has a
 structured output).
 8. Test suite, as a deliberately broken set of DNS zones, like DNSSEC
-people did <http://www.dnssec-tools.org/testzone/>.
+people did <https://dnssec-tools.org/testzone/>.
 9. Developing a Mobile app
 10. Parallel tests
 11. It would be nice to test if unknown RR types can be queried (Ref :

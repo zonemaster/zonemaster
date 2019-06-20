@@ -5,20 +5,20 @@
 This document is intended to specify the semantics of the versions numbers used for the Zonemaster Product and its
 components. There are two different version schema, one for the Zonemaster Product, and one for its components.
 
-The main Zonemaster Repository ([zonemaster](https://github.com/dotse/zonemaster)) stores the specifications
+The main Zonemaster Repository ([zonemaster](https://github.com/zonemaster/zonemaster)) stores the specifications
 and documentation for the Zonemaster Product. There is no direct Perl code for Zonemaster in that repository. The Zonemaster
 components are part of the Zonemaster Product, but stored in separate repositories 
-([zonemaster-ldns](https://github.com/dotse/zonemaster-ldns), 
-[zonemaster-engine](https://github.com/dotse/zonemaster-engine),
-[zonemaster-cli](https://github.com/dotse/zonemaster-cli),
-[zonemaster-backend](https://github.com/dotse/zonemaster-backend) and 
-[zonemaster-gui](https://github.com/dotse/zonemaster-gui)). In each component repository the main Perl module of 
+([zonemaster-ldns](https://github.com/zonemaster/zonemaster-ldns), 
+[zonemaster-engine](https://github.com/zonemaster/zonemaster-engine),
+[zonemaster-cli](https://github.com/zonemaster/zonemaster-cli),
+[zonemaster-backend](https://github.com/zonemaster/zonemaster-backend) and 
+[zonemaster-gui](https://github.com/zonemaster/zonemaster-gui)). In each component repository the main Perl module of 
 the component can be found:
-* [Zonemaster::LDNS](https://github.com/dotse/zonemaster-ldns/blob/master/lib/Zonemaster/LDNS.pm)
-* [Zonemaster::Engine](https://github.com/dotse/zonemaster-engine/blob/master/lib/Zonemaster/Engine.pm)
-* [Zonemaster::CLI](https://github.com/dotse/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)
-* [Zonemaster::Backend](https://github.com/dotse/zonemaster-backend/blob/master/lib/Zonemaster/Backend.pm)
-* [Zonemaster::GUI](https://github.com/dotse/zonemaster-gui/blob/master/lib/Zonemaster/GUI.pm)
+* [Zonemaster::LDNS](https://github.com/zonemaster/zonemaster-ldns/blob/master/lib/Zonemaster/LDNS.pm)
+* [Zonemaster::Engine](https://github.com/zonemaster/zonemaster-engine/blob/master/lib/Zonemaster/Engine.pm)
+* [Zonemaster::CLI](https://github.com/zonemaster/zonemaster-cli/blob/master/lib/Zonemaster/CLI.pm)
+* [Zonemaster::Backend](https://github.com/zonemaster/zonemaster-backend/blob/master/lib/Zonemaster/Backend.pm)
+* [Zonemaster::GUI](https://github.com/zonemaster/zonemaster-gui/blob/master/lib/Zonemaster/GUI.pm)
 
 This document also discusses how the Zonemaster project intend to do new relases.
 
@@ -39,7 +39,7 @@ the "I" must be updated in the product version.
 A specific version of the Zonemaster Product will, besides specifications and other documents, include a specific
 version of each of the Zonemaster components. The specifications and other documents are stored in the main
 repository, and the version is defined in Git by a tag on the last commit. The included versions of the components is
-defined by the [Changes](https://github.com/dotse/zonemaster/blob/master/Changes) file.
+defined by the [Changes](https://github.com/zonemaster/zonemaster/blob/master/Changes) file.
 
 ## Version Number Syntax for Zonemaster components
 
@@ -105,15 +105,3 @@ candidates.
 
 When this happens, it must be clearly documented and all parts of Zonemaster must work together. Automated tests for new
 functionality must be created before release, and integration testing between components must be performed.
-
-
-
--------
-
-Copyright (c) 2013-2017, IIS (The Internet Foundation in Sweden)  
-Copyright (c) 2013-2017, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
-
