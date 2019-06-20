@@ -1,49 +1,200 @@
-## CONSISTENCY05: Consistency between glue and authoritative data
+# CONSISTENCY05: Consistency between glue and authoritative data
 
-### Test case identifier
+## Test case identifier
 
-**CONSISTENCY05:** Consistency between glue and authoritative data
+**CONSISTENCY05**
 
-### Objective
+## Objective
 
 For name servers that have IP addresses listed as glue, the IP addresses must
-match the authoritative A and AAAA records for that host. This is an IANA
-requirement (https://www.iana.org/help/nameserver-requirements).
+match the authoritative A and AAAA records for that host. This is an IANA 
+[name server requirement].
 
-The objective of this test is to verify that the glue records are
-consistent between glue and authoritative date.
+The objective of this test is to verify that the [glue records][terminology] 
+in the delegation are consistent with authoritative data.
 
-### Inputs
+## Inputs
 
-1. The domain name to be tested
+* "Child Zone" - The domain name to be tested.
 
-### Ordered description of steps to be taken to execute the test case
+## Ordered description of steps to be taken to execute the test case
+1. Obtain the set of name server names from the NS records in the 
+   delegation of *Child Zone* using [Method2] and any glue IP addresses
+   from the same delegation using [Method4].
 
-1. Obtain the list of address records from [Method4](../Methods.md) and
-   [Method5](../Methods.md).
-2. If the set of address records are not consistent between the glue address
-   records and the name server address records from the child, this test case fails.
+   1. Extract the [in-bailiwick][terminology] name server names and create the set
+      "Delegation Strict Glue", where each name server name 
+      is matched with its IP address or addresses, if available. (The 
+      set may be empty.)
 
-### Outcome(s)
+   2. Extract the [out-of-bailiwick][terminology] name server names and create the 
+      set "Delegation Extended Glue", where each name server name 
+      is matched with its IP address or addresses, if available. (The 
+      set may be empty.)
 
-If there is no consistency between the glue and the name server address records
-from the child, this test case fails.
+2. Obtain the set of name server names for the *Child Zone* using
+   [Method2] and [Method3] and extract the [in-bailiwick][terminology] name 
+   server names, "IB NS Name Set". (The set may be empty.)
 
-### Special procedural requirements	
+3. Create an empty set of name server name with associated IP address
+   or addresses, "Address Records From Child".
+
+4. If *IB NS Name Set* is non-empty, obtain the set of name server IP 
+   addresses, "NS IP", for *Child Zone* using [Method4] and [Method5].
+
+5. If *IB NS Name Set* is non-empty, then for each name server name in
+   that set do:
+
+   1. Create one A query and one AAAA query with the RD flag unset
+      and name server name as owner name.
+
+   2. For each name server in *NS IP* and for each record 
+      types (A, AAAA):
+      1. Send the address query to the name server.
+      2. If there is no DNS response from the server, then
+         output *[NO_RESPONSE]*.
+      3. Or, if the response is a delegation (referral) to a 
+         sub-zone of *Child Zone*, then:
+         1. Copy the adress query (A, AAAA) that gave the referral
+            response.
+         2. Set the RD flag in the copied query (from unset to set).
+         3. Do a [DNS Lookup][terminology] of the the query.
+         4. If the lookup returns the relevant address record or records,
+            A for A record query and AAAA for AAAA record query, and 
+            with the same owner name as in the query (i.e. CNAME should
+            not be followed), then extract those and add to 
+            *Address Records From Child* with name and IP 
+            address or addresses.
+      4. Or, if the response has the AA flag unset, then
+         output *[CHILD_NS_FAILED]*. 
+      5. Or, if the RCODE of the response is neither NOERROR nor 
+         NXDOMAIN, then output *[CHILD_NS_FAILED]*.
+      6. Or, if the RCODE is NOERROR (with the AA flag set), then
+         extract any address records (A, AAAA) from the answer
+         section whose owner name matches the owner name 
+         of the query (i.e. CNAME should not be followed) and add 
+         that or those to *Address Records From Child* with name and IP. 
+      7. Else, there is nothing to do (i.e. RCODE is NXDOMAIN).
+
+   3. If all servers outputted *[NO_RESPONSE]* or *[CHILD_NS_FAILED]*, 
+      then output *[CHILD_ZONE_LAME]* and completely stop processing 
+      this test case.
+
+6. Compare the IP address for the name servers from 
+   *Delegation Strict Glue* with *Address Records From Child*
+   (i.e. [in-bailiwick][terminology] only).
+
+   1. If an IP from *Delegation Strict Glue* is not listed in 
+      *Address Records From Child* with that same name server name, 
+      then output *[IN_BAILIWICK_ADDR_MISMATCH]*.
+
+   2. If an IP from *Address Records From Child* is not listed in
+      *Delegation Strict Glue* with that same name server name, then 
+      output *[EXTRA_ADDRESS_CHILD]*.
+
+7. For each name server name in *Delegation Extended Glue* 
+   (i.e. [out-of-bailiwick][terminology] only) ("DEG Name Server Name") do: 
+
+   1. Do two [DNS Lookups][terminology], one record type A and one record type 
+      AAAA, for *DEG Name Server Name* on public DNS and create a
+      set of the IP addresses from the A and AAAA records, respectively,
+      from the answer sections of the responses and that matches
+      the owner name of the query (i.e. CNAME should not be followed). 
+      (The set will be empty if there are no relevant records in the
+      answer sections or if there is no response, e.g. SERVFAIL.)
+
+   2. For each IP address for *DEG Name Server Name* in
+      *Delegation Extended Glue* do:
+      1. If the address is not member of the IP address set created
+         in the previous DNS lookups, output 
+         *[OUT_OF_BAILIWICK_ADDR_MISMATCH]*.
+
+8. If none of *[IN_BAILIWICK_ADDR_MISMATCH]*, *[EXTRA_ADDRESS_CHILD]* 
+   or *[OUT_OF_BAILIWICK_ADDR_MISMATCH]* has been outputted, output 
+   *[ADDRESSES_MATCH]*.
+
+
+## Outcome(s)
+
+The outcome of this Test Case is "fail" if there is at least one message
+with the severity level *ERROR* or *CRITICAL*.
+
+The outcome of this Test Case is "warning" if there is at least one message
+with the severity level *WARNING*, but no message with severity level
+*ERROR* or *CRITICAL*.
+
+The outcome of this Test case is "pass" in all other cases.
+
+Message                           | Default severity level (when message is outputted)
+:---------------------------------|:-----------------------------------
+CHILD_NS_FAILED                   | NOTICE
+NO_RESPONSE                       | WARNING
+CHILD_ZONE_LAME                   | ERROR
+IN_BAILIWICK_ADDR_MISMATCH        | ERROR
+OUT_OF_BAILIWICK_ADDR_MISMATCH    | ERROR
+EXTRA_ADDRESS_CHILD               | NOTICE
+ADDRESSES_MATCH                   | INFO
+
+## Special procedural requirements	
 
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
-result of any test using this transport protocol. Log a message reporting
-on the ignored result.
+result of any test using this transport protocol and log a message reporting
+the ignored result.
 
-### Intercase dependencies
+If the test is an [undelegated test] then [Method2] and [Method4] will 
+include the provided input data instead of data from any real delegation
+and authoritative data.
+
+For an [undelegated test] it is possible to intentionally insert data
+for [out-of-bailiwick][terminology] name servers that do not match what is found in
+public DNS. This Test Case will then report this as an ERROR which
+may not match the users expectation.
+
+It is assumed that the name servers of the parent zone behave the same way 
+for the parent zone as when [BASIC01] was run.
+
+## Intercase dependencies
 
 None
 
--------
 
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
-Creative Commons Attribution 4.0 International License
+## Terminology
 
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
+The terms "in-bailiwick" and "out-of-bailiwick" are used as defined
+in [RFC 7719], section 6, page 15.
+
+The term "glue records" is defined in [RFC 7719], section 6, page 15.
+Here we use "glue" in the wider sense.
+
+When the term "using Method" is used, names and IP addresses are fetched
+using the defined [Methods].
+
+The term "send" (to an IP address) is used when a DNS query is sent to
+a specific name server.
+
+The term "DNS Lookup" is used when a recursive lookup is used, though
+any changes to the DNS tree introduced by an [undelegated test] must be
+respected.
+
+
+[BASIC01]:                  ../Basic-TP/basic01.md
+[DELEGATION05]:             ../Delegation-TP/delegation05.md
+[Methods]:                  ../Methods.md
+[Method2]:                  ../Methods.md#method-2-obtain-glue-name-records-from-parent
+[Method3]:                  ../Methods.md#method-3-obtain-name-servers-from-child
+[Method4]:                  ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[name server requirement]:  https://www.iana.org/help/nameserver-requirements
+[RFC 7719]:                 https://tools.ietf.org/html/rfc7719
+[terminology]:              #terminology
+[undelegated test]:         ../../test-types/undelegated-test.md
+
+[CHILD_NS_FAILED]:                #outcomes
+[NO_RESPONSE]:                    #outcomes
+[CHILD_ZONE_LAME]:                #outcomes
+[IN_BAILIWICK_ADDR_MISMATCH]:     #outcomes
+[OUT_OF_BAILIWICK_ADDR_MISMATCH]: #outcomes
+[EXTRA_ADDRESS_CHILD]:            #outcomes
+[UNDEL_OOB_ADDR_MISMATCH]:        #outcomes
+[ADDRESSES_MATCH]:                #outcomes
+

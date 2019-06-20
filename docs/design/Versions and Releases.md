@@ -105,15 +105,3 @@ candidates.
 
 When this happens, it must be clearly documented and all parts of Zonemaster must work together. Automated tests for new
 functionality must be created before release, and integration testing between components must be performed.
-
-
-
--------
-
-Copyright (c) 2013-2017, IIS (The Internet Foundation in Sweden)  
-Copyright (c) 2013-2017, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
-

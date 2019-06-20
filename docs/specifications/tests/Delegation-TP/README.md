@@ -15,12 +15,3 @@ This document uses the terminology defined in the [Master Test Plan](../MasterTe
 |R20|Existence of SOA                                      |[DELEGATION06](delegation06.md)|
 |R21|Test whether the ANSWER for SOA is authoritative      |[DELEGATION06](delegation06.md)|
 |R71|Parent glue name records present in child             |[DELEGATION07](delegation07.md)|
-
--------
-
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.

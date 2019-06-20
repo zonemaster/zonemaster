@@ -11,7 +11,7 @@ describes the current set of requirements on the tests to implement for
 Zonemaster.
 
 Any previous mapping detailing the inheritance on the requirements from
-Zonecheck and DNSCheck can be found inolder versions of this document.
+Zonecheck and DNSCheck can be found in older versions of this document.
 
 Source documents
 ----------------
@@ -20,9 +20,13 @@ Most of the requirements are derived from these documents:
 
 Type of document             |Document copied from   |Document
 :----------------------------|:----------------------|:------------------------------------
-Source document for Zonecheck|Previois Zonecheck site|[Features](supporting-documents/ExistingZCFeaturesCLI.md)
-Policy document for Zonecheck|Previois Zonecheck site|[Test Policy](supporting-documents/ExistingZCPolicy.md)
+Source document for Zonecheck|Previous Zonecheck site|[Features]
+Policy document for Zonecheck|Previous Zonecheck site|[Test Policy]
 Source document for DNSCheck |DNSCheck Github Wiki   |[Detailes list of all messages](supporting-documents/Detailed-list-of-all-possible-dnscheck-messages.md)
+
+[Features]:                      supporting-documents/ExistingZCFeaturesCLI.md
+[Test Policy]:                   supporting-documents/ExistingZCPolicy.md
+[Detailes list of all messages]: supporting-documents/Detailed-list-of-all-possible-dnscheck-messages.md
 
 
 Tests to implement
@@ -48,7 +52,7 @@ Tests to implement
 |R16|NS authoritative answer                                 |[DELEGATION](../specifications/tests/Delegation-TP/delegation04.md)|
 |R17|NS name has a valid domain/hostname syntax              |[SYNTAX](../specifications/tests/Syntax-TP/syntax04.md)|
 |R18|NS is not an alias                                      |[DELEGATION](../specifications/tests/Delegation-TP/delegation05.md)|
-|R19|NS can be resolved                                      |[DELEGATION](../specifications/tests/Delegation-TP/??)|
+|R19|NS can be resolved                                      |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver06.md)|
 |R20|SOA record present                                      |[DELEGATION](../specifications/tests/Delegation-TP/delegation06.md)|
 |R21|SOA authoritative answer                                |[DELEGATION](../specifications/tests/Delegation-TP/delegation06.md)|
 |R22|Missused '@' characters in SOA contact name             |[SYNTAX](../specifications/tests/Syntax-TP/syntax05.md)|
@@ -62,8 +66,8 @@ Tests to implement
 |R31|SOA 'minimum' less than 1 day                           |[ZONE](../specifications/tests/Zone-TP/zone06.md)|
 |R32|SOA master is not an alias                              |[ZONE](../specifications/tests/Zone-TP/zone07.md)|
 |R33|Coherence of serial number with primary nameserver      |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency01.md)|
-|R34|Coherence of administrative contact with primary nameserver |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency02.md)|
-|R36|Coherence of SOA with primary nameserver                |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency03.md)|
+|R34|Coherence of administrative contact with primary nameserver (SOA RNAME) |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency02.md)|
+|R36|Coherence of SOA with primary nameserver (SOA timers)   |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency03.md)|
 |R40|Nameserver IP reverse                                   |[ADDRESS](../specifications/tests/Address-TP/address02.md)|
 |R41|Nameserver IP reverse matching nameserver name          |[ADDRESS](../specifications/tests/Address-TP/address03.md)|
 |R42|Check if server is really recursive                     |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver01.md)|
@@ -98,10 +102,15 @@ Tests to implement
 |R79|If DS at parent, child zone must be signed              |[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec11.md)|
 |R80|Test QNAME case sensitivity                             |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver09.md)|
 |R81|Test Upward referral         			      |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver07.md)|
-|R82|Test QNAME Case insensitivity                            |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver08.md)|
-|R83|Consistency between glue and authoritative data          |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency05.md)|
+|R82|Test QNAME Case insensitivity                           |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver08.md)|
+|R83|Consistency between glue and authoritative data         |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency05.md)|
 |R84|Test for DNSSEC Algorithm Completeness (DS->DNSKEY->RRSIG)|[DNSSEC](../specifications/tests/DNSSEC-TP/dnssec12.md)|
-
+|R85|Test for undefined EDNS version                         |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver10.md)|
+|R86|Test for unknown EDNS OPTION-CODE                       |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver11.md)|
+|R87|Test for unknown EDNS flags                             |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver12.md)|
+|R88|Test for truncated response on EDNS query               |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver13.md)|
+|R89|Coherence of SOA with primary nameserver (SOA MNAME)    |[CONSISTENCY](../specifications/tests/Consistency-TP/consistency06.md)|
+|R90|Test for unknown version ansd OPTION-CODE               |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver14.md)|
 
 Future tests
 ------------
@@ -130,13 +139,11 @@ Requirements on writing test specifications
 These are some requirements for writing specifications for "Zonemaster":
 
  1. Follow the framework of the IEEE 829-2008.
- 2. The documents must be in 
-    [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax).
+ 2. The documents must be in [GitHub Flavored Markdown].
  3. Keep the columns in the document below 80, preferrably shorter than 74
     columns. (Much easier to see changes in documents using the tools
 	available for diffing).
- 4. Use 
-    [normative language](http://en.wikipedia.org/wiki/Normative#Standards_documents).
+ 4. Use [normative language].
  5. Refer to any reference that is the rationale for implementing the test
     case. If there are no reference to any standards, describe the reason
     for implementing the test. For most references, we use RFCs from IETF.
@@ -158,11 +165,5 @@ These are some requirements for writing specifications for "Zonemaster":
 
 
 
--------
-
-Copyright (c) 2013-2018, IIS (The Internet Foundation in Sweden)  
-Copyright (c) 2013-2018, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
+[GitHub Flavored Markdown]: https://github.github.com/gfm/
+[Normative language]: https://en.wikipedia.org/wiki/Normative#Standards_documents

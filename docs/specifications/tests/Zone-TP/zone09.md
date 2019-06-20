@@ -11,7 +11,7 @@ that all domains should have a mailbox named hostmaster@domain.
 
 > For simplicity and regularity, it is strongly recommended that the
 > well known mailbox name HOSTMASTER always be used
-> <HOSTMASTER@domain>.
+> \<HOSTMASTER@domain\>.
 
 It is therefore necessary for any domain to publish an MX record.
 However, SMTP can make a delivery without the MX, using the A or
@@ -45,12 +45,3 @@ None.
 ### Intercase dependencies
 
 None.
-
--------
-
-Copyright (c) 2013, 2014, 2015, IIS (The Internet Infrastructure Foundation)  
-Copyright (c) 2013, 2014, 2015, AFNIC  
-Creative Commons Attribution 4.0 International License
-
-You should have received a copy of the license along with this
-work.  If not, see <https://creativecommons.org/licenses/by/4.0/>.
