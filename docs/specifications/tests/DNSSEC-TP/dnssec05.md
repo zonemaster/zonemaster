@@ -39,13 +39,13 @@ reference to the RFC.
       1. If the algorithm is deprecated (algorithm 1, 3, 6 or 12)
          output *[ALGORITHM_DEPRECATED]*.
       2. If the algorithm is reserved (algorithm
-         4, 9, 11, 123-252 or 255), output *[ALGORITHM_RESERVED]*.
+         4, 9, 11, 123-251 or 255), output *[ALGORITHM_RESERVED]*.
       3. If the algorithm is unassigned (algorithm
          17-122), output *[ALGORITHM_UNASSIGNED]*.
       4. If the algorithm is private algorithm
          (algorithm 253-254), output *[ALGORITHM_PRIVATE]*.
       5. If the algorithm is not meant for zone signing (algorithm
-         0-2), output *[ALGORITHM_NOT_ZONE_SIGN]*.
+         0-2 or 252), output *[ALGORITHM_NOT_ZONE_SIGN]*.
       6. If the algorithm is not rekommended for zone signing (algorithm
          5, 7 or 10), output *[ALGORITHM_NOT_RECOMMENDED]*.
       7. If no message has been outputted for the DNSKEY, output 
