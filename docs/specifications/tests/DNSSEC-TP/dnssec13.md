@@ -18,7 +18,9 @@ RRsets that must be present in a signed zone, the SOA RRset, the
 NS RRset and the DNSKEY RRset.
 
 This test case will verify that for each DNSKEY algorithm, there
-is a RRsig of that algorithm for the three selcted RRsets.
+is a RRSIG of that algorithm for the three selected RRsets. 
+Furtermore, it is verified that the RRSIG of those RRsets have
+been created by a DNSKEY from the zone's DNSKEY RRset.
 
 ## Inputs
 
@@ -43,51 +45,90 @@ is a RRsig of that algorithm for the three selcted RRsets.
    1. Send the DNSKEY query over UDP.
       1. If no DNS response is returned, then output 
          *[NO_RESPONSE]* and go to next name server IP address.
-      2. Else if the DNS response does not contain an DNSKEY RRset,
-         then output *[NO_RESPONSE_DNSKEY]* and go to next name 
-         server IP address.
-      3. Else do:
-         1. Extract the algorithm numbers from each DNSKEY record
+      2. Else, if the DNS response contains no DNSKEY record in the
+         answer section, then output *[NO_RESPONSE_DNSKEY]* and go to 
+         the next name server IP address.
+      3. Else, do:
+         1. Extract all DNSKEY records ("DNSKEY Records").
+         2. Extract the algorithm numbers from each DNSKEY record
             ("DNSKEY Algorithms").
-         2. If there is no RRsig for DNSKEY, then output 
+         3. Caculate the key ID for each DNSKEY record 
+            ("DNSKEY Key ID").
+         4. Extract all RRSIG records from the response.
+         5. If there is no RRSIG for DNSKEY, then output 
             *[DNSKEY_NOT_SIGNED]* and go to next name server IP 
             address.
-         3. If there is a algorithm in *DNSKEY Algorithm* not used
-            by any DNSKEY RRsig, then output 
-            *[ALGORITHM_NOT_SIGNED_DNSKEY]*.
+         6. For each algorithm in *DNSKEY Algorithm* do:
+            1. If there is no RRSIG using the algorithm then output
+               *[ALGO_NOT_SIGNED_DNSKEY]*.
+         7. For each RRSIG do:
+            1. If the key ID from the RRSIG is not a member of the
+               set *DNSKEY Key ID*, then output 
+               *[RRSIG_DNSKEY_NOT_DNSKEY]* and go to next RRSIG.
+            2. If the RRSIG cannot be verified by the DNSKEY from
+               *DNSKEY Record* with the matching RRSIG key ID, then
+               output *[RRSIG_DNSKEY_BROKEN]*.
    2. Send the SOA query over UDP.
       1. If no DNS response is returned, then output 
          *[NO_RESPONSE]* and go to next name server IP address.
-      2. Else if the DNS response does not contain an SOA RRset,
-         then output *[NO_RESPONSE_SOA]* and go to next name server 
-         IP address.
-      3. Else do:
-         1. If there is no RRsig for SOA, then output 
+      2. Else, if the DNS response contains no SOA record in the
+         answer section, then output *[NO_RESPONSE_SOA]* and go to 
+         the next name server IP address.
+      3. Else, do:
+         1. Extract all RRSIG records from the response.
+         2. If there is no RRSIG for SOA, then output 
             *[SOA_NOT_SIGNED]* and go to next name server IP 
             address.
-         2. If there is a algorithm in *DNSKEY Algorithm* not used
-            by any SOA RRsig, then output 
-            *[ALGORITHM_NOT_SIGNED_SOA]*.
+         3. For each algorithm in *DNSKEY Algorithm* do:
+            1. If there is no RRSIG using the algorithm then output
+            *[ALGO_NOT_SIGNED_SOA]*.
+         4. For each RRSIG do:
+            1. If the key ID from the RRSIG is not a member of the
+               set *DNSKEY Key ID*, then output 
+               *[RRSIG_SOA_NOT_DNSKEY]* and go to next RRSIG.
+            2. If the RRSIG cannot be verified by the DNSKEY from
+               *DNSKEY Record* with the matching RRSIG key ID, then
+               output *[RRSIG_SOA_BROKEN]*.
    3. Send the NS query over UDP.
       1. If no DNS response is returned, then output 
          *[NO_RESPONSE]* and go to next name server IP address.
-      2. Else if the DNS response does not contain an SOA RRset,
-         then output *[NO_RESPONSE_NS]* and go to next name server 
-         IP address.
-      3. Else do:
-         1. If there is no RRsig for NS, then output 
+      2. Else, if the DNS response contains no NS record in the
+         answer section, then output *[NO_RESPONSE_NS]* and go to 
+         next name server IP address.
+      3. Else, do:
+         1. Extract all RRSIG records from the response.
+         2. If there is no RRSIG for NS, then output 
             *[NS_NOT_SIGNED]* and go to next name server IP 
             address.
-         2. If there is a algorithm in *DNSKEY Algorithm* not used
-            by any NS RRsig, then output 
-            *[ALGORITHM_NOT_SIGNED_NS]*.
+         3. For each algorithm in *DNSKEY Algorithm* do:
+            1. If there is no RRSIG using the algorithm then output
+            *[ALGO_NOT_SIGNED_NS]*.
+         4. For each RRSIG do:
+            1. If the key ID from the RRSIG is not a member of the
+               set *DNSKEY Key ID*, then output 
+               *[RRSIG_NS_NOT_DNSKEY]* and go to next RRSIG.
+            2. If the RRSIG cannot be verified by the DNSKEY from
+               *DNSKEY Record* with the matching RRSIG key ID, then
+               output *[RRSIG_NS_BROKEN]*.
+6. If *DNSKEY Algorithm* is non-empty for at least some name server IP 
+   addresses in *NS IP* and none of the following messages were
+   outputted, then output *[ALL_ALGO_SIGNED]*:
+   * *[ALGO_NOT_SIGNED_DNSKEY]*
+   * *[ALGO_NOT_SIGNED_NS]*
+   * *[ALGO_NOT_SIGNED_SOA]*
+   * *[DNSKEY_NOT_SIGNED]*
+   * *[NO_RESPONSE_DNSKEY]*
+   * *[NO_RESPONSE_NS]*
+   * *[NO_RESPONSE_SOA]*
+   * *[NS_NOT_SIGNED]*
+   * *[RRSIG_DNSKEY_BROKEN]*
+   * *[RRSIG_DNSKEY_NOT_DNSKEY]*
+   * *[RRSIG_NS_BROKEN]*
+   * *[RRSIG_NS_NOT_DNSKEY]*
+   * *[RRSIG_SOA_BROKEN]*
+   * *[RRSIG_SOA_NOT_DNSKEY]*
+   * *[SOA_NOT_SIGNED]*
 
-6. If none of *[NO_RESPONSE_DNSKEY]*, *[DNSKEY_NOT_SIGNED]*,
-   *[ALGORITHM_NOT_SIGNED_DNSKEY]*, *[NO_RESPONSE_SOA]*, 
-   *[SOA_NOT_SIGNED]*, *[ALGORITHM_NOT_SIGNED_SOA]*, *[NO_RESPONSE_NS]*,
-   *[NS_NOT_SIGNED]* and *[ALGORITHM_NOT_SIGNED_NS]* was outputted and
-   *DNSKEY Algorithm* was non-empty for at least some name server IP 
-   addresses in *NS IP* then output *[ALL_ALGORITHM_SIGNED]*.
 
 ## Outcome(s)
 
@@ -102,17 +143,23 @@ In other cases the outcome of this Test Case is "pass".
 
 Message                       | Default severity level
 :-----------------------------|:-----------------------------------
+ALGO_NOT_SIGNED_DNSKEY        | WARNING
+ALGO_NOT_SIGNED_NS            | WARNING
+ALGO_NOT_SIGNED_SOA           | WARNING
+ALL_ALGO_SIGNED               | INFO
+DNSKEY_NOT_SIGNED             | ERROR
 NO_RESPONSE                   | WARNING
 NO_RESPONSE_DNSKEY            | ERROR
-DNSKEY_NOT_SIGNED             | ERROR
-ALGORITHM_NOT_SIGNED_DNSKEY   | ERROR
-NO_RESPONSE_SOA               | ERROR
-SOA_NOT_SIGNED                | ERROR
-ALGORITHM_NOT_SIGNED_SOA      | ERROR
 NO_RESPONSE_NS                | ERROR
+NO_RESPONSE_SOA               | ERROR
 NS_NOT_SIGNED                 | ERROR
-ALGORITHM_NOT_SIGNED_NS       | ERROR
-ALL_ALGORITHM_SIGNED          | INFO
+RRSIG_DNSKEY_BROKEN           | ERROR
+RRSIG_DNSKEY_NOT_DNSKEY       | ERROR
+RRSIG_NS_BROKEN               | ERROR
+RRSIG_NS_NOT_DNSKEY           | ERROR
+RRSIG_SOA_BROKEN              | ERROR
+RRSIG_SOA_NOT_DNSKEY          | ERROR
+SOA_NOT_SIGNED                | ERROR
 
 
 ## Special procedural requirements
@@ -133,15 +180,21 @@ None.
 [Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
-[DNSSEC README]:             ./README.md
+[ALGO_NOT_SIGNED_DNSKEY]:      #outcomes
+[ALGO_NOT_SIGNED_NS]:          #outcomes
+[ALGO_NOT_SIGNED_SOA]:         #outcomes
+[ALL_ALGO_SIGNED]:             #outcomes
+[DNSKEY_NOT_SIGNED]:           #outcomes
+[DNSSEC README]:               ./README.md
 [NO_RESPONSE]:                 #outcomes
 [NO_RESPONSE_DNSKEY]:          #outcomes
-[DNSKEY_NOT_SIGNED]:           #outcomes
-[ALGORITHM_NOT_SIGNED_DNSKEY]: #outcomes
-[NO_RESPONSE_SOA]:             #outcomes
-[SOA_NOT_SIGNED]:              #outcomes
-[ALGORITHM_NOT_SIGNED_SOA]:    #outcomes
 [NO_RESPONSE_NS]:              #outcomes
+[NO_RESPONSE_SOA]:             #outcomes
 [NS_NOT_SIGNED]:               #outcomes
-[ALGORITHM_NOT_SIGNED_NS]:     #outcomes
-[ALL_ALGORITHM_SIGNED]:        #outcomes
+[RRSIG_DNSKEY_BROKEN]:         #outcomes
+[RRSIG_DNSKEY_NOT_DNSKEY]:     #outcomes
+[RRSIG_NS_BROKEN]:             #outcomes
+[RRSIG_NS_NOT_DNSKEY]:         #outcomes
+[RRSIG_SOA_BROKEN]:            #outcomes
+[RRSIG_SOA_NOT_DNSKEY]:        #outcomes
+[SOA_NOT_SIGNED]:              #outcomes
