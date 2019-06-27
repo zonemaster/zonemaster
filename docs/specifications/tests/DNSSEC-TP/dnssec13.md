@@ -134,15 +134,14 @@ None.
 [Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
 [DNSSEC README]:             ./README.md
-NO_RESPONSE:                 #outcomes
-NO_RESPONSE_DNSKEY:          #outcomes
-DNSKEY_NOT_SIGNED:           #outcomes
-ALGORITHM_NOT_SIGNED_DNSKEY: #outcomes
-NO_RESPONSE_SOA:             #outcomes
-SOA_NOT_SIGNED:              #outcomes
-ALGORITHM_NOT_SIGNED_SOA:    #outcomes
-NO_RESPONSE_NS:              #outcomes
-NS_NOT_SIGNED:               #outcomes
-ALGORITHM_NOT_SIGNED_NS:     #outcomes
-ALL_ALGORITHM_SIGNED:        #outcomes
-
+[NO_RESPONSE]:                 #outcomes
+[NO_RESPONSE_DNSKEY]:          #outcomes
+[DNSKEY_NOT_SIGNED]:           #outcomes
+[ALGORITHM_NOT_SIGNED_DNSKEY]: #outcomes
+[NO_RESPONSE_SOA]:             #outcomes
+[SOA_NOT_SIGNED]:              #outcomes
+[ALGORITHM_NOT_SIGNED_SOA]:    #outcomes
+[NO_RESPONSE_NS]:              #outcomes
+[NS_NOT_SIGNED]:               #outcomes
+[ALGORITHM_NOT_SIGNED_NS]:     #outcomes
+[ALL_ALGORITHM_SIGNED]:        #outcomes
