@@ -1,69 +1,145 @@
-## DNSSEC02: DS must match a DNSKEY in the designated zone
+# DNSSEC02: DS must match a valid DNSKEY in the child zone
 
-### Test case identifier
-**DNSSEC02** DS must match a DNSKEY in the designated zone
+## Test case identifier
+**DNSSEC02**
 
-### Objective
+## Objective
 
 DNS delegations from a parent to a child are secured with DNSSEC by
 publishing one or several Delgation Signer (DS) records in the parent
-zone, along with the NS records for the delegation. For the secure
-delegation to work, the DS record must match at least one DNSKEY record
-in the child zone.
+zone, along with the NS records for the delegation.
 
-The method for authentication a DNS response is described in section 5 of
-[RFC 4035](https://tools.ietf.org/html/rfc4035#section-5). The DS record
-is described in section 5 of [RFC 4034](
-https://tools.ietf.org/html/rfc4034#section-5) and the DNSKEY record is
-described in section 2 of [RFC 4034](
-https://tools.ietf.org/html/rfc4034#section-2).
+For the secure delegation to work, at least one DS record must match a
+DNSKEY record in the child zone ([RFC 4035], section 5). Each DS record 
+should match a DNSKEY record in the child zone. More than one DS may 
+match the same DNSKEY. The DNSKEY that the DS record refer to must be 
+used to sign the DNSKEY RRset in the child zone ([RFC 4035], section 5).
+The DNSKEY that the DS record refer to must have bit 7 set in the
+DNSKEY RR Flags ([RFC 4034], section 5.2).
 
-The IANA registry of DNSKEY algorithm numbers is in the [dns-sec-alg-numbers](
-https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml).
-The allowed Digest Algorithms in a DS record published by the parent are
-published by IANA in [Delegation Signer (DS) Resource Record (RR) Type
-Digest Algorithms](https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xml). 
 
-The Key Tag is only an indicator for a resolver or application to enable
-a quicker matching of the keys. This is however not a reliable method for
-identifiying keys. A description of this is found in section 5.2 of
-[RFC 4035](https://tools.ietf.org/html/rfc4035#section-5.2).
+## Inputs
 
-Section 3 of [RFC 4509](https://tools.ietf.org/html/rfc4509#section-3) states
-that Validator implementations SHOULD ignore DS RRs containing SHA-1 digests
-if DS RRs with SHA-256 digests are present in the DS RRset. The algorithms
-are tested separately.
+* "Child Zone" - The domain name to be tested.
+* "Test Type" - The test type with value "undelegated" or "normal".
+* "Undelegated DS" - The DS record or records submitted
+  (only if *Test Type* is undelegated).
 
-### Inputs
+## Ordered description of steps to be taken to execute the test case
 
-The domain name to be tested.
+1. Create an empty set, "DS records".
 
-### Ordered description of steps to be taken to execute the test case
+2. If the *Test Type* is "undelegated, then:
+   1. Add *Undelegated DS* set to *DS records*.
 
-1. Retrieve the DS RR set from the parent zone. If there are no DS RR
-   present, exit the test
-2. Retrieve the DNSKEY RR set from the child zone. If there are no
-   DNSKEY RR present, then the test case fails
-3. If no Key Tag from the DS RR matches any Key Tag from the DNSKEY RR,
-   this test case fails.
-4. Match all DS RR with type digest algorithm “2” with DNSKEY RR from the
-   child. If no DS RRs with algorithm 2 matches a DNSKEY RR from the child,
-   this test case fails.
-5. Match all DS RR with type digest algorithm “1” with DNSKEY RR from the
-   child. If no DS RRs with algorithm 1 matches a DNSKEY RR from the child,
-   this test case fails.
+3. Else, do:
+   1. Create a DS query with DO flag set for the name of the
+      *Child Zone* (*Test Type* is "normal").
+   2. Retrieve all name server IP addresses for the parent zone of
+      *Child Zone* using [Method1] ("Parent NS IP").
+   3. For each IP address in *Parent NS IP* do:
+      1. Send the DS query over UDP and collect the response.
+      2. If there is no DNS response, then output *[NO_RESPONSE]*.
+      3. Else, if the RCODE is not NOERROR, then output
+         *[UNEXPECTED_RESPONSE_DS]*.
+      4. Else, go to next IP address if there is no DS in the
+         response.
+      5. Else, extract all DS records from the DNS response and
+         add them to *DS Records*.
 
-### Outcome(s)
+4. If *DS Records* is empty, exit this test case.
 
-If none of the DS RR from the parent zone matches any DNSKEY RR from the
-child zone, this test case fails.
+5. Create a DNSKEY query with DO flag set for the apex of the
+   *Child Zone*.
 
-### Special procedural requirements
+6. Retrieve all name server IP addresses for the
+   *Child Zone* using [Method4] and [Method5] ("NS IP").
 
-See the [level document](README.md) about DNSSEC algorithms.
+7. For each name server IP address in *NS IP* do:
+   1. Send the DNSKEY query over UDP.
+   2. If no DNS response is returned, then output *[NO_RESPONSE]*
+      and go to next name server IP.
+   3. If the DNS response does not contain an DNSKEY RRset,
+      then output *[NO_RESPONSE_DNSKEY]* and go to next name server
+      IP.
+   4. Extract the DNSKEY RRset ("DNSKEY RRs").
+   5. If the DNS response does not contain any RRSIG records covering
+      the DNSKEY RRset, then output *[NO_RRSIG_DNSKEY]*.
+   5. Extract the RRSIG records covering the DNSKEY RRset, possibly
+      none ("DNSKEY RRSIG").
+   6. For each DS in *DS Records*, do:
+      1. Find the equivalent DNSKEY in *DNSKEY RRs* by key ID (key tag).
+      2. If matching DNSKEY is not found, output *[NO_MATCHING_DNSKEY]*.
+      3. If the DS values (algorithm and digest) do not match the
+         DNSKEY then output *[BROKEN_DS]*.
+      4. If the bit 7 of the DNSKEY flags field has the value of 0 (nil),
+         then output *[DNSKEY_NOT_ZONE_SIGN]* and go to next DS.
+      5. Find the equivalent RRSIG in *DNSKEY RRSIG* by key ID (key tag).
+      6. If matching RRSIG is not found, output *[NO_MATCHING_RRSIG]*.
+      7. If the RRSIG values (algorithm and signature) do not match
+         the DNSKEY then output *[BROKEN_RRSIG]*.
+
+8. If *DNSKEY RRs" is non-empty and no messages besides *[NO_RESPONSE]*
+   has been outputted, then output *[DS_MATCHES]*.
+
+
+## Outcome(s)
+
+The outcome of this Test Case is "fail" if there is at least one message
+with the severity level *ERROR* or *CRITICAL*.
+
+The outcome of this Test Case is "warning" if there is at least one message
+with the severity level *WARNING*, but no message with severity level
+*ERROR* or *CRITICAL*.
+
+In other cases the outcome of this Test Case is "pass".
+
+Message                       | Default severity level
+:-----------------------------|:-----------------------------------
+BROKEN_DS                     | ERROR
+BROKEN_RRSIG                  | ERROR
+DNSKEY_NOT_ZONE_SIGN          | ERROR
+DS_MATCHES                    | INFO
+NO_MATCHING_DNSKEY            | ERROR
+NO_MATCHING_RRSIG             | ERROR
+NO_RESPONSE                   | WARNING
+NO_RESPONSE_DNSKEY            | ERROR
+NO_RRSIG_DNSKEY               | ERROR
+UNEXPECTED_RESPONSE_DS        | WARNING
+
+
+## Special procedural requirements
+
+If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
+result of any test using this transport protocol. Log a message reporting
+on the ignored result.
+
+See the [DNSSEC README] document about DNSSEC algorithms.
 
 Test case is only performed if DS records are found.
 
-### Intercase dependencies
+## Intercase dependencies
 
 None.
+
+
+
+[BROKEN_DS]:               #outcomes
+[BROKEN_RRSIG]:            #outcomes
+[DNSKEY_NOT_ZONE_SIGN]:    #outcomes
+[DS_MATCHES]:              #outcomes
+[NO_MATCHING_DNSKEY]:      #outcomes
+[NO_MATCHING_RRSIG]:       #outcomes
+[NO_RESPONSE]:             #outcomes
+[NO_RESPONSE_DNSKEY]:      #outcomes
+[NO_RRSIG_DNSKEY]:         #outcomes
+[UNEXPECTED_RESPONSE_DS]:  #outcomes
+
+[RFC 4034]:                https://tools.ietf.org/html/rfc4034#section-5.2
+[RFC 4035]:                https://tools.ietf.org/html/rfc4035#section-5
+[DNSSEC README]:           ./README.md
+
+[Method1]:                 ../Methods.md#method-1-obtain-the-parent-domain
+[Method4]:                 ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                 ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+
