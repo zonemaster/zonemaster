@@ -1,26 +1,36 @@
-# DNSSEC14: Check for valid DNSKEY key size
+# DNSSEC14: Check for valid RSA DNSKEY key size
 
 ## Test case identifier
 **DNSSEC14**
 
 ## Objective
 
-Depending on algorithm, some DNSKEY has different minimum and maximum
-key sizes. This test case will validate the keys size. Algorithms
-that are deprecated, else are not suitable for DNSKEY ([RFC 8624] and 
-[IANA registry]) or are have fixed size are just ignored. See test case 
-[DNSSEC05] for test of algorithm.
+The DNSKEYs based on RSA have different minimum and maximum key sizes,
+which must be followed. This test case will validate the keys size of 
+such keys. RSA based algorithms that are deprecated or else not suitable 
+for DNSKEY ([RFC 8624] and [IANA registry]) are just ignored. See test 
+case [DNSSEC05] for test of algorithm.
 
-The algorithms in the table below are the ones tested by this test case.
-The key sizes in the table below is in bits.
+The table 1 below specify the maximum and minimum key size, 
+respectively. Algorithm number can be found in [IANA registry].
+
+Table 1: Minimum and maximum RSA key sizes in bits
 
 Algorithm | Min size  | Max size | Reference
 :---------|:----------|:---------|:----------------
-5         | 512 ?     | 4096 ?   | [RFC 3110]
-7         | 512 ?     | 4096 ?   | [RFC 5155]
+5         | 512       | 4096     | [RFC 3110]
+7         | 512       | 4096     | [RFC 5155]
 8         | 512       | 4096     | [RFC 5702]
 10        | 1024      | 4096     | [RFC 5702]
 
+It is also recommended that an RSA based algorithm has a key lenght 
+of at least 2048 bit as stated in [Recommendation for key Management, 
+part 1, revision 4], table 2 on page 53 in section 5.6.1 and table 4 
+on page 55 in section 5.6.2 (also link from [NIST Publications 
+SP 800-57 Part 1 Rev. 4]
+
+This test case verifies that RSA DNSKEYs follows the stated key lenghts
+from the RFCs and also the NIST recommended shortest key lenght.
 
 ## Inputs
 
@@ -52,6 +62,9 @@ Algorithm | Min size  | Max size | Reference
       key size is smaller than specified, then output 
       *[DNSKEY_TOO_SMALL_FOR_ALGO]*.
    3. Else, if the algorithm is listed in *Key Size Table* and the
+      key size is smaller than 2048 bits, then output
+      *[DNSKEY_SMALLER_THAN_REC]*.
+   3. Else, if the algorithm is listed in *Key Size Table* and the
       key size is largeer than specified, then output 
       *[DNSKEY_TOO_LARGE_FOR_ALGO]*.
 
@@ -75,6 +88,7 @@ Message                       | Default severity level
 :-----------------------------|:-----------------------------------
 NO_RESPONSE                   | WARNING
 NO_RESPONSE_DNSKEY            | WARNING
+DNSKEY_SMALLER_THAN_REC       | WARNING
 DNSKEY_TOO_SMALL_FOR_ALGO     | ERROR
 DNSKEY_TOO_LARGE_FOR_ALGO     | ERROR
 KEY_SIZE_OK                   | INFO
@@ -96,20 +110,21 @@ The test case is only performed if some DNSKEY record is found in the
 
 None.
 
-[RFC 8624]: https://www.rfc-editor.org/rfc/rfc8624.html#section-3.1
-[IANA registry]: https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml
-[RFC 5702]: https://tools.ietf.org/html/rfc5702#section-2
-[RFC 3110]: https://tools.ietf.org/html/rfc3110
-[RFC 5155]: https://tools.ietf.org/html/rfc5155
+[IANA registry]:                             https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml
+[NIST Publications SP 800-57 Part 1 Rev. 4]: https://csrc.nist.gov/publications/detail/sp/800-57-part-1/rev-4/final
+[RFC 3110]:                                  https://tools.ietf.org/html/rfc3110
+[RFC 5155]:                                  https://tools.ietf.org/html/rfc5155
+[RFC 5702]:                                  https://tools.ietf.org/html/rfc5702#section-2
+[RFC 8624]:                                  https://www.rfc-editor.org/rfc/rfc8624.html#section-3.1
+[Recommendation for key Management, part 1, revision 4]: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf
 
-
-
-[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[Method4]:                   ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                   ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
 [DNSSEC README]:             ./README.md
 [NO_RESPONSE]:               #outcomes
 [NO_RESPONSE_DNSKEY]:        #outcomes
+[DNSKEY_SMALLER_THAN_REC]:   #outcomes
 [DNSKEY_TOO_SMALL_FOR_ALGO]: #outcomes
 [DNSKEY_TOO_LARGE_FOR_ALGO]: #outcomes
 [KEY_SIZE_OK]:               #outcomes
