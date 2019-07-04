@@ -10,13 +10,20 @@ publishing one or several Delgation Signer (DS) records in the parent
 zone, along with the NS records for the delegation.
 
 For the secure delegation to work, at least one DS record must match a
-DNSKEY record in the child zone ([RFC 4035], section 5). Each DS record 
-should match a DNSKEY record in the child zone. More than one DS may 
-match the same DNSKEY. The DNSKEY that the DS record refer to must be 
-used to sign the DNSKEY RRset in the child zone ([RFC 4035], section 5).
-The DNSKEY that the DS record refer to must have bit 7 set in the
-DNSKEY RR Flags ([RFC 4034], section 5.2).
+DNSKEY record in the child zone ([RFC 4035][RFC 4035#5], section 5).
+Each DS record should match a DNSKEY record in the child zone. More
+than one DS may match the same DNSKEY. The DNSKEY that the DS record
+refer to must be used to sign the DNSKEY RRset in the child zone
+([RFC 4035][RFC 4035#5], section 5).
 
+The DNSKEY record that the DS record refer to must have bit 7
+("Zone Key flag") set in the DNSKEY RR Flags ([RFC 4034][RFC 4034#5.2], 
+section 5.2).
+
+Bit 15 ("Secure Entry Point flag") on a DNSKEY record signals that it
+is meant to be a KSK and pointed out by a DS record. It is noted if
+the DNSKEY record that the DS points at does not have that flag set
+([RFC 4034][RFC 4034#2.1.1], section 2.1.1).
 
 ## Inputs
 
@@ -72,15 +79,18 @@ DNSKEY RR Flags ([RFC 4034], section 5.2).
       2. If matching DNSKEY is not found, output *[NO_MATCHING_DNSKEY]*.
       3. If the DS values (algorithm and digest) do not match the
          DNSKEY then output *[BROKEN_DS]*.
-      4. If the bit 7 of the DNSKEY flags field has the value of 0 (nil),
+      4. If bit 7 of the DNSKEY flags field has the value of 0 (nil),
          then output *[DNSKEY_NOT_ZONE_SIGN]* and go to next DS.
-      5. Find the equivalent RRSIG in *DNSKEY RRSIG* by key ID (key tag).
-      6. If matching RRSIG is not found, output *[NO_MATCHING_RRSIG]*.
-      7. If the RRSIG values (algorithm and signature) do not match
+      5. If bit 15 of the DNSKEY flags field has the value of 0 (nil),
+         then output *[DNSKEY_KSK_NOT_SEP]*.
+      6. Find the equivalent RRSIG in *DNSKEY RRSIG* by key ID (key tag).
+      7. If matching RRSIG is not found, output *[NO_MATCHING_RRSIG]*.
+      8. If the RRSIG values (algorithm and signature) do not match
          the DNSKEY then output *[BROKEN_RRSIG]*.
 
-8. If *DNSKEY RRs" is non-empty and no messages besides *[NO_RESPONSE]*
-   has been outputted, then output *[DS_MATCHES]*.
+8. If *DNSKEY RRs* is non-empty and no messages besides *[NO_RESPONSE]*
+   or *[DNSKEY_KSK_NOT_SEP]*, if any, have been outputted, then output 
+   *[DS_MATCHES]*.
 
 
 ## Outcome(s)
@@ -98,6 +108,7 @@ Message                       | Default severity level
 :-----------------------------|:-----------------------------------
 BROKEN_DS                     | ERROR
 BROKEN_RRSIG                  | ERROR
+DNSKEY_KSK_NOT_SEP            | NOTICE
 DNSKEY_NOT_ZONE_SIGN          | ERROR
 DS_MATCHES                    | INFO
 NO_MATCHING_DNSKEY            | ERROR
@@ -126,6 +137,7 @@ None.
 
 [BROKEN_DS]:               #outcomes
 [BROKEN_RRSIG]:            #outcomes
+[DNSKEY_KSK_NOT_SEP]:      #outcomes
 [DNSKEY_NOT_ZONE_SIGN]:    #outcomes
 [DS_MATCHES]:              #outcomes
 [NO_MATCHING_DNSKEY]:      #outcomes
@@ -135,8 +147,10 @@ None.
 [NO_RRSIG_DNSKEY]:         #outcomes
 [UNEXPECTED_RESPONSE_DS]:  #outcomes
 
-[RFC 4034]:                https://tools.ietf.org/html/rfc4034#section-5.2
-[RFC 4035]:                https://tools.ietf.org/html/rfc4035#section-5
+[RFC 4034#2.1.1]:          https://tools.ietf.org/html/rfc4034#section-2.1.1
+[RFC 4034#5.2]:            https://tools.ietf.org/html/rfc4034#section-5.2
+[RFC 4035#5]:              https://tools.ietf.org/html/rfc4035#section-5
+
 [DNSSEC README]:           ./README.md
 
 [Method1]:                 ../Methods.md#method-1-obtain-the-parent-domain
