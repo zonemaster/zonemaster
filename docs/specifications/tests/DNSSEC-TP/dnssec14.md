@@ -23,14 +23,13 @@ Algorithm | Min size  | Max size | Reference
 8         | 512       | 4096     | [RFC 5702]
 10        | 1024      | 4096     | [RFC 5702]
 
-It is also recommended that an RSA based algorithm has a key lenght 
-of at least 2048 bit as stated in [Recommendation for key Management, 
-part 1, revision 4], table 2 on page 53 in section 5.6.1 and table 4 
-on page 55 in section 5.6.2 (also link from [NIST Publications 
-SP 800-57 Part 1 Rev. 4]
+It is also recommended that an RSA based algorithm has a key length 
+of at least 2048 bit as stated in [NIST SP 800-57 Part 1 Rev. 4],
+table 2 on page 53 in section 5.6.1 and table 4 on page 55 in 
+section 5.6.2.
 
-This test case verifies that RSA DNSKEYs follows the stated key lenghts
-from the RFCs and also the NIST recommended shortest key lenght.
+This test case verifies that RSA DNSKEYs follows the stated key lengths
+from the RFCs and also the NIST recommended shortest key length.
 
 ## Inputs
 
@@ -111,7 +110,7 @@ The test case is only performed if some DNSKEY record is found in the
 None.
 
 [IANA registry]:                             https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml
-[NIST Publications SP 800-57 Part 1 Rev. 4]: https://csrc.nist.gov/publications/detail/sp/800-57-part-1/rev-4/final
+[NIST SP 800-57 Part 1 Rev. 4]:              https://csrc.nist.gov/publications/detail/sp/800-57-part-1/rev-4/final
 [RFC 3110]:                                  https://tools.ietf.org/html/rfc3110
 [RFC 5155]:                                  https://tools.ietf.org/html/rfc5155
 [RFC 5702]:                                  https://tools.ietf.org/html/rfc5702#section-2
