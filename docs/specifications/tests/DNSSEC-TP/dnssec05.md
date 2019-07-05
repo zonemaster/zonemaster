@@ -14,6 +14,38 @@ If [RFC 8624] and [IANA registry] disagree on the same algorithm, the
 RFC takes precedence until the registry has a been updated with a
 reference to the RFC.
 
+The table of algorithms below is for reference only and is copied from [IANA 
+registry]. It is here to make it easier to read the steps when symbolic
+names are given. This is only an excerpt from the table. The full table is 
+available at [IANA registry].
+
+Algorithm number | Algorithm (or description)
+:----------------|:-----------------------------------
+0                | (Delete DS)
+1                | RSA/MD5
+2                | Diffie-Hellman
+3                | DSA/SHA1
+4                | (Reserved)
+5                | RSA/SHA-1
+6                | DSA-NSEC3-SHA1
+7                | RSASHA1-NSEC3-SHA1
+8                | RSA/SHA-256
+9                | (Reserved)
+10               | RSA/SHA-512
+11               | (Reserved)
+12               | GOST R 34.10-2001
+13               | ECDSA Curve P-256 with SHA-256
+14               | ECDSA Curve P-384 with SHA-384
+15               | Ed25519
+16               | Ed448
+17-122           | (Unassigned)
+123-251          | (Reserved)
+252              | (Indirect Keys)
+253              | (Private algorithm)
+254              | (Private algorithm OID)
+255              | (Reserved)
+
+
 ## Inputs
 
 * The domain name to be tested ("Child Zone").
@@ -45,7 +77,7 @@ reference to the RFC.
       4. If the algorithm is private algorithm
          (algorithm 253-254), output *[ALGORITHM_PRIVATE]*.
       5. If the algorithm is not meant for zone signing (algorithm
-         0-2 or 252), output *[ALGORITHM_NOT_ZONE_SIGN]*.
+         0, 2 or 252), output *[ALGORITHM_NOT_ZONE_SIGN]*.
       6. If the algorithm is not rekommended for zone signing (algorithm
          5, 7 or 10), output *[ALGORITHM_NOT_RECOMMENDED]*.
       7. If no message has been outputted for the DNSKEY, output 
