@@ -1,51 +1,92 @@
-## NAMESERVER05: Behaviour against AAAA query
+# NAMESERVER05: Behaviour against AAAA query
 
-### Test case identifier
-**NAMESERVER02** Behaviour against AAAA query
+## Test case identifier
+**NAMESERVER02**
 
-### Objective
+## Objective
 
 Older implementations of authoritative name servers have shown different
 misbehaviours trying to answer queries for AAAA records, as described in
-[RFC 4074](https://tools.ietf.org/html/rfc4074). This test case is intended
-to find out if the name server authoritative for the domain shows any of
-these behaviours.
+[RFC 4074]. This test case is intended to find out if the name server
+authoritative for the domain shows any of these behaviours.
 
-### Inputs
 
-The domain name to be tested.
+## Inputs
 
-### Ordered description of steps to be taken to execute the test case
+* "Child Zone" - The domain name to be tested.
 
-1. Retrieve all address records for all the name servers using
-   [Method 4](../Methods.md#method-4-obtain-glue-address-records-from-parent) and
-   [Method 5](../Methods.md#method-5-obtain-the-name-server-address-records-from-child),
-   and do recursive lookups for the name servers that are out of bailiwick.
-2. Send a DNS query to each name server IP address querying the AAAA record
-   of the domain name.
-3. If all of the answers displays the correct behaviour of either returning
-   an AAAA record in the answer section and the RCODE NOERROR, or if the
-   RCODE is NOERROR and the answer section is empty (as detailed in section 3,
-   "Expected behaviour" of RFC 4074), this test case passes and there is no
-   need for further execution of the test case.
-4. If there is no answer from any of the name servers (the query is "dropped"),
-   as described in section 4.1 of RFC 4074, this test case fails.
-5. As described in section 4.2 and 4.3 of RFC 4074, if the answer has the
-   RCODE 3 "Name Error", RCODE 4 "Not Implemented" or RCODE 2 "Server Failure"
-   or RCODE 1 "Format Error", this test case fails.
-6. If the answer contains an RDATA with 4 bytes this indicates a broken
-   response as described in section 4.4 of RFC 4074, this test case fails.
 
-### Outcome(s)
+## Ordered description of steps to be taken to execute the test case
 
-If there is any problem answering the AAAA query, this test case fails.
+1. Create an A query for the apex of the *Child Zone*.
 
-### Special procedural requirements
+2. Create a AAAA query for the apex of the *Child Zone*.
 
-If either IPv4 or IPv6 transport is disabled, ignore the evaluation of
-the result of any test using this transport protocol. Log a message
-reporting on the ignored result.
+3. Create an empty set "AAAA OK".
 
-### Intercase dependencies
+4. Retrieve all name server IP addresses for the
+   *Child Zone* using [Method4] and [Method5] ("NS IP").
+
+5. For each name server IP address in *NS IP* do:
+
+   1. Send the A query over UDP to the name server IP.
+   2. If no DNS response is returned, then output *[NO_RESPONSE]*.
+   3. Else, do:
+      1. Send the AAAA query over UDP to the name server IP.
+      2. If no DNS response is returned, then output *[AAAA_QUERY_DROPPED]*.
+      3. Else, if the RCODE of the response is not NOERROR, then output
+         *[AAAA_BAD_RCODE]*.
+      4. Else, if the answer section contains an AAAA record with incorrect
+         RDATA lenght (e.g. 4 instead of 16 octets), then output
+         *[AAAA_BAD_RDATA]*.
+      5. Else, add the name server IP to *AAAA OK*.
+
+6. If *AAAA OK* is non-empty and no messages *[AAAA_QUERY_DROPPED]*,
+   *[AAAA_BAD_RCODE]* or *[AAAA_BAD_RDATA]* have been outputted for any
+   name server IP, then output *[AAAA_WELL_PROCESSED]*.
+
+
+## Outcome(s)
+
+The outcome of this Test Case is "fail" if there is at least one message
+with the severity level *ERROR* or *CRITICAL*.
+
+The outcome of this Test Case is "warning" if there is at least one message
+with the severity level *WARNING*, but no message with severity level
+*ERROR* or *CRITICAL*.
+
+In other cases the outcome of this Test Case is "pass".
+
+Message                       | Default severity level
+:-----------------------------|:-----------------------------------
+NO_RESPONSE                   | WARNING
+AAAA_QUERY_DROPPED            | ERROR
+AAAA_BAD_RCODE                | ERROR
+AAAA_BAD_RDATA                | ERROR
+AAAA_WELL_PROCESSED           | INFO
+
+
+## Special procedural requirements
+
+If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
+result of any test using this transport protocol. Log a message reporting
+on the ignored result.
+
+
+## Intercase dependencies
 
 None.
+
+
+[AAAA_QUERY_DROPPED]:  #outcomes
+[AAAA_WELL_PROCESSED]: #outcomes
+[AAAA_BAD_RCODE]:      #outcomes
+[AAAA_BAD_RDATA]:      #outcomes
+[Method4]:             ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:             ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NO_RESPONSE]:         #outcomes
+[RFC 4074]:            https://tools.ietf.org/html/rfc4074
+
+
+
+
