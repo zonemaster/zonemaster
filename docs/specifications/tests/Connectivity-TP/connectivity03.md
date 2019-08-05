@@ -7,14 +7,14 @@
 ## Objective
 
 The objective in this test is to verify that all IP addresses of the domain's
-authoritative name servers are not announced from the same ASN (autonomous system 
+authoritative name servers are announced from different ASNs (autonomous system 
 number). See [RFC 1930] and [Wikipedia] for an explanation of AS (autonomous 
 system).
 
 This test is done separately on IPv4 and IPv6, and both must match the criterion.
 
-[RFC 2182], section 3.1 clearly specifies that distinct authoritative name 
-servers for a child domain should be placed in different topological and 
+[RFC 2182][RFC 2182#3.1], section 3.1, clearly specifies that distinct authoritative 
+name servers for a child domain should be placed in different topological and 
 geographical locations. The objective is to minimise the likelihood of a single 
 failure disabling all of them. 
 
@@ -33,9 +33,9 @@ failure disabling all of them.
 ## Ordered description of steps to be taken to execute the test case
 
 1. Obtain the total set of IP addresses of the name servers for the 
-   *Child Zone* using [Method4] and [Method5] and do:
-   1. Create a possibly empty set of the IPv4 addresses ("NS IPv4").
-   2. Create a possibly empty set of the IPv6 addresses ("NS IPv6").
+   *Child Zone* using [Method4] and [Method5] and split those IP addresses
+   into one set of IPv4 addresses ("NS IPv4") and one set of IPv6 addresses
+   ("NS IPv6"). (One of two sets may be empty.)
 
 2. For each IP address in the set *NS IPv4* and *NS IPv6*, respectively, 
    determine the ASN set announcing the IP address using either the 
@@ -43,7 +43,7 @@ failure disabling all of them.
    sections below. Create two sets of ASN data ("NS IPv4 ASN" and 
    "NS IPv6 ASN", respectively).
 
-3. For *NS IPv4 ASN* do:
+3. Analyze the *NS IPv4 ASN* set:
    1. If *NS IPv4 ASN* is empty (no IPv4 address) do nothing.
    2. Else, if all IPv4 addresses are announced from one and the same ASN, output
       *[IPV4_ONE_ASN]*.
@@ -51,7 +51,7 @@ failure disabling all of them.
       ASNs, output *[IPV4_SAME_ASN]*.
    4. Else, output *[IPV4_DIFFERENT_ASN]*.
 
-4. For *NS IPv6 ASN* do:
+4. Analyze the *NS IPv6 ASN* set:
    1. If *NS IPv6 ASN* is empty (no IPv6 address) do nothing.
    2. Else, if all IPv6 addresses are announced from one and the same ASN, output
       *[IPV6_ONE_ASN]*.
@@ -103,8 +103,8 @@ origin6.asnlookup.zonemaster.net
 ```
 
 2. Reverse the IP address with the same method as is used for
-   reverse lookup. For description see [RFC 1035], section 3.5, for IPv4 
-   and [RFC 3596], section 2.5, for IPv6.
+   reverse lookup. For description see [RFC 1035][RFC 1035#3.5], section 3.5, 
+   for IPv4 and [RFC 3596][RFC 3596#2.5], section 2.5, for IPv6.
  
 3. Prepend the *expanded base name* with the reversed IP address. For
    description see [IP to ASN Mapping].
@@ -178,27 +178,23 @@ whois -h riswhois.ripe.net " -F -M 192.0.2.10"
 
 None
 
-[RFC 1035]:           https://tools.ietf.org/html/rfc1035
-[RFC 1930]:           https://tools.ietf.org/html/rfc1930
-[RFC 2182]:           https://tools.ietf.org/html/rfc2182#page-4
-[RFC 3596]:           https://tools.ietf.org/html/rfc3596#section-2.5
 
-[Wikipedia]:          https://en.wikipedia.org/wiki/Autonomous_system_(Internet)
-
-[IP to ASN Mapping]:  https://team-cymru.org/IP-ASN-mapping.html#dns
-[RISwhois]:           https://www.ripe.net/analyse/archived-projects/ris-tools-web-interfaces/riswhois
-
-[Method4]:            ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]:            ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-
-[RIPE database]:      #ripe-asn-lookup
-[Cymru database]:     #cymru-asn-lookup
-
-[EMPTY_ASN_SET]:      #outcomes 
-[ERROR_ASN_DATABASE]: #outcomes 
-[IPV4_ONE_ASN]:       #outcomes 
-[IPV4_SAME_ASN]:      #outcomes 
-[IPV4_DIFFERENT_ASN]: #outcomes 
-[IPV6_ONE_ASN]:       #outcomes 
-[IPV6_SAME_ASN]:      #outcomes 
-[IPV6_DIFFERENT_ASN]: #outcomes 
+[Cymru database]:       #cymru-asn-lookup
+[EMPTY_ASN_SET]:        #outcomes 
+[ERROR_ASN_DATABASE]:   #outcomes 
+[IP to ASN Mapping]:    https://team-cymru.org/IP-ASN-mapping.html#dns
+[IPV4_DIFFERENT_ASN]:   #outcomes 
+[IPV4_ONE_ASN]:         #outcomes 
+[IPV4_SAME_ASN]:        #outcomes 
+[IPV6_DIFFERENT_ASN]:   #outcomes 
+[IPV6_ONE_ASN]:         #outcomes 
+[IPV6_SAME_ASN]:        #outcomes 
+[Method4]:              ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[RFC 1035#3.5]:         https://tools.ietf.org/html/rfc1035#section-3.5
+[RFC 1930]:             https://tools.ietf.org/html/rfc1930
+[RFC 2182#3.1]:         https://tools.ietf.org/html/rfc2182#section-3.1
+[RFC 3596#2.5]:         https://tools.ietf.org/html/rfc3596#section-2.5
+[RIPE database]:        #ripe-asn-lookup
+[RISwhois]:             https://www.ripe.net/analyse/archived-projects/ris-tools-web-interfaces/riswhois
+[Wikipedia]:            https://en.wikipedia.org/wiki/Autonomous_system_(Internet)
