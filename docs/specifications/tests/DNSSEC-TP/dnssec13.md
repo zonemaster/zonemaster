@@ -8,9 +8,9 @@
 From RFC [6840], section 5.11:
 
 > The DS RRset and DNSKEY RRset are used to signal which 
-> algorithms are used to sign a zone. (...) The zone MUST 
+> algorithms are used to sign a zone. [...] The zone MUST 
 > also be signed with each algorithm (though not each key) 
-> present in the DNSKEY RRset.
+> present in the DNSKEY RRset. [...]
 
 To verify the complete zone is signed with all algorithms require
 access to the complete zone. This test case is limited to three
