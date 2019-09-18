@@ -21,11 +21,11 @@ exactly one SOA record.
 ## Ordered description of steps to be taken to execute the test case
 
 1. Obtain the set of name server IP addresses using [Method4] and [Method5]
-   ("Name Server IP").
+   ("NS IP").
 
 2. Create a SOA query for the apex of the *Child Zone* with RD flag unset.
 
-3. For each name server in *Name Server IP* do:
+3. For each name server in *NS IP* do:
    1. Send the SOA query over UDP to the name server.
    2. If the name server does not respond with a DNS response, then
       output *[NO_RESPONSE]*.
@@ -34,7 +34,7 @@ exactly one SOA record.
    4. Else, if the SOA record or records in the answer section has
       an owner name same as *Child Zone*, then output
       *[WRONG_SOA]*.
-   4. Else, if the DNS response includes multipel SOA records in the
+   4. Else, if the DNS response includes multiple SOA records in the
       answer section, then output *[MULTIPLE_SOA]*.
 
 4. If no message is outputted for any server, then output *[ONE_SOA]*.
