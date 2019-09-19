@@ -15,6 +15,20 @@ If [RFC 8624] and the [IANA registry] disagree on the same DS digest
 algorithm, the RFC takes precedence until the registry has a been 
 updated with a reference to the RFC.
 
+The table of algorithms below is for reference only and is copied from [IANA 
+registry]. It is here to make it easier to read the steps when symbolic
+names are given. This is only an excerpt from the table. The full table is 
+available at [IANA registry].
+
+Algorithm number | Algorithm (or description)
+:----------------|:-----------------------------------
+0                | (Reserved)
+1                | SHA-1
+2                | SHA-256
+3                | GOST R 34.11-94
+4                | SHA-384
+5-255            | (Unassigned)
+
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
