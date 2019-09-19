@@ -31,18 +31,20 @@ authoritative for the domain shows any of these behaviours.
 
    1. Send the A query over UDP to the name server IP.
    2. If no DNS response is returned, then output *[NO_RESPONSE]*.
-   3. Else, do:
+   3. Else, if DNS response does not have RCODE NOERROR, then output 
+      *[A_UNEXPECTED_RCODE]*.
+   4. Else, do:
       1. Send the AAAA query over UDP to the name server IP.
       2. If no DNS response is returned, then output *[AAAA_QUERY_DROPPED]*.
       3. Else, if the RCODE of the response is not NOERROR, then output
-         *[AAAA_BAD_RCODE]*.
+         *[AAAA_UNEXPECTED_RCODE]*.
       4. Else, if the answer section contains an AAAA record with incorrect
          RDATA lenght (e.g. 4 instead of 16 octets), then output
          *[AAAA_BAD_RDATA]*.
       5. Else, add the name server IP to *AAAA OK*.
 
 6. If *AAAA OK* is non-empty and no messages *[AAAA_QUERY_DROPPED]*,
-   *[AAAA_BAD_RCODE]* or *[AAAA_BAD_RDATA]* have been outputted for any
+   *[AAAA_UNEXPECTED_RCODE]* or *[AAAA_BAD_RDATA]* have been outputted for any
    name server IP, then output *[AAAA_WELL_PROCESSED]*.
 
 
@@ -59,11 +61,12 @@ In other cases the outcome of this Test Case is "pass".
 
 Message                       | Default severity level
 :-----------------------------|:-----------------------------------
-NO_RESPONSE                   | WARNING
-AAAA_QUERY_DROPPED            | ERROR
-AAAA_BAD_RCODE                | ERROR
 AAAA_BAD_RDATA                | ERROR
+AAAA_QUERY_DROPPED            | ERROR
+AAAA_UNEXPECTED_RCODE         | ERROR
 AAAA_WELL_PROCESSED           | INFO
+A_UNEXPECTED_RCODE            | WARNING
+NO_RESPONSE                   | WARNING
 
 
 ## Special procedural requirements
@@ -78,14 +81,15 @@ on the ignored result.
 None.
 
 
-[AAAA_QUERY_DROPPED]:  #outcomes
-[AAAA_WELL_PROCESSED]: #outcomes
-[AAAA_BAD_RCODE]:      #outcomes
-[AAAA_BAD_RDATA]:      #outcomes
-[Method4]:             ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]:             ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[NO_RESPONSE]:         #outcomes
-[RFC 4074]:            https://tools.ietf.org/html/rfc4074
+[AAAA_BAD_RDATA]:        #outcomes
+[AAAA_QUERY_DROPPED]:    #outcomes
+[AAAA_UNEXPECTED_RCODE]: #outcomes
+[AAAA_WELL_PROCESSED]:   #outcomes
+[A_UNEXPECTED_RCODE]:    #outcomes
+[Method4]:               ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:               ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NO_RESPONSE]:           #outcomes
+[RFC 4074]:              https://tools.ietf.org/html/rfc4074
 
 
 
