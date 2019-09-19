@@ -64,7 +64,7 @@ from the RFCs and also the NIST recommended shortest key length.
       key size is smaller than 2048 bits, then output
       *[DNSKEY_SMALLER_THAN_REC]*.
    3. Else, if the algorithm is listed in *Key Size Table* and the
-      key size is largeer than specified, then output 
+      key size is larger than specified, then output 
       *[DNSKEY_TOO_LARGE_FOR_ALGO]*.
 
 6. If *DNSKEY RRs* is non-empty and no messages, except for any
