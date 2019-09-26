@@ -31,10 +31,9 @@ exactly one SOA record.
       output *[NO_RESPONSE]*.
    3. Else, if the DNS response does not include a SOA record in the
       answer section, then output *[NO_RESPONSE_SOA_QUERY]*.
-   4. Else, if the SOA record or records in the answer section has
-      an owner name same as *Child Zone*, then output
-      *[WRONG_SOA]*.
-   4. Else, if the DNS response includes multiple SOA records in the
+   4. Else, if the SOA record or records in the answer section do not
+      have *Child Zone* as owner name, then output *[WRONG_SOA]*.
+   5. Else, if the DNS response includes multiple SOA records in the
       answer section, then output *[MULTIPLE_SOA]*.
 
 4. If no message is outputted for any server, then output *[ONE_SOA]*.
