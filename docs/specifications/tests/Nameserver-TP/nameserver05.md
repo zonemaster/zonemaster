@@ -1,7 +1,7 @@
 # NAMESERVER05: Behaviour against AAAA query
 
 ## Test case identifier
-**NAMESERVER02**
+**NAMESERVER05**
 
 ## Objective
 
