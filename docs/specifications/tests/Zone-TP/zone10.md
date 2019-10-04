@@ -30,7 +30,7 @@ exactly one SOA record.
    2. If the name server does not respond with a DNS response, then
       output *[NO_RESPONSE]*.
    3. Else, if the DNS response does not include a SOA record in the
-      answer section, then output *[NO_RESPONSE_SOA_QUERY]*.
+      answer section, then output *[NO_SOA_IN_RESPONSE]*.
    4. Else, if the SOA record or records in the answer section do not
       have *Child Zone* as owner name, then output *[WRONG_SOA]*.
    5. Else, if the DNS response includes multiple SOA records in the
@@ -52,11 +52,11 @@ In other cases the outcome of this Test Case is "pass".
 
 Message                       | Default severity level
 :-----------------------------|:-----------------------------------
-NO_RESPONSE                   | WARNING
-NO_RESPONSE_SOA_QUERY         | NOTICE
-WRONG_SOA                     | ERROR
 MULTIPLE_SOA                  | ERROR
+NO_RESPONSE                   | WARNING
+NO_SOA_IN_RESPONSE            | WARNING
 ONE_SOA                       | INFO
+WRONG_SOA                     | ERROR
 
 
 ## Special procedural requirements
@@ -85,7 +85,7 @@ a specific name server.
 [Method5]:                   ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [Methods]:                   ../Methods.md
 [NO_RESPONSE]:               #outcomes
-[NO_RESPONSE_SOA_QUERY]:     #outcomes
+[NO_SOA_IN_RESPONSE]:        #outcomes
 [ONE_SOA]:                   #outcomes
 [RFC 1035#5.2]:              https://tools.ietf.org/html/rfc1035#section-5.2
 [WRONG_SOA]:                 #outcomes
