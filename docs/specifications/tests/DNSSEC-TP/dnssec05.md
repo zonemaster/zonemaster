@@ -5,20 +5,56 @@
 
 ## Objective
 
-A domain name (zone) should only use DNSKEY algorithms that are specified 
-by IANA to be used for a DNSKEY. A public domain name (zone) should not
-use private algorithms. The IANA registry of [DNSSEC Algorithm Numbers]
-specifies which algorithms to use.
+A domain name (zone) should only use DNSKEY algorithms that are specified
+by [RFC 8624], section 3.1 and the [IANA registry] of *DNSSEC Algorithm
+Numbers* to be used for DNSSEC signing. A public domain name (zone) should not use
+private algorithms.
 
-The DNSKEY record is defined in [RFC 4034, section 2].
+If [RFC 8624] and [IANA registry] disagree on the same algorithm, the
+RFC takes precedence until the registry has a been updated with a
+reference to the RFC.
+
+The table of algorithms below is for reference only and is copied from [IANA 
+registry]. It is here to make it easier to read the steps when symbolic
+names are given. This is only an excerpt from the table. The full table is 
+available at [IANA registry].
+
+Algorithm number | Algorithm (or description)
+:----------------|:-----------------------------------
+0                | (Delete DS)
+1                | RSA/MD5
+2                | Diffie-Hellman
+3                | DSA/SHA1
+4                | (Reserved)
+5                | RSA/SHA-1
+6                | DSA-NSEC3-SHA1
+7                | RSASHA1-NSEC3-SHA1
+8                | RSA/SHA-256
+9                | (Reserved)
+10               | RSA/SHA-512
+11               | (Reserved)
+12               | GOST R 34.10-2001
+13               | ECDSA Curve P-256 with SHA-256
+14               | ECDSA Curve P-384 with SHA-384
+15               | Ed25519
+16               | Ed448
+17-122           | (Unassigned)
+123-251          | (Reserved)
+252              | (Indirect Keys)
+253              | (Private algorithm)
+254              | (Private algorithm OID)
+255              | (Reserved)
+
 
 ## Inputs
 
 * The domain name to be tested ("Child Zone").
+* The status of all algorithms from [RFC 8624] and [IANA registry]
+  ("Algorithm Status").
 
 ## Ordered description of steps to be taken to execute the test case
 
-1. Create a DNSKEY query with DO flag set for the apex of the 
+1. Create a DNSKEY query with DO flag set for the apex of the
    *Child Zone*.
 
 2. Retrieve all name server IP addresses for the
@@ -27,29 +63,25 @@ The DNSKEY record is defined in [RFC 4034, section 2].
 3. Repeat the following steps for each name server IP address:
 
    1. Send the DNSKEY query over UDP.
-   2. If no DNS response is returned, then emit *[NO_RESPONSE]*.
-   3. If the DNS response does not contain an DNSKEY RRset,
-      then emit *[NO_RESPONSE_DNSKEY]*.
-   4. Extract the algorithm numbers from each DNSKEY record and
-      compare the extracted algorithm number to the IANA
-      [DNSSEC Algorithm Numbers] registry.
-      1. If the algorithm is classified as "deprecated" (algorithm 
-         1), emit *[ALGORITHM_DEPRECATED]*.
-      2. If the algorithm is classified as "reserved" (algorithm 
-         4, 9, 11, 123-251 or 255), emit *[ALGORITHM_RESERVED]*.
-      3. If the algorithm is classified as "unassigned" (algorithm
-         17-122), emit *[ALGORITHM_UNASSIGNED]*.
-      4. If the algorithm is classified as "private algorithm"
-         (algorithm 253 or 254), emit *[ALGORITHM_PRIVATE]*.
-      5. If the algorithm is classified as "delete DS" (algorithm
-         0), emit *[ALGORITHM_DELETE_DS]*.
-      6. If the algorithm is classified as "indirect key" (algoritm
-         252), emit *[ALGORITHM_INDIRECT_KEY]*.
-      7. If the algorithm is not meant for zone signing (algorithm
-         0-2, 4, 9, 11, 17-252 or 255), emit 
-         *[ALGORITHM_NOT_ZONE_SIGN]*.
-      8. If no message has been emitted for the DNSKEY (algorithm
-         3, 5-8, 10, 12-16), emit *[ALGORITHM_OK]*.
+   2. If no DNS response is returned, then output *[NO_RESPONSE]*.
+   3. Else if the DNS response does not contain an DNSKEY RRset,
+      then output *[NO_RESPONSE_DNSKEY]*.
+   4. Else extract the algorithm numbers from each DNSKEY record and
+      compare the algorithm number to *Algorithm Status*.
+      1. If the algorithm is deprecated (algorithm 1, 3, 6 or 12)
+         output *[ALGORITHM_DEPRECATED]*.
+      2. If the algorithm is reserved (algorithm
+         4, 9, 11, 123-251 or 255), output *[ALGORITHM_RESERVED]*.
+      3. If the algorithm is unassigned (algorithm
+         17-122), output *[ALGORITHM_UNASSIGNED]*.
+      4. If the algorithm is private algorithm
+         (algorithm 253-254), output *[ALGORITHM_PRIVATE]*.
+      5. If the algorithm is not meant for zone signing (algorithm
+         0, 2 or 252), output *[ALGORITHM_NOT_ZONE_SIGN]*.
+      6. If the algorithm is not rekommended for zone signing (algorithm
+         5, 7 or 10), output *[ALGORITHM_NOT_RECOMMENDED]*.
+      7. If no message has been outputted for the DNSKEY, output 
+         *[ALGORITHM_OK]*.
 
 ## Outcome(s)
 
@@ -62,17 +94,16 @@ with the severity level *WARNING*, but no message with severity level
 
 In other cases the outcome of this Test Case is "pass".
 
-Message                       | Default severity level (if message is emitted)
+Message                       | Default severity level
 :-----------------------------|:-----------------------------------
 NO_RESPONSE                   | WARNING
 NO_RESPONSE_DNSKEY            | WARNING
-ALGORITHM_DEPRECATED          | WARNING
+ALGORITHM_DEPRECATED          | ERROR
 ALGORITHM_RESERVED            | ERROR
 ALGORITHM_UNASSIGNED          | ERROR
-ALGORITHM_PRIVATE             | WARNING
-ALGORITHM_NOT_ZONE_SIGN       | WARNING
-ALGORITHM_DELETE_DS           | WARNING
-ALGORITHM_INDIRECT_KEY        | WARNING
+ALGORITHM_NOT_RECOMMENDED     | WARNING
+ALGORITHM_PRIVATE             | ERROR
+ALGORITHM_NOT_ZONE_SIGN       | ERROR
 ALGORITHM_OK                  | INFO
 
 
@@ -92,34 +123,20 @@ The test case is only performed if some DNSKEY record is found in the
 
 None.
 
+[RFC 8624]: https://www.rfc-editor.org/rfc/rfc8624.html#section-3.1
+[IANA registry]: https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml
 
 [Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
-
 [Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 
-[DNSSEC Algorithm Numbers]: https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml
-
-[RFC 4034, section 2]: https://tools.ietf.org/html/rfc4034#section-2
-
 [DNSSEC README]: ./README.md
-
 [NO_RESPONSE]: #outcomes
-
 [NO_RESPONSE_DNSKEY]: #outcomes
-
 [ALGORITHM_DEPRECATED]: #outcomes
-
 [ALGORITHM_RESERVED]: #outcomes
-
 [ALGORITHM_UNASSIGNED]: #outcomes
-
+[ALGORITHM_NOT_RECOMMENDED]: #outcomes
 [ALGORITHM_PRIVATE]: #outcomes
-
 [ALGORITHM_NOT_ZONE_SIGN]: #outcomes
-
-[ALGORITHM_DELETE_DS]: #outcomes
-
-[ALGORITHM_INDIRECT_KEY]: #outcomes
-
 [ALGORITHM_OK]: #outcomes
 

@@ -20,7 +20,7 @@ Please refer to any Github issues related to the change by the issue number.
 
 ## 3. Set all version numbers
 
-The version numbers can be found in these Perl modules:
+The version numbers is to be set in these Perl modules:
 
  * zonemaster-ldns - [LDNS.pm](https://github.com/zonemaster/zonemaster-ldns/blob/master/lib/Zonemaster/LDNS.pm)
  * zonemaster-engine - [Engine.pm](https://github.com/zonemaster/zonemaster-engine/blob/master/lib/Zonemaster/Engine.pm)
@@ -108,8 +108,8 @@ distribution tarball:
     make dist
 
 For each component that **is not** to be updated in this release, retreive their
-respective latest released distribution tarballs from the [ZNMSTR account at
-CPAN].
+respective latest released distribution tarballs from the [ZNMSTR] account on
+[PAUSE] ([CPAN]).
 
 ## 8. Produce distribution zip file (Zonemaster-GUI only)
 
@@ -153,7 +153,7 @@ If needed, update the following section of the Zonemaster repository main _READM
 
 For each component that is to be updated in this release, publish the
 corresponding *accepted distribution tarball* on CPAN.
-Currently we use the organizational account ZNMSTR on PAUSE for doing
+Currently we use the organizational account [ZNMSTR] on [PAUSE] for doing
 this.
 
 ## 12. Merge develop branch into master
@@ -179,16 +179,20 @@ release description in Github.
 If there are no more components to release, go to the Zonemaster repository an
 make a release.
 
+Verify that the right version number has been selected for the Zonemaster
+Product by consulting [Versions and Releases].
+
 https://github.com/zonemaster/zonemaster/releases
 
 Use the version number as tag and create a new release description in the same
-format as previous releases. 
+format in Github as previous releases. 
 
 -------
 
-[CI]: https://github.com/travis-ci/travis-ci
-[declaration of prerequisites]: ../../../README.md#prerequisites
-[latest releases in each branch of Perl]: http://www.cpan.org/src/README.html
-[license string]: https://metacpan.org/pod/CPAN::Meta::Spec#license
-[Versions and releases]: ../../design/Versions%20and%20Releases.md
-[ZNMSTR account at CPAN]: https://metacpan.org/author/ZNMSTR
+[CI]:                                      https://github.com/travis-ci/travis-ci
+[CPAN]:                                    https://www.cpan.org/
+[PAUSE]:                                   https://pause.perl.org/
+[Versions and releases]:                   ../../design/Versions%20and%20Releases.md
+[ZNMSTR]:                                  https://metacpan.org/author/ZNMSTR
+[declaration of prerequisites]:            ../../../README.md#prerequisites
+[license string]:                          https://metacpan.org/pod/CPAN::Meta::Spec#license
