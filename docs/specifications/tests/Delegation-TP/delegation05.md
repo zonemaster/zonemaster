@@ -42,16 +42,16 @@ domain (zone) do not point at CNAME records.
          *[UNEXPECTED_RCODE]*.
       4. Else, if the answer section of the response includes a CNAME
          record then output *[NS_IS_CNAME]*.
-      5. Else, if the response is a delegation (referral) to a 
+      5. Else, if the response is a delegation (referral) to a
          sub-zone of *Child Zone*, then:
          1. Do a [DNS Lookup] of the A query with the RD
             flag set.
          2. If the answer section of the response includes a CNAME
             record then output *[NS_IS_CNAME]*.
-            
+
    3. Else (the name server name is either [sibling domain]
       or [out-of-bailiwick]) then do:
-      1. Do a [DNS Lookup] of the the query with the RD
+      1. Do a [DNS Lookup] of the the A query with the RD
          flag set.
       2. If the answer section of the response includes a CNAME
          record then output *[NS_IS_CNAME]*.
