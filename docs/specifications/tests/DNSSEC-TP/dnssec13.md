@@ -7,9 +7,9 @@
 
 From RFC [6840], section 5.11:
 
-> The DS RRset and DNSKEY RRset are used to signal which 
-> algorithms are used to sign a zone. [...] The zone MUST 
-> also be signed with each algorithm (though not each key) 
+> The DS RRset and DNSKEY RRset are used to signal which
+> algorithms are used to sign a zone. [...] The zone MUST
+> also be signed with each algorithm (though not each key)
 > present in the DNSKEY RRset. [...]
 
 To verify the complete zone is signed with all algorithms require
@@ -18,7 +18,7 @@ RRsets that must be present in a signed zone, the SOA RRset, the
 NS RRset and the DNSKEY RRset.
 
 This test case will verify that for each DNSKEY algorithm, there
-is a RRSIG of that algorithm for the three selected RRsets. 
+is a RRSIG of that algorithm for the three selected RRsets.
 Furtermore, it is verified that the RRSIG of those RRsets have
 been created by a DNSKEY from the zone's DNSKEY RRset.
 
@@ -43,74 +43,74 @@ been created by a DNSKEY from the zone's DNSKEY RRset.
 5. Repeat the following steps for each name server IP address in *NS IP*:
 
    1. Send the DNSKEY query over UDP.
-      1. If no DNS response is returned, then output 
+      1. If no DNS response is returned, then output
          *[NO_RESPONSE]* and go to next name server IP address.
       2. Else, if the DNS response contains no DNSKEY record in the
-         answer section, then output *[NO_RESPONSE_RRSET]* and go to 
+         answer section, then output *[NO_RESPONSE_RRSET]* and go to
          the next name server IP address.
       3. Else, do:
          1. Extract all DNSKEY records ("DNSKEY Records").
          2. Extract the algorithm numbers from each DNSKEY record
             ("DNSKEY Algorithms").
-         3. Caculate the key ID for each DNSKEY record 
+         3. Calculate the key ID for each DNSKEY record
             ("DNSKEY Key ID").
          4. Extract all RRSIG records from the response.
-         5. If there is no RRSIG for DNSKEY, then output 
-            *[RRSET_NOT_SIGNED]* and go to next name server IP 
+         5. If there is no RRSIG for DNSKEY, then output
+            *[RRSET_NOT_SIGNED]* and go to next name server IP
             address.
          6. For each algorithm in *DNSKEY Algorithm* do:
-            1. If there is no RRSIG using the algorithm then output
-               *[ALGO_NOT_SIGNED_RRSET]*.
+            1. If there is no RRSIG for the DNSKEY RRset created by
+               the algorithm then output *[ALGO_NOT_SIGNED_RRSET]*.
          7. For each RRSIG do:
             1. If the key ID from the RRSIG is not a member of the
-               set *DNSKEY Key ID*, then output 
+               set *DNSKEY Key ID*, then output
                *[RRSIG_NOT_MATCH_DNSKEY]* and go to next RRSIG.
             2. If the RRSIG cannot be verified by the DNSKEY from
                *DNSKEY Record* with the matching RRSIG key ID, then
                output *[RRSIG_BROKEN]*.
    2. Send the SOA query over UDP.
-      1. If no DNS response is returned, then output 
+      1. If no DNS response is returned, then output
          *[NO_RESPONSE]* and go to next name server IP address.
       2. Else, if the DNS response contains no SOA record in the
-         answer section, then output *[NO_RESPONSE_RRSET]* and go to 
+         answer section, then output *[NO_RESPONSE_RRSET]* and go to
          the next name server IP address.
       3. Else, do:
          1. Extract all RRSIG records from the response.
-         2. If there is no RRSIG for SOA, then output 
-            *[RRSET_NOT_SIGNED]* and go to next name server IP 
+         2. If there is no RRSIG for SOA, then output
+            *[RRSET_NOT_SIGNED]* and go to next name server IP
             address.
          3. For each algorithm in *DNSKEY Algorithm* do:
-            1. If there is no RRSIG using the algorithm then output
-            *[ALGO_NOT_SIGNED_RRSET]*.
+            1. If there is no RRSIG for the SOA RRset created by
+               the algorithm then output *[ALGO_NOT_SIGNED_RRSET]*.
          4. For each RRSIG do:
             1. If the key ID from the RRSIG is not a member of the
-               set *DNSKEY Key ID*, then output 
+               set *DNSKEY Key ID*, then output
                *[RRSIG_NOT_MATCH_DNSKEY]* and go to next RRSIG.
             2. If the RRSIG cannot be verified by the DNSKEY from
                *DNSKEY Record* with the matching RRSIG key ID, then
                output *[RRSIG_BROKEN]*.
    3. Send the NS query over UDP.
-      1. If no DNS response is returned, then output 
+      1. If no DNS response is returned, then output
          *[NO_RESPONSE]* and go to next name server IP address.
       2. Else, if the DNS response contains no NS record in the
-         answer section, then output *[NO_RESPONSE_RRSET]* and go to 
+         answer section, then output *[NO_RESPONSE_RRSET]* and go to
          next name server IP address.
       3. Else, do:
          1. Extract all RRSIG records from the response.
-         2. If there is no RRSIG for NS, then output 
-            *[RRSET_NOT_SIGNED]* and go to next name server IP 
+         2. If there is no RRSIG for NS, then output
+            *[RRSET_NOT_SIGNED]* and go to next name server IP
             address.
          3. For each algorithm in *DNSKEY Algorithm* do:
-            1. If there is no RRSIG using the algorithm then output
-            *[ALGO_NOT_SIGNED_RRSET]*.
+            1. If there is no RRSIG for the NS RRset created by
+               the algorithm then output *[ALGO_NOT_SIGNED_RRSET]*.
          4. For each RRSIG do:
             1. If the key ID from the RRSIG is not a member of the
-               set *DNSKEY Key ID*, then output 
+               set *DNSKEY Key ID*, then output
                *[RRSIG_NOT_MATCH_DNSKEY]* and go to next RRSIG.
             2. If the RRSIG cannot be verified by the DNSKEY from
                *DNSKEY Record* with the matching RRSIG key ID, then
                output *[RRSIG_BROKEN]*.
-6. If *DNSKEY Algorithm* is non-empty for at least some name server IP 
+6. If *DNSKEY Algorithm* is non-empty for at least some name server IP
    addresses in *NS IP* and none of the following messages were
    outputted, then output *[ALL_ALGO_SIGNED]*:
    * *[ALGO_NOT_SIGNED_RRSET]*
