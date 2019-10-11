@@ -20,3 +20,8 @@ These documents use the terminology defined in the
 |R81|Test upward referral                      |[NAMESERVER07](nameserver07.md)|
 |R82|Test QNAME case insensitivity             |[NAMESERVER08](nameserver08.md)|
 |R80|Test QNAME case sensitivity               |[NAMESERVER09](nameserver09.md)|
+|R85|Test for undefined EDNS version           |[NAMESERVER10](nameserver10.md)|
+|R86|Test for unknown EDNS OPTION-CODE         |[NAMESERVER11](nameserver11.md)|
+|R87|Test for unknown EDNS flags               |[NAMESERVER12](nameserver12.md)|
+|R88|Test for truncated response on EDNS query |[NAMESERVER13](nameserver13.md)|
+|R90|Test for unknown version ansd OPTION-CODE |[NAMESERVER14](nameserver14.md)|
