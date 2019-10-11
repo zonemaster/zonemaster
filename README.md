@@ -3,13 +3,21 @@
 
 ## Introduction
 
-Zonemaster is a software package that validates the quality of a DNS delegation. The ambition of the Zonemaster project is to develop and maintain an open source DNS validation tool, offering improved performance over existing tools and providing extensive documentation which could be re-used by similar projects in the future.
+Zonemaster is a software package that validates the quality of a DNS delegation.
+The ambition of the Zonemaster project is to develop and maintain an open source
+DNS validation tool, offering improved performance over existing tools and providing
+extensive documentation which could be re-used by similar projects in the future.
 
-Zonemaster consists of several modules or components. The components will help different types of users to check domain servers for configuration errors and generate a report that will assist in fixing the errors.
+Zonemaster consists of several modules or components. The components will help
+different types of users to check domain servers for configuration errors and
+generate a report that will assist in fixing the errors.
 
 ## Background
 
-DNSCheck from IIS and Zonecheck from AFNIC are two old software packages that validate the quality of a DNS delegation. AFNIC and IIS came together to develop a new DNS validation tool from scratch under the name Zonemaster. Zonemaster intends to be a major rewrite of Zonecheck and DNSCheck, and aims to implement the best parts of both.
+DNSCheck from IIS and Zonecheck from AFNIC are two old software packages that validate
+the quality of a DNS delegation. AFNIC and IIS came together to develop a new DNS
+validation tool from scratch under the name Zonemaster. Zonemaster intends to be a
+major rewrite of Zonecheck and DNSCheck, and aims to implement the best parts of both.
 
 ## Purpose
 
@@ -32,8 +40,8 @@ We also have a brief [user guide](USING.md).
 
 ## Prerequisites
 
-Zonemaster comes with documentation for and has been tested on the operating systems and processor
-architecture listed below.
+Zonemaster comes with documentation for and has been tested on the operating systems
+and processor architecture listed below.
 
 ### Supported processor architectures
 
@@ -84,7 +92,8 @@ tested with the default version of Perl in the OSs as listed in the table above.
 
 ### Supported Client Browser versions
 
-Zonemaster GUI is tested against the browsers, their versions and listed OS as indicated bellow and should work perfectly with similar configurations.
+Zonemaster GUI is tested against the browsers, their versions and listed OS as
+indicated bellow and should work perfectly with similar configurations.
 
 Operating System | Browser | Version
 ---------------- | ------- | -------
@@ -96,7 +105,8 @@ MacOs            | Firefox | 65
 MacOs            | Chrome  | 73
 
 Zonemaster GUI was tested manually or with testing tools. 
-See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for more details.
+See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for
+more details.
 
 ## Localization
 
