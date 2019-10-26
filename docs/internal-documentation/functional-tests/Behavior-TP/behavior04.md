@@ -13,13 +13,8 @@ defined in afnic.profile
 
 ### Results
 
-The WEB-GUI seems to have taken into account of this functionality even though
+The CLI seems to have taken into account of this functionality even though
 as of not we do not have different profiles to test.
-
-This issues has been moved to post release 1.0
-
-Further information on the reason to move to post release 1.0 can be found here :
-https://github.com/zonemaster/zonemaster/issues/167.
 
 
 
