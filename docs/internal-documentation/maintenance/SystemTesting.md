@@ -99,13 +99,9 @@ The set of configurations must include at least:
    5. Install Zonemaster GUI
       1. Follow the prerequisites section of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md)
          to the letter.
-      2. Install the preliminary distribution tarball for zonemaster-backend.
-
-         ```sh
-         sudo cpanm Zonemaster-GUI-${GUI_VERSION}.tar.gz
-         ```
-
-      3. Follow the configuration, startup and sanity check sections of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md)
+      3. Follow the installation section of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md)
+         to the letter. 
+      2. Follow the configuration, startup and sanity check sections of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md)
          to the letter.
 
          *The following should be put into a sanity check section of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md).*
