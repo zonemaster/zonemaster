@@ -3,13 +3,21 @@
 
 ## Introduction
 
-Zonemaster is a software package that validates the quality of a DNS delegation. The ambition of the Zonemaster project is to develop and maintain an open source DNS validation tool, offering improved performance over existing tools and providing extensive documentation which could be re-used by similar projects in the future.
+Zonemaster is a software package that validates the quality of a DNS delegation.
+The ambition of the Zonemaster project is to develop and maintain an open source
+DNS validation tool, offering improved performance over existing tools and providing
+extensive documentation which could be re-used by similar projects in the future.
 
-Zonemaster consists of several modules or components. The components will help different types of users to check domain servers for configuration errors and generate a report that will assist in fixing the errors.
+Zonemaster consists of several modules or components. The components will help
+different types of users to check domain servers for configuration errors and
+generate a report that will assist in fixing the errors.
 
 ## Background
 
-DNSCheck from IIS and Zonecheck from AFNIC are two old software packages that validate the quality of a DNS delegation. AFNIC and IIS came together to develop a new DNS validation tool from scratch under the name Zonemaster. Zonemaster intends to be a major rewrite of Zonecheck and DNSCheck, and aims to implement the best parts of both.
+DNSCheck from IIS and Zonecheck from AFNIC are two old software packages that validate
+the quality of a DNS delegation. AFNIC and IIS came together to develop a new DNS
+validation tool from scratch under the name Zonemaster. Zonemaster intends to be a
+major rewrite of Zonecheck and DNSCheck, and aims to implement the best parts of both.
 
 ## Purpose
 
@@ -32,8 +40,8 @@ We also have a brief [user guide](USING.md).
 
 ## Prerequisites
 
-Zonemaster comes with documentation for and has been tested on the operating systems and processor
-architecture listed below.
+Zonemaster comes with documentation for and has been tested on the operating systems
+and processor architecture listed below.
 
 ### Supported processor architectures
 
@@ -42,9 +50,11 @@ architecture listed below.
 ### Supported operating system versions
 
 * CentOS 7
+* CentOS 8
 * Debian 8
 * Debian 9
-* FreeBSD 11.2
+* Debian 10
+* FreeBSD 11.3
 * FreeBSD 12.0
 * Ubuntu 16.04
 * Ubuntu 18.04
@@ -54,14 +64,16 @@ architecture listed below.
 Operating System | MySQL    | PostgreSQL
 ---------------- | ---------| -----------
 CentOS 7         | 5.6      | 9.3
+CentOS 8         | 8.0      | 9.6
 Debian 8         | 5.5      | 9.4
 Debian 9         | 10.1 (*) | 9.6
-FreeBSD 11.2     | 5.6      | 9.5
-FreeBSD 12.0     | 5.6      | 9.5
+Debian 10        | 10.3 (*) | 11.5
+FreeBSD 11.3     | 5.7      | 11
+FreeBSD 12.0     | 5.7      | 11
 Ubuntu 16.04     | 5.7      | 9.5
 Ubuntu 18.04     | 5.7      | 10
 
-*) For Debian 9 MariaDB is supported, not MySQL.
+*) For Debian 9 and 10 MariaDB is supported, not MySQL.
 
 Zonemaster Backend has been tested with the combination of OS and database 
 engine version listed in the table above. Zonemaster uses functionality 
@@ -72,10 +84,12 @@ introduced in PostgreSQL version 9.3, and earlier versions are as such not suppo
 Operating System | Perl
 ---------------- | ----
 CentOS 7         | 5.16
+CentOS 8         | 5.26
 Debian 8         | 5.20
 Debian 9         | 5.24
-FreeBSD 11.2     | 5.28
-FreeBSD 12.0     | 5.28
+Debian 10        | 5.28
+FreeBSD 11.3     | 5.30
+FreeBSD 12.0     | 5.30
 Ubuntu 16.04     | 5.22
 Ubuntu 18.04     | 5.26
 
@@ -84,19 +98,21 @@ tested with the default version of Perl in the OSs as listed in the table above.
 
 ### Supported Client Browser versions
 
-Zonemaster GUI is tested against the browsers, their versions and listed OS as indicated bellow and should work perfectly with similar configurations.
+Zonemaster GUI is tested against the browsers, their versions and listed OS as
+indicated bellow and should work perfectly with similar configurations.
 
 Operating System | Browser | Version
 ---------------- | ------- | -------
-Ubuntu 18.04     | Firefox | 64, 65, 66
-Ubuntu 18.04     | Chrome  | 66
-Windows 10       | Firefox | 64, 65, 66
-Windows 10       | Chrome  | 73
-MacOs            | Firefox | 65
-MacOs            | Chrome  | 73
+Ubuntu 18.04     | Firefox | 69
+Ubuntu 18.04     | Chrome  | 77
+Windows 10       | Firefox | 69
+Windows 10       | Chrome  | 77
+MacOs            | Firefox | 69
+MacOs            | Chrome  | 77
 
 Zonemaster GUI was tested manually or with testing tools. 
-See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for more details.
+See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for
+more details.
 
 ## Localization
 
@@ -177,6 +193,8 @@ repository (i.e. [general issues in Zonemaster](https://github.com/zonemaster/zo
 
 
 ## Notable bugs and issues
+
+*TO BE UPDATED AT RELEASE*
 
 * Translation does not work poperly under FreeBSD11 ([zonemaster-backend#512], [zonemaster-engine#546])
 * Backend not starting after reboot on Debian ([zonemaster-backend#513])
