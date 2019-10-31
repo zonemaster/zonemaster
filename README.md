@@ -51,7 +51,6 @@ and processor architecture listed below.
 
 * CentOS 7
 * CentOS 8
-* Debian 8
 * Debian 9
 * Debian 10
 * FreeBSD 11.3
@@ -65,7 +64,6 @@ Operating System | MySQL    | PostgreSQL
 ---------------- | ---------| -----------
 CentOS 7         | 5.6      | 9.3
 CentOS 8         | 8.0      | 9.6
-Debian 8         | 5.5      | 9.4
 Debian 9         | 10.1 (*) | 9.6
 Debian 10        | 10.3 (*) | 11.5
 FreeBSD 11.3     | 5.7      | 11
@@ -85,7 +83,6 @@ Operating System | Perl
 ---------------- | ----
 CentOS 7         | 5.16
 CentOS 8         | 5.26
-Debian 8         | 5.20
 Debian 9         | 5.24
 Debian 10        | 5.28
 FreeBSD 11.3     | 5.30
