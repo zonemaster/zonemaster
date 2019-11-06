@@ -14,9 +14,9 @@ If [RFC 8624] and [IANA registry] disagree on the same algorithm, the
 RFC takes precedence until the registry has a been updated with a
 reference to the RFC.
 
-The table of algorithms below is for reference only and is copied from [IANA 
+The table of algorithms below is for reference only and is copied from [IANA
 registry]. It is here to make it easier to read the steps when symbolic
-names are given. This is only an excerpt from the table. The full table is 
+names are given. This is only an excerpt from the table. The full table is
 available at [IANA registry].
 
 Algorithm number | Algorithm (or description)
@@ -80,8 +80,8 @@ Algorithm number | Algorithm (or description)
          0, 2 or 252), output *[ALGORITHM_NOT_ZONE_SIGN]*.
       6. If the algorithm is not rekommended for zone signing (algorithm
          5, 7 or 10), output *[ALGORITHM_NOT_RECOMMENDED]*.
-      7. If no message has been outputted for the DNSKEY, output 
-         *[ALGORITHM_OK]*.
+      7. If no message has been outputted for the DNSKEY (i.e. algorithm
+         8, 13, 14, 15 or 16), output *[ALGORITHM_OK]*.
 
 ## Outcome(s)
 
