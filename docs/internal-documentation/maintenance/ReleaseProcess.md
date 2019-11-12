@@ -62,7 +62,7 @@ listed changes are covered by MANIFEST.SKIP:
 
 For all components, generate Makefile, META.yml and others.
 
-    perl Makefile.PL
+    perl Makefile.PL --no-ed25519
 
 > **Note:** Ignore the warning from the above command about the missing
 > META.yml. The META.yml is created by the same command at a later stage.
