@@ -8,3 +8,4 @@ The following style guide applies to document text and certain file names specif
 
 * Zonemaster is always written as **Zonemaster**, never shortened (e.g. "ZM") or uncapitalized (e.g. "zonemaster"). 
 * Case-insensitive regexes are always written out with the ignore-case flag (e.g. `/[a-z]/i`).
+* For variable names in test case specifications each word is capitalized (e.g. "Domain Part").
