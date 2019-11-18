@@ -42,8 +42,8 @@ Area     | A-TestCase       | green  | "main" or Engine   | Test case specificat
 Area     | A-Travis         | green  | all but "main"     | Travis test tool in Github
 Area     | A-BuildSystem    | green  | all but "main"     | Build system as "make" or similar
 Area     | A-Translation    | green  | all                | Documentation of, implementation of or actual translation of text
-Area     | A-Documentation  | green  | all                | Documentation not covered by other area
-Area     | A-Code           | green  | all                | Software code not covered by other area
+Area     | A-Documentation  | green  | all                | Documentation not covered by other areas
+Area     | A-Code           | green  | all                | Software code not covered by other areas
 Area     | A-Databases      | green  | Backend            | Configuration or integration of database engines into Zonemaster
 Area     | A-OSintegration  | green  | Backend            | Code or documentation of integration of Zonemaster into the OS
 Area     | A-RCPAPI         | green  | Backend            | Documentation or implementation of the RPCAPI in Zonemaster-Backend
