@@ -60,9 +60,15 @@ listed changes are covered by MANIFEST.SKIP:
 > **Note:** To throw away any and all changes to tracked and untracked files you
 > can run `git clean -dfx ; git reset --hard`.
 
-For all components, generate Makefile, META.yml and others.
+Generate Makefile, META.yml and others.
 
-    perl Makefile.PL
+ * For Zonemaster-LDNS:
+
+       perl Makefile.PL --no-ed25519
+
+ * For all components except Zonemaster-LDNS:
+
+       perl Makefile.PL
 
 > **Note:** Ignore the warning from the above command about the missing
 > META.yml. The META.yml is created by the same command at a later stage.
