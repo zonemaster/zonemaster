@@ -35,7 +35,7 @@ the future.
 This is the main project repository. In this
 repository, documentation regarding the [design](docs/design),
 [requirements](docs/requirements) and [specifications](docs/specifications)
-for the Zonemaster implementation are available. 
+for the Zonemaster implementation are available.
 We also have a brief [user guide](USING.md).
 
 ## Prerequisites
@@ -54,7 +54,7 @@ and processor architecture listed below.
 * Debian 9
 * Debian 10
 * FreeBSD 11.3
-* FreeBSD 12.0
+* FreeBSD 12.1
 * Ubuntu 16.04
 * Ubuntu 18.04
 
@@ -67,14 +67,14 @@ CentOS 8         | 8.0      | 9.6
 Debian 9         | 10.1 (*) | 9.6
 Debian 10        | 10.3 (*) | 11.5
 FreeBSD 11.3     | 5.7      | 11
-FreeBSD 12.0     | 5.7      | 11
+FreeBSD 12.1     | 5.7      | 11
 Ubuntu 16.04     | 5.7      | 9.5
 Ubuntu 18.04     | 5.7      | 10
 
 *) For Debian 9 and 10 MariaDB is supported, not MySQL.
 
-Zonemaster Backend has been tested with the combination of OS and database 
-engine version listed in the table above. Zonemaster uses functionality 
+Zonemaster Backend has been tested with the combination of OS and database
+engine version listed in the table above. Zonemaster uses functionality
 introduced in PostgreSQL version 9.3, and earlier versions are as such not supported.
 
 ### Supported Perl versions
@@ -86,11 +86,11 @@ CentOS 8         | 5.26
 Debian 9         | 5.24
 Debian 10        | 5.28
 FreeBSD 11.3     | 5.30
-FreeBSD 12.0     | 5.30
+FreeBSD 12.1     | 5.30
 Ubuntu 16.04     | 5.22
 Ubuntu 18.04     | 5.26
 
-Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been 
+Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been
 tested with the default version of Perl in the OSs as listed in the table above.
 
 ### Supported Client Browser versions
@@ -107,7 +107,7 @@ Windows 10       | Chrome  | 77
 MacOs            | Firefox | 69
 MacOs            | Chrome  | 77
 
-Zonemaster GUI was tested manually or with testing tools. 
+Zonemaster GUI was tested manually or with testing tools.
 See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for
 more details.
 
@@ -131,9 +131,9 @@ stored in main Zonemaster Github repository ([Zonemaster]).
 All the software for the Zonemaster project belong to the five components, each
 component being stored in its own Github repository (listed below).
 
-The software has not yet been packaged for any operating systems, and you have to 
-install most of it from the source code. The recommended method is to install 
-from [CPAN] (except for [Zonemaster-GUI]), but it is possible to install directly 
+The software has not yet been packaged for any operating systems, and you have to
+install most of it from the source code. The recommended method is to install
+from [CPAN] (except for [Zonemaster-GUI]), but it is possible to install directly
 from clones of the Github repositories. [Zonemaster-GUI] has no Perl code, and is
 installed directly from its repository at Github.
 
@@ -143,19 +143,19 @@ The Zonemaster Product includes the following components:
  * [Zonemaster-Engine] - The Zonemaster test library.
  * [Zonemaster-CLI] - A Command Line Interface (CLI) to the test library ([Zonemaster-Engine]).
  * [Zonemaster-Backend] - A JSON/RPC interface with database to the test library ([Zonemaster-Engine]).
- * [Zonemaster-GUI] - A web user interface to the test library via [Zonemaster-Backend]. 
+ * [Zonemaster-GUI] - A web user interface to the test library via [Zonemaster-Backend].
 
 ## Installation
 
 To install Zonemaster, start with installation of [Zonemaster-Engine] (which will
-draw in Zonemaster-LDNS) and then continue with the other parts. You will find 
+draw in Zonemaster-LDNS) and then continue with the other parts. You will find
 installation instructions from the links above.
 
 ## Versions
 
-Go to the [release list](https://github.com/zonemaster/zonemaster/releases) 
-of this repository to find the 
-[latest version](https://github.com/zonemaster/zonemaster/releases/latest) of 
+Go to the [release list](https://github.com/zonemaster/zonemaster/releases)
+of this repository to find the
+[latest version](https://github.com/zonemaster/zonemaster/releases/latest) of
 Zonemaster and the versions of the specific components. Be
 sure to read the release note of each component before installing or
 upgrading.
@@ -171,11 +171,11 @@ You can follow the project in these two mailing lists:
  * [zonemaster-users](https://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-users)
  * [zonemaster-devel](https://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-devel)
 
-## Bug reporting 
+## Bug reporting
 
 For bug reporting go to the relevant Zonemaster repository
 and create a GitHub issue there. Before creating the issue,
-please search for the problem in the issue tracker in the relevant repository. 
+please search for the problem in the issue tracker in the relevant repository.
 If you find an open issue covering your issue, please add
 a comment with any additional information.
 
@@ -185,7 +185,7 @@ a comment with any additional information.
 * [Issues in Zonemaster::Backend](https://github.com/zonemaster/zonemaster-backend/issues)
 * [Issues in zonemaster::GUI](https://github.com/zonemaster/zonemaster-gui/issues)
 
-If you cannot determine which repository to create the issue in, please select the main [Zonemaster] 
+If you cannot determine which repository to create the issue in, please select the main [Zonemaster]
 repository (i.e. [general issues in Zonemaster](https://github.com/zonemaster/zonemaster/issues)).
 
 
@@ -200,14 +200,14 @@ repository (i.e. [general issues in Zonemaster](https://github.com/zonemaster/zo
 [zonemaster-backend#512]: https://github.com/zonemaster/zonemaster-backend/issues/512
 [zonemaster-engine#546]: https://github.com/zonemaster/zonemaster-engine/issues/546
 
-## Contact 
+## Contact
 
 For contacting the Zonemaster project, please send an e-mail to
 contact@zonemaster.net.
 
 [Zonemaster]: https://github.com/zonemaster/zonemaster
 [Zonemaster-LDNS]: https://github.com/zonemaster/zonemaster-ldns
-[Zonemaster-Engine]: https://github.com/zonemaster/zonemaster-engine 
+[Zonemaster-Engine]: https://github.com/zonemaster/zonemaster-engine
 [Zonemaster-CLI]: https://github.com/zonemaster/zonemaster-cli
 [Zonemaster-Backend]: https://github.com/zonemaster/zonemaster-backend
 [Zonemaster-GUI]: https://github.com/zonemaster/zonemaster-gui
