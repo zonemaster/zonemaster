@@ -111,6 +111,32 @@ Zonemaster GUI was tested manually or with testing tools.
 See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for
 more details.
 
+## Support of DNSSEC algorithm 15 (Ed25519)
+
+To be able to support and process algorithm 15 for DNSSEC the underlying OS must
+have recent version of [OpenSSL] installed, and [LDNS] being linked against that
+OpenSSL (see [Zonemaster-LDNS-README][Zonemaster-LDNS] for more details). These
+conditions are not met in all supported. The following table lists the expected
+support for algorithm 15 in the supported OSs, given that the installation
+instructions given for Zonemaster have been followed. A test of the domain
+`ed25519.nl` will reveal if the Zonemaster installation has the support or not.
+
+Operating System | Supports algorithm 15
+---------------- | ----
+CentOS 7         | no
+CentOS 8         | yes
+Debian 9         | no
+Debian 10        | yes
+FreeBSD 11.3     | yes
+FreeBSD 12.1     | yes
+Ubuntu 16.04     | ???
+Ubuntu 18.04     | ???
+
+[OpenSSL]: https://www.openssl.org/
+[LDNS]: https://www.nlnetlabs.nl/projects/ldns/
+[Zonemaster-LDNS-README]: https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
+
+
 ## Localization
 
 Zonemaster comes with localization for these locales:
