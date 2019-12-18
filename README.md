@@ -129,7 +129,7 @@ Debian 9         | no
 Debian 10        | yes
 FreeBSD 11.3     | yes
 FreeBSD 12.1     | yes
-Ubuntu 16.04     | ???
+Ubuntu 16.04     | no
 Ubuntu 18.04     | yes
 
 
