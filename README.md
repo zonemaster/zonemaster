@@ -130,11 +130,7 @@ Debian 10        | yes
 FreeBSD 11.3     | yes
 FreeBSD 12.1     | yes
 Ubuntu 16.04     | ???
-Ubuntu 18.04     | ???
-
-[OpenSSL]: https://www.openssl.org/
-[LDNS]: https://www.nlnetlabs.nl/projects/ldns/
-[Zonemaster-LDNS-README]: https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
+Ubuntu 18.04     | yes
 
 
 ## Localization
@@ -231,11 +227,14 @@ repository (i.e. [general issues in Zonemaster](https://github.com/zonemaster/zo
 For contacting the Zonemaster project, please send an e-mail to
 contact@zonemaster.net.
 
-[Zonemaster]: https://github.com/zonemaster/zonemaster
-[Zonemaster-LDNS]: https://github.com/zonemaster/zonemaster-ldns
-[Zonemaster-Engine]: https://github.com/zonemaster/zonemaster-engine
-[Zonemaster-CLI]: https://github.com/zonemaster/zonemaster-cli
-[Zonemaster-Backend]: https://github.com/zonemaster/zonemaster-backend
-[Zonemaster-GUI]: https://github.com/zonemaster/zonemaster-gui
-[LDNS]: https://www.nlnetlabs.nl/projects/ldns/about/
-[CPAN]: https://www.cpan.org/
+[CPAN]:                         https://www.cpan.org/
+[LDNS]:                         https://www.nlnetlabs.nl/projects/ldns/about/
+[OpenSSL]:                      https://www.openssl.org/
+[Zonemaster-Backend]:           https://github.com/zonemaster/zonemaster-backend
+[Zonemaster-CLI]:               https://github.com/zonemaster/zonemaster-cli
+[Zonemaster-Engine]:            https://github.com/zonemaster/zonemaster-engine
+[Zonemaster-GUI]:               https://github.com/zonemaster/zonemaster-gui
+[Zonemaster-LDNS-README]:       https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
+[Zonemaster-LDNS]:              https://github.com/zonemaster/zonemaster-ldns
+[Zonemaster]:                   https://github.com/zonemaster/zonemaster
+
