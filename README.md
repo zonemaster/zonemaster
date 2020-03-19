@@ -100,12 +100,12 @@ indicated bellow and should work perfectly with similar configurations.
 
 Operating System | Browser | Version
 ---------------- | ------- | -------
-Ubuntu 18.04     | Firefox | 69
-Ubuntu 18.04     | Chrome  | 77
-Windows 10       | Firefox | 69
-Windows 10       | Chrome  | 77
-MacOs            | Firefox | 69
-MacOs            | Chrome  | 77
+Ubuntu 18.04     | Firefox | 74
+Ubuntu 18.04     | Chrome  | 80
+Windows 10       | Firefox | 74
+Windows 10       | Chrome  | 80
+MacOs            | Firefox | 74
+MacOs            | Chrome  | 80
 
 Zonemaster GUI was tested manually or with testing tools.
 See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for
