@@ -133,16 +133,35 @@ Ubuntu 16.04     | no
 Ubuntu 18.04     | yes
 
 
-## Localization
+## Localization and translation
 
-Zonemaster comes with localization for these locales:
+Zonemaster comes with translation for the following
+languages
 
-* en.UTF-8
-* fr.UTF-8
-* sv.UTF-8
-* da.UTF-8 (*)
+* English (en, en_US.UTF-8)
+* French (fr, fr_FR.UTF-8)
+* Swedish (sv, sv_SE.UTF-8)
+* Danish (da, da_DK.UTF-8)
 
-*) Some strings have not yet been translated to Danish.
+The support of localization or translation is however not complete due to
+complexity in the implementation of `gettext` functions in different OSs.
+The table below documents in what OS the translation function works for
+Engine (i.e. the Zonemaster libraries), the CLI (i.e. the CLI interface
+to the Engine) and Backend (i.e. the RPCAPI interface to the Engine). If
+translation does not work properly in the Backend, it will not work in
+GUI either.
+
+Operating System | Engine | CLI | Backend
+---------------- | -------|-----|--------
+CentOS 7         | ?      |  ?  |   ?
+CentOS 8         | ?      |  ?  |   ?
+Debian 9         | ?      |  ?  |   ?
+Debian 10        | ?      |  ?  |   ?
+FreeBSD 11.3     | yes    | yes | no
+FreeBSD 12.1     | yes    | yes | yes
+Ubuntu 16.04     | ?      |  ?  |   ?
+Ubuntu 18.04     | ?      |  ?  |   ?
+
 
 ## Zonemaster and its components
 
