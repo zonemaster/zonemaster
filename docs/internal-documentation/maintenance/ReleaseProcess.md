@@ -96,7 +96,14 @@ version              | version number of the new release
 
 ## 6. Verify that MANIFEST is up to date and that tarball can be built
 
-> This section is not relevant for Zonemaster-GUI.
+> This section is *NOT* relevant for Zonemaster-GUI.
+
+> `share/Makefile` in Zonemaster-Engine and Zonemaster-CLI, respectively,
+> only works with GNU Make. FreeBSD Make is not "GNU Make". `gmake` in
+> FreeBSD (and seperately installed) is "GNU Make".
+
+    gmake -C share touch-po all # Extra step in "Engine" in FreeBSD only.
+    gmake -C share all          # Extra step in "CLI" in FreeBSD only.
 
 Build generated files (if any) and verify that a distribution tarball can be 
 successfully built for each component that is to be updated in this release.
