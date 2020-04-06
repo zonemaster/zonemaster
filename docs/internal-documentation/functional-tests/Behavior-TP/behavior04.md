@@ -12,8 +12,7 @@ defined in afnic.profile
 (https://github.com/mat813/ZoneCheck/blob/master/etc/zonecheck/afnic.profile). 
 
 ### Results
-
-The CLI seems to have taken into account of this functionality even though
+The Zonemaster-CLI has integrated this functionality even though
 as of not we do not have different profiles to test.
 
 
