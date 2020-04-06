@@ -124,7 +124,8 @@ respective latest released distribution tarballs from the [ZNMSTR] account on
 ## 8. Produce distribution zip file (Zonemaster-GUI only)
 
 The requirements are nodejs and npm. There are available from the [official website]( https://nodejs.org/en/).
-Minimal version of Nodejs is 10.0 but install the last LTS version available.
+Minimal version of Nodejs is 10.0 but install the last LTS version available. 
+It was tested on Ubuntu 18.04.
 
 To build a new development environnement, you need to install nodejs.
 We use [NVM](https://github.com/nvm-sh/nvm), a node version manager.
