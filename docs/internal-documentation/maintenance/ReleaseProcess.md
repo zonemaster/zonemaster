@@ -98,12 +98,17 @@ version              | version number of the new release
 
 > This section is *NOT* relevant for Zonemaster-GUI.
 
-> `share/Makefile` in Zonemaster-Engine and Zonemaster-CLI, respectively,
-> only works with GNU Make. FreeBSD Make is not "GNU Make". `gmake` in
-> FreeBSD (and seperately installed) is "GNU Make".
+### 6.1 FreeBSD only
 
-    gmake -C share touch-po all # Extra step in "Engine" in FreeBSD only.
-    gmake -C share all          # Extra step in "CLI" in FreeBSD only.
+> `share/Makefile` in Zonemaster-Engine and Zonemaster-CLI, respectively,
+> only works with GNU Make.
+
+Before the `make all` step run an extra step in "Engine" ande "CLI", respectively.
+
+    gmake -C share touch-po all # for "Engine" (FreeBSD only)
+    gmake -C share all          # for "CLI" (FreeBSD only)
+
+### 6.2 All OSs including FreeBSD
 
 Build generated files (if any) and verify that a distribution tarball can be 
 successfully built for each component that is to be updated in this release.
