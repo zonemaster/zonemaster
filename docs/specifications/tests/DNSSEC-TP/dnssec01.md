@@ -15,6 +15,10 @@ If [RFC 8624] and the [IANA registry] disagree on the same DS digest
 algorithm, the RFC takes precedence until the registry has a been 
 updated with a reference to the RFC.
 
+At the time of writing (2020-04-08), algorithm 1 (SHA-1) is still
+in wide use even though it is no longer considered to be secure
+([Wikipedia]).
+
 The table of algorithms below is for reference only and is copied from [IANA 
 registry]. It is here to make it easier to read the steps when symbolic
 names are given. This is only an excerpt from the table. The full table is 
@@ -47,11 +51,13 @@ Algorithm number | Algorithm (or description)
       1. Compare the DS algorithm value with *Algorithm Status*.
       2. If the algortithm value is 0 then output 
          *[DS_ALGORITHM_NOT_DS]*.
-      3. If algortithm value is 1 or 3 then output 
+      3. If algortithm value is 1 then output
+         *[DS_ALGO_SHA1_DEPRECATED]*.
+      4. If algortithm value is 3 then output
          *[DS_ALGORITHM_DEPRECATED]*.
-      4. If algortithm value is 5-255 then output 
+      5. If algortithm value is 5-255 then output
          *[DS_ALGORITHM_RESERVED]*.
-      5. If no message has been outputted for the DS, then 
+      6. If no message has been outputted for the DS, then
          output *[DS_ALGORITHM_OK]*.
    2. If *Undelegated DS* has at least one DS but none with
       algorithm value 2 output *[DS_ALGORITHM_MISSING]*. 
@@ -76,11 +82,13 @@ Algorithm number | Algorithm (or description)
       1. Compare the DS algorithm value with *Algorithm Status*.
       2. If the algortithm value is 0 then output 
          *[DS_ALGORITHM_NOT_DS]*.
-      3. If algortithm value is 1 or 3 then output 
+      3. If algortithm value is 1 then output
+         *[DS_ALGO_SHA1_DEPRECATED]*.
+      4. If algortithm value is 3 then output
          *[DS_ALGORITHM_DEPRECATED]*.
-      4. If algortithm value is 5-255 then output 
+      5. If algortithm value is 5-255 then output
          output *[DS_ALGORITHM_RESERVED]*.
-      5. If no message has been outputted for the DS, then 
+      6. If no message has been outputted for the DS, then
          output *[DS_ALGORITHM_OK]*.
    7. If there was no DS with algorithm value 2 output 
       *[DS_ALGORITHM_MISSING]*. 
@@ -106,6 +114,7 @@ DS_ALGORITHM_DEPRECATED       | ERROR
 DS_ALGORITHM_RESERVED         | ERROR
 DS_ALGORITHM_OK               | INFO
 DS_ALGORITHM_MISSING          | NOTICE
+DS_ALGO_SHA1_DEPRECATED       | WARNING
 
 ## Special procedural requirements
 
@@ -132,3 +141,5 @@ None.
 [DS_ALGORITHM_RESERVED]:   #outcomes
 [DS_ALGORITHM_OK]:         #outcomes
 [DS_ALGORITHM_MISSING]:    #outcomes
+[DS_ALGO_SHA1_DEPRECATED]:     #outcomes
+[Wikipedia]:                   https://en.wikipedia.org/wiki/SHA-1
