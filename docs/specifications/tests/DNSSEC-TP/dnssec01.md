@@ -107,14 +107,14 @@ In other cases the outcome of this Test Case is "pass".
 
 Message                       | Default severity level
 :-----------------------------|:-----------------------------------
+DS_ALGORITHM_DEPRECATED       | ERROR
+DS_ALGORITHM_MISSING          | NOTICE
+DS_ALGORITHM_NOT_DS           | ERROR
+DS_ALGORITHM_OK               | INFO
+DS_ALGORITHM_RESERVED         | ERROR
+DS_ALGO_SHA1_DEPRECATED       | WARNING
 NO_RESPONSE_DS                | WARNING
 UNEXPECTED_RESPONSE_DS        | WARNING
-DS_ALGORITHM_NOT_DS           | ERROR
-DS_ALGORITHM_DEPRECATED       | ERROR
-DS_ALGORITHM_RESERVED         | ERROR
-DS_ALGORITHM_OK               | INFO
-DS_ALGORITHM_MISSING          | NOTICE
-DS_ALGO_SHA1_DEPRECATED       | WARNING
 
 ## Special procedural requirements
 
@@ -130,16 +130,16 @@ Test case is only performed if DS records are found.
 
 None.
 
-[IANA registry]: https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xml
-[RFC 8624]:      https://tools.ietf.org/html/rfc8624#section-3.3
-[Method1]:       ../Methods.md#method-1-obtain-the-parent-domain
-[DNSSEC README]:           ./README.md
-[NO_RESPONSE_DS]:          #outcomes
-[UNEXPECTED_RESPONSE_DS]:  #outcomes
-[DS_ALGORITHM_NOT_DS]:     #outcomes
-[DS_ALGORITHM_DEPRECATED]: #outcomes
-[DS_ALGORITHM_RESERVED]:   #outcomes
-[DS_ALGORITHM_OK]:         #outcomes
-[DS_ALGORITHM_MISSING]:    #outcomes
+[DNSSEC README]:               ./README.md
+[DS_ALGORITHM_DEPRECATED]:     #outcomes
+[DS_ALGORITHM_MISSING]:        #outcomes
+[DS_ALGORITHM_NOT_DS]:         #outcomes
+[DS_ALGORITHM_OK]:             #outcomes
+[DS_ALGORITHM_RESERVED]:       #outcomes
 [DS_ALGO_SHA1_DEPRECATED]:     #outcomes
+[IANA registry]:               https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xml
+[Method1]:                     ../Methods.md#method-1-obtain-the-parent-domain
+[NO_RESPONSE_DS]:              #outcomes
+[RFC 8624]:                    https://tools.ietf.org/html/rfc8624#section-3.3
+[UNEXPECTED_RESPONSE_DS]:      #outcomes
 [Wikipedia]:                   https://en.wikipedia.org/wiki/SHA-1
