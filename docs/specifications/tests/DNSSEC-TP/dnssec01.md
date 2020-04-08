@@ -39,7 +39,6 @@ Algorithm number | Algorithm (or description)
 * "Algorithm Status" - The status of all DS digest algorithms from
   [RFC 8624] and the [IANA registry].
 * "Test Type" - The test type with value "undelegated" or "normal".
-
 * "Undelegated DS" - The DS record or records submitted
   (only if *Test Type* is undelegated).
 
