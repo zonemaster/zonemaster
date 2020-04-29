@@ -221,13 +221,13 @@ the `RPCAPI` it sends it calls to.
 
 Operating System | CLI | Backend
 ---------------- | ----|--------
-CentOS 7         |  ?  |   ?
-CentOS 8         |  ?  |   ?
+CentOS 7         | yes |  yes
+CentOS 8         | yes |  yes
 Debian 9         |  ?  |   ?
 Debian 10        |  ?  |   ?
 FreeBSD 11.3     | yes |  no
 FreeBSD 12.1     | yes |  yes
-Ubuntu 16.04     |  ?  |   ?
+Ubuntu 16.04     | yes |   ?
 Ubuntu 18.04     | yes |  yes
 
 The following issues covers the limitions above:
