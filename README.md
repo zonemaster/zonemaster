@@ -62,10 +62,10 @@ and processor architecture listed below.
 
 Operating System | MySQL/MariaDB | PostgreSQL
 ---------------- | --------------| -----------
-CentOS 7         | 5.6 (My)      | 9.3
-CentOS 8         | 8.0 (My)      | 9.6
+CentOS 7         | 5.6 (My) ?    | 9.3 ?
+CentOS 8         | 8.0 (My) ?    | 9.6 ?
 Debian 9         | 10.1 (Ma)     | 9.6
-Debian 10        | 10.3 (Ma)     | 11.5
+Debian 10        | 10.3 (Ma)     | 11.7
 FreeBSD 11.3     | 5.7 (My)      | 11.7
 FreeBSD 12.1     | 5.7 (My)      | 11.7
 Ubuntu 16.04     | 10.0 (Ma)     | 9.5
@@ -142,7 +142,6 @@ Zonemaster-CLI interface to `Zonemaster::Engine`), Zonemaster-Backend
 `RPCAPI` interface to `Zonemaster::Engine`) and the Zonemaster-GUI interface
 to `RPCAPI`.
 
-
 * English (en, en_US.UTF-8)
 * French (fr, fr_FR.UTF-8)
 * Swedish (sv, sv_SE.UTF-8)
@@ -214,39 +213,26 @@ a comment with any additional information.
 If you cannot determine which repository to create the issue in, please select the main [Zonemaster]
 repository (i.e. [general issues in Zonemaster](https://github.com/zonemaster/zonemaster/issues)).
 
-## Limitations and issues in translation
+## Notable bugs and issues
 
-The table below documents in what OS the translation function works for
-`zonemaster-cli` and Zonemaster-Backend `RPCAPI`. Zonemaster-GUI depends
-the `RPCAPI` it sends it calls to.
+### Limitations and issues in translation for FreeBSD 11.3
 
-Operating System | CLI | Backend
----------------- | ----|--------
-CentOS 7         | yes |  yes
-CentOS 8         | yes |  yes
-Debian 9         |  ?  |   ?
-Debian 10        |  ?  |   ?
-FreeBSD 11.3     | yes |  no
-FreeBSD 12.1     | yes |  yes
-Ubuntu 16.04     | yes |  yes
-Ubuntu 18.04     | yes |  yes
+FreeBSD 11.3 works well when it comes to translation functions for
+`zonemaster-cli`, but not for Zonemaster-Backend `RPCAPI`.
+Zonemaster-GUI depends on the `RPCAPI` installation it sends it calls to.
+This means that FreeBSD 11.3 is not a good candidate for running
+Zonemaster-Backend.
+
+No other tested OS, including FreeBSD 12.1, has that limitation.
 
 The following issues covers the limitions above:
 
 * [zonemaster-backend#530](https://github.com/zonemaster/zonemaster-backend/issues/530)
 
-## Zonemaster and its components
+### DNSSEC algorithm 15
 
-## Notable bugs and issues
+Limitations in the support of DNSSEC algorithm 15 is described above.
 
-*TO BE UPDATED AT RELEASE*
-
-* Translation does not work poperly under FreeBSD11 ([zonemaster-backend#512], [zonemaster-engine#546])
-* Backend not starting after reboot on Debian ([zonemaster-backend#513])
-
-[zonemaster-backend#513]: https://github.com/zonemaster/zonemaster-backend/issues/513
-[zonemaster-backend#512]: https://github.com/zonemaster/zonemaster-backend/issues/512
-[zonemaster-engine#546]: https://github.com/zonemaster/zonemaster-engine/issues/546
 
 ## Contact
 
