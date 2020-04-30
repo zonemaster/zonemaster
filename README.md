@@ -60,19 +60,16 @@ and processor architecture listed below.
 
 ### Supported database engine versions
 
-Operating System | MySQL/MariaDB | PostgreSQL
----------------- | --------------| -----------
-CentOS 7         | 5.6 (My) ?    | 9.3 ?
-CentOS 8         | 8.0 (My) ?    | 9.6 ?
-Debian 9         | 10.1 (Ma)     | 9.6
-Debian 10        | 10.3 (Ma)     | 11.7
-FreeBSD 11.3     | 5.7 (My)      | 11.7
-FreeBSD 12.1     | 5.7 (My)      | 11.7
-Ubuntu 16.04     | 10.0 (Ma)     | 9.5
-Ubuntu 18.04     | 10.1 (Ma)     | 10.12
-
- My=MySQL
- Ma=MariaDB
+Operating System | MySQL/MariaDB   | PostgreSQL
+---------------- | ----------------| -----------
+CentOS 7         | 5.6 (MySQL)     | 9.3
+CentOS 8         | 8.0 (MySQL)     | 10.6
+Debian 9         | 10.1 (MariaDB)  | 9.6
+Debian 10        | 10.3 (MariaDB)  | 11.7
+FreeBSD 11.3     | 5.7 (MySQL)     | 11.7
+FreeBSD 12.1     | 5.7 (MySQL)     | 11.7
+Ubuntu 16.04     | 10.0 (MariaDB)  | 9.5
+Ubuntu 18.04     | 10.1 (MariaDB)  | 10.12
 
 Zonemaster Backend has been tested with the combination of OS and database
 engine version listed in the table above. Zonemaster uses functionality
