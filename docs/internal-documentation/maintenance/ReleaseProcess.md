@@ -20,7 +20,7 @@ Please refer to any Github issues related to the change by the issue number.
 
 ## 3. Set all version numbers
 
-The version numbers can be found in these Perl modules:
+The version numbers is to be set in these Perl modules:
 
  * zonemaster-ldns - [LDNS.pm](https://github.com/zonemaster/zonemaster-ldns/blob/master/lib/Zonemaster/LDNS.pm)
  * zonemaster-engine - [Engine.pm](https://github.com/zonemaster/zonemaster-engine/blob/master/lib/Zonemaster/Engine.pm)
@@ -46,8 +46,7 @@ Make sure the Travis configuration for each repo is up to date with the supporte
  * zonemaster-engine - [.travis.yml](https://github.com/zonemaster/zonemaster-engine/blob/master/.travis.yml)
  * zonemaster-cli - [.travis.yml](https://github.com/zonemaster/zonemaster-cli/blob/master/.travis.yml)
  * zonemaster-backend - [.travis.yml](https://github.com/zonemaster/zonemaster-backend/blob/master/.travis.yml)
- * zonemaster-gui - [.travis.yml](https://github.com/zonemaster/zonemaster-gui/blob/master/.travis.yml) --
-   Currently there is no Travis configured for GUI.
+ * zonemaster-gui - Currently there is no Travis configured for GUI.
 
 ## 5. Verify that META.yml has all the correct data
 
@@ -61,12 +60,22 @@ listed changes are covered by MANIFEST.SKIP:
 > **Note:** To throw away any and all changes to tracked and untracked files you
 > can run `git clean -dfx ; git reset --hard`.
 
-For all components, generate Makefile, META.yml and others.
+Generate Makefile, META.yml and others.
 
-    perl Makefile.PL
+ * For Zonemaster-LDNS:
+
+       perl Makefile.PL --no-ed25519
+
+ * For all components except Zonemaster-LDNS:
+
+       perl Makefile.PL
 
 > **Note:** Ignore the warning from the above command about the missing
 > META.yml. The META.yml is created by the same command at a later stage.
+
+> **Note:** For Zonemaster-LDNS ignore the above command may generate warnings
+> for lots of missing ldns source files.
+> The ldns sources are fetched by the same command at a later stage.
 
 Verify that META.yml contains all the paths in the following table and
 that the value at each path matches the listed requirement.
@@ -87,7 +96,19 @@ version              | version number of the new release
 
 ## 6. Verify that MANIFEST is up to date and that tarball can be built
 
-> This section is not relevant for Zonemaster-GUI.
+> This section is *NOT* relevant for Zonemaster-GUI.
+
+### 6.1 FreeBSD only
+
+> `share/Makefile` in Zonemaster-Engine and Zonemaster-CLI, respectively,
+> only works with GNU Make.
+
+Before the `make all` step run an extra step in "Engine" ande "CLI", respectively.
+
+    gmake -C share touch-po all # for "Engine" (FreeBSD only)
+    gmake -C share all          # for "CLI" (FreeBSD only)
+
+### 6.2 All OSs including FreeBSD
 
 Build generated files (if any) and verify that a distribution tarball can be 
 successfully built for each component that is to be updated in this release.
@@ -109,15 +130,21 @@ distribution tarball:
     make dist
 
 For each component that **is not** to be updated in this release, retreive their
-respective latest released distribution tarballs from the [ZNMSTR account at
-CPAN].
-
-[ZNMSTR account at CPAN]: http://search.cpan.org/~znmstr/
+respective latest released distribution tarballs from the [ZNMSTR] account on
+[PAUSE] ([CPAN]).
 
 ## 8. Produce distribution zip file (Zonemaster-GUI only)
 
 The requirements are nodejs and npm. There are available from the [official website]( https://nodejs.org/en/).
-Minimal version of Nodejs is 6.0 but install the last LTS version available.
+Minimal version of Nodejs is 10.0 but install the last LTS version available. 
+It was tested on Ubuntu 18.04.
+
+To build a new development environnement, you need to install nodejs.
+We use [NVM](https://github.com/nvm-sh/nvm), a node version manager.
+
+1. `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash`
+2. `nvm install 13.12.0`
+3. `nvm use 13.12.0`
 
 To build the tarballs, steps are: 
 
@@ -156,7 +183,7 @@ If needed, update the following section of the Zonemaster repository main _READM
 
 For each component that is to be updated in this release, publish the
 corresponding *accepted distribution tarball* on CPAN.
-Currently we use the organizational account ZNMSTR on PAUSE for doing
+Currently we use the organizational account [ZNMSTR] on [PAUSE] for doing
 this.
 
 ## 12. Merge develop branch into master
@@ -182,16 +209,20 @@ release description in Github.
 If there are no more components to release, go to the Zonemaster repository an
 make a release.
 
+Verify that the right version number has been selected for the Zonemaster
+Product by consulting [Versions and Releases].
+
 https://github.com/zonemaster/zonemaster/releases
 
 Use the version number as tag and create a new release description in the same
-format as previous releases. 
+format in Github as previous releases. 
 
 -------
 
-[CI]: https://github.com/travis-ci/travis-ci
-[declaration of prerequisites]: ../../../README.md#prerequisites
-[latest releases in each branch of Perl]: http://www.cpan.org/src/README.html
-[license string]: https://metacpan.org/pod/CPAN::Meta::Spec#license
-[Versions and releases]: ../../design/Versions%20and%20Releases.md
-
+[CI]:                                      https://github.com/travis-ci/travis-ci
+[CPAN]:                                    https://www.cpan.org/
+[PAUSE]:                                   https://pause.perl.org/
+[Versions and releases]:                   ../../design/Versions%20and%20Releases.md
+[ZNMSTR]:                                  https://metacpan.org/author/ZNMSTR
+[declaration of prerequisites]:            ../../../README.md#prerequisites
+[license string]:                          https://metacpan.org/pod/CPAN::Meta::Spec#license

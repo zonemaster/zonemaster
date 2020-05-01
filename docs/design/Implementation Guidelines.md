@@ -48,14 +48,19 @@ It is recommended, although not required, that each test case be implemented as 
 
 ### Code formatting
 
-The top level of the Zonemaster git repository contains `.perltidyrc`, a config file for [Perl::Tidy](http://search.cpan.org/~shancock/Perl-Tidy-20130922/lib/Perl/Tidy.pod). Please use it before you push, make a pull request or otherwise send code outside of your own repository.
+The top level of the Zonemaster git repository contains `.perltidyrc`, a config file for [Perl::Tidy]. Please use it before you push, make a pull request or otherwise send code outside of your own repository.
 
 ### Code style
 
-The top level of the Zonemaster git repository also contains `.perlcriticrc`, a config file for [Perl::Critic](http://search.cpan.org/~thaljef/Perl-Critic-1.121/lib/Perl/Critic.pm). Strive to make your code free from warnings on at least levels 4 and 5 before you send it out into the world.
+The top level of the Zonemaster git repository also contains `.perlcriticrc`, a config file for [Perl::Critic]. Strive to make your code free from warnings on at least levels 4 and 5 before you send it out into the world.
 
 ### Exposing test metadata
 
 ### Returning information from tests, the practice
 
 (to be continued)
+
+
+
+[Perl::Critic]: https://metacpan.org/pod/Perl::Critic
+[Perl::Tidy]: https://metacpan.org/pod/Perl::Tidy

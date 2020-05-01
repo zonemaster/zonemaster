@@ -52,7 +52,7 @@ Tests to implement
 |R16|NS authoritative answer                                 |[DELEGATION](../specifications/tests/Delegation-TP/delegation04.md)|
 |R17|NS name has a valid domain/hostname syntax              |[SYNTAX](../specifications/tests/Syntax-TP/syntax04.md)|
 |R18|NS is not an alias                                      |[DELEGATION](../specifications/tests/Delegation-TP/delegation05.md)|
-|R19|NS can be resolved                                      |[DELEGATION](../specifications/tests/Delegation-TP/??)|
+|R19|NS can be resolved                                      |[NAMESERVER](../specifications/tests/Nameserver-TP/nameserver06.md)|
 |R20|SOA record present                                      |[DELEGATION](../specifications/tests/Delegation-TP/delegation06.md)|
 |R21|SOA authoritative answer                                |[DELEGATION](../specifications/tests/Delegation-TP/delegation06.md)|
 |R22|Missused '@' characters in SOA contact name             |[SYNTAX](../specifications/tests/Syntax-TP/syntax05.md)|
@@ -139,13 +139,11 @@ Requirements on writing test specifications
 These are some requirements for writing specifications for "Zonemaster":
 
  1. Follow the framework of the IEEE 829-2008.
- 2. The documents must be in 
-    [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax).
+ 2. The documents must be in [GitHub Flavored Markdown].
  3. Keep the columns in the document below 80, preferrably shorter than 74
     columns. (Much easier to see changes in documents using the tools
 	available for diffing).
- 4. Use 
-    [normative language](http://en.wikipedia.org/wiki/Normative#Standards_documents).
+ 4. Use [normative language].
  5. Refer to any reference that is the rationale for implementing the test
     case. If there are no reference to any standards, describe the reason
     for implementing the test. For most references, we use RFCs from IETF.
@@ -164,3 +162,8 @@ These are some requirements for writing specifications for "Zonemaster":
 	to use the same style as used in the other tests.
  10. Make sure to write the tests so that any implementer that implements
     the tests will have the same outcome as any other implementation.
+
+
+
+[GitHub Flavored Markdown]: https://github.github.com/gfm/
+[Normative language]: https://en.wikipedia.org/wiki/Normative#Standards_documents

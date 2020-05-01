@@ -21,6 +21,8 @@ This document uses the terminology defined in the
 |R76|Zone contains NSEC or NSEC3 records                          |[DNSSEC10](dnssec10.md)|
 |R79|If DS at parent, child zone must be signed                   |[DNSSEC11](dnssec11.md)|
 |R84|Test for DNSSEC Algorithm Completeness (DS->DNSKEY->RRSIG)   |[DNSSEC12](dnssec12.md)|
+|R91|All DNSKEY algorithms used to sign the zone                  |[DNSSEC13](dnssec13.md)|
+|???|Check for valid RSA DNSKEY key size                          |[DNSSEC14](dnssec14.md)|
 
 ## Default DNS query flags for all DNSSEC tests
 

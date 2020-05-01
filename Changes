@@ -1,5 +1,59 @@
 Release history of Zonemaster
 
+v2019.2 2020-04-30 (public release version)
+
+ [Features]
+ - Support for Ed25519 (algorithm 15) added in Zonemaster-LDNS
+ - Implementation of updated test cases in Zonemaster-Engine
+ - For more features in the other components, see Changes files in
+   the components.
+ - New logotype for Zonemaster (#844)
+ - Updated DNSSEC02 (#782, #528, #344)
+ - Updated DNSSEC10 (#786, #475)
+ - Added DNSSEC13 (#780, #529, #344, #231)
+ - Create Zone10 (#794, #666, #802)
+ - Update Connectivity03 (#781, zonemaster/zonemaster-engine#273)
+ - Update delegation01 (#758, zonemaster/zonemaster-engine#520)
+ - Create DNSSEC14 (#783, #494, zonemaster/zonemaster-engine#227)
+ - Updated DNSSEC01 (#779, #762, #785, #839)
+ - Updated DNSSEC05 (#777, #763, #784)
+ - Update basic01 (#642)
+
+ [Fixed]
+ - For fixes in the other components, see the Changes files in the
+   components.
+ - Add style guide item on capitalization (#822, #665)
+ - Specification of issue labels (#824)
+ - Updated release process document (#821, #834, #836, #838)
+ - Making ALGORITHM_OK more explicit in DNSSEC05 (#819, #818)
+ - Debian 8 does not meet the support criteria (#814)
+ - Updated Nameserver README with Nameserver test cases not included
+   (#807)
+ - Update main README (#808, #826, #828, #831, #837, #847)
+ - Review GUI docs (#811)
+ - Updated Delegation05 (#804, #803)
+ - Updated Nameserver05 (#787, #778)
+ - Update syntax06 (#788)
+ - Fix some links (#773, #775)
+ - Update TestMessages (#774)
+ - Update Consistency04 (#481)
+ - Updated Nameserver10 with explanatory note on extended RCODE
+   (#793, #668, zonemaster/zonemaster-engine#480)
+ - Updated "Release processes" and "Versions and Releases" (#789, #771)
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components.
+   For each component, see its Changes file or Github release notes.
+
+   Zonemaster-LDNS     v2.1.0   https://github.com/zonemaster/zonemaster-ldns
+   Zonemaster-Engine   v3.1.0   https://github.com/zonemaster/zonemaster-engine
+   Zonemaster-CLI      v2.0.3   https://github.com/zonemaster/zonemaster-cli
+   Zonemaster-Backend  v5.0.0   https://github.com/zonemaster/zonemaster-backend
+   Zonemaster-GUI      v3.2.0   https://github.com/zonemaster/zonemaster-gui
+
+
+
+
 v2019.1.1 2019-05-31 (public hotfix version)
 
  [Fixes]

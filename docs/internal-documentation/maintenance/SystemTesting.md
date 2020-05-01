@@ -94,18 +94,14 @@ The set of configurations must include at least:
 
       3. Follow the [configuration](https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md#configuration) section of the installation guide to the letter.
       4. Follow the [startup](https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md#startup) section of the installation guide to the letter.
-      5. Follow the [post-installation sanity check](https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md#post-installation-sanity-check) section of the installation guide to the letter.
+      5. Follow the [smoke test] section of the installation guide to the letter.
 
    5. Install Zonemaster GUI
       1. Follow the prerequisites section of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md)
          to the letter.
-      2. Install the preliminary distribution tarball for zonemaster-backend.
-
-         ```sh
-         sudo cpanm Zonemaster-GUI-${GUI_VERSION}.tar.gz
-         ```
-
-      3. Follow the configuration, startup and sanity check sections of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md)
+      3. Follow the installation section of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md)
+         to the letter. 
+      2. Follow the configuration, startup and sanity check sections of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md)
          to the letter.
 
          *The following should be put into a sanity check section of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md).*
@@ -202,3 +198,7 @@ This test level validates that each change since last release:
 4. Acceptance testing through Zonemaster GUI
 
    Test each new entry in the Changes file of *Zonemaster GUI*.
+
+
+
+[smoke test]: https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md#71-smoke-test

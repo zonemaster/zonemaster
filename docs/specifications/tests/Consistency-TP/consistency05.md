@@ -180,10 +180,10 @@ respected.
 [BASIC01]:                  ../Basic-TP/basic01.md
 [DELEGATION05]:             ../Delegation-TP/delegation05.md
 [Methods]:                  ../Methods.md
-[Method2]:                  ../Methods.md#method-2-delegation-name-servers
-[Method3]:                  ../Methods.md#method-3-in-zone-name-servers
-[Method4]:                  ../Methods.md#method-4-delegation-name-server-addresses
-[Method5]:                  ../Methods.md#method-5-in-zone-addresses-records-of-name-servers
+[Method2]:                  ../Methods.md#method-2-obtain-glue-name-records-from-parent
+[Method3]:                  ../Methods.md#method-3-obtain-name-servers-from-child
+[Method4]:                  ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [name server requirement]:  https://www.iana.org/help/nameserver-requirements
 [RFC 7719]:                 https://tools.ietf.org/html/rfc7719
 [terminology]:              #terminology

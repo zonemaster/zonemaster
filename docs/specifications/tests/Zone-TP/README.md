@@ -20,3 +20,4 @@ This document uses the terminology defined in the
 |R50|MX is not an alias                                                        |[ZONE08](zone08.md)|
 |R47|MX record present                                                         |[ZONE09](zone09.md)|
 |R52|MX can be resolved                                                        |[ZONE09](zone09.md)|
+|R??|No multipe SOA records                                                    |[ZONE10](zone10.md)|
