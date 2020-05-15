@@ -1,5 +1,24 @@
 Release history of Zonemaster
 
+v2019.2.1 2020-05-15 (public fix release)
+
+ [Fixed]
+ - Bug in Zonemaster-Engine made it crash when testing zones with
+   specific features. See Zonemaster-Engine release notes.
+ - Patch scripts for updating databases was missing. See
+   Zonemaster-Backend release notes.
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components.
+   For each component, see its Changes file or Github release notes.
+
+   Zonemaster-LDNS     v2.1.0   https://github.com/zonemaster/zonemaster-ldns
+   Zonemaster-Engine   v3.1.1   https://github.com/zonemaster/zonemaster-engine
+   Zonemaster-CLI      v2.0.3.1 https://github.com/zonemaster/zonemaster-cli
+   Zonemaster-Backend  v5.0.1   https://github.com/zonemaster/zonemaster-backend
+   Zonemaster-GUI      v3.2.0   https://github.com/zonemaster/zonemaster-gui
+
+
 v2019.2 2020-04-30 (public release version)
 
  [Features]
@@ -50,8 +69,6 @@ v2019.2 2020-04-30 (public release version)
    Zonemaster-CLI      v2.0.3   https://github.com/zonemaster/zonemaster-cli
    Zonemaster-Backend  v5.0.0   https://github.com/zonemaster/zonemaster-backend
    Zonemaster-GUI      v3.2.0   https://github.com/zonemaster/zonemaster-gui
-
-
 
 
 v2019.1.1 2019-05-31 (public hotfix version)
