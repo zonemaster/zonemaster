@@ -14,7 +14,7 @@ v2019.2.1 2020-05-15 (public fix release)
 
    Zonemaster-LDNS     v2.1.0   https://github.com/zonemaster/zonemaster-ldns
    Zonemaster-Engine   v3.1.1   https://github.com/zonemaster/zonemaster-engine
-   Zonemaster-CLI      v2.0.3   https://github.com/zonemaster/zonemaster-cli
+   Zonemaster-CLI      v2.0.3.1 https://github.com/zonemaster/zonemaster-cli
    Zonemaster-Backend  v5.0.1   https://github.com/zonemaster/zonemaster-backend
    Zonemaster-GUI      v3.2.0   https://github.com/zonemaster/zonemaster-gui
 
