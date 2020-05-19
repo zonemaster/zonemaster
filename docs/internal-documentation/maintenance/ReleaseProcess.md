@@ -73,6 +73,10 @@ Generate Makefile, META.yml and others.
 > **Note:** Ignore the warning from the above command about the missing
 > META.yml. The META.yml is created by the same command at a later stage.
 
+> **Note:** For Zonemaster-Engine ignore the warning from the above command
+> about the missing .mo files. These files are created when running `make all`
+> below.
+
 > **Note:** For Zonemaster-LDNS ignore the above command may generate warnings
 > for lots of missing ldns source files.
 > The ldns sources are fetched by the same command at a later stage.
