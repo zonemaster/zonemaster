@@ -70,16 +70,14 @@ Generate Makefile, META.yml and others.
 
        perl Makefile.PL
 
-> **Note:** Ignore the warning from the above command about the missing
-> META.yml. The META.yml is created by the same command at a later stage.
-
-> **Note:** For Zonemaster-Engine ignore the warning from the above command
-> about the missing .mo files. These files are created when running `make all`
-> below.
-
-> **Note:** For Zonemaster-LDNS ignore the above command may generate warnings
-> for lots of missing ldns source files.
-> The ldns sources are fetched by the same command at a later stage.
+> **Note:** Ignore the warning about the missing META.yml (created by the very
+> same command).
+>
+> For Zonemaster-LDNS ignore the warnings about lots of missing ldns source
+> files (fetched by the very same command).
+>
+> For Zonemaster-Engine ignore the warnings about missing .mo files (created
+> in a later step).
 
 Verify that META.yml contains all the paths in the following table and
 that the value at each path matches the listed requirement.
