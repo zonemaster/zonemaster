@@ -98,18 +98,6 @@ version              | version number of the new release
 
 > This section is *NOT* relevant for Zonemaster-GUI.
 
-### 6.1 FreeBSD only
-
-> `share/Makefile` in Zonemaster-Engine and Zonemaster-CLI, respectively,
-> only works with GNU Make.
-
-Before the `make all` step run an extra step in "Engine" ande "CLI", respectively.
-
-    gmake -C share touch-po all # for "Engine" (FreeBSD only)
-    gmake -C share all          # for "CLI" (FreeBSD only)
-
-### 6.2 All OSs including FreeBSD
-
 Build generated files (if any) and verify that a distribution tarball can be 
 successfully built for each component that is to be updated in this release.
 
@@ -148,7 +136,7 @@ We use [NVM](https://github.com/nvm-sh/nvm), a node version manager.
 
 To build the tarballs, steps are: 
 
-1. `git clone https://github.com/zonemaster/zonemaster-gui.git`  
+1. `git clone https://github.com/zonemaster/zonemaster-gui.git`
 2. `cd zonemaster-gui`
 3. `npm install` 
 4. `npm run release`
