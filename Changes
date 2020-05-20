@@ -3,6 +3,8 @@ Release history of Zonemaster
 v2019.2.2 2020-05-22 (public fix release)
 
  [Fixed]
+ - In test case Zone10 case was not disregarded in comparison. For more
+   details, see Zonemaster-Engine release notes.
  - Some zones create too large result to fit into the zonemaster
    database which made Zonemaster-Backend to crash that test.
    For more details, see the Zonemaster-Backend release notes.
@@ -13,7 +15,7 @@ v2019.2.2 2020-05-22 (public fix release)
    For each component, see its Changes file or Github release notes.
 
    Zonemaster-LDNS     v2.1.0   https://github.com/zonemaster/zonemaster-ldns
-   Zonemaster-Engine   v3.1.1   https://github.com/zonemaster/zonemaster-engine
+   Zonemaster-Engine   v3.1.2   https://github.com/zonemaster/zonemaster-engine
    Zonemaster-CLI      v2.0.4   https://github.com/zonemaster/zonemaster-cli
    Zonemaster-Backend  v5.0.2   https://github.com/zonemaster/zonemaster-backend
    Zonemaster-GUI      v3.2.0   https://github.com/zonemaster/zonemaster-gui
