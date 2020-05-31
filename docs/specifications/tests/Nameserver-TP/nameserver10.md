@@ -6,9 +6,9 @@
 
 ## Objective
 
-EDNS is a mechanism to announce capabilities of a DNS implementation,
-and is now basically required by any new functionality in DNS such as
-DNSSEC ([RFC 6891]).
+EDNS ([RFC 6891]) is a mechanism to announce capabilities of a DNS
+implementation, and is required by new functionality in DNS such as
+DNSSEC ([RFC 4033][RFC 4033#3], section 3).
 
 [RFC 6891][RFC 6891#6.1.3], section 6.1.3,
 states that if a nameserver has implemented
@@ -79,13 +79,15 @@ the ignored result.
 None
 
 
-[IANA RCODE Registry]: https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[NO_EDNS_SUPPORT]: #outcomes
-[NO_RESPONSE]: #outcomes
-[NS_ERROR]: #outcomes
-[RFC 1035#4.1.1]: https://tools.ietf.org/html/rfc1035#section-4.1.1
-[RFC 6891#6.1.3]: https://tools.ietf.org/html/rfc6891#section-6.1.3
-[RFC 6891]: https://tools.ietf.org/html/rfc6891
+[IANA RCODE Registry]:  https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[Method4]:              ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NO_EDNS_SUPPORT]:      #outcomes
+[NO_RESPONSE]:          #outcomes
+[NS_ERROR]:             #outcomes
+[RFC 1035#4.1.1]:       https://tools.ietf.org/html/rfc1035#section-4.1.1
+[RFC 4033#3]:           https://tools.ietf.org/html/rfc4033#section-3
+[RFC 6891#6.1.3]:       https://tools.ietf.org/html/rfc6891#section-6.1.3
+[RFC 6891]:             https://tools.ietf.org/html/rfc6891
 [UNSUPPORTED_EDNS_VER]: #outcomes
+
