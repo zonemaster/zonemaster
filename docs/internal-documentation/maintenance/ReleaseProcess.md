@@ -178,11 +178,25 @@ this.
 
 ## 12. Merge develop branch into master
 
-Merge the develop branch into master on Github.
+Make sure you're up to date and your working directory is completely clean:
 
-### ToDo
+    git fetch origin
+    git status --ignored
 
-Write a detailed instruction with commands.
+> **Note:** To throw away any and all changes to tracked and untracked files you
+> can run `git clean -dfx ; git reset --hard`.
+
+Create a new branch named `merge-develop-into-master` with both master and
+develop as ancestors and with the exact contents from develop:
+
+    git checkout -b merge-develop-into-master origin/develop
+    git reset origin/master
+    git add .
+    git commit -m 'Update master to state of develop'
+    git merge origin/develop
+
+Create a pull request from `merge-develop-into-master` into `master` and have it
+merged through the normal process.
 
 ## 13. Tag the release with git
 
