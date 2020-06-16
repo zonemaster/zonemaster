@@ -231,11 +231,13 @@ The following issues covers the limitions above:
 Limitations in the support of DNSSEC algorithm 15 is described above.
 
 
-## Contact
+## Contact and mailing lists
 
-For contacting the Zonemaster project, please send an e-mail to
-contact@zonemaster.net.
+See our [contact and mailing lists] page for contact information and
+information on mailing lists.
 
+
+[contact and mailing lists]:    docs/contact-and-mailing-lists.md
 [CPAN]:                         https://www.cpan.org/
 [LDNS]:                         https://www.nlnetlabs.nl/projects/ldns/about/
 [OpenSSL]:                      https://www.openssl.org/
