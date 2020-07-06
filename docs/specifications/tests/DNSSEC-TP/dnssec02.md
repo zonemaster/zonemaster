@@ -90,7 +90,9 @@ case will set DEBUG level on messages for non-responsive name servers.
          then output *[DNSKEY_KSK_NOT_SEP]*.
       6. Find the equivalent RRSIG in *DNSKEY RRSIG* by key ID (key tag).
       7. If matching RRSIG is not found, output *[NO_MATCHING_RRSIG]*.
-      8. If the RRSIG values (algorithm and signature) do not match
+      8. If the Zonemaster installation does not have support for the algorithm
+         that created the RRSIG, then output *[DS02_ALGO_NOT_SUPPORTED_BY_ZM]*.
+      9. Else, if the RRSIG values (algorithm and signature) do not match
          the DNSKEY then output *[BROKEN_RRSIG]*.
 
 8. If no message, besides possibly *[NO_RESPONSE]* or 
@@ -115,6 +117,7 @@ BROKEN_DS                     | ERROR
 BROKEN_RRSIG                  | ERROR
 DNSKEY_KSK_NOT_SEP            | NOTICE
 DNSKEY_NOT_ZONE_SIGN          | ERROR
+DS02_ALGO_NOT_SUPPORTED_BY_ZM | NOTICE
 DS_MATCHES                    | INFO
 NO_MATCHING_DNSKEY            | ERROR
 NO_MATCHING_RRSIG             | ERROR
@@ -145,6 +148,7 @@ None.
 [BROKEN_RRSIG]:            #outcomes
 [DNSKEY_KSK_NOT_SEP]:      #outcomes
 [DNSKEY_NOT_ZONE_SIGN]:    #outcomes
+[DS02_ALGO_NOT_SUPPORTED_BY_ZM]: #outcomes
 [DS_MATCHES]:              #outcomes
 [NO_MATCHING_DNSKEY]:      #outcomes
 [NO_MATCHING_RRSIG]:       #outcomes
