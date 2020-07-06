@@ -142,9 +142,13 @@ mail service for the domain.
        1. Output *[Z09_INCONSISTENT_MAIL_DOMAIN_TARGET]*.
        2. For each RDATA set in *MX Record RDATA*, output *[Z09_MX_FOUND]*
           with mail target from RDATA set and list those name servers.
-    2. Else, if the RDATA with the lowest priority in the RDATA set in
+    2. Else, if the RDATA with the lowest preference in the RDATA set in
        *MX Record RDATA* is a "[Null MX][RFC 7505#section-3]" then
        output *[Z09_NULL_MX_FOUND]*.
+       1. If the preference of the "Null MX" is non-zero then output
+          *[Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE]*.
+       2. If there are more than one MX RDATA in the RDATA set, then output
+          *[Z09_NULL_MX_WITH_OTHER_MX]*.
        1. If *Child Zone* is a TLD (top-level domain) then output
           *[Z09_TLD_MAIL_DOMAIN_NOT_REQUIRED]*.
        2. Else, if *Child Zone* is a zone in the .ARPA tree then output
@@ -177,6 +181,8 @@ Z09_NO_MX                           | NOTICE
 Z09_NO_MX_FOR_MAIL_TARGET           | NOTICE
 Z09_NO_RESPONSE_MX_QUERY            | WARNING
 Z09_NULL_MX_FOUND                   | INFO
+Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE| NOTICE
+Z09_NULL_MX_WITH_OTHER_MX           | NOTICE
 Z09_ROOT_NOT_MAIL_DOMAIN            | INFO
 Z09_TLD_MAIL_DOMAIN_NOT_REQUIRED    | INFO
 Z09_UNEXPECTED_RCODE_MX_RESPONSE    | WARNING
@@ -223,6 +229,8 @@ responding on SOA queries correctly have been reported there.
 [Z09_NO_MX_FOR_MAIL_TARGET]:           #outcomes
 [Z09_NO_RESPONSE_MX_QUERY]:            #outcomes
 [Z09_NULL_MX_FOUND]:                   #outcomes
+[Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE]:#outcomes
+[Z09_NULL_MX_WITH_OTHER_MX]:           #outcomes
 [Z09_ROOT_NOT_MAIL_DOMAIN]:            #outcomes
 [Z09_TLD_MAIL_DOMAIN_NOT_REQUIRED]:    #outcomes
 [Z09_UNEXPECTED_RCODE_MX_RESPONSE]:    #outcomes
