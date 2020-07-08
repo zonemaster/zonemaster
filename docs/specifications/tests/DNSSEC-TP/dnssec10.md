@@ -82,10 +82,16 @@ case will set DEBUG level on messages for non-responsive name servers.
          *[NSEC_SIG_VERIFY_ERROR]* (*[NSEC3_SIG_VERIFY_ERROR]*):
          * No DNSKEY records are returned.
          * There is one or more NSEC records (NSEC3 records) that
-           cannot be verified by retreived RRSIG and DNSKEY records.
-         * There is one or more NSEC records (NSEC3 records) that
            has RRSIG for which the validity period starts after or
-           ends before the present time.
+           ends before the time of test execution.
+      8. Else, if the Zonemaster installation does not have support
+         for the algorithm that created the RRSIG, then output
+         *[DS10_ALGO_NOT_SUPPORTED_BY_ZM]* and print algorithm,
+         DNSKEY key tag and name server IP.
+      9. Else, if there is one or more NSEC records (NSEC3 records)
+         that cannot be verified by retreived RRSIG and DNSKEY
+         records output *[NSEC_SIG_VERIFY_ERROR]*
+         (*[NSEC3_SIG_VERIFY_ERROR]*.
 
 6. If *No-DNSSEC-Zone* is non-empty and at least one of *NSEC-Zone*
    and *NSEC3-Zone* is also non-empty, then output
@@ -107,17 +113,18 @@ case will set DEBUG level on messages for non-responsive name servers.
 ## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
-with the severity level *ERROR* or *CRITICAL*.
+with the [severity level] *ERROR* or *CRITICAL*.
 
 The outcome of this Test Case is "warning" if there is at least one message
-with the severity level *WARNING*, but no message with severity level
+with the [severity level] *WARNING*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
 In other cases the outcome of this Test Case is "pass".
 
-Message                       | Default severity level
+Message                       | Default [severity level]
 :-----------------------------|:-----------------------------------
 BROKEN_DNSSEC                 | ERROR
+DS10_ALGO_NOT_SUPPORTED_BY_ZM | NOTICE
 HAS_NSEC                      | INFO
 HAS_NSEC3                     | INFO
 INCONSISTENT_DNSSEC           | ERROR
@@ -153,7 +160,8 @@ None.
 
 [Basic04]:                 ../Basic-TP/basic04.md
 [BROKEN_DNSSEC]:           #outcomes
-[DNSSEC README]:           ./README.md
+[DNSSEC README]:           README.md
+[DS10_ALGO_NOT_SUPPORTED_BY_ZM]: #outcomes
 [HAS_NSEC3]:               #outcomes
 [HAS_NSEC]:                #outcomes
 [INCONSISTENT_DNSSEC]:     #outcomes
@@ -175,4 +183,5 @@ None.
 [RFC 4035#section-3.1.3]:  https://tools.ietf.org/html/rfc4035#section-3.1.3
 [RFC 5155#section-3]:      https://tools.ietf.org/html/rfc5155#section-3
 [RFC 5155#section-7.2]:    https://tools.ietf.org/html/rfc5155#section-7.2
+[Severity Level]:          ../SeverityLevelDefinitions.md
 [TEST_ABORTED]:            #outcomes
