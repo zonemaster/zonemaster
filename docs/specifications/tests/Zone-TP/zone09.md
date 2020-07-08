@@ -95,29 +95,28 @@ The following zone type is expected not to have an MX:
 
 10. For each name server in *Name Server IP* do:
 
-    1. Send the SOA query over UDP to the name server and collect the
-       response.
-    2. If there is no DNS response on the SOA query, then go to next
-       name server.
-    3. Else, if the RCODE of the response is not "NoError"
-       ([IANA RCODE List]), then go to next name server.
-    4. Else, if the AA flag is not set in the response, then go to next
-       name server.
-    5. Else, if there is no SOA record with owner name matching the query
-       in the answer section of the response, then go to next name server.
-    6. Else, send the MX query over UDP to the name server and collect the
+    1. Send the SOA query over UDP to the name server, collect the response
+       and go to next server if
+       1. there is no DNS response on the SOA query, or
+       2. the RCODE of the response is not "NoError" (IANA RCODE List), or
+       3. the AA flag is not set in the response, or
+       4. there is no SOA record with owner name matching the query.
+
+    2. Else, send the MX query over UDP to the name server and collect the
        response, and:
-       1. If there is no DNS response, then add the name server (IP) to the
+       1. If the response has the TC flag set, re-query over TCP and use that
+          response instead.
+       2. If there is no DNS response, then add the name server (IP) to the
           set *No Response MX Query*.
-       2. Else, if the RCODE of response is not "NoError" ([IANA RCODE List]),
+       3. Else, if the RCODE of response is not "NoError" ([IANA RCODE List]),
           then add the name server (IP) and the RCODE to the set
           *Unexpected RCODE MX Query*.
-       3. Else, if the AA flag is not set in the response, then add the name
+       4. Else, if the AA flag is not set in the response, then add the name
           server (IP) to the set *Non-authoritative MX*.
-       4. Else, if there is no MX record with matching owner name in the
+       5. Else, if there is no MX record with matching owner name in the
           answer section, then add the name server (IP) to the set
           *No MX Record*.
-       5. Else add the name server (IP) and the MX record RDATA set to the set
+       6. Else add the name server (IP) and the MX record RDATA set to the set
           *MX Record RDATA*. (One MX record RDATA set can contain RDATA from
           more than one MX record.)
 
@@ -173,8 +172,11 @@ The following zone type is expected not to have an MX:
           *[Z09_ARPA_MAIL_DOMAIN_NOT_REQUIRED]*.
        5. Else, output *[Z09_NO_MAIL_TARGET]*.
     3. Else, if *Child Zone* is a TLD (top-level domain) then output
-       *[Z09_TLD_MAIL_DOMAIN_HARMFUL]*.
-    4. Else output *[Z09_MX_FOR_MAIL_TARGET_FOUND]*.
+       *[Z09_TLD_MAIL_DOMAIN_HARMFUL]* and print mail target or targets
+       (mail server/servers) in order of preference (lowest first).
+    4. Else output *[Z09_MX_FOR_MAIL_TARGET_FOUND]* and print mail target
+       or targets (mail server/servers) in order of preference (lowest
+       first).
 
 
 ## Outcome(s)
@@ -220,13 +222,11 @@ expected to have been caught by [Basic04].
 
 ## Intercase dependencies
 
-It is assumed that [Basic04] has been run and name server IPs not
-responding on SOA queries correctly have been reported there.
-
+None.
 
 ## Terminology
 
-[Basic04]:                             basic04.md
+[Basic04]:                             ../Basic-TP/basic04.md
 [IAB Statement]:                       https://www.iab.org/documents/correspondence-reports-documents/2013-2/iab-statement-dotless-domains-considered-harmful/
 [IANA RCODE List]:                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [Internet Architecture Board]:         https://en.wikipedia.org/wiki/Internet_Architecture_Board
