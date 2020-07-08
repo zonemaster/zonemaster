@@ -14,22 +14,28 @@ hostmaster@DOMAIN (where DOMAIN is *Child Zone* in this test case).
 > \<HOSTMASTER@domain\>.
 
 Even if not mentioned in [RFC 2142], there are some exception to the
-rule above:
+rule above.
 
-1. Zones in the .ARPA tree are meant for infrastructural identifier,
+Zones in the .ARPA tree are meant for infrastructural identifier,
 and email domains are not expected for those ([RFC 3172]). This means
 that the well known mailbox is not expected for reverse zones
 (in-addr.arpa, ip6.arpa). Those are excluded from the requirement in
 this test case.
 
-2. The root zone cannot be a mail domain since the mail domain is
+The root zone cannot be a mail domain since the mail domain is
 the part to the left of the trailing dot, e.g. "example.com" is the
-the maildomain for tha apex of "example.com.".
+the maildomain for tha apex of "example.com.". The root zone is
+excluded from the requirement.
 
-3. Top-level domains (TLDs) usually do not function as mail domains
-and are probably not meant to be included in the specification in
-[RFC 2142]. Those are excluded from the requirement in this test
-case.
+Top-level domains (TLDs) can technically function as mail domains
+([RCF 5321][RFC 5321#section-2.3.5], section 2.3.5) but they rarely
+have that function and are probably not meant to be included in the
+specification in [RFC 2142]. On the contrary,
+[Internet Architecture Board] concludes in a report
+"[Dotless Domains Considered Harmful][IAB Statement]" that TLD names
+should not be mail domains. In this test case TLDs are not only
+excluded from the requirement of being an mail domain, if found to
+be, a warning will be generated that points that out.
 
 It is therefore expected for every domain (zone), excluding those
 excepted above, to publish an MX record in apex of the zone (i.e.
@@ -42,7 +48,19 @@ If an address record is found in apex it is more often used for web
 service rather than mail service.
 
 [RFC 7505] standardizes "Null MX" which in means that there is no
-mail service for the domain.
+mail service for the domain. If a "Null MX" is found, it is considered
+to be the same as there is no MX.
+
+In this test case, the follwoing zone types are excepted from the
+requirement of MX:
+
+* Root zone
+* TLD zone
+* Zone in the .ARPA tree
+
+The following zone type is expected not to have an MX:
+
+* TLD zone
 
 
 ## Inputs
@@ -130,7 +148,7 @@ mail service for the domain.
 16. If the set *No MX Record* is non-empty and the set *MX Record RDATA*
     is empty, then do:
     1. If *Child Zone* is a TLD (top-level domain) then output
-       *[Z09_TLD_MAIL_DOMAIN_NOT_REQUIRED]*.
+       *[Z09_TLD_MAIL_DOMAIN_NOT_EXPECTED]*.
     2. Else, if *Child Zone* is a zone in the .ARPA tree then output
        *[Z09_ARPA_MAIL_DOMAIN_NOT_REQUIRED]*.
     3. Else, output *[Z09_NO_MX_FOR_MAIL_TARGET]*.
@@ -149,12 +167,14 @@ mail service for the domain.
           *[Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE]*.
        2. If there are more than one MX RDATA in the RDATA set, then output
           *[Z09_NULL_MX_WITH_OTHER_MX]*.
-       1. If *Child Zone* is a TLD (top-level domain) then output
-          *[Z09_TLD_MAIL_DOMAIN_NOT_REQUIRED]*.
-       2. Else, if *Child Zone* is a zone in the .ARPA tree then output
+       3. If *Child Zone* is a TLD (top-level domain) then output
+          *[Z09_TLD_MAIL_DOMAIN_NOT_EXPECTED]*.
+       4. Else, if *Child Zone* is a zone in the .ARPA tree then output
           *[Z09_ARPA_MAIL_DOMAIN_NOT_REQUIRED]*.
-       3. Else, output *[Z09_NO_MAIL_TARGET]*.
-    3. Else output *[Z09_MX_FOR_MAIL_TARGET_FOUND]*.
+       5. Else, output *[Z09_NO_MAIL_TARGET]*.
+    3. Else, if *Child Zone* is a TLD (top-level domain) then output
+       *[Z09_TLD_MAIL_DOMAIN_HARMFUL]*.
+    4. Else output *[Z09_MX_FOR_MAIL_TARGET_FOUND]*.
 
 
 ## Outcome(s)
@@ -184,9 +204,9 @@ Z09_NULL_MX_FOUND                   | INFO
 Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE| NOTICE
 Z09_NULL_MX_WITH_OTHER_MX           | WARNING
 Z09_ROOT_NOT_MAIL_DOMAIN            | INFO
-Z09_TLD_MAIL_DOMAIN_NOT_REQUIRED    | INFO
+Z09_TLD_MAIL_DOMAIN_HARMFUL         | WARNING
+Z09_TLD_MAIL_DOMAIN_NOT_EXPECTED    | INFO
 Z09_UNEXPECTED_RCODE_MX_RESPONSE    | WARNING
-
 
 ## Special procedural requirements
 
@@ -207,21 +227,22 @@ responding on SOA queries correctly have been reported there.
 ## Terminology
 
 [Basic04]:                             basic04.md
+[IAB Statement]:                       https://www.iab.org/documents/correspondence-reports-documents/2013-2/iab-statement-dotless-domains-considered-harmful/
 [IANA RCODE List]:                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[Internet Architecture Board]:         https://en.wikipedia.org/wiki/Internet_Architecture_Board
 [Method4]:                             ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                             ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [RFC 2142#section-7]:                  https://tools.ietf.org/html/rfc2142#section-7
 [RFC 2142]:                            https://tools.ietf.org/html/rfc2142
 [RFC 3172]:                            https://tools.ietf.org/html/rfc3172
+[RFC 5321#section-2.3.5]:              https://tools.ietf.org/html/rfc5321#section-2.3.5
 [RFC 5321#section-5.1]:                https://tools.ietf.org/html/rfc5321#section-5.1
 [RFC 7505#section-3]:                  https://tools.ietf.org/html/rfc7505#section-3
 [RFC 7505]:                            https://tools.ietf.org/html/rfc7505
 [Z09_ARPA_MAIL_DOMAIN_NOT_REQUIRED]:   #outcomes
 [Z09_INCONSISTENT_MAIL_DOMAIN_TARGET]: #outcomes
-[Z09_INCONSISTENT_MAIL_DOMAIN_TARGET]: #outcomes
 [Z09_INDETERMINED_MAIL_TARGET]:        #outcomes
 [Z09_MX_FOR_MAIL_TARGET_FOUND]:        #outcomes
-[Z09_MX_FOUND]:                        #outcomes
 [Z09_MX_FOUND]:                        #outcomes
 [Z09_NON-AUTHORITATIVE_MX_RESPONSE]:   #outcomes
 [Z09_NO_MAIL_TARGET]:                  #outcomes
@@ -232,6 +253,10 @@ responding on SOA queries correctly have been reported there.
 [Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE]:#outcomes
 [Z09_NULL_MX_WITH_OTHER_MX]:           #outcomes
 [Z09_ROOT_NOT_MAIL_DOMAIN]:            #outcomes
-[Z09_TLD_MAIL_DOMAIN_NOT_REQUIRED]:    #outcomes
+[Z09_TLD_MAIL_DOMAIN_HARMFUL]:         #outcomes
+[Z09_TLD_MAIL_DOMAIN_NOT_EXPECTED]:    #outcomes
 [Z09_UNEXPECTED_RCODE_MX_RESPONSE]:    #outcomes
+
+
+
 
