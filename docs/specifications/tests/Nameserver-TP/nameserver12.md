@@ -9,8 +9,8 @@ EDNS is a mechanism to announce capabilities of a dns implementation,
 and is now basically required by any new functionality in dns such as
 DNSSEC ([RFC 6891]).
 
-[RFC 6891, section 6.1.4] states that "Z" flag bits must be set to 
-zero by senders and ignored by receiver.
+[RFC 6891][RCF 6891#section-6.1.4], section 6.1.4, states that "Z"
+flag bits must be set to zero by senders and ignored by receiver.
 
 [IANA] lists the flags in the [EDNS Header Flags] assignment list.
 
@@ -76,14 +76,14 @@ the ignored result.
 None.
 
 
+[EDNS Header Flags]:            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-13
+[IANA]:                         https://www.iana.org/
+[Method4]:                      ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                      ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NO_EDNS_SUPPORT]:              #outcomes
+[NO_RESPONSE]:                  #outcomes
+[NS_ERROR]:                     #outcomes
+[RCF 6891#section-6.1.4]:       https://tools.ietf.org/html/rfc6891#section-6.1.4
+[RFC 6891]:                     https://tools.ietf.org/html/rfc6891
+[Z_FLAGS_NOTCLEAR]:             #outcomes
 
-[EDNS Header Flags]: https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-13
-[IANA]: https://www.iana.org/
-[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[NO_EDNS_SUPPORT]: #outcomes
-[NO_RESPONSE]: #outcomes
-[NS_ERROR]: #outcomes
-[RFC 6891, section 6.1.4]: https://tools.ietf.org/html/rfc6891#section-6.1.4
-[RFC 6891]: https://tools.ietf.org/html/rfc6891
-[Z_FLAGS_NOTCLEAR]: #outcomes
