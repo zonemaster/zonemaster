@@ -1,4 +1,4 @@
-# NAMSERVER13: Test for truncated response on EDNS query
+# NAMESERVER13: Test for truncated response on EDNS query
 
 ## Test case identifier
 
