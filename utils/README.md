@@ -1,6 +1,6 @@
 # Description of help utilities
 
-## testcase.pl
+## [generateTestCaseList.pl]
 
 This tool extracts all Test Case specifications and creates
 an Markdown table to be inserted in [Test Case README]. This
@@ -8,16 +8,15 @@ table should be recreated at each Zonemaster release.
 
 Use:
 
-1. Remove Test Case table from [Test Case README] and save.
+1. Remove Test Case table from [Test Case README] and save the file
 2. Do:
 ```
 cd ../docs/specifications/tests
-../../../utils/testcase.pl >> README.md
+../../../utils/generateTestCaseList.pl >> README.md
 ```
 3. Submit to git.
 
-
-## maptestmessages.pl
+## [generateTestMessages.pl]
 
 This tools creates a map between the Zonemaster messages tags from
 the [Zonemaster-Engine] implementation of the Test Cases and the
@@ -32,11 +31,16 @@ Use:
 1. Do:
 ```
 cd ../docs/specifications/tests
-../../../utils/maptestmessages.pl > TestMessages.md
+../../../utils/generateTestMessages.pl > TestMessages.md
 ```
 2. Submit to git.
 
+
+[generateTestCaseList.pl]:      generateTestCaseList.pl
+[generateTestMessages.pl]:      generateTestMessages.pl
 [TestMessages.md]:              ../docs/specifications/tests/TestMessages.md
 [Test Case README]:             ../docs/specifications/tests/README.md
 [Zonemaster-Engine]:            https://github.com/zonemaster/zonemaster-engine
+
+
 
