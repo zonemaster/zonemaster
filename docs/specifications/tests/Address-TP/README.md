@@ -1,15 +1,13 @@
-# List of Address tests
+# Address Test Plan
 
 These tests focuses on the Address specific test cases of the DNS tests.
 
 These documents uses the terminology defined in the
-[Master Test Plan](../MasterTestPlan.md).
+[Master Test Plan].
 
-## Mapping from Requirements to Test Case
+The list of Address test cases is found in the [Test Case README].
 
-|Req| Description                                                              | Test Case            |
-|:--|:-------------------------------------------------------------------------|:---------------------|
-|R03| Name server address must be globally routable                            |[ADDRESS01](address01.md)|
-|R40| Reverse DNS entry exists for name server IP address                      |[ADDRESS02](address02.md)|
-|R41| Reverse DNS entry matches name server name                               |[ADDRESS03](address03.md)|
-|R04| IPv6 address not part of bogon prefix                                    |[ADDRESS01](address01.md)|
+
+[Master Test Plan]:             ../MasterTestPlan.md
+[Test Case README]:             ../README.md
+
