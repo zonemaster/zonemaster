@@ -8,8 +8,8 @@ Index of Text Case specifications is also found in [README](README.md).
 [Zonemaster-Engine] is the repository of the implementation of the Test Cases (the methods).
 
 
-| Module | Method (implemented test case) | Test Case Specification |
-|:-------|:-------------------------------|-------------------------|
+|Test level (linked to Perl code at CPAN)|Method name in Perl code|Test Case Identifier (linked to specification)|
+|:---------------------------------------|:-----------------------|----------------------------------------------|
 | [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic00 | [BASIC00](Basic-TP/basic00.md) |
 | [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic01 | [BASIC01](Basic-TP/basic01.md) |
 | [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic02 | [BASIC02](Basic-TP/basic02.md) |

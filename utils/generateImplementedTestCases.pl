@@ -15,8 +15,11 @@ print "[Zonemaster-Engine] is the repository of the implementation of the Test C
 print "\n\n";
 
 # table header
-print "| Module | Method (implemented test case) | Test Case Specification |\n";
-print "|:-------|:-------------------------------|-------------------------|\n";
+print '|Test level (linked to Perl code at CPAN)|Method name in Perl code|',
+    "Test Case Identifier (linked to specification)|\n";
+print '|:---------------------------------------|:-----------------------|',
+    "----------------------------------------------|\n";
+
 
 # table content
 foreach my $module ( 'Basic', sort { fc $a cmp fc $b } Zonemaster::Engine::Test->modules ) {
