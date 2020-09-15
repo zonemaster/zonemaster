@@ -24,9 +24,9 @@ foreach my $module ( 'Basic', sort { fc $a cmp fc $b } Zonemaster::Engine::Test-
     my $ref  = $full->metadata;
     my $modulelink = "https://metacpan.org/pod/Zonemaster::Engine::Test::$module";
     for my $method (sort keys %$ref) {
-	my $testcase = uc ($method);
-	my $testcaselink = "${module}-TP/${method}.md";
-	printf "| [%s](%s) | %s | [%s](%s) |\n", $module, $modulelink, $method, $testcase, $testcaselink;
+        my $testcase = uc ($method);
+        my $testcaselink = "${module}-TP/${method}.md";
+        printf "| [%s](%s) | %s | [%s](%s) |\n", $module, $modulelink, $method, $testcase, $testcaselink;
     }
 }
 
