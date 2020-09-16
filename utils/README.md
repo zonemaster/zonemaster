@@ -35,12 +35,30 @@ cd ../docs/specifications/tests
 ```
 2. Submit to git.
 
+## [generateImplementedTestCases.pl]
 
-[generateTestCaseList.pl]:      generateTestCaseList.pl
-[generateTestMessages.pl]:      generateTestMessages.pl
-[TestMessages.md]:              ../docs/specifications/tests/TestMessages.md
-[Test Case README]:             ../docs/specifications/tests/README.md
-[Zonemaster-Engine]:            https://github.com/zonemaster/zonemaster-engine
+This tool creates a list of implemented test cases from
+the [Zonemaster-Engine] implementation. This is used to create
+the complete [ImplementedTestCases.md] file. The matching version of
+[Zonemaster-Engine] must be installed.
+
+[ImplementedTestCases.md] should be recreated at each Zonemaster release.
+
+Use:
+
+1. Do:
+```
+cd ../docs/specifications/tests
+../../../utils/generateImplementedTestCases.pl > ImplementedTestCases.md
+```
+2. Submit to git.
 
 
+[generateImplementedTestCases.pl]:		generateImplementedTestCases.pl
+[generateTestCaseList.pl]:      		generateTestCaseList.pl
+[generateTestMessages.pl]:      		generateTestMessages.pl
+[ImplementedTestCases.md]:			../docs/specifications/tests/ImplementedTestCases.md
+[TestMessages.md]:              		../docs/specifications/tests/TestMessages.md
+[Test Case README]:             		../docs/specifications/tests/README.md
+[Zonemaster-Engine]:            		https://github.com/zonemaster/zonemaster-engine
 
