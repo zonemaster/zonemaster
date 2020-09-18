@@ -23,6 +23,8 @@ report problems found in the following areas:
 * Name Server responding with unexpected RCODE (any except "NOERROR")
   on query for SOA or NS for *Child Zone*.
 
+This test case is expected to run before [Basic02] but neither its
+execution nor outcome are dependent on the order.
 
 ## Inputs
 
@@ -100,8 +102,6 @@ B04_WRONG_SOA_RECORD              | WARNING
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol and log a message reporting
 the ignored result.
-
-This test case is run before [Basic02].
 
 ## Intercase dependencies
 
