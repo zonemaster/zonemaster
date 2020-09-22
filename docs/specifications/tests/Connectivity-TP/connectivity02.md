@@ -7,8 +7,8 @@
 ## Objective
 
 DNS queries are sent using TCP on port 53, as described in
-[RFC 1035#section-4.2.2][RFC 1035], section 4.2.2. As specified in
-[RFC 7766#section-1][RFC 7766], section 1, support of TCP is mandatory.
+[RFC 1035][RFC 1035#section-4.2.2], section 4.2.2. As specified in
+[RFC 7766][RFC 7766#section-1], section 1, support of TCP is mandatory.
 
 The objective for this test is that all the authoritative name servers for
 the domain are accessible over TCP on port 53.
