@@ -71,9 +71,9 @@ Debian 9         | 10.1            | 9.6
 Debian 10        | 10.3            | 11.7
 FreeBSD 11.4     | 10.5.5 (###)    | 12.4
 FreeBSD 12.1     | 10.5.5 (###)    | 12.4
-Ubuntu 16.04.7   | 10.0            | 9.5
-Ubuntu 18.04.5   | 10.1            | 10.12
-Ubuntu 20.04.1   | 10.3 (#)        | 12.4 (#)
+Ubuntu 16.04     | 10.0            | 9.5
+Ubuntu 18.04     | 10.1            | 10.12
+Ubuntu 20.04     | 10.3 (#)        | 12.4 (#)
 
 ###) The latest stable in the highest release serie. There is no
 default version for MariaDB in FreeBSD.
@@ -97,9 +97,9 @@ Debian 9         | 5.24
 Debian 10        | 5.28
 FreeBSD 11.4     | 5.32
 FreeBSD 12.1     | 5.32
-Ubuntu 16.0.7    | 5.22
-Ubuntu 18.04.5   | 5.26
-Ubuntu 20.04.1   | 5.30
+Ubuntu 16.04     | 5.22
+Ubuntu 18.04     | 5.26
+Ubuntu 20.04     | 5.30
 
 Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been
 tested with the default version of Perl in the OSs as listed in the table above.
