@@ -57,9 +57,9 @@ and processor architecture listed below.
 * Debian 10
 * FreeBSD 11.4
 * FreeBSD 12.1
-* Ubuntu 16.04.7
-* Ubuntu 18.04.5
-* Ubuntu 20.04.1
+* Ubuntu 16.04
+* Ubuntu 18.04
+* Ubuntu 20.04
 
 ### Supported database engine versions
 
