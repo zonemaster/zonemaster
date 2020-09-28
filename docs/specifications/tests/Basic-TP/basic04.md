@@ -8,9 +8,9 @@
 Many test cases will query the name servers in the delegation or the
 name servers appointed by the NS records in the zone for the NS or SOA
 record or both. Reporting problem is crucial, but instead of letting
-several test cases report the same problems found, all test cases are
-made dependent on this test case and this case only will report any
-problems found in the following areas:
+several test cases report the same problems found, most test cases
+assume that this test case has been run. Only this test case will
+report problems found in the following areas:
 
 * Name Server not responding to a query without EDNS over UDP.
 * Name Server responding to TCP but not UDP.
@@ -23,6 +23,8 @@ problems found in the following areas:
 * Name Server responding with unexpected RCODE (any except "NOERROR")
   on query for SOA or NS for *Child Zone*.
 
+This test case is expected to run before [Basic02] but neither its
+execution nor outcome are dependent on the order.
 
 ## Inputs
 
@@ -100,8 +102,6 @@ B04_WRONG_SOA_RECORD              | WARNING
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol and log a message reporting
 the ignored result.
-
-This test case is always run and is run before [Basic02].
 
 ## Intercase dependencies
 
