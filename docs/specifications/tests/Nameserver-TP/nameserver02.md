@@ -61,8 +61,8 @@ ENDS due e.g. firewall issues, the UDP buffer size is set to 512 bytes
       then output *[NO_EDNS_SUPPORT]*:
       1. It has the RCODE "FORMERR" 
       2. It has no OPT record.
-   4. Else, if the DNS response meet the following criteria,
-      then just go to the next name server (compliant server):
+   4. Else, if the DNS response meet the following criteria (compliant 
+      server), then go to the next name server:
       1. It has the RCODE "NOERROR".
       2. The answer section contains the SOA record for *Child Zone*.
       3. It has OPT record with EDNS version 0.
@@ -108,13 +108,16 @@ the ignored result.
 None
 
 
+[BREAKS_ON_EDNS]:                #outcomes
+[BROKEN_EDNS_SUPPORT]:           #outcomes
+[EDNS_RESPONSE_WITHOUT_EDNS]:    #outcomes
+[EDNS_VERSION_ERROR]:            #outcomes
+[Method4]:                       ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                       ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NO_EDNS_SUPPORT]:               #outcomes
+[NO_RESPONSE]:                   #outcomes
+[NS_ERROR]:                      #outcomes
+[RFC 6891, section 6.1.1]:       https://tools.ietf.org/html/rfc6891#section-6.1.1
+[RFC 6891, section 7]:           https://tools.ietf.org/html/rfc6891#section-7
+[RFC 6891]:                      https://tools.ietf.org/html/rfc6891
 
-[BROKEN_EDNS_SUPPORT]: #outcomes
-[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[NO_EDNS_SUPPORT]: #outcomes
-[NO_RESPONSE]: #outcomes
-[NS_ERROR]: #outcomes
-[RFC 6891, section 6.1.1]: https://tools.ietf.org/html/rfc6891#section-6.1.1
-[RFC 6891, section 7]: https://tools.ietf.org/html/rfc6891#section-7
-[RFC 6891]: https://tools.ietf.org/html/rfc6891
