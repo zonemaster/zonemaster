@@ -70,16 +70,16 @@ severity level ERROR or CRITICAL.
 
 In other cases the outcome of this Test Case is "pass".
 
-Message            |Default severity level (if message is outputted)
+Message            |Default severity level
 :------------------|:------------
-EMPTY_ASN_SET      |ERROR        
-ERROR_ASN_DATABASE |ERROR        
-IPV4_ONE_ASN       |ERROR        
-IPV4_SAME_ASN      |NOTICE       
-IPV4_DIFFERENT_ASN |INFO         
-IPV6_ONE_ASN       |ERROR        
-IPV6_SAME_ASN      |NOTICE       
-IPV6_DIFFERENT_ASN |INFO         
+EMPTY_ASN_SET      |ERROR
+ERROR_ASN_DATABASE |ERROR
+IPV4_ONE_ASN       |WARNING
+IPV4_SAME_ASN      |NOTICE
+IPV4_DIFFERENT_ASN |INFO
+IPV6_ONE_ASN       |WARNING
+IPV6_SAME_ASN      |NOTICE
+IPV6_DIFFERENT_ASN |INFO
 
 
 ## Special procedural requirements
