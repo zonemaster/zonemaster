@@ -133,8 +133,9 @@ origin6.asnlookup.zonemaster.net
       *[ERROR_ASN_DATABASE]* and end these steps for Cymru look-up of 
       the specific IP address (the response was malformed).
 
-10. The ASN or ASNs from step 11 is the ASN set for that IP address
-    and is used for the further processing.
+10. Create the ASN set, for the IP address, from the ASN or ASNs from
+    the steps above and use it for the further processing.
+
 
 
 ### RIPE ASN lookup
@@ -171,8 +172,8 @@ whois -h riswhois.ripe.net " -F -M 192.0.2.10"
       *[ERROR_ASN_DATABASE]* and end these steps (the response was 
       malformed).
 
-8. From the ASN or ASNs from step 6 create the ASN set for the IP
-   address and is used for the further processing.
+8. Create the ASN set, for the IP address, from the ASN or ASNs from
+   the steps above and use it for the further processing.
 
 ## Intercase dependencies
 
@@ -182,7 +183,7 @@ None
 [Cymru database]:       #cymru-asn-lookup
 [EMPTY_ASN_SET]:        #outcomes 
 [ERROR_ASN_DATABASE]:   #outcomes 
-[IP to ASN Mapping]:    https://team-cymru.org/IP-ASN-mapping.html#dns
+[IP to ASN Mapping]:    https://team-cymru.com/community-services/ip-asn-mapping/#dns
 [IPV4_DIFFERENT_ASN]:   #outcomes 
 [IPV4_ONE_ASN]:         #outcomes 
 [IPV4_SAME_ASN]:        #outcomes 
