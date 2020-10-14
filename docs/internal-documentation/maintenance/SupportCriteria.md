@@ -69,7 +69,7 @@ Operating system specific guidelines:
 
 Zonemaster provides database integrations for these database engines:
 
-* MySQL
+* MariaDB
 * PostgreSQL
 * SQLite
 
@@ -86,17 +86,16 @@ Database engine versions that lack required features cannot be supported.
 
 * Database engine versions provided by each version of Debian are listed here:
   * <https://packages.debian.org/search?searchon=names&keywords=mariadb-server>
-  * <https://packages.debian.org/search?searchon=names&keywords=mysql-server>
   * <https://packages.debian.org/search?searchon=names&keywords=postgresql>
   * <https://packages.debian.org/search?searchon=names&keywords=sqlite3>
 
 * Database engine versions provided FreeBSD are listed here:
-  * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=mysql>
+  * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=mariadb>
   * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=postgresql>
   * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=sqlite3>
 
 * Database engine versions provided by each version of Ubuntu are listed here:
-  * <https://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=mysql-server>
+  * <https://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=mariadb-server>
   * <https://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=postgresql>
   * <https://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=sqlite3>
 
