@@ -23,7 +23,7 @@ is up to date with the [supported Perl versions] in main README.md.
  * zonemaster-cli - [.travis.yml][cli.travis]
  * zonemaster-backend - [.travis.yml][backend.travis]
 
-(zonemaster-gui uses no Perl and (zonemaster/zonemaster uses no Travis.)
+(zonemaster-gui uses no Perl and zonemaster/zonemaster uses no Travis.)
 
 
 ## 3. Verify that META.yml will have all the correct data
