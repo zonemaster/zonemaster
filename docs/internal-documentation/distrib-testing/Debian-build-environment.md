@@ -1,6 +1,21 @@
-# Debian system preparation for installing Zonemaster components
+# Debian Build Environment
+
+These are instructions for creating a build environment for Zonemaster
+components based on Perl. This is not meant as instructions for installing
+Zonemaster itself. 
+
+This instruction is for creating it on Debian. See other files for other OSs.
+
+> Should this be Debian 9 or Debian 10? Do we need to cover both?
+
+> Is git installed by default?
+>
+> Here we need gettext. Anything else?
+
 
 1. Make a clean installation of Debian.
+
+> Are we root at this stage?
 
 2. Update the package database.
 
@@ -40,12 +55,4 @@
    exit
    ```
 
-
-## Preparing to install the repositories
-
-1. Follow the steps (1-7) of the [release
-process](https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess.md)
-to prepare the tarballs in a separate machine
-
-2. Install the modules as per the respective installation instructions
 
