@@ -138,14 +138,12 @@ To clean:
 
        perl Makefile.PL
 
-> **Note:** Ignore the warning about the missing META.yml (created by the very
-> same command).
->
-> For Zonemaster-LDNS ignore the warnings about lots of missing ldns source
-> files (fetched by the very same command).
->
-> For Zonemaster-Engine ignore the warnings about missing .mo files (created
-> in a later step).
+> **Note: You can ingore the following warnings:**
+> * Missing META.yml (created by the very same command).
+> * Zonemaster-LDNS: Missing ldns source files (fetched by the very same command).
+> * Zonemaster-Engine and -CLI: Missing .mo files (created in a later step).
+> * Missing prerequisite (only needed on target system), e.g.:
+>   * "Warning: prerequisite JSON::XS 0 not found."
 
 
 ## 8. Verify that MANIFEST is up to date and that tarball can be built
