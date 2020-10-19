@@ -138,10 +138,10 @@ To clean:
 
        perl Makefile.PL
 
-> **Note: You can ingore the following warnings:**
+> **Note: You can ignore the following warnings:**
 > * Missing META.yml (created by the very same command).
 > * Zonemaster-LDNS: Missing ldns source files (fetched by the very same command).
-> * Zonemaster-Engine and -CLI: Missing .mo files (created in a later step).
+> * Zonemaster-Engine and Zonemaster-CLI: Missing .mo files (created in a later step).
 > * Missing prerequisite (only needed on target system), e.g.:
 >   * "Warning: prerequisite JSON::XS 0 not found."
 
