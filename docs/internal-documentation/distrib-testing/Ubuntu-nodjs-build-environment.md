@@ -1,7 +1,7 @@
 # Ubuntu nodjs Build Environment
 
 The requirements to build the Zonemaster-GUI distribution zip file are nodejs
-and npm. Below are instructions to create such an build environment on Ubuntu.
+and npm. Below are instructions to create such a build environment on Ubuntu.
 
 Nodjs and npn are available from the [Node.js] official website. Minimal version
 of Nodejs is 10.0 but install the latest LTS version available. The process has
@@ -49,5 +49,4 @@ been tested on Ubuntu 18.04, which we use here.
 
 [Node.js]:                              https://nodejs.org/en/
 [NVM]:                                  https://github.com/nvm-sh/nvm
-
 
