@@ -9,33 +9,10 @@ been tested on Ubuntu 18.04, which we use here.
 
 1. Make a clean installation of Ubuntu 18.04.
 
-> Are we root at this stage?
-
 2. Update the package database.
 
    ```sh
-   apt-get update
-   ```
-
-3. Create a new user.
-
-   ```sh
-   adduser username
-   ```
-
-4. Add user to the sudoer list.
-
-   ```sh
-   visudo
-   ```
-
-   Copy the contents of the ‘root’ in 'visudo' and change ‘root’ to ‘username’.
-
-
-5. Exit from the root shell.
-
-   ```sh
-   exit
+   sudo apt-get update
    ```
 
 6. Install nodejs by using [NVM], a node version manager.

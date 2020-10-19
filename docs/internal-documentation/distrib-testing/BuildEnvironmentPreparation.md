@@ -33,7 +33,12 @@ There could be more use cases.
 
 ### Building Perl CPAN packages
 
-To create a Perl tar ball (use cases 1 and 2) you need a specific environment. Once you have set your [CentOS build environment], [Debian build environment], [FreeBSD build environment] or [Ubuntu build environment], follow the building instructions as described in [the Release Process - create test distribution document](../../maintenance/ReleaseProcess-create-test-distribution.md).
+To create a Perl tar ball (use cases 1 and 2) you need a specific
+environment. Once you have set your [CentOS build environment], 
+[Debian build environment], [FreeBSD build environment] or 
+[Ubuntu build environment], follow the building instructions as 
+described in [create test distribution] document of the
+release process.
 
 ### GUI zip distribution
 
@@ -59,11 +64,15 @@ For use case 7, install an environment as for use cases
 1 or 3. Additional installation might be needed.
 
 
-[CentOS build environment]:         CentOS-build-environment.md
-[Debian build environment]:         Debian-build-environment.md
-[FreeBSD build environment]:        FreeBSD-build-environment.md
-[Ubuntu build environment]:         Ubuntu-build-environment.md
-[Ubuntu nodjs environment]:         Ubuntu-nodjs-build-environment.md
-[installation instructions]:        https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Installation.md
-[instructions for translators]:     https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Translation-translators.md
-[utils README]:                     ../../../utils/README.md
+[CentOS build environment]:           CentOS-build-environment.md
+[Debian build environment]:           Debian-build-environment.md
+[FreeBSD build environment]:          FreeBSD-build-environment.md
+[Ubuntu build environment]:           Ubuntu-build-environment.md
+[Ubuntu nodjs environment]:           Ubuntu-nodjs-build-environment.md
+[create test distribution]:           ../../maintenance/ReleaseProcess-create-test-distribution.md
+[installation instructions]:          https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Installation.md
+[instructions for translators]:       https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Translation-translators.md
+[utils README]:                       ../../../utils/README.md
+
+
+

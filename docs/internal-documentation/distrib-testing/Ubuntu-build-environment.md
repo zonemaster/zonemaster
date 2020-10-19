@@ -6,11 +6,23 @@ Zonemaster itself.
 
 This instruction is for creating it on Ubuntu. See other files for other OSs.
 
-> Should this be Ubuntu 20.04? Do we need to cover more?
+1. Make a clean installation of Ubuntu 18.04 or 20.04
 
-> Is git installed by default?
->
-> Here we need gettext. Anything else?
->
-> Can we just link to the instruction for Debian?
+2. Update the package database.
+
+   ```sh
+   sudo apt-get update
+   ```
+
+3. Install prerequisites (binaries)
+
+   ```sh
+   sudo apt-get install cpanminus gettext autoconf automake build-essential
+   ```
+
+3. Install prerequisites (binaries)
+
+   ```sh
+   sudo cpanm Module::Install
+   ```
 
