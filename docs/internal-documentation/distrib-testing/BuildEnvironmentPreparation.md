@@ -2,7 +2,7 @@
 
 ## Overview
 
-The build environment are used for several purposes, but the purpose
+The build environment is used for several purposes, but the purpose
 is not for the actual installation of Zonemaster. For the installation
 the normal installation instructions for users should be used. In most
 cases, if you create a build environment you usually do not install
