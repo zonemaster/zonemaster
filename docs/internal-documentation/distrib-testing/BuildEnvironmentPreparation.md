@@ -31,11 +31,9 @@ Zonemaster on that.
 
 There could be more use cases.
 
-### Perl CPAN packages
+### Building Perl CPAN packages
 
-For use case 1 and 2, install [CentOS build environment],
-[Debian build environment], [FreeBSD build environment] 
-or [Ubuntu build environment] for Perl package building.
+To create a Perl tar ball (use cases 1 and 2) you need a specific environment. Once you have set your [CentOS build environment], [Debian build environment], [FreeBSD build environment] or [Ubuntu build environment], follow the building instructions as described in [the Release Process - create test distribution document](../../maintenance/ReleaseProcess-create-test-distribution.md).
 
 ### GUI zip distribution
 
