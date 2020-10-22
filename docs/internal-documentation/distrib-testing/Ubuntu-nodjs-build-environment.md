@@ -10,20 +10,25 @@ been tested on Ubuntu 18.04, which we use here.
 1. Make a clean installation of Ubuntu 18.04.
 
 2. Update the package database.
-
    ```sh
    sudo apt-get update
    ```
 
-6. Install nodejs by using [NVM], a node version manager.
-
+3. Install nodejs by using [NVM], a node version manager.
    ```sh
    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
    nvm install 13.12.0
    nvm use 13.12.0
    ```
 
+4. After installation, log out and log in again to handle [known issue], or just:
 
+   ```sh
+   source ~/.bashrc
+   ```
+
+
+[known issue]:                          https://github.com/nvm-sh/nvm#troubleshooting-on-linux
 [Node.js]:                              https://nodejs.org/en/
 [NVM]:                                  https://github.com/nvm-sh/nvm
 
