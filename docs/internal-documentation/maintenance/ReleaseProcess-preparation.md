@@ -44,7 +44,7 @@ Makefile.PL must be updated.
      below and that the value at each path matches the listed requirement.
 
 
-## 6. Verify that MANIFEST and MANIFEST.SKIP are up to date
+## 4. Verify that MANIFEST and MANIFEST.SKIP are up to date
 
 > This section is *NOT* relevant for Zonemaster-GUI or Zonemeaster/Zonemaster.
 
