@@ -76,7 +76,7 @@ Zonemaster provides database integrations for these database engines:
 
 ## Database engine versions
 
-The database engine versions that are provided by the respecive supported
+The database engine versions that are provided by the respective supported
 operating system version should be supported.
 
 Database engine versions that lack required features cannot be supported.
@@ -115,7 +115,7 @@ Locales that expose classes of bugs should be included.
 
 ## Perl versions
 
-The Perl versions that are provided by the respecive supported operating system
+The Perl versions that are provided by the respective supported operating system
 version should be supported.
 
 The point release should not be specified.

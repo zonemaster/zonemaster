@@ -23,7 +23,7 @@ is up to date with the [supported Perl versions] in main README.md.
  * zonemaster-cli - [.travis.yml][cli.travis]
  * zonemaster-backend - [.travis.yml][backend.travis]
 
-(zonemaster-gui uses no Perl and (zonemaster/zonemaster uses no Travis.)
+> Zonemaster-GUI uses no Perl and Zonemaster/Zonemaster uses no Travis.
 
 
 ## 3. Verify that META.yml will have all the correct data
@@ -44,7 +44,7 @@ Makefile.PL must be updated.
      below and that the value at each path matches the listed requirement.
 
 
-## 6. Verify that MANIFEST and MANIFEST.SKIP are up to date
+## 4. Verify that MANIFEST and MANIFEST.SKIP are up to date
 
 > This section is *NOT* relevant for Zonemaster-GUI or Zonemeaster/Zonemaster.
 

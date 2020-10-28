@@ -130,10 +130,11 @@ more details.
 To be able to support and process algorithm 15 for DNSSEC the underlying OS must
 have recent version of [OpenSSL] installed, and [LDNS] being linked against that
 OpenSSL (see [Zonemaster-LDNS-README][Zonemaster-LDNS] for more details). These
-conditions are not met in all supported. The following table lists the expected
-support for algorithm 15 in the supported OSs, given that the installation
-instructions given for Zonemaster have been followed. A test of the domain
-`ed25519.nl` will reveal if the Zonemaster installation has the support or not.
+conditions are not met in all supported OSs. The following table lists the
+expected support for algorithm 15 in the supported OSs, given that the
+installation instructions given for Zonemaster have been followed. A test of the
+domain `ed25519.nl` will reveal if the Zonemaster installation has the support
+or not.
 
 Operating System | Supports algorithm 15
 ---------------- | ----
