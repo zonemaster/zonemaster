@@ -5,7 +5,13 @@ The purpose of this part is to create the test distributions that can be
 used in QA testing for a release. It can also be used to create test
 distributions to verify a pull request.
 
-## 1. Create a clean environment
+
+## 1. Prepare a build environment
+Set up build system to be used for the test distribution creation. See
+[Build Environment Preparation] for set it up.
+
+
+## 2. Create a clean environment
 
 Make sure that you have checked out the correct git branch, normally
 the `develop` branch and that your clone is up-to-date.
@@ -35,7 +41,7 @@ All branches called "develop":
     git branch -av --list "*develop"
 
 
-## 2. Generate Makefile, META.yml and others
+## 3. Generate Makefile, META.yml and others
 
 > This section is not relevant for Zonemaster-GUI.
 
@@ -54,7 +60,7 @@ All branches called "develop":
 > * Missing prerequisite (only needed on target system), e.g.:
 >   * "Warning: prerequisite JSON::XS 0 not found."
 
-## 3. Verify that MANIFEST is up to date and that tarball can be built
+## 4. Verify that MANIFEST is up to date and that tarball can be built
 
 > This section is not relevant for Zonemaster-GUI.
 
@@ -69,7 +75,7 @@ MANIFEST.SKIP, i.e. no missing or extra files:
     make distcheck
 
 
-## 4. Produce distribution tarballs
+## 5. Produce distribution tarballs
 
 > This section is not relevant for Zonemaster-GUI.
 
@@ -120,8 +126,8 @@ tarballs (zip file):
 
 
 <!-- Zonemaster links point on purpose on the develop branch. -->
-[Node.js]:                              https://nodejs.org/en/
+[Build Environment Preparation]:        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/distrib-testing/BuildEnvironmentPreparation.md
 [NVM]:                                  https://github.com/nvm-sh/nvm
+[Node.js]:                              https://nodejs.org/en/
 [SystemTesting]:                        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/maintenance/SystemTesting.md
-
 
