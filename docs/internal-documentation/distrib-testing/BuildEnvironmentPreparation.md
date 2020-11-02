@@ -12,8 +12,9 @@ Zonemaster on that.
   to do that from a build environment.
 * For the use cases below, your should in most cases make sure that
   you use the develop branch.
-* You should probably read this file from the develop branch, not
-  master branch to get the latest changes.
+* You should probably read this file
+  [from the develop branch][BuildEnvironmentPreparation], not master
+  branch to get the latest changes.
 
 ## Use cases
 
@@ -34,9 +35,9 @@ There could be more use cases.
 ### Building Perl CPAN packages
 
 To create a Perl tar ball (use cases 1 and 2) you need a specific
-environment. Once you have set your [CentOS build environment], 
-[Debian build environment], [FreeBSD build environment] or 
-[Ubuntu build environment], follow the building instructions as 
+environment. Once you have set up your [CentOS build environment],
+[Debian build environment], [FreeBSD build environment] or
+[Ubuntu build environment], follow the building instructions as
 described in [create test distribution] document of the
 release process.
 
@@ -47,14 +48,14 @@ For use cases 3 and 4, install [Ubuntu nodjs environment].
 ### Translation work
 
 For use case 5 (which applies for Zonemaster-Engine and
-Zonemaster-CLI, install one of the environments listed for
+Zonemaster-CLI) install one of the environments listed for
 use case 1 and 2 and then follow the Zonemaster-Engine
 [instructions for translators].
 
 ### Updating documents
 
 For use case 6, install one of the environments listed
-for use cases 1 and 2, and then follow the 
+for use cases 1 and 2, and then follow the
 [installation instructions] for Zonemaster-Engine. Make sure
 that you install from develop branch.
 
@@ -64,6 +65,8 @@ For use case 7, install an environment as for use cases
 1 or 3. Additional installation might be needed.
 
 
+<!-- Zonemaster links point on purpose on the develop branch. -->
+[BuildEnvironmentPreparation]:        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/distrib-testing/BuildEnvironmentPreparation.md
 [CentOS build environment]:           CentOS-build-environment.md
 [Debian build environment]:           Debian-build-environment.md
 [FreeBSD build environment]:          FreeBSD-build-environment.md
@@ -73,6 +76,3 @@ For use case 7, install an environment as for use cases
 [installation instructions]:          https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Installation.md
 [instructions for translators]:       https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Translation-translators.md
 [utils README]:                       ../../../utils/README.md
-
-
-
