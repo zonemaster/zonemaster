@@ -8,7 +8,7 @@ distributions to verify a pull request.
 
 ## 1. Prepare a build environment
 Set up build system to be used for the test distribution creation. See
-[Build Environment Preparation] for set it up.
+[Build Environment Preparation] for how to set it up.
 
 
 ## 2. Create a clean environment
@@ -83,7 +83,7 @@ MANIFEST.SKIP, i.e. no missing or extra files:
 
 
 
-## 5. Produce distribution zip file
+## 6. Produce distribution zip file
 
 > This section is relevant for Zonemaster-GUI only.
 
@@ -109,7 +109,7 @@ The distribution zip file is in the root level of the zonemaster-gui folder.
 Its name is `zonemaster_web_gui.zip`.
 
 
-## 6. Verify that Zonemaster works when installed
+## 7. Verify that Zonemaster works when installed
 
 Verify that Zonemaster works when installed according to the documented
 installation procedures
