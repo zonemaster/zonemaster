@@ -7,7 +7,7 @@ Zonemaster itself.
 This instruction is for creating it on FreeBSD. See other files for other OSs.
 
 
-1. Do a clean installation of FreeBSD 12.1
+1. Do a clean installation of latest version of FreeBSD 12
 
 2. Become root:
 
@@ -62,7 +62,7 @@ This instruction is for creating it on FreeBSD. See other files for other OSs.
 
 9. Install some tools
     ```sh
-    pkg install devel/gettext-tools devel/git-lite devel/p5-Locale-PO p5-App-cpanminus
+    pkg install gettext-tools git-lite p5-Locale-PO p5-App-cpanminus
     ```
 
 10. Install other tools needed, e.g. editor
