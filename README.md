@@ -65,7 +65,7 @@ and processor architecture listed below.
 
 Operating System | MariaDB         | PostgreSQL
 ---------------- | ----------------| -----------
-CentOS 7         | 5.5 (#)         | 9.3 (##)
+CentOS 7         | 5.5             | 9.3 (##)
 CentOS 8         | ????            | 10.6 (##)
 Debian 9         | 10.1            | 9.6
 Debian 10        | 10.3            | 11.7
