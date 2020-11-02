@@ -100,7 +100,7 @@ We use [NVM], a node version manager.
 
 To build the tarballs, steps are: 
 
-1. `git clone https://github.com/zonemaster/zonemaster-gui.git`
+1. `git clone -b develop https://github.com/zonemaster/zonemaster-gui.git`
 2. `cd zonemaster-gui`
 3. `npm install` 
 4. `npm run release`
