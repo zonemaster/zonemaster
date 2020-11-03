@@ -62,7 +62,7 @@ This instruction is for creating it on FreeBSD. See other files for other OSs.
 
 9. Install some tools
     ```sh
-    pkg install gettext-tools git-lite p5-Locale-PO p5-App-cpanminus
+    pkg install gmake gettext-tools git-lite p5-Locale-PO p5-App-cpanminus p5-Module-Install
     ```
 
 10. Install other tools needed, e.g. editor
