@@ -1,8 +1,6 @@
 ![Zonemaster](docs/images/zonemaster_logo_2020_color.png)
 ==========
 
-**_This is a draft version for v2020.1 release._**
-
 ## Introduction
 
 Zonemaster is a software package that validates the quality of a DNS delegation.
@@ -56,7 +54,7 @@ and processor architecture listed below.
 * Debian 9
 * Debian 10
 * FreeBSD 11.4
-* FreeBSD 12.1
+* FreeBSD 12.2
 * Ubuntu 16.04
 * Ubuntu 18.04
 * Ubuntu 20.04
@@ -69,18 +67,13 @@ CentOS 7         | 5.5             | 9.3
 CentOS 8         | 10.3            | 10.14 
 Debian 9         | 10.1            | 9.6
 Debian 10        | 10.3            | 11.7
-FreeBSD 11.4     | 10.5.5 (###)    | 12.4
-FreeBSD 12.1     | 10.5.5 (###)    | 12.4
+FreeBSD 11.4     | 5,7 (#)         | 12.4
+FreeBSD 12.2     | 5.7 (#)         | 12.4
 Ubuntu 16.04     | 10.0            | 9.5
 Ubuntu 18.04     | 10.1            | 10.14
 Ubuntu 20.04     | 10.3            | 12.4
 
-###) The latest stable in the highest release serie. There is no
-default version for MariaDB in FreeBSD.
-
-##) From EPEL (?)
-
-#) Version to be verified at v2020.1 QA testing
+#) FreeBSD uses MySQL, not MariaDB.
 
 
 Zonemaster Backend has been tested with the combination of OS and database
@@ -96,7 +89,7 @@ CentOS 8         | 5.26
 Debian 9         | 5.24
 Debian 10        | 5.28
 FreeBSD 11.4     | 5.32
-FreeBSD 12.1     | 5.32
+FreeBSD 12.2     | 5.32
 Ubuntu 16.04     | 5.22
 Ubuntu 18.04     | 5.26
 Ubuntu 20.04     | 5.30
@@ -111,12 +104,12 @@ indicated bellow and should work perfectly with similar configurations.
 
 Operating System | Browser | Version
 ---------------- | ------- | -------
-Ubuntu 18.04     | Firefox | 81 #
-Ubuntu 18.04     | Chrome  | 85 #
-Windows 10       | Firefox | 81 #
-Windows 10       | Chrome  | 85 #
-MacOs            | Firefox | 81
-MacOs            | Chrome  | 85
+Ubuntu 18.04     | Firefox | 82
+Ubuntu 18.04     | Chrome  | 86
+Windows 10       | Firefox | 82
+Windows 10       | Chrome  | 86
+MacOs            | Firefox | 82
+MacOs            | Chrome  | 86
 
 
 #) To be checked.
@@ -125,18 +118,19 @@ Zonemaster GUI was tested manually or with testing tools.
 See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for
 more details.
 
-## Support of DNSSEC algorithm 15 (Ed25519)
+## Support of DNSSEC algorithms 15 and 16
 
-To be able to support and process algorithm 15 for DNSSEC the underlying OS must
+To be able to support and process algorithms 15 (Ed25519) and 16 (Ed448) for DNSSEC
+the underlying OS must
 have recent version of [OpenSSL] installed, and [LDNS] being linked against that
 OpenSSL (see [Zonemaster-LDNS-README][Zonemaster-LDNS] for more details). These
 conditions are not met in all supported OSs. The following table lists the
-expected support for algorithm 15 in the supported OSs, given that the
+expected support for algorithms 15 and 16 in the supported OSs, given that the
 installation instructions given for Zonemaster have been followed. A test of the
-domain `ed25519.nl` will reveal if the Zonemaster installation has the support
-or not.
+domains `ed25519.nl` and `superdns.nl` will reveal if the Zonemaster
+installation has the support or not for algorithms 15 and 16, respectively.
 
-Operating System | Supports algorithm 15
+Operating System | Supports algorithms 15 and 16
 ---------------- | ----
 CentOS 7         | no
 CentOS 8         | yes
@@ -146,7 +140,7 @@ FreeBSD 11.4     | yes
 FreeBSD 12.1     | yes
 Ubuntu 16.04     | no
 Ubuntu 18.04     | yes
-Ubuntu 20.04     | yes (?)
+Ubuntu 20.04     | yes
 
 
 ## Translation
@@ -231,10 +225,16 @@ repository (i.e. [general issues in Zonemaster](https://github.com/zonemaster/zo
 
 ## Notable bugs and issues
 
-### DNSSEC algorithm 15
+### DNSSEC algorithms 15 and 16
 
 Limitations in the support of DNSSEC algorithm 15 is described above.
 
+### Use of RIPE riswhois for ASN lookup
+
+Test case [Connectivity03] ("AS Diversity") has been updated with the support of using the
+RIPE riswhois service instead of the Cymru service. The Cymru service is the default and
+there is an issue with riswhois service (zonemaster/zonemaster-engine#833). It will be
+resolved in next patch release.
 
 ## Contact and mailing lists
 
@@ -242,6 +242,7 @@ See our [contact and mailing lists] page for contact information and
 information on mailing lists.
 
 
+[Connectivity03]:               docs/specifications/tests/Connectivity-TP/connectivity03.md
 [contact and mailing lists]:    docs/contact-and-mailing-lists.md
 [CPAN]:                         https://www.cpan.org/
 [LDNS]:                         https://www.nlnetlabs.nl/projects/ldns/about/
@@ -253,4 +254,3 @@ information on mailing lists.
 [Zonemaster-LDNS-README]:       https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
 [Zonemaster-LDNS]:              https://github.com/zonemaster/zonemaster-ldns
 [Zonemaster]:                   https://github.com/zonemaster/zonemaster
-
