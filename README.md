@@ -67,7 +67,7 @@ CentOS 7         | 5.5             | 9.3
 CentOS 8         | 10.3            | 10.14 
 Debian 9         | 10.1            | 9.6
 Debian 10        | 10.3            | 11.7
-FreeBSD 11.4     | 5,7 (#)         | 12.4
+FreeBSD 11.4     | 5.7 (#)         | 12.4
 FreeBSD 12.2     | 5.7 (#)         | 12.4
 Ubuntu 16.04     | 10.0            | 9.5
 Ubuntu 18.04     | 10.1            | 10.14
@@ -122,7 +122,7 @@ more details.
 
 To be able to support and process algorithms 15 (Ed25519) and 16 (Ed448) for DNSSEC
 the underlying OS must
-have recent version of [OpenSSL] installed, and [LDNS] being linked against that
+have a recent version of [OpenSSL] installed, and [LDNS] being linked against that
 OpenSSL (see [Zonemaster-LDNS-README][Zonemaster-LDNS] for more details). These
 conditions are not met in all supported OSs. The following table lists the
 expected support for algorithms 15 and 16 in the supported OSs, given that the
@@ -233,8 +233,8 @@ Limitations in the support of DNSSEC algorithm 15 is described above.
 
 Test case [Connectivity03] ("AS Diversity") has been updated with the support of using the
 RIPE riswhois service instead of the Cymru service. The Cymru service is the default and
-there is an issue with riswhois service (zonemaster/zonemaster-engine#833). It will be
-resolved in next patch release.
+there is an issue with riswhois service (see [zonemaster/zonemaster-engine#833]). It will 
+be resolved in next patch release.
 
 ## Contact and mailing lists
 
@@ -242,15 +242,16 @@ See our [contact and mailing lists] page for contact information and
 information on mailing lists.
 
 
-[Connectivity03]:               docs/specifications/tests/Connectivity-TP/connectivity03.md
-[contact and mailing lists]:    docs/contact-and-mailing-lists.md
-[CPAN]:                         https://www.cpan.org/
-[LDNS]:                         https://www.nlnetlabs.nl/projects/ldns/about/
-[OpenSSL]:                      https://www.openssl.org/
-[Zonemaster-Backend]:           https://github.com/zonemaster/zonemaster-backend
-[Zonemaster-CLI]:               https://github.com/zonemaster/zonemaster-cli
-[Zonemaster-Engine]:            https://github.com/zonemaster/zonemaster-engine
-[Zonemaster-GUI]:               https://github.com/zonemaster/zonemaster-gui
-[Zonemaster-LDNS-README]:       https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
-[Zonemaster-LDNS]:              https://github.com/zonemaster/zonemaster-ldns
-[Zonemaster]:                   https://github.com/zonemaster/zonemaster
+[CPAN]:                                https://www.cpan.org/
+[Connectivity03]:                      docs/specifications/tests/Connectivity-TP/connectivity03.md
+[Contact and mailing lists]:           docs/contact-and-mailing-lists.md
+[LDNS]:                                https://www.nlnetlabs.nl/projects/ldns/about/
+[OpenSSL]:                             https://www.openssl.org/
+[Zonemaster-Backend]:                  https://github.com/zonemaster/zonemaster-backend
+[Zonemaster-CLI]:                      https://github.com/zonemaster/zonemaster-cli
+[Zonemaster-Engine]:                   https://github.com/zonemaster/zonemaster-engine
+[Zonemaster-GUI]:                      https://github.com/zonemaster/zonemaster-gui
+[Zonemaster-LDNS-README]:              https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
+[Zonemaster-LDNS]:                     https://github.com/zonemaster/zonemaster-ldns
+[Zonemaster/zonemaster-engine#833]:    https://github.com/zonemaster/zonemaster-engine/issues/833
+[Zonemaster]:                          https://github.com/zonemaster/zonemaster
