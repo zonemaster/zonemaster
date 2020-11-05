@@ -3,6 +3,8 @@ Release process - Release
 
 The steps in this document executes the actual release. They assume that
 development, the preparation steps and the QA testing have been concluded.
+To run the steps below a build system is needed. See 
+[Build Environment Preparation] for how to set it up.
 
 
 ## 1. Applicable components
@@ -172,23 +174,27 @@ MANIFEST.SKIP, i.e. no missing or extra files:
 
 > This section is relevant for Zonemaster-GUI only.
 
-The requirements are nodejs and npm. There are available from the [Node.js]
-official website. Minimal version of Nodejs is 10.0 but install the last LTS
-version available. It was tested on Ubuntu 18.04.
+For this you need a [build environment for nodjs], on which you create
+the zip file.
 
-To build a new development environnement, you need to install nodejs.
-We use [NVM], a node version manager.
+Clone the Zonemaster-GUI git repository:
 
-1. `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash`
-2. `nvm install 13.12.0`
-3. `nvm use 13.12.0`
-
-To build the tarballs, steps are: 
-
-1. `git clone https://github.com/zonemaster/zonemaster-gui.git`
+1. `git clone -b develop https://github.com/zonemaster/zonemaster-gui.git`
 2. `cd zonemaster-gui`
-3. `npm install` 
-4. `npm run release`
+
+If you already have the repository:
+
+1. `cd zonemaster-gui`
+2. `git fetch --all`
+3. `git checkout origin/develop`
+
+Build the distribution zip file:
+
+1. `npm install` 
+2. `npm run release`
+
+> You can ignore warnings and security fixes at this stage, and do not run 
+> any `npm audit fix`.
 
 The distribution zip file is in the root level of the zonemaster-gui folder. 
 Its name is `zonemaster_web_gui.zip`.
@@ -295,6 +301,8 @@ Send emails to the mailing lists `zonemaster-users` and `zonemaster-announce`.
 
 <!-- Zonemaster links point on purpose on the develop branch. -->
 [Backend.pm]:                              https://github.com/zonemaster/zonemaster-backend/blob/develop/lib/Zonemaster/Backend.pm
+[Build environment for nodjs]:             https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/distrib-testing/Ubuntu-nodjs-build-environment.md 
+[Build Environment Preparation]:           https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/distrib-testing/BuildEnvironmentPreparation.md
 [CI]:                                      https://github.com/travis-ci/travis-ci
 [CLI.pm]:                                  https://github.com/zonemaster/zonemaster-cli/blob/develop/lib/Zonemaster/CLI.pm
 [CPAN]:                                    https://www.cpan.org/
