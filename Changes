@@ -14,10 +14,12 @@ v2020.1 2020-11-06 (public release version)
 
  [Fixes]
  - Test case specifications
-   - Fixed Nameserver02 (#891)
-   - Fixed Connectivity02 (#888, #646)
-   - Fixed Nameserver12 (#878)
-   - Fixed Nameserver13 (#880)
+   - Fixed Nameserver02, added missing links and editorial updates
+     (#891)
+   - Fixed Connectivity02, added reference to RFC and editorial
+     updates (#888, #646)
+   - Fixed Nameserver12, corrected link and editorial updates (#878)
+   - Fixed Nameserver13, fixed typo (#880)
  - Various documents updated (#903, #902, #900, #901, #899, #894, #895,
    #897, #898, #896, #890, #882, #649, #884, #881, #874, #865, #862)
  - Clean-up (#883)
