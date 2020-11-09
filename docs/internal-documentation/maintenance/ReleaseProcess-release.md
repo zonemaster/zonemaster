@@ -254,10 +254,10 @@ Create a new branch named `merge-develop-into-master` with both *master* and
     git checkout -b merge-develop-into-master origin/develop
 
     # But on top of the history of the *master* branch
-    git reset origin/master
+    git reset --soft origin/master
 
     # With all differences squashed into a single commit
-    git commit -m 'Update master to state of develop' -i .
+    git commit -m 'Update master to state of develop'
 
     # And we want the history of *develop* merged too
     git merge origin/develop
