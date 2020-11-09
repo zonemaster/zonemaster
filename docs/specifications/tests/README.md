@@ -80,6 +80,7 @@ project. All the details are in the [Master Test Plan].
 |[BASIC01](Basic-TP/basic01.md)|The domain must have a parent domain|
 |[BASIC02](Basic-TP/basic02.md)|The domain must have at least one working name server|
 |[BASIC03](Basic-TP/basic03.md)|The _Broken but functional_ test|
+|[BASIC04](Basic-TP/basic04.md)|Test of basic nameserver and zone functionality|
 |**Connectivity-TP**| |
 |[CONNECTIVITY01](Connectivity-TP/connectivity01.md)|UDP connectivity|
 |[CONNECTIVITY02](Connectivity-TP/connectivity02.md)|TCP connectivity|
@@ -149,4 +150,3 @@ project. All the details are in the [Master Test Plan].
 |[ZONE08](Zone-TP/zone08.md)|MX is not an alias|
 |[ZONE09](Zone-TP/zone09.md)|MX record present|
 |[ZONE10](Zone-TP/zone10.md)|No multipe SOA records|
-
