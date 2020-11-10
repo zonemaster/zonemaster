@@ -53,23 +53,28 @@ and processor architecture listed below.
 * CentOS 8
 * Debian 9
 * Debian 10
-* FreeBSD 11.3
-* FreeBSD 12.1
+* FreeBSD 11.4
+* FreeBSD 12.2
 * Ubuntu 16.04
 * Ubuntu 18.04
+* Ubuntu 20.04
 
 ### Supported database engine versions
 
-Operating System | MySQL/MariaDB   | PostgreSQL
+Operating System | MariaDB         | PostgreSQL
 ---------------- | ----------------| -----------
-CentOS 7         | 5.6 (MySQL)     | 9.3
-CentOS 8         | 8.0 (MySQL)     | 10.6
-Debian 9         | 10.1 (MariaDB)  | 9.6
-Debian 10        | 10.3 (MariaDB)  | 11.7
-FreeBSD 11.3     | 5.7 (MySQL)     | 11.7
-FreeBSD 12.1     | 5.7 (MySQL)     | 11.7
-Ubuntu 16.04     | 10.0 (MariaDB)  | 9.5
-Ubuntu 18.04     | 10.1 (MariaDB)  | 10.12
+CentOS 7         | 5.5             | 9.3 
+CentOS 8         | 10.3            | 10.14 
+Debian 9         | 10.1            | 9.6
+Debian 10        | 10.3            | 11.7
+FreeBSD 11.4     | 5.7 (#)         | 12.4
+FreeBSD 12.2     | 5.7 (#)         | 12.4
+Ubuntu 16.04     | 10.0            | 9.5
+Ubuntu 18.04     | 10.1            | 10.14
+Ubuntu 20.04     | 10.3            | 12.4
+
+#) FreeBSD uses MySQL, not MariaDB.
+
 
 Zonemaster Backend has been tested with the combination of OS and database
 engine version listed in the table above. Zonemaster uses functionality
@@ -83,10 +88,11 @@ CentOS 7         | 5.16
 CentOS 8         | 5.26
 Debian 9         | 5.24
 Debian 10        | 5.28
-FreeBSD 11.3     | 5.30
-FreeBSD 12.1     | 5.30
+FreeBSD 11.4     | 5.32
+FreeBSD 12.2     | 5.32
 Ubuntu 16.04     | 5.22
 Ubuntu 18.04     | 5.26
+Ubuntu 20.04     | 5.30
 
 Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been
 tested with the default version of Perl in the OSs as listed in the table above.
@@ -98,37 +104,43 @@ indicated bellow and should work perfectly with similar configurations.
 
 Operating System | Browser | Version
 ---------------- | ------- | -------
-Ubuntu 18.04     | Firefox | 74
-Ubuntu 18.04     | Chrome  | 80
-Windows 10       | Firefox | 74
-Windows 10       | Chrome  | 80
-MacOs            | Firefox | 74
-MacOs            | Chrome  | 80
+Ubuntu 18.04     | Firefox | 82
+Ubuntu 18.04     | Chrome  | 86
+Windows 10       | Firefox | 82
+Windows 10       | Chrome  | 86
+MacOs            | Firefox | 82
+MacOs            | Chrome  | 86
+
+
+#) To be checked.
 
 Zonemaster GUI was tested manually or with testing tools.
 See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for
 more details.
 
-## Support of DNSSEC algorithm 15 (Ed25519)
+## Support of DNSSEC algorithms 15 and 16
 
-To be able to support and process algorithm 15 for DNSSEC the underlying OS must
-have recent version of [OpenSSL] installed, and [LDNS] being linked against that
+To be able to support and process algorithms 15 (Ed25519) and 16 (Ed448) for DNSSEC
+the underlying OS must
+have a recent version of [OpenSSL] installed, and [LDNS] being linked against that
 OpenSSL (see [Zonemaster-LDNS-README][Zonemaster-LDNS] for more details). These
-conditions are not met in all supported. The following table lists the expected
-support for algorithm 15 in the supported OSs, given that the installation
-instructions given for Zonemaster have been followed. A test of the domain
-`ed25519.nl` will reveal if the Zonemaster installation has the support or not.
+conditions are not met in all supported OSs. The following table lists the
+expected support for algorithms 15 and 16 in the supported OSs, given that the
+installation instructions given for Zonemaster have been followed. A test of the
+domains `ed25519.nl` and `superdns.nl` will reveal if the Zonemaster
+installation has the support or not for algorithms 15 and 16, respectively.
 
-Operating System | Supports algorithm 15
+Operating System | Supports algorithms 15 and 16
 ---------------- | ----
 CentOS 7         | no
 CentOS 8         | yes
 Debian 9         | no
 Debian 10        | yes
-FreeBSD 11.3     | yes
+FreeBSD 11.4     | yes
 FreeBSD 12.1     | yes
 Ubuntu 16.04     | no
 Ubuntu 18.04     | yes
+Ubuntu 20.04     | yes
 
 
 ## Translation
@@ -139,10 +151,11 @@ Zonemaster-CLI interface to `Zonemaster::Engine`), Zonemaster-Backend
 `RPCAPI` interface to `Zonemaster::Engine`) and the Zonemaster-GUI interface
 to `RPCAPI`.
 
+* Danish (da, da_DK.UTF-8)
 * English (en, en_US.UTF-8)
 * French (fr, fr_FR.UTF-8)
+* Norwegian (nb, nb_NO.UTF-8)
 * Swedish (sv, sv_SE.UTF-8)
-* Danish (da, da_DK.UTF-8)
 
 ## Zonemaster and its components
 
@@ -212,24 +225,16 @@ repository (i.e. [general issues in Zonemaster](https://github.com/zonemaster/zo
 
 ## Notable bugs and issues
 
-### Limitations and issues in translation for FreeBSD 11.3
-
-FreeBSD 11.3 works well when it comes to translation functions for
-`zonemaster-cli`, but not for Zonemaster-Backend `RPCAPI`.
-Zonemaster-GUI depends on the `RPCAPI` installation it sends it calls to.
-This means that FreeBSD 11.3 is not a good candidate for running
-Zonemaster-Backend.
-
-No other tested OS, including FreeBSD 12.1, has that limitation.
-
-The following issues covers the limitions above:
-
-* [zonemaster-backend#530](https://github.com/zonemaster/zonemaster-backend/issues/530)
-
-### DNSSEC algorithm 15
+### DNSSEC algorithms 15 and 16
 
 Limitations in the support of DNSSEC algorithm 15 is described above.
 
+### Use of RIPE riswhois for ASN lookup
+
+Test case [Connectivity03] ("AS Diversity") has been updated with the support of using the
+RIPE riswhois service instead of the Cymru service. The Cymru service is the default and
+there is an issue with riswhois service (see [zonemaster/zonemaster-engine#833]). It will 
+be resolved in next patch release.
 
 ## Contact and mailing lists
 
@@ -237,15 +242,16 @@ See our [contact and mailing lists] page for contact information and
 information on mailing lists.
 
 
-[contact and mailing lists]:    docs/contact-and-mailing-lists.md
-[CPAN]:                         https://www.cpan.org/
-[LDNS]:                         https://www.nlnetlabs.nl/projects/ldns/about/
-[OpenSSL]:                      https://www.openssl.org/
-[Zonemaster-Backend]:           https://github.com/zonemaster/zonemaster-backend
-[Zonemaster-CLI]:               https://github.com/zonemaster/zonemaster-cli
-[Zonemaster-Engine]:            https://github.com/zonemaster/zonemaster-engine
-[Zonemaster-GUI]:               https://github.com/zonemaster/zonemaster-gui
-[Zonemaster-LDNS-README]:       https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
-[Zonemaster-LDNS]:              https://github.com/zonemaster/zonemaster-ldns
-[Zonemaster]:                   https://github.com/zonemaster/zonemaster
-
+[CPAN]:                                https://www.cpan.org/
+[Connectivity03]:                      docs/specifications/tests/Connectivity-TP/connectivity03.md
+[Contact and mailing lists]:           docs/contact-and-mailing-lists.md
+[LDNS]:                                https://www.nlnetlabs.nl/projects/ldns/about/
+[OpenSSL]:                             https://www.openssl.org/
+[Zonemaster-Backend]:                  https://github.com/zonemaster/zonemaster-backend
+[Zonemaster-CLI]:                      https://github.com/zonemaster/zonemaster-cli
+[Zonemaster-Engine]:                   https://github.com/zonemaster/zonemaster-engine
+[Zonemaster-GUI]:                      https://github.com/zonemaster/zonemaster-gui
+[Zonemaster-LDNS-README]:              https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
+[Zonemaster-LDNS]:                     https://github.com/zonemaster/zonemaster-ldns
+[Zonemaster/zonemaster-engine#833]:    https://github.com/zonemaster/zonemaster-engine/issues/833
+[Zonemaster]:                          https://github.com/zonemaster/zonemaster

@@ -88,8 +88,8 @@ the DNSKEY record that the DS points at does not have that flag set
       8. If the RRSIG values (algorithm and signature) do not match
          the DNSKEY then output *[BROKEN_RRSIG]*.
 
-8. If *DNSKEY RRs* is non-empty and no messages besides *[NO_RESPONSE]*
-   or *[DNSKEY_KSK_NOT_SEP]*, if any, have been outputted, then output 
+8. If no message, besides possibly *[NO_RESPONSE]* or 
+   *[DNSKEY_KSK_NOT_SEP]*, has been outputted, then output 
    *[DS_MATCHES]*.
 
 

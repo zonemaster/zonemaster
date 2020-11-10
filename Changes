@@ -1,5 +1,40 @@
 Release history of Zonemaster
 
+v2020.1 2020-11-10 (public release version)
+
+ [Features]
+ - Added support for Norwegian language, see Zonemaster-Engine,
+   zonemaster-cli and zonemaster-backend (not yet supported in
+   zonemaster-gui).
+ - Update implementation of Connectivity03 with added support
+   of RIPE Ris whois for ASN lookup, see Zonemaster-Engine.
+ - Test case specifications
+   - Updated Connectivity03 (#892, #893)
+   - Create Basic04 (#879, #859)
+
+ [Fixes]
+ - Test case specifications
+   - Fixed Nameserver02, added missing links and editorial updates
+     (#891)
+   - Fixed Connectivity02, added reference to RFC and editorial
+     updates (#888, #646)
+   - Fixed Nameserver12, corrected link and editorial updates (#878)
+   - Fixed Nameserver13, fixed typo (#880)
+ - Various documents updated (#903, #902, #900, #901, #899, #894, #895,
+   #897, #898, #896, #890, #882, #649, #884, #881, #874, #865, #862)
+ - Clean-up (#883)
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components.
+   For each component, see its Changes file or Github release notes.
+
+   Zonemaster-LDNS     v2.1.0   https://github.com/zonemaster/zonemaster-ldns/releases
+   Zonemaster-Engine   v4.0.1   https://github.com/zonemaster/zonemaster-engine/releases
+   Zonemaster-CLI      v3.0.1   https://github.com/zonemaster/zonemaster-cli/releases
+   Zonemaster-Backend  v6.0.1   https://github.com/zonemaster/zonemaster-backend/releases
+   Zonemaster-GUI      v3.2.1   https://github.com/zonemaster/zonemaster-gui/releases
+
+
 v2019.2.3 2020-06-16 (public fix release)
 
  [Fixed]

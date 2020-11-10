@@ -1,42 +1,64 @@
 # Description of help utilities
 
-## testcase.pl
+## [generateTestCaseList.pl]
 
-This tool extracts all implemented test cases and prints the header of
-each.
+This tool extracts all Test Case specifications and creates
+an Markdown table to be inserted in [Test Case README]. This
+table should be recreated at each Zonemaster release.
 
-Example use:
+Use:
 
+1. Remove Test Case table from [Test Case README] and save the file
+2. Do:
 ```
-./testcase.pl -d ../docs/specifications/tests/
-Level Zone-TP
-## ZONE07: SOA master is not an alias
-## ZONE06: SOA 'minimum' maximum value
-## ZONE03: SOA 'retry' lower than 'refresh'
-## ZONE01: Fully qualified master nameserver in SOA
-## ZONE02: SOA 'refresh' minimum value
-...
+cd ../docs/specifications/tests
+../../../utils/generateTestCaseList.pl >> README.md
 ```
+3. Submit to git.
 
-## maprequirement.pl
+## [generateTestMessages.pl]
 
-This tools creates a map between the Zonemaster requirements and
-implemented test case. It is used in the Makefile in
-docs/specifications/tests to create the [Report](https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/Report.md)
-on implemented test requirements.
+This tools creates a map between the Zonemaster messages tags from
+the [Zonemaster-Engine] implementation of the Test Cases and the
+Test Case specifications. This is used to create the
+complete [TestMessages.md] file. The matching version of
+[Zonemaster-Engine] must be installed.
+
+[TestMessages.md] should be recreated at each Zonemaster release.
+
+Use:
+
+1. Do:
+```
+cd ../docs/specifications/tests
+../../../utils/generateTestMessages.pl > TestMessages.md
+```
+2. Submit to git.
+
+## [generateImplementedTestCases.pl]
+
+This tool creates a list of implemented test cases from
+the [Zonemaster-Engine] implementation. This is used to create
+the complete [ImplementedTestCases.md] file. The matching version of
+[Zonemaster-Engine] must be installed.
+
+[ImplementedTestCases.md] should be recreated at each Zonemaster release.
+
+Use:
+
+1. Do:
+```
+cd ../docs/specifications/tests
+../../../utils/generateImplementedTestCases.pl > ImplementedTestCases.md
+```
+2. Submit to git.
 
 
-## maptestmessages.pl
+[generateImplementedTestCases.pl]:		generateImplementedTestCases.pl
+[generateTestCaseList.pl]:      		generateTestCaseList.pl
+[generateTestMessages.pl]:      		generateTestMessages.pl
+[ImplementedTestCases.md]:			../docs/specifications/tests/ImplementedTestCases.md
+[TestMessages.md]:              		../docs/specifications/tests/TestMessages.md
+[Test Case README]:             		../docs/specifications/tests/README.md
+[Zonemaster-Engine]:            		https://github.com/zonemaster/zonemaster-engine
 
-This tools creates a map between the Zonemaster log message
-identifiers and the test specification that implements the test code
-for that message. Also used in the Makefile in
-docs/specifications/tests to create the [TestMessages.md](https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/TestMessages.md)
-file.
-
-
-## ztester.sh
-
-A simple tool to test all the TLDs using zonemaster. It creates
-a directory "results" that have the JSON result for each TLD.
-There are better ways to do this.
