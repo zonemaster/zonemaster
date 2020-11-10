@@ -1,6 +1,6 @@
 Release history of Zonemaster
 
-v2020.1 2020-11-06 (public release version)
+v2020.1 2020-11-10 (public release version)
 
  [Features]
  - Added support for Norwegian language, see Zonemaster-Engine,
@@ -28,11 +28,11 @@ v2020.1 2020-11-06 (public release version)
  - This version of Zonemaster also consists of the following components.
    For each component, see its Changes file or Github release notes.
 
-   Zonemaster-LDNS     v2.1.0   https://github.com/zonemaster/zonemaster-ldns
-   Zonemaster-Engine   v4.0.0   https://github.com/zonemaster/zonemaster-engine
-   Zonemaster-CLI      v3.0.0   https://github.com/zonemaster/zonemaster-cli
-   Zonemaster-Backend  v6.0.0   https://github.com/zonemaster/zonemaster-backend
-   Zonemaster-GUI      v3.2.1   https://github.com/zonemaster/zonemaster-gui
+   Zonemaster-LDNS     v2.1.0   https://github.com/zonemaster/zonemaster-ldns/releases
+   Zonemaster-Engine   v4.0.1   https://github.com/zonemaster/zonemaster-engine/releases
+   Zonemaster-CLI      v3.0.1   https://github.com/zonemaster/zonemaster-cli/releases
+   Zonemaster-Backend  v6.0.1   https://github.com/zonemaster/zonemaster-backend/releases
+   Zonemaster-GUI      v3.2.1   https://github.com/zonemaster/zonemaster-gui/releases
 
 
 v2019.2.3 2020-06-16 (public fix release)
