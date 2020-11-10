@@ -8,9 +8,9 @@ This section gives a brief introduction to Zonemaster.
 
 ### Background
 
-DNSCheck from IIS and Zonecheck from AFNIC are two different software
+DNSCheck from IIS and Zonecheck from AFNIC were two different software
 packages that do DNS validation of the quality of a DNS
-delegation. The Zonemaster implementation intends to be a major
+delegation. The Zonemaster implementation is a major
 rewrite of these software packages, and implement the best parts of
 both.
 
@@ -18,7 +18,7 @@ both.
 
 The purpose of Zonemaster is to test the quality of a DNS
 delegation. The core of the software is all the implemented
-tests. There will be a command line tool to run a complete set of
+tests. There is a command line tool to run a complete set of
 tests, and a web interface tailored for use by both basic and advanced
 users.
 
@@ -30,55 +30,42 @@ a set of test procedures. The process of doing this will be done in
 accordance with the standard IEEE 829-2008.
 
 The test requirements are all documented in the 
-[Test Requirements](../../requirements/TestRequirements.md) document.
+[Test Requirements] document.
 
 ### Scope
 
-Only the current test cases derived from the current versions of
-DNSCheck and Zonecheck will be described as requirements. These
-documents will not describe the functionality of any software
-implementing the test cases. Some test cases derived from the current
-software will not be implemented as test cases in the New DNSCheck.
-
-The [current requirements](../../requirements/TestRequirements.md)
-documents is the base directive on what these test specifications
-will implement.
+The [Test Requirements] document is the base directive on what
+test specifications implement.
 
 ### References
+
 #### External
 
-The current implemented tests in DNSCheck are described here (copied
-from the DNSCheck Github Wiki):
-
-* [DNSCheck-Tests.md](../../requirements/supporting-documents/DNSCheck-Tests.md)
-* [Detailed-list-of-all-possible-dnscheck-messages.md](../../requirements/supporting-documents/Detailed-list-of-all-possible-dnscheck-messages.md)
-* [Algorithms-used-by-dnscheck.md](../../requirements/supporting-documents/Algorithms-used-by-dnscheck.md)
-
-The current implemented tests in Zonecheck are described in here (copied from previous Zonecheck site):
-* [ExistingZCPolicy.md](../../requirements/supporting-documents/ExistingZCPolicy.md)
-
+References to external documents are found in the [Test Requirements]
+document.
 
 #### Internal
 No internal requirements.
+
 #### Document hieararchy
 * Master Test Plan  
-    * [Basic Test Plan](Basic-TP/README.md)
+    * [Basic] Test Plan
         * Test Case x
-    * [Delegation Test Plan](Delegation-TP/README.md)
+    * [Delegation] Test Plan
         * Test Case x
-    * [Consistency Test Plan](Consistency-TP/README.md)
+    * [Consistency] Test Plan
         * Test Case x
-    * [DNSSEC Test Plan](DNSSEC-TP/README.md)
+    * [DNSSEC] Test Plan
         * Test Case x
-    * [Address Test Plan](Address-TP/README.md)
+    * [Address] Test Plan
         * Test Case x
-    * [Name Server Test Plan](Nameserver-TP/README.md)
+    * [Name Server] Test Plan
         * Test Case x
-    * [Connectivity Test Plan](Connectivity-TP/README.md)
+    * [Connectivity] Test Plan
         * Test Case x
-    * [Zone Test Plan](Zone-TP/README.md)
+    * [Zone] Test Plan
         * Test Case x
-    * [Syntax Test Plan](Syntax-TP/README.md)
+    * [Syntax] Test Plan
 	    * Test Case x
 
 ### System overview and key features
@@ -87,19 +74,15 @@ A domain will be tested for the quality of the delegation in the DNS
 hierarchy. Some of the high level properties that will be tested
 include:
 
- * [**Basic**](Basic-TP/README.md) (initial tests)
- * [**Delegation**](Delegation-TP/README.md) properties (parent and child
-   name servers)  
- * [**Consistency**](Consistency-TP/README.md) (all name have consistent
-   answers)
- * [**DNSSEC**](DNSSEC-TP/README.md) properties (algorithms, secure
-   delegation)  
- * [**Address**](Address-TP/README.md) properties (IP addresses)  
- * [**Name server**](Nameserver-TP/README.md) properties 
- * Name server [**Connectivity**](Connectivity-TP/README.md)
- * [**Zone**](Zone-TP/README.md) properties (are data controlling the zone
-   sane)
- * [**Syntax**](Syntax-TP/README.md) (illegal hostnames and characters)
+ * **[Basic]** (initial tests)
+ * **[Delegation]** properties (parent and child name servers)  
+ * **[Consistency]** (all names have consistent answers)
+ * **[DNSSEC]** properties (algorithms, secure delegation)  
+ * **[Address]** properties (IP addresses)  
+ * **[Name server]** properties 
+ * Name server **[Connectivity]**
+ * **[Zone]** properties (are data controlling the zone sane)
+ * **[Syntax]** (illegal hostnames and characters)
 
 A domain can be given to the testing system and all DNS information
 will be retrieved from the public global DNS hierarchy, or a set of
@@ -184,9 +167,8 @@ been identified within the system requirements:
 * Syntax
 
 The separation of test levels does not necessarily mean that
-the levels are separated in the Zonemaster implementation. The
-actual test levels might differ from the actual test modules in the
-code. At this level, the separation is done to make a better overview
+the levels are fully separated in the Zonemaster implementation.
+At this level, the separation is done to make a better overview
 of all the test cases specified.
 
 ### Test documentation requirements
@@ -209,8 +191,8 @@ purpose is to map the requirements into test cases and also to
 describe the approach for testing this level.
 
 In the title of the plan, the word “Level” is replaced by the name for
-the particular level being documented by the plan. E.g. Delegation
-Test Plan and DNSSEC Test Plan.
+the particular level being documented by the plan. E.g. [Delegation]
+Test Plan and [DNSSEC] Test Plan.
 
 #### Level Test Case
 
@@ -283,30 +265,7 @@ TODO: make a better description of the log files here?
 
 ### System requirements
 
-The initial requirements are derived from the current Zonecheck and
-DNSCheck documentation and implementations. A basic requirement is to
-implement all tests that Zonecheck and DNSCheck currently
-implements. However, there is a large overlap between the two
-implementations, and also several test cases that are no longer
-applicable.
-
-Currently there is no other requirements other than to implement the
-test cases from the current implementations.
-
-TODO: do we need a separate requirements document?
-
-#### DNSCheck
-
-These are the current documented test cases from DNSCheck (copied
-from DNSCheck Github Wiki):  
-* [DNSCheck-Tests.md](../../requirements/supporting-documents/DNSCheck-Tests.md)
-* [Detailed-list-of-all-possible-dnscheck-messages.md](../../requirements/supporting-documents/Detailed-list-of-all-possible-dnscheck-messages.md)
-
-#### Zonecheck
-
-The current implemented tests in Zonecheck are described in (copied from previous Zonecheck site):
-* [ExistingZCPolicy.md](../../requirements/supporting-documents/ExistingZCPolicy.md)
-
+The requirements are found in [Test Requirements] document.
 
 #### RFCs
 
@@ -342,9 +301,9 @@ unclear or multiple meanings, we will define here exactly what we mean
 when we use them in the context of these specifications and these
 tests. Any uncommon or special terms we use will also be defined here.
 
-_Child Domain_ is the domain being tested.
+_Child Domain_ or _Child Zone_ is the domain or zone being tested.
 
-_Parent Domain_ is the domain that delegates directly to the domain
+_Parent Domain_ is the domain or zone that delegates directly to the domain
 being tested. Differently put, it is the domain whose nameservers
 delivers the glue records for the child domain.
 
@@ -400,3 +359,17 @@ changes is part of the specific commit in the version control system.
 
 The technical review team must approve any changes made to the test
 cases.
+
+
+[Test Requirements]:            ../../requirements/TestRequirements.md
+[Basic]:                        Basic-TP/README.md
+[Delegation]:                   Delegation-TP/README.md
+[Consistency]:                  Consistency-TP/README.md
+[DNSSEC]:                       DNSSEC-TP/README.md
+[Address]:                      Address-TP/README.md
+[Name Server]:                  Nameserver-TP/README.md
+[Connectivity]:                 Connectivity-TP/README.md
+[Zone]:                         Zone-TP/README.md
+[Syntax]:                       Syntax-TP/README.md
+
+
