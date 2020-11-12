@@ -201,10 +201,7 @@ You can submit code by forking this repository and creating pull requests.
 When you create a pull request, please select the "develop" branch in the relevant
 Zonemaster repository.
 
-You can follow the project in these two mailing lists:
-
- * [zonemaster-users](https://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-users)
- * [zonemaster-devel](https://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-devel)
+See our [contact and mailing lists] page for information on mailing lists.
 
 ## Bug reporting
 
