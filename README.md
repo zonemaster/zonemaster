@@ -229,13 +229,6 @@ repository (i.e. [general issues in Zonemaster](https://github.com/zonemaster/zo
 
 Limitations in the support of DNSSEC algorithm 15 is described above.
 
-### Use of RIPE riswhois for ASN lookup
-
-Test case [Connectivity03] ("AS Diversity") has been updated with the support of using the
-RIPE riswhois service instead of the Cymru service. The Cymru service is the default and
-there is an issue with riswhois service (see [zonemaster/zonemaster-engine#833]). It will 
-be resolved in next patch release.
-
 ## Contact and mailing lists
 
 See our [contact and mailing lists] page for contact information and
