@@ -201,10 +201,7 @@ You can submit code by forking this repository and creating pull requests.
 When you create a pull request, please select the "develop" branch in the relevant
 Zonemaster repository.
 
-You can follow the project in these two mailing lists:
-
- * [zonemaster-users](https://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-users)
- * [zonemaster-devel](https://lists.iis.se/cgi-bin/mailman/listinfo/zonemaster-devel)
+See our [contact and mailing lists] page for information on mailing lists.
 
 ## Bug reporting
 
@@ -228,13 +225,6 @@ repository (i.e. [general issues in Zonemaster](https://github.com/zonemaster/zo
 ### DNSSEC algorithms 15 and 16
 
 Limitations in the support of DNSSEC algorithm 15 is described above.
-
-### Use of RIPE riswhois for ASN lookup
-
-Test case [Connectivity03] ("AS Diversity") has been updated with the support of using the
-RIPE riswhois service instead of the Cymru service. The Cymru service is the default and
-there is an issue with riswhois service (see [zonemaster/zonemaster-engine#833]). It will 
-be resolved in next patch release.
 
 ## Contact and mailing lists
 
