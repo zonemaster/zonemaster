@@ -87,7 +87,7 @@ MANIFEST.SKIP, i.e. no missing or extra files:
 
 > This section is relevant for Zonemaster-GUI only.
 
-For this you need a [build environment for nodjs], on which you create
+For this you need a [build environment for Node.js], on which you create
 the zip file.
 
 Clone the Zonemaster-GUI git repository:
@@ -134,7 +134,7 @@ tarballs or zip file:
 
 <!-- Zonemaster links point on purpose on the develop branch. -->
 [Build Environment Preparation]:        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/distrib-testing/BuildEnvironmentPreparation.md
-[Build environment for nodjs]:          https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/distrib-testing/Ubuntu-nodjs-build-environment.md 
+[Build environment for Node.js]:        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/distrib-testing/Ubuntu-Node.js-build-environment.md
 [NVM]:                                  https://github.com/nvm-sh/nvm
 [Node.js]:                              https://nodejs.org/en/
 [SystemTesting]:                        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/maintenance/SystemTesting.md
