@@ -85,11 +85,18 @@ The GUI has no Perl. Update the following files in the *develop branch*:
 If needed, update Makefile.PL in the *develop branch*. See [Appendix A] for
 how the version number should be specified in `Makefile.PL`.
 
+Usually let Zonemaster-Engine, Zonemaster-CLI and Zonemaster-Backend,
+respectively, require the version of other the Zonemaster components
+(see below) included in this release, because that is what has been tested.
+
+If a component will not be updated by this release, then it can continue to
+require the previous version unless it must be change to resolve some issue,
+and then the version of the requiring component must also be updated.
+
 ### Zonemaster-Engine
 
 In [Zonemaster-Engine Makefile.PL] set the lowest version of Zonemaster-LDNS
-that Zonemaster-Engine requires. Usually, set the version of Zonemaster-LDNS
-included in this release since that is what has been tested. E.g.
+that Zonemaster-Engine requires. E.g.
 
 ```
 requires 'Zonemaster::LDNS'   => 2.001;
@@ -97,11 +104,9 @@ requires 'Zonemaster::LDNS'   => 2.001;
 
 ### Zonemaster-CLI and Zonemaster-Backend
 
-In [Zonemaster-CLI Makefile.PL] and in [Zonemaster-Backend Makefile.PL],
-respectively, set the lowest version of Zonemaster-LDNS and
-Zonemaster-Engine that Zonemaster-CLI and Zonemaster-Backend, respectively,
-require. Usually, set the versions included in this release since that is
-what has been tested. E.g.
+In [Zonemaster-CLI Makefile.PL] and [Zonemaster-Backend Makefile.PL],
+set the minimum required versions of Zonemaster-LDNS and Zonemaster-Engine.
+E.g.
 
 ```
 requires 'Zonemaster::Engine' => 4.000;
