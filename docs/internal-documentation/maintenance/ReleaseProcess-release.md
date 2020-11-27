@@ -3,6 +3,8 @@ Release process - Release
 
 The steps in this document executes the actual release. They assume that
 development, the preparation steps and the QA testing have been concluded.
+To run the steps below a build system is needed. See 
+[Build Environment Preparation] for how to set it up.
 
 
 ## 1. Applicable components
@@ -80,33 +82,36 @@ The GUI has no Perl. Update the following files in the *develop branch*:
 > This section is relevant for Zonemaster-Engine, Zonemaster-CLI and
 > Zonemaster-Backend.
 
-If needed update Makefile.PL in the *develop branch*.
+If needed, update Makefile.PL in the *develop branch*. See [Appendix A] for
+how the version number should be specified in `Makefile.PL`.
+
+Usually let Zonemaster-Engine, Zonemaster-CLI and Zonemaster-Backend,
+respectively, require the version of other the Zonemaster components
+(see below) included in this release, because that is what has been tested.
+
+If a component will not be updated by this release, then it can continue to
+require the previous version unless it must be change to resolve some issue,
+and then the version of the requiring component must also be updated.
 
 ### Zonemaster-Engine
 
 In [Zonemaster-Engine Makefile.PL] set the lowest version of Zonemaster-LDNS
-that Zonemaster-Engine requires. If unsure, set the version of Zonemaster-LDNS
-included in this release since that is what has been tested. E.g.
+that Zonemaster-Engine requires. E.g.
 
 ```
-requires 'Zonemaster::LDNS'   => 2.0;
+requires 'Zonemaster::LDNS'   => 2.001;
 ```
 
-### Zonemaster-CLI
+### Zonemaster-CLI and Zonemaster-Backend
 
-In [Zonemaster-CLI Makefile.PL] set the lowest version of Zonemaster-LDNS and
-Zonemaster-Engine that Zonemaster-CLI requires. If unsure, set the versions
-included in this release since that is what has been tested. E.g.
+In [Zonemaster-CLI Makefile.PL] and [Zonemaster-Backend Makefile.PL],
+set the minimum required versions of Zonemaster-LDNS and Zonemaster-Engine.
+E.g.
 
 ```
-requires 'Zonemaster::Engine' => 3.0;
-requires 'Zonemaster::LDNS'   => 2.0;
+requires 'Zonemaster::Engine' => 4.000;
+requires 'Zonemaster::LDNS'   => 2.001;
 ```
-
-### Zonemaster-Backend
-
-For [Zonemaster-Backend Makefile.PL], as for Zonemaster-CLI above.
-
 
 ## 6. Create a clean Git working area of *develop branch*
 
@@ -172,23 +177,27 @@ MANIFEST.SKIP, i.e. no missing or extra files:
 
 > This section is relevant for Zonemaster-GUI only.
 
-The requirements are nodejs and npm. There are available from the [Node.js]
-official website. Minimal version of Nodejs is 10.0 but install the last LTS
-version available. It was tested on Ubuntu 18.04.
+For this you need a [build environment for Node.js], on which you create
+the zip file.
 
-To build a new development environnement, you need to install nodejs.
-We use [NVM], a node version manager.
+Clone the Zonemaster-GUI git repository:
 
-1. `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash`
-2. `nvm install 13.12.0`
-3. `nvm use 13.12.0`
-
-To build the tarballs, steps are: 
-
-1. `git clone https://github.com/zonemaster/zonemaster-gui.git`
+1. `git clone -b develop https://github.com/zonemaster/zonemaster-gui.git`
 2. `cd zonemaster-gui`
-3. `npm install` 
-4. `npm run release`
+
+If you already have the repository:
+
+1. `cd zonemaster-gui`
+2. `git fetch --all`
+3. `git checkout origin/develop`
+
+Build the distribution zip file:
+
+1. `npm install` 
+2. `npm run release`
+
+> You can ignore warnings and security fixes at this stage, and do not run 
+> any `npm audit fix`.
 
 The distribution zip file is in the root level of the zonemaster-gui folder. 
 Its name is `zonemaster_web_gui.zip`.
@@ -215,8 +224,8 @@ updated this section can be skipped.
    distribution packages created for this release.  
 2. Clone Zonemaster/Zonemaster and check out the *develop branch*. The
    working area should be clean (`git status --ignore`).
-3. Go to the [utils Zonemaster][utils] directory and create the files as
-   documented in the [Zonemaster utils README][README.pm] file in that
+3. Go to the [utils][utils Zonemaster] directory and create the files as
+   documented in the [README.pm][Zonemaster utils README] file in that
    directory.
 4. If any of the created files has been updated (`git status`) then it
    should be added to the *develop branch* via a pull request.
@@ -265,6 +274,8 @@ Create a new branch named `merge-develop-into-master` with both *master* and
 Create a pull request from `merge-develop-into-master` into `master` and have it
 merged through the normal process.
 
+In [Appendix B] it is shown how `merge-develop-into-master` can be verified.
+
 
 ## 13. Tag the release with git
 
@@ -293,8 +304,71 @@ The releases pages:
 Send emails to the mailing lists `zonemaster-users` and `zonemaster-announce`.
 
 
+## Appendix A on version number in Makefile.PL
+
+As described above, `Makefile.PL` of Zonemaster-CLI and Zonemaster-Backend,
+respectively, must be specified with the lowest supported version of
+Zonemaster::LDNS and Zonemaster::Engine, respectively. Zonemaster-Engine
+must have that of Zonemaster::LDNS.
+
+The versions of Zonemaster::LDNS and Zonemaster::Engine are defined in the
+format `vX.Y.Z` and it is important how this is written in `Makefile.PL`.
+
+For lowest risk of error follow the following steps:
+
+1. Expand the version number with leading zeros on second ("Y") and third
+   ("Z") level. Remove the leading `v` and the second and third dots.
+   E.g. `v2.1.2` = `2.001002`.
+2. Decide if the third level can be skipped, e.g. `v2.1.2` > `2.001`.
+3. Please note that if the version in `Makefile.PL` is set to `2.1` then
+   the interpretation is that the "v" version is `v2.100.0` or greater.
+
+When specifying the version of Zonemaster::LDNS and Zonemaster::Engine in
+`Makefile.PL` always use the expanded format, e.g. `2.001002` or `2.001`
+depending on the need.
+
+For other libraries, other formats may be correct. If the version of the
+library only has two levels ("X.Y") then other rules apply. Also note
+that the version in Zonemaster::Backend is speciefied as `X.Y.Z` without
+the "v", which may affect the version comparison.
+
+
+## Appendix B on how to verify merge develop branch into master branch
+
+Below are two ways of verifying that that the branch created for merging
+develop branch into master branch is correct. The first is to use the
+local clone where the `merge-develop-into-master` branch was created.
+
+Run the command
+
+```
+git diff origin/develop merge-develop-into-master shows no changes
+```
+The result should be no difference, i.e. the contents of the new branch
+is the same as the develop branch. Then run the following two commands
+```
+git merge-base origin/develop merge-develop-into-master
+git show-ref origin/develop
+```
+The two commands should report the same commit.
+
+The second way of verifying is to use Githubs tool for creating pull
+requests. Start to create a pull request from
+`merge-develop-into-master` develop `master` (but do not really create
+it) and inspect what files that Github says will be updated, added or
+deleted.
+
+If Github says that no files are updated, added or created, then
+branch `merge-develop-into-master` is correct, and a pull request into
+`master` branch (not `develop` branch) can be created.
+
+
 <!-- Zonemaster links point on purpose on the develop branch. -->
+[Appendix A]:                              #appendix-a-on-version-number-in-makefilepl
+[Appendix B]:                              #appendix-b-on-how-to-verify-merge-develop-branch-into-master-branch
 [Backend.pm]:                              https://github.com/zonemaster/zonemaster-backend/blob/develop/lib/Zonemaster/Backend.pm
+[Build environment for Node.js]:           https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/distrib-testing/Ubuntu-Node.js-build-environment.md
+[Build Environment Preparation]:           https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/distrib-testing/BuildEnvironmentPreparation.md
 [CI]:                                      https://github.com/travis-ci/travis-ci
 [CLI.pm]:                                  https://github.com/zonemaster/zonemaster-cli/blob/develop/lib/Zonemaster/CLI.pm
 [CPAN]:                                    https://www.cpan.org/
