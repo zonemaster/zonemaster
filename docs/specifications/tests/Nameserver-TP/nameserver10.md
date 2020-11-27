@@ -22,10 +22,16 @@ the combination of the normal RCODE field in the DNS package header
 EXTENDED-RCODE field ([RFC 6891][RFC 6891#6.1.3], section 6.1.3). Also see
 [IANA RCODE Registry].
 
+
 ## Scope
 
 It is assumed that *Child Zone* has been tested by [Basic04]. This test
 case will set DEBUG level on messages for non-responsive name servers.
+
+If a name server has issues covered by [Basic04] (basic name server issues)
+or [Nameserver02] (basic EDNS issues) no messages will be outputted from
+this test case.
+
 
 ## Inputs
 
@@ -33,26 +39,36 @@ case will set DEBUG level on messages for non-responsive name servers.
 
 ## Ordered description of steps to be taken to execute the test case
 
-1. Created an SOA query for the *Child Zone* with an OPT record with
-   EDNS version set to "1" and no other EDNS options or flags.
+1. Create an SOA query for the *Child Zone* with an OPT record with
+   EDNS version set to "0" and with EDNS option of payload size
+   ("bufsize") set to 512 and other EDNS options and flags unset
+   ("Query One").
 
-2. Obtain the set of name server IP addresses using [Method4] and [Method5]
+2. Create an SOA query for the *Child Zone* with an OPT record with
+   EDNS version set to "1" and with EDNS option of payload size
+   ("bufsize") set to 512 and other EDNS options and flags unset
+   ("Query Two").
+
+3. Obtain the set of name server IP addresses using [Method4] and [Method5]
    ("Name Server IP").
 
-3. For each name server in *Name Server IP* do:
+4. For each name server in *Name Server IP* do:
 
-   1. Send the SOA query to the name server and collect the response.
-   2. If there is no DNS response, output *[NO_RESPONSE]*.
-   3. Else, if the DNS response has the RCODE "FORMERR" then output
-      *[NO_EDNS_SUPPORT]*.
-   4. Else, if the DNS response has the RCODE "NOERROR" then
-      output *[UNSUPPORTED_EDNS_VER]*.
-   5. Else, if the DNS response meet the following three criteria,
-      then just go to the next name server (no error):
-      1. It has the RCODE "BADVERS".
-      2. It has EDNS version 0.
-      3. The answer section is empty.
-   6. Else output *[NS_ERROR]*.
+  1. Send *Query One* over UDP to the name server and collect the response.
+  2. If there is no DNS response then go to next name server.
+  3. Else, if the RCODE is not "NOERROR" then go to next name server.
+  4. Send *Query Two* over UDP to the name server and collect the response.
+  5. If there is no DNS response, output *[NS10_NO_RESPONSE_EDNS1_QUERY]*.
+  6. Else, if the DNS response has the RCODE "NOERROR" then
+     output *[UNSUPPORTED_EDNS_VER]*.
+  7. Else, if the DNS response does not have RCODE "BADVERS" then
+     output *[NS10_UNEXPECTED_RCODE]*.
+  8. Else, if the DNS response meet the following three criteria,
+     then just go to the next name server (no error):
+     1. It has the RCODE "BADVERS".
+     2. It has EDNS version 0.
+     3. The answer section is empty.
+  9. Else output *[NS_ERROR]*.
 
 
 ## Outcome(s)
@@ -66,10 +82,16 @@ with the severity level *WARNING*, but no message with severity level
 
 The outcome of this Test case is "pass" in all other cases.
 
-Message                           | Default severity level (when message is outputted)
+Message                           | Default severity level
 :---------------------------------|:-----------------------------------
+
 NO_RESPONSE                       | DEBUG
 NO_EDNS_SUPPORT                   | WARNING
+
+NS10_NO_RESPONSE_EDNS1_QUERY      | WARNING
+NS10_UNEXPECTED_RCODE             | WARNING
+
+
 UNSUPPORTED_EDNS_VER              | WARNING
 NS_ERROR                          | WARNING
 
@@ -84,6 +106,7 @@ the ignored result.
 None
 
 
+
 [Basic04]:              ../Basic-TP/basic04.md
 [IANA RCODE Registry]:  https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [Method4]:              ../Methods.md#method-4-obtain-glue-address-records-from-parent
@@ -96,4 +119,19 @@ None
 [RFC 6891#6.1.3]:       https://tools.ietf.org/html/rfc6891#section-6.1.3
 [RFC 6891]:             https://tools.ietf.org/html/rfc6891
 [UNSUPPORTED_EDNS_VER]: #outcomes
+
+
+[Basic04]:                         ../Basic-TP/basic04.md
+[IANA RCODE Registry]:             https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[Method4]:                         ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                         ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NS10_NO_RESPONSE_EDNS1_QUERY]:    #outcomes
+[NS10_UNEXPECTED_RCODE]:           #outcomes
+[NS_ERROR]:                        #outcomes
+[Nameserver]:                      ../Nameserver-TP/nameserver02.md
+[RFC 1035#4.1.1]:                  https://tools.ietf.org/html/rfc1035#section-4.1.1
+[RFC 4033#3]:                      https://tools.ietf.org/html/rfc4033#section-3
+[RFC 6891#6.1.3]:                  https://tools.ietf.org/html/rfc6891#section-6.1.3
+[RFC 6891]:                        https://tools.ietf.org/html/rfc6891
+[UNSUPPORTED_EDNS_VER]:            #outcomes
 
