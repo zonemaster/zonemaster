@@ -1,4 +1,4 @@
-![Zonemaster](docs/images/zonemaster_logo_2020_color.png)
+![Zonemaster](docs/images/zonemaster_logo_2021_color.png)
 ==========
 
 ## Introduction
