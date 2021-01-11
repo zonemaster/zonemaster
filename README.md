@@ -122,7 +122,7 @@ installation instructions given for Zonemaster have been followed. A test of the
 domains `ed25519.nl` and `superdns.nl` will reveal if the Zonemaster
 installation has the support or not for algorithms 15 and 16, respectively.
 
-All supported OSs, execept CentOS 7, supports algorithms 15 and 16.
+All supported OSs, except CentOS 7, support algorithms 15 and 16.
 
 ## Translation
 
