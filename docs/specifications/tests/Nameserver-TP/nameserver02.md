@@ -109,7 +109,6 @@ None
 
 
 [BREAKS_ON_EDNS]:                #outcomes
-[BROKEN_EDNS_SUPPORT]:           #outcomes
 [EDNS_RESPONSE_WITHOUT_EDNS]:    #outcomes
 [EDNS_VERSION_ERROR]:            #outcomes
 [Method4]:                       ../Methods.md#method-4-obtain-glue-address-records-from-parent
