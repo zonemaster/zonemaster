@@ -342,7 +342,7 @@ local clone where the `merge-develop-into-master` branch was created.
 Run the command
 
 ```
-git diff origin/develop merge-develop-into-master shows no changes
+git diff origin/develop merge-develop-into-master
 ```
 The result should be no difference, i.e. the contents of the new branch
 is the same as the develop branch. Then run the following two commands
