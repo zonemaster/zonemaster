@@ -348,7 +348,7 @@ The result should be no difference, i.e. the contents of the new branch
 is the same as the develop branch. Then run the following two commands
 ```
 git merge-base origin/develop merge-develop-into-master
-git show-ref origin/develop
+git show-ref --hash origin/develop
 ```
 The two commands should report the same commit.
 
