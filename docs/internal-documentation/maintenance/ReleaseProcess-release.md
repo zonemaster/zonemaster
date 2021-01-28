@@ -217,7 +217,7 @@ If needed, update the following section of the Zonemaster repository main
 
 > This section is relevant for Zonemaster/Zonemaster only.
 
-If no files in neither Zonemaster/Zonemster nor Zonemaster-Engine have been
+If no files in neither Zonemaster/Zonemaster nor Zonemaster-Engine have been
 updated this section can be skipped.
 
 1. On a computer install Zonemaster-LDNS and Zonemaster-Engine using the
@@ -233,7 +233,7 @@ updated this section can be skipped.
 
 ## 11. Upload to CPAN
 
-> This section is not relevant for Zonemaster-GUI or Zonemaster/Zonemster.
+> This section is not relevant for Zonemaster-GUI or Zonemaster/Zonemaster.
 
 For each component that is to be updated in this release, publish the
 distribution tarball created following this document on CPAN.
@@ -335,20 +335,20 @@ the "v", which may affect the version comparison.
 
 ## Appendix B on how to verify merge develop branch into master branch
 
-Below are two ways of verifying that that the branch created for merging
+Below are two ways of verifying that the branch created for merging
 develop branch into master branch is correct. The first is to use the
 local clone where the `merge-develop-into-master` branch was created.
 
 Run the command
 
 ```
-git diff origin/develop merge-develop-into-master shows no changes
+git diff origin/develop merge-develop-into-master
 ```
 The result should be no difference, i.e. the contents of the new branch
 is the same as the develop branch. Then run the following two commands
 ```
 git merge-base origin/develop merge-develop-into-master
-git show-ref origin/develop
+git show-ref --hash origin/develop
 ```
 The two commands should report the same commit.
 
