@@ -62,7 +62,7 @@ and processor architecture listed below.
 Operating System | MariaDB | PostgreSQL | SQLite
 ---------------- | --------| -----------|------------------------
 CentOS 7         | 5.5     | 9.3        | 3.7.17
-CentOS 8         | 10.3    | 10.14      | 3.34
+CentOS 8         | 10.3    | 10.14      | 3.26.0
 Debian 10        | 10.3    | 11.7       | 3.27.2
 FreeBSD 11.4     | 5.7     | 12.4       | 3.32.3
 FreeBSD 12.2     | 5.7     | 12.4       | 3.32.3
