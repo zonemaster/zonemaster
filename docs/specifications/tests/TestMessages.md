@@ -409,6 +409,8 @@ Index of Text Cases are found in [README](README.md).
 | NO_RESPONSE                              | [Syntax](Syntax-TP/README.md) | [syntax06](Syntax-TP/syntax06.md) |
 | NO_RESPONSE_SOA_QUERY                    | [Syntax](Syntax-TP/README.md) | [syntax06](Syntax-TP/syntax06.md) |
 | RNAME_MAIL_DOMAIN_INVALID                | [Syntax](Syntax-TP/README.md) | [syntax06](Syntax-TP/syntax06.md) |
+| RNAME_MAIL_DOMAIN_LOCALHOST              | [Syntax](Syntax-TP/README.md) | [syntax06](Syntax-TP/syntax06.md) |
+| RNAME_MAIL_ILLEGAL_CNAME                 | [Syntax](Syntax-TP/README.md) | [syntax06](Syntax-TP/syntax06.md) |
 | RNAME_RFC822_INVALID                     | [Syntax](Syntax-TP/README.md) | [syntax06](Syntax-TP/syntax06.md) |
 | RNAME_RFC822_VALID                       | [Syntax](Syntax-TP/README.md) | [syntax06](Syntax-TP/syntax06.md) |
 | TEST_CASE_END                            | [Syntax](Syntax-TP/README.md) | [syntax06](Syntax-TP/syntax06.md) |
