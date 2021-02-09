@@ -10,7 +10,7 @@ v2020.2 2021-02-10 (public release version)
  - Adds full support of a light weight SQLite database backend
    as an alternative to MariaDB or PostgreSQL database daemons. See
    Zonemaster-Backend for this feature.
- - Updates Zonemaster logotype (#917
+ - Updates Zonemaster logotype (#917)
 
  [Fixes]
  - Updates and improves release process documentation (#927, #924, #904)
