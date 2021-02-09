@@ -43,7 +43,7 @@ release process.
 
 ### GUI zip distribution
 
-For use cases 3 and 4, install [Ubuntu nodjs environment].
+For use cases 3 and 4, install [Ubuntu Node.js environment].
 
 ### Translation work
 
@@ -71,7 +71,7 @@ For use case 7, install an environment as for use cases
 [Debian build environment]:           Debian-build-environment.md
 [FreeBSD build environment]:          FreeBSD-build-environment.md
 [Ubuntu build environment]:           Ubuntu-build-environment.md
-[Ubuntu nodjs environment]:           Ubuntu-nodjs-build-environment.md
+[Ubuntu Node.js environment]:         Ubuntu-Node.js-build-environment.md
 [create test distribution]:           ../../maintenance/ReleaseProcess-create-test-distribution.md
 [installation instructions]:          https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Installation.md
 [instructions for translators]:       https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Translation-translators.md
