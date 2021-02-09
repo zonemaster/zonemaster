@@ -1,4 +1,4 @@
-![Zonemaster](docs/images/zonemaster_logo_2020_color.png)
+![Zonemaster](docs/images/zonemaster_logo_2021_color.png)
 ==========
 
 ## Introduction
@@ -51,30 +51,26 @@ and processor architecture listed below.
 
 * CentOS 7
 * CentOS 8
-* Debian 9
 * Debian 10
 * FreeBSD 11.4
 * FreeBSD 12.2
-* Ubuntu 16.04
 * Ubuntu 18.04
 * Ubuntu 20.04
 
 ### Supported database engine versions
 
-Operating System | MariaDB         | PostgreSQL
----------------- | ----------------| -----------
-CentOS 7         | 5.5             | 9.3 
-CentOS 8         | 10.3            | 10.14 
-Debian 9         | 10.1            | 9.6
-Debian 10        | 10.3            | 11.7
-FreeBSD 11.4     | 5.7 (#)         | 12.4
-FreeBSD 12.2     | 5.7 (#)         | 12.4
-Ubuntu 16.04     | 10.0            | 9.5
-Ubuntu 18.04     | 10.1            | 10.14
-Ubuntu 20.04     | 10.3            | 12.4
+Operating System | MariaDB | PostgreSQL | SQLite
+---------------- | --------| -----------|------------------------
+CentOS 7         | 5.5     | 9.3        | 3.7.17
+CentOS 8         | 10.3    | 10.14      | 3.26.0
+Debian 10        | 10.3    | 11.7       | 3.27.2
+FreeBSD 11.4     | 5.7     | 12.4       | 3.32.3
+FreeBSD 12.2     | 5.7     | 12.4       | 3.32.3
+Ubuntu 18.04     | 10.1    | 10.14      | 3.22.0
+Ubuntu 20.04     | 10.3    | 12.4       | 3.31.1
 
-#) FreeBSD uses MySQL, not MariaDB.
-
+* FreeBSD uses MySQL, not MariaDB. 
+* FreeBSD bundles SQLite in Perl DBD::SQLite.
 
 Zonemaster Backend has been tested with the combination of OS and database
 engine version listed in the table above. Zonemaster uses functionality
@@ -86,11 +82,9 @@ Operating System | Perl
 ---------------- | ----
 CentOS 7         | 5.16
 CentOS 8         | 5.26
-Debian 9         | 5.24
 Debian 10        | 5.28
 FreeBSD 11.4     | 5.32
 FreeBSD 12.2     | 5.32
-Ubuntu 16.04     | 5.22
 Ubuntu 18.04     | 5.26
 Ubuntu 20.04     | 5.30
 
@@ -104,15 +98,12 @@ indicated bellow and should work perfectly with similar configurations.
 
 Operating System | Browser | Version
 ---------------- | ------- | -------
-Ubuntu 18.04     | Firefox | 82
-Ubuntu 18.04     | Chrome  | 86
-Windows 10       | Firefox | 82
-Windows 10       | Chrome  | 86
-MacOs            | Firefox | 82
-MacOs            | Chrome  | 86
-
-
-#) To be checked.
+Ubuntu 18.04     | Firefox | 85
+Ubuntu 18.04     | Chrome  | 88
+Windows 10       | Firefox | 85
+Windows 10       | Chrome  | 88
+MacOs            | Firefox | 85
+MacOs            | Chrome  | 88
 
 Zonemaster GUI was tested manually or with testing tools.
 See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for
@@ -130,18 +121,7 @@ installation instructions given for Zonemaster have been followed. A test of the
 domains `ed25519.nl` and `superdns.nl` will reveal if the Zonemaster
 installation has the support or not for algorithms 15 and 16, respectively.
 
-Operating System | Supports algorithms 15 and 16
----------------- | ----
-CentOS 7         | no
-CentOS 8         | yes
-Debian 9         | no
-Debian 10        | yes
-FreeBSD 11.4     | yes
-FreeBSD 12.1     | yes
-Ubuntu 16.04     | no
-Ubuntu 18.04     | yes
-Ubuntu 20.04     | yes
-
+All supported OSs, except CentOS 7, support algorithms 15 and 16.
 
 ## Translation
 
@@ -156,6 +136,8 @@ to `RPCAPI`.
 * French (fr, fr_FR.UTF-8)
 * Norwegian (nb, nb_NO.UTF-8)
 * Swedish (sv, sv_SE.UTF-8)
+
+Norwegian is not yet available in Zonemaster-GUI.
 
 ## Zonemaster and its components
 
