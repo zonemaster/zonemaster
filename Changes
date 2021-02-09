@@ -1,5 +1,33 @@
 Release history of Zonemaster
 
+v2020.2 2021-02-10 (public release version)
+
+ [Features]
+ - Adds configurable timer settings for RRSIG in test case DNSSEC04. See
+   Zonemaster-Engine for this feature.
+ - Updates test case Syntax06 according to updated specification.  See
+   Zonemaster-Engine for this feature.
+ - Adds full support of a light weight SQLite database backend
+   as an alternative to MariaDB or PostgreSQL database daemons. See
+   Zonemaster-Backend for this feature.
+ - Updates Zonemaster logotype (#917)
+
+ [Fixes]
+ - Updates and improves release process documentation (#927, #924, #904)
+ - Updates README (#926, #922, #919)
+ - Editorial update of test case specification (#923)
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components.
+   For each component, see its Changes file or Github release notes.
+
+   Zonemaster-LDNS     v2.1.0   https://github.com/zonemaster/zonemaster-ldns/releases/tag/v2.1.0
+   Zonemaster-Engine   v4.1.0   https://github.com/zonemaster/zonemaster-engine/releases/tag/v4.1.0
+   Zonemaster-CLI      v3.0.4   https://github.com/zonemaster/zonemaster-cli/releases/tag/v3.0.4
+   Zonemaster-Backend  v6.1.0   https://github.com/zonemaster/zonemaster-backend/releases/tag/v6.1.0
+   Zonemaster-GUI      v3.2.2   https://github.com/zonemaster/zonemaster-gui/releases/tag/v3.2.2
+
+
 v2020.1.2 2020-11-18 (public fix release)
 
  [Fixes]
