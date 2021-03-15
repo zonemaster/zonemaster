@@ -1,5 +1,22 @@
 Release history of Zonemaster
 
+v2020.2.1 2021-03-16 (public fix release version)
+
+ [Fixes]
+ - Fixed a bug that prevented Zonemaster::Engine from being installed
+   (see Zonemaster-Engine)
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components.
+   For each component, see its Changes file or Github release notes.
+
+   Zonemaster-LDNS     v2.1.0   https://github.com/zonemaster/zonemaster-ldns/releases/tag/v2.1.0
+   Zonemaster-Engine   v4.1.1   https://github.com/zonemaster/zonemaster-engine/releases/tag/v4.1.1
+   Zonemaster-CLI      v3.0.4   https://github.com/zonemaster/zonemaster-cli/releases/tag/v3.0.4
+   Zonemaster-Backend  v6.1.0   https://github.com/zonemaster/zonemaster-backend/releases/tag/v6.1.0
+   Zonemaster-GUI      v3.2.2   https://github.com/zonemaster/zonemaster-gui/releases/tag/v3.2.2
+
+
 v2020.2 2021-02-10 (public release version)
 
  [Features]
