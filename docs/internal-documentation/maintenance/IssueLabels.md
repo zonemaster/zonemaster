@@ -21,18 +21,18 @@ to have normal priority. A priority label could also be set on a pull request, i
 
 Category | Label            | Color  | Used in repository | Description
 ---------|------------------|--------|--------------------|------------------------------------
-Area     | A-Backend-conf-FA| green  | Backend            | Focus Area Improving backend configuration handling.
-Area     | A-Basic04-FA     | green  | "main" or Engine   | Focus Area Implementing Basic04 and adjusting other test cases to it.
-Area     | A-CDS-CDNSKEY-FA | green  | "main" or Engine   | Focus Area Adding test cases for CDS and CDNSKEY.
-Area     | A-Documentation  | green  | all                | Documentation only.
-Area     | A-IDN-ASCII-FA   | green  | Backend or GUI     | Focus Area Moving U-label-to-A-label conversion to GUI and zmtest and away from RPCAPI.
-Area     | A-MethodNT-FA    | green  | "main" or Engine   | Focus Area Implementing and migrating to MethodNT for test cases.
-Area     | A-TestCase       | green  | "main" or Engine   | Test case specification or implementation of test case.
-Area     | A-Translation    | green  | all                | Documentation of, implementation of or actual translation of text.
-Priority | P-High           | red    | all                | Issue to be solved before other.
-Type     | T-Bug            | red    | all                | Bug in software or error in test case description.
-Type     | T-Feature        | blue   | all                | New feature in software or test case description.
-Type     | T-Question       | blue   | all                | Incoming question.
+Area     | A-Documentation  | green  | all                | Area: Documentation only.
+Area     | A-TestCase       | green  | "main" or Engine   | Area: Test case specification or implementation of test case.
+Area     | A-Translation    | green  | all                | Area: Documentation of, implementation of or actual translation of text.
+Area     | FA-Backend-conf  | green  | Backend            | Focus Area: Improving backend configuration handling.
+Area     | FA-Basic04       | green  | "main" or Engine   | Focus Area: Implementing Basic04 and adjusting other test cases to it.
+Area     | FA-CDS-CDNSKEY   | green  | "main" or Engine   | Focus Area: Adding test cases for CDS and CDNSKEY.
+Area     | FA-IDN-ASCII     | green  | Backend or GUI     | Focus Area: Moving U-label-to-A-label conversion to GUI and zmtest and away from RPCAPI.
+Area     | FA-MethodNT      | green  | "main" or Engine   | Focus Area: Implementing and migrating to MethodNT for test cases.
+Priority | P-High           | red    | all                | Priority: Issue to be solved before other.
+Type     | T-Bug            | red    | all                | Type: Bug in software or error in test case description.
+Type     | T-Feature        | blue   | all                | Type: New feature in software or test case description.
+Type     | T-Question       | blue   | all                | Type: Incoming question.
 
 ## Terms
 
