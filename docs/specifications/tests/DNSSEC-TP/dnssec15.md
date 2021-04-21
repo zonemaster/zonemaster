@@ -10,7 +10,7 @@ Both record types are optional in a zone. The objective of this test
 case is to verify that they are correctly set-up, if included in the
 zone.
 
-If an CDS record is included in the zone, the corresponding CDNSKEY
+If a CDS record is included in the zone, the corresponding CDNSKEY
 record should also be included ([RFC 7344][RFC 7344, section 4],
 section 4).
 
@@ -42,11 +42,11 @@ issues) no messages will be outputted from this test case.
 
 ## Ordered description of steps to be taken to execute the test case
 
-1.  Create a CDS query with EDNS disabled for the apex of the
-    *Child Zone*.
+1.  Create a CDS query with EDNS enabled with the DO bit set for the
+    apex of the *Child Zone*.
 
-2.  Create a CDNSKEY query with EDNS disabled for the apex of the
-    *Child Zone*.
+2.  Create a CDNSKEY query with EDNS enabled with the DO bit set for
+    the apex of the *Child Zone*.
 
 4.  Retrieve all name server IP addresses for the *Child Zone* using
     [Get-Del-NS-IPs] and [Get-Zone-NS-IPs] ("NS IP").
@@ -68,9 +68,9 @@ issues) no messages will be outputted from this test case.
           next name server IP.
        4. Else, if the DNS response contains no CDS record in the
           answer section, then add the name server IP and an empty RRset to
-          *CDS RRsets*.
+          the *CDS RRsets* set.
        5. Else, add the name server IP and the CDS RRset from the answer
-          section to *CDS RRsets*.
+          section to the *CDS RRsets* set.
     2. Send the CDNSKEY query over UDP to the name server IP address.
        1. If no DNS response is returned, then go to next name server IP.
        2. Else, if AA bit is not set in the DNS response, then go to next
@@ -79,44 +79,47 @@ issues) no messages will be outputted from this test case.
           next name server IP.
        4. Else, if the DNS response contains no CDNSKEY record in the
           answer section, then add the name server IP and an empty RRset to
-          *CDNSKEY RRsets* and go to next name server IP.
+          the *CDNSKEY RRsets* set and go to next name server IP.
        5. Else, add the name server IP and the CDNSKEY RRset from the answer
-          section to *CDNSKEY RRsets* and go to next name server IP.
+          section to the *CDNSKEY RRsets* set and go to next name server IP.
 
-7.  If neither *CDS RRsets* nor *CDNSKEY RRsets* has any non-empty RRset
-    then output *[DS15_NO_CDS_CDNSKEY]* and terminate this test case.
+7.  If neither the *CDS RRsets* set nor the *CDNSKEY RRsets* set has
+    any non-empty RRset then output *[DS15_NO_CDS_CDNSKEY]* and
+    terminate this test case.
 
-8.  If *CDS RRsets* has at least one non-empty RRset but no non-empty 
-    RRsets in *CDNSKEY RRsets* then output *[DS15_HAS_CDS_NO_CDNSKEY]*.
+8.  If the *CDS RRsets* set has at least one non-empty RRset but no
+    non-empty RRsets in the *CDNSKEY RRsets* set then output
+    *[DS15_HAS_CDS_NO_CDNSKEY]*.
          
-9.  If *CDNSKEY RRsets* has at least one non-empty RRset but no non-empty
-    RRsets in *CDS RRsets* then output *[DS15_HAS_CDNSKEY_NO_CDS]*.
+9.  If the *CDNSKEY RRsets* set has at least one non-empty RRset but no
+    non-empty RRsets in the *CDS RRsets* set then output
+    *[DS15_HAS_CDNSKEY_NO_CDS]*.
 
-10. If each of *CDS RRsets* and*CDNSKEY RRsets* has at least one non-empty
-    RRset then output *[DS15_HAS_CDS_CDNSKEY]*.
+10. If each of the *CDS RRsets* set and the *CDNSKEY RRsets* set has
+    at least one non-empty RRset then output *[DS15_HAS_CDS_CDNSKEY]*.
 
-11. If not all CDS RRsets in *CDS RRsets* are identical then output
-    *[DS15_INCONSISTENT_CDS]*.
+11. If not all CDS RRsets in the *CDS RRsets* set are identical then
+    output *[DS15_INCONSISTENT_CDS]*.
 
-12. If not all CDNSKEY RRsets in *CDNSKEY RRsets* are identical then output
-    *[DS15_INCONSISTENT_CDNSKEY]*.
+12. If not all CDNSKEY RRsets in the *CDNSKEY RRsets* set are identical
+    then output *[DS15_INCONSISTENT_CDNSKEY]*.
 
-13. For each name server IP in *CDS RRsets* do:
+13. For each name server IP in the *CDS RRsets* set do:
 
     1. Extract the CDS RRset (possibly empty).
     2. Extract the CDNSKEY RRset (possibly empty) for the same IP from
-       *CDNSKEY RRsets*.
+       the *CDNSKEY RRsets* set.
     3. If both RRsets are non-empty then do:
        1. For each CDS RR verify that there is a matching CDNSKEY (derived
           from the same DNSKEY or being "delete").
        2. For each CDNSKEY RR verify that there is a matching CDS (derived
           from the same DNSKEY or being "delete").
        3. If one of both of the verifications fail then add the name server
-          IP to *Mismatch CDS/CDNSKEY*.
+          IP to the *Mismatch CDS/CDNSKEY* set.
 
-14. If *Mismatch CDS/CDNSKEY* is non-empty, then output
+14. If the *Mismatch CDS/CDNSKEY* set is non-empty, then output
     *[DS15_MISMATCH_CDS_CDNSKEY]* and list the name server IPs from
-    *Mismatch CDS/CDNSKEY*.
+    the set.
 
 ## Outcome(s)
 
