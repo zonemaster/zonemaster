@@ -5,7 +5,7 @@
 
 ## Objective
 
-CDS and CDNSKEY record types are defined in [RFC 7344] and [RFC 8878].
+CDS and CDNSKEY record types are defined in [RFC 7344] and [RFC 8078].
 Both record types are optional in a zone. The objective of this test
 case is to verify that they are they are valid. This Test case is
 only relevant if the zone has either CDS or CDNSKEY record or both.
@@ -33,7 +33,7 @@ that the servers give the same responses.
 * "Child Zone" - The domain name to be tested.
 
 ## Summary
-* If no CDS or CDNSKEY is found, the test case is nor run.
+* If no CDS or CDNSKEY is found, the test case is not run.
 * [ERROR] message if there is no DNSKEY RRset.
 * [WARNING] message if a CDS record does not match any
   DNSKEY in DNSKEY RRset (except for "delete" CDS).
@@ -331,7 +331,7 @@ None.
 [NOTICE]:                                #outcomes
 [RFC 7344, section 4]:                   https://tools.ietf.org/html/rfc7344#section-4
 [RFC 7344]:                              https://tools.ietf.org/html/rfc7344
-[RFC 8878]:                              https://tools.ietf.org/html/rfc8078
+[RFC 8078]:                              https://tools.ietf.org/html/rfc8078
 [Severity Level]:                        ../SeverityLevelDefinitions.md
 [WARNING]:                               #outcomes
 
