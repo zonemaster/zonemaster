@@ -83,9 +83,9 @@ issues) no messages will be outputted from this test case.
        5. Else, add the name server IP and the CDNSKEY RRset from the answer
           section to the *CDNSKEY RRsets* set and go to next name server IP.
 
-7.  If neither the *CDS RRsets* set nor the *CDNSKEY RRsets* set has
-    any non-empty RRset then output *[DS15_NO_CDS_CDNSKEY]* and
-    terminate this test case.
+7.  If the two sets, *CDS RRsets* and *CDNSKEY RRsets*, both have only
+    empty RRsets then output *[DS15_NO_CDS_CDNSKEY]* and terminate this
+    test case.
 
 8.  If the *CDS RRsets* set has at least one non-empty RRset but no
     non-empty RRsets in the *CDNSKEY RRsets* set then output
