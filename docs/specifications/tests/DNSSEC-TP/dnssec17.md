@@ -31,10 +31,10 @@ It is assumed that the Child Zone has been tested by [DNSSEC15] and
 ## Summary
 * If no CDS or CDNSKEY records are found, this test case is not run.
 * If no DS records are found at parent, this test case is not run.
-* [ERROR] message if the CDS RRset is not signed with the DNSKEY that
-  a DS record points at.
-* [ERROR] message if the CDNSKEY RRset is not signed with the DNSKEY
-  that a DS record points at.
+* [ERROR] message if the CDS RRset is not signed with the private key
+  of the DNSKEY record that a DS record points at.
+* [ERROR] message if the CDNSKEY RRset is not signed with the private
+  key of the DNSKEY record that a DS record points at.
 
 ## Ordered description of steps to be taken to execute the test case
 
