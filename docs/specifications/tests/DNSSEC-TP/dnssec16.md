@@ -39,6 +39,8 @@ that the servers give the same responses.
   DNSKEY in DNSKEY RRset (except for "delete" CDS).
 * [WARNING] message if a CDNSKEY record does not match any
   DNSKEY in DNSKEY RRset (except for "delete" CDNSKEY).
+* [WARNING] message if the DNSKEY RRset is not signed by the key or
+  keys that the CDS and CDNSKEY records point to.
 * [ERROR] message if CDS RRset is not signed.
 * [ERROR] message if CDNSKEY RRset is not signed.
 * [ERROR] message if CDS RRset is signed with an invalid RRSIG.
@@ -47,10 +49,6 @@ that the servers give the same responses.
   RRset.
 * [ERROR] message if CDNSKEY RRset is signed but not by a key in DNSKEY
   RRset.
-* [WARNING] message if CDS RRset is signed by a key in the DNSKEY RRset
-  but not with one that has signed the DNSKEY RRset.
-* [WARNING] message if CDNSKEY RRset is signed by a key in the DNSKEY
-  RRset but not with one that has signed the DNSKEY RRset.
 * [INFO] message if CDS RRset have a "delete" CDS record as a single
   record.
 * [INFO] message if CDNSKEY RRset have a "delete" CDNSKEY record as a
@@ -89,22 +87,22 @@ that the servers give the same responses.
     6.  Name server IP address ("Delete CDS").
     7.  Name server IP address and associated CDS key tag 
         ("No Match CDS With DNSKEY").
-    8.  Name server IP address ("CDS Not Signed").
-    9.  Name server IP address and key tag 
+    8.  Name server IP address and associated CDS key tag
+        ("CDS Not Signed DNSKEY").
+    9.  Name server IP address ("CDS Not Signed").
+    10. Name server IP address and key tag
         ("CDS Signed Unknown DNSKEY").
-    10. Name server IP address and key tag ("CDS Invalid RRSIG").
-    11. Name server IP address and key tag
-        ("CDS RRSIG Not Signed DNSKEY").
+    11. Name server IP address and key tag ("CDS Invalid RRSIG").
     12. Name server IP address ("Mixed Delete CDNSKEY").
     13. Name server IP address ("Delete CDNSKEY").
     14. Name server IP address and associated CDNSKEY key tag 
         ("No Match CDNSKEY With DNSKEY").
-    15. Name server IP address ("CDNSKEY Not Signed").
-    16. Name server IP address and key tag 
+    15. Name server IP address and key tag
+        ("CDNSKEY Not Signed DNSKEY").
+    16. Name server IP address ("CDNSKEY Not Signed").
+    17. Name server IP address and key tag
         ("CDNSKEY Signed Unknown DNSKEY").
-    17. Name server IP address and key tag ("CDNSKEY Invalid RRSIG").
-    18. Name server IP address and key tag
-        ("CDNSKEY RRSIG Not Signed DNSKEY").
+    18. Name server IP address and key tag ("CDNSKEY Invalid RRSIG").
 
 6.  Repeat the following steps for each name server IP address in 
     *NS IP*:
@@ -166,7 +164,11 @@ that the servers give the same responses.
           key tags for the DNSKEY records.
        2. If the CDS record does not match any DNSKEY record then add
           the name server IP address and key tag to 
-          *No Match CDS With DNSKEY*.
+          *No Match CDS With DNSKEY* set.
+       3. Else, if there is no RRSIG for the DNSKEY RRset created by
+          the DNSKEY record that the CDS record points at then add the
+          name server IP address and key tag of CDS record to the
+          *CDS Not Signed DNSKEY* set.
     6. If there are no RRSIG records for the CDS RRset, then add the
        name server IP address to the *CDS Not Signed* set.
     7. Else, for each RRSIG (CDS) do:
@@ -176,9 +178,6 @@ that the servers give the same responses.
        2. Else, if the RRSIG cannot be validated by the DNSKEY it
           refers to by key tag, then add the name server IP and RRSIG
           key tag to the *CDS Invalid RRSIG* set.
-       3. Else, if there is no RRSIG (DNSKEY) created by the same
-          DNSKEY then add the name serve IP address and the DNSKEY key
-          tag to the *CDS RRSIG Not Signed DNSKEY* set.
     8. Go to next name server IP address.
 
 9.  For each name server IP in the *CDNSKEY RRsets* set do:
@@ -200,7 +199,11 @@ that the servers give the same responses.
        1. Compare the CDNSKEY record with the DNSKEY records.
        2. If the CDNSKEY record does not match any DNSKEY record then
           add the name server IP address and key tag to 
-          *No Match CDNSKEY With DNSKEY*.
+          *No Match CDNSKEY With DNSKEY* set.
+       3. Else, if there is no RRSIG for the DNSKEY RRset created by
+          the DNSKEY record matching the CDNSKEY record then add the
+          name server IP address and key tag of CDNSKEY record to the
+          *CDNSKEY Not Signed DNSKEY* set.
     6. If there are no RRSIG records for the CDNSKEY RRset, then add
        the name server IP address to the *CDNSKEY Not Signed* set.
     7. Else, for each RRSIG (CDNSKEY) do:
@@ -210,9 +213,6 @@ that the servers give the same responses.
        2. Else, if the RRSIG cannot be validated by the DNSKEY it
           refers to by key tag, then add the name server IP and RRSIG
           key tag to the *CDNSKEY Invalid RRSIG* set.
-       3. Else, if there is no RRSIG (DNSKEY) created by the same
-          DNSKEY then add the name serve IP address and the DNSKEY key
-          tag to the *CDNSKEY RRSIG Not Signed DNSKEY* set.
     8. Go to next name server IP address.
 
 10. If the *No DNSKEY RRset* set is non-empty, then output
@@ -239,35 +239,35 @@ that the servers give the same responses.
     with the CDNSKEY key tag and the name server IP addresses in the
     set per key tag.
 
-16. If the *CDS Not Signed* set or the *CDNSKEY Not Signed* set is
-    non-empty then output *[DS16_CDS_CDNSKEY_UNSIGNED]* with all
-    name server IP addresses in the two sets.
-
-17. If the *CDS Signed Unknown DNSKEY* set is non-empty then output
-    *[DS16_CDS_SIGNED_UNKNOWN_DNSKEY]* with the name server IP
-    addresses in the set.
-
-18. If the *CDNSKEY Signed Unknown DNSKEY* set is non-empty then
-    output *[DS16_CDNSKEY_SIGNED_UNKNOWN_DNSKEY]* with the name server
-    IP addresses in the set.
-
-19. If the *CDS Invalid RRSIG* set is non-empty then for each key tag
-    in the set output *[DS16_CDS_INVALID_RRSIG]* with the RRSIG key
-    tag and the name server IP addresses in the set per key tag.
-
-20. If the *CDNSKEY Invalid RRSIG* set is non-empty then for each key
-    tag in the set output *[DS16_CDNSKEY_INVALID_RRSIG]* with the RRSIG
-    key tag and the name server IP addresses in the set per key tag.
-
-21. If the *CDS RRSIG Not Signed DNSKEY* set is non-empty then for
-    each key tag in the set output *[DS16_CDS_RRSIG_NOT_SIGNED_DNSKEY]*
+16. If the *CDS Not Signed DNSKEY* set is non-empty then for
+    each key tag in the set output *[DS16_CDS_NOT_SIGNED_DNSKEY]*
     with the RRSIG key tag and the name server IP addresses in the set
     per key tag.
 
-21. If the *CDNSKEY RRSIG Not Signed DNSKEY* set is non-empty then for
-    each key tag in the set output 
-    *[DS16_CDNSKEY_RRSIG_NOT_SIGNED_DNSKEY]* with the RRSIG key tag and
+17. If the *CDNSKEY Not Signed DNSKEY* set is non-empty then for
+    each key tag in the set output
+    *[DS16_NOT_SIGNED_DNSKEY]* with the RRSIG key tag and
     the name server IP addresses in the set per key tag.
+
+18. If the *CDS Not Signed* set or the *CDNSKEY Not Signed* set is
+    non-empty then output *[DS16_CDS_CDNSKEY_UNSIGNED]* with all
+    name server IP addresses in the two sets.
+
+19. If the *CDS Signed Unknown DNSKEY* set is non-empty then output
+    *[DS16_CDS_SIGNED_UNKNOWN_DNSKEY]* with the name server IP
+    addresses in the set.
+
+20. If the *CDNSKEY Signed Unknown DNSKEY* set is non-empty then
+    output *[DS16_CDNSKEY_SIGNED_UNKNOWN_DNSKEY]* with the name server
+    IP addresses in the set.
+
+21. If the *CDS Invalid RRSIG* set is non-empty then for each key tag
+    in the set output *[DS16_CDS_INVALID_RRSIG]* with the RRSIG key
+    tag and the name server IP addresses in the set per key tag.
+
+22. If the *CDNSKEY Invalid RRSIG* set is non-empty then for each key
+    tag in the set output *[DS16_CDNSKEY_INVALID_RRSIG]* with the RRSIG
+    key tag and the name server IP addresses in the set per key tag.
 
 ## Outcome(s)
 
@@ -284,13 +284,13 @@ Message                              | Default [severity level]
 :------------------------------------|:-----------------------------------
 DS16_CDNSKEY_INVALID_RRSIG           | ERROR
 DS16_CDNSKEY_MATCHES_NO_DNSKEY       | WARNING
-DS16_CDNSKEY_RRSIG_NOT_SIGNED_DNSKEY | WARNING
+DS16_NOT_SIGNED_DNSKEY               | WARNING
 DS16_CDNSKEY_SIGNED_UNKNOWN_DNSKEY   | ERROR
 DS16_CDS_CDNSKEY_UNSIGNED            | ERROR
 DS16_CDS_CDNSKEY_WITHOUT_DNSKEY      | ERROR
 DS16_CDS_INVALID_RRSIG               | ERROR
 DS16_CDS_MATCHES_NO_DNSKEY           | WARNING
-DS16_CDS_RRSIG_NOT_SIGNED_DNSKEY     | WARNING
+DS16_CDS_NOT_SIGNED_DNSKEY           | WARNING
 DS16_CDS_SIGNED_UNKNOWN_DNSKEY       | ERROR
 DS16_DELETE_CDNSKEY                  | INFO
 DS16_DELETE_CDS                      | INFO
@@ -313,17 +313,17 @@ None.
 [DNSSEC15]:                              dnssec15.md
 [DS16_CDNSKEY_INVALID_RRSIG]:            #outcomes
 [DS16_CDNSKEY_MATCHES_NO_DNSKEY]:        #outcomes
-[DS16_CDNSKEY_RRSIG_NOT_SIGNED_DNSKEY]:  #outcomes
 [DS16_CDNSKEY_SIGNED_UNKNOWN_DNSKEY]:    #outcomes
 [DS16_CDS_CDNSKEY_UNSIGNED]:             #outcomes
 [DS16_CDS_CDNSKEY_WITHOUT_DNSKEY]:       #outcomes
 [DS16_CDS_INVALID_RRSIG]:                #outcomes
 [DS16_CDS_MATCHES_NO_DNSKEY]:            #outcomes
-[DS16_CDS_RRSIG_NOT_SIGNED_DNSKEY]:      #outcomes
+[DS16_CDS_NOT_SIGNED_DNSKEY]:            #outcomes
 [DS16_CDS_SIGNED_UNKNOWN_DNSKEY]:        #outcomes
 [DS16_DELETE_CDNSKEY]:                   #outcomes
 [DS16_DELETE_CDS]:                       #outcomes
 [DS16_MIXED_DELETE_CDS_CDNSKEY]:         #outcomes
+[DS16_NOT_SIGNED_DNSKEY]:                #outcomes
 [ERROR]:                                 #outcomes
 [Get-Del-NS-IPs]:                        https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/MethodsNT.md#method-get-delegation-ns-ip-addresses
 [Get-Zone-NS-IPs]:                       https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/MethodsNT.md#method-get-zone-ns-ip-addresses
