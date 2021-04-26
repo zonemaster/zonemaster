@@ -7,10 +7,10 @@
 
 CDS and CDNSKEY record types are defined in [RFC 7344] and [RFC 8078].
 Both record types are optional in a zone. The objective of this test
-case is to verify that they are they are valid. This Test case is
+case is to verify that they are are valid. This Test case is
 only relevant if the zone has either CDS or CDNSKEY record or both.
 
-If an CDS record is included in the zone, the corresponding CDNSKEY
+If a CDS record is included in the zone, the corresponding CDNSKEY
 record should also be included ([RFC 7344][RFC 7344, section 4],
 section 4).
 
@@ -22,18 +22,24 @@ in content ([RFC 7344][RFC 7344, section 4], section 4). It means that
 both must be derived from the same DNSKEY or both being "delete" CDS
 and CDNSKEY.
 
-If a name server has issues covered by [Basic04] (basic name server
-issues) no messages will be outputted from this test case.
+## Scope
 
-It is assumed that the Child Zone has been tested by [DNSSEC15] and
-that the servers give the same responses.
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will just ignore non-responsive name servers or name servers not
+giving a correct DNS response for an authoritative name server.
+
+It is assumed that *Child Zone* has been tested by [DNSSEC15] and
+that the servers give the same responses. Running this test case
+without running [DNSSEC15], before or after, can give an incomplete
+report of CDS and CDNSKEY status of *Child Zone*.
 
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
 
 ## Summary
-* If no CDS or CDNSKEY is found, the test case is not run.
+* If no CDS or CDNSKEY is found, the test case will terminate early
+  with no message.
 * [ERROR] message if there is no DNSKEY RRset.
 * [WARNING] message if a CDS record does not match any
   DNSKEY in DNSKEY RRset (except for "delete" CDS).
@@ -74,13 +80,13 @@ that the servers give the same responses.
 
 5.  Create the following empty sets:
     1.  Name server IP address and associated CDS RRset and its RRSIG
-        records ("CDS RRsets"). A name server IP can hold an empty 
+        records ("CDS RRsets"). A name server IP may hold an empty
         RRset or no RRSIG records.
     2.  Name server IP address and associated CDNSKEY RRset and its
-        RRSIG redords ("CDNSKEY RRsets"). A name server IP can hold an
+        RRSIG redords ("CDNSKEY RRsets"). A name server IP may hold an
         empty RRset or no RRSIG records.
     3.  Name server IP address and associated DNSKEY RRset and its 
-        RRsig records ("DNSKEY RRsets"). A name server IP can hold an empty
+        RRsig records ("DNSKEY RRsets"). A name server IP may hold an empty
         RRset or no RRSIG records.
     4.  Name server IP address ("No DNSKEY RRset").
     5.  Name server IP address ("Mixed Delete CDS").
@@ -116,7 +122,7 @@ that the servers give the same responses.
           go to next name server IP.
        4. Else, if the DNS response contains at least one CDS record
           in the answer section, then add the name server IP and the
-          CDS RRset to the *CDS RRsets* set. Also include any assciated
+          CDS RRset to the *CDS RRsets* set. Also include any associated
           RRSIG records.
     2. Send the CDNSKEY query over UDP to the name server IP address.
        1. If no DNS response is returned, then go to next name server
@@ -128,7 +134,7 @@ that the servers give the same responses.
        4. Else, if the DNS response contains at least one CDNSKEY
           record in the answer section, then add the name server IP and
           the CDNSKEY RRset from the answer section to the 
-          *CDNSKEY RRsets* set. Also include any assciated RRSIG records.
+          *CDNSKEY RRsets* set. Also include any associated RRSIG records.
     3. Send the DNSKEY query over UDP to the name server IP address.
        1. If no DNS response is returned, then go to next name server
           IP.
@@ -139,7 +145,7 @@ that the servers give the same responses.
        4. Else, if the DNS response contains at least one DNSKEY
           record in the answer section, then add the name server IP and
           the CDNSKEY RRset from the answer section to the 
-          *DNSKEY RRsets* set. Also include any assciated RRSIG records.
+          *DNSKEY RRsets* set. Also include any associated RRSIG records.
     4. Go to next name server IP.
 
 7.  If neither of the *CDS RRsets* and *CDNSKEY RRsets* sets,
@@ -147,20 +153,20 @@ that the servers give the same responses.
 
 8.  For each name server IP in the *CDS RRsets* set do:
 
-    1. Extract the CDS and its RRSIG records, if any.
+    1. Get the CDS and its RRSIG records, if any.
     2. If any CDS record is a "delete" CDS, then do:
        1. If there is more than a single CDS record then add the name
           server IP to the *Mixed Delete CDS* set.
        2. Else, add the name server IP address to the *Delete CDS*
           set.
-       2. Go to next name server IP.
-    3. Extract the DNSKEY and its RRSIG records, if any, from the 
+       3. Go to next name server IP.
+    3. Get the DNSKEY and its RRSIG records, if any, from the
        *DNSKEY RRsets* for the same name server IP.
     4. If there are no DNSKEY records, then do:
        1. Add name server IP address to the *No DNSKEY RRset* set.
        2. Go to next name server IP.
     5. Repeat the following steps for each CDS record:
-       1. Compare the key tag from the CDS record with the caculated
+       1. Compare the key tag from the CDS record with the calculated
           key tags for the DNSKEY records.
        2. If the CDS record does not match any DNSKEY record then add
           the name server IP address and key tag to 
@@ -182,14 +188,14 @@ that the servers give the same responses.
 
 9.  For each name server IP in the *CDNSKEY RRsets* set do:
 
-    1. Extract the CDNSKEY and its RRSIG records, if any.
+    1. Get the CDNSKEY and its RRSIG records, if any.
     2. If any CDNSKEY record is a "delete" CDNSKEY, then do:
        1. If there is more than a single CDNSKEY record then add the
           name server IP to the *Mixed Delete CDNSKEY* set.
        2. Else, add the name server IP address to the *Delete CDNSKEY*
           set.
        2. Go to next name server IP.
-    3. Extract the DNSKEY and its RRSIG records, if any, from the 
+    3. Get the DNSKEY and its RRSIG records, if any, from the
        *DNSKEY RRsets* for the same name server IP.
     4. If there are no DNSKEY records, then do:
        1. Add name server IP address to the *No DNSKEY RRset* set
