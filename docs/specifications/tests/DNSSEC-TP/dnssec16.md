@@ -74,7 +74,7 @@ DS16_MIXED_DELETE_CDS_CDNSKEY        | ERROR   | "Delete" CDS (CDNSKEY) record i
     the apex of the *Child Zone*.
 
 4.  Retrieve all name server IP addresses for the *Child Zone* using
-    [Get-Del-NS-IPs] and [Get-Zone-NS-IPs] ("NS IP").
+    [Method4] and [Method5] ("NS IP").
 
 5.  Create the following empty sets:
     1.  Name server IP address and associated CDS RRset and its RRSIG
@@ -312,8 +312,8 @@ None.
 [DS16_MIXED_DELETE_CDS_CDNSKEY]:         #summary
 [Default level]:                         ../SeverityLevelDefinitions.md
 [ERROR]:                                 #summary
-[Get-Del-NS-IPs]:                        https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/MethodsNT.md#method-get-delegation-ns-ip-addresses
-[Get-Zone-NS-IPs]:                       https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/MethodsNT.md#method-get-zone-ns-ip-addresses
+[Method4]:                               ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                               ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [RFC 7344, section 4]:                   https://tools.ietf.org/html/rfc7344#section-4
 [RFC 7344]:                              https://tools.ietf.org/html/rfc7344
 [RFC 8078]:                              https://tools.ietf.org/html/rfc8078
