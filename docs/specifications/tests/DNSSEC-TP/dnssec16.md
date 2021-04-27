@@ -38,31 +38,29 @@ report of CDS and CDNSKEY status of *Child Zone*.
 * "Child Zone" - The domain name to be tested.
 
 ## Summary
+
 * If no CDS or CDNSKEY is found, the test case will terminate early
-  with no message.
-* [ERROR] message if there is no DNSKEY RRset.
-* [WARNING] message if a CDS record does not match any
-  DNSKEY in DNSKEY RRset (except for "delete" CDS).
-* [WARNING] message if a CDNSKEY record does not match any
-  DNSKEY in DNSKEY RRset (except for "delete" CDNSKEY).
-* [WARNING] message if the DNSKEY RRset is not signed by the key or
-  keys that the CDS and CDNSKEY records point to.
-* [ERROR] message if CDS RRset is not signed.
-* [ERROR] message if CDNSKEY RRset is not signed.
-* [ERROR] message if CDS RRset is signed with an invalid RRSIG.
-* [ERROR] message if CDNSKEY RRset signed with an invalid RRSIG.
-* [ERROR] message if CDS RRset is signed but not by a key in DNSKEY
-  RRset.
-* [ERROR] message if CDNSKEY RRset is signed but not by a key in DNSKEY
-  RRset.
-* [INFO] message if CDS RRset have a "delete" CDS record as a single
-  record.
-* [INFO] message if CDNSKEY RRset have a "delete" CDNSKEY record as a
-  single record.
-* [ERROR] message if "delete" CDS record is mixed with normal CDS
-  record.
-* [ERROR] message if "delete" CDNSKEY record is mixed with normal
-  CDNSKEY record.
+  with no message tag outputted.
+* In the table below, "CDS (CDNSKEY)" means "CDS" or "CDNSKEY" or both,
+  as applicable.
+* If a CDS or CDNSKEY record is of "delete" type, then it can by
+  definition not match or point at any DNSKEY record.
+
+Message Tag outputted                | [Default level] | Description of when message tag is outputted
+:------------------------------------|:--------|:-----------------------------------------
+DS16_CDNSKEY_INVALID_RRSIG           | ERROR   | CDNSKEY RRset signed with an invalid RRSIG.
+DS16_CDNSKEY_MATCHES_NO_DNSKEY       | WARNING | CDNSKEY record does not match any DNSKEY in DNSKEY RRset.
+DS16_CDNSKEY_SIGNED_BY_UNKNOWN_DNSKEY| ERROR   | CDNSKEY RRset is signed but not by a key in DNSKEY RRset.
+DS16_CDS_CDNSKEY_UNSIGNED            | ERROR   | CDS (CDNSKEY) RRset is not signed.
+DS16_CDS_CDNSKEY_WITHOUT_DNSKEY      | ERROR   | CDS (CDNSKEY) RRset exists, but no DNSKEY RRset.
+DS16_CDS_INVALID_RRSIG               | ERROR   | CDS RRset is signed with an invalid RRSIG.
+DS16_CDS_MATCHES_NO_DNSKEY           | WARNING | CDS record does not match any DNSKEY in DNSKEY RRset.
+DS16_CDS_SIGNED_BY_UNKNOWN_DNSKEY    | ERROR   | CDS RRset is signed but not by a key in DNSKEY RRset.
+DS16_DELETE_CDNSKEY                  | INFO    | CDNSKEY RRset have a "delete" CDNSKEY record as a single record.
+DS16_DELETE_CDS                      | INFO    | CDS RRset have a "delete" CDS record as a single record.
+DS16_DNSKEY_NOT_SIGNED_BY_CDNSKEY    | WARNING | DNSKEY RRset is not signed by the key or keys that the CDNSKEY records point to.
+DS16_DNSKEY_NOT_SIGNED_BY_CDS        | WARNING | DNSKEY RRset is not signed by the key or keys that the CDS records point to.
+DS16_MIXED_DELETE_CDS_CDNSKEY        | ERROR   | "Delete" CDS (CDNSKEY) record is mixed with normal CDS (CDNSKEY) record.
 
 ## Ordered description of steps to be taken to execute the test case
 
@@ -94,20 +92,20 @@ report of CDS and CDNSKEY status of *Child Zone*.
     7.  Name server IP address and associated CDS key tag 
         ("No Match CDS With DNSKEY").
     8.  Name server IP address and associated CDS key tag
-        ("CDS Not Signed DNSKEY").
+        ("DNSKEY Not Signed By CDS").
     9.  Name server IP address ("CDS Not Signed").
     10. Name server IP address and key tag
-        ("CDS Signed Unknown DNSKEY").
+        ("CDS Signed By Unknown DNSKEY").
     11. Name server IP address and key tag ("CDS Invalid RRSIG").
     12. Name server IP address ("Mixed Delete CDNSKEY").
     13. Name server IP address ("Delete CDNSKEY").
     14. Name server IP address and associated CDNSKEY key tag 
         ("No Match CDNSKEY With DNSKEY").
     15. Name server IP address and key tag
-        ("CDNSKEY Not Signed DNSKEY").
+        ("DNSKEY Not Signed By CDNSKEY").
     16. Name server IP address ("CDNSKEY Not Signed").
     17. Name server IP address and key tag
-        ("CDNSKEY Signed Unknown DNSKEY").
+        ("CDNSKEY Signed By Unknown DNSKEY").
     18. Name server IP address and key tag ("CDNSKEY Invalid RRSIG").
 
 6.  Repeat the following steps for each name server IP address in 
@@ -174,13 +172,13 @@ report of CDS and CDNSKEY status of *Child Zone*.
        3. Else, if there is no RRSIG for the DNSKEY RRset created by
           the DNSKEY record that the CDS record points at then add the
           name server IP address and key tag of CDS record to the
-          *CDS Not Signed DNSKEY* set.
+          *DNSKEY Not Signed By CDS* set.
     6. If there are no RRSIG records for the CDS RRset, then add the
        name server IP address to the *CDS Not Signed* set.
     7. Else, for each RRSIG (CDS) do:
        1. If the key tag of the RRSIG does not match any DNSKEY then
           add the name server IP address and key tag to the
-          *CDS Signed Unknown DNSKEY* set.
+          *CDS Signed By Unknown DNSKEY* set.
        2. Else, if the RRSIG cannot be validated by the DNSKEY it
           refers to by key tag, then add the name server IP and RRSIG
           key tag to the *CDS Invalid RRSIG* set.
@@ -209,13 +207,13 @@ report of CDS and CDNSKEY status of *Child Zone*.
        3. Else, if there is no RRSIG for the DNSKEY RRset created by
           the DNSKEY record matching the CDNSKEY record then add the
           name server IP address and key tag of CDNSKEY record to the
-          *CDNSKEY Not Signed DNSKEY* set.
+          *DNSKEY Not Signed By CDNSKEY* set.
     6. If there are no RRSIG records for the CDNSKEY RRset, then add
        the name server IP address to the *CDNSKEY Not Signed* set.
     7. Else, for each RRSIG (CDNSKEY) do:
        1. If the key tag of the RRSIG does not match any DNSKEY then
           add the name server IP address and key tag to the
-          *CDNSKEY Signed Unknown DNSKEY* set.
+          *CDNSKEY Signed By Unknown DNSKEY* set.
        2. Else, if the RRSIG cannot be validated by the DNSKEY it
           refers to by key tag, then add the name server IP and RRSIG
           key tag to the *CDNSKEY Invalid RRSIG* set.
@@ -245,26 +243,26 @@ report of CDS and CDNSKEY status of *Child Zone*.
     with the CDNSKEY key tag and the name server IP addresses in the
     set per key tag.
 
-16. If the *CDS Not Signed DNSKEY* set is non-empty then for
-    each key tag in the set output *[DS16_CDS_NOT_SIGNED_DNSKEY]*
+16. If the *DNSKEY Not Signed By CDS* set is non-empty then for
+    each key tag in the set output *[DS16_DNSKEY_NOT_SIGNED_BY_CDS]*
     with the RRSIG key tag and the name server IP addresses in the set
     per key tag.
 
-17. If the *CDNSKEY Not Signed DNSKEY* set is non-empty then for
+17. If the *DNSKEY Not Signed By CDNSKEY* set is non-empty then for
     each key tag in the set output
-    *[DS16_NOT_SIGNED_DNSKEY]* with the RRSIG key tag and
+    *[DS16_DNSKEY_NOT_SIGNED_BY_CDNSKEY]* with the RRSIG key tag and
     the name server IP addresses in the set per key tag.
 
 18. If the *CDS Not Signed* set or the *CDNSKEY Not Signed* set is
     non-empty then output *[DS16_CDS_CDNSKEY_UNSIGNED]* with all
     name server IP addresses in the two sets.
 
-19. If the *CDS Signed Unknown DNSKEY* set is non-empty then output
-    *[DS16_CDS_SIGNED_UNKNOWN_DNSKEY]* with the name server IP
+19. If the *CDS Signed By Unknown DNSKEY* set is non-empty then output
+    *[DS16_CDS_SIGNED_BY_UNKNOWN_DNSKEY]* with the name server IP
     addresses in the set.
 
-20. If the *CDNSKEY Signed Unknown DNSKEY* set is non-empty then
-    output *[DS16_CDNSKEY_SIGNED_UNKNOWN_DNSKEY]* with the name server
+20. If the *CDNSKEY Signed By Unknown DNSKEY* set is non-empty then
+    output *[DS16_CDNSKEY_SIGNED_BY_UNKNOWN_DNSKEY]* with the name server
     IP addresses in the set.
 
 21. If the *CDS Invalid RRSIG* set is non-empty then for each key tag
@@ -286,24 +284,6 @@ with the [severity level] *WARNING*, but no message with severity level
 
 In other cases the outcome of this Test Case is "pass".
 
-Message                              | Default [severity level]
-:------------------------------------|:-----------------------------------
-DS16_CDNSKEY_INVALID_RRSIG           | ERROR
-DS16_CDNSKEY_MATCHES_NO_DNSKEY       | WARNING
-DS16_NOT_SIGNED_DNSKEY               | WARNING
-DS16_CDNSKEY_SIGNED_UNKNOWN_DNSKEY   | ERROR
-DS16_CDS_CDNSKEY_UNSIGNED            | ERROR
-DS16_CDS_CDNSKEY_WITHOUT_DNSKEY      | ERROR
-DS16_CDS_INVALID_RRSIG               | ERROR
-DS16_CDS_MATCHES_NO_DNSKEY           | WARNING
-DS16_CDS_NOT_SIGNED_DNSKEY           | WARNING
-DS16_CDS_SIGNED_UNKNOWN_DNSKEY       | ERROR
-DS16_DELETE_CDNSKEY                  | INFO
-DS16_DELETE_CDS                      | INFO
-DS16_MIXED_DELETE_CDS_CDNSKEY        | ERROR
-
-
-
 ## Special procedural requirements
 
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
@@ -317,29 +297,26 @@ None.
 
 [Basic04]:                               ../Basic-TP/basic04.md
 [DNSSEC15]:                              dnssec15.md
-[DS16_CDNSKEY_INVALID_RRSIG]:            #outcomes
-[DS16_CDNSKEY_MATCHES_NO_DNSKEY]:        #outcomes
-[DS16_CDNSKEY_SIGNED_UNKNOWN_DNSKEY]:    #outcomes
-[DS16_CDS_CDNSKEY_UNSIGNED]:             #outcomes
-[DS16_CDS_CDNSKEY_WITHOUT_DNSKEY]:       #outcomes
-[DS16_CDS_INVALID_RRSIG]:                #outcomes
-[DS16_CDS_MATCHES_NO_DNSKEY]:            #outcomes
-[DS16_CDS_NOT_SIGNED_DNSKEY]:            #outcomes
-[DS16_CDS_SIGNED_UNKNOWN_DNSKEY]:        #outcomes
-[DS16_DELETE_CDNSKEY]:                   #outcomes
-[DS16_DELETE_CDS]:                       #outcomes
-[DS16_MIXED_DELETE_CDS_CDNSKEY]:         #outcomes
-[DS16_NOT_SIGNED_DNSKEY]:                #outcomes
-[ERROR]:                                 #outcomes
+[DS16_CDNSKEY_INVALID_RRSIG]:            #summary
+[DS16_CDNSKEY_MATCHES_NO_DNSKEY]:        #summary
+[DS16_CDNSKEY_SIGNED_BY_UNKNOWN_DNSKEY]: #summary
+[DS16_CDS_CDNSKEY_UNSIGNED]:             #summary
+[DS16_CDS_CDNSKEY_WITHOUT_DNSKEY]:       #summary
+[DS16_CDS_INVALID_RRSIG]:                #summary
+[DS16_CDS_MATCHES_NO_DNSKEY]:            #summary
+[DS16_CDS_SIGNED_BY_UNKNOWN_DNSKEY]:     #summary
+[DS16_DELETE_CDNSKEY]:                   #summary
+[DS16_DELETE_CDS]:                       #summary
+[DS16_DNSKEY_NOT_SIGNED_BY_CDNSKEY]:     #summary
+[DS16_DNSKEY_NOT_SIGNED_BY_CDS]:         #summary
+[DS16_MIXED_DELETE_CDS_CDNSKEY]:         #summary
+[Default level]:                         ../SeverityLevelDefinitions.md
+[ERROR]:                                 #summary
 [Get-Del-NS-IPs]:                        https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/MethodsNT.md#method-get-delegation-ns-ip-addresses
 [Get-Zone-NS-IPs]:                       https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/MethodsNT.md#method-get-zone-ns-ip-addresses
-[INFO]:                                  #outcomes
-[NOTICE]:                                #outcomes
 [RFC 7344, section 4]:                   https://tools.ietf.org/html/rfc7344#section-4
 [RFC 7344]:                              https://tools.ietf.org/html/rfc7344
 [RFC 8078]:                              https://tools.ietf.org/html/rfc8078
-[Severity Level]:                        ../SeverityLevelDefinitions.md
-[WARNING]:                               #outcomes
 
 
 
