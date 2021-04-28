@@ -22,8 +22,11 @@ content ([RFC 7344][RFC 7344, section 4], section 4). It means that both
 must be derived from the same DNSKEY or both being "delete" CDS and
 CDNSKEY.
 
-If a name server has issues covered by [Basic04] (basic name server
-issues) no messages will be outputted from this test case.
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will just ignore non-responsive name servers or name servers not
+giving a correct DNS response for an authoritative name server.
 
 ## Inputs
 
@@ -31,14 +34,15 @@ issues) no messages will be outputted from this test case.
 
 ## Summary
 
-* [INFO] message if CDS RRset is found on any name server for the zone.
-* [INFO] message if CDNSKEY RRset is found on any name server for the zone.
-* [NOTICE] message if only one type is found.
-* [ERROR] message if the two RRsets (CDS and CDNSKEY) both exist but do not 
-  match.
-* [ERROR] message if not all servers have the same CDS RRset (if CDS exists)
-* [ERROR] message if not all servers have the same CDNSKEY RRset (if CDNSKEY
-  exists)
+Message Tag outputted     | [Default level] | Description of when message tag is outputted
+:-------------------------|:----------------|:-----------------------------------------
+DS15_HAS_CDNSKEY_NO_CDS   | NOTICE          | CDNSKEY RRset is found, but no CDS RRset.
+DS15_HAS_CDS_AND_CDNSKEY  | INFO            | CDNSKEY and CDS RRsets are found.
+DS15_HAS_CDS_NO_CDNSKEY   | NOTICE          | CDS RRset is found, but no CDNSKEY RRset.
+DS15_INCONSISTENT_CDNSKEY | ERROR           | All servers do not have the same CDNSKEY RRset.
+DS15_INCONSISTENT_CDS     | ERROR           | All servers do not have the same CDS RRset.
+DS15_MISMATCH_CDS_CDNSKEY | ERROR           | Both CDS and CDNSKEY RRsets are found but they do not match.
+DS15_NO_CDS_CDNSKEY       | INFO            | No CDS or CDNSKEY RRsets are found on any name server.
 
 ## Ordered description of steps to be taken to execute the test case
 
@@ -49,7 +53,7 @@ issues) no messages will be outputted from this test case.
     the apex of the *Child Zone*.
 
 4.  Retrieve all name server IP addresses for the *Child Zone* using
-    [Get-Del-NS-IPs] and [Get-Zone-NS-IPs] ("NS IP").
+    [Method4] and [Method5] ("NS IP").
 
 5.  Create the following empty sets:
     1. Name server IP address and associated CDS RRset ("CDS RRsets"). A
@@ -96,7 +100,7 @@ issues) no messages will be outputted from this test case.
     *[DS15_HAS_CDNSKEY_NO_CDS]*.
 
 10. If each of the *CDS RRsets* set and the *CDNSKEY RRsets* set has
-    at least one non-empty RRset then output *[DS15_HAS_CDS_CDNSKEY]*.
+    at least one non-empty RRset then output *[DS15_HAS_CDS_AND_CDNSKEY]*.
 
 11. If not all CDS RRsets in the *CDS RRsets* set are identical then
     output *[DS15_INCONSISTENT_CDS]*.
@@ -132,16 +136,6 @@ with the [severity level] *WARNING*, but no message with severity level
 
 In other cases the outcome of this Test Case is "pass".
 
-Message                       | Default [severity level]
-:-----------------------------|:-----------------------------------
-DS15_HAS_CDNSKEY_NO_CDS       | NOTICE
-DS15_HAS_CDS_CDNSKEY          | INFO
-DS15_HAS_CDS_NO_CDNSKEY       | NOTICE
-DS15_INCONSISTENT_CDNSKEY     | ERROR
-DS15_INCONSISTENT_CDS         | ERROR
-DS15_MISMATCH_CDS_CDNSKEY     | ERROR
-DS15_NO_CDS_CDNSKEY           | INFO
-
 ## Special procedural requirements
 
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
@@ -155,18 +149,18 @@ None.
 
 
 [Basic04]:                    ../Basic-TP/basic04.md
-[DS15_HAS_CDNSKEY_NO_CDS]:    #outcomes
-[DS15_HAS_CDS_CDNSKEY]:       #outcomes
-[DS15_HAS_CDS_NO_CDNSKEY]:    #outcomes
-[DS15_INCONSISTENT_CDNSKEY]:  #outcomes
-[DS15_INCONSISTENT_CDS]:      #outcomes
-[DS15_MISMATCH_CDS_CDNSKEY]:  #outcomes
-[DS15_NO_CDS_CDNSKEY]:        #outcomes
-[ERROR]:                      #outcomes
-[Get-Del-NS-IPs]:             https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/MethodsNT.md#method-get-delegation-ns-ip-addresses
-[Get-Zone-NS-IPs]:            https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/MethodsNT.md#method-get-zone-ns-ip-addresses
-[INFO]:                       #outcomes
-[NOTICE]:                     #outcomes
+[DS15_HAS_CDNSKEY_NO_CDS]:    #summary
+[DS15_HAS_CDS_AND_CDNSKEY]:   #summary
+[DS15_HAS_CDS_NO_CDNSKEY]:    #summary
+[DS15_INCONSISTENT_CDNSKEY]:  #summary
+[DS15_INCONSISTENT_CDS]:      #summary
+[DS15_MISMATCH_CDS_CDNSKEY]:  #summary
+[DS15_NO_CDS_CDNSKEY]:        #summary
+[ERROR]:                      #summary
+[INFO]:                       #summary
+[Method4]:                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NOTICE]:                     #summary
 [RFC 7344, section 3.1]:      https://tools.ietf.org/html/rfc7344#section-3.1
 [RFC 7344, section 3.2]:      https://tools.ietf.org/html/rfc7344#section-3.2
 [RFC 7344, section 4.1]:      https://tools.ietf.org/html/rfc7344#section-4.1
