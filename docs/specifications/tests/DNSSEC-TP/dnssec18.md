@@ -32,13 +32,6 @@ same responses. Running this test case without running [DNSSEC15],
 [DNSSEC16] and [DNSSEC17] can give an incomplete report of the CDS and
 CDNSKEY status of *Child Zone*.
 
-## Inputs
-
-* "Child Zone" - The domain name to be tested.
-* "Test Type" - The test type with value "undelegated" or "normal".
-* "Undelegated DS" - The DS record or records submitted (only if
-  Test Type is undelegated).
-
 ## Summary
 
 * If no CDS or CDNSKEY records are found, this test case is not run
@@ -46,10 +39,17 @@ CDNSKEY status of *Child Zone*.
 * If no DS records are found at parent, this test case is not run
   and no message will be outputted.
 
-Message Tag outputted                | [Default level] | Description of when message tag is outputted
-:------------------------------------|:--------|:-----------------------------------------
-DS18_DS_NO_MATCH_CDS_RRSIG           | ERROR   | CDS RRset is not signed with the private key of the DNSKEY record that a DS record points at.
-DS18_DS_NO_MATCH_CDNSKEY_RRSIG       | ERROR   | CDNSKEY RRset is not signed with the private key of the DNSKEY record that a DS record points at.
+Message Tag outputted          | [Default level] | Description of when message tag is outputted
+:------------------------------|:------|:-----------------------------------------
+DS18_NO_MATCH_CDS_RRSIG_DS     | ERROR | The CDS RRset is not signed with a DNSKEY record that a DS record points at.
+DS18_NO_MATCH_CDNSKEY_RRSIG_DS | ERROR | CDNSKEY RRset is not signed with a DNSKEY record that a DS record points at.
+
+## Inputs
+
+* "Child Zone" - The domain name to be tested.
+* "Test Type" - The test type with value "undelegated" or "normal".
+* "Undelegated DS" - The DS record or records submitted (only if
+  Test Type is undelegated).
 
 ## Ordered description of steps to be taken to execute the test case
 
@@ -75,9 +75,8 @@ DS18_DS_NO_MATCH_CDNSKEY_RRSIG       | ERROR   | CDNSKEY RRset is not signed wit
     3.  Name server IP address and associated DNSKEY RRset
         ("DNSKEY RRsets"). A name server IP can hold an empty RRset.
     4.  DS record set ("DS Records").
-    5.  Name server IP and DS record key tag ("DS No Match CDS RRSIG").
-    6.  Name server IP and DS record key tag 
-        ("DS No Match CDNSKEY RRSIG").
+    5.  Name server IP ("DS No Match CDS RRSIG").
+    6.  Name server IP ("DS No Match CDNSKEY RRSIG").
 
 6. If the *Test Type* is "undelegated, then:
    1. Add *Undelegated DS* set to *DS Records*.
@@ -150,13 +149,16 @@ DS18_DS_NO_MATCH_CDNSKEY_RRSIG       | ERROR   | CDNSKEY RRset is not signed wit
     2. Extract the DNSKEY from the *DNSKEY RRsets* for the same name
        server IP.
     3. For each DS record in *DS Records* do:
-       1. If the DS record does not point at a DNSKEY record then add
-          name server IP and DS key tag to the 
-          *DS No Match CDS RRSIG*.
-       2. Else, if the DNSKEY that the DS record points at does not
-          match any RRSIG for CDS RRset then add name server IP and
-          DS key tag to the *DS No Match CDS RRSIG*.
-    4. Go to next name server IP address.
+       1. If the DS record does not point at a DNSKEY record then go
+          to next DS record.
+       2. Else, if the DNSKEY that the DS record points at matches
+          an RRSIG for CDS RRset then go to next name server IP
+          address.
+       3. Go to next DS records.
+    4. Add name server IP to the *DS No Match CDS RRSIG* (i.e.
+       there was no match between DS record CDS RRSIG in the DS
+       record loop above).
+    5. Go to next name server IP address.
 
 14. For each name server IP in the *CDNSKEY RRsets* set do:
 
@@ -164,23 +166,24 @@ DS18_DS_NO_MATCH_CDNSKEY_RRSIG       | ERROR   | CDNSKEY RRset is not signed wit
     2. Extract the DNSKEY from the *DNSKEY RRsets* for the same name
        server IP.
     3. For each DS record in *DS Records* do:
-       1. If the DS record does not point at a DNSKEY record then add
-          name server IP and DS key tag to the 
-          *DS No Match CDNSKEY RRSIG*.
-       2. Else, if the DNSKEY that the DS record points at does not
-          match any RRSIG for CDNSKEY RRset then add name server IP and
-          DS key tag to the *DS No Match CDNSKEY RRSIG*.
-    4. Go to next name server IP address.
+       1. If the DS record does not point at a DNSKEY record then go
+          to next DS record.
+       2. Else, if the DNSKEY that the DS record points at matches
+          an RRSIG for CDNSKEY RRset then go to next name server IP
+          address.
+       3. Go to next DS records.
+    4. Add name server IP to the *DS No Match CDNSKEY RRSIG* (i.e.
+       there was no match between DS record CDNSKEY RRSIG in the DS
+       record loop above).
+    5. Go to next name server IP address.
 
-15. If the *DS No Match CDS RRSIG* set is non-empty then for each
-    key tag in the set output *[DS18_DS_NO_MATCH_CDS_RRSIG]* with the
-    DS key tag and the name server IP addresses in the set per key
-    tag.
+15. If the *DS No Match CDS RRSIG* set is non-empty then output
+    *[DS18_NO_MATCH_CDS_RRSIG_DS]* with the name server IP addresses in
+    the set.
 
-16. If the *DS No Match CDNSKEY RRSIG* set is non-empty then for each
-    key tag in the set output *[DS18_DS_NO_MATCH_CDNSKEY_RRSIG]* with the
-    DS key tag and the name server IP addresses in the set per key
-    tag.
+16. If the *DS No Match CDNSKEY RRSIG* set is non-empty then output 
+    *[DS18_NO_MATCH_CDNSKEY_RRSIG_DS]* with the name server IP
+    addresses in the set.
 
 ## Outcome(s)
 
@@ -210,8 +213,8 @@ None.
 [DNSSEC15]:                              dnssec15.md
 [DNSSEC16]:                              dnssec16.md
 [DNSSEC17]:                              dnssec16.md
-[DS18_DS_NO_MATCH_CDNSKEY_RRSIG]:        #summary
-[DS18_DS_NO_MATCH_CDS_RRSIG]:            #summary
+[DS18_NO_MATCH_CDNSKEY_RRSIG_DS]:        #summary
+[DS18_NO_MATCH_CDS_RRSIG_DS]:            #summary
 [Default level]:                         ../SeverityLevelDefinitions.md
 [ERROR]:                                 ../SeverityLevelDefinitions.md#error
 [INFO]:                                  ../SeverityLevelDefinitions.md#info
