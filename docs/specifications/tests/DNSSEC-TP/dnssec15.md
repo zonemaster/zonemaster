@@ -11,14 +11,13 @@ case is to verify that they are correctly set-up, if included in the
 zone.
 
 If a CDS record is included in the zone, the corresponding CDNSKEY
-record should also be included ([RFC 7344][RFC 7344, section 4],
-section 4).
+record should also be included ([RFC 7344][RFC 7344#4], section 4).
 
 The CNS and CDNSKEY RRsets should be consistent between all name
 servers for the zone in question.
 
 If there are both CDS RRs and CDNSKEY RRs in the zone they must match in 
-content ([RFC 7344][RFC 7344, section 4], section 4). It means that both
+content ([RFC 7344][RFC 7344#4], section 4). It means that both
 must be derived from the same DNSKEY or both being "delete" CDS and
 CDNSKEY.
 
@@ -58,9 +57,12 @@ DS15_NO_CDS_CDNSKEY       | INFO            | No CDS or CDNSKEY RRsets are found
 5.  Create the following empty sets:
     1. Name server IP address and associated CDS RRset ("CDS RRsets"). A
        name server IP can hold an empty RRset.
-    2. Name server IP address and associated CDNSKEY RRset ("CDNSKEY RRsets"). 
+    2. Name server IP address and associated CDNSKEY RRset ("CDNSKEY RRsets").
        A name server IP can hold an empty RRset.
-    3. Name server IP set ("Mismatch CDS/CDNSKEY").
+    3. Name server IP address set ("Mismatch CDS/CDNSKEY").
+    4. Name server IP address set ("Has CDS No CDNSKEY").
+    5. Name server IP address set ("Has CDNSKEY No CDS").
+    5. Name server IP address set ("Has CDS And CDNSKEY").
 
 6.  Repeat the following steps for each name server IP address in *NS IP*:
 
@@ -83,30 +85,47 @@ DS15_NO_CDS_CDNSKEY       | INFO            | No CDS or CDNSKEY RRsets are found
           next name server IP.
        4. Else, if the DNS response contains no CDNSKEY record in the
           answer section, then add the name server IP and an empty RRset to
-          the *CDNSKEY RRsets* set and go to next name server IP.
+          the *CDNSKEY RRsets* set.
        5. Else, add the name server IP and the CDNSKEY RRset from the answer
-          section to the *CDNSKEY RRsets* set and go to next name server IP.
+          section to the *CDNSKEY RRsets* set.
+    3. Go to next name server IP.
 
-7.  If the two sets, *CDS RRsets* and *CDNSKEY RRsets*, both have only
-    empty RRsets then output *[DS15_NO_CDS_CDNSKEY]* and terminate this
+7.  If the *CDS RRsets* set and the *CDNSKEY RRsets* set are empty
+    then output *[DS15_NO_CDS_CDNSKEY]* and terminate this
     test case.
 
-8.  If the *CDS RRsets* set has at least one non-empty RRset but no
-    non-empty RRsets in the *CDNSKEY RRsets* set then output
-    *[DS15_HAS_CDS_NO_CDNSKEY]*.
-         
-9.  If the *CDNSKEY RRsets* set has at least one non-empty RRset but no
-    non-empty RRsets in the *CDS RRsets* set then output
-    *[DS15_HAS_CDNSKEY_NO_CDS]*.
+8.  Repeat the following steps for each name server IP address in *NS IP*:
 
-10. If each of the *CDS RRsets* set and the *CDNSKEY RRsets* set has
-    at least one non-empty RRset then output *[DS15_HAS_CDS_AND_CDNSKEY]*.
+    1. If the name server IP address has a non-empty RRset in the
+       *CDS RRsets* set, but an empty RRset in the *CDNSKEY RRsets*
+       set, then add the name server IP address to *Has CDS No CDNSKEY*.
+    2. If the name server IP address has a non-empty RRset in the
+       *CDNSKEY RRsets* set, but an empty RRset in the *CDS RRsets*
+       set, then add the name server IP address to *Has CDNSKEY No CDS*.
+    3. If the name server IP address has a non-empty RRset in both
+       sets, *CDNSKEY RRsets* and *CDS RRsets*, then add the name
+       server IP address to *Has CDS And CDNSKEY*.
+    4. Go to next name server IP.
 
-11. If not all CDS RRsets in the *CDS RRsets* set are identical then
-    output *[DS15_INCONSISTENT_CDS]*.
+8.  If the *Has CDS No CDNSKEY* set is non-empty then output
+    *[DS15_HAS_CDS_NO_CDNSKEY]* with the name server IP addresses from
+    the set.
 
-12. If not all CDNSKEY RRsets in the *CDNSKEY RRsets* set are identical
-    then output *[DS15_INCONSISTENT_CDNSKEY]*.
+9.  If the *Has CDNSKEY No CDS* set is non-empty then output
+    *[DS15_HAS_CDNSKEY_NO_CDS]* with the name server IP addresses from
+    the set.
+
+9.  If the *Has CDS And CDNSKEY* set is non-empty then output
+    *[DS15_HAS_CDS_AND_CDNSKEY]* with the name server IP addresses from
+    the set.
+
+11. If not all CDS RRsets in the *CDS RRsets* set are identical, where
+    a non-empty RRset is not considered to be identical to an empty
+    RRset, then output *[DS15_INCONSISTENT_CDS]*.
+
+12. If not all CDNSKEY RRsets in the *CDNSKEY RRsets* set are identical,
+    where a non-empty RRset is not considered to be identical to an
+    empty RRset, then output *[DS15_INCONSISTENT_CDNSKEY]*.
 
 13. For each name server IP in the *CDS RRsets* set do:
 
@@ -118,7 +137,7 @@ DS15_NO_CDS_CDNSKEY       | INFO            | No CDS or CDNSKEY RRsets are found
           from the same DNSKEY or being "delete").
        2. For each CDNSKEY RR verify that there is a matching CDS (derived
           from the same DNSKEY or being "delete").
-       3. If one of both of the verifications fail then add the name server
+       3. If one or both of the verifications fail then add the name server
           IP to the *Mismatch CDS/CDNSKEY* set.
 
 14. If the *Mismatch CDS/CDNSKEY* set is non-empty, then output
@@ -128,13 +147,14 @@ DS15_NO_CDS_CDNSKEY       | INFO            | No CDS or CDNSKEY RRsets are found
 ## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
-with the [severity level] *ERROR* or *CRITICAL*.
+with the severity level *[ERROR]* or *[CRITICAL]*.
 
 The outcome of this Test Case is "warning" if there is at least one message
-with the [severity level] *WARNING*, but no message with severity level
+with the severity level *[WARNING]*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
-In other cases the outcome of this Test Case is "pass".
+In other cases, no message or only messages with severity level
+*[INFO]* or *[NOTICE]*, the outcome of this Test Case is "pass".
 
 ## Special procedural requirements
 
@@ -147,8 +167,8 @@ the ignored protocol.
 None.
 
 
-
 [Basic04]:                    ../Basic-TP/basic04.md
+[CRITICAL]:                   ../SeverityLevelDefinitions.md#critical
 [DS15_HAS_CDNSKEY_NO_CDS]:    #summary
 [DS15_HAS_CDS_AND_CDNSKEY]:   #summary
 [DS15_HAS_CDS_NO_CDNSKEY]:    #summary
@@ -156,18 +176,13 @@ None.
 [DS15_INCONSISTENT_CDS]:      #summary
 [DS15_MISMATCH_CDS_CDNSKEY]:  #summary
 [DS15_NO_CDS_CDNSKEY]:        #summary
-[ERROR]:                      #summary
-[INFO]:                       #summary
+[Default level]:              ../SeverityLevelDefinitions.md
+[ERROR]:                      ../SeverityLevelDefinitions.md#error
+[INFO]:                       ../SeverityLevelDefinitions.md#info
 [Method4]:                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[NOTICE]:                     #summary
-[RFC 7344, section 3.1]:      https://tools.ietf.org/html/rfc7344#section-3.1
-[RFC 7344, section 3.2]:      https://tools.ietf.org/html/rfc7344#section-3.2
-[RFC 7344, section 4.1]:      https://tools.ietf.org/html/rfc7344#section-4.1
-[RFC 7344, section 4]:        https://tools.ietf.org/html/rfc7344#section-4
+[NOTICE]:                     ../SeverityLevelDefinitions.md#notice
+[RFC 7344#4]:                 https://tools.ietf.org/html/rfc7344#section-4
 [RFC 7344]:                   https://tools.ietf.org/html/rfc7344
 [RFC 8078]:                   https://tools.ietf.org/html/rfc8078
-[Severity Level]:             ../SeverityLevelDefinitions.md
-
-
-
+[WARNING]:                    ../SeverityLevelDefinitions.md#warning
