@@ -191,7 +191,7 @@ The outcome of this Test Case is "fail" if there is at least one message
 with the severity level *[ERROR]* or *[CRITICAL]*.
 
 The outcome of this Test Case is "warning" if there is at least one message
-with the [severity level] *[WARNING]*, but no message with severity level
+with the severity level *[WARNING]*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
 In other cases, no message or only messages with severity level
