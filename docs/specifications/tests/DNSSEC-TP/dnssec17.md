@@ -41,7 +41,7 @@ DS17_CDNSKEY_MATCHES_NO_DNSKEY       | WARNING | CDNSKEY record does not match a
 DS17_CDNSKEY_SIGNED_BY_UNKNOWN_DNSKEY| ERROR   | CDNSKEY RRset is signed but not by a key in DNSKEY RRset.
 DS17_CDNSKEY_UNSIGNED                | ERROR   | CDNSKEY RRset is not signed.
 DS17_CDNSKEY_WITHOUT_DNSKEY          | ERROR   | CDNSKEY RRset exists, but there is no DNSKEY RRset.
-DS17_DELETE_CDNSKEY                  | INFO    | CDNSKEY RRset have a "delete" CDNSKEY record as a single record.
+DS17_DELETE_CDNSKEY                  | INFO    | CDNSKEY RRset has a "delete" CDNSKEY record as a single record.
 DS17_DNSKEY_NOT_SIGNED_BY_CDNSKEY    | WARNING | DNSKEY RRset is not signed by the key or keys that the CDNSKEY records point to.
 DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixed with normal CDNSKEY record.
 
@@ -178,7 +178,7 @@ The outcome of this Test Case is "fail" if there is at least one message
 with the severity level *[ERROR]* or *[CRITICAL]*.
 
 The outcome of this Test Case is "warning" if there is at least one message
-with the [severity level] *[WARNING]*, but no message with severity level
+with the severity level *[WARNING]*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
 In other cases, no message or only messages with severity level 

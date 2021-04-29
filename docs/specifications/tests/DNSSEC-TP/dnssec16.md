@@ -41,7 +41,7 @@ DS16_CDS_WITHOUT_DNSKEY              | ERROR   | CDS RRset exists, but no DNSKEY
 DS16_CDS_INVALID_RRSIG               | ERROR   | CDS RRset is signed with an invalid RRSIG.
 DS16_CDS_MATCHES_NO_DNSKEY           | WARNING | CDS record does not match any DNSKEY in DNSKEY RRset.
 DS16_CDS_SIGNED_BY_UNKNOWN_DNSKEY    | ERROR   | CDS RRset is signed but not by a key in DNSKEY RRset.
-DS16_DELETE_CDS                      | INFO    | CDS RRset have a "delete" CDS record as a single record.
+DS16_DELETE_CDS                      | INFO    | CDS RRset has a "delete" CDS record as a single record.
 DS16_DNSKEY_NOT_SIGNED_BY_CDS        | WARNING | DNSKEY RRset is not signed by the key or keys that the CDS records point to.
 DS16_MIXED_DELETE_CDS                | ERROR   | "Delete" CDS record is mixed with normal CDS record.
 
@@ -178,7 +178,7 @@ The outcome of this Test Case is "fail" if there is at least one message
 with the severity level *[ERROR]* or *[CRITICAL]*.
 
 The outcome of this Test Case is "warning" if there is at least one message
-with the [severity level] *[WARNING]*, but no message with severity level
+with the severity level *[WARNING]*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
 In other cases, no message or only messages with severity level 
