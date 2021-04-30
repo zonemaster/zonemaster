@@ -13,7 +13,7 @@ zone.
 If a CDS record is included in the zone, the corresponding CDNSKEY
 record should also be included ([RFC 7344][RFC 7344#4], section 4).
 
-The CNS and CDNSKEY RRsets should be consistent between all name
+The CDS and CDNSKEY RRsets should be consistent between all name
 servers for the zone in question.
 
 If there are both CDS RRs and CDNSKEY RRs in the zone they must match in 
@@ -45,16 +45,7 @@ DS15_NO_CDS_CDNSKEY       | INFO            | No CDS or CDNSKEY RRsets are found
 
 ## Ordered description of steps to be taken to execute the test case
 
-1.  Create a CDS query with EDNS enabled with the DO bit set for the
-    apex of the *Child Zone*.
-
-2.  Create a CDNSKEY query with EDNS enabled with the DO bit set for
-    the apex of the *Child Zone*.
-
-4.  Retrieve all name server IP addresses for the *Child Zone* using
-    [Method4] and [Method5] ("NS IP").
-
-5.  Create the following empty sets:
+1.  Create the following empty sets:
     1. Name server IP address and associated CDS RRset ("CDS RRsets"). A
        name server IP can hold an empty RRset.
     2. Name server IP address and associated CDNSKEY RRset ("CDNSKEY RRsets").
@@ -62,9 +53,18 @@ DS15_NO_CDS_CDNSKEY       | INFO            | No CDS or CDNSKEY RRsets are found
     3. Name server IP address set ("Mismatch CDS/CDNSKEY").
     4. Name server IP address set ("Has CDS No CDNSKEY").
     5. Name server IP address set ("Has CDNSKEY No CDS").
-    5. Name server IP address set ("Has CDS And CDNSKEY").
+    6. Name server IP address set ("Has CDS And CDNSKEY").
 
-6.  Repeat the following steps for each name server IP address in *NS IP*:
+2.  Retrieve all name server IP addresses for the *Child Zone* using
+    [Method4] and [Method5] ("NS IP").
+
+3.  Create a CDS query with EDNS enabled with the DO bit set for the
+    apex of the *Child Zone*.
+
+4.  Create a CDNSKEY query with EDNS enabled with the DO bit set for
+    the apex of the *Child Zone*.
+
+5.  Repeat the following steps for each name server IP address in *NS IP*:
 
     1. Send the CDS query over UDP to the name server IP address.
        1. If no DNS response is returned, then go to next name server IP.
@@ -90,11 +90,11 @@ DS15_NO_CDS_CDNSKEY       | INFO            | No CDS or CDNSKEY RRsets are found
           section to the *CDNSKEY RRsets* set.
     3. Go to next name server IP.
 
-7.  If the *CDS RRsets* set and the *CDNSKEY RRsets* set are empty
+6.  If the *CDS RRsets* set and the *CDNSKEY RRsets* set are empty
     then output *[DS15_NO_CDS_CDNSKEY]* and terminate this
     test case.
 
-8.  Repeat the following steps for each name server IP address in *NS IP*:
+7.  Repeat the following steps for each name server IP address in *NS IP*:
 
     1. If the name server IP address has a non-empty RRset in the
        *CDS RRsets* set, but an empty RRset in the *CDNSKEY RRsets*
@@ -115,16 +115,16 @@ DS15_NO_CDS_CDNSKEY       | INFO            | No CDS or CDNSKEY RRsets are found
     *[DS15_HAS_CDNSKEY_NO_CDS]* with the name server IP addresses from
     the set.
 
-9.  If the *Has CDS And CDNSKEY* set is non-empty then output
+10. If the *Has CDS And CDNSKEY* set is non-empty then output
     *[DS15_HAS_CDS_AND_CDNSKEY]* with the name server IP addresses from
     the set.
 
 11. If not all CDS RRsets in the *CDS RRsets* set are identical, where
-    a non-empty RRset is not considered to be identical to an empty
+    a non-empty RRset is considered to be different from an empty
     RRset, then output *[DS15_INCONSISTENT_CDS]*.
 
 12. If not all CDNSKEY RRsets in the *CDNSKEY RRsets* set are identical,
-    where a non-empty RRset is not considered to be identical to an
+    where a non-empty RRset is considered to be different from an
     empty RRset, then output *[DS15_INCONSISTENT_CDNSKEY]*.
 
 13. For each name server IP in the *CDS RRsets* set do:
