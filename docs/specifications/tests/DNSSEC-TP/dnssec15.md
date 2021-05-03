@@ -107,27 +107,7 @@ DS15_NO_CDS_CDNSKEY       | INFO            | No CDS or CDNSKEY RRsets are found
        server IP address to *Has CDS And CDNSKEY*.
     4. Go to next name server IP.
 
-8.  If the *Has CDS No CDNSKEY* set is non-empty then output
-    *[DS15_HAS_CDS_NO_CDNSKEY]* with the name server IP addresses from
-    the set.
-
-9.  If the *Has CDNSKEY No CDS* set is non-empty then output
-    *[DS15_HAS_CDNSKEY_NO_CDS]* with the name server IP addresses from
-    the set.
-
-10. If the *Has CDS And CDNSKEY* set is non-empty then output
-    *[DS15_HAS_CDS_AND_CDNSKEY]* with the name server IP addresses from
-    the set.
-
-11. If not all CDS RRsets in the *CDS RRsets* set are identical, where
-    a non-empty RRset is considered to be different from an empty
-    RRset, then output *[DS15_INCONSISTENT_CDS]*.
-
-12. If not all CDNSKEY RRsets in the *CDNSKEY RRsets* set are identical,
-    where a non-empty RRset is considered to be different from an
-    empty RRset, then output *[DS15_INCONSISTENT_CDNSKEY]*.
-
-13. For each name server IP in the *CDS RRsets* set do:
+8.  For each name server IP in the *CDS RRsets* set do:
 
     1. Extract the CDS RRset (possibly empty).
     2. Extract the CDNSKEY RRset (possibly empty) for the same IP from
@@ -139,6 +119,28 @@ DS15_NO_CDS_CDNSKEY       | INFO            | No CDS or CDNSKEY RRsets are found
           from the same DNSKEY or being "delete").
        3. If one or both of the verifications fail then add the name server
           IP to the *Mismatch CDS/CDNSKEY* set.
+    4. Go to next name sever IP.
+
+
+9.  If the *Has CDS No CDNSKEY* set is non-empty then output
+    *[DS15_HAS_CDS_NO_CDNSKEY]* with the name server IP addresses from
+    the set.
+
+10. If the *Has CDNSKEY No CDS* set is non-empty then output
+    *[DS15_HAS_CDNSKEY_NO_CDS]* with the name server IP addresses from
+    the set.
+
+11. If the *Has CDS And CDNSKEY* set is non-empty then output
+    *[DS15_HAS_CDS_AND_CDNSKEY]* with the name server IP addresses from
+    the set.
+
+12. If not all CDS RRsets in the *CDS RRsets* set are identical, where
+    a non-empty RRset is considered to be different from an empty
+    RRset, then output *[DS15_INCONSISTENT_CDS]*.
+
+13. If not all CDNSKEY RRsets in the *CDNSKEY RRsets* set are identical,
+    where a non-empty RRset is considered to be different from an
+    empty RRset, then output *[DS15_INCONSISTENT_CDNSKEY]*.
 
 14. If the *Mismatch CDS/CDNSKEY* set is non-empty, then output
     *[DS15_MISMATCH_CDS_CDNSKEY]* and list the name server IPs from
