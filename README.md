@@ -52,8 +52,8 @@ and processor architecture listed below.
 * CentOS 7
 * CentOS 8
 * Debian 10
-* FreeBSD 11.4
 * FreeBSD 12.2
+* FreeBSD 13.0
 * Ubuntu 18.04
 * Ubuntu 20.04
 
@@ -64,8 +64,8 @@ Operating System | MariaDB | PostgreSQL | SQLite
 CentOS 7         | 5.5     | 9.3        | 3.7.17
 CentOS 8         | 10.3    | 10.14      | 3.26.0
 Debian 10        | 10.3    | 11.7       | 3.27.2
-FreeBSD 11.4     | 5.7     | 12.4       | 3.32.3
-FreeBSD 12.2     | 5.7     | 12.4       | 3.32.3
+FreeBSD 12.2     | 5.7     | 12.6       | 3.35.5
+FreeBSD 13.0     | 5.7     | 12.6       | 3.35.5
 Ubuntu 18.04     | 10.1    | 10.14      | 3.22.0
 Ubuntu 20.04     | 10.3    | 12.4       | 3.31.1
 
@@ -98,16 +98,15 @@ indicated bellow and should work perfectly with similar configurations.
 
 Operating System | Browser | Version
 ---------------- | ------- | -------
-Ubuntu 18.04     | Firefox | 85
-Ubuntu 18.04     | Chrome  | 88
-Windows 10       | Firefox | 85
-Windows 10       | Chrome  | 88
-MacOs            | Firefox | 85
-MacOs            | Chrome  | 88
+Ubuntu 18.04     | Firefox | 88 ?
+Ubuntu 18.04     | Chrome  | 90 ?
+Windows 10       | Firefox | 88 ?
+Windows 10       | Chrome  | 90 ?
+MacOs            | Firefox | 88
+MacOs            | Chrome  | 90
 
-Zonemaster GUI was tested manually or with testing tools.
-See the [Zonemaster-gui repository](https://github.com/zonemaster/zonemaster-gui) for
-more details.
+Zonemaster GUI was tested manually or with testing tools. See the
+[Zonemaster-gui repository][Zonemaster-GUI] for more details.
 
 ## Support of DNSSEC algorithms 15 and 16
 
@@ -133,17 +132,16 @@ to `RPCAPI`.
 
 * Danish (da, da_DK.UTF-8)
 * English (en, en_US.UTF-8)
+* Finnish (fi, fi_FI.UTF-8)
 * French (fr, fr_FR.UTF-8)
 * Norwegian (nb, nb_NO.UTF-8)
 * Swedish (sv, sv_SE.UTF-8)
-
-Norwegian is not yet available in Zonemaster-GUI.
 
 ## Zonemaster and its components
 
 The Zonemaster product consists of the main part and five components. The main part
 consists of specifications and documentation for the Zonemaster product, and is
-stored in main Zonemaster Github repository ([Zonemaster]).
+stored in the main [Zonemaster][Zonemaster/Zonemaster] Github repository.
 
 All the software for the Zonemaster project belong to the five components, each
 component being stored in its own Github repository (listed below).
@@ -170,12 +168,10 @@ installation instructions from the links above.
 
 ## Versions
 
-Go to the [release list](https://github.com/zonemaster/zonemaster/releases)
-of this repository to find the
-[latest version](https://github.com/zonemaster/zonemaster/releases/latest) of
-Zonemaster and the versions of the specific components. Be
-sure to read the release note of each component before installing or
-upgrading.
+Go to the [release list][Zonemaster release list] of this repository to find the
+[latest version][Zonemaster latest version] of Zonemaster and the versions of
+the specific components. Be sure to read the release note of each component
+before installing or upgrading.
 
 ## Participation
 
@@ -193,14 +189,15 @@ please search for the problem in the issue tracker in the relevant repository.
 If you find an open issue covering your issue, please add
 a comment with any additional information.
 
-* [Issues in Zonemaster::LDNS](https://github.com/zonemaster/zonemaster-ldns/issues)
-* [Issues in Zonemaster::Engine](https://github.com/zonemaster/zonemaster-engine/issues)
-* [Issues in Zonemaster::CLI](https://github.com/zonemaster/zonemaster-cli/issues)
-* [Issues in Zonemaster::Backend](https://github.com/zonemaster/zonemaster-backend/issues)
-* [Issues in zonemaster::GUI](https://github.com/zonemaster/zonemaster-gui/issues)
+* [Issues in Zonemaster::LDNS]
+* [Issues in Zonemaster::Engine]
+* [Issues in Zonemaster::CLI]
+* [Issues in Zonemaster::Backend]
+* [Issues in Zonemaster::GUI]
 
-If you cannot determine which repository to create the issue in, please select the main [Zonemaster]
-repository (i.e. [general issues in Zonemaster](https://github.com/zonemaster/zonemaster/issues)).
+If you cannot determine which repository to create the issue in, please select
+the main [Zonemaster][Zonemaster/Zonemaster] repository (i.e.
+[general issues in Zonemaster][Issues in Zonemaster/Zonemaster]).
 
 ## Notable bugs and issues
 
@@ -217,13 +214,23 @@ information on mailing lists.
 [CPAN]:                                https://www.cpan.org/
 [Connectivity03]:                      docs/specifications/tests/Connectivity-TP/connectivity03.md
 [Contact and mailing lists]:           docs/contact-and-mailing-lists.md
+[Issues in Zonemaster/Zonemaster]:     https://github.com/zonemaster/zonemaster/issues
+[Issues in Zonemaster::Backend]:       https://github.com/zonemaster/zonemaster-backend/issues
+[Issues in Zonemaster::CLI]:           https://github.com/zonemaster/zonemaster-cli/issues
+[Issues in Zonemaster::Engine]:        https://github.com/zonemaster/zonemaster-engine/issues
+[Issues in Zonemaster::GUI]:           https://github.com/zonemaster/zonemaster-gui/issues
+[Issues in Zonemaster::LDNS]:          https://github.com/zonemaster/zonemaster-ldns/issues
 [LDNS]:                                https://www.nlnetlabs.nl/projects/ldns/about/
 [OpenSSL]:                             https://www.openssl.org/
+[Zonemaster latest version]:           https://github.com/zonemaster/zonemaster/releases/latest
+[Zonemaster release list]:             https://github.com/zonemaster/zonemaster/releases
 [Zonemaster-Backend]:                  https://github.com/zonemaster/zonemaster-backend
 [Zonemaster-CLI]:                      https://github.com/zonemaster/zonemaster-cli
 [Zonemaster-Engine]:                   https://github.com/zonemaster/zonemaster-engine
 [Zonemaster-GUI]:                      https://github.com/zonemaster/zonemaster-gui
 [Zonemaster-LDNS-README]:              https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
 [Zonemaster-LDNS]:                     https://github.com/zonemaster/zonemaster-ldns
+[Zonemaster/Zonemaster]:               https://github.com/zonemaster/zonemaster
 [Zonemaster/zonemaster-engine#833]:    https://github.com/zonemaster/zonemaster-engine/issues/833
-[Zonemaster]:                          https://github.com/zonemaster/zonemaster
+
+
