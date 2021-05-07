@@ -8,7 +8,7 @@
 CDS and CDNSKEY record types are defined in [RFC 7344] and [RFC 8078].
 Both record types are optional in a zone. The objective of this test
 case is to verify that the CDNSKEY RRset is valid. This test case is
-only relevant if the zone has at least on CDNSKEY record. For tests of the
+only relevant if the zone has at least one CDNSKEY record. For tests of the
 CDS, see test case [DNSSEC16].
 
 ## Scope
@@ -47,16 +47,7 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
 
 ## Ordered description of steps to be taken to execute the test case
 
-1.  Create a CDNSKEY query with EDNS enabled and the DO bit set for
-    the apex of the *Child Zone*.
-
-2.  Create a DNSKEY query with EDNS enabled and the DO bit set for
-    the apex of the *Child Zone*.
-
-3.  Retrieve all name server IP addresses for the *Child Zone* using
-    [Method4] and [Method5] ("NS IP").
-
-4.  Create the following empty sets:
+1.  Create the following empty sets:
     1.  Name server IP address and associated CDNSKEY RRset and its
         RRSIG redords ("CDNSKEY RRsets"). RRSIG records may be absent.
     2.  Name server IP address and associated DNSKEY RRset and its 
@@ -73,6 +64,15 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
         ("CDNSKEY Signed By Unknown DNSKEY").
     10. Name server IP address and key tag ("CDNSKEY Invalid RRSIG").
 
+2.  Create a CDNSKEY query with EDNS enabled and the DO bit set for
+    the apex of the *Child Zone*.
+
+3.  Create a DNSKEY query with EDNS enabled and the DO bit set for
+    the apex of the *Child Zone*.
+
+4.  Retrieve all name server IP addresses for the *Child Zone* using
+    [Method4] and [Method5] ("NS IP").
+
 5.  Repeat the following steps for each name server IP address in 
     *NS IP*:
 
@@ -83,11 +83,11 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
           next name server IP.
        3. Else, if the RCODE in the DNS response is not *NOERROR*, then
           go to next name server IP.
-       4. Else, if the DNS response contains at least one CDNSKEY
-          record in the answer section, then add the name server IP and
-          the CDNSKEY RRset from the answer section to the 
-          *CDNSKEY RRsets* set. Also include any associated RRSIG records.
-       5. Else, go to next name server IP.
+       4. Else, if the answer section has no CDNSKEY records, go to
+          next name server IP.
+       5. Add the name server IP and the CDNSKEY RRset from the answer
+          section to the *CDNSKEY RRsets* set. Also include any
+          associated RRSIG records in the answer section.
     2. Send the DNSKEY query over UDP to the name server IP address.
        1. If no DNS response is returned, then go to next name server
           IP.
@@ -98,7 +98,8 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
        4. Else, if the DNS response contains at least one DNSKEY
           record in the answer section, then add the name server IP and
           the DNSKEY RRset from the answer section to the 
-          *DNSKEY RRsets* set. Also include any associated RRSIG records.
+          *DNSKEY RRsets* set. Also include any associated RRSIG records
+          in the answer section.
     3. Go to next name server IP.
 
 6.  If the *CDNSKEY RRsets* set is empty then terminate this test case.
@@ -122,8 +123,8 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
     5. Repeat the following steps for each CDNSKEY record:
        1. Compare the CDNSKEY record with the DNSKEY records.
        2. If the CDNSKEY record does not match any DNSKEY record then
-          add the name server IP address and key tag to 
-          *No Match CDNSKEY With DNSKEY* set.
+          add the name server IP address and the key tag derived from
+          the CDNSKEY record to the *No Match CDNSKEY With DNSKEY* set.
        3. Else, if there is no RRSIG for the DNSKEY RRset created by
           the DNSKEY record matching the CDNSKEY record then add the
           name server IP address and key tag of CDNSKEY record to the
@@ -150,27 +151,31 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
 10. If the *Delete CDNSKEY* set is non-empty then output
     *[DS17_DELETE_CDNSKEY]* with all name server IP addresses.
 
-11. If the *No Match CDNSKEY With DNSKEY* set is non-empty then for
-    each key tag in the set output *[DS17_CDNSKEY_MATCHES_NO_DNSKEY]*
-    with the CDNSKEY key tag and the name server IP addresses in the
-    set per key tag.
+11. If the *No Match CDNSKEY With DNSKEY* set is non-empty then do:
+    * For each CDNSKEY key tag in the set do:
+        * Output *[DS17_CDNSKEY_MATCHES_NO_DNSKEY]* with the CDNSKEY
+          key tag and the name server IP addresses in the set for that
+          key tag.
 
-12. If the *DNSKEY Not Signed By CDNSKEY* set is non-empty then for
-    each key tag in the set output
-    *[DS17_DNSKEY_NOT_SIGNED_BY_CDNSKEY]* with the RRSIG key tag and
-    the name server IP addresses in the set per key tag.
+12. If the *DNSKEY Not Signed By CDNSKEY* set is non-empty then do:
+    * For each CDNSKEY key tag in the set do:
+        * Output *[DS17_DNSKEY_NOT_SIGNED_BY_CDNSKEY]* with the CDNSKEY
+          key tag and the name server IP addresses in the set for that
+          key tag.
 
-13. If the *CDNSKEY Not Signed* set is
+13. If the *CDNSKEY Invalid RRSIG* set is non-empty then do:
+    * For each RRSIG key tag in the set do:
+        * Output *[DS17_CDNSKEY_INVALID_RRSIG]* with the RRSIG key tag
+          and the name server IP addresses in the set for that key tag.
+
+14. If the *CDNSKEY Not Signed* set is
     non-empty then output *[DS17_CDNSKEY_UNSIGNED]* with all
     name server IP addresses in the set.
 
-14. If the *CDNSKEY Signed By Unknown DNSKEY* set is non-empty then
+15. If the *CDNSKEY Signed By Unknown DNSKEY* set is non-empty then
     output *[DS17_CDNSKEY_SIGNED_BY_UNKNOWN_DNSKEY]* with the name server
     IP addresses in the set.
 
-15. If the *CDNSKEY Invalid RRSIG* set is non-empty then for each key
-    tag in the set output *[DS17_CDNSKEY_INVALID_RRSIG]* with the RRSIG
-    key tag and the name server IP addresses in the set per key tag.
 
 ## Outcome(s)
 
