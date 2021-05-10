@@ -64,7 +64,7 @@ DS15_NO_CDS_CDNSKEY       | INFO            | No CDS or CDNSKEY RRsets are found
 4.  Create a CDNSKEY query with EDNS enabled with the DO bit set for
     the apex of the *Child Zone*.
 
-5.  Repeat the following steps for each name server IP address in *NS IP*:
+5.  For each name server IP in the *NS IP* set do:
 
     1. Send the CDS query over UDP to the name server IP address.
        1. If no DNS response is returned, then go to next name server IP.
@@ -94,29 +94,33 @@ DS15_NO_CDS_CDNSKEY       | INFO            | No CDS or CDNSKEY RRsets are found
     then output *[DS15_NO_CDS_CDNSKEY]* and terminate this
     test case.
 
-7.  Repeat the following steps for each name server IP address in *NS IP*:
+7.  For each name server IP in the *CDS RRsets* set do:
 
-    1. If the name server IP address has a non-empty RRset in the
+    1. If the name server IP is not listed in *CDNSKEY RRsets*, go to next name
+       server IP.
+    2. If the name server IP address has a non-empty RRset in the
        *CDS RRsets* set, but an empty RRset in the *CDNSKEY RRsets*
        set, then add the name server IP address to *Has CDS No CDNSKEY*.
-    2. If the name server IP address has a non-empty RRset in the
+    3. If the name server IP address has a non-empty RRset in the
        *CDNSKEY RRsets* set, but an empty RRset in the *CDS RRsets*
        set, then add the name server IP address to *Has CDNSKEY No CDS*.
-    3. If the name server IP address has a non-empty RRset in both
+    4. If the name server IP address has a non-empty RRset in both
        sets, *CDNSKEY RRsets* and *CDS RRsets*, then add the name
        server IP address to *Has CDS And CDNSKEY*.
-    4. Go to next name server IP.
+    5. Go to next name server IP.
 
 8.  For each name server IP in the *CDS RRsets* set do:
 
-    1. Extract the CDS RRset (possibly empty).
-    2. Extract the CDNSKEY RRset (possibly empty) for the same IP from
+    1. If the name server IP is not listed in *CDNSKEY RRsets*, go to next name
+       server IP.
+    2. Extract the CDS RRset (possibly empty) for the IP in the *CDS RRsets* set.
+    3. Extract the CDNSKEY RRset (possibly empty) for the same IP from
        the *CDNSKEY RRsets* set.
-    3. If both RRsets are non-empty then do:
+    4. If both RRsets are non-empty then do:
        1. For each CDS RR verify that there is a matching CDNSKEY (derived
-          from the same DNSKEY or being "delete").
+          from the same DNSKEY or both being "delete").
        2. For each CDNSKEY RR verify that there is a matching CDS (derived
-          from the same DNSKEY or being "delete").
+          from the same DNSKEY or both being "delete").
        3. If one or both of the verifications fail then add the name server
           IP to the *Mismatch CDS/CDNSKEY* set.
     4. Go to next name sever IP.
