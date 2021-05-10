@@ -1,4 +1,4 @@
-# DNSSEC16: Validate CDNSKEY
+# DNSSEC17: Validate CDNSKEY
 
 ## Test case identifier
 **DNSSEC17**
@@ -49,9 +49,9 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
 
 1.  Create the following empty sets:
     1.  Name server IP address and associated CDNSKEY RRset and its
-        RRSIG redords ("CDNSKEY RRsets"). RRSIG records may be absent.
+        RRSIG redords ("CDNSKEY RRsets"). The set of RRSIG records may be empty
     2.  Name server IP address and associated DNSKEY RRset and its 
-        RRsig records ("DNSKEY RRsets"). RRSIG records may be absent.
+        RRSIG records ("DNSKEY RRsets"). The set of RRSIG records may be empty.
     3.  Name server IP address ("No DNSKEY RRset").
     4.  Name server IP address ("Mixed Delete CDNSKEY").
     5.  Name server IP address ("Delete CDNSKEY").
@@ -107,15 +107,16 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
 7.  For each name server IP in the *CDNSKEY RRsets* set do:
 
     1. If the CDNSKEY RRset is non-empty, get the RRset and its RRSIG
-       records, else go to next name server IP address.
+       records, else go to next name server IP address. The set of the RRSIG
+       records may be empty.
     2. If any CDNSKEY record is a "delete" CDNSKEY, then do:
        1. If there is more than a single CDNSKEY record then add the
           name server IP to the *Mixed Delete CDNSKEY* set.
        2. Else, add the name server IP address to the *Delete CDNSKEY*
           set.
        3. Go to next name server IP.
-    3. Get the DNSKEY and its RRSIG records, if any, from the
-       *DNSKEY RRsets* for the same name server IP.
+    3. Get the DNSKEY and its RRSIG records from the *DNSKEY RRsets* for the same
+       name server IP. The set of RRSIG records may be empty.
     4. If there are no DNSKEY records, then do:
        1. Add name server IP address to the *No DNSKEY RRset* set
           (duplicates not possible).
