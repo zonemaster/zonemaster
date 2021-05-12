@@ -13,9 +13,8 @@ development has been completed.
 
 ## 2. [Test planning]
 
-This phase should be performed after the end of development but before testing
-process, definitely before acceptance testing starts, but also before
-development has been completed.
+This phase should be performed after the end of development but before
+acceptance testing starts.
 
 
 ## 3. [Create test distributions]
