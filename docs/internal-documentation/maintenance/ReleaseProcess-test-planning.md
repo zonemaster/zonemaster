@@ -12,6 +12,7 @@ This gives us greater faith in our releases.
 2. For each test item, discuss how it could and should be tested.
    Make sure there is a heading titled "How to test this PR" in the pull request
    description.
+   Add it if needed.
    Add/update notes under this heading to reflect the conclusions made.
 
 3. Discuss prioritization of the test items and who should test what.
