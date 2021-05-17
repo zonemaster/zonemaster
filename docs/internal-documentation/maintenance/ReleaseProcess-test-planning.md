@@ -7,7 +7,7 @@ This gives us greater faith in our releases.
 
 ## Release testing start up-meeting
 
-1. Compile a list of all pull requests with user-facing changes.
+1. Compile a list of all pull requests that should be tested.
 
 2. For each test item, discuss how it could and should be tested.
    Make sure there is a heading titled "How to test this PR" in the pull request
