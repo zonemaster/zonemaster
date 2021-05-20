@@ -1,8 +1,8 @@
 Release process
 ===============
 
-This process has been split into three parts which are described in their own
-documents.
+This process has been split into different parts which are described in their
+own documents.
 
 ## 1. [Preparation]
 
