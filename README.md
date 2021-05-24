@@ -98,8 +98,8 @@ indicated bellow and should work perfectly with similar configurations.
 
 Operating System | Browser | Version
 ---------------- | ------- | -------
-Ubuntu 18.04     | Firefox | 88 ?
-Ubuntu 18.04     | Chrome  | 90 ?
+Ubuntu 20.04     | Firefox | 88
+Ubuntu 20.04     | Chrome  | 90
 Windows 10       | Firefox | 88 ?
 Windows 10       | Chrome  | 90 ?
 MacOs            | Firefox | 88
