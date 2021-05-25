@@ -19,6 +19,11 @@ domain (zone) do not point at CNAME records.
 
 "Child Zone" - The domain name to be tested.
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Ordered description of steps to be taken to execute the test case
 
 1. Obtain the set of name server names using [Method2] and [Method3]
@@ -71,7 +76,7 @@ In other cases the outcome of this Test Case is "pass".
 
 Message               | Default severity level
 :---------------------|:-----------------------------------
-NO_RESPONSE           | WARNING
+NO_RESPONSE           | DEBUG
 UNEXPECTED_RCODE      | WARNING
 NS_IS_CNAME           | ERROR
 NO_NS_CNAME           | INFO
@@ -100,6 +105,7 @@ any changes to the DNS tree introduced by an [undelegated test] must be
 respected.
 
 
+[Basic04]:               ../Basic-TP/basic04.md
 [DNS Lookup]:            #terminology
 [Method2]:               ../Methods.md#method-2-obtain-glue-name-records-from-parent
 [Method3]:               ../Methods.md#method-3-obtain-name-servers-from-child
