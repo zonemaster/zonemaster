@@ -18,6 +18,11 @@ In this test case, the query will have an unknown EDNS flag set, i.e.
 one of the Z flag bits set to "1", and it is expected that all "Z" 
 bits to be clear in the response (set to "0").
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 "Child Zone" - The domain name to be tested.
@@ -60,7 +65,7 @@ The outcome of this Test case is "pass" in all other cases.
 
 Message                           | Default severity level
 :---------------------------------|:----------------------------
-NO_RESPONSE                       | WARNING
+NO_RESPONSE                       | DEBUG
 NO_EDNS_SUPPORT                   | WARNING
 NS_ERROR                          | WARNING     
 Z_FLAGS_NOTCLEAR                  | WARNING
@@ -76,6 +81,7 @@ the ignored result.
 None.
 
 
+[Basic04]:                      ../Basic-TP/basic04.md
 [EDNS Header Flags]:            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-13
 [IANA]:                         https://www.iana.org/
 [Method4]:                      ../Methods.md#method-4-obtain-glue-address-records-from-parent
