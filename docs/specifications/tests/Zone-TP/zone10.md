@@ -13,6 +13,12 @@ This test case will verify that the zone of the domain to be tested return
 exactly one SOA record.
 
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
+
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
@@ -53,8 +59,8 @@ In other cases the outcome of this Test Case is "pass".
 Message                       | Default severity level
 :-----------------------------|:-----------------------------------
 MULTIPLE_SOA                  | ERROR
-NO_RESPONSE                   | WARNING
-NO_SOA_IN_RESPONSE            | WARNING
+NO_RESPONSE                   | DEBUG
+NO_SOA_IN_RESPONSE            | DEBUG
 ONE_SOA                       | INFO
 WRONG_SOA                     | ERROR
 
@@ -80,6 +86,7 @@ The term "send" (to an IP address) is used when a DNS query is sent to
 a specific name server.
 
 
+[Basic04]:                   ../Basic-TP/basic04.md
 [MULTIPLE_SOA]:              #outcomes
 [Method4]:                   ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                   ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
