@@ -13,6 +13,11 @@ match the authoritative A and AAAA records for that host. This is an IANA
 The objective of this test is to verify that the [glue records][terminology] 
 in the delegation are consistent with authoritative data.
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
@@ -127,8 +132,8 @@ The outcome of this Test case is "pass" in all other cases.
 
 Message                           | Default severity level (when message is outputted)
 :---------------------------------|:-----------------------------------
-CHILD_NS_FAILED                   | NOTICE
-NO_RESPONSE                       | WARNING
+CHILD_NS_FAILED                   | DEBUG
+NO_RESPONSE                       | DEBUG
 CHILD_ZONE_LAME                   | ERROR
 IN_BAILIWICK_ADDR_MISMATCH        | ERROR
 OUT_OF_BAILIWICK_ADDR_MISMATCH    | ERROR
@@ -178,6 +183,7 @@ respected.
 
 
 [BASIC01]:                  ../Basic-TP/basic01.md
+[Basic04]:                  ../Basic-TP/basic04.md
 [DELEGATION05]:             ../Delegation-TP/delegation05.md
 [Methods]:                  ../Methods.md
 [Method2]:                  ../Methods.md#method-2-obtain-glue-name-records-from-parent
