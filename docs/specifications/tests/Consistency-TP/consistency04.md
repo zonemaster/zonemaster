@@ -77,19 +77,14 @@ on the ignored result.
 
 None
 
+
 [Basic04]:                    ../Basic-TP/basic04.md
-[RFC 1034]: https://tools.ietf.org/html/rfc1034
+[MULTIPLE_NS_SET]:            #outcomes
+[Method4]:                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NO_RESPONSE]:                #outcomes
+[NO_RESPONSE_NS_QUERY]:       #outcomes
+[ONE_NS_SET]:                 #outcomes
+[RFC 1034]:                   https://tools.ietf.org/html/rfc1034
+[RFC 1035]:                   https://tools.ietf.org/html/rfc1035
 
-[RFC 1035]: https://tools.ietf.org/html/rfc1035
-
-[Method4]:  ../Methods.md#method-4-obtain-glue-address-records-from-parent
-
-[Method5]:  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-
-[NO_RESPONSE]: #outcomes
-
-[NO_RESPONSE_NS_QUERY]: #outcomes
-
-[ONE_NS_SET]: #outcomes
-
-[MULTIPLE_NS_SET]: #outcomes

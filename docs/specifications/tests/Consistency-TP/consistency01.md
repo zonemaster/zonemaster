@@ -122,28 +122,18 @@ When comparing SOA serial it must be done using the arithmetic defined in
 
 None
 
+
 [Basic04]:                    ../Basic-TP/basic04.md
-[RFC 1034]: https://tools.ietf.org/html/rfc1035
-
-[RFC 1035]: https://tools.ietf.org/html/rfc1035
-
-[RFC 1982]: https://tools.ietf.org/html/rfc1982 
-
-[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
-
-[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-
-[NO_RESPONSE]: #outcomes
-
-[NO_RESPONSE_SOA_QUERY]: #outcomes
-
-[ONE_SOA_SERIAL]: #outcomes
-
-[MULTIPLE_SOA_SERIALS]: #outcomes
-
-[MULTIPLE_SOA_SERIALS_OK]: #outcomes
-
-[SOA_SERIAL]: #outcomes
-
-[SOA_SERIAL_VARIATION]: #outcomes
+[MULTIPLE_SOA_SERIALS]:       #outcomes
+[MULTIPLE_SOA_SERIALS_OK]:    #outcomes
+[Method4]:                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NO_RESPONSE]:                #outcomes
+[NO_RESPONSE_SOA_QUERY]:      #outcomes
+[ONE_SOA_SERIAL]:             #outcomes
+[RFC 1034]:                   https://tools.ietf.org/html/rfc1035
+[RFC 1035]:                   https://tools.ietf.org/html/rfc1035
+[RFC 1982]:                   https://tools.ietf.org/html/rfc1982
+[SOA_SERIAL]:                 #outcomes
+[SOA_SERIAL_VARIATION]:       #outcomes
 

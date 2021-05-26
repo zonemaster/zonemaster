@@ -81,23 +81,15 @@ on the ignored result.
 
 None.
 
-[Basic04]:                    ../Basic-TP/basic04.md
-[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
 
-[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-
-[NO_RESPONSE]: #outcomes
-
-[NO_RESPONSE_SOA_QUERY]: #outcomes
-
-[ONE_SOA_TIME_PARAMETER_SET]: #outcomes
-
-[MULTIPLE_SOA_TIME_PARAMETER_SET]: #outcomes
-
-[CONSISTENCY01]: consistency01.md
-
-[CONSISTENCY02]: consistency02.md
-
-[CONSISTENCY06]: consistency06.md
-
+[Basic04]:                           ../Basic-TP/basic04.md
+[CONSISTENCY01]:                     consistency01.md
+[CONSISTENCY02]:                     consistency02.md
+[CONSISTENCY06]:                     consistency06.md
+[MULTIPLE_SOA_TIME_PARAMETER_SET]:   #outcomes
+[Method4]:                           ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                           ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NO_RESPONSE]:                       #outcomes
+[NO_RESPONSE_SOA_QUERY]:             #outcomes
+[ONE_SOA_TIME_PARAMETER_SET]:        #outcomes
 
