@@ -62,7 +62,7 @@ MULTIPLE_SOA                  | ERROR
 NO_RESPONSE                   | DEBUG
 NO_SOA_IN_RESPONSE            | DEBUG
 ONE_SOA                       | INFO
-WRONG_SOA                     | ERROR
+WRONG_SOA                     | DEBUG
 
 
 ## Special procedural requirements
