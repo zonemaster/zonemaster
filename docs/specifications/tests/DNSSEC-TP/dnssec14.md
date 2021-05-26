@@ -119,6 +119,7 @@ None.
 [DNSKEY_TOO_LARGE_FOR_ALGO]:                             #outcomes
 [DNSKEY_TOO_SMALL_FOR_ALGO]:                             #outcomes
 [DNSSEC README]:                                         ./README.md
+[DNSSEC05]:                                              ./dnssec05.md
 [IANA registry]:                                         https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml
 [KEY_SIZE_OK]:                                           #outcomes
 [Method4]:                                               ../Methods.md#method-4-obtain-glue-address-records-from-parent
