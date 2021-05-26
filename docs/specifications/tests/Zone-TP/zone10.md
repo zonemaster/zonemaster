@@ -1,4 +1,4 @@
-# ZONE10: No multipe SOA records
+# ZONE10: No multiple SOA records
 
 
 ## Test case identifier
@@ -11,6 +11,12 @@ The SOA record is crucial for the DNS zone and "exactly one SOA RR should
 be present at the top of the zone" ([RFC 1035][RFC 1035#5.2], section 5.2).
 This test case will verify that the zone of the domain to be tested return
 exactly one SOA record.
+
+
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
 
 
 ## Inputs
@@ -53,10 +59,10 @@ In other cases the outcome of this Test Case is "pass".
 Message                       | Default severity level
 :-----------------------------|:-----------------------------------
 MULTIPLE_SOA                  | ERROR
-NO_RESPONSE                   | WARNING
-NO_SOA_IN_RESPONSE            | WARNING
+NO_RESPONSE                   | DEBUG
+NO_SOA_IN_RESPONSE            | DEBUG
 ONE_SOA                       | INFO
-WRONG_SOA                     | ERROR
+WRONG_SOA                     | DEBUG
 
 
 ## Special procedural requirements
@@ -80,6 +86,7 @@ The term "send" (to an IP address) is used when a DNS query is sent to
 a specific name server.
 
 
+[Basic04]:                   ../Basic-TP/basic04.md
 [MULTIPLE_SOA]:              #outcomes
 [Method4]:                   ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                   ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
