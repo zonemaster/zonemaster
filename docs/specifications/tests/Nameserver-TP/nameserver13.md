@@ -20,6 +20,11 @@ To trigger a truncated response, the OPT pseudo record 'DO' bit is set and the
 buffer size is limited to 512 bytes. If the zone is not signed with DNSSEC, the
 response will probably not be truncated anyway.
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 "Child Zone" - The domain name to be tested.
@@ -62,10 +67,10 @@ The outcome of this Test case is "pass" in all other cases.
 
 Message                           | Default severity level (when message is outputed)
 :---------------------------------|:--------------------------------------------------
-NO_RESPONSE                       | WARNING
+NO_RESPONSE                       | DEBUG
 NO_EDNS_SUPPORT                   | WARNING
-NS_ERROR			  | WARNING     
-MISSING_OPT_IN_TRUNCATED   	  | WARNING
+NS_ERROR                          | WARNING
+MISSING_OPT_IN_TRUNCATED          | WARNING
 
 ## Special procedural requirements
 
@@ -79,6 +84,7 @@ None.
 
 
 
+[Basic04]:               ../Basic-TP/basic04.md
 [MISSING_OPT_IN_TRUNCATED]: #outcomes
 [Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child

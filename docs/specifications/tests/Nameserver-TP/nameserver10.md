@@ -22,6 +22,11 @@ the combination of the normal RCODE field in the DNS package header
 EXTENDED-RCODE field ([RFC 6891][RFC 6891#6.1.3], section 6.1.3). Also see
 [IANA RCODE Registry].
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
@@ -63,7 +68,7 @@ The outcome of this Test case is "pass" in all other cases.
 
 Message                           | Default severity level (when message is outputted)
 :---------------------------------|:-----------------------------------
-NO_RESPONSE                       | WARNING
+NO_RESPONSE                       | DEBUG
 NO_EDNS_SUPPORT                   | WARNING
 UNSUPPORTED_EDNS_VER              | WARNING
 NS_ERROR                          | WARNING
@@ -79,6 +84,7 @@ the ignored result.
 None
 
 
+[Basic04]:              ../Basic-TP/basic04.md
 [IANA RCODE Registry]:  https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [Method4]:              ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
