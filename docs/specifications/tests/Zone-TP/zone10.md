@@ -1,4 +1,4 @@
-# ZONE10: No multipe SOA records
+# ZONE10: No multiple SOA records
 
 
 ## Test case identifier
