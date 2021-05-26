@@ -19,6 +19,11 @@ same number of NS records, and for each NS record in one of the
 sets there is exactly one NS record with identical owner name, 
 class, TTL and RDATA in the other NS set.
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 * The domain name to be tested ("Child Zone").
@@ -55,8 +60,8 @@ In other cases the outcome of this Test Case is "pass".
 
 Message                       | Default severity level (if message is emitted)
 :-----------------------------|:-----------------------------------
-NO_RESPONSE                   | WARNING
-NO_RESPONSE_NS_QUERY          | WARNING
+NO_RESPONSE                   | DEBUG
+NO_RESPONSE_NS_QUERY          | DEBUG
 ONE_NS_SET                    | INFO
 MULTIPLE_NS_SET               | NOTICE
 
@@ -72,18 +77,14 @@ on the ignored result.
 
 None
 
-[RFC 1034]: https://tools.ietf.org/html/rfc1034
 
-[RFC 1035]: https://tools.ietf.org/html/rfc1035
+[Basic04]:                    ../Basic-TP/basic04.md
+[MULTIPLE_NS_SET]:            #outcomes
+[Method4]:                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NO_RESPONSE]:                #outcomes
+[NO_RESPONSE_NS_QUERY]:       #outcomes
+[ONE_NS_SET]:                 #outcomes
+[RFC 1034]:                   https://tools.ietf.org/html/rfc1034
+[RFC 1035]:                   https://tools.ietf.org/html/rfc1035
 
-[Method4]:  ../Methods.md#method-4-obtain-glue-address-records-from-parent
-
-[Method5]:  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-
-[NO_RESPONSE]: #outcomes
-
-[NO_RESPONSE_NS_QUERY]: #outcomes
-
-[ONE_NS_SET]: #outcomes
-
-[MULTIPLE_NS_SET]: #outcomes

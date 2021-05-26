@@ -13,6 +13,11 @@ match the authoritative A and AAAA records for that host. This is an IANA
 The objective of this test is to verify that the [glue records][terminology] 
 in the delegation are consistent with authoritative data.
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
@@ -127,8 +132,8 @@ The outcome of this Test case is "pass" in all other cases.
 
 Message                           | Default severity level (when message is outputted)
 :---------------------------------|:-----------------------------------
-CHILD_NS_FAILED                   | NOTICE
-NO_RESPONSE                       | WARNING
+CHILD_NS_FAILED                   | DEBUG
+NO_RESPONSE                       | DEBUG
 CHILD_ZONE_LAME                   | ERROR
 IN_BAILIWICK_ADDR_MISMATCH        | ERROR
 OUT_OF_BAILIWICK_ADDR_MISMATCH    | ERROR
@@ -177,24 +182,24 @@ any changes to the DNS tree introduced by an [undelegated test] must be
 respected.
 
 
-[BASIC01]:                  ../Basic-TP/basic01.md
-[DELEGATION05]:             ../Delegation-TP/delegation05.md
-[Methods]:                  ../Methods.md
-[Method2]:                  ../Methods.md#method-2-obtain-glue-name-records-from-parent
-[Method3]:                  ../Methods.md#method-3-obtain-name-servers-from-child
-[Method4]:                  ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]:                  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[name server requirement]:  https://www.iana.org/help/nameserver-requirements
-[RFC 7719]:                 https://tools.ietf.org/html/rfc7719
-[terminology]:              #terminology
-[undelegated test]:         ../../test-types/undelegated-test.md
-
-[CHILD_NS_FAILED]:                #outcomes
-[NO_RESPONSE]:                    #outcomes
-[CHILD_ZONE_LAME]:                #outcomes
-[IN_BAILIWICK_ADDR_MISMATCH]:     #outcomes
-[OUT_OF_BAILIWICK_ADDR_MISMATCH]: #outcomes
-[EXTRA_ADDRESS_CHILD]:            #outcomes
-[UNDEL_OOB_ADDR_MISMATCH]:        #outcomes
 [ADDRESSES_MATCH]:                #outcomes
+[BASIC01]:                        ../Basic-TP/basic01.md
+[Basic04]:                        ../Basic-TP/basic04.md
+[CHILD_NS_FAILED]:                #outcomes
+[CHILD_ZONE_LAME]:                #outcomes
+[DELEGATION05]:                   ../Delegation-TP/delegation05.md
+[EXTRA_ADDRESS_CHILD]:            #outcomes
+[IN_BAILIWICK_ADDR_MISMATCH]:     #outcomes
+[Method2]:                        ../Methods.md#method-2-obtain-glue-name-records-from-parent
+[Method3]:                        ../Methods.md#method-3-obtain-name-servers-from-child
+[Method4]:                        ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                        ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[Methods]:                        ../Methods.md
+[NO_RESPONSE]:                    #outcomes
+[OUT_OF_BAILIWICK_ADDR_MISMATCH]: #outcomes
+[RFC 7719]:                       https://tools.ietf.org/html/rfc7719
+[UNDEL_OOB_ADDR_MISMATCH]:        #outcomes
+[name server requirement]:        https://www.iana.org/help/nameserver-requirements
+[terminology]:                    #terminology
+[undelegated test]:               ../../test-types/undelegated-test.md
 

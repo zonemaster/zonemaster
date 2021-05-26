@@ -15,6 +15,11 @@ failures being reported to different persons.
 The objective of this test is to verify that the administrative contact is
 consistent between different authoritative name servers.
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 * The domain name to be tested ("Child Zone")
@@ -47,7 +52,7 @@ In other cases the outcome of this Test Case is "pass".
 
 Message                       | Default severity level (if message is emitted)
 :-----------------------------|:-----------------------------------
-NO_RESPONSE                   | WARNING
+NO_RESPONSE                   | DEBUG
 NO_RESPONSE_SOA_QUERY         | DEBUG
 ONE_SOA_RNAME                 | INFO
 MULTIPLE_SOA_RNAMES           | NOTICE
@@ -64,18 +69,14 @@ on the ignored result.
 None
 
 
-[RFC 1034]: https://tools.ietf.org/html/rfc1034
-
-[RFC 1035]: https://tools.ietf.org/html/rfc1035
-
-[RFC 1982]: https://tools.ietf.org/html/rfc1982 
-
-[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
-
-[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-
-[NO_RESPONSE]: #outcomes
-[NO_RESPONSE_SOA_QUERY]: #outcomes
-[ONE_SOA_RNAME]: #outcomes
-[MULTIPLE_SOA_RNAMES]: #outcomes
+[Basic04]:                    ../Basic-TP/basic04.md
+[MULTIPLE_SOA_RNAMES]:        #outcomes
+[Method4]:                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NO_RESPONSE]:                #outcomes
+[NO_RESPONSE_SOA_QUERY]:      #outcomes
+[ONE_SOA_RNAME]:              #outcomes
+[RFC 1034]:                   https://tools.ietf.org/html/rfc1034
+[RFC 1035]:                   https://tools.ietf.org/html/rfc1035
+[RFC 1982]:                   https://tools.ietf.org/html/rfc1982
 

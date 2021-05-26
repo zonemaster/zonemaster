@@ -17,6 +17,11 @@ SOA fields:
 * [CONSISTENCY02] (RNAME)
 * [CONSISTENCY06] (MNAME)
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 * The domain name to be tested ("Child Zone").
@@ -60,7 +65,7 @@ In other cases the outcome of this Test Case is "pass".
 
 Message                          | Default severity level (if message is emitted)
 :--------------------------------|:-----------------------------------
-NO_RESPONSE                      | WARNING
+NO_RESPONSE                      | DEBUG
 NO_RESPONSE_SOA_QUERY            | DEBUG
 ONE_SOA_TIME_PARAMETER_SET       | INFO
 MULTIPLE_SOA_TIME_PARAMETER_SET  | NOTICE
@@ -76,22 +81,15 @@ on the ignored result.
 
 None.
 
-[Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
 
-[Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-
-[NO_RESPONSE]: #outcomes
-
-[NO_RESPONSE_SOA_QUERY]: #outcomes
-
-[ONE_SOA_TIME_PARAMETER_SET]: #outcomes
-
-[MULTIPLE_SOA_TIME_PARAMETER_SET]: #outcomes
-
-[CONSISTENCY01]: consistency01.md
-
-[CONSISTENCY02]: consistency02.md
-
-[CONSISTENCY06]: consistency06.md
-
+[Basic04]:                           ../Basic-TP/basic04.md
+[CONSISTENCY01]:                     consistency01.md
+[CONSISTENCY02]:                     consistency02.md
+[CONSISTENCY06]:                     consistency06.md
+[MULTIPLE_SOA_TIME_PARAMETER_SET]:   #outcomes
+[Method4]:                           ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                           ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NO_RESPONSE]:                       #outcomes
+[NO_RESPONSE_SOA_QUERY]:             #outcomes
+[ONE_SOA_TIME_PARAMETER_SET]:        #outcomes
 
