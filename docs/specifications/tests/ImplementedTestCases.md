@@ -14,6 +14,7 @@ Index of Text Case specifications is also found in [README](README.md).
 | [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic01 | [BASIC01](Basic-TP/basic01.md) |
 | [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic02 | [BASIC02](Basic-TP/basic02.md) |
 | [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic03 | [BASIC03](Basic-TP/basic03.md) |
+| [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic04 | [BASIC04](Basic-TP/basic04.md) |
 | [Address](https://metacpan.org/pod/Zonemaster::Engine::Test::Address) | address01 | [ADDRESS01](Address-TP/address01.md) |
 | [Address](https://metacpan.org/pod/Zonemaster::Engine::Test::Address) | address02 | [ADDRESS02](Address-TP/address02.md) |
 | [Address](https://metacpan.org/pod/Zonemaster::Engine::Test::Address) | address03 | [ADDRESS03](Address-TP/address03.md) |
@@ -46,6 +47,9 @@ Index of Text Case specifications is also found in [README](README.md).
 | [DNSSEC](https://metacpan.org/pod/Zonemaster::Engine::Test::DNSSEC) | dnssec11 | [DNSSEC11](DNSSEC-TP/dnssec11.md) |
 | [DNSSEC](https://metacpan.org/pod/Zonemaster::Engine::Test::DNSSEC) | dnssec13 | [DNSSEC13](DNSSEC-TP/dnssec13.md) |
 | [DNSSEC](https://metacpan.org/pod/Zonemaster::Engine::Test::DNSSEC) | dnssec14 | [DNSSEC14](DNSSEC-TP/dnssec14.md) |
+| [DNSSEC](https://metacpan.org/pod/Zonemaster::Engine::Test::DNSSEC) | dnssec15 | [DNSSEC15](DNSSEC-TP/dnssec15.md) |
+| [DNSSEC](https://metacpan.org/pod/Zonemaster::Engine::Test::DNSSEC) | dnssec16 | [DNSSEC16](DNSSEC-TP/dnssec16.md) |
+| [DNSSEC](https://metacpan.org/pod/Zonemaster::Engine::Test::DNSSEC) | dnssec17 | [DNSSEC17](DNSSEC-TP/dnssec17.md) |
 | [Nameserver](https://metacpan.org/pod/Zonemaster::Engine::Test::Nameserver) | nameserver01 | [NAMESERVER01](Nameserver-TP/nameserver01.md) |
 | [Nameserver](https://metacpan.org/pod/Zonemaster::Engine::Test::Nameserver) | nameserver02 | [NAMESERVER02](Nameserver-TP/nameserver02.md) |
 | [Nameserver](https://metacpan.org/pod/Zonemaster::Engine::Test::Nameserver) | nameserver03 | [NAMESERVER03](Nameserver-TP/nameserver03.md) |
