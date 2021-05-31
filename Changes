@@ -1,5 +1,37 @@
 Release history of Zonemaster
 
+v2021.1 2021-05-31 (public release version)
+
+ [Features]
+ - Adds implementation of test cases DNSSEC15, DNSSEC16 and DNSSEC17 for
+   controll of CDS and CDNSKEY. See Zonemaster-Engine for this feature.
+ - Adds implementation of test case Basic04 and decreased serverity level
+   of messages in other test cases to reduce duplicate massages. See
+   Zonemaster-Engine for this feature.
+ - Adds Finnish translation and language support. See Zonemaster-Engine,
+   Zonemaster-CLI, Zonemaster-Backend and Zonemaster-GUI for this feature.
+ - Adds Norwegian translation and language support also to Zonemaster-GUI.
+ - Creates new test case specification for DNSSEC15 (Existence of CDS
+   and CDNSKEY) (#938, #944)
+ - Creates new test case specifications for DNSSEC16 (Validate CDS) and
+   DNSSEC17 (Validate CDNSKEY) (#939)
+
+ [Fixes]
+ - Updates documentation (#959, #958, #949, #945)
+ - Decreases severity level of message in several test case specification (#955,
+   #950, #951, #953, #954, #952)
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components.
+   For each component, see its Changes file or Github release notes.
+
+   Zonemaster-LDNS     v2.2.0   https://github.com/zonemaster/zonemaster-ldns/releases/tag/v2.2.0
+   Zonemaster-Engine   v4.2.0   https://github.com/zonemaster/zonemaster-engine/releases/tag/v4.2.0
+   Zonemaster-CLI      v3.1.0   https://github.com/zonemaster/zonemaster-cli/releases/tag/v3.1.0
+   Zonemaster-Backend  v6.2.0   https://github.com/zonemaster/zonemaster-backend/releases/tag/v6.2.0
+   Zonemaster-GUI      v3.3.0   https://github.com/zonemaster/zonemaster-gui/releases/tag/v3.3.0
+
+
 v2020.2.1 2021-03-16 (public fix release version)
 
  [Fixes]
