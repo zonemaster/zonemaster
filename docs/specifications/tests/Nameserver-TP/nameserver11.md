@@ -16,6 +16,11 @@ processed as though the OPTION-CODE was not even there.
 In this test case, we will query  with an unknown EDNS OPTION-CODE and expect
 that the OPTION-CODE is not present in the response for the query.
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 "Child Zone" - The domain name to be tested.
@@ -59,10 +64,10 @@ The outcome of this Test case is "pass" in all other cases.
 
 Message                           | Default severity level (when message is outputed)
 :---------------------------------|:--------------------------------------------------
-NO_RESPONSE                       | WARNING
+NO_RESPONSE                       | DEBUG
 NO_EDNS_SUPPORT                   | WARNING
-NS_ERROR			  | WARNING     
-UNKNOWN_OPTION_CODE		  | WARNING     
+NS_ERROR                          | WARNING
+UNKNOWN_OPTION_CODE               | WARNING
 
 ## Special procedural requirements
 
@@ -76,6 +81,7 @@ None.
 
 
 
+[Basic04]:               ../Basic-TP/basic04.md
 [IANA-DNSSYSTEM-PARAMETERS]: https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-11
 [Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child

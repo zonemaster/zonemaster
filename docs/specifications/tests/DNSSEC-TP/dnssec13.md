@@ -22,6 +22,11 @@ is a RRSIG of that algorithm for the three selected RRsets.
 Furtermore, it is verified that the RRSIG of those RRsets have
 been created by a DNSKEY from the zone's DNSKEY RRset.
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
@@ -135,7 +140,7 @@ Message                       | Default severity level
 :-----------------------------|:-----------------------------------
 ALGO_NOT_SIGNED_RRSET         | WARNING
 ALL_ALGO_SIGNED               | INFO
-NO_RESPONSE                   | WARNING
+NO_RESPONSE                   | DEBUG
 NO_RESPONSE_RRSET             | ERROR
 RRSET_NOT_SIGNED              | ERROR
 RRSIG_BROKEN                  | ERROR
@@ -162,6 +167,7 @@ None.
 
 [ALGO_NOT_SIGNED_RRSET]:      #outcomes
 [ALL_ALGO_SIGNED]:            #outcomes
+[Basic04]:                    ../Basic-TP/basic04.md
 [DNSSEC README]:              ./README.md
 [NO_RESPONSE]:                #outcomes
 [NO_RESPONSE_RRSET]:          #outcomes

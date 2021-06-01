@@ -11,6 +11,11 @@ in [RFC 1035][RFC 1035#3.3.13], section 3.3.13 and in
 field should follow the rules of an e-mail address also defined in
 [RFC 5322][RFC 5322#3.4.1], section 3.4.1.
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
@@ -103,8 +108,8 @@ In other cases the outcome of this Test Case is "pass".
 
 Message                       | Default severity level
 :-----------------------------|:-----------------------------------
-NO_RESPONSE                   | WARNING
-NO_RESPONSE_SOA_QUERY         | WARNING
+NO_RESPONSE                   | DEBUG
+NO_RESPONSE_SOA_QUERY         | DEBUG
 RNAME_RFC822_INVALID          | WARNING
 RNAME_MAIL_DOMAIN_INVALID     | WARNING
 RNAME_MAIL_DOMAIN_LOCALHOST   | WARNING
@@ -135,6 +140,7 @@ a specific name server.
 any changes to the DNS tree introduced by an [undelegated test] must be
 respected.
 
+[Basic04]:                    ../Basic-TP/basic04.md
 [Method4]:                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [Methods]:                    ../Methods.md

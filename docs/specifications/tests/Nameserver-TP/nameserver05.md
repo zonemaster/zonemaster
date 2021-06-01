@@ -11,6 +11,12 @@ misbehaviours trying to answer queries for AAAA records, as described in
 authoritative for the domain shows any of these behaviours.
 
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
+
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
@@ -66,7 +72,7 @@ AAAA_QUERY_DROPPED            | ERROR
 AAAA_UNEXPECTED_RCODE         | ERROR
 AAAA_WELL_PROCESSED           | INFO
 A_UNEXPECTED_RCODE            | WARNING
-NO_RESPONSE                   | WARNING
+NO_RESPONSE                   | DEBUG
 
 
 ## Special procedural requirements
@@ -86,6 +92,7 @@ None.
 [AAAA_UNEXPECTED_RCODE]: #outcomes
 [AAAA_WELL_PROCESSED]:   #outcomes
 [A_UNEXPECTED_RCODE]:    #outcomes
+[Basic04]:               ../Basic-TP/basic04.md
 [Method4]:               ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:               ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NO_RESPONSE]:           #outcomes

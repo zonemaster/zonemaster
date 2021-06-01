@@ -31,6 +31,11 @@ To eliminating the risk of falsely classifying the server as not supporting
 ENDS due e.g. firewall issues, the UDP buffer size is set to 512 bytes 
 (octets).
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
@@ -90,7 +95,7 @@ The outcome of this Test case is "pass" in all other cases.
 
 Message                           | Default severity level (when message is outputted)
 :---------------------------------|:-----------------------------------
-NO_RESPONSE                       | WARNING
+NO_RESPONSE                       | DEBUG
 NO_EDNS_SUPPORT                   | WARNING
 BREAKS_ON_EDNS                    | ERROR
 EDNS_RESPONSE_WITHOUT_EDNS        | ERROR
@@ -108,6 +113,7 @@ the ignored result.
 None
 
 
+[Basic04]:                       ../Basic-TP/basic04.md
 [BREAKS_ON_EDNS]:                #outcomes
 [EDNS_RESPONSE_WITHOUT_EDNS]:    #outcomes
 [EDNS_VERSION_ERROR]:            #outcomes

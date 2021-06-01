@@ -46,6 +46,11 @@ Algorithm number | Algorithm (or description)
 255              | (Reserved)
 
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 * The domain name to be tested ("Child Zone").
@@ -96,7 +101,7 @@ In other cases the outcome of this Test Case is "pass".
 
 Message                       | Default severity level
 :-----------------------------|:-----------------------------------
-NO_RESPONSE                   | WARNING
+NO_RESPONSE                   | DEBUG
 NO_RESPONSE_DNSKEY            | WARNING
 ALGORITHM_DEPRECATED          | ERROR
 ALGORITHM_RESERVED            | ERROR
@@ -123,6 +128,7 @@ The test case is only performed if some DNSKEY record is found in the
 
 None.
 
+[Basic04]:               ../Basic-TP/basic04.md
 [RFC 8624]: https://www.rfc-editor.org/rfc/rfc8624.html#section-3.1
 [IANA registry]: https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml
 

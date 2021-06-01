@@ -31,6 +31,11 @@ section 5.6.2.
 This test case verifies that RSA DNSKEYs follows the stated key lengths
 from the RFCs and also the NIST recommended shortest key length.
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 * "Child Zone" - The domain name to be tested. 
@@ -85,7 +90,7 @@ In other cases the outcome of this Test Case is "pass".
 
 Message                       | Default severity level
 :-----------------------------|:-----------------------------------
-NO_RESPONSE                   | WARNING
+NO_RESPONSE                   | DEBUG
 NO_RESPONSE_DNSKEY            | WARNING
 DNSKEY_SMALLER_THAN_REC       | WARNING
 DNSKEY_TOO_SMALL_FOR_ALGO     | ERROR
@@ -109,22 +114,22 @@ The test case is only performed if some DNSKEY record is found in the
 
 None.
 
-[IANA registry]:                             https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml
-[NIST SP 800-57 Part 1 Rev. 4]:              https://csrc.nist.gov/publications/detail/sp/800-57-part-1/rev-4/final
-[RFC 3110]:                                  https://tools.ietf.org/html/rfc3110
-[RFC 5155]:                                  https://tools.ietf.org/html/rfc5155
-[RFC 5702]:                                  https://tools.ietf.org/html/rfc5702#section-2
-[RFC 8624]:                                  https://www.rfc-editor.org/rfc/rfc8624.html#section-3.1
+[Basic04]:                                               ../Basic-TP/basic04.md
+[DNSKEY_SMALLER_THAN_REC]:                               #outcomes
+[DNSKEY_TOO_LARGE_FOR_ALGO]:                             #outcomes
+[DNSKEY_TOO_SMALL_FOR_ALGO]:                             #outcomes
+[DNSSEC README]:                                         ./README.md
+[DNSSEC05]:                                              ./dnssec05.md
+[IANA registry]:                                         https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml
+[KEY_SIZE_OK]:                                           #outcomes
+[Method4]:                                               ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                                               ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NIST SP 800-57 Part 1 Rev. 4]:                          https://csrc.nist.gov/publications/detail/sp/800-57-part-1/rev-4/final
+[NO_RESPONSE]:                                           #outcomes
+[NO_RESPONSE_DNSKEY]:                                    #outcomes
+[RFC 3110]:                                              https://tools.ietf.org/html/rfc3110
+[RFC 5155]:                                              https://tools.ietf.org/html/rfc5155
+[RFC 5702]:                                              https://tools.ietf.org/html/rfc5702#section-2
+[RFC 8624]:                                              https://www.rfc-editor.org/rfc/rfc8624.html#section-3.1
 [Recommendation for key Management, part 1, revision 4]: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf
-
-[Method4]:                   ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]:                   ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-
-[DNSSEC README]:             ./README.md
-[NO_RESPONSE]:               #outcomes
-[NO_RESPONSE_DNSKEY]:        #outcomes
-[DNSKEY_SMALLER_THAN_REC]:   #outcomes
-[DNSKEY_TOO_SMALL_FOR_ALGO]: #outcomes
-[DNSKEY_TOO_LARGE_FOR_ALGO]: #outcomes
-[KEY_SIZE_OK]:               #outcomes
 
