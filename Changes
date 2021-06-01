@@ -6,7 +6,7 @@ v2021.1 2021-05-31 (public release version)
  - Adds implementation of test cases DNSSEC15, DNSSEC16 and DNSSEC17 for
    checking CDS and CDNSKEY. See Zonemaster-Engine for this feature.
  - Adds implementation of test case Basic04 and decreased severity level
-   of messages in other test cases to reduce duplicate massages. See
+   of messages in other test cases to reduce duplicate messages. See
    Zonemaster-Engine for this feature.
  - Adds Finnish translation and language support. See Zonemaster-Engine,
    Zonemaster-CLI, Zonemaster-Backend and Zonemaster-GUI for this feature.
