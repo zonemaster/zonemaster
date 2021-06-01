@@ -25,6 +25,11 @@ is meant to be a KSK and pointed out by a DS record. It is noted if
 the DNSKEY record that the DS points at does not have that flag set
 ([RFC 4034][RFC 4034#2.1.1], section 2.1.1).
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
@@ -113,7 +118,7 @@ DNSKEY_NOT_ZONE_SIGN          | ERROR
 DS_MATCHES                    | INFO
 NO_MATCHING_DNSKEY            | ERROR
 NO_MATCHING_RRSIG             | ERROR
-NO_RESPONSE                   | WARNING
+NO_RESPONSE                   | DEBUG
 NO_RESPONSE_DNSKEY            | ERROR
 NO_RRSIG_DNSKEY               | ERROR
 UNEXPECTED_RESPONSE_DS        | WARNING
@@ -135,6 +140,7 @@ None.
 
 
 
+[Basic04]:                 ../Basic-TP/basic04.md
 [BROKEN_DS]:               #outcomes
 [BROKEN_RRSIG]:            #outcomes
 [DNSKEY_KSK_NOT_SEP]:      #outcomes

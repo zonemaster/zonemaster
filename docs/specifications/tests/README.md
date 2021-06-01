@@ -107,6 +107,9 @@ project. All the details are in the [Master Test Plan].
 |[DNSSEC12](DNSSEC-TP/dnssec12.md)|Test for DNSSEC Algorithm Completeness|
 |[DNSSEC13](DNSSEC-TP/dnssec13.md)|All DNSKEY algorithms used to sign the zone|
 |[DNSSEC14](DNSSEC-TP/dnssec14.md)|Check for valid RSA DNSKEY key size|
+|[DNSSEC15](DNSSEC-TP/dnssec15.md)|Existence of CDS and CDNSKEY|
+|[DNSSEC16](DNSSEC-TP/dnssec16.md)|Validate CDS|
+|[DNSSEC17](DNSSEC-TP/dnssec17.md)|Validate CDNSKEY|
 |**Delegation-TP**| |
 |[DELEGATION01](Delegation-TP/delegation01.md)|Minimum number of name servers   |
 |[DELEGATION02](Delegation-TP/delegation02.md)|Name servers must have distinct IP addresses|
@@ -149,4 +152,4 @@ project. All the details are in the [Master Test Plan].
 |[ZONE07](Zone-TP/zone07.md)|SOA master is not an alias|
 |[ZONE08](Zone-TP/zone08.md)|MX is not an alias|
 |[ZONE09](Zone-TP/zone09.md)|MX record present|
-|[ZONE10](Zone-TP/zone10.md)|No multipe SOA records|
+|[ZONE10](Zone-TP/zone10.md)|No multiple SOA records|

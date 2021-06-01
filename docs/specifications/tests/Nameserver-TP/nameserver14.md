@@ -4,16 +4,21 @@
 
 **NAMESERVER14** 
 
-### Objective
+## Objective
 
 This test case actually combines the test options in test cases [NAMESERVER10]
 and [NAMESERVER11].
 
-### Inputs
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
+## Inputs
 
 "Child Zone" - The domain name to be tested.
 
-### Ordered description of steps to be taken to execute the test case
+## Ordered description of steps to be taken to execute the test case
 
 1. Create an SOA query for the *Child Zone* with an OPT record with 
    EDNS version set to "1" and  with EDNS OPTION-CODE set to an
@@ -45,7 +50,7 @@ and [NAMESERVER11].
 		4. The option is not present in the response
 	8. Else output *[NS_ERROR]*.
  
-### Outcome(s)
+## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
 with the severity level *ERROR* or *CRITICAL*.
@@ -58,13 +63,13 @@ The outcome of this Test case is "pass" in all other cases.
 
 Message                           | Default severity level (Output message)
 :---------------------------------|:--------------------------------------------------
-NO_RESPONSE                       | WARNING
+NO_RESPONSE                       | DEBUG
 NO_EDNS_SUPPORT                   | WARNING
-NS_ERROR			  | WARNING     
+NS_ERROR                          | WARNING
 UNKNOWN_OPTION_CODE               | WARNING
-UNSUPPORTED_EDNS_VER      	  | WARNING
+UNSUPPORTED_EDNS_VER              | WARNING
 
-### Special procedural requirements
+## Special procedural requirements
 
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol and log a message reporting
@@ -74,8 +79,8 @@ the ignored result.
 
 None.
 
-[IANA-DNSSYSTEM-PARAMETERS]:
-https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-11
+[Basic04]:               ../Basic-TP/basic04.md
+[IANA-DNSSYSTEM-PARAMETERS]: https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-11
 [Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NAMESERVER10]: nameserver10.md

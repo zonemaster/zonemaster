@@ -15,6 +15,11 @@ elaborated by [D.J. Bernstein].
 Section 2.5 of [RFC 2870] have very specific requirement on disabling 
 recursion functionality on root name servers.
 
+## Scope
+
+It is assumed that *Child Zone* has been tested by [Basic04]. This test
+case will set DEBUG level on messages for non-responsive name servers.
+
 ## Inputs
 
 * The domain name to be tested ("Child Zone").
@@ -54,7 +59,7 @@ In other cases the outcome of this Test Case is "pass".
 
 Message                       | Default severity level (if message is emitted)
 :-----------------------------|:-----------------------------------
-NO_RESPONSE                   | WARNING
+NO_RESPONSE                   | DEBUG
 IS_A_RECURSOR                 | ERROR
 NO_RECURSOR                   | INFO
 
@@ -81,6 +86,7 @@ Valid domain names according to the "IDNA 2008 specification" is found in
  
 
 
+[Basic04]:               ../Basic-TP/basic04.md
 [D.J. Bernstein]: http://cr.yp.to/djbdns/separation.html
 [IDNA 2008 specification]: #terminology
 [IS_A_RECURSOR]: #outcomes
