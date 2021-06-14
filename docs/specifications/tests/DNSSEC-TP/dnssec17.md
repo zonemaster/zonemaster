@@ -37,6 +37,8 @@ give an incomplete report of the CDS and CDNSKEY status of
 Message Tag outputted                | [Default level] | Description of when message tag is outputted
 :------------------------------------|:--------|:-----------------------------------------
 DS17_CDNSKEY_INVALID_RRSIG           | ERROR   | CDNSKEY RRset signed with an invalid RRSIG.
+DS17_CDNSKEY_IS_NON_SEP              | NOTIFY  | CDNSKEY record has the SEP bit (bit 15) unset.
+DS17_CDNSKEY_IS_NON_ZONE             | ERROR   | CDNSKEY record has the zone bit (bit 7) unset.
 DS17_CDNSKEY_MATCHES_NO_DNSKEY       | WARNING | CDNSKEY record does not match any DNSKEY in DNSKEY RRset.
 DS17_CDNSKEY_SIGNED_BY_UNKNOWN_DNSKEY| ERROR   | CDNSKEY RRset is signed but not by a key in DNSKEY RRset.
 DS17_CDNSKEY_UNSIGNED                | ERROR   | CDNSKEY RRset is not signed.
@@ -57,12 +59,16 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
     5.  Name server IP address ("Delete CDNSKEY").
     6.  Name server IP address and associated CDNSKEY key tag 
         ("No Match CDNSKEY With DNSKEY").
-    7.  Name server IP address and key tag
-        ("DNSKEY Not Signed By CDNSKEY").
-    8.  Name server IP address ("CDNSKEY Not Signed").
+    7.  Name server IP address and associated CDNSKEY key tag
+        ("CDNSKEY is non-zone key").
+    8.  Name server IP address and associated CDNSKEY key tag
+        ("CDNSKEY is non-SEP key").
     9.  Name server IP address and key tag
+        ("DNSKEY Not Signed By CDNSKEY").
+    10. Name server IP address ("CDNSKEY Not Signed").
+    11. Name server IP address and key tag
         ("CDNSKEY Signed By Unknown DNSKEY").
-    10. Name server IP address and key tag ("CDNSKEY Invalid RRSIG").
+    12. Name server IP address and key tag ("CDNSKEY Invalid RRSIG").
 
 2.  Create a CDNSKEY query with EDNS enabled and the DO bit set for
     the apex of the *Child Zone*.
@@ -122,14 +128,21 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
           (duplicates not possible).
        2. Go to next name server IP.
     5. Repeat the following steps for each CDNSKEY record:
-       1. Compare the CDNSKEY record with the DNSKEY records.
-       2. If the CDNSKEY record does not match any DNSKEY record then
-          add the name server IP address and the key tag derived from
-          the CDNSKEY record to the *No Match CDNSKEY With DNSKEY* set.
-       3. Else, if there is no RRSIG for the DNSKEY RRset created by
-          the DNSKEY record matching the CDNSKEY record then add the
-          name server IP address and key tag of CDNSKEY record to the
-          *DNSKEY Not Signed By CDNSKEY* set.
+       1. If bit 7 of the flag field of the CDNSKEY record is set to 0 (nil)
+          then add the name server IP address and the key tag derived from
+          the CDNSKEY record to the *CDNSKEY is non-zone key* set.
+       2. Else, do:
+          1. If bit 15 of the flag field of the CDNSKEY is set to 0 (nil) then
+             add the name server IP address and the key tag derived from the
+             CDNSKEY to the *CDNSKEY is non-SEP key* set.
+          2. Compare the CDNSKEY record with the DNSKEY records.
+          3. If the CDNSKEY record does not match any DNSKEY record then
+             add the name server IP address and the key tag derived from
+             the CDNSKEY record to the *No Match CDNSKEY With DNSKEY* set.
+          4. Else, if there is no RRSIG for the DNSKEY RRset created by
+             the DNSKEY record matching the CDNSKEY record then add the
+             name server IP address and key tag of CDNSKEY record to the
+             *DNSKEY Not Signed By CDNSKEY* set.
     6. If there are no RRSIG records for the CDNSKEY RRset, then add
        the name server IP address to the *CDNSKEY Not Signed* set.
     7. Else, for each RRSIG (CDNSKEY) do:
@@ -158,25 +171,34 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
           key tag and the name server IP addresses in the set for that
           key tag.
 
-12. If the *DNSKEY Not Signed By CDNSKEY* set is non-empty then do:
+12. If the *CDNSKEY is non-zone key* set is non-empty then do:
+    * For each CDNSKEY key tag in the set do:
+        * Output *[DS17_CDNSKEY_IS_NON_ZONE]* with the CDNSKEY key tag
+          and the name server IP addresses in the set for that key tag.
+
+13. If the *CDNSKEY is non-SEP key* set is non-empty then do:
+    * For each CDS key tag in the set do:
+        * Output *[DS17_CDNSKEY_IS_NON_SEP]* with the CDNSKEY key tag
+          and the name server IP addresses in the set for that key tag.
+
+14. If the *DNSKEY Not Signed By CDNSKEY* set is non-empty then do:
     * For each CDNSKEY key tag in the set do:
         * Output *[DS17_DNSKEY_NOT_SIGNED_BY_CDNSKEY]* with the CDNSKEY
           key tag and the name server IP addresses in the set for that
           key tag.
 
-13. If the *CDNSKEY Invalid RRSIG* set is non-empty then do:
+15. If the *CDNSKEY Invalid RRSIG* set is non-empty then do:
     * For each RRSIG key tag in the set do:
         * Output *[DS17_CDNSKEY_INVALID_RRSIG]* with the RRSIG key tag
           and the name server IP addresses in the set for that key tag.
 
-14. If the *CDNSKEY Not Signed* set is
+16. If the *CDNSKEY Not Signed* set is
     non-empty then output *[DS17_CDNSKEY_UNSIGNED]* with all
     name server IP addresses in the set.
 
-15. If the *CDNSKEY Signed By Unknown DNSKEY* set is non-empty then
+17. If the *CDNSKEY Signed By Unknown DNSKEY* set is non-empty then
     output *[DS17_CDNSKEY_SIGNED_BY_UNKNOWN_DNSKEY]* with the name server
     IP addresses in the set.
-
 
 ## Outcome(s)
 
@@ -206,6 +228,8 @@ None.
 [DNSSEC15]:                              dnssec15.md
 [DNSSEC16]:                              dnssec16.md
 [DS17_CDNSKEY_INVALID_RRSIG]:            #summary
+[DS17_CDNSKEY_IS_NON_SEP]:               #summary
+[DS17_CDNSKEY_IS_NON_ZONE]:              #summary
 [DS17_CDNSKEY_MATCHES_NO_DNSKEY]:        #summary
 [DS17_CDNSKEY_SIGNED_BY_UNKNOWN_DNSKEY]: #summary
 [DS17_CDNSKEY_UNSIGNED]:                 #summary
