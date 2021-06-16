@@ -120,13 +120,13 @@ DS16_MIXED_DELETE_CDS                | ERROR   | "Delete" CDS record is mixed wi
           server IP to the *Mixed Delete CDS* set.
        2. Else, add the name server IP address to the *Delete CDS*
           set.
-       3. Go to next name server IP.
     3. Get the DNSKEY and its RRSIG records from the *DNSKEY RRsets* for the same
        name server IP. The set of RRSIG records may be empty.
     4. If there are no DNSKEY records, then do:
        1. Add name server IP address to the *No DNSKEY RRset* set.
        2. Go to next name server IP.
-    5. Repeat the following steps for each CDS record:
+    5. Repeat the following steps for each CDS record unless it is a "delete"
+       CDS record:
        1. Compare the key tag from the CDS record with the calculated
           key tags for the DNSKEY records.
        2. If the CDS record does not match any DNSKEY record then add
@@ -146,7 +146,7 @@ DS16_MIXED_DELETE_CDS                | ERROR   | "Delete" CDS record is mixed wi
              *CDS points to non-SEP DNSKEY* set.
     6. If there are no RRSIG records for the CDS RRset, then add the
        name server IP address to the *CDS Not Signed* set.
-    7. Else, for each RRSIG (CDS) do:
+    7. Else, for each RRSIG over the CDS RRset do:
        1. If the key tag of the RRSIG does not match any DNSKEY then
           add the name server IP address and key tag to the
           *CDS Signed By Unknown DNSKEY* set.

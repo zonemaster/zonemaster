@@ -120,14 +120,14 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
           name server IP to the *Mixed Delete CDNSKEY* set.
        2. Else, add the name server IP address to the *Delete CDNSKEY*
           set.
-       3. Go to next name server IP.
     3. Get the DNSKEY and its RRSIG records from the *DNSKEY RRsets* for the same
        name server IP. The set of RRSIG records may be empty.
     4. If there are no DNSKEY records, then do:
        1. Add name server IP address to the *No DNSKEY RRset* set
           (duplicates not possible).
        2. Go to next name server IP.
-    5. Repeat the following steps for each CDNSKEY record:
+    5. Repeat the following steps for each CDNSKEY record unless it is a "delete"
+       CDNSKEY record:
        1. If bit 7 of the flag field of the CDNSKEY record is set to 0 (nil)
           then add the name server IP address and the key tag derived from
           the CDNSKEY record to the *CDNSKEY is non-zone key* set.
@@ -145,7 +145,7 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
              *DNSKEY Not Signed By CDNSKEY* set.
     6. If there are no RRSIG records for the CDNSKEY RRset, then add
        the name server IP address to the *CDNSKEY Not Signed* set.
-    7. Else, for each RRSIG (CDNSKEY) do:
+    7. Else, for each RRSIG over the CDNSKEY RRset do:
        1. If the key tag of the RRSIG does not match any DNSKEY then
           add the name server IP address and key tag to the
           *CDNSKEY Signed By Unknown DNSKEY* set.
