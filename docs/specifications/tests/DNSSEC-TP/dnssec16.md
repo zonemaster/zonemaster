@@ -116,15 +116,15 @@ DS16_MIXED_DELETE_CDS                | ERROR   | "Delete" CDS record is mixed wi
 7.  For each name server IP in the *CDS RRsets* set do:
 
     1. If the CDS RRset is empty go to next name server IP address.
-    2. Get the CDS RRset and its RRSIG records from the *CDS RRsets* set
-       for the name server IP. The RRSIG records may be absent.
+    2. Get the CDS RRset and the associated RRSIG records, if any, from the
+       *CDS RRsets* set for the name server IP.
     3. If any CDS record is a "delete" CDS, then do:
        1. If there is more than a single CDS record then add the name
           server IP to the *Mixed Delete CDS* set.
        2. Else, add the name server IP address to the *Delete CDS*
           set.
-    4. Get the DNSKEY and its RRSIG records from the *DNSKEY RRsets* for the same
-       name server IP. The set of RRSIG records may be empty.
+    4. Get the DNSKEY RRset and the associated RRSIG records, if any, from the
+       *DNSKEY RRsets* for the same name server IP.
     5. If there are no DNSKEY records, then do:
        1. Add name server IP address to the *No DNSKEY RRset* set.
        2. Go to next name server IP.
@@ -135,27 +135,25 @@ DS16_MIXED_DELETE_CDS                | ERROR   | "Delete" CDS record is mixed wi
        2. If the CDS record does not match any DNSKEY record then add
           the name server IP address and CDS record key tag to the
           *No Match CDS With DNSKEY* set.
-       3. Else, if bit 7 of the flag field of the DNSKEY that the DS record
-          points to is set to 0 (nil) then add the name server IP address and
+       3. Else, if bit 7 of the flags field of the DNSKEY that the DS record
+          points to is unset (value 0) then add the name server IP address and
           CDS record key tag to the *CDS points to non-zone DNSKEY* set.
        4. Else, do:
-          *  If there is no RRSIG for the DNSKEY RRset created by the DNSKEY
-             record that the CDS record points at then add the name server IP
-             address and key tag of CDS record to the
-             *DNSKEY Not Signed By CDS* set.
-          *  If there is no RRSIG for the CDS RRset created by the DNSKEY
-             record that the CDS record points at then add the name server IP
-             address and key tag of CDS record to the *CDS Not Signed By CDS*
-             set.
-          *  If bit 15 of the flag field of the DNSKEY that the DS record
-             points to is set to 0 (nil) then add the name server IP address
+          1. If the DNSKEY RRset has not been signed by the DNSKEY record that
+             the CDS record points at then add the name server IP address and
+             key tag of CDS record to the *DNSKEY Not Signed By CDS* set.
+          2. If the CDS RRset has not been signed by the DNSKEY record that
+             the CDS record points at then add the name server IP address and
+             key tag of CDS record to the *DNSKEY Not Signed By CDS* set.
+          3. If bit 15 of the flags field of the DNSKEY that the DS record
+             points at is unset (value 0) then add the name server IP address
              and the key tag of the CDS record to the
              *CDS points to non-SEP DNSKEY* set.
-    7. If there are no RRSIG records for the CDS RRset, then add the
-       name server IP address to the *CDS Not Signed* set.
-    8. Else, for each RRSIG over the CDS RRset do:
-       1. If the key tag of the RRSIG does not match any DNSKEY then
-          add the name server IP address and key tag to the
+    7. If CDS RRset is not signed, then add the name server IP address to the
+       *CDS Not Signed* set.
+    8. Else, for each RRSIG for the CDS RRset do:
+       1. If the key tag of the RRSIG does not match any DNSKEY record in the
+          DNSKEY RRset then add the name server IP address and key tag to the
           *CDS Signed By Unknown DNSKEY* set.
        2. Else, if the RRSIG cannot be validated by the DNSKEY it
           refers to by key tag, then add the name server IP and RRSIG
