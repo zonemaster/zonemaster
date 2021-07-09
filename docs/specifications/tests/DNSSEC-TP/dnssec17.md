@@ -17,10 +17,10 @@ It is assumed that *Child Zone* has been tested by [Basic04]. This test
 case will just ignore non-responsive name servers or name servers not
 giving a correct DNS response for an authoritative name server.
 
-It is assumed that *Child Zone* has been tested or will be tested by 
+It is assumed that *Child Zone* has been tested or will be tested by
 [DNSSEC15] and [DNSSEC16] and that the servers give the same responses.
 Running this test case without running [DNSSEC15] and [DNSSEC16] can
-give an incomplete report of the CDS and CDNSKEY status of 
+give an incomplete report of the CDS and CDNSKEY status of
 *Child Zone*.
 
 ## Inputs
@@ -53,12 +53,12 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
 1.  Create the following empty sets:
     1.  Name server IP address and associated CDNSKEY RRset and its
         RRSIG redords ("CDNSKEY RRsets"). The set of RRSIG records may be empty
-    2.  Name server IP address and associated DNSKEY RRset and its 
+    2.  Name server IP address and associated DNSKEY RRset and its
         RRSIG records ("DNSKEY RRsets"). The set of RRSIG records may be empty.
     3.  Name server IP address ("No DNSKEY RRset").
     4.  Name server IP address ("Mixed Delete CDNSKEY").
     5.  Name server IP address ("Delete CDNSKEY").
-    6.  Name server IP address and associated CDNSKEY key tag 
+    6.  Name server IP address and associated CDNSKEY key tag
         ("No Match CDNSKEY With DNSKEY").
     7.  Name server IP address and associated CDNSKEY key tag
         ("CDNSKEY is non-zone key").
@@ -82,7 +82,7 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
 4.  Retrieve all name server IP addresses for the *Child Zone* using
     [Method4] and [Method5] ("NS IP").
 
-5.  Repeat the following steps for each name server IP address in 
+5.  Repeat the following steps for each name server IP address in
     *NS IP*:
 
     1. Send the CDNSKEY query over UDP to the name server IP address.
@@ -106,7 +106,7 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
           go to next name server IP.
        4. Else, if the DNS response contains at least one DNSKEY
           record in the answer section, then add the name server IP and
-          the DNSKEY RRset from the answer section to the 
+          the DNSKEY RRset from the answer section to the
           *DNSKEY RRsets* set. Also include any associated RRSIG records
           in the answer section.
     3. Go to next name server IP.
@@ -132,25 +132,28 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
     6. Repeat the following steps for each CDNSKEY record unless it is a "delete"
        CDNSKEY record:
        1. If bit 7 of the flags field of the CDNSKEY record is unset (value 0)
-          then add the name server IP address and the key tag derived from
-          the CDNSKEY record to the *CDNSKEY is non-zone key* set.
+          then add the name server IP address and the
+          [key tag calculated][Key Tag Calculation] from the CDNSKEY record to
+          the *CDNSKEY is non-zone key* set.
        2. Else, do:
           1. If bit 15 of the flags field of the CDNSKEY is unset (value 0) then
-             add the name server IP address and the key tag derived from the
-             CDNSKEY to the *CDNSKEY is non-SEP key* set.
+             add the name server IP address and the
+             [key tag calculated][Key Tag Calculation] from the CDNSKEY to the
+             *CDNSKEY is non-SEP key* set.
           2. Compare the CDNSKEY record with the DNSKEY records.
           3. If the CDNSKEY record does not match any DNSKEY record then
-             add the name server IP address and the key tag derived from
-             the CDNSKEY record to the *No Match CDNSKEY With DNSKEY* set.
+             add the name server IP address and the
+             [key tag calculated][Key Tag Calculation] from the CDNSKEY record
+             to the *No Match CDNSKEY With DNSKEY* set.
           4. Else, do:
              1. If the DNSKEY RRset is not signed by the DNSKEY record that
                 corresponds to the CDNSKEY record then add the name server IP
-                address and key tag of CDNSKEY record to the
-                *DNSKEY Not Signed By CDNSKEY* set.
+                address and [key tag calculated][Key Tag Calculation] from
+                CDNSKEY record to the *DNSKEY Not Signed By CDNSKEY* set.
              2. If the CDNSKEY RRset is not signed by the DNSKEY record that
                 corresponds to the CDNSKEY record then add the name server IP
-                address and key tag of CDNSKEY record to the
-                *CDNSKEY Not Signed By CDNSKEY* set.
+                address and [key tag calculated][Key Tag Calculation] from
+                CDNSKEY record to the *CDNSKEY Not Signed By CDNSKEY* set.
 
     7. If the CDNSKEY RRset is not signed, then add the name server IP address to
        the *CDNSKEY Not Signed* set.
@@ -223,7 +226,7 @@ The outcome of this Test Case is "warning" if there is at least one message
 with the severity level *[WARNING]*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
-In other cases, no message or only messages with severity level 
+In other cases, no message or only messages with severity level
 *[INFO]* or *[NOTICE]*, the outcome of this Test Case is "pass".
 
 ## Special procedural requirements
@@ -255,6 +258,7 @@ None.
 [Default level]:                         ../SeverityLevelDefinitions.md
 [ERROR]:                                 ../SeverityLevelDefinitions.md#error
 [INFO]:                                  ../SeverityLevelDefinitions.md#info
+[Key Tag Calculation]:                   https://datatracker.ietf.org/doc/html/rfc4034#appendix-B
 [Method4]:                               ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                               ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NOTICE]:                                ../SeverityLevelDefinitions.md#notice

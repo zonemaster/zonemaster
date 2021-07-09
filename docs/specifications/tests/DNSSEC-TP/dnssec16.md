@@ -17,10 +17,10 @@ It is assumed that *Child Zone* has been tested by [Basic04]. This test
 case will just ignore non-responsive name servers or name servers not
 giving a correct DNS response for an authoritative name server.
 
-It is assumed that *Child Zone* has been tested or will be tested by 
+It is assumed that *Child Zone* has been tested or will be tested by
 [DNSSEC15] and [DNSSEC17] and that the servers give the same responses.
 Running this test case without running [DNSSEC15] and [DNSSEC17] can
-give an incomplete report of the CDS and CDNSKEY status of 
+give an incomplete report of the CDS and CDNSKEY status of
 *Child Zone*.
 
 ## Inputs
@@ -53,7 +53,7 @@ DS16_MIXED_DELETE_CDS                | ERROR   | "Delete" CDS record is mixed wi
 1.  Create the following empty sets:
     1.  Name server IP address and associated CDS RRset and its RRSIG
         records ("CDS RRsets"). The set of RRSIG records may be empty.
-    2.  Name server IP address and associated DNSKEY RRset and its 
+    2.  Name server IP address and associated DNSKEY RRset and its
         RRSIG records ("DNSKEY RRsets"). The set of RRSIG records may be empty.
     3.  Name server IP address ("No DNSKEY RRset").
     4.  Name server IP address ("Mixed Delete CDS").
@@ -82,7 +82,7 @@ DS16_MIXED_DELETE_CDS                | ERROR   | "Delete" CDS record is mixed wi
 4.  Retrieve all name server IP addresses for the *Child Zone* using
     [Method4] and [Method5] ("NS IP").
 
-5.  Repeat the following steps for each name server IP address in 
+5.  Repeat the following steps for each name server IP address in
     *NS IP*:
 
     1. Send the CDS query over UDP to the name server IP address.
@@ -106,8 +106,8 @@ DS16_MIXED_DELETE_CDS                | ERROR   | "Delete" CDS record is mixed wi
           go to next name server IP.
        4. Else, if the DNS response contains at least one DNSKEY
           record in the answer section, then add the name server IP and
-          the DNSKEY RRset from the answer section to the 
-          *DNSKEY RRsets* set. Also include any associated RRSIG 
+          the DNSKEY RRset from the answer section to the
+          *DNSKEY RRsets* set. Also include any associated RRSIG
           records in the answer section.
     3. Go to next name server IP.
 
@@ -130,8 +130,8 @@ DS16_MIXED_DELETE_CDS                | ERROR   | "Delete" CDS record is mixed wi
        2. Go to next name server IP.
     6. Repeat the following steps for each CDS record unless it is a "delete"
        CDS record:
-       1. Compare the key tag from the CDS record with the calculated
-          key tags for the DNSKEY records.
+       1. Compare the key tag from the CDS record with the
+          [calculated key tags][Key Tag Calculation] for the DNSKEY records.
        2. If the CDS record does not match any DNSKEY record then add
           the name server IP address and CDS record key tag to the
           *No Match CDS With DNSKEY* set.
@@ -222,7 +222,7 @@ The outcome of this Test Case is "warning" if there is at least one message
 with the severity level *[WARNING]*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
-In other cases, no message or only messages with severity level 
+In other cases, no message or only messages with severity level
 *[INFO]* or *[NOTICE]*, the outcome of this Test Case is "pass".
 
 ## Special procedural requirements
@@ -254,6 +254,7 @@ None.
 [Default level]:                         ../SeverityLevelDefinitions.md
 [ERROR]:                                 ../SeverityLevelDefinitions.md#error
 [INFO]:                                  ../SeverityLevelDefinitions.md#info
+[Key Tag Calculation]:                   https://datatracker.ietf.org/doc/html/rfc4034#appendix-B
 [Method4]:                               ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                               ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NOTICE]:                                ../SeverityLevelDefinitions.md#notice
