@@ -14,7 +14,7 @@
 
 ## Table of contents
 
-> > If the specification contains extra sections, of if some section is not
+> > If the specification contains extra sections, or if some section is not
 > > included, update the list. In the normal case, keep the following sections.
 
 * [Objective](#Objective)
@@ -45,7 +45,7 @@
 > > If this test case assumes, but not depends on, another test case then specify
 > > it. Dependency would mean that the test case is affected by the other test
 > > case, or even cannot be run if the other has not been run. Assuming that
-> > another test case been run is just to make it possible to ignore certain
+> > another test case has been run is just to make it possible to ignore certain
 > > errors. E.g.:
 
 It is assumed that *Child Zone* has been tested and reported by [Basic04]. This
@@ -94,7 +94,7 @@ T01_INCONSISTENT_DNSSEC       | ERROR           | The configuration of the zone 
 
 > > This section contains the detailed steps to execute the test case. The steps
 > > should be as explicit as possible to avoid that different implementations or
-> > execusions do different interpretations or assumptions.
+> > executions do different interpretations or assumptions.
 > >
 > > The steps should written in such a way that it reasonbly possible to use
 > > them to execute the test case manually using tools such as [`dig`]. It can

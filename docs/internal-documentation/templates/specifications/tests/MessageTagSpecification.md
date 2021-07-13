@@ -14,7 +14,7 @@ The tag can be broken into three parts, in order:
 
 ## Test case specific prefix
 
-The message tag prefix is an abreviation of the test case identifier created by
+The message tag prefix is an abbreviation of the test case identifier created by
 a 1-2 letter abbreviation of the test level name and the two-digit suffix of the
 test case ID. For specification of the test case ID see
 [Test Case Identifier Specification].
