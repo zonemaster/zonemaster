@@ -77,18 +77,24 @@ giving a correct DNS response for an authoritative name server.
 > > when the message is outputted in the third. Always use the same table set-up,
 > > but with the correct tags. E.g.:
 
-Message Tag outputted         | [Default level] | Description of when message tag is outputted
-:-----------------------------|:----------------|:-----------------------------------------
-T01_BROKEN_DNSSEC             | ERROR           | Replies do not follow the standard.
-T01_ALGO_NOT_SUPPORTED_BY_ZM  | NOTICE          | The algorithm used is not supported by the Zonemaster implementation.
-T01_HAS_NSEC                  | INFO            | The *Child Zone* uses NSEC.
-T01_HAS_NSEC3                 | INFO            | The *Child Zone* uses NSEC3.
-T01_INCONSISTENT_DNSSEC       | ERROR           | The configuration of the zone is inconsistent with respect to DNSSEC.
+Message Tag outputted         | Level   | Params | Description of when message tag is outputted
+:-----------------------------|:--------|:-------|:--------------------------------------------
+T01_BROKEN_DNSSEC             | ERROR   |   X    | Replies do not follow the standard.
+T01_ALGO_NOT_SUPPORTED_BY_ZM  | NOTICE  |   X    | The algorithm used is not supported by the Zonemaster implementation.
+T01_HAS_NSEC                  | INFO    |        | The *Child Zone* uses NSEC.
+T01_HAS_NSEC3                 | INFO    |        | The *Child Zone* uses NSEC3.
+T01_INCONSISTENT_DNSSEC       | ERROR   |   X    | The configuration of the zone is inconsistent with respect to DNSSEC.
+
+"Level" in the table is the default severity level of the message. The severity
+level can be changed in the [Zonemaster-Engine profile]. Also see the
+[Severity Level Definitions] document.
+
+An "X" in the parms column indicate that the message is accompanied with data
+parameters, such as name server IP addresses.
 
 > > The message tags should be formed following the [Message Tag Specification].
 > >
-> > The default level is selected from the
-> > [Severity Level Definitions][Default level].
+> > The default severity level is selected from the [Severity Level Definitions].
 
 ## Test procedure
 
@@ -231,10 +237,8 @@ respected.
 > > All links in the template are absolute, but in the specification they should
 > > be relative if the link target is in the zonemaster/zonemaster repository.
 
-
 [Basic04]:                              https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/Basic-TP/basic04.md
 [CRITICAL]:                             https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#critical
-[Default level]:                        https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md
 [ERROR]:                                https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#error
 [INFO]:                                 https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#info
 [Message Tag Specification]:            MessageTagSpecification.md
@@ -243,9 +247,11 @@ respected.
 [RFC 4035#section-3.1.3]:               https://tools.ietf.org/html/rfc4035#section-3.1.3
 [RFC 8499#page-24]:                     https://datatracker.ietf.org/doc/html/rfc8499#page-24
 [RFC 8499#page-25]:                     https://datatracker.ietf.org/doc/html/rfc8499#page-25
+[Severity Level Definitions]:           https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md
 [Test Case Identifier Specification]:   TestCaseIdentifierSpecification.md
 [Undelegated test]:                     ../../test-types/undelegated-test.md
 [WARNING]:                              https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#warning
+[Zonemaster-Engine profile]:            https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
 [`dig`]:                                https://en.wikipedia.org/wiki/Dig_(command)
 
 > > Keep all links sorted, and make a straight column of the link targets.
