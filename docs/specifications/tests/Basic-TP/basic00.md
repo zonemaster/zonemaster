@@ -107,7 +107,7 @@ after the dot.
 
 ### Name preparation
 
-The objectives of the name preparatio are
+The objectives of the name preparation are
 
 1. Create consistent representation of the same zone name, and
 2. Convert other "full stop" characters to FULL STOP, and
@@ -214,7 +214,7 @@ B00_DOMAIN_NAME_TOO_LONG | CRITICAL | Domain name is too long (more than 253 cha
 7.  Remove trailing dot (".") from *Child Zone* unless the length is 1 (i.e. root
     zone name).
     
-8.  If *Child Zone* os the root zone (i.e. ".") then terminate this test case.
+8.  If *Child Zone* is the root zone (i.e. ".") then terminate this test case.
 
 9.  Split *Child Zone* into labels by dot "." and put them in the same order in 
     *Child Labels*.
@@ -242,10 +242,10 @@ B00_DOMAIN_NAME_TOO_LONG | CRITICAL | Domain name is too long (more than 253 cha
 
 11. For each "Label" in *Child Labels* do:
     1. If the length (number of character) in *Label* is greater than 63 then
-       output *[B00_LABEL_TOO_LONG]* and the label, and terminate this test case.
+       output *[B00_LABEL_TOO_LONG]* and *Label*, and terminate this test case.
 
 12. Map the labels in *Child Labels* back into *Child Zone* with one dot (".")
-    between the labels (do dots if the there is only one label).
+    between the labels (no dots if the there is only one label).
 
 13. If the length of *Child Zone* is longer than 253 characters including the
     dots, then output *[B00_DOMAIN_NAME_TOO_LONG]* and terminate this test case.
