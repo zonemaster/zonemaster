@@ -77,20 +77,21 @@ giving a correct DNS response for an authoritative name server.
 > > when the message is outputted in the third. Always use the same table set-up,
 > > but with the correct tags. E.g.:
 
-Message Tag outputted         | Level   | Params | Description of when message tag is outputted
-:-----------------------------|:--------|:-------|:--------------------------------------------
-T01_BROKEN_DNSSEC             | ERROR   |   X    | Replies do not follow the standard.
-T01_ALGO_NOT_SUPPORTED_BY_ZM  | NOTICE  |   X    | The algorithm used is not supported by the Zonemaster implementation.
-T01_HAS_NSEC                  | INFO    |        | The *Child Zone* uses NSEC.
-T01_HAS_NSEC3                 | INFO    |        | The *Child Zone* uses NSEC3.
-T01_INCONSISTENT_DNSSEC       | ERROR   |   X    | The configuration of the zone is inconsistent with respect to DNSSEC.
+Message Tag outputted         | Level   | Arguments  | Description of when message tag is outputted
+:-----------------------------|:--------|:-----------|:--------------------------------------------
+T01_BROKEN_DNSSEC             | ERROR   | ns_ip_list | Replies do not follow the standard.
+T01_ALGO_NOT_SUPPORTED_BY_ZM  | NOTICE  | algo_descr, algo_num | The algorithm used is not supported by the Zonemaster implementation.
+T01_HAS_NSEC                  | INFO    |            | The *Child Zone* uses NSEC.
+T01_HAS_NSEC3                 | INFO    |            | The *Child Zone* uses NSEC3.
+T01_INCONSISTENT_DNSSEC       | ERROR   | keytag     | The configuration of the zone is inconsistent with respect to DNSSEC.
 
-"Level" in the table is the default severity level of the message. The severity
-level can be changed in the [Zonemaster-Engine profile]. Also see the
+The value in the Level column is the default severity level of the message. The
+severity level can be changed in the [Zonemaster-Engine profile]. Also see the
 [Severity Level Definitions] document.
 
-An "X" in the parms column indicate that the message is accompanied with data
-parameters, such as name server IP addresses.
+The argument names in the Arguments column lists the arguments used in the
+message. The argument names are defined in the [argument list].
+
 
 > > The message tags should be formed following the [Message Tag Specification].
 > >
@@ -237,6 +238,7 @@ respected.
 > > All links in the template are absolute, but in the specification they should
 > > be relative if the link target is in the zonemaster/zonemaster repository.
 
+[Argument list]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [Basic04]:                              https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/Basic-TP/basic04.md
 [CRITICAL]:                             https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#critical
 [ERROR]:                                https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#error
@@ -253,6 +255,7 @@ respected.
 [WARNING]:                              https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:            https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
 [`dig`]:                                https://en.wikipedia.org/wiki/Dig_(command)
+
 
 > > Keep all links sorted, and make a straight column of the link targets.
 
