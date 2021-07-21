@@ -32,17 +32,17 @@ name. The domain name must be one of two:
 2. a valid IDN name (Internationalized Domain Name) as of
    [IDNA2008][RFC 5890#1.1].
 
-This test case will, in contrast to all other Zonemaster test cases, will
-normalize the domain name to be tested (called *Child Zone* below) and output
-a normalized *Child Zone* to be used by all other test cases. That normalization
-is here called name preparation.
+This test case will, in contrast to all other Zonemaster test cases, normalize
+the domain name to be tested (called *Child Zone* below) and output a normalized
+*Child Zone* to be used by all other test cases. That normalization is here
+called name preparation.
 
 If, after name preparation, the *Child Zone* is neither a valid ASCII domain
 name nor a valid IDN name, then the *Child Zone* cannot be used for Zonemaster
 testing.
 
-If this the outcome of this test case (see [Outcome(s)](#Outcomes)) is not "fail"
-then the possibly normalized *Child Zone* is returned to be used as input valude
+If the outcome of this test case (see [Outcome(s)](#Outcomes)) is not "fail"
+then *Child Zone*, possibly normalized, is returned to be used as input value
 for subsequent Zonemaster test cases.
 
 
