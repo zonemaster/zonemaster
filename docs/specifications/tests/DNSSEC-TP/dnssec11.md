@@ -1,7 +1,22 @@
 # DNSSEC11: Must be signed if there is DS in delegation
 
+
 ## Test case identifier
 **DNSSEC11**
+
+
+## Table of contents
+
+* [Objective](#Objective)
+* [Scope](#Scope)
+* [Inputs](#Inputs)
+* [Summary](#Summary)
+* [Test procedure](#Test-procedure)
+* [Outcome(s)](#Outcomes)
+* [Special procedural requirements](#Special-procedural-requirements)
+* [Intercase dependencies](#Intercase-dependencies)
+* [Terminology](#terminology)
+
 
 ## Objective
 
@@ -13,9 +28,18 @@ consider the zone to be "[bogus][Terminology]" (see
 
 This test case will verify that a zone with DS in delegation from
 parent is also signed. Here we just verify that it has DNSKEY in apex.
-Test case [DNSSEC08] verifies that in a zone with DNSKEY that the
-DNSKEY RRset is signed and test case [DNSSEC09] that in a zone
-with DNSKEY the SOA record is signed.
+
+## Scope
+
+It is assumed that *Child Zone* is tested and reported by other test cases:
+
+* This test case will just ignore non-responsive name servers or name servers
+  not giving a correct DNS response for an authoritative name server, covered
+  by [Basic04].
+* This test case will ignore any irregularities in fetching the DS record from
+  parent zoen, covered by [DNSSEC02].
+* This test case will ignore if the DNSKEY and SOA RRsets are signed, covered
+  by [DNSSEC08] and [DNSSEC09].
 
 ## Inputs
 
@@ -25,22 +49,51 @@ with DNSKEY the SOA record is signed.
   (only if *Test Type* is [undelegated]).
 
 
-## Ordered description of steps to be taken to execute the test case
+## Summary
 
-1.  Create empty sets of name server IP addresses:
-    1. "Indetermined DS"
-    2. "No DS Record"
-    3. "Has DS Record"
+* 
 
-2.  If the *Test Type* is "normal", then:
+Message Tag outputted         | Level   | Arguments  | Description of when message tag is outputted
+:-----------------------------|:--------|:-----------|:--------------------------------------------
+DS11_INCONSISTENT_DS          | WARNING |            | Parent name servers are inconsistent on the existence of DS.
+DS11_INCONSISTENT_SIGNED_ZONE | ERROR   |            | Name servers for the child zone is inconsitent on wherer the zone is signed or not.
+DS11_INDETERMINED_DS          | ERROR   |            | It cannot be determined if the parent zone as DS for the child zone or not.
+DS11_INDETERMINED_SIGNED_ZONE | ERROR   |            | It cannot be determined if the child zone is signed or not.
+DS11_PARENT_WITHOUT_DS        | NOTICE  | ns_ip_list | List of parent name servers without DS for the child zone.
+DS11_PARENT_WITH_DS           | NOTICE  | ns_ip_list | List of parent name servers with DS for the child zone.
+DS11_NS_WITH_SIGNED_ZONE      | NOTICE  | ns_ip_list | List of child name servers with signed child zone.
+DS11_NS_WITH_UNSIGNED_ZONE    | WARNING | ns_ip_list | List of child name servers with unsigned child zone.
+DS11_DS_BUT_UNSIGNED_ZONE     | ERROR   |            | The child zone is unsigned, but the parent zone has DS record.
 
-    1. Create a DS query with the DO flag set for the name of the *Child Zone*.
+The value in the Level column is the default severity level of the message. The
+severity level can be changed in the [Zonemaster-Engine profile]. Also see the
+[Severity Level Definitions] document.
+
+The argument names in the Arguments column lists the arguments used in the
+message. The argument names are defined in the [argument list].
+
+
+## Test procedure
+
+1.  Create the following empty sets:
+    1. Parent name server IP address ("Indetermined DS").
+    2. Parent name server IP address ("No DS Record").
+    3. Parent name server IP address ("Has DS Record").
+    4. Child name server IP address ("Indeterminded DNSKEY")
+    5. Child name server IP address ("No DNSKEY Record").
+    6. Child name server IP address ("Has DNSKEY Record").
+
+2.  If *Test Type* is "normal", then:
+
+    1. Create a DS query with the DO flag set for the name of the *Child Zone*
+       ("DS Query").
 
     2. Retrieve all name server IP addresses for the parent zone of
        *Child Zone* using [Method1] ("Parent NS IP").
 
-    3. For each IP address in *Parent NS IP* do:
+    3. For each name server IP in *Parent NS IP* do:
 
+       1. Send *DS Query* to the name server IP.
        1. If the response has the TC flag set, re-query over TCP and use that
           response instead.
        2. If there is no DNS response, then add the name server (IP) to the
@@ -60,9 +113,7 @@ with DNSKEY the SOA record is signed.
        2. Exit this test case.
 
     5. If the *No DS Record* set is non-empty and the *Has DS Record* set is
-       empty then do:
-       1. Output *[DS11_NO_DS]*.
-       2. Exit this test case.
+       empty then exit this test case.
 
     6. If both the *No DS Record* and *Has DS Record* sets are non-empty,
        then do:
@@ -73,47 +124,40 @@ with DNSKEY the SOA record is signed.
           *Has DS Record*.
 
 3.  If the *Test Type* is "[undelegated]" and if *Undelegated DS* is empty,
-    then do:
-    1. Output *[DS11_NO_DS]*.
-    2. Exit this test case.
+    then do exit this test case.
 
 4.  Create DNS queries for the child zone:
 
-    1.  SOA query for the *Child Zone* without any OPT record (no EDNS).
-    2.  DNSKEY query for the *Child Zone* with the DO flag set.
+    1.  SOA query for the *Child Zone* without any OPT record (no EDNS)
+        ("SOA Query").
+    2.  DNSKEY query for the *Child Zone* with the DO flag set ("DNSKEY Query").
 
 5.  Obtain the set of child name server IP addresses using [Method4] and
-    [Method5] ("Name Server IP").
+    [Method5] ("Child NS IP").
 
-6.  Create empty sets of name server IP addresses:
+7.  For each name server IP in *Child NS IP* do:
 
-    1. "Indeterminded DNSKEY".
-    2. "No DNSKEY Record".
-    3. "Has DNSKEY Record".
-
-7.  For each name server in *Name Server IP* do:
-
-    1. Send the SOA query over UDP to the name server, collect the response,
-       add name server IP to *Indeterminded DNSKEY* and go to next server if
+    1. Send *SOA Query* over UDP to the name server IP and collect the response.
+    2. Go to next name server if
        1. there is no DNS response on the SOA query, or
        2. the RCODE of the response is not "NoError" ([IANA RCODE List]), or
        3. the AA flag is not set in the response, or
-       4. there is no SOA record with owner name matching the query.
+       4. there is no SOA record with owner name matching the query in the 
+          answer section.
 
-    2. Else, send the DNSKEY query over UDP to the name server and collect the
-       response, and:
-       1. If the response has the TC flag set, re-query over TCP and use that
-          response instead.
-       2. If there is no DNS response, then add the name server (IP) to the
-          *Indeterminded DNSKEY* set.
-       3. Else, if the RCODE of response is not "NoError" ([IANA RCODE List]),
-          then add the name server (IP) to the *Indeterminded DNSKEY* set.
-       4. Else, if the AA flag is not set in the response, then add the name
-          server (IP) to the *Indeterminded DNSKEY* set.
-       5. Else, if there is no DNSKEY record with matching owner name in the
-          answer section, then add the name server (IP) to the
-          *No DNSKEY Record* set.
-       7. Else add the name server (IP) to the *Has Record Record* set.
+    3. Send *DNSKEY Query* over UDP to the name server IP and collect the
+       response.
+    4. If the response has the TC flag set, re-query over TCP and use that
+       response instead.
+    5. If there is no DNS response, then add the name server (IP) to the
+       *Indeterminded DNSKEY* set.
+    6. Else, if the RCODE of response is not "NoError" ([IANA RCODE List]),
+       then add the name server (IP) to the *Indeterminded DNSKEY* set.
+    7. Else, if the AA flag is not set in the response, then add the name server
+       IP to the *Indeterminded DNSKEY* set.
+    8. Else, if there is no DNSKEY record with matching owner name in the answer
+       section, then add the name server (IP) to the *No DNSKEY Record* set.
+    9. Else add the name server (IP) to the *Has Record Record* set.
 
 8.  If the *Indetermined DNSKEY* set is non-empty and both the
     *No DNSKEY Record* and *Has DNSKEY Record* sets are empty then output
@@ -121,58 +165,36 @@ with DNSKEY the SOA record is signed.
 
 9.  Else, if the *No DNSKEY Record* set is non-empty and the
     *Has DNSKEY Record* set is empty then output
-    *[DS11_UNSIGNED_ZONE_WITH_DS]*.
+    *[DS11_DS_BUT_UNSIGNED_ZONE]*.
 
 10. Else, if both the *No DNSKEY Record* and *Has DNSKEY Record* sets
     are non-empty, then do:
-    1. Output *[DS11_INCONSISTENT_SIGNED_ZONE_AND_DS]*.
-    2. Output *[DS11_UNSIGNED_ZONE]* and list name servers in
+    1. Output *[DS11_INCONSISTENT_SIGNED_ZONE]*.
+    2. Output *[DS11_NS_WITH_UNSIGNED_ZONE]* and list name servers in
        *No DNSKEY Record*.
-    3. Output *[DS11_SIGNED_ZONE]* and list name servers in
+    3. Output *[DS11_NS_WITH_SIGNED_ZONE]* and list name servers in
        *Has DNSKEY Record*.
 
-11. Else, output *[DS11_SIGNED_AND_DS]*.
 
 
 ## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
-with the [severity level] *ERROR* or *CRITICAL*.
+with the severity level *[ERROR]* or *[CRITICAL]*.
 
 The outcome of this Test Case is "warning" if there is at least one message
-with the [severity level] *WARNING*, but no message with severity level
+with the severity level *[WARNING]*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
-The outcome of this Test case is "pass" in all other cases.
+In other cases, no message or only messages with severity level
+*[INFO]* or *[NOTICE]*, the outcome of this Test Case is "pass".
 
-Message                                        | Default [severity level]
-:----------------------------------------------|:-----------------------------------
-DS11_INCONSISTENT_DS                           | WARNING
-DS11_INCONSISTENT_SIGNED_ZONE_AND_DS           | ERROR
-DS11_INDETERMINED_DS                           | ERROR
-DS11_INDETERMINED_SIGNED_ZONE                  | ERROR
-DS11_NO_DS                                     | INFO
-DS11_PARENT_WITHOUT_DS                         | NOTICE
-DS11_PARENT_WITH_DS                            | NOTICE
-DS11_SIGNED_AND_DS                             | INFO
-DS11_SIGNED_ZONE                               | NOTICE
-DS11_UNSIGNED_ZONE                             | WARNING
-DS11_UNSIGNED_ZONE_WITH_DS                     | ERROR
 
 ## Special procedural requirements
 
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol. Log a message reporting
 on the ignored result.
-
-It is assumed that [DNSSEC02] has been executed and that any irregularities
-in fetching the DS record from parent zone has been reported there.
-
-It is assumed that [DNSSEC08] and [DNSSEC09] have verified that the DNSKEY
-and SOA records in the zone, if any DNSKEY record, are signed.
-
-Errors associated with the response to the query for the SOA record without
-EDNS are expected to have been caught by [Basic04].
 
 See the [DNSSEC README] document about DNSSEC algorithms.
 
@@ -189,30 +211,34 @@ None.
 The terms "bogus" is also discussed in in [RFC 8499][RFC 8499#section-11], section 11.
 
 [Basic04]:                                    ../Basic-TP/basic014.md
+[CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [DNSSEC README]:                              README.md
 [DNSSEC02]:                                   dnssec02.md
 [DNSSEC08]:                                   dnssec08.md
 [DNSSEC09]:                                   dnssec09.md
-[DS11_INCONSISTENT_DS]:                       #outcomes
-[DS11_INCONSISTENT_SIGNED_ZONE_AND_DS]:       #outcomes
-[DS11_INDETERMINED_DS]:                       #outcomes
-[DS11_INDETERMINED_SIGNED_ZONE]:              #outcomes
-[DS11_NO_DS]:                                 #outcomes
-[DS11_NO_DS]:                                 #outcomes
-[DS11_PARENT_WITHOUT_DS]:                     #outcomes
-[DS11_PARENT_WITH_DS]:                        #outcomes
-[DS11_SIGNED_AND_DS]:                         #outcomes
-[DS11_SIGNED_ZONE]:                           #outcomes
-[DS11_UNSIGNED_ZONE]:                         #outcomes
-[DS11_UNSIGNED_ZONE_WITH_DS]:                 #outcomes
+[DS11_DS_BUT_UNSIGNED_ZONE]:                  #Summary
+[DS11_INCONSISTENT_DS]:                       #Summary
+[DS11_INCONSISTENT_SIGNED_ZONE]:              #Summary
+[DS11_INDETERMINED_DS]:                       #Summary
+[DS11_INDETERMINED_SIGNED_ZONE]:              #Summary
+[DS11_NS_WITH_SIGNED_ZONE]:                   #Summary
+[DS11_NS_WITH_UNSIGNED_ZONE]:                 #Summary
+[DS11_PARENT_WITHOUT_DS]:                     #Summary
+[DS11_PARENT_WITH_DS]:                        #Summary
+[ERROR]:                                      ../SeverityLevelDefinitions.md#error
 [IANA RCODE List]:                            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[INFO]:                                       ../SeverityLevelDefinitions.md#info
 [Method1]:                                    ../Methods.md#method-1-obtain-the-parent-domain
 [Method4]:                                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NOTICE]:                                     ../SeverityLevelDefinitions.md#notice
 [RFC 4033#section-5]:                         https://tools.ietf.org/html/rfc4033#section-5
 [RFC 8499#section-11]:                        https://tools.ietf.org/html/rfc8499#section-11
+[Severity Level Definitions]:                 ../SeverityLevelDefinitions.md
 [Severity Level]:                             ../SeverityLevelDefinitions.md
 [Terminology]:                                #terminology
 [Undelegated]:                                ../../test-types/undelegated-test.md
+[WARNING]:                                    ../SeverityLevelDefinitions.md#warning
+[Zonemaster-Engine profile]:                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
 
 
