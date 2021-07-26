@@ -1,7 +1,22 @@
 # DNSSEC08: RRSIG(DNSKEY) must be valid and created by a valid DNSKEY
 
+
 ## Test case identifier
 **DNSSEC08**
+
+
+## Table of contents
+
+* [Objective](#Objective)
+* [Scope](#Scope)
+* [Inputs](#Inputs)
+* [Summary](#Summary)
+* [Test procedure](#Test-procedure)
+* [Outcome(s)](#Outcomes)
+* [Special procedural requirements](#Special-procedural-requirements)
+* [Intercase dependencies](#Intercase-dependencies)
+* [Terminology](#terminology)
+
 
 ## Objective
 
@@ -14,125 +29,123 @@ This test case will verify if the *Child Zone* meets that
 requirement.
 
 
+## Scope
+
+It is assumed that *Child Zone* is tested and reported by [Basic04]. This test
+case will just ignore non-responsive name servers or name servers not giving a
+correct DNS response for an authoritative name server.
+
+This test case is only relevant if the zone has been DNSSEC signed.
+
+
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
 
 
-## Ordered description of steps to be taken to execute the test case
+## Summary
 
-1.  Create DNS queries:
+* If no DNSKEY records are found, then further inverstigation will not be done
+  and no messages will be outputted.
 
-    1.  SOA query for the *Child Zone* without any OPT record (no EDNS).
-    2.  DNSKEY query for the *Child Zone* with the DO flag set.
+Message Tag outputted              | Level   | Arguments          | Description of when message tag is outputted
+:----------------------------------|:--------|:-------------------|:--------------------------------------------
+DS08_ALGO_NOT_SUPPORTED_BY_ZM      | NOTICE  | ns_ip_list, algo_mnemo, algo_num, keytag | This installation of Zonemaster does not support the DNSKEY algorithm.
+DS08_MISSING_RRSIG_IN_RESPONSE     | ERROR   | ns_ip_list         | DNSKEY is unsigned which is against expectation
+DS08_NO_MATCHING_DNSKEY            | ERROR   | ns_ip_list, keytag | DNSKEY RRset is signed with an RRSIG that does not match any DNSKEY
+DS08_RRSIG_NOT_VALID_BY_DNSKEY     | ERROR   | ns_ip_list, keytag | DNSKEY RRset is signed with an RRSIG that cannot be validated by the matching DNSKEY
+DS08_DNSKEY_RRSIG_EXPIRED          | ERROR   | ns_ip_list, keytag | DNSKEY RRset is signed with an RRSIG that has expired
+DS08_DNSKEY_RRSIG_NOT_YET_VALID    | ERROR   | ns_ip_list, keytag | DNSKEY RRsetis signed with a not yet valid RRSIG
 
-2.  Obtain the set of name server IP addresses using [Method4] and [Method5]
-    ("Name Server IP").
+The value in the Level column is the default severity level of the message. The
+severity level can be changed in the [Zonemaster-Engine profile]. Also see the
+[Severity Level Definitions] document.
 
-3.  Create empty sets of name server IP addresses:
+The argument names in the Arguments column lists the arguments used in the
+message. The argument names are defined in the [argument list].
 
-    1. "No Response DNSKEY Query".
-    2. "Unexpected RCODE DNSKEY Query" with associated RCODE.
-    3. "Non-authoritative DNSKEY".
-    4. "No DNSKEY Record".
-    5. "DNSKEY without RRSIG".
-    6. "DNSKEY-RRSIG Record RDATA" with associated DNSKEY and RRSIG record
-       RDATA.
 
-4.  For each name server in *Name Server IP* do:
+## Test procedure
 
-    1. Send the SOA query over UDP to the name server, collect the response
-       and go to next server if
-       1. there is no DNS response on the SOA query, or
-       2. the RCODE of the response is not "NoError" ([IANA RCODE List]), or
-       3. the AA flag is not set in the response, or
-       4. there is no SOA record with owner name matching the query.
+1.  Create a DNSKEY query with DO flag set for *Child Zone* ("DNSKEY Query").
 
-    2. Else, send the DNSKEY query over UDP to the name server and collect the
-       response, and:
-       1. If the response has the TC flag set, re-query over TCP and use that
-          response instead.
-       2. If there is no DNS response, then add the name server (IP) to the
-          set *No Response DNSKEY Query*.
-       3. Else, if the RCODE of response is not "NoError" ([IANA RCODE List]),
-          then add the name server (IP) and the RCODE to the set
-          *Unexpected RCODE DNSKEY Query*.
-       4. Else, if the AA flag is not set in the response, then add the name
-          server (IP) to the set *Non-authoritative DNSKEY*.
-       5. Else, if there is no DNSKEY record with matching owner name in the
-          answer section, then add the name server (IP) to the set
-          *No DNSKEY Record*.
-       6. Else, if there is no RRSIG record attached to the DNSKEY RRset, then
-          add the name server (IP) to the set *DNSKEY without RRSIG*.
-       7. Else add the name server (IP) and the DNSKEY and RRSIG record RDATA
-          sets to the set *DNSKEY-RRSIG Record RDATA*. (One RDATA set can
-          contain RDATA from more than one DNS record.)
+2.  Retrieve all name server IP addresses for the
+    *Child Zone* using [Method4] and [Method5] ("NS IP").
 
-5.  If the set *No Response DNS Query* is non-empty, then output
-    *[DS08_NO_RESPONSE_DNSKEY_QUERY]* and list those name servers.
+3.  Create the following empty sets:
+    1.  Name server IP address ("DNSKEY without RRSIG").
+    2.  Name server IP address and RRSIG key tag ("DNSKEY RRSIG not yet valid").
+    3.  Name server IP address and RRSIG key tag ("DNSKEY RRSIG expired").
+    4.  Name server IP address and RRSIG key tag ("No matching DNSKEY").
+    5.  Name server IP address and RRSIG key tag ("RRSIG not valid by DNSKEY").
+    6.  Name server IP address, DNSKEY record key tag and DNSKEY algorithm code
+        ("Algo Not Supported By ZM").
 
-6.  If the set *Unexpected RCODE DNSKEY Query* is non-empty, then for each
-    RCODE in the set output *[DS08_UNEXPECTED_RCODE_DNSKEY_RESPONSE]* and print
-    the RCODE name ([IANA RCODE List]) and list the those name servers.
+4.  For each name server IP address in *NS IP* do:
 
-7.  If the set *Non-authoritative DNSKEY* is non-empty, then output
-    *[DS08_NON-AUTHORITATIVE_DNSKEY_RESPONSE]* and list those name servers.
+    1. Send *DNSKEY Query* to the name server IP.
+    2. If at least one of the following criteria is met, then go to next name
+       server IP:
+         1. There is no DNS response.
+         2. RCODE is not NOERROR.
+         3. AA flag is not set.
+         4. There are no DNSKEY records in the answer section.
+    3. Retrieve the DNSKEY records and its RRSIG records from the answer section.
+    4. If there is no RRSIG for the DNSKEY record, then add the name server IP
+       address to the *DNSKEY without RRSIG* set and go to next name server IP.
+    8. Else, for each DNSKEY RRSIG record do:
+       1. If the RRSIG record start of validity is after the time of the
+          test, then add name server IP and RRSIG key tag to the
+          *DNSKEY RRSIG not yet valid* set.
+       2. Else, if the RRSIG record end of validity is before the time of the
+          test, then add name server IP and RRSIG key tag to the
+          *DNSKEY RRSIG expired* set.
+       3. Else, if the Zonemaster installation does not have support for the
+          DNSKEY algorithm that created the RRSIG, then add name server IP,
+          DNSKEY algorithm and DNSKEY key tag to the *Algo Not Supported By ZM*
+          set.
+       4. Else, if the RRSIG does not match any DNSKEY, then add the name server
+          IP and the RRSIG key tag to the *No matching DNSKEY* set.
+       5. Else, if the RRSIG cannot be validated by the matching DNSKEY record,
+          then add the name server
+          IP and the RRSIG key tag to the *RRSIG not valid by DNSKEY* set.
 
-8.  If the sets *No DNSKEY Record* is non-empty, then output
-    *[DS08_EMPTY_DNSKEY_RESPONSE]* and list those name servers.
+6.  If the *DNSKEY without RRSIG* set is non-empty, then output
+    *[DS08_MISSING_RRSIG_IN_RESPONSE]* with the name servers IP addresses from
+    the set.
 
-9.  If the sets *DNSKEY without RRSIG* is non-empty, then output
-    *[DS08_MISSING_RRSIG_IN_RESPONSE]* and list those name servers.
+7.  If the *DNSKEY RRSIG not yet valid* set is non-empty, then for each RRSIG key tag
+    from the set output *[DS08_DNSKEY_RRSIG_NOT_YET_VALID]* with the key tag and the
+    name servers IP addresses from the set.
 
-10. If the set *DNSKEY-RRSIG Record RDATA* is empty, then output
-     *[DS08_NO_VALID_DNSKEY_RESPONSE]*.
+8.  If the *DNSKEY RRSIG expired* set is non-empty, then for each RRSIG key tag
+    from the set output *[DS08_DNSKEY_RRSIG_EXPIRED]* with the key tag and the
+    name servers IP addresses from the set.
 
-11. Else, do:
-    1. If there are more than one DNSKEY RDATA set in set
-       *DNSKEY-RRSIG Record RDATA* then do:
-       1. Output *[DS08_INCONSISTENT_DNSKEY_RRSET]*.
-       2. For each DNSKEY RDATA set output *[DS08_FOUND_DNSKEY_RRSET]*
-          with list of key tags and list those name servers.
-    2. Else, if there is more than one RRSIG RDATA set in the
-       *DNSKEY-RRSIG Record RDATA* set then do:
-       1. Output *[DS08_INCONSISTENT_DNSKEY_RRSIG]*.
-       2. For each RRSIG RDATA set output *[DS08_FOUND_DNSKEY_RRSIG_SET]*
-          and list those name servers.
-    3. Else, for each RRSIG record in the *DNSKEY-RRSIG Record RDATA*
-       set do:
-       1. If the Zonemaster installation does not have support for the
-          algorithm that created the RRSIG, then output
-          *[DS08_ALGO_NOT_SUPPORTED_BY_ZM]* and print algorithm and DNSKEY
-          key tag.
-       2. Else, if the RRSIG values (algorithm and signature) do not match
-          the DNSKEY then output *[DS08_NON_MATCHING_RRSIG_FOR_DNSKEY_RRSET]*
-          and print DNSKEY key tag and the name server IP address.
+9.  If the *No matching DNSKEY* set is non-empty, then for each RRSIG key tag
+    from the set output *[DS08_NO_MATCHING_DNSKEY]* with the key tag and the
+    name servers IP addresses from the set.
+
+10. If the *RRSIG not valid by DNSKEY* set is non-empty, then for each RRSIG key
+    ID from the set output *[DS08_RRSIG_NOT_VALID_BY_DNSKEY]* with the key tag and
+    the name servers IP addresses from the set.
+
+11. If the *Algo Not Supported By ZM* set is non-empty, then output
+    *[DS08_ALGO_NOT_SUPPORTED_BY_ZM]* for each DNSKEY key tag with the name
+    server IP addresses, the key tag and the algorithm name and code from the set.
+
 
 ## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
-with the [severity level] *ERROR* or *CRITICAL*.
+with the severity level *[ERROR]* or *[CRITICAL]*.
 
 The outcome of this Test Case is "warning" if there is at least one message
-with the [severity level] *WARNING*, but no message with severity level
+with the severity level *[WARNING]*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
-The outcome of this Test case is "pass" in all other cases.
-
-Message                                        | Default [severity level] of message
-:----------------------------------------------|:-----------------------------------
-DS08_ALGO_NOT_SUPPORTED_BY_ZM                  | NOTICE
-DS08_EMPTY_DNSKEY_RESPONSE                     | WARNING
-DS08_FOUND_DNSKEY_RRSET                        | NOTICE
-DS08_FOUND_DNSKEY_RRSIG_SET                    | NOTICE
-DS08_INCONSISTENT_DNSKEY_RRSET                 | WARNING
-DS08_INCONSISTENT_DNSKEY_RRSIG                 | WARNING
-DS08_MISSING_RRSIG_IN_RESPONSE                 | WARNING
-DS08_NON-AUTHORITATIVE_DNSKEY_RESPONSE         | WARNING
-DS08_NON_MATCHING_RRSIG_FOR_DNSKEY_RRSET       | WARNING
-DS08_NO_RESPONSE_DNSKEY_QUERY                  | WARNING
-DS08_NO_VALID_DNSKEY_RESPONSE                  | WARNING
-DS08_UNEXPECTED_RCODE_DNSKEY_RESPONSE          | WARNING
+In other cases, no message or only messages with severity level
+*[INFO]* or *[NOTICE]*, the outcome of this Test Case is "pass".
 
 
 ## Special procedural requirements
@@ -141,35 +154,38 @@ If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol. Log a message reporting
 on the ignored result.
 
-Errors associated with the response to the query for the SOA record without
-EDNS are expected to have been caught by [Basic04].
-
 See the [DNSSEC README] document about DNSSEC algorithms.
-
-Test case is only performed if DNSKEY records are found.
 
 
 ## Intercase dependencies
 
 None.
 
+
+## Terminology
+
+No special terminology for this test case.
+
+
+[Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [Basic04]:                                    ../Basic-TP/basic014.md
+[CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
+[DNSSEC README]:                              ./README.md
 [DNSSEC README]:                              README.md
-[DS08_ALGO_NOT_SUPPORTED_BY_ZM]:              #OUTCOMES
-[DS08_EMPTY_DNSKEY_RESPONSE]:                 #OUTCOMES
-[DS08_FOUND_DNSKEY_RRSET]:                    #OUTCOMES
-[DS08_FOUND_DNSKEY_RRSIG_SET]:                #OUTCOMES
-[DS08_INCONSISTENT_DNSKEY_RRSET]:             #OUTCOMES
-[DS08_INCONSISTENT_DNSKEY_RRSIG]:             #OUTCOMES
-[DS08_MISSING_RRSIG_IN_RESPONSE]:             #OUTCOMES
-[DS08_NON-AUTHORITATIVE_DNSKEY_RESPONSE]:     #OUTCOMES
-[DS08_NON_MATCHING_RRSIG_FOR_DNSKEY_RRSET]:   #OUTCOMES
-[DS08_NO_RESPONSE_DNSKEY_QUERY]:              #OUTCOMES
-[DS08_NO_VALID_DNSKEY_RESPONSE]:              #OUTCOMES
-[DS08_UNEXPECTED_RCODE_DNSKEY_RESPONSE]:      #OUTCOMES
+[DS08_ALGO_NOT_SUPPORTED_BY_ZM]:              #Summary
+[DS08_DNSKEY_RRSIG_EXPIRED]:                  #Summary
+[DS08_DNSKEY_RRSIG_NOT_YET_VALID]:            #Summary
+[DS08_MISSING_RRSIG_IN_RESPONSE]:             #Summary
+[DS08_NO_MATCHING_DNSKEY]:                    #Summary
+[DS08_RRSIG_NOT_VALID_BY_DNSKEY]:             #Summary
+[ERROR]:                                      ../SeverityLevelDefinitions.md#error
 [IANA RCODE List]:                            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[INFO]:                                       ../SeverityLevelDefinitions.md#info
 [Method4]:                                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NOTICE]:                                     ../SeverityLevelDefinitions.md#notice
 [RFC 4035#section-2.1]:                       https://tools.ietf.org/html/rfc4035#section-2.1
 [RFC 4035#section-2.2]:                       https://tools.ietf.org/html/rfc4035#section-2.2
-[Severity Level]:                             ../SeverityLevelDefinitions.md
+[Severity Level Definitions]:                 ../SeverityLevelDefinitions.md
+[WARNING]:                                    ../SeverityLevelDefinitions.md#warning
+[Zonemaster-Engine profile]:                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
