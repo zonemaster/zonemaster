@@ -3,197 +3,166 @@
 ## Test case identifier
 **DNSSEC09**
 
+
+## Table of contents
+
+* [Objective](#Objective)
+* [Scope](#Scope)
+* [Inputs](#Inputs)
+* [Summary](#Summary)
+* [Test procedure](#Test-procedure)
+* [Outcome(s)](#Outcomes)
+* [Special procedural requirements](#Special-procedural-requirements)
+* [Intercase dependencies](#Intercase-dependencies)
+* [Terminology](#terminology)
+
+
 ## Objective
 
-If the zone is signed, the SOA RR should be signed with a valid RRSIG 
+If the zone is signed, the SOA RR should be signed with a valid RRSIG
 using a DNSKEY from the DNSKEY RR set. This is described
 in [RFC 4035][RFC 4035#section-2.2], section 2.2.
 
 This test case will verify if the *Child Zone* meets that
 requirement.
 
+
+## Scope
+
+It is assumed that *Child Zone* is tested and reported by [Basic04]. This test
+case will just ignore non-responsive name servers or name servers not giving a
+correct DNS response for an authoritative name server.
+
+Inconsistencies in the SOA record are expected to be caught by [Consistency01],
+[Consistency02], [Consistency03] and [Consistency06].
+
+Inconsistencies in the DNSKEY RRset are expected to be caught by [DNSSEC08].
+
+This test case is only relevant if the zone has been DNSSEC signed.
+
+
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
 
-## Ordered description of steps to be taken to execute the test case
 
-1.  Create an SOA query for the *Child Zone* without any OPT record (no EDNS).
+## Summary
 
-2.  Create an SOA query for the *Child Zone* with the DO flag set.
+* If no DNSKEY records are found, then further inverstigation will not be done
+  and no messages will be outputted.
 
-3.  Create an DNSKEY query for the *Child Zone* with the DO flag set.
+Message Tag outputted              | Level   | Arguments          | Description of when message tag is outputted
+:----------------------------------|:--------|:-------------------|:--------------------------------------------
+DS09_ALGO_NOT_SUPPORTED_BY_ZM      | NOTICE  | ns_ip_list, algo_mnemo, algo_num, keytag | This installation of Zonemaster does not support the DNSKEY algorithm.
+DS09_MISSING_RRSIG_IN_RESPONSE     | ERROR   | ns_ip_list         | SOA is unsigned which is against expectation
+DS09_NO_MATCHING_DNSKEY            | ERROR   | ns_ip_list, keytag | SOA is signed with an RRSIG that does not match any DNSKEY
+DS09_RRSIG_NOT_VALID_BY_DNSKEY     | ERROR   | ns_ip_list, keytag | SOA is signed with an RRSIG that cannot be validated by the matching DNSKEY
+DS09_SOA_RRSIG_EXPIRED             | ERROR   | ns_ip_list, keytag | SOA is signed with an RRSIG that has expired
+DS09_SOA_RRSIG_NOT_YET_VALID       | ERROR   | ns_ip_list, keytag | SOA is signed with a not yet valid RRSIG
 
-4.  Obtain the set of name server IP addresses using [Method4] and [Method5]
-    ("Name Server IP").
+The value in the Level column is the default severity level of the message. The
+severity level can be changed in the [Zonemaster-Engine profile]. Also see the
+[Severity Level Definitions] document.
 
-5.  Create an empty sets of name server IP addresses:
-    1. "No Response SOA Query".
-    2. "Non-authoritative SOA".
-    3. "No SOA Record".
-    4. "SOA without RRSIG".
+The argument names in the Arguments column lists the arguments used in the
+message. The argument names are defined in the [argument list].
 
-6.  Create an empty set of name server IP addresses and associated RCODE,
-    "Unexpected RCODE SOA Query".
 
-10. Create an empty set of name server IP addresses and associated SOA and
-    RRSIG record RDATA, "SOA-RRSIG Record RDATA".
+## Test procedure
 
-11. Create an empty set of name server IP addresses:
-    1. "No Response DNSKEY Query".
-    2. "Non-authoritative DNSKEY".
-    3. "No DNSKEY Record".
+1.  Create a DNSKEY query with DO flag set for *Child Zone* ("DNSKEY Query").
 
-12. Create an empty set of name server IP addresses and associated RCODE,
-    "Unexpected RCODE DNSKEY Query".
+2.  Create an SOA query with DO flag set for *Non-Existent Query Name*
+    ("SOA Query").
 
-13. Create an empty set of name server IP addresses and associated DNSKEY record 
-    RDATA, "DNSKEY Record RDATA".
+3.  Retrieve all name server IP addresses for the
+    *Child Zone* using [Method4] and [Method5] ("NS IP").
 
-14. For each name server in *Name Server IP* do:
+4.  Create the following empty sets:
+    1.  Name server IP address ("SOA without RRSIG").
+    2.  Name server IP address and RRSIG key tag ("SOA RRSIG not yet valid").
+    3.  Name server IP address and RRSIG key tag ("SOA RRSIG expired").
+    4.  Name server IP address and RRSIG key tag ("No matching DNSKEY").
+    5.  Name server IP address and RRSIG key tag ("RRSIG not valid by DNSKEY").
+    6.  Name server IP address, DNSKEY record key tag and DNSKEY algorithm code
+        ("Algo Not Supported By ZM").
 
-    1. Send the SOA query without OPT over UDP to the name server, collect the
-       response and go to next server if
-       1. there is no DNS response on the SOA query, or
-       2. the RCODE of the response is not "NoError" ([IANA RCODE List]), or
-       3. the AA flag is not set in the response, or
-       4. there is no SOA record with owner name matching the query.
+5.  For each name server IP address in *NS IP* do:
 
-    2. Send the SOA query with DO flag set over UDP to the name server and collect
-       the response, and:
-       1. If the response has the TC flag set, re-query over TCP and use that
-          response instead.
-       2. In the following cases, register the data as specified and then go to
-          next server:
-          1. If there is no DNS response, then add the name server (IP) to the
-             *No Response SOA Query* set.
-          2. If the RCODE of response is not "NoError" ([IANA RCODE List]),
-             then add the name server (IP) and the RCODE to the
-             *Unexpected RCODE SOA Query* set.
-          3. If the AA flag is not set in the response, then add the name
-             server (IP) to the *Non-authoritative SOA* set.
-          4. Else, if there is no SOA record with matching owner name in the
-             answer section, then add the name server (IP) to the
-             *No SOA Record* set.
-          5. Else, if there is no RRSIG record attached to the SOA RRset, then
-             add the name server (IP) to the *SOA without RRSIG* set.
-       3. Else add the name server (IP) and the DNSKEY and RRSIG record RDATA
-          sets to the *SOA-RRSIG Record RDATA* set. (One RDATA set can
-          contain RDATA from more than one DNS record.)
-
-    6. Send the DNSKEY query with DO flag set over UDP to the name server and
-       collect the response, and:
-       1. If the response has the TC flag set, re-query over TCP and use that
-          response instead.
-       2. In the following cases, register the data as specified and then go to
-          next server:
-          1. If there is no DNS response, then add the name server (IP) to the
-             *No Response DNSKEY Query* set.
-          2. If the RCODE of response is not "NoError" ([IANA RCODE List]),
-             then add the name server (IP) and the RCODE to the
-             *Unexpected RCODE DNSKEY Query* set.
-          3. If the AA flag is not set in the response, then add the name
-             server (IP) to the *Non-authoritative DNSKEY* set.
-          4. If there is no DNSKEY record with matching owner name in the
-             answer section, then add the name server (IP) to the
-             *No DNSKEY Record* set.
-       3. Else add the name server (IP) and the DNSKEY record RDATA set to the
-          *DNSKEY Record RDATA* set. (One RDATA set can contain RDATA
-          from more than one DNS record.)
-
-15. If the *No Response SOA Query* set is non-empty, then output
-    *[DS09_NO_RESPONSE_SOA_QUERY]* and list those name servers.
-
-16. If the *Unexpected RCODE SOA Query* set is non-empty, then for each RCODE
-    in the set, do:
-    1. Output *[DS09_UNEXPECTED_RCODE_SOA_RESPONSE]* and print the RCODE name
-       ([IANA RCODE List]) and list the those name servers.
-
-17. If the *Non-authoritative SOA* set is non-empty, then output
-    *[DS09_NON-AUTHORITATIVE_SOA_RESPONSE]* and list those name servers.
-
-18. If the *No SOA Record* set is non-empty, then output
-    *[DS09_EMPTY_SOA_RESPONSE]* and list those name servers.
-
-19. If the *SOA without RRSIG* set is non-empty, then output
-    *[DS09_MISSING_RRSIG_IN_RESPONSE]* and list those name servers.
-
-20. If the *No Response DNSKEY Query* set is non-empty, then output
-    *[DS09_NO_RESPONSE_DNSKEY_QUERY]* and list those name servers.
-
-21. If the *Unexpected RCODE DNSKEY Query* set is non-empty, then for each RCODE
-    in the set, do:
-    1. Output *[DS09_UNEXPECTED_RCODE_DNSKEY_RESPONSE]* and print the RCODE name
-       ([IANA RCODE List]) and list the those name servers.
-
-22. If the *Non-authoritative DNSKEY* set is non-empty, then output
-    *[DS09_NON-AUTHORITATIVE_DNSKEY_RESPONSE]* and list those name servers.
-
-23. If the *No DNSKEY Record* set is non-empty, then output
-    *[DS09_EMPTY_DNSKEY_RESPONSE]* and list those name servers.
-
-24. If the *SOA-RRSIG Record RDATA* set or the *DNSKEY Record RDATA* set
-    is empty, then do:
-    1. If *SOA-RRSIG Record RDATA* is empty, then output
-       *[DS09_NO_VALID_SOA_RESPONSE]*.
-    2. If *DNSKEY Record RDATA* is empty, then output
-     *[DS09_NO_VALID_DNSKEY_RESPONSE]*.
-    3. Terminate this test case.
-
-25. Else, for each name server IP address in *SOA-RRSIG Record RDATA* do:
-    1. Extract the SOA RRset from *SOA-RRSIG Record RDATA*.
-    2. Extract the SOA RRSIG set from *SOA-RRSIG Record RDATA*.
-    3. Extract the DNSKEY RRset from the *DNSKEY Record RDATA*
-       set.
-    4. If there is no DNSKEY RRset, then output
-       *[DS09_MISSING_DNSKEY_FOR_SOA_RRSIG]* with the expected
-       DNSKEY key tag and the name server IP address, and go to
-       next name server IP address.
-    5. Else, for each RRSIG record do:
+    1. Send *DNSKEY Query* to the name server IP.
+    2. If at least one of the following criteria is met, then go to next name
+       server IP:
+         1. There is no DNS response.
+         2. RCODE is not NOERROR.
+         3. AA flag is not set.
+         4. There are no DNSKEY records in the answer section.
+    3. Retrieve the DNSKEY records from the answer section.
+    4. Send *SOA Query* over UDP to the name server IP.
+    5. If at least one of the following createria is met, then go to next name
+       server IP:
+         1. There is no DNS response.
+         2. RCODE not NOERROR.
+         3. AA flag is not set.
+         4. There is no SOA record with owner name matching the query in the
+            answer section.
+    6. Retrieve the SOA record and its RRSIG record.
+       * Only retrieve the one SOA record if there are multiple records.
+    7. If there is no RRSIG for the SOA record, then add the name server IP
+       address to the *SOA without RRSIG* set and go to next name server IP.
+    8. Else, for each SOA RRSIG record do:
        1. If the RRSIG record start of validity is after the time of the
-          test, then output *[DS09_RRSIG_FOR_SOA_RRSET_NOT_YET_VALID]*
-          and the name server IP address.
-       2. If the RRSIG record end of validity is before the time of the
-          test, then output *[DS09_RRSIG_FOR_SOA_RRSET_EXPIRED]*
-          and the name server IP address.
-       3. If the Zonemaster installation does not have support for the
-          algorithm that created the RRSIG, then output
-          *[DS09_ALGO_NOT_SUPPORTED_BY_ZM]* print algorithm and DNSKEY
-          key tag.
-       4. Else, if the RRSIG values (algorithm and signature) do not match
-          the DNSKEY in *DNSKEY Record RDATA* then output
-          *[DS09_NON_MATCHING_RRSIG_FOR_SOA_RRSET]* and print
-          DNSKEY key tag and the name server IP address.
+          test, then add name server IP and RRSIG key tag to the
+          *SOA RRSIG not yet valid* set.
+       2. Else, if the RRSIG record end of validity is before the time of the
+          test, then add name server IP and RRSIG key tag to the
+          *SOA RRSIG expired* set.
+       3. Else, if the Zonemaster installation does not have support for the
+          DNSKEY algorithm that created the RRSIG, then add name server IP,
+          DNSKEY algorithm and DNSKEY key tag to the *Algo Not Supported By ZM*
+          set.
+       4. Else, if the RRSIG does not match any DNSKEY, then add the name server
+          IP and the RRSIG key tag to the *No matching DNSKEY* set.
+       5. Else, if the RRSIG cannot be validated by the matching DNSKEY record,
+          then add the name server
+          IP and the RRSIG key tag to the *RRSIG not valid by DNSKEY* set.
+
+6.  If the *SOA without RRSIG* set is non-empty, then output
+    *[DS09_MISSING_RRSIG_IN_RESPONSE]* with the name servers IP addresses from
+    the set.
+
+7.  If the *SOA RRSIG not yet valid* set is non-empty, then for each RRSIG key tag
+    from the set output *[DS09_SOA_RRSIG_NOT_YET_VALID]* with the key tag and the
+    name servers IP addresses from the set.
+
+8.  If the *SOA RRSIG expired* set is non-empty, then for each RRSIG key tag
+    from the set output *[DS09_SOA_RRSIG_EXPIRED]* with the key tag and the
+    name servers IP addresses from the set.
+
+9.  If the *No matching DNSKEY* set is non-empty, then for each RRSIG key tag
+    from the set output *[DS09_NO_MATCHING_DNSKEY]* with the key tag and the
+    name servers IP addresses from the set.
+
+10. If the *RRSIG not valid by DNSKEY* set is non-empty, then for each RRSIG key
+    ID from the set output *[DS09_RRSIG_NOT_VALID_BY_DNSKEY]* with the key tag and
+    the name servers IP addresses from the set.
+
+11. If the *Algo Not Supported By ZM* set is non-empty, then output
+    *[DS09_ALGO_NOT_SUPPORTED_BY_ZM]* for each DNSKEY key tag with the name
+    server IP addresses, the key tag and the algorithm name and code from the set.
+
 
 ## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
-with the severity level *ERROR* or *CRITICAL*.
+with the severity level *[ERROR]* or *[CRITICAL]*.
 
 The outcome of this Test Case is "warning" if there is at least one message
-with the severity level *WARNING*, but no message with severity level
+with the severity level *[WARNING]*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
-The outcome of this Test case is "pass" in all other cases.
+In other cases, no message or only messages with severity level
+*[INFO]* or *[NOTICE]*, the outcome of this Test Case is "pass".
 
-Message                                        | Default severity level of message
-:----------------------------------------------|:-----------------------------------
-DS09_ALGO_NOT_SUPPORTED_BY_ZM                  | NOTICE
-DS09_EMPTY_DNSKEY_RESPONSE                     | WARNING
-DS09_EMPTY_SOA_RESPONSE                        | WARNING
-DS09_MISSING_DNSKEY_FOR_SOA_RRSIG              | WARNING
-DS09_MISSING_RRSIG_IN_RESPONSE                 | WARNING
-DS09_NON-AUTHORITATIVE_DNSKEY_RESPONSE         | WARNING
-DS09_NON-AUTHORITATIVE_SOA_RESPONSE            | WARNING
-DS09_NON_MATCHING_RRSIG_FOR_SOA_RRSET          | WARNING
-DS09_NO_RESPONSE_DNSKEY_QUERY                  | WARNING
-DS09_NO_RESPONSE_SOA_QUERY                     | WARNING
-DS09_NO_VALID_DNSKEY_RESPONSE                  | WARNING
-DS09_NO_VALID_SOA_RESPONSE                     | WARNING
-DS09_RRSIG_FOR_SOA_RRSET_EXPIRED               | WARNING
-DS09_RRSIG_FOR_SOA_RRSET_NOT_YET_VALID         | WARNING
-DS09_UNEXPECTED_RCODE_DNSKEY_RESPONSE          | WARNING
-DS09_UNEXPECTED_RCODE_SOA_RESPONSE             | WARNING
 
 ## Special procedural requirements
 
@@ -201,51 +170,41 @@ If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol. Log a message reporting
 on the ignored result.
 
-Errors associated with the response to the query for the SOA record without
-EDNS are expected to have been caught by [Basic04].
-
-Inconsistencies in the SOA record are expected to be caught by [Consistency01],
-[Consistency02], [Consistency03] and [Consistency06].
-
-Inconsistencies in the DNSKEY RRset are expected to be caught by [DNSSEC08].
-
 See the [DNSSEC README] document about DNSSEC algorithms.
-
-Test case is only performed if DNSKEY records are found.
 
 
 ## Intercase dependencies
 
 None.
 
+
+## Terminology
+
+No special terminology for this test case.
+
+
+[Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [Basic04]:                                    ../Basic-TP/basic014.md
+[CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [Consistency01]:                              ../Consistency-TP/consistency01.md
 [Consistency02]:                              ../Consistency-TP/consistency02.md
 [Consistency03]:                              ../Consistency-TP/consistency03.md
 [Consistency06]:                              ../Consistency-TP/consistency06.md
 [DNSSEC README]:                              ./README.md
 [DNSSEC08]:                                   ../DNSSEC-TP/dnssec08.md
-[DS09_ALGO_NOT_SUPPORTED_BY_ZM]:              #OUTCOMES
-[DS09_EMPTY_DNSKEY_RESPONSE]:                 #OUTCOMES
-[DS09_EMPTY_SOA_RESPONSE]:                    #OUTCOMES
-[DS09_MISSING_DNSKEY_FOR_SOA_RRSIG]:          #OUTCOMES
-[DS09_MISSING_RRSIG_IN_RESPONSE]:             #OUTCOMES
-[DS09_NON-AUTHORITATIVE_DNSKEY_RESPONSE]:     #OUTCOMES
-[DS09_NON-AUTHORITATIVE_SOA_RESPONSE]:        #OUTCOMES
-[DS09_NON_MATCHING_RRSIG_FOR_SOA_RRSET]:      #OUTCOMES
-[DS09_NO_RESPONSE_DNSKEY_QUERY]:              #OUTCOMES
-[DS09_NO_RESPONSE_SOA_QUERY]:                 #OUTCOMES
-[DS09_NO_VALID_DNSKEY_RESPONSE]:              #OUTCOMES
-[DS09_NO_VALID_SOA_RESPONSE]:                 #OUTCOMES
-[DS09_RRSIG_FOR_SOA_RRSET_EXPIRED]:           #OUTCOMES
-[DS09_RRSIG_FOR_SOA_RRSET_NOT_YET_VALID]:     #OUTCOMES
-[DS09_UNEXPECTED_RCODE_DNSKEY_RESPONSE]:      #OUTCOMES
-[DS09_UNEXPECTED_RCODE_SOA_RESPONSE]:         #OUTCOMES
+[DS09_ALGO_NOT_SUPPORTED_BY_ZM]:              #Summary
+[DS09_MISSING_RRSIG_IN_RESPONSE]:             #Summary
+[DS09_NO_MATCHING_DNSKEY]:                    #Summary
+[DS09_RRSIG_NOT_VALID_BY_DNSKEY]:             #Summary
+[DS09_SOA_RRSIG_EXPIRED]:                     #Summary
+[DS09_SOA_RRSIG_NOT_YET_VALID]:               #Summary
+[ERROR]:                                      ../SeverityLevelDefinitions.md#error
 [IANA RCODE List]:                            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[INFO]:                                       ../SeverityLevelDefinitions.md#info
 [Method4]:                                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[RFC 4035#section-2.1]:                       https://tools.ietf.org/html/rfc4035#section-2.1
+[NOTICE]:                                     ../SeverityLevelDefinitions.md#notice
 [RFC 4035#section-2.2]:                       https://tools.ietf.org/html/rfc4035#section-2.2
-
-
-
+[Severity Level Definitions]:                 ../SeverityLevelDefinitions.md
+[WARNING]:                                    ../SeverityLevelDefinitions.md#warning
+[Zonemaster-Engine profile]:                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
