@@ -1,7 +1,22 @@
 # ZONE09: MX record present
 
+
 ## Test case identifier
 **ZONE09**
+
+
+## Table of contents
+
+* [Objective](#Objective)
+* [Scope](#Scope)
+* [Inputs](#Inputs)
+* [Summary](#Summary)
+* [Test procedure](#Test-procedure)
+* [Outcome(s)](#Outcomes)
+* [Special procedural requirements](#Special-procedural-requirements)
+* [Intercase dependencies](#Intercase-dependencies)
+* [Terminology](#terminology)
+
 
 ## Objective
 
@@ -58,9 +73,16 @@ requirement of MX:
 * TLD zone
 * Zone in the .ARPA tree
 
-The following zone type is expected not to have an MX:
+The following zone type is expected not to have an MX (considered harmful):
 
 * TLD zone
+
+
+## Scope
+
+It is assumed that *Child Zone* is tested and reported by [Basic04]. This test
+case will just ignore non-responsive name servers or name servers not giving a
+correct DNS response for an authoritative name server.
 
 
 ## Inputs
@@ -68,147 +90,137 @@ The following zone type is expected not to have an MX:
 * "Child Zone" - The domain name to be tested.
 
 
-## Ordered description of steps to be taken to execute the test case
+## Summary
 
-1.  If *Child Zone* is the root zone (".") then do:
-    1. Output *[Z09_ROOT_NOT_MAIL_DOMAIN]*
-    2. Exit this test case.
+* Basic name server problems are not reported by this test case.
+* A notify is issues if MX is missing, except for root, an ARPA zone and a TLD.
+* A warning is issued if a TLD *has* an MX.
 
-2.  Create an SOA query for the *Child Zone* without any OPT record (no EDNS).
+Message Tag outputted               | Level   | Arguments               | Description of when message tag is outputted
+:-----------------------------------|:--------|:------------------------|:--------------------------------------------
+Z09_INCONSISTENT_MX_RRSETS          | WARNING |                         | Some name servers returns MX RRset and other none.
+Z09_MX_FOUND                        | INFO    | ns_ip_list              | List of name servers that return MX RRset.
+Z09_MX_DATA                         | INFO    | ns_ip_list, domain_list | The mail targets in the MX RRset returned by some name servers, and a list of those.
+Z09_NON-AUTHORITATIVE_MX_RESPONSE   | WARNING | ns_ip_list              | List of name servers that gave non-AA response on MX query.
+Z09_MISSING_MAIL_TARGET             | NOTICE  |                         | The child zone has no mail target (no MX).
+Z09_NO_MX_FOUND                     | INFO    | ns_ip_list              | List of name servers that did not return MX RRset.
+Z09_NO_RESPONSE_MX_QUERY            | WARNING | ns_ip_list              | List of name servers that did not respond on MX query.
+Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE| NOTICE  |                         | The child zone has a null MX with incorrect preference (must be 0).
+Z09_NULL_MX_WITH_OTHER_MX           | WARNING |                         | The child zone has a null MX but incorrectly mixed with other MX records.
+Z09_TLD_MAIL_DOMAIN_HARMFUL         | WARNING |                         | The child zone is a TLD and has MX, which is considered harmful.
+Z09_UNEXPECTED_RCODE_MX_RESPONSE    | WARNING | ns_ip_list, rcode       | The name servers listed returns unexpected RCODE value (listed) on the MX query.
+Z09_ROOT_MAIL_DOMAIN_MEANINGLESS    | NOTIFY  |                         | The root zone has an MX RRset, which is meaningless.
 
-3.  Create an MX query for the *Child Zone* without any OPT record (no EDNS).
+The value in the Level column is the default severity level of the message. The
+severity level can be changed in the [Zonemaster-Engine profile]. Also see the
+[Severity Level Definitions] document.
 
-4.  Obtain the set of name server IP addresses using [Method4] and [Method5]
+The argument names in the Arguments column lists the arguments used in the
+message. The argument names are defined in the [argument list].
+
+
+## Test procedure
+
+1.  Create an SOA query for the *Child Zone* without OPT record (no EDNS)
+    ("SOA Query").
+
+2.  Create an MX query for the *Child Zone* without OPT record (no EDNS)
+    ("MX Query").
+
+3.  Obtain the set of name server IP addresses using [Method4] and [Method5]
     ("Name Server IP").
 
-5.  Create an empty set of name server IP addresses, "No Response MX Query".
+4. Create the following empty sets
 
-6.  Create an empty set of name server IP addresses and associated RCODE,
-    "Unexpected RCODE MX Query".
+    1.  Name server IP addresses ("No Response MX Query").
+    2.  Name server IP addresses and RCODE value ("Unexpected RCODE MX Query").
+    3.  Name server IP addresses ("Non-authoritative MX").
+    4.  Name server IP addresses ("No MX RRset").
+    5.  Name server IP addresses and MX RRset ("MX RRset").
 
-7.  Create an empty set of name server IP addresses, "Non-authoritative MX".
+5.  For each name server IP in *Name Server IP* do:
 
-8.  Create an empty set of name server IP addresses, "No MX Record".
+    1. Send *SOA Query" over UDP to the name server.
+    2. Go to next name server IP if at least one of the following criteria is
+       met:
+       1. There is no DNS response.
+       2. The RCODE of the response is not "NoError" (IANA RCODE List).
+       3. The AA flag is not set in the response.
+       4. There is no SOA record with owner name matching the query.
 
-9.  Create an empty set of name server IP addresses and associated MX
-    record RDATA, "MX Record RDATA".
-
-10. For each name server in *Name Server IP* do:
-
-    1. Send the SOA query over UDP to the name server, collect the response
-       and go to next server if
-       1. there is no DNS response on the SOA query, or
-       2. the RCODE of the response is not "NoError" (IANA RCODE List), or
-       3. the AA flag is not set in the response, or
-       4. there is no SOA record with owner name matching the query.
-
-    2. Else, send the MX query over UDP to the name server and collect the
+    2. Send *MX Query* over UDP to the name server and collect the
        response, and:
        1. If the response has the TC flag set, re-query over TCP and use that
           response instead.
-       2. If there is no DNS response, then add the name server (IP) to the
-          set *No Response MX Query*.
+       2. If there is no DNS response, then add the name server IP to the
+          *No Response MX Query* set.
        3. Else, if the RCODE of response is not "NoError" ([IANA RCODE List]),
-          then add the name server (IP) and the RCODE to the set
-          *Unexpected RCODE MX Query*.
+          then add the name server IP and the RCODE to the
+          *Unexpected RCODE MX Query* set.
        4. Else, if the AA flag is not set in the response, then add the name
-          server (IP) to the set *Non-authoritative MX*.
-       5. Else, if there is no MX record with matching owner name in the
-          answer section, then add the name server (IP) to the set
-          *No MX Record*.
-       6. Else add the name server (IP) and the MX record RDATA set to the set
-          *MX Record RDATA*. (One MX record RDATA set can contain RDATA from
-          more than one MX record.)
+          server IP to the *Non-authoritative MX* set.
+       5. Else, if there is no MX record with matching owner name in the answer
+          section, then add the name server (IP) to the *No MX RRset* set.
+       6. Else do:
+          1. Extract the MX RRset from the response.
+          2. Add the name server IP and the MX RRset to the *MX RRset* set.
 
-11. If the set *No Response MX Query* is non-empty, then output
+6.  If the set *No Response MX Query* is non-empty, then output
     *[Z09_NO_RESPONSE_MX_QUERY]* and list those name servers.
 
-12. If the set *Unexpected RCODE MX Query* is non-empty, then for each RCODE
+7.  If the set *Unexpected RCODE MX Query* is non-empty, then for each RCODE
     in the set, do:
-    1. Output *[Z09_UNEXPECTED_RCODE_MX_RESPONSE]* and print the RCODE name
-       ([IANA RCODE List]) and list the those name servers.
+    * Output *[Z09_UNEXPECTED_RCODE_MX_RESPONSE]* and print the RCODE value
+      ([IANA RCODE List]) and list the those name servers.
 
-13. If the set *Non-authoritative MX* is non-empty, then output
+8.  If the set *Non-authoritative MX* is non-empty, then output
     *[Z09_NON-AUTHORITATIVE_MX_RESPONSE]* and list those name servers.
 
-14. If both sets *No MX Record* and *MX Record RDATA* are empty do output
-    *[Z09_INDETERMINED_MAIL_TARGET]*.
+9.  If both *No MX RRset* set and *MX RRset* set are non-empty then:
+    1. Output *[Z09_INCONSISTENT_MX_RRSETS]*.
+    2. Output *[Z09_NO_MX_FOUND]* with the name server IP from the *No MX RRset*
+       set.
+    3. Output *[Z09_MX_FOUND]* with the name server IP from the *MX RRset* set.
 
-15. If both sets *No MX Record* and *MX Record RDATA* are non-empty or if
-    *MX Record RDATA* lists more than one RDATA set (if two name servers have
-    the same RDATA set, that is one set), then:
-    1. Output *[Z09_INCONSISTENT_MAIL_DOMAIN_TARGET]*.
-    2. If *No MX Record* is non-empty, then output *[Z09_NO_MX]* and list
-       those name servers.
-    3. For each RDATA set in *MX Record RDATA*, output *[Z09_MX_FOUND]*
-       with mail target or targets from RDATA set and list those name
-       servers.
+10. If the *MX RRset* set is non-empty, then do:
+    1. If the RRsets in *MX RRset* are not equal for all name servers then do:
+       1. Output *[Z09_INCONSISTENT_MX_RRSETS]*.
+       2. For each RRset in *MX RRset*, output *[Z09_MX_DATA]* with the mail
+          target from the RDATA and the associated name servers.
+    2. Else do:
+       1. If the mailtarget of any of the MX records in the RRset in *MX RRset*
+          is "." ("[Null MX][RFC 7505#section-3]") then do:
+          1. If there are more than one record in the MX RRset, then output
+             *[Z09_NULL_MX_WITH_OTHER_MX]* with the mail targets from the RDATA
+             of MX records.
+          2. If the preference of the "Null MX" is non-zero then output
+             *[Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE]*.
+       2. Output *[Z09_TLD_MAIL_DOMAIN_HARMFUL]* if *Child Zone* is a TLD
+          (top-level domain), unless the MX RRset is a single
+          "[Null MX][RFC 7505#section-3]" record (mail target is ".").
+       3. Output *[Z09_ROOT_MAIL_DOMAIN_MEANINGLESS]* if *Child Zone* is the root
+          zone, unless the MX RRset is a single "[Null MX][RFC 7505#section-3]"
+          record (mail target is ".").
 
-16. If the set *No MX Record* is non-empty and the set *MX Record RDATA*
-    is empty, then do:
-    1. If *Child Zone* is a TLD (top-level domain) then output
-       *[Z09_TLD_MAIL_DOMAIN_NOT_EXPECTED]*.
-    2. Else, if *Child Zone* is a zone in the .ARPA tree then output
-       *[Z09_ARPA_MAIL_DOMAIN_NOT_REQUIRED]*.
-    3. Else, output *[Z09_NO_MX_FOR_MAIL_TARGET]*.
-
-17. If the set *No MX Record* is empty and the set *MX Record RDATA*
-    is non-empty, then do:
-    1. If the RDATA set in *MX Record RDATA* is not the same for all
-       name servers then do:
-       1. Output *[Z09_INCONSISTENT_MAIL_DOMAIN_TARGET]*.
-       2. For each RDATA set in *MX Record RDATA*, output *[Z09_MX_FOUND]*
-          with mail target from RDATA set and list those name servers.
-    2. Else, if the RDATA with the lowest preference in the RDATA set in
-       *MX Record RDATA* is a "[Null MX][RFC 7505#section-3]" then
-       output *[Z09_NULL_MX_FOUND]*.
-       1. If the preference of the "Null MX" is non-zero then output
-          *[Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE]*.
-       2. If there are more than one MX RDATA in the RDATA set, then output
-          *[Z09_NULL_MX_WITH_OTHER_MX]*.
-       3. If *Child Zone* is a TLD (top-level domain) then output
-          *[Z09_TLD_MAIL_DOMAIN_NOT_EXPECTED]*.
-       4. Else, if *Child Zone* is a zone in the .ARPA tree then output
-          *[Z09_ARPA_MAIL_DOMAIN_NOT_REQUIRED]*.
-       5. Else, output *[Z09_NO_MAIL_TARGET]*.
-    3. Else, if *Child Zone* is a TLD (top-level domain) then output
-       *[Z09_TLD_MAIL_DOMAIN_HARMFUL]* and print mail target or targets
-       (mail server/servers) in order of preference (lowest first).
-    4. Else output *[Z09_MX_FOR_MAIL_TARGET_FOUND]* and print mail target
-       or targets (mail server/servers) in order of preference (lowest
-       first).
+11. Else, if the *No MX RRset* set is non-empty then do:
+    * Output *[Z09_MISSING_MAIL_TARGET]* unless
+      1. *Child Zone* is the root zone ("."), or
+      1. *Child Zone* is a TLD (top-level domain), or
+      2. *Child Zone* is a zone in the .ARPA tree.
 
 
 ## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
-with the severity level *ERROR* or *CRITICAL*.
+with the severity level *[ERROR]* or *[CRITICAL]*.
 
 The outcome of this Test Case is "warning" if there is at least one message
-with the severity level *WARNING*, but no message with severity level
+with the severity level *[WARNING]*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
-The outcome of this Test case is "pass" in all other cases.
+In other cases, no message or only messages with severity level
+*[INFO]* or *[NOTICE]*, the outcome of this Test Case is "pass".
 
-Message                             | Default severity level of message
-:-----------------------------------|:-----------------------------------
-Z09_ARPA_MAIL_DOMAIN_NOT_REQUIRED   | INFO
-Z09_INCONSISTENT_MAIL_DOMAIN_TARGET | WARNING
-Z09_INDETERMINED_MAIL_TARGET        | WARNING
-Z09_MX_FOR_MAIL_TARGET_FOUND        | INFO
-Z09_MX_FOUND                        | INFO
-Z09_NON-AUTHORITATIVE_MX_RESPONSE   | WARNING
-Z09_NO_MAIL_TARGET                  | NOTICE
-Z09_NO_MX                           | NOTICE
-Z09_NO_MX_FOR_MAIL_TARGET           | NOTICE
-Z09_NO_RESPONSE_MX_QUERY            | WARNING
-Z09_NULL_MX_FOUND                   | INFO
-Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE| NOTICE
-Z09_NULL_MX_WITH_OTHER_MX           | WARNING
-Z09_ROOT_NOT_MAIL_DOMAIN            | INFO
-Z09_TLD_MAIL_DOMAIN_HARMFUL         | WARNING
-Z09_TLD_MAIL_DOMAIN_NOT_EXPECTED    | INFO
-Z09_UNEXPECTED_RCODE_MX_RESPONSE    | WARNING
 
 ## Special procedural requirements
 
@@ -216,47 +228,49 @@ If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol and log a message reporting
 the ignored result.
 
-Errors associated with the response to the query for the SOA record are
-expected to have been caught by [Basic04].
-
 
 ## Intercase dependencies
 
 None.
 
+
 ## Terminology
 
-[Basic04]:                             ../Basic-TP/basic04.md
-[IAB Statement]:                       https://www.iab.org/documents/correspondence-reports-documents/2013-2/iab-statement-dotless-domains-considered-harmful/
-[IANA RCODE List]:                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[Internet Architecture Board]:         https://en.wikipedia.org/wiki/Internet_Architecture_Board
-[Method4]:                             ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]:                             ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[RFC 2142#section-7]:                  https://tools.ietf.org/html/rfc2142#section-7
-[RFC 2142]:                            https://tools.ietf.org/html/rfc2142
-[RFC 3172]:                            https://tools.ietf.org/html/rfc3172
-[RFC 5321#section-2.3.5]:              https://tools.ietf.org/html/rfc5321#section-2.3.5
-[RFC 5321#section-5.1]:                https://tools.ietf.org/html/rfc5321#section-5.1
-[RFC 7505#section-3]:                  https://tools.ietf.org/html/rfc7505#section-3
-[RFC 7505]:                            https://tools.ietf.org/html/rfc7505
-[Z09_ARPA_MAIL_DOMAIN_NOT_REQUIRED]:   #outcomes
-[Z09_INCONSISTENT_MAIL_DOMAIN_TARGET]: #outcomes
-[Z09_INDETERMINED_MAIL_TARGET]:        #outcomes
-[Z09_MX_FOR_MAIL_TARGET_FOUND]:        #outcomes
-[Z09_MX_FOUND]:                        #outcomes
-[Z09_NON-AUTHORITATIVE_MX_RESPONSE]:   #outcomes
-[Z09_NO_MAIL_TARGET]:                  #outcomes
-[Z09_NO_MX]:                           #outcomes
-[Z09_NO_MX_FOR_MAIL_TARGET]:           #outcomes
-[Z09_NO_RESPONSE_MX_QUERY]:            #outcomes
-[Z09_NULL_MX_FOUND]:                   #outcomes
-[Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE]:#outcomes
-[Z09_NULL_MX_WITH_OTHER_MX]:           #outcomes
-[Z09_ROOT_NOT_MAIL_DOMAIN]:            #outcomes
-[Z09_TLD_MAIL_DOMAIN_HARMFUL]:         #outcomes
-[Z09_TLD_MAIL_DOMAIN_NOT_EXPECTED]:    #outcomes
-[Z09_UNEXPECTED_RCODE_MX_RESPONSE]:    #outcomes
+No special terminology for this test case.
 
+[Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Basic04]:                                    ../Basic-TP/basic04.md
+[CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
+[ERROR]:                                      ../SeverityLevelDefinitions.md#error
+[IAB Statement]:                              https://www.iab.org/documents/correspondence-reports-documents/2013-2/iab-statement-dotless-domains-considered-harmful/
+[IANA RCODE List]:                            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[INFO]:                                       ../SeverityLevelDefinitions.md#info
+[Internet Architecture Board]:                https://en.wikipedia.org/wiki/Internet_Architecture_Board
+[Method4]:                                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NOTICE]:                                     ../SeverityLevelDefinitions.md#notice
+[RFC 2142#section-7]:                         https://tools.ietf.org/html/rfc2142#section-7
+[RFC 2142]:                                   https://tools.ietf.org/html/rfc2142
+[RFC 3172]:                                   https://tools.ietf.org/html/rfc3172
+[RFC 5321#section-2.3.5]:                     https://tools.ietf.org/html/rfc5321#section-2.3.5
+[RFC 5321#section-5.1]:                       https://tools.ietf.org/html/rfc5321#section-5.1
+[RFC 7505#section-3]:                         https://tools.ietf.org/html/rfc7505#section-3
+[RFC 7505]:                                   https://tools.ietf.org/html/rfc7505
+[Severity Level Definitions]:                 ../SeverityLevelDefinitions.md
+[WARNING]:                                    ../SeverityLevelDefinitions.md#warning
+[Z09_INCONSISTENT_MX_RRSETS]:                 #Summary
+[Z09_MISSING_MAIL_TARGET]:                    #Summary
+[Z09_MX_DATA]:                                #Summary
+[Z09_MX_FOUND]:                               #Summary
+[Z09_NON-AUTHORITATIVE_MX_RESPONSE]:          #Summary
+[Z09_NO_MX_FOUND]:                            #Summary
+[Z09_NO_RESPONSE_MX_QUERY]:                   #Summary
+[Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE]:       #Summary
+[Z09_NULL_MX_WITH_OTHER_MX]:                  #Summary
+[Z09_ROOT_MAIL_DOMAIN_MEANINGLESS]:           #Summary
+[Z09_TLD_MAIL_DOMAIN_HARMFUL]:                #Summary
+[Z09_UNEXPECTED_RCODE_MX_RESPONSE]:           #Summary
+[Zonemaster-Engine profile]:                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
 
 
 
