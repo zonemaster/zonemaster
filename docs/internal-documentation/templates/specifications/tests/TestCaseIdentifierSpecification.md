@@ -6,7 +6,7 @@ test level's name. The following test levels are defined and available:
 * Address
 * Basic
 * Connectivity
-* Consitency
+* Consistency
 * DNSSEC
 * Delegation
 * Nameserver
@@ -25,7 +25,7 @@ Example of test case identifiers:
 
 * Address03
 * Basic04
-* DNSSEC1515
+* DNSSEC15
 * Zone06
 
 One execptional test case identifier is `Basic00`, in which the index suffix is

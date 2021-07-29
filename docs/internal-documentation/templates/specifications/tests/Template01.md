@@ -3,7 +3,7 @@
 
 # Template01: This is a test specification template
 
-> > Replace "Template01" with test case ID. Replace the text with at short
+> > Replace "Template01" with test case ID. Replace the text with a short
 > > description
 
 ## Test case identifier
@@ -65,7 +65,7 @@ giving a correct DNS response for an authoritative name server.
 
 ## Summary
 
-> > First we can have bullets, if applicable, that states noteable things about
+> > First we can have bullets, if applicable, that states notable things about
 > > the execution or the messages. E.g.
 * If no CDS record is found, the test case will terminate early
   with no message tag outputted.
@@ -74,8 +74,14 @@ giving a correct DNS response for an authoritative name server.
 
 > > Here is a table of all message tags referred to in the steps. The tag in the
 > > first column, the default severity level in the second, and a statement on
-> > when the message is outputted in the third. Always use the same table set-up,
-> > but with the correct tags. E.g.:
+> > when the message is outputted in the fourth.
+> >
+> > If data from the test, e.g. list of name server IP addresses, is to be
+> > outputted with the message, then the datatypes are listed in the third
+> > column, "arguments". The third column is left empty when no arguments are
+> > used for the message.
+> >
+> > Always use the same table set-up, but with the correct tags. E.g.:
 
 Message Tag outputted         | Level   | Arguments  | Description of when message tag is outputted
 :-----------------------------|:--------|:-----------|:--------------------------------------------
@@ -103,15 +109,15 @@ message. The argument names are defined in the [argument list].
 > > should be as explicit as possible to avoid that different implementations or
 > > executions do different interpretations or assumptions.
 > >
-> > The steps should written in such a way that it reasonbly possible to use
-> > them to execute the test case manually using tools such as [`dig`]. It can
-> > be assumed that the reader of the text has good understanding of DNS.
+> > The steps should be written in such a way that it is reasonably possible to
+> > use them to execute the test case manually using tools such as [`dig`]. It
+> > can be assumed that the reader of the text has good understanding of DNS.
 > >
 > > The steps should state what messages (message tags) to be outputted when.
 > > Only messages with default severity level DEBUG or higher can be included.
 > >
 > > All messages with level INFO or higher must be included. I.e. the
-> > implementation should not include messages with default level INFO or higer
+> > implementation should not include messages with default level INFO or higher
 > > unless included in the specification.
 > >
 > > Messages DEBUG or lower can be added in the implementation as needed.
@@ -182,8 +188,7 @@ The test case is only performed if some DNSKEY record is found in the
 
 None.
 
-> > ...cases or specification on the outcome that this test case depend on,
-> > e.g.:
+> > ...or specification on the outcome that this test case depend on, e.g.:
 
 Example of formal dependency to be added.
 
@@ -223,17 +228,17 @@ respected.
 
 
 > > ----
-> > The text below is invisible when rendered by Github.
+> > The links listed below are not invisible when rendered by Github.
 > >
 > > All link names are listed below to the left with the link target to the
-> > right. They are only visiable when viewing the source of this document.
+> > right. They are only visible when viewing the source of this document.
 > >
 > > All message tags are linked to section **Summary**
 
-[T01_ALGO_NOT_SUPPORTED_BY_ZM]: #summary
-[T01_HAS_NSEC]:                 #summary
-[T01_HAS_NSEC3]:                #summary
-[T01_INCONSISTENT_DNSSEC]:      #summary
+[T01_ALGO_NOT_SUPPORTED_BY_ZM]:         #summary
+[T01_HAS_NSEC]:                         #summary
+[T01_HAS_NSEC3]:                        #summary
+[T01_INCONSISTENT_DNSSEC]:              #summary
 
 > > All links in the template are absolute, but in the specification they should
 > > be relative if the link target is in the zonemaster/zonemaster repository.
