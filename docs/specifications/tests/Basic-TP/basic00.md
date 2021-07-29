@@ -10,7 +10,7 @@
 * [Objective](#Objective)
   * [ASCII domain name](#ASCII-domain-name)
   * [IDN name](#IDN-name)
-  * [Lenght limitations](#Lenght-limitations)
+  * [Length limitations](#Length-limitations)
   * [Root zone](#Root-zone)
   * [Name preparation](#Name-preparation)
 * [Scope](#Scope)
@@ -48,7 +48,7 @@ for subsequent Zonemaster test cases.
 
 ### ASCII domain name
 
-An ASCII domain name is valid if follows the rules defined in
+An ASCII domain name is valid if it follows the rules defined in
 [RFC 1123][RFC 1123#2.1], section 2.1, i.e. only consists of the ASCII characters
 "a-z", "A-Z", "0-9", "." and "-" with the extension of the following two
 characters:
@@ -112,19 +112,19 @@ not, Zonemaster will not be able to process the domain name. Note that ASCII is 
 subset of UTF-8.
 
 
-### Lenght limitations
+### Length limitations
 
-There is a maximum length of the whole domain name and a maximum lenght of each
+There is a maximum length of the whole domain name and a maximum length of each
 label. These limitations are defined for a domain name of ASCII characters only,
 which means that any IDN label must be converted to the equivalent A-label before
 the limitations can be checked.
 
-The maximum total lenght of a domain name is 253 characters (or octets) if it
+The maximum total length of a domain name is 253 characters (or octets) if it
 has no final dot, 254 with the final dot ([RFC 1035][RFC 1035#2.3.4], section
 2.3.4). The RFC defines the limit as 255 octets, but that is the limitation in
 the DNS packet, where labels separation is done differently.
 
-The maximum lenght of a label is 63 characters (or octets),
+The maximum length of a label is 63 characters (or octets),
 [RFC 1035][RFC 1035#2.3.4], section 2.3.4. A label must be at least one character
 (octet) long unless it is the label representing the root, which is zero in
 length and always after the final dot.
@@ -143,7 +143,7 @@ The objectives of the name preparation are
 
 1. Create consistent representation of the same zone name, and
 2. Convert other "full stop" characters to FULL STOP, and
-3. Create legal IDNA 2008 U-labels from convinient alternative forms.
+3. Create legal IDNA 2008 U-labels from convenient alternative forms.
 
 The result of the name preparation is possibly a new form of the domain name to
 be used by the tests in other test cases.
@@ -152,8 +152,8 @@ be used by the tests in other test cases.
 
 It is assumed that the client has removed any leading or trailing space (U+0020)
 before entering the domain name (*Child Zone*) to be processed by this test
-case. The Zonemaster CLI, Zonemaster GUI or any other client must do that
-process.
+case. The Zonemaster CLI, the Zonemaster GUI or any other client must perform
+that process.
 
 #### Full stop
 
@@ -270,11 +270,11 @@ message. The argument names are defined in the [argument list].
     1. If all characters in *Label* are ASCII characters, then do:
        1. If any character in *Label* is not listed in *Valid ASCII*, then output
           [B00_INVALID_ASCII] and *Label*, and terminate this test case.
-       2. Else, downcase all uppcase characters as described in section
+       2. Else, downcase all upper case characters as described in section
           [Upper case](#Upper-case) above.
     2. Else do:
        1. Assume that *Label* is a U-label.
-       2. Downcase all uppcase characters as described in section
+       2. Downcase all upper case characters as described in section
           [Upper case](#Upper-case) above.
        3. Convert *Label* to an A-label as specified by
           [IDNA2008][RFC 5890#1.1].
