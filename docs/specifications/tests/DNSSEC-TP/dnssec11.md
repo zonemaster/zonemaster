@@ -1,4 +1,4 @@
-# DNSSEC11: Must be signed if there is DS in delegation
+# DNSSEC11: Must be signed if DS in delegation
 
 
 ## Test case identifier
@@ -23,8 +23,8 @@
 If the delegation of the zone contains DS records, i.e. if the parent
 zone has DS records with the same owner name as the apex of the zone,
 then the zone must be signed. If not, a DNSSEC aware resolver should
-consider the zone to be "[bogus][Terminology]" (see
-[RFC 4033][RFC 4033#section-5], section 5), and the zone will be unavailable.
+consider the zone to be "bogus" (see [RFC 4033][RFC 4033#section-5], section 5),
+and the zone will be unavailable.
 
 This test case will verify that a zone with DS in delegation from
 parent is also signed. Here we just verify that it has DNSKEY in apex.
@@ -37,9 +37,9 @@ It is assumed that *Child Zone* is tested and reported by other test cases:
   not giving a correct DNS response for an authoritative name server, covered
   by [Basic04].
 * This test case will ignore any irregularities in fetching the DS record from
-  parent zoen, covered by [DNSSEC02].
-* This test case will ignore if the DNSKEY and SOA RRsets are signed, covered
-  by [DNSSEC08] and [DNSSEC09].
+  parent zone, covered by [DNSSEC02].
+* This test case will ignore if the DNSKEY and SOA RRsets are unsigned, covered
+  by [DNSSEC08] and [DNSSEC09], respectively.
 
 ## Inputs
 
@@ -51,14 +51,15 @@ It is assumed that *Child Zone* is tested and reported by other test cases:
 
 ## Summary
 
-* 
+* If there are no DS records in the parent zone, this test case will terminate
+  without outputting any message.
 
 Message Tag outputted         | Level   | Arguments  | Description of when message tag is outputted
 :-----------------------------|:--------|:-----------|:--------------------------------------------
 DS11_INCONSISTENT_DS          | WARNING |            | Parent name servers are inconsistent on the existence of DS.
-DS11_INCONSISTENT_SIGNED_ZONE | ERROR   |            | Name servers for the child zone is inconsitent on wherer the zone is signed or not.
-DS11_INDETERMINED_DS          | ERROR   |            | It cannot be determined if the parent zone as DS for the child zone or not.
-DS11_INDETERMINED_SIGNED_ZONE | ERROR   |            | It cannot be determined if the child zone is signed or not.
+DS11_INCONSISTENT_SIGNED_ZONE | ERROR   |            | Name servers for the child zone are inconsistent on whether the zone is signed or not.
+DS11_UNDETERMINED_DS          | ERROR   |            | It cannot be determined if the parent zone has DS for the child zone or not.
+DS11_UNDETERMINED_SIGNED_ZONE | ERROR   |            | It cannot be determined if the child zone is signed or not.
 DS11_PARENT_WITHOUT_DS        | NOTICE  | ns_ip_list | List of parent name servers without DS for the child zone.
 DS11_PARENT_WITH_DS           | NOTICE  | ns_ip_list | List of parent name servers with DS for the child zone.
 DS11_NS_WITH_SIGNED_ZONE      | NOTICE  | ns_ip_list | List of child name servers with signed child zone.
@@ -76,14 +77,17 @@ message. The argument names are defined in the [argument list].
 ## Test procedure
 
 1.  Create the following empty sets:
-    1. Parent name server IP address ("Indetermined DS").
+    1. Parent name server IP address ("Undetermined DS").
     2. Parent name server IP address ("No DS Record").
     3. Parent name server IP address ("Has DS Record").
-    4. Child name server IP address ("Indeterminded DNSKEY")
+    4. Child name server IP address ("Undetermined DNSKEY")
     5. Child name server IP address ("No DNSKEY Record").
     6. Child name server IP address ("Has DNSKEY Record").
 
-2.  If *Test Type* is "normal", then:
+2.  If the *Test Type* is "[undelegated]" and if *Undelegated DS* is empty,
+    then do exit this test case.
+
+3.  If *Test Type* is "normal", then:
 
     1. Create a DS query with the DO flag set for the name of the *Child Zone*
        ("DS Query").
@@ -94,22 +98,22 @@ message. The argument names are defined in the [argument list].
     3. For each name server IP in *Parent NS IP* do:
 
        1. Send *DS Query* to the name server IP.
-       1. If the response has the TC flag set, re-query over TCP and use that
+       2. If the response has the TC flag set, re-query over TCP and use that
           response instead.
-       2. If there is no DNS response, then add the name server (IP) to the
-          *Indetermined DS* set.
-       3. Else, if the RCODE of response is not "NoError" ([IANA RCODE List]),
-          then add the name server (IP) to the *Indetermined DS* set.
-       4. Else, if the AA flag is not set in the response, then add the name
-          server (IP) to the *Indetermined DS* set.
-       5. Else, if there is no DS record with matching owner name in the
+       3. If there is no DNS response, then add the name server (IP) to the
+          *Undetermined DS* set.
+       4. Else, if the RCODE of response is not "NoError" ([IANA RCODE List]),
+          then add the name server (IP) to the *Undetermined DS* set.
+       5. Else, if the AA flag is not set in the response, then add the name
+          server (IP) to the *Undetermined DS* set.
+       6. Else, if there is no DS record with matching owner name in the
           answer section, then add the name server (IP) to the
           *No DS Record* set.
        7. Else add the name server (IP) to the *Has DS Record* set.
 
-    4. If the *Indetermined DS* set is non-empty and both the
+    4. If the *Undetermined DS* set is non-empty and both the
        *No DS Record* and *Has DS Record* sets are empty then do:
-       1. Output *[DS11_INDETERMINED_DS]*.
+       1. Output *[DS11_UNDETERMINED_DS]*.
        2. Exit this test case.
 
     5. If the *No DS Record* set is non-empty and the *Has DS Record* set is
@@ -122,9 +126,6 @@ message. The argument names are defined in the [argument list].
           *No DS Record*.
        3. Output *[DS11_PARENT_WITH_DS]* and list parent name servers in
           *Has DS Record*.
-
-3.  If the *Test Type* is "[undelegated]" and if *Undelegated DS* is empty,
-    then do exit this test case.
 
 4.  Create DNS queries for the child zone:
 
@@ -150,18 +151,18 @@ message. The argument names are defined in the [argument list].
     4. If the response has the TC flag set, re-query over TCP and use that
        response instead.
     5. If there is no DNS response, then add the name server (IP) to the
-       *Indeterminded DNSKEY* set.
+       *Undetermined DNSKEY* set.
     6. Else, if the RCODE of response is not "NoError" ([IANA RCODE List]),
-       then add the name server (IP) to the *Indeterminded DNSKEY* set.
+       then add the name server (IP) to the *Undetermined DNSKEY* set.
     7. Else, if the AA flag is not set in the response, then add the name server
-       IP to the *Indeterminded DNSKEY* set.
+       IP to the *Undetermined DNSKEY* set.
     8. Else, if there is no DNSKEY record with matching owner name in the answer
        section, then add the name server (IP) to the *No DNSKEY Record* set.
-    9. Else add the name server (IP) to the *Has Record Record* set.
+    9. Else add the name server (IP) to the *Has DNSKEY Record* set.
 
-8.  If the *Indetermined DNSKEY* set is non-empty and both the
+8.  If the *Undetermined DNSKEY* set is non-empty and both the
     *No DNSKEY Record* and *Has DNSKEY Record* sets are empty then output
-    *[DS11_INDETERMINED_SIGNED_ZONE]*.
+    *[DS11_UNDETERMINED_SIGNED_ZONE]*.
 
 9.  Else, if the *No DNSKEY Record* set is non-empty and the
     *Has DNSKEY Record* set is empty then output
@@ -208,8 +209,10 @@ None.
 
 ## Terminology
 
-The terms "bogus" is also discussed in in [RFC 8499][RFC 8499#section-11], section 11.
+No special terminology for this test case.
 
+
+[Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [Basic04]:                                    ../Basic-TP/basic014.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [DNSSEC README]:                              README.md
@@ -219,8 +222,8 @@ The terms "bogus" is also discussed in in [RFC 8499][RFC 8499#section-11], secti
 [DS11_DS_BUT_UNSIGNED_ZONE]:                  #Summary
 [DS11_INCONSISTENT_DS]:                       #Summary
 [DS11_INCONSISTENT_SIGNED_ZONE]:              #Summary
-[DS11_INDETERMINED_DS]:                       #Summary
-[DS11_INDETERMINED_SIGNED_ZONE]:              #Summary
+[DS11_UNDETERMINED_DS]:                       #Summary
+[DS11_UNDETERMINED_SIGNED_ZONE]:              #Summary
 [DS11_NS_WITH_SIGNED_ZONE]:                   #Summary
 [DS11_NS_WITH_UNSIGNED_ZONE]:                 #Summary
 [DS11_PARENT_WITHOUT_DS]:                     #Summary
