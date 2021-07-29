@@ -65,7 +65,7 @@ giving a correct DNS response for an authoritative name server.
 
 ## Summary
 
-> > First we can have bullets, if applicable, that states notable things about
+> > First we can have bullets, if applicable, that state notable things about
 > > the execution or the messages. E.g.
 * If no CDS record is found, the test case will terminate early
   with no message tag outputted.
@@ -228,7 +228,7 @@ respected.
 
 
 > > ----
-> > The links listed below are not invisible when rendered by Github.
+> > The links listed below are not visible when rendered by Github.
 > >
 > > All link names are listed below to the left with the link target to the
 > > right. They are only visible when viewing the source of this document.
