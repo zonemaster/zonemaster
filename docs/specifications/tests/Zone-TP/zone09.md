@@ -57,10 +57,9 @@ publish an MX record in apex of the zone (i.e. in the same position as the SOA
 record). If MX is not present, SMTP *can* deliver email using an address record
 (A or AAAA) as specified in [RFC 5321][RFC 5321#section-5.1], section 5.1, but
 that possibility is not in common use. This test case only checks for MX record
-and ignores the possibility to use address records for email since that is the
-absolutely dominating way to configure support for email is to use MX. If an
-address record is found in apex it is more often used for web service rather than
-email service.
+and ignores the possibility to use address records for email since the absolutely
+dominating way to configure support for email is to use MX. If an address record
+is found in apex it is more often used for web service rather than email service.
 
 [RFC 7505] standardizes "Null MX" which in means that there is no
 email service for the domain. If a "Null MX" is found, it is considered
