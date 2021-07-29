@@ -20,7 +20,7 @@
 ## Objective
 
 DNS delegations from a parent to a child are secured with DNSSEC by
-publishing one or several Delgation Signer (DS) records in the parent
+publishing one or several Delegation Signer (DS) records in the parent
 zone, along with the NS records for the delegation.
 
 For the secure delegation to work, at least one DS record must match a
@@ -44,8 +44,8 @@ the DNSKEY record that the DS points at does not have that flag set
 It is assumed that *Child Zone* is tested and reported by [Basic04] and
 [DNSSEC11]. This test case will just ignore non-responsive name servers or name
 servers not giving a correct DNS response for an authoritative name server
-(handled by [Basic04]). This test case will be terminated if not both DS is found
-in the parent zone and DNSKEY is found in the *Child Zone* (see [DNSSEC11]).
+(handled by [Basic04]). This test case will be terminated if not both DS in the
+parent zone and DNSKEY in the *Child Zone* are found (also see [DNSSEC11]).
 It is not reported in this test case if the parent servers are unresponsive or
 inconsistent.
 
@@ -61,9 +61,9 @@ inconsistent.
 ## Summary
 
 * If not both DS records and DNSKEY records are found, then further
-inverstigation will not be done and no messages will be outputted.
-* No messages will be outputted due errors in the responses from the parent name
-  servers.
+investigation will not be done and no messages will be outputted.
+* No messages will be outputted due to errors in the responses from the parent
+  name servers.
 
 Message Tag outputted              | Level   | Arguments          | Description of when message tag is outputted
 :----------------------------------|:--------|:-------------------|:--------------------------------------------
