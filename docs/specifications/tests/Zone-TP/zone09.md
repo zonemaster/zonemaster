@@ -139,7 +139,7 @@ message. The argument names are defined in the [argument list].
 
 5.  For each name server IP in *Name Server IP* do:
 
-    1. Send *SOA Query" over UDP to the name server.
+    1. Send *SOA Query* over UDP to the name server.
     2. Go to next name server IP if at least one of the following criteria is
        met:
        1. There is no DNS response.
