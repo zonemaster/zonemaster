@@ -1,4 +1,4 @@
-# DNSSEC08: RRSIG(DNSKEY) must be valid and created by a valid DNSKEY
+# DNSSEC08: Valid RRSIG for DNSKEY
 
 
 ## Test case identifier
@@ -22,7 +22,7 @@
 
 A DNSSEC signed zone should have a DNSKEY RRset in the zone apex
 ([RFC 4035][RFC 4035#section-2.1], section 2.1) and that RRset
-should be signed by a key that matches one of records in the
+should be signed by a key that matches one of the records in the
 DNSKEY RRset ([RFC 4035][RFC 4035#section-2.2], section 2.2).
 
 This test case will verify if the *Child Zone* meets that
@@ -45,17 +45,17 @@ This test case is only relevant if the zone has been DNSSEC signed.
 
 ## Summary
 
-* If no DNSKEY records are found, then further inverstigation will not be done
+* If no DNSKEY records are found, then further investigation will not be done
   and no messages will be outputted.
 
 Message Tag outputted              | Level   | Arguments          | Description of when message tag is outputted
 :----------------------------------|:--------|:-------------------|:--------------------------------------------
 DS08_ALGO_NOT_SUPPORTED_BY_ZM      | NOTICE  | ns_ip_list, algo_mnemo, algo_num, keytag | This installation of Zonemaster does not support the DNSKEY algorithm.
-DS08_MISSING_RRSIG_IN_RESPONSE     | ERROR   | ns_ip_list         | DNSKEY is unsigned which is against expectation
-DS08_NO_MATCHING_DNSKEY            | ERROR   | ns_ip_list, keytag | DNSKEY RRset is signed with an RRSIG that does not match any DNSKEY
-DS08_RRSIG_NOT_VALID_BY_DNSKEY     | ERROR   | ns_ip_list, keytag | DNSKEY RRset is signed with an RRSIG that cannot be validated by the matching DNSKEY
-DS08_DNSKEY_RRSIG_EXPIRED          | ERROR   | ns_ip_list, keytag | DNSKEY RRset is signed with an RRSIG that has expired
-DS08_DNSKEY_RRSIG_NOT_YET_VALID    | ERROR   | ns_ip_list, keytag | DNSKEY RRsetis signed with a not yet valid RRSIG
+DS08_DNSKEY_RRSIG_EXPIRED          | ERROR   | ns_ip_list, keytag | DNSKEY RRset is signed with an RRSIG that has expired.
+DS08_DNSKEY_RRSIG_NOT_YET_VALID    | ERROR   | ns_ip_list, keytag | DNSKEY RRset is signed with a not yet valid RRSIG.
+DS08_MISSING_RRSIG_IN_RESPONSE     | ERROR   | ns_ip_list         | DNSKEY is unsigned which is against expectation.
+DS08_NO_MATCHING_DNSKEY            | ERROR   | ns_ip_list, keytag | DNSKEY RRset is signed with an RRSIG that does not match any DNSKEY.
+DS08_RRSIG_NOT_VALID_BY_DNSKEY     | ERROR   | ns_ip_list, keytag | DNSKEY RRset is signed with an RRSIG that cannot be validated by the matching DNSKEY.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -87,9 +87,10 @@ message. The argument names are defined in the [argument list].
     2. If at least one of the following criteria is met, then go to next name
        server IP:
          1. There is no DNS response.
-         2. RCODE is not NOERROR.
-         3. AA flag is not set.
-         4. There are no DNSKEY records in the answer section.
+         2. The RCODE of response is not "NoError" ([IANA RCODE List]).
+         3. The AA flag is not set in the response.
+         4. There is no DNSKEY record with matching owner name in the answer
+            section.
     3. Retrieve the DNSKEY records and its RRSIG records from the answer section.
     4. If there is no RRSIG for the DNSKEY record, then add the name server IP
        address to the *DNSKEY without RRSIG* set and go to next name server IP.
