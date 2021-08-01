@@ -81,15 +81,16 @@ giving a correct DNS response for an authoritative name server.
 > > column, "arguments". The third column is left empty when no arguments are
 > > used for the message.
 > >
-> > Always use the same table set-up, but with the correct tags. E.g.:
+> > Always use the same table set-up, but with the correct tags. Keep the table
+> > sorted by message tag. Here is an example:
 
-Message Tag outputted         | Level   | Arguments  | Description of when message tag is outputted
-:-----------------------------|:--------|:-----------|:--------------------------------------------
-T01_BROKEN_DNSSEC             | ERROR   | ns_ip_list | Replies do not follow the standard.
+Message Tag outputted         | Level   | Arguments            | Description of when message tag is outputted
+:-----------------------------|:--------|:---------------------|:--------------------------------------------
 T01_ALGO_NOT_SUPPORTED_BY_ZM  | NOTICE  | algo_descr, algo_num | The algorithm used is not supported by the Zonemaster implementation.
-T01_HAS_NSEC                  | INFO    |            | The *Child Zone* uses NSEC.
-T01_HAS_NSEC3                 | INFO    |            | The *Child Zone* uses NSEC3.
-T01_INCONSISTENT_DNSSEC       | ERROR   | keytag     | The configuration of the zone is inconsistent with respect to DNSSEC.
+T01_BROKEN_DNSSEC             | ERROR   | ns_ip_list           | Replies do not follow the standard.
+T01_HAS_NSEC                  | INFO    |                      | The *Child Zone* uses NSEC.
+T01_HAS_NSEC3                 | INFO    |                      | The *Child Zone* uses NSEC3.
+T01_INCONSISTENT_DNSSEC       | ERROR   | keytag               | The configuration of the zone is inconsistent with respect to DNSSEC.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
