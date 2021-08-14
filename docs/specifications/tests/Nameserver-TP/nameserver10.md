@@ -41,7 +41,7 @@ see [IANA RCODE Registry].
 
 It is assumed that *Child Zone* has been tested by [Basic04] and [Nameserver02].
 Issues covered by [Basic04] (basic name server issues) or [Nameserver02] (basic
-EDNS issues) will no result in messagess from this test case.
+EDNS issues) will not result in messages from this test case.
 
 
 ## Inputs
@@ -69,50 +69,47 @@ message. The argument names are defined in the [argument list].
 ## Test procedure
 
 1. Create the following empty sets:
+   1. Name server IP ("No Response EDNS1 Query").
+   2. Name server IP and associated RCODE ("Unexpected RCODE").
+   3. Name server IP ("EDNS Response Error").
 
-  1. Name server IP ("No Response EDNS1 Query").
-  2. Name server IP and associated RCODE ("Unexpected RCODE").
-  3. Name server IP ("EDNS Response Error").
-
-
-1. Create an SOA query for the *Child Zone* with an OPT record with EDNS version
+2. Create an SOA query for the *Child Zone* with an OPT record with EDNS version
    set to "0" and with EDNS option of payload size ("bufsize") set to 512 and
    other EDNS options and flags unset ("Query One").
 
-2. Create an SOA query for the *Child Zone* with an OPT record with EDNS version
+3. Create an SOA query for the *Child Zone* with an OPT record with EDNS version
    set to "1" and with EDNS option of payload size ("bufsize") set to 512 and
    other EDNS options and flags unset ("Query Two").
 
-3. Obtain the set of name server IP addresses using [Method4] and [Method5]
+4. Obtain the set of name server IP addresses using [Method4] and [Method5]
    ("Name Server IP").
 
-4. For each name server in *Name Server IP* do:
+5. For each name server in *Name Server IP* do:
+   1. Send *Query One* over UDP to the name server, collect the response and do:
+      1. If there is no DNS response then go to next name server.
+      2. Else, if the RCODE value is not "NOERROR" then go to next name server.
+   2. Send *Query Two* over UDP to the name server, collect the response and do:
+      1. If there is no DNS response, then add the name server IP to the
+         *No Response EDNS1 Query* set.
+      2. Else, if the DNS response does not have RCODE with value "BADVERS", then
+         add the name server IP and RCODE value to the *Unexpected RCODE* set.
+      3. Else, if the DNS response meet all the following three criteria, then
+         just go to the next name server (correct response):
+         1. It has the RCODE "BADVERS".
+         2. It has EDNS version 0.
+         3. The answer section is empty.
+      4. Else add the name server IP to the *EDNS Response Error* set.
 
-  1. Send *Query One* over UDP to the name server, collect the response and do:
-     1. If there is no DNS response then go to next name server.
-     2. Else, if the RCODE value is not "NOERROR" then go to next name server.
-  2. Send *Query Two* over UDP to the name server, collect the response and do:
-     1. If there is no DNS response, then add the name server IP to the
-        *No Response EDNS1 Query* set.
-     2. Else, if the DNS response does not have RCODE with value "BADVERS", then
-        add the name server IP and RCODE value to the *Unexpected RCODE* set.
-     3. Else, if the DNS response meet all the following three criteria, then
-        just go to the next name server (correct response):
-        1. It has the RCODE "BADVERS".
-        2. It has EDNS version 0.
-        3. The answer section is empty.
-     4. Else add the name server IP to the *EDNS Response Error* set.
-
-5. If the *No Response EDNS1 Query* set is non-empty, then output
+6. If the *No Response EDNS1 Query* set is non-empty, then output
    *[N10_NO_RESPONSE_EDNS1_QUERY]* with the name server IP addresses from the
    set.
 
-6. If the *Unexpected RCODE* set is non-empty, then for each RCODE value in the
+7. If the *Unexpected RCODE* set is non-empty, then for each RCODE value in the
    set do:
    * Output *[N10_UNEXPECTED_RCODE]* with the RCODE value and the name server
      IP addresses for that RCODE value.
 
-7. If the *EDNS Response Error* set is non-empty, then output
+8. If the *EDNS Response Error* set is non-empty, then output
    *[N10_EDNS_RESPONSE_ERROR]* with the name server IP addresses from the set.
 
 
@@ -135,10 +132,6 @@ If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol and log a message reporting
 the ignored result.
 
-If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the result
-of any test using that transport protocol. Log a message reporting on the ignored
-result.
-
 
 ## Intercase dependencies
 
@@ -150,19 +143,23 @@ None
 No special terminology for this test case.
 
 
-
-
-
+[Argument list]:                           https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [Basic04]:                                 ../Basic-TP/basic04.md
+[CRITICAL]:                                ../SeverityLevelDefinitions.md#critical
+[ERROR]:                                   ../SeverityLevelDefinitions.md#error
 [IANA RCODE Registry]:                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[INFO]:                                    ../SeverityLevelDefinitions.md#info
 [Method4]:                                 ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                                 ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [N10_EDNS_RESPONSE_ERROR]:                 #Summary
 [N10_NO_RESPONSE_EDNS1_QUERY]:             #Summary
 [N10_UNEXPECTED_RCODE]:                    #Summary
+[NOTICE]:                                  ../SeverityLevelDefinitions.md#notice
 [Nameserver02]:                            ../Nameserver-TP/nameserver02.md
 [RFC 1035#section-4.1.1]:                  https://tools.ietf.org/html/rfc1035#section-4.1.1
 [RFC 4033#section-3]:                      https://tools.ietf.org/html/rfc4033#section-3
 [RFC 6891#section-6.1.3]:                  https://tools.ietf.org/html/rfc6891#section-6.1.3
 [RFC 6891]:                                https://tools.ietf.org/html/rfc6891
-
+[Severity Level Definitions]:              ../SeverityLevelDefinitions.md
+[WARNING]:                                 ../SeverityLevelDefinitions.md#warning
+[Zonemaster-Engine profile]:               https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
