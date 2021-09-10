@@ -56,7 +56,7 @@ giving a correct DNS response for an authoritative name server.
 ## Inputs
 
 > > Input data to the test case. Always include the Child zone, but it can also
-> > be other data units.
+> > be other data units, such as current time, if that is relevant.
 > >
 > > The input data name is put in quote marks '""', then a hyphen '-' as a
 > > separator, and finally a description.
@@ -108,7 +108,7 @@ message. The argument names are defined in the [argument list].
 
 > > This section contains the detailed steps to execute the test case. The steps
 > > should be as explicit as possible to avoid that different implementations or
-> > executions do different interpretations or assumptions.
+> > executions make different interpretations or assumptions.
 > >
 > > The steps should be written in such a way that it is reasonably possible to
 > > use them to execute the test case manually using tools such as [`dig`]. It
@@ -121,7 +121,8 @@ message. The argument names are defined in the [argument list].
 > > implementation should not include messages with default level INFO or higher
 > > unless included in the specification.
 > >
-> > Messages DEBUG or lower can be added in the implementation as needed.
+> > Messages DEBUG or lower can be added in the implementation as needed without
+> > being included in the specification.
 > >
 > > Also include statement on what other information to be accompanied
 > > with the message (included as parameter to the message tag). Example of such
@@ -172,9 +173,9 @@ In other cases, no message or only messages with severity level
 > > First we have standard text that should normally be the same in all
 > > test case specifications.
 
-If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
-result of any test using this transport protocol. Log a message reporting
-on the ignored result.
+If either IPv4 or IPv6 transport is disabled, skip sending queries over that
+transport protocol. A message will be outputted reporting that the transport
+protocol has been skipped.
 
 > > Then there could be some other limitations or specialties of how or when
 > > this test case is run. E.g.:

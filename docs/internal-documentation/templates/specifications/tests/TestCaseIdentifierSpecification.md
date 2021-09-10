@@ -13,12 +13,12 @@ test level's name. The following test levels are defined and available:
 * Syntax
 * Zone
 
-The test case identifier has the format: \<Test Level name> + \<Index>
+The test case identifier has the format: `{Test Level name} + {Index}`
 
 The test level name is listed above, and the identifier takes the same upper
 case/lower case format as listed above.
 
-The \<Index> is a two-digit suffix 01-99, and should be selected so that the test
+The `{Index}` is a two-digit suffix 01-99, and should be selected so that the test
 case identifier is unique. Normally the first free index is selected.
 
 Example of test case identifiers:
