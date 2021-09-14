@@ -81,9 +81,8 @@ This test case assumes that the domain name neither starts nor ends with space
 that before entering the domain name to this test case, or else this test case
 will fail.
 
-This test case requires that the domain name is represented as a non-string of
-[Unicode] characters. In this test case, ASCII is identical to the first 128
-characters in [Unicode] (0000..007F).
+In this test case, ASCII is identical to the first 128 characters in [Unicode]
+(0000..007F).
 
 [RFC 1123][RFC 1123#2.1], section 2.1, also specifies that a domain name label
 may not start or end with a HYPHEN-MINUS ("-"). The SOLIDUS ("/"), if used, is
@@ -95,7 +94,8 @@ assumed to be handled in test cases [Syntax01] and [Syntax02].
 
 ## Inputs
 
-* "Domain Name" - The domain name to be tested and normalized.
+* "Domain Name" - The domain name to be tested and normalized. It must be
+  a non-empty string of [Unicode] characters.
 * "Valid ASCII" - Set of permitted ASCII characters in table 1 below.
 * "Label Separator" - Set of valid label separtors in table 2 below.
 * "Full Stops" - Set of full stops in table 3 below.
@@ -103,6 +103,7 @@ assumed to be handled in test cases [Syntax01] and [Syntax02].
 
 Tables 1, 2 and 3 are found in the [Detailed test case requirements] section
 below.
+
 
 ## Outputs
 
@@ -171,14 +172,14 @@ message. The argument names are defined in the [argument list].
              the conversion above.
     3. Go to next label.
 
-11. For each "Label" in *Domain Labels* do:
+10. For each "Label" in *Domain Labels* do:
     1. If the length (number of characters) in *Label* is greater than 63 then
        output *[B00_LABEL_TOO_LONG]* and *Label*, and terminate this test case.
 
-12. Map the labels in *Domain Labels* back into *Domain Name* with one dot (".",
+11. Map the labels in *Domain Labels* back into *Domain Name* with one dot (".",
     U+002E), between the labels (no dots if the there is only one label).
 
-13. If the length of *Domain Name* is longer than 253 characters including the
+12. If the length of *Domain Name* is longer than 253 characters including the
     dots, then output *[B00_DOMAIN_NAME_TOO_LONG]* and terminate this test case.
 
 ## Outcome(s)
