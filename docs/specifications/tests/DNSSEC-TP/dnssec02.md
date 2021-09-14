@@ -41,12 +41,14 @@ the DNSKEY record that the DS points at does not have that flag set
 
 ## Scope
 
-It is assumed that *Child Zone* is tested and reported by [Basic04] and
-[DNSSEC11]. This test case will just ignore non-responsive name servers or name
-servers not giving a correct DNS response for an authoritative name server
-(handled by [Basic04]). This test case will be terminated if not both DS in the
-parent zone and DNSKEY in the *Child Zone* are found (also see [DNSSEC11]).
-It is not reported in this test case if the parent servers are unresponsive or
+This test case will just ignore non-responsive name servers or name servers not
+giving a correct DNS response for an authoritative name server (handled by
+[Basic04]).
+
+If no DS record is found in the parent zone or no DNSKEY record is found in the
+*Child Zone* then this test case will be terminated (also see [DNSSEC11]).
+
+This test case does not report if the parent servers are unresponsive or
 inconsistent.
 
 
@@ -60,8 +62,8 @@ inconsistent.
 
 ## Summary
 
-* If not both DS records and DNSKEY records are found, then further
-investigation will not be done and no messages will be outputted.
+* Both DS record and DNSKEY record must be found, or else no further
+  investigation will be done and no messages will be outputted.
 * No messages will be outputted due to errors in the responses from the parent
   name servers.
 
@@ -76,7 +78,7 @@ DS02_NO_MATCH_DS_DNSKEY            | ERROR   | ns_ip_list, keytag | The DS recor
 DS02_RRSIG_NOT_VALID_BY_DNSKEY     | ERROR   | ns_ip_list, keytag | The RRSIG cannot be validated by the DNSKEY that it refers to.
 
 The value in the Level column is the default severity level of the message. The
-severity level can be changed in the [Zonemaster-Engine profile]. Also see the
+severity level can be overridden in the [Zonemaster-Engine profile]. Also see the
 [Severity Level Definitions] document.
 
 The argument names in the Arguments column lists the arguments used in the
@@ -85,8 +87,6 @@ message. The argument names are defined in the [argument list].
 
 ## Test procedure
 
-
-
 1.  Create the following empty sets:
     1. DS record RDATA ("DS Record").
     2. Name server IP and key tag from DS record ("No DNSKEY for DS").
@@ -94,8 +94,8 @@ message. The argument names are defined in the [argument list].
     4. Name server IP and DNSKEY record key tag ("DNSKEY not for zone signing").
     5. Name server IP and DNSKEY record key tag ("DNSKEY not SEP").
     6. Name server IP and DNSKEY record key tag ("No matching DNSKEY RRSIG").
-    7.  Name server IP address, DNSKEY record key tag and DNSKEY algorithm code
-        ("Algo Not Supported By ZM").
+    7. Name server IP address, DNSKEY record key tag and DNSKEY algorithm code
+       ("Algo Not Supported By ZM").
     8. Name server IP and key tag from RRSIG record ("RRSIG not valid by DNSKEY").
 
 2.  If the *Test Type* is "[undelegated]" do:
@@ -106,7 +106,7 @@ message. The argument names are defined in the [argument list].
     1. Create a DS query with the DO flag set for the name of the *Child Zone*
        ("DS Query").
     2. Retrieve all name server IP addresses for the parent zone of
-       *Child Zone* using [Method1] ("Parent NS IP").
+       *Child Zone* using [Method1] (store as "Parent NS IP").
     3. For each parent name server in *Parent NS IP* do:
        1. Send *DS Query* to the name server IP.
        2. If at least one of the following criteria is met, then go to next
@@ -119,11 +119,12 @@ message. The argument names are defined in the [argument list].
        3. Retrieve the DS records from the response and add them to the
           *DS Record* set.
     4. If the *DS Record* set is empty exit this test case.
+
 4.  Create a DNSKEY query for the *Child Zone* with the DO flag set
     ("DNSKEY Query").
 
 5.  Obtain the set of child name server IP addresses using [Method4] and
-    [Method5] ("Child NS IP").
+    [Method5] (store as "Child NS IP").
 
 6.  For each child name server in *Child NS IP* do:
     1. Send *DNSKEY Query* over UDP to the name server IP and collect the response.
@@ -134,11 +135,12 @@ message. The argument names are defined in the [argument list].
        3. The AA flag is not set in the response.
        4. There is no DNSKEY record with owner name matching the query in the
           answer section.
-    3. Extract the DNSKEY RRset ("DNSKEY RRs").
-    4. Extract the RRSIG records covering the DNSKEY RRset, possibly
-       none ("DNSKEY RRSIG").
+    3. Retrieve the DNSKEY RRset (store as "DNSKEY RRs").
+    4. Retrieve the RRSIG records covering the DNSKEY RRset, possibly
+       none (store as "DNSKEY RRSIG").
     5. For each DS in *DS Records*, do:
-       1. Find the equivalent DNSKEY in *DNSKEY RRs* by key ID (key tag).
+       1. Find the equivalent DNSKEY in *DNSKEY RRs* by key ID (key tag). If
+          there is more than one such DNSKEY, select the correct one.
        2. If matching DNSKEY is not found add DS key tag and name server IP to
           the *No DNSKEY for DS* set.
        3. If the DS values (algorithm and digest) do not match the DNSKEY record
@@ -148,7 +150,8 @@ message. The argument names are defined in the [argument list].
        5. If bit 15 of the DNSKEY flags field is unset (value 0), then add the
           DNSKEY record key tag and name server IP to the *DNSKEY not SEP*
           set.
-       6. Find the equivalent RRSIG in *DNSKEY RRSIG* by key ID (key tag).
+       6. Find the equivalent RRSIG in *DNSKEY RRSIG* by key ID (key tag). If
+          there is more than one such RRSIG record, select the correct one.
        7. If matching RRSIG is not found, add DNSKEY record key tag and name
           server IP to the *No matching DNSKEY RRSIG* set.
        8. Else, if the Zonemaster installation does not have support for the
