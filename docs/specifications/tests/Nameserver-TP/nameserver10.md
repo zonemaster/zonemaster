@@ -39,7 +39,6 @@ see [IANA RCODE Registry].
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested by [Basic04] and [Nameserver02].
 Issues covered by [Basic04] (basic name server issues) or [Nameserver02] (basic
 EDNS issues) will not result in messages from this test case.
 
