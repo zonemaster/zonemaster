@@ -27,7 +27,7 @@ returned for a query for an non-existent name.
 
 Furthermore, it is verified that the name servers for the zone are consistent
 about NSEC and NSEC3, i.e. either all servers should use NSEC or all servers
-should use NSEC3. It is never permitted to server both NSEC and NSEC3 for the
+should use NSEC3. It is never permitted to serve both NSEC and NSEC3 for the
 same zone.
 
 The use of the NSEC RR type is described in
@@ -43,9 +43,9 @@ use in the DNS response is described in
 
 ## Scope
 
-It is assumed that *Child Zone* is tested and reported by [Basic04]. This test
-case will just ignore non-responsive name servers or name servers not giving a
-correct DNS response for an authoritative name server.
+This test case will just ignore non-responsive name servers or name servers not
+giving a correct DNS response for an authoritative name server (covered by
+[Basic04]).
 
 This test case is only relevant if the zone has been DNSSEC signed.
 
