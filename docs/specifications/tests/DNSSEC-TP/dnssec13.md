@@ -93,9 +93,7 @@ message. The argument names are defined in the [argument list].
 
 6. For each name server IP in the *NS IP* set do:
 
-   1. Create an empty set of DNSKEY algorithms "DNSKEY Algorithm" (for each name
-      server IP).
-
+   1. Create an empty set of DNSKEY algorithms ("DNSKEY Algorithm").
    2. Send *DNSKEY Query* over UDP and do:
       1. Go to next name server IP if any of the following criteria is met:
          1. No DNS response is returned.
