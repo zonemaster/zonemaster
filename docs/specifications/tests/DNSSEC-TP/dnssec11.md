@@ -1,4 +1,4 @@
-# DNSSEC11: Must be signed if DS in delegation
+# DNSSEC11: DS in delegation requires signed zone
 
 
 ## Test case identifier
@@ -33,13 +33,13 @@ parent is also signed. Here we just verify that it has DNSKEY in apex.
 
 It is assumed that *Child Zone* is tested and reported by other test cases:
 
-* This test case will just ignore non-responsive name servers or name servers
-  not giving a correct DNS response for an authoritative name server, covered
-  by [Basic04].
+* This test case will ignore non-responsive name servers or name servers not
+  giving a correct DNS response for an authoritative name server (covered
+  by [Basic04]).
 * This test case will ignore any irregularities in fetching the DS record from
-  parent zone, covered by [DNSSEC02].
-* This test case will ignore if the DNSKEY and SOA RRsets are unsigned, covered
-  by [DNSSEC08] and [DNSSEC09], respectively.
+  parent zone (covered by [DNSSEC02]).
+* This test case will ignore if the DNSKEY and SOA RRsets are not signed
+  (covered by [DNSSEC08] and [DNSSEC09], respectively).
 
 ## Inputs
 
@@ -100,16 +100,15 @@ message. The argument names are defined in the [argument list].
        1. Send *DS Query* to the name server IP.
        2. If the response has the TC flag set, re-query over TCP and use that
           response instead.
-       3. If there is no DNS response, then add the name server (IP) to the
-          *Undetermined DS* set.
-       4. Else, if the RCODE of response is not "NoError" ([IANA RCODE List]),
-          then add the name server (IP) to the *Undetermined DS* set.
-       5. Else, if the AA flag is not set in the response, then add the name
-          server (IP) to the *Undetermined DS* set.
-       6. Else, if there is no DS record with matching owner name in the
+       3. Add the name server (IP) to the *Undetermined DS* set if at least one
+          of the following criteria matches:
+          1. There is no DNS response.
+          2. The RCODE of response is not "NoError" ([IANA RCODE List]).
+          3. The AA flag is not set in the response.
+       4. If there is no DS record with matching owner name in the
           answer section, then add the name server (IP) to the
           *No DS Record* set.
-       7. Else add the name server (IP) to the *Has DS Record* set.
+       5. Else add the name server (IP) to the *Has DS Record* set.
 
     4. If the *Undetermined DS* set is non-empty and both the
        *No DS Record* and *Has DS Record* sets are empty then do:
@@ -150,15 +149,14 @@ message. The argument names are defined in the [argument list].
        response.
     4. If the response has the TC flag set, re-query over TCP and use that
        response instead.
-    5. If there is no DNS response, then add the name server (IP) to the
-       *Undetermined DNSKEY* set.
-    6. Else, if the RCODE of response is not "NoError" ([IANA RCODE List]),
-       then add the name server (IP) to the *Undetermined DNSKEY* set.
-    7. Else, if the AA flag is not set in the response, then add the name server
-       IP to the *Undetermined DNSKEY* set.
-    8. Else, if there is no DNSKEY record with matching owner name in the answer
+    5. Add the name server (IP) to the *Undetermined DNSKEY* set if at least one
+       of the following criteria matches:
+       1. There is no DNS response.
+       2. The RCODE of response is not "NoError" ([IANA RCODE List]).
+       3. The AA flag is not set in the response.
+    6. If there is no DNSKEY record with matching owner name in the answer
        section, then add the name server (IP) to the *No DNSKEY Record* set.
-    9. Else add the name server (IP) to the *Has DNSKEY Record* set.
+    7. Else add the name server (IP) to the *Has DNSKEY Record* set.
 
 8.  If the *Undetermined DNSKEY* set is non-empty and both the
     *No DNSKEY Record* and *Has DNSKEY Record* sets are empty then output
