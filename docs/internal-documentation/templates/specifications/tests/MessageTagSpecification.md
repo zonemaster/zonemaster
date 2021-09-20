@@ -21,7 +21,7 @@ test case ID. For specification of the test case ID see
 
 The test level abbreviation is always as follows:
 
-Test level name  | Example Test case ID   | Abreviation | Prefix  | Example message tag
+Test level name  | Example Test case ID   | Abbreviation| Prefix  | Example message tag
 :----------------|:-----------------------|:------------|:--------|:-------------------
 Address          | Adress01               | A           | A01     | A01_NO_RESPONSE
 Basic            | Basic04                | B           | B04     | B04_NO_DATA
