@@ -1,5 +1,30 @@
 Release history of Zonemaster
 
+v2021.1.3 2021-09-17 (public fix release)
+
+ [Fixes]
+ - See Zonemaster-Engine for these two fixes:
+   - Resolves an installation issue in Zonemaster-Engine.
+   - Corrects a bug in Zonemaster-Engine make the test engine return incorrect
+     message in certain cases.
+ - See Zonemaster-Backend for these three fixes:
+   - Corrects a security issue that makes it possible to create API user and
+     batch jobs from any network that can access the RPCAPI.
+   - Adds configuration setting to turn batch functions on and off.
+   - Corrects a bug that prevented RPCAPI daemon to currectly handle incorrect
+     configuration on FreeBSD.
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components.
+   For each component, see its Changes file or Github release notes.
+
+   Zonemaster-LDNS     v2.2.0   https://github.com/zonemaster/zonemaster-ldns/releases/tag/v2.2.0
+   Zonemaster-Engine   v4.2.3   https://github.com/zonemaster/zonemaster-engine/releases/tag/v4.2.3
+   Zonemaster-CLI      v3.1.0   https://github.com/zonemaster/zonemaster-cli/releases/tag/v3.1.0
+   Zonemaster-Backend  v7.0.0   https://github.com/zonemaster/zonemaster-backend/releases/tag/v7.0.0
+   Zonemaster-GUI      v3.3.0   https://github.com/zonemaster/zonemaster-gui/releases/tag/v3.3.0
+
+
 v2021.1.2 2021-07-23 (public fix release version)
 
  [Fixes]
