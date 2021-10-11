@@ -48,7 +48,7 @@ This test case is only relevant if the zone has been DNSSEC signed.
 
 ## Summary
 
-* If no DNSKEY records are found, then further inverstigation will not be done
+* If no DNSKEY records are found, then further investigation will not be done
   and no messages will be outputted.
 
 Message Tag outputted              | Level   | Arguments          | Description of when message tag is outputted
@@ -72,8 +72,7 @@ message. The argument names are defined in the [argument list].
 
 1.  Create a DNSKEY query with DO flag set for *Child Zone* ("DNSKEY Query").
 
-2.  Create an SOA query with DO flag set for *Non-Existent Query Name*
-    ("SOA Query").
+2.  Create an SOA query with DO flag set for *Child Zone* ("SOA Query").
 
 3.  Retrieve all name server IP addresses for the
     *Child Zone* using [Method4] and [Method5] ("NS IP").
@@ -93,20 +92,21 @@ message. The argument names are defined in the [argument list].
     2. If at least one of the following criteria is met, then go to next name
        server IP:
          1. There is no DNS response.
-         2. RCODE is not NOERROR.
-         3. AA flag is not set.
-         4. There are no DNSKEY records in the answer section.
+         2. The RCODE of response is not "NoError" ([IANA RCODE List]).
+         3. The AA flag is not set in the response.
+         4. There is no DNSKEY record with matching owner name in the answer
+            section.
     3. Retrieve the DNSKEY records from the answer section.
     4. Send *SOA Query* over UDP to the name server IP.
-    5. If at least one of the following createria is met, then go to next name
+    5. If at least one of the following criteria is met, then go to next name
        server IP:
          1. There is no DNS response.
-         2. RCODE not NOERROR.
-         3. AA flag is not set.
-         4. There is no SOA record with owner name matching the query in the
-            answer section.
+         2. The RCODE of response is not "NoError" ([IANA RCODE List]).
+         3. The AA flag is not set in the response.
+         4. There is no SOA record with matching owner name in the answer
+            section.
     6. Retrieve the SOA record and its RRSIG record.
-       * Only retrieve the one SOA record if there are multiple records.
+       * Retrieve only one SOA record if there are multiple records.
     7. If there is no RRSIG for the SOA record, then add the name server IP
        address to the *SOA without RRSIG* set and go to next name server IP.
     8. Else, for each SOA RRSIG record do:
