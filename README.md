@@ -49,25 +49,27 @@ and processor architecture listed below.
 
 ### Supported operating system versions
 
-* CentOS 7
-* CentOS 8
-* Debian 10
-* FreeBSD 12.2
+* Debian 11
 * FreeBSD 13.0
-* Ubuntu 18.04
 * Ubuntu 20.04
+* Rocky Linux 8.4
+
+Only the latest long-term supported version of Debian, FreeBSD, Rocky Linux and
+Ubuntu, respectively, is supported.
+
+Rocky Linux has replaced CentOS in Zonemaster version v2021.2 since CentOS 8 will
+not be supported beyond 2021-12-31 and CentOS 7 is old and does not support
+modern OpenSSL required by Zonemaster. Rocky Linux is also a Red Hat derivative
+and is available at e.g. AWS and Microsoft Azure.
 
 ### Supported database engine versions
 
 Operating System | MariaDB | PostgreSQL | SQLite
 ---------------- | --------| -----------|------------------------
-CentOS 7         | 5.5     | 9.3        | 3.7.17
-CentOS 8         | 10.3    | 10.14      | 3.26.0
-Debian 10        | 10.3    | 11.7       | 3.27.2
-FreeBSD 12.2     | 5.7     | 12.6       | 3.35.5
-FreeBSD 13.0     | 5.7     | 12.6       | 3.35.5
-Ubuntu 18.04     | 10.1    | 10.14      | 3.22.0
+Debian 11        | TBD     | TBD        | TBD
+FreeBSD 13.0     | 5.7     | 12.8       | 3.35.5
 Ubuntu 20.04     | 10.3    | 12.4       | 3.31.1
+Rocky Linux 8.4  | TBD     | TBD        | TBD
 
 * FreeBSD uses MySQL, not MariaDB. 
 * FreeBSD bundles SQLite in Perl DBD::SQLite.
@@ -80,13 +82,10 @@ introduced in PostgreSQL version 9.3, and earlier versions are as such not suppo
 
 Operating System | Perl
 ---------------- | ----
-CentOS 7         | 5.16
-CentOS 8         | 5.26
-Debian 10        | 5.28
-FreeBSD 11.4     | 5.32
-FreeBSD 12.2     | 5.32
-Ubuntu 18.04     | 5.26
+Debian 11        | TBD
+FreeBSD 13.0     | 5.32
 Ubuntu 20.04     | 5.30
+Rocky Linux 8.4  | TBD
 
 Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been
 tested with the default version of Perl in the OSs as listed in the table above.
@@ -120,7 +119,7 @@ installation instructions given for Zonemaster have been followed. A test of the
 domains `ed25519.nl` and `superdns.nl` will reveal if the Zonemaster
 installation has the support or not for algorithms 15 and 16, respectively.
 
-All supported OSs, except CentOS 7, support algorithms 15 and 16.
+All supported OSs support algorithms 15 and 16.
 
 ## Translation
 
