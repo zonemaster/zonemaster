@@ -66,10 +66,10 @@ and is available at e.g. AWS and Microsoft Azure.
 
 Operating System | MariaDB | PostgreSQL | SQLite
 ---------------- | --------| -----------|------------------------
-Debian 11        | TBD     | TBD        | TBD
+Debian 11        | 10.5    | 13.3       | 3.34
 FreeBSD 13.0     | 5.7     | 12.8       | 3.35.5
 Ubuntu 20.04     | 10.3    | 12.4       | 3.31.1
-Rocky Linux 8.4  | TBD     | TBD        | TBD
+Rocky Linux 8.4  | 10.3    | 10.17      | 3.26
 
 * FreeBSD uses MySQL, not MariaDB. 
 * FreeBSD bundles SQLite in Perl DBD::SQLite.
@@ -82,10 +82,10 @@ introduced in PostgreSQL version 9.3, and earlier versions are as such not suppo
 
 Operating System | Perl
 ---------------- | ----
-Debian 11        | TBD
+Debian 11        | 5.32
 FreeBSD 13.0     | 5.32
 Ubuntu 20.04     | 5.30
-Rocky Linux 8.4  | TBD
+Rocky Linux 8.4  | 5.26
 
 Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been
 tested with the default version of Perl in the OSs as listed in the table above.
