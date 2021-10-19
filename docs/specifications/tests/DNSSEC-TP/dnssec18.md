@@ -5,11 +5,10 @@
 
 ## Objective
 
-CDS and CDNSKEY record types are defined in [RFC 7344] and [RFC 8078].
-Both record types are optional in a zone. The objective of this test
-case is to verify that they are there is a correct chain of trust
-from DS, in the parent zone to the CDS and CDNSKEY RRsets
-([RFC 7344][RFC 7344#4.1], section 4.1).
+CDS and CDNSKEY record types are defined in [RFC 7344] and [RFC 8078]. Both
+record types are optional in a zone. The objective of this test case is to verify
+that there is a correct chain of trust from DS, in the parent zone to the CDS and
+CDNSKEY RRsets ([RFC 7344][RFC 7344#4.1], section 4.1).
 
 As stated in [RFC 4035][RFC 4035#2.4], section 2.4:
 > A DS RR SHOULD point to a DNSKEY RR that is present in the child's
@@ -41,8 +40,8 @@ CDNSKEY status of *Child Zone*.
 
 Message Tag outputted          | [Default level] | Description of when message tag is outputted
 :------------------------------|:------|:-----------------------------------------
-DS18_NO_MATCH_CDS_RRSIG_DS     | ERROR | The CDS RRset is not signed with a DNSKEY record that a DS record points at.
-DS18_NO_MATCH_CDNSKEY_RRSIG_DS | ERROR | CDNSKEY RRset is not signed with a DNSKEY record that a DS record points at.
+DS18_NO_MATCH_CDS_RRSIG_DS     | ERROR | The CDS RRset is not signed with a DNSKEY record that a DS record points to.
+DS18_NO_MATCH_CDNSKEY_RRSIG_DS | ERROR | CDNSKEY RRset is not signed with a DNSKEY record that a DS record points to.
 
 ## Inputs
 
@@ -149,9 +148,9 @@ DS18_NO_MATCH_CDNSKEY_RRSIG_DS | ERROR | CDNSKEY RRset is not signed with a DNSK
     2. Extract the DNSKEY from the *DNSKEY RRsets* for the same name
        server IP.
     3. For each DS record in *DS Records* do:
-       1. If the DS record does not point at a DNSKEY record then go
+       1. If the DS record does not point to a DNSKEY record then go
           to next DS record.
-       2. Else, if the DNSKEY that the DS record points at matches
+       2. Else, if the DNSKEY that the DS record points to matches
           an RRSIG for CDS RRset then go to next name server IP
           address.
        3. Go to next DS records.
@@ -166,9 +165,9 @@ DS18_NO_MATCH_CDNSKEY_RRSIG_DS | ERROR | CDNSKEY RRset is not signed with a DNSK
     2. Extract the DNSKEY from the *DNSKEY RRsets* for the same name
        server IP.
     3. For each DS record in *DS Records* do:
-       1. If the DS record does not point at a DNSKEY record then go
+       1. If the DS record does not point to a DNSKEY record then go
           to next DS record.
-       2. Else, if the DNSKEY that the DS record points at matches
+       2. Else, if the DNSKEY that the DS record points to matches
           an RRSIG for CDNSKEY RRset then go to next name server IP
           address.
        3. Go to next DS records.
