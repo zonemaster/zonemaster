@@ -76,7 +76,7 @@ Rocky Linux 8.4  | 10.3    | 10.17      | 3.26
 
 Zonemaster Backend has been tested with the combination of OS and database
 engine version listed in the table above. Zonemaster uses functionality
-introduced in PostgreSQL version 9.3, and earlier versions are as such not supported.
+introduced in PostgreSQL version 10, and earlier versions are as such not supported.
 
 ### Supported Perl versions
 
