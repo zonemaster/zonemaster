@@ -60,7 +60,7 @@ Ubuntu, respectively, is supported.
 Rocky Linux has replaced CentOS in Zonemaster version v2021.2 since CentOS 8 will
 not be supported beyond 2021-12-31 and CentOS 7 is old and does not support
 modern OpenSSL required by Zonemaster. Rocky Linux is also a Red Hat derivative
-and is available at e.g. AWS and Microsoft Azure.
+and is available at large cloud providers.
 
 ### Supported database engine versions
 
