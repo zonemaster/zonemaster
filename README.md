@@ -49,10 +49,10 @@ and processor architecture listed below.
 
 ### Supported operating system versions
 
-* Debian 11
-* FreeBSD 13.0
-* Ubuntu 20.04
-* Rocky Linux 8.4
+* [Debian] 11
+* [FreeBSD] 13.0
+* [Ubuntu] 20.04
+* [Rocky Linux] 8.4
 
 Only the latest long-term supported version of Debian, FreeBSD, Rocky Linux and
 Ubuntu, respectively, is supported.
@@ -213,6 +213,8 @@ information on mailing lists.
 [CPAN]:                                https://www.cpan.org/
 [Connectivity03]:                      docs/specifications/tests/Connectivity-TP/connectivity03.md
 [Contact and mailing lists]:           docs/contact-and-mailing-lists.md
+[Debian]:                              https://www.debian.org/
+[FreeBSD]:                             https://www.freebsd.org/
 [Issues in Zonemaster/Zonemaster]:     https://github.com/zonemaster/zonemaster/issues
 [Issues in Zonemaster::Backend]:       https://github.com/zonemaster/zonemaster-backend/issues
 [Issues in Zonemaster::CLI]:           https://github.com/zonemaster/zonemaster-cli/issues
@@ -221,6 +223,8 @@ information on mailing lists.
 [Issues in Zonemaster::LDNS]:          https://github.com/zonemaster/zonemaster-ldns/issues
 [LDNS]:                                https://www.nlnetlabs.nl/projects/ldns/about/
 [OpenSSL]:                             https://www.openssl.org/
+[Rocky Linux]:                         https://rockylinux.org/
+[Ubuntu]:                              https://ubuntu.com/
 [Zonemaster latest version]:           https://github.com/zonemaster/zonemaster/releases/latest
 [Zonemaster release list]:             https://github.com/zonemaster/zonemaster/releases
 [Zonemaster-Backend]:                  https://github.com/zonemaster/zonemaster-backend
@@ -231,5 +235,6 @@ information on mailing lists.
 [Zonemaster-LDNS]:                     https://github.com/zonemaster/zonemaster-ldns
 [Zonemaster/Zonemaster]:               https://github.com/zonemaster/zonemaster
 [Zonemaster/zonemaster-engine#833]:    https://github.com/zonemaster/zonemaster-engine/issues/833
+
 
 
