@@ -96,7 +96,8 @@ message. The argument names are defined in the [argument list].
          3. The AA flag is not set in the response.
          4. There is no DNSKEY record with matching owner name in the answer
             section.
-    3. Retrieve the DNSKEY records from the answer section.
+    3. Retrieve the DNSKEY records with matching owner name from the answer
+       section (any DNSKEY records with non-matching owner name are ignored).
     4. Send *SOA Query* over UDP to the name server IP.
     5. If at least one of the following criteria is met, then go to next name
        server IP:
@@ -105,8 +106,9 @@ message. The argument names are defined in the [argument list].
          3. The AA flag is not set in the response.
          4. There is no SOA record with matching owner name in the answer
             section.
-    6. Retrieve the SOA record and its RRSIG record.
-       * Retrieve only one SOA record if there are multiple records.
+    6. Retrieve the SOA record with matching owner name and its RRSIG record.
+       * Retrieve only one SOA record if there are multiple records. Any SOA
+         records with non-matching owner name are ignored.
     7. If there is no RRSIG for the SOA record, then add the name server IP
        address to the *SOA without RRSIG* set and go to next name server IP.
     8. Else, for each SOA RRSIG record do:
