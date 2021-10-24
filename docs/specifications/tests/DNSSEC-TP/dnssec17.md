@@ -37,10 +37,10 @@ give an incomplete report of the CDS and CDNSKEY status of
 Message Tag outputted                | [Default level] | Description of when message tag is outputted
 :------------------------------------|:--------|:-----------------------------------------
 DS17_CDNSKEY_INVALID_RRSIG           | ERROR   | CDNSKEY RRset signed with an invalid RRSIG.
-DS17_CDNSKEY_IS_NON_SEP              | NOTIFY  | CDNSKEY record has the SEP bit (bit 15) unset.
+DS17_CDNSKEY_IS_NON_SEP              | NOTICE  | CDNSKEY record has the SEP bit (bit 15) unset.
 DS17_CDNSKEY_IS_NON_ZONE             | ERROR   | CDNSKEY record has the zone bit (bit 7) unset.
 DS17_CDNSKEY_MATCHES_NO_DNSKEY       | WARNING | CDNSKEY record does not match any DNSKEY in DNSKEY RRset.
-DS17_CDNSKEY_NOT_SIGNED_BY_CDNSKEY   | NOTIFY  | CDNSKEY RRset is signed but not by the key that the CDNSKEY record points to.
+DS17_CDNSKEY_NOT_SIGNED_BY_CDNSKEY   | NOTICE  | CDNSKEY RRset is signed but not by the key that the CDNSKEY record points to.
 DS17_CDNSKEY_SIGNED_BY_UNKNOWN_DNSKEY| ERROR   | CDNSKEY RRset is signed but not by a key in DNSKEY RRset.
 DS17_CDNSKEY_UNSIGNED                | ERROR   | CDNSKEY RRset is not signed.
 DS17_CDNSKEY_WITHOUT_DNSKEY          | ERROR   | CDNSKEY RRset exists, but there is no DNSKEY RRset.
