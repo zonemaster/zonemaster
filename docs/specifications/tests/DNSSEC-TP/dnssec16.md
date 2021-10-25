@@ -37,10 +37,10 @@ give an incomplete report of the CDS and CDNSKEY status of
 Message Tag outputted                | [Default level] | Description of when message tag is outputted
 :------------------------------------|:--------|:-----------------------------------------
 DS16_CDS_INVALID_RRSIG               | ERROR   | CDS RRset is signed with an invalid RRSIG.
-DS16_CDS_MATCHES_NON_SEP_DNSKEY      | NOTIFY  | CDS record matches a DNSKEY with SEP bit (bit 15) unset.
+DS16_CDS_MATCHES_NON_SEP_DNSKEY      | NOTICE  | CDS record matches a DNSKEY with SEP bit (bit 15) unset.
 DS16_CDS_MATCHES_NON_ZONE_DNSKEY     | ERROR   | CDS record matches a DNSKEY with zone bit (bit 7) unset.
 DS16_CDS_MATCHES_NO_DNSKEY           | WARNING | CDS record does not match any DNSKEY in DNSKEY RRset.
-DS16_CDS_NOT_SIGNED_BY_CDS           | NOTIFY  | CDS RRset is signed but not by the key that the CDS record points to.
+DS16_CDS_NOT_SIGNED_BY_CDS           | NOTICE  | CDS RRset is signed but not by the key that the CDS record points to.
 DS16_CDS_SIGNED_BY_UNKNOWN_DNSKEY    | ERROR   | CDS RRset is signed but not by a key in DNSKEY RRset.
 DS16_CDS_UNSIGNED                    | ERROR   | CDS RRset is not signed.
 DS16_CDS_WITHOUT_DNSKEY              | ERROR   | CDS RRset exists, but no DNSKEY RRset.
