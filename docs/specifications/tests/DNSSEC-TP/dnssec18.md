@@ -133,7 +133,7 @@ DS18_NO_MATCH_CDNSKEY_RRSIG_DS | ERROR | CDNSKEY RRset is not signed with a DNSK
           go to next name server IP.
        4. Else, if the DNS response contains at least one DNSKEY
           record in the answer section, then add the name server IP and
-          the CDNSKEY RRset from the answer section to the 
+          the DNSKEY RRset from the answer section to the 
           *DNSKEY RRsets* set.
     4. Go to next name server IP.
 
