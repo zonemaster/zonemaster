@@ -57,8 +57,8 @@ This test case is only relevant if the zone has been DNSSEC signed.
   *Child Zone* with a label (e.g. "xx--zpeqz4v66tckbqkyw35k--xx") created by the
   following steps, resulting in e.g. "xx--zpeqz4v66tckbqkyw35k--xx.exemple.com".
   * Use the string "xx--" as a prefix for the label.
-  * As middle part of the label, create a random string of 20 characters from
-    the set "a-z0-9".
+  * As middle part of the label, use a mixed string of 20 characters from the set
+    "a-z0-9".
   * Use the string "--xx" as a suffix for the label.
 
 
@@ -140,7 +140,7 @@ message. The argument names are defined in the [argument list].
          3. The AA flag is not set in the response.
     6. If the following criteria are met go to next name server IP:
        1. The The RCODE of response is "NoError" ([IANA RCODE List]).
-       2. The answer section has an RRset with RR type "A" ([IANA RR Type List])
+       2. The answer section has an RRset of RR type "A" ([IANA RR Type List])
           and either:
           1. The "A" RRset has the same owner name as the query name, or
           2. There are one or more record of RR type "CNAME"
