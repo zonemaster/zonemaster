@@ -40,13 +40,19 @@ needs for testing and releasing Zonemaster:
    sudo apt-get install docker.io
    ```
 
-5. Install for translation (handling PO files) -
+5. Add yourself to the Docker group - *only if Docker has been installed*
+
+   ```sh
+   sudo usermod -aG docker $LOGNAME
+   ```
+
+6. Install for translation (handling PO files) -
    *only needed if PO files are to be handled*
 
    > Follow "Software preparation" in [Instructions for translators] for Ubuntu
    > (usually use the version in develop branch)
 
-6. Install binaries for Zonemaster-Engine - 
+7. Install binaries for Zonemaster-Engine -
    *only needed if the files listed in [utils README] are to be generated*
    
    > Follow the [Installation instructions] for Zonemaster-Engine for Ubuntu. Only
