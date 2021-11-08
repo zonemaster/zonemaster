@@ -49,44 +49,43 @@ and processor architecture listed below.
 
 ### Supported operating system versions
 
-* CentOS 7
-* CentOS 8
-* Debian 10
-* FreeBSD 12.2
-* FreeBSD 13.0
-* Ubuntu 18.04
-* Ubuntu 20.04
+* [Debian] 11
+* [FreeBSD] 13.0
+* [Ubuntu] 20.04
+* [Rocky Linux] 8.4
+
+Only the latest long-term supported version of Debian, FreeBSD, Rocky Linux and
+Ubuntu, respectively, is supported.
+
+Rocky Linux has replaced CentOS in Zonemaster version v2021.2 since CentOS 8 will
+not be supported beyond 2021-12-31 and CentOS 7 is old and does not support
+modern OpenSSL required by Zonemaster. Rocky Linux is also a Red Hat derivative
+and is available at large cloud providers.
 
 ### Supported database engine versions
 
 Operating System | MariaDB | PostgreSQL | SQLite
 ---------------- | --------| -----------|------------------------
-CentOS 7         | 5.5     | 9.3        | 3.7.17
-CentOS 8         | 10.3    | 10.14      | 3.26.0
-Debian 10        | 10.3    | 11.7       | 3.27.2
-FreeBSD 12.2     | 5.7     | 12.6       | 3.35.5
-FreeBSD 13.0     | 5.7     | 12.6       | 3.35.5
-Ubuntu 18.04     | 10.1    | 10.14      | 3.22.0
+Debian 11        | 10.5    | 13.3       | 3.34
+FreeBSD 13.0     | 5.7     | 12.8       | 3.35.5
 Ubuntu 20.04     | 10.3    | 12.4       | 3.31.1
+Rocky Linux 8.4  | 10.3    | 10.17      | 3.26
 
 * FreeBSD uses MySQL, not MariaDB. 
 * FreeBSD bundles SQLite in Perl DBD::SQLite.
 
 Zonemaster Backend has been tested with the combination of OS and database
 engine version listed in the table above. Zonemaster uses functionality
-introduced in PostgreSQL version 9.3, and earlier versions are as such not supported.
+introduced in PostgreSQL version 10, and earlier versions are as such not supported.
 
 ### Supported Perl versions
 
 Operating System | Perl
 ---------------- | ----
-CentOS 7         | 5.16
-CentOS 8         | 5.26
-Debian 10        | 5.28
-FreeBSD 11.4     | 5.32
-FreeBSD 12.2     | 5.32
-Ubuntu 18.04     | 5.26
+Debian 11        | 5.32
+FreeBSD 13.0     | 5.32
 Ubuntu 20.04     | 5.30
+Rocky Linux 8.4  | 5.26
 
 Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been
 tested with the default version of Perl in the OSs as listed in the table above.
@@ -120,7 +119,7 @@ installation instructions given for Zonemaster have been followed. A test of the
 domains `ed25519.nl` and `superdns.nl` will reveal if the Zonemaster
 installation has the support or not for algorithms 15 and 16, respectively.
 
-All supported OSs, except CentOS 7, support algorithms 15 and 16.
+All supported OSs support algorithms 15 and 16.
 
 ## Translation
 
@@ -214,6 +213,8 @@ information on mailing lists.
 [CPAN]:                                https://www.cpan.org/
 [Connectivity03]:                      docs/specifications/tests/Connectivity-TP/connectivity03.md
 [Contact and mailing lists]:           docs/contact-and-mailing-lists.md
+[Debian]:                              https://www.debian.org/
+[FreeBSD]:                             https://www.freebsd.org/
 [Issues in Zonemaster/Zonemaster]:     https://github.com/zonemaster/zonemaster/issues
 [Issues in Zonemaster::Backend]:       https://github.com/zonemaster/zonemaster-backend/issues
 [Issues in Zonemaster::CLI]:           https://github.com/zonemaster/zonemaster-cli/issues
@@ -222,6 +223,8 @@ information on mailing lists.
 [Issues in Zonemaster::LDNS]:          https://github.com/zonemaster/zonemaster-ldns/issues
 [LDNS]:                                https://www.nlnetlabs.nl/projects/ldns/about/
 [OpenSSL]:                             https://www.openssl.org/
+[Rocky Linux]:                         https://rockylinux.org/
+[Ubuntu]:                              https://ubuntu.com/
 [Zonemaster latest version]:           https://github.com/zonemaster/zonemaster/releases/latest
 [Zonemaster release list]:             https://github.com/zonemaster/zonemaster/releases
 [Zonemaster-Backend]:                  https://github.com/zonemaster/zonemaster-backend
@@ -232,5 +235,6 @@ information on mailing lists.
 [Zonemaster-LDNS]:                     https://github.com/zonemaster/zonemaster-ldns
 [Zonemaster/Zonemaster]:               https://github.com/zonemaster/zonemaster
 [Zonemaster/zonemaster-engine#833]:    https://github.com/zonemaster/zonemaster-engine/issues/833
+
 
 
