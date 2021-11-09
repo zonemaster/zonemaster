@@ -30,6 +30,7 @@ Area     | FA-CDS-CDNSKEY   | green  | "main" or Engine   | Focus Area: Adding t
 Area     | FA-IDN-ASCII     | green  | Backend or GUI     | Focus Area: Moving U-label-to-A-label conversion to GUI and zmtest and away from RPCAPI.
 Area     | FA-MethodNT      | green  | "main" or Engine   | Focus Area: Implementing and migrating to MethodNT for test cases.
 Priority | P-High           | red    | all                | Priority: Issue to be solved before other.
+Status   | S-ReleaseTested  | yellow | all                | Status: The PR has been successfully tested in release testing
 Type     | T-Bug            | red    | all                | Type: Bug in software or error in test case description.
 Type     | T-Feature        | blue   | all                | Type: New feature in software or test case description.
 Type     | T-Question       | blue   | all                | Type: Incoming question.
@@ -45,6 +46,7 @@ GUI      | In the table above, "GUI" stands for the [Zonemaster-GUI] repository
 red      | Label with color code #EE0701
 blue     | Label with color code #0CCFF2
 green    | Label with color code #55D700
+yellow   | Label with color code #FFCE2E
 
 
 [Zonemaster/Zonemaster]:    https://github.com/zonemaster/zonemaster
