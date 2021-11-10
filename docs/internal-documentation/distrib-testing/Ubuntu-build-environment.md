@@ -15,7 +15,7 @@ needs for testing and releasing Zonemaster:
 1. Git work on the Zonemaster repositories.
 2. Creating distributing packages for testing or uploading to CPAN.
 3. Creating Docker imaging for testing or uploading to Docker Hub.
-4. Updateting PO files (translation).
+4. Updating PO files (translation).
 5. Generating the files listed in the [utils README].
 
 ## Instructions
