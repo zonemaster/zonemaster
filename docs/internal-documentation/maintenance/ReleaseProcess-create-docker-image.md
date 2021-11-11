@@ -23,7 +23,7 @@ Zonemaster-Engine and Zonemaster-CLI are covered here.
 
 ## 2. Prerequsite
 
-The steps in this documents are assumet to be executed on a computer installed
+The steps in this documents are assumed to be executed on a computer installed
 as an [Ubuntu Build Environment] computer. It could work on another OS as long
 as the same support is available.
 
@@ -132,13 +132,13 @@ docker push zonemaster/cli:v0.0.0
 Zonemaster-LDNS:
 
 ```sh
-docker run --rm --entrypoint=perl zonemaster/ldns:local -MZonemaster::LDNS -E 'say Zonemaster::LDNS->new("9.9.9.9")->query("zonemaster.net")->string'
+docker run --rm zonemaster/ldns:local perl -MZonemaster::LDNS -E 'say Zonemaster::LDNS->new("9.9.9.9")->query("zonemaster.net")->string'
 ```
 
 Zonemaster-Engine:
 
 ```sh
-docker run --rm --entrypoint=perl zonemaster/engine:local -MZonemaster::Engine -E 'say join "\n", Zonemaster::Engine->test_module("BASIC", "zonemaster.net")'
+docker run --rm zonemaster/engine:local perl -MZonemaster::Engine -E 'say join "\n", Zonemaster::Engine->test_module("BASIC", "zonemaster.net")'
 ```
 
 Zonemaster-CLI:

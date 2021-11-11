@@ -417,7 +417,6 @@ branch `merge-develop-into-master` is correct, and a pull request into
 [NVM]:                                     https://github.com/nvm-sh/nvm
 [Node.js]:                                 https://nodejs.org/en/
 [PAUSE]:                                   https://pause.perl.org/
-[Versions and releases2]:                   https://github.com/zonemaster/zonemaster/blob/develop/docs/design/Versions%20and%20Releases.md
 [Versions and releases]:                   ../../design/Versions%20and%20Releases.md
 [ZNMSTR]:                                  https://metacpan.org/author/ZNMSTR
 [Zonemaster Product Releases]:             https://github.com/zonemaster/zonemaster/releases
