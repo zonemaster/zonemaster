@@ -36,6 +36,10 @@ needs for testing and releasing Zonemaster:
 
 4. Install Docker - *only needed if Docker images are to be built*
 
+   The Docker version installed by the command below is the version found in the
+   Ubuntu package repository. If a newer version is needed, follow the
+   instructions on the [Install Docker Engine on Ubuntu] page instead.
+
    ```sh
    sudo apt-get install docker.io
    ```
@@ -62,7 +66,9 @@ needs for testing and releasing Zonemaster:
 
 
 
+[Install Docker Engine on Ubuntu]:         https://docs.docker.com/engine/install/ubuntu/
 [Installation instructions]:               https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Installation.md
 [Instructions for translators]:            https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Translation-translators.md#software-preparation
 [Ubuntu 20.04]:                            https://ubuntu.com/
-[utils README]:                            ../../../utils/README.md
+[Utils README]:                            ../../../utils/README.md
+
