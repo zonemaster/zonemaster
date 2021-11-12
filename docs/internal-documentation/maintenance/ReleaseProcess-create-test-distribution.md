@@ -1,17 +1,34 @@
 Release process - Create Test Distribution
 ==========================================
 
+## Table of contents
+
+* [1. Overview](#1-overview)
+* [2. Prepare a build environment](#2-prepare-a-build-environment)
+* [3. Create a clean environment](#3-create-a-clean-environment)
+* [4. Generate Makefile, META.yml and others](#4-generate-makefile-metayml-and-others)
+* [5. Verify that MANIFEST is up to date and that tarball can be built](#5-verify-that-manifest-is-up-to-date-and-that-tarball-can-be-built)
+* [6. Produce distribution tarballs](#6-produce-distribution-tarballs)
+* [7. Produce distribution zip file](#7-produce-distribution-zip-file)
+* [8. Produce Docker image](#8-produce-docker-image)
+* [9. Verify that Zonemaster works when installed](#9-verify-that-zonemaster-works-when-installed)
+* [10. Restart testing](#10-restart-testing)
+
+## 1. Overview
+
 The purpose of this part is to create the test distributions that can be
 used in QA testing for a release. It can also be used to create test
 distributions to verify a pull request.
 
+> **Note:** *Normally, the develop branch version of this document should be used.*
 
-## 1. Prepare a build environment
+## 2. Prepare a build environment
+
 Set up build system to be used for the test distribution creation. See
 [Build Environment Preparation] for how to set it up.
 
 
-## 2. Create a clean environment
+## 3. Create a clean environment
 
 Make sure that you have checked out the correct git branch, normally
 the `develop` branch and that your clone is up-to-date.
@@ -41,7 +58,7 @@ All branches called "develop":
     git branch -av --list "*develop"
 
 
-## 3. Generate Makefile, META.yml and others
+## 4. Generate Makefile, META.yml and others
 
 > This section is not relevant for Zonemaster-GUI.
 
@@ -60,7 +77,7 @@ All branches called "develop":
 > * Missing prerequisite (only needed on target system), e.g.:
 >   * "Warning: prerequisite JSON::XS 0 not found."
 
-## 4. Verify that MANIFEST is up to date and that tarball can be built
+## 5. Verify that MANIFEST is up to date and that tarball can be built
 
 > This section is not relevant for Zonemaster-GUI.
 
@@ -75,15 +92,14 @@ MANIFEST.SKIP, i.e. no missing or extra files:
     make distcheck
 
 
-## 5. Produce distribution tarballs
+## 6. Produce distribution tarballs
 
 > This section is not relevant for Zonemaster-GUI.
 
     make dist
 
 
-
-## 6. Produce distribution zip file
+## 7. Produce distribution zip file
 
 > This section is relevant for Zonemaster-GUI only.
 
@@ -114,28 +130,33 @@ The distribution zip file is in the root level of the zonemaster-gui folder.
 Its name is `zonemaster_web_gui.zip`.
 
 
-## 7. Verify that Zonemaster works when installed
+## 8. Produce Docker image
+
+Follow the instructions in [Create Docker Image] to build CLI Docker image for
+testing.
+
+## 9. Verify that Zonemaster works when installed
 
 Verify that Zonemaster works when installed according to the documented
 installation procedures
 
-Using the *preliminary distribution tarballs* produced in step 5 above
-and the *preliminary distribution zip file* produced in step 6 above,
-follow the procedures in [SystemTesting].
+Using the *preliminary distribution tarballs* produced in step 6 above, the
+*preliminary distribution zip file* produced in step 7 above and the Docker
+image produced in step 8, follow the procedures in [SystemTesting].
 
-## 8. Restart testing
+## 10. Restart testing
 
 If the system testing fails in a way that requires updated distribution
-tarballs or zip file:
+tarballs, zip file or Docker image:
  1. Get the changes merged.
- 2. Consider whether the actions taken in steps 1–6 above need amendment.
- 3. Resume this document from step 7 above.
+ 2. Consider whether the actions taken in steps 2–8 above need amendment.
+ 3. Resume this document from step 9 above.
 
 
-<!-- Zonemaster links point on purpose on the develop branch. -->
-[Build Environment Preparation]:        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/distrib-testing/BuildEnvironmentPreparation.md
-[Build environment for Node.js]:        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/distrib-testing/Ubuntu-Node.js-build-environment.md
-[NVM]:                                  https://github.com/nvm-sh/nvm
-[Node.js]:                              https://nodejs.org/en/
-[SystemTesting]:                        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/maintenance/SystemTesting.md
+[Build Environment Preparation]:              ../distrib-testing/BuildEnvironmentPreparation.md
+[Build environment for Node.js]:              ../distrib-testing/Ubuntu-Node.js-build-environment.md
+[Create Docker Image]:                        ReleaseProcess-create-docker-image.md
+[NVM]:                                        https://github.com/nvm-sh/nvm
+[Node.js]:                                    https://nodejs.org/en/
+[SystemTesting]:                              https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/maintenance/SystemTesting.md
 
