@@ -1,4 +1,4 @@
-# DNS Query and Respons Specification
+# DNS Query and Response Defaults
 
 **Table of contents**
 * [Overview](#Overview)
@@ -32,21 +32,22 @@ refer to a *DNS Query* with one or several changes to the setting items.
 Specifically, the test case specification must always specify query name and
 query type.
 
-|Setting Item |Default value |Comment                      |
-|:------------|:----------|:-------------------------------|
-|Protocol     | UDP       |                                |
-|OpCode       | "query"   | Always "query" in a query      |
-|QR flag      | unset     | Always unset in a query        |
-|AA flag      | unset     |                                |
-|TC flag      | unset     |                                |
-|RD flag      | unset     |                                |
-|RA flag      | unset     |                                |
-|AD flag      | unset     |                                |
-|CD flag      | unset     |                                |
-|RCODE        | "NoError" | Always "NoError" in a query    |
-|Query name   | -         | Defined in test case           |
-|Query type   | -         | Defined in test case           |
-|ENDS         | no        | No OPT record is included      |
+|Setting Item |Default value |Comment                         |
+|:------------|:-------------|:-------------------------------|
+|Protocol     | UDP          |                                |
+|OpCode       | "query"      | Always "query" in a query      |
+|QR flag      | unset        | Always unset in a query        |
+|AA flag      | unset        |                                |
+|TC flag      | unset        |                                |
+|RD flag      | unset        |                                |
+|RA flag      | unset        |                                |
+|AD flag      | unset        |                                |
+|CD flag      | unset        |                                |
+|RCODE        | "NoError"    | Always "NoError" in a query    |
+|Query name   | -            | Must be defined in test case   |
+|Query type   | -            | Must be defined in test case   |
+|Query class  | "IN"         | Always "IN" in the query       |
+|ENDS         | no           | No OPT record is included      |
 
 
 ## Default setting in *EDNS Query*
@@ -55,8 +56,7 @@ An *EDNS Query* inherit the default setting from a *DNS Query* except for the
 setting items specified below.
 
 A test case specification can refer to an *EDNS Query* with one or several
-changes to the setting items. Specifically, the test case specification must
-always specify query name and query type.
+changes to the setting items.
 
 |Setting Item          |Default value |Comment                   |
 |:---------------------|:-------|:-------------------------------|
@@ -75,8 +75,7 @@ An *DNSSEC Query* inherit the default setting from an *EDNS Query* except for th
 setting items specified below.
 
 A test case specification can refer to an *DNSSEC Query* with one or several
-changes to the setting items. Specifically, the test case specification must
-always specify query name and query type.
+changes to the setting items.
 
 |Setting               |Default value |Comment                   |
 |:---------------------|:-------|:-------------------------------|
@@ -93,7 +92,7 @@ case specification, the items in the response is handled as listed.
 |OpCode        | Must be "response" | Always "response" in a response |
 |QR flag       | Must be set        | Always set in a response        |
 |AA flag       | -                  | Defined in test case            |
-|TC flag       | Re-query over TCP   |                                 |
+|TC flag       | Re-query over TCP  |                                 |
 |RD flag       | ignore             |                                 |
 |RA flag       | ignore             |                                 |
 |AD flag       | ignore             |                                 |
@@ -101,6 +100,7 @@ case specification, the items in the response is handled as listed.
 |RCODE         | -                  | Defined in test case            |
 |Query name    | ignore             |                                 |
 |Query type    | ignore             |                                 |
+|Query class   | ignore             | Must be "IN" in the response    |
 |ENDS          | ignore             |                                 |
 
 
@@ -108,8 +108,8 @@ case specification, the items in the response is handled as listed.
   in the query, not in the response.
   
 * When fetching records from the answer section, these are the default criteria:
-  * Only records matching the query name and the query type are fetched. RRSIG
-    records, when available, meeting the next criterium are also fetched.
+  * Only records matching the query name and the query type are fetched. Any
+    RRSIG records meeting the next criterium are also fetched.
   * RRSIG records with the same query name and covering the query type are
     fetched.
   * CNAME records are ignored unless the query type is CNAME.
@@ -125,10 +125,10 @@ case specification, the items in the response is handled as listed.
 
 ## Default handling of an *EDNS Response*
 
-A *EDNS response* is a response to an *EDNS Query*. An *EDNS Response* inherits
+An *EDNS response* is a response to an *EDNS Query*. An *EDNS Response* inherits
 the default handling from a *DNS Response* except for the response items
 specified below. Unless specified in the test case specification, the items in
-the response is handled as the default handling.
+the response is handled using the default handling.
 
 |Response Item |Default handling | Comment                            |
 |:-------------|:----------------|:-----------------------------------|
@@ -140,7 +140,7 @@ the response is handled as the default handling.
 A *DNSSEC response* is a response to an *DNSSEC Query*. A *DNSSEC Response*
 inherits the default handling from a *EDNS Response* except for the response
 items specified below. Unless specified in the test case specification, the items
-in the response is handled as the default handling.
+in the response is handled using the default handling.
 
 |Response Item |Default handling | Comment                            |
 |:-------------|:----------------|:-----------------------------------|
