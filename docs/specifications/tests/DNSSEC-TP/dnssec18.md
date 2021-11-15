@@ -154,8 +154,8 @@ DS18_NO_MATCH_CDNSKEY_RRSIG_DS | ERROR | CDNSKEY RRset is not signed with a DNSK
           an RRSIG for CDS RRset then go to next name server IP
           address.
        3. Go to next DS records.
-    4. Add name server IP to the *DS No Match CDS RRSIG* (i.e.
-       there was no match between DS record CDS RRSIG in the DS
+    4. Add name server IP to the *DS No Match CDS RRSIG* (i.e. there was no match
+       between any DS record and an RRSIG record for the CDS RRset in the DS
        record loop above).
     5. Go to next name server IP address.
 
@@ -171,8 +171,8 @@ DS18_NO_MATCH_CDNSKEY_RRSIG_DS | ERROR | CDNSKEY RRset is not signed with a DNSK
           an RRSIG for CDNSKEY RRset then go to next name server IP
           address.
        3. Go to next DS records.
-    4. Add name server IP to the *DS No Match CDNSKEY RRSIG* (i.e.
-       there was no match between DS record CDNSKEY RRSIG in the DS
+    4. Add name server IP to the *DS No Match CDNSKEY RRSIG* (i.e. there was no match
+       between any DS record and an RRSIG record for the CDNSKEY RRset in the DS
        record loop above).
     5. Go to next name server IP address.
 
