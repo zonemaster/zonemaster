@@ -32,8 +32,12 @@ been tested on Ubuntu 18.04, which we use here.
    source ~/.bashrc
    ```
 
+6. Install the last stable version of Google Chrome to be able to run the e2e tests
+   ```sh
+   wget -O /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+   apt install /tmp/google-chrome-stable_current_amd64.deb
+   ```
 
 [known issue]:                          https://github.com/nvm-sh/nvm#troubleshooting-on-linux
 [Node.js]:                              https://nodejs.org/en/
 [NVM]:                                  https://github.com/nvm-sh/nvm
-
