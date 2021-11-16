@@ -168,7 +168,7 @@ to `RPCAPI`.
 * Finnish (fi, fi_FI.UTF-8)
 * French (fr, fr_FR.UTF-8)
 * Norwegian (nb, nb_NO.UTF-8)
-* Spanish (es, es_CL.UTF-8)
+* Spanish (es, es_ES.UTF-8)
 * Swedish (sv, sv_SE.UTF-8)
 
 ## Zonemaster and its components
