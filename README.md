@@ -1,5 +1,29 @@
-![Zonemaster](docs/images/zonemaster_logo_2021_color.png)
-==========
+# ![Zonemaster](docs/images/zonemaster_logo_2021_color.png)
+
+## Table of contents
+
+* [Introduction](#Introduction)
+* [Background](#Background)
+* [Purpose](#Purpose)
+* [Documentation](#Documentation)
+* [Prerequisites](#Prerequisites)
+  * [Supported processor architectures](#Supported-processor-architectures)
+  * [Supported operating system versions](#Supported-operating-system-versions)
+  * [Supported database engine versions](#Supported-database-engine-versions)
+  * [Supported Perl versions](#Supported-Perl-versions)
+  * [Supported Client Browser versions](#Supported-Client-Browser-versions)
+* [Support of DNSSEC algorithms 15 and 16](#Support-of-DNSSEC-algorithms-15-and-16)
+* [Translation](#Translation)
+* [Zonemaster and its components](#Zonemaster-and-its-components)
+* [Installation](#Installation)
+* [Docker](#Docker)
+* [Versions](#Versions)
+* [Participation](#Participation)
+* [Bug reporting](#Bug-reporting)
+* [Notable bugs and issues](#Notable-bugs-and-issues)
+  * [DNSSEC algorithms 15 and 16](#DNSSEC-algorithms-15-and-16)
+* [Contact and mailing lists](#Contact-and-mailing-lists)
+
 
 ## Introduction
 
@@ -50,6 +74,7 @@ and processor architecture listed below.
 ### Supported operating system versions
 
 * [Debian] 11
+* [Docker]
 * [FreeBSD] 13.0
 * [Ubuntu] 20.04
 * [Rocky Linux] 8.4
@@ -57,8 +82,12 @@ and processor architecture listed below.
 Only the latest long-term supported version of Debian, FreeBSD, Rocky Linux and
 Ubuntu, respectively, is supported.
 
-Rocky Linux has replaced CentOS in Zonemaster version v2021.2 since CentOS 8 will
-not be supported beyond 2021-12-31 and CentOS 7 is old and does not support
+Only the Docker images provided by the Zonemaster project on [Docker Hub] are
+supported. Currently only Zonemaster-CLI is supported on Docker. Docker itself
+can run on any of the [Docker] supported OSs (Linux, MacOS and Windows).
+
+[Rocky Linux] has replaced CentOS in Zonemaster version v2021.2 since CentOS 8
+will not be supported beyond 2021-12-31 and CentOS 7 is old and does not support
 modern OpenSSL required by Zonemaster. Rocky Linux is also a Red Hat derivative
 and is available at large cloud providers.
 
@@ -67,28 +96,33 @@ and is available at large cloud providers.
 Operating System | MariaDB | PostgreSQL | SQLite
 ---------------- | --------| -----------|------------------------
 Debian 11        | 10.5    | 13.3       | 3.34
+Docker           | n/a     | n/a        | n/a
 FreeBSD 13.0     | 5.7     | 12.8       | 3.35.5
 Ubuntu 20.04     | 10.3    | 12.4       | 3.31.1
 Rocky Linux 8.4  | 10.3    | 10.17      | 3.26
 
 * FreeBSD uses MySQL, not MariaDB. 
 * FreeBSD bundles SQLite in Perl DBD::SQLite.
-
-Zonemaster Backend has been tested with the combination of OS and database
-engine version listed in the table above. Zonemaster uses functionality
-introduced in PostgreSQL version 10, and earlier versions are as such not supported.
+* Zonemaster Backend has been tested with the combination of OS and database
+  engine version listed in the table above.
+* Zonemaster depends on functionality introduced in PostgreSQL version 10, and
+  earlier versions of PostgreSQL are as such not supported.
+* Zonemaster Backend has not been published on [Docker Hub].
 
 ### Supported Perl versions
 
 Operating System | Perl
 ---------------- | ----
 Debian 11        | 5.32
+Docker           | *
 FreeBSD 13.0     | 5.32
 Ubuntu 20.04     | 5.30
 Rocky Linux 8.4  | 5.26
 
-Zonemaster requieres Perl version 5.14.2 or higher. Zonemaster has been
-tested with the default version of Perl in the OSs as listed in the table above.
+* Zonemaster requieres Perl version 5.14.2 or higher.
+* Zonemaster has been tested with the default version of Perl in the OSs as
+  listed in the table above.
+* Perl is included in the Docker image published on [Docker Hub].
 
 ### Supported Client Browser versions
 
@@ -134,6 +168,7 @@ to `RPCAPI`.
 * Finnish (fi, fi_FI.UTF-8)
 * French (fr, fr_FR.UTF-8)
 * Norwegian (nb, nb_NO.UTF-8)
+* Spanish (es, es_ES.UTF-8)
 * Swedish (sv, sv_SE.UTF-8)
 
 ## Zonemaster and its components
@@ -164,6 +199,15 @@ The Zonemaster Product includes the following components:
 To install Zonemaster, start with installation of [Zonemaster-Engine] (which will
 draw in Zonemaster-LDNS) and then continue with the other parts. You will find
 installation instructions from the links above.
+
+## Docker
+
+Zonemaster-CLI is available on [Docker Hub], and can be conveniently downloaded
+and run without any installation. Through Docker Zonemaster-CLI can be run on
+Linux, MacOS and Windows. See [USING] Zonemaster-CLI for how to run
+Zonemaster-CLI on [Docker]. 
+
+To build your own Docker image, see the [Docker Image Creation] documentation.
 
 ## Versions
 
@@ -214,6 +258,9 @@ information on mailing lists.
 [Connectivity03]:                      docs/specifications/tests/Connectivity-TP/connectivity03.md
 [Contact and mailing lists]:           docs/contact-and-mailing-lists.md
 [Debian]:                              https://www.debian.org/
+[Docker Hub]:                          https://hub.docker.com/u/zonemaster
+[Docker Image Creation]:               https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess-create-docker-image.md
+[Docker]:                              https://www.docker.com/get-started
 [FreeBSD]:                             https://www.freebsd.org/
 [Issues in Zonemaster/Zonemaster]:     https://github.com/zonemaster/zonemaster/issues
 [Issues in Zonemaster::Backend]:       https://github.com/zonemaster/zonemaster-backend/issues
@@ -224,6 +271,7 @@ information on mailing lists.
 [LDNS]:                                https://www.nlnetlabs.nl/projects/ldns/about/
 [OpenSSL]:                             https://www.openssl.org/
 [Rocky Linux]:                         https://rockylinux.org/
+[USING]:                               https://github.com/zonemaster/zonemaster-cli/blob/master/USING.md
 [Ubuntu]:                              https://ubuntu.com/
 [Zonemaster latest version]:           https://github.com/zonemaster/zonemaster/releases/latest
 [Zonemaster release list]:             https://github.com/zonemaster/zonemaster/releases
@@ -235,6 +283,5 @@ information on mailing lists.
 [Zonemaster-LDNS]:                     https://github.com/zonemaster/zonemaster-ldns
 [Zonemaster/Zonemaster]:               https://github.com/zonemaster/zonemaster
 [Zonemaster/zonemaster-engine#833]:    https://github.com/zonemaster/zonemaster-engine/issues/833
-
 
 
