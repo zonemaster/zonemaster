@@ -225,8 +225,8 @@ same for all three repositories.
   git checkout FILENAME
   ```
 
-* Files that were created but are needed can just be removed. This could also be
-  done before the commit.
+* Files that were created but are not needed can just be removed. This could also
+  be done before the commit.
   ```
   rm FILENAME
   ```
@@ -249,7 +249,7 @@ same for all three repositories.
   * The base branch should be *develop* (not *master*).
   * The "head" should be your fork.
   * The "compare" should be the same branch as you created above and pushed to
-    your fork, "translation-update".
+    your fork, e.g. "translation-update".
 
 * Inspect what Github says that will change by the pull request. It should
   only be the PO file that you have updated and nothing else. If additional
@@ -283,16 +283,16 @@ preferred way is to create an issue in the relevant repository.
 
 If the message is in Zonemaster-Engine then include the message tag found in the
 header, e.g. "BASIC:NO_PARENT", in the issue decription. Also include the *msgid*
-as it is now and a suggestion for new language.
+as it is now and a suggestion for new wording.
 
 
 ## Adding a new language
 
-If you want to add a new language, then follow the translation steps above with
-some modifications. Before you add a language contact the Zonemaster project
-to discuss timeplan and other aspects of the new language. Every language should
-be updated at every new release of Zonemaster if there are updated or added
-messages to be translated.
+If you want to add a new language, then follow steps in section
+"[Translation steps]" above with some modifications. Before you add a language
+contact the Zonemaster project to discuss timeplan and other aspects of the new
+language. Every language should be updated at every new release of Zonemaster if
+there are updated or added messages to be translated.
 
 * First, as in the translation steps, create the branch to work in.
   ```
@@ -303,14 +303,11 @@ messages to be translated.
 There is no PO file for new language, and it has to be created. The easiest way
 is to make a copy of an existing file.
 
-[ISO 639-1]: https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
-[Wikipedia]: https://www.wikipedia.org/
+* Determine what language code to use for the new language. It should be the
+  correct [ISO 639-1] two-character code. By looking up the language on
+  [Wikipedia] the correct code can be determined.
 
-* Determine what language code to use for the new language should be. It should
-  be the correct [ISO 639-1]. By looking up the language on [Wikipedia] the
-  correct code can be determined.
-
-* I must be a code that is available in the *locale* system in the OSs that
+* It must be a code that is available in the *locale* system in the OSs that
   Zonemaster supports. Try the following commands to see if it is available.
   Replace "xx" with that code that you think it should be. Consult with
   Zonemaster Project if in doubt.
@@ -380,6 +377,7 @@ make update-po MSGMERGE_OPTS=--no-fuzzy-matching
 [Github preparation]:                          #github-preparation
 [Github signup]:                               https://github.com/signup
 [Github]:                                      https://github.com/
+[ISO 639-1]:                                   https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 [New issue zonemaster-backend]:                https://github.com/zonemaster/zonemaster-backend/issues/new
 [New issue zonemaster-cli]:                    https://github.com/zonemaster/zonemaster-cli/issues/new
 [New issue zonemaster-engine]:                 https://github.com/zonemaster/zonemaster-engine/issues/new
@@ -393,6 +391,7 @@ make update-po MSGMERGE_OPTS=--no-fuzzy-matching
 [Translation steps]:                           #translation-steps
 [Translation]:                                 https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Translation.pod
 [Updates to msgids]:                           #Updates-to-msgids
+[Wikipedia]:                                   https://www.wikipedia.org/
 [Zonemaster GUI translation guide]:            https://github.com/zonemaster/zonemaster-gui/blob/develop/docs/TranslationGuide.md
 [Zonemaster-Backend repository]:               https://github.com/zonemaster/zonemaster-backend
 [Zonemaster-CLI repository]:                   https://github.com/zonemaster/zonemaster-cli
@@ -400,6 +399,7 @@ make update-po MSGMERGE_OPTS=--no-fuzzy-matching
 [Zonemaster-backend share]:                    https://github.com/zonemaster/zonemaster-backend/tree/develop/share
 [Zonemaster-cli share]:                        https://github.com/zonemaster/zonemaster-cli/tree/develop/share
 [Zonemaster-engine share]:                     https://github.com/zonemaster/zonemaster-engine/tree/develop/share
+
 
 
 
