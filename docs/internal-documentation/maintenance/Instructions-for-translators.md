@@ -28,7 +28,7 @@ multiple entries. An entry consists of three parts. First an optional header
 (lines starting with "#") which can have the "fuzzy" tag (more below), second
 the *msgid* which is the untranslated text (in English in the case of Zonemaster)
 that comes from the program code (Perl code in the case of Zonemaster), and the
-third part is the *msgstr* which is the tranlated text. The task of the
+third part is the *msgstr* which is the translated text. The task of the
 translator is to create and update *msgstr*.
 
 In many *msgid* there is one or several arguments within `{...}`, e.g.
