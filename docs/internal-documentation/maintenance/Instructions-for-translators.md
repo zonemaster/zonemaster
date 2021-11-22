@@ -31,7 +31,7 @@ that comes from the program code (Perl code in the case of Zonemaster), and the
 third part is the *msgstr* which is the tranlated text. The task of the
 translator is to create and update *msgstr*.
 
-In many *msgid* there is one or several arguments win in `{...}`, e.g.
+In many *msgid* there is one or several arguments within `{...}`, e.g.
 `{ns_ip_list}`. Currently these arguments are only found in messages in
 Zonemaster-Engine. The same arguments must be found in *msgid* and *msgstr*. The
 value of the argument will be inserted at run time. The format of that value
@@ -125,13 +125,9 @@ two repositories.
   git clone https://github.com/zonemaster/zonemaster-engine.git
   ```
 
-* Enter the directory of the clone created above or already existing clone:
+* Enter the directory of the clone and make sure it is fully updated.
   ```
   cd zonemaster-engine
-  ```
-
-* If you already have an old clone of Zonemaster-Engine, run an update.
-  ```
   git fetch --all
   ```
 
@@ -165,7 +161,7 @@ same for all three repositories.
 
 * Go to the *share* directory and run the update command for the PO file for
   the language you are going to work with. Replace "xx" with the language code in
-  question. This should be done every time.
+  question. This will synchronize the PO file with the *msgids* in the Perl code.
   ```
   cd share
   ./update-po xx.po
@@ -175,14 +171,15 @@ same for all three repositories.
   working with it. Unless this is the first translation you only have to work
   with updated or untranslated items.
 
-* Update the PO file with the tool of your choice. See above. You can copy
-  the PO file to another computer, edit it there, and then copy it back to
-  your Zonemaster-Engine clone -- or Zonemaster-CLI clone or Zonemaster-Backend
-  clone depending on what repository you do the translation for.
+* Update the PO file with the tool of your choice (see section "[Tools]" above).
+  You can copy the PO file to another computer, edit it there, and then copy it
+  back to your Zonemaster-Engine clone -- or Zonemaster-CLI clone or
+  Zonemaster-Backend clone depending on what repository you do the translation
+  for.
 
 * When doing the update, do not change the *msgid*, only the *msgstr*. The
-  *msgid* cannot be be update in this process. They are the links between the
-  Perl module and the PO file.
+  *msgid* cannot be update in this process. They are the links between the Perl
+  module and the PO file.
 
   * If you find a *msgid* that needs an update please see section
     [Updates to msgids] for how to report it.
@@ -316,9 +313,9 @@ is to make a copy of an existing file.
   grep xx_ /etc/locale.gen  # Works in Debian and Ubuntu
   ```
 
-* Go to the *share* and use an existing PO file, say sv.po, and make a copy
-  of that to the new file name. Update it and "add" it to git before working
-  on it.
+* Go to the *share* directory and use an existing PO file, say sv.po, and make a
+  copy of that to the new file name. Update it and "add" it to `git` before
+  working on it.
   ```
   cd share
   cp sv.po xx.po
@@ -331,7 +328,7 @@ is to make a copy of an existing file.
   "Language" field in the header.
 
 * Now you go back to section "[Translation steps]" and continue in the same way
-  with an existing language.
+  as with an existing language.
 
 
 ## Technical details
