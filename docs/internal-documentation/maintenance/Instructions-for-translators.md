@@ -178,7 +178,7 @@ same for all three repositories.
   for.
 
 * When doing the update, do not change the *msgid*, only the *msgstr*. The
-  *msgid* cannot be update in this process. They are the links between the Perl
+  *msgid* cannot be updated in this process. They are the links between the Perl
   module and the PO file.
 
   * If you find a *msgid* that needs an update please see section
