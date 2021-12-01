@@ -4,6 +4,10 @@ Release Process - Create .deb Packages
 
 ## Overview
 
+The purpose of this process is to create and publish .deb packages for
+Zonemaster components, currently only Zonemaster-CLI, Zonemaster-Engine and
+Zonemaster-LDNS are covered.
+
 The process to build the packages is split in two parts. First "nightly
 packages" are updated, those packages that are based on the develop branch
 of Zonemaster git repositories. Then those packages are promoted to "stable
