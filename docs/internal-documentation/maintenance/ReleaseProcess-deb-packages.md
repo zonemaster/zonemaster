@@ -4,35 +4,37 @@ Release Process - Create .deb Packages
 
 ## Overview
 
-The process to build the packages is splitted in two parts. First we update the
+The process to build the packages is split in two parts. First we update the
 "nightly packages", packages that are based on the develop branch of Zonemaster
 repositories. Then we promote those packages to "stable packages". The only
 difference between a nightly packages and its prometed version should be the
 upstream tarball. While the nightly packages use the develop branch as upstream,
 the stable ones use a specific tag.
 
-Each package is splitted in two, one for the libraries and executable and an
+Each package is split in two, one for the libraries and executable and an
 other one for the documentation. The documentation packages are marked as
-"Recommends" and by default will be installed alongside their corresponding
+"Recommends" and will be installed by default alongside their corresponding
 package.
 
 ## Repositories location
 
-* Packages sources: https://gitlab.rd.nic.fr/zonemaster/packages/debian
-* Common Gitlab pipeline: https://gitlab.rd.nic.fr/zonemaster/ci/-/blob/main/deb-packaging.yml
-* `package.zonemaster.net` content: https://gitlab.rd.nic.fr/zonemaster/packages/www/
+* [Packages sources]: hold the sources for all Zonemaster packages.
+* [Common Gitlab pipeline]: common ci/cd jobs for all branches in the packages
+  source repository.
+* [`package.zonemaster.net` content]: setup script and public signing key
 
 ## Updating the nightly packages
 
-The source for nightly packages are kept in the branche `<distribution>-nightly`.
+The sources for nightly packages are kept in the branche `<distribution>-nightly`.
 
 For each package:
 
-1. Update the `debian/control` file to add / remove any dependencies that have
-   changed.
+1. Update the `debian/control` file to add and/or remove any dependencies that
+   have changed.
 
 2. If there are new files (executables as such), update `debian/*.manpages` and
-   `debian/*.install` accordingly.
+   `debian/*.install` accordingly. This step is not required for new Perl
+   modules.
 
 ## Promote the nightly build to stable
 
@@ -44,20 +46,20 @@ it to stable:
 2. Update the upstream ref in `pkg.sh` with the tag of the corresponding release
    for each package.
 
-3. Update the changelog for each packages, by adding a new entry. The first line
+3. Update the `changelog` for each packages, by adding a new entry. The first line
    should contain the package version in format
    `<project version>-<package version>+deb<debian version>`.
 
    For example:  `zonemaster-cli (3.1.0-3+deb11)` is the partial entry for
-   Zonemaster CLI version 3.1.0, the package version is `3` and it is build for
-   Debian 11.
+   Zonemaster CLI version `3.1.0`, the package version is `3` and it is built
+   for Debian 11.
 
-4. Push the modification to the package sources repository. The packages then
+4. Push the modifications to the packages sources repository. Then the packages
    are automatically built and deployed to package.zonemaster.net.
 
 > Note: It is fairly important to perform all of those steps in "one push"
 > as the continuous deployment pipeline will start building the new packages
-> on push.
+> on the push event.
 
 ## Publication pipeline
 
@@ -99,3 +101,6 @@ sudo apt install zonemaster-cli
 * [Third party repository in Debian](https://wiki.debian.org/DebianRepository/UseThirdParty)
 
 [aptly]: https://aplty.info
+[Packages sources]: https://gitlab.rd.nic.fr/zonemaster/packages/debian
+[Common Gitlab pipeline]: https://gitlab.rd.nic.fr/zonemaster/ci/-/blob/main/deb-packaging.yml
+[`package.zonemaster.net` content]: https://gitlab.rd.nic.fr/zonemaster/packages/www/
