@@ -15,7 +15,7 @@ packages". The only difference between a nightly packages and its promoted
 version is the upstream tarball. While the nightly packages use the develop
 branch as upstream, the stable ones use a specific tag.
 
-## 1. Updating the nightly packages
+## 1. Update the nightly packages
 
 The sources for nightly packages are kept in the branch `<distribution>-nightly`.
 
@@ -54,7 +54,7 @@ it to stable:
 > on the push event.
 
 
-## 3. Testing the packages
+## 3. Test the packages
 
 To test the newly created packages you can configure Zonemaster packages
 repository using:
