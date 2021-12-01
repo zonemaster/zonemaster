@@ -4,28 +4,16 @@ Release Process - Create .deb Packages
 
 ## Overview
 
-The process to build the packages is split in two parts. First we update the
-"nightly packages", packages that are based on the develop branch of Zonemaster
-repositories. Then we promote those packages to "stable packages". The only
-difference between a nightly packages and its prometed version should be the
-upstream tarball. While the nightly packages use the develop branch as upstream,
-the stable ones use a specific tag.
+The process to build the packages is split in two parts. First "nightly
+packages" are updated, those packages that are based on the develop branch
+of Zonemaster git repositories. Thenthose packages are promoted to "stable
+packages". The only difference between a nightly packages and its promoted
+version is the upstream tarball. While the nightly packages use the develop
+branch as upstream, the stable ones use a specific tag.
 
-Each package is split in two, one for the libraries and executable and an
-other one for the documentation. The documentation packages are marked as
-"Recommends" and will be installed by default alongside their corresponding
-package.
+## 1. Updating the nightly packages
 
-## Repositories location
-
-* [Packages sources]: hold the sources for all Zonemaster packages.
-* [Common Gitlab pipeline]: common ci/cd jobs for all branches in the packages
-  source repository.
-* [`package.zonemaster.net` content]: setup script and public signing key
-
-## Updating the nightly packages
-
-The sources for nightly packages are kept in the branche `<distribution>-nightly`.
+The sources for nightly packages are kept in the branch `<distribution>-nightly`.
 
 For each package:
 
@@ -34,9 +22,9 @@ For each package:
 
 2. If there are new files (executables as such), update `debian/*.manpages` and
    `debian/*.install` accordingly. This step is not required for new Perl
-   modules.
+   modules, but will be for new scripts.
 
-## Promote the nightly build to stable
+## 2. Promote the nightly build to stable
 
 After the Github release and when the nightly package is working fine, promote
 it to stable:
@@ -61,19 +49,8 @@ it to stable:
 > as the continuous deployment pipeline will start building the new packages
 > on the push event.
 
-## Publication pipeline
 
-The continuous deployment pipeline perform 3 tasks:
-
-1. Build the packages using the `build.sh` script in the packages sources
-   repository.
-
-2. Update the [aptly] repository and publish the new packages.
-
-3. Perform a smoke test by installing the latest package and running the CLI.
-
-
-## Testing the packages
+## 3. Testing the packages
 
 To test the newly created packages you can configure Zonemaster packages
 repository using:
@@ -93,9 +70,35 @@ The packages can then be installed using apt, e.g.:
 ```sh
 sudo apt install zonemaster-cli
 ```
+## Appendices
 
+### Repositories location
 
-## Further resources
+* [Packages sources]: hold the sources for all Zonemaster packages.
+
+  Each package is split in two, one for the libraries and executable and an
+  other one for the documentation. The documentation packages are marked as
+  "Recommends" and will be installed by default alongside their corresponding
+  package.
+
+* [Common Gitlab pipeline]: common ci/cd jobs for all branchs in the packages
+  source repository.
+
+* [`package.zonemaster.net` content]: setup script and public verification key
+
+### Publication pipeline overview
+
+The continuous deployment pipeline perform 3 tasks:
+
+1. Build the packages using the `build.sh` script in the packages sources
+   repository.
+
+2. Update the [aptly] repository and publish the new packages.
+
+3. Perform a smoke test by installing the latest package and running the CLI.
+
+### Further resources
+
 * [Aptly documentation](https://www.aptly.info/doc/overview/)
 * [Debian maintainer guide](https://www.debian.org/doc/manuals/maint-guide/)
 * [Third party repository in Debian](https://wiki.debian.org/DebianRepository/UseThirdParty)
