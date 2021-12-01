@@ -9,11 +9,11 @@ Zonemaster components, currently only Zonemaster-CLI, Zonemaster-Engine and
 Zonemaster-LDNS are covered.
 
 The process to build the packages is split in two parts. First "nightly
-packages" are updated, those packages that are based on the develop branch
-of Zonemaster git repositories. Then those packages are promoted to "stable
-packages". The only difference between a nightly packages and its promoted
-version is the upstream tarball. While the nightly packages use the develop
-branch as upstream, the stable ones use a specific tag.
+packages" are updated, those packages are based on the develop branch
+of Zonemaster git repositories. Then they are promoted to "stable packages".
+The only difference between a nightly packages and its promoted version is the
+upstream tarball. While the nightly packages use the develop branch as upstream,
+the stable ones use a specific tag.
 
 ## 1. Update the nightly packages
 
@@ -107,7 +107,7 @@ The continuous deployment pipeline perform 3 tasks:
 * [Debian maintainer guide](https://www.debian.org/doc/manuals/maint-guide/)
 * [Third party repository in Debian](https://wiki.debian.org/DebianRepository/UseThirdParty)
 
-[aptly]: https://aplty.info
+[aptly]: https://aptly.info
 [Packages sources]: https://gitlab.rd.nic.fr/zonemaster/packages/debian
 [Common Gitlab pipeline]: https://gitlab.rd.nic.fr/zonemaster/ci/-/blob/main/deb-packaging.yml
 [`package.zonemaster.net` content]: https://gitlab.rd.nic.fr/zonemaster/packages/www/
