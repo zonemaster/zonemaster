@@ -20,7 +20,7 @@ package.
 
 * Packages sources: https://gitlab.rd.nic.fr/zonemaster/packages/debian
 * Common Gitlab pipeline: https://gitlab.rd.nic.fr/zonemaster/ci/-/blob/main/deb-packaging.yml
-* `package.zonemaster.net` content: TBD
+* `package.zonemaster.net` content: https://gitlab.rd.nic.fr/zonemaster/packages/www/
 
 ## Updating the nightly packages
 
