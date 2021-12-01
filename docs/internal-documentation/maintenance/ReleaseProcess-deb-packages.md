@@ -6,7 +6,7 @@ Release Process - Create .deb Packages
 
 The process to build the packages is split in two parts. First "nightly
 packages" are updated, those packages that are based on the develop branch
-of Zonemaster git repositories. Thenthose packages are promoted to "stable
+of Zonemaster git repositories. Then those packages are promoted to "stable
 packages". The only difference between a nightly packages and its promoted
 version is the upstream tarball. While the nightly packages use the develop
 branch as upstream, the stable ones use a specific tag.
