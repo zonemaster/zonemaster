@@ -75,8 +75,8 @@ The continuous deployment pipeline perform 3 tasks:
 
 ## Testing the packages
 
-To test the new created package you can configure Zonemaster package repository
-using:
+To test the newly created packages you can configure Zonemaster packages
+repository using:
 
 ```sh
 curl -Ls https://package.zonemaster.net/setup.sh | sudo sh
