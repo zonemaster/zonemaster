@@ -1,5 +1,46 @@
 Release history of Zonemaster
 
+v2021.2 2021-12-03 (public release version)
+
+ [Breaking changes]
+ - See Zonemaster-Backend release notes for breaking changes in
+   Zonemaster-Backend.
+
+ [Features]
+ - Adds new or updated implementation of several test cases. See
+   Zonemaster-Engine release notes for this feature.
+ - Adds support of Zonemaster-CLI on Docker with pre-built image on Docker Hub.
+   See Zonemaster-CLI release notes for this feature.
+ - Deb packages are available for Debian. See Zonemaster-Engine release notes
+   and Zonemaster-CLI release notes for this feature.
+ - Adds translation of error messages in Zonemaster-Backend. See its release
+   notes for this feature.
+ - Adds translation of error messages from RPC API in Zonemaster-GUI. See its
+   release notes for this feature.
+ - Replaces CentOS with Rocky Linux as supported OS (#991, #992)
+ - Adds documentation on how to build Docker image of Zonemaster-CLI (#1012)
+ - Adds specification of test case DNSSEC18 (#1006, #1001, #999)
+ - Updates the specification of test cases DNSSEC02 (#871, #832), DNSSEC08 (#872,
+   #832), DNSSEC09 (#996, #873, #832), DNSSEC10 (#1008, #875, #832, #941),
+   DNSSEC11 (#876), DNSSEC13 (#877), DNSSEC16 (#1103, #997, #966, #957) and
+   DNSSEC17 (#1002, #998, #966, #957)
+
+ [Fixes]
+ - Improved user interface and error message handling in Zonemaster-GUI. See its
+   release notes for these fixes.
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components. For each
+   component, see its Changes file or Github release notes for complete release
+   information.
+
+   Zonemaster-LDNS     v2.2.1   https://github.com/zonemaster/zonemaster-ldns/releases/tag/v2.2.1
+   Zonemaster-Engine   v4.3.0   https://github.com/zonemaster/zonemaster-engine/releases/tag/v4.3.0
+   Zonemaster-CLI      v3.1.1   https://github.com/zonemaster/zonemaster-cli/releases/tag/v3.1.1
+   Zonemaster-Backend  v8.0.0   https://github.com/zonemaster/zonemaster-backend/releases/tag/v8.0.0
+   Zonemaster-GUI      v3.4.0   https://github.com/zonemaster/zonemaster-gui/releases/tag/v3.4.0
+
+
 v2021.1.3 2021-09-17 (public fix release)
 
  [Fixes]
