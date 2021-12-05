@@ -20,9 +20,9 @@ Zonemaster is actively tested on the amd64/x86_64 processor architecture.
 
 Zonesmaster is actively tested on these operating systems:
 
-* CentOS
 * Debian
 * FreeBSD
+* Rocky Linux
 * Ubuntu
 
 
@@ -36,15 +36,18 @@ fixed for the lifetime of the Zonemaster version.
 
 ### Criteria
 
-Minor version/point release/patch level should not be specified.
+The following criteria are used to determine which version of the operating
+system that is supported:
+  * Minor version/point release/patch level should not be specified.
+  * Operating system versions without long term support form their
+    vendor should not be supported.
+  * Only the latest long term version is supported.
+  * Operating system versions that have reached their end-of-life should not be
+    supported.
+  * Operating system versions that do not provide the prerequisites for
+    Zonemaster should not be supported.
 
-Operating system versions without long term support form their vendor should not be supported.
-
-Operating system versions that have reached their end-of-life should not be supported.
-
-Operating system versions that do not provide the prerequisites for Zonemaster should not be supported.
-
-Operating system specific guidelines:
+### Operating system specific guidelines
 
 * CentOS:
   * Base Distributions are listed here:
@@ -57,8 +60,10 @@ Operating system specific guidelines:
 * FreeBSD:
   * Supported releases are listed here:
     <https://www.freebsd.org/security/>
-  * FreeBSD 10: Releases that are supported by FreeBSD and being "extended" are supported by Zonemaster.
-  * FreeBSD 11: Latest release version is supported.
+
+* Rocky Linux:
+  * Supported releases are listed here:
+    <https://rockylinux.org/download>
 
 * Ubuntu:
   * LTS releases are listed here:
@@ -69,7 +74,7 @@ Operating system specific guidelines:
 
 Zonemaster provides database integrations for these database engines:
 
-* MariaDB
+* MariaDB (MySQL)
 * PostgreSQL
 * SQLite
 

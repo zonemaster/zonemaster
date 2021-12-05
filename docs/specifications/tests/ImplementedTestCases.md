@@ -50,6 +50,7 @@ Index of Text Case specifications is also found in [README](README.md).
 | [DNSSEC](https://metacpan.org/pod/Zonemaster::Engine::Test::DNSSEC) | dnssec15 | [DNSSEC15](DNSSEC-TP/dnssec15.md) |
 | [DNSSEC](https://metacpan.org/pod/Zonemaster::Engine::Test::DNSSEC) | dnssec16 | [DNSSEC16](DNSSEC-TP/dnssec16.md) |
 | [DNSSEC](https://metacpan.org/pod/Zonemaster::Engine::Test::DNSSEC) | dnssec17 | [DNSSEC17](DNSSEC-TP/dnssec17.md) |
+| [DNSSEC](https://metacpan.org/pod/Zonemaster::Engine::Test::DNSSEC) | dnssec18 | [DNSSEC18](DNSSEC-TP/dnssec18.md) |
 | [Nameserver](https://metacpan.org/pod/Zonemaster::Engine::Test::Nameserver) | nameserver01 | [NAMESERVER01](Nameserver-TP/nameserver01.md) |
 | [Nameserver](https://metacpan.org/pod/Zonemaster::Engine::Test::Nameserver) | nameserver02 | [NAMESERVER02](Nameserver-TP/nameserver02.md) |
 | [Nameserver](https://metacpan.org/pod/Zonemaster::Engine::Test::Nameserver) | nameserver03 | [NAMESERVER03](Nameserver-TP/nameserver03.md) |
