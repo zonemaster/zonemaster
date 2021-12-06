@@ -32,12 +32,12 @@ same directory. If you run `cd`, then you have to run `cd` back to the start
 directory.
 
 The Docker environment is assumed to be clean. Consider running the following
-commands before proceeding (see section "[Handy Docker commands]"):
+commands before proceeding (see section "[Handy Docker commands]") to clean up:
 ```sh
-docker rm -f $(docker ps -a -q)
+[ "$(docker ps -a -q)" != '' ] && docker rm -f $(docker ps -a -q)
 ```
 ```sh
-docker image prune -a
+[ "$(docker image ls -q)" != '' ] && docker image prune -a
 ```
 
 
@@ -108,7 +108,8 @@ make -C zonemaster-cli docker-tag-latest
 ```
 
 All the created images can now be listed. Also consider doing [sanity checks] to
-verify that all images work. List images:
+verify that all images work. Images without tag are temporary images without
+further use. List images:
 
 ```sh
 docker images
@@ -120,7 +121,7 @@ To upload an image to the Zonemaster Docker Hub organization you have to have
 a Docker Hub account and the authorization to upload images.
 
 ```sh
-docker login -u $DOCKERUSER
+docker login
 ```
 
 The same image is pushed twice with different tags. Verify in the listing
@@ -131,7 +132,7 @@ above that they have the same ID.
 docker push zonemaster/cli:latest
 ```
 
-* Set correct version (see listing) and push image with version tag:
+* Set correct version (see listing above) and push image with version tag:
 ```sh
 docker push zonemaster/cli:v0.0.0
 ```
