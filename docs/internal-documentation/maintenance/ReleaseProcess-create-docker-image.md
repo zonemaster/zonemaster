@@ -8,7 +8,7 @@ Release Process - Create Docker Image
 * [3. Create Docker images](#3-create-docker-images)
 * [4. Upload images to Docker Hub](#4-upload-images-to-docker-hub)
 * [5. Image sanity checks][sanity checks]
-* [6. Handy Docker commands](#6-handy-docker-commands)
+* [6. Handy Docker commands][Handy Docker commands]
 
 ## 1. Overview
 
@@ -30,6 +30,15 @@ as the same support is available.
 All commands in this instruction are assumed to be executed from the one and the
 same directory. If you run `cd`, then you have to run `cd` back to the start
 directory.
+
+The Docker environment is assumed to be clean. Consider running the following
+commands before proceeding (see section "[Handy Docker commands]"):
+```sh
+docker rm -f $(docker ps -a -q)
+```
+```sh
+docker image prune -a
+```
 
 
 ## 3. Create Docker images
@@ -64,13 +73,13 @@ git -C zonemaster-cli checkout origin/master
 Create `Makefile` in all three repositories
 
 ```sh
-(cd zonemaster-ldns; git clean -dfx; perl Makefile.PL)
+(cd zonemaster-ldns; git clean -dfx; git reset --hard; perl Makefile.PL)
 ```
 ```sh
-(cd zonemaster-engine; git clean -dfx; perl Makefile.PL)
+(cd zonemaster-engine; git clean -dfx; git reset --hard; perl Makefile.PL)
 ```
 ```sh
-(cd zonemaster-cli; git clean -dfx; perl Makefile.PL)
+(cd zonemaster-cli; git clean -dfx; git reset --hard; perl Makefile.PL)
 ```
 
 Create an image for each repository. That image will be tagged "local". The
@@ -80,10 +89,10 @@ image in each step.
 make -C zonemaster-ldns all dist docker-build
 ```
 ```sh
-make -C zonemaster-engine all docker-build
+make -C zonemaster-engine all dist docker-build
 ```
 ```sh
-make -C zonemaster-cli all docker-build
+make -C zonemaster-cli all dist docker-build
 ```
 
 For the Zonemaster-CLI image, add a version tag and a tag "latest".
@@ -192,4 +201,5 @@ docker load -i docker-zonemaster-cli.tar
 
 
 [Ubuntu Build Environment]:               ../distrib-testing/Ubuntu-build-environment.md
-[sanity checks]:                          #5-image-sanity-checks
+[Sanity checks]:                          #5-image-sanity-checks
+[Handy Docker commands]:                  #6-handy-docker-commands
