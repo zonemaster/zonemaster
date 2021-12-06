@@ -100,16 +100,17 @@ project. All the details are in the [Master Test Plan].
 |[DNSSEC05](DNSSEC-TP/dnssec05.md)|Check for invalid DNSKEY algorithms|
 |[DNSSEC06](DNSSEC-TP/dnssec06.md)|Verify DNSSEC additional processing|
 |[DNSSEC07](DNSSEC-TP/dnssec07.md)|If DNSKEY at child, parent should have DS|
-|[DNSSEC08](DNSSEC-TP/dnssec08.md)|RRSIG(DNSKEY) must be valid and created by a valid DNSKEY|
+|[DNSSEC08](DNSSEC-TP/dnssec08.md)|Valid RRSIG for DNSKEY|
 |[DNSSEC09](DNSSEC-TP/dnssec09.md)|RRSIG(SOA) must be valid and created by a valid DNSKEY|
 |[DNSSEC10](DNSSEC-TP/dnssec10.md)|Zone contains NSEC or NSEC3 records|
-|[DNSSEC11](DNSSEC-TP/dnssec11.md)|Delegation from parent to child is properly signed|
+|[DNSSEC11](DNSSEC-TP/dnssec11.md)|DS in delegation requires signed zone|
 |[DNSSEC12](DNSSEC-TP/dnssec12.md)|Test for DNSSEC Algorithm Completeness|
 |[DNSSEC13](DNSSEC-TP/dnssec13.md)|All DNSKEY algorithms used to sign the zone|
 |[DNSSEC14](DNSSEC-TP/dnssec14.md)|Check for valid RSA DNSKEY key size|
 |[DNSSEC15](DNSSEC-TP/dnssec15.md)|Existence of CDS and CDNSKEY|
 |[DNSSEC16](DNSSEC-TP/dnssec16.md)|Validate CDS|
 |[DNSSEC17](DNSSEC-TP/dnssec17.md)|Validate CDNSKEY|
+|[DNSSEC18](DNSSEC-TP/dnssec18.md)|Validate trust from DS to CDS and CDNSKEY|
 |**Delegation-TP**| |
 |[DELEGATION01](Delegation-TP/delegation01.md)|Minimum number of name servers   |
 |[DELEGATION02](Delegation-TP/delegation02.md)|Name servers must have distinct IP addresses|

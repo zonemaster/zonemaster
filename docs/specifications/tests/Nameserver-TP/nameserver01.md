@@ -87,7 +87,7 @@ Valid domain names according to the "IDNA 2008 specification" is found in
 
 
 [Basic04]:               ../Basic-TP/basic04.md
-[D.J. Bernstein]: http://cr.yp.to/djbdns/separation.html
+[D.J. Bernstein]: https://cr.yp.to/djbdns/separation.html
 [IDNA 2008 specification]: #terminology
 [IS_A_RECURSOR]: #outcomes
 [Method4]: ../Methods.md#method-4-obtain-glue-address-records-from-parent

@@ -25,7 +25,7 @@ regardless of which algorithm is used.
 
 Section 5.3.2 in [RFC 6781](https://tools.ietf.org/html/rfc6781#section-5.3.2)
 describes the consequences for an authoritative name server in more detail, and
-references the [NSEC Hash Performance](http://www.nlnetlabs.nl/downloads/publications/nsec3_hash_performance.pdf)
+references the [NSEC Hash Performance](https://www.nlnetlabs.nl/downloads/publications/nsec3_hash_performance.pdf)
 study from NLNet Labs.
 
 > Choosing a value of 100 iterations is deemed to be a
