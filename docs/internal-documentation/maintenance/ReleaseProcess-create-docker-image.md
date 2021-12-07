@@ -32,7 +32,7 @@ same directory. If you run `cd`, then you have to run `cd` back to the start
 directory.
 
 The Docker environment is assumed to be clean. Consider running the following
-commands before proceeding (see section "[Handy Docker commands]") to clean up:
+commands to clean up before proceeding (see section "[Handy Docker commands]"):
 ```sh
 [ "$(docker ps -a -q)" != '' ] && docker rm -f $(docker ps -a -q)
 ```
