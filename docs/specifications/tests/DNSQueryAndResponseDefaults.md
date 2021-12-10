@@ -28,80 +28,84 @@ an explicit reference to this document.
 ## Default setting in *DNS Query*
 
 A *DNS Query* has the following default setting. A test case specification can
-refer to a *DNS Query* with one or several changes to the setting items.
-Specifically, the test case specification must always specify query name and
-query type.
+refer to a *DNS Query* with one or several changes to the *Setting Items*
+overriding the default values. If a *Setting Item* is specified as "fixed" then
+the default value cannot be overidden.
 
-|Setting Item |Default value |Comment                         |
-|:------------|:-------------|:-------------------------------|
-|Protocol     | UDP          |                                |
-|OpCode       | "query"      | Always "query" in a query      |
-|QR flag      | unset        | Always unset in a query        |
-|AA flag      | unset        |                                |
-|TC flag      | unset        |                                |
-|RD flag      | unset        |                                |
-|RA flag      | unset        |                                |
-|AD flag      | unset        |                                |
-|CD flag      | unset        |                                |
-|RCODE        | "NoError"    | Always "NoError" in a query    |
-|Query name   | -            | Must be defined in test case   |
-|Query type   | -            | Must be defined in test case   |
-|Query class  | "IN"         | Always "IN" in the query       |
-|ENDS         | no           | No OPT record is included      |
+|Setting Item |Default value |Fixed |Comment                       |
+|:------------|:-------------|:-----|:-----------------------------|
+|Protocol     | UDP          |      |                              |
+|OpCode       | "query"      | yes  |                              |
+|QR flag      | unset        | yes  | Always unset in a query      |
+|AA flag      | unset        | yes  |                              |
+|TC flag      | unset        | yes  |                              |
+|RD flag      | unset        |      |                              |
+|RA flag      | unset        | yes  |                              |
+|AD flag      | unset        |      |                              |
+|CD flag      | unset        |      |                              |
+|RCODE        | "NoError"    | yes  |                              |
+|Query name   | -            |      | Must be defined in test case |
+|Query type   | -            |      | Must be defined in test case |
+|Query class  | "IN"         | yes  |                              |
+|EDNS         | no           |      | No OPT record is included    |
 
 
 ## Default setting in *EDNS Query*
 
 An *EDNS Query* inherit the default setting from a *DNS Query* except for the
-setting items specified below.
+setting items specified below. If a *Setting Item* is specified as "fixed" then
+the default value cannot be overidden.
 
 A test case specification can refer to an *EDNS Query* with one or several
 changes to the setting items.
 
-|Setting Item          |Default value |Comment                   |
-|:---------------------|:-------|:-------------------------------|
-|ENDS                  | yes    | OPT record is included         |
-|EDNS UDP Message size | 512    |                                |
-|ENDS Extended RCODE   | no     |                                |
-|ENDS Version          | 0      |                                |
-|ENDS DO flag          | unset  |                                |
-|EDNS Z lag            | unset  |                                |
-|EDNS0 Option          | none   |                                |
+|Setting Item          |Default value        |Fixed |Comment |
+|:---------------------|:--------------------|:-----|:-------|
+|EDNS                  | OPT record included | yes  |        |
+|EDNS UDP Message size | 512                 |      |        |
+|EDNS Extended RCODE   | no                  |      |        |
+|EDNS Version          | 0                   |      |        |
+|EDNS DO flag          | unset               |      |        |
+|EDNS Z lag            | unset               |      |        |
+|EDNS0 Option          | none                |      |        |
 
 
 ## Default setting in *DNSSEC Query*
 
 An *DNSSEC Query* inherit the default setting from an *EDNS Query* except for the
-setting items specified below.
+setting items specified below. If a *Setting Item* is specified as "fixed" then
+the default value cannot be overidden.
 
 A test case specification can refer to an *DNSSEC Query* with one or several
 changes to the setting items.
 
-|Setting               |Default value |Comment                   |
-|:---------------------|:-------|:-------------------------------|
-|ENDS DO flag          | set    |                                |
+|Setting               |Default value |Fixed |Comment |
+|:---------------------|:-------------|:-----|:-------|
+|EDNS DO flag          | set          | yes  |        |
 
 
 ## Default handling of a *DNS Response*
 
 A *DNS Response* is a response to a *DNS Query*. Unless specified in the test
-case specification, the items in the response is handled as listed.
+case specification, the items in the response is handled as listed. If a
+*Response Item* is specified as "fixed" then the requirement in default action
+must be successful for the response to be considered to be a valid DNS response.
 
-|Response Item |Default handling    | Comment                         |
-|:-------------|:-------------------|:--------------------------------|
-|OpCode        | Must be "response" | Always "response" in a response |
-|QR flag       | Must be set        | Always set in a response        |
-|AA flag       | -                  | Defined in test case            |
-|TC flag       | Re-query over TCP  |                                 |
-|RD flag       | ignore             |                                 |
-|RA flag       | ignore             |                                 |
-|AD flag       | ignore             |                                 |
-|CD flag       | ignore             |                                 |
-|RCODE         | -                  | Defined in test case            |
-|Query name    | ignore             |                                 |
-|Query type    | ignore             |                                 |
-|Query class   | ignore             | Must be "IN" in the response    |
-|ENDS          | ignore             |                                 |
+|Response Item |Default handling               | Fixed | Comment              |
+|:-------------|:------------------------------|:------|:---------------------|
+|OpCode        | Require value to be "response"| yes   |                      |
+|QR flag       | Require flag to be set        | yes   |                      |
+|AA flag       | -                             |       | Defined in test case |
+|TC flag       | Re-query over TCP if set      |       |                      |
+|RD flag       | ignore                        |       |                      |
+|RA flag       | ignore                        |       |                      |
+|AD flag       | ignore                        |       |                      |
+|CD flag       | ignore                        |       |                      |
+|RCODE         | -                             |       | Defined in test case |
+|Query name    | ignore                        |       |                      |
+|Query type    | ignore                        |       |                      |
+|Query class   | Require value to be "IN"      | yes   |                      |
+|EDNS          | ignore                        |       |                      |
 
 
 * Check against query name and query type is, by default, done against the values
@@ -130,10 +134,12 @@ the default handling from a *DNS Response* except for the response items
 specified below. Unless specified in the test case specification, the items in
 the response is handled using the default handling.
 
-|Response Item |Default handling | Comment                            |
-|:-------------|:----------------|:-----------------------------------|
-|ENDS          | -               | Defined in test case specification |
+|Response Item |Default handling                 | Comment                                                              |
+|:-------------|:--------------------------------|:---------------------------------------------------------------------|
+|EDNS          | Raise warning if OPT is missing | Create DEBUG message unless specified in the test case specification |
 
+The test case implementation should discover a missing OPT record and take some
+action.
 
 ## Default handling of a *DNSSEC response*
 
@@ -142,10 +148,12 @@ inherits the default handling from a *EDNS Response* except for the response
 items specified below. Unless specified in the test case specification, the items
 in the response is handled using the default handling.
 
-|Response Item |Default handling | Comment                            |
-|:-------------|:----------------|:-----------------------------------|
-| EDNS DO flag | ignore          |                                    |
+|Response Item |Default handling                     | Comment                                                              |
+|:-------------|:----------------------------------- |:---------------------------------------------------------------------|
+| EDNS DO flag | Raise warning if DO flag is missing | Create DEBUG message unless specified in the test case specification |
 
+The test case implementation should discover a missing DO flag and take some
+action.
 
 
 [Test Cases]:                  README.md#list-of-defined-test-cases
