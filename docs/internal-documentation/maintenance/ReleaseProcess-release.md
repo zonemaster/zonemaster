@@ -410,14 +410,10 @@ branch `merge-develop-into-master` is correct, and a pull request into
 [Changes LDNS]:                            https://github.com/zonemaster/zonemaster-ldns/blob/develop/Changes
 [Changes Zonemaster]:                      https://github.com/zonemaster/zonemaster-gui/blob/develop/Changes
 [Create Docker Image]:                     ReleaseProcess-create-docker-image.md
-[Declaration of prerequisites]:            ../../../README.md#prerequisites
 [Docker Hub]:                              https://hub.docker.com/u/zonemaster
 [Engine.pm]:                               https://github.com/zonemaster/zonemaster-engine/blob/develop/lib/Zonemaster/Engine.pm
 [Installation.md GUI]:                     https://github.com/zonemaster/zonemaster-gui/blob/develop/docs/Installation.md
 [LDNS.pm]:                                 https://github.com/zonemaster/zonemaster-ldns/blob/develop/lib/Zonemaster/LDNS.pm
-[License string]:                          https://metacpan.org/pod/CPAN::Meta::Spec#license
-[NVM]:                                     https://github.com/nvm-sh/nvm
-[Node.js]:                                 https://nodejs.org/en/
 [PAUSE]:                                   https://pause.perl.org/
 [Package.json GUI]:                        https://github.com/zonemaster/zonemaster-gui/blob/develop/package.json
 [Utils Zonemaster]:                        ../../../utils/
