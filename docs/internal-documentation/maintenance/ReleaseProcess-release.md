@@ -96,14 +96,14 @@ The version numbers is to be set in these Perl modules in the *develop branch*:
 The GUI has no Perl. Update the following files in the *develop branch*:
 
  * zonemaster-gui
-   - [Installation.md][Installation.md GUI]: The version is part of the download
-   path (a directory). It can be repeated several times, once per OS.
-   - [package.json][package.json GUI]: In the top of the file, the version is
-   given after "version".
-   - [environment.prod.ts][environment.prod.ts GUI] and 
-   [environment.ts][environment.ts GUI]: Under "client-info", "version"
-   should point at the version number in both files.
-
+   - [docs/Installation.md][Installation.md GUI]
+     - The version is part of the download path (a directory). It can be
+       repeated several times, once per OS.
+   - [package.json][package.json GUI]
+     - In the top of the file, the version is given after "version".
+     - The file `package-lock.json` is ignored
+   - [src/environments/version.ts][Version.ts GUI]
+     - "version" should point at the version number.
 
 ## 7. Update Makefile.PL with required version
 
@@ -414,9 +414,10 @@ branch `merge-develop-into-master` is correct, and a pull request into
 [Engine.pm]:                               https://github.com/zonemaster/zonemaster-engine/blob/develop/lib/Zonemaster/Engine.pm
 [Installation.md GUI]:                     https://github.com/zonemaster/zonemaster-gui/blob/develop/docs/Installation.md
 [LDNS.pm]:                                 https://github.com/zonemaster/zonemaster-ldns/blob/develop/lib/Zonemaster/LDNS.pm
-[NVM]:                                     https://github.com/nvm-sh/nvm
-[Node.js]:                                 https://nodejs.org/en/
 [PAUSE]:                                   https://pause.perl.org/
+[Package.json GUI]:                        https://github.com/zonemaster/zonemaster-gui/blob/develop/package.json
+[Utils Zonemaster]:                        ../../../utils/
+[Version.ts GUI]:                          https://github.com/zonemaster/zonemaster-gui/blob/develop/src/environments/version.ts
 [Versions and releases]:                   ../../design/Versions%20and%20Releases.md
 [ZNMSTR]:                                  https://metacpan.org/author/ZNMSTR
 [Zonemaster Product Releases]:             https://github.com/zonemaster/zonemaster/releases
@@ -430,12 +431,4 @@ branch `merge-develop-into-master` is correct, and a pull request into
 [Zonemaster-Engine Releases]:              https://github.com/zonemaster/zonemaster-engine/releases
 [Zonemaster-GUI Releases]:                 https://github.com/zonemaster/zonemaster-gui/releases
 [Zonemaster-LDNS Releases]:                https://github.com/zonemaster/zonemaster-ldns/releases
-[declaration of prerequisites]:            ../../../README.md#prerequisites
-[environment.prod.ts GUI]:                 https://github.com/zonemaster/zonemaster-gui/blob/develop/src/environments/environment.prod.ts
-[environment.ts GUI]:                      https://github.com/zonemaster/zonemaster-gui/blob/develop/src/environments/environment.ts
-[license string]:                          https://metacpan.org/pod/CPAN::Meta::Spec#license
-[package.json GUI]:                        https://github.com/zonemaster/zonemaster-gui/blob/develop/package.json
-[utils Zonemaster]:                        ../../../utils/
-
-
 
