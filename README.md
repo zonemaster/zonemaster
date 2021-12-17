@@ -97,7 +97,7 @@ Operating System | MariaDB | PostgreSQL | SQLite
 ---------------- | --------| -----------|------------------------
 Debian 11        | 10.5    | 13.3       | 3.34
 Docker           | n/a     | n/a        | n/a
-FreeBSD 13.0     | 5.7     | 12.8       | 3.35.5
+FreeBSD 13.0     | 5.7     | 13.5       | 3.35.5
 Ubuntu 20.04     | 10.3    | 12.4       | 3.31.1
 Rocky Linux 8.4  | 10.3    | 10.17      | 3.26
 
