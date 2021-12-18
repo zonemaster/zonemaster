@@ -1,5 +1,34 @@
 Release history of Zonemaster
 
+
+v2021.2.1 2021-12-20 (public fix release)
+
+ [Features]
+ - Adds support for and translation to Spanish language. See the release note for
+   Zonemaster-Engine, Zonemaster-CLI, Zonemaster-Backend and Zonemaster-GUI.
+
+ [Fixes]
+ - Updates translation for several languages in one or more component. See the
+   release note for Zonemaster-Engine, Zonemaster-CLI, Zonemaster-Backend and
+   Zonemaster-GUI.
+ - Fixes an error that made testing of IDN names in U-label format break when
+   PostgreSQL was database backend. The bug was also seen from Zonemaster-GUI.
+   See Zonemaster-Backend release notes.
+ - Fixes a bug in Zonemaster-Engine. See its release notes.
+ - Corrects various documents  (#1025, #1027, #1021)
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components. For each
+   component, see its Changes file or Github release notes for complete release
+   information.
+
+   Zonemaster-LDNS     v2.2.1   https://github.com/zonemaster/zonemaster-ldns/releases/tag/v2.2.1
+   Zonemaster-Engine   v4.4.0   https://github.com/zonemaster/zonemaster-engine/releases/tag/v4.4.0
+   Zonemaster-CLI      v3.2.0   https://github.com/zonemaster/zonemaster-cli/releases/tag/v3.2.0
+   Zonemaster-Backend  v8.1.0   https://github.com/zonemaster/zonemaster-backend/releases/tag/v8.1.0
+   Zonemaster-GUI      v3.5.0   https://github.com/zonemaster/zonemaster-gui/releases/tag/v3.5.0
+
+
 v2021.2 2021-12-03 (public release version)
 
  [Breaking changes]
