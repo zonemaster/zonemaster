@@ -8,7 +8,7 @@ Release Process - Create Docker Image
 * [3. Create Docker images](#3-create-docker-images)
 * [4. Upload images to Docker Hub](#4-upload-images-to-docker-hub)
 * [5. Image sanity checks][sanity checks]
-* [6. Handy Docker commands](#6-handy-docker-commands)
+* [6. Handy Docker commands][Handy Docker commands]
 
 ## 1. Overview
 
@@ -30,6 +30,15 @@ as the same support is available.
 All commands in this instruction are assumed to be executed from the one and the
 same directory. If you run `cd`, then you have to run `cd` back to the start
 directory.
+
+The Docker environment is assumed to be clean. Consider running the following
+commands to clean up before proceeding (see section "[Handy Docker commands]"):
+```sh
+[ "$(docker ps -a -q)" != '' ] && docker rm -f $(docker ps -a -q)
+```
+```sh
+[ "$(docker image ls -q)" != '' ] && docker image prune -a
+```
 
 
 ## 3. Create Docker images
@@ -64,13 +73,13 @@ git -C zonemaster-cli checkout origin/master
 Create `Makefile` in all three repositories
 
 ```sh
-(cd zonemaster-ldns; git clean -dfx; perl Makefile.PL)
+(cd zonemaster-ldns; git clean -dfx; git reset --hard; perl Makefile.PL)
 ```
 ```sh
-(cd zonemaster-engine; git clean -dfx; perl Makefile.PL)
+(cd zonemaster-engine; git clean -dfx; git reset --hard; perl Makefile.PL)
 ```
 ```sh
-(cd zonemaster-cli; git clean -dfx; perl Makefile.PL)
+(cd zonemaster-cli; git clean -dfx; git reset --hard; perl Makefile.PL)
 ```
 
 Create an image for each repository. That image will be tagged "local". The
@@ -80,10 +89,10 @@ image in each step.
 make -C zonemaster-ldns all dist docker-build
 ```
 ```sh
-make -C zonemaster-engine all docker-build
+make -C zonemaster-engine all dist docker-build
 ```
 ```sh
-make -C zonemaster-cli all docker-build
+make -C zonemaster-cli all dist docker-build
 ```
 
 For the Zonemaster-CLI image, add a version tag and a tag "latest".
@@ -99,7 +108,8 @@ make -C zonemaster-cli docker-tag-latest
 ```
 
 All the created images can now be listed. Also consider doing [sanity checks] to
-verify that all images work. List images:
+verify that all images work. Images without tag are temporary images without
+further use. List images:
 
 ```sh
 docker images
@@ -111,7 +121,7 @@ To upload an image to the Zonemaster Docker Hub organization you have to have
 a Docker Hub account and the authorization to upload images.
 
 ```sh
-docker login -u $DOCKERUSER
+docker login
 ```
 
 The same image is pushed twice with different tags. Verify in the listing
@@ -122,7 +132,7 @@ above that they have the same ID.
 docker push zonemaster/cli:latest
 ```
 
-* Set correct version (see listing) and push image with version tag:
+* Set correct version (see listing above) and push image with version tag:
 ```sh
 docker push zonemaster/cli:v0.0.0
 ```
@@ -192,4 +202,5 @@ docker load -i docker-zonemaster-cli.tar
 
 
 [Ubuntu Build Environment]:               ../distrib-testing/Ubuntu-build-environment.md
-[sanity checks]:                          #5-image-sanity-checks
+[Sanity checks]:                          #5-image-sanity-checks
+[Handy Docker commands]:                  #6-handy-docker-commands
