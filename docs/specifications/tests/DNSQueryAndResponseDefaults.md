@@ -66,7 +66,7 @@ changes to the setting items.
 |EDNS Extended RCODE   | no                  |      |        |
 |EDNS Version          | 0                   |      |        |
 |EDNS DO flag          | unset               |      |        |
-|EDNS Z lag            | unset               |      |        |
+|EDNS Z flag           | unset               |      |        |
 |EDNS0 Option          | none                |      |        |
 
 
@@ -88,8 +88,9 @@ changes to the setting items.
 
 A *DNS Response* is a response to a *DNS Query*. Unless specified in the test
 case specification, the items in the response is handled as listed. If a
-*Response Item* is specified as "fixed" then the requirement in default action
-must be successful for the response to be considered to be a valid DNS response.
+*Response Item* is specified as "fixed" then the requirement, as specified under
+"Default handling", must be successful for the response to be considered to be a
+valid DNS response.
 
 |Response Item |Default handling               | Fixed | Comment              |
 |:-------------|:------------------------------|:------|:---------------------|
@@ -134,9 +135,9 @@ the default handling from a *DNS Response* except for the response items
 specified below. Unless specified in the test case specification, the items in
 the response is handled using the default handling.
 
-|Response Item |Default handling                 | Comment                                                              |
-|:-------------|:--------------------------------|:---------------------------------------------------------------------|
-|EDNS          | Raise warning if OPT is missing | Create DEBUG message unless specified in the test case specification |
+|Response Item |Default handling                   | Comment                                                            |
+|:-------------|:----------------------------------|:-------------------------------------------------------------------|
+|EDNS          | Issue a message if OPT is missing | Set to DEBUG level unless specified in the test case specification |
 
 The test case implementation should discover a missing OPT record and take some
 action.
@@ -148,9 +149,9 @@ inherits the default handling from a *EDNS Response* except for the response
 items specified below. Unless specified in the test case specification, the items
 in the response is handled using the default handling.
 
-|Response Item |Default handling                     | Comment                                                              |
-|:-------------|:----------------------------------- |:---------------------------------------------------------------------|
-| EDNS DO flag | Raise warning if DO flag is missing | Create DEBUG message unless specified in the test case specification |
+|Response Item |Default handling                       | Comment                                                            |
+|:-------------|:------------------------------------- |:-------------------------------------------------------------------|
+| EDNS DO flag | Issue a message if DO flag is missing | Set to DEBUG level unless specified in the test case specification |
 
 The test case implementation should discover a missing DO flag and take some
 action.
