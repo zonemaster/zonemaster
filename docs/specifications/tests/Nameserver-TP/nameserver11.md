@@ -28,57 +28,57 @@ case will set DEBUG level on messages for non-responsive name servers.
 ## Ordered description of steps to be taken to execute the test case
 
 1. Create a first SOA query for the *Child Zone* with an OPT record with 
-   EDNS version set to "0" and with EDNS(0) option of payload size ("bufsize")
+   EDNS version set to "0" and with EDNS(0) option of payload size ("bufsize") 
    set to 512 and "DO" bit unset.
 
 2. Create a second SOA query for the *Child Zone* with an OPT record with 
-   EDNS OPTION-CODE set to anything other than it is already assigned as in the
+   EDNS OPTION-CODE set to anything other than it is already assigned as in the 
    [IANA-DNSSYSTEM-PARAMETERS] and no other EDNS options or flags.
 
 3. Create a third SOA query for the *Child Zone* without any OPT record.
 
-4. Obtain the set of name server IP addresses using [Method4] and [Method5]
+4. Obtain the set of name server IP addresses using [Method4] and [Method5] 
    ("Name Server IP").
 
 5. For each name server in *Name Server IP* do:
+   
+   1. Send the SOA query **with** OPT record **without** EDNS OPTION-CODE to the name server and collect the response.
+   2. If there is no DNS response, then:
+      1. Send the SOA query **without** OPT record to the name server and 
+         collect the response.
+      2. If there is no DNS response, then output *[NO_RESPONSE]* and 
+         go to next server.
+      3. Else (there is a DNS response), then output 
+         *[BREAKS_ON_EDNS]* and go to next server.
+   3. Else, if the DNS response meet the following two criteria, 
+      then output *[NO_EDNS_SUPPORT]*:
+      1. It has the RCODE "FORMERR" 
+      2. It has no OPT record.
+   4. Else, if the DNS response meet the following criteria:
+      1. It has the RCODE "NOERROR".
+      2. The answer section contains the SOA record for *Child Zone*. 
+      3. It has OPT record with EDNS version 0.
+      Then, send the SOA query **with** OPT record **with** EDNS OPTION-CODE to the name server and collect the response. 
+      1. If there is an "OPTION-CODE" present in the response, then 
+         output *[UNKNOWN_OPTION_CODE]*. 
+      2. Else, if the DNS response meet the following four criteria, 
+         then just go to the next name server (no error):
+         1. The SOA is obtained as response in the ANSWER section.
+         2. If the DNS response has the RCODE "NOERROR".
+         3. The pseudo-section response has an OPT record with version set to 0.
+         4. There is no "OPTION-CODE" present in the response.
+      3. Else output *[NS_ERROR]*.
+   5. Else, if the DNS response meet the following criteria, 
+      then output *[EDNS_RESPONSE_WITHOUT_EDNS]* and go to next server.
+      1. It has the RCODE "NOERROR".
+      2. It has no OPT record.
+   6. Else, if the DNS response meet the following criteria, 
+      then output *[EDNS_VERSION_ERROR]* and go to next server. 
+      1. It has the RCODE "NOERROR".
+      2. It has OPT record with EDNS version other than 0.
+   7. Else output *[NS_ERROR]* (i.e. other erroneous or unexpected 
+      response).
 
-	1. Send the SOA query **with** OPT record **without** EDNS OPTION-CODE to the name server and collect the response.
-	2. If there is no DNS response, then:
-		1. Send the SOA query **without** OPT record to the name server and 
-			collect the response.
-		2. If there is no DNS response, then output *[NO_RESPONSE]* and 
-			go to next server.
-		3. Else (there is a DNS response), then output
-			*[BREAKS_ON_EDNS]* and go to next server.
-	3. Else, if the DNS response meet the following two criteria, 
-		then output *[NO_EDNS_SUPPORT]*:
-			1. It has the RCODE "FORMERR" 
-			2. It has no OPT record.
-	4. Else, if the DNS response meet the following criteria:
-			1. It has the RCODE "NOERROR".
-			2. The answer section contains the SOA record for *Child Zone*. 
-			3. It has OPT record with EDNS version 0.
-		Then, send the SOA query **with** OPT record **with** EDNS OPTION-CODE to the name server and collect the response. 
-			1. If there is an "OPTION-CODE" present in the response, then 
-				output *[UNKNOWN_OPTION_CODE]*. 
-			2. Else, if the DNS response meet the following four criteria, 
-				then just go to the next name server (no error): 
-					1. The SOA is obtained as response in the ANSWER section. 
-					2. If the DNS response has the RCODE "NOERROR". 
-					3. The pseudo-section response has an OPT record with version set to 0. 
-					4. There is no "OPTION-CODE" present in the response. 
-			3. Else output *[NS_ERROR]*. 
-	5. Else, if the DNS response meet the following criteria, 
-		then output *[EDNS_RESPONSE_WITHOUT_EDNS]* and go to next server.
-			1. It has the RCODE "NOERROR".
-			2. It has no OPT record.
-	6. Else, if the DNS response meet the following criteria, 
-		then output *[EDNS_VERSION_ERROR]* and go to next server. 
-			1. It has the RCODE "NOERROR".
-			2. It has OPT record with EDNS version other than 0.
-	7. Else output *[NS_ERROR]* (i.e. other erroneous or unexpected 
-   response).
- 
 ## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
