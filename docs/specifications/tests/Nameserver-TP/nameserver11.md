@@ -112,16 +112,16 @@ None.
 
 
 
-[Basic04]:								../Basic-TP/basic04.md
-[IANA-DNSSYSTEM-PARAMETERS]:		https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-11
-[Method4]:								../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]:								../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[BREAKS_ON_EDNS]: 					#outcomes
-[EDNS_RESPONSE_WITHOUT_EDNS]: 	#outcomes
-[EDNS_VERSION_ERROR]: 				#outcomes
-[NO_EDNS_SUPPORT]: 					#outcomes
-[NO_RESPONSE]:							#outcomes
-[NS_ERROR]:								#outcomes
-[RFC 6891, section 6.1.2]:			https://tools.ietf.org/html/rfc6891#section-6.1.2
-[RFC 6891]:								https://tools.ietf.org/html/rfc6891
-[UNKNOWN_OPTION_CODE]:				#outcomes
+[Basic04]:                       ../Basic-TP/basic04.md
+[IANA-DNSSYSTEM-PARAMETERS]:     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-11
+[Method4]:                       ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                       ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[BREAKS_ON_EDNS]:                #outcomes
+[EDNS_RESPONSE_WITHOUT_EDNS]:    #outcomes
+[EDNS_VERSION_ERROR]:            #outcomes
+[NO_EDNS_SUPPORT]:               #outcomes
+[NO_RESPONSE]:                   #outcomes
+[NS_ERROR]:                      #outcomes
+[RFC 6891, section 6.1.2]:       https://tools.ietf.org/html/rfc6891#section-6.1.2
+[RFC 6891]:                      https://tools.ietf.org/html/rfc6891
+[UNKNOWN_OPTION_CODE]:           #outcomes
