@@ -46,7 +46,7 @@ the default value cannot be overidden.
 |RCODE        | "NoError"    | yes  |                              |
 |Query name   | -            |      | Must be defined in test case |
 |Query type   | -            |      | Must be defined in test case |
-|Query class  | "IN"         | yes  |                              |
+|Query class  | "IN"         |      |                              |
 |EDNS         | no           |      | No OPT record is included    |
 
 
@@ -92,22 +92,21 @@ case specification, the items in the response is handled as listed. If a
 "Default handling", must be successful for the response to be considered to be a
 valid DNS response.
 
-|Response Item |Default handling               | Fixed | Comment              |
-|:-------------|:------------------------------|:------|:---------------------|
-|OpCode        | Require value to be "response"| yes   |                      |
-|QR flag       | Require flag to be set        | yes   |                      |
-|AA flag       | -                             |       | Defined in test case |
-|TC flag       | Re-query over TCP if set      |       |                      |
-|RD flag       | ignore                        |       |                      |
-|RA flag       | ignore                        |       |                      |
-|AD flag       | ignore                        |       |                      |
-|CD flag       | ignore                        |       |                      |
-|RCODE         | -                             |       | Defined in test case |
-|Query name    | ignore                        |       |                      |
-|Query type    | ignore                        |       |                      |
-|Query class   | Require value to be "IN"      | yes   |                      |
-|EDNS          | ignore                        |       |                      |
-
+|Response Item |Default handling                          | Fixed | Comment              |
+|:-------------|:-----------------------------------------|:------|:---------------------|
+|OpCode        | Require value to be "response"           | yes   |                      |
+|QR flag       | Require flag to be set                   | yes   |                      |
+|AA flag       | -                                        |       | Defined in test case |
+|TC flag       | Re-query over TCP if set                 |       |                      |
+|RD flag       | ignore                                   |       |                      |
+|RA flag       | ignore                                   |       |                      |
+|AD flag       | ignore                                   |       |                      |
+|CD flag       | ignore                                   |       |                      |
+|RCODE         | -                                        |       | Defined in test case |
+|Query name    | ignore                                   |       |                      |
+|Query type    | ignore                                   |       |                      |
+|Query class   | Require value to be same as in the query | yes   | Normally "IN"        |
+|EDNS          | ignore                                   |       |                      |
 
 * Check against query name and query type is, by default, done against the values
   in the query, not in the response.
