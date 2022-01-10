@@ -36,7 +36,7 @@ giving a correct DNS response for an authoritative name server.
 
 It is assumed that *Child Zone* has been tested and reported by [Nameserver02].
 Running this test case without running [Nameserver02] can give an incomplete
-report status of Child Zone.
+report status of *Child Zone*.
 
 ## Inputs
 
@@ -122,6 +122,7 @@ a specific name server.
 [Methods]:                              ../Methods.md
 [Method4]:                              ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[Nameserver02]:                         ../Nameserver-TP/nameserver02.md
 [NOTICE]:                               https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#notice
 [RFC 6891, section 6.1.2]:              https://tools.ietf.org/html/rfc6891#section-6.1.2
 [RFC 6891]:                             https://tools.ietf.org/html/rfc6891
