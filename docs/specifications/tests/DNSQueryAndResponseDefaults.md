@@ -29,7 +29,7 @@ an explicit reference to this document.
 
 A *DNS Query* has the following default setting. A test case specification can
 refer to a *DNS Query* with one or several changes to the *Parameters*
-overriding the default values. If a *Parameter* is specified as "fixed" (with a
+overriding the default values. If a *Parameter* is specified as "fixed" (with an
 "X" in that column) then the default value cannot be overidden.
 
 |Parameter    |Default value |Fixed |Comment                       |
@@ -53,7 +53,7 @@ overriding the default values. If a *Parameter* is specified as "fixed" (with a
 ## Default setting in *EDNS Query*
 
 An *EDNS Query* inherit the default setting from a *DNS Query* except for the
-parameters specified below. If a *Parameter* is specified as "fixed" (with a
+parameters specified below. If a *Parameter* is specified as "fixed" (with an
 "X" in that column) then the default value cannot be overidden.
 
 A test case specification can refer to an *EDNS Query* with one or several
@@ -73,7 +73,7 @@ changes to the *Parameters*.
 ## Default setting in *DNSSEC Query*
 
 A *DNSSEC Query* inherits the default setting from an *EDNS Query* except for the
-parameter specified below. If a *Parameter* is specified as "fixed" (with a
+parameter specified below. If a *Parameter* is specified as "fixed" (with an
 "X" in that column) then the default value cannot be overidden.
 
 A test case specification can refer to a *DNSSEC Query* with one or several
@@ -88,7 +88,7 @@ changes to the Parameters.
 
 A *DNS Response* is a response to a *DNS Query*. Unless specified in the test
 case specification, the items in the response are handled as listed. If a
-*Response Item* is specified as "fixed" (with a "X" in that column) then the
+*Response Item* is specified as "fixed" (with an "X" in that column) then the
 requirement, as specified under "Default handling", must be successful for the
 response to be considered to be a valid DNS response.
 
@@ -109,7 +109,7 @@ response to be considered to be a valid DNS response.
 |EDNS          | ignore                                   |       |                      |
 
 * Check against query name and query type is, by default, done against the values
-  in the query, not in the response.
+  in the query section in the query, not in the response.
   
 * When fetching records from the answer section, these are the default criteria:
   * Only records matching the query name and the query type are fetched. Any
@@ -118,11 +118,15 @@ response to be considered to be a valid DNS response.
     fetched.
   * CNAME records are ignored unless the query type is CNAME.
 
-* When the test case specification states that CNAME chains are to followed in
-  the the answer section, these are the default criteria:
+* When the test case specification states that CNAME chains are to be followed in
+  the the answer section, these are the default criteria for the chain to be
+  fetched:
   * The first CNAME in the chain must match the query name.
   * The last record in the chain must either be a CNAME or a record matching the
     query type.
+  * For each owner name of the CNAME records in the chain there must not be any
+    additional CNAME records in the answer section (only one CNAME record per
+    owner name).
 
 * Authority and additional sections are by default ignored.
 
@@ -146,12 +150,10 @@ inherits the default handling from a *EDNS Response* except for the response
 items specified below. Unless specified in the test case specification, the items
 in the response are handled using the default handling.
 
-|Response Item |Default handling                       | Comment                                                            |
-|:-------------|:------------------------------------- |:-------------------------------------------------------------------|
-| EDNS DO flag | Issue a message if DO flag is missing | Set to DEBUG level unless specified in the test case specification |
+|Response Item |Default handlin                  | Comment                                                        |
+|:-------------|:------------------------------- |:---------------------------------------------------------------|
+| EDNS DO flag | Take note if DO flag is missing | Further actions to be specified in the test case specification |
 
-The test case implementation should discover a missing DO flag and take some
-action.
 
 
 [Test Cases]:                  README.md#list-of-defined-test-cases
