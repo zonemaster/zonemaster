@@ -89,8 +89,8 @@ changes to the Parameters.
 A *DNS Response* is a response to a *DNS Query*. Unless specified in the test
 case specification, the items in the response are handled as listed. If a
 *Response Item* is specified as "fixed" (with an "X" in that column) then the
-requirement, as specified under "Default handling", must be successful for the
-response to be considered to be a valid DNS response.
+requirement, as specified under "Default handling", must be met for the response
+to be considered to be a DNS response.
 
 |Response Item |Default handling                          | Fixed | Comment              |
 |:-------------|:-----------------------------------------|:------|:---------------------|
