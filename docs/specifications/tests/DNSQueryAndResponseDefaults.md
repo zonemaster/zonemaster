@@ -109,7 +109,7 @@ to be considered to be a DNS response.
 |EDNS          | ignore                                   |       |                      |
 
 * Check against query name and query type is, by default, done against the values
-  in the query section in the query, not in the response.
+  in the question section in the query, not in the response.
   
 * When fetching records from the answer section, these are the default criteria:
   * Only records matching the query name and the query type are fetched. Any
@@ -118,9 +118,11 @@ to be considered to be a DNS response.
     fetched.
   * CNAME records are ignored unless the query type is CNAME.
 
-* When the test case specification states that CNAME chains are to be followed in
-  the the answer section, these are the default criteria for the chain to be
-  fetched:
+* When the test case specification states that a CNAME chain is to be followed,
+  the default handling is to look for a valid CNAME chain in the answer section
+  and fetch all records in that chain. The records in the chain are arranged in
+  the logical order. These are the default criteria for a CNAME chain to be
+  valid:
   * The first CNAME in the chain must match the query name.
   * The last record in the chain must either be a CNAME or a record matching the
     query type.
@@ -139,7 +141,7 @@ specified below. Unless specified in the test case specification, the items in
 the response are handled using the default handling.
 
 |Response Item |Default handling             | Comment                                                        |
-|:-------------|:----------------------------|:----------------------- ---------------------------------------|
+|:-------------|:----------------------------|:---------------------------------------------------------------|
 |EDNS          | Take note if OPT is missing | Further actions to be specified in the test case specification |
 
 
@@ -150,7 +152,7 @@ inherits the default handling from a *EDNS Response* except for the response
 items specified below. Unless specified in the test case specification, the items
 in the response are handled using the default handling.
 
-|Response Item |Default handlin                  | Comment                                                        |
+|Response Item |Default handling                 | Comment                                                        |
 |:-------------|:------------------------------- |:---------------------------------------------------------------|
 | EDNS DO flag | Take note if DO flag is missing | Further actions to be specified in the test case specification |
 
