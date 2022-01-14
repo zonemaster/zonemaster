@@ -82,6 +82,7 @@ changes to the Parameters.
 |Parameter             |Default value |Fixed |Comment |
 |:---------------------|:-------------|:-----|:-------|
 |EDNS DO flag          | set          | X    |        |
+|EDNS UDP Message size | 1280         |      |        |
 
 
 ## Default handling of a *DNS Response*
