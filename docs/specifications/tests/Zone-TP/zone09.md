@@ -37,13 +37,13 @@ AAAA) as specified in [RFC 5321][RFC 5321#section-5.1], section 5.1, but that
 possibility is not in common use.
 
 This test case only checks for MX record and ignores the possibility to use
-address records for email since the.
+address records for email.
 
 Even if not mentioned in [RFC 2142], there are some exceptions to the
 rule to include MX and mail target for a domain.
 
-The purpose of zone in the .ARPA tree is to hold infrastructural identifier,
-and it is not expected that those are used as [Email Domains][Email Domain]
+The purpose of a zone in the .ARPA tree is to hold infrastructural identifier,
+and it is not expected that such a zone name is used as [Email Domain]
 ([RFC 3172]). This also means that the well known mailbox is not expected for
 reverse zones (zone under in-addr.arpa or ip6.arpa). Such zone are therefore
 excluded from the requirement of MX in the apex.
@@ -56,7 +56,7 @@ MX in the apex.
 Top-level domains ([TLDs][TLD]) can technically function as
 [Email Domains][Email Domain] ([RCF 5321][RFC 5321#section-2.3.5], section 2.3.5)
 but they rarely have that function and are probably not meant to be included in
-the specification in [RFC 2142]. On the contrary, [Internet Architecture Board]
+the specification in [RFC 2142]. [Internet Architecture Board]
 concludes in a report "[Dotless Domains Considered Harmful][IAB Statement]" that
 domain names that only consists of one label, e.g. "se", "fr" or "com", should
 not be used for various Internet services. This means [TLD] names should not be
