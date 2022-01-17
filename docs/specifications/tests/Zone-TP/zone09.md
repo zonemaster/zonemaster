@@ -29,39 +29,40 @@ hostmaster@DOMAIN (where DOMAIN is *Child Zone* in this test case).
 > \<HOSTMASTER@domain\>.
 
 It is therefore expected for every domain (zone), excluding some cases described
-below above, to publish an MX record in apex of the zone (i.e. in the same
-position as the SOA record). If MX is not present, SMTP *can* deliver email using
-an address record (A or AAAA) as specified in [RFC 5321][RFC 5321#section-5.1],
-section 5.1, but that possibility is not in common use. This test case only
-checks for MX record and ignores the possibility to use address records for email
-since the absolutely dominating way to configure support for email is to use MX.
-If an address record is found in apex it is more often used for web service rather
-than email service.
+below, to publish an MX record in apex of the zone (i.e. in the same position as
+the SOA record).
 
-Even if not mentioned in [RFC 2142], there are some exception to the
-rule above.
+If MX is not present, SMTP *can* deliver email using an address record (A or
+AAAA) as specified in [RFC 5321][RFC 5321#section-5.1], section 5.1, but that
+possibility is not in common use.
+
+This test case only checks for MX record and ignores the possibility to use
+address records for email since the.
+
+Even if not mentioned in [RFC 2142], there are some exceptions to the
+rule to include MX and mail target for a domain.
 
 The purpose of zone in the .ARPA tree is to hold infrastructural identifier,
-and it is not expected that those are used as email domains, i.e. being at the
-right of the at-sign ("@") in an email address ([RFC 3172]). This also means that
-the well known mailbox is not expected for reverse zones (zone under in-addr.arpa
-or ip6.arpa). Such zone are therefore excluded from the requirement in this test
-case.
+and it is not expected that those are used as [Email Domains][Email Domain]
+([RFC 3172]). This also means that the well known mailbox is not expected for
+reverse zones (zone under in-addr.arpa or ip6.arpa). Such zone are therefore
+excluded from the requirement of MX in the apex.
 
-The root zone cannot be an email domain since the email domain is
-the part to the left of the trailing dot, e.g. "example.com" is the
-email domain for the apex of "example.com.". The root zone is
-excluded from the requirement.
+The root zone cannot be an [Email Domain] since the email domain is
+the part to the left of the trailing dot, and the root zone owner name has
+nothing left of the traling do. The root zone is excluded from the requirement of
+MX in the apex.
 
-Top-level domains ([TLDs][TLD]) can technically function as email domains
-([RCF 5321][RFC 5321#section-2.3.5], section 2.3.5) but they rarely have that
-function and are probably not meant to be included in the specification in
-[RFC 2142]. On the contrary, [Internet Architecture Board] concludes in a report
-"[Dotless Domains Considered Harmful][IAB Statement]" that domain names that only
-consists of one label, e.g. "se", "fr" or "com", should not be used for various
-Internet services. This means [TLD] names should not be used as email domains.
-In this test case [TLDs][TLD] are not only excluded from the requirement of being
-an email domain, if found to be, a message will be generated that points that out.
+Top-level domains ([TLDs][TLD]) can technically function as
+[Email Domains][Email Domain] ([RCF 5321][RFC 5321#section-2.3.5], section 2.3.5)
+but they rarely have that function and are probably not meant to be included in
+the specification in [RFC 2142]. On the contrary, [Internet Architecture Board]
+concludes in a report "[Dotless Domains Considered Harmful][IAB Statement]" that
+domain names that only consists of one label, e.g. "se", "fr" or "com", should
+not be used for various Internet services. This means [TLD] names should not be
+used as [Email Domains][Email Domain]. In this test case [TLDs][TLD] are not only
+excluded from the requirement of being an [Email Domain], if found to be, a
+message will be generated that points that out.
 
 [RFC 7505] standardizes "Null MX" which in means that there is no email service
 for the domain. A "Null MX" is accepted for any type of domain.
@@ -135,7 +136,7 @@ message. The argument names are defined in the [argument list].
 4. Create the following empty sets
 
     1.  Name server IP address ("No Response MX Query").
-    2.  Name server IP address and and associated RCODE value ("Unexpected RCODE MX Query").
+    2.  Name server IP address and associated RCODE value ("Unexpected RCODE MX Query").
     3.  Name server IP address ("Non-authoritative MX").
     4.  Name server IP address ("No MX RRset").
     5.  Name server IP address and associated MX RRset ("MX RRset").
@@ -246,10 +247,13 @@ defined in [RFC 7505] with the specific restrictions given in
 The term "TLD" is used for "Top Level Domain", i.e. a zone whose name consists
 of a single label (ignoring the empty label after the final dot).
 
+The term "Email Domain" is used for the domain name at right of the at-sign ("@")
+in an email address.
 
 [Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [Basic04]:                                    ../Basic-TP/basic04.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
+[Email Domain]:                               #terminology
 [ERROR]:                                      ../SeverityLevelDefinitions.md#error
 [IAB Statement]:                              https://www.iab.org/documents/correspondence-reports-documents/2013-2/iab-statement-dotless-domains-considered-harmful/
 [IANA RCODE List]:                            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
