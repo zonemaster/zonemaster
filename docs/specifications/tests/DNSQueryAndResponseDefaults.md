@@ -113,20 +113,20 @@ to be considered to be a DNS response.
   in the question section in the query, not in the response.
   
 * When fetching records from the answer section, these are the default criteria:
-  * Only records matching the query name and the query type are fetched. Any
-    RRSIG records meeting the next criterium are also fetched.
-  * RRSIG records with the same query name and covering the query type are
+  * Only records matching *Query Name* and *Query Type* are fetched. Any
+    RRSIG records meeting the next criterion are also fetched.
+  * RRSIG records matching *Query Name* and covering *Query Type* are
     fetched.
-  * CNAME records are ignored unless the query type is CNAME.
+  * CNAME records are ignored unless *Query Type* is CNAME.
 
 * When the test case specification states that a CNAME chain is to be followed,
   the default handling is to look for a valid CNAME chain in the answer section
   and fetch all records in that chain. The records in the chain are arranged in
   the logical order. These are the default criteria for a CNAME chain to be
   valid:
-  * The first CNAME in the chain must match the query name.
-  * The last record in the chain must either be a CNAME or a record matching the
-    query type.
+  * The first CNAME in the chain must match *Query Name*.
+  * The last record in the chain must either be a CNAME or a record matching
+    *Query Type*.
   * For each owner name of the CNAME records in the chain there must not be any
     additional CNAME records in the answer section (only one CNAME record per
     owner name).
