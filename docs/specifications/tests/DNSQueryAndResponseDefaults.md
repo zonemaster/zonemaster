@@ -36,7 +36,7 @@ overriding the default values. If a *Parameter* is specified as "fixed" (with an
 |:------------|:-------------|:-----|:-----------------------------|
 |Protocol     | UDP          |      |                              |
 |OpCode       | "query"      | X    |                              |
-|QR flag      | unset        | X    | Always unset in a query      |
+|QR flag      | unset        | X    |                              |
 |AA flag      | unset        | X    |                              |
 |TC flag      | unset        | X    |                              |
 |RD flag      | unset        |      |                              |
@@ -125,7 +125,7 @@ to be considered to be a DNS response.
   * The chain is, by default, considered to be valid if the following criteria
     are met:
     * It must be possible to arrange all CNAME records from the answer section
-      into a contiguous logical chain with a posisble addition of a non-CNAME
+      into a contiguous logical chain with a possible addition of a non-CNAME
       record whose owner name matches the RDATA of the last CNAME record.
     * The owner name of the first CNAME record in the chain must match
       *Query Name*.
