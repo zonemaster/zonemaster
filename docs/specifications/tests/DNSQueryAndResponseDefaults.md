@@ -44,9 +44,9 @@ overriding the default values. If a *Parameter* is specified as "fixed" (with an
 |AD flag      | unset        |      |                              |
 |CD flag      | unset        |      |                              |
 |RCODE        | "NoError"    | X    |                              |
-|Query name   | -            |      | Must be defined in test case |
-|Query type   | -            |      | Must be defined in test case |
-|Query class  | "IN"         |      |                              |
+|Query Name   | -            |      | Must be defined in test case |
+|Query Type   | -            |      | Must be defined in test case |
+|Query Class  | "IN"         |      |                              |
 |EDNS         | no           |      | No OPT record is included    |
 
 
@@ -104,9 +104,9 @@ to be considered to be a DNS response.
 |AD flag       | ignore                                   |       |                      |
 |CD flag       | ignore                                   |       |                      |
 |RCODE         | -                                        |       | Defined in test case |
-|Query name    | ignore                                   |       |                      |
-|Query type    | ignore                                   |       |                      |
-|Query class   | Require value to be same as in the query |       | Normally "IN"        |
+|Query Name    | ignore                                   |       |                      |
+|Query Type    | ignore                                   |       |                      |
+|Query Class   | Require value to be same as in the query |       | Normally "IN"        |
 |EDNS          | ignore                                   |       |                      |
 
 * Check against query name and query type is, by default, done against the values
@@ -120,18 +120,26 @@ to be considered to be a DNS response.
   * CNAME records are ignored unless *Query Type* is CNAME.
 
 * When the test case specification states that a CNAME chain is to be followed,
-  the default handling is to look for a valid CNAME chain in the answer section
-  and fetch all records in that chain. The records in the chain are arranged in
-  the logical order. These are the default criteria for a CNAME chain to be
-  valid:
-  * The first CNAME in the chain must match *Query Name*.
-  * The last record in the chain must either be a CNAME or a record matching
-    *Query Type*.
-  * For each owner name of the CNAME records in the chain there must not be any
-    additional CNAME records in the answer section (only one CNAME record per
-    owner name).
+  the default handling is to only follow a CNAME, and fetch the records, if the
+  CNAME chain is valid.
+  * The chain is, by default, considered to be valid if the following criteria
+    are met:
+    * It must be possible to arrange all CNAME records from the answer section
+      into a contiguous logical chain with a posisble addition of a non-CNAME
+      record whose owner name matches the RDATA of the last CNAME record.
+    * The owner name of the first CNAME record in the chain must match
+      *Query Name*.
+    * The last record in the chain must either be a CNAME or a record matching
+      *Query Type*.
+    * For each owner name of the CNAME records in the chain there must not be any
+      additional records in the answer section with the same owner name besides
+      RRSIG and NSEC records (that may exist).
+  * CNAME records not part of a valid CNAME chain are by default ignored.
 
 * Authority and additional sections are by default ignored.
+
+The test case specification may prescribe that CNAME records are handled in an a
+different way than the default above.
 
 
 ## Default handling of an *EDNS Response*
