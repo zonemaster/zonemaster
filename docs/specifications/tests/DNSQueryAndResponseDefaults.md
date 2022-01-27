@@ -138,7 +138,7 @@ to be considered to be a DNS response.
 
 * Authority and additional sections are by default ignored.
 
-The test case specification may prescribe that CNAME records are handled in an a
+The test case specification may prescribe that CNAME records are handled in a
 different way than the default above.
 
 
