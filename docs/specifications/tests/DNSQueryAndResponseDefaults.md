@@ -109,8 +109,9 @@ to be considered to be a DNS response.
 |Query Class   | Require value to be same as in the query |       | Normally "IN"        |
 |EDNS          | ignore                                   |       |                      |
 
-* Check against query name and query type is, by default, done against the values
-  in the question section in the query, not in the response.
+* Owner name and record type of a DNS record are compared, by default, against
+  *Query Name* and *Query Type* in the question section in the query, not in the
+  response.
   
 * When fetching records from the answer section, these are the default criteria:
   * Only records matching *Query Name* and *Query Type* are fetched. Any
