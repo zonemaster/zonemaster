@@ -88,10 +88,15 @@ changes to the Parameters.
 ## Default handling of a *DNS Response*
 
 A *DNS Response* is a response to a *DNS Query*. Unless specified in the test
-case specification, the items in the response are handled as listed. If a
-*Response Item* is specified as "fixed" (with an "X" in that column) then the
-requirement, as specified under "Default handling", must be met for the response
-to be considered to be a DNS response.
+case specification, the items in the response are handled as listed in the table
+below. 
+
+
+### Validation of DNS message
+
+If a *Response Item* is specified as "fixed" (with an "X" in that column) then
+the requirement, as specified under "Default handling", must be met for the
+response to be considered to be a DNS response.
 
 |Response Item |Default handling                          | Fixed | Comment              |
 |:-------------|:-----------------------------------------|:------|:---------------------|
@@ -109,6 +114,9 @@ to be considered to be a DNS response.
 |Query Class   | Require value to be same as in the query |       | Normally "IN"        |
 |EDNS          | ignore                                   |       |                      |
 
+
+### Extraction of DNS records
+
 * Owner name and record type of a DNS record are compared, by default, against
   *Query Name* and *Query Type* in the question section in the query, not in the
   response.
@@ -121,8 +129,8 @@ to be considered to be a DNS response.
   * CNAME records are ignored unless *Query Type* is CNAME.
 
 * When the test case specification states that a CNAME chain is to be followed,
-  the default handling is to only follow a CNAME, and fetch the records, if the
-  CNAME chain is valid.
+  the default handling is to only follow a CNAME chain, and fetch the records, if
+  the CNAME chain is valid.
   * The chain is, by default, considered to be valid if the following criteria
     are met:
     * It must be possible to arrange all CNAME records from the answer section
