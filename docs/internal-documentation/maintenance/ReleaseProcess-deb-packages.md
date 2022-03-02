@@ -38,7 +38,7 @@ it to stable:
 2. Update the upstream ref in `pkg.sh` with the tag of the corresponding release
    for each package.
 
-3. Update the `changelog` for each packages, by adding a new entry. The first line
+3. Update the `changelog` for each package, by adding a new entry. The first line
    should contain the package version in format
    `<project version>-<package version>+deb<debian version>`.
 
@@ -60,13 +60,13 @@ To test the newly created packages you can configure Zonemaster packages
 repository using:
 
 ```sh
-curl -Ls https://package.zonemaster.net/setup.sh | sudo sh
+curl -LSsf https://package.zonemaster.net/setup.sh | sudo sh
 ```
 
 To configure the nightly repository use instead:
 
 ```sh
-curl -Ls https://package.zonemaster.net/setup.sh | sudo nightly=yes sh
+curl -LSsf https://package.zonemaster.net/setup.sh | sudo nightly=yes sh
 ```
 
 The packages can then be installed using apt, e.g.:
