@@ -120,13 +120,15 @@ response to be considered to be a DNS response.
 * Owner name and record type of a DNS record are compared, by default, against
   *Query Name* and *Query Type* in the question section in the query, not in the
   response.
-  
+
 * When fetching records from the answer section, these are the default criteria:
   * Only records matching *Query Name* and *Query Type* are fetched. Any
     RRSIG records meeting the next criterion are also fetched.
   * RRSIG records matching *Query Name* and covering *Query Type* are
     fetched.
   * CNAME records are ignored unless *Query Type* is CNAME.
+  * DNSKEY records are ignored if their public key field does not contain enough
+    data to calculate the size of the key.
 
 * When the test case specification states that a CNAME chain is to be followed,
   the default handling is to only follow a CNAME chain, and fetch the records, if
