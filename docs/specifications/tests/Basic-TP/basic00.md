@@ -133,7 +133,7 @@ message. The argument names are defined in the [argument list].
 ## Test procedure
 
 1.  If the input *Domain Name* is not a non-empty string of [Unicode] characters
-    this test cas cannot be run.
+    this test case cannot be run.
 
 2.  Create an empty, ordered list of labels ("Domain Labels").
 
