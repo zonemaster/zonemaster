@@ -9,83 +9,83 @@ The table below gives an overview of the status of the specifications in the
 develop branch. Empty cell means that the answer is "no" or that there is no
 proposed update, respectively.
 
-| Test case      | Detailed steps | Defines message tags | Follows [template01] | Refer to [DNS query defaults] | Proposed update |
-|:---------------|:---------------|:---------------------|:---------------------|:------------------------------|:----------------|
-|[ADDRESS01]     |                |                      |                      |  N/A                          |                 |
-|[ADDRESS02]     |                |                      |                      |                               |                 |
-|[ADDRESS03]     |                |                      |                      |                               |                 |
-|[BASIC00]       |  Yes?          |                      | No, but see  #942    |  N/A                          |  #942           |
-|[BASIC01]       |  Yes           |  Yes                 |                      |                               |                 |
-|[BASIC02]       |  Yes           |                      |                      |                               |                 |
-|[BASIC03]       |                |                      |                      |                               |                 |
-|[BASIC04]       |  Yes           |  Yes                 |                      |                               |                 |
-|[CONNECTIVITY01]|                |                      |                      |                               |                 |
-|[CONNECTIVITY02]|                |                      |                      |                               |                 |
-|[CONNECTIVITY03]|  Yes           |  Yes                 |                      |                               |                 |
-|[CONSISTENCY01] |  Yes           |  Yes                 |                      |                               |                 |
-|[CONSISTENCY02] |  Yes           |  Yes                 |                      |                               |                 |
-|[CONSISTENCY03] |  Yes           |  Yes                 |                      |                               |                 |
-|[CONSISTENCY04] |  Yes           |  Yes                 |                      |                               |                 |
-|[CONSISTENCY05] |  Yes           |  Yes                 |                      |                               |                 |
-|[CONSISTENCY06] |  Yes           |  Yes                 |                      |                               |                 |
-|[DNSSEC01]      |  Yes           |  Yes                 |                      |                               |                 |
-|[DNSSEC02]      |  Yes           |  Yes                 |  Yes                 |                               |                 |
-|[DNSSEC03]      |                |                      |                      |                               |                 |
-|[DNSSEC04]      |                |                      |                      |                               |                 |
-|[DNSSEC05]      |  Yes           |  Yes                 |                      |                               |                 |
-|[DNSSEC06]      |                |                      |                      |                               |                 |
-|[DNSSEC07]      |                |                      |                      |                               |                 |
-|[DNSSEC08]      |  Yes           |  Yes                 |  Yes                 |                               |                 |
-|[DNSSEC09]      |  Yes           |  Yes                 |  Yes                 |                               |                 |
-|[DNSSEC10]      |  Yes           |  Yes                 |  Yes                 |                               |                 |
-|[DNSSEC11]      |  Yes           |  Yes                 |  Yes                 |                               |                 |
-|[DNSSEC12]      |  Not defined   |                      |                      |                               |                 |
-|[DNSSEC13]      |  Yes           |  Yes                 |  Yes                 |                               |                 |
-|[DNSSEC14]      |  Yes           |  Yes                 |                      |                               |                 |
-|[DNSSEC15]      |  Yes           |  Yes                 |  Almost              |                               |                 |
-|[DNSSEC16]      |  Yes           |  Yes                 |  Almost              |                               |                 |
-|[DNSSEC17]      |  Yes           |  Yes                 |  Almost              |                               |                 |
-|[DNSSEC18]      |  Yes           |  Yes                 |  Almost              |                               |                 |
-|[DELEGATION01]  |  Yes           |  Yes                 |                      |  N/A                          |                 |
-|[DELEGATION02]  |  Yes           |  Yes                 |                      |  N/A                          |                 |
-|[DELEGATION03]  |  Yes           |  Yes                 |                      |  N/A?                         |                 |
-|[DELEGATION04]  |                |                      |                      |                               |                 |
-|[DELEGATION05]  |  Yes           |  Yes                 |                      |                               |                 |
-|[DELEGATION06]  |                |                      |                      |                               |                 |
-|[DELEGATION07]  |                |                      |                      |  N/A                          |                 |
-|[NAMESERVER01]  |  Yes           |  Yes                 |                      |                               |                 |
-|[NAMESERVER02]  |  Yes           |  Yes                 |                      |                               |                 |
-|[NAMESERVER03]  |                |                      |                      |  N/A?                         |                 |
-|[NAMESERVER04]  |                |                      |                      |                               |                 |
-|[NAMESERVER05]  |  Yes           |  Yes                 |                      |                               |                 |
-|[NAMESERVER06]  |                |                      |                      |                               |                 |
-|[NAMESERVER07]  |                |                      |                      |                               |                 |
-|[NAMESERVER08]  |                |                      |                      |                               |                 |
-|[NAMESERVER09]  |                |                      |                      |                               |                 |
-|[NAMESERVER10]  |  Yes           |  Yes                 |                      |                               |                 |
-|[NAMESERVER11]  |  Yes           |  Yes                 |                      |                               |  #1031          |
-|[NAMESERVER12]  |  Yes           |  Yes                 |                      |                               |                 |
-|[NAMESERVER13]  |  Yes           |  Yes                 |                      |                               |                 |
-|[NAMESERVER14]  |  Yes           |  Yes                 |                      |                               |                 |
-|[SYNTAX01]      |  Yes?          |                      |                      |  N/A                          |                 |
-|[SYNTAX02]      |  Yes           |                      |                      |  N/A                          |                 |
-|[SYNTAX03]      |  Yes?          |                      |                      |  N/A                          |                 |
-|[SYNTAX04]      |                |                      |                      |                               |                 |
-|[SYNTAX05]      |  Yes           |  Yes                 |                      |                               |                 |
-|[SYNTAX06]      |  Yes           |  Yes                 |                      |                               |                 |
-|[SYNTAX07]      |                |                      |                      |                               |                 |
-|[SYNTAX08]      |                |                      |                      |                               |                 |
-|[ZONE01]        |                |                      |                      |                               |                 |
-|[ZONE02]        |                |                      |                      |                               |                 |
-|[ZONE03]        |                |                      |                      |                               |                 |
-|[ZONE04]        |                |                      |                      |                               |                 |
-|[ZONE05]        |                |                      |                      |                               |                 |
-|[ZONE06]        |                |                      |                      |                               |                 |
-|[ZONE07]        |                |                      |                      |                               |                 |
-|[ZONE08]        |                |                      |                      |                               |                 |
-|[ZONE09]        |                |                      | No, but see  #870    |                               |  #870           |
-|[ZONE10]        |  Yes           |  Yes                 |                      |                               |                 |
-|ZONE11          |  Proposal only |                      |                      |                               |  #1032          |
+|Test case       |Detailed steps|Defines message tags|Follows [template01]|Refer to [DNS query defaults]|Refer to [MethodsNT]|Proposed update|
+|:---------------|:-------------|:-------------------|:-------------------|:----------------------------|:-------------------|:--------------|
+|[ADDRESS01]     |              |                    |                    |  N/A                        |                    |               |
+|[ADDRESS02]     |              |                    |                    |                             |                    |               |
+|[ADDRESS03]     |              |                    |                    |                             |                    |               |
+|[BASIC00]       |  Yes?        |                    | No, but see  #942  |  N/A                        |                    | #942          |
+|[BASIC01]       |  Yes         |  Yes               |                    |                             |                    |               |
+|[BASIC02]       |  Yes         |                    |                    |                             |                    |               |
+|[BASIC03]       |              |                    |                    |                             |                    |               |
+|[BASIC04]       |  Yes         |  Yes               |                    |                             |                    |               |
+|[CONNECTIVITY01]|              |                    |                    |                             |                    |               |
+|[CONNECTIVITY02]|              |                    |                    |                             |                    |               |
+|[CONNECTIVITY03]|  Yes         |  Yes               |                    |                             |                    |               |
+|[CONSISTENCY01] |  Yes         |  Yes               |                    |                             |                    |               |
+|[CONSISTENCY02] |  Yes         |  Yes               |                    |                             |                    |               |
+|[CONSISTENCY03] |  Yes         |  Yes               |                    |                             |                    |               |
+|[CONSISTENCY04] |  Yes         |  Yes               |                    |                             |                    |               |
+|[CONSISTENCY05] |  Yes         |  Yes               |                    |                             |                    |               |
+|[CONSISTENCY06] |  Yes         |  Yes               |                    |                             |                    |               |
+|[DNSSEC01]      |  Yes         |  Yes               |                    |                             |                    |               |
+|[DNSSEC02]      |  Yes         |  Yes               |  Yes               |                             |                    |               |
+|[DNSSEC03]      |              |                    |                    |                             |                    |               |
+|[DNSSEC04]      |              |                    |                    |                             |                    |               |
+|[DNSSEC05]      |  Yes         |  Yes               |                    |                             |                    |               |
+|[DNSSEC06]      |              |                    |                    |                             |                    |               |
+|[DNSSEC07]      |              |                    |                    |                             |                    |               |
+|[DNSSEC08]      |  Yes         |  Yes               |  Yes               |                             |                    |               |
+|[DNSSEC09]      |  Yes         |  Yes               |  Yes               |                             |                    |               |
+|[DNSSEC10]      |  Yes         |  Yes               |  Yes               |                             |                    |               |
+|[DNSSEC11]      |  Yes         |  Yes               |  Yes               |                             |                    |               |
+|[DNSSEC12]      |  Not defined |                    |                    |                             |                    |               |
+|[DNSSEC13]      |  Yes         |  Yes               |  Yes               |                             |                    |               |
+|[DNSSEC14]      |  Yes         |  Yes               |                    |                             |                    |               |
+|[DNSSEC15]      |  Yes         |  Yes               |  Almost            |                             |                    |               |
+|[DNSSEC16]      |  Yes         |  Yes               |  Almost            |                             |                    |               |
+|[DNSSEC17]      |  Yes         |  Yes               |  Almost            |                             |                    |               |
+|[DNSSEC18]      |  Yes         |  Yes               |  Almost            |                             |                    |               |
+|[DELEGATION01]  |  Yes         |  Yes               |                    |  N/A                        |                    |               |
+|[DELEGATION02]  |  Yes         |  Yes               |                    |  N/A                        |                    |               |
+|[DELEGATION03]  |  Yes         |  Yes               |                    |  N/A?                       |                    |               |
+|[DELEGATION04]  |              |                    |                    |                             |                    |               |
+|[DELEGATION05]  |  Yes         |  Yes               |                    |                             |                    |               |
+|[DELEGATION06]  |              |                    |                    |                             |                    |               |
+|[DELEGATION07]  |              |                    |                    |  N/A                        |                    |               |
+|[NAMESERVER01]  |  Yes         |  Yes               |                    |                             |                    |               |
+|[NAMESERVER02]  |  Yes         |  Yes               |                    |                             |                    |               |
+|[NAMESERVER03]  |              |                    |                    |  N/A?                       |                    |               |
+|[NAMESERVER04]  |              |                    |                    |                             |                    |               |
+|[NAMESERVER05]  |  Yes         |  Yes               |                    |                             |                    |               |
+|[NAMESERVER06]  |              |                    |                    |                             |                    |               |
+|[NAMESERVER07]  |              |                    |                    |                             |                    |               |
+|[NAMESERVER08]  |              |                    |                    |                             |                    |               |
+|[NAMESERVER09]  |              |                    |                    |                             |                    |               |
+|[NAMESERVER10]  |  Yes         |  Yes               |                    |                             |                    |               |
+|[NAMESERVER11]  |  Yes         |  Yes               |                    |                             |                    |  #1031        |
+|[NAMESERVER12]  |  Yes         |  Yes               |                    |                             |                    |               |
+|[NAMESERVER13]  |  Yes         |  Yes               |                    |                             |                    |               |
+|[NAMESERVER14]  |  Yes         |  Yes               |                    |                             |                    |               |
+|[SYNTAX01]      |  Yes?        |                    |                    |  N/A                        |                    |               |
+|[SYNTAX02]      |  Yes         |                    |                    |  N/A                        |                    |               |
+|[SYNTAX03]      |  Yes?        |                    |                    |  N/A                        |                    |               |
+|[SYNTAX04]      |              |                    |                    |                             |                    |               |
+|[SYNTAX05]      |  Yes         |  Yes               |                    |                             |                    |               |
+|[SYNTAX06]      |  Yes         |  Yes               |                    |                             |                    |               |
+|[SYNTAX07]      |              |                    |                    |                             |                    |               |
+|[SYNTAX08]      |              |                    |                    |                             |                    |               |
+|[ZONE01]        |              |                    |                    |                             |                    |               |
+|[ZONE02]        |              |                    |                    |                             |                    |               |
+|[ZONE03]        |              |                    |                    |                             |                    |               |
+|[ZONE04]        |              |                    |                    |                             |                    |               |
+|[ZONE05]        |              |                    |                    |                             |                    |               |
+|[ZONE06]        |              |                    |                    |                             |                    |               |
+|[ZONE07]        |              |                    |                    |                             |                    |               |
+|[ZONE08]        |              |                    |                    |                             |                    |               |
+|[ZONE09]        |              |                    | No, but see  #870  |                             |                    |  #870         |
+|[ZONE10]        |  Yes         |  Yes               |                    |                             |                    |               |
+|ZONE11          |Proposal only |                    |                    |                             |                    |  #1032        |
 
 [DNS query defaults]:https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md
 [template01]:https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/templates/specifications/tests/Template01.md
