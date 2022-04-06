@@ -121,7 +121,7 @@ responses on the DNS queries follow, unless otherwise specified below, what is
 specified for [DNS Response], [EDNS Response], and [DNSSEC Response],
 respectively, in the same specification.
 
-> > How the term "[DNSSEC Query]" is used can bee sen in the next example below.
+> > How the term "[DNSSEC Query]" is used can be seen in the next example below.
 > >
 > > The steps should be written in such a way that it is reasonably possible to
 > > use them to execute the test case manually using tools such as [`dig`][dig].
@@ -286,7 +286,7 @@ respected.
 [Undelegated test]:                     https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/test-types/undelegated-test.md
 [WARNING]:                              https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#warning
 
-> > Links to other repositories and external links.
+> > Links to other repositories and external links:
 
 [Argument list]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [Dig]:                                  https://en.wikipedia.org/wiki/Dig_(command)
