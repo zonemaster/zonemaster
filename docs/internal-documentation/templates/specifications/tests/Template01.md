@@ -110,9 +110,22 @@ message. The argument names are defined in the [argument list].
 > > should be as explicit as possible to avoid that different implementations or
 > > executions make different interpretations or assumptions.
 > >
+> > If the test procedure uses DNS queries (most test cases do), then add the
+> > following paragraph (types of DNS quries that do no apply for the test case
+> > can be removed):
+
+In this section and unless otherwise specified below, the terms "[DNS Query]",
+"[EDNS Query]" and "[DNSSEC Query]" follow the specification for DNS queries
+as specified in [DNS Query and Response Defaults]. The handling of the DNS
+responses on the DNS queries follow, unless otherwise specified below, what is
+specified for [DNS Response], [EDNS Response], and [DNSSEC Response],
+respectively, in the same specification.
+
+> > How the term "[DNSSEC Query]" is used can bee sen in the next example below.
+> >
 > > The steps should be written in such a way that it is reasonably possible to
-> > use them to execute the test case manually using tools such as [`dig`]. It
-> > can be assumed that the reader of the text has good understanding of DNS.
+> > use them to execute the test case manually using tools such as [`dig`][dig].
+> > It can be assumed that the reader of the text has good understanding of DNS.
 > >
 > > The steps should state what messages (message tags) to be outputted when.
 > > Only messages with default severity level DEBUG or higher can be included.
@@ -131,7 +144,8 @@ message. The argument names are defined in the [argument list].
 > > When refering to the data defined in **Inputs** then use the name in
 > > *italic*, e.g.:
 
-2. Create a DNSKEY query with DO flag set for *Child Zone*.
+2. Create a [DNSSEC Query] with query type DNSKEY and query name *Child Zone*
+   ("DNSKEY Query").
 
 > > If data sets are created, then defined them in quote marks. E.g.:
 
@@ -225,12 +239,12 @@ The term "DNS Lookup" is used when a recursive lookup is used, though
 any changes to the DNS tree introduced by an [undelegated test] must be
 respected.
 
-
-
-
-
 > > ----
-> > The links listed below are not visible when rendered by Github.
+> > The links listed below are not visible when rendered by Github. In the
+> > specification the different parts below should be combined into one link
+> > collection and sorted. Always start the link label (the left side) with an
+> > upper case letter (if it starts with a letter). The reference can from the
+> > text is case independent.
 > >
 > > All link names are listed below to the left with the link target to the
 > > right. They are only visible when viewing the source of this document.
@@ -242,26 +256,44 @@ respected.
 [T01_HAS_NSEC3]:                        #summary
 [T01_INCONSISTENT_DNSSEC]:              #summary
 
-> > All links in the template are absolute, but in the specification they should
-> > be relative if the link target is in the zonemaster/zonemaster repository.
+> > All links in the template are absolute except for links within this template
+> > or to other documents in the template tree. All absolute links to documents
+> > in the zonemaster/zonemaster directory are to the develop branch. In the
+> > test case specification all links should be relative if the link target is
+> > in the zonemaster/zonemaster repository.
+> >
+> > A few relative links in this template:
+
+[Message Tag Specification]:            MessageTagSpecification.md
+[Test Case Identifier Specification]:   TestCaseIdentifierSpecification.md
+
+> > Absolute links to be converted to relative links in the test case specification:
+
+[Basic04]:                              https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/Basic-TP/basic04.md
+[CRITICAL]:                             https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#critical
+[DNS Query and Response Defaults]:      https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md
+[DNS Query]:                            https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
+[DNS Response]:                         https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
+[DNSSEC Query]:                         https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-dnssec-query
+[DNSSEC Response]:                      https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
+[EDNS Query]:                           https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-edns-query
+[EDNS Response]:                        https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-an-edns-response
+[ERROR]:                                https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#error
+[INFO]:                                 https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#info
+[Methods]:                              https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/Methods.md
+[NOTICE]:                               https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#notice
+[Severity Level Definitions]:           https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md
+[Undelegated test]:                     https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/test-types/undelegated-test.md
+[WARNING]:                              https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#warning
+
+> > Links to other repositories and external links.
 
 [Argument list]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Basic04]:                              https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/Basic-TP/basic04.md
-[CRITICAL]:                             https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#critical
-[ERROR]:                                https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#error
-[INFO]:                                 https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#info
-[Message Tag Specification]:            MessageTagSpecification.md
-[Methods]:                              ../Methods.md
-[NOTICE]:                               https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#notice
+[Dig]:                                  https://en.wikipedia.org/wiki/Dig_(command)
 [RFC 4035#section-3.1.3]:               https://tools.ietf.org/html/rfc4035#section-3.1.3
 [RFC 8499#page-24]:                     https://datatracker.ietf.org/doc/html/rfc8499#page-24
 [RFC 8499#page-25]:                     https://datatracker.ietf.org/doc/html/rfc8499#page-25
-[Severity Level Definitions]:           https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md
-[Test Case Identifier Specification]:   TestCaseIdentifierSpecification.md
-[Undelegated test]:                     ../../test-types/undelegated-test.md
-[WARNING]:                              https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:            https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
-[`dig`]:                                https://en.wikipedia.org/wiki/Dig_(command)
 
 
 > > Keep all links sorted, and make a straight column of the link targets.
