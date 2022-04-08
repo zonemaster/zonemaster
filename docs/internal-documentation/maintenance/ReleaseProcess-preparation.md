@@ -46,11 +46,21 @@ Makefile.PL must be updated.
 
 ## 4. Verify that MANIFEST and MANIFEST.SKIP are up to date
 
-> This section is *NOT* relevant for Zonemaster-GUI or Zonemeaster/Zonemaster.
+> This section is not relevant for Zonemaster-GUI or Zonemeaster/Zonemaster.
 
 MANIFEST must, directly or indirectly, list all files that should be installed.
 MANIFEST.SKIP must list all file that should not be installed, and what is
 counted are all files available when `make dist` is run.
+
+
+## 5. Check for deprecated features
+
+Check all documentation in all repositories for deprecated features that are
+planned to be removed in the upcoming release.
+
+If anything was found and there is no PR to remove it, then create an issue
+labelled `P-High` that something must be done before the release unless there is
+already an issue.
 
 
 ## Appendix META
