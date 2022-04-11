@@ -87,6 +87,12 @@ message. The argument names are defined in the [argument list].
 
 ## Test procedure
 
+In this section and unless otherwise specified below, the term "[DNSSEC Query]"
+follows the specification for DNS queries as specified in
+[DNS Query and Response Defaults]. The handling of the DNS responses on the DNS
+queries follow, unless otherwise specified below, what is specified for
+[DNSSEC Response] in the same specification.
+
 1.  Create the following empty sets:
     1. DS record RDATA ("DS Record").
     2. Name server IP and key tag from DS record ("No DNSKEY for DS").
@@ -103,7 +109,7 @@ message. The argument names are defined in the [argument list].
     2. Else add *Undelegated DS* as DS records to the *DS Record* set.
 
 3.  If *Test Type* is "normal", then:
-    1. Create a DS query with the DO flag set for the name of the *Child Zone*
+    1. Create a [DNSSEC Query] with query type DS and query name *Child Zone*
        ("DS Query").
     2. Retrieve all name server IP addresses for the parent zone of
        *Child Zone* using [Method1] (store as "Parent NS IP").
@@ -111,40 +117,52 @@ message. The argument names are defined in the [argument list].
        1. Send *DS Query* to the name server IP.
        2. If at least one of the following criteria is met, then go to next
           parent name server:
-          1. There is no DNS response.
-          2. The RCODE of response is not "NoError" ([IANA RCODE List]).
-          3. The AA flag is not set in the response.
-          4. There is no DS record with matching owner name in the answer
-             section.
-       3. Retrieve the DS records from the response and add them to the
+          1. There is no [DNSSEC Response].
+          2. The RCODE in the [DNSSEC Response] is not "NoError"
+             ([IANA RCODE List]).
+          3. The OPT record is absent in the [DNSSEC Response].
+          4. The DO flag is unset in the [DNSSEC Response].
+          5. The AA flag is not set in the [DNSSEC Response].
+          6. There is no DS record with matching owner name in the answer
+             section of the [DNSSEC Response].
+       3. Retrieve the DS records from the [DNSSEC Response] and add them to the
           *DS Record* set.
     4. If the *DS Record* set is empty exit this test case.
 
-4.  Create a DNSKEY query for the *Child Zone* with the DO flag set
-    ("DNSKEY Query").
+4. Create a [DNSSEC Query] with query type DNSKEY and query name *Child Zone*
+   ("DNSKEY Query").
 
 5.  Obtain the set of child name server IP addresses using [Method4] and
     [Method5] (store as "Child NS IP").
 
 6.  For each child name server in *Child NS IP* do:
-    1. Send *DNSKEY Query* over UDP to the name server IP and collect the response.
+    1. Send *DNSKEY Query* to the name server IP and collect the response.
     2. If at least one of the following criteria is met, then go to next
           child name server:
-       1. There is no DNS response.
-       2. The RCODE of the response is not "NoError" ([IANA RCODE List]).
-       3. The AA flag is not set in the response.
-       4. There is no DNSKEY record with owner name matching the query in the
-          answer section.
-    3. Retrieve the DNSKEY RRset (store as "DNSKEY RRs").
+       1. There is no [DNSSEC Response].
+       2. The RCODE in the [DNSSEC Response] is not "NoError"
+          ([IANA RCODE List]).
+       3. The OPT record is absent in the [DNSSEC Response].
+       4. The DO flag is unset in the [DNSSEC Response].
+       5. The AA flag is not set in the [DNSSEC Response].
+       6. There is no DNSKEY record with matching owner name in the answer
+          section of the [DNSSEC Response].
+    3. Retrieve the DNSKEY RRset (store as "DNSKEY RRs") from the
+       [DNSSEC Response].
     4. Retrieve the RRSIG records covering the DNSKEY RRset, possibly
-       none (store as "DNSKEY RRSIG").
+       none (store as "DNSKEY RRSIG") from the [DNSSEC Response].
     5. For each DS in *DS Records*, do:
        1. Find the equivalent DNSKEY in *DNSKEY RRs* by key ID (key tag). If
           there is more than one such DNSKEY, select the correct one.
        2. If matching DNSKEY is not found add DS key tag and name server IP to
-          the *No DNSKEY for DS* set.
-       3. If the DS values (algorithm and digest) do not match the DNSKEY record
-          then add DS key tag and name server IP to the *No match DS DNSKEY* set.
+          the *No DNSKEY for DS* set and go to next DS.
+       3. Verify if the Zonemaster installation has support for the digest
+          algorithm that created the DS:
+          1. If no support, then ignore the following test if the DS matches
+             the DNSKEY.
+          2. Else, if the DS values (algorithm and digest) do not match the
+             DNSKEY record then add DS key tag and name server IP to the
+             *No match DS DNSKEY* set.
        4. If bit 7 of the DNSKEY flags field is unset (value 0), then add DS key
           tag and name server IP to the *DNSKEY not for zone signing* set.
        5. If bit 15 of the DNSKEY flags field is unset (value 0), then add the
@@ -184,7 +202,7 @@ message. The argument names are defined in the [argument list].
 
 12. If the *Algo Not Supported By ZM* set is non-empty, then output
     *[DS02_ALGO_NOT_SUPPORTED_BY_ZM]* for each DNSKEY key tag with the name
-    server IP addresses, the key tag and the algorithm name and code from the set.
+    server IP addresses, the key tag and the algorithm code from the set.
 
 13. If the *RRSIG not valid by DNSKEY* set is non-empty, then for each key tag
     from the RRSIG record from the set output *[DS02_RRSIG_NOT_VALID_BY_DNSKEY]*
@@ -226,7 +244,10 @@ No special terminology for this test case.
 [Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [Basic04]:                                    ../Basic-TP/basic04.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
+[DNS Query and Response Defaults]:            ../DNSQueryAndResponseDefaults.md
+[DNSSEC Query]:                               ../DNSQueryAndResponseDefaults.md#default-setting-in-dnssec-query
 [DNSSEC README]:                              README.md
+[DNSSEC Response]:                            ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
 [DNSSEC11]:                                   dnssec11.md
 [DS02_ALGO_NOT_SUPPORTED_BY_ZM]:              #Summary
 [DS02_DNSKEY_NOT_FOR_ZONE_SIGNING]:           #Summary
