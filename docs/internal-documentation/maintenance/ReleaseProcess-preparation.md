@@ -62,6 +62,9 @@ If anything was found and there is no PR to remove it, then create an issue
 labelled `P-High` that something must be done before the release unless there is
 already an issue.
 
+Removed feature will probably require that the major version is increased
+(breaking change). See "[Versions and Releases]".
+
 
 ## Appendix META
 
@@ -93,3 +96,4 @@ version              | version number of the new release
 [backend.travis]:                          https://github.com/zonemaster/zonemaster-backend/blob/develop/.travis.yml
 [supported Perl versions]:                 https://github.com/zonemaster/zonemaster/blob/develop/README.md#supported-perl-versions
 [Appendix META]:                           #appendix-meta
+[Versions and Releases]:                   ../../design/Versions%20and%20Releases.md
