@@ -72,8 +72,8 @@ Message Tag outputted              | Level   | Arguments          | Description 
 DS02_ALGO_NOT_SUPPORTED_BY_ZM      | NOTICE  | ns_ip_list, algo_mnemo, algo_num, keytag | This installation of Zonemaster does not support the DNSKEY algorithm.
 DS02_DNSKEY_NOT_FOR_ZONE_SIGNING   | ERROR   | ns_ip_list, keytag | The DNSKEY record is not a key for DNSSEC signing.
 DS02_DNSKEY_NOT_SEP                | NOTICE  | ns_ip_list, keytag | The DNSKEY record that the DS refers to does not have the SEP bit set.
-DS02_NO_DNSKEY_FOR_DS              | ERROR   | ns_ip_list, keytag | The DNSKEY record that the DS record points to does not exist in the DNSKEY RRset.
-DS02_NO_MATCHING_DNSKEY_RRSIG      | ERROR   | ns_ip_list, keytag | The DNSKEY RRset is not signed by the DNSKEY that the DS record refers to.
+DS02_NO_DNSKEY_FOR_DS              | WARNING | ns_ip_list, keytag | The DNSKEY record that the DS record points to does not exist in the DNSKEY RRset.
+DS02_NO_MATCHING_DNSKEY_RRSIG      | WARNING | ns_ip_list, keytag | The DNSKEY RRset is not signed by the DNSKEY that the DS record refers to.
 DS02_NO_MATCH_DS_DNSKEY            | ERROR   | ns_ip_list, keytag | The DS record does not match the DNSKEY record by algorithm or digest.
 DS02_RRSIG_NOT_VALID_BY_DNSKEY     | ERROR   | ns_ip_list, keytag | The RRSIG cannot be validated by the DNSKEY that it refers to.
 
