@@ -23,7 +23,7 @@
 The list of allowed Digest Algorithms in a DS record published by the parent is
 specified by [RFC 8624][RFC 8624#3.3], section 3.3, and is published in the
 [IANA registry][IANA registry on DS Digest Algorithm] of
-*DS RR Type Digest Algoritms*. No DS Digest Algorithm values, other than those
+*DS RR Type Digest Algorithms*. No DS Digest Algorithm values, other than those
 specified in the RFC and allocated by IANA, should be used in public DNS.
 
 If [RFC 8624][RFC 8624#3.3] and the
@@ -67,14 +67,15 @@ terminated without outputting any message tag.
 This test case does not report if the parent servers give inconsistent responses.
 
 If the *Child Zone* is the root zone, then it has no parent zone, and no DS
-records cannot be fetch.
+records can be fetch.
 
 
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
-* "Algorithm Status" - The status of all DS digest algorithms from [RFC 8624] and
-  the [IANA registry][IANA registry on DS Digest Algorithm].
+* "Algorithm Status" - The status of all DS digest algorithms from
+  [RFC 8624][RFC 8624#3.3] and the
+  [IANA registry][IANA registry on DS Digest Algorithm].
 * "Test Type" - The test type with value "undelegated" or "normal".
 * "Undelegated DS" - The DS record or records submitted, undefined unless
   *Test Type* is undelegated and empty if no DS record has been submitted.
@@ -143,20 +144,20 @@ queries follow, unless otherwise specified below, what is specified for
 
     4. Terminated the test procedure.
 
-2. From here the test procedure is for normal test, not undelegated.
+2.  From here the test procedure is for normal test, not undelegated.
 
-3. If *Child Zone* is the root zone (".") then terminate the test procedure.
+3.  If *Child Zone* is the root zone (".") then terminate the test procedure.
 
-4.  Create the following empty sets:
+4.  Create the following empty set:
     1. Name server IP, key tag from DS record and digest algorithm code ("DS Records").
 
 5.  Create a [DNSSEC Query] with query type DS and query name *Child Zone*
     ("DS Query").
 
-6. Retrieve all name server IP addresses for the parent zone of
-   *Child Zone* using [Method1] (store as "Parent NS IP").
+6.  Retrieve all name server IP addresses for the parent zone of
+    *Child Zone* using [Method1] (store as "Parent NS IP").
 
-7. For each parent name server in *Parent NS IP* do:
+7.  For each parent name server in *Parent NS IP* do:
     1. Send *DS Query* to the name server IP.
     2. If at least one of the following criteria is met, then go to next
        parent name server:
@@ -171,10 +172,11 @@ queries follow, unless otherwise specified below, what is specified for
     3. Retrieve the DS records from the [DNSSEC Response] and add name sever IP,
        key tag from the DS record and the digest algorithm code from the DS
        record to the *DS Records* set.
-    4. If the *DS Record* set is empty exit the test procedure.
 
-8. For each subset in *DS Records* where both DS digest code ("Digest Code") and
-   key tag ("Key Tag") are identical for all subset elements do:
+8.  If the *DS Records* set is empty terminate the test procedure.
+
+9.  For each subset in *DS Records* where both DS digest code ("Digest Code") and
+    key tag ("Key Tag") are identical for all subset elements do:
 
     1. If *Digest Code* is 0 then output *[DS01_DS_ALGO_NOT_DS]* with
       *Digest Code*, *Key Tag* and list of name server IP addresses.
@@ -189,7 +191,7 @@ queries follow, unless otherwise specified below, what is specified for
        *[DS01_DIGEST_NOT_SUPPORTED_BY_ZM]* with *Digest Code*, *Key Tag* and list
        of name server IP addresses.
 
-9. If none of the elements in *DS Records* has digest algorithm value 2 output
+10. If none of the elements in *DS Records* has digest algorithm value 2 output
    *[DS01_DS_ALGO_2_MISSING]*.
 
 
@@ -231,12 +233,12 @@ No special terminology for this test case.
 [DNSSEC Query]:                                       ../DNSQueryAndResponseDefaults.md#default-setting-in-dnssec-query
 [DNSSEC README]:                                      README.md
 [DNSSEC Response]:                                    ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
-[DS01_DIGEST_NOT_SUPPORTED_BY_ZM]:                    #outcomes
-[DS01_DS_ALGO_2_MISSING]:                             #outcomes
-[DS01_DS_ALGO_DEPRECATED]:                            #outcomes
-[DS01_DS_ALGO_NOT_DS]:                                #outcomes
-[DS01_DS_ALGO_RESERVED]:                              #outcomes
-[DS01_DS_ALGO_SHA1_DEPRECATED]:                       #outcomes
+[DS01_DIGEST_NOT_SUPPORTED_BY_ZM]:                    #Summary
+[DS01_DS_ALGO_2_MISSING]:                             #Summary
+[DS01_DS_ALGO_DEPRECATED]:                            #Summary
+[DS01_DS_ALGO_NOT_DS]:                                #Summary
+[DS01_DS_ALGO_RESERVED]:                              #Summary
+[DS01_DS_ALGO_SHA1_DEPRECATED]:                       #Summary
 [ERROR]:                                              ../SeverityLevelDefinitions.md#error
 [IANA RCODE List]:                                    https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [IANA registry on DS Digest Algorithm]:               https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xml
