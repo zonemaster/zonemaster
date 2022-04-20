@@ -160,17 +160,17 @@ If *Test Type* is "undelegated test", then as specified in method
     then follow the delegation.
 
 11. If all servers above are exhausted, then:
-   1. If *Test Type* is "normal test", then return the following from the
-      method:
-      1. The parent zone as empty (undefined).
-      2. The existence of the *Child Zone* is set to be false.
-      3. The parent name server IP list is set to be empty.
-   2. If *Test Type* is "undelegated test", then return the following from
-      the method:
-      1. The parent zone as empty (undefined).
-      2. The existence of the *Child Zone* is set to be true.
-      3. The parent name server IP list is set to be empty.
-   3. Exit.
+    1. If *Test Type* is "normal test", then return the following from the
+       method:
+       1. The parent zone as empty (undefined).
+       2. The existence of the *Child Zone* is set to be false.
+       3. The parent name server IP list is set to be empty.
+    2. If *Test Type* is "undelegated test", then return the following from
+       the method:
+       1. The parent zone as empty (undefined).
+       2. The existence of the *Child Zone* is set to be true.
+       3. The parent name server IP list is set to be empty.
+    3. Exit.
 
 ### Test Type and existence of parent and child
 
