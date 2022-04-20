@@ -174,19 +174,33 @@ If *Test Type* is "undelegated test", then as specified in method
 
 ### Test Type and existence of parent and child
 
-Parent zone     | *Child Zone*       | Run normal test? | Run undelegated test?
-----------------|--------------------|------------------|---------------------
-Determined      | Exists             | Yes              | Yes (1)
-Determined      | Does not exist (2) | No               | Yes (3)
-Indetermined (4)| Indetermined       | No               | Yes (3)
+#### Normal test
+
+Parent zone     | *Child Zone*       | Can normal test be run on *Child Zone*?
+----------------|--------------------|----------------------------------------
+Determined      | Exists             | Yes
+Determined      | Does not exist (1) | No
+Indetermined (2)| Indetermined       | No
+
+1. When parent zone returns an authoritative NXDOMAIN or NODATA on the
+   *Child Zone* name and SOA record.
+2. When server or zone error prevents determination of parent zone.
+
+#### Undelegated test
+
+Parent zone     | *Child Zone*       | Can undelegated test be run on *Child Zone*?
+----------------|--------------------|---------------------------------------------
+Determined      | Exists             | Yes (1)
+Determined      | Does not exist (2) | Yes (3)
+Indetermined (4)| Indetermined       | Yes (3)
 
 1. Undelegated tests are run based on the submitted data and not
    the existing zone.
-2. Parent zone returns an authoritative NXDOMAIN or NODATA on the
+2. When parent zone returns an authoritative NXDOMAIN or NODATA on the
    *Child Zone* name and SOA record.
 3. When *Test Type* is "undelegated test" the *Child Zone* is
    defined to exist even if there is no delegation.
-4. Server or zone error prevents determination of parent zone.
+4. When server or zone error prevents determination of parent zone.
 
 ### Outputs
 
