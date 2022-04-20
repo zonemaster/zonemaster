@@ -922,51 +922,32 @@ None.
 The terms "in-bailiwick", "out-of-bailiwick" and "glue record"
 are used as defined in [RFC 7719], section 6, page 15.
 
-[RFC 7719]: https://tools.ietf.org/html/rfc7719
 
-[BASIC01]: Basic-TP/basic01.md
+[BASIC01]:                       Basic-TP/basic01.md
+[DELEGATION05]:                  Delegation-TP/delegation05.md
+[Get-Del-NS-IPs]:                #method-get-delegation-ns-ip-addresses
+[Get-Del-NS-Names-and-IPs]:      #method-get-delegation-ns-names-and-ip-addresses
+[Get-Del-NS-Names]:              #method-get-delegation-ns-names
+[Get-Delegation]:                #method-get-delegation
+[Get-IB-Addr-in-Zone]:           #method-get-in-bailiwick-address-records-in-zone
+[Get-OOB-IPs]:                   #method-get-out-of-bailiwick-ip-addresses
+[Get-Parent-Zone]:               #method-get-parent-zone
+[Get-Undel-Data]:                #method-get-data-for-undelegated-test
+[Get-Zone-NS-IPs]:               #method-get-zone-ns-ip-addresses
+[Get-Zone-NS-Names-and-IPs]:     #method-get-zone-ns-names-and-ip-addresses
+[Get-Zone-NS-Names]:             #method-get-zone-ns-names
+[Glue records]:                  #terminology
+[Glue records]:                  #terminology
+[In-bailiwick]:                  #terminology
+[List of Root Servers]:          https://www.iana.org/domains/root/servers
+[Method1]:                       Methods.md#method-1-obtain-the-parent-domain
+[Method2]:                       Methods.md#method-2-obtain-glue-name-records-from-parent
+[Method3]:                       Methods.md#method-3-obtain-name-servers-from-child
+[Method4]:                       Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                       Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[Methods]:                       Methods.md
+[Out-of-bailiwick]:              #terminology
+[RFC 7719]:                      https://tools.ietf.org/html/rfc7719
+[To top]:                        #methods-common-to-test-case-specifications
 
-[DELEGATION05]: Delegation-TP/delegation05.md
-
-[To top]: #methods-common-to-test-case-specifications
-
-[Get-Parent-Zone]: #method-get-parent-zone
-
-[Get-Del-NS-Names-and-IPs]: #method-get-delegation-ns-names-and-ip-addresses
-
-[Get-Del-NS-Names]: #method-get-delegation-ns-names
-
-[Get-Del-NS-IPs]: #method-get-delegation-ns-ip-addresses
-
-[Get-Zone-NS-Names]: #method-get-zone-ns-names
-
-[Get-Zone-NS-Names-and-IPs]: #method-get-zone-ns-names-and-ip-addresses
-
-[Get-Zone-NS-IPs]: #method-get-zone-ns-ip-addresses
-
-[Get-IB-Addr-in-Zone]: #method-get-in-bailiwick-address-records-in-zone
-
-[Get-Delegation]: #method-get-delegation
-
-[Get-OOB-IPs]: #method-get-out-of-bailiwick-ip-addresses
-
-[Get-Undel-Data]:#method-get-data-for-undelegated-test
-
-[in-bailiwick]:     #terminology
-
-[out-of-bailiwick]: #terminology
-
-[glue records]:     #terminology
-
-[Glue records]:     #terminology
-
-[List of Root Servers]: https://www.iana.org/domains/root/servers
-
-
-[Method1]: Methods.md#method-1-obtain-the-parent-domain
-[Method2]: Methods.md#method-2-obtain-glue-name-records-from-parent
-[Method3]: Methods.md#method-3-obtain-name-servers-from-child
-[Method4]: Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]: Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[Methods]: Methods.md
 
