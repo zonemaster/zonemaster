@@ -2,7 +2,7 @@
 
 *Status of this document (MethodsNT):*
 
-*The methods are used in, and referred to, the Test
+*The methods are used in, and referred from, the Test
 Case specifications as shortcuts for steps shared between several Test Cases. The methods
 defined in this document are planned to replace the old (current) methods defined in
 [Methods]. Before the transistion all Test Cases still use the old methods ([Methods]).
@@ -57,7 +57,8 @@ without the messages.
 * "Test Type" - The test type with values "undelegated test" or
   "normal test".
 
-This method also inherits the inputs of method [Get-Undel-Data].
+This method also inherits the output of method [Get-Undel-Data]
+as input, when applicable.
 
 ### Prerequisite
 
