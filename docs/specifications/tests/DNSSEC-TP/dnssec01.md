@@ -120,10 +120,10 @@ queries follow, unless otherwise specified below, what is specified for
     2. Else, for each DS record in *Undelegated DS* do:
 
        1. Extract the digest algorithm code and key tag from the DS record
-          ("Digets Code" and "Key Tag", respectively).
+          ("Digest Code" and "Key Tag", respectively).
 
        2. If *Digest Code* is 0 then output *[DS01_DS_ALGO_NOT_DS]* with
-          *Digest Code* and *Key Tag* . Set IP address as "-".
+          *Digest Code* and *Key Tag*. Set IP address as "-".
 
        3. If *Digest Code* is 1 then output *[DS01_DS_ALGO_SHA1_DEPRECATED]*
           with *Digest Code* and *Key Tag*. Set IP address as "-".
@@ -142,7 +142,7 @@ queries follow, unless otherwise specified below, what is specified for
     3. If none of the DS records has digest algorithm value 2 output
        *[DS01_DS_ALGO_2_MISSING]*.
 
-    4. Terminated the test procedure.
+    4. Terminate the test procedure.
 
 2.  From here the test procedure is for normal test, not undelegated.
 
