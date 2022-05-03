@@ -73,14 +73,16 @@ and processor architecture listed below.
 
 ### Supported operating system versions
 
+* [CentOS Linux] 7
 * [Debian] 11
 * [Docker]
 * [FreeBSD] 13.0
-* [Ubuntu] 20.04
-* [Rocky Linux] 8.4
+* [Ubuntu] 22.04
+* [Rocky Linux] 8.5
 
 Only the latest long-term supported version of Debian, FreeBSD, Rocky Linux and
-Ubuntu, respectively, is supported.
+Ubuntu, respectively, is supported. Support for CentOS Linux 7 will be dropped
+by Zonemaster release v2023.1.
 
 Only the Docker images provided by the Zonemaster project on [Docker Hub] are
 supported. Currently only Zonemaster-CLI is supported on Docker. Docker itself
@@ -93,36 +95,38 @@ and is available at large cloud providers.
 
 ### Supported database engine versions
 
-Operating System | MariaDB | PostgreSQL | SQLite
----------------- | --------| -----------|------------------------
-Debian 11        | 10.5    | 13.3       | 3.34
-Docker           | n/a     | n/a        | n/a
-FreeBSD 13.0     | 5.7     | 13.5       | 3.35.5
-Ubuntu 20.04     | 10.3    | 12.4       | 3.31.1
-Rocky Linux 8.4  | 10.3    | 10.17      | 3.26
+Operating System | MariaDB | PostgreSQL      | SQLite
+---------------- | --------| ----------------|------------------------
+CentOS Linux 7   | 5.5     | *not supported* | 3.7.17 ?
+Debian 11        | 10.5 ?  | 13.3 ?          | 3.34 ?
+Docker           | n/a     | n/a             | n/a
+FreeBSD 13.0     | 5.7     | 13.6            | 3.37.2
+Ubuntu 22.04     | 10.5    | 14.2            | 3.36
+Rocky Linux 8.5  | 10.3    | 10.17 ?         | 3.26
 
 * FreeBSD uses MySQL, not MariaDB. 
 * FreeBSD bundles SQLite in Perl DBD::SQLite.
 * Zonemaster Backend has been tested with the combination of OS and database
   engine version listed in the table above.
-* Zonemaster depends on functionality introduced in PostgreSQL version 10, and
-  earlier versions of PostgreSQL are as such not supported.
+* Zonemaster depends on functionality introduced in PostgreSQL version 10 ??, and
+  earlier versions of PostgreSQL are as such not supported. _**WHAT VERSION DOES ZONEMASTER REQUIRE?**_
 * Zonemaster Backend has not been published on [Docker Hub].
 
 ### Supported Perl versions
 
 Operating System | Perl
 ---------------- | ----
+CentOS Linux 7   | 5.16
 Debian 11        | 5.32
-Docker           | *
+Docker           | (*)
 FreeBSD 13.0     | 5.32
-Ubuntu 20.04     | 5.30
-Rocky Linux 8.4  | 5.26
+Ubuntu 22.04     | 5.34
+Rocky Linux 8.5  | 5.26
 
 * Zonemaster requieres Perl version 5.14.2 or higher.
 * Zonemaster has been tested with the default version of Perl in the OSs as
   listed in the table above.
-* Perl is included in the Docker image published on [Docker Hub].
+* (*) Perl is included in the Docker image published on [Docker Hub].
 
 ### Supported Client Browser versions
 
@@ -131,8 +135,8 @@ The latest version of the browser at the time of testing is used.
 
 Operating System | Browser
 ---------------- | -------
-Ubuntu 20.04     | Firefox
-Ubuntu 20.04     | Chrome
+Ubuntu 22.04     | Firefox
+Ubuntu 22.04     | Chrome
 Windows 10       | Firefox
 Windows 10       | Chrome
 MacOs            | Firefox
@@ -153,7 +157,7 @@ installation instructions given for Zonemaster have been followed. A test of the
 domains `ed25519.nl` and `superdns.nl` will reveal if the Zonemaster
 installation has the support or not for algorithms 15 and 16, respectively.
 
-All supported OSs support algorithms 15 and 16.
+All supported OSs, except CentOS Linux 7, support algorithms 15 and 16.
 
 ## Translation
 
@@ -244,9 +248,7 @@ the main [Zonemaster][Zonemaster/Zonemaster] repository (i.e.
 
 ## Notable bugs and issues
 
-### DNSSEC algorithms 15 and 16
-
-Limitations in the support of DNSSEC algorithm 15 is described above.
+None.
 
 ## Contact and mailing lists
 
@@ -254,6 +256,7 @@ See our [contact and mailing lists] page for contact information and
 information on mailing lists.
 
 
+[CentOS Linux]:                        https://centos.org/centos-linux/
 [CPAN]:                                https://www.cpan.org/
 [Connectivity03]:                      docs/specifications/tests/Connectivity-TP/connectivity03.md
 [Contact and mailing lists]:           docs/contact-and-mailing-lists.md
