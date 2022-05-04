@@ -108,8 +108,8 @@ Rocky Linux 8.5  | 10.3    | 10.17 ?         | 3.26
 * FreeBSD bundles SQLite in Perl DBD::SQLite.
 * Zonemaster Backend has been tested with the combination of OS and database
   engine version listed in the table above.
-* Zonemaster depends on functionality introduced in PostgreSQL version 10 ??, and
-  earlier versions of PostgreSQL are as such not supported. _**WHAT VERSION DOES ZONEMASTER REQUIRE?**_
+* Zonemaster depends on functionality introduced in PostgreSQL version 10, and
+  earlier versions of PostgreSQL are as such not supported.
 * Zonemaster Backend has not been published on [Docker Hub].
 
 ### Supported Perl versions
@@ -123,7 +123,7 @@ FreeBSD 13.0     | 5.32
 Ubuntu 22.04     | 5.34
 Rocky Linux 8.5  | 5.26
 
-* Zonemaster requieres Perl version 5.14.2 or higher.
+* Zonemaster requieres Perl version 5.16 or higher.
 * Zonemaster has been tested with the default version of Perl in the OSs as
   listed in the table above.
 * (*) Perl is included in the Docker image published on [Docker Hub].
