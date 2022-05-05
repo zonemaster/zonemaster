@@ -117,3 +117,4 @@ The continuous deployment pipeline perform 3 tasks:
 [Packages sources]: https://gitlab.rd.nic.fr/zonemaster/packages/debian
 [Common Gitlab pipeline]: https://gitlab.rd.nic.fr/zonemaster/ci/-/blob/main/deb-packaging.yml
 [`package.zonemaster.net` content]: https://gitlab.rd.nic.fr/zonemaster/packages/www/
+[published on Github]: ReleaseProcess-release.md#18-tag-the-release-with-git
