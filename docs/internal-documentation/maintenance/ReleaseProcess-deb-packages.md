@@ -36,9 +36,9 @@ to stable. The only difference between a nightly packages and its promoted
 version is the upstream tarball. While the nightly packages use the develop
 branch as upstream, the stable ones use a specific tag.
 
-1. Locally merge the`<distribution>-nightly` branch into `<distribution>` of the
-   [Packages sources] repository. The `.gitlab-ci.yml` and `pkg.sh` files should
-   not be merged.
+1. Locally merge the `<distribution>-nightly` branch into `<distribution>` of
+   the [Packages sources] repository. The `.gitlab-ci.yml` and `pkg.sh` files
+   should not be merged.
 
 2. Update the upstream ref in `pkg.sh` with the tag of the corresponding release
    for each package.
