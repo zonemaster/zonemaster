@@ -80,6 +80,60 @@ The packages can then be installed using apt, e.g.:
 ```sh
 sudo apt install zonemaster-cli
 ```
+
+## Add support for a new OS version
+
+Edit the `.gitlab-ci.yml` file to add three new jobs for the new OS version.
+The name of the job is in the format `{step}:{os}:{version codename}`, where
+step in one of `build`, `publish` and `test`. The jobs must extend a parent job
+named `.{step}`. The build and publish steps must also define the following
+variables:
+* `OS`: OS name as it is in the `/etc/os-release`;
+* `DISTRIBUTION`: Version codename as defined by `VERSION_CODENAME` in
+   `/etc/os-release`, optionaly suffixed by `-nightly`.
+
+The container image used for building should be the same version as the targeted
+distribution.
+
+Example for Ubuntu 22.04, codename "Jammy" the following is added to the CI
+file.
+```yml
+build:ubuntu:jammy:
+  extends: .build
+  image: ubuntu:jammy
+  variables:
+    # For nightly
+    #DISTRIBUTION: jammy-nightly
+    # For stable
+    DISTRIBUTION: jammy
+    OS: ubuntu
+
+publish:ubuntu:jammy:
+  extends: .publish
+  image: ubuntu:jammy
+  variables:
+    # For nightly
+    #DISTRIBUTION: jammy-nightly
+    # For stable
+    DISTRIBUTION: jammy
+    OS: ubuntu
+  needs:
+    - build:ubuntu:jammy
+
+test:ubuntu:jammy:
+  extends: .test
+  image: ubuntu:jammy
+  # Only in nightly branches
+  #variables:
+  #  nightly: 'yes'
+  needs:
+    - publish:ubuntu:jammy
+```
+
+When publishing packages for a different Debian version, it may be prefered to
+create a separate set of branches. In this case the new CI jobs replace the olds
+ones in the CI file.
+
 ## Appendices
 
 ### Repositories location
@@ -100,12 +154,13 @@ sudo apt install zonemaster-cli
 
 The continuous deployment pipeline perform 3 tasks:
 
-1. Build the packages using the `build.sh` script in the packages sources
-   repository.
+1. `build`: build the packages using the `build.sh` script in the packages
+   sources repository.
 
-2. Update the [aptly] repository and publish the new packages.
+2. `publish`: update the [aptly] repository and publish the new packages.
 
-3. Perform a smoke test by installing the latest package and running the CLI.
+3. `test`: perform a smoke test by installing the latest package and running the
+    CLI.
 
 ### Further resources
 
