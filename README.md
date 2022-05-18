@@ -98,7 +98,7 @@ and is available at large cloud providers.
 Operating System | MariaDB | PostgreSQL      | SQLite
 ---------------- | --------| ----------------|------------------------
 CentOS Linux 7   | 5.5     | *not supported* | 3.7.17 ?
-Debian 11        | 10.5 ?  | 13.3 ?          | 3.34 ?
+Debian 11        | 10.5    | 13.3            | 3.34
 Docker           | n/a     | n/a             | n/a
 FreeBSD 13.0     | 5.7     | 13.6            | 3.37.2
 Ubuntu 22.04     | 10.5    | 14.2            | 3.36
