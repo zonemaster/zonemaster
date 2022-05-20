@@ -158,7 +158,15 @@ same for all three repositories.
   git checkout origin/develop
   git checkout -b translation-update
   ```
-
+* Make sure that the working tree is clean. Remove all other files and updates.
+  ```
+  git clean -dfx
+  git reset --hard
+  ```
+* The following command should report that the working tree is clean.
+  ```
+  git status --ignored
+  ```
 * Go to the *share* directory and run the update command for the PO file for
   the language you are going to work with. Replace "xx" with the language code in
   question. This will synchronize the PO file with the *msgids* in the Perl code.
