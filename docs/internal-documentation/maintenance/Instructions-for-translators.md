@@ -63,7 +63,7 @@ but you will have to find instructions elsewhere.
 
   Install the following:
   ```
-  pkg install gettext-tools git-lite gmake p5-Locale-PO
+  pkg install gettext-tools git-lite gmake p5-Locale-PO p5-Try-Tiny
   ```
 
 * Ubuntu
