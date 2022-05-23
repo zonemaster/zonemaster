@@ -89,9 +89,9 @@ supported. Currently only Zonemaster-CLI is supported on Docker. Docker itself
 can run on any of the [Docker] supported OSs (Linux, MacOS and Windows).
 
 [Rocky Linux] has replaced CentOS in Zonemaster version v2021.2 since CentOS 8
-will not be supported beyond 2021-12-31 and CentOS 7 is old and does not support
-modern OpenSSL required by Zonemaster. Rocky Linux is also a Red Hat derivative
-and is available at large cloud providers.
+is not supported anymore and CentOS 7 is old and does not support modern OpenSSL
+required by Zonemaster. Rocky Linux is also a Red Hat derivative and is available
+at large cloud providers.
 
 ### Supported database engine versions
 
@@ -159,7 +159,8 @@ installation has the support or not for algorithms 15 and 16, respectively.
 
 All supported OSs, except CentOS Linux 7, support algorithms 15 and 16 out of the
 box. To get the support in CentOS Linux 7 a newer version of OpenSSL has to be
-installed and Zonemaster-LDNS has to be instlled following special instructions.
+installed and Zonemaster-LDNS has to be installed following special instructions
+found in the [Zonemaster-Engine] installation instructions.
 
 ## Translation
 
