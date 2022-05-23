@@ -78,7 +78,7 @@ and processor architecture listed below.
 * [Docker]
 * [FreeBSD] 13.0
 * [Ubuntu] 22.04
-* [Rocky Linux] 8.5
+* [Rocky Linux] 8.6
 
 Only the latest long-term supported version of Debian, FreeBSD, Rocky Linux and
 Ubuntu, respectively, is supported. Support for CentOS Linux 7 will be dropped
@@ -97,15 +97,15 @@ and is available at large cloud providers.
 
 Operating System | MariaDB | PostgreSQL      | SQLite
 ---------------- | --------| ----------------|------------------------
-CentOS Linux 7   | 5.5     | *not supported* | 3.7.17 ?
+CentOS Linux 7   | 5.5     | *not supported* | 3.36.0
 Debian 11        | 10.5    | 13.3            | 3.34
 Docker           | n/a     | n/a             | n/a
-FreeBSD 13.0     | 5.7     | 13.6            | 3.37.2
+FreeBSD 13.0     | 5.7  1) | 13.6            | 3.37.2
 Ubuntu 22.04     | 10.5    | 14.2            | 3.36
-Rocky Linux 8.5  | 10.3    | 10.17 ?         | 3.26
+Rocky Linux 8.6  | 10.3    | 10.19           | 3.26
 
 * FreeBSD uses MySQL, not MariaDB. 
-* FreeBSD bundles SQLite in Perl DBD::SQLite.
+* SQLite is usually bundled in Perl DBD::SQLite.
 * Zonemaster Backend has been tested with the combination of OS and database
   engine version listed in the table above.
 * Zonemaster depends on functionality introduced in PostgreSQL version 10, and
@@ -121,7 +121,7 @@ Debian 11        | 5.32
 Docker           | (*)
 FreeBSD 13.0     | 5.32
 Ubuntu 22.04     | 5.34
-Rocky Linux 8.5  | 5.26
+Rocky Linux 8.6  | 5.26
 
 * Zonemaster requieres Perl version 5.16 or higher.
 * Zonemaster has been tested with the default version of Perl in the OSs as
@@ -157,7 +157,9 @@ installation instructions given for Zonemaster have been followed. A test of the
 domains `ed25519.nl` and `superdns.nl` will reveal if the Zonemaster
 installation has the support or not for algorithms 15 and 16, respectively.
 
-All supported OSs, except CentOS Linux 7, support algorithms 15 and 16.
+All supported OSs, except CentOS Linux 7, support algorithms 15 and 16 out of the
+box. To get the support in CentOS Linux 7 a newer version of OpenSSL has to be
+installed and Zonemaster-LDNS has to be instlled following special instructions.
 
 ## Translation
 
