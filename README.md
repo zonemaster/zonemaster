@@ -12,7 +12,7 @@
   * [Supported database engine versions](#Supported-database-engine-versions)
   * [Supported Perl versions](#Supported-Perl-versions)
   * [Supported Client Browser versions](#Supported-Client-Browser-versions)
-* [Support of DNSSEC algorithms 15 and 16](#Support-of-DNSSEC-algorithms-15-and-16)
+* [Support of DNSKEY algorithms 15 and 16](#Support-of-DNSKEY-algorithms-15-and-16)
 * [Translation](#Translation)
 * [Zonemaster and its components](#Zonemaster-and-its-components)
 * [Installation](#Installation)
@@ -97,10 +97,10 @@ at large cloud providers.
 
 Operating System | MariaDB | PostgreSQL      | SQLite
 ---------------- | --------| ----------------|------------------------
-CentOS Linux 7   | 5.5     | *not supported* | 3.36.0
-Debian 11        | 10.5    | 13.3            | 3.34
+CentOS Linux 7   | 5.5     | *not supported* | 3.36
+Debian 11        | 10.5    | 13.7            | 3.32
 Docker           | n/a     | n/a             | n/a
-FreeBSD 13.0     | 5.7  1) | 13.6            | 3.37.2
+FreeBSD 13.0     | 5.7  1) | 13.6            | 3.37
 Ubuntu 22.04     | 10.5    | 14.2            | 3.36
 Rocky Linux 8.6  | 10.3    | 10.19           | 3.26
 
