@@ -145,14 +145,13 @@ MacOs            | Chrome
 Zonemaster GUI is tested manually and with testing tools. See the
 [Zonemaster-gui repository][Zonemaster-GUI] for more details.
 
-## Support of DNSSEC algorithms 15 and 16
+## Support of DNSKEY algorithms 15 and 16
 
-To be able to support and process algorithms 15 (Ed25519) and 16 (Ed448) for DNSSEC
-the underlying OS must
+To be able to support and process DNSKEY algorithms 15 (Ed25519) and 16 (Ed448)
+for DNSSEC the underlying OS must
 have a recent version of [OpenSSL] installed, and [LDNS] being linked against that
-OpenSSL (see [Zonemaster-LDNS-README][Zonemaster-LDNS] for more details). These
-conditions are not met in all supported OSs. The following table lists the
-expected support for algorithms 15 and 16 in the supported OSs, given that the
+OpenSSL (see [Zonemaster-LDNS-README][Zonemaster-LDNS] for more details). Then
+information below on support of the algorithms assumes that the
 installation instructions given for Zonemaster have been followed. A test of the
 domains `ed25519.nl` and `superdns.nl` will reveal if the Zonemaster
 installation has the support or not for algorithms 15 and 16, respectively.
