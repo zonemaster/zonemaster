@@ -95,17 +95,18 @@ at large cloud providers.
 
 ### Supported database engine versions
 
-Operating System | MariaDB | PostgreSQL      | SQLite
----------------- | --------| ----------------|------------------------
-CentOS Linux 7   | 5.5     | *not supported* | 3.36
-Debian 11        | 10.5    | 13.7            | 3.32
-Docker           | n/a     | n/a             | n/a
-FreeBSD 13.0     | 5.7 (*) | 13.6            | 3.37
-Ubuntu 22.04     | 10.5    | 14.2            | 3.36
-Rocky Linux 8.6  | 10.3    | 10.19           | 3.26
+Operating System | MariaDB | PostgreSQL
+---------------- | --------| ---------------
+CentOS Linux 7   | 5.5     | *not supported*
+Debian 11        | 10.5    | 13.7
+Docker           | n/a     | n/a
+FreeBSD 13.0     | 5.7 (*) | 13.6
+Ubuntu 22.04     | 10.5    | 14.2
+Rocky Linux 8.6  | 10.3    | 10.19
 
 * (*) FreeBSD uses MySQL, not MariaDB.
-* SQLite is bundled in Perl DBD::SQLite.
+* SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
+  Zonemaster-Backend.
 * Zonemaster Backend has been tested with the combination of OS and database
   engine version listed in the table above.
 * Zonemaster depends on functionality introduced in PostgreSQL version 10, and
