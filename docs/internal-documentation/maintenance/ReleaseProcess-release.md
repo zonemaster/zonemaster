@@ -298,6 +298,9 @@ Create a new branch named `merge-develop-into-master` with both *master* and
 Create a pull request from `merge-develop-into-master` into `master` and have it
 merged through the normal process.
 
+Create a pull request from `master` on github back into `develop` and have it
+merged through the normal process.
+
 In [Appendix B] it is shown how `merge-develop-into-master` can be verified.
 
 
