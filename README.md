@@ -12,7 +12,7 @@
   * [Supported database engine versions](#Supported-database-engine-versions)
   * [Supported Perl versions](#Supported-Perl-versions)
   * [Supported Client Browser versions](#Supported-Client-Browser-versions)
-* [Support of DNSSEC algorithms 15 and 16](#Support-of-DNSSEC-algorithms-15-and-16)
+* [Support of DNSKEY algorithms 15 and 16](#Support-of-DNSKEY-algorithms-15-and-16)
 * [Translation](#Translation)
 * [Zonemaster and its components](#Zonemaster-and-its-components)
 * [Installation](#Installation)
@@ -73,36 +73,40 @@ and processor architecture listed below.
 
 ### Supported operating system versions
 
+* [CentOS Linux] 7
 * [Debian] 11
 * [Docker]
 * [FreeBSD] 13.0
-* [Ubuntu] 20.04
-* [Rocky Linux] 8.4
+* [Ubuntu] 22.04
+* [Rocky Linux] 8.6
 
 Only the latest long-term supported version of Debian, FreeBSD, Rocky Linux and
-Ubuntu, respectively, is supported.
+Ubuntu, respectively, is supported. Support for CentOS Linux 7 will be dropped
+by Zonemaster release v2023.1.
 
 Only the Docker images provided by the Zonemaster project on [Docker Hub] are
 supported. Currently only Zonemaster-CLI is supported on Docker. Docker itself
 can run on any of the [Docker] supported OSs (Linux, MacOS and Windows).
 
 [Rocky Linux] has replaced CentOS in Zonemaster version v2021.2 since CentOS 8
-will not be supported beyond 2021-12-31 and CentOS 7 is old and does not support
-modern OpenSSL required by Zonemaster. Rocky Linux is also a Red Hat derivative
-and is available at large cloud providers.
+is not supported anymore and CentOS 7 is old and does not support modern OpenSSL
+required by Zonemaster. Rocky Linux is also a Red Hat derivative and is available
+at large cloud providers.
 
 ### Supported database engine versions
 
-Operating System | MariaDB | PostgreSQL | SQLite
----------------- | --------| -----------|------------------------
-Debian 11        | 10.5    | 13.3       | 3.34
-Docker           | n/a     | n/a        | n/a
-FreeBSD 13.0     | 5.7     | 13.5       | 3.35.5
-Ubuntu 20.04     | 10.3    | 12.4       | 3.31.1
-Rocky Linux 8.4  | 10.3    | 10.17      | 3.26
+Operating System | MariaDB | PostgreSQL
+---------------- | --------| ---------------
+CentOS Linux 7   | 5.5     | *not supported*
+Debian 11        | 10.5    | 13.7
+Docker           | n/a     | n/a
+FreeBSD 13.0     | 5.7 (*) | 13.6
+Ubuntu 22.04     | 10.5    | 14.2
+Rocky Linux 8.6  | 10.3    | 10.19
 
-* FreeBSD uses MySQL, not MariaDB. 
-* FreeBSD bundles SQLite in Perl DBD::SQLite.
+* (*) FreeBSD uses MySQL, not MariaDB.
+* SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
+  Zonemaster-Backend.
 * Zonemaster Backend has been tested with the combination of OS and database
   engine version listed in the table above.
 * Zonemaster depends on functionality introduced in PostgreSQL version 10, and
@@ -113,16 +117,17 @@ Rocky Linux 8.4  | 10.3    | 10.17      | 3.26
 
 Operating System | Perl
 ---------------- | ----
+CentOS Linux 7   | 5.16
 Debian 11        | 5.32
-Docker           | *
+Docker           | (*)
 FreeBSD 13.0     | 5.32
-Ubuntu 20.04     | 5.30
-Rocky Linux 8.4  | 5.26
+Ubuntu 22.04     | 5.34
+Rocky Linux 8.6  | 5.26
 
-* Zonemaster requieres Perl version 5.14.2 or higher.
+* Zonemaster requieres Perl version 5.16 or higher.
 * Zonemaster has been tested with the default version of Perl in the OSs as
   listed in the table above.
-* Perl is included in the Docker image published on [Docker Hub].
+* (*) Perl is included in the Docker image published on [Docker Hub].
 
 ### Supported Client Browser versions
 
@@ -131,8 +136,8 @@ The latest version of the browser at the time of testing is used.
 
 Operating System | Browser
 ---------------- | -------
-Ubuntu 20.04     | Firefox
-Ubuntu 20.04     | Chrome
+Ubuntu 22.04     | Firefox
+Ubuntu 22.04     | Chrome
 Windows 10       | Firefox
 Windows 10       | Chrome
 MacOs            | Firefox
@@ -141,19 +146,21 @@ MacOs            | Chrome
 Zonemaster GUI is tested manually and with testing tools. See the
 [Zonemaster-gui repository][Zonemaster-GUI] for more details.
 
-## Support of DNSSEC algorithms 15 and 16
+## Support of DNSKEY algorithms 15 and 16
 
-To be able to support and process algorithms 15 (Ed25519) and 16 (Ed448) for DNSSEC
-the underlying OS must
+To be able to support and process DNSKEY algorithms 15 (Ed25519) and 16 (Ed448)
+for DNSSEC the underlying OS must
 have a recent version of [OpenSSL] installed, and [LDNS] being linked against that
-OpenSSL (see [Zonemaster-LDNS-README][Zonemaster-LDNS] for more details). These
-conditions are not met in all supported OSs. The following table lists the
-expected support for algorithms 15 and 16 in the supported OSs, given that the
+OpenSSL (see [Zonemaster-LDNS-README][Zonemaster-LDNS] for more details). Then
+information below on support of the algorithms assumes that the
 installation instructions given for Zonemaster have been followed. A test of the
 domains `ed25519.nl` and `superdns.nl` will reveal if the Zonemaster
 installation has the support or not for algorithms 15 and 16, respectively.
 
-All supported OSs support algorithms 15 and 16.
+All supported OSs, except CentOS Linux 7, support algorithms 15 and 16 out of the
+box. To get the support in CentOS Linux 7 a newer version of OpenSSL has to be
+installed and Zonemaster-LDNS has to be installed following special instructions
+found in the [Zonemaster-Engine] installation instructions.
 
 ## Translation
 
@@ -244,9 +251,7 @@ the main [Zonemaster][Zonemaster/Zonemaster] repository (i.e.
 
 ## Notable bugs and issues
 
-### DNSSEC algorithms 15 and 16
-
-Limitations in the support of DNSSEC algorithm 15 is described above.
+None.
 
 ## Contact and mailing lists
 
@@ -254,6 +259,7 @@ See our [contact and mailing lists] page for contact information and
 information on mailing lists.
 
 
+[CentOS Linux]:                        https://centos.org/centos-linux/
 [CPAN]:                                https://www.cpan.org/
 [Connectivity03]:                      docs/specifications/tests/Connectivity-TP/connectivity03.md
 [Contact and mailing lists]:           docs/contact-and-mailing-lists.md
