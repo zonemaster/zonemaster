@@ -22,7 +22,7 @@ Release process - Release
 * [17. Create Docker images and upload image to Docker Hub](#17-create-docker-images-and-upload-image-to-docker-hub)
 * [18. Tag the release with git](#18-tag-the-release-with-git)
 * [19. Announce the release](#19-announce-the-release)
-* [20. Merge master into develop](#20-merge-masetr-into-develop)
+* [20. Merge master into develop](#20-merge-master-into-develop)
 * [Appendix A on version number in Makefile.PL](#appendix-a-on-version-number-in-makefilepl)
 * [Appendix B on how to verify merge develop branch into master branch](#appendix-b-on-how-to-verify-merge-develop-branch-into-master-branch)
 
