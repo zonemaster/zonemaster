@@ -22,6 +22,7 @@ Release process - Release
 * [17. Create Docker images and upload image to Docker Hub](#17-create-docker-images-and-upload-image-to-docker-hub)
 * [18. Tag the release with git](#18-tag-the-release-with-git)
 * [19. Announce the release](#19-announce-the-release)
+* [20. Merge master into develop](#20-merge-masetr-into-develop)
 * [Appendix A on version number in Makefile.PL](#appendix-a-on-version-number-in-makefilepl)
 * [Appendix B on how to verify merge develop branch into master branch](#appendix-b-on-how-to-verify-merge-develop-branch-into-master-branch)
 
@@ -281,8 +282,6 @@ Make sure you're up to date and your working directory is completely clean:
 > can run `git clean -dfx ; git reset --hard`.
 
 
-### 16.1 Merge develop into master
-
 Create a new branch named `merge-develop-into-master` with both *master* and
 *develop* as ancestors and with the exact contents from *develop*:
 
@@ -302,13 +301,6 @@ Create a pull request from `merge-develop-into-master` into `master` and have it
 merged through the normal process.
 
 In [Appendix B] it is shown how `merge-develop-into-master` can be verified.
-
-
-### 16.2 Merge master into develop
-
-When the previous pull request has been merged, create a pull request from
-`master` on github back into `develop` and have it merged through the normal
-process.
 
 
 ## 17. Create Docker images and upload image to Docker Hub
@@ -343,6 +335,12 @@ The releases pages:
 ## 19. Announce the release
 
 Send emails to the mailing lists `zonemaster-users` and `zonemaster-announce`.
+
+
+## 20. Merge master into develop
+
+Create a pull request from `master` on github back into `develop` and have it
+merged through the normal process.
 
 
 ## Appendix A on version number in Makefile.PL
