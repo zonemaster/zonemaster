@@ -18,7 +18,7 @@ Release process - Release
 * [13. Update Zonemaster repository main _README.md_](#13-update-zonemaster-repository-main-readmemd)
 * [14. Generate documents](#14-generate-documents)
 * [15. Upload to CPAN](#15-upload-to-cpan)
-* [16. Merge develop and master branches](#16-merge-develop-and-master-branches)
+* [16. Merge develop branch into master](#16-merge-develop-branch-into-master)
 * [17. Create Docker images and upload image to Docker Hub](#17-create-docker-images-and-upload-image-to-docker-hub)
 * [18. Tag the release with git](#18-tag-the-release-with-git)
 * [19. Announce the release](#19-announce-the-release)
@@ -266,7 +266,7 @@ Currently we use the organizational account [ZNMSTR] on [PAUSE] for doing
 this.
 
 
-## 16. Merge develop and master branches
+## 16. Merge develop branch into master
 
 > For the steps in this section, it is assumed that the git "remote"
 > which is called "origin" points at "zonemaster/zonemaster.git",
@@ -280,7 +280,6 @@ Make sure you're up to date and your working directory is completely clean:
 
 > **Note:** To throw away any and all changes to tracked and untracked files you
 > can run `git clean -dfx ; git reset --hard`.
-
 
 Create a new branch named `merge-develop-into-master` with both *master* and
 *develop* as ancestors and with the exact contents from *develop*:
