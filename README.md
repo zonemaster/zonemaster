@@ -21,7 +21,6 @@
 * [Participation](#Participation)
 * [Bug reporting](#Bug-reporting)
 * [Notable bugs and issues](#Notable-bugs-and-issues)
-  * [DNSSEC algorithms 15 and 16](#DNSSEC-algorithms-15-and-16)
 * [Contact and mailing lists](#Contact-and-mailing-lists)
 
 
