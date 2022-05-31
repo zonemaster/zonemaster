@@ -280,6 +280,9 @@ Make sure you're up to date and your working directory is completely clean:
 > **Note:** To throw away any and all changes to tracked and untracked files you
 > can run `git clean -dfx ; git reset --hard`.
 
+
+### 16.1 Merge develop into master
+
 Create a new branch named `merge-develop-into-master` with both *master* and
 *develop* as ancestors and with the exact contents from *develop*:
 
@@ -300,8 +303,12 @@ merged through the normal process.
 
 In [Appendix B] it is shown how `merge-develop-into-master` can be verified.
 
-Create a pull request from `master` on github back into `develop` and have it
-merged through the normal process.
+
+### 16.2 Merge master into develop
+
+When the previous pull request has been merged, create a pull request from
+`master` on github back into `develop` and have it merged through the normal
+process.
 
 
 ## 17. Create Docker images and upload image to Docker Hub
