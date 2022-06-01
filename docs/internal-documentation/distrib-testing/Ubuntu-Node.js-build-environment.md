@@ -1,5 +1,7 @@
 # Ubuntu Node.js Build Environment
 
+The build process takes over 1GB of RAM. A machine with at least 2GB of RAM is recommended to build Zonemaster-GUI.
+
 The requirements to build the Zonemaster-GUI distribution zip file are Node.js
 and npm. Below are instructions to create such a build environment on Ubuntu.
 
