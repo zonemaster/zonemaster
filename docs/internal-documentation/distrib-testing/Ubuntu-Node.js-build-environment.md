@@ -17,14 +17,22 @@ here.
 3. Install Node.js by using [NVM], a node version manager.
    ```sh
    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-   nvm install 16
-   nvm use 16
    ```
 
 4. After installation, log out and log in again to handle [known issue], or just:
 
    ```sh
    source ~/.bashrc
+   ```
+
+5. Install the supported Node.js version
+   ```sh
+   nvm install 16
+   ```
+
+6. Switch to the previously installed version
+   ```sh
+   nvm use 16
    ```
 
 [known issue]:                          https://github.com/nvm-sh/nvm#troubleshooting-on-linux
