@@ -9,7 +9,7 @@ v2022.1 2022-06-10 (public release version)
    Zonemaster-GUI. See Zonemaster-CLI and Zonemaster-Backend for details.
 
  [Features]
- - Test cases Nameserver10, DNSSEC01 and DNSSEC02 have bee updated in
+ - Test cases Nameserver10, DNSSEC01 and DNSSEC02 have been updated in
    specification and implementation. See #1005, #1057, #1056 and
    Zonemaster-Engine.
  - Adds support for CentOS Linux 7 again, but only until the v2023.1 release.
