@@ -1,6 +1,37 @@
 Release history of Zonemaster
 
 
+v2022.1 2022-06-10 (public release version)
+
+ [Breaking changes]
+ - In Zonemaster-CLI and in Zonemaster-Backend consecutive trailing dots will no
+   longer be valid for a domain name. As a consequence that is also true for
+   Zonemaster-GUI. See Zonemaster-CLI and Zonemaster-Backend for details.
+
+ [Features]
+ - Test cases Nameserver10, DNSSEC01 and DNSSEC02 have been updated in
+   specification and implementation. See #1005, #1057, #1056 and
+   Zonemaster-Engine.
+ - Adds support for CentOS Linux 7 again, but only until the v2023.1 release.
+
+ [Fixes]
+ - Updates documentation (#1067, #1060)
+ - Updates internal documentation (#1068, #1066, #1065, #1062, #1061, #1052,
+   #1054, #1038)
+ - Adds specification of default query and response handling (#1000)
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components. For each
+   component, see its Changes file or Github release notes for complete release
+   information.
+
+   Zonemaster-LDNS     v2.2.2   https://github.com/zonemaster/zonemaster-ldns/releases/tag/v2.2.2
+   Zonemaster-Engine   v4.5.0   https://github.com/zonemaster/zonemaster-engine/releases/tag/v4.5.0
+   Zonemaster-CLI      v4.0.0   https://github.com/zonemaster/zonemaster-cli/releases/tag/v4.0.0
+   Zonemaster-Backend  v9.0.0   https://github.com/zonemaster/zonemaster-backend/releases/tag/v9.0.0
+   Zonemaster-GUI      v3.6.0   https://github.com/zonemaster/zonemaster-gui/releases/tag/v3.6.0
+
+
 v2021.2.1 2021-12-20 (public fix release)
 
  [Features]
