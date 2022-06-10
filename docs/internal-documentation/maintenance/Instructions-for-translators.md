@@ -63,7 +63,7 @@ but you will have to find instructions elsewhere.
 
   Install the following:
   ```
-  pkg install devel/gettext-tools devel/git-lite devel/gmake devel/p5-Locale-PO
+  pkg install gettext-tools git-lite gmake p5-Locale-PO p5-Try-Tiny
   ```
 
 * Ubuntu
@@ -158,15 +158,26 @@ same for all three repositories.
   git checkout origin/develop
   git checkout -b translation-update
   ```
-
-* Go to the *share* directory and run the update command for the PO file for
-  the language you are going to work with. Replace "xx" with the language code in
-  question. This will synchronize the PO file with the *msgids* in the Perl code.
+* Make sure that the working tree is clean. Remove all other files and updates.
+  ```
+  git clean -dfx
+  git reset --hard
+  ```
+* The following command should report that the working tree is clean.
+  ```
+  git status --ignored
+  ```
+* Go to the *share* directory. Stay in the *share* directory for the remaining
+  translation steps.
   ```
   cd share
+  ```
+* Run the update command for the PO file for the language you are going to work
+  with. Replace "xx" with the language code in question. This will synchronize
+  the PO file with the *msgids* in the Perl code.
+  ```
   ./update-po xx.po
   ```
-
 * The PO file is updated with new *msgids*, if any, and now you can start
   working with it. Unless this is the first translation you only have to work
   with updated or untranslated items.
@@ -202,6 +213,19 @@ same for all three repositories.
   strings match up with those in the *msgid* strings.
   ```
   ../util/check-msg-args xx.po
+  ```
+
+* When the update of all *msgstr* is complete run the update command again to
+  create a consistent formatation of the PO file. Do this again if you do further
+  updates.
+  ```
+  ./update-po xx.po
+  ```
+
+* You can check all updates that have been done to the xx.po file. That includes
+  both updates done by the update command and your updates.
+  ```
+  git diff xx.po
   ```
 
 * When the update is completed, it is time to commit the changes. You should

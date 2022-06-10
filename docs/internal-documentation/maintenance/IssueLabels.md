@@ -34,6 +34,7 @@ Status   | S-ReleaseTested  | yellow | all                | Status: The PR has b
 Type     | T-Bug            | red    | all                | Type: Bug in software or error in test case description.
 Type     | T-Feature        | blue   | all                | Type: New feature in software or test case description.
 Type     | T-Question       | blue   | all                | Type: Incoming question.
+Type     | T-TrackingIssue  | blue   | all                | Type: Tracks other issues, PRs or other changes.
 
 ## Terms
 
