@@ -31,7 +31,7 @@ needs for testing and releasing Zonemaster:
 3. Install prerequisites (binaries)
 
    ```sh
-   sudo apt-get install cpanminus gettext autoconf automake build-essential libdevel-checklib-perl libmodule-install-xsutil-perl libssl-dev libidn2-dev libldns-dev” libtool
+   sudo apt-get install cpanminus gettext autoconf automake build-essential libdevel-checklib-perl libmodule-install-xsutil-perl libssl-dev libidn2-dev libldns-dev libtool
    ```
 
    > On Ubuntu 22.04 internal LDNS cannot be built on Zonemaster-LDNS. It must be
