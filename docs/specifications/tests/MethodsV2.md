@@ -1,6 +1,6 @@
-# Methods common to Test Case Specifications
+# Methods common to Test Case Specifications (version 2)
 
-*Status of this document (MethodsNT):*
+*Status of this document (Methods, version 2):*
 
 *The methods are used in, and referred from, the Test
 Case specifications as shortcuts for steps shared between several Test Cases. The methods
