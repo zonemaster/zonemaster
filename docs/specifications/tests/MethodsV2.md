@@ -1,21 +1,9 @@
 # Methods common to Test Case Specifications (version 2)
 
-*Status of this document (Methods, version 2):*
+## Table of contents
 
-*The methods are used in, and referred from, the Test
-Case specifications as shortcuts for steps shared between several Test Cases. The methods
-defined in this document are planned to replace the old (current) methods defined in
-[Methods]. Before the transistion all Test Cases still use the old methods ([Methods]).
-During the transitions it will be given from the specification if the Test Case uses the
-old methods or the methods in this document. When the transition is completed, the
-old methods document will be removed.*
-
-This is a list of generic methods directly or indirectly used in many
-Test Case specifications. The Test Cases that makes use of any of
-these methods refer directly to this document.
-
-**Table of contents**
-
+* [Objective](#objective)
+* [Scope](#scope)
 * [Method: Get parent zone](#method-get-parent-zone)
 * [Method: Get delegation NS names and IP addresses](#method-get-delegation-ns-names-and-ip-addresses)
 * [Method: Get delegation NS names](#method-get-delegation-ns-names)
@@ -30,7 +18,27 @@ these methods refer directly to this document.
 * [Method inter-dependencies](#method-inter-dependencies)
 * [Terminology](#terminology)
 
--------------------------------------------------------------
+
+## Objective
+
+The methods are used in, and referred from, the Test Case specifications as
+shortcuts for steps shared between Test Cases. A Test Case that makes use of any
+of the methods defined in this document must refer directly to the
+specific method or methods.
+
+
+## Scope
+
+This document holds version 2 of the set of methods. Version 1 is defined in
+[Methods]. Methods from version 1 will be replaced by methods from version 2 in
+all Test Case specifications.
+
+Before the transition all Test Cases specifications use version 1 ([Methods]).
+During the transitions it will be stated in the specific specification if the
+Test Case uses methods from version 1 ([Methods]) or methods from version 2 (this
+document). When the transition is completed, the version 1 document will be
+removed.
+
 
 ## Method: Get parent zone
 
