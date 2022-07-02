@@ -4,6 +4,7 @@
 
 * [Objective](#objective)
 * [Scope](#scope)
+* [Internal methods]
 * [Method: Get parent zone](#method-get-parent-zone)
 * [Method: Get delegation NS names and IP addresses](#method-get-delegation-ns-names-and-ip-addresses)
 * [Method: Get delegation NS names](#method-get-delegation-ns-names)
@@ -11,10 +12,10 @@
 * [Method: Get zone NS names](#method-get-zone-ns-names)
 * [Method: Get zone NS names and IP addresses](#method-get-zone-ns-names-and-ip-addresses)
 * [Method: Get zone NS IP addresses](#method-get-zone-ns-ip-addresses)
-* [Method: Get in-bailiwick address records in zone](#method-get-in-bailiwick-address-records-in-zone)
-* [Method: Get delegation](#method-get-delegation)
-* [Method: Get out-of-bailiwick ip addresses](#method-get-out-of-bailiwick-ip-addresses)
-* [Method: Get data for undelegated test](#method-get-data-for-undelegated-test)
+* [Method: Get in-bailiwick address records in zone (internal)](#method-get-in-bailiwick-address-records-in-zone-internal)
+* [Method: Get delegation (internal)](#method-get-delegation-internal)
+* [Method: Get out-of-bailiwick ip addresses (internal)](#method-get-out-of-bailiwick-ip-addresses-internal)
+* [Method: Get data for undelegated test (internal)](#method-get-data-for-undelegated-test-internal)
 * [Method inter-dependencies](#method-inter-dependencies)
 * [Terminology](#terminology)
 
@@ -39,6 +40,12 @@ Test Case uses methods from version 1 ([Methods]) or methods from version 2 (thi
 document). When the transition is completed, the version 1 document will be
 removed.
 
+## Internal methods
+
+Methods, in this document, that are referred to as *internal* or
+*internal method* must not be referred to from the Test Case specifications.
+*Internal methods* may only be referred to from methods in this document. Test
+Case specifications can freely refer to the other methods.
 
 ## Method: Get parent zone
 
@@ -52,8 +59,6 @@ In general, this method replaces [Method1] in the [Methods], version 1.
 Obtain the parent zone of the child zone to be tested and the name server
 IP addresses of the parent zone. Determine if it is possible to perform
 the testing of the child zone.
-
-This is an external method that can be used by test cases.
 
 This method must, in general, use the same algorithm as Test Case [BASIC01], but
 without the messages.
@@ -243,8 +248,6 @@ server names. Also obtain the IP addresses for the [out-of-bailiwick] name
 server names, if any. If the [glue records] include address records for
 [out-of-bailiwick] name servers they will be included twice, unless identical.
 
-This is an external method that can be used by test cases.
-
 ### Inputs
 
 * "Child Zone" - The name of the child zone.
@@ -303,8 +306,6 @@ In general, this method replaces [Method2] in [Methods], version 1.
 Obtain the name server names for the given zone (child zone) as defined in
 the delegation from parent zone.
 
-This is an external method that can be used by test cases.
-
 ### Inputs
 
 This method inherits the inputs of method [Get-Del-NS-Names-and-IPs].
@@ -354,8 +355,6 @@ Obtain the IP addresses (from glue records) from the delegation of
 the given zone (child zone) from the parent zone. Glue records are address
 records for [in-bailiwick] name server names, if any. Obtain the IP addresses
 for the [out-of-bailiwick] name server names, if any.
-
-This is an external method that can be used by test cases.
 
 ### Inputs
 
@@ -407,8 +406,6 @@ In general, this method replaces [Method3] in [Methods], version 1.
 
 Obtain the names of the authoritative name servers for the given zone
 (child zone) as defined in the NS records in the zone itself.
-
-This is an external method that can be used by test cases.
 
 ### Inputs
 
@@ -464,8 +461,6 @@ Obtain the name server names (extracted from the NS records) from
 apex of the child zone. For [in-bailiwick] name server names obtain
 the IP addresses from the child zone. For the [out-of-bailiwick] name
 server names obtain the IP addresses from resolver lookup.
-
-This is an external method that can be used by test cases.
 
 ### Inputs
 
@@ -532,8 +527,6 @@ In general, this method replaces [Method5] in [Methods], version 1.
 Obtain the IP addresses of the name servers, as extracted from
 the NS records of apex of the child zone.
 
-This is an external method that can be used by Test Cases.
-
 ### Inputs
 
 * "Child Zone" - The name of the child zone.
@@ -573,7 +566,7 @@ for the existence of *Child Zone*
 
 -------------------------------------------------------------
 
-## Method: Get in-bailiwick address records in zone
+## Method: Get in-bailiwick address records in zone (internal)
 
 ### Method identifier
 **Get-IB-Addr-in-Zone**
@@ -587,7 +580,8 @@ It is, however, not permitted for a NS record
 to point at a name that has a CNAME, but that test is
 covered by Test Case [DELEGATION05].
 
-This is an internal method to be used by other methods.
+This is an [internal method][internal methods] that can be referred to by other
+methods in this document, but not by Test Case specifications.
 
 ### Inputs
 
@@ -648,10 +642,7 @@ for the existence of *Child Zone*
 
 -------------------------------------------------------------
 
-## Method: Get delegation
-
-### Method identifier
-**Get-Delegation**
+## Method: Get delegation (internal)
 
 ### Objective
 
@@ -666,7 +657,11 @@ IP addresses for [out-of-bailiwick] name server names are not extracted
 with this method. To get those use method [Get-Del-NS-IPs] or
 method [Get-Del-NS-Names-and-IPs].
 
-This is an internal method to be used by other methods.
+This is an [internal method][internal methods] that can be referred to by other
+methods in this document, but not by Test Case specifications.
+
+### Method identifier
+**Get-Delegation**
 
 ### Inputs
 
@@ -784,7 +779,7 @@ Method [Get-Parent-Zone] must have been run.
 
 -------------------------------------------------------------
 
-## Method: Get out-of-bailiwick ip addresses
+## Method: Get out-of-bailiwick ip addresses (internal)
 
 ### Method identifier
 **Get-OOB-IPs**
@@ -797,7 +792,8 @@ addresses even if the resolution goes through CNAME. It is,
 however, not permitted for a NS record to point at a name that has a
 CNAME, but that test is covered by Test Case [DELEGATION05].
 
-This is an internal method to be used by other methods.
+This is an [internal method][internal methods] that can be referred to by other
+methods in this document, but not by Test Case specifications.
 
 ### Inputs
 
@@ -865,7 +861,7 @@ Method [Get-Parent-Zone] must have been run.
 
 -------------------------------------------------------------
 
-## Method: Get data for undelegated test
+## Method: Get data for undelegated test (internal)
 
 ### Method identifier
 **Get-Undel-Data**
@@ -879,7 +875,8 @@ server names for NS records, optionally one or more IP addresses
 for one or more name server names and optionally data for one or
 more DS records.
 
-This is an internal method to be used by other methods.
+This is an [internal method][internal methods] that can be referred to by other
+methods in this document, but not by Test Case specifications.
 
 ### Inputs
 
@@ -952,11 +949,11 @@ are used as defined in [RFC 7719], section 6, page 15.
 [Get-Del-NS-IPs]:                #method-get-delegation-ns-ip-addresses
 [Get-Del-NS-Names-and-IPs]:      #method-get-delegation-ns-names-and-ip-addresses
 [Get-Del-NS-Names]:              #method-get-delegation-ns-names
-[Get-Delegation]:                #method-get-delegation
-[Get-IB-Addr-in-Zone]:           #method-get-in-bailiwick-address-records-in-zone
-[Get-OOB-IPs]:                   #method-get-out-of-bailiwick-ip-addresses
+[Get-Delegation]:                #method-get-delegation-internal
+[Get-IB-Addr-in-Zone]:           #method-get-in-bailiwick-address-records-in-zone-internal
+[Get-OOB-IPs]:                   #method-get-out-of-bailiwick-ip-addresses-internal
 [Get-Parent-Zone]:               #method-get-parent-zone
-[Get-Undel-Data]:                #method-get-data-for-undelegated-test
+[Get-Undel-Data]:                #method-get-data-for-undelegated-test-internal
 [Get-Zone-NS-IPs]:               #method-get-zone-ns-ip-addresses
 [Get-Zone-NS-Names-and-IPs]:     #method-get-zone-ns-names-and-ip-addresses
 [Get-Zone-NS-Names]:             #method-get-zone-ns-names
@@ -973,5 +970,4 @@ are used as defined in [RFC 7719], section 6, page 15.
 [Out-of-bailiwick]:              #terminology
 [RFC 7719]:                      https://tools.ietf.org/html/rfc7719
 [To top]:                        #methods-common-to-test-case-specifications
-
-
+[Internal Methods]:              #internal-methods
