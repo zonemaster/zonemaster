@@ -4,18 +4,18 @@
 
 * [Objective](#objective)
 * [Scope](#scope)
-* [Internal methods]
-* [Method: Get parent zone](#method-get-parent-zone)
-* [Method: Get delegation NS names and IP addresses](#method-get-delegation-ns-names-and-ip-addresses)
-* [Method: Get delegation NS names](#method-get-delegation-ns-names)
-* [Method: Get delegation NS IP addresses](#method-get-delegation-ns-ip-addresses)
-* [Method: Get zone NS names](#method-get-zone-ns-names)
-* [Method: Get zone NS names and IP addresses](#method-get-zone-ns-names-and-ip-addresses)
-* [Method: Get zone NS IP addresses](#method-get-zone-ns-ip-addresses)
-* [Method: Get in-bailiwick address records in zone (internal)](#method-get-in-bailiwick-address-records-in-zone-internal)
-* [Method: Get delegation (internal)](#method-get-delegation-internal)
-* [Method: Get out-of-bailiwick ip addresses (internal)](#method-get-out-of-bailiwick-ip-addresses-internal)
-* [Method: Get data for undelegated test (internal)](#method-get-data-for-undelegated-test-internal)
+* [Internal methods][Internal method]
+* [Method: Get parent zone][Get-Parent-Zone]
+* [Method: Get delegation NS names and IP addresses][Get-Del-NS-Names-and-IPs]
+* [Method: Get delegation NS names][Get-Del-NS-Names]
+* [Method: Get delegation NS IP addresses][Get-Del-NS-IPs]
+* [Method: Get zone NS names][Get-Zone-NS-Names]
+* [Method: Get zone NS names and IP addresses][Get-Zone-NS-Names-and-IPs]
+* [Method: Get zone NS IP addresses][Get-Zone-NS-IPs]
+* [Method: Get in-bailiwick address records in zone (internal)][Get-IB-Addr-in-Zone]
+* [Method: Get delegation (internal)][Get-Delegation]
+* [Method: Get out-of-bailiwick ip addresses (internal)][Get-OOB-IPs]
+* [Method: Get data for undelegated test (internal)][Get-Undel-Data]
 * [Method inter-dependencies](#method-inter-dependencies)
 * [Terminology](#terminology)
 
@@ -580,8 +580,8 @@ It is, however, not permitted for a NS record
 to point at a name that has a CNAME, but that test is
 covered by Test Case [DELEGATION05].
 
-This is an [internal method][internal methods] that can be referred to by other
-methods in this document, but not by Test Case specifications.
+This is an [internal method] that can be referred to by other methods in this
+document, but not by Test Case specifications.
 
 ### Inputs
 
@@ -657,8 +657,8 @@ IP addresses for [out-of-bailiwick] name server names are not extracted
 with this method. To get those use method [Get-Del-NS-IPs] or
 method [Get-Del-NS-Names-and-IPs].
 
-This is an [internal method][internal methods] that can be referred to by other
-methods in this document, but not by Test Case specifications.
+This is an [internal method] that can be referred to by other methods in this
+document, but not by Test Case specifications.
 
 ### Method identifier
 **Get-Delegation**
@@ -792,8 +792,8 @@ addresses even if the resolution goes through CNAME. It is,
 however, not permitted for a NS record to point at a name that has a
 CNAME, but that test is covered by Test Case [DELEGATION05].
 
-This is an [internal method][internal methods] that can be referred to by other
-methods in this document, but not by Test Case specifications.
+This is an [internal method] that can be referred to by other methods in this
+document, but not by Test Case specifications.
 
 ### Inputs
 
@@ -875,8 +875,8 @@ server names for NS records, optionally one or more IP addresses
 for one or more name server names and optionally data for one or
 more DS records.
 
-This is an [internal method][internal methods] that can be referred to by other
-methods in this document, but not by Test Case specifications.
+This is an [internal method] that can be referred to by other methods in this
+document, but not by Test Case specifications.
 
 ### Inputs
 
@@ -969,5 +969,5 @@ are used as defined in [RFC 7719], section 6, page 15.
 [Methods]:                       Methods.md
 [Out-of-bailiwick]:              #terminology
 [RFC 7719]:                      https://tools.ietf.org/html/rfc7719
-[To top]:                        #methods-common-to-test-case-specifications
-[Internal Methods]:              #internal-methods
+[To top]:                        #methods-common-to-test-case-specifications-version-2
+[Internal Method]:               #internal-methods
