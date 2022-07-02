@@ -40,12 +40,14 @@ Test Case uses methods from version 1 ([Methods]) or methods from version 2 (thi
 document). When the transition is completed, the version 1 document will be
 removed.
 
+
 ## Internal methods
 
 Methods, in this document, that are referred to as *internal* or
 *internal method* must not be referred to from the Test Case specifications.
 *Internal methods* may only be referred to from methods in this document. Test
 Case specifications can freely refer to the other methods.
+
 
 ## Method: Get parent zone
 
@@ -232,7 +234,6 @@ The *Child Zone* name must be a legal name.
 
 [To top]
 
--------------------------------------------------------------
 
 ## Method: Get delegation NS names and IP addresses
 
@@ -292,7 +293,6 @@ for the existence of *Child Zone*
 
 [To top]
 
--------------------------------------------------------------
 
 ## Method: Get delegation NS names
 
@@ -340,7 +340,6 @@ for the existence of *Child Zone*
 
 [To top]
 
--------------------------------------------------------------
 
 ## Method: Get delegation NS IP addresses
 
@@ -393,7 +392,6 @@ for the existence of *Child Zone*
 
 [To top]
 
--------------------------------------------------------------
 
 ## Method: Get zone NS names
 
@@ -448,7 +446,6 @@ for the existence of *Child Zone*
 
 [To top]
 
--------------------------------------------------------------
 
 ## Method: Get zone NS names and IP addresses
 
@@ -513,7 +510,6 @@ for the existence of *Child Zone*
 
 [To top]
 
--------------------------------------------------------------
 
 ## Method: Get zone NS IP addresses
 
@@ -564,7 +560,6 @@ for the existence of *Child Zone*
 
 [To top]
 
--------------------------------------------------------------
 
 ## Method: Get in-bailiwick address records in zone (internal)
 
@@ -640,7 +635,6 @@ for the existence of *Child Zone*
 
 [To top]
 
--------------------------------------------------------------
 
 ## Method: Get delegation (internal)
 
@@ -777,7 +771,6 @@ Method [Get-Parent-Zone] must have been run.
 
 [To top]
 
--------------------------------------------------------------
 
 ## Method: Get out-of-bailiwick ip addresses (internal)
 
@@ -859,7 +852,6 @@ Method [Get-Parent-Zone] must have been run.
 
 [To top]
 
--------------------------------------------------------------
 
 ## Method: Get data for undelegated test (internal)
 
@@ -912,7 +904,6 @@ None.
 
 [To top]
 
--------------------------------------------------------------
 
 ## Method inter-dependencies
 
@@ -936,7 +927,6 @@ None.
 
 [To top]
 
--------------------------------------------------------------
 
 ## Terminology
 
