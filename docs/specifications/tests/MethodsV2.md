@@ -45,9 +45,9 @@ removed.
 ### Method identifier
 **Get-Parent-Zone**
 
-*In general, this method replaces [Method1] in the old [Methods].*
-
 ### Objective
+
+In general, this method replaces [Method1] in the [Methods], version 1.
 
 Obtain the parent zone of the child zone to be tested and the name server
 IP addresses of the parent zone. Determine if it is possible to perform
@@ -296,9 +296,9 @@ for the existence of *Child Zone*
 ### Method identifier
 **Get-Del-NS-Names**
 
-*In general, this method replaces [Method2] in the old [Methods].*
-
 ### Objective
+
+In general, this method replaces [Method2] in [Methods], version 1.
 
 Obtain the name server names for the given zone (child zone) as defined in
 the delegation from parent zone.
@@ -346,9 +346,9 @@ for the existence of *Child Zone*
 ### Method identifier
 **Get-Del-NS-IPs**
 
-*In general, this method replaces [Method4] in the old [Methods].*
-
 ### Objective
+
+In general, this method replaces [Method4] in [Methods], version 1.
 
 Obtain the IP addresses (from glue records) from the delegation of
 the given zone (child zone) from the parent zone. Glue records are address
@@ -401,9 +401,10 @@ for the existence of *Child Zone*
 ### Method identifier
 **Get-Zone-NS-Names**
 
-*In general, this method replaces [Method3] in the old [Methods].*
-
 ### Objective
+
+In general, this method replaces [Method3] in [Methods], version 1.
+
 Obtain the names of the authoritative name servers for the given zone
 (child zone) as defined in the NS records in the zone itself.
 
@@ -524,9 +525,9 @@ for the existence of *Child Zone*
 ### Method identifier
 **Get-Zone-NS-IPs**
 
-*In general, this method replaces [Method5] in the old [Methods].*
-
 ### Objective
+
+In general, this method replaces [Method5] in [Methods], version 1.
 
 Obtain the IP addresses of the name servers, as extracted from
 the NS records of apex of the child zone.
