@@ -1,8 +1,19 @@
-# Methods common to Test Specifications
+# Methods common to Test Specifications (version 1)
 
 This is a list of generic methods used in many test specifications. The
 test cases that makes use of any of these methods should link directly to
 this text.
+
+This document holds version 1 of the set of methods. Version 2 is defined in
+[MethodV2]. Methods from version 1 will be replaced by methods from version 2 in
+all Test Case specifications.
+
+Before the transition all Test Cases specifications use version 1 (this
+document). During the transitions it will be stated in the specific specification
+if the Test Case uses methods from version 1 (this document) or methods from
+version 2 ([MethodsV2]). When the transition is completed, this document will be
+removed.
+
 
 ### Method 1: Obtain the parent domain
 
@@ -58,3 +69,6 @@ the child zone.
 2. Record the list of unique IPv4 addreses in the answer section.
 3. Send an AAAA query to all name servers obtained in Method 3.
 4. Record the list of unique IPv6 addresses in the answer section.
+
+
+[MethodsV2]:                                    MethodsV2.md
