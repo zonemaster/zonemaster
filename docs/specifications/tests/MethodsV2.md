@@ -27,6 +27,8 @@ shortcuts for steps shared between Test Cases. A Test Case that makes use of any
 of the methods defined in this document must refer directly to the
 specific method or methods.
 
+[To top]
+
 
 ## Scope
 
@@ -40,6 +42,8 @@ Test Case uses methods from version 1 ([Methods]) or methods from version 2 (thi
 document). When the transition is completed, the version 1 document will be
 removed.
 
+[To top]
+
 
 ## Internal methods
 
@@ -47,6 +51,8 @@ Methods, in this document, that are referred to as *internal* or
 *internal method* must not be referred to from the Test Case specifications.
 *Internal methods* may only be referred to from methods in this document. Test
 Case specifications can freely refer to the other methods.
+
+[To top]
 
 
 ## Method: Get parent zone
@@ -80,7 +86,7 @@ as input, when applicable.
 If *Test Type* is "undelegated test", then as specified in method
 [Get-Undel-Data].
 
-### Ordered description of steps to be taken to execute the method
+### Test procedure
 
 1. If the *Child Zone* is the root zone ("."):
    1. Return the following from the method:
@@ -217,7 +223,7 @@ Indetermined (4)| Indetermined       | Yes (3)
    defined to exist even if there is no delegation.
 4. When server or zone error prevents determination of parent zone.
 
-### Outputs
+### Outcome(s)
 
 * The name of the parent zone (can be empty, i.e. undefined).
 * The existence of the *Child Zone* (true or false).
@@ -260,7 +266,7 @@ This method also inherits the inputs of methods [Get-Delegation] and
 
 As specified in methods [Get-Delegation] and [Get-OOB-IPs].
 
-### Ordered description of steps to be taken to execute the method
+### Test procedure
 
 1. Get the name server set ("Name Servers") where each unique name
    server name is linked to a possibly empty set of its IP
@@ -277,7 +283,7 @@ As specified in methods [Get-Delegation] and [Get-OOB-IPs].
 
 5. Output the *Name Servers*.
 
-### Outputs
+### Outcome(s)
 
 * The set of name servers, where each unique name server name
   links to a possibly empty set of its IP addresses.
@@ -314,7 +320,7 @@ This method inherits the inputs of method [Get-Del-NS-Names-and-IPs].
 
 As specified in method [Get-Del-NS-Names-and-IPs].
 
-### Ordered description of steps to be taken to execute the method
+### Test procedure
 
 1. Get the name server set ("Name Servers") where each unique name
    server name is linked to a possibly empty set of its IP
@@ -324,7 +330,7 @@ As specified in method [Get-Del-NS-Names-and-IPs].
 
 3. Output the set of name server names.
 
-### Outputs
+### Outcome(s)
 
 * The set of name server names.
 
@@ -365,7 +371,7 @@ This method inherits the inputs of method [Get-Del-NS-Names-and-IPs].
 
 As specified in method [Get-Del-NS-Names-and-IPs].
 
-### Ordered description of steps to be taken to execute the method
+### Test procedure
 
 1. Get the name server set ("Name Servers") where each unique name
    server name is linked to a possibly empty set of its IP
@@ -415,7 +421,7 @@ This method also inherits the inputs of method [Get-Del-NS-IPs].
 
 As specified in method [Get-Del-NS-IPs].
 
-### Ordered description of steps to be taken to execute the method
+### Test procedure
 
 1. Using method [Get-Del-NS-IPs], obtain the IP addresses of the
    name servers ("Name Server IPs").
@@ -431,7 +437,7 @@ As specified in method [Get-Del-NS-IPs].
 
 5. Output *Name Server Names*.
 
-### Outputs
+### Outcome(s)
 
 * The set of name servers (name server names).
 
@@ -471,7 +477,7 @@ This method also inherits the inputs of methods [Get-Zone-NS-Names],
 As specified in methods [Get-Zone-NS-Names], [Get-IB-Addr-in-Zone]
 and [Get-OOB-IPs].
 
-### Ordered description of steps to be taken to execute the method
+### Test procedure
 
 1. Get the name server names for the *Child Zone* as defined in
    the *Child Zone* by using method [Get-Zone-NS-Names] ("Names").
@@ -534,7 +540,7 @@ This method also inherits the inputs of method
 
 As specified in method [Get-Zone-NS-Names-and-IPs].
 
-### Ordered description of steps to be taken to execute the method
+### Test procedure
 
 1. Get the name servers set ("Name Servers") where each unique name
    server name is linked to a possibly empty set of its IP
@@ -545,7 +551,7 @@ As specified in method [Get-Zone-NS-Names-and-IPs].
 
 3. Output the set of IP addresses.
 
-### Outputs
+### Outcome(s)
 
 * The possibly empty set of IP addresses.
 
@@ -588,7 +594,7 @@ This method also inherits the inputs of method [Get-Del-NS-IPs].
 
 As specified in method [Get-Del-NS-IPs].
 
-### Ordered description of steps to be taken to execute the method
+### Test procedure
 
 1. Using method [Get-Del-NS-IPs], obtain the IP addresses to the name
    servers ("Name Server IPs").
@@ -619,7 +625,7 @@ As specified in method [Get-Del-NS-IPs].
 
 6. Output the *Name Servers*.
 
-### Outputs
+### Outcome(s)
 
 * The possibly empty set of name server names pointing at possibly
   empty sets of IP addresses.
@@ -674,7 +680,7 @@ This method also inherits the inputs of method [Get-Undel-Data] if
 As specified in method [Get-Undel-Data] if *Test Type* is
 "undelegated test" or else as specified in method [Get-Parent-Zone].
 
-### Ordered description of steps to be taken to execute the method
+### Test procedure
 
 1. If the *Test Type* is "undelegated test", then:
    1. Using method [Get-Undel-Data] get the submitted data for
@@ -755,7 +761,7 @@ As specified in method [Get-Undel-Data] if *Test Type* is
    2. If no more servers remain, output an empty set and stop
       processing the method.
 
-### Outputs
+### Outcome(s)
 
 * The set of name servers, where each unique name server name
   links to a possibly empty set of its IP addresses.
@@ -804,7 +810,7 @@ This method also inherits the inputs of method [Get-Undel-Data] if
 As specified in method [Get-Undel-Data] if *Test Type* is
 "undelegated test".
 
-### Ordered description of steps to be taken to execute the method
+### Test procedure
 
 1. Create a set of name servers ("Name Servers") where each unique
    [out-of-bailiwick] name server name in *NS Set* is linked to an empty
@@ -831,13 +837,13 @@ As specified in method [Get-Undel-Data] if *Test Type* is
       possibly in several steps, and use the resulting IP address or
       addresses.
 
-   4. Collect all IP addresses for the *Name* and add the
+   5. Collect all IP addresses for the *Name* and add the
       address or addresses to *Name Servers* for that *Name*
       and go to next *Name*.
 
 4. Output the *Name Servers*.
 
-### Outputs
+### Outcome(s)
 
 * The set of name servers, where each unique name server name
   links to a possibly empty set of its IP addresses.
@@ -881,7 +887,7 @@ document, but not by Test Case specifications.
 * The Test Type of *Child Zone* must be "undelegated test".
 * The *Undelegated Data* must include at least one name server name.
 
-### Ordered description of steps to be taken to execute the method
+### Test procedure
 
 1. Get the *Undelegated Data* from the initiation of the test.
 
@@ -889,7 +895,7 @@ document, but not by Test Case specifications.
    links to a possibly empty set of its IP addresses taken from the
    *Undelegated Data*.
 
-### Outputs
+### Outcome(s)
 
 * The set of name servers, where each unique name server name
   links to a possibly empty set of its IP addresses.
@@ -930,8 +936,10 @@ None.
 
 ## Terminology
 
-The terms "in-bailiwick", "out-of-bailiwick" and "glue record"
-are used as defined in [RFC 7719], section 6, page 15.
+The terms "in-bailiwick", "out-of-bailiwick" and "glue record" are used as
+defined in [RFC 8499], section 7, pages 24-25. In this document, the term
+"in-bailiwick" is limited to the meaning "in domain" in the RFC. The term
+"out-of-bailiwick" here means what is not "in-bailiwick, in domain".
 
 
 [BASIC01]:                       Basic-TP/basic01.md
@@ -950,6 +958,7 @@ are used as defined in [RFC 7719], section 6, page 15.
 [Glue records]:                  #terminology
 [Glue records]:                  #terminology
 [In-bailiwick]:                  #terminology
+[Internal Method]:               #internal-methods
 [List of Root Servers]:          https://www.iana.org/domains/root/servers
 [Method1]:                       Methods.md#method-1-obtain-the-parent-domain
 [Method2]:                       Methods.md#method-2-obtain-glue-name-records-from-parent
@@ -958,6 +967,5 @@ are used as defined in [RFC 7719], section 6, page 15.
 [Method5]:                       Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [Methods]:                       Methods.md
 [Out-of-bailiwick]:              #terminology
-[RFC 7719]:                      https://tools.ietf.org/html/rfc7719
+[RFC 8499]:                      https://datatracker.ietf.org/doc/html/rfc8499#section-7
 [To top]:                        #methods-common-to-test-case-specifications-version-2
-[Internal Method]:               #internal-methods
