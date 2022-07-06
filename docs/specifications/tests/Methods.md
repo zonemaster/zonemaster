@@ -9,7 +9,7 @@ This document holds version 1 of the set of methods. Version 2 is defined in
 all Test Case specifications.
 
 Before the transition all Test Cases specifications use version 1 (this
-document). During the transitions it will be stated in the specific specification
+document). During the transition it will be stated in each specification
 if the Test Case uses methods from version 1 (this document) or methods from
 version 2 ([MethodsV2]). When the transition is completed, this document will be
 removed.

@@ -37,7 +37,7 @@ This document holds version 2 of the set of methods. Version 1 is defined in
 all Test Case specifications.
 
 Before the transition all Test Cases specifications use version 1 ([Methods]).
-During the transitions it will be stated in the specific specification if the
+During the transition it will be stated in each specification if the
 Test Case uses methods from version 1 ([Methods]) or methods from version 2 (this
 document). When the transition is completed, the version 1 document will be
 removed.
