@@ -1,6 +1,30 @@
 Release history of Zonemaster
 
 
+v2022.1.1 2022-07-08 (public fix version)
+
+ [Fixes]
+ - Fixes a bug where undelegated tests failed to be run in some cases. See
+   Zonemaster-Engine for details.
+ - Fixes a bug in Zonemaster-Backend where IPv4 or IPv6 setting was not
+   respected in custom profile. See Zonemaster-Backend for details.
+ - Updates the Danish, Finnish and Norwegian translations. See Zonemaster-Engine,
+   Zonemaster-CLI and Zonemaster-Backend for details.
+ - Adds missing installation instruction for CentOS Linux 7 in Zonemaster-CLI
+   Zonemster-GUI.
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components. For each
+   component, see its Changes file or Github release notes for complete release
+   information.
+
+   Zonemaster-LDNS     v2.2.2   https://github.com/zonemaster/zonemaster-ldns/releases/tag/v2.2.2
+   Zonemaster-Engine   v4.5.1   https://github.com/zonemaster/zonemaster-engine/releases/tag/v4.5.1
+   Zonemaster-CLI      v4.0.1   https://github.com/zonemaster/zonemaster-cli/releases/tag/v4.0.1
+   Zonemaster-Backend  v9.0.1   https://github.com/zonemaster/zonemaster-backend/releases/tag/v9.0.1
+   Zonemaster-GUI      v3.6.1   https://github.com/zonemaster/zonemaster-gui/releases/tag/v3.6.1
+
+
 v2022.1 2022-06-10 (public release version)
 
  [Breaking changes]
