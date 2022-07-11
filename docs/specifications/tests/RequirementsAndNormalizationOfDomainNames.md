@@ -4,9 +4,10 @@
 ## Table of contents
 
 * [Objective](#Objective)
+* [Overview](#Overview)
+  * [Reference](#Reference)
 * [Scope](#Scope)
 * [Inputs](#Inputs)
-* [Outputs](#Outputs)
 * [Summary](#Summary)
 * [Test procedure](#Test-procedure)
 * [Outcome(s)](#Outcomes)
@@ -38,6 +39,8 @@ names, zone names and name server names, are tested and normalized by this test
 case. The zone name is called *Child Zone* in other Zonemaster test case
 specifications.
 
+## Overview
+
 To be valid, *Domain Name* must be one of two:
 
 1. a valid ASCII domain name, or
@@ -59,6 +62,8 @@ cannot be used for Zonemaster testing.
 
 If the outcome (see [Outcome(s)](#Outcomes)) is not "fail" then *Domain Name* in
 normalized form is returned to be used as input value for Zonemaster test cases.
+
+### Reference
 
 The following references are consulted for this specification:
 
@@ -84,15 +89,19 @@ space (U+0020). The Zonemaster CLI, the Zonemaster GUI or any other client must
 ensure that before testing the domain name against this specification, or else
 the outcome will be "fail".
 
-In this specificatiomn, ASCII is identical to the first 128 characters in
+In this specification, ASCII is identical to the first 128 characters in
 [Unicode] (0000..007F).
 
-[RFC 1123][RFC 1123#2.1], section 2.1, also specifies that a domain name label
-may not start or end with a HYPHEN-MINUS ("-"). The SOLIDUS ("/"), if used, is
-not expected to occure in the start or end of the label. The LOW LINE ("_"), if
-used, is only expected to occure in the start of the label. Those restrictions on
-HYPHEN-MINUS, SOLIDUS and LOW LINE are disregarded in this specification and are
-assumed to be handled in test cases [Syntax01] and [Syntax02].
+[RFC 1123][RFC 1123#2.1], section 2.1, specifies that a domain name label
+may not start or end with a HYPHEN-MINUS ("-"), only digit or letter. This
+restrictions on HYPHEN-MINUS in this specification and is assumed to be
+handled in test case [Syntax02].
+
+The use of the SOLIDUS ("/") and the LOW LINE ("_") in domain name is discussed
+in the section "[ASCII domain name](#ASCII-domain-name)" below. Any restrictions
+on where in the domain name or label those could or should be used are
+disregarded in this specification, and are assumed to be handled in test cases
+[Syntax01] and [Syntax02].
 
 
 ## Inputs
@@ -106,11 +115,6 @@ assumed to be handled in test cases [Syntax01] and [Syntax02].
 
 Tables 1, 2 and 3 are found in the [Detailed requirements] section
 below.
-
-
-## Outputs
-
-See the [Outcome(s)](#Outcomes)) section below.
 
 
 ## Summary
@@ -188,6 +192,7 @@ message. The argument names are defined in the [argument list].
 
 12. If the length of *Domain Name* is longer than 253 characters including the
     dots, then output *[B00_DOMAIN_NAME_TOO_LONG]* and terminate.
+
 
 ## Outcome(s)
 
