@@ -78,20 +78,16 @@ without the messages.
 * "Test Type" - The test type with values "undelegated test" or
   "normal test".
 
-This method also inherits the output of method [Get-Undel-Data]
-as input, when applicable.
-
 ### Prerequisite
 
-If *Test Type* is "undelegated test", then as specified in method
-[Get-Undel-Data].
+None.
 
 ### Test procedure
 
 1. If the *Child Zone* is the root zone ("."):
    1. Return the following from the method:
-      1. The parent zone is set to be itself (".").
-      2. The existence of the *Child Zone* is set to be true.
+      1. The parent zone is determined to be itself (".").
+      2. Test can be run on *Child Zone* (true).
       3. The parent name server IP list is empty.
    2. Exit.
 
@@ -105,9 +101,9 @@ If *Test Type* is "undelegated test", then as specified in method
 4. If the lookup reaches a name server that responds with a referral
    (delegation) directly to the requested *Child Zone*:
    1. Return the following from the method:
-      1. The parent zone is set to be the name of the zone that returned
+      1. The parent zone is determined to be the name of the zone that returned
          the delegation.
-      2. The existence of the *Child Zone* is set to be true.
+      2. Test can be run on *Child Zone* (true).
       3. The parent name server IP list is set to be the available list
          of servers for the parent zone.
    2. Exit.
@@ -122,14 +118,14 @@ If *Test Type* is "undelegated test", then as specified in method
       	 Zone*, then go back to step 4 with the found delegation.
    3. If *Test Type* is "normal test", then return the following from the
       method:
-      1. The parent zone as defined above.
-      2. The existence of the *Child Zone* is set to be false.
+      1. The parent zone as determined above.
+      2. Test cannot be run on *Child Zone* (false).
       3. The parent name server IP list is set to be the available list
          of servers for the parent zone.
    4. If *Test Type* is "undelegated test", then return the following from
       the method:
-      1. The parent zone as defined above.
-      2. The existence of the *Child Zone* is set to be true.
+      1. The parent zone as determined above.
+      2. Test can be run on *Child Zone* (true).
       3. The parent name server IP list is set to be the available list
          of servers for the parent zone.
    5. Exit.
@@ -150,14 +146,14 @@ If *Test Type* is "undelegated test", then as specified in method
       	 Zone*, then go back to step 4 with the found delegation.
    3. If *Test Type* is "normal test", then return the following from the
       method:
-      1. The parent zone as defined above.
-      2. The existence of the *Child Zone* is set to be false.
+      1. The parent zone as determined above.
+      2. Test cannot be run on *Child Zone* (false).
       3. The parent name server IP list is set to be the available list
          of servers for the parent zone.
    4. If *Test Type* is "undelegated test", then return the following from
       the method:
-      1. The parent zone as defined above.
-      2. The existence of the *Child Zone* is set to be true.
+      1. The parent zone as determined above.
+      2. Test can be run on *Child Zone* (true).
       3. The parent name server IP list is set to be the available list
          of servers for the parent zone.
    5. Exit.
@@ -168,8 +164,8 @@ If *Test Type* is "undelegated test", then as specified in method
    1. The zone in the previous delegation is defined to be the parent
       zone.
    2. Return the following from the method:
-      1. The parent zone as defined above.
-      2. The existence of the *Child Zone* is set to be true.
+      1. The parent zone as determined above.
+      2. Test can be run on *Child Zone* (true).
       3. The parent name server IP list is set to be the available list
          of servers for the parent zone.
    3. Exit.
@@ -183,13 +179,13 @@ If *Test Type* is "undelegated test", then as specified in method
 11. If all servers above are exhausted, then:
     1. If *Test Type* is "normal test", then return the following from the
        method:
-       1. The parent zone as empty (undefined).
-       2. The existence of the *Child Zone* is set to be false.
+       1. The parent zone as empty (indetermined).
+       2. Test cannot be run on *Child Zone* (false).
        3. The parent name server IP list is set to be empty.
     2. If *Test Type* is "undelegated test", then return the following from
        the method:
-       1. The parent zone as empty (undefined).
-       2. The existence of the *Child Zone* is set to be true.
+       1. The parent zone as empty (indetermined).
+       2. Test can be run on *Child Zone* (true).
        3. The parent name server IP list is set to be empty.
     3. Exit.
 
@@ -199,9 +195,9 @@ If *Test Type* is "undelegated test", then as specified in method
 
 Parent zone     | *Child Zone*       | Can normal test be run on *Child Zone*?
 ----------------|--------------------|----------------------------------------
-Determined      | Exists             | Yes
-Determined      | Does not exist (1) | No
-Indetermined (2)| Indetermined       | No
+Determined      | Exists             | True
+Determined      | Does not exist (1) | False
+Indetermined (2)| Indetermined       | False
 
 1. When parent zone returns an authoritative NXDOMAIN or NODATA on the
    *Child Zone* name and SOA record.
@@ -211,9 +207,9 @@ Indetermined (2)| Indetermined       | No
 
 Parent zone     | *Child Zone*       | Can undelegated test be run on *Child Zone*?
 ----------------|--------------------|---------------------------------------------
-Determined      | Exists             | Yes (1)
-Determined      | Does not exist (2) | Yes (3)
-Indetermined (4)| Indetermined       | Yes (3)
+Determined      | Exists             | True (1)
+Determined      | Does not exist (2) | True (3)
+Indetermined (4)| Indetermined       | True (3)
 
 1. Undelegated tests are run based on the submitted data and not
    the existing zone.
@@ -223,10 +219,10 @@ Indetermined (4)| Indetermined       | Yes (3)
    defined to exist even if there is no delegation.
 4. When server or zone error prevents determination of parent zone.
 
-### Outcome(s)
+### Outputs
 
 * The name of the parent zone (can be empty, i.e. undefined).
-* The existence of the *Child Zone* (true or false).
+* Whether test can be run on *Child Zone* (true or false).
 * The set of name server IP address for the parent zone (can be empty,
   i.e. undefined).
 
@@ -283,7 +279,7 @@ As specified in methods [Get-Delegation] and [Get-OOB-IPs].
 
 5. Output the *Name Servers*.
 
-### Outcome(s)
+### Outputs
 
 * The set of name servers, where each unique name server name
   links to a possibly empty set of its IP addresses.
@@ -330,7 +326,7 @@ As specified in method [Get-Del-NS-Names-and-IPs].
 
 3. Output the set of name server names.
 
-### Outcome(s)
+### Outputs
 
 * The set of name server names.
 
@@ -382,7 +378,7 @@ As specified in method [Get-Del-NS-Names-and-IPs].
 
 3. Output *NS IPs*.
 
-### Output
+### Outputs
 
 * The set of IP addresses, each assumed to point to an
   authoritative name server of *Child Zone*.
@@ -437,7 +433,7 @@ As specified in method [Get-Del-NS-IPs].
 
 5. Output *Name Server Names*.
 
-### Outcome(s)
+### Outputs
 
 * The set of name servers (name server names).
 
@@ -500,7 +496,7 @@ and [Get-OOB-IPs].
 
 7. Output *Name Servers*.
 
-### Output
+### Outputs
 
 * The set of name servers, where each unique name server name
   links to a possibly empty set of its IP addresses.
@@ -551,7 +547,7 @@ As specified in method [Get-Zone-NS-Names-and-IPs].
 
 3. Output the set of IP addresses.
 
-### Outcome(s)
+### Outputs
 
 * The possibly empty set of IP addresses.
 
@@ -625,7 +621,7 @@ As specified in method [Get-Del-NS-IPs].
 
 6. Output the *Name Servers*.
 
-### Outcome(s)
+### Outputs
 
 * The possibly empty set of name server names pointing at possibly
   empty sets of IP addresses.
@@ -761,7 +757,7 @@ As specified in method [Get-Undel-Data] if *Test Type* is
    2. If no more servers remain, output an empty set and stop
       processing the method.
 
-### Outcome(s)
+### Outputs
 
 * The set of name servers, where each unique name server name
   links to a possibly empty set of its IP addresses.
@@ -843,7 +839,7 @@ As specified in method [Get-Undel-Data] if *Test Type* is
 
 4. Output the *Name Servers*.
 
-### Outcome(s)
+### Outputs
 
 * The set of name servers, where each unique name server name
   links to a possibly empty set of its IP addresses.
@@ -895,7 +891,7 @@ document, but not by Test Case specifications.
    links to a possibly empty set of its IP addresses taken from the
    *Undelegated Data*.
 
-### Outcome(s)
+### Outputs
 
 * The set of name servers, where each unique name server name
   links to a possibly empty set of its IP addresses.
