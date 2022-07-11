@@ -1,8 +1,4 @@
-# BASIC00: The domain name must be a valid name
-
-
-## Test case identifier
-**BASIC00**
+# Requirements and normalization of domain names in input
 
 
 ## Table of contents
@@ -15,8 +11,7 @@
 * [Test procedure](#Test-procedure)
 * [Outcome(s)](#Outcomes)
 * [Special procedural requirements](#Special-procedural-requirements)
-* [Intercase dependencies](#Intercase-dependencies)
-* [Detailed test case requirements]
+* [Detailed requirements]
   * [ASCII domain name](#ASCII-domain-name)
   * [IDN name](#IDN-name)
   * [Length limitations](#Length-limitations)
@@ -26,6 +21,15 @@
 
 
 ## Objective
+
+This specification defines the requirements for zone name to be tested. The same
+requirements are put on name server names in the input, if any. If the
+requirements are not met, then Zonemaster will not start any tests.
+
+This specification also defines some normalization that the domain names (zone
+name and name server name) will go through. If a domain name is normalized it
+means that an updated form of the name will be used. The updated form is
+considered to be equal in meaning.
 
 In order to execute the tests of the zone name from the input it must be a
 valid domain name. If name servers are provided for the zone in the input, the
@@ -40,24 +44,23 @@ To be valid, *Domain Name* must be one of two:
 2. a valid IDN name (Internationalized Domain Name) as of
    [IDNA2008][RFC 5890#1.1].
 
-This test case will, in contrast to all other Zonemaster test cases, normalize
-*Domain Name* and output a normalized form to be used by all other test cases.
-The objectives of the normalization are
+The process defined in this specification will normalize *Domain Name* and output
+a normalized form to be used by all other test cases. The objectives of the
+normalization are
 
 1. Convert other "full stop" characters to FULL STOP, and
 2. Create legal IDNA 2008 U-labels from convenient alternative forms, and
 3. Create consistent representation of the same zone name.
 
 The result of the normalization can be a new form of *Domain Name* to be used
-by the tests in other test cases, the normalized form. If the normalized form is
+by the tests in test cases, the normalized form. If the normalized form is
 neither a valid ASCII domain name nor a valid IDN name, then *Domain Name*
 cannot be used for Zonemaster testing.
 
-If the outcome of this test case (see [Outcome(s)](#Outcomes)) is not "fail" then
-*Domain Name* in normalized form is returned to be used as input value for
-subsequent Zonemaster test cases.
+If the outcome (see [Outcome(s)](#Outcomes)) is not "fail" then *Domain Name* in
+normalized form is returned to be used as input value for Zonemaster test cases.
 
-The following references are consulted for this test case:
+The following references are consulted for this specification:
 
 * [RFC 1034]
 * [RFC 1035]
@@ -68,40 +71,40 @@ The following references are consulted for this test case:
 * [RFC 5895]
 * [Unicode TR 46]
 
-See the details in the [Detailed test case requirements] section below.
+See the details in the [Detailed requirements] section below.
 
 
 ## Scope
 
-This test case only tests and create a normalized form of the domain name (zone
-name or name server name).
+This specification only tests and create a normalized form of the domain name
+(zone name or name server name).
 
-This test case assumes that the domain name neither starts nor ends with space
-(U+0020). The Zonemaster CLI, the Zonemaster GUI or any other client must ensure
-that before entering the domain name to this test case, or else this test case
-will fail.
+This specification assumes that the domain name neither starts nor ends with
+space (U+0020). The Zonemaster CLI, the Zonemaster GUI or any other client must
+ensure that before testing the domain name against this specification, or else
+the outcome will be "fail".
 
-In this test case, ASCII is identical to the first 128 characters in [Unicode]
-(0000..007F).
+In this specificatiomn, ASCII is identical to the first 128 characters in
+[Unicode] (0000..007F).
 
 [RFC 1123][RFC 1123#2.1], section 2.1, also specifies that a domain name label
 may not start or end with a HYPHEN-MINUS ("-"). The SOLIDUS ("/"), if used, is
 not expected to occure in the start or end of the label. The LOW LINE ("_"), if
 used, is only expected to occure in the start of the label. Those restrictions on
-HYPHEN-MINUS, SOLIDUS and LOW LINE are disregarded in this test case and are
+HYPHEN-MINUS, SOLIDUS and LOW LINE are disregarded in this specification and are
 assumed to be handled in test cases [Syntax01] and [Syntax02].
 
 
 ## Inputs
 
-* "Domain Name" - The domain name to be tested and normalized. It must be
-  a non-empty string of [Unicode] characters.
+* "Domain Name" - The domain name to be tested and normalized according to this
+  specification. It must be a non-empty string of [Unicode] characters.
 * "Valid ASCII" - Set of permitted ASCII characters in table 1 below.
 * "Label Separator" - Set of valid label separtors in table 2 below.
 * "Full Stops" - Set of full stops in table 3 below.
 * "Unicode" - The Unicode database.
 
-Tables 1, 2 and 3 are found in the [Detailed test case requirements] section
+Tables 1, 2 and 3 are found in the [Detailed requirements] section
 below.
 
 
@@ -112,19 +115,23 @@ See the [Outcome(s)](#Outcomes)) section below.
 
 ## Summary
 
-Message Tag outputted    | Level    | Arguments | Description of when message tag is outputted
-:------------------------|:---------|:----------|:--------------------------------------------
-B00_INITIAL_DOT          | CRITICAL |           | Domain name starts with dot.
-B00_REPEATED_DOTS        | CRITICAL |           | Domain name has repeated dots.
-B00_INVALID_ASCII        | CRITICAL | dlabel    | Domain name has an ASCII label with a character not permitted.
-B00_INVALID_U_LABEL      | CRITICAL | dlabel    | Domain name has a non-ASCII label which is not a valid U-label.
-B00_LABEL_TOO_LONG       | CRITICAL | dlabel    | Domain name has a label that is too long (more than 63 characters).
-B00_DOMAIN_NAME_TOO_LONG | CRITICAL |           | Domain name is too long (more than 253 characters with no final dot).
+In the specification there are six scenarios that will result in the domain name
+not being usable, i.e. it cannot be used for Zonemaster testing. Each scenario
+is here listed with a message tag, level (always CRITICAL), suitable argument to
+be used in the same descriptive message and a message that can be returned to
+the user.
 
-The value in the Level column is the default severity level of the message. The
-severity level can be changed in the [Zonemaster-Engine profile]. Also see the
-[Severity Level Definitions] document. If the default level is *[CRITICAL]* it is
-never meaningful to set another level.
+Message Tag outputted | Level    | Arguments | Description of when message tag is outputted
+:---------------------|:---------|:----------|:--------------------------------------------
+INITIAL_DOT           | CRITICAL |           | Domain name starts with dot.
+REPEATED_DOTS         | CRITICAL |           | Domain name has repeated dots.
+INVALID_ASCII         | CRITICAL | dlabel    | Domain name has an ASCII label ("{dlabel}") with a character not permitted.
+INVALID_U_LABEL       | CRITICAL | dlabel    | Domain name has a non-ASCII label ("{dlabel}") which is not a valid U-label.
+LABEL_TOO_LONG        | CRITICAL | dlabel    | Domain name has a label that is too long (more than 63 characters), "{dlabel}".
+DOMAIN_NAME_TOO_LONG  | CRITICAL |           | Domain name is too long (more than 253 characters with no final dot).
+
+The value in the Level column is the default severity level of the message. Also
+see the [Severity Level Definitions] document.
 
 The argument names in the Arguments column lists the arguments used in the
 message. The argument names are defined in the [argument list].
@@ -133,7 +140,7 @@ message. The argument names are defined in the [argument list].
 ## Test procedure
 
 1.  If the input *Domain Name* is not a non-empty string of [Unicode] characters
-    this test case cannot be run.
+    this cannot be applied.
 
 2.  Create an empty, ordered list of labels ("Domain Labels").
 
@@ -141,10 +148,10 @@ message. The argument names are defined in the [argument list].
     (see *Label Separator*).
 
 4.  If *Domain Name* is the root zone, i.e. the exact string "." (U+002E), then
-    terminate this test case with no message tags.
+    terminate no message tags.
 
 5.  If *Domain Name* starts with dot (".", U+002E) then output
-    *[B00_INITIAL_DOT]* and terminate this test case.
+    *[B00_INITIAL_DOT]* and terminate.
 
 6.  If *Domain Name* has any instance of two or more consecutive dots (".",
     U+002E) then output *[B00_REPEATED_DOTS]* and terminate this test.
@@ -157,7 +164,7 @@ message. The argument names are defined in the [argument list].
 9.  For each "Label" in *Domain Labels* do:
     1. If all characters in *Label* are ASCII characters, then do:
        1. If any character in *Label* is not listed in *Valid ASCII*, then output
-          [B00_INVALID_ASCII] and *Label*, and terminate this test case.
+          [B00_INVALID_ASCII] and *Label*, and terminate.
        2. Else, downcase all upper case characters as described in section
           [Upper case](#Upper-case) below.
     2. Else do:
@@ -167,57 +174,46 @@ message. The argument names are defined in the [argument list].
        3. Convert *Label* to an A-label as specified by
           [IDNA2008][RFC 5890#1.1].
           1. If the conversion failed, then output *[B00_INVALID_U_LABEL]*
-             and *Label*, and terminate this test case.
+             and *Label*, and terminate.
           2. Else, replace the U-label in *Domain Labels* with the A-label from
              the conversion above.
     3. Go to next label.
 
 10. For each "Label" in *Domain Labels* do:
     1. If the length (number of characters) in *Label* is greater than 63 then
-       output *[B00_LABEL_TOO_LONG]* and *Label*, and terminate this test case.
+       output *[B00_LABEL_TOO_LONG]* and *Label*, and terminate.
 
 11. Map the labels in *Domain Labels* back into *Domain Name* with one dot (".",
     U+002E), between the labels (no dots if the there is only one label).
 
 12. If the length of *Domain Name* is longer than 253 characters including the
-    dots, then output *[B00_DOMAIN_NAME_TOO_LONG]* and terminate this test case.
+    dots, then output *[B00_DOMAIN_NAME_TOO_LONG]* and terminate.
 
 ## Outcome(s)
 
-The outcome of this test case consists of three parts
+The outcome of the tests in this specification consists of three parts
 
 1. The outcome value as defined below in this section.
 2. The message tags, if any, and data connected to the message tags, if any.
-3. *Domain Name* in the normalized form to be used as input value for all
-   other test cases. If the outcome value is "fail" then no *Domain Name* is
+3. *Domain Name* in the normalized form to be used as input value for all test
+   cases. If the outcome value is "fail" then no *Domain Name* is
    returned.
 
 The outcome of this Test Case is "fail" if there is at least one message
-with the severity level *[ERROR]* or *[CRITICAL]*.
+outputted.
 
-The outcome of this Test Case is "warning" if there is at least one message
-with the severity level *[WARNING]*, but no message with severity level
-*ERROR* or *CRITICAL*.
-
-In other cases, no message or only messages with severity level
-*[INFO]* or *[NOTICE]*, the outcome of this Test Case is "pass".
+In other cases is "pass".
 
 
 ## Special procedural requirements
 
-This test case must be executed as the first test case, and must always be
-executed even if not explicitly selected.
+The tests and normalizations defined in this specification must always be run
+and evaluated before any Zonemaster test case is run.
 
-If this test fails, it is impossible to continue and the whole testing process
-is aborted.
-
-
-## Intercase dependencies
-
-None.
+If the outcome is from this specification, then no test cases should be run.
 
 
-## Detailed test case requirements
+## Detailed requirements
 
 This section describes the requirements on the domain name. Besides the ensuring
 that the domain name is valid, these requirements also ensure that the domain
@@ -373,7 +369,7 @@ A-label should be done as specified for [IDNA2008][RFC 5890#1.1], not IDNA2003.
 
 ## Terminology
 
-No special terminology for this test case.
+No special terminology for this specification.
 
 
 [Argument list]:                         https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
@@ -384,7 +380,7 @@ No special terminology for this test case.
 [B00_LABEL_TOO_LONG]:                    #SUMMARY
 [B00_REPEATED_DOTS]:                     #SUMMARY
 [CRITICAL]:                              ../SeverityLevelDefinitions.md#critical
-[Detailed test case requirements]:       #Detailed-test-case-requirements
+[Detailed requirements]:                 #Detailed-requirements
 [ERROR]:                                 ../SeverityLevelDefinitions.md#error
 [FULL STOP]:                             https://codepoints.net/U+002E
 [FULLWIDTH FULL STOP]:                   https://codepoints.net/U+FF0E
