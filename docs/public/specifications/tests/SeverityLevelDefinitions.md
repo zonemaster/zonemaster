@@ -5,7 +5,7 @@ at a time, and below it is specified what they intend to mean.
 
 * CRITICAL
 * ERROR
-* WARNING
+* DEVIATION
 * NOTICE
 * INFO
 * DEBUG
@@ -32,9 +32,9 @@ that do not respond to queries over TCP, only having a single nameserver and usi
 reserved algorithm for DNSKEY records.
 
 
-## WARNING
+## DEVIATION
 
-A result at level WARNING means something that will under some circumstances be a
+A result at level DEVIATION means something that will under some circumstances be a
 problem, but that is unlikely to be noticed by a casual user. Problems at this level
 may be an extra nameserver listed at the parent side, or unsuitable time values in a
 SOA record.
