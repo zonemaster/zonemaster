@@ -17,3 +17,12 @@ specified below.
 * When writing Markdown documents, use lower case fragments when referring to
   internal headings' anchors, i.e. use `#objective` not `#Objective` to create
   a link to the "Objective" section.
+* When linking to other documents and including the URL in the rendered text,
+  put angle brackets around the URL, i.e. use the [CommonMark autolink] syntax.
+
+  If the angle brackets are not included the URL is still rendered as a link on
+  Github (per [GFM autolink] syntax), but other tools (e.g. link checking tools)
+  are may not recognize it as a link.
+
+[CommonMark autolink]: https://spec.commonmark.org/0.30/#autolinks
+[GFM autolink]: https://github.github.com/gfm/#autolinks-extension-
