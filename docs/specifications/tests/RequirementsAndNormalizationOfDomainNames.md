@@ -5,7 +5,7 @@
 
 * [Objective](#Objective)
 * [Overview](#Overview)
-  * [Reference](#Reference)
+  * [References](#References)
 * [Scope](#Scope)
 * [Inputs](#Inputs)
 * [Summary](#Summary)
@@ -36,8 +36,9 @@ In order to execute the tests of the zone name from the input it must be a
 valid domain name. If name servers are provided for the zone in the input, the
 names of the name servers must also be valid domain names. Both types of domain
 names, zone names and name server names, are tested and normalized by this test
-case. The zone name is called *Child Zone* in other Zonemaster test case
+case. The zone name is called *Child Zone* in Zonemaster test case
 specifications.
+
 
 ## Overview
 
@@ -48,12 +49,13 @@ To be valid, *Domain Name* must be one of two:
    [IDNA2008][RFC 5890#1.1].
 
 The process defined in this specification will normalize *Domain Name* and output
-a normalized form to be used by all other test cases. The objectives of the
+a normalized form to be used by all Zonemaster test cases. The objectives of the
 normalization are
 
-1. Convert other "full stop" characters to FULL STOP, and
-2. Create legal IDNA 2008 U-labels from convenient alternative forms, and
-3. Create consistent representation of the same zone name.
+1. Remove white leading and trailing white space characters.
+2. Convert other "full stop" characters to FULL STOP, and
+3. Create legal IDNA 2008 U-labels from convenient alternative forms, and
+4. Create consistent representation of the same zone name.
 
 The result of the normalization can be a new form of *Domain Name* to be used
 by the tests in test cases, the normalized form. If the normalized form is
@@ -63,7 +65,10 @@ cannot be used for Zonemaster testing.
 If the outcome (see [Outcome(s)](#Outcomes)) is not "fail" then *Domain Name* in
 normalized form is returned to be used as input value for Zonemaster test cases.
 
-### Reference
+See the details in the [Detailed requirements] section below.
+
+
+### References
 
 The following references are consulted for this specification:
 
@@ -76,26 +81,19 @@ The following references are consulted for this specification:
 * [RFC 5895]
 * [Unicode TR 46]
 
-See the details in the [Detailed requirements] section below.
-
 
 ## Scope
 
 This specification only tests and create a normalized form of the domain name
 (zone name or name server name).
 
-This specification assumes that the domain name neither starts nor ends with
-space (U+0020). The Zonemaster CLI, the Zonemaster GUI or any other client must
-ensure that before testing the domain name against this specification, or else
-the outcome will be "fail".
-
 In this specification, ASCII is identical to the first 128 characters in
 [Unicode] (0000..007F).
 
 [RFC 1123][RFC 1123#2.1], section 2.1, specifies that a domain name label
 may not start or end with a HYPHEN-MINUS ("-"), only digit or letter. This
-restrictions on HYPHEN-MINUS in this specification and is assumed to be
-handled in test case [Syntax02].
+restriction on HYPHEN-MINUS is disregarded in this specification and is assumed
+to be handled in test case [Syntax02].
 
 The use of the SOLIDUS ("/") and the LOW LINE ("_") in domain name is discussed
 in the section "[ASCII domain name](#ASCII-domain-name)" below. Any restrictions
@@ -108,22 +106,14 @@ disregarded in this specification, and are assumed to be handled in test cases
 
 * "Domain Name" - The domain name to be tested and normalized according to this
   specification. It must be a non-empty string of [Unicode] characters.
-* "Valid ASCII" - Set of permitted ASCII characters in table 1 below.
-* "Label Separator" - Set of valid label separtors in table 2 below.
-* "Full Stops" - Set of full stops in table 3 below.
-* "Unicode" - The Unicode database.
-
-Tables 1, 2 and 3 are found in the [Detailed requirements] section
-below.
-
 
 ## Summary
 
 In the specification there are six scenarios that will result in the domain name
 not being usable, i.e. it cannot be used for Zonemaster testing. Each scenario
-is here listed with a message tag, level (always CRITICAL), suitable argument to
-be used in the same descriptive message and a message that can be returned to
-the user.
+is here listed with a message tag, level (always CRITICAL in this specification),
+suitable argument to be used in the same descriptive message and a message that
+can be returned to the user.
 
 Message Tag outputted | Level    | Arguments | Description of when message tag is outputted
 :---------------------|:---------|:----------|:--------------------------------------------
@@ -143,29 +133,39 @@ message. The argument names are defined in the [argument list].
 
 ## Test procedure
 
-1.  If the input *Domain Name* is not a non-empty string of [Unicode] characters
-    this cannot be applied.
+Tables 1, 2, 3 and 4 are found in the [Detailed requirements] section below.
 
-2.  Create an empty, ordered list of labels ("Domain Labels").
+1.  Create the following sets
+    1. Set of permitted ASCII characters in table 1 below ("Valid ASCII").
+    2. Set of Unicode white space characters in table 3 below ("White Space")
+    3. Set of full stops in table 4 below ("Full Stops").
 
-3.  Replace all instances of dots from *Full Stops* in *Domain Name* with U+002E
-    (see *Label Separator*).
+2.  If *Domain Name* starts with one or more of *White Space* then those are
+    removed from *Domain Name* before further processing.
 
-4.  If *Domain Name* is the root zone, i.e. the exact string "." (U+002E), then
+3.  If *Domain Name* ends with one or more of *White Space* then those are
+    removed from *Domain Name* before further processing.
+
+4.  Create an empty, ordered list of labels ("Domain Labels").
+
+5.  Replace all instances of dots from *Full Stops* in *Domain Name* with U+002E
+    (see table 2).
+
+6.  If *Domain Name* is the root zone, i.e. the exact string "." (U+002E), then
     terminate no message tags.
 
-5.  If *Domain Name* starts with dot (".", U+002E) then output
+7.  If *Domain Name* starts with dot (".", U+002E) then output
     *[B00_INITIAL_DOT]* and terminate.
 
-6.  If *Domain Name* has any instance of two or more consecutive dots (".",
+8.  If *Domain Name* has any instance of two or more consecutive dots (".",
     U+002E) then output *[B00_REPEATED_DOTS]* and terminate this test.
 
-7.  Remove trailing dot (".", U+002E) from *Domain Name*.
+9.  Remove trailing dot (".", U+002E) from *Domain Name*.
 
-8.  Split *Domain Name* into labels by dot "." (U+002E) and put them in the same
+10. Split *Domain Name* into labels by dot "." (U+002E) and put them in the same
     order in *Domain Labels*.
 
-9.  For each "Label" in *Domain Labels* do:
+11. For each "Label" in *Domain Labels* do:
     1. If all characters in *Label* are ASCII characters, then do:
        1. If any character in *Label* is not listed in *Valid ASCII*, then output
           [B00_INVALID_ASCII] and *Label*, and terminate.
@@ -183,14 +183,14 @@ message. The argument names are defined in the [argument list].
              the conversion above.
     3. Go to next label.
 
-10. For each "Label" in *Domain Labels* do:
+12. For each "Label" in *Domain Labels* do:
     1. If the length (number of characters) in *Label* is greater than 63 then
        output *[B00_LABEL_TOO_LONG]* and *Label*, and terminate.
 
-11. Map the labels in *Domain Labels* back into *Domain Name* with one dot (".",
+13. Map the labels in *Domain Labels* back into *Domain Name* with one dot (".",
     U+002E), between the labels (no dots if the there is only one label).
 
-12. If the length of *Domain Name* is longer than 253 characters including the
+14. If the length of *Domain Name* is longer than 253 characters including the
     dots, then output *[B00_DOMAIN_NAME_TOO_LONG]* and terminate.
 
 
@@ -204,10 +204,8 @@ The outcome of the tests in this specification consists of three parts
    cases. If the outcome value is "fail" then no *Domain Name* is
    returned.
 
-The outcome of this Test Case is "fail" if there is at least one message
-outputted.
-
-In other cases is "pass".
+The outcome value of this specification is "fail" if there is at least one
+message outputted. In other cases is "pass".
 
 
 ## Special procedural requirements
@@ -215,7 +213,7 @@ In other cases is "pass".
 The tests and normalizations defined in this specification must always be run
 and evaluated before any Zonemaster test case is run.
 
-If the outcome is from this specification, then no test cases should be run.
+If the outcome from this specification is fail, then no test cases should be run.
 
 
 ## Detailed requirements
@@ -325,16 +323,48 @@ after the dot.
 For a discussion of pre-processing the domain name to achieve a normalized form,
 see [RFC 5895].
 
+
+#### White space
+
+In the user interface there is a risk that leading or trailing white space
+characters are added to the domain name by mistake. The domain name will in this
+specification be normalized by removing such characters. In table 3 it is
+specified what counts as white space characters. It should be pointed out that
+white space characters are within the domain name are not removed, and in the end
+count as invalid characters,
+
+*Table 3: White space characters**
+
+Unicode code | Name
+:------------|:--------------------
+U+0020       | [SPACE]
+U+0009       | [CHARACTER TABULATION]
+U+00A0       | [NO-BREAK SPACE]
+U+2000       | [EN QUAD]
+U+2001       | [EM QUAD]
+U+2002       | [EN SPACE]
+U+2003       | [EM SPACE]
+U+2004       | [THREE-PER-EM SPACE]
+U+2005       | [FOUR-PER-EM SPACE]
+U+2006       | [SIX-PER-EM SPACE]
+U+2007       | [FIGURE SPACE]
+U+2008       | [PUNCTUATION SPACE]
+U+2009       | [THIN SPACE]
+U+200A       | [HAIR SPACE]
+U+205F       | [MEDIUM MATHEMATICAL SPACE]
+U+3000       | [IDEOGRAPHIC SPACE]
+U+1680       | [OGHAM SPACE MARK]
+
 #### Full stop
 
 The regular dot "." expected in domain names is a U+002E (FULL STOP), see table 2
 above. There are other characters that may be entered instead due to the script
-setting. Table 3 lists full stop characters that are to be mapped into the
+setting. Table 4 lists full stop characters that are to be mapped into the
 ASCII FULL STOP ([Unicode TR 46][Unicode TR 46#Notation], section 2.3). That
 mapping must be done before any verification or checks of the dot and before
 splitting *Domain Name* into labels.
 
-*Table 3: Non-ASCII dots (Full Stops) using [Unicode] codes.*
+*Table 4: Non-ASCII dots (Full Stops) using [Unicode] codes*
 
 Unicode code | Character | Name
 :------------|:----------|:--------------------
@@ -384,40 +414,57 @@ No special terminology for this specification.
 [B00_INVALID_U_LABEL]:                   #SUMMARY
 [B00_LABEL_TOO_LONG]:                    #SUMMARY
 [B00_REPEATED_DOTS]:                     #SUMMARY
+[CHARACTER TABULATION]:                  https://codepoints.net/U+0009
 [CRITICAL]:                              ../SeverityLevelDefinitions.md#critical
 [Detailed requirements]:                 #Detailed-requirements
+[EM QUAD]:                               https://codepoints.net/U+2001
+[EM SPACE]:                              https://codepoints.net/U+2003
+[EN QUAD]:                               https://codepoints.net/U+2000
+[EN SPACE]:                              https://codepoints.net/U+2002
 [ERROR]:                                 ../SeverityLevelDefinitions.md#error
+[FIGURE SPACE]:                          https://codepoints.net/U+2007
+[FOUR-PER-EM SPACE]:                     https://codepoints.net/U+2005
 [FULL STOP]:                             https://codepoints.net/U+002E
 [FULLWIDTH FULL STOP]:                   https://codepoints.net/U+FF0E
+[HAIR SPACE]:                            https://codepoints.net/U+200A
 [HALFWIDTH IDEOGRAPHIC FULL STOP]:       https://codepoints.net/U+FF61
 [HYPHEN-MINUS]:                          https://codepoints.net/U+002D
 [IDEOGRAPHIC FULL STOP]:                 https://codepoints.net/U+3002
+[IDEOGRAPHIC SPACE]:                     https://codepoints.net/U+3000
 [INFO]:                                  ../SeverityLevelDefinitions.md#info
 [LOW LINE]:                              https://codepoints.net/U+005F
+[MEDIUM MATHEMATICAL SPACE]:             https://codepoints.net/U+205F
+[NO-BREAK SPACE]:                        https://codepoints.net/U+00A0
 [NOTICE]:                                ../SeverityLevelDefinitions.md#notice
-[RFC 1034]:                              https://datatracker.ietf.org/doc/html/rfc1034
+[OGHAM SPACE MARK]:                      https://codepoints.net/U+1680
+[PUNCTUATION SPACE]:                     https://codepoints.net/U+2008
 [RFC 1034#3.1]:                          https://datatracker.ietf.org/doc/html/rfc1034#section-3.1
-[RFC 1035]:                              https://datatracker.ietf.org/doc/html/rfc1035
+[RFC 1034]:                              https://datatracker.ietf.org/doc/html/rfc1034
 [RFC 1035#2.3.3]:                        https://datatracker.ietf.org/doc/html/rfc1035#section-2.3.3
 [RFC 1035#2.3.4]:                        https://datatracker.ietf.org/doc/html/rfc1035#section-2.3.4
-[RFC 1123]:                              https://datatracker.ietf.org/doc/html/rfc1123
+[RFC 1035]:                              https://datatracker.ietf.org/doc/html/rfc1035
 [RFC 1123#2.1]:                          https://datatracker.ietf.org/doc/html/rfc1123#section-2.1
-[RFC 2317]:                              https://datatracker.ietf.org/doc/html/rfc2317
+[RFC 1123]:                              https://datatracker.ietf.org/doc/html/rfc1123
 [RFC 2317#4]:                            https://datatracker.ietf.org/doc/html/rfc2317#section-4
+[RFC 2317]:                              https://datatracker.ietf.org/doc/html/rfc2317
 [RFC 2782]:                              https://datatracker.ietf.org/doc/html/rfc2782
-[RFC 5890]:                              https://datatracker.ietf.org/doc/html/rfc5890
 [RFC 5890#1.1]:                          https://datatracker.ietf.org/doc/html/rfc5890#section-1.1
 [RFC 5890#2.3.2.1]:                      https://datatracker.ietf.org/doc/html/rfc5890#section-2.3.2.1
 [RFC 5890#2.3.2.3]:                      https://datatracker.ietf.org/doc/html/rfc5890#section-2.3.2.3
-[RFC 5895]:                              https://datatracker.ietf.org/doc/html/rfc5895
+[RFC 5890]:                              https://datatracker.ietf.org/doc/html/rfc5890
 [RFC 5895#2]:                            https://datatracker.ietf.org/doc/html/rfc5895#section-2
+[RFC 5895]:                              https://datatracker.ietf.org/doc/html/rfc5895
+[SIX-PER-EM SPACE]:                      https://codepoints.net/U+2006
 [SOLIDUS]:                               https://codepoints.net/U+002F
+[SPACE]:                                 https://codepoints.net/U+0020
 [Severity Level Definitions]:            ../SeverityLevelDefinitions.md
 [Syntax01]:                              ../Syntax-TP/syntax01.md
 [Syntax02]:                              ../Syntax-TP/syntax02.md
+[THIN SPACE]:                            https://codepoints.net/U+2009
+[THREE-PER-EM SPACE]:                    https://codepoints.net/U+2004
 [Unicode SpecialCasing]:                 https://www.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt
-[Unicode TR 46]:                         http://unicode.org/reports/tr46
 [Unicode TR 46#Notation]:                http://unicode.org/reports/tr46/#Notation
+[Unicode TR 46]:                         http://unicode.org/reports/tr46
 [Unicode]:                               https://unicode.org/main.html
 [WARNING]:                               ../SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:             https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
