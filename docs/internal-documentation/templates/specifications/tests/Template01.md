@@ -1,13 +1,13 @@
 > > Limit all lines to 80 characters with the possible exception of tables
 > > such as the one in the summary section.
 
-# Template01: This is a test specification template
+# TEMPLATE01: This is a test specification template
 
-> > Replace "Template01" with test case ID. Replace the text with a short
-> > description
+> > Replace "TEMPLATE01" with test case ID (in uppercase). Replace the text
+> > with a short description
 
 ## Test case identifier
-**Template01**
+**TEMPLATE01**
 
 > > Replace with correct test case ID as specified in the
 > > [Test Case Identifier Specification].
@@ -72,25 +72,25 @@ giving a correct DNS response for an authoritative name server.
 * If a CDS record is of "delete" type, then it can by definition not
   match or point at any DNSKEY record.
 
-> > Here is a table of all message tags referred to in the steps. The tag in the
-> > first column, the default severity level in the second, and a statement on
-> > when the message is outputted in the fourth.
-> >
-> > If data from the test, e.g. list of name server IP addresses, is to be
-> > outputted with the message, then the datatypes are listed in the third
-> > column, "arguments". The third column is left empty when no arguments are
-> > used for the message.
+> > Here is a table of all message tags referred to in the steps. The table has
+> > the following columns:
+> > 1. The message tag outputted in the test procedure below.
+> > 2. The default severity level.
+> > 3. The arguments (if any) to be included in the message ID. Argument name
+> >    must be selected from the defined names (see link below).
+> > 4. Message ID to be outputted by the implementation with any arguments
+> >    included (see example below).
 > >
 > > Always use the same table set-up, but with the correct tags. Keep the table
 > > sorted by message tag. Here is an example:
 
-Message Tag outputted         | Level   | Arguments            | Description of when message tag is outputted
+Message Tag                   | Level   | Arguments            | Message ID for message tag
 :-----------------------------|:--------|:---------------------|:--------------------------------------------
-T01_ALGO_NOT_SUPPORTED_BY_ZM  | NOTICE  | algo_descr, algo_num | The algorithm used is not supported by the Zonemaster implementation.
-T01_BROKEN_DNSSEC             | ERROR   | ns_ip_list           | Replies do not follow the standard.
+T01_ALGO_NOT_SUPPORTED_BY_ZM  | NOTICE  | algo_descr, algo_num | The algorithm used, {algo_descr} ({also_num}) is not supported by the Zonemaster implementation.
+T01_BROKEN_DNSSEC             | ERROR   | ns_ip_list           | Replies do not follow the standard. Returned from name servers "{ns_ip_list}".
 T01_HAS_NSEC                  | INFO    |                      | The *Child Zone* uses NSEC.
 T01_HAS_NSEC3                 | INFO    |                      | The *Child Zone* uses NSEC3.
-T01_INCONSISTENT_DNSSEC       | ERROR   | keytag               | The configuration of the zone is inconsistent with respect to DNSSEC.
+T01_INCONSISTENT_DNSSEC       | ERROR   | keytag               | The keytag "{keytag}" of the zone is inconsistent with respect to DNSSEC.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
