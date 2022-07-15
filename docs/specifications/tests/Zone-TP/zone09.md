@@ -28,16 +28,14 @@ hostmaster@DOMAIN (where DOMAIN is *Child Zone* in this test case).
 > well known mailbox name HOSTMASTER always be used
 > \<HOSTMASTER@domain\>.
 
-It is therefore expected for every domain (zone), excluding some cases described
-below, to publish an MX record in apex of the zone (i.e. in the same position as
-the SOA record).
+Thsi test case therefore expected for every domain (zone), excluding some cases
+described below, to publish an MX record in apex of the zone (i.e. in the same
+node as the SOA record).
 
 If MX is not present, SMTP *can* deliver email using an address record (A or
 AAAA) as specified in [RFC 5321][RFC 5321#section-5.1], section 5.1, but that
-possibility is not in common use.
-
-This test case only checks for MX record and ignores the possibility to use
-address records for email.
+possibility is not in common use. This test case only checks for MX record and
+ignores the possibility to use address records for email.
 
 Even if not mentioned in [RFC 2142], there are some exceptions to the
 rule to include MX and mail target for a domain.
@@ -46,12 +44,12 @@ The purpose of a zone in the .ARPA tree is to hold infrastructural identifier,
 and it is not expected that such a zone name is used as [Email Domain]
 ([RFC 3172]). This also means that the well known mailbox is not expected for
 reverse zones (zone under in-addr.arpa or ip6.arpa). Such zone are therefore
-excluded from the requirement of MX in the apex.
+excluded by this test case from the requirement of MX in the apex.
 
 The root zone cannot be an [Email Domain] since the email domain is
 the part to the left of the trailing dot, and the root zone owner name has
-nothing left of the traling do. The root zone is excluded from the requirement of
-MX in the apex.
+nothing left of the traling do. The root zone is excluded by this test case from
+the requirement of MX in the apex.
 
 Top-level domains ([TLDs][TLD]) can technically function as
 [Email Domains][Email Domain] ([RCF 5321][RFC 5321#section-2.3.5], section 2.3.5)
@@ -76,7 +74,7 @@ MX:
 * [TLD] zone
 * Zone in the .ARPA tree
 
-The following zone type is expected not to have an MX (considered harmful):
+The following zone type is expected not to have any MX (considered harmful):
 
 * [TLD] zone
 
@@ -99,20 +97,20 @@ correct DNS response for an authoritative name server.
   or a [TLD].
 * A warning is issued if a [TLD] *has* a [non-Null MX][Null MX].
 
-Message Tag outputted               | Level   | Arguments               | Description of when message tag is outputted
-:-----------------------------------|:--------|:------------------------|:--------------------------------------------
-Z09_INCONSISTENT_MX_RRSETS          | WARNING |                         | Some name servers returns MX RRset and other none.
-Z09_MISSING_MAIL_TARGET             | NOTICE  |                         | The child zone has no mail target (no MX).
-Z09_MX_DATA                         | INFO    | ns_ip_list, domain_list | The mail targets in the MX RRset returned by some name servers, and a list of those.
-Z09_MX_FOUND                        | INFO    | ns_ip_list              | List of name servers that return MX RRset.
-Z09_NON_AUTHORITATIVE_MX_RESPONSE   | WARNING | ns_ip_list              | List of name servers that gave non-authoritative response on the MX query.
-Z09_NO_MX_FOUND                     | INFO    | ns_ip_list              | List of name servers that did not return MX RRset.
-Z09_NO_RESPONSE_MX_QUERY            | WARNING | ns_ip_list              | List of name servers that did not respond on MX query.
-Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE| NOTICE  |                         | The child zone has a [Null MX] with non-zero preference.
-Z09_NULL_MX_WITH_OTHER_MX           | WARNING |                         | The child zone has a [Null MX] but mixed with other MX records.
-Z09_ROOT_EMAIL_DOMAIN               | NOTIFY  |                         | Root zone with a [non-Null MX][Null MX].
-Z09_TLD_EMAIL_DOMAIN                | WARNING |                         | The child zone is a [TLD] and has a [non-Null MX][Null MX].
-Z09_UNEXPECTED_RCODE_MX_RESPONSE    | WARNING | ns_ip_list, rcode       | The name servers listed returns unexpected RCODE value (listed) on the MX query.
+Message Tag                | Level | Arguments               | Message ID for message tag
+:--------------------------|:------|:------------------------|:--------------------------------------------
+Z09_INCONSISTENT_MX_RRSETS |WARNING|                         | The name servers return different MX RRsets.
+Z09_MISSING_MAIL_TARGET    | NOTICE|                         | The child zone has no mail target (no MX).
+Z09_MX_DATA                | INFO  | ns_ip_list, domain_list | The mail targets in the MX RRset, "{domain_list}", as returned by name servers "{ns_ip_list}".
+Z09_MX_FOUND               | INFO  | ns_ip_list              | MX RRset was returned by name servers "{ns_ip_list}".
+Z09_NON_AUTH_MX_RESPONSE   |WARNING| ns_ip_list              | Non-authoritative response on MX query from name servers "{ns_ip_list}".
+Z09_NO_MX_FOUND            | INFO  | ns_ip_list              | No MX RRset was returned by name servers "{ns_ip_list}".
+Z09_NO_RESPONSE_MX_QUERY   |WARNING| ns_ip_list              | No response on MX query from name servers "{ns_ip_list}".
+Z09_NULL_MX_NON_ZERO_PREF  | NOTICE|                         | The zone has a Null MX with non-zero preference.
+Z09_NULL_MX_WITH_OTHER_MX  |WARNING|                         | The zone has a Null MX mixed with other MX records.
+Z09_ROOT_EMAIL_DOMAIN      | NOTICE|                         | Root zone with an unexpected normal MX RRset.
+Z09_TLD_EMAIL_DOMAIN       |WARNING|                         | The zone is a TLD and has an unexpected normal MX RRset.
+Z09_UNEXPECTED_RCODE_MX    |WARNING | ns_ip_list, rcode      | Unexpected RCODE value on the MX query from name servers "{ns_ip_list}".
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -124,10 +122,16 @@ message. The argument names are defined in the [argument list].
 
 ## Test procedure
 
-1.  Create an SOA query for the *Child Zone* without OPT record (no EDNS)
+In this section and unless otherwise specified below, the terms "[DNS Query]"
+follow the specification for DNS queries as specified in
+[DNS Query and Response Defaults]. The handling of the DNS responses on the DNS
+queries follow, unless otherwise specified below, what is specified for
+[DNS Response] in the same specification.
+
+1.  Create a [DNS Query] with query typ  SOA and query name *Child Zone*
     ("SOA Query").
 
-2.  Create an MX query for the *Child Zone* without OPT record (no EDNS)
+2.  Create a [DNS Query] with query typ  MX and query name *Child Zone*
     ("MX Query").
 
 3.  Obtain the set of name server IP addresses using [Method4] and [Method5]
@@ -136,7 +140,8 @@ message. The argument names are defined in the [argument list].
 4. Create the following empty sets
 
     1.  Name server IP address ("No Response MX Query").
-    2.  Name server IP address and associated RCODE value ("Unexpected RCODE MX Query").
+    2.  Name server IP address and associated RCODE value
+        ("Unexpected RCODE MX Response").
     3.  Name server IP address ("Non-authoritative MX").
     4.  Name server IP address ("No MX RRset").
     5.  Name server IP address and associated MX RRset ("MX RRset").
@@ -159,7 +164,7 @@ message. The argument names are defined in the [argument list].
           *No Response MX Query* set.
        3. Else, if the RCODE of response is not "NoError" ([IANA RCODE List]),
           then add the name server IP and the RCODE to the
-          *Unexpected RCODE MX Query* set.
+          *Unexpected RCODE MX Response* set.
        4. Else, if the AA flag is not set in the response, then add the name
           server IP to the *Non-authoritative MX* set.
        5. Else, if there is no MX record with matching owner name in the answer
@@ -171,13 +176,13 @@ message. The argument names are defined in the [argument list].
 6.  If the set *No Response MX Query* is non-empty, then output
     *[Z09_NO_RESPONSE_MX_QUERY]* with the name server IP addresses from the set.
 
-7.  If the set *Unexpected RCODE MX Query* is non-empty, then for each RCODE
+7.  If the set *Unexpected RCODE MX Response* is non-empty, then for each RCODE
     in the set, do:
-    * Output *[Z09_UNEXPECTED_RCODE_MX_RESPONSE]* with the RCODE value
+    * Output *[Z09_UNEXPECTED_RCODE_MX]* with the RCODE value
       ([IANA RCODE List]) and the name server IP addresses from the set.
 
 8.  If the set *Non-authoritative MX* is non-empty, then output
-    *[Z09_NON_AUTHORITATIVE_MX_RESPONSE]* with the name server IP addresses from
+    *[Z09_NON_AUTH_MX_RESPONSE]* with the name server IP addresses from
     the set.
 
 9.  If both *No MX RRset* set and *MX RRset* set are non-empty then:
@@ -200,7 +205,7 @@ message. The argument names are defined in the [argument list].
              *[Z09_NULL_MX_WITH_OTHER_MX]* with the mail targets from the RDATA
              of MX records.
           2. If the preference of the [Null MX] is non-zero then output
-             *[Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE]*.
+             *[Z09_NULL_MX_NON_ZERO_PREF]*.
        2. If *Child Zone* is a [TLD] with a [non-Null MX][Null MX] then
           output *[Z09_TLD_EMAIL_DOMAIN]*.
        3. If *Child Zone* is the root zone with a [non-Null MX][Null MX] then
@@ -253,8 +258,11 @@ in an email address.
 [Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [Basic04]:                                    ../Basic-TP/basic04.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
-[Email Domain]:                               #terminology
+[DNS Query and Response Defaults]:            ../DNSQueryAndResponseDefaults.md
+[DNS Query]:                                  ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
+[DNS Response]:                               ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
 [ERROR]:                                      ../SeverityLevelDefinitions.md#error
+[Email Domain]:                               #terminology
 [IAB Statement]:                              https://www.iab.org/documents/correspondence-reports-documents/2013-2/iab-statement-dotless-domains-considered-harmful/
 [IANA RCODE List]:                            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [INFO]:                                       ../SeverityLevelDefinitions.md#info
@@ -277,13 +285,12 @@ in an email address.
 [Z09_MISSING_MAIL_TARGET]:                    #Summary
 [Z09_MX_DATA]:                                #Summary
 [Z09_MX_FOUND]:                               #Summary
-[Z09_NON_AUTHORITATIVE_MX_RESPONSE]:          #Summary
+[Z09_NON_AUTH_MX_RESPONSE]:                   #Summary
 [Z09_NO_MX_FOUND]:                            #Summary
 [Z09_NO_RESPONSE_MX_QUERY]:                   #Summary
-[Z09_NULL_MX_WITH_NON_ZERO_PREFERENCE]:       #Summary
+[Z09_NULL_MX_NON_ZERO_PREF]:                  #Summary
 [Z09_NULL_MX_WITH_OTHER_MX]:                  #Summary
 [Z09_ROOT_EMAIL_DOMAIN]:                      #Summary
 [Z09_TLD_EMAIL_DOMAIN]:                       #Summary
-[Z09_UNEXPECTED_RCODE_MX_RESPONSE]:           #Summary
+[Z09_UNEXPECTED_RCODE_MX]:                    #Summary
 [Zonemaster-Engine profile]:                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
-
