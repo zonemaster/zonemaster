@@ -35,6 +35,7 @@ To run the steps below a build system is needed. See
 
 > **Note:** *Normally, the develop branch version of this document should be used.*
 
+[(Top)](#table-of-contents)
 
 ## 2. Applicable components
 
@@ -50,12 +51,14 @@ The components should be released in the following order:
  * zonemaster-gui
  * Zonemaster/Zonemaster
 
+[(Top)](#table-of-contents)
 
 ## 3. Updates to repositories
 
 All updates to *develop branch* and *master branch* should go via pull
 requests following the usual process. That is just assumed here.
 
+[(Top)](#table-of-contents)
 
 ## 4. Determine the new version number
 
@@ -66,6 +69,7 @@ Each component listed above should have its version number. The Zonemaster
 Product (Zonemaster/Zonemaster) version number also refer to the version
 of the other components.
 
+[(Top)](#table-of-contents)
 
 ## 5. Update the Changes file
 
@@ -82,6 +86,7 @@ The updates to the *Changes* file are done to the *develop branch*.
  * zonemaster-gui - [Changes GUI]
  * Zonemaster/Zonemaster - [Changes Zonemaster]
  
+[(Top)](#table-of-contents)
 
 ## 6. Set all version numbers
 
@@ -105,6 +110,8 @@ The GUI has no Perl. Update the following files in the *develop branch*:
      - The file `package-lock.json` is ignored
    - [src/environments/version.ts][Version.ts GUI]
      - "version" should point at the version number.
+
+[(Top)](#table-of-contents)
 
 ## 7. Update Makefile.PL with required version
 
@@ -138,6 +145,8 @@ requires 'Zonemaster::Engine' => 4.000;
 requires 'Zonemaster::LDNS'   => 2.001;
 ```
 
+[(Top)](#table-of-contents)
+
 ## 8. Create a clean Git working area of *develop branch*
 
 Make sure that you have checked out the `develop` branch and
@@ -155,6 +164,7 @@ To clean:
        git clean -dfx
        git reset --hard
 
+[(Top)](#table-of-contents)
 
 ## 9. Generate Makefile, META.yml and others
 
@@ -175,6 +185,7 @@ To clean:
 > * Missing prerequisite (only needed on target system), e.g.:
 >   * "Warning: prerequisite JSON::XS 0 not found."
 
+[(Top)](#table-of-contents)
 
 ## 10. Verify that MANIFEST is up to date and that tarball can be built
 
@@ -190,6 +201,7 @@ MANIFEST.SKIP, i.e. no missing or extra files:
 
     make distcheck
 
+[(Top)](#table-of-contents)
 
 ## 11. Produce distribution tarballs
 
@@ -197,6 +209,7 @@ MANIFEST.SKIP, i.e. no missing or extra files:
 
     make dist
 
+[(Top)](#table-of-contents)
 
 ## 12. Produce distribution zip file
 
@@ -227,6 +240,7 @@ Build the distribution zip file:
 The distribution zip file is in the root level of the zonemaster-gui folder. 
 Its name is `zonemaster_web_gui.zip`.
 
+[(Top)](#table-of-contents)
 
 ## 13. Update Zonemaster repository main _README.md_
 
@@ -237,6 +251,7 @@ If needed, update the following section of the Zonemaster repository main
 
 * Notable bugs and issues
 
+[(Top)](#table-of-contents)
 
 ## 14. Generate documents
 
@@ -255,6 +270,7 @@ updated this section can be skipped.
 4. If any of the created files has been updated (`git status`) then it
    should be added to the *develop branch* via a pull request.
 
+[(Top)](#table-of-contents)
 
 ## 15. Upload to CPAN
 
@@ -265,6 +281,7 @@ distribution tarball created following this document on CPAN.
 Currently we use the organizational account [ZNMSTR] on [PAUSE] for doing
 this.
 
+[(Top)](#table-of-contents)
 
 ## 16. Merge develop branch into master
 
@@ -301,6 +318,7 @@ merged through the normal process.
 
 In [Appendix B] it is shown how `merge-develop-into-master` can be verified.
 
+[(Top)](#table-of-contents)
 
 ## 17. Create Docker images and upload image to Docker Hub
 
@@ -308,6 +326,7 @@ In [Appendix B] it is shown how `merge-develop-into-master` can be verified.
 2. Upload the Zonemaster-CLI image to [Docker Hub] for Zonemaster using the
    instructions in [Create Docker Image].
 
+[(Top)](#table-of-contents)
 
 ## 18. Tag the release with git
 
@@ -330,17 +349,20 @@ The releases pages:
 * [Zonemaster-GUI Releases]
 * [Zonemaster Product Releases]
 
+[(Top)](#table-of-contents)
 
 ## 19. Announce the release
 
 Send emails to the mailing lists `zonemaster-users` and `zonemaster-announce`.
 
+[(Top)](#table-of-contents)
 
 ## 20. Merge master into develop
 
 Create a pull request from `master` on github back into `develop` and have it
 merged through the normal process.
 
+[(Top)](#table-of-contents)
 
 ## Appendix A on version number in Makefile.PL
 
@@ -370,6 +392,7 @@ library only has two levels ("X.Y") then other rules apply. Also note
 that the version in Zonemaster::Backend is speciefied as `X.Y.Z` without
 the "v", which may affect the version comparison.
 
+[(Top)](#table-of-contents)
 
 ## Appendix B on how to verify merge develop branch into master branch
 
@@ -400,6 +423,7 @@ If Github says that no files are updated, added or created, then
 branch `merge-develop-into-master` is correct, and a pull request into
 `master` branch (not `develop` branch) can be created.
 
+[(Top)](#table-of-contents)
 
 <!-- Zonemaster links point on purpose on the develop branch. -->
 [Appendix A]:                              #appendix-a-on-version-number-in-makefilepl
