@@ -231,6 +231,7 @@ updated this section can be skipped.
    directory.
 4. If any of the created files has been updated (`git status`) then it
    should be added to the *develop branch* via a pull request.
+5. No reviewer or approval is required for this change.
 
 [(Top)](#table-of-contents)
 
@@ -275,8 +276,8 @@ Create a new branch named `merge-develop-into-master` with both *master* and
     # And we want the history of *develop* merged too
     git merge origin/develop
 
-Create a pull request from `merge-develop-into-master` into `master` and have it
-merged through the normal process.
+Create a pull request from `merge-develop-into-master` into `master` and merged
+it. No reviewer or approval is required for this update.
 
 In [Appendix B] it is shown how `merge-develop-into-master` can be verified.
 
@@ -321,8 +322,8 @@ Send emails to the mailing lists `zonemaster-users` and `zonemaster-announce`.
 
 ## 18. Merge master into develop
 
-Create a pull request from `master` on github back into `develop` and have it
-merged through the normal process.
+Create a pull request from `master` on github back into `develop` and merge
+it. No review or approval is required for this update.
 
 [(Top)](#table-of-contents)
 
@@ -388,41 +389,40 @@ branch `merge-develop-into-master` is correct, and a pull request into
 [(Top)](#table-of-contents)
 
 <!-- Zonemaster links point on purpose on the develop branch. -->
-[Appendix A]:                              #appendix-a-on-version-number-in-makefilepl
-[Appendix B]:                              #appendix-b-on-how-to-verify-merge-develop-branch-into-master-branch
-[Backend.pm]:                              https://github.com/zonemaster/zonemaster-backend/blob/develop/lib/Zonemaster/Backend.pm
-[Build Environment Preparation]:           ../distrib-testing/BuildEnvironmentPreparation.md
-[Build environment for Node.js]:           ../distrib-testing/Ubuntu-Node.js-build-environment.md
-[CI]:                                      https://github.com/travis-ci/travis-ci
-[CLI.pm]:                                  https://github.com/zonemaster/zonemaster-cli/blob/develop/lib/Zonemaster/CLI.pm
-[CPAN]:                                    https://www.cpan.org/
-[Changes Backend]:                         https://github.com/zonemaster/zonemaster-backend/blob/develop/Changes
-[Changes CLI]:                             https://github.com/zonemaster/zonemaster-cli/blob/develop/Changes
-[Changes Engine]:                          https://github.com/zonemaster/zonemaster-engine/blob/develop/Changes
-[Changes GUI]:                             https://github.com/zonemaster/zonemaster-gui/blob/develop/Changes
-[Changes LDNS]:                            https://github.com/zonemaster/zonemaster-ldns/blob/develop/Changes
-[Changes Zonemaster]:                      https://github.com/zonemaster/zonemaster-gui/blob/develop/Changes
-[Create Docker Image]:                     ReleaseProcess-create-docker-image.md
-[Docker Hub]:                              https://hub.docker.com/u/zonemaster
-[Engine.pm]:                               https://github.com/zonemaster/zonemaster-engine/blob/develop/lib/Zonemaster/Engine.pm
-[Installation.md GUI]:                     https://github.com/zonemaster/zonemaster-gui/blob/develop/docs/Installation.md
-[LDNS.pm]:                                 https://github.com/zonemaster/zonemaster-ldns/blob/develop/lib/Zonemaster/LDNS.pm
-[PAUSE]:                                   https://pause.perl.org/
-[Package.json GUI]:                        https://github.com/zonemaster/zonemaster-gui/blob/develop/package.json
-[Utils Zonemaster]:                        ../../../utils/
-[Version.ts GUI]:                          https://github.com/zonemaster/zonemaster-gui/blob/develop/src/environments/version.ts
-[Versions and releases]:                   ../../design/Versions%20and%20Releases.md
-[ZNMSTR]:                                  https://metacpan.org/author/ZNMSTR
-[Zonemaster Product Releases]:             https://github.com/zonemaster/zonemaster/releases
-[Zonemaster main README]:                  ../../../README.md
-[Zonemaster utils README]:                 ../../../utils/README.md
-[Zonemaster-Backend Makefile.PL]:          https://github.com/zonemaster/zonemaster-backend/blob/develop/Makefile.PL
-[Zonemaster-Backend Releases]:             https://github.com/zonemaster/zonemaster-backend/releases
-[Zonemaster-CLI Makefile.PL]:              https://github.com/zonemaster/zonemaster-cli/blob/develop/Makefile.PL
-[Zonemaster-CLI Releases]:                 https://github.com/zonemaster/zonemaster-cli/releases
-[Zonemaster-Engine Makefile.PL]:           https://github.com/zonemaster/zonemaster-engine/blob/develop/Makefile.PL
-[Zonemaster-Engine Releases]:              https://github.com/zonemaster/zonemaster-engine/releases
-[Zonemaster-GUI Releases]:                 https://github.com/zonemaster/zonemaster-gui/releases
-[Zonemaster-LDNS Releases]:                https://github.com/zonemaster/zonemaster-ldns/releases
-
+[Appendix A]:                                    #appendix-a-on-version-number-in-makefilepl
+[Appendix B]:                                    #appendix-b-on-how-to-verify-merge-develop-branch-into-master-branch
+[Backend.pm]:                                    https://github.com/zonemaster/zonemaster-backend/blob/develop/lib/Zonemaster/Backend.pm
+[Build Environment Preparation]:                 ../distrib-testing/BuildEnvironmentPreparation.md
+[Build environment for Node.js]:                 ../distrib-testing/Ubuntu-Node.js-build-environment.md
+[CI]:                                            https://github.com/travis-ci/travis-ci
+[CLI.pm]:                                        https://github.com/zonemaster/zonemaster-cli/blob/develop/lib/Zonemaster/CLI.pm
+[CPAN]:                                          https://www.cpan.org/
+[Changes Backend]:                               https://github.com/zonemaster/zonemaster-backend/blob/develop/Changes
+[Changes CLI]:                                   https://github.com/zonemaster/zonemaster-cli/blob/develop/Changes
+[Changes Engine]:                                https://github.com/zonemaster/zonemaster-engine/blob/develop/Changes
+[Changes GUI]:                                   https://github.com/zonemaster/zonemaster-gui/blob/develop/Changes
+[Changes LDNS]:                                  https://github.com/zonemaster/zonemaster-ldns/blob/develop/Changes
+[Changes Zonemaster]:                            https://github.com/zonemaster/zonemaster-gui/blob/develop/Changes
+[Create Docker Image]:                           ReleaseProcess-create-docker-image.md
+[Docker Hub]:                                    https://hub.docker.com/u/zonemaster
+[Engine.pm]:                                     https://github.com/zonemaster/zonemaster-engine/blob/develop/lib/Zonemaster/Engine.pm
+[Installation.md GUI]:                           https://github.com/zonemaster/zonemaster-gui/blob/develop/docs/Installation.md
+[LDNS.pm]:                                       https://github.com/zonemaster/zonemaster-ldns/blob/develop/lib/Zonemaster/LDNS.pm
+[PAUSE]:                                         https://pause.perl.org/
+[Package.json GUI]:                              https://github.com/zonemaster/zonemaster-gui/blob/develop/package.json
 [Release process - Create Test Distribution]:    ReleaseProcess-create-test-distribution.md
+[Utils Zonemaster]:                              ../../../utils/
+[Version.ts GUI]:                                https://github.com/zonemaster/zonemaster-gui/blob/develop/src/environments/version.ts
+[Versions and releases]:                         ../../design/Versions%20and%20Releases.md
+[ZNMSTR]:                                        https://metacpan.org/author/ZNMSTR
+[Zonemaster Product Releases]:                   https://github.com/zonemaster/zonemaster/releases
+[Zonemaster main README]:                        ../../../README.md
+[Zonemaster utils README]:                       ../../../utils/README.md
+[Zonemaster-Backend Makefile.PL]:                https://github.com/zonemaster/zonemaster-backend/blob/develop/Makefile.PL
+[Zonemaster-Backend Releases]:                   https://github.com/zonemaster/zonemaster-backend/releases
+[Zonemaster-CLI Makefile.PL]:                    https://github.com/zonemaster/zonemaster-cli/blob/develop/Makefile.PL
+[Zonemaster-CLI Releases]:                       https://github.com/zonemaster/zonemaster-cli/releases
+[Zonemaster-Engine Makefile.PL]:                 https://github.com/zonemaster/zonemaster-engine/blob/develop/Makefile.PL
+[Zonemaster-Engine Releases]:                    https://github.com/zonemaster/zonemaster-engine/releases
+[Zonemaster-GUI Releases]:                       https://github.com/zonemaster/zonemaster-gui/releases
+[Zonemaster-LDNS Releases]:                      https://github.com/zonemaster/zonemaster-ldns/releases
