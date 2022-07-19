@@ -22,13 +22,13 @@
 
 It is strongly recommended in [RFC 2142][RFC 2142#section-7],
 section 7, that every domain should have a mailbox named
-hostmaster@DOMAIN (where DOMAIN is *Child Zone* in this test case).
+HOSTMASTER@domain (where "domain" is *Child Zone* in this test case).
 
 > For simplicity and regularity, it is strongly recommended that the
 > well known mailbox name HOSTMASTER always be used
 > \<HOSTMASTER@domain\>.
 
-Thsi test case therefore expected for every domain (zone), excluding some cases
+This test case therefore expects for every domain (zone), excluding some cases
 described below, to publish an MX record in apex of the zone (i.e. in the same
 node as the SOA record).
 
@@ -62,10 +62,10 @@ used as [Email Domains][Email Domain]. In this test case [TLDs][TLD] are not onl
 excluded from the requirement of being an [Email Domain], if found to be, a
 message will be generated that points that out.
 
-[RFC 7505] standardizes "Null MX" which in means that there is no email service
-for the domain. A "Null MX" is accepted for any type of domain.
-[RFC 7505][RFC 7505#section-3], section 3, also specifies that the "Null MX" must
-be the sole MX record and its preference must be zero.
+[RFC 7505] standardizes "[Null MX]" which means that there is no email service
+for the domain. A "[Null MX]" is accepted for any type of domain.
+[RFC 7505][RFC 7505#section-3], section 3, also specifies that the "[Null MX]"
+must be the sole MX record and its preference must be zero.
 
 In this test case, the following zone types are excluded from the requirement of
 MX:
@@ -74,7 +74,8 @@ MX:
 * [TLD] zone
 * Zone in the .ARPA tree
 
-The following zone type is expected not to have any MX (considered harmful):
+The following zone type is expected not to have any MX (considered harmful,
+see [IAB Statement]):
 
 * [TLD] zone
 
@@ -108,8 +109,8 @@ Z09_NO_MX_FOUND            | INFO  | ns_ip_list              | No MX RRset was r
 Z09_NO_RESPONSE_MX_QUERY   |WARNING| ns_ip_list              | No response on MX query from name servers "{ns_ip_list}".
 Z09_NULL_MX_NON_ZERO_PREF  | NOTICE|                         | The zone has a Null MX with non-zero preference.
 Z09_NULL_MX_WITH_OTHER_MX  |WARNING|                         | The zone has a Null MX mixed with other MX records.
-Z09_ROOT_EMAIL_DOMAIN      | NOTICE|                         | Root zone with an unexpected normal MX RRset.
-Z09_TLD_EMAIL_DOMAIN       |WARNING|                         | The zone is a TLD and has an unexpected normal MX RRset.
+Z09_ROOT_EMAIL_DOMAIN      | NOTICE|                         | Root zone with an unexpected MX RRset (non-Null MX).
+Z09_TLD_EMAIL_DOMAIN       |WARNING|                         | The zone is a TLD and has an unexpected MX RRset (non-Null MX).
 Z09_UNEXPECTED_RCODE_MX    |WARNING | ns_ip_list, rcode      | Unexpected RCODE value on the MX query from name servers "{ns_ip_list}".
 
 The value in the Level column is the default severity level of the message. The
@@ -128,10 +129,10 @@ follow the specification for DNS queries as specified in
 queries follow, unless otherwise specified below, what is specified for
 [DNS Response] in the same specification.
 
-1.  Create a [DNS Query] with query typ  SOA and query name *Child Zone*
+1.  Create a [DNS Query] with query type  SOA and query name *Child Zone*
     ("SOA Query").
 
-2.  Create a [DNS Query] with query typ  MX and query name *Child Zone*
+2.  Create a [DNS Query] with query type  MX and query name *Child Zone*
     ("MX Query").
 
 3.  Obtain the set of name server IP addresses using [Method4] and [Method5]
@@ -196,7 +197,7 @@ queries follow, unless otherwise specified below, what is specified for
     1. If the RRsets in *MX RRset* are not equal for all name servers then do:
        1. Output *[Z09_INCONSISTENT_MX_RRSETS]*.
        2. For each RRset in *MX RRset*, output *[Z09_MX_DATA]* with the mail
-          target from the RDATA and the associated name server IP addresses in
+          targets from the RDATA and the associated name server IP addresses in
           the set.
     2. Else do:
        1. If the mailtarget of any of the MX records in the RRset in *MX RRset*
