@@ -100,7 +100,8 @@ correct DNS response for an authoritative name server.
 
 Message Tag                | Level | Arguments               | Message ID for message tag
 :--------------------------|:------|:------------------------|:--------------------------------------------
-Z09_INCONSISTENT_MX_RRSETS |WARNING|                         | The name servers return different MX RRsets.
+Z09_INCONSISTENT_MX        |WARNING|                         | Some name servers return an MX RRset while others return no MX.
+Z09_INCONSISTENT_MX_DATA   |WARNING|                         | The MX RRset data is inconsistent between the name servers.
 Z09_MISSING_MAIL_TARGET    | NOTICE|                         | The child zone has no mail target (no MX).
 Z09_MX_DATA                | INFO  | ns_ip_list, domain_list | The mail targets in the MX RRset, "{domain_list}", as returned by name servers "{ns_ip_list}".
 Z09_MX_FOUND               | INFO  | ns_ip_list              | MX RRset was returned by name servers "{ns_ip_list}".
@@ -187,7 +188,7 @@ queries follow, unless otherwise specified below, what is specified for
     the set.
 
 9.  If both *No MX RRset* set and *MX RRset* set are non-empty then:
-    1. Output *[Z09_INCONSISTENT_MX_RRSETS]*.
+    1. Output *[Z09_INCONSISTENT_MX]*.
     2. Output *[Z09_NO_MX_FOUND]* with the name server IP addresses from the
        *No MX RRset* set.
     3. Output *[Z09_MX_FOUND]* with the name server IP addresses from the
@@ -195,7 +196,7 @@ queries follow, unless otherwise specified below, what is specified for
 
 10. If the *MX RRset* set is non-empty, then do:
     1. If the RRsets in *MX RRset* are not equal for all name servers then do:
-       1. Output *[Z09_INCONSISTENT_MX_RRSETS]*.
+       1. Output *[Z09_INCONSISTENT_MX_DATA]*.
        2. For each RRset in *MX RRset*, output *[Z09_MX_DATA]* with the mail
           targets from the RDATA and the associated name server IP addresses in
           the set.
@@ -282,7 +283,8 @@ in an email address.
 [Severity Level Definitions]:                 ../SeverityLevelDefinitions.md
 [TLD]:                                        #terminology
 [WARNING]:                                    ../SeverityLevelDefinitions.md#warning
-[Z09_INCONSISTENT_MX_RRSETS]:                 #Summary
+[Z09_INCONSISTENT_MX]:                        #Summary
+[Z09_INCONSISTENT_MX_DATA]:                   #Summary
 [Z09_MISSING_MAIL_TARGET]:                    #Summary
 [Z09_MX_DATA]:                                #Summary
 [Z09_MX_FOUND]:                               #Summary
