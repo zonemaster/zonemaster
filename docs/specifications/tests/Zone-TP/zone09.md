@@ -100,7 +100,7 @@ correct DNS response for an authoritative name server.
 
 Message Tag                | Level | Arguments               | Message ID for message tag
 :--------------------------|:------|:------------------------|:--------------------------------------------
-Z09_INCONSISTENT_MX        |WARNING|                         | Some name servers return an MX RRset while others return no MX.
+Z09_INCONSISTENT_MX        |WARNING|                         | Some name servers return an MX RRset while others return none.
 Z09_INCONSISTENT_MX_DATA   |WARNING|                         | The MX RRset data is inconsistent between the name servers.
 Z09_MISSING_MAIL_TARGET    | NOTICE|                         | The child zone has no mail target (no MX).
 Z09_MX_DATA                | INFO  | ns_ip_list, domain_list | The mail targets in the MX RRset, "{domain_list}", as returned by name servers "{ns_ip_list}".
