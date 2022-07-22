@@ -24,10 +24,6 @@ Category | Label            | Color  | Used in repository | Description
 Area     | A-Documentation  | green  | all                | Area: Documentation only.
 Area     | A-TestCase       | green  | "main" or Engine   | Area: Test case specification or implementation of test case.
 Area     | A-Translation    | green  | all                | Area: Documentation of, implementation of or actual translation of text.
-Area     | FA-Backend-conf  | green  | Backend            | Focus Area: Improving backend configuration handling.
-Area     | FA-Basic04       | green  | "main" or Engine   | Focus Area: Implementing Basic04 and adjusting other test cases to it.
-Area     | FA-CDS-CDNSKEY   | green  | "main" or Engine   | Focus Area: Adding test cases for CDS and CDNSKEY.
-Area     | FA-IDN-ASCII     | green  | Backend or GUI     | Focus Area: Moving U-label-to-A-label conversion to GUI and zmtest and away from RPCAPI.
 Area     | FA-MethodNT      | green  | "main" or Engine   | Focus Area: Implementing and migrating to MethodNT for test cases.
 Priority | P-High           | red    | all                | Priority: Issue to be solved before other.
 Status   | S-ReleaseTested  | yellow | all                | Status: The PR has been successfully tested in release testing
