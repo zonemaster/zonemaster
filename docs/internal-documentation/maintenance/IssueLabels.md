@@ -27,6 +27,7 @@ Area     | A-Translation    | green  | all                | Area: Documentation 
 Area     | FA-MethodNT      | green  | "main" or Engine   | Focus Area: Implementing and migrating to MethodNT for test cases.
 Priority | P-High           | red    | all                | Priority: Issue to be solved before other.
 Status   | S-ReleaseTested  | yellow | all                | Status: The PR has been successfully tested in release testing
+Status   | S-PRforIssue     | yellow | all                | Status: There is a PR that is meant to resolve the issue
 Type     | T-Bug            | red    | all                | Type: Bug in software or error in test case description.
 Type     | T-Feature        | blue   | all                | Type: New feature in software or test case description.
 Type     | T-Question       | blue   | all                | Type: Incoming question.
