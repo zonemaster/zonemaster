@@ -165,6 +165,11 @@ respectively, in the same specification.
 8. If the NSEC (NSEC3) records do not "cover" the
    *Non-Existent Query Name*, then output *[T01_HAS_NSEC3]*
 
+> > When referring to RCODE, such as "NoError", use the term [RCODE Name]
+> > with a link to the IANA page. Also use the name forms on that page.
+
+
+
 ## Outcome(s)
 > > First we have standard text that should normally be the same in all
 > > test case specifications.
@@ -197,6 +202,11 @@ protocol has been skipped.
 The test case is only performed if some DNSKEY record is found in the
 *Child Zone*.
 
+> > This is a standard limitation for all test cases:
+
+The *Child Zone* must be a valid name meeting
+"[Requirements and normalization of domain names in input]".
+
 ## Intercase dependencies
 
 > > Either the following text if there is no formal dependencies on other test
@@ -223,8 +233,15 @@ No special terminology for this test case.
 > > Following are examples of terminology that are candidates to be included
 > > in the section.
 
+The terms "in-bailiwick", "out-of-bailiwick" and "glue record" are defined in
+[RFC 8499][RFC 8499#section-7], section 7, pages 24-25. In this document, the
+term "in-bailiwick" is limited to the meaning "in domain" in
+[RFC 8499][RFC 8499#section-7]. The term "out-of-bailiwick" means what is not
+"in-bailiwick, in domain", in this document.
+
+
 The terms "in-bailiwick" and "out-of-bailiwick" are used as defined
-in [RFC 8499][RFC 8499#page-25], section 7, page 25.
+in [RFC 8499], section 7, page 25.
 
 The term "glue records" is defined in [RFC 8499][RFC 8499#page-24], section 7,
 page 24.
@@ -267,35 +284,50 @@ respected.
 [Message Tag Specification]:            MessageTagSpecification.md
 [Test Case Identifier Specification]:   TestCaseIdentifierSpecification.md
 
-> > Absolute links to be converted to relative links in the test case specification:
+> > Absolute links to be converted to relative links in the test case
+> > specification. Here grouped to be easier to copy, but sort them
+> > them always in the specification.
 
-[Basic04]:                              https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/Basic-TP/basic04.md
-[CRITICAL]:                             https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#critical
-[DNS Query and Response Defaults]:      https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md
-[DNS Query]:                            https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
-[DNS Response]:                         https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
-[DNSSEC Query]:                         https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-dnssec-query
-[DNSSEC Response]:                      https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
-[EDNS Query]:                           https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-edns-query
-[EDNS Response]:                        https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-an-edns-response
-[ERROR]:                                https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#error
-[INFO]:                                 https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#info
-[Methods]:                              https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/Methods.md
-[NOTICE]:                               https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#notice
-[Severity Level Definitions]:           https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md
-[Undelegated test]:                     https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/test-types/undelegated-test.md
-[WARNING]:                              https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#warning
+> > Links to pages on Zonemaster/Zonemaster:
 
-> > Links to other repositories and external links:
+[Severity Level Definitions]:                                     https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md
+[DEBUG]:                                                          https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#notice
+[INFO]:                                                           https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#info
+[NOTICE]:                                                         https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#notice
+[WARNING]:                                                        https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#warning
+[ERROR]:                                                          https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#error
+[CRITICAL]:                                                       https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#critical
 
-[Argument list]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Dig]:                                  https://en.wikipedia.org/wiki/Dig_(command)
-[RFC 4035#section-3.1.3]:               https://tools.ietf.org/html/rfc4035#section-3.1.3
-[RFC 8499#page-24]:                     https://datatracker.ietf.org/doc/html/rfc8499#page-24
-[RFC 8499#page-25]:                     https://datatracker.ietf.org/doc/html/rfc8499#page-25
-[Zonemaster-Engine profile]:            https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Basic04]:                                                        https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/Basic-TP/basic04.md
+
+[DNS Query and Response Defaults]:                                https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md
+[DNS Query]:                                                      https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
+[DNS Response]:                                                   https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
+[DNSSEC Query]:                                                   https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-dnssec-query
+[DNSSEC Response]:                                                https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
+[EDNS Query]:                                                     https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-edns-query
+[EDNS Response]:                                                  https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-an-edns-response
+
+[Methods]:                                                        https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/Methods.md
+[MethodsV2]:                                                      https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/MethodsV2.md
+[Undelegated test]:                                               https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/test-types/undelegated-test.md
+
+[Requirements and normalization of domain names in input]:        https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/RequirementsAndNormalizationOfDomainNames.md
+
+> > Links to other repositories:
+
+[Argument list]:                                                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Zonemaster-Engine profile]:                                      https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+
+> > External links:
+
+[Dig]:                                                            https://en.wikipedia.org/wiki/Dig_(command)
+[RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[RFC 4035#section-3.1.3]:                                         https://tools.ietf.org/html/rfc4035#section-3.1.3
+[RFC 8499#section-7]:                                             https://datatracker.ietf.org/doc/html/rfc8499#section-7
 
 
-> > Keep all links sorted, and make a straight column of the link targets.
+> > Keep all links sorted, and make a straight column of the link targets in
+> > the test case specification.
 
 
