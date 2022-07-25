@@ -12,8 +12,8 @@
 * [Method: Get zone NS names][Get-Zone-NS-Names]
 * [Method: Get zone NS names and IP addresses][Get-Zone-NS-Names-and-IPs]
 * [Method: Get zone NS IP addresses][Get-Zone-NS-IPs]
-* [Method: Get in-bailiwick address records in zone (internal)][Get-IB-Addr-in-Zone]
 * [Method: Get delegation (internal)][Get-Delegation]
+* [Method: Get in-bailiwick address records in zone (internal)][Get-IB-Addr-in-Zone]
 * [Method: Get out-of-bailiwick ip addresses (internal)][Get-OOB-IPs]
 * [Method: Get data for undelegated test (internal)][Get-Undel-Data]
 * [Method inter-dependencies](#method-inter-dependencies)
@@ -563,81 +563,6 @@ for the existence of *Child Zone*
 [To top]
 
 
-## Method: Get in-bailiwick address records in zone (internal)
-
-### Method identifier
-**Get-IB-Addr-in-Zone**
-
-### Objective
-
-From the child zone, obtain the address records matching the
-[in-bailiwick] name server names found in the zone itself.
-Extract addresses even if the resolution goes through CNAME.
-It is, however, not permitted for a NS record
-to point at a name that has a CNAME, but that test is
-covered by Test Case [DELEGATION05].
-
-This is an [internal method] that can be referred to by other methods in this
-document, but not by Test Case specifications.
-
-### Inputs
-
-* "Child Zone" - The name of the child zone.
-
-This method also inherits the inputs of method [Get-Del-NS-IPs].
-
-### Prerequisite
-
-As specified in method [Get-Del-NS-IPs].
-
-### Test procedure
-
-1. Using method [Get-Del-NS-IPs], obtain the IP addresses to the name
-   servers ("Name Server IPs").
-
-2. Using method [Get-Zone-NS-Names], obtain the names of the name servers
-   from the *Child Zone* ("Child Zone Name Server Names").
-
-3. If no name in *Child Zone Name Server Names* is an [in-bailiwick]
-   name server name:
-   1. Output an empty set.
-   2. Exit.
-
-4. Create a set of name servers ("Name Servers") where each unique
-   [in-bailiwick] name server name is linked to an empty set
-   of IP addresses.
-
-5. For each [in-bailiwick] in *Child Zone Name Server Names*:
-   1. Send an A and an AAAA query to all servers in *name server IPs*
-      with the RD flag unset.
-   2. If a delegation (referral) to a sub-zone of Child Zone is returned,
-      follow that delegation, possibly in several steps, by repeating the
-      A and AAAA queries.
-   3. If a CNAME is returned, follow that, possibly in several
-      steps, to resolve the name to IP addresses, if possible.
-   4. Ignore non-referral responses unless AA flag is set (cached data
-      is not accepted).
-   5. Add found IP addresses for the name server names in *Name Servers*.
-
-6. Output the *Name Servers*.
-
-### Outputs
-
-* The possibly empty set of name server names pointing at possibly
-  empty sets of IP addresses.
-
-### Special procedural requirements
-
-None.
-
-### Dependencies
-
-Method [Get-Parent-Zone] must have been run and returned "true"
-for the existence of *Child Zone*
-
-[To top]
-
-
 ## Method: Get delegation (internal)
 
 ### Objective
@@ -770,6 +695,81 @@ same way as when method [Get-Parent-Zone] was run.
 ### Dependencies
 
 Method [Get-Parent-Zone] must have been run.
+
+[To top]
+
+
+## Method: Get in-bailiwick address records in zone (internal)
+
+### Method identifier
+**Get-IB-Addr-in-Zone**
+
+### Objective
+
+From the child zone, obtain the address records matching the
+[in-bailiwick] name server names found in the zone itself.
+Extract addresses even if the resolution goes through CNAME.
+It is, however, not permitted for a NS record
+to point at a name that has a CNAME, but that test is
+covered by Test Case [DELEGATION05].
+
+This is an [internal method] that can be referred to by other methods in this
+document, but not by Test Case specifications.
+
+### Inputs
+
+* "Child Zone" - The name of the child zone.
+
+This method also inherits the inputs of method [Get-Del-NS-IPs].
+
+### Prerequisite
+
+As specified in method [Get-Del-NS-IPs].
+
+### Test procedure
+
+1. Using method [Get-Del-NS-IPs], obtain the IP addresses to the name
+   servers ("Name Server IPs").
+
+2. Using method [Get-Zone-NS-Names], obtain the names of the name servers
+   from the *Child Zone* ("Child Zone Name Server Names").
+
+3. If no name in *Child Zone Name Server Names* is an [in-bailiwick]
+   name server name:
+   1. Output an empty set.
+   2. Exit.
+
+4. Create a set of name servers ("Name Servers") where each unique
+   [in-bailiwick] name server name is linked to an empty set
+   of IP addresses.
+
+5. For each [in-bailiwick] in *Child Zone Name Server Names*:
+   1. Send an A and an AAAA query to all servers in *name server IPs*
+      with the RD flag unset.
+   2. If a delegation (referral) to a sub-zone of Child Zone is returned,
+      follow that delegation, possibly in several steps, by repeating the
+      A and AAAA queries.
+   3. If a CNAME is returned, follow that, possibly in several
+      steps, to resolve the name to IP addresses, if possible.
+   4. Ignore non-referral responses unless AA flag is set (cached data
+      is not accepted).
+   5. Add found IP addresses for the name server names in *Name Servers*.
+
+6. Output the *Name Servers*.
+
+### Outputs
+
+* The possibly empty set of name server names pointing at possibly
+  empty sets of IP addresses.
+
+### Special procedural requirements
+
+None.
+
+### Dependencies
+
+Method [Get-Parent-Zone] must have been run and returned "true"
+for the existence of *Child Zone*
 
 [To top]
 
