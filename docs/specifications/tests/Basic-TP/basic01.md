@@ -87,11 +87,12 @@ DNS queries follow, unless otherwise specified below, what is specified for
    2. Exit the test case.
 
 2. Create [DNS queries][DNS Query]:
-   1. Query type SOA and query name *Child Zone* ("SOA Query").
+   1. Query type SOA and query name *Child Zone* ("SOA Child Query").
    2. Query type DNAME and query name *Child Zone* ("DNAME Query").
 
 3. Create the following empty set:
-   1. Parent name server IP and parent zone name ("Parent Name Server IP").
+   1. Parent name server IP, parent zone name and DNS response
+      ("Parent Name Server IP").
    2. Parent name server IP and parent zone name ("Parent Found").
    3. Parent name server IP and parent zone name ("Delegation Found").
    4. Parent name server IP and parent zone name ("Non-AA Non-Delegation Found")
@@ -103,15 +104,15 @@ DNS queries follow, unless otherwise specified below, what is specified for
    9. Parent name server IP and parent zone name ("AA NODATA Found").
 
 4. Find the parent zone of the *Child Zone* by iteratively
-   [sending](#terminology) *SOA Query* to all name servers found. Start by using
-   the nameservers from the *Root Name Servers*.
+   [sending](#terminology) *SOA Child Query* to all name servers found. Start by
+   using the nameservers from the *Root Name Servers*.
    1. Follow all paths from root and downwards by following the referrals
       (non-AA response with empty answer section and NS records in the authority
       section).
    2. When one of the following criteria is met (not both), then stop the lookup
       up in that branch and save the name server IP address, zone name for which
       the server is name server (parent zone) and the DNS response to the
-      *SOA Query* to the *Parent Name Server IP* set. Criteria:
+      *SOA Child Query* to the *Parent Name Server IP* set. Criteria:
       * The DNS response is a referral to *Child Zone* (owner name of the NS
         records is *Child Zone*), or
       * The DNS response has the AA flag set.
@@ -127,8 +128,38 @@ DNS queries follow, unless otherwise specified below, what is specified for
 > in question is NS for (owner name of NS). The name of the name server is
 > irrelevant.*
 
+5. For each name server IP and parent zone ("Parent Zone")) in the
+   *Parent Name Server IP* set, do the following steps, including for any name
+   servers added to the set by the steps below.
+   1. Send a [DNS Query] with query type NS and *Parent Zone* as query name to
+      the name server IP.
+   2. If the [DNS Response], if any, contains a list of NS records in the answer
+      section with *Parent Zone* as owner name then do:
+      1. For each NS record extract the name server name ("Name Server Name") in
+         the RDATA field and do:
+         1. Create [DNS Query] with query type A, *Name Server Name* as query
+            name and RD flag set, and do a recursive DNS lookup.
+         2. If the [DNS Response], if any, contains a list of A records (follow
+            any CNAME chain) in the answer section then remember the IP
+            addresses from the A records for three steps down.
+         3. Create [DNS Query] with query type AAAA, *Name Server Name* as
+            query name and RD flag set, and do a recursive DNS lookup.
+         3. If the [DNS Response], if any, contains a list of AAAA records
+            (follow any CNAME chain) in the answer section then remember the IP
+            addresses from the AAAA records for next step.
+         4. If any IP address was captured in the two lookup steps, then for each
+            IP address do if the address is not already listed in
+            *Parent Name Server IP* set:
+            1. Send *SOA Child Query* to the IP address.
+            2. If the [DNS Response], if any, meets one but not both of the
+               following two criteria then save the IP address, the parent
+               zone name and the DNS response to the *Parent Name Server IP* set.
+               Criteria:
+               * The [DNS response] is a referral to *Child Zone* (owner name
+                 of the NS records in authority section is *Child Zone*), or
+               * The [DNS response] has the AA flag set.
 
-5. For each name server IP in *Parent Name Server IP* extract
+6. For each name server IP in *Parent Name Server IP* extract
    parent zone name and the DNS response.
 
    1.  If the response is a referral (delegation) to the requested *Child Zone*:
@@ -167,17 +198,17 @@ DNS queries follow, unless otherwise specified below, what is specified for
           2. Save the name server IP and parent zone name to the
              *AA NODATA Found* set.
 
-6. If the *Parent Found* set is non-empty, then
+7. If the *Parent Found* set is non-empty, then
    1. For each parent zone name output *[B01_PARENT_FOUND]*, parent zone name
       and the set of name server IP addresses for that name.
    2. If not all members of the set have the same parent zone then output
       *[B01_PARENT_INDETERMINED]* and the whole set of name server IP addresses.
 
-7. If both of the *Parent Found* and the *AA SOA Found* sets are empty, then
+8. If both of the *Parent Found* and the *AA SOA Found* sets are empty, then
    output *[B01_PARENT_INDETERMINED]* and the whole set of name server IP
    addresses from *Parent Name Server IP*.
 
-8. If one or both of the *Delegation Found* and the *AA SOA Found* sets are
+9. If one or both of the *Delegation Found* and the *AA SOA Found* sets are
    non-empty, then do:
    1. Output *[B01_CHILD_FOUND]* with *Child Zone*.
    2. If one or more of the following sets are also non-empty then output
@@ -196,21 +227,21 @@ DNS queries follow, unless otherwise specified below, what is specified for
          *[B01_PARENT_INDETERMINED]* and the whole set of name server IP
          addresses from the *AA SOA Found* set,
 
-9. If both of the *Delegation Found* and the *AA SOA Found* sets are empty, then
-   do:
+10. If both of the *Delegation Found* and the *AA SOA Found* sets are empty, then
+    do:
     1. If *Test Type* is "normal test" then do:
        1. Create "Superdomain" as the domain just above *Child Zone*.
        2. Output *[B01_NO_CHILD]* with *Child zone* and *Superdomain*.
     2. If *Test Type* is "[undelegated test]", output *[B01_CHILD_NOT_DELEGATED]*
        with *Child Zone*.
 
-10. If the *AA DNAME Found* set is non-empty then do:
+11. If the *AA DNAME Found* set is non-empty then do:
     1. For each DNAME target in the set output *[B01_CHILD_IS_ALIAS]* with name
        server IP list, *Child Zone* and the DNAME target.
     2. If not all members of the set have the same DNAME target, output
        *[B01_INCONSISTENT_ALIAS]* with *Child Zone*.
 
-11. If the *Non-AA Non-Delegation Found* set is non-empty then for each parent
+12. If the *Non-AA Non-Delegation Found* set is non-empty then for each parent
     zone name from the set do:
     1. Output *[B01_UNEXPECTED_NS_RESPONSE]* with parent zone name, *Child Zone*
        and list of name server IP addresses.
