@@ -37,7 +37,7 @@ can be run even if the child zone is not delegated.
 
 ## Scope
 
-The algorithm in this test case must match the argorithm in method
+The algorithm in this test case must match the algorithm in method
 [Get parent zone].
 
 
@@ -50,20 +50,19 @@ Input for this Test Case:
   "normal test".
 
 
-
 ## Summary
 
 Message Tag                | Level | Arguments                    | Message ID for message tag
 :--------------------------|:------|:-----------------------------|:--------------------------
-B01_CHILD_IS_ALIAS         |NOTICE |domain_c, domain_t, ns_ip_list| "{domain_c}" is not a zone. It is an alias for "{domain_t}". Run a test of "{domain_t}" instead. Found on name server "{ns_ip_list}.
+B01_CHILD_IS_ALIAS         |NOTICE |domain_c, domain_t, ns_ip_list| "{domain_c}" is not a zone. It is an alias for "{domain_t}". Run a test for "{domain_t}" instead. Returned from name servers "{ns_ip_list}.
 B01_CHILD_FOUND            |INFO   | domain                       | The zone "{domain}" is found.
-B01_CHILD_NOT_DELEGATED    |INFO   | domain                       | "{domain}" is not delegated and the zone does not exist.
+B01_CHILD_NOT_EXIST        |INFO   | domain                       | "{domain}" does not exist as it is not delegated.
 B01_INCONSISTENT_ALIAS     |ERROR  | domain                       | The alias for "{domain}" is inconsistent between name servers.
-B01_INCONSISTENT_DELEGATION|ERROR  |domain_c, domain_p, ns_ip_list| The name servers for parent zone "{domain_p}" gives inconsistent delegation of "{domain_c}". Name serververs: "{ns_ip_list}".
+B01_INCONSISTENT_DELEGATION|ERROR  |domain_c, domain_p, ns_ip_list| The name servers for parent zone "{domain_p}" give inconsistent delegation of "{domain_c}". Returned from name serververs "{ns_ip_list}".
 B01_NO_CHILD               |ERROR  | domain_c, domain_s           | "{domain_c}" does not exist as a DNS zone. Try to test "{domain_s}" instead.
-B01_PARENT_FOUND           |INFO   | domain, ns_ip_list           | The parent zone is "{domain}" as found on name servers "{ns_ip_list}".
+B01_PARENT_FOUND           |INFO   | domain, ns_ip_list           | The parent zone is "{domain}" as returned from name servers "{ns_ip_list}".
 B01_PARENT_INDETERMINED    |WARNING| ns_ip_list                   | The parent zone cannot be determined on name servers "{ns_ip_list}".
-B01_UNEXPECTED_NS_RESPONSE |WARNING|domain_c, domain_p, ns_ip_list| Name servers for parent domain "{domain_p}" gives an incorrect response on SOA query for "{domain_c}". Name server IP addresses are {ns_ip_list}.
+B01_UNEXPECTED_NS_RESPONSE |WARNING|domain_c, domain_p, ns_ip_list| Name servers for parent domain "{domain_p}" give an incorrect response on SOA query for "{domain_c}". Returned from name servers {ns_ip_list}.
 
 
 The value in the Level column is the default severity level of the message. The
@@ -232,7 +231,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
     1. If *Test Type* is "normal test" then do:
        1. Create "Superdomain" as the domain just above *Child Zone*.
        2. Output *[B01_NO_CHILD]* with *Child zone* and *Superdomain*.
-    2. If *Test Type* is "[undelegated test]", output *[B01_CHILD_NOT_DELEGATED]*
+    2. If *Test Type* is "[undelegated test]", output *[B01_CHILD_NOT_EXIST]*
        with *Child Zone*.
 
 11. If the *AA DNAME Found* set is non-empty then do:
@@ -284,7 +283,7 @@ a specific name server.
 [Argument list]:                                                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [B01_CHILD_FOUND]:                                                #outcomes
 [B01_CHILD_IS_ALIAS]:                                             #outcomes
-[B01_CHILD_NOT_DELEGATED]:                                        #outcomes
+[B01_CHILD_NOT_EXIST]:                                            #outcomes
 [B01_INCONSISTENT_ALIAS]:                                         #outcomes
 [B01_INCONSISTENT_DELEGATION]:                                    #outcomes
 [B01_INCONSISTENT_DELEGATION]:                                    #outcomes
