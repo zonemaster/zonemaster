@@ -92,7 +92,7 @@ Message Tag outputted          | Level   | Arguments                            
 :------------------------------|:--------|:-----------------------------------------|:--------------------------------------------
 DS01_DIGEST_NOT_SUPPORTED_BY_ZM| NOTICE  | ns_ip_list, algo_mnemo, algo_num, keytag | DS Digest cannot be validated by this installation of Zonemaster.
 DS01_DS_ALGO_DEPRECATED        | ERROR   | ns_ip_list, algo_mnemo, algo_num, keytag | The DS digest algorithm is deprecated.
-DS01_DS_ALGO_2_MISSING         | NOTICE  |                                          | Algo 2 (SHA-256) is expected but missing.
+DS01_DS_ALGO_2_MISSING         | NOTICE  |                                          | DS created with algo 2 (SHA-256) is missing.
 DS01_DS_ALGO_NOT_DS            | ERROR   | ns_ip_list, algo_mnemo, algo_num, keytag | The DS digest algorithm is not for DS.
 DS01_DS_ALGO_RESERVED          | ERROR   | ns_ip_list, algo_mnemo, algo_num, keytag | No DS digest algorithm defined for the digest code.
 DS01_DS_ALGO_SHA1_DEPRECATED   | WARNING | ns_ip_list, algo_mnemo, algo_num, keytag | The DS SHA1 digest algorithm is deprecated.
