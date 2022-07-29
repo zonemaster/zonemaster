@@ -5,7 +5,7 @@
 * [Objective](#objective)
 * [Scope](#scope)
 * [Internal methods][Internal method]
-* [Method: Get parent zone][Get-Parent-Zone]
+* [Method: Get parent NS IP addresses][Get-Parent-NS-IP]
 * [Method: Get delegation NS names and IP addresses][Get-Del-NS-Names-and-IPs]
 * [Method: Get delegation NS names][Get-Del-NS-Names]
 * [Method: Get delegation NS IP addresses][Get-Del-NS-IPs]
@@ -42,6 +42,16 @@ Test Case uses methods from version 1 ([Methods]) or methods from version 2 (thi
 document). When the transition is completed, the version 1 document will be
 removed.
 
+In this section and unless otherwise specified below, the terms "[DNS Query]"
+follow the specification for DNS queries as specified in
+[DNS Query and Response Defaults]. The handling of the DNS responses on the
+DNS queries follow, unless otherwise specified below, what is specified for
+[DNS Response] in the same specification.
+
+In these methods any DS record data in *Undelegated Data* is disregarded. If
+with *Child Zone* DS record data is provided, but no name server data, then the
+will here be treated as "normal test", not "undelegated test".
+
 [To top]
 
 
@@ -55,21 +65,36 @@ Case specifications can freely refer to the other methods.
 [To top]
 
 
-## Method: Get parent zone
+## Method: Get parent NS IP addresses
 
 ### Method identifier
-**Get-Parent-Zone**
+**Get-Parent-NS-IP**
 
 ### Objective
 
-In general, this method replaces [Method1] in the [Methods], version 1.
+This method will obtain the name servers that serves the parent zone, i.e. the
+zone from which the *Child Zone* is delegated from.
 
-Obtain the parent zone of the child zone to be tested and the name server
-IP addresses of the parent zone. Determine if it is possible to perform
-the testing of the child zone.
+This done by finding the parent zone and by then the name servers that serve the
+parent zone. In case there is an inconsistency of which is the parent zone, the
+list of name servers will be the gross list, i.e. rather include too much than
+too little. Too much is always a result of incorrect configuration in the parent
+zone or in a grand parent zone.
 
-This method must, in general, use the same algorithm as Test Case [BASIC01], but
-without the messages.
+If *Child Zone* is the root zone, then there is by definition no parent zone and
+no parent name servers.
+
+If the test type is undelegated, then the information that the parent name
+servers are supposed to provide included in the input data. In that case a list
+of parent name servers has no meaning.
+
+The method will output a list of parent name server IP addresses. If the zone is
+the root zone or if the test is a undelegated test, the list is defined but
+empty. If the parent zone cannot be determined, then an undefined list is
+returned.
+
+This method must, in general, use the similar algorithm as Test Case [BASIC01],
+but the test case extracts more information.
 
 ### Inputs
 
@@ -84,147 +109,91 @@ None.
 
 ### Test procedure
 
-1. If the *Child Zone* is the root zone ("."):
-   1. Return the following from the method:
-      1. The parent zone is determined to be itself (".").
-      2. Test can be run on *Child Zone* (true).
-      3. The parent name server IP list is empty.
-   2. Exit.
+1. If the *Child Zone* is the root zone (".") then output empty set and exit
+   these test procedures.
 
-2. Find the parent zone of the *Child Zone* by performing recursive
-   lookup for the SOA record of the *Child Zone* with the RD bit unset.
-   Start by using a nameserver from the *Root Name Servers*.
+2. If the *Test Type* is "undelegated test" then output empty set and exit
+   these test procedures.
 
-3. Continue, step by step, until the parent zone (of the *Child Zone*) has
-   been reached by using the referrals (delegations) found.
+3. Create a [DNS Query] with query type SOA and query name *Child Zone*
+   ("SOA Child Query").
 
-4. If the lookup reaches a name server that responds with a referral
-   (delegation) directly to the requested *Child Zone*:
-   1. Return the following from the method:
-      1. The parent zone is determined to be the name of the zone that returned
-         the delegation.
-      2. Test can be run on *Child Zone* (true).
-      3. The parent name server IP list is set to be the available list
-         of servers for the parent zone.
-   2. Exit.
+4. Create the following empty set:
+   1. Parent name server IP and the parent zone name ("Parent Name Server IP").
 
-5. If the lookup reaches a name server that authoritatively responds
-   (AA flag set) and either with NXDOMAIN for the *Child Zone* or
-   with NOERROR and no record in the answer section (NODATA):
-   1. The zone returning NXDOMAIN or NODATA is defined to be the parent zone.
-   2. Repeat the SOA query for the *Child Zone* to all name servers for the
-      parent zone.
-      1. If any server returns a referral (delegation) directly to the *Child
-      	 Zone*, then go back to step 4 with the found delegation.
-   3. If *Test Type* is "normal test", then return the following from the
-      method:
-      1. The parent zone as determined above.
-      2. Test cannot be run on *Child Zone* (false).
-      3. The parent name server IP list is set to be the available list
-         of servers for the parent zone.
-   4. If *Test Type* is "undelegated test", then return the following from
-      the method:
-      1. The parent zone as determined above.
-      2. Test can be run on *Child Zone* (true).
-      3. The parent name server IP list is set to be the available list
-         of servers for the parent zone.
-   5. Exit.
+5. Find the parent zone of the *Child Zone* by iteratively
+   [sending] *SOA Child Query* to all name servers found. Start by using
+   the nameservers from *Root Name Servers*.
+   1. Follow all paths from root and downwards by using the referrals (non-AA
+      response with empty answer section and NS records in the authority
+      section).
+   2. When one of the following criteria is met (not both), then stop the lookup
+      up in that branch and save the name server IP address and zone name for
+      which the server is name server (parent zone) to the *Parent Name Server IP* set.
+      Criteria:
+      * The [DNS response] is a referral to *Child Zone* (owner name of the NS
+        records in authority section is *Child Zone*), or
+      * The [DNS response] has the AA flag set.
+   3. If the lookup reaches a name server that meet at least one of the following
+      criteria, then ignore it.
+      1. Does not responds at all.
+      2. Responds with an invalid DNS response.
+      3. Responds with an [RCODE Name] besides NoError and NXDomain.
+      4. Responds with a non-referral and the AA bit unset.
+   5. Continue until all paths are exhausted.
 
-6. If the lookup reaches a name server that non-authoritatively responds
-   (AA flag unset) with a CNAME record in the answer section:
-   1. A CNAME query with the RD flag unset is sent to the same server.
-   2. If the lookup returns an authoritative answer with a CNAME with
-      *Child Zone* name as owner name, then continue to step 7, else repeat
-      from step 3 using the next server.
+> *Note that the "parent zone name" is the name of the zone that the name server
+> in question is NS for (owner name of NS). The name of the name server is
+> irrelevant.*
 
-7. If the lookup reaches a name server that authoritatively responds
-   (AA flag set) with a CNAME record in the answer section:
-   1. The zone returning authoritative data is defined to be the parent zone.
-   2. Repeat the SOA query for the *Child Zone* to all name servers for the
-      parent zone.
-      1. If any server returns a referral (delegation) directly to the *Child
-      	 Zone*, then go back to step 4 with the found delegation.
-   3. If *Test Type* is "normal test", then return the following from the
-      method:
-      1. The parent zone as determined above.
-      2. Test cannot be run on *Child Zone* (false).
-      3. The parent name server IP list is set to be the available list
-         of servers for the parent zone.
-   4. If *Test Type* is "undelegated test", then return the following from
-      the method:
-      1. The parent zone as determined above.
-      2. Test can be run on *Child Zone* (true).
-      3. The parent name server IP list is set to be the available list
-         of servers for the parent zone.
-   5. Exit.
+6. For each name server IP and parent zone ("Parent Zone")) in the
+   *Parent Name Server IP* set, do the following steps, including for any name
+   servers added to the set by the steps below.
+   1. Send a [DNS Query] with query type NS and *Parent Zone* as query name to
+      the name server IP.
+   2. If the [DNS Response], if any, contains a list of NS records in the answer
+      section with *Parent Zone* as owner name then do:
+      1. For each NS record extract the name server name ("Name Server Name") in
+         the RDATA field and do:
+         1. Create [DNS Query] with query type A, *Name Server Name* as query
+            name and do a DNS lookup.
+         2. If the [DNS Response], if any, contains a list of A records (follow
+            any CNAME chain) in the answer section then remember the IP
+            addresses from the A records for three steps down.
+         3. Create [DNS Query] with query type AAAA, *Name Server Name* as
+            query name and do a DNS lookup.
+         3. If the [DNS Response], if any, contains a list of AAAA records
+            (follow any CNAME chain) in the answer section then remember the IP
+            addresses from the AAAA records for next step.
+         4. If any IP address was captured in the two lookup steps, then for each
+            IP address do if the address is not listed in *Parent Name Server IP*
+            set:
+            1. Send *SOA Child Query* to the IP address.
+            2. If the [DNS Response], if any, meets one but not both of the
+               following two criteria then save the IP address and the parent
+               zone name to the *Parent Name Server IP* set. Criteria:
+               * The [DNS response] is a referral to *Child Zone* (owner name
+                 of the NS records in authority section is *Child Zone*), or
+               * The [DNS response] has the AA flag set.
 
-8. If the lookup reaches a name server that authoritatively responds
-   (AA flag set) with an SOA record with owner name child domain in the
-   answer section:
-   1. The zone in the previous delegation is defined to be the parent
-      zone.
+7. If the *Parent Name Server IP* set is non-empty then do:
+   1. Extract the name server IP list.
    2. Return the following from the method:
-      1. The parent zone as determined above.
-      2. Test can be run on *Child Zone* (true).
-      3. The parent name server IP list is set to be the available list
-         of servers for the parent zone.
-   3. Exit.
+      1. The extracted list of name server IP addresses (parent zone name servers).
+   3. Exit these test procedures.
 
-9. If the server does not respond, the response contains an unexpected
-   RCODE or any other error, repeat from step 3 using the next server.
+8. If the *Parent Name Server IP* set is empty then do:
+   1. Return the following from the method:
+      1. Undefined value. (Parent name severs cannot be determined.)
+   3. Exit these test procedures.
 
-10. If delegation to a zone at a higher level than *Child Zone* is returned,
-    then follow the delegation.
-
-11. If all servers above are exhausted, then:
-    1. If *Test Type* is "normal test", then return the following from the
-       method:
-       1. The parent zone as empty (indetermined).
-       2. Test cannot be run on *Child Zone* (false).
-       3. The parent name server IP list is set to be empty.
-    2. If *Test Type* is "undelegated test", then return the following from
-       the method:
-       1. The parent zone as empty (indetermined).
-       2. Test can be run on *Child Zone* (true).
-       3. The parent name server IP list is set to be empty.
-    3. Exit.
-
-### Test Type and existence of parent and child
-
-#### Normal test
-
-Parent zone     | *Child Zone*       | Can normal test be run on *Child Zone*?
-----------------|--------------------|----------------------------------------
-Determined      | Exists             | True
-Determined      | Does not exist (1) | False
-Indetermined (2)| Indetermined       | False
-
-1. When parent zone returns an authoritative NXDOMAIN or NODATA on the
-   *Child Zone* name and SOA record.
-2. When server or zone error prevents determination of parent zone.
-
-#### Undelegated test
-
-Parent zone     | *Child Zone*       | Can undelegated test be run on *Child Zone*?
-----------------|--------------------|---------------------------------------------
-Determined      | Exists             | True (1)
-Determined      | Does not exist (2) | True (3)
-Indetermined (4)| Indetermined       | True (3)
-
-1. Undelegated tests are run based on the submitted data and not
-   the existing zone.
-2. When parent zone returns an authoritative NXDOMAIN or NODATA on the
-   *Child Zone* name and SOA record.
-3. When *Test Type* is "undelegated test" the *Child Zone* is
-   defined to exist even if there is no delegation.
-4. When server or zone error prevents determination of parent zone.
 
 ### Outputs
 
-* The name of the parent zone (can be empty, i.e. undefined).
-* Whether test can be run on *Child Zone* (true or false).
-* The set of name server IP address for the parent zone (can be empty,
-  i.e. undefined).
+* A set of name server IP address for the parent zone:
+  * Non-empty set: The name servers have been identified.
+  * Empty set: Root zone or undelegated test
+  * Undefined set: The name servers cannot be determined due to errors.
 
 ### Special procedural requirements
 
@@ -255,34 +224,39 @@ server names, if any. If the [glue records] include address records for
 
 * "Child Zone" - The name of the child zone.
 
-This method also inherits the inputs of methods [Get-Delegation] and
-[Get-OOB-IPs].
-
 ### Prerequisite
 
-As specified in methods [Get-Delegation] and [Get-OOB-IPs].
+None.
 
 ### Test procedure
 
-1. Get the name server set ("Name Servers") where each unique name
-   server name is linked to a possibly empty set of its IP
-   addresses by using method [Get-Delegation].
+1. Get the set of name servers where each unique name server name is linked to a
+   possibly empty set of its IP addresses by using method [Get-Delegation]
+   ("Name Servers").
 
-2. Extract the set of name server names ("Names") from
-   *Name Servers*.
+2. If the *Name Servers* set is undefined, then output an undefined set and exit
+   these test procedures.
 
-3. Get the IP addresses for any [out-of-bailiwick] name server
-   names in *Names* by using method [Get-OOB-IPs] with *Names*
-   as input.
+3. If the *Name Servers* set is empty, then output an empty set and exit these
+   test procedures.
 
-4. Merge the set returned with *Name Servers*.
+4. Extract the set of [out-of-bailiwick] name server names from *Name Servers*
+   ("OOB Names").
+
+3. Get the IP addresses for name server names in *OOB Names* by using method
+   [Get-OOB-IPs] with *OOB Names* as input.
+
+4. Merge the set returned from [Get-OOB-IPs] with *Name Servers*.
 
 5. Output the *Name Servers*.
 
 ### Outputs
 
-* The set of name servers, where each unique name server name
-  links to a possibly empty set of its IP addresses.
+* A set of delegation name servers, where each unique name server name
+  links to a possibly empty set of its IP addresses:
+  * Non-empty set: The normal case.
+  * Empty set: [Get-Delegation] returned an empty set.
+  * Undefined set: [Get-Delegation] returned an undefined set.
 
 ### Special procedural requirements
 
@@ -290,8 +264,7 @@ None.
 
 ### Dependencies
 
-Method [Get-Parent-Zone] must have been run and returned "true"
-for the existence of *Child Zone*
+This method depends on [Get-Delegation] and [Get-OOB-IPs].
 
 [To top]
 
@@ -305,40 +278,51 @@ for the existence of *Child Zone*
 
 In general, this method replaces [Method2] in [Methods], version 1.
 
-Obtain the name server names for the given zone (child zone) as defined in
-the delegation from parent zone.
+Obtain the name server names for *Child Zone* as defined in the delegation from
+parent zone.
 
 ### Inputs
 
-This method inherits the inputs of method [Get-Del-NS-Names-and-IPs].
+* "Child Zone" - The name of the child zone.
 
 ### Prerequisite
 
-As specified in method [Get-Del-NS-Names-and-IPs].
+None.
 
 ### Test procedure
 
-1. Get the name server set ("Name Servers") where each unique name
-   server name is linked to a possibly empty set of its IP
-   addresses by using method [Get-Del-NS-Names-and-IPs].
+1. Get the set of name servers where each unique name server name is linked to a
+   possibly empty set of its IP addresses by using method
+   [Get-Del-NS-Names-and-IPs] ("Name Servers").
 
-2. Extract the set of name server names from *Name Servers*.
+2. If the *Name Servers* set is undefined, then output an undefined set and exit
+   these test procedures.
 
-3. Output the set of name server names.
+3. If the *Name Servers* set is empty, then output an empty set and exit these
+   test procedures.
+
+3. If the set is empty, then output an empty set and exit these test
+   procedures.
+
+4. Extract the set of name server names from *Name Servers*.
+
+5. Output the set of name server names.
 
 ### Outputs
 
-* The set of name server names.
+* The set of delegation name server names:
+  * Non-empty set: The normal case.
+  * Empty set: [Get-Del-NS-Names-and-IPs] returned an empty set.
+  * Undefined set: [Get-Del-NS-Names-and-IPs] returned an undefined set.
 
 ### Special procedural requirements
 
-The method assumes that the servers of the parent zone behaves the
-same way as when method [Get-Parent-Zone] was run.
+None.
 
 ### Dependencies
 
-Method [Get-Parent-Zone] must have been run and returned "true"
-for the existence of *Child Zone*
+This method depends on [Get-Del-NS-Names-and-IPs].
+
 
 [To top]
 
@@ -365,23 +349,31 @@ This method inherits the inputs of method [Get-Del-NS-Names-and-IPs].
 
 ### Prerequisite
 
-As specified in method [Get-Del-NS-Names-and-IPs].
+None.
 
 ### Test procedure
 
-1. Get the name server set ("Name Servers") where each unique name
-   server name is linked to a possibly empty set of its IP
-   addresses by using method [Get-Del-NS-Names-and-IPs].
+1. Get the set of name servers where each unique name server name is linked to a
+   possibly empty set of its IP addresses by using method
+   [Get-Del-NS-Names-and-IPs] ("Name Servers").
 
-2. Extract the IP addresses from *Name Servers* and create a set of
+2. If the *Name Servers* set is undefined, then output an undefined set and exit
+   these test procedures.
+
+3. If the *Name Servers* set is empty, then output an empty set and exit these
+   test procedures.
+
+4. Extract the IP addresses from *Name Servers* and create a set of
    unique addresses ("NS IPs").
 
-3. Output *NS IPs*.
+5. Output *NS IPs*.
 
 ### Outputs
 
-* The set of IP addresses, each assumed to point to an
-  authoritative name server of *Child Zone*.
+* The set of delegation name server IP addresses:
+  * Non-empty set: The normal case.
+  * Empty set: [Get-Del-NS-Names-and-IPs] returned an empty set.
+  * Undefined set: [Get-Del-NS-Names-and-IPs] returned an undefined set.
 
 ### Special procedural requirements
 
@@ -389,8 +381,7 @@ None.
 
 ### Dependencies
 
-Method [Get-Parent-Zone] must have been run and returned "true"
-for the existence of *Child Zone*
+This method depends on [Get-Del-NS-Names-and-IPs].
 
 [To top]
 
@@ -411,31 +402,46 @@ Obtain the names of the authoritative name servers for the given zone
 
 * "Child Zone" - The name of the child zone.
 
-This method also inherits the inputs of method [Get-Del-NS-IPs].
-
 ### Prerequisite
 
-As specified in method [Get-Del-NS-IPs].
+None.
 
 ### Test procedure
 
-1. Using method [Get-Del-NS-IPs], obtain the IP addresses of the
-   name servers ("Name Server IPs").
+1.  Using method [Get-Del-NS-IPs], obtain the IP addresses of the
+    name servers ("Name Server IPs").
 
-2. Create an NS query for apex of the Child Zone with the RD flag
-   unset and send that to the *Name Server IPs*.
+2.  If the *Name Server IPs* set is undefined, then output an undefined set and
+    exit these test procedures.
 
-3. Collect all the unique NS records in the answer sections of the
-   responses where the AA flag is set and extract the name server names.
+3.  If the *Name Server IPs* set is empty, then output an empty set and exit
+    these test procedures.
 
-4. Create a set of name server names ("Name Server Names") as
-   collected from zone.
+4.  Create an empty set of name server names ("Name Server Names").
 
-5. Output *Name Server Names*.
+5.  Create a [DNS Query] with query type NS and query name *Child Zone*
+    ("NS Query").
+
+6.  Send *NS Query* to every IP address in *Name Server IPs*.
+
+7.  Collect all [DNS Responses][DNS Response] and ignore all non-responses.
+
+8.  Collect all the unique NS records with *Child Zone* as owner name in the
+    answer sections of the responses where the AA flag is set. Ignore any other
+    response.
+
+9.  Extract the name server names from the RDATA of the NS records and add to the
+    *Name Server Names* set.
+
+10. Output the possibly empty *Name Server Names* set.
 
 ### Outputs
 
-* The set of name servers (name server names).
+* The set of zone name servers (name server names):
+  * Non-empty set: The normal case.
+  * Empty set: [Get-Del-NS-IPs] returned an empty set or no name server
+    names were found.
+  * Undefined set: [Get-Del-NS-IPs] returned an undefined set.
 
 ### Special procedural requirements
 
@@ -443,8 +449,7 @@ None.
 
 ### Dependencies
 
-Method [Get-Parent-Zone] must have been run and returned "true"
-for the existence of *Child Zone*
+This method depends on [Get-Del-NS-IPs].
 
 [To top]
 
@@ -465,41 +470,47 @@ server names obtain the IP addresses from resolver lookup.
 
 * "Child Zone" - The name of the child zone.
 
-This method also inherits the inputs of methods [Get-Zone-NS-Names],
-[Get-IB-Addr-in-Zone] and [Get-OOB-IPs].
-
 ### Prerequisite
 
-As specified in methods [Get-Zone-NS-Names], [Get-IB-Addr-in-Zone]
-and [Get-OOB-IPs].
+None.
 
 ### Test procedure
 
 1. Get the name server names for the *Child Zone* as defined in
    the *Child Zone* by using method [Get-Zone-NS-Names] ("Names").
 
-2. Create a set of name servers ("Name Servers") where each unique
-   name server name in *Names* is linked to an empty set of IP
-   addresses.
+2. If the *Names* set is undefined, then output an undefined set and
+   exit these test procedures.
 
-3. Fetch the IP addresses for any [in-bailiwick] name server
+3. If the *Names* set is empty, then output an empty set and exit
+   these test procedures.
+
+4. Create a set of name servers where each unique name server name in *Names*
+   is linked to an empty set of IP addresses ("Name Servers").
+
+5. Fetch the IP addresses for any [in-bailiwick] name server
    names in *Names* by using method [Get-IB-Addr-in-Zone].
 
-4. Add each fetched IP address to *Name Servers* to the name
+6. Add each fetched IP address, if any, to *Name Servers* to the name
    server name it belongs to.
 
-5. Get the IP addresses for any [out-of-bailiwick] name server
-   names in *Names* by using method [Get-OOB-IPs] with *Names*
-   as input.
+7. Extract the set of [out-of-bailiwick] name server names from *Names*
+   ("OOB Names").
 
-6. Merge the set returned with *Name Servers*.
+8. Get the IP addresses for name server names in *OOB Names* by using method
+   [Get-OOB-IPs] with *OOB Names* as input.
 
-7. Output *Name Servers*.
+9. Merge the set returned from [Get-OOB-IPs] with *Name Servers*.
+
+10. Output *Name Servers*.
 
 ### Outputs
 
-* The set of name servers, where each unique name server name
-  links to a possibly empty set of its IP addresses.
+* The set of zone name servers, where each unique name server name links to a
+  possibly empty set of its IP addresses:
+  * Non-empty set: The normal case.
+  * Empty set: [Get-Zone-NS-Names] returned an empty set.
+  * Undefined set: [Get-Zone-NS-Names] returned an undefined set.
 
 ### Special procedural requirements
 
@@ -507,8 +518,8 @@ None.
 
 ### Dependencies
 
-Method [Get-Parent-Zone] must have been run and returned "true"
-for the existence of *Child Zone*
+This method depends on methods [Get-Zone-NS-Names], [Get-IB-Addr-in-Zone]
+and [Get-OOB-IPs].
 
 [To top]
 
@@ -529,27 +540,33 @@ the NS records of apex of the child zone.
 
 * "Child Zone" - The name of the child zone.
 
-This method also inherits the inputs of method
-[Get-Zone-NS-Names-and-IPs].
-
 ### Prerequisite
 
-As specified in method [Get-Zone-NS-Names-and-IPs].
+None.
 
 ### Test procedure
 
-1. Get the name servers set ("Name Servers") where each unique name
-   server name is linked to a possibly empty set of its IP
-   addresses by using method [Get-Zone-NS-Names-and-IPs].
+1. Get the name servers set where each unique name server name is linked to a
+   possibly empty set of its IP addresses by using method
+   [Get-Zone-NS-Names-and-IPs] ("Name Servers");
 
-2. Extract the IP addresses from *Name Servers* and create a
+2. If the *Name Servers* set is undefined, then output an undefined set and
+   exit these test procedures.
+
+3. If the *Name Servers* set is empty, then output an empty set and exit
+   these test procedures.
+
+4. Extract the IP addresses from *Name Servers* and create a
    set of unique IP addresses.
 
-3. Output the set of IP addresses.
+5. Output the set of IP addresses.
 
 ### Outputs
 
-* The possibly empty set of IP addresses.
+* The set of zone name server IP addresses:
+  * Non-empty set: The normal case.
+  * Empty set: [Get-Zone-NS-Names-and-IPs] returned an empty set.
+  * Undefined set: [Get-Zone-NS-Names-and-IPs] returned an undefined set.
 
 ### Special procedural requirements
 
@@ -557,13 +574,16 @@ None.
 
 ### Dependencies
 
-Method [Get-Parent-Zone] must have been run and returned "true"
-for the existence of *Child Zone*
+This method depends on method [Get-Zone-NS-Names-and-IPs].
+
 
 [To top]
 
 
 ## Method: Get delegation (internal)
+
+### Method identifier
+**Get-Delegation**
 
 ### Objective
 
@@ -581,120 +601,121 @@ method [Get-Del-NS-Names-and-IPs].
 This is an [internal method] that can be referred to by other methods in this
 document, but not by Test Case specifications.
 
-### Method identifier
-**Get-Delegation**
-
 ### Inputs
 
 * "Child Zone" - The name of the child zone.
 * "Test Type" - The test type with values "undelegated test" or "normal test".
-
-This method also inherits the inputs of method [Get-Undel-Data] if
-*Test Type* is "undelegated test" or else the inputs of method
-[Get-Parent-Zone].
+* "Root Name Servers" - The IANA [List of Root Servers].
 
 ### Prerequisite
 
-* Method [Get-Parent-Zone] must have returned that *Child Zone* exists
-  (existence is "true").
-
-As specified in method [Get-Undel-Data] if *Test Type* is
-"undelegated test" or else as specified in method [Get-Parent-Zone].
+None.
 
 ### Test procedure
 
 1. If the *Test Type* is "undelegated test", then:
    1. Using method [Get-Undel-Data] get the submitted data for
       *Child Zone* ("Undelegated Data").
-   2. Collect the name server names from the *Undelegated Data*.
-   3. Create a set of name servers ("Name Servers") where each unique
-      name server name is linked to an empty set of IP addresses.
-   4. For each [in-bailiwick] name server name collect any
+   2. If the *Undelegated Data* set is undefined, then output an undefined set
+      and exit these test procedures.
+   3. Create an empty set of name servers where each unique name server name is
+      linked to an empty set of IP addresses ("Name Servers").
+   4. Extract all name server names from the *Undelegated Data* set and add to
+      the *Name Servers* set.
+   5. For each [in-bailiwick] name server name collect any
       IP addresses from *Undelegated Data* and add that to the
       *Name Servers* set under the name server name.
-   5. Output the *Name Servers*.
-   6. Exit.
+   6. For any [out-of-bailiwick] name server name the IP address should be
+      ignored.
+   7. Output the *Name Servers* set.
+   8. Exit these test procedures.
 
-2. Steps below is for *Test Type* "normal test" only.
+2. If *Child Zone* is the root zone ".", then output the set of name server names
+   and IP addresses from *Root Name Servers* and exit these test procedures.
 
-3. Using method [Get-Parent-Zone] extract the name server IP addresses for
+3. Using method [Get-Parent-NS-IP] extract the name server IP addresses for
    the parent zone ("Parent NS").
 
-4. Create an NS query for the apex of the *Child Zone* with the RD flag
-   unset.
+4. If *Parent NS* is empty, then output the undefined set and exit these test
+   procedures.
 
-5. Send the NS query to the first name server in *Parent NS*.
+5. Create [DNS Query] with query type NS and query name *Child Zone*
+   ("NS Query").
 
-6. If the response contains a referral to the Child Zone:
-   1. Extract the name server names from the RDATA of the NS records in
-      the authority section.
-   2. Extract any A or AAAA record from the additional section if the
-      owner name is identical to a name server name ([glue records]).
-   3. Create a set of name servers ("Name Servers") where each unique name
-      server name is linked to a set of its possibly empty set of IP
-      addresses.
-   4. Repeat the NS query for *Child Zone* to the other name servers in
-      "Parent NS":
-       1. If the response from a server has the AA bit set, ignore that
-         response.
-       2. If the response is a referral to *Child Zone*:
-           1. Extract the name server names from the NS records in the
-              authority section.
-           2. Extract any A or AAAA record from the additional section
-              if the owner name is an [in-bailiwick] name server name.
-           3. Update the *Name Servers* if a new name server name or a
-              new IP address for any name server name is found.
-           4. Output the *Name Servers*.
-           5. Processing the method is stopped.
+6. Create empty sets:
+   1. Unique name server names where each name can be linked to a possibly empty
+      set of IP addresses ("Delegation Name Servers").
+   1. Unique name server names where each name can be linked to a possibly empty
+      set of IP addresses ("AA Name Servers").
 
-7. If the response is authoritative (AA bit set) and the answer section
-   contains the NS record of the Child Zone:
-   1. Repeat the query to the next server of *Parent NS* until a
-      server has responded with a referral or no more servers are
-      available.
-   2. If a referral is found, go to step above for referral responses.
-   3. If no referral is found for *Child Zone*, use the last response
-      where the AA bit set and the answer section contained NS records:
-      1. Extract the name server names from the RDATA of the NS records
-         in the answer section.
-      2. Extract any A or AAAA record from the additional section if the
-         owner name is an [in-bailiwick] name server name.
-      3. If any [in-bailiwick] name server name lacks IP address
-         specification from previous step, then create an A and a AAAA
-         query for that name:
-         1. Send the query to the same *Parent NS*.
-         2. If a delegation (referral) to a sub-zone of Child Zone is
-            returned, follow that delegation, possibly in several steps, by
+7. For each parent name server in *Parent NS* do:
+
+   1. Send *NS query* to to the parent name server.
+   2. Go to next paret name server if:
+      1. Does not responds at all, or
+      2. Responds with an invalid DNS response, or
+      3. Responds with an [RCODE Name] besides NoError.
+   3. If the [DNS Response] contains a referral to the Child Zone:
+      1. Extract the name server names from the RDATA of the NS records in
+         the authority section.
+      2. Extract any A or AAAA record from the additional section if the owner
+         name is an [in-bailiwick] name server name matching an NS record
+         from the same response.
+      3. Update *Delegation Name Servers* with unique name server names and with
+         a possibly empty set of IP addresses.
+         1. If the name already exists in the set and additional IP addresses
+            exists, add those to the name in the set.
+   4. If the [DNS response] has the AA bit set and the answer section contains
+      the NS record of the Child Zone do:
+      1. Extract the name server names from the RDATA of the NS records.
+      2. Extract any A or AAAA record from the additional section if the owner
+         name is an [in-bailiwick] name server name matching an NS record
+         from the same response.
+      3. Update *AA Name Servers* with unique name server names and with
+         a possibly empty set of IP addresses.
+         1. If the name already exists in the set and additional IP addresses
+            exists, add those to the name in the set.
+      4. If any [in-bailiwick] name server name from the NS records lacks IP
+         address, then:
+         1. Send two [DNS Queries][DNS Query] with that name server name as
+            query name to the parent name server, query type A and AAAA,
+            respectively.
+         2. If the [DNS Response] has a delegation (referral) to a sub-zone of
+            Child Zone, follow that delegation, possibly in several steps, by
             repeating the A and AAAA queries.
-         3. If a CNAME is returned, follow that, possibly in
-            several steps, to resolve the name to IP addresses, if
-            possible.
-         4. Ignore non-referral responses unless AA flag is set (cached
-            data is not accepted).
-      4. Create a name servers set ("Name Servers") where each unique
-         name server name is linked to a possibly empty set
-         of its IP addresses.
-      5. Output the *Name Servers*.
-      6. Processing the method is stopped.
+         3. If a CNAME is returned, follow that, possibly in several steps, to
+            resolve the name to IP addresses, if possible.
+         4. Update *AA Name Servers* with captured IP addresses, if any.
 
-8. If the server returns unexpected response:
-   1. Send the query to the next server, if available.
-   2. If no more servers remain, output an empty set and stop
-      processing the method.
+8. If the *Delegation Name Servers* set is non-empty output that and exit these
+   test procedures.
+
+9. Else, if the *AA Name Servers* set is non-empty output that and exit these
+   test procedures.
+
+10. Else, if both *Delegation Name Servers* and *AA Name Servers* sets are empty
+    do:
+    1. Output an empty set.
+    2. Exit the test procedure.
 
 ### Outputs
 
-* The set of name servers, where each unique name server name
-  links to a possibly empty set of its IP addresses.
+* The set of name servers, the delegation, where each unique name server name
+  links to a possibly empty set of its IP addresses:
+  * Non-empty set: The normal case.
+  * Empty set: No delegation was found.
+  * Undefined set: [Get-Parent-NS-IP] returned undefined set of parent
+    name server IPs or [Get-Undel-Data] returned an undefined set of undelegated
+    data.
 
 ### Special procedural requirements
 
-The method assumes that the servers of the parent zone behaves the
-same way as when method [Get-Parent-Zone] was run.
+None.
 
 ### Dependencies
 
-Method [Get-Parent-Zone] must have been run.
+This method depends on the output from either [Get-Parent-NS-IP] (normal test
+type) or [Get-Undel-Data] (undelegated test).
 
 [To top]
 
@@ -720,11 +741,9 @@ document, but not by Test Case specifications.
 
 * "Child Zone" - The name of the child zone.
 
-This method also inherits the inputs of method [Get-Del-NS-IPs].
-
 ### Prerequisite
 
-As specified in method [Get-Del-NS-IPs].
+None.
 
 ### Test procedure
 
@@ -734,33 +753,45 @@ As specified in method [Get-Del-NS-IPs].
 2. Using method [Get-Zone-NS-Names], obtain the names of the name servers
    from the *Child Zone* ("Child Zone Name Server Names").
 
+3. If the *Name Server IPs* set or the *Child Zone Name Server Names* set is
+   empty or undefined, then output an undefined set and exit these test
+   procedures.
+
 3. If no name in *Child Zone Name Server Names* is an [in-bailiwick]
    name server name:
    1. Output an empty set.
-   2. Exit.
+   2. Exit these test procedures.
 
-4. Create a set of name servers ("Name Servers") where each unique
-   [in-bailiwick] name server name is linked to an empty set
-   of IP addresses.
+4. Create an empty set the [in-bailiwick] name server names from the
+   *Child Zone Name Server Names* set, where each name is linked to an empty set
+   of IP addresses ("Name Servers").
 
-5. For each [in-bailiwick] in *Child Zone Name Server Names*:
-   1. Send an A and an AAAA query to all servers in *name server IPs*
-      with the RD flag unset.
-   2. If a delegation (referral) to a sub-zone of Child Zone is returned,
-      follow that delegation, possibly in several steps, by repeating the
-      A and AAAA queries.
-   3. If a CNAME is returned, follow that, possibly in several
+5. For name in *Name Servers* do:
+   1. Create the following two [DNS queries][DNS Query]:
+      1. Query type A and the [in-bailiwick] name as the query name ("A Query").
+      2. Query type AAAA and the [in-bailiwick] name as the query name
+         ("AAAA Query").
+   2. Send *A Query* and *AAAA Query* to all servers in *name server IPs*
+      and process the [DNS Responses][DNS Response] from each of them.
+   3. If a delegation (referral) to a sub-zone of Child Zone is returned,
+      follow that delegation, possibly in several steps, by repeating
+      *A Query* and *AAAA Query*.
+   4. If a CNAME is returned, follow that, possibly in several
       steps, to resolve the name to IP addresses, if possible.
-   4. Ignore non-referral responses unless AA flag is set (cached data
-      is not accepted).
-   5. Add found IP addresses for the name server names in *Name Servers*.
+   5. Ignore non-referral responses unless AA flag is set (cached data
+      is not accepted) and ignore response with any other [RCODE Name] than
+      NoError.
+   6. Add found IP addresses for the name server names in *Name Servers*.
 
-6. Output the *Name Servers*.
+6. Output the possibly empty *Name Servers* set.
 
 ### Outputs
 
-* The possibly empty set of name server names pointing at possibly
-  empty sets of IP addresses.
+* A set of name server names pointing at possibly empty sets of IP addresses:
+  * Non-empty set: The normal case.
+  * Empty set: There are no [in-bailiwick] names or those are not defined in
+    *Child Zone*, also a normal case.
+  * Undefined set: [Get-Del-NS-IPs] returned an empty or undefined set.
 
 ### Special procedural requirements
 
@@ -768,8 +799,7 @@ None.
 
 ### Dependencies
 
-Method [Get-Parent-Zone] must have been run and returned "true"
-for the existence of *Child Zone*
+This method depends on [Get-Zone-NS-Names] and [Get-Del-NS-IPs].
 
 [To top]
 
@@ -793,8 +823,7 @@ document, but not by Test Case specifications.
 ### Inputs
 
 * "Child Zone" - The name of the child zone.
-* "NS Set" - The names of the *Child Zone* name servers as given by the
-  calling method.
+* "NS Set" - The name servers names as given by the calling method.
 * "Test Type" - The test type with values "undelegated test" or
   "normal test".
 
@@ -803,21 +832,23 @@ This method also inherits the inputs of method [Get-Undel-Data] if
 
 ### Prerequisite
 
-As specified in method [Get-Undel-Data] if *Test Type* is
-"undelegated test".
+None.
 
 ### Test procedure
 
-1. Create a set of name servers ("Name Servers") where each unique
-   [out-of-bailiwick] name server name in *NS Set* is linked to an empty
-   set of IP addresses.
+1. If *NS Set* is empty then then output an empty set and exit these test
+   procedures.
 
-2. If *Test Type* is "undelegated test", then fetch name server name and
-   IP address or addresses using method [Get-Undel-Data]
-   ("Undelegated Data").
+2. Create a set of name servers where each unique name server name in *NS Set*
+   is linked to an empty set of IP addresses ("Name Servers").
 
-3. For each [out-of-bailiwick] the name server name ("Name") in
-   *NS Set* do:
+3. If *Test Type* is "undelegated test", then do:
+   1. Fetch name server name and IP address or addresses using method
+      [Get-Undel-Data] ("Undelegated Data").
+   2. If the *Undelegated Data* set is empty or undefined, then output an
+      undefined set and exit these test procedures.
+
+3. For each name server name ("Name") in *NS Set* do:
 
    1. If *Test Type* is "undelegated test" and if the *Name*
       has IP address specification (IPv4 or IPv6) in *Undelegated Data*,
@@ -825,24 +856,30 @@ As specified in method [Get-Undel-Data] if *Test Type* is
       1. Add the address or addresses to *Name Servers* for *Name*.
       2. Go to next server name server name.
 
-   2. Create one A query and one AAAA query for the *Name*.
+   2. Create the following two [DNS queries][DNS Query]:
+      1. Query type A and *Name* as the query name and the RD flag set true
+         ("A Query").
+      2. Query type AAAA and *Name* as the query name and the RD flga set
+         true ("AAAA Query").
 
    3. Send the two queries doing normal recursive lookup to a resolver.
 
-   4. If CNAME is returned for the *Name*, then follow that,
-      possibly in several steps, and use the resulting IP address or
-      addresses.
+   4. If the [DNS Responses][DNS Response], if any, contains a list of A or AAAA
+      records (follow any CNAME chain) in the answer section then remember the IP
+      addresses for next step.
 
-   5. Collect all IP addresses for the *Name* and add the
-      address or addresses to *Name Servers* for that *Name*
-      and go to next *Name*.
+   5. Collect all IP addresses for the *Name* and add the address or addresses to
+      *Name Servers* for that *Name* and go to next *Name*.
 
 4. Output the *Name Servers*.
 
 ### Outputs
 
-* The set of name servers, where each unique name server name
-  links to a possibly empty set of its IP addresses.
+* A set of name servers, where each unique name server name links to a possibly
+  empty set of its IP addresses:
+  * Non-empty set: The normal case.
+  * Empty set: No addresses were available, also a normal case.
+  * Undefined set: [Get-Undel-Data] returned an empty or undefined set.
 
 ### Special procedural requirements
 
@@ -850,7 +887,8 @@ None.
 
 ### Dependencies
 
-Method [Get-Parent-Zone] must have been run.
+This method depends on methdo [Get-Undel-Data].
+
 
 [To top]
 
@@ -887,14 +925,19 @@ document, but not by Test Case specifications.
 
 1. Get the *Undelegated Data* from the initiation of the test.
 
-1. Return the set of name servers, where each unique name server name
+2. If the *Undelegated Data* has not name server names, then output an undefined
+   set and exit these test procedures.
+
+2. Return the set of name servers, where each unique name server name
    links to a possibly empty set of its IP addresses taken from the
    *Undelegated Data*.
 
 ### Outputs
 
-* The set of name servers, where each unique name server name
-  links to a possibly empty set of its IP addresses.
+* A set of name servers, where each unique name server name
+  links to a possibly empty set of its IP addresses:
+  * Non-empty set: The normal case.
+  * Undefined set: The initialization data was empty.
 
 ### Special procedural requirements
 
@@ -906,26 +949,29 @@ None.
 
 [To top]
 
-
 ## Method inter-dependencies
 
 | Method                      | Level | Dependent on method        | Level
 |-----------------------------|-------|----------------------------|-------------
 | [Get-Undel-Data]            | 1     | -                          |
-| [Get-Parent-Zone]           | 2     | [Get-Undel-Data]           | 1
+| [Get-Parent-NS-IP]          | 1     | -                          |
 | [Get-OOB-IPs]               | 2     | [Get-Undel-Data]           | 1
-| [Get-Delegation]            | 3     | [Get-Undel-Data]           | 1
-|                             |       | [Get-Parent-Zone]          | 2
-| [Get-Del-NS-Names-and-IPs]  | 4     | [Get-Delegation]           | 3
+| [Get-Delegation]            | 2     | [Get-Undel-Data]           | 1
+|                             |       | [Get-Parent-NS-IP]         | 1
+| [Get-Del-NS-Names-and-IPs]  | 3     | [Get-Delegation]           | 2
 |                             |       | [Get-OOB-IPs]              | 2
-| [Get-Del-NS-Names]          | 5     | [Get-Del-NS-Names-and-Ips] | 4
-| [Get-Del-NS-IPs]            | 5     | [Get-Del-NS-Names-and-IPs] | 4
-| [Get-Zone-NS-Names]         | 6     | [Get-Del-NS-IPs]           | 5
-| [Get-IB-Addr-in-Zone]       | 6     | [Get-Del-NS-IPs]           | 5
-| [Get-Zone-NS-Names-and-IPs] | 7     | [Get-Zone-NS-Names]        | 6
+| [Get-Del-NS-Names]          | 4     | [Get-Del-NS-Names-and-IPs] | 3
+| [Get-Del-NS-IPs]            | 4     | [Get-Del-NS-Names-and-IPs] | 3
+| [Get-Zone-NS-Names]         | 5     | [Get-Del-NS-IPs]           | 4
+| [Get-IB-Addr-in-Zone]       | 6     | [Get-Del-NS-IPs]           | 4
+|                             |       | [Get-Zone-NS-Names]        | 5
+| [Get-Zone-NS-Names-and-IPs] | 7     | [Get-Zone-NS-Names]        | 5
 |                             |       | [Get-IB-Addr-in-Zone]      | 6
 |                             |       | [Get-OOB-IPs]              | 2
 | [Get-Zone-NS-IPs]           | 8     | [Get-Zone-NS-Names-and-IPs]| 7
+
+
+
 
 [To top]
 
@@ -937,31 +983,39 @@ defined in [RFC 8499], section 7, pages 24-25. In this document, the term
 "in-bailiwick" is limited to the meaning "in domain" in the RFC. The term
 "out-of-bailiwick" here means what is not "in-bailiwick, in domain".
 
+The term "sending" (to a name sever IP address) is used when a DNS query is sent
+to a specific name server.
 
-[BASIC01]:                       Basic-TP/basic01.md
-[DELEGATION05]:                  Delegation-TP/delegation05.md
-[Get-Del-NS-IPs]:                #method-get-delegation-ns-ip-addresses
-[Get-Del-NS-Names-and-IPs]:      #method-get-delegation-ns-names-and-ip-addresses
-[Get-Del-NS-Names]:              #method-get-delegation-ns-names
-[Get-Delegation]:                #method-get-delegation-internal
-[Get-IB-Addr-in-Zone]:           #method-get-in-bailiwick-address-records-in-zone-internal
-[Get-OOB-IPs]:                   #method-get-out-of-bailiwick-ip-addresses-internal
-[Get-Parent-Zone]:               #method-get-parent-zone
-[Get-Undel-Data]:                #method-get-data-for-undelegated-test-internal
-[Get-Zone-NS-IPs]:               #method-get-zone-ns-ip-addresses
-[Get-Zone-NS-Names-and-IPs]:     #method-get-zone-ns-names-and-ip-addresses
-[Get-Zone-NS-Names]:             #method-get-zone-ns-names
-[Glue records]:                  #terminology
-[Glue records]:                  #terminology
-[In-bailiwick]:                  #terminology
-[Internal Method]:               #internal-methods
-[List of Root Servers]:          https://www.iana.org/domains/root/servers
-[Method1]:                       Methods.md#method-1-obtain-the-parent-domain
-[Method2]:                       Methods.md#method-2-obtain-glue-name-records-from-parent
-[Method3]:                       Methods.md#method-3-obtain-name-servers-from-child
-[Method4]:                       Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]:                       Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[Methods]:                       Methods.md
-[Out-of-bailiwick]:              #terminology
-[RFC 8499]:                      https://datatracker.ietf.org/doc/html/rfc8499#section-7
-[To top]:                        #methods-common-to-test-case-specifications-version-2
+
+[BASIC01]:                                           Basic-TP/basic01.md
+[DELEGATION05]:                                      Delegation-TP/delegation05.md
+[DNS Query and Response Defaults]:                   DNSQueryAndResponseDefaults.md
+[DNS Query]:                                         DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
+[DNS Response]:                                      DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
+[Get-Del-NS-IPs]:                                    #method-get-delegation-ns-ip-addresses
+[Get-Del-NS-Names-and-IPs]:                          #method-get-delegation-ns-names-and-ip-addresses
+[Get-Del-NS-Names]:                                  #method-get-delegation-ns-names
+[Get-Delegation]:                                    #method-get-delegation-internal
+[Get-IB-Addr-in-Zone]:                               #method-get-in-bailiwick-address-records-in-zone-internal
+[Get-OOB-IPs]:                                       #method-get-out-of-bailiwick-ip-addresses-internal
+[Get-Parent-NS-IP]:                                  #method-get-parent-ns-ip-addresses
+[Get-Undel-Data]:                                    #method-get-data-for-undelegated-test-internal
+[Get-Zone-NS-IPs]:                                   #method-get-zone-ns-ip-addresses
+[Get-Zone-NS-Names-and-IPs]:                         #method-get-zone-ns-names-and-ip-addresses
+[Get-Zone-NS-Names]:                                 #method-get-zone-ns-names
+[Glue records]:                                      #terminology
+[Glue records]:                                      #terminology
+[In-bailiwick]:                                      #terminology
+[Internal Method]:                                   #internal-methods
+[List of Root Servers]:                              https://www.iana.org/domains/root/servers
+[Method1]:                                           Methods.md#method-1-obtain-the-parent-domain
+[Method2]:                                           Methods.md#method-2-obtain-glue-name-records-from-parent
+[Method3]:                                           Methods.md#method-3-obtain-name-servers-from-child
+[Method4]:                                           Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                                           Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[Methods]:                                           Methods.md
+[Out-of-bailiwick]:                                  #terminology
+[RCODE Name]:                                        https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[RFC 8499]:                                          https://datatracker.ietf.org/doc/html/rfc8499#section-7
+[Sending]:                                           #terminology
+[To top]:                                            #methods-common-to-test-case-specifications-version-2
