@@ -11,18 +11,16 @@ Release process - Release
 * [6. Set all version numbers](#6-set-all-version-numbers)
 * [7. Update Makefile.PL with required version](#7-update-makefilepl-with-required-version)
 * [8. Create a clean Git working area of *develop branch*](#8-create-a-clean-git-working-area-of-develop-branch)
-* [9. Generate Makefile, META.yml and others](#9-generate-makefile-metayml-and-others)
-* [10. Verify that MANIFEST is up to date and that tarball can be built](#10-verify-that-manifest-is-up-to-date-and-that-tarball-can-be-built)
-* [11. Produce distribution tarballs](#11-produce-distribution-tarballs)
-* [12. Produce distribution zip file](#12-produce-distribution-zip-file)
-* [13. Update Zonemaster repository main _README.md_](#13-update-zonemaster-repository-main-readmemd)
-* [14. Generate documents](#14-generate-documents)
-* [15. Upload to CPAN](#15-upload-to-cpan)
-* [16. Merge develop branch into master](#16-merge-develop-branch-into-master)
-* [17. Create Docker images and upload image to Docker Hub](#17-create-docker-images-and-upload-image-to-docker-hub)
-* [18. Tag the release with git](#18-tag-the-release-with-git)
-* [19. Announce the release](#19-announce-the-release)
-* [20. Merge master into develop](#20-merge-master-into-develop)
+* [9. Produce distribution tarballs](#9-produce-distribution-tarballs)
+* [10. Produce distribution zip file](#10-produce-distribution-zip-file)
+* [11. Update Zonemaster repository main _README.md_](#11-update-zonemaster-repository-main-readmemd)
+* [12. Generate documents](#12-generate-documents)
+* [13. Upload to CPAN](#13-upload-to-cpan)
+* [14. Merge develop branch into master](#14-merge-develop-branch-into-master)
+* [15. Create Docker images and upload image to Docker Hub](#15-create-docker-images-and-upload-image-to-docker-hub)
+* [16. Tag the release with git](#16-tag-the-release-with-git)
+* [17. Announce the release](#17-announce-the-release)
+* [18. Merge master into develop](#18-merge-master-into-develop)
 * [Appendix A on version number in Makefile.PL](#appendix-a-on-version-number-in-makefilepl)
 * [Appendix B on how to verify merge develop branch into master branch](#appendix-b-on-how-to-verify-merge-develop-branch-into-master-branch)
 
@@ -35,6 +33,7 @@ To run the steps below a build system is needed. See
 
 > **Note:** *Normally, the develop branch version of this document should be used.*
 
+[(Top)](#table-of-contents)
 
 ## 2. Applicable components
 
@@ -50,12 +49,14 @@ The components should be released in the following order:
  * zonemaster-gui
  * Zonemaster/Zonemaster
 
+[(Top)](#table-of-contents)
 
 ## 3. Updates to repositories
 
 All updates to *develop branch* and *master branch* should go via pull
 requests following the usual process. That is just assumed here.
 
+[(Top)](#table-of-contents)
 
 ## 4. Determine the new version number
 
@@ -66,6 +67,7 @@ Each component listed above should have its version number. The Zonemaster
 Product (Zonemaster/Zonemaster) version number also refer to the version
 of the other components.
 
+[(Top)](#table-of-contents)
 
 ## 5. Update the Changes file
 
@@ -82,6 +84,7 @@ The updates to the *Changes* file are done to the *develop branch*.
  * zonemaster-gui - [Changes GUI]
  * Zonemaster/Zonemaster - [Changes Zonemaster]
  
+[(Top)](#table-of-contents)
 
 ## 6. Set all version numbers
 
@@ -105,6 +108,8 @@ The GUI has no Perl. Update the following files in the *develop branch*:
      - The file `package-lock.json` is ignored
    - [src/environments/version.ts][Version.ts GUI]
      - "version" should point at the version number.
+
+[(Top)](#table-of-contents)
 
 ## 7. Update Makefile.PL with required version
 
@@ -138,88 +143,58 @@ requires 'Zonemaster::Engine' => 4.000;
 requires 'Zonemaster::LDNS'   => 2.001;
 ```
 
+[(Top)](#table-of-contents)
+
 ## 8. Create a clean Git working area of *develop branch*
 
-Make sure that you have checked out the `develop` branch and
-that your clone is up-to-date.
+Make sure that you have checked out the `develop` branch and that your clone is
+up-to-date. Make sure your working directory is clean. Or clean it.
+```
+git fetch --all
+git branch
+```
+```
+git status --ignored
+```
+```
+git clean -dfx
+git reset --hard
+```
 
-       git fetch --all
-       git branch
+[(Top)](#table-of-contents)
 
-Make sure your working directory is clean.
-
-       git status --ignored
-
-To clean:
-
-       git clean -dfx
-       git reset --hard
-
-
-## 9. Generate Makefile, META.yml and others
-
-> This section is not relevant for Zonemaster-GUI or Zonemaster/Zonemaster
-
- * For Zonemaster-LDNS:
-
-       perl Makefile.PL --no-ed25519
-
- * For all components except Zonemaster-LDNS:
-
-       perl Makefile.PL
-
-> **Note: You can ignore the following warnings:**
-> * Missing META.yml (created by the very same command).
-> * Zonemaster-LDNS: Missing ldns source files (fetched by the very same command).
-> * Zonemaster-Engine and Zonemaster-CLI: Missing .mo files (created in a later step).
-> * Missing prerequisite (only needed on target system), e.g.:
->   * "Warning: prerequisite JSON::XS 0 not found."
-
-
-## 10. Verify that MANIFEST is up to date and that tarball can be built
+## 9. Produce distribution tarballs
 
 > This section is not relevant for Zonemaster-GUI or Zonemaster/Zonemaster
 
-Build generated files (if any) and verify that a distribution tarball can be 
-successfully built for each component that is to be updated in this release.
+See [Release process - Create Test Distribution], sections 4-6 for more details
+and what warnings that could be ignored.
+```
+perl Makefile.PL --no-ed25519 # For Zonemaster-LDNS:
+```
+```
+perl Makefile.PL              # For other components
+```
+```
+make all                      # For all
+make distcheck
+make dist
+```
+[(Top)](#table-of-contents)
 
-    make all
-
-For all components, make sure that all files are covered by MANIFEST and/or 
-MANIFEST.SKIP, i.e. no missing or extra files:
-
-    make distcheck
-
-
-## 11. Produce distribution tarballs
-
-> This section is not relevant for Zonemaster-GUI or Zonemaster/Zonemaster
-
-    make dist
-
-
-## 12. Produce distribution zip file
+## 10. Produce distribution zip file
 
 > This section is relevant for Zonemaster-GUI only.
 
 For this you need a [build environment for Node.js], on which you create
-the zip file.
-
-Clone the Zonemaster-GUI git repository:
-
-1. `git clone -b develop https://github.com/zonemaster/zonemaster-gui.git`
-2. `cd zonemaster-gui`
-
-If you already have the repository:
-
-1. `cd zonemaster-gui`
-2. `git fetch --all`
-3. `git checkout origin/develop`
+the zip file. See [Release process - Create Test Distribution], sections 7
+for more details
 
 Build the distribution zip file:
-
-1. `npm install` 
-2. `npm run release`
+```
+npm install
+npm run release
+```
 
 > You can ignore warnings and security fixes at this stage, and do not run 
 > any `npm audit fix`.
@@ -227,8 +202,9 @@ Build the distribution zip file:
 The distribution zip file is in the root level of the zonemaster-gui folder. 
 Its name is `zonemaster_web_gui.zip`.
 
+[(Top)](#table-of-contents)
 
-## 13. Update Zonemaster repository main _README.md_
+## 11. Update Zonemaster repository main _README.md_
 
 > This section is relevant for Zonemaster/Zonemaster only.
 
@@ -237,8 +213,9 @@ If needed, update the following section of the Zonemaster repository main
 
 * Notable bugs and issues
 
+[(Top)](#table-of-contents)
 
-## 14. Generate documents
+## 12. Generate documents
 
 > This section is relevant for Zonemaster/Zonemaster only.
 
@@ -254,9 +231,11 @@ updated this section can be skipped.
    directory.
 4. If any of the created files has been updated (`git status`) then it
    should be added to the *develop branch* via a pull request.
+5. No reviewer or approval is required for this change.
 
+[(Top)](#table-of-contents)
 
-## 15. Upload to CPAN
+## 13. Upload to CPAN
 
 > This section is not relevant for Zonemaster-GUI or Zonemaster/Zonemaster.
 
@@ -265,8 +244,9 @@ distribution tarball created following this document on CPAN.
 Currently we use the organizational account [ZNMSTR] on [PAUSE] for doing
 this.
 
+[(Top)](#table-of-contents)
 
-## 16. Merge develop branch into master
+## 14. Merge develop branch into master
 
 > For the steps in this section, it is assumed that the git "remote"
 > which is called "origin" points at "zonemaster/zonemaster.git",
@@ -296,20 +276,22 @@ Create a new branch named `merge-develop-into-master` with both *master* and
     # And we want the history of *develop* merged too
     git merge origin/develop
 
-Create a pull request from `merge-develop-into-master` into `master` and have it
-merged through the normal process.
+Create a pull request from `merge-develop-into-master` into `master` and merged
+it. No reviewer or approval is required for this update.
 
 In [Appendix B] it is shown how `merge-develop-into-master` can be verified.
 
+[(Top)](#table-of-contents)
 
-## 17. Create Docker images and upload image to Docker Hub
+## 15. Create Docker images and upload image to Docker Hub
 
 1. Follow the instructions in [Create Docker Image] to build a Docker images.
 2. Upload the Zonemaster-CLI image to [Docker Hub] for Zonemaster using the
    instructions in [Create Docker Image].
 
+[(Top)](#table-of-contents)
 
-## 18. Tag the release with git
+## 16. Tag the release with git
 
 For each repository, go to "releases" in Github and select "draft a new release".
 Use the version number as tag and create a new release description. Use the
@@ -330,17 +312,20 @@ The releases pages:
 * [Zonemaster-GUI Releases]
 * [Zonemaster Product Releases]
 
+[(Top)](#table-of-contents)
 
-## 19. Announce the release
+## 17. Announce the release
 
 Send emails to the mailing lists `zonemaster-users` and `zonemaster-announce`.
 
+[(Top)](#table-of-contents)
 
-## 20. Merge master into develop
+## 18. Merge master into develop
 
-Create a pull request from `master` on github back into `develop` and have it
-merged through the normal process.
+Create a pull request from `master` on github back into `develop` and merge
+it. No review or approval is required for this update.
 
+[(Top)](#table-of-contents)
 
 ## Appendix A on version number in Makefile.PL
 
@@ -370,6 +355,7 @@ library only has two levels ("X.Y") then other rules apply. Also note
 that the version in Zonemaster::Backend is speciefied as `X.Y.Z` without
 the "v", which may affect the version comparison.
 
+[(Top)](#table-of-contents)
 
 ## Appendix B on how to verify merge develop branch into master branch
 
@@ -400,42 +386,43 @@ If Github says that no files are updated, added or created, then
 branch `merge-develop-into-master` is correct, and a pull request into
 `master` branch (not `develop` branch) can be created.
 
+[(Top)](#table-of-contents)
 
 <!-- Zonemaster links point on purpose on the develop branch. -->
-[Appendix A]:                              #appendix-a-on-version-number-in-makefilepl
-[Appendix B]:                              #appendix-b-on-how-to-verify-merge-develop-branch-into-master-branch
-[Backend.pm]:                              https://github.com/zonemaster/zonemaster-backend/blob/develop/lib/Zonemaster/Backend.pm
-[Build Environment Preparation]:           ../distrib-testing/BuildEnvironmentPreparation.md
-[Build environment for Node.js]:           ../distrib-testing/Ubuntu-Node.js-build-environment.md
-[CI]:                                      https://github.com/travis-ci/travis-ci
-[CLI.pm]:                                  https://github.com/zonemaster/zonemaster-cli/blob/develop/lib/Zonemaster/CLI.pm
-[CPAN]:                                    https://www.cpan.org/
-[Changes Backend]:                         https://github.com/zonemaster/zonemaster-backend/blob/develop/Changes
-[Changes CLI]:                             https://github.com/zonemaster/zonemaster-cli/blob/develop/Changes
-[Changes Engine]:                          https://github.com/zonemaster/zonemaster-engine/blob/develop/Changes
-[Changes GUI]:                             https://github.com/zonemaster/zonemaster-gui/blob/develop/Changes
-[Changes LDNS]:                            https://github.com/zonemaster/zonemaster-ldns/blob/develop/Changes
-[Changes Zonemaster]:                      https://github.com/zonemaster/zonemaster-gui/blob/develop/Changes
-[Create Docker Image]:                     ReleaseProcess-create-docker-image.md
-[Docker Hub]:                              https://hub.docker.com/u/zonemaster
-[Engine.pm]:                               https://github.com/zonemaster/zonemaster-engine/blob/develop/lib/Zonemaster/Engine.pm
-[Installation.md GUI]:                     https://github.com/zonemaster/zonemaster-gui/blob/develop/docs/Installation.md
-[LDNS.pm]:                                 https://github.com/zonemaster/zonemaster-ldns/blob/develop/lib/Zonemaster/LDNS.pm
-[PAUSE]:                                   https://pause.perl.org/
-[Package.json GUI]:                        https://github.com/zonemaster/zonemaster-gui/blob/develop/package.json
-[Utils Zonemaster]:                        ../../../utils/
-[Version.ts GUI]:                          https://github.com/zonemaster/zonemaster-gui/blob/develop/src/environments/version.ts
-[Versions and releases]:                   ../../design/Versions%20and%20Releases.md
-[ZNMSTR]:                                  https://metacpan.org/author/ZNMSTR
-[Zonemaster Product Releases]:             https://github.com/zonemaster/zonemaster/releases
-[Zonemaster main README]:                  ../../../README.md
-[Zonemaster utils README]:                 ../../../utils/README.md
-[Zonemaster-Backend Makefile.PL]:          https://github.com/zonemaster/zonemaster-backend/blob/develop/Makefile.PL
-[Zonemaster-Backend Releases]:             https://github.com/zonemaster/zonemaster-backend/releases
-[Zonemaster-CLI Makefile.PL]:              https://github.com/zonemaster/zonemaster-cli/blob/develop/Makefile.PL
-[Zonemaster-CLI Releases]:                 https://github.com/zonemaster/zonemaster-cli/releases
-[Zonemaster-Engine Makefile.PL]:           https://github.com/zonemaster/zonemaster-engine/blob/develop/Makefile.PL
-[Zonemaster-Engine Releases]:              https://github.com/zonemaster/zonemaster-engine/releases
-[Zonemaster-GUI Releases]:                 https://github.com/zonemaster/zonemaster-gui/releases
-[Zonemaster-LDNS Releases]:                https://github.com/zonemaster/zonemaster-ldns/releases
-
+[Appendix A]:                                    #appendix-a-on-version-number-in-makefilepl
+[Appendix B]:                                    #appendix-b-on-how-to-verify-merge-develop-branch-into-master-branch
+[Backend.pm]:                                    https://github.com/zonemaster/zonemaster-backend/blob/develop/lib/Zonemaster/Backend.pm
+[Build Environment Preparation]:                 ../distrib-testing/BuildEnvironmentPreparation.md
+[Build environment for Node.js]:                 ../distrib-testing/Ubuntu-Node.js-build-environment.md
+[CI]:                                            https://github.com/travis-ci/travis-ci
+[CLI.pm]:                                        https://github.com/zonemaster/zonemaster-cli/blob/develop/lib/Zonemaster/CLI.pm
+[CPAN]:                                          https://www.cpan.org/
+[Changes Backend]:                               https://github.com/zonemaster/zonemaster-backend/blob/develop/Changes
+[Changes CLI]:                                   https://github.com/zonemaster/zonemaster-cli/blob/develop/Changes
+[Changes Engine]:                                https://github.com/zonemaster/zonemaster-engine/blob/develop/Changes
+[Changes GUI]:                                   https://github.com/zonemaster/zonemaster-gui/blob/develop/Changes
+[Changes LDNS]:                                  https://github.com/zonemaster/zonemaster-ldns/blob/develop/Changes
+[Changes Zonemaster]:                            https://github.com/zonemaster/zonemaster-gui/blob/develop/Changes
+[Create Docker Image]:                           ReleaseProcess-create-docker-image.md
+[Docker Hub]:                                    https://hub.docker.com/u/zonemaster
+[Engine.pm]:                                     https://github.com/zonemaster/zonemaster-engine/blob/develop/lib/Zonemaster/Engine.pm
+[Installation.md GUI]:                           https://github.com/zonemaster/zonemaster-gui/blob/develop/docs/Installation.md
+[LDNS.pm]:                                       https://github.com/zonemaster/zonemaster-ldns/blob/develop/lib/Zonemaster/LDNS.pm
+[PAUSE]:                                         https://pause.perl.org/
+[Package.json GUI]:                              https://github.com/zonemaster/zonemaster-gui/blob/develop/package.json
+[Release process - Create Test Distribution]:    ReleaseProcess-create-test-distribution.md
+[Utils Zonemaster]:                              ../../../utils/
+[Version.ts GUI]:                                https://github.com/zonemaster/zonemaster-gui/blob/develop/src/environments/version.ts
+[Versions and releases]:                         ../../design/Versions%20and%20Releases.md
+[ZNMSTR]:                                        https://metacpan.org/author/ZNMSTR
+[Zonemaster Product Releases]:                   https://github.com/zonemaster/zonemaster/releases
+[Zonemaster main README]:                        ../../../README.md
+[Zonemaster utils README]:                       ../../../utils/README.md
+[Zonemaster-Backend Makefile.PL]:                https://github.com/zonemaster/zonemaster-backend/blob/develop/Makefile.PL
+[Zonemaster-Backend Releases]:                   https://github.com/zonemaster/zonemaster-backend/releases
+[Zonemaster-CLI Makefile.PL]:                    https://github.com/zonemaster/zonemaster-cli/blob/develop/Makefile.PL
+[Zonemaster-CLI Releases]:                       https://github.com/zonemaster/zonemaster-cli/releases
+[Zonemaster-Engine Makefile.PL]:                 https://github.com/zonemaster/zonemaster-engine/blob/develop/Makefile.PL
+[Zonemaster-Engine Releases]:                    https://github.com/zonemaster/zonemaster-engine/releases
+[Zonemaster-GUI Releases]:                       https://github.com/zonemaster/zonemaster-gui/releases
+[Zonemaster-LDNS Releases]:                      https://github.com/zonemaster/zonemaster-ldns/releases
