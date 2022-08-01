@@ -31,10 +31,6 @@ If [RFC 8624][RFC 8624#3.3] and the
 digest algorithm, the RFC takes precedence until the registry has a been updated
 with a reference to the RFC.
 
-At the time of writing (2020-04-08), algorithm 1 (SHA-1) is still in wide use
-even though it is no longer considered to be secure
-([Wikipedia][Wikipedia on SHA1]).
-
 The table of algorithms below is for reference only and is copied from
 [IANA registry][IANA registry on DS Digest Algorithm]. It is here to make it
 easier to read the steps when symbolic names are given. This is only an excerpt
@@ -95,7 +91,6 @@ DS01_DS_ALGO_DEPRECATED        | ERROR   | ns_ip_list, algo_mnemo, algo_num, key
 DS01_DS_ALGO_2_MISSING         | NOTICE  |                                          | DS created with algo 2 (SHA-256) is missing.
 DS01_DS_ALGO_NOT_DS            | ERROR   | ns_ip_list, algo_mnemo, algo_num, keytag | The DS digest algorithm is not for DS.
 DS01_DS_ALGO_RESERVED          | ERROR   | ns_ip_list, algo_mnemo, algo_num, keytag | No DS digest algorithm defined for the digest code.
-DS01_DS_ALGO_SHA1_DEPRECATED   | WARNING | ns_ip_list, algo_mnemo, algo_num, keytag | The DS SHA1 digest algorithm is deprecated.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be overridden in the [Zonemaster-Engine profile]. Also see the
@@ -125,16 +120,13 @@ queries follow, unless otherwise specified below, what is specified for
        2. If *Digest Code* is 0 then output *[DS01_DS_ALGO_NOT_DS]* with
           *Digest Code* and *Key Tag*. Set IP address as "-".
 
-       3. If *Digest Code* is 1 then output *[DS01_DS_ALGO_SHA1_DEPRECATED]*
-          with *Digest Code* and *Key Tag*. Set IP address as "-".
-
-       4. If *Digest Code* is 3 then output *[DS01_DS_ALGO_DEPRECATED]* with
+       3. If *Digest Code* is 1 or 3 then output *[DS01_DS_ALGO_DEPRECATED]* with
           *Digest Code* and *Key Tag*. Set IP address as "-".
 
-       5. If *Digest Code* is 5-255 then output *[DS01_DS_ALGO_RESERVED]* with
+       4. If *Digest Code* is 5-255 then output *[DS01_DS_ALGO_RESERVED]* with
           *Digest Code* and *Key tag*. Set IP address as "-".
 
-       6. Verify if the Zonemaster implementation can create a digest of any
+       5. Verify if the Zonemaster implementation can create a digest of any
           valid DNSKEY record using *Digest Code*. If the verification fails
           output *[DS01_DIGEST_NOT_SUPPORTED_BY_ZM]* with *Digest Code* and
           *Key tag*. Set IP address as "-".
@@ -180,13 +172,11 @@ queries follow, unless otherwise specified below, what is specified for
 
     1. If *Digest Code* is 0 then output *[DS01_DS_ALGO_NOT_DS]* with
       *Digest Code*, *Key Tag* and list of name server IP addresses.
-    2. If *Digest Code* is 1 then output *[DS01_DS_ALGO_SHA1_DEPRECATED]* with
+    2. If *Digest Code* is 1 or 3 then output *[DS01_DS_ALGO_DEPRECATED]* with
        *Digest Code*, *Key Tag* and list of name server IP addresses.
-    3. If *Digest Code* is 3 then output *[DS01_DS_ALGO_DEPRECATED]* with
+    3. If *Digest Code* is 5-255 then output *[DS01_DS_ALGO_RESERVED]* with
        *Digest Code*, *Key Tag* and list of name server IP addresses.
-    4. If *Digest Code* is 5-255 then output *[DS01_DS_ALGO_RESERVED]* with
-       *Digest Code*, *Key Tag* and list of name server IP addresses.
-    5. Verify that the Zonemaster implementation can create a digest of any valid
+    4. Verify that the Zonemaster implementation can create a digest of any valid
        DNSKEY record using *Digest Code*. If the verification fails output
        *[DS01_DIGEST_NOT_SUPPORTED_BY_ZM]* with *Digest Code*, *Key Tag* and list
        of name server IP addresses.
@@ -238,7 +228,6 @@ No special terminology for this test case.
 [DS01_DS_ALGO_DEPRECATED]:                            #Summary
 [DS01_DS_ALGO_NOT_DS]:                                #Summary
 [DS01_DS_ALGO_RESERVED]:                              #Summary
-[DS01_DS_ALGO_SHA1_DEPRECATED]:                       #Summary
 [ERROR]:                                              ../SeverityLevelDefinitions.md#error
 [IANA RCODE List]:                                    https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [IANA registry on DS Digest Algorithm]:               https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xml
@@ -249,5 +238,4 @@ No special terminology for this test case.
 [Severity Level Definitions]:                         ../SeverityLevelDefinitions.md
 [Undelegated]:                                        ../../test-types/undelegated-test.md
 [WARNING]:                                            ../SeverityLevelDefinitions.md#warning
-[Wikipedia on SHA1]:                                  https://en.wikipedia.org/wiki/SHA-1
 [Zonemaster-Engine profile]:                          https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
