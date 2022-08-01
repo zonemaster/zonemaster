@@ -146,25 +146,25 @@ No special terminology for this test case.
 
 
 [Argument list]:                                                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[B04_MISSING_NS_RECORD]:          #summary
-[B04_MISSING_SOA_RECORD]:         #summary
-[B04_NO_RESPONSE]:                #summary
-[B04_NO_RESPONSE_NS_QUERY]:       #summary
-[B04_NO_RESPONSE_SOA_QUERY]:      #summary
-[B04_NS_RECORD_NOT_AA]:           #summary
-[B04_RESPONSE_TCP_NOT_UDP]:       #summary
-[B04_SOA_RECORD_NOT_AA]:          #summary
-[B04_UNEXPECTED_RCODE_NS_QUERY]:  #summary
-[B04_UNEXPECTED_RCODE_SOA_QUERY]: #summary
-[B04_WRONG_NS_RECORD]:            #summary
-[B04_WRONG_SOA_RECORD]:           #summary
-[Basic02]:                        basic02.md
+[B04_MISSING_NS_RECORD]:                                          #summary
+[B04_MISSING_SOA_RECORD]:                                         #summary
+[B04_NO_RESPONSE]:                                                #summary
+[B04_NO_RESPONSE_NS_QUERY]:                                       #summary
+[B04_NO_RESPONSE_SOA_QUERY]:                                      #summary
+[B04_NS_RECORD_NOT_AA]:                                           #summary
+[B04_RESPONSE_TCP_NOT_UDP]:                                       #summary
+[B04_SOA_RECORD_NOT_AA]:                                          #summary
+[B04_UNEXPECTED_RCODE_NS_QUERY]:                                  #summary
+[B04_UNEXPECTED_RCODE_SOA_QUERY]:                                 #summary
+[B04_WRONG_NS_RECORD]:                                            #summary
+[B04_WRONG_SOA_RECORD]:                                           #summary
+[Basic02]:                                                        basic02.md
 [CRITICAL]:                                                       ../SeverityLevelDefinitions.md#critical
 [DEBUG]:                                                          ../SeverityLevelDefinitions.md#notice
 [ERROR]:                                                          ../SeverityLevelDefinitions.md#error
 [INFO]:                                                           ../SeverityLevelDefinitions.md#info
-[Method4]:                        ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]:                        ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[Method4]:                                                        ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                                                        ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NOTICE]:                                                         ../SeverityLevelDefinitions.md#notice
 [Severity Level Definitions]:                                     ../SeverityLevelDefinitions.md
 [WARNING]:                                                        ../SeverityLevelDefinitions.md#warning
