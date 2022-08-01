@@ -76,27 +76,35 @@ message. The argument names are defined in the [argument list].
 
 ## Test procedure
 
-1. Create a SOA query for the *Child Zone* without any OPT record (no EDNS).
+In this section and unless otherwise specified below, the term "[DNS Query]"
+follows the specification for DNS queries as specified in
+[DNS Query and Response Defaults]. The handling of the DNS responses on the DNS
+queries follow, unless otherwise specified below, what is specified for
+[DNS Response] in the same specification.
 
-2. Create a NS query for the *Child Zone* without any OPT record (no EDNS).
+1. Create [DNS Queries][DNS Query] over UDP:
+   1. Query type SOA and query name *Child Zone* ("SOA Query UDP").
+   1. Query type NS and query name *Child Zone* ("NS Query UDP").
+
+2. Create [DNS Query] over TCP:
+   1. Query type SOA and query name *Child Zone* ("SOA Query TCP").
 
 3. Obtain the set of name server IP addresses using [Method4] and [Method5]
    ("Name Server IP").
 
 4. For each name server in *Name Server IP* do:
 
-   1. Send the SOA query over UDP and the NS query over UDP to the name server
-      and collect the responses.
-   2. If there is no DNS response on neither query (UDP), then:
-      1. Send the SOA query over TCP to the name server and collect the
-         response.
-      2. If there is no DNS response on the TCP query, then output
-         *[B04_NO_RESPONSE]* and go to next server.
-      3. Else (there is a DNS response over TCP), then output 
-         *[B04_RESPONSE_TCP_NOT_UDP]* and go to next server.
+   1. Send *SOA Query UDP* and *NS Query UDP* to the name server and collect
+      the [DNS Responses][DNS Response].
+   2. If there is no DNS response on neither query), then:
+      1. Send *SOA Query TCP* to the name server and collect the [DNS Response].
+      2. If there is no [DNS Response], then output *[B04_NO_RESPONSE]* and go
+         to next server.
+      3. Else, then output *[B04_RESPONSE_TCP_NOT_UDP]* and go to next server.
    3. Else:
-      1. Process the response on the SOA query (UDP):
-         1. If there is no response, then output *[B04_NO_RESPONSE_SOA_QUERY]*.
+      1. Process the response on *SOA Query UDP*:
+         1. If there is no [DNS response], then output
+            *[B04_NO_RESPONSE_SOA_QUERY]*.
          2. Else, if the RCODE is not "NOERROR" then output
             *[B04_UNEXPECTED_RCODE_SOA_QUERY]*.
          3. Else, if there is no SOA record in the answer section, then
@@ -104,8 +112,9 @@ message. The argument names are defined in the [argument list].
          4. Else, if the SOA record has owner name other than *Child Zone*
             then output *[B04_WRONG_SOA_RECORD]*.
          5. Else, AA flag is unset, then output *[B04_SOA_RECORD_NOT_AA]*.
-      2. Process the response on the NS query (UDP):
-         1. If there is no response, then output *[B04_NO_RESPONSE_NS_QUERY]*.
+      2. Process the response on *NS Query UDP*:
+         1. If there is no [DNS Response], then output
+            *[B04_NO_RESPONSE_NS_QUERY]*.
          2. Else, if the RCODE is not "NOERROR" then output
             *[B04_UNEXPECTED_RCODE_NS_QUERY]*.
          3. Else, if there is no NS record in the answer section, then
@@ -161,6 +170,9 @@ No special terminology for this test case.
 [Basic02]:                                                        basic02.md
 [CRITICAL]:                                                       ../SeverityLevelDefinitions.md#critical
 [DEBUG]:                                                          ../SeverityLevelDefinitions.md#notice
+[DNS Query and Response Defaults]:                                ../DNSQueryAndResponseDefaults.md
+[DNS Query]:                                                      ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
+[DNS Response]:                                                   ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
 [ERROR]:                                                          ../SeverityLevelDefinitions.md#error
 [INFO]:                                                           ../SeverityLevelDefinitions.md#info
 [Method4]:                                                        ../Methods.md#method-4-obtain-glue-address-records-from-parent
