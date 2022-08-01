@@ -3,6 +3,20 @@
 ## Test case identifier
 **BASIC04**
 
+
+## Table of contents
+
+* [Objective](#Objective)
+* [Scope](#Scope)
+* [Inputs](#Inputs)
+* [Summary](#Summary)
+* [Test procedure](#Test-procedure)
+* [Outcome(s)](#Outcomes)
+* [Special procedural requirements](#Special-procedural-requirements)
+* [Intercase dependencies](#Intercase-dependencies)
+* [Terminology](#terminology)
+
+
 ## Objective
 
 Many test cases will query the name servers in the delegation or the
@@ -23,15 +37,44 @@ report problems found in the following areas:
 * Name Server responding with unexpected RCODE (any except "NOERROR")
   on query for SOA or NS for *Child Zone*.
 
+
+## Scope
+
 This test case is expected to run before [Basic02] but neither its
 execution nor outcome are dependent on the order.
+
 
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
 
 
-## Ordered description of steps to be taken to execute the test case
+## Summary
+
+Message Tag                       | Level   | Arguments            | Message ID for message tag
+:---------------------------------|:--------|:---------------------|:---------------------------------------------------------------------------------
+B04_MISSING_NS_RECORD             | WARNING | ns                   | Nameserver {ns} reponds to a NS query with no NS records in the answer section.
+B04_MISSING_SOA_RECORD            | WARNING | ns                   | Nameserver {ns} reponds to a SOA query with no SOA records in the answer section.
+B04_NO_RESPONSE                   | WARNING | ns                   | Nameserver {ns} does not respond over neither UDP nor TCP.
+B04_NO_RESPONSE_NS_QUERY          | WARNING | ns                   | Nameserver {ns} does not respond to NS queries.
+B04_NO_RESPONSE_SOA_QUERY         | WARNING | ns                   | Nameserver {ns} does not respond to SOA queries.
+B04_NS_RECORD_NOT_AA              | WARNING | ns                   | Nameserver {ns} does not give an authoritative response on an NS query.
+B04_RESPONSE_TCP_NOT_UDP          | WARNING | ns                   | Nameserver {ns} does not respond over UDP.
+B04_SOA_RECORD_NOT_AA             | WARNING | ns                   | Nameserver {ns} does not give an authoritative response on an SOA query.
+B04_UNEXPECTED_RCODE_NS_QUERY     | WARNING | ns                   | Nameserver {ns} responds with an unexpected RCODE ({rcode}) on an NS query.
+B04_UNEXPECTED_RCODE_SOA_QUERY    | WARNING | ns                   | Nameserver {ns} responds with an unexpected RCODE ({rcode}) on an SOA query.
+B04_WRONG_NS_RECORD               | WARNING | ns                   | Nameserver {ns} responds with a wrong owner name ({owner} instead of {name}) on NS queries.
+B04_WRONG_SOA_RECORD              | WARNING | ns                   | Nameserver {ns} responds with a wrong owner name ({owner} instead of {name}) on SOA queries.
+
+The value in the Level column is the default severity level of the message. The
+severity level can be changed in the [Zonemaster-Engine profile]. Also see the
+[Severity Level Definitions] document.
+
+The argument names in the Arguments column lists the arguments used in the
+message. The argument names are defined in the [argument list].
+
+
+## Test procedure
 
 1. Create a SOA query for the *Child Zone* without any OPT record (no EDNS).
 
@@ -71,54 +114,60 @@ execution nor outcome are dependent on the order.
             then output *[B04_WRONG_NS_RECORD]*.
          5. Else, AA flag is unset, then output *[B04_NS_RECORD_NOT_AA]*.
 
+
 ## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
-with the severity level *ERROR* or *CRITICAL*.
+with the severity level *[ERROR]* or *[CRITICAL]*.
 
 The outcome of this Test Case is "warning" if there is at least one message
-with the severity level *WARNING*, but no message with severity level
+with the severity level *[WARNING]*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
-The outcome of this Test case is "pass" in all other cases.
+In other cases, no message or only messages with severity level
+*[INFO]* or *[NOTICE]*, the outcome of this Test Case is "pass".
 
-Message                           | Default severity level of message
-:---------------------------------|:-----------------------------------
-B04_MISSING_NS_RECORD             | WARNING
-B04_MISSING_SOA_RECORD            | WARNING
-B04_NO_RESPONSE                   | WARNING
-B04_NO_RESPONSE_NS_QUERY          | WARNING
-B04_NO_RESPONSE_SOA_QUERY         | WARNING
-B04_NS_RECORD_NOT_AA              | WARNING
-B04_RESPONSE_TCP_NOT_UDP          | WARNING
-B04_SOA_RECORD_NOT_AA             | WARNING
-B04_UNEXPECTED_RCODE_NS_QUERY     | WARNING
-B04_UNEXPECTED_RCODE_SOA_QUERY    | WARNING
-B04_WRONG_NS_RECORD               | WARNING
-B04_WRONG_SOA_RECORD              | WARNING
 
 ## Special procedural requirements	
 
-If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
-result of any test using this transport protocol and log a message reporting
-the ignored result.
+If either IPv4 or IPv6 transport is disabled, skip sending queries over that
+transport protocol. A message will be outputted reporting that the transport
+protocol has been skipped.
+
 
 ## Intercase dependencies
 
 None.
 
-[B04_MISSING_NS_RECORD]:          #outcomes
-[B04_MISSING_SOA_RECORD]:         #outcomes
-[B04_NO_RESPONSE]:                #outcomes
-[B04_NO_RESPONSE_NS_QUERY]:       #outcomes
-[B04_NO_RESPONSE_SOA_QUERY]:      #outcomes
-[B04_NS_RECORD_NOT_AA]:           #outcomes
-[B04_RESPONSE_TCP_NOT_UDP]:       #outcomes
-[B04_SOA_RECORD_NOT_AA]:          #outcomes
-[B04_UNEXPECTED_RCODE_NS_QUERY]:  #outcomes
-[B04_UNEXPECTED_RCODE_SOA_QUERY]: #outcomes
-[B04_WRONG_NS_RECORD]:            #outcomes
-[B04_WRONG_SOA_RECORD]:           #outcomes
+
+## Terminology
+
+No special terminology for this test case.
+
+
+[Argument list]:                                                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[B04_MISSING_NS_RECORD]:          #summary
+[B04_MISSING_SOA_RECORD]:         #summary
+[B04_NO_RESPONSE]:                #summary
+[B04_NO_RESPONSE_NS_QUERY]:       #summary
+[B04_NO_RESPONSE_SOA_QUERY]:      #summary
+[B04_NS_RECORD_NOT_AA]:           #summary
+[B04_RESPONSE_TCP_NOT_UDP]:       #summary
+[B04_SOA_RECORD_NOT_AA]:          #summary
+[B04_UNEXPECTED_RCODE_NS_QUERY]:  #summary
+[B04_UNEXPECTED_RCODE_SOA_QUERY]: #summary
+[B04_WRONG_NS_RECORD]:            #summary
+[B04_WRONG_SOA_RECORD]:           #summary
 [Basic02]:                        basic02.md
+[CRITICAL]:                                                       ../SeverityLevelDefinitions.md#critical
+[DEBUG]:                                                          ../SeverityLevelDefinitions.md#notice
+[ERROR]:                                                          ../SeverityLevelDefinitions.md#error
+[INFO]:                                                           ../SeverityLevelDefinitions.md#info
 [Method4]:                        ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                        ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[NOTICE]:                                                         ../SeverityLevelDefinitions.md#notice
+[Severity Level Definitions]:                                     ../SeverityLevelDefinitions.md
+[WARNING]:                                                        ../SeverityLevelDefinitions.md#warning
+[Zonemaster-Engine profile]:                                      https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+
+
