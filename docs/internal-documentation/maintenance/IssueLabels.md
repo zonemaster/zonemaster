@@ -3,12 +3,12 @@
 ## Label categories
 
 The table below defines the labels to be used when classifying issues and pull requests. There
-are three categories of labels defined:
+are four categories of labels defined:
 
-* Area that the issue covers
-* Priority of issue
-* Status for Issue or PR
-* Issue or PR type
+* Area
+* Priority
+* Status
+* Issue
 
 # Usage
 
@@ -16,7 +16,7 @@ A label from *Area* and *Type* should be attached to an issue or pull request,
 when applicable.
 
 One label from *Priority* could be attached to an issue, or else the issue is considered
-to have normal priority. A priority label could also be set on a pull request, if applicable.
+to have normal priority. Similarly, the same could be done for a pull request.
 
 A label from *Status* can be used if applicable.
 
@@ -27,7 +27,7 @@ Category | Label            | Color  | Used in repository | Scope |Description
 Area     | A-Documentation  | green  | all                | Both  | Area: Documentation only.
 Area     | A-TestCase       | green  | "main" or Engine   | Both  | Area: Test case specification or implementation of test case.
 Area     | A-Translation    | green  | all                | Both  | Area: Documentation of, implementation of or actual translation of text.
-Area     | FA-MethodNT      | green  | "main" or Engine   | Both  | Focus Area: Implementing and migrating to MethodNT for test cases.
+Area     | FA-MethodsV2     | green  | "main" or Engine   | Both  | Focus Area: Implementing and migrating to MethodsV2 for test cases.
 Priority | P-High           | red    | all                | Both  | Priority: Issue to be solved before other.
 Status   | S-ReleaseTested  | yellow | all                | PR    | Status: The PR has been successfully tested in release testing
 Status   | S-PRforIssue     | yellow | all                | Issue | Status: There is a PR that is meant to resolve the issue
