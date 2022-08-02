@@ -53,6 +53,8 @@ execution nor outcome are dependent on the order.
 
 Message Tag                       | Level   | Arguments            | Message ID for message tag
 :---------------------------------|:--------|:---------------------|:---------------------------------------------------------------------------------
+B04_IPV4_DISABLED                 | NOTICE  | ns_list              | IPv4 is disabled. No DNS queries have been sent to these name servers: "{ns_list}".
+B04_IPV6_DISABLED                 | NOTICE  | ns_list              | IPv6 is disabled. No DNS queries have been sent to these name servers: "{ns_list}".
 B04_MISSING_NS_RECORD             | WARNING | ns                   | Nameserver {ns} reponds to a NS query with no NS records in the answer section.
 B04_MISSING_SOA_RECORD            | WARNING | ns                   | Nameserver {ns} reponds to a SOA query with no SOA records in the answer section.
 B04_NO_RESPONSE                   | WARNING | ns                   | Nameserver {ns} does not respond over neither UDP nor TCP.
@@ -65,6 +67,7 @@ B04_UNEXPECTED_RCODE_NS_QUERY     | WARNING | ns                   | Nameserver 
 B04_UNEXPECTED_RCODE_SOA_QUERY    | WARNING | ns                   | Nameserver {ns} responds with an unexpected RCODE ({rcode}) on an SOA query.
 B04_WRONG_NS_RECORD               | WARNING | ns                   | Nameserver {ns} responds with a wrong owner name ({owner} instead of {name}) on NS queries.
 B04_WRONG_SOA_RECORD              | WARNING | ns                   | Nameserver {ns} responds with a wrong owner name ({owner} instead of {name}) on SOA queries.
+
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -92,7 +95,17 @@ queries follow, unless otherwise specified below, what is specified for
 3. Obtain the set of name server IP addresses using [Method4] and [Method5]
    ("Name Server IP").
 
-4. For each name server in *Name Server IP* do:
+4. If IPv4 is disabled then do:
+   1. Extract all name servers with IPv4 address from *Name Server IP*.
+   2. If the set of IPv4 name serververs is non-empty then output
+      *[B04_IPV4_DISABLED]* with the set of IPv4 name servers.
+
+5. If IPv6 is disabled then do:
+   1. Extract all name servers with IPv6 address from *Name Server IP*.
+   2. If the set of IPv6 name serververs is non-empty then output
+      *[B04_IPV6_DISABLED]* with the set of IPv6 name servers.
+
+6. For each name server in *Name Server IP* do:
 
    1. Send *SOA Query UDP* and *NS Query UDP* to the name server and collect
       the [DNS Responses][DNS Response].
@@ -155,6 +168,8 @@ No special terminology for this test case.
 
 
 [Argument list]:                                                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[B04_IPV4_DISABLED]:                                              #summary
+[B04_IPV6_DISABLED]:                                              #summary
 [B04_MISSING_NS_RECORD]:                                          #summary
 [B04_MISSING_SOA_RECORD]:                                         #summary
 [B04_NO_RESPONSE]:                                                #summary
