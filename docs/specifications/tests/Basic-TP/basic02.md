@@ -49,7 +49,7 @@ B03_AUTH_RESPONSE_SOA| DEBUG    |ns_list, domain| Authoritative answer on SOA qu
 B03_NO_DELEGATION    | CRITICAL | domain        | There is no delegation (name servers) for "{domain}" which means it does not exist as a zone.
 B03_NO_WORKING_NS    | CRITICAL | domain        | There is no working name server for "{domain}" so it is unreachable.
 B03_NS_BROKEN        | ERROR    | ns            | Broken response from name server "{ns}" on an SOA query.
-B03_NS_NOT_AUTH      | ERROR    | ns            | Name server "{ns}" does not give an authoritive answer on an SOA query.
+B03_NS_NOT_AUTH      | ERROR    | ns            | Name server "{ns}" does not give an authoritative answer on an SOA query.
 B03_NS_NO_IP_ADDR    | ERROR    | nsname        | Name server "{nsname}" cannot be resolved into an IP address.
 B03_NS_NO_RESPONSE   | WARNING  | ns            | Name server "{ns}" does not respond to an SOA query.
 B03_UNEXPECTED_RCODE | ERROR    | ns, rcode     | Name server "{ns}" responds with an unexpected RCODE name ("{rcode}") on an SOA query.
