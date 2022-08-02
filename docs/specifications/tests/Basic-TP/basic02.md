@@ -45,14 +45,14 @@ whole testing process, except for the [Basic03] test, is aborted.
 
 Message Tag          | Level    | Arguments     | Message ID for message tag
 :--------------------|:---------|:--------------|:--------------------------
-B03_AUTH_RESPONSE_SOA| DEBUG    |ns_list, domain| Authoritative answer on SOA query for "{domain}" is returned by name servers "{ns_list}".
-B03_NO_DELEGATION    | CRITICAL | domain        | There is no delegation (name servers) for "{domain}" which means it does not exist as a zone.
-B03_NO_WORKING_NS    | CRITICAL | domain        | There is no working name server for "{domain}" so it is unreachable.
-B03_NS_BROKEN        | ERROR    | ns            | Broken response from name server "{ns}" on an SOA query.
-B03_NS_NOT_AUTH      | ERROR    | ns            | Name server "{ns}" does not give an authoritative answer on an SOA query.
-B03_NS_NO_IP_ADDR    | ERROR    | nsname        | Name server "{nsname}" cannot be resolved into an IP address.
-B03_NS_NO_RESPONSE   | WARNING  | ns            | Name server "{ns}" does not respond to an SOA query.
-B03_UNEXPECTED_RCODE | ERROR    | ns, rcode     | Name server "{ns}" responds with an unexpected RCODE name ("{rcode}") on an SOA query.
+B02_AUTH_RESPONSE_SOA| DEBUG    |ns_list, domain| Authoritative answer on SOA query for "{domain}" is returned by name servers "{ns_list}".
+B02_NO_DELEGATION    | CRITICAL | domain        | There is no delegation (name servers) for "{domain}" which means it does not exist as a zone.
+B02_NO_WORKING_NS    | CRITICAL | domain        | There is no working name server for "{domain}" so it is unreachable.
+B02_NS_BROKEN        | ERROR    | ns            | Broken response from name server "{ns}" on an SOA query.
+B02_NS_NOT_AUTH      | ERROR    | ns            | Name server "{ns}" does not give an authoritative answer on an SOA query.
+B02_NS_NO_IP_ADDR    | ERROR    | nsname        | Name server "{nsname}" cannot be resolved into an IP address.
+B02_NS_NO_RESPONSE   | WARNING  | ns            | Name server "{ns}" does not respond to an SOA query.
+B02_UNEXPECTED_RCODE | ERROR    | ns, rcode     | Name server "{ns}" responds with an unexpected RCODE name ("{rcode}") on an SOA query.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -100,7 +100,7 @@ queries follow, unless otherwise specified below, what is specified for
          that name and add resolved addresses, if any, to the set.
 
 4. If the *Delegation NS* set is empty, then do:
-   1. Output *[B03_NO_DELEGATION]* with *Child Zone* name.
+   1. Output *[B02_NO_DELEGATION]* with *Child Zone* name.
    2. Exit these test procedures.
 
 5. Else, for each name server name in the *Delegation NS* set do:
@@ -134,23 +134,23 @@ queries follow, unless otherwise specified below, what is specified for
          2. Go to next name server.
 
 6. If the *Auth Response on SOA Query* set is non-empty, then:
-   1. Output *[B03_AUTH_RESPONSE_SOA]* with a list of name server name and IP address
+   1. Output *[B02_AUTH_RESPONSE_SOA]* with a list of name server name and IP address
       pairs derived from the set and with *Child Zone* name.
    2. Exit these test procedures.
 
 7. Else do:
-   1. Output *[B03_NO_WORKING_NS]* with *Child Zone* name.
+   1. Output *[B02_NO_WORKING_NS]* with *Child Zone* name.
    2. If the *Broken NS* set is non-empty then for each name server name and IP
-      address pair from the set output *[B03_NS_BROKEN]* with the pair.
+      address pair from the set output *[B02_NS_BROKEN]* with the pair.
    3. If the *NS not auth* set is non-empty then for each name server name and IP
-      address pair from the set output *[B03_NS_NOT_AUTH]* with the pair.
+      address pair from the set output *[B02_NS_NOT_AUTH]* with the pair.
    4. If the *NS Cannot Resolve Into IP* set is non-empty then for each name
-      server name output *[B03_NS_NO_IP_ADDR]* with the name server name.
+      server name output *[B02_NS_NO_IP_ADDR]* with the name server name.
    5. If the *No Response From NS* set is non-empty then for each name server name
-      and IP address pair from the set output *[B03_NS_NO_RESPONSE]* with the
+      and IP address pair from the set output *[B02_NS_NO_RESPONSE]* with the
       pair.
    6. If the *Unexpected RCODE* set is non-empty then for each name server name
-      and IP address pair from the set output *[B03_UNEXPECTED_RCODE]* with the
+      and IP address pair from the set output *[B02_UNEXPECTED_RCODE]* with the
       pair and the [RCODE Name] for the pair in the set.
 
 
@@ -190,14 +190,14 @@ None.
 
 
 [Argument list]:                                                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[B03_AUTH_RESPONSE_SOA]:                                          #outcomes
-[B03_NO_DELEGATION]:                                              #outcomes
-[B03_NO_WORKING_NS]:                                              #outcomes
-[B03_NS_BROKEN]:                                                  #outcomes
-[B03_NS_NOT_AUTH]:                                                #outcomes
-[B03_NS_NO_IP_ADDR]:                                              #outcomes
-[B03_NS_NO_RESPONSE]:                                             #outcomes
-[B03_UNEXPECTED_RCODE]:                                           #outcomes
+[B02_AUTH_RESPONSE_SOA]:                                          #outcomes
+[B02_NO_DELEGATION]:                                              #outcomes
+[B02_NO_WORKING_NS]:                                              #outcomes
+[B02_NS_BROKEN]:                                                  #outcomes
+[B02_NS_NOT_AUTH]:                                                #outcomes
+[B02_NS_NO_IP_ADDR]:                                              #outcomes
+[B02_NS_NO_RESPONSE]:                                             #outcomes
+[B02_UNEXPECTED_RCODE]:                                           #outcomes
 [Basic03]:                                                        basic03.md
 [CRITICAL]:                                                       ../SeverityLevelDefinitions.md#critical
 [DNS Query and Response Defaults]:                                ../DNSQueryAndResponseDefaults.md
