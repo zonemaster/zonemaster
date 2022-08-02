@@ -46,11 +46,11 @@ whole testing process, except for the [Basic03] test, is aborted.
 Message Tag          | Level    | Arguments     | Message ID for message tag
 :--------------------|:---------|:--------------|:--------------------------
 B03_AUTH_RESPONSE_SOA| DEBUG    |ns_list, domain| Authoritative answer on SOA query for "{domain}" is returned by name servers "{ns_list}".
-B03_NO_DELEGATION    | CRITICAL | domain        | There is no delegation (name servers) for "{domain}" and it does not exist as a zone.
-B03_NO_WORKING_NS    | CRITICAL | domain        | There is no working name server for "{domain}" and it is unreachable.
+B03_NO_DELEGATION    | CRITICAL | domain        | There is no delegation (name servers) for "{domain}" which means it does not exist as a zone.
+B03_NO_WORKING_NS    | CRITICAL | domain        | There is no working name server for "{domain}" so it is unreachable.
 B03_NS_BROKEN        | ERROR    | ns            | Broken response from name server "{ns}" on an SOA query.
-B03_NS_NOT_AUTH      | ERROR    | ns            | Name server "{ns}" does not authoritively on an SOA query.
-B03_NS_NO_IP_ADDR    | ERROR    | nsname        | Name server "{nsname}" cannot be resolved into IP address.
+B03_NS_NOT_AUTH      | ERROR    | ns            | Name server "{ns}" does not give an authoritive answer on an SOA query.
+B03_NS_NO_IP_ADDR    | ERROR    | nsname        | Name server "{nsname}" cannot be resolved into an IP address.
 B03_NS_NO_RESPONSE   | WARNING  | ns            | Name server "{ns}" does not respond to an SOA query.
 B03_UNEXPECTED_RCODE | ERROR    | ns, rcode     | Name server "{ns}" responds with an unexpected RCODE name ("{rcode}") on an SOA query.
 
@@ -79,8 +79,8 @@ queries follow, unless otherwise specified below, what is specified for
    2. Name server name and IP ("Broken NS").
    3. Name server name and IP ("NS not auth").
    4. Name server name ("NS Cannot Resolve Into IP").
-   5. Name server name and IP ("No Respons From NS").
-   6. Name server name and IP plus [RCODE Name] ("Unexpecte RCODE").
+   5. Name server name and IP ("No Response From NS").
+   6. Name server name and IP plus [RCODE Name] ("Unexpected RCODE").
    7. Name server name and IP ("Delegation NS").
 
 3. Populate the set *Delegation NS* with name and IP address for the name
@@ -99,7 +99,7 @@ queries follow, unless otherwise specified below, what is specified for
          using recursive lookup for address records (both IPv4 and IPv6) for
          that name and add resolved addresses, if any, to the set.
 
-4. If the the *Delegation NS* set is empty, then do:
+4. If the *Delegation NS* set is empty, then do:
    1. Output *[B03_NO_DELEGATION]* with *Child Zone* name.
    2. Exit these test procedures.
 
@@ -109,7 +109,7 @@ queries follow, unless otherwise specified below, what is specified for
       2. Go to next name server name.
    2. If the name server name has multiple IP addresses, then repeat the loop
       and the following steps for each IP address, else go to next name server
-      name i the loop.
+      name in the loop.
    3. Send *SOA Query* to the name server IP.
    4. If there is no [DNS Response], then:
       1. Add the name server name and IP address to the *No Response From NS*
@@ -120,8 +120,9 @@ queries follow, unless otherwise specified below, what is specified for
       2. Go to next name server.
    6. Else, if the [RCODE Name] is not "NoError" in the [DNS Response], then:
       1. Add the name server name and IP address plus the [RCODE Name] to the
-         *Unexpecte RCODE* set.
-      2. Go to next name server IP address or next name server name.
+         *Unexpected RCODE* set.
+      2. Go to next name server IP address if available, else go to next name
+         server name.
    7. Else:
       1. If the answer section in the [DNS Response] contains an SOA record
          with *Child Zone* as owner name, then:
@@ -133,7 +134,7 @@ queries follow, unless otherwise specified below, what is specified for
          2. Go to next name server.
 
 6. If the *Auth Response on SOA Query* set is non-empty, then:
-   1. Output *[B03_AUTH_RESPONSE_SOA]* with a list of name server name and IP adddress
+   1. Output *[B03_AUTH_RESPONSE_SOA]* with a list of name server name and IP address
       pairs derived from the set and with *Child Zone* name.
    2. Exit these test procedures.
 
@@ -145,10 +146,10 @@ queries follow, unless otherwise specified below, what is specified for
       address pair from the set output *[B03_NS_NOT_AUTH]* with the pair.
    4. If the *NS Cannot Resolve Into IP* set is non-empty then for each name
       server name output *[B03_NS_NO_IP_ADDR]* with the name server name.
-   5. If the *No Respons From NS* set is non-empty then for each name server name
+   5. If the *No Response From NS* set is non-empty then for each name server name
       and IP address pair from the set output *[B03_NS_NO_RESPONSE]* with the
       pair.
-   6. If the *Unexpecte RCODE* set is non-empty then for each name server name
+   6. If the *Unexpected RCODE* set is non-empty then for each name server name
       and IP address pair from the set output *[B03_UNEXPECTED_RCODE]* with the
       pair and the [RCODE Name] for the pair in the set.
 
