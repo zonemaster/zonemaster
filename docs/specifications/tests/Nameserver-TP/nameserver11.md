@@ -88,6 +88,10 @@ queries follow, unless otherwise specified below, what is specified for
       3. The pseudo-section response has an OPT record with version set to 0.
       4. There is no "OPTION-CODE" present in the response.
 
+5. If the "Unknown Option Code" set is non-empty, then output
+   *[NS11_UNKNOWN_OPTION_CODE]* with the name servers IP addresses from the set.
+
+
 ## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
