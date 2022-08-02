@@ -8,7 +8,7 @@ are four categories of labels defined:
 * Area
 * Priority
 * Status
-* Issue
+* Type
 
 # Usage
 
