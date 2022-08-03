@@ -44,9 +44,10 @@ report status of *Child Zone*.
 
 ## Summary
 
-Message                                | Level     | Arguments           | Description of when message tag is outputted
+Message Tag                            | Level     | Arguments           | Message ID for message tag
 :--------------------------------------|:----------|---------------------|---------------------------------------------
-NS11_UNKNOWN_OPTION_CODE               | WARNING   | ns_ip_list          | The DNS response contains an unknown EDNS option-code
+NS11_UNKNOWN_OPTION_CODE               | WARNING   | ns_ip_list          | The DNS response contains an unknown EDNS option-code.
+                                       |           |                     | Returned from name servers "{ns_ip_list}".
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -55,42 +56,39 @@ severity level can be changed in the [Zonemaster-Engine profile]. Also see the
 The argument names in the Arguments column lists the arguments used in the
 message. The argument names are defined in the [argument list].
 
-
 ## Test procedure
 
-In this section and unless otherwise specified below, the term "[DNS Query]"
-follows the specification for DNS queries as specified in
-[DNS Query and Response Defaults]. The handling of the DNS responses on the DNS
-queries follow, unless otherwise specified below, what is specified for
-[DNS Response] in the same specification.
+In this section and unless otherwise specified below, the term "[EDNS Query]"
+follows the specification for DNS queries as specified in [DNS Query and Response Defaults].
+The handling of the DNS responses on the DNS queries follow, unless otherwise specified below, 
+what is specified for [EDNS Response] in the same specification.
 
 1. Create the following empty sets:
    1. Name server IP address ("Unknown Option Code")
 
-2. Create an SOA query for the *Child Zone* with an OPT record with 
-   EDNS OPTION-CODE set to anything other than it is already assigned as in
-   the [IANA-DNSSYSTEM-PARAMETERS] and no other EDNS options or flags.
+2. Create a [EDNS Query] with query type SOA, *Child Zone* as query name and with
+   EDNS OPTION-CODE set to anything other than what is already assigned in
+   the [IANA-DNSSYSTEM-PARAMETERS] and no other EDNS options or flags ("SOA Query").
 
 3. Obtain the set of name server IP addresses using [Method4] and [Method5] 
    ("Name Server IP").
 
 4. For each name server in *Name Server IP* do:
 
-   1. Send the SOA query to the name server and collect the response.
-   2. If there is no DNS response, then go to next name server.
-   3. Else, if the DNS response has the RCODE "FORMERR" ([IANA RCODE List]), then go to next name server.
+   1. Send *SOA query* to the name server and collect the response.
+   2. If there is no EDNS response, then go to next name server.
+   3. Else, if the EDNS response has the [RCODE Name] "FormErr", then go to next name server.
    4. Else, if there is an "OPTION-CODE" present in the response, then add name server IP
-      to the "Unknown Option Code" set and go to next name server.
-   5. Else, if the DNS response meet the following four criteria,
+      to the *Unknown Option Code* set and go to next name server.
+   5. Else, if the EDNS response meet the following four criteria,
       then go to next name server (no error):
       1. The SOA is obtained as response in the ANSWER section.
-      2. If the DNS response has the RCODE "NOERROR" ([IANA RCODE List]).
+      2. If the EDNS response has the [RCODE Name] "NoError".
       3. The pseudo-section response has an OPT record with version set to 0.
       4. There is no "OPTION-CODE" present in the response.
 
-5. If the "Unknown Option Code" set is non-empty, then output
-   *[NS11_UNKNOWN_OPTION_CODE]* with the name servers IP addresses from the set.
-
+5. If the *Unknown Option Code* set is non-empty, then output *[NS11_UNKNOWN_OPTION_CODE]* 
+   with the name servers IP addresses from the set.
 
 ## Outcome(s)
 
@@ -118,17 +116,14 @@ None.
 
 No special terminology for this test case.
 
-[NS11_UNKNOWN_OPTION_CODE]:             #summary
-
 [Argument list]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [Basic04]:                              ../Basic-TP/basic04.md
 [CRITICAL]:                             https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#critical
 [DNS Query and Response Defaults]:      ../DNSQueryAndResponseDefaults.md
-[DNS Query]:                            ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
-[DNS Response]:                         ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
+[EDNS Query]:                            ../DNSQueryAndResponseDefaults.md#default-setting-in-edns-query
+[EDNS Response]:                         ../DNSQueryAndResponseDefaults.md#default-handling-of-an-edns-response
 [ERROR]:                                https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#error
 [IANA-DNSSYSTEM-PARAMETERS]:            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-11
-[IANA RCODE List]:                      https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [INFO]:                                 https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#info
 [Message Tag Specification]:            MessageTagSpecification.md
 [Methods]:                              ../Methods.md
@@ -136,6 +131,8 @@ No special terminology for this test case.
 [Method5]:                              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [Nameserver02]:                         ../Nameserver-TP/nameserver02.md
 [NOTICE]:                               https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#notice
+[NS11_UNKNOWN_OPTION_CODE]:             #summary
+[RCODE Name]:                           https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 6891, section 6.1.2]:              https://tools.ietf.org/html/rfc6891#section-6.1.2
 [RFC 6891]:                             https://tools.ietf.org/html/rfc6891
 [Severity Level Definitions]:           https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md
