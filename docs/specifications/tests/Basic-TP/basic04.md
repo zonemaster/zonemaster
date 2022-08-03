@@ -21,7 +21,7 @@
 
 Many test cases will query the name servers in the delegation or the
 name servers appointed by the NS records in the zone for the NS or SOA
-record or both. Reporting problem is crucial, but instead of letting
+record, or both. Reporting problem is crucial, but instead of letting
 several test cases report the same problems found, most test cases
 assume that this test case has been run. Only this test case will
 report problems found in the following areas:
@@ -34,7 +34,7 @@ report problems found in the following areas:
   section in the response on an NS query for *Child Zone*.
 * Name Server not setting the AA flag in a response with SOA or NS in
   answer section.
-* Name Server responding with unexpected RCODE (any except "NOERROR")
+* Name Server responding with unexpected [RCODE Name] (any except "NeError")
   on query for SOA or NS for *Child Zone*.
 
 
@@ -118,7 +118,7 @@ queries follow, unless otherwise specified below, what is specified for
       1. Process the response on *SOA Query UDP*:
          1. If there is no [DNS response], then output
             *[B04_NO_RESPONSE_SOA_QUERY]*.
-         2. Else, if the RCODE is not "NOERROR" then output
+         2. Else, if [RCODE Name] is not "NoError" then output
             *[B04_UNEXPECTED_RCODE_SOA_QUERY]*.
          3. Else, if there is no SOA record in the answer section, then
             output *[B04_MISSING_SOA_RECORD]*.
@@ -128,7 +128,7 @@ queries follow, unless otherwise specified below, what is specified for
       2. Process the response on *NS Query UDP*:
          1. If there is no [DNS Response], then output
             *[B04_NO_RESPONSE_NS_QUERY]*.
-         2. Else, if the RCODE is not "NOERROR" then output
+         2. Else, if [RCODE Name] is not "NoError" then output
             *[B04_UNEXPECTED_RCODE_NS_QUERY]*.
          3. Else, if there is no NS record in the answer section, then
             output *[B04_MISSING_NS_RECORD]*.
@@ -196,5 +196,4 @@ No special terminology for this test case.
 [Severity Level Definitions]:                                     ../SeverityLevelDefinitions.md
 [WARNING]:                                                        ../SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:                                      https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
-
-
+[RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
