@@ -46,8 +46,7 @@ report status of *Child Zone*.
 
 Message Tag                            | Level     | Arguments           | Message ID for message tag
 :--------------------------------------|:----------|---------------------|---------------------------------------------
-NS11_UNKNOWN_OPTION_CODE               | WARNING   | ns_ip_list          | The DNS response contains an unknown EDNS option-code.
-                                       |           |                     | Returned from name servers "{ns_ip_list}".
+NS11_UNKNOWN_OPTION_CODE               | WARNING   | ns_ip_list          | The DNS response contains an unknown EDNS option-code. Returned from name servers "{ns_ip_list}".
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
