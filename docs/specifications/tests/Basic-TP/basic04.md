@@ -21,7 +21,7 @@
 
 Many test cases will query the name servers in the delegation or the
 name servers appointed by the NS records in the zone for the NS or SOA
-record, or both. Reporting problem is crucial, but instead of letting
+record, or both. It is crucial that problems are reported, but instead of letting
 several test cases report the same problems found, most test cases
 assume that this test case has been run. Only this test case will
 report problems found in the following areas:
@@ -34,7 +34,7 @@ report problems found in the following areas:
   section in the response on an NS query for *Child Zone*.
 * Name Server not setting the AA flag in a response with SOA or NS in
   answer section.
-* Name Server responding with unexpected [RCODE Name] (any except "NeError")
+* Name Server responding with unexpected [RCODE Name] (any except "NoError")
   on query for SOA or NS for *Child Zone*.
 
 
