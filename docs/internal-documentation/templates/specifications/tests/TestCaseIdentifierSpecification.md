@@ -32,6 +32,6 @@ Example of test case identifiers:
 * DNSSEC15
 * ZONE06
 
-One execptional test case identifier has been `BASIC00`, in which the index
+One exceptional test case identifier is `BASIC00`, in which the index
 suffix is out of range of the stated range above. That test case is planned to
 be removed.
