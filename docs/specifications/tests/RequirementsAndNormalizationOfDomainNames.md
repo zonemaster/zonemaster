@@ -84,7 +84,7 @@ The following references are consulted for this specification:
 
 ## Scope
 
-This specification only tests and create a normalized form of the domain name
+This specification only tests and creates a normalized form of the domain name
 (zone name or name server name).
 
 In this specification, ASCII is identical to the first 128 characters in
@@ -115,8 +115,8 @@ is here listed with a message tag, level (always CRITICAL in this specification)
 suitable argument to be used in the same descriptive message and a message that
 can be returned to the user.
 
-Message Tag outputted | Level    | Arguments | Description of when message tag is outputted
-:---------------------|:---------|:----------|:--------------------------------------------
+Message Tag           | Level    | Arguments | Message ID for message tag
+:---------------------|:---------|:----------|:---------------------------------
 INITIAL_DOT           | CRITICAL |           | Domain name starts with dot.
 REPEATED_DOTS         | CRITICAL |           | Domain name has repeated dots.
 INVALID_ASCII         | CRITICAL | dlabel    | Domain name has an ASCII label ("{dlabel}") with a character not permitted.
@@ -136,9 +136,9 @@ message. The argument names are defined in the [argument list].
 Tables 1, 2, 3 and 4 are found in the [Detailed requirements] section below.
 
 1.  Create the following sets
-    1. Set of permitted ASCII characters in table 1 below ("Valid ASCII").
-    2. Set of Unicode white space characters in table 3 below ("White Space")
-    3. Set of full stops in table 4 below ("Full Stops").
+    1. Set of permitted ASCII characters in Table 1 below ("Valid ASCII").
+    2. Set of Unicode white space characters in Table 3 below ("White Space")
+    3. Set of full stops in Table 4 below ("Full Stops").
 
 2.  If *Domain Name* starts with one or more of *White Space* then those are
     removed from *Domain Name* before further processing.
@@ -149,16 +149,17 @@ Tables 1, 2, 3 and 4 are found in the [Detailed requirements] section below.
 4.  Create an empty, ordered list of labels ("Domain Labels").
 
 5.  Replace all instances of dots from *Full Stops* in *Domain Name* with U+002E
-    (see table 2).
+    (see Table 2).
 
 6.  If *Domain Name* is the root zone, i.e. the exact string "." (U+002E), then
-    terminate no message tags.
+    terminate these test procedures with no message tags.
 
 7.  If *Domain Name* starts with dot (".", U+002E) then output
-    *[B00_INITIAL_DOT]* and terminate.
+    *[B00_INITIAL_DOT]* and terminate these test procedures.
 
 8.  If *Domain Name* has any instance of two or more consecutive dots (".",
-    U+002E) then output *[B00_REPEATED_DOTS]* and terminate this test.
+    U+002E) then output *[B00_REPEATED_DOTS]* and terminate these test
+    procedures.
 
 9.  Remove trailing dot (".", U+002E) from *Domain Name*.
 
@@ -168,7 +169,7 @@ Tables 1, 2, 3 and 4 are found in the [Detailed requirements] section below.
 11. For each "Label" in *Domain Labels* do:
     1. If all characters in *Label* are ASCII characters, then do:
        1. If any character in *Label* is not listed in *Valid ASCII*, then output
-          [B00_INVALID_ASCII] and *Label*, and terminate.
+          [B00_INVALID_ASCII] and *Label*, and terminate these test procedures.
        2. Else, downcase all upper case characters as described in section
           [Upper case](#Upper-case) below.
     2. Else do:
@@ -178,20 +179,22 @@ Tables 1, 2, 3 and 4 are found in the [Detailed requirements] section below.
        3. Convert *Label* to an A-label as specified by
           [IDNA2008][RFC 5890#1.1].
           1. If the conversion failed, then output *[B00_INVALID_U_LABEL]*
-             and *Label*, and terminate.
+             and *Label*, and terminate these test procedures.
           2. Else, replace the U-label in *Domain Labels* with the A-label from
              the conversion above.
     3. Go to next label.
 
 12. For each "Label" in *Domain Labels* do:
     1. If the length (number of characters) in *Label* is greater than 63 then
-       output *[B00_LABEL_TOO_LONG]* and *Label*, and terminate.
+       output *[B00_LABEL_TOO_LONG]* and *Label*, and terminate these test
+       procedures.
 
 13. Map the labels in *Domain Labels* back into *Domain Name* with one dot (".",
     U+002E), between the labels (no dots if the there is only one label).
 
 14. If the length of *Domain Name* is longer than 253 characters including the
-    dots, then output *[B00_DOMAIN_NAME_TOO_LONG]* and terminate.
+    dots, then output *[B00_DOMAIN_NAME_TOO_LONG]* and terminate these test
+    procedures.
 
 
 ## Outcome(s)
@@ -205,7 +208,7 @@ The outcome of the tests in this specification consists of three parts
    returned.
 
 The outcome value of this specification is "fail" if there is at least one
-message outputted. In other cases is "pass".
+message outputted. In other cases it is "pass".
 
 
 ## Special procedural requirements
@@ -213,12 +216,13 @@ message outputted. In other cases is "pass".
 The tests and normalizations defined in this specification must always be run
 and evaluated before any Zonemaster test case is run.
 
-If the outcome from this specification is fail, then no test cases should be run.
+If the outcome from this specification is "fail", then no test cases should be
+run.
 
 
 ## Detailed requirements
 
-This section describes the requirements on the domain name. Besides the ensuring
+This section describes the requirements on the domain name. Besides ensuring
 that the domain name is valid, these requirements also ensure that the domain
 name is used in a normalized form.
 
@@ -254,18 +258,18 @@ U+005F                     | _                            | [LOW LINE] (undersco
 *Table 2: A summary of the valid ASCII character between labels using [Unicode]
 codes.*
 
-Unicode code or code range | Character or character range | Comment
-:--------------------------|:-----------------------------|:--------------------
-U+002E                     | .                            | [FULL STOP]
+Unicode code | Character | Comment
+:------------|:----------|:--------------------
+U+002E       | .         | [FULL STOP]
 
 The fact that "." (U+002E) character is the delimiter between labels puts some
 limitations on its use. The first label cannot be en empty label unless that is
-the only label, i.e. the domain name for the root name. With that exception (that
-is covered below) a domain name cannot have a "." initially. Only the last label
-can be an empty label (the root label), which means that there cannot be two or
-more consecutive "." in a valid domain name. The domain name, as entered to
-Zonemaster, can either have a final dot or not, and will normalized as described
-below.
+the only label, i.e. the root domain name. With that exception (covered below) a
+domain name cannot have a "." (dot) initially. Only the last label can be an
+empty label (the root label), which means that there cannot be two or more
+consecutive "." (dots) in a valid domain name. The domain name, as entered to
+Zonemaster, can either have a final dot or not, and will be normalized as
+described below.
 
 
 ### IDN name
@@ -295,20 +299,20 @@ be mixed with non-IDN labels.
 
 ### Length limitations
 
-There is a maximum length of the whole domain name and a maximum length of each
+There is a maximum length for the whole domain name and a maximum length for each
 label. These limitations are defined for a domain name of ASCII characters only,
 which means that any IDN U-label must be converted to the equivalent A-label
 before the limitations can be checked.
 
 The maximum total length of a domain name is 253 characters (or octets) if it
 has no final dot, 254 with the final dot ([RFC 1035][RFC 1035#2.3.4], section
-2.3.4). The RFC defines the limit as 255 octets, but that is the limitation in
-the DNS packet, where labels separation is done differently.
+2.3.4). Note that he RFC defines the limit as 255 octets, but that is the
+limitation in the DNS packet, where labels separation is done differently.
 
 The maximum length of a label is 63 characters (or octets),
 [RFC 1035][RFC 1035#2.3.4], section 2.3.4. A label must be at least one character
-(octet) long unless it is the label representing the root, which is zero in
-length and always after the final dot.
+(octet) long unless it is the label representing the root domain name, which is
+zero in length and always after the final dot.
 
 
 ### Root zone
@@ -320,7 +324,7 @@ after the dot.
 
 ### Creating normalized form
 
-For a discussion of pre-processing the domain name to achieve a normalized form,
+For a discussion on pre-processing the domain name to achieve a normalized form,
 see [RFC 5895].
 
 
@@ -328,10 +332,10 @@ see [RFC 5895].
 
 In the user interface there is a risk that leading or trailing white space
 characters are added to the domain name by mistake. The domain name will in this
-specification be normalized by removing such characters. In table 3 it is
+specification be normalized by removing such characters. In Table 3 it is
 specified what counts as white space characters. It should be pointed out that
-white space characters are within the domain name are not removed, and in the end
-count as invalid characters,
+white space characters within the domain name are not removed, and in the end
+count as invalid characters.
 
 *Table 3: White space characters**
 
@@ -357,7 +361,7 @@ U+1680       | [OGHAM SPACE MARK]
 
 #### Full stop
 
-The regular dot "." expected in domain names is a U+002E (FULL STOP), see table 2
+The regular dot "." expected in domain names is a U+002E (FULL STOP), see Table 2
 above. There are other characters that may be entered instead due to the script
 setting. Table 4 lists full stop characters that are to be mapped into the
 ASCII FULL STOP ([Unicode TR 46][Unicode TR 46#Notation], section 2.3). That
@@ -396,10 +400,11 @@ no mapping.
 
 #### A-label and U-label
 
-DNS can only handle A-labels, not U-label. In the test core only A-labels are
-used. For normalization, all U-labels are converted to A-labels. Remaining test
-cases will only handle an ASCII-only *Domain Name*. Conversion from U-label to
-A-label should be done as specified for [IDNA2008][RFC 5890#1.1], not IDNA2003.
+DNS can only handle A-labels, not U-label. In the test core suite of Zonemaster
+only A-labels are used. For normalization, all U-labels are converted to
+A-labels. Test cases will only handle an ASCII-only *Domain Name*. Conversion
+from U-label to A-label should be done as specified for [IDNA2008][RFC 5890#1.1],
+not IDNA2003.
 
 
 ## Terminology
