@@ -17,12 +17,19 @@
 
 ## Objective
 
-The SOA MNAME record must be a fully qualified master nameserver.
+The MNAME field from the SOA record of a zone is supposed to contain the master name server for that zone.
+
+[RFC1035], section 3.3.13, specifies that "the *domain-name* of the name server that was the original or primary source of data for this zone".
+[RFC1996], section 2, and [RFC2136], section 1, add that "the primary master is named in the zone's SOA MNAME field and optionally by an NS RR. There is by definition only one primary master server per zone".
+Finally, [RFC2181], section 7.2, clarifies that "it is quite clear in the specifications, yet seems to have been widely ignored, that the MNAME field of the SOA record should contain the name of the primary (master) server for the zone identified by the SOA. It should not contain the name of the zone itself. That information would be useless, as to discover it, one needs to start with the domain name of the SOA record - that is the name of the zone".
  
-The purpose of this test is to test:
-    - that the server is authoritative to the zone.
-    - that the MNAME is not the zone name.
-    - that the SOA serial is identical to the zone name servers.
+This Test Case will check that:
+    - the MNAME field contains the master name server.
+    - this master name server is authoritative to the zone.
+    - the SOA SERIAL of the MNAME is identical or higher than the ones found from the name servers in the delegation.
+    - the master name server is listed as part of the delegation of the zone.
+
+The SOA SERIAL comparison must be done following [RFC1982].
 
 ## Scope
 
@@ -38,14 +45,12 @@ giving a correct DNS response for an authoritative name server.
 
 Message Tag                   | Level   | Arguments            | Message ID for message tag
 :---------------------------- |:--------|:---------------------|:---------------------------------------------------------------------------------------
-Z11_NO_MNAME_RECORD           | WARNING | ns_ip_list           | No MNAME records found from name servers "{ns_ip_list}".
-Z11_NO_SERIAL_RECORD          | WARNING | ns_ip_list           | No SERIAL records found from name servers "{ns_ip_list}".
-Z11_MNAME_IS_ZONE_NAME        | WARNING | ns_ip_list           | MNAME name server points to the zone tested. Returned from name servers "{ns_ip_list}".
+Z11_MULTIPLE_MNAME            | WARNING | ns_ip_list           | Distinct MNAMEs found, but only one is expected. Returned from name servers "{ns_ip_list}".
 Z11_MNAME_NOT_AUTHORITATIVE   | WARNING | ns                   | MNAME name server points to a non authoritative name server ("{ns}").
 Z11_MNAME_NO_RESPONSE         | NOTICE  | ns                   | MNAME name server points to a non responsive name server ("{ns}").
-Z11_MNAME_NOT_IN_GLUE         | NOTICE  |                      | MNAME name server could not be found in the parent zone name servers.
-Z11_MNAME_NOT_MASTER          | WARNING | ns_ip_list           | MNAME name server has a mis-matching SERIAL. Returned from name servers "{ns_ip_list}".
-Z11_MNAME_IS_MASTER           | INFO    | ns_ip_list           | MNAME name server is master. Returned from name servers "{ns_ip_list}".
+Z11_MNAME_NOT_IN_DELEGATION   | INFO    | nsname               | MNAME name server {nsname} is not listed as NS record for the zone.
+Z11_MNAME_NOT_MASTER          | WARNING | ns_ip_list           | MNAME name server doesn't have the highest SERIAL. Returned from name servers "{ns_ip_list}".
+Z11_MNAME_IS_MASTER           | DEBUG   | ns_ip_list           | MNAME name server does appear to be master. Returned from name servers "{ns_ip_list}".
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -63,13 +68,11 @@ what is specified for [DNS Response] in the same specification.
 
 1. Create a [DNS Query] with query type SOA and query name *Child Zone* ("SOA Query")
 
-2. Obtain the set of name server IP addresses using [Method5]
-   ("Name Server IP").
+2. Obtain the set of name server IP addresses using [Method4] and [Method5] ("Name Server IP").
 
 3. Create the following empty sets:
-   1. Name server IP address ("No MNAME Record")
-   2. Name server IP address ("No Serial Record")
-   3. Name server IP address ("MNAME Is Zone Name")
+   1. Name server IP address, MNAME, SERIAL ("MNAME Nameserver")
+   1. Name server IP address, SERIAL ("SERIAL Nameservers")
    4. Name server IP address ("MNAME Not Master")
    5. Name server IP address ("MNAME Is Master")
 
@@ -80,37 +83,31 @@ what is specified for [DNS Response] in the same specification.
       2. [RCODE Name] of the response is not "NoError".
       3. The AA flag is not set in the response.
       4. There is no SOA record with owner name matching the query.
-   3. From the DNS response, store the MNAME and its associated SERIAL.
-      1. Go to next name server IP if at least one of the following criteria is met:
-         1. If there is no MNAME record, then add name server IP to the *No MNAME Record* set. 
-         2. If there is no SERIAL record, then add name server IP to the *No SERIAL Record* set. 
-         3. If the name in the MNAME record is the same as *Child Zone*, then add name server IP to the *MNAME Is Zone Name* set.
-   4. Send *SOA Query* to the name server in the MNAME ("MNAME Nameserver").
-      1. If the SOA response has [RCODE Name] "NoError" then:
-         1. If the AA flag is not set, then output *Z11_MNAME_NOT_AUTHORITATIVE* with name server name and IP.
-      2. Else, output *Z11_MNAME_NO_RESPONSE* with name server name and IP and go to next name server IP.
-   5. Obtain the set of name server IP addresses using [Method5] ("NS IP").
-   6. For each name server in *NS IP*, send *SOA Query* to the name server and collect the response.
-      1. If there is a response, compare the SERIAL of that name server to the one from *MNAME Nameserver*.
-         1. If they match, then add name server IP to the *MNAME Is Master* set.
-         2. Else, then add name server IP to the *MNAME Not Master* set.
-   7. Obtain the set of name server IP names using [Method2] ("Glue Names").
-      1. If *MNAME Nameserver* is not part of the *Glue Names* set for the zone, then output *Z11_MNAME_NOT_IN_GLUE*.
+   3. From the DNS response, add the MNAME field to the *MNAME Nameserver* set.
+   4. From the DNS response, add the SERIAL field and name server IP address to the *SERIAL Nameservers* set.
+   5. Go to next name server.
 
-5. If the set *No MNAME Record* is non-empty, then output *Z11_NO_MNAME_RECORD*
-   with the name server IP addresses from the set.
+5. If the set *MNAME Nameserver* contains more than one element, then output *[Z11_MULTIPLE_MNAME]*
+   with the name server IP addresses from the set, and terminate.
 
-6. If the set *No Serial Record* is non-empty, then output *Z11_NO_SERIAL_RECORD*
-   with the name server IP addresses from the set.
+6. Send *SOA Query* to the name server in *MNAME Nameserver*.
+   1. If there is an SOA response, with [RCODE Name] "NoError", then:
+      1. If the AA flag is not set, then output *[Z11_MNAME_NOT_AUTHORITATIVE]* with name server name and IP address.
+      2. Else, add the SERIAL field to the *MNAME Nameserver* set.
+   2. Else, output *[Z11_MNAME_NO_RESPONSE]* with name server name and IP.
 
-7. If the set *MNAME Is Zone Name* is non-empty, then output *Z11_MNAME_IS_ZONE_NAME*
-   with the name server IP addresses from the set.
+7. For each SERIAL value in the *SERIAL Nameservers* do:
+   1. Compare the value with the one in the *MNAME Nameserver* set.
+      1. If it is not higher, then add name server IP address to the *MNAME Is Master* set.
+      2. Else, add name server IP address to the *MNAME Not Master* set.
 
 8. If the set *MNAME Not Master* is non-empty, then output *Z11_MNAME_NOT_MASTER*
    with the name server IP addresses from the set.
 
-9. If the set *MNAME Is Master* is non-empty, then output *Z11_MNAME_IS_MASTER*
-   with the name server IP addresses from the set.
+9. If the set *MNAME Is Master* is non-empty, then:
+   1. Output *Z11_MNAME_IS_MASTER* with the name server IP addresses from the set.
+   2. Obtain the set of name server IP addresses using [Method3] ("Delegation IP").
+      1. If the MNAME in the *MNAME Nameserver* set is not part of the *Delegation IP* set for the zone, then output *[Z11_MNAME_NOT_IN_DELEGATION]*.
 
 ## Outcome(s)
 
@@ -148,10 +145,16 @@ No special terminology for this test case.
 [INFO]:                                 https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#info
 [Message Tag Specification]:            MessageTagSpecification.md
 [Methods]:                              ../Methods.md
-[Method2]:                              ../Methods.md#method-2-obtain-glue-name-records-from-parent
+[Method3]:                              ../Methods.md#method-3-obtain-name-servers-from-child
+[Method4]:                              ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NOTICE]:                               https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#notice
 [RCODE Name]:                           https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[RFC1035]:                              https://datatracker.ietf.org/doc/html/rfc1035#section-3.3.13
+[RFC1982]:                              https://datatracker.ietf.org/doc/html/rfc1982
+[RFC1996]:                              https://datatracker.ietf.org/doc/html/rfc1996#section-2
+[RFC2136]:                              https://datatracker.ietf.org/doc/html/rfc2136#section-1
+[RFC2181]:                              https://datatracker.ietf.org/doc/html/rfc2181#section-7.3
 [Severity Level Definitions]:           https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md
 [Test Case Identifier Specification]:   TestCaseIdentifierSpecification.md
 [WARNING]:                              https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#warning
@@ -162,5 +165,5 @@ No special terminology for this test case.
 [Z11_MNAME_NOT_MASTER]:                 #summary
 [Z11_MNAME_IS_MASTER]:                  #summary
 [Z11_MNAME_IS_ZONE_NAME]:               #summary
-[Z11_NO_MNAME_RECORD]:                  #summary
-[Z11_NO_SERIAL_RECORD]:                 #summary
+[Z11_NO_MNAME]:                         #summary
+[Z11_NO_SERIAL]:                        #summary
