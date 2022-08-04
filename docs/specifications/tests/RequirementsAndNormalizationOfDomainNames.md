@@ -53,7 +53,7 @@ a normalized form to be used by all Zonemaster test cases. The objectives of the
 normalization are
 
 1. Remove white leading and trailing white space characters.
-2. Convert other "full stop" characters to FULL STOP, and
+2. Convert other dot characters to regular dot (or "FULL STOP"), and
 3. Create legal IDNA 2008 U-labels from convenient alternative forms, and
 4. Create consistent representation of the same zone name.
 
@@ -138,7 +138,8 @@ Tables 1, 2, 3 and 4 are found in the [Detailed requirements] section below.
 1.  Create the following sets
     1. Set of permitted ASCII characters in Table 1 below ("Valid ASCII").
     2. Set of Unicode white space characters in Table 3 below ("White Space")
-    3. Set of full stops in Table 4 below ("Full Stops").
+    3. Set of Unicode full stops (dot characters) in Table 4 below
+       ("Unicode Full Stops").
 
 2.  If *Domain Name* starts with one or more of *White Space* then those are
     removed from *Domain Name* before further processing.
@@ -148,8 +149,8 @@ Tables 1, 2, 3 and 4 are found in the [Detailed requirements] section below.
 
 4.  Create an empty, ordered list of labels ("Domain Labels").
 
-5.  Replace all instances of dots from *Full Stops* in *Domain Name* with U+002E
-    (see Table 2).
+5.  Replace all instances of character from *Unicode Full Stops* in *Domain Name*
+    with the label separating, regular dot U+002E (see Table 2).
 
 6.  If *Domain Name* is the root zone, i.e. the exact string "." (U+002E), then
     terminate these test procedures with no message tags.
@@ -240,8 +241,8 @@ characters:
 
 In ASCII names, upper case A-Z are treated as equal to a-z
 ([RFC 1034][RFC 1034#3.1], section 3.1 and [RFC 1035][RFC 1035#2.3.3], section
-2.3.3). The FULL STOP (".") is used as label separator ([RFC 1034][RFC 1034#3.1],
-section 3.1).
+2.3.3). The regular dot, or [FULL STOP] ("."), is used as label separator
+([RFC 1034][RFC 1034#3.1], section 3.1). Also see Table 2 below.
 
 *Table 1: A summary of the valid ASCII characters in labels using [Unicode]
 codes.*
@@ -260,7 +261,7 @@ codes.*
 
 Unicode code | Character | Comment
 :------------|:----------|:--------------------
-U+002E       | .         | [FULL STOP]
+U+002E       | .         | [FULL STOP] (in this document referred to as "dot")
 
 The fact that "." (U+002E) character is the delimiter between labels puts some
 limitations on its use. The first label cannot be en empty label unless that is
