@@ -20,16 +20,18 @@
 The MNAME field from the SOA record of a zone is supposed to contain the master name server for that zone.
 
 [RFC1035], section 3.3.13, specifies that "the *domain-name* of the name server that was the original or primary source of data for this zone".
+
 [RFC1996], section 2, and [RFC2136], section 1, add that "the primary master is named in the zone's SOA MNAME field and optionally by an NS RR. There is by definition only one primary master server per zone".
+
 Finally, [RFC2181], section 7.2, clarifies that "it is quite clear in the specifications, yet seems to have been widely ignored, that the MNAME field of the SOA record should contain the name of the primary (master) server for the zone identified by the SOA. It should not contain the name of the zone itself. That information would be useless, as to discover it, one needs to start with the domain name of the SOA record - that is the name of the zone".
  
 This Test Case will check that:
-    - the MNAME field contains the master name server.
-    - this master name server is authoritative to the zone.
-    - the SOA SERIAL of the MNAME is identical or higher than the ones found from the name servers in the delegation.
-    - the master name server is listed as part of the delegation of the zone.
+ - the MNAME field contains the master name server.
+ - this master name server is authoritative to the zone.
+ - the SOA SERIAL of the MNAME is identical or higher than the ones found from the name servers in the delegation.
+ - the master name server is listed as part of the delegation of the zone.
 
-The SOA SERIAL comparison must be done following [RFC1982].
+Note that the SOA SERIAL comparison must follow [RFC1982].
 
 ## Scope
 
@@ -101,11 +103,11 @@ what is specified for [DNS Response] in the same specification.
       1. If it is not higher, then add name server IP address to the *MNAME Is Master* set.
       2. Else, add name server IP address to the *MNAME Not Master* set.
 
-8. If the set *MNAME Not Master* is non-empty, then output *Z11_MNAME_NOT_MASTER*
+8. If the set *MNAME Not Master* is non-empty, then output *[Z11_MNAME_NOT_MASTER]*
    with the name server IP addresses from the set.
 
 9. If the set *MNAME Is Master* is non-empty, then:
-   1. Output *Z11_MNAME_IS_MASTER* with the name server IP addresses from the set.
+   1. Output *[Z11_MNAME_IS_MASTER]* with the name server IP addresses from the set.
    2. Obtain the set of name server IP addresses using [Method3] ("Delegation IP").
       1. If the MNAME in the *MNAME Nameserver* set is not part of the *Delegation IP* set for the zone, then output *[Z11_MNAME_NOT_IN_DELEGATION]*.
 
@@ -161,9 +163,7 @@ No special terminology for this test case.
 [Zonemaster-Engine profile]:            https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
 [Z11_MNAME_NO_RESPONSE]:                #summary
 [Z11_MNAME_NOT_AUTHORITATIVE]:          #summary
-[Z11_MNAME_NOT_IN_GLUE]:                #summary
+[Z11_MNAME_NOT_IN_DELEGATION]:          #summary
 [Z11_MNAME_NOT_MASTER]:                 #summary
 [Z11_MNAME_IS_MASTER]:                  #summary
-[Z11_MNAME_IS_ZONE_NAME]:               #summary
-[Z11_NO_MNAME]:                         #summary
-[Z11_NO_SERIAL]:                        #summary
+[Z11_MULTIPLE_MNAME]:                   #summary
