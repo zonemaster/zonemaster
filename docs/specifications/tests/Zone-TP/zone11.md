@@ -90,10 +90,10 @@ what is specified for [DNS Response] in the same specification.
    5. Go to next name server.
 
 5. If the set *MNAME Nameserver* contains more than one element, then output *[Z11_MULTIPLE_MNAME]*
-   with the name server IP addresses from the set, and terminate.
+   with the name server IP addresses from the set, and terminate these procedures.
 
 6. Send *SOA Query* to the name server in *MNAME Nameserver*.
-   1. If there is an SOA response, with [RCODE Name] "NoError", then:
+   1. If there is a DNS response, with [RCODE Name] "NoError", then:
       1. If the AA flag is not set, then output *[Z11_MNAME_NOT_AUTHORITATIVE]* with name server name and IP address.
       2. Else, add the SERIAL field to the *MNAME Nameserver* set.
    2. Else, output *[Z11_MNAME_NO_RESPONSE]* with name server name and IP.
