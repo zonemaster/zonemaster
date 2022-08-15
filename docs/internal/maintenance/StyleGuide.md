@@ -19,6 +19,7 @@ specified below.
   a link to the "Objective" section.
 * When linking to other documents and including the URL in the rendered text,
   put angle brackets around the URL, i.e. use the [CommonMark autolink] syntax.
+  I.e. write as `<https://example.com/>` not just as `https://example.com/`.
 
   If the angle brackets are not included the URL is still rendered as a link on
   Github (per [GFM autolink] syntax), but other tools (e.g. link checking tools)
