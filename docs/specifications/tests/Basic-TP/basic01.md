@@ -37,7 +37,7 @@ can be run even if the child zone is not delegated.
 
 ## Scope
 
-The algorithm in this test case must match the algorithm in method
+The algorithm in this test case should match the algorithm in method
 [Get parent zone].
 
 
@@ -52,17 +52,17 @@ Input for this Test Case:
 
 ## Summary
 
-Message Tag                | Level | Arguments                    | Message ID for message tag
-:--------------------------|:------|:-----------------------------|:--------------------------
-B01_CHILD_IS_ALIAS         |NOTICE |domain_c, domain_t, ns_ip_list| "{domain_c}" is not a zone. It is an alias for "{domain_t}". Run a test for "{domain_t}" instead. Returned from name servers "{ns_ip_list}.
-B01_CHILD_FOUND            |INFO   | domain                       | The zone "{domain}" is found.
-B01_CHILD_NOT_EXIST        |INFO   | domain                       | "{domain}" does not exist as it is not delegated.
-B01_INCONSISTENT_ALIAS     |ERROR  | domain                       | The alias for "{domain}" is inconsistent between name servers.
-B01_INCONSISTENT_DELEGATION|ERROR  |domain_c, domain_p, ns_ip_list| The name servers for parent zone "{domain_p}" give inconsistent delegation of "{domain_c}". Returned from name serververs "{ns_ip_list}".
-B01_NO_CHILD               |ERROR  | domain_c, domain_s           | "{domain_c}" does not exist as a DNS zone. Try to test "{domain_s}" instead.
-B01_PARENT_FOUND           |INFO   | domain, ns_ip_list           | The parent zone is "{domain}" as returned from name servers "{ns_ip_list}".
-B01_PARENT_INDETERMINED    |WARNING| ns_ip_list                   | The parent zone cannot be determined on name servers "{ns_ip_list}".
-B01_UNEXPECTED_NS_RESPONSE |WARNING|domain_c, domain_p, ns_ip_list| Name servers for parent domain "{domain_p}" give an incorrect response on SOA query for "{domain_c}". Returned from name servers {ns_ip_list}.
+Message Tag                | Level | Arguments                             | Message ID for message tag
+:--------------------------|:------|:--------------------------------------|:--------------------------
+B01_CHILD_IS_ALIAS         |NOTICE |domain_child, domain_target, ns_ip_list| "{domain_child}" is not a zone. It is an alias for "{domain_target}". Run a test for "{domain_target}" instead. Returned from name servers "{ns_ip_list}.
+B01_CHILD_FOUND            |INFO   | domain                                | The zone "{domain}" is found.
+B01_CHILD_NOT_EXIST        |INFO   | domain                                | "{domain}" does not exist as it is not delegated.
+B01_INCONSISTENT_ALIAS     |ERROR  | domain                                | The alias for "{domain}" is inconsistent between name servers.
+B01_INCONSISTENT_DELEGATION|ERROR  |domain_child, domain_parent, ns_ip_list| The name servers for parent zone "{domain_parent}" give inconsistent delegation of "{domain_child}". Returned from name serververs "{ns_ip_list}".
+B01_NO_CHILD               |ERROR  | domain_child, domain_super            | "{domain_child}" does not exist as a DNS zone. Try to test "{domain_super}" instead.
+B01_PARENT_FOUND           |INFO   | domain, ns_ip_list                    | The parent zone is "{domain}" as returned from name servers "{ns_ip_list}".
+B01_PARENT_INDETERMINED    |WARNING| ns_ip_list                            | The parent zone cannot be determined on name servers "{ns_ip_list}".
+B01_UNEXPECTED_NS_RESPONSE |WARNING|domain_child, domain_parent, ns_ip_list| Name servers for parent domain "{domain_parent}" give an incorrect response on SOA query for "{domain_child}". Returned from name servers {ns_ip_list}.
 
 
 The value in the Level column is the default severity level of the message. The
@@ -89,13 +89,13 @@ DNS queries follow, unless otherwise specified below, what is specified for
    1. Query type SOA and query name *Child Zone* ("SOA Child Query").
    2. Query type DNAME and query name *Child Zone* ("DNAME Query").
 
-3. Create the following empty set:
+3. Create the following empty sets:
    1. Parent name server IP, parent zone name and DNS response
       ("Parent Name Server IP").
    2. Parent name server IP and parent zone name ("Parent Found").
    3. Parent name server IP and parent zone name ("Delegation Found").
    4. Parent name server IP and parent zone name ("Non-AA Non-Delegation Found")
-   5. Parent name server IP and parent zone name ("AA NXDOMAIN Found").
+   5. Parent name server IP and parent zone name ("AA NXDomain Found").
    6. Parent name server IP and parent zone name ("AA SOA Found").
    7. Parent name server IP and parent zone name ("AA CNAME Found").
    8. Parent name server IP, parent zone name and DNAME target
@@ -108,16 +108,16 @@ DNS queries follow, unless otherwise specified below, what is specified for
    1. Follow all paths from root and downwards by following the referrals
       (non-AA response with empty answer section and NS records in the authority
       section).
-   2. When one of the following criteria is met (not both), then stop the lookup
-      up in that branch and save the name server IP address, zone name for which
+   2. If the lookup reaches a name server that does not responds at all, with
+      an invalid DNS response or with an [RCODE Name] besides NoError and
+      NXDomain, then ignore it.
+   3. When one of the following criteria is met (not both), then stop the lookup
+      up in that path. Save the name server IP address, zone name for which
       the server is name server (parent zone) and the DNS response to the
-      *SOA Child Query* to the *Parent Name Server IP* set. Criteria:
+      *SOA Child Query* into the *Parent Name Server IP* set. Criteria:
       * The DNS response is a referral to *Child Zone* (owner name of the NS
         records is *Child Zone*), or
       * The DNS response has the AA flag set.
-   3. If the lookup reaches a name server that does not responds at all, with
-      an invalid DNS response or with an RCODE besides NOERROR and NXDOMAIN, then
-      ignore it.
    4. If the lookup reaches a name server that responds with a
       non-referral and the AA bit unset, then add the name server IP and its
       zone name to the *Non-AA Non-Delegation Found* set.
@@ -127,7 +127,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
 > in question is NS for (owner name of NS). The name of the name server is
 > irrelevant.*
 
-5. For each name server IP and parent zone ("Parent Zone")) in the
+5. For each name server IP and parent zone ("Parent Zone") in the
    *Parent Name Server IP* set, do the following steps, including for any name
    servers added to the set by the steps below.
    1. Send a [DNS Query] with query type NS and *Parent Zone* as query name to
@@ -136,17 +136,17 @@ DNS queries follow, unless otherwise specified below, what is specified for
       section with *Parent Zone* as owner name then do:
       1. For each NS record extract the name server name ("Name Server Name") in
          the RDATA field and do:
-         1. Create [DNS Query] with query type A, *Name Server Name* as query
+         1. Create a [DNS Query] with query type A, *Name Server Name* as query
             name and RD flag set, and do a recursive DNS lookup.
          2. If the [DNS Response], if any, contains a list of A records (follow
             any CNAME chain) in the answer section then remember the IP
             addresses from the A records for three steps down.
-         3. Create [DNS Query] with query type AAAA, *Name Server Name* as
+         3. Create a [DNS Query] with query type AAAA, *Name Server Name* as
             query name and RD flag set, and do a recursive DNS lookup.
-         3. If the [DNS Response], if any, contains a list of AAAA records
+         4. If the [DNS Response], if any, contains a list of AAAA records
             (follow any CNAME chain) in the answer section then remember the IP
             addresses from the AAAA records for next step.
-         4. If any IP address was captured in the two lookup steps, then for each
+         5. If any IP address was captured in the two lookup steps, then for each
             IP address do if the address is not already listed in
             *Parent Name Server IP* set:
             1. Send *SOA Child Query* to the IP address.
@@ -165,11 +165,12 @@ DNS queries follow, unless otherwise specified below, what is specified for
        1. Save the name server IP and parent zone name to the *Parent Found* set.
        2. Save the name server IP and parent zone name to the *Delegation Found*
           set.
-   2.  If the response has the AA flag set and with RCODE NXDOMAIN, then
+   2.  If the response has the AA flag set and with the [RCODE Name] NXDomain,
+       then
        1. Save the name server IP and parent zone name to the *Parent Found*
           set.
        2. Save the name server IP and parent zone name to the
-          *AA NXDOMAIN Found* set.
+          *AA NXDomain Found* set.
    3.  If the response has the AA flag set and with an SOA record with
        *Child Zone* as owner name in the answer section, then
        1. If *Child Zone* is a direct subdomain to parent zone name then save the
@@ -183,9 +184,9 @@ DNS queries follow, unless otherwise specified below, what is specified for
    5.  If response has the AA flag set and with an empty answer section (NODATA),
        then
        1. [Send](#terminology) a *DNAME Query* to the name server IP address.
-       2. If there is a response with the AA flag set, RCODE NOERROR and with a
-          DNAME record with *Child Zone* as owner name in the answer section,
-          then
+       2. If there is a response with the AA flag set, the [RCODE Name] NoError
+          and with a DNAME record with *Child Zone* as owner name in the answer
+          section, then
           1. Save the name server IP and parent zone name to the *Parent Found*
             set.
           2. Save the name server IP, parent zone name and the DNAME target
@@ -213,7 +214,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
    2. If one or more of the following sets are also non-empty then output
       *[B01_INCONSISTENT_DELEGATION]* with *Child Zone*, parent zone name and
       the combined set of name server IP addresses from all six sets.
-         * *AA NXDOMAIN Found*
+         * *AA NXDomain Found*
          * *AA CNAME Found*
          * *AA DNAME Found*
          * *AA NODATA Found*
@@ -301,6 +302,7 @@ a specific name server.
 [INFO]:                                                           ../SeverityLevelDefinitions.md#info
 [List of Root Servers]:                                           https://www.iana.org/domains/root/servers
 [NOTICE]:                                                         ../SeverityLevelDefinitions.md#notice
+[RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [Requirements and normalization of domain names in input]:        ../RequirementsAndNormalizationOfDomainNames.md
 [Severity Level Definitions]:                                     ../SeverityLevelDefinitions.md
 [Undelegated test]:                                               ../../test-types/undelegated-test.md
