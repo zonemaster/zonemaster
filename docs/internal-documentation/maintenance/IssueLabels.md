@@ -2,13 +2,14 @@
 
 ## Label categories
 
-The table below defines the labels to be used when classifying issues and pull requests. There
-are four categories of labels defined:
+The table below defines the labels to be used when classifying issues and pull requests.
+Each label is assigned to one of these categories:
 
 * Area
 * Priority
 * Status
 * Type
+* Versioning
 
 # Usage
 
@@ -22,28 +23,32 @@ A label from *Status* can be used if applicable.
 
 ## Labels
 
-Category | Label            | Color  | Used in repository | Scope |Description
----------|------------------|--------|--------------------|-------|---------------------------------------------------------
-Area     | A-Documentation  | green  | all                | Both  | Area: Documentation only.
-Area     | A-TestCase       | green  | "main" or Engine   | Both  | Area: Test case specification or implementation of test case.
-Area     | A-Translation    | green  | all                | Both  | Area: Documentation of, implementation of or actual translation of text.
-Area     | FA-MethodsV2     | green  | "main" or Engine   | Both  | Focus Area: Implementing and migrating to MethodsV2 for test cases.
-Priority | P-High           | red    | all                | Both  | Priority: Issue to be solved before other.
-Status   | S-ReleaseTested  | yellow | all                | PR    | Status: The PR has been successfully tested in release testing
-Status   | S-PRforIssue     | yellow | all                | Issue | Status: There is a PR that is meant to resolve the issue
-Type     | T-Bug            | red    | all                | Both  | Type: Bug in software or error in test case description.
-Type     | T-Feature        | blue   | all                | Issue | Type: New feature in software or test case description.
-Type     | T-Question       | blue   | all                | Issue | Type: Incoming question.
-Type     | T-TrackingIssue  | blue   | all                | Issue | Type: Tracks other issues, PRs or other changes.
+Category   | Label            | Color  | Used in repository | Scope |Description
+-----------|------------------|--------|--------------------|-------|---------------------------------------------------------
+Area       | A-Documentation  | green  | all                | Both  | Area: Documentation only.
+Area       | A-TestCase       | green  | "main" or Engine   | Both  | Area: Test case specification or implementation of test case.
+Area       | A-Translation    | green  | all                | Both  | Area: Documentation of, implementation of or actual translation of text.
+Area       | FA-MethodsV2     | green  | "main" or Engine   | Both  | Focus Area: Implementing and migrating to MethodsV2 for test cases.
+Priority   | P-High           | red    | all                | Both  | Priority: Issue to be solved before other.
+Status     | S-ReleaseTested  | yellow | all                | PR    | Status: The PR has been successfully tested in release testing
+Status     | S-PRforIssue     | yellow | all                | Issue | Status: There is a PR that is meant to resolve the issue
+Type       | T-Bug            | red    | all                | Both  | Type: Bug in software or error in test case specification.
+Type       | T-Feature        | blue   | all                | Issue | Type: New feature in software or test case specification.
+Type       | T-Question       | blue   | all                | Issue | Type: Incoming question.
+Type       | T-TrackingIssue  | blue   | all                | Issue | Type: Tracks other issues, PRs or other changes.
+Versioning | V-Major          | pink   | all                | Both  | Versioning: The change gives an update of major in version.
+Versioning | V-Minor          | pink   | all                | Both  | Versioning: The change gives an update of minor in version.
+Versioning | V-Patch          | pink   | all                | Both  | Versioning: The change gives an update of patch in version.
 
 ## Color
 
-Term     | Definition or meaning
+Term     | Color code
 ---------|---------------------------------------------
-red      | Label with color code #EE0701
-blue     | Label with color code #0CCFF2
-green    | Label with color code #55D700
-yellow   | Label with color code #FFCE2E
+blue     | #0CCFF2
+green    | #55D700
+pink     | #FFC0CB
+red      | #EE0701
+yellow   | #FFCE2E
 
 ## Used in repository
 
