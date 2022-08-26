@@ -17,7 +17,7 @@
   * [IDN name](#IDN-name)
   * [Length limitations](#Length-limitations)
   * [Root zone](#Root-zone)
-  * [Creating normalized form](#Creating-normalized-form)
+  * [Creating IDNA2008 compatible format](#Creating-idna2008-compatible-format)
 * [Terminology](#terminology)
 
 
@@ -52,9 +52,9 @@ The process defined in this specification will normalize *Domain Name* and outpu
 a normalized form to be used by all Zonemaster test cases. The objectives of the
 normalization are
 
-1. Remove white leading and trailing white space characters.
-2. Convert other dot characters to regular dot (or "FULL STOP"), and
-3. Create legal IDNA 2008 U-labels from convenient alternative forms, and
+1. Remove leading and trailing white space characters.
+2. Convert other dot characters to regular dot (or "FULL STOP").
+3. Create legal IDNA 2008 U-labels from convenient alternative forms.
 4. Create consistent representation of the same zone name.
 
 The result of the normalization can be a new form of *Domain Name* to be used
@@ -78,6 +78,7 @@ The following references are consulted for this specification:
 * [RFC 2317]
 * [RFC 2782]
 * [RFC 5890]
+* [RFC 5891]
 * [RFC 5895]
 * [Unicode TR 46]
 
@@ -115,14 +116,16 @@ is here listed with a message tag, level (always CRITICAL in this specification)
 suitable argument to be used in the same descriptive message and a message that
 can be returned to the user.
 
-Message Tag           | Level    | Arguments | Message ID for message tag
-:---------------------|:---------|:----------|:---------------------------------
-INITIAL_DOT           | CRITICAL |           | Domain name starts with dot.
-REPEATED_DOTS         | CRITICAL |           | Domain name has repeated dots.
-INVALID_ASCII         | CRITICAL | dlabel    | Domain name has an ASCII label ("{dlabel}") with a character not permitted.
-INVALID_U_LABEL       | CRITICAL | dlabel    | Domain name has a non-ASCII label ("{dlabel}") which is not a valid U-label.
-LABEL_TOO_LONG        | CRITICAL | dlabel    | Domain name has a label that is too long (more than 63 characters), "{dlabel}".
-DOMAIN_NAME_TOO_LONG  | CRITICAL |           | Domain name is too long (more than 253 characters with no final dot).
+Message Tag                    | Level    | Arguments | Message ID for message tag
+:------------------------------|:---------|:----------|:----------------------------------------------------------
+CAPITAL_I_DOT_ABOVE_UNSUPPORTED| CRITICAL |           | LATIN CAPITAL LETTER I WITH DOT ABOVE cannot be downcased.
+DOMAIN_NAME_TOO_LONG           | CRITICAL |           | Domain name is too long (more than 253 characters with no final dot).
+EMPTY_DOMAIN_NAME              | CRITICAL |           | Domain name is empty.
+INITIAL_DOT                    | CRITICAL |           | Domain name starts with dot.
+INVALID_ASCII                  | CRITICAL | dlabel    | Domain name has an ASCII label ("{dlabel}") with a character not permitted.
+INVALID_U_LABEL                | CRITICAL | dlabel    | Domain name has a non-ASCII label ("{dlabel}") which is not a valid U-label.
+LABEL_TOO_LONG                 | CRITICAL | dlabel    | Domain name has a label that is too long (more than 63 characters), "{dlabel}".
+REPEATED_DOTS                  | CRITICAL |           | Domain name has repeated dots.
 
 The value in the Level column is the default severity level of the message. Also
 see the [Severity Level Definitions] document.
@@ -147,54 +150,63 @@ Tables 1, 2, 3 and 4 are found in the [Detailed requirements] section below.
 3.  If *Domain Name* ends with one or more of *White Space* then those are
     removed from *Domain Name* before further processing.
 
-4.  Create an empty, ordered list of labels ("Domain Labels").
+4.  If *Domain Name* is an empty string then output *[EMPTY_DOMAIN_NAME]* and
+    terminate these test procedures.
 
-5.  Replace all instances of character from *Unicode Full Stops* in *Domain Name*
-    with the label separating, regular dot U+002E (see Table 2).
-
-6.  If *Domain Name* is the root zone, i.e. the exact string "." (U+002E), then
-    terminate these test procedures with no message tags.
-
-7.  If *Domain Name* starts with dot (".", U+002E) then output
-    *[B00_INITIAL_DOT]* and terminate these test procedures.
-
-8.  If *Domain Name* has any instance of two or more consecutive dots (".",
-    U+002E) then output *[B00_REPEATED_DOTS]* and terminate these test
+5.  If *Domain Name* contains [LATIN CAPITAL LETTER I WITH DOT ABOVE] then
+    output *[CAPITAL_I_DOT_ABOVE_UNSUPPORTED]* and terminate these test
     procedures.
 
-9.  Remove trailing dot (".", U+002E) from *Domain Name*.
+6.  Create an empty, ordered list of labels ("Domain Labels").
 
-10. Split *Domain Name* into labels by dot "." (U+002E) and put them in the same
+7.  Replace all instances of character from *Unicode Full Stops* in *Domain Name*
+    with the label separating, regular dot U+002E (see Table 2).
+
+8.  If *Domain Name* is the root zone, i.e. the exact string "." (U+002E), then
+    terminate these test procedures with no message tags.
+
+9.  If *Domain Name* starts with dot (".", U+002E) then output
+    *[INITIAL_DOT]* and terminate these test procedures.
+
+10. If *Domain Name* has any instance of two or more consecutive dots (".",
+    U+002E) then output *[REPEATED_DOTS]* and terminate these test
+    procedures.
+
+11. Remove trailing dot (".", U+002E) from *Domain Name*.
+
+12. Split *Domain Name* into labels by dot "." (U+002E) and put them in the same
     order in *Domain Labels*.
 
-11. For each "Label" in *Domain Labels* do:
+13. For each "Label" in *Domain Labels* do:
     1. If all characters in *Label* are ASCII characters, then do:
        1. If any character in *Label* is not listed in *Valid ASCII*, then output
-          [B00_INVALID_ASCII] and *Label*, and terminate these test procedures.
-       2. Else, downcase all upper case characters as described in section
-          [Upper case](#Upper-case) below.
+          *[INVALID_ASCII]* and *Label*, and terminate these test procedures.
+       2. Else, downcase all upper case characters as specified in section
+          "[Upper case](#Upper-case)" below.
     2. Else do:
        1. Assume that *Label* is a U-label.
-       2. Downcase all upper case characters as described in section
-          [Upper case](#Upper-case) below.
+       2. Downcase all upper case characters as specified in section
+          "[Upper case](#Upper-case)" below.
+       3. Normalize *Label* to NFC as specified in [Unicode TR 15]. Also see
+          section "[Unicode normalization](#Unicode-normalization)" below.
        3. Convert *Label* to an A-label as specified by
           [IDNA2008][RFC 5890#1.1].
-          1. If the conversion failed, then output *[B00_INVALID_U_LABEL]*
+          1. If the conversion failed, then output *[INVALID_U_LABEL]*
              and *Label*, and terminate these test procedures.
           2. Else, replace the U-label in *Domain Labels* with the A-label from
              the conversion above.
     3. Go to next label.
 
-12. For each "Label" in *Domain Labels* do:
+14. For each "Label" in *Domain Labels* do:
     1. If the length (number of characters) in *Label* is greater than 63 then
-       output *[B00_LABEL_TOO_LONG]* and *Label*, and terminate these test
+       output *[LABEL_TOO_LONG]* and *Label*, and terminate these test
        procedures.
 
-13. Map the labels in *Domain Labels* back into *Domain Name* with one dot (".",
+15. Map the labels in *Domain Labels* back into *Domain Name* with one dot (".",
     U+002E), between the labels (no dots if the there is only one label).
 
-14. If the length of *Domain Name* is longer than 253 characters including the
-    dots, then output *[B00_DOMAIN_NAME_TOO_LONG]* and terminate these test
+16. If the length of *Domain Name* is longer than 253 characters including the
+    dots, then output *[DOMAIN_NAME_TOO_LONG]* and terminate these test
     procedures.
 
 
@@ -272,7 +284,6 @@ consecutive "." (dots) in a valid domain name. The domain name, as entered to
 Zonemaster, can either have a final dot or not, and will be normalized as
 described below.
 
-
 ### IDN name
 
 A valid IDN name is a domain named where one or more labels are valid IDN label
@@ -323,11 +334,32 @@ and in no other way. The label that represents the root zone is an empty label
 after the dot.
 
 
-### Creating normalized form
+### Creating IDNA2008 compatible format
 
-For a discussion on pre-processing the domain name to achieve a normalized form,
-see [RFC 5895].
+For a discussion on pre-processing the domain name to achieve IDNA compatible
+U-label from convenient alternative forms see [RFC 5895]. Unicode normalization
+is covered by [RFC 5891] and [Unicode TR 15]
 
+#### Unicode normalization
+
+For Unicode strings normalization processes have been defined to make convert
+different representations into a normalized form. Specifically, it is required
+that an IDN label ([IDNA2008]) is in the so called "Normalized Form C" (NFC) as
+of [RFC 5891][RFC 5891#5.2], section 5.2.
+
+For ASCII domain names NFC is no issue since they are always in NFC format. For
+an IDN name the situation is different. The letter "ö" in the IDN domain name
+"malmö.se" can be represented as either the single Unicode code point U+00F6 or
+as the Unicode code point sequence "006F 0308". Only the former is in NFC form,
+which means that if the domain name is entered with the sequence it must be
+preprocessed before entering [IDNA2008] processing, i.e. conversion to A-label
+format. See [Unicode TR 15] for a specification of Unicode normalization and more
+examples relevant to domain names.
+
+Zonemaster (this specification) requires that any domain name must be converted
+to NFC form before conversion to A-label. However, the domain name is entered in
+A-label format, this specification does not require that the corresponding
+U-label is in NFC format.
 
 #### White space
 
@@ -392,12 +424,16 @@ non-ASCII characters found in U-labels ([RFC 5895][RFC 5895#2], section 2). This
 mapping is done before a U-label is converted to A-label. A valid U-label must
 not contain any upper case letters.
 
-Special attention should be put on U+0049 (LATIN CAPITAL LETTER I) and U+0130
-(LATIN CAPITAL LETTER I WITH DOT ABOVE). Both must be mapped into U+0069 (LATIN
-SMALL LETTER I), also in a Turkish and Azeri locale. (See [Unicode SpecialCasing]
-for the special casing of U+0130 etc in Turkish and Azeri locale.) If a U-label
-contains a U+0131 (LATIN SMALL LETTER DOTLESS I) it will be tested as such with
-no mapping.
+For Zonemaster special rules applies to U+0049 ([LATIN CAPITAL LETTER I]) and
+U+0130 ([LATIN CAPITAL LETTER I WITH DOT ABOVE]).
+
+* [LATIN CAPITAL LETTER I] is downcased to U+0069 ([LATIN SMALL LETTER I]) also
+  in Turkish and Azeri locale, i.e. not following the special Unicode rule in
+  those locale ([Unicode SpecialCasing]).
+* Label with [LATIN CAPITAL LETTER I WITH DOT ABOVE] should be rejected since
+  normal downcasing gives a sequence not reasonable in a domain name context (see
+  "Lowercase Mapping" in [LATIN CAPITAL LETTER I WITH DOT ABOVE].
+
 
 #### A-label and U-label
 
@@ -414,20 +450,15 @@ No special terminology for this specification.
 
 
 [Argument list]:                         https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[B00_DOMAIN_NAME_TOO_LONG]:              #SUMMARY
-[B00_INITIAL_DOT]:                       #SUMMARY
-[B00_INVALID_ASCII]:                     #SUMMARY
-[B00_INVALID_U_LABEL]:                   #SUMMARY
-[B00_LABEL_TOO_LONG]:                    #SUMMARY
-[B00_REPEATED_DOTS]:                     #SUMMARY
+[CAPITAL_I_DOT_ABOVE_UNSUPPORTED]:       #SUMMARY
 [CHARACTER TABULATION]:                  https://codepoints.net/U+0009
-[CRITICAL]:                              ../SeverityLevelDefinitions.md#critical
+[DOMAIN_NAME_TOO_LONG]:                  #SUMMARY
 [Detailed requirements]:                 #Detailed-requirements
 [EM QUAD]:                               https://codepoints.net/U+2001
 [EM SPACE]:                              https://codepoints.net/U+2003
+[EMPTY_DOMAIN_NAME]:                     #SUMMARY
 [EN QUAD]:                               https://codepoints.net/U+2000
 [EN SPACE]:                              https://codepoints.net/U+2002
-[ERROR]:                                 ../SeverityLevelDefinitions.md#error
 [FIGURE SPACE]:                          https://codepoints.net/U+2007
 [FOUR-PER-EM SPACE]:                     https://codepoints.net/U+2005
 [FULL STOP]:                             https://codepoints.net/U+002E
@@ -437,13 +468,20 @@ No special terminology for this specification.
 [HYPHEN-MINUS]:                          https://codepoints.net/U+002D
 [IDEOGRAPHIC FULL STOP]:                 https://codepoints.net/U+3002
 [IDEOGRAPHIC SPACE]:                     https://codepoints.net/U+3000
-[INFO]:                                  ../SeverityLevelDefinitions.md#info
+[INITIAL_DOT]:                           #SUMMARY
+[INVALID_ASCII]:                         #SUMMARY
+[INVALID_U_LABEL]:                       #SUMMARY
+[LABEL_TOO_LONG]:                        #SUMMARY
+[LATIN CAPITAL LETTER I WITH DOT ABOVE]: https://codepoints.net/U+0130
+[LATIN CAPITAL LETTER I]:                https://codepoints.net/U+0049
+[LATIN SMALL LETTER DOTLESS I]:          https://codepoints.net/U+0131
+[LATIN SMALL LETTER I]:                  https://codepoints.net/U+0069
 [LOW LINE]:                              https://codepoints.net/U+005F
 [MEDIUM MATHEMATICAL SPACE]:             https://codepoints.net/U+205F
 [NO-BREAK SPACE]:                        https://codepoints.net/U+00A0
-[NOTICE]:                                ../SeverityLevelDefinitions.md#notice
 [OGHAM SPACE MARK]:                      https://codepoints.net/U+1680
 [PUNCTUATION SPACE]:                     https://codepoints.net/U+2008
+[REPEATED_DOTS]:                         #SUMMARY
 [RFC 1034#3.1]:                          https://datatracker.ietf.org/doc/html/rfc1034#section-3.1
 [RFC 1034]:                              https://datatracker.ietf.org/doc/html/rfc1034
 [RFC 1035#2.3.3]:                        https://datatracker.ietf.org/doc/html/rfc1035#section-2.3.3
@@ -458,19 +496,21 @@ No special terminology for this specification.
 [RFC 5890#2.3.2.1]:                      https://datatracker.ietf.org/doc/html/rfc5890#section-2.3.2.1
 [RFC 5890#2.3.2.3]:                      https://datatracker.ietf.org/doc/html/rfc5890#section-2.3.2.3
 [RFC 5890]:                              https://datatracker.ietf.org/doc/html/rfc5890
+[RFC 5891#5.2]:                          https://www.rfc-editor.org/rfc/rfc5891#section-5.2
+[RFC 5891]:                              https://www.rfc-editor.org/rfc/rfc5891
 [RFC 5895#2]:                            https://datatracker.ietf.org/doc/html/rfc5895#section-2
 [RFC 5895]:                              https://datatracker.ietf.org/doc/html/rfc5895
 [SIX-PER-EM SPACE]:                      https://codepoints.net/U+2006
 [SOLIDUS]:                               https://codepoints.net/U+002F
 [SPACE]:                                 https://codepoints.net/U+0020
-[Severity Level Definitions]:            ../SeverityLevelDefinitions.md
-[Syntax01]:                              ../Syntax-TP/syntax01.md
-[Syntax02]:                              ../Syntax-TP/syntax02.md
+[Severity Level Definitions]:            SeverityLevelDefinitions.md
+[Syntax01]:                              Syntax-TP/syntax01.md
+[Syntax02]:                              Syntax-TP/syntax02.md
 [THIN SPACE]:                            https://codepoints.net/U+2009
 [THREE-PER-EM SPACE]:                    https://codepoints.net/U+2004
 [Unicode SpecialCasing]:                 https://www.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt
+[Unicode TR 15]:                         https://unicode.org/reports/tr15/
 [Unicode TR 46#Notation]:                http://unicode.org/reports/tr46/#Notation
 [Unicode TR 46]:                         http://unicode.org/reports/tr46
 [Unicode]:                               https://unicode.org/main.html
-[WARNING]:                               ../SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:             https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
