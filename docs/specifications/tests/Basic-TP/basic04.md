@@ -57,11 +57,11 @@ B04_IPV4_DISABLED                 | NOTICE  | ns_list              | IPv4 is dis
 B04_IPV6_DISABLED                 | NOTICE  | ns_list              | IPv6 is disabled. No DNS queries have been sent to these name servers: "{ns_list}".
 B04_MISSING_NS_RECORD             | WARNING | ns                   | Nameserver {ns} reponds to a NS query with no NS records in the answer section.
 B04_MISSING_SOA_RECORD            | WARNING | ns                   | Nameserver {ns} reponds to a SOA query with no SOA records in the answer section.
-B04_NO_RESPONSE                   | WARNING | ns                   | Nameserver {ns} does not respond over neither UDP nor TCP.
+B04_NO_RESPONSE                   | WARNING | ns                   | Nameserver {ns} does not respond to any queries (UDP or TCP).
 B04_NO_RESPONSE_NS_QUERY          | WARNING | ns                   | Nameserver {ns} does not respond to NS queries.
 B04_NO_RESPONSE_SOA_QUERY         | WARNING | ns                   | Nameserver {ns} does not respond to SOA queries.
 B04_NS_RECORD_NOT_AA              | WARNING | ns                   | Nameserver {ns} does not give an authoritative response on an NS query.
-B04_RESPONSE_TCP_NOT_UDP          | WARNING | ns                   | Nameserver {ns} does not respond over UDP.
+B04_RESPONSE_TCP_NOT_UDP          | WARNING | ns                   | Nameserver {ns} only responds over TCP, and not UDP, which in most cases makes it unreachable.
 B04_SOA_RECORD_NOT_AA             | WARNING | ns                   | Nameserver {ns} does not give an authoritative response on an SOA query.
 B04_UNEXPECTED_RCODE_NS_QUERY     | WARNING | ns                   | Nameserver {ns} responds with an unexpected RCODE ({rcode}) on an NS query.
 B04_UNEXPECTED_RCODE_SOA_QUERY    | WARNING | ns                   | Nameserver {ns} responds with an unexpected RCODE ({rcode}) on an SOA query.
@@ -97,19 +97,19 @@ queries follow, unless otherwise specified below, what is specified for
 
 4. If IPv4 is disabled then do:
    1. Extract all name servers with IPv4 address from *Name Server IP*.
-   2. If the set of IPv4 name serververs is non-empty then output
+   2. If the set of IPv4 name servers is non-empty then output
       *[B04_IPV4_DISABLED]* with the set of IPv4 name servers.
 
 5. If IPv6 is disabled then do:
    1. Extract all name servers with IPv6 address from *Name Server IP*.
-   2. If the set of IPv6 name serververs is non-empty then output
+   2. If the set of IPv6 name servers is non-empty then output
       *[B04_IPV6_DISABLED]* with the set of IPv6 name servers.
 
 6. For each name server in *Name Server IP* do:
 
    1. Send *SOA Query UDP* and *NS Query UDP* to the name server and collect
       the [DNS Responses][DNS Response].
-   2. If there is no DNS response on neither query), then:
+   2. If there is no DNS response on neither query, then:
       1. Send *SOA Query TCP* to the name server and collect the [DNS Response].
       2. If there is no [DNS Response], then output *[B04_NO_RESPONSE]* and go
          to next server.
