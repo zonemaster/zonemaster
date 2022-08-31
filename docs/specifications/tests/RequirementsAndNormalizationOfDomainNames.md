@@ -122,9 +122,9 @@ CAPITAL_I_DOT_ABOVE_UNSUPPORTED| CRITICAL |           | LATIN CAPITAL LETTER I W
 DOMAIN_NAME_TOO_LONG           | CRITICAL |           | Domain name is too long (more than 253 characters with no final dot).
 EMPTY_DOMAIN_NAME              | CRITICAL |           | Domain name is empty.
 INITIAL_DOT                    | CRITICAL |           | Domain name starts with dot.
-INVALID_ASCII                  | CRITICAL | dlabel    | Domain name has an ASCII label ("{dlabel}") with a character not permitted.
-INVALID_U_LABEL                | CRITICAL | dlabel    | Domain name has a non-ASCII label ("{dlabel}") which is not a valid U-label.
-LABEL_TOO_LONG                 | CRITICAL | dlabel    | Domain name has a label that is too long (more than 63 characters), "{dlabel}".
+INVALID_ASCII                  | CRITICAL | label     | Domain name has an ASCII label ("{label}") with a character not permitted.
+INVALID_U_LABEL                | CRITICAL | label     | Domain name has a non-ASCII label ("{label}") which is not a valid U-label.
+LABEL_TOO_LONG                 | CRITICAL | label     | Domain name has a label that is too long (more than 63 characters), "{label}".
 REPEATED_DOTS                  | CRITICAL |           | Domain name has repeated dots.
 
 The value in the Level column is the default severity level of the message. Also
