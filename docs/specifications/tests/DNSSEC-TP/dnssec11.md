@@ -7,14 +7,14 @@
 
 ## Table of contents
 
-* [Objective](#Objective)
-* [Scope](#Scope)
-* [Inputs](#Inputs)
-* [Summary](#Summary)
-* [Test procedure](#Test-procedure)
-* [Outcome(s)](#Outcomes)
-* [Special procedural requirements](#Special-procedural-requirements)
-* [Intercase dependencies](#Intercase-dependencies)
+* [Objective](#objective)
+* [Scope](#scope)
+* [Inputs](#inputs)
+* [Summary](#summary)
+* [Test procedure](#test-procedure)
+* [Outcome(s)](#outcomes)
+* [Special procedural requirements](#special-procedural-requirements)
+* [Intercase dependencies](#intercase-dependencies)
 * [Terminology](#terminology)
 
 
@@ -217,15 +217,15 @@ No special terminology for this test case.
 [DNSSEC02]:                                   dnssec02.md
 [DNSSEC08]:                                   dnssec08.md
 [DNSSEC09]:                                   dnssec09.md
-[DS11_DS_BUT_UNSIGNED_ZONE]:                  #Summary
-[DS11_INCONSISTENT_DS]:                       #Summary
-[DS11_INCONSISTENT_SIGNED_ZONE]:              #Summary
-[DS11_UNDETERMINED_DS]:                       #Summary
-[DS11_UNDETERMINED_SIGNED_ZONE]:              #Summary
-[DS11_NS_WITH_SIGNED_ZONE]:                   #Summary
-[DS11_NS_WITH_UNSIGNED_ZONE]:                 #Summary
-[DS11_PARENT_WITHOUT_DS]:                     #Summary
-[DS11_PARENT_WITH_DS]:                        #Summary
+[DS11_DS_BUT_UNSIGNED_ZONE]:                  #summary
+[DS11_INCONSISTENT_DS]:                       #summary
+[DS11_INCONSISTENT_SIGNED_ZONE]:              #summary
+[DS11_UNDETERMINED_DS]:                       #summary
+[DS11_UNDETERMINED_SIGNED_ZONE]:              #summary
+[DS11_NS_WITH_SIGNED_ZONE]:                   #summary
+[DS11_NS_WITH_UNSIGNED_ZONE]:                 #summary
+[DS11_PARENT_WITHOUT_DS]:                     #summary
+[DS11_PARENT_WITH_DS]:                        #summary
 [ERROR]:                                      ../SeverityLevelDefinitions.md#error
 [IANA RCODE List]:                            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [INFO]:                                       ../SeverityLevelDefinitions.md#info

@@ -7,14 +7,14 @@
 
 ## Table of contents
 
-* [Objective](#Objective)
-* [Scope](#Scope)
-* [Inputs](#Inputs)
-* [Summary](#Summary)
-* [Test procedure](#Test-procedure)
-* [Outcome(s)](#Outcomes)
-* [Special procedural requirements](#Special-procedural-requirements)
-* [Intercase dependencies](#Intercase-dependencies)
+* [Objective](#objective)
+* [Scope](#scope)
+* [Inputs](#inputs)
+* [Summary](#summary)
+* [Test procedure](#test-procedure)
+* [Outcome(s)](#outcomes)
+* [Special procedural requirements](#special-procedural-requirements)
+* [Intercase dependencies](#intercase-dependencies)
 * [Terminology](#terminology)
 
 
@@ -315,21 +315,21 @@ should not be used as of [RFC 5890][RFC 5890#section-2.3.1], section 2.3.1.
 [Basic04]:                                    ../Basic-TP/basic04.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [DNSSEC README]:                              README.md
-[DS10_ALGO_NOT_SUPPORTED_BY_ZM]:              #Summary
-[DS10_ANSWER_VERIFY_ERROR]:                   #Summary
-[DS10_HAS_NSEC3]:                             #Summary
-[DS10_HAS_NSEC]:                              #Summary
-[DS10_INCONSISTENT_NSEC_NSEC3]:               #Summary
-[DS10_MISSING_NSEC_NSEC3]:                    #Summary
-[DS10_MIXED_NSEC_NSEC3]:                      #Summary
-[DS10_NAME_NOT_COVERED_BY_NSEC3]:             #Summary
-[DS10_NAME_NOT_COVERED_BY_NSEC]:              #Summary
-[DS10_NON_EXISTENT_RESPONSE_ERROR]:           #Summary
-[DS10_NSEC3_MISSING_SIGNATURE]:               #Summary
-[DS10_NSEC3_RRSIG_VERIFY_ERROR]:              #Summary
-[DS10_NSEC_MISSING_SIGNATURE]:                #Summary
-[DS10_NSEC_RRSIG_VERIFY_ERROR]:               #Summary
-[DS10_UNSIGNED_ANSWER]:                       #Summary
+[DS10_ALGO_NOT_SUPPORTED_BY_ZM]:              #summary
+[DS10_ANSWER_VERIFY_ERROR]:                   #summary
+[DS10_HAS_NSEC3]:                             #summary
+[DS10_HAS_NSEC]:                              #summary
+[DS10_INCONSISTENT_NSEC_NSEC3]:               #summary
+[DS10_MISSING_NSEC_NSEC3]:                    #summary
+[DS10_MIXED_NSEC_NSEC3]:                      #summary
+[DS10_NAME_NOT_COVERED_BY_NSEC3]:             #summary
+[DS10_NAME_NOT_COVERED_BY_NSEC]:              #summary
+[DS10_NON_EXISTENT_RESPONSE_ERROR]:           #summary
+[DS10_NSEC3_MISSING_SIGNATURE]:               #summary
+[DS10_NSEC3_RRSIG_VERIFY_ERROR]:              #summary
+[DS10_NSEC_MISSING_SIGNATURE]:                #summary
+[DS10_NSEC_RRSIG_VERIFY_ERROR]:               #summary
+[DS10_UNSIGNED_ANSWER]:                       #summary
 [ERROR]:                                      ../SeverityLevelDefinitions.md#error
 [IANA RCODE List]:                            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [IANA RR Type List]:                          https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
@@ -337,7 +337,7 @@ should not be used as of [RFC 5890][RFC 5890#section-2.3.1], section 2.3.1.
 [Method4]:                                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NOTICE]:                                     ../SeverityLevelDefinitions.md#notice
-[Non-Existent Query Name]:                    #The-Non-Existent-Query-Name
+[Non-Existent Query Name]:                    #the-non-existent-query-name
 [RFC 4034#section-4]:                         https://datatracker.ietf.org/doc/html/rfc4034#section-4
 [RFC 4035#section-3.1.3]:                     https://datatracker.ietf.org/doc/html/rfc4035#section-3.1.3
 [RFC 5155#section-3]:                         https://datatracker.ietf.org/doc/html/rfc5155#section-3

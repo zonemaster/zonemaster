@@ -6,14 +6,14 @@
 
 ## Table of contents
 
-* [Objective](#Objective)
-* [Scope](#Scope)
-* [Inputs](#Inputs)
-* [Summary](#Summary)
-* [Test procedure](#Test-procedure)
-* [Outcome(s)](#Outcomes)
-* [Special procedural requirements](#Special-procedural-requirements)
-* [Intercase dependencies](#Intercase-dependencies)
+* [Objective](#objective)
+* [Scope](#scope)
+* [Inputs](#inputs)
+* [Summary](#summary)
+* [Test procedure](#test-procedure)
+* [Outcome(s)](#outcomes)
+* [Special procedural requirements](#special-procedural-requirements)
+* [Intercase dependencies](#intercase-dependencies)
 * [Terminology](#terminology)
 
 
@@ -249,13 +249,13 @@ No special terminology for this test case.
 [DNSSEC README]:                              README.md
 [DNSSEC Response]:                            ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
 [DNSSEC11]:                                   dnssec11.md
-[DS02_ALGO_NOT_SUPPORTED_BY_ZM]:              #Summary
-[DS02_DNSKEY_NOT_FOR_ZONE_SIGNING]:           #Summary
-[DS02_DNSKEY_NOT_SEP]:                        #Summary
-[DS02_NO_DNSKEY_FOR_DS]:                      #Summary
-[DS02_NO_MATCHING_DNSKEY_RRSIG]:              #Summary
-[DS02_NO_MATCH_DS_DNSKEY]:                    #Summary
-[DS02_RRSIG_NOT_VALID_BY_DNSKEY]:             #Summary
+[DS02_ALGO_NOT_SUPPORTED_BY_ZM]:              #summary
+[DS02_DNSKEY_NOT_FOR_ZONE_SIGNING]:           #summary
+[DS02_DNSKEY_NOT_SEP]:                        #summary
+[DS02_NO_DNSKEY_FOR_DS]:                      #summary
+[DS02_NO_MATCHING_DNSKEY_RRSIG]:              #summary
+[DS02_NO_MATCH_DS_DNSKEY]:                    #summary
+[DS02_RRSIG_NOT_VALID_BY_DNSKEY]:             #summary
 [ERROR]:                                      ../SeverityLevelDefinitions.md#error
 [IANA RCODE List]:                            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [INFO]:                                       ../SeverityLevelDefinitions.md#info

@@ -402,16 +402,16 @@ make update-po MSGMERGE_OPTS=--no-fuzzy-matching
 [New issue zonemaster-backend]:                https://github.com/zonemaster/zonemaster-backend/issues/new
 [New issue zonemaster-cli]:                    https://github.com/zonemaster/zonemaster-cli/issues/new
 [New issue zonemaster-engine]:                 https://github.com/zonemaster/zonemaster-engine/issues/new
-[Overview]:                                    #Overview
+[Overview]:                                    #overview
 [PO files]:                                    https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html
 [POEDIT]:                                      https://poedit.net/
 [README]:                                      ../../../README.md
 [Software preparation]:                        #software-preparation
-[Technical details]:                           #Technical-details
+[Technical details]:                           #technical-details
 [Tools]:                                       #tools
 [Translation steps]:                           #translation-steps
 [Translation]:                                 https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Translation.pod
-[Updates to msgids]:                           #Updates-to-msgids
+[Updates to msgids]:                           #updates-to-msgids
 [Wikipedia]:                                   https://www.wikipedia.org/
 [Zonemaster GUI translation guide]:            https://github.com/zonemaster/zonemaster-gui/blob/develop/docs/TranslationGuide.md
 [Zonemaster-Backend repository]:               https://github.com/zonemaster/zonemaster-backend

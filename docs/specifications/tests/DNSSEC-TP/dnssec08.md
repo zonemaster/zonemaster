@@ -7,14 +7,14 @@
 
 ## Table of contents
 
-* [Objective](#Objective)
-* [Scope](#Scope)
-* [Inputs](#Inputs)
-* [Summary](#Summary)
-* [Test procedure](#Test-procedure)
-* [Outcome(s)](#Outcomes)
-* [Special procedural requirements](#Special-procedural-requirements)
-* [Intercase dependencies](#Intercase-dependencies)
+* [Objective](#objective)
+* [Scope](#scope)
+* [Inputs](#inputs)
+* [Summary](#summary)
+* [Test procedure](#test-procedure)
+* [Outcome(s)](#outcomes)
+* [Special procedural requirements](#special-procedural-requirements)
+* [Intercase dependencies](#intercase-dependencies)
 * [Terminology](#terminology)
 
 
@@ -173,12 +173,12 @@ No special terminology for this test case.
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [DNSSEC README]:                              ./README.md
 [DNSSEC README]:                              README.md
-[DS08_ALGO_NOT_SUPPORTED_BY_ZM]:              #Summary
-[DS08_DNSKEY_RRSIG_EXPIRED]:                  #Summary
-[DS08_DNSKEY_RRSIG_NOT_YET_VALID]:            #Summary
-[DS08_MISSING_RRSIG_IN_RESPONSE]:             #Summary
-[DS08_NO_MATCHING_DNSKEY]:                    #Summary
-[DS08_RRSIG_NOT_VALID_BY_DNSKEY]:             #Summary
+[DS08_ALGO_NOT_SUPPORTED_BY_ZM]:              #summary
+[DS08_DNSKEY_RRSIG_EXPIRED]:                  #summary
+[DS08_DNSKEY_RRSIG_NOT_YET_VALID]:            #summary
+[DS08_MISSING_RRSIG_IN_RESPONSE]:             #summary
+[DS08_NO_MATCHING_DNSKEY]:                    #summary
+[DS08_RRSIG_NOT_VALID_BY_DNSKEY]:             #summary
 [ERROR]:                                      ../SeverityLevelDefinitions.md#error
 [IANA RCODE List]:                            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [INFO]:                                       ../SeverityLevelDefinitions.md#info
