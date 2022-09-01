@@ -46,7 +46,7 @@ report status of *Child Zone*.
 
 Message Tag                            | Level     | Arguments           | Message ID for message tag
 :--------------------------------------|:----------|---------------------|---------------------------------------------
-NS11_UNKNOWN_OPTION_CODE               | WARNING   | ns_ip_list          | The DNS response contains an unknown EDNS option-code. Returned from name servers "{ns_ip_list}".
+N11_UNKNOWN_OPTION_CODE               | WARNING   | ns_ip_list          | The DNS response contains an unknown EDNS option-code. Returned from name servers "{ns_ip_list}".
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -86,7 +86,7 @@ what is specified for [EDNS Response] in the same specification.
       3. The pseudo-section response has an OPT record with version set to 0.
       4. There is no "OPTION-CODE" present in the response.
 
-5. If the *Unknown Option Code* set is non-empty, then output *[NS11_UNKNOWN_OPTION_CODE]* 
+5. If the *Unknown Option Code* set is non-empty, then output *[N11_UNKNOWN_OPTION_CODE]* 
    with the name servers IP addresses from the set.
 
 ## Outcome(s)
@@ -130,7 +130,7 @@ No special terminology for this test case.
 [Method5]:                              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [Nameserver02]:                         ../Nameserver-TP/nameserver02.md
 [NOTICE]:                               https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#notice
-[NS11_UNKNOWN_OPTION_CODE]:             #summary
+[N11_UNKNOWN_OPTION_CODE]:             #summary
 [RCODE Name]:                           https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 6891, section 6.1.2]:              https://tools.ietf.org/html/rfc6891#section-6.1.2
 [RFC 6891]:                             https://tools.ietf.org/html/rfc6891
