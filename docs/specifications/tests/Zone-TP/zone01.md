@@ -17,7 +17,7 @@
 
 ## Objective
 
-The MNAME field from the SOA record of a zone is supposed to contain the master name server for that zone.
+The MNAME field from the SOA record of a zone is supposed to contain the master name server for that zone. The hostname of the MNAME field may not be listed among the delegated name servers, but should still be authoritative for the zone. MNAME may be used for other services such as DNS NOTIFY described in [RFC1996].
 
 [RFC1035], section 3.3.13, specifies that "the *domain-name* of the name server that was the original or primary source of data for this zone".
 
@@ -47,11 +47,10 @@ giving a correct DNS response for an authoritative name server.
 
 Message Tag                   | Level   | Arguments            | Message ID for message tag
 :---------------------------- |:--------|:---------------------|:---------------------------------------------------------------------------------------
-Z01_MULTIPLE_MNAME            | WARNING | ns_ip_list           | Distinct MNAMEs found, but only one is expected. Returned from name servers "{ns_ip_list}".
-Z01_MNAME_NOT_AUTHORITATIVE   | WARNING | ns                   | MNAME name server points to a non authoritative name server ("{ns}").
-Z01_MNAME_NO_RESPONSE         | NOTICE  | ns                   | MNAME name server points to a non responsive name server ("{ns}").
-Z01_MNAME_NOT_IN_DELEGATION   | INFO    | nsname               | MNAME name server {nsname} is not listed as NS record for the zone.
-Z01_MNAME_NOT_MASTER          | WARNING | ns_ip_list           | MNAME name server doesn't have the highest SERIAL. Returned from name servers "{ns_ip_list}".
+Z01_MNAME_NOT_AUTHORITATIVE   | WARNING | ns                   | MNAME name server points to a non-authoritative name server ("{ns}").
+Z01_MNAME_NO_RESPONSE         | NOTICE  | ns                   | MNAME name server points to a non-responsive name server ("{ns}").
+Z01_MNAME_NOT_IN_ZONE         | INFO    | nsname               | MNAME name server {nsname} is not listed as NS record for the zone.
+Z01_MNAME_NOT_MASTER          | WARNING | ns_ip_list           | MNAME name server does not have the highest SERIAL. Returned from name servers "{ns_ip_list}".
 Z01_MNAME_IS_MASTER           | DEBUG   | ns_ip_list           | MNAME name server does appear to be master. Returned from name servers "{ns_ip_list}".
 
 The value in the Level column is the default severity level of the message. The
@@ -68,15 +67,18 @@ follow the specification for DNS queries as specified in [DNS Query and Response
 The handling of the DNS responses on the DNS queries follow, unless otherwise specified below,
 what is specified for [DNS Response] in the same specification.
 
-1. Create a [DNS Query] with query type SOA and query name *Child Zone* ("SOA Query")
+1. Create the following [DNS Queries][DNS Query]:
+   1. Query type SOA and query name *Child Zone* ("SOA Query")
+   2. Query type A and query name *Child Zone* ("A Query")
+   3. Query type AAAA and query name *Child Zone* ("AAAA Query")
 
-2. Obtain the set of name server IP addresses using [Method4] and [Method5] ("Name Server IP").
+2. Create the following empty sets:
+   1. Name server IP address, name, SERIAL ("MNAME Nameservers")
+   2. Name server IP address, SERIAL ("SERIAL Nameservers")
+   3. Name server IP address ("MNAME Not Master")
+   4. Name server IP address ("MNAME Is Master")
 
-3. Create the following empty sets:
-   1. Name server IP address, MNAME, SERIAL ("MNAME Nameserver")
-   1. Name server IP address, SERIAL ("SERIAL Nameservers")
-   4. Name server IP address ("MNAME Not Master")
-   5. Name server IP address ("MNAME Is Master")
+3. Obtain the set of name server IP addresses using [Method4] and [Method5] ("Name Server IP").
 
 4. For each name server IP in *Name Server IP* do:
    1. Send *SOA Query* to the name server and collect the response.
@@ -85,31 +87,43 @@ what is specified for [DNS Response] in the same specification.
       2. [RCODE Name] of the response is not "NoError".
       3. The AA flag is not set in the response.
       4. There is no SOA record with owner name matching the query.
-   3. From the DNS response, add the MNAME field to the *MNAME Nameserver* set.
+   3. From the DNS response, add the name server name from the MNAME field to the *MNAME Nameservers* set.
    4. From the DNS response, add the SERIAL field and name server IP address to the *SERIAL Nameservers* set.
    5. Go to next name server.
 
-5. If the set *MNAME Nameserver* contains more than one element, then output *[Z01_MULTIPLE_MNAME]*
-   with the name server IP addresses from the set, and terminate these procedures.
+5. If the set *MNAME Nameservers* is empty, then terminate these procedures.
 
-6. Send *SOA Query* to the name server in *MNAME Nameserver*.
-   1. If there is a DNS response, with [RCODE Name] "NoError", then:
-      1. If the AA flag is not set, then output *[Z01_MNAME_NOT_AUTHORITATIVE]* with name server name and IP address.
-      2. Else, add the SERIAL field to the *MNAME Nameserver* set.
-   2. Else, output *[Z01_MNAME_NO_RESPONSE]* with name server name and IP.
+6. Else, for each name server name in *MNAME Nameservers* do:
+   1. Make a recursive DNS lookup by sending *A Query*, starting with one of the root servers for the name server name.
+      1. If there is a DNS response, with [RCODE Name] "NoError", then add the name server IP address(es) from the A record to the *MNAME Nameservers* set.
+      2. Else Make a recursive DNS lookup by sending *AAAA Query*, starting with one of the root servers for the name server name.
+         1. If there is a DNS response, with [RCODE Name] "NoError", then add the name server IP address(es) from the AAAA record to the *MNAME Nameservers* set.
+   2. If at least one IP address from the previous steps (6.1.1 or 6.1.2.1) was found, then:
+      1. For each name server IP for the name server name in *MNAME Nameservers* do: 
+         1. Send *SOA Query* to the name server IP in *MNAME Nameservers*.
+            1. If there is a DNS response with [RCODE Name] "NoError", then:
+               1. If the AA flag is not set, then output *[Z01_MNAME_NOT_AUTHORITATIVE]* with name server name and IP address.
+               2. Else, add the SERIAL field to the *MNAME Nameservers* set.
+            2. Else, output *[Z01_MNAME_NO_RESPONSE]* with name server name and IP.
+         2. Go to next name server.
+   3. Go to next name server.
 
-7. For each SERIAL value in the *SERIAL Nameservers* do:
-   1. Compare the value with the one in the *MNAME Nameserver* set.
-      1. If it is not higher, then add name server IP address to the *MNAME Is Master* set.
-      2. Else, add name server IP address to the *MNAME Not Master* set.
+7. If there is no SERIAL in the set *MNAME Nameservers*, then terminate these procedures.
 
-8. If the set *MNAME Not Master* is non-empty, then output *[Z01_MNAME_NOT_MASTER]*
+8. For each SERIAL in *SERIAL Nameservers* do:
+   1. For each SERIAL in *MNAME Nameservers* do:
+      1. Compare both SERIAL values (using the arithmetic in [RFC1982]).
+         1. If the one from *SERIAL Nameservers* is not higher, then add name server IP address to the *MNAME Is Master* set.
+         2. Else, add name server IP address to the *MNAME Not Master* set.
+      2. Go to next SERIAL.
+
+9. If the set *MNAME Not Master* is non-empty, then output *[Z01_MNAME_NOT_MASTER]*
    with the name server IP addresses from the set.
 
-9. If the set *MNAME Is Master* is non-empty, then:
+10. If the set *MNAME Is Master* is non-empty, then:
    1. Output *[Z01_MNAME_IS_MASTER]* with the name server IP addresses from the set.
-   2. Obtain the set of name server IP addresses using [Method3] ("Delegation IP").
-      1. If the MNAME in the *MNAME Nameserver* set is not part of the *Delegation IP* set for the zone, then output *[Z01_MNAME_NOT_IN_DELEGATION]*.
+   2. Obtain the set of name server names using [Method3] ("Child Names").
+      1. If the MNAME in the *MNAME Nameservers* set is not part of the *Child Names* set, then output *[Z01_MNAME_NOT_IN_ZONE]*.
 
 ## Outcome(s)
 
@@ -164,7 +178,6 @@ No special terminology for this test case.
 [Zonemaster-Engine profile]:            https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
 [Z01_MNAME_NO_RESPONSE]:                #summary
 [Z01_MNAME_NOT_AUTHORITATIVE]:          #summary
-[Z01_MNAME_NOT_IN_DELEGATION]:          #summary
+[Z01_MNAME_NOT_IN_ZONE]:                #summary
 [Z01_MNAME_NOT_MASTER]:                 #summary
 [Z01_MNAME_IS_MASTER]:                  #summary
-[Z01_MULTIPLE_MNAME]:                   #summary
