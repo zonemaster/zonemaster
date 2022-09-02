@@ -116,16 +116,16 @@ is here listed with a message tag, level (always CRITICAL in this specification)
 suitable argument to be used in the same descriptive message and a message that
 can be returned to the user.
 
-Message Tag                    | Level    | Arguments | Message ID for message tag
-:------------------------------|:---------|:----------|:----------------------------------------------------------
-CAPITAL_I_DOT_ABOVE_UNSUPPORTED| CRITICAL |           | LATIN CAPITAL LETTER I WITH DOT ABOVE cannot be downcased.
-DOMAIN_NAME_TOO_LONG           | CRITICAL |           | Domain name is too long (more than 253 characters with no final dot).
-EMPTY_DOMAIN_NAME              | CRITICAL |           | Domain name is empty.
-INITIAL_DOT                    | CRITICAL |           | Domain name starts with dot.
-INVALID_ASCII                  | CRITICAL | label     | Domain name has an ASCII label ("{label}") with a character not permitted.
-INVALID_U_LABEL                | CRITICAL | label     | Domain name has a non-ASCII label ("{label}") which is not a valid U-label.
-LABEL_TOO_LONG                 | CRITICAL | label     | Domain name has a label that is too long (more than 63 characters), "{label}".
-REPEATED_DOTS                  | CRITICAL |           | Domain name has repeated dots.
+Message Tag                    | Level    | Arguments    | Message ID for message tag
+:------------------------------|:---------|:-------------|:----------------------------------------------------------
+AMBIGUOUS_DOWNCASING           | CRITICAL | unicode_name | Ambiguous downcaseing of character "{unicode_name}" in the domain name. Use all lower case instead.
+DOMAIN_NAME_TOO_LONG           | CRITICAL |              | Domain name is too long (more than 253 characters with no final dot).
+EMPTY_DOMAIN_NAME              | CRITICAL |              | Domain name is empty.
+INITIAL_DOT                    | CRITICAL |              | Domain name starts with dot.
+INVALID_ASCII                  | CRITICAL | label        | Domain name has an ASCII label ("{label}") with a character not permitted.
+INVALID_U_LABEL                | CRITICAL | label        | Domain name has a non-ASCII label ("{label}") which is not a valid U-label.
+LABEL_TOO_LONG                 | CRITICAL | label        | Domain name has a label that is too long (more than 63 characters), "{label}".
+REPEATED_DOTS                  | CRITICAL |              | Domain name has repeated dots.
 
 The value in the Level column is the default severity level of the message. Also
 see the [Severity Level Definitions] document.
@@ -153,9 +153,10 @@ Tables 1, 2, 3 and 4 are found in the [Detailed requirements] section below.
 4.  If *Domain Name* is an empty string then output *[EMPTY_DOMAIN_NAME]* and
     terminate these test procedures.
 
-5.  If *Domain Name* contains [LATIN CAPITAL LETTER I WITH DOT ABOVE] then
-    output *[CAPITAL_I_DOT_ABOVE_UNSUPPORTED]* and terminate these test
-    procedures.
+5.  If *Domain Name* contains [LATIN CAPITAL LETTER I WITH DOT ABOVE] then:
+    1. Output *[AMBIGUOUS_DOWNCASING]* and the Unicode name of the code point in
+       question.
+    2. Terminate these test procedures.
 
 6.  Create an empty, ordered list of labels ("Domain Labels").
 
@@ -432,7 +433,7 @@ U+0130 ([LATIN CAPITAL LETTER I WITH DOT ABOVE]).
   those locale ([Unicode SpecialCasing]).
 * Label with [LATIN CAPITAL LETTER I WITH DOT ABOVE] should be rejected since
   normal downcasing gives a sequence not reasonable in a domain name context (see
-  "Lowercase Mapping" in [LATIN CAPITAL LETTER I WITH DOT ABOVE].
+  "Lowercase Mapping" in [LATIN CAPITAL LETTER I WITH DOT ABOVE]).
 
 
 #### A-label and U-label
@@ -449,8 +450,8 @@ not IDNA2003.
 No special terminology for this specification.
 
 
+[AMBIGUOUS_DOWNCASING]:                  #SUMMARY
 [Argument list]:                         https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[CAPITAL_I_DOT_ABOVE_UNSUPPORTED]:       #SUMMARY
 [CHARACTER TABULATION]:                  https://codepoints.net/U+0009
 [DOMAIN_NAME_TOO_LONG]:                  #SUMMARY
 [Detailed requirements]:                 #Detailed-requirements
