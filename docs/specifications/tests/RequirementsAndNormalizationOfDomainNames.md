@@ -3,21 +3,21 @@
 
 ## Table of contents
 
-* [Objective](#Objective)
-* [Overview](#Overview)
-  * [References](#References)
-* [Scope](#Scope)
-* [Inputs](#Inputs)
-* [Summary](#Summary)
-* [Test procedure](#Test-procedure)
-* [Outcome(s)](#Outcomes)
-* [Special procedural requirements](#Special-procedural-requirements)
+* [Objective](#objective)
+* [Overview](#overview)
+  * [References](#references)
+* [Scope](#scope)
+* [Inputs](#inputs)
+* [Summary](#summary)
+* [Test procedure](#test-procedure)
+* [Outcome(s)](#outcomes)
+* [Special procedural requirements](#special-procedural-requirements)
 * [Detailed requirements]
-  * [ASCII domain name](#ASCII-domain-name)
-  * [IDN name](#IDN-name)
-  * [Length limitations](#Length-limitations)
-  * [Root zone](#Root-zone)
-  * [Creating IDNA2008 compatible format](#Creating-idna2008-compatible-format)
+  * [ASCII domain name](#ascii-domain-name)
+  * [IDN name](#idn-name)
+  * [Length limitations](#length-limitations)
+  * [Root zone](#root-zone)
+  * [Creating IDNA2008 compatible format](#creating-idna2008-compatible-format)
 * [Terminology](#terminology)
 
 
@@ -62,7 +62,7 @@ by the tests in test cases, the normalized form. If the normalized form is
 neither a valid ASCII domain name nor a valid IDN name, then *Domain Name*
 cannot be used for Zonemaster testing.
 
-If the outcome (see [Outcome(s)](#Outcomes)) is not "fail" then *Domain Name* in
+If the outcome (see [Outcome(s)](#outcomes)) is not "fail" then *Domain Name* in
 normalized form is returned to be used as input value for Zonemaster test cases.
 
 See the details in the [Detailed requirements] section below.
@@ -97,7 +97,7 @@ restriction on HYPHEN-MINUS is disregarded in this specification and is assumed
 to be handled in test case [Syntax02].
 
 The use of the SOLIDUS ("/") and the LOW LINE ("_") in domain name is discussed
-in the section "[ASCII domain name](#ASCII-domain-name)" below. Any restrictions
+in the section "[ASCII domain name](#ascii-domain-name)" below. Any restrictions
 on where in the domain name or label those could or should be used are
 disregarded in this specification, and are assumed to be handled in test cases
 [Syntax01] and [Syntax02].
@@ -183,13 +183,13 @@ Tables 1, 2, 3 and 4 are found in the [Detailed requirements] section below.
        1. If any character in *Label* is not listed in *Valid ASCII*, then output
           *[INVALID_ASCII]* and *Label*, and terminate these test procedures.
        2. Else, downcase all upper case characters as specified in section
-          "[Upper case](#Upper-case)" below.
+          "[Upper case](#upper-case)" below.
     2. Else do:
        1. Assume that *Label* is a U-label.
        2. Downcase all upper case characters as specified in section
-          "[Upper case](#Upper-case)" below.
+          "[Upper case](#upper-case)" below.
        3. Normalize *Label* to NFC as specified in [Unicode TR 15]. Also see
-          section "[Unicode normalization](#Unicode-normalization)" below.
+          section "[Unicode normalization](#unicode-normalization)" below.
        3. Convert *Label* to an A-label as specified by
           [IDNA2008][RFC 5890#1.1].
           1. If the conversion failed, then output *[INVALID_U_LABEL]*
@@ -450,14 +450,14 @@ not IDNA2003.
 No special terminology for this specification.
 
 
-[AMBIGUOUS_DOWNCASING]:                  #SUMMARY
+[AMBIGUOUS_DOWNCASING]:                  #summary
 [Argument list]:                         https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [CHARACTER TABULATION]:                  https://codepoints.net/U+0009
-[DOMAIN_NAME_TOO_LONG]:                  #SUMMARY
-[Detailed requirements]:                 #Detailed-requirements
+[DOMAIN_NAME_TOO_LONG]:                  #summary
+[Detailed requirements]:                 #detailed-requirements
 [EM QUAD]:                               https://codepoints.net/U+2001
 [EM SPACE]:                              https://codepoints.net/U+2003
-[EMPTY_DOMAIN_NAME]:                     #SUMMARY
+[EMPTY_DOMAIN_NAME]:                     #summary
 [EN QUAD]:                               https://codepoints.net/U+2000
 [EN SPACE]:                              https://codepoints.net/U+2002
 [FIGURE SPACE]:                          https://codepoints.net/U+2007
@@ -469,10 +469,10 @@ No special terminology for this specification.
 [HYPHEN-MINUS]:                          https://codepoints.net/U+002D
 [IDEOGRAPHIC FULL STOP]:                 https://codepoints.net/U+3002
 [IDEOGRAPHIC SPACE]:                     https://codepoints.net/U+3000
-[INITIAL_DOT]:                           #SUMMARY
-[INVALID_ASCII]:                         #SUMMARY
-[INVALID_U_LABEL]:                       #SUMMARY
-[LABEL_TOO_LONG]:                        #SUMMARY
+[INITIAL_DOT]:                           #summary
+[INVALID_ASCII]:                         #summary
+[INVALID_U_LABEL]:                       #summary
+[LABEL_TOO_LONG]:                        #summary
 [LATIN CAPITAL LETTER I WITH DOT ABOVE]: https://codepoints.net/U+0130
 [LATIN CAPITAL LETTER I]:                https://codepoints.net/U+0049
 [LATIN SMALL LETTER DOTLESS I]:          https://codepoints.net/U+0131
@@ -482,7 +482,7 @@ No special terminology for this specification.
 [NO-BREAK SPACE]:                        https://codepoints.net/U+00A0
 [OGHAM SPACE MARK]:                      https://codepoints.net/U+1680
 [PUNCTUATION SPACE]:                     https://codepoints.net/U+2008
-[REPEATED_DOTS]:                         #SUMMARY
+[REPEATED_DOTS]:                         #summary
 [RFC 1034#3.1]:                          https://datatracker.ietf.org/doc/html/rfc1034#section-3.1
 [RFC 1034]:                              https://datatracker.ietf.org/doc/html/rfc1034
 [RFC 1035#2.3.3]:                        https://datatracker.ietf.org/doc/html/rfc1035#section-2.3.3
