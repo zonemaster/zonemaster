@@ -254,9 +254,9 @@ DNS queries follow, unless otherwise specified below, what is specified for
 10. If one or both of the *Delegation Found* and the *AA SOA Found* sets are
     non-empty, then do:
     1. Output *[B01_CHILD_FOUND]* with *Child Zone*.
-    2. If one or more of the following sets are also non-empty then output
+    2. If one or more of the following five sets are also non-empty then output
        *[B01_INCONSISTENT_DELEGATION]* with *Child Zone*, parent zone name and
-        the combined set of name server IP addresses from all six sets.
+       the combined set of name server IP addresses from all five sets.
           * *AA NXDomain Found*
           * *AA CNAME Found*
           * *CNAME with Referral Found*
@@ -323,11 +323,11 @@ None.
 
 * "Direct Subdomain" - Domain A is considered to be a "direct Subdomain" to
   domain B if domain A is just the addition of one label at the least significant
-  side, e.g. "foo.domain.com" is a direct subdomain to "domain.com".
+  (left) side, e.g. "foo.domain.com" is a direct subdomain to "domain.com".
 
 * "DNS Lookup" - The term is used when a recursive lookup is used, though
 any changes to the DNS tree introduced by an [undelegated test] must be
-respected. Cf. "[Send]".
+respected. Compare with "[Send]".
 
 * "Non-Referral" - See "[Referral]".
 
@@ -339,7 +339,7 @@ address records (A and AAAA) for the name server names from the NS (glue
 records).
 
 * "Send" - The term "send" (to an IP address) is used when a DNS query is sent to
-a specific name server. Cf. "[DNS Lookup]".
+a specific name server. Compare with "[DNS Lookup]".
 
 
 [Argument list]:                                                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
