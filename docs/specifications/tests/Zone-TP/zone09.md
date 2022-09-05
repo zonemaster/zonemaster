@@ -7,14 +7,14 @@
 
 ## Table of contents
 
-* [Objective](#Objective)
-* [Scope](#Scope)
-* [Inputs](#Inputs)
-* [Summary](#Summary)
-* [Test procedure](#Test-procedure)
-* [Outcome(s)](#Outcomes)
-* [Special procedural requirements](#Special-procedural-requirements)
-* [Intercase dependencies](#Intercase-dependencies)
+* [Objective](#objective)
+* [Scope](#scope)
+* [Inputs](#inputs)
+* [Summary](#summary)
+* [Test procedure](#test-procedure)
+* [Outcome(s)](#outcomes)
+* [Special procedural requirements](#special-procedural-requirements)
+* [Intercase dependencies](#intercase-dependencies)
 * [Terminology](#terminology)
 
 
@@ -283,17 +283,17 @@ in an email address.
 [Severity Level Definitions]:                 ../SeverityLevelDefinitions.md
 [TLD]:                                        #terminology
 [WARNING]:                                    ../SeverityLevelDefinitions.md#warning
-[Z09_INCONSISTENT_MX]:                        #Summary
-[Z09_INCONSISTENT_MX_DATA]:                   #Summary
-[Z09_MISSING_MAIL_TARGET]:                    #Summary
-[Z09_MX_DATA]:                                #Summary
-[Z09_MX_FOUND]:                               #Summary
-[Z09_NON_AUTH_MX_RESPONSE]:                   #Summary
-[Z09_NO_MX_FOUND]:                            #Summary
-[Z09_NO_RESPONSE_MX_QUERY]:                   #Summary
-[Z09_NULL_MX_NON_ZERO_PREF]:                  #Summary
-[Z09_NULL_MX_WITH_OTHER_MX]:                  #Summary
-[Z09_ROOT_EMAIL_DOMAIN]:                      #Summary
-[Z09_TLD_EMAIL_DOMAIN]:                       #Summary
-[Z09_UNEXPECTED_RCODE_MX]:                    #Summary
+[Z09_INCONSISTENT_MX]:                        #summary
+[Z09_INCONSISTENT_MX_DATA]:                   #summary
+[Z09_MISSING_MAIL_TARGET]:                    #summary
+[Z09_MX_DATA]:                                #summary
+[Z09_MX_FOUND]:                               #summary
+[Z09_NON_AUTH_MX_RESPONSE]:                   #summary
+[Z09_NO_MX_FOUND]:                            #summary
+[Z09_NO_RESPONSE_MX_QUERY]:                   #summary
+[Z09_NULL_MX_NON_ZERO_PREF]:                  #summary
+[Z09_NULL_MX_WITH_OTHER_MX]:                  #summary
+[Z09_ROOT_EMAIL_DOMAIN]:                      #summary
+[Z09_TLD_EMAIL_DOMAIN]:                       #summary
+[Z09_UNEXPECTED_RCODE_MX]:                    #summary
 [Zonemaster-Engine profile]:                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md

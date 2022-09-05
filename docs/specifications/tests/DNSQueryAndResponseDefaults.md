@@ -1,7 +1,7 @@
 # DNS Query and Response Defaults
 
 **Table of contents**
-* [Overview](#Overview)
+* [Overview](#overview)
 * [Application of this specification](#application-of-this-specification)
 * [Default setting in *DNS Query*](#default-setting-in-dns-query)
 * [Default setting in *EDNS Query*](#default-setting-in-edns-query)

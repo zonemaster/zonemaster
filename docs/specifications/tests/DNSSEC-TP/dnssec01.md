@@ -7,14 +7,14 @@
 
 ## Table of contents
 
-* [Objective](#Objective)
-* [Scope](#Scope)
-* [Inputs](#Inputs)
-* [Summary](#Summary)
-* [Test procedure](#Test-procedure)
-* [Outcome(s)](#Outcomes)
-* [Special procedural requirements](#Special-procedural-requirements)
-* [Intercase dependencies](#Intercase-dependencies)
+* [Objective](#objective)
+* [Scope](#scope)
+* [Inputs](#inputs)
+* [Summary](#summary)
+* [Test procedure](#test-procedure)
+* [Outcome(s)](#outcomes)
+* [Special procedural requirements](#special-procedural-requirements)
+* [Intercase dependencies](#intercase-dependencies)
 * [Terminology](#terminology)
 
 
@@ -223,11 +223,11 @@ No special terminology for this test case.
 [DNSSEC Query]:                                       ../DNSQueryAndResponseDefaults.md#default-setting-in-dnssec-query
 [DNSSEC README]:                                      README.md
 [DNSSEC Response]:                                    ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
-[DS01_DIGEST_NOT_SUPPORTED_BY_ZM]:                    #Summary
-[DS01_DS_ALGO_2_MISSING]:                             #Summary
-[DS01_DS_ALGO_DEPRECATED]:                            #Summary
-[DS01_DS_ALGO_NOT_DS]:                                #Summary
-[DS01_DS_ALGO_RESERVED]:                              #Summary
+[DS01_DIGEST_NOT_SUPPORTED_BY_ZM]:                    #summary
+[DS01_DS_ALGO_2_MISSING]:                             #summary
+[DS01_DS_ALGO_DEPRECATED]:                            #summary
+[DS01_DS_ALGO_NOT_DS]:                                #summary
+[DS01_DS_ALGO_RESERVED]:                              #summary
 [ERROR]:                                              ../SeverityLevelDefinitions.md#error
 [IANA RCODE List]:                                    https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [IANA registry on DS Digest Algorithm]:               https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xml
