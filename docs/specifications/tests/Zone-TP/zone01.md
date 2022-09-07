@@ -25,8 +25,8 @@ The MNAME field from the SOA record of a zone is supposed to contain the master 
 
 [RFC2181], section 7.2, clarifies that "it is quite clear in the specifications, yet seems to have been widely ignored, that the MNAME field of the SOA record should contain the name of the primary (master) server for the zone identified by the SOA. It should not contain the name of the zone itself. That information would be useless, as to discover it, one needs to start with the domain name of the SOA record - that is the name of the zone".
 
-There exists an unstandardized practice to set the SOA MNAME to "." to mean that no server at all to indicate that there is no default server for dynamic updates. There is at least one old and expired Internet-Draft that was an attempt to standardize that behavior, e.g. [draft-jabley-dnsop-missing-mname]. If the SOA MNAME is an empty name (".") this test case will not try to connect to a server
-behind it since there will never be a server behind that name and the purpose is most definitely to follow that practice. Instead, a special message will be outputted.
+There exists an unstandardized practice to set the SOA MNAME to "." to mean no server at all, indicating that there is no default server for dynamic updates. There is at least one old and expired Internet-Draft that attempted to standardize that behavior, i.e. [draft-jabley-dnsop-missing-mname]. If the SOA MNAME is an empty name (".") this test case will not try to connect to a server
+behind it since there will never be a server behind that name, as the purpose is most definitely to follow that practice. Instead, a special message will be outputted.
  
 This Test Case will check that:
  - the SOA MNAME contains the master name server.
