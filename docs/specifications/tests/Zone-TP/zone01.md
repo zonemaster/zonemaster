@@ -56,14 +56,14 @@ is not tested by this Test Case, see [CONSISTENCY06].
 
 Message Tag                   | Level   | Arguments            | Message ID for message tag
 :---------------------------- |:--------|:---------------------|:---------------------------------------------------------------------------------------
+Z01_MNAME_IS_DOT              | NOTICE  | ns_ip_list           | SOA MNAME is specified as "." which usually means "no server". Fetched from name servers "{ns_ip_list}".
+Z01_MNAME_IS_LOCALHOST        | WARNING | ns_ip_list           | SOA MNAME name server is "localhost", which is invalid. Fetched from name servers "{ns_ip_list}".
+Z01_MNAME_IS_MASTER           | DEBUG   | ns, ns_ip_list       | SOA MNAME name server "{ns}" does appear to be master. Fetched from name servers "{ns_ip_list}".
 Z01_MNAME_NO_RESPONSE         | WARNING | ns                   | SOA MNAME name server "{ns}" does not respond to an SOA query.
 Z01_MNAME_NOT_AUTHORITATIVE   | WARNING | ns                   | SOA MNAME name server "{ns}" is not authoritative for the zone.
 Z01_MNAME_NOT_IN_NS_LIST      | INFO    | nsname               | SOA MNAME name server "{nsname}" is not listed as NS record for the zone.
 Z01_MNAME_NOT_MASTER          | WARNING | ns, ns_ip_list       | SOA MNAME name server "{ns}" does not have the highest SERIAL. Fetched from name servers "{ns_ip_list}".
 Z01_MNAME_NOT_RESOLVE         | WARNING | nsname               | SOA MNAME name server "{nsname}" cannot be resolved into an IP address.
-Z01_MNAME_IS_DOT              | NOTICE  | ns_ip_list           | SOA MNAME is specified as "." which usually means "no server". Fetched from name servers "{ns_ip_list}".
-Z01_MNAME_IS_LOCALHOST        | WARNING | ns_ip_list           | SOA MNAME name server is "localhost", which is invalid. Fetched from name servers "{ns_ip_list}".
-Z01_MNAME_IS_MASTER           | DEBUG   | ns, ns_ip_list       | SOA MNAME name server "{ns}" does appear to be master. Fetched from name servers "{ns_ip_list}".
 Z01_MNAME_UNEXPECTED_RCODE    | WARNING | ns, rcode            | SOA MNAME name server "{ns}" gives unexpected RCODE name ("{rcode}") in response to an SOA query.
 
 The value in the Level column is the default severity level of the message. The
@@ -200,12 +200,12 @@ respected.
 [Undelegated test]:                     ../../test-types/undelegated-test.md
 [WARNING]:                              https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:            https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Z01_MNAME_IS_DOT]:                     #summary
+[Z01_MNAME_IS_LOCALHOST]:               #summary
+[Z01_MNAME_IS_MASTER]:                  #summary
 [Z01_MNAME_NO_RESPONSE]:                #summary
 [Z01_MNAME_NOT_AUTHORITATIVE]:          #summary
 [Z01_MNAME_NOT_IN_NS_LIST]:             #summary
 [Z01_MNAME_NOT_MASTER]:                 #summary
 [Z01_MNAME_NOT_RESOLVE]:                #summary
-[Z01_MNAME_IS_DOT]:                     #summary
-[Z01_MNAME_IS_LOCALHOST]:               #summary
-[Z01_MNAME_IS_MASTER]:                  #summary
 [Z01_MNAME_UNEXPECTED_RCODE]:           #summary
