@@ -48,8 +48,8 @@
 > > another test case has been run is just to make it possible to ignore certain
 > > errors. E.g.:
 
-It is assumed that *Child Zone* has been tested and reported by [Basic04]. This
-test case will just ignore non-responsive name servers or name servers not
+It is assumed that *Child Zone* is also tested and reported by [Connectivity01].
+This test case will just ignore non-responsive name servers or name servers not
 giving a correct DNS response for an authoritative name server.
 
 
@@ -298,7 +298,7 @@ respected.
 [ERROR]:                                                          https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#error
 [CRITICAL]:                                                       https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#critical
 
-[Basic04]:                                                        https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/Basic-TP/basic04.md
+[Connectivity01]:                                                 https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/Connectivity-TP/connectivity01.md
 
 [DNS Query and Response Defaults]:                                https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md
 [DNS Query]:                                                      https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
