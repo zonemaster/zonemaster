@@ -31,7 +31,7 @@ requirement.
 
 ## Scope
 
-It is assumed that *Child Zone* is tested and reported by [Basic04]. This test
+It is assumed that *Child Zone* is tested and reported by [Connectivity01]. This test
 case will just ignore non-responsive name servers or name servers not giving a
 correct DNS response for an authoritative name server.
 
@@ -169,7 +169,7 @@ No special terminology for this test case.
 
 
 [Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Basic04]:                                    ../Basic-TP/basic014.md
+[Connectivity01]:                             ../Basic-TP/basic014.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [DNSSEC README]:                              ./README.md
 [DNSSEC README]:                              README.md

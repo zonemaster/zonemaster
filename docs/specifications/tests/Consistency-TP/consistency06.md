@@ -15,7 +15,7 @@ operational failures for applications that uses MNAME.
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested by [Basic04]. This test
+It is assumed that *Child Zone* is also tested by [Connectivity01]. This test
 case will set DEBUG level on messages for non-responsive name servers.
 
 ## Inputs
@@ -79,7 +79,7 @@ on the ignored result.
 None
 
 
-[Basic04]:                  ../Basic-TP/basic04.md
+[Connectivity01]:           ../Connectivity-TP/connectivity01.md
 [MULTIPLE_SOA_MNAMES]:      #outcomes
 [Method4]:                  ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                  ../Methods.md#method-5-obtain-the-name-server-address-records-from-child

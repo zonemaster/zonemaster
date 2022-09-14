@@ -35,7 +35,7 @@ It is assumed that *Child Zone* is tested and reported by other test cases:
 
 * This test case will ignore non-responsive name servers or name servers not
   giving a correct DNS response for an authoritative name server (covered
-  by [Basic04]).
+  by [Connectivity01]).
 * This test case will ignore any irregularities in fetching the DS record from
   parent zone (covered by [DNSSEC02]).
 * This test case will ignore if the DNSKEY and SOA RRsets are not signed
@@ -211,7 +211,7 @@ No special terminology for this test case.
 
 
 [Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Basic04]:                                    ../Basic-TP/basic014.md
+[Connectivity01]:                             ../Basic-TP/basic014.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [DNSSEC README]:                              README.md
 [DNSSEC02]:                                   dnssec02.md

@@ -30,7 +30,7 @@ that the OPTION-CODE is not present in the response for the query.
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested and reported by [Basic04]. This
+It is assumed that *Child Zone* is also tested and reported by [Connectivity01]. This
 test case will just ignore non-responsive name servers or name servers not
 giving a correct DNS response for an authoritative name server.
 
@@ -116,7 +116,7 @@ None.
 No special terminology for this test case.
 
 [Argument list]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Basic04]:                              ../Basic-TP/basic04.md
+[Connectivity01]:                       ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                             https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#critical
 [DNS Query and Response Defaults]:      ../DNSQueryAndResponseDefaults.md
 [EDNS Query]:                            ../DNSQueryAndResponseDefaults.md#default-setting-in-edns-query

@@ -37,8 +37,8 @@ that algorithm for the three selected RRsets.
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested by [Basic04], [DNSSEC08] and
-[DNSSEC09]. Issues covered by [Basic04] (basic name server issues), [DNSSEC08]
+It is assumed that *Child Zone* is also tested by [Connectivity01], [DNSSEC08] and
+[DNSSEC09]. Issues covered by [Connectivity01] (basic name server issues), [DNSSEC08]
 (signing of DNSKEY RRset) and [DNSSEC09] (signing of SOA RRset) will not result
 in messagess from this test case.
 
@@ -190,7 +190,7 @@ No special terminology for this test case.
 
 
 [Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Basic04]:                                    ../Basic-TP/basic04.md
+[Connectivity01]:                             ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [DNSSEC README]:                              README.md
 [DNSSEC08]:                                   dnssec08.md

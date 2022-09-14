@@ -23,7 +23,7 @@ CDNSKEY.
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested by [Basic04]. This test
+It is assumed that *Child Zone* is also tested by [Connectivity01]. This test
 case will just ignore non-responsive name servers or name servers not
 giving a correct DNS response for an authoritative name server.
 
@@ -173,7 +173,7 @@ the ignored protocol.
 None.
 
 
-[Basic04]:                    ../Basic-TP/basic04.md
+[Connectivity01]:             ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                   ../SeverityLevelDefinitions.md#critical
 [DS15_HAS_CDNSKEY_NO_CDS]:    #summary
 [DS15_HAS_CDS_AND_CDNSKEY]:   #summary

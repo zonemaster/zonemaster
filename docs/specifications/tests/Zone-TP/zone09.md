@@ -82,7 +82,7 @@ see [IAB Statement]):
 
 ## Scope
 
-It is assumed that *Child Zone* is tested and reported by [Basic04]. This test
+It is assumed that *Child Zone* is tested and reported by [Connectivity01]. This test
 case will just ignore non-responsive name servers or name servers not giving a
 correct DNS response for an authoritative name server.
 
@@ -258,7 +258,7 @@ The term "Email Domain" is used for the domain name at right of the at-sign ("@"
 in an email address.
 
 [Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Basic04]:                                    ../Basic-TP/basic04.md
+[Connectivity01]:                             ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [DNS Query and Response Defaults]:            ../DNSQueryAndResponseDefaults.md
 [DNS Query]:                                  ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query

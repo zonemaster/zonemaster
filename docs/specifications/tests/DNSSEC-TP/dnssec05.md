@@ -48,7 +48,7 @@ Algorithm number | Algorithm (or description)
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested by [Basic04]. This test
+It is assumed that *Child Zone* is also tested by [Connectivity01]. This test
 case will set DEBUG level on messages for non-responsive name servers.
 
 ## Inputs
@@ -128,7 +128,7 @@ The test case is only performed if some DNSKEY record is found in the
 
 None.
 
-[Basic04]:               ../Basic-TP/basic04.md
+[Connectivity01]:        ../Connectivity-TP/connectivity01.md
 [RFC 8624]: https://www.rfc-editor.org/rfc/rfc8624.html#section-3.1
 [IANA registry]: https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml
 

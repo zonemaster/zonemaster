@@ -33,7 +33,7 @@ from the RFCs and also the NIST recommended shortest key length.
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested by [Basic04]. This test
+It is assumed that *Child Zone* is also tested by [Connectivity01]. This test
 case will set DEBUG level on messages for non-responsive name servers.
 
 ## Inputs
@@ -114,7 +114,7 @@ The test case is only performed if some DNSKEY record is found in the
 
 None.
 
-[Basic04]:                                               ../Basic-TP/basic04.md
+[Connectivity01]:                                        ../Connectivity-TP/connectivity01.md
 [DNSKEY_SMALLER_THAN_REC]:                               #outcomes
 [DNSKEY_TOO_LARGE_FOR_ALGO]:                             #outcomes
 [DNSKEY_TOO_SMALL_FOR_ALGO]:                             #outcomes
