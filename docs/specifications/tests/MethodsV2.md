@@ -75,7 +75,7 @@ Case specifications can freely refer to the other methods.
 This method will obtain the name servers that serves the parent zone, i.e. the
 zone from which the *Child Zone* is delegated from.
 
-This done by finding the parent zone and by then the name servers that serve the
+This is done by finding the parent zone and then the name servers that serve the
 parent zone. In case there is an inconsistency of which is the parent zone, the
 list of name servers will be the gross list, i.e. rather include too much than
 too little. Too much is always a result of incorrect configuration in the parent
@@ -89,7 +89,7 @@ servers are supposed to provide included in the input data. In that case a list
 of parent name servers has no meaning.
 
 The method will output a list of parent name server IP addresses. If the zone is
-the root zone or if the test is a undelegated test, the list is defined but
+the root zone or if the test is an undelegated test, the list is defined but
 empty. If the parent zone cannot be determined, then an undefined list is
 returned.
 
@@ -136,7 +136,7 @@ None.
       * The [DNS response] has the AA flag set.
    3. If the lookup reaches a name server that meet at least one of the following
       criteria, then ignore it.
-      1. Does not responds at all.
+      1. Does not respond at all.
       2. Responds with an invalid DNS response.
       3. Responds with an [RCODE Name] besides NoError and NXDomain.
       4. Responds with a non-referral and the AA bit unset.
@@ -146,32 +146,32 @@ None.
 > in question is NS for (owner name of NS). The name of the name server is
 > irrelevant.*
 
-6. For each name server IP and parent zone ("Parent Zone")) in the
+6. For each name server IP and parent zone ("Parent Zone") in the
    *Parent Name Server IP* set, do the following steps, including for any name
    servers added to the set by the steps below.
-   1. Send a [DNS Query] with query type NS and *Parent Zone* as query name to
+   1. [Send] a [DNS Query] with query type NS and *Parent Zone* as query name to
       the name server IP.
    2. If the [DNS Response], if any, contains a list of NS records in the answer
       section with *Parent Zone* as owner name then do:
       1. For each NS record extract the name server name ("Name Server Name") in
          the RDATA field and do:
          1. Create [DNS Query] with query type A, *Name Server Name* as query
-            name and do a DNS lookup.
+            name and do a [DNS lookup].
          2. If the [DNS Response], if any, contains a list of A records (follow
             any CNAME chain) in the answer section then remember the IP
             addresses from the A records for three steps down.
          3. Create [DNS Query] with query type AAAA, *Name Server Name* as
-            query name and do a DNS lookup.
+            query name and do a [DNS lookup].
          3. If the [DNS Response], if any, contains a list of AAAA records
             (follow any CNAME chain) in the answer section then remember the IP
             addresses from the AAAA records for next step.
          4. If any IP address was captured in the two lookup steps, then for each
             IP address do if the address is not listed in *Parent Name Server IP*
             set:
-            1. Send *SOA Child Query* to the IP address.
-            2. If the [DNS Response], if any, meets one but not both of the
-               following two criteria then save the IP address and the parent
-               zone name to the *Parent Name Server IP* set. Criteria:
+            1. [Send] *SOA Child Query* to the IP address.
+            2. If the [DNS Response], if any, meets exact one of the following
+               criteria then save the IP address and the parent zone name to the
+               *Parent Name Server IP* set. Criteria:
                * The [DNS response] is a referral to *Child Zone* (owner name
                  of the NS records in authority section is *Child Zone*), or
                * The [DNS response] has the AA flag set.
@@ -192,7 +192,7 @@ None.
 
 * A set of name server IP address for the parent zone:
   * Non-empty set: The name servers have been identified.
-  * Empty set: Root zone or undelegated test
+  * Empty set: Root zone or undelegated test.
   * Undefined set: The name servers cannot be determined due to errors.
 
 ### Special procedural requirements
@@ -201,7 +201,9 @@ None.
 
 ### Dependencies
 
-The *Child Zone* name must be a legal name.
+The *Child Zone* name must be a valid name according to
+"[Requirements and normalization of domain names in input][Requirements
+and normalization]".
 
 [To top]
 
@@ -248,7 +250,7 @@ None.
 
 4. Merge the set returned from [Get-OOB-IPs] with *Name Servers*.
 
-5. Output the *Name Servers*.
+5. Output the *Name Servers* set.
 
 ### Outputs
 
@@ -366,7 +368,7 @@ None.
 4. Extract the IP addresses from *Name Servers* and create a set of
    unique addresses ("NS IPs").
 
-5. Output *NS IPs*.
+5. Output the *NS IPs* set.
 
 ### Outputs
 
@@ -422,7 +424,7 @@ None.
 5.  Create a [DNS Query] with query type NS and query name *Child Zone*
     ("NS Query").
 
-6.  Send *NS Query* to every IP address in *Name Server IPs*.
+6.  [Send] *NS Query* to every IP address in *Name Server IPs*.
 
 7.  Collect all [DNS Responses][DNS Response] and ignore all non-responses.
 
@@ -430,8 +432,8 @@ None.
     answer sections of the responses where the AA flag is set. Ignore any other
     response.
 
-9.  Extract the name server names from the RDATA of the NS records and add to the
-    *Name Server Names* set.
+9.  Extract the name server names from the RDATA of the NS records and add them
+    to the *Name Server Names* set.
 
 10. Output the possibly empty *Name Server Names* set.
 
@@ -502,7 +504,7 @@ None.
 
 9. Merge the set returned from [Get-OOB-IPs] with *Name Servers*.
 
-10. Output *Name Servers*.
+10. Output the *Name Servers* set.
 
 ### Outputs
 
@@ -650,9 +652,9 @@ None.
 
 7. For each parent name server in *Parent NS* do:
 
-   1. Send *NS query* to to the parent name server.
-   2. Go to next paret name server if:
-      1. Does not responds at all, or
+   1. [Send] *NS query* to to the parent name server.
+   2. Go to next parent name server if:
+      1. Does not respond at all, or
       2. Responds with an invalid DNS response, or
       3. Responds with an [RCODE Name] besides NoError.
    3. If the [DNS Response] contains a referral to the Child Zone:
@@ -677,7 +679,7 @@ None.
             exists, add those to the name in the set.
       4. If any [in-bailiwick] name server name from the NS records lacks IP
          address, then:
-         1. Send two [DNS Queries][DNS Query] with that name server name as
+         1. [Send] two [DNS Queries][DNS Query] with that name server name as
             query name to the parent name server, query type A and AAAA,
             respectively.
          2. If the [DNS Response] has a delegation (referral) to a sub-zone of
@@ -694,9 +696,7 @@ None.
    test procedures.
 
 10. Else, if both *Delegation Name Servers* and *AA Name Servers* sets are empty
-    do:
-    1. Output an empty set.
-    2. Exit the test procedure.
+    then output an empty set.
 
 ### Outputs
 
@@ -771,7 +771,7 @@ None.
       1. Query type A and the [in-bailiwick] name as the query name ("A Query").
       2. Query type AAAA and the [in-bailiwick] name as the query name
          ("AAAA Query").
-   2. Send *A Query* and *AAAA Query* to all servers in *name server IPs*
+   2. [Send] *A Query* and *AAAA Query* to all servers in *Name Server IPs*
       and process the [DNS Responses][DNS Response] from each of them.
    3. If a delegation (referral) to a sub-zone of Child Zone is returned,
       follow that delegation, possibly in several steps, by repeating
@@ -836,8 +836,7 @@ None.
 
 ### Test procedure
 
-1. If *NS Set* is empty then then output an empty set and exit these test
-   procedures.
+1. If *NS Set* is empty then output an empty set and exit these test procedures.
 
 2. Create a set of name servers where each unique name server name in *NS Set*
    is linked to an empty set of IP addresses ("Name Servers").
@@ -859,10 +858,10 @@ None.
    2. Create the following two [DNS queries][DNS Query]:
       1. Query type A and *Name* as the query name and the RD flag set true
          ("A Query").
-      2. Query type AAAA and *Name* as the query name and the RD flga set
+      2. Query type AAAA and *Name* as the query name and the RD flag set
          true ("AAAA Query").
 
-   3. Send the two queries doing normal recursive lookup to a resolver.
+   3. Do [DNS Lookup] of the two queries.
 
    4. If the [DNS Responses][DNS Response], if any, contains a list of A or AAAA
       records (follow any CNAME chain) in the answer section then remember the IP
@@ -871,7 +870,7 @@ None.
    5. Collect all IP addresses for the *Name* and add the address or addresses to
       *Name Servers* for that *Name* and go to next *Name*.
 
-4. Output the *Name Servers*.
+4. Output the *Name Servers* set.
 
 ### Outputs
 
@@ -887,7 +886,7 @@ None.
 
 ### Dependencies
 
-This method depends on methdo [Get-Undel-Data].
+This method depends on method [Get-Undel-Data].
 
 
 [To top]
@@ -925,7 +924,7 @@ document, but not by Test Case specifications.
 
 1. Get the *Undelegated Data* from the initiation of the test.
 
-2. If the *Undelegated Data* has not name server names, then output an undefined
+2. If the *Undelegated Data* has no name server names, then output an undefined
    set and exit these test procedures.
 
 2. Return the set of name servers, where each unique name server name
@@ -978,17 +977,21 @@ None.
 
 ## Terminology
 
-The terms "in-bailiwick", "out-of-bailiwick" and "glue record" are used as
+* "In-bailiwick", "out-of-bailiwick" and "glue record" - The terms are used as
 defined in [RFC 8499], section 7, pages 24-25. In this document, the term
 "in-bailiwick" is limited to the meaning "in domain" in the RFC. The term
 "out-of-bailiwick" here means what is not "in-bailiwick, in domain".
 
-The term "sending" (to a name sever IP address) is used when a DNS query is sent
-to a specific name server.
+* "Send" and "Sending" - The terms are used when a DNS query is sent to a
+specific name server (name sever IP address).
+
+* "DNS Lookup" - The term is used when a recursive lookup is used, though any
+changes to the DNS tree introduced by an [undelegated test] must be respected.
 
 
 [BASIC01]:                                           Basic-TP/basic01.md
 [DELEGATION05]:                                      Delegation-TP/delegation05.md
+[DNS Lookup]:                                        #terminology
 [DNS Query and Response Defaults]:                   DNSQueryAndResponseDefaults.md
 [DNS Query]:                                         DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
 [DNS Response]:                                      DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
@@ -1017,5 +1020,7 @@ to a specific name server.
 [Out-of-bailiwick]:                                  #terminology
 [RCODE Name]:                                        https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 8499]:                                          https://datatracker.ietf.org/doc/html/rfc8499#section-7
+[Requirements and normalization]:                    RequirementsAndNormalizationOfDomainNames.md
+[Send]:                                              #terminology
 [Sending]:                                           #terminology
 [To top]:                                            #methods-common-to-test-case-specifications-version-2
