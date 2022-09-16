@@ -71,8 +71,8 @@ CN01_NS_RECORD_NOT_AA_UDP           |WARNING| ns        | Nameserver {ns} does n
 CN01_SOA_RECORD_NOT_AA_UDP          |WARNING| ns        | Nameserver {ns} does not give an authoritative response on an SOA query over UDP.
 CN01_UNEXPECTED_RCODE_NS_QUERY_UDP  |WARNING| ns, rcode | Nameserver {ns} responds with an unexpected RCODE ({rcode}) on an NS query over UDP.
 CN01_UNEXPECTED_RCODE_SOA_QUERY_UDP |WARNING| ns, rcode | Nameserver {ns} responds with an unexpected RCODE ({rcode}) on an SOA query over UDP.
-CN01_WRONG_NS_RECORD_UDP            |WARNING| ns        | Nameserver {ns} responds with a wrong owner name ({owner} instead of {name}) on NS queries over UDP.
-CN01_WRONG_SOA_RECORD_UDP           |WARNING| ns        | Nameserver {ns} responds with a wrong owner name ({owner} instead of {name}) on SOA queries over UDP.
+CN01_WRONG_NS_RECORD_UDP            |WARNING| ns        | Nameserver {ns} responds with a wrong owner name ({domain_found} instead of {domain_expected}) on NS queries over UDP.
+CN01_WRONG_SOA_RECORD_UDP           |WARNING| ns        | Nameserver {ns} responds with a wrong owner name ({domain_found} instead of {domain_expected}) on SOA queries over UDP.
 
 
 The value in the Level column is the default severity level of the message. The
@@ -114,10 +114,10 @@ queries follow, unless otherwise specified below, what is specified for
 
    1. Send *SOA Query* and *NS Query* to the name server and collect
       the [DNS Responses][DNS Response].
-   2. If there is no DNS response on neither query, then: 
+   2. If there is no DNS response on neither query, then:
       1. Output *[CN01_NO_RESPONSE_UDP]* with name and IP address of the name
          server.
-      2. Go to next server.
+      2. Go to next name server.
    3. Else:
       1. Process the response on *SOA Query*:
          1. If there is no [DNS response], then output
@@ -128,12 +128,11 @@ queries follow, unless otherwise specified below, what is specified for
             and IP address of the name server.
          3. Else, if there is no SOA record in the answer section, then
             output *[CN01_MISSING_SOA_RECORD_UDP]* with name and IP address of
-            the
-            name server.
+            the name server.
          4. Else, if the SOA record has owner name other than *Child Zone*
             then output *[CN01_WRONG_SOA_RECORD_UDP]* with name and IP address of
-            the name server.
-         5. Else, AA flag is unset, then output *[CN01_SOA_RECORD_NOT_AA_UDP]*
+            the name server, the SOA record owner name and *Child Zone*.
+         5. Else, if AA flag is unset, then output *[CN01_SOA_RECORD_NOT_AA_UDP]*
             with name and IP address of the name server.
       2. Process the response on *NS Query*:
          1. If there is no [DNS Response], then output
@@ -147,8 +146,8 @@ queries follow, unless otherwise specified below, what is specified for
             name server.
          4. Else, if the NS record has owner name other than *Child Zone*
             then output *[CN01_WRONG_NS_RECORD_UDP]* with name and IP address of
-            the name server.
-         5. Else, AA flag is unset, then output *[CN01_NS_RECORD_NOT_AA_UDP]*
+            the name server, the NS record owner name and *Child Zone*.
+         5. Else, if AA flag is unset, then output *[CN01_NS_RECORD_NOT_AA_UDP]*
             with name and IP address of the name server.
 
 
