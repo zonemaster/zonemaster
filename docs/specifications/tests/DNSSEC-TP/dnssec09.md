@@ -186,7 +186,7 @@ No special terminology for this test case.
 
 
 [Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Connectivity01]:                             ../Basic-TP/basic014.md
+[Connectivity01]:                             ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [Consistency01]:                              ../Consistency-TP/consistency01.md
 [Consistency02]:                              ../Consistency-TP/consistency02.md
