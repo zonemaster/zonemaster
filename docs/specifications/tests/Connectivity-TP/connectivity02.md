@@ -23,10 +23,10 @@ TCP is a protocol to reach a general purpose name server hosting a zone, "All
 general-purpose DNS implementations MUST support [...] TCP transport"
 ([RFC 7766][RFC 7766#5], section 5).
 
-This test case will verify if the name servers in the delegation of and zone of
+This Test Case will verify if the name servers in the delegation of and zone of
 *Child Zone* are reachable over TCP.
 
-This test case will mimic the tests done by [Connectivity01], but over TCP
+This Test Case will mimic the tests done by [Connectivity01], but over TCP
 instead:
 
 * Name Server responding to a query.
@@ -42,10 +42,10 @@ instead:
 ## Scope
 
 The only TCP port defined for DNS is port 53 ([RFC 1035][RFC 1035#4.2.1], section
-4.2.1), and that is the only port used by this and other test cases for DNS
+4.2.1), and that is the only port used by this and other Test Cases for DNS
 queries to the name servers.
 
-UPD connectivity is tested by test case [Connectivity01].
+UDP connectivity is tested by Test Case [Connectivity01].
 
 
 ## Inputs
@@ -66,9 +66,8 @@ CN02_NS_RECORD_NOT_AA_TCP           |WARNING| ns        | Nameserver {ns} does n
 CN02_SOA_RECORD_NOT_AA_TCP          |WARNING| ns        | Nameserver {ns} does not give an authoritative response on an SOA query over TCP.
 CN02_UNEXPECTED_RCODE_NS_QUERY_TCP  |WARNING| ns, rcode | Nameserver {ns} responds with an unexpected RCODE ({rcode}) on an NS query over TCP.
 CN02_UNEXPECTED_RCODE_SOA_QUERY_TCP |WARNING| ns, rcode | Nameserver {ns} responds with an unexpected RCODE ({rcode}) on an SOA query over TCP.
-CN02_WRONG_NS_RECORD_TCP            |WARNING| ns        | Nameserver {ns} responds with a wrong owner name ({owner} instead of {name}) on NS queries over TCP.
-CN02_WRONG_SOA_RECORD_TCP           |WARNING| ns        | Nameserver {ns} responds with a wrong owner name ({owner} instead of {name}) on SOA queries over TCP.
-
+CN02_WRONG_NS_RECORD_TCP            |WARNING| ns        | Nameserver {ns} responds with a wrong owner name ({domain_found} instead of {domain_expected}) on NS queries over TCP.
+CN02_WRONG_SOA_RECORD_TCP           |WARNING| ns        | Nameserver {ns} responds with a wrong owner name ({domain_found} instead of {domain_expected}) on SOA queries over TCP.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -100,7 +99,7 @@ queries follow, unless otherwise specified below, what is specified for
    2. If there is no DNS response on neither query, then:
       1. Output *[CN02_NO_RESPONSE_TCP]* with name and IP address of the name
          server.
-      2. Go to next server.
+      2. Go to next name server.
    3. Else:
       1. Process the response on *SOA Query TCP*:
          1. If there is no [DNS response], then output
@@ -111,12 +110,11 @@ queries follow, unless otherwise specified below, what is specified for
             and IP address of the name server.
          3. Else, if there is no SOA record in the answer section, then
             output *[CN02_MISSING_SOA_RECORD_TCP]* with name and IP address of
-            the
-            name server.
+            the name server.
          4. Else, if the SOA record has owner name other than *Child Zone*
             then output *[CN02_WRONG_SOA_RECORD_TCP]* with name and IP address of
-            the name server.
-         5. Else, AA flag is unset, then output *[CN02_SOA_RECORD_NOT_AA_TCP]*
+            the name server, the SOA record owner name and *Child Zone*.
+         5. Else, if AA flag is unset, then output *[CN02_SOA_RECORD_NOT_AA_TCP]*
             with name and IP address of the name server.
       2. Process the response on *NS Query TCP*:
          1. If there is no [DNS Response], then output
@@ -130,8 +128,8 @@ queries follow, unless otherwise specified below, what is specified for
             name server.
          4. Else, if the NS record has owner name other than *Child Zone*
             then output *[CN02_WRONG_NS_RECORD_TCP]* with name and IP address of
-            the name server.
-         5. Else, AA flag is unset, then output *[CN02_NS_RECORD_NOT_AA_TCP]*
+            the name server, the NS record owner name and *Child Zone*.
+         5. Else, if AA flag is unset, then output *[CN02_NS_RECORD_NOT_AA_TCP]*
             with name and IP address of the name server.
 
 
@@ -162,7 +160,7 @@ None.
 
 ## Terminology
 
-No special terminology for this test case.
+No special terminology for this Test Case.
 
 
 [Argument list]:                                                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
