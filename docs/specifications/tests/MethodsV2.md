@@ -48,7 +48,7 @@ follow the specification for DNS queries as specified in
 DNS queries follow, unless otherwise specified below, what is specified for
 [DNS Response] in the same specification.
 
-In these methods any DS record data in *Undelegated Data* is disregarded. If
+In these Methods any DS record data in *Undelegated Data* is disregarded. If
 with *Child Zone* DS record data is provided, but no name server data, then the
 will here be treated as "normal test", not "undelegated test".
 
@@ -59,8 +59,8 @@ will here be treated as "normal test", not "undelegated test".
 
 Methods, in this document, that are referred to as *internal* or
 *internal method* must not be referred to from the Test Case specifications.
-*Internal methods* may only be referred to from methods in this document. Test
-Case specifications can freely refer to the other methods.
+*Internal methods* may only be referred to from Methods in this document. Test
+Case specifications can freely refer to the other Methods.
 
 [To top]
 
@@ -72,7 +72,7 @@ Case specifications can freely refer to the other methods.
 
 ### Objective
 
-This method will obtain the name servers that serves the parent zone, i.e. the
+This Method will obtain the name servers that serves the parent zone, i.e. the
 zone from which the *Child Zone* is delegated from.
 
 This is done by finding the parent zone and then the name servers that serve the
@@ -88,12 +88,12 @@ If the test type is undelegated, then the information that the parent name
 servers are supposed to provide included in the input data. In that case a list
 of parent name servers has no meaning.
 
-The method will output a list of parent name server IP addresses. If the zone is
+The Method will output a list of parent name server IP addresses. If the zone is
 the root zone or if the test is an undelegated test, the list is defined but
 empty. If the parent zone cannot be determined, then an undefined list is
 returned.
 
-This method must, in general, use the similar algorithm as Test Case [BASIC01],
+This Method must, in general, use the similar algorithm as Test Case [BASIC01],
 but the test case extracts more information.
 
 ### Inputs
@@ -178,12 +178,12 @@ None.
 
 7. If the *Parent Name Server IP* set is non-empty then do:
    1. Extract the name server IP list.
-   2. Return the following from the method:
+   2. Return the following from the Method:
       1. The extracted list of name server IP addresses (parent zone name servers).
    3. Exit these test procedures.
 
 8. If the *Parent Name Server IP* set is empty then do:
-   1. Return the following from the method:
+   1. Return the following from the Method:
       1. Undefined value. (Parent name severs cannot be determined.)
    3. Exit these test procedures.
 
@@ -233,7 +233,7 @@ None.
 ### Test procedure
 
 1. Get the set of name servers where each unique name server name is linked to a
-   possibly empty set of its IP addresses by using method [Get-Delegation]
+   possibly empty set of its IP addresses by using Method [Get-Delegation]
    ("Name Servers").
 
 2. If the *Name Servers* set is undefined, then output an undefined set and exit
@@ -245,7 +245,7 @@ None.
 4. Extract the set of [out-of-bailiwick] name server names from *Name Servers*
    ("OOB Names").
 
-3. Get the IP addresses for name server names in *OOB Names* by using method
+3. Get the IP addresses for name server names in *OOB Names* by using Method
    [Get-OOB-IPs] with *OOB Names* as input.
 
 4. Merge the set returned from [Get-OOB-IPs] with *Name Servers*.
@@ -266,7 +266,7 @@ None.
 
 ### Dependencies
 
-This method depends on [Get-Delegation] and [Get-OOB-IPs].
+This Method depends on [Get-Delegation] and [Get-OOB-IPs].
 
 [To top]
 
@@ -278,7 +278,7 @@ This method depends on [Get-Delegation] and [Get-OOB-IPs].
 
 ### Objective
 
-In general, this method replaces [Method2] in [Methods], version 1.
+In general, this Method replaces [Method2] in [Methods], version 1.
 
 Obtain the name server names for *Child Zone* as defined in the delegation from
 parent zone.
@@ -294,7 +294,7 @@ None.
 ### Test procedure
 
 1. Get the set of name servers where each unique name server name is linked to a
-   possibly empty set of its IP addresses by using method
+   possibly empty set of its IP addresses by using Method
    [Get-Del-NS-Names-and-IPs] ("Name Servers").
 
 2. If the *Name Servers* set is undefined, then output an undefined set and exit
@@ -323,7 +323,7 @@ None.
 
 ### Dependencies
 
-This method depends on [Get-Del-NS-Names-and-IPs].
+This Method depends on [Get-Del-NS-Names-and-IPs].
 
 
 [To top]
@@ -336,7 +336,7 @@ This method depends on [Get-Del-NS-Names-and-IPs].
 
 ### Objective
 
-In general, this method replaces [Method4] in [Methods], version 1.
+In general, this Method replaces [Method4] in [Methods], version 1.
 
 Obtain the IP addresses (from glue records) from the delegation of
 the given zone (child zone) from the parent zone. Glue records are address
@@ -347,7 +347,7 @@ for the [out-of-bailiwick] name server names, if any.
 
 * "Child Zone" - The name of the child zone.
 
-This method inherits the inputs of method [Get-Del-NS-Names-and-IPs].
+This Method inherits the inputs of Method [Get-Del-NS-Names-and-IPs].
 
 ### Prerequisite
 
@@ -356,7 +356,7 @@ None.
 ### Test procedure
 
 1. Get the set of name servers where each unique name server name is linked to a
-   possibly empty set of its IP addresses by using method
+   possibly empty set of its IP addresses by using Method
    [Get-Del-NS-Names-and-IPs] ("Name Servers").
 
 2. If the *Name Servers* set is undefined, then output an undefined set and exit
@@ -383,7 +383,7 @@ None.
 
 ### Dependencies
 
-This method depends on [Get-Del-NS-Names-and-IPs].
+This Method depends on [Get-Del-NS-Names-and-IPs].
 
 [To top]
 
@@ -395,7 +395,7 @@ This method depends on [Get-Del-NS-Names-and-IPs].
 
 ### Objective
 
-In general, this method replaces [Method3] in [Methods], version 1.
+In general, this Method replaces [Method3] in [Methods], version 1.
 
 Obtain the names of the authoritative name servers for the given zone
 (child zone) as defined in the NS records in the zone itself.
@@ -410,7 +410,7 @@ None.
 
 ### Test procedure
 
-1.  Using method [Get-Del-NS-IPs], obtain the IP addresses of the
+1.  Using Method [Get-Del-NS-IPs], obtain the IP addresses of the
     name servers ("Name Server IPs").
 
 2.  If the *Name Server IPs* set is undefined, then output an undefined set and
@@ -451,7 +451,7 @@ None.
 
 ### Dependencies
 
-This method depends on [Get-Del-NS-IPs].
+This Method depends on [Get-Del-NS-IPs].
 
 [To top]
 
@@ -479,7 +479,7 @@ None.
 ### Test procedure
 
 1. Get the name server names for the *Child Zone* as defined in
-   the *Child Zone* by using method [Get-Zone-NS-Names] ("Names").
+   the *Child Zone* by using Method [Get-Zone-NS-Names] ("Names").
 
 2. If the *Names* set is undefined, then output an undefined set and
    exit these test procedures.
@@ -491,7 +491,7 @@ None.
    is linked to an empty set of IP addresses ("Name Servers").
 
 5. Fetch the IP addresses for any [in-bailiwick] name server
-   names in *Names* by using method [Get-IB-Addr-in-Zone].
+   names in *Names* by using Method [Get-IB-Addr-in-Zone].
 
 6. Add each fetched IP address, if any, to *Name Servers* to the name
    server name it belongs to.
@@ -499,7 +499,7 @@ None.
 7. Extract the set of [out-of-bailiwick] name server names from *Names*
    ("OOB Names").
 
-8. Get the IP addresses for name server names in *OOB Names* by using method
+8. Get the IP addresses for name server names in *OOB Names* by using Method
    [Get-OOB-IPs] with *OOB Names* as input.
 
 9. Merge the set returned from [Get-OOB-IPs] with *Name Servers*.
@@ -520,7 +520,7 @@ None.
 
 ### Dependencies
 
-This method depends on methods [Get-Zone-NS-Names], [Get-IB-Addr-in-Zone]
+This Method depends on Methods [Get-Zone-NS-Names], [Get-IB-Addr-in-Zone]
 and [Get-OOB-IPs].
 
 [To top]
@@ -533,7 +533,7 @@ and [Get-OOB-IPs].
 
 ### Objective
 
-In general, this method replaces [Method5] in [Methods], version 1.
+In general, this Method replaces [Method5] in [Methods], version 1.
 
 Obtain the IP addresses of the name servers, as extracted from
 the NS records of apex of the child zone.
@@ -549,7 +549,7 @@ None.
 ### Test procedure
 
 1. Get the name servers set where each unique name server name is linked to a
-   possibly empty set of its IP addresses by using method
+   possibly empty set of its IP addresses by using Method
    [Get-Zone-NS-Names-and-IPs] ("Name Servers");
 
 2. If the *Name Servers* set is undefined, then output an undefined set and
@@ -576,7 +576,7 @@ None.
 
 ### Dependencies
 
-This method depends on method [Get-Zone-NS-Names-and-IPs].
+This Method depends on Method [Get-Zone-NS-Names-and-IPs].
 
 
 [To top]
@@ -597,10 +597,10 @@ CNAME. It is, however, not permitted for a NS record to point at a name
 that has a CNAME, but that test is covered by Test Case [DELEGATION05].
 
 IP addresses for [out-of-bailiwick] name server names are not extracted
-with this method. To get those use method [Get-Del-NS-IPs] or
-method [Get-Del-NS-Names-and-IPs].
+with this Method. To get those use Method [Get-Del-NS-IPs] or
+Method [Get-Del-NS-Names-and-IPs].
 
-This is an [internal method] that can be referred to by other methods in this
+This is an [internal Method] that can be referred to by other Methods in this
 document, but not by Test Case specifications.
 
 ### Inputs
@@ -616,7 +616,7 @@ None.
 ### Test procedure
 
 1. If the *Test Type* is "undelegated test", then:
-   1. Using method [Get-Undel-Data] get the submitted data for
+   1. Using Method [Get-Undel-Data] get the submitted data for
       *Child Zone* ("Undelegated Data").
    2. If the *Undelegated Data* set is undefined, then output an undefined set
       and exit these test procedures.
@@ -635,7 +635,7 @@ None.
 2. If *Child Zone* is the root zone ".", then output the set of name server names
    and IP addresses from *Root Name Servers* and exit these test procedures.
 
-3. Using method [Get-Parent-NS-IP] extract the name server IP addresses for
+3. Using Method [Get-Parent-NS-IP] extract the name server IP addresses for
    the parent zone ("Parent NS").
 
 4. If *Parent NS* is empty, then output the undefined set and exit these test
@@ -714,7 +714,7 @@ None.
 
 ### Dependencies
 
-This method depends on the output from either [Get-Parent-NS-IP] (normal test
+This Method depends on the output from either [Get-Parent-NS-IP] (normal test
 type) or [Get-Undel-Data] (undelegated test).
 
 [To top]
@@ -734,7 +734,7 @@ It is, however, not permitted for a NS record
 to point at a name that has a CNAME, but that test is
 covered by Test Case [DELEGATION05].
 
-This is an [internal method] that can be referred to by other methods in this
+This is an [internal Method] that can be referred to by other Methods in this
 document, but not by Test Case specifications.
 
 ### Inputs
@@ -747,10 +747,10 @@ None.
 
 ### Test procedure
 
-1. Using method [Get-Del-NS-IPs], obtain the IP addresses to the name
+1. Using Method [Get-Del-NS-IPs], obtain the IP addresses to the name
    servers ("Name Server IPs").
 
-2. Using method [Get-Zone-NS-Names], obtain the names of the name servers
+2. Using Method [Get-Zone-NS-Names], obtain the names of the name servers
    from the *Child Zone* ("Child Zone Name Server Names").
 
 3. If the *Name Server IPs* set or the *Child Zone Name Server Names* set is
@@ -799,7 +799,7 @@ None.
 
 ### Dependencies
 
-This method depends on [Get-Zone-NS-Names] and [Get-Del-NS-IPs].
+This Method depends on [Get-Zone-NS-Names] and [Get-Del-NS-IPs].
 
 [To top]
 
@@ -817,17 +817,17 @@ addresses even if the resolution goes through CNAME. It is,
 however, not permitted for a NS record to point at a name that has a
 CNAME, but that test is covered by Test Case [DELEGATION05].
 
-This is an [internal method] that can be referred to by other methods in this
+This is an [internal Method] that can be referred to by other Methods in this
 document, but not by Test Case specifications.
 
 ### Inputs
 
 * "Child Zone" - The name of the child zone.
-* "NS Set" - The name servers names as given by the calling method.
+* "NS Set" - The name servers names as given by the calling Method.
 * "Test Type" - The test type with values "undelegated test" or
   "normal test".
 
-This method also inherits the inputs of method [Get-Undel-Data] if
+This Method also inherits the inputs of Method [Get-Undel-Data] if
 *Test Type* is "undelegated test".
 
 ### Prerequisite
@@ -842,7 +842,7 @@ None.
    is linked to an empty set of IP addresses ("Name Servers").
 
 3. If *Test Type* is "undelegated test", then do:
-   1. Fetch name server name and IP address or addresses using method
+   1. Fetch name server name and IP address or addresses using Method
       [Get-Undel-Data] ("Undelegated Data").
    2. If the *Undelegated Data* set is empty or undefined, then output an
       undefined set and exit these test procedures.
@@ -886,7 +886,7 @@ None.
 
 ### Dependencies
 
-This method depends on method [Get-Undel-Data].
+This Method depends on Method [Get-Undel-Data].
 
 
 [To top]
@@ -906,7 +906,7 @@ server names for NS records, optionally one or more IP addresses
 for one or more name server names and optionally data for one or
 more DS records.
 
-This is an [internal method] that can be referred to by other methods in this
+This is an [internal Method] that can be referred to by other Methods in this
 document, but not by Test Case specifications.
 
 ### Inputs
@@ -950,7 +950,7 @@ None.
 
 ## Method inter-dependencies
 
-| Method                      | Level | Dependent on method        | Level
+| Method                      | Level | Dependent on Method        | Level
 |-----------------------------|-------|----------------------------|-------------
 | [Get-Undel-Data]            | 1     | -                          |
 | [Get-Parent-NS-IP]          | 1     | -                          |
