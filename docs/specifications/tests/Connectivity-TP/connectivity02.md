@@ -66,8 +66,8 @@ CN02_NS_RECORD_NOT_AA_TCP           |WARNING| ns        | Nameserver {ns} does n
 CN02_SOA_RECORD_NOT_AA_TCP          |WARNING| ns        | Nameserver {ns} does not give an authoritative response on an SOA query over TCP.
 CN02_UNEXPECTED_RCODE_NS_QUERY_TCP  |WARNING| ns, rcode | Nameserver {ns} responds with an unexpected RCODE ({rcode}) on an NS query over TCP.
 CN02_UNEXPECTED_RCODE_SOA_QUERY_TCP |WARNING| ns, rcode | Nameserver {ns} responds with an unexpected RCODE ({rcode}) on an SOA query over TCP.
-CN02_WRONG_NS_RECORD_TCP            |WARNING| ns        | Nameserver {ns} responds with a wrong owner name ({domain_found} instead of {domain_expected}) on NS queries over TCP.
-CN02_WRONG_SOA_RECORD_TCP           |WARNING| ns        | Nameserver {ns} responds with a wrong owner name ({domain_found} instead of {domain_expected}) on SOA queries over TCP.
+CN02_WRONG_NS_RECORD_TCP            |WARNING| ns, , domain_found, domain_expected | Nameserver {ns} responds with a wrong owner name ({domain_found} instead of {domain_expected}) on NS queries over TCP.
+CN02_WRONG_SOA_RECORD_TCP           |WARNING| ns, , domain_found, domain_expected | Nameserver {ns} responds with a wrong owner name ({domain_found} instead of {domain_expected}) on SOA queries over TCP.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
