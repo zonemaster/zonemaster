@@ -71,8 +71,8 @@ CN01_NS_RECORD_NOT_AA_UDP           |WARNING| ns        | Nameserver {ns} does n
 CN01_SOA_RECORD_NOT_AA_UDP          |WARNING| ns        | Nameserver {ns} does not give an authoritative response on an SOA query over UDP.
 CN01_UNEXPECTED_RCODE_NS_QUERY_UDP  |WARNING| ns, rcode | Nameserver {ns} responds with an unexpected RCODE ({rcode}) on an NS query over UDP.
 CN01_UNEXPECTED_RCODE_SOA_QUERY_UDP |WARNING| ns, rcode | Nameserver {ns} responds with an unexpected RCODE ({rcode}) on an SOA query over UDP.
-CN01_WRONG_NS_RECORD_UDP            |WARNING| ns        | Nameserver {ns} responds with a wrong owner name ({domain_found} instead of {domain_expected}) on NS queries over UDP.
-CN01_WRONG_SOA_RECORD_UDP           |WARNING| ns        | Nameserver {ns} responds with a wrong owner name ({domain_found} instead of {domain_expected}) on SOA queries over UDP.
+CN01_WRONG_NS_RECORD_UDP            |WARNING| ns, domain_found, domain_expected | Nameserver {ns} responds with a wrong owner name ({domain_found} instead of {domain_expected}) on NS queries over UDP.
+CN01_WRONG_SOA_RECORD_UDP           |WARNING| ns, domain_found, domain_expected | Nameserver {ns} responds with a wrong owner name ({domain_found} instead of {domain_expected}) on SOA queries over UDP.
 
 
 The value in the Level column is the default severity level of the message. The
