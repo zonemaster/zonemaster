@@ -5,7 +5,7 @@ Test Cases that makes use of any of these Methods should link directly to
 this text.
 
 This document holds version 1 of the set of Methods. Version 2 is defined in
-[MethodV2]. Methods from version 1 will be replaced by Methods from version 2 in
+[MethodsV2]. Methods from version 1 will be replaced by Methods from version 2 in
 all Test Case specifications.
 
 Before the transition all Test Cases specifications use version 1 (this
