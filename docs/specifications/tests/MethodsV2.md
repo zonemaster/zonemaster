@@ -4,7 +4,7 @@
 
 * [Objective](#objective)
 * [Scope](#scope)
-* [Internal methods][Internal method]
+* [Internal Methods]
 * [Method: Get parent NS IP addresses][Get-Parent-NS-IP]
 * [Method: Get delegation NS names and IP addresses][Get-Del-NS-Names-and-IPs]
 * [Method: Get delegation NS names][Get-Del-NS-Names]
@@ -12,33 +12,33 @@
 * [Method: Get zone NS names][Get-Zone-NS-Names]
 * [Method: Get zone NS names and IP addresses][Get-Zone-NS-Names-and-IPs]
 * [Method: Get zone NS IP addresses][Get-Zone-NS-IPs]
-* [Method: Get delegation (internal)][Get-Delegation]
-* [Method: Get in-bailiwick address records in zone (internal)][Get-IB-Addr-in-Zone]
-* [Method: Get out-of-bailiwick ip addresses (internal)][Get-OOB-IPs]
-* [Method: Get data for undelegated test (internal)][Get-Undel-Data]
+* [Method: Get delegation (Internal)][Get-Delegation]
+* [Method: Get in-bailiwick address records in zone (Internal)][Get-IB-Addr-in-Zone]
+* [Method: Get out-of-bailiwick ip addresses (Internal)][Get-OOB-IPs]
+* [Method: Get data for undelegated test (Internal)][Get-Undel-Data]
 * [Method inter-dependencies](#method-inter-dependencies)
 * [Terminology](#terminology)
 
 
 ## Objective
 
-The methods are used in, and referred from, the Test Case specifications as
+The Methods are used in, and referred from, the Test Case specifications as
 shortcuts for steps shared between Test Cases. A Test Case that makes use of any
-of the methods defined in this document must refer directly to the
-specific method or methods.
+of the Methods defined in this document must refer directly to the
+specific Method or Methods.
 
 [To top]
 
 
 ## Scope
 
-This document holds version 2 of the set of methods. Version 1 is defined in
-[Methods]. Methods from version 1 will be replaced by methods from version 2 in
+This document holds version 2 of the set of Methods. Version 1 is defined in
+[Methods]. Methods from version 1 will be replaced by Methods from version 2 in
 all Test Case specifications.
 
 Before the transition all Test Cases specifications use version 1 ([Methods]).
 During the transition it will be stated in each specification if the
-Test Case uses methods from version 1 ([Methods]) or methods from version 2 (this
+Test Case uses Methods from version 1 ([Methods]) or Methods from version 2 (this
 document). When the transition is completed, the version 1 document will be
 removed.
 
@@ -57,9 +57,9 @@ will here be treated as "normal test", not "undelegated test".
 
 ## Internal methods
 
-Methods, in this document, that are referred to as *internal* or
-*internal method* must not be referred to from the Test Case specifications.
-*Internal methods* may only be referred to from Methods in this document. Test
+Methods, in this document, that are referred to as *Internal* or
+*Internal Method* must not be referred to from the Test Case specifications.
+*Internal Methods* may only be referred to from Methods in this document. Test
 Case specifications can freely refer to the other Methods.
 
 [To top]
@@ -169,7 +169,7 @@ None.
             IP address do if the address is not listed in *Parent Name Server IP*
             set:
             1. [Send] *SOA Child Query* to the IP address.
-            2. If the [DNS Response], if any, meets exact one of the following
+            2. If the [DNS Response], if any, meets exactly one of the following
                criteria then save the IP address and the parent zone name to the
                *Parent Name Server IP* set. Criteria:
                * The [DNS response] is a referral to *Child Zone* (owner name
@@ -582,7 +582,7 @@ This Method depends on Method [Get-Zone-NS-Names-and-IPs].
 [To top]
 
 
-## Method: Get delegation (internal)
+## Method: Get delegation (Internal)
 
 ### Method identifier
 **Get-Delegation**
@@ -600,8 +600,8 @@ IP addresses for [out-of-bailiwick] name server names are not extracted
 with this Method. To get those use Method [Get-Del-NS-IPs] or
 Method [Get-Del-NS-Names-and-IPs].
 
-This is an [internal Method] that can be referred to by other Methods in this
-document, but not by Test Case specifications.
+This is an [Internal Method][Internal Methods] that can be referred to by other
+Methods in this document, but not by Test Case specifications.
 
 ### Inputs
 
@@ -720,7 +720,7 @@ type) or [Get-Undel-Data] (undelegated test).
 [To top]
 
 
-## Method: Get in-bailiwick address records in zone (internal)
+## Method: Get in-bailiwick address records in zone (Internal)
 
 ### Method identifier
 **Get-IB-Addr-in-Zone**
@@ -734,8 +734,8 @@ It is, however, not permitted for a NS record
 to point at a name that has a CNAME, but that test is
 covered by Test Case [DELEGATION05].
 
-This is an [internal Method] that can be referred to by other Methods in this
-document, but not by Test Case specifications.
+This is an [Internal Method][Internal Methods] that can be referred to by other
+Methods in this document, but not by Test Case specifications.
 
 ### Inputs
 
@@ -804,7 +804,7 @@ This Method depends on [Get-Zone-NS-Names] and [Get-Del-NS-IPs].
 [To top]
 
 
-## Method: Get out-of-bailiwick ip addresses (internal)
+## Method: Get out-of-bailiwick ip addresses (Internal)
 
 ### Method identifier
 **Get-OOB-IPs**
@@ -817,8 +817,8 @@ addresses even if the resolution goes through CNAME. It is,
 however, not permitted for a NS record to point at a name that has a
 CNAME, but that test is covered by Test Case [DELEGATION05].
 
-This is an [internal Method] that can be referred to by other Methods in this
-document, but not by Test Case specifications.
+This is an [Internal Method][Internal Methods] that can be referred to by other
+Methods in this document, but not by Test Case specifications.
 
 ### Inputs
 
@@ -892,7 +892,7 @@ This Method depends on Method [Get-Undel-Data].
 [To top]
 
 
-## Method: Get data for undelegated test (internal)
+## Method: Get data for undelegated test (Internal)
 
 ### Method identifier
 **Get-Undel-Data**
@@ -906,8 +906,8 @@ server names for NS records, optionally one or more IP addresses
 for one or more name server names and optionally data for one or
 more DS records.
 
-This is an [internal Method] that can be referred to by other Methods in this
-document, but not by Test Case specifications.
+This is an [Internal Method][Internal Methods] that can be referred to by other
+Methods in this document, but not by Test Case specifications.
 
 ### Inputs
 
@@ -1009,7 +1009,7 @@ changes to the DNS tree introduced by an [undelegated test] must be respected.
 [Glue records]:                                      #terminology
 [Glue records]:                                      #terminology
 [In-bailiwick]:                                      #terminology
-[Internal Method]:                                   #internal-methods
+[Internal Methods]:                                  #internal-methods
 [List of Root Servers]:                              https://www.iana.org/domains/root/servers
 [Method1]:                                           Methods.md#method-1-obtain-the-parent-domain
 [Method2]:                                           Methods.md#method-2-obtain-glue-name-records-from-parent
