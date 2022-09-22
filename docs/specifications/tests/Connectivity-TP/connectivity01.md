@@ -43,6 +43,8 @@ areas over UDP:
 * Name Server responding with unexpected [RCODE Name] (any except "NoError") on
   query for SOA or NS for *Child Zone*.
 
+In addition, this test case will output a message if transport over IPv4 or IPv6
+has been disabled.
 
 ## Scope
 
