@@ -23,14 +23,14 @@ UDP is the fundamental protocol to reach a general purpose name server hosting
 a zone, "DNS servers MUST be able to service UDP [...]" ([RFC 1123], section
 6.1.3.2, page 75), also restated in [RFC 7766][RFC 7766#5], section 5.
 
-This test case will verify if the name servers in the delegation of and zone of
+This Test Case will verify if the name servers in the delegation of and zone of
 *Child Zone* are reachable over UDP.
 
-Most Zonemaster test cases will query the name servers in the delegation or the
+Most Zonemaster Test Cases will query the name servers in the delegation or the
 name servers appointed by the NS records in the zone for the NS or SOA record,
 or both. It is crucial that problems are reported, but instead of letting several
-test cases report the same problems found, most test cases assume that this test
-case is run. Only this test case will report problems found in the following
+Test Cases report the same problems found, most Test Cases assume that this test
+case is run. Only this Test Case will report problems found in the following
 areas over UDP:
 
 * Name Server not responding to a query without EDNS.
@@ -47,7 +47,7 @@ areas over UDP:
 ## Scope
 
 The only UDP port defined for DNS is port 53 ([RFC 1035][RFC 1035#4.2.1], section
-4.2.1), and that is the only port used by this and other test cases for DNS
+4.2.1), and that is the only port used by this and other Test Cases for DNS
 queries to the name servers.
 
 
