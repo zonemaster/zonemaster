@@ -149,8 +149,7 @@ In other cases, no message or only messages with severity level
 ## Special procedural requirements
 
 If either IPv4 or IPv6 transport is disabled, skip sending queries over that
-transport protocol. A message will be outputted reporting that the transport
-protocol has been skipped.
+transport protocol.
 
 
 ## Intercase dependencies
