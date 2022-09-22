@@ -47,15 +47,15 @@ definitely to follow that practice. Instead, a special message will be outputted
 This Test Case will check that:
  - the SOA MNAME contains the master name server of *Child Zone*,
    as best as it can be determined.
- - the master name server is authoritative of *Child Zone*.
+ - the SOA MNAME name server is authoritative of *Child Zone*.
  - the SOA SERIAL of the SOA MNAME is at least equal to the ones found
    from the name servers in the NS record set of *Child Zone*.
    This comparison must be done following [RFC1982].
- - the master name server is listed as part of the NS record set of *Child Zone*.
+ - the SOA MNAME name server is listed as part of the NS record set of *Child Zone*.
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested and reported by [Basic04].
+It is assumed that *Child Zone* has been tested and reported by [CONNECTIVITY01].
 This Test Case will just ignore non-responsive name servers or name servers
 not giving a correct DNS response for an authoritative name server, except
 if the name server is listed in the SOA MNAME.
@@ -74,9 +74,11 @@ is not tested by this Test Case, see [CONSISTENCY06].
 
 Message Tag                   | Level   | Arguments             | Message ID for message tag
 :---------------------------- |:--------|:----------------------|:---------------------------------------------------------------------------------------
+Z01_MNAME_HAS_LOCALHOST_ADDR  | WARNING | nsname, ns_ip         | SOA MNAME name server "{nsname}" resolves to a localhost IP address ({ns_ip}).
 Z01_MNAME_IS_DOT              | NOTICE  | ns_ip_list            | SOA MNAME is specified as "." which usually means "no server". Fetched from name servers "{ns_ip_list}".
 Z01_MNAME_IS_LOCALHOST        | WARNING | ns_ip_list            | SOA MNAME name server is "localhost", which is invalid. Fetched from name servers "{ns_ip_list}".
 Z01_MNAME_IS_MASTER           | DEBUG   | ns, ns_ip_list        | SOA MNAME name server "{ns}" does appear to be master. Fetched from name servers "{ns_ip_list}".
+Z01_MNAME_MISSING_SOA_RECORD  | WARNING | ns, ns_ip_list        | SOA MNAME name server "{ns}" reponds to an SOA query with no SOA records in the answer section. Fetched from name servers "{ns_ip_list}".
 Z01_MNAME_NO_RESPONSE         | WARNING | ns, ns_ip_list        | SOA MNAME name server "{ns}" does not respond to an SOA query. Fetched from name servers "{ns_ip_list}".
 Z01_MNAME_NOT_AUTHORITATIVE   | WARNING | ns, ns_ip_list        | SOA MNAME name server "{ns}" is not authoritative for the zone. Fetched from name servers "{ns_ip_list}".
 Z01_MNAME_NOT_IN_NS_LIST      | INFO    | nsname                | SOA MNAME name server "{nsname}" is not listed as NS record for the zone.
@@ -101,7 +103,7 @@ specified below, what is specified for [DNS Response] in the same specification.
 1. Create a [DNS Query] with query type SOA and query name *Child Zone* ("SOA Query").
 
 2. Create the following empty sets:
-   1. Name server SOA MNAME name, SOA MNAME IP address, SOA SERIAL ("MNAME Nameservers")
+   1. Name server SOA MNAME name, SOA MNAME IP address(es), SOA SERIAL(s) ("MNAME Nameservers")
    2. Name server IP address, SOA SERIAL ("SERIAL Nameservers")
    3. Name server SOA MNAME name, SOA MNAME IP address ("MNAME Not Master")
    4. Name server SOA MNAME name, SOA MNAME IP address ("MNAME Is Master")
@@ -119,15 +121,15 @@ specified below, what is specified for [DNS Response] in the same specification.
       2. [RCODE Name] of the response is not "NoError".
       3. The AA flag is not set in the response.
       4. There is no SOA record with owner name matching the query.
-   4. From the DNS response, extract the name server name from the SOA MNAME field:
+   3. From the DNS response, extract the name server name from the SOA MNAME field:
       1. If the name is "localhost", then add name server IP address to
          the *MNAME Is Localhost* set.
       2. Else if the name is ".", then add name server IP address to
          the *MNAME Is Dot* set.
       3. Else, add SOA MNAME name server name to the *MNAME Nameservers* set.
-   5. From the DNS response, add the SOA SERIAL field and name server IP address to
-      the *SERIAL Nameservers* set.
-   6. Go to next name server IP address.
+   4. From the SOA record in the DNS response, extract the SOA SERIAL field. Add SOA SERIAL
+      and name server IP address to the *SERIAL Nameservers* set.
+   5. Go to next name server IP address.
 
 5. If the set *MNAME Is Localhost* is non-empty, then output
    *[Z01_MNAME_IS_LOCALHOST]* with name server(s) IP address(es).
@@ -137,54 +139,60 @@ specified below, what is specified for [DNS Response] in the same specification.
 
 7. If the set *MNAME Nameservers* is empty, then terminate these procedures.
 
-8. Else, for each SOA MNAME name server name in *MNAME Nameservers* do:
-   1. Do a [DNS Lookup] of SOA MNAME name server name (A and AAAA) and add the
+8. Obtain the set of name server names using [Method3] ("Child Nameservers").
+
+9. For each SOA MNAME name server name in *MNAME Nameservers* do:
+   1. If the SOA MNAME name server name is not part of the
+      *Child Nameservers* set, then output *[Z01_MNAME_NOT_IN_NS_LIST]* with
+      SOA MNAME name server name.
+   2. Do a [DNS Lookup] of SOA MNAME name server name (A and AAAA) and add the
       SOA MNAME name server IP address(es) found to the *MNAME Nameservers* set
       for the same entry as the SOA MNAME name server name.
-   2. If at least one IP address from the previous step was found, then:
+   3. If at least one IP address from the previous step was found, then:
       1. For each SOA MNAME name server IP for the SOA MNAME name server name do: 
-         1. Send *SOA Query* to the name server and collect the response.
-            1. If there is a DNS response with [RCODE Name] "NoError", then:
+         1. If the IP address is a localhost address (127.0.0.1 or ::1), then output
+            *[Z01_MNAME_HAS_LOCALHOST_ADDR]* with SOA MNAME name server name and IP.
+         2. Else, send *SOA Query* to the name server and collect the response.
+            1. If there is a DNS response, with [RCODE Name] "NoError" and
+               an SOA record in the answer section, then:
                1. If the AA flag is not set, then output *[Z01_MNAME_NOT_AUTHORITATIVE]* 
                   with SOA MNAME name server name and IP address, and name server(s) IP
                   address(es) from the *SERIAL Nameservers* set.
                2. Else, add the SOA SERIAL field to the *MNAME Nameservers* set
-                  for the same entry as the SOA MNAME name server name.
-            2. Else if there is a DNS response with [RCODE Name] other than "NoError", then
-               output *[Z01_MNAME_UNEXPECTED_RCODE]* with [RCODE Name], SOA name server name and
+                  for the SOA MNAME name server name and IP pair.
+            2. Else if [RCODE Name] is not "NoError", then output
+               *[Z01_MNAME_UNEXPECTED_RCODE]* with [RCODE Name], SOA MNAME name server name and
                IP address, and name server(s) IP address(es) from the *SERIAL Nameservers* set.
-            3. Else, output *[Z01_MNAME_NO_RESPONSE]* with SOA MNAME name server name and IP
+            3. Else if there is no SOA record in the answer section, then output
+               *[Z01_MNAME_MISSING_SOA_RECORD]* with SOA MNAME name server name and IP
                address, and name server(s) IP address(es) from the *SERIAL Nameservers* set.
-         2. Go to next SOA MNAME name server IP.
-   3. Else, output *[Z01_MNAME_NOT_RESOLVE]* with SOA MNAME name server name,
+            4. Else, output *[Z01_MNAME_NO_RESPONSE]* with SOA MNAME name server name and IP
+               address, and name server(s) IP address(es) from the *SERIAL Nameservers* set.
+         3. Go to next SOA MNAME name server IP.
+   4. Else, output *[Z01_MNAME_NOT_RESOLVE]* with SOA MNAME name server name,
       and name server(s) IP address(es) from the *SERIAL Nameservers* set.
-   4. Go to next SOA MNAME name server name.
+   5. Go to next SOA MNAME name server name.
 
-9. If there is no SOA SERIAL in the *MNAME Nameservers* set, then
-   terminate these procedures.
+10. If there is no SOA SERIAL in the *MNAME Nameservers* set, then
+    terminate these procedures.
 
-10. For each SOA SERIAL in *MNAME Nameservers* do:
+11. For each SOA SERIAL in *MNAME Nameservers* do:
     1. For each SOA SERIAL in *SERIAL Nameservers* do:
        1. Compare both SOA SERIAL values (using the arithmetic in [RFC1982]).
           1. If the one from *SERIAL Nameservers* is higher, then add SOA MNAME name
              server name and IP address to the *MNAME Not Master* set, and go to next
              SOA SERIAL (from the *MNAME Nameservers* set).
           2. Go to next SOA SERIAL.
-    2. If the set *MNAME Not Master* is empty, then add SOA MNAME name server name and
-       IP address to the *MNAME Is Master* set and exit this loop.
-    3. Else, go to next SOA SERIAL.
+    2. Add SOA MNAME name server name and IP address to the *MNAME Is Master* set.
+    3. Go to next SOA SERIAL.
 
-11. If the set *MNAME Not Master* is non-empty, then output *[Z01_MNAME_NOT_MASTER]*
-    with SOA MNAME name server name and IP address(es) from the set, and name server(s)
+12. If the set *MNAME Not Master* is non-empty, then output *[Z01_MNAME_NOT_MASTER]*
+    with SOA MNAME name server name(s) and IP address(es) from the set, and name server(s)
     IP address(es) from the *SERIAL Nameservers* set.
 
-12. If the set *MNAME Is Master* is non-empty, then:
-    1. Output *[Z01_MNAME_IS_MASTER]* with SOA MNAME name server name and IP address(es)
-       from the set, and name server(s) IP address(es) from the *SERIAL Nameservers* set.
-    2. Obtain the set of name server names using [Method3] ("Child Nameservers").
-       1. If the SOA MNAME in the *MNAME Is Master* set is not part of the
-          *Child Nameservers* set, then output *[Z01_MNAME_NOT_IN_NS_LIST]* with
-          SOA MNAME name server name.
+13. If the set *MNAME Is Master* is non-empty, then output *[Z01_MNAME_IS_MASTER]*
+    with SOA MNAME name server name(s) and IP address(es) from the set, and name server(s)
+    IP address(es) from the *SERIAL Nameservers* set.
 
 ## Outcome(s)
 
@@ -215,7 +223,7 @@ any changes to the DNS tree introduced by an [undelegated test] must be
 respected.
 
 [Argument list]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Basic04]:                              ../Basic-TP/basic04.md
+[CONNECTIVITY01]:                       ../Connectivity-TP/connectivity01.md
 [CONSISTENCY06]:                        ../Consistency-TP/consistency06.md
 [CRITICAL]:                             https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#critical
 [DNS Lookup]:                           #terminology
@@ -243,9 +251,11 @@ respected.
 [Undelegated test]:                     ../../test-types/undelegated-test.md
 [WARNING]:                              https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:            https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Z01_MNAME_HAS_LOCALHOST_ADDR]:         #summary
 [Z01_MNAME_IS_DOT]:                     #summary
 [Z01_MNAME_IS_LOCALHOST]:               #summary
 [Z01_MNAME_IS_MASTER]:                  #summary
+[Z01_MNAME_MISSING_SOA_RECORD]:         #summary
 [Z01_MNAME_NO_RESPONSE]:                #summary
 [Z01_MNAME_NOT_AUTHORITATIVE]:          #summary
 [Z01_MNAME_NOT_IN_NS_LIST]:             #summary
