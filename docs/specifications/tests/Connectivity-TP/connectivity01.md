@@ -23,8 +23,9 @@ UDP is the fundamental protocol to reach a general purpose name server hosting
 a zone, "DNS servers MUST be able to service UDP [...]" ([RFC 1123], section
 6.1.3.2, page 75), also restated in [RFC 7766][RFC 7766#5], section 5.
 
-This Test Case will verify if the name servers in the delegation of and zone of
-*Child Zone* are reachable over UDP.
+This Test Case will verify if the name servers of *Child Zone* are reachable over
+UDP. The name servers tested are both those in the delegation of *Child Zone* and
+those in the NS records in the *Child Zone* itself.
 
 Most Zonemaster Test Cases will query the name servers in the delegation or the
 name servers appointed by the NS records in the zone for the NS or SOA record,
