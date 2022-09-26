@@ -75,16 +75,16 @@ queries follow, unless otherwise specified below, what is specified for
    ("SOA Query").
 
 2. Create the following empty sets:
-   1. Name server name and IP ("Auth Response on SOA Query").
-   2. Name server name and IP ("Broken NS").
-   3. Name server name and IP ("NS not auth").
+   1. Name server name and IP address ("Auth Response on SOA Query").
+   2. Name server name and IP address ("Broken NS").
+   3. Name server name and IP address ("NS not auth").
    4. Name server name ("NS Cannot Resolve Into IP").
-   5. Name server name and IP ("No Response From NS").
-   6. Name server name and IP plus [RCODE Name] ("Unexpected RCODE").
-   7. Name server name and IP ("Delegation NS").
+   5. Name server name and IP address ("No Response From NS").
+   6. Name server name, IP address and [RCODE Name] ("Unexpected RCODE").
+   7. Name server name with IP address set ("Delegation NS").
 
-3. Populate the set *Delegation NS* with name and IP address for the name
-   servers of the delegation of *Child Zone*.
+3. Populate the set *Delegation NS* with name and the set of IP addresses for
+   each name from the name servers of the delegation of *Child Zone*.
    1. If the test is an undelegated test, then:
       1. Use *Undelegated NS*, *Undelegated Glue IP* and
       *Undelegated Non-Glue IP*.
@@ -104,38 +104,26 @@ queries follow, unless otherwise specified below, what is specified for
    2. Exit these test procedures.
 
 5. Else, for each name server name in the *Delegation NS* set do:
-   1. If the name server name has no IP address then do:
-      1. Add the name server name to the *NS Cannot Resolve Into IP*.
-      2. Go to next name server name.
-   2. If the name server name has multiple IP addresses, then repeat the loop
-      and the following steps for each IP address, else go to next name server
-      name in the loop.
-   3. Send *SOA Query* to the name server IP.
-   4. If there is no [DNS Response], then:
-      1. Add the name server name and IP address to the *No Response From NS*
-         set.
-      2. Go to next name server.
-   5. Else, if the AA flag is not set in the [DNS Response], then:
-      1. Add the name server name and IP address to the *NS not auth* set.
-      2. Go to next name server.
-   6. Else, if the [RCODE Name] is not "NoError" in the [DNS Response], then:
-      1. Add the name server name and IP address plus the [RCODE Name] to the
+   1. If the name server name has no IP address then add the name server name to
+      the *NS Cannot Resolve Into IP* set.
+   2. Else, for each IP address in for the name server name do:
+      1. Send *SOA Query* to the name server IP.
+      2. If there is no [DNS Response], then add the name server name and IP
+         address to the *No Response From NS* set.
+      3. Else, if the AA flag is not set in the [DNS Response], then add the name
+         server name and IP address to the *NS not auth* set.
+      4. Else, if the [RCODE Name] is not "NoError" in the [DNS Response], then
+         add the name server name, IP address and the [RCODE Name] to the
          *Unexpected RCODE* set.
-      2. Go to next name server IP address if available, else go to next name
-         server name.
-   7. Else:
-      1. If the answer section in the [DNS Response] contains an SOA record
-         with *Child Zone* as owner name, then:
-         1. Add the name server name and IP address to the 
-            *Auth Response on SOA Query* set.
-         2. Go to next name server.
-      2. Else:
-         1. Add the name server name and IP address to the *Broken NS* set.
-         2. Go to next name server.
+      5. Else do:
+         1. If the answer section in the [DNS Response] contains an SOA record
+            with *Child Zone* as owner name, then add the name server name and IP
+            address to the *Auth Response on SOA Query* set.
+         2. Else, add the name server name and IP address to the *Broken NS* set.
 
 6. If the *Auth Response on SOA Query* set is non-empty, then:
-   1. Output *[B02_AUTH_RESPONSE_SOA]* with a list of name server name and IP address
-      pairs derived from the set and with *Child Zone* name.
+   1. Output *[B02_AUTH_RESPONSE_SOA]* with a list of name server name and IP
+      address pairs derived from the set and with *Child Zone* name.
    2. Exit these test procedures.
 
 7. Else do:
@@ -151,7 +139,7 @@ queries follow, unless otherwise specified below, what is specified for
       pair.
    6. If the *Unexpected RCODE* set is non-empty then for each name server name
       and IP address pair from the set output *[B02_UNEXPECTED_RCODE]* with the
-      pair and the [RCODE Name] for the pair in the set.
+      pair and the [RCODE Name] for that pair in the set.
 
 
 ## Outcome(s)
