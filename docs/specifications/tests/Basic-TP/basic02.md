@@ -106,7 +106,7 @@ queries follow, unless otherwise specified below, what is specified for
 5. Else, for each name server name in the *Delegation NS* set do:
    1. If the name server name has no IP address then add the name server name to
       the *NS Cannot Resolve Into IP* set.
-   2. Else, for each IP address in for the name server name do:
+   2. Else, for each IP address for the name server name do:
       1. Send *SOA Query* to the name server IP.
       2. If there is no [DNS Response], then add the name server name and IP
          address to the *No Response From NS* set.
