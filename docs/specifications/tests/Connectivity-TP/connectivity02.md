@@ -23,8 +23,9 @@ TCP is a protocol to reach a general purpose name server hosting a zone, "All
 general-purpose DNS implementations MUST support [...] TCP transport"
 ([RFC 7766][RFC 7766#5], section 5).
 
-This Test Case will verify if the name servers in the delegation of and zone of
-*Child Zone* are reachable over TCP.
+This Test Case will verify if the name servers of *Child Zone* are reachable over
+TCP. The name servers tested are both those in the delegation of *Child Zone* and
+those in the NS records in the *Child Zone* itself.
 
 This Test Case will mimic the tests done by [Connectivity01], but over TCP
 instead:
