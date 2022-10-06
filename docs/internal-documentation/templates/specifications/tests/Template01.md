@@ -233,28 +233,25 @@ No special terminology for this test case.
 > > Following are examples of terminology that are candidates to be included
 > > in the section.
 
-The terms "in-bailiwick", "out-of-bailiwick" and "glue record" are defined in
-[RFC 8499][RFC 8499#section-7], section 7, pages 24-25. In this document, the
-term "in-bailiwick" is limited to the meaning "in domain" in
-[RFC 8499][RFC 8499#section-7]. The term "out-of-bailiwick" means what is not
-"in-bailiwick, in domain", in this document.
+* "DNS Lookup" - The term is used when a recursive lookup is used, though
+  any changes to the DNS tree introduced by an [undelegated test] must be
+  respected.
 
+* "in-bailiwick" - The terms are used as defined in [RFC 8499][RFC 8499#page-25],
+  section 7, page 25. In this document, the term "in-bailiwick" is limited to the
+  meaning "in-domain" in [RFC 8499][RFC 8499#page-25].
 
-The terms "in-bailiwick" and "out-of-bailiwick" are used as defined
-in [RFC 8499], section 7, page 25.
+* "glue records" - The term is defined in [RFC 8499][RFC 8499#page-24], section 7,
+  page 24.
 
-The term "glue records" is defined in [RFC 8499][RFC 8499#page-24], section 7,
-page 24.
+* "out-of-bailiwick" - The term is used in this document to mean what is not
+  "in-bailiwick" (see definition above).
 
-When the term "using Method" is used, names and IP addresses are fetched
-using the defined [Methods].
+* "send" (to an IP address) - The term is used when a DNS query is sent to
+  a specific name server.
 
-The term "send" (to an IP address) is used when a DNS query is sent to
-a specific name server.
-
-The term "DNS Lookup" is used when a recursive lookup is used, though
-any changes to the DNS tree introduced by an [undelegated test] must be
-respected.
+* "using Method" - The term is used when data is fetched using the defined
+  [Method][Methods].
 
 > > ----
 > > The links listed below are not visible when rendered by Github. In the
@@ -324,7 +321,9 @@ respected.
 [Dig]:                                                            https://en.wikipedia.org/wiki/Dig_(command)
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 4035#section-3.1.3]:                                         https://tools.ietf.org/html/rfc4035#section-3.1.3
-[RFC 8499#section-7]:                                             https://datatracker.ietf.org/doc/html/rfc8499#section-7
+[RFC 8499#page-25]:                                               https://datatracker.ietf.org/doc/html/rfc8499#page-25
+[RFC 8499#page-24]:                                               https://datatracker.ietf.org/doc/html/rfc8499#page-24
+
 
 
 > > Keep all links sorted, and make a straight column of the link targets in
