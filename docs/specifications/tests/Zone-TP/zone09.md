@@ -212,7 +212,8 @@ queries follow, unless otherwise specified below, what is specified for
           output *[Z09_TLD_EMAIL_DOMAIN]*.
        3. Else, if *Child Zone* is the root zone with a [non-Null MX][Null MX] then
           output *[Z09_ROOT_EMAIL_DOMAIN]*.
-       4. Else, output *[Z09_MX_DATA]*.
+       4. Else, output *[Z09_MX_DATA]* with the mail targets from the RDATA and
+          the associated name server IP addresses in the set.
 
 11. Else, if the *No MX RRset* set is non-empty then do:
     * Output *[Z09_MISSING_MAIL_TARGET]* unless
