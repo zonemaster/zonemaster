@@ -237,7 +237,7 @@ No special terminology for this test case.
   any changes to the DNS tree introduced by an [undelegated test] must be
   respected.
 
-* "in-bailiwick" - The terms is used as defined in [RFC 8499][RFC 8499#page-25],
+* "in-bailiwick" - The term is used as defined in [RFC 8499][RFC 8499#page-25],
   section 7, page 25. In this document, the term "in-bailiwick" is limited to the
   meaning "in-domain" in [RFC 8499][RFC 8499#page-25].
 
