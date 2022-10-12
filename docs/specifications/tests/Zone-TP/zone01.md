@@ -80,12 +80,13 @@ Message Tag                   | Level   | Arguments             | Message ID for
 Z01_MNAME_HAS_LOCALHOST_ADDR  | WARNING | nsname, ns_ip         | SOA MNAME name server "{nsname}" resolves to a localhost IP address ({ns_ip}).
 Z01_MNAME_IS_DOT              | NOTICE  | ns_ip_list            | SOA MNAME is specified as "." which usually means "no server". Fetched from name servers "{ns_ip_list}".
 Z01_MNAME_IS_LOCALHOST        | WARNING | ns_ip_list            | SOA MNAME name server is "localhost", which is invalid. Fetched from name servers "{ns_ip_list}".
-Z01_MNAME_IS_MASTER           | DEBUG   | ns                    | SOA MNAME name server "{ns}" appears to be master.
+Z01_MNAME_IS_MASTER           | DEBUG   | ns_list               | SOA MNAME name server(s) "{ns_list}" appears to be master.
 Z01_MNAME_MISSING_SOA_RECORD  | WARNING | ns                    | SOA MNAME name server "{ns}" reponds to an SOA query with no SOA records in the answer section.
 Z01_MNAME_NO_RESPONSE         | WARNING | ns                    | SOA MNAME name server "{ns}" does not respond to an SOA query.
 Z01_MNAME_NOT_AUTHORITATIVE   | WARNING | ns                    | SOA MNAME name server "{ns}" is not authoritative for the zone.
 Z01_MNAME_NOT_IN_NS_LIST      | INFO    | nsname                | SOA MNAME name server "{nsname}" is not listed as NS record for the zone.
-Z01_MNAME_NOT_MASTER          | WARNING | ns                    | SOA MNAME name server "{ns}" does not have the highest SOA SERIAL (expected "{soa_serial}" at most but got "{soa_serial_list}")
+Z01_MNAME_NOT_MASTER          | WARNING | ns_list, soaserial,   | SOA MNAME name server(s) "{ns_list}" do(es) not have the highest SOA SERIAL (expected at most "{soaserial}" but got "{soaserial_list}")
+                              |         | soaserial_list        |
 Z01_MNAME_NOT_RESOLVE         | WARNING | nsname                | SOA MNAME name server "{nsname}" cannot be resolved into an IP address.
 Z01_MNAME_UNEXPECTED_RCODE    | WARNING | ns, rcode             | SOA MNAME name server "{ns}" gives unexpected RCODE name ("{rcode}") in response to an SOA query.
 
@@ -108,7 +109,7 @@ specified below, what is specified for [DNS Response] in the same specification.
 2. Create the following empty sets:
    1. Name server SOA MNAME name, SOA MNAME IP address(es), SOA SERIAL(s) ("MNAME Nameservers")
    2. Name server SOA SERIAL ("SERIAL Nameservers")
-   3. Name server SOA MNAME name, SOA MNAME IP address ("MNAME Not Master")
+   3. Name server SOA MNAME name, SOA MNAME IP address, SOA SERIAL ("MNAME Not Master")
    4. Name server SOA MNAME name, SOA MNAME IP address ("MNAME Is Master")
    5. Name server IP address ("MNAME Is Localhost")
    6. Name server IP address ("MNAME Is Dot")
@@ -177,21 +178,19 @@ specified below, what is specified for [DNS Response] in the same specification.
 10. If there is no SOA SERIAL in the *MNAME Nameservers* set, then
     terminate these procedures.
 
-11. For each SOA SERIAL (per name server name and IP address pair)
+11. For each SOA SERIAL (per SOA MNAME name server name and IP address pair)
     in *MNAME Nameservers* do:
     1. For each SOA SERIAL in *SERIAL Nameservers* do:
        1. Compare both SOA SERIAL values (using the arithmetic in [RFC1982]).
-          1. If the one from *SERIAL Nameservers* is higher, then add SOA MNAME name
-             server name and IP address of the current SOA SERIAL value from
-             the *MNAME Nameservers* set to the *MNAME Not Master* set, and go 
-             to next SOA SERIAL (from the *MNAME Nameservers* set).
-          2. Go to next SOA SERIAL (from the *SERIAL Nameservers* set).
-    2. Add SOA MNAME name server name and IP address (from the
-       *MNAME Nameservers* set) to the *MNAME Is Master* set.
-    3. Go to next SOA SERIAL (from the *SERIAL Nameservers* set).
+       2. If the one from *SERIAL Nameservers* is higher, then add SOA MNAME name
+          server name, IP address and SOA SERIAL of the current SOA SERIAL value from
+          the *MNAME Nameservers* set to the *MNAME Not Master* set, and go 
+          to next SOA SERIAL (from the *MNAME Nameservers* set).
+    2. Add SOA MNAME name server name and IP address to the *MNAME Is Master* set.
 
 12. If the set *MNAME Not Master* is non-empty, then output *[Z01_MNAME_NOT_MASTER]*
-    with SOA MNAME name server name(s) and IP address(es) from the set.
+    with SOA MNAME name server name(s), IP address(es) and SOA SERIAL from the set,
+    along with the SOA SERIAL values from the *SERIAL Nameservers* set.
 
 13. If the set *MNAME Is Master* is non-empty, then output *[Z01_MNAME_IS_MASTER]*
     with SOA MNAME name server name(s) and IP address(es) from the set.
