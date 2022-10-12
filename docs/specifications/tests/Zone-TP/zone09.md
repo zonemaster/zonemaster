@@ -98,21 +98,21 @@ correct DNS response for an authoritative name server.
   or a [TLD].
 * A warning is issued if a [TLD] *has* a [non-Null MX][Null MX].
 
-Message Tag                | Level | Arguments               | Message ID for message tag
-:--------------------------|:------|:------------------------|:--------------------------------------------
-Z09_INCONSISTENT_MX        |WARNING|                         | Some name servers return an MX RRset while others return none.
-Z09_INCONSISTENT_MX_DATA   |WARNING|                         | The MX RRset data is inconsistent between the name servers.
-Z09_MISSING_MAIL_TARGET    | NOTICE|                         | The child zone has no mail target (no MX).
-Z09_MX_DATA                | INFO  | ns_ip_list, domain_list | The mail targets in the MX RRset, "{domain_list}", as returned by name servers "{ns_ip_list}".
-Z09_MX_FOUND               | INFO  | ns_ip_list              | MX RRset was returned by name servers "{ns_ip_list}".
-Z09_NON_AUTH_MX_RESPONSE   |WARNING| ns_ip_list              | Non-authoritative response on MX query from name servers "{ns_ip_list}".
-Z09_NO_MX_FOUND            | INFO  | ns_ip_list              | No MX RRset was returned by name servers "{ns_ip_list}".
-Z09_NO_RESPONSE_MX_QUERY   |WARNING| ns_ip_list              | No response on MX query from name servers "{ns_ip_list}".
-Z09_NULL_MX_NON_ZERO_PREF  | NOTICE|                         | The zone has a Null MX with non-zero preference.
-Z09_NULL_MX_WITH_OTHER_MX  |WARNING|                         | The zone has a Null MX mixed with other MX records.
-Z09_ROOT_EMAIL_DOMAIN      | NOTICE|                         | Root zone with an unexpected MX RRset (non-Null MX).
-Z09_TLD_EMAIL_DOMAIN       |WARNING|                         | The zone is a TLD and has an unexpected MX RRset (non-Null MX).
-Z09_UNEXPECTED_RCODE_MX    |WARNING | ns_ip_list, rcode      | Unexpected RCODE value on the MX query from name servers "{ns_ip_list}".
+Message Tag                | Level | Arguments                   | Message ID for message tag
+:--------------------------|:------|:----------------------------|:--------------------------------------------
+Z09_INCONSISTENT_MX        |WARNING|                             | Some name servers return an MX RRset while others return none.
+Z09_INCONSISTENT_MX_DATA   |WARNING|                             | The MX RRset data is inconsistent between the name servers.
+Z09_MISSING_MAIL_TARGET    | NOTICE|                             | The child zone has no mail target (no MX).
+Z09_MX_DATA                | INFO  | ns_ip_list, mailtarget_list | The mail targets in the MX RRset, "{mailtarget_list}", as returned by name servers "{ns_ip_list}".
+Z09_MX_FOUND               | INFO  | ns_ip_list                  | MX RRset was returned by name servers "{ns_ip_list}".
+Z09_NON_AUTH_MX_RESPONSE   |WARNING| ns_ip_list                  | Non-authoritative response on MX query from name servers "{ns_ip_list}".
+Z09_NO_MX_FOUND            | INFO  | ns_ip_list                  | No MX RRset was returned by name servers "{ns_ip_list}".
+Z09_NO_RESPONSE_MX_QUERY   |WARNING| ns_ip_list                  | No response on MX query from name servers "{ns_ip_list}".
+Z09_NULL_MX_NON_ZERO_PREF  | NOTICE|                             | The zone has a Null MX with non-zero preference.
+Z09_NULL_MX_WITH_OTHER_MX  |WARNING|                             | The zone has a Null MX mixed with other MX records.
+Z09_ROOT_EMAIL_DOMAIN      | NOTICE|                             | Root zone with an unexpected MX RRset (non-Null MX).
+Z09_TLD_EMAIL_DOMAIN       |WARNING|                             | The zone is a TLD and has an unexpected MX RRset (non-Null MX).
+Z09_UNEXPECTED_RCODE_MX    |WARNING | ns_ip_list, rcode          | Unexpected RCODE value on the MX query from name servers "{ns_ip_list}".
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
