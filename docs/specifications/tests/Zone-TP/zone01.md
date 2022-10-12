@@ -85,7 +85,7 @@ Z01_MNAME_MISSING_SOA_RECORD  | WARNING | ns                                   |
 Z01_MNAME_NO_RESPONSE         | WARNING | ns                                   | SOA MNAME name server "{ns}" does not respond to an SOA query.
 Z01_MNAME_NOT_AUTHORITATIVE   | WARNING | ns                                   | SOA MNAME name server "{ns}" is not authoritative for the zone.
 Z01_MNAME_NOT_IN_NS_LIST      | INFO    | nsname                               | SOA MNAME name server "{nsname}" is not listed as NS record for the zone.
-Z01_MNAME_NOT_MASTER          | WARNING | ns_list, soaserial, soaserial_list   | SOA MNAME name server(s) "{ns_list}" do(es) not have the highest SOA SERIAL (expected at most "{soaserial}" but got "{soaserial_list}")
+Z01_MNAME_NOT_MASTER          | WARNING | ns_list, soaserial, soaserial_list   | SOA MNAME name server(s) "{ns_list}" do(es) not have the highest SOA SERIAL (expected "{soaserial}" but got "{soaserial_list}")
 Z01_MNAME_NOT_RESOLVE         | WARNING | nsname                               | SOA MNAME name server "{nsname}" cannot be resolved into an IP address.
 Z01_MNAME_UNEXPECTED_RCODE    | WARNING | ns, rcode                            | SOA MNAME name server "{ns}" gives unexpected RCODE name ("{rcode}") in response to an SOA query.
 
