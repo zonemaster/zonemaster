@@ -154,6 +154,9 @@ git fetch --all
 git branch
 ```
 ```
+git submodule update # Zonemaster-LDNS only
+```
+```
 git status --ignored
 ```
 ```
