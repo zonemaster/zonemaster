@@ -34,9 +34,9 @@ are outputted through method `add()`. It should be consistent.
 
 Message Tag                   | Level in profile| Message ID for message tag                                           | Defined | Comments
 :-----------------------------|:----------------|:---------------------------------------------------------------------|---------|:--------
-NS_FETCHED                    | DEBUG3          | -                                                                    | -       |
-PROFILE_FILE                  | INFO            | -                                                                    | -       |
-QUERY                         | DEBUG2          | -                                                                    | -       |
+NS_FETCHED                    | DEBUG3          | -                                                                    | -       | Handled in [PR 1142]
+PROFILE_FILE                  | INFO            | -                                                                    | -       | Handled in [PR 1142]
+QUERY                         | DEBUG2          | -                                                                    | -       | Handled in [PR 1142]
 
 
 ### Message is not msgid, but an argument (1)
@@ -83,9 +83,9 @@ the profile.json file.
 
 Message Tag                   | Level in profile | Message ID (msgid)                                                            | Defined in     | Used in             | Comments
 :-----------------------------|:-----------------|:------------------------------------------------------------------------------|----------------|---------------------|----------------------------------
-ADDED_FAKE_DELEGATION         | DEBUG            | Added a fake delegation for domain {domain} to name server {ns}.              | Translator.pm  | Nameserver.pm       | add-not-info, not-in-profile
+ADDED_FAKE_DELEGATION         | DEBUG            | Added a fake delegation for domain {domain} to name server {ns}.              | Translator.pm  | Nameserver.pm       | add-not-info, not-in-profile (handled in [PR 1142])
 FAKE_DELEGATION               | DEBUG2           | Followed a fake delegation.                                                   | Translator.pm  | Nameserver.pm       | add-not-info
-FAKE_DELEGATION_TO_SELF       | DEBUG            | Name server {ns} not adding fake delegation for domain {domain} to itself.    | Translator.pm  | Nameserver.pm       | add-not-info, not-in-profile
+FAKE_DELEGATION_TO_SELF       | DEBUG            | Name server {ns} not adding fake delegation for domain {domain} to itself.    | Translator.pm  | Nameserver.pm       | add-not-info, not-in-profile (handled in [PR 1142])
 
 
 ### Has no msgid for the tag (19)
@@ -118,3 +118,4 @@ TEST_TARGET                   | DEBUG  | -              | Test.pm               
 
 [80773bc]: https://github.com/zonemaster/zonemaster-engine/commit/80773bc9802ed91d718e169b82f4840d401a1106
 
+[PR 1142]: https://github.com/zonemaster/zonemaster-engine/pull/1142
