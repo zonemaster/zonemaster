@@ -27,14 +27,14 @@ here.
    source ~/.bashrc
    ```
 
-5. Install the supported Node.js version
+5. Install the Node.js version that supports Zonemaster GUI
    ```sh
-   nvm install 18.11.0
+   nvm install 16.18.0
    ```
 
 6. Switch to the previously installed version
    ```sh
-   nvm use 18.11.0
+   nvm use 16.18.0
    ```
 
 [known issue]:                          https://github.com/nvm-sh/nvm#troubleshooting-on-linux
