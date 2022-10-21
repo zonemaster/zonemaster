@@ -100,7 +100,9 @@ but the test case extracts more information.
 
 ### Prerequisite
 
-None.
+The *Child Zone* name must be a valid name according to
+"[Requirements and normalization of domain names in input][Requirements
+and normalization]".
 
 ### Test procedure
 
@@ -192,9 +194,7 @@ None.
 
 ### Dependencies
 
-The *Child Zone* name must be a valid name according to
-"[Requirements and normalization of domain names in input][Requirements
-and normalization]".
+None.
 
 [To top]
 
