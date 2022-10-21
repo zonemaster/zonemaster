@@ -330,8 +330,6 @@ for the [out-of-bailiwick] name server names, if any.
 
 * "Child Zone" - The name of the child zone.
 
-This Method inherits the inputs of Method [Get-Del-NS-Names-and-IPs].
-
 ### Prerequisite
 
 None.
@@ -786,9 +784,6 @@ Methods in this document, but not by Test Case specifications.
 * "NS Set" - The name servers names as given by the calling Method.
 * "Test Type" - The test type with values "undelegated test" or
   "normal test".
-
-This Method also inherits the inputs of Method [Get-Undel-Data] if
-*Test Type* is "undelegated test".
 
 ### Prerequisite
 
