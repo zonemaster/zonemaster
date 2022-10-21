@@ -93,7 +93,8 @@ but the test case extracts more information.
 ### Inputs
 
 * "Child Zone" - The name of the child zone.
-* "Root Name Servers" - The IANA [List of Root Servers].
+* "Root Name Servers" - The IANA [Root Hints File] with names and IP addresses
+  of the root name servers.
 * "Test Type" - The test type with values "undelegated test" or
   "normal test".
 
@@ -573,7 +574,8 @@ Methods in this document, but not by Test Case specifications.
 
 * "Child Zone" - The name of the child zone.
 * "Test Type" - The test type with values "undelegated test" or "normal test".
-* "Root Name Servers" - The IANA [List of Root Servers].
+* "Root Name Servers" - The IANA [Root Hints File] with names and IP addresses
+  of the root name servers.
 
 ### Prerequisite
 
@@ -970,7 +972,7 @@ changes to the DNS tree introduced by an [undelegated test] must be respected.
 [Glue records]:                                      #terminology
 [In-bailiwick]:                                      #terminology
 [Internal Methods]:                                  #internal-methods
-[List of Root Servers]:                              https://www.iana.org/domains/root/servers
+[Root Hints File]:                                   https://www.internic.net/domain/named.root
 [Method1]:                                           Methods.md#method-1-obtain-the-parent-domain
 [Method2]:                                           Methods.md#method-2-obtain-glue-name-records-from-parent
 [Method3]:                                           Methods.md#method-3-obtain-name-servers-from-child
