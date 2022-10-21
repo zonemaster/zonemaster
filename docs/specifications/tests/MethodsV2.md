@@ -584,19 +584,17 @@ None.
 1. If the *Test Type* is "undelegated test", then:
    1. Using Method [Get-Undel-Data] get the submitted data for
       *Child Zone* ("Undelegated Data").
-   2. If the *Undelegated Data* set is undefined, then output an undefined set
-      and exit these test procedures.
-   3. Create an empty set of name servers where each unique name server name is
+   2. Create an empty set of name servers where each unique name server name is
       linked to an empty set of IP addresses ("Name Servers").
-   4. Extract all name server names from the *Undelegated Data* set and add to
+   3. Extract all name server names from the *Undelegated Data* set and add to
       the *Name Servers* set.
-   5. For each [in-bailiwick] name server name collect any
+   4. For each [in-bailiwick] name server name collect any
       IP addresses from *Undelegated Data* and add that to the
       *Name Servers* set under the name server name.
-   6. For any [out-of-bailiwick] name server name the IP address should be
+   5. For any [out-of-bailiwick] name server name the IP address should be
       ignored.
-   7. Output the *Name Servers* set.
-   8. Exit these test procedures.
+   6. Output the *Name Servers* set.
+   7. Exit these test procedures.
 
 2. If *Child Zone* is the root zone ".", then output the set of name server names
    and IP addresses from *Root Name Servers* and exit these test procedures.
@@ -671,8 +669,7 @@ None.
   * Non-empty set: The normal case.
   * Empty set: No delegation was found.
   * Undefined set: [Get-Parent-NS-IP] returned undefined set of parent
-    name server IPs or [Get-Undel-Data] returned an undefined set of undelegated
-    data.
+    name server IPs.
 
 ### Dependencies
 
@@ -801,10 +798,8 @@ None.
 3. If *Test Type* is "undelegated test", then do:
    1. Fetch name server name and IP address or addresses using Method
       [Get-Undel-Data] ("Undelegated Data").
-   2. If the *Undelegated Data* set is empty or undefined, then output an
-      undefined set and exit these test procedures.
 
-3. For each name server name ("Name") in *NS Set* do:
+4. For each name server name ("Name") in *NS Set* do:
 
    1. If *Test Type* is "undelegated test" and if the *Name*
       has IP address specification (IPv4 or IPv6) in *Undelegated Data*,
@@ -827,15 +822,14 @@ None.
    5. Collect all IP addresses for the *Name* and add the address or addresses to
       *Name Servers* for that *Name* and go to next *Name*.
 
-4. Output the *Name Servers* set.
+5. Output the *Name Servers* set.
 
 ### Outputs
 
 * A set of name servers, where each unique name server name links to a possibly
   empty set of its IP addresses:
   * Non-empty set: The normal case.
-  * Empty set: No addresses were available, also a normal case.
-  * Undefined set: [Get-Undel-Data] returned an empty or undefined set.
+  * Empty set: No addresses were available.
 
 ### Dependencies
 
@@ -868,14 +862,12 @@ Methods in this document, but not by Test Case specifications.
 ### Prerequisite
 
 * The Test Type of *Child Zone* must be "undelegated test".
-* The *Undelegated Data* must include at least one name server name.
+* The *Undelegated Data* must include at least one name server name or else this
+  Method cannot be run.
 
 ### Test procedure
 
 1. Get the *Undelegated Data* from the initiation of the test.
-
-2. If the *Undelegated Data* has no name server names, then output an undefined
-   set and exit these test procedures.
 
 2. Return the set of name servers, where each unique name server name
    links to a possibly empty set of its IP addresses taken from the
@@ -885,8 +877,7 @@ Methods in this document, but not by Test Case specifications.
 
 * A set of name servers, where each unique name server name
   links to a possibly empty set of its IP addresses:
-  * Non-empty set: The normal case.
-  * Undefined set: The initialization data was empty.
+  * Non-empty set: The only case.
 
 ### Dependencies
 
