@@ -189,10 +189,6 @@ None.
   * Empty set: Root zone or undelegated test.
   * Undefined set: The name servers cannot be determined due to errors.
 
-### Special procedural requirements
-
-None.
-
 ### Dependencies
 
 The *Child Zone* name must be a valid name according to
@@ -254,10 +250,6 @@ None.
   * Empty set: [Get-Delegation] returned an empty set.
   * Undefined set: [Get-Delegation] returned an undefined set.
 
-### Special procedural requirements
-
-None.
-
 ### Dependencies
 
 This Method depends on [Get-Delegation] and [Get-OOB-IPs].
@@ -310,10 +302,6 @@ None.
   * Non-empty set: The normal case.
   * Empty set: [Get-Del-NS-Names-and-IPs] returned an empty set.
   * Undefined set: [Get-Del-NS-Names-and-IPs] returned an undefined set.
-
-### Special procedural requirements
-
-None.
 
 ### Dependencies
 
@@ -370,10 +358,6 @@ None.
   * Non-empty set: The normal case.
   * Empty set: [Get-Del-NS-Names-and-IPs] returned an empty set.
   * Undefined set: [Get-Del-NS-Names-and-IPs] returned an undefined set.
-
-### Special procedural requirements
-
-None.
 
 ### Dependencies
 
@@ -438,10 +422,6 @@ None.
   * Empty set: [Get-Del-NS-IPs] returned an empty set or no name server
     names were found.
   * Undefined set: [Get-Del-NS-IPs] returned an undefined set.
-
-### Special procedural requirements
-
-None.
 
 ### Dependencies
 
@@ -508,10 +488,6 @@ None.
   * Empty set: [Get-Zone-NS-Names] returned an empty set.
   * Undefined set: [Get-Zone-NS-Names] returned an undefined set.
 
-### Special procedural requirements
-
-None.
-
 ### Dependencies
 
 This Method depends on Methods [Get-Zone-NS-Names], [Get-IB-Addr-in-Zone]
@@ -563,10 +539,6 @@ None.
   * Non-empty set: The normal case.
   * Empty set: [Get-Zone-NS-Names-and-IPs] returned an empty set.
   * Undefined set: [Get-Zone-NS-Names-and-IPs] returned an undefined set.
-
-### Special procedural requirements
-
-None.
 
 ### Dependencies
 
@@ -702,10 +674,6 @@ None.
     name server IPs or [Get-Undel-Data] returned an undefined set of undelegated
     data.
 
-### Special procedural requirements
-
-None.
-
 ### Dependencies
 
 This Method depends on the output from either [Get-Parent-NS-IP] (normal test
@@ -786,10 +754,6 @@ None.
   * Empty set: There are no [in-bailiwick] names or those are not defined in
     *Child Zone*, also a normal case.
   * Undefined set: [Get-Del-NS-IPs] returned an empty or undefined set.
-
-### Special procedural requirements
-
-None.
 
 ### Dependencies
 
@@ -874,10 +838,6 @@ None.
   * Empty set: No addresses were available, also a normal case.
   * Undefined set: [Get-Undel-Data] returned an empty or undefined set.
 
-### Special procedural requirements
-
-None.
-
 ### Dependencies
 
 This Method depends on Method [Get-Undel-Data].
@@ -931,10 +891,6 @@ Methods in this document, but not by Test Case specifications.
   links to a possibly empty set of its IP addresses:
   * Non-empty set: The normal case.
   * Undefined set: The initialization data was empty.
-
-### Special procedural requirements
-
-None.
 
 ### Dependencies
 
