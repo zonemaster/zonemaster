@@ -770,10 +770,12 @@ This Method depends on [Get-Zone-NS-Names] and [Get-Del-NS-IPs].
 ### Objective
 
 Obtain the IP addresses of the out-of-bailiwick name servers for the
-given zone (child zone) and a given set of name server names. Extract
-addresses even if the resolution goes through CNAME. It is,
-however, not permitted for a NS record to point at a name that has a
-CNAME, but that test is covered by Test Case [DELEGATION05].
+given zone (child zone) and a given set of name server names.
+
+Extract addresses even if the resolution goes through CNAME, here ignoring that
+it is not permitted for a NS record to point at a name that has a CNAME record.
+See Test Case [DELEGATION05] for a test of NS records pointing at names that
+holds CNAME records.
 
 This is an [Internal Method][Internal Methods] that can be referred to by other
 Methods in this document, but not by Test Case specifications.
