@@ -42,12 +42,6 @@ Test Case uses Methods from version 1 ([Methods]) or Methods from version 2 (thi
 document). When the transition is completed, the version 1 document will be
 removed.
 
-In this section and unless otherwise specified below, the terms "[DNS Query]"
-follow the specification for DNS queries as specified in
-[DNS Query and Response Defaults]. The handling of the DNS responses on the
-DNS queries follow, unless otherwise specified below, what is specified for
-[DNS Response] in the same specification.
-
 In these Methods any DS record data in *Undelegated Data* is disregarded. If
 with *Child Zone* DS record data is provided, but no name server data, then the
 will here be treated as "normal test", not "undelegated test".
@@ -988,13 +982,23 @@ specific name server (name sever IP address).
 * "DNS Lookup" - The term is used when a recursive lookup is used, though any
 changes to the DNS tree introduced by an [undelegated test] must be respected.
 
+* "DNS Query" - The term is used for a DNS query that is to follow the
+  specification for DNS queries in
+  [DNS Query and Response Defaults][DNS Query and Response Defaults#Query].
+
+* "DNS Response" - The term is used when the DNS response is to be handled as
+  defined in
+  [DNS Query and Response Defaults][DNS Query and Response Defaults#Response].
+
 
 [BASIC01]:                                           Basic-TP/basic01.md
 [DELEGATION05]:                                      Delegation-TP/delegation05.md
 [DNS Lookup]:                                        #terminology
 [DNS Query and Response Defaults]:                   DNSQueryAndResponseDefaults.md
-[DNS Query]:                                         DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
-[DNS Response]:                                      DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
+[DNS Query and Response Defaults#Query]:             DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
+[DNS Query and Response Defaults#Response]:          DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
+[DNS Query]:                                         #terminology
+[DNS Response]:                                      #terminology
 [Get-Del-NS-IPs]:                                    #method-get-delegation-ns-ip-addresses
 [Get-Del-NS-Names-and-IPs]:                          #method-get-delegation-ns-names-and-ip-addresses
 [Get-Del-NS-Names]:                                  #method-get-delegation-ns-names
