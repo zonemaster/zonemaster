@@ -862,8 +862,8 @@ Methods in this document, but not by Test Case specifications.
 ### Inputs
 
 * "Child Zone" - The name of the child zone.
-* "Undelegated Data" - the submitted delegation data, name server names,
-  IP addresses and any DS record data for *Child Zone*
+* "Undelegated Data" - the submitted delegation data, name server names for
+  *Child Zone*, and any IP addresses for the name server names.
 
 ### Prerequisite
 
