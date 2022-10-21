@@ -854,10 +854,7 @@ This Method depends on Method [Get-Undel-Data].
 
 Provide the data for undelegated tests, i.e. provide data that is
 comparable to a delegation from the parent zone, but where the
-delegation does not have to exist. The data always includes name
-server names for NS records, optionally one or more IP addresses
-for one or more name server names and optionally data for one or
-more DS records.
+delegation does not have to exist.
 
 This is an [Internal Method][Internal Methods] that can be referred to by other
 Methods in this document, but not by Test Case specifications.
