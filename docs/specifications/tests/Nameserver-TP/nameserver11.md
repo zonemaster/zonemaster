@@ -47,7 +47,7 @@ report status of *Child Zone*.
 Message Tag                       | Level   | Arguments         | Message ID for message tag
 :---------------------------------|:--------|-------------------|---------------------------------------------
 N11_NO_EDNS                       | WARNING | ns_ip_list        | The DNS response, on query with unknown EDNS option-code, contains no EDNS from name servers "{ns_ip_list}".
-N11_NO_RESPONSE                   | WARNING | ns_ip_list        | There is no respons on query with unknown EDNS option-code from name servers "{ns_ip_list}".
+N11_NO_RESPONSE                   | WARNING | ns_ip_list        | There is no response on query with unknown EDNS option-code from name servers "{ns_ip_list}".
 N11_RETURNS_UNKNOWN_OPTION_CODE   | WARNING | ns_ip_list        | The DNS response, on query with unknown EDNS option-code, contains an unknown EDNS option-code from name servers "{ns_ip_list}".
 N11_UNEXPECTED_ANSWER_SECTION     | WARNING | ns_ip_list        | The DNS response, on query with unknown EDNS option-code, does not contain the expected SOA record in the answer section from name servers "{ns_ip_list}".
 N11_UNEXPECTED_RCODE              | WARNING | ns_ip_list, rcode | The DNS response, on query with unknown EDNS option-code, has unexpected RCODE name "{rcode}" from name servers "{ns_ip_list}".
