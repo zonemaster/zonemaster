@@ -219,8 +219,8 @@ queries follow, unless otherwise specified below, what is specified for
 11. If the *No MX RRset* set is non-empty and the *MX RRset* set is empty, then
     output *[Z09_MISSING_MAIL_TARGET]* unless
       1. *Child Zone* is the root zone ("."), or
-      1. *Child Zone* is a [TLD], or
-      2. *Child Zone* is a zone in the .ARPA tree.
+      2. *Child Zone* is a [TLD], or
+      3. *Child Zone* is a zone in the .ARPA tree.
 
 
 ## Outcome(s)
