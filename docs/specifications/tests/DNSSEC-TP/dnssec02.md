@@ -106,8 +106,9 @@ queries follow, unless otherwise specified below, what is specified for
         ("Algo Not Supported By ZM").
     8.  Name server IP and key tag from RRSIG record ("RRSIG Not Valid by DNSKEY").
     9.  Name server IP ("Responding Child Name Servers").
-    10. Name server IP, DNSKEY record and key tag ("DNSKEY Match DS").
-    11. Name server IP ("Has DNSKEY RRSIG Match DS").
+    10. DNSKEY record and key tag ("DNSKEY Matching DS").
+    11. Name server IP ("Has DNSKEY Match DS").
+    12. Name server IP ("Has DNSKEY RRSIG Match DS").
 
 2.  If the *Test Type* is "[undelegated]" do:
     1. If *Undelegated DS* is empty then do terminate this test case.
@@ -157,7 +158,7 @@ queries follow, unless otherwise specified below, what is specified for
        [DNSSEC Response].
     5. Retrieve the RRSIG records covering the DNSKEY RRset, possibly
        none (store as "DNSKEY RRSIG") from the [DNSSEC Response].
-    6. Empty the *DNSKEY Match DS* set.
+    6. Empty the *DNSKEY Matching DS* set.
     7. For each DS in *DS Records*, do:
        1. Find the equivalent DNSKEY in *DNSKEY RRs* by key ID (key tag). If
           there is more than one such DNSKEY, select the correct one.
@@ -177,10 +178,11 @@ queries follow, unless otherwise specified below, what is specified for
        5. If bit 15 of the DNSKEY flags field is unset (value 0), then add the
           DNSKEY record key tag and name server IP to the *DNSKEY not SEP*
           set.
-       6. Add the DNSKEY record, key tag, name server IP to the *DNSKEY Match DS*
+       6. Add the DNSKEY record and key tag to the *DNSKEY Matching DS*
           set.
-    7. Empty the *Has DNSKEY RRSIG Match DS* set.
-    8. For each DNSKEY in the *DNSKEY Match DS* set, do:
+       7. Add the name server IP to the *Has DNSKEY Match DS*
+          set.
+    8. For each DNSKEY in the *DNSKEY Matching DS* set, do:
        1. Look for an RRSIG record created by the DNSKEY in *DNSKEY RRSIG*.
           * Use key ID (key tag) to identify the corresponding RRSIG record.
           * If there is more than one such RRSIG record, select the correct one
@@ -226,7 +228,7 @@ queries follow, unless otherwise specified below, what is specified for
     with the key tag and the name servers IP addresses from the set.
 
 14. Extract the name server IP addresses that are members of
-    *Responding Child Name Servers* but are not members of *DNSKEY Match DS*
+    *Responding Child Name Servers* but are not members of *Has DNSKEY Match DS*
     set.
     
 15. If the subset from previous step is non-empty, then output
