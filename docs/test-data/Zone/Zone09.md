@@ -7,9 +7,9 @@ This document specifies available test data for test case [Zone09].
 
 ## Test scenarios
 
-The purpose of the test scenarios is to cover all reasonable context where
+The purpose of the test scenarios is to cover all reasonable contexts where
 different message tags are outputted when [Zone09] is run on a test zone. The
-message tags are defined in the test case ([Zone09]) and the scenarious are
+message tags are defined in the test case ([Zone09]) and the scenarios are
 defined below.
 
 The scenarios are defined in two parts:
@@ -22,12 +22,12 @@ The scenarios are defined in two parts:
 
 ## Test environment
 
-The tests are assumed to be run in a closed environment with at private DNS tree
+The tests are assumed to be run in a closed environment with a private DNS tree
 to achive full access to any zone. Configuration data and instructions to set
 this up is available elsewhere in this repository.
 
 The base domain name for the test zones in this document is assumed to be
-`zon09.xa` and the test domains are assumed to be the scenario name as a
+`zone09.xa` and the test domains are assumed to be the scenario name as a
 subdomain to the base name, e.g. `NO-RESPONSE-MX-QUERY.zone09.xa` except for a
 few cases where the test zone must be the root, a TLD or a domain name under
 .ARPA. Other test domains can be used, if desired.
@@ -37,8 +37,8 @@ few cases where the test zone must be the root, a TLD or a domain name under
 
 For each scenario it is defined which tags that must be returned (mandatory) when
 the test case is run for the domain name of the scenario, and which tags that
-must not be returned (forbidden). The severity level of the tag can be any. If a
-messge tag is not listed for the scenario, its presence or non-presence is
+must not be returned (forbidden). The tag may have any severity level. If a
+message tag is not listed for the scenario, its presence or non-presence is
 irrelevant to the test scenario and can be ignored.
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
