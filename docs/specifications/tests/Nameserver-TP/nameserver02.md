@@ -33,7 +33,7 @@ ENDS due e.g. firewall issues, the UDP buffer size is set to 512 bytes
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested by [Basic04]. This test
+It is assumed that *Child Zone* is also tested by [Connectivity01]. This test
 case will set DEBUG level on messages for non-responsive name servers.
 
 ## Inputs
@@ -113,7 +113,7 @@ the ignored result.
 None
 
 
-[Basic04]:                       ../Basic-TP/basic04.md
+[Connectivity01]:                ../Connectivity-TP/connectivity01.md
 [BREAKS_ON_EDNS]:                #outcomes
 [EDNS_RESPONSE_WITHOUT_EDNS]:    #outcomes
 [EDNS_VERSION_ERROR]:            #outcomes

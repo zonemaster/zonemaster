@@ -26,7 +26,7 @@ serial number consistency.
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested by [Basic04]. This test
+It is assumed that *Child Zone* is also tested by [Connectivity01]. This test
 case will set DEBUG level on messages for non-responsive name servers.
 
 ## Inputs
@@ -123,7 +123,7 @@ When comparing SOA serial it must be done using the arithmetic defined in
 None
 
 
-[Basic04]:                    ../Basic-TP/basic04.md
+[Connectivity01]:             ../Connectivity-TP/connectivity01.md
 [MULTIPLE_SOA_SERIALS]:       #outcomes
 [MULTIPLE_SOA_SERIALS_OK]:    #outcomes
 [Method4]:                    ../Methods.md#method-4-obtain-glue-address-records-from-parent

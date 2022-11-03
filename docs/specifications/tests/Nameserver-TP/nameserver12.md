@@ -20,7 +20,7 @@ bits to be clear in the response (set to "0").
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested by [Basic04]. This test
+It is assumed that *Child Zone* is also tested by [Connectivity01]. This test
 case will set DEBUG level on messages for non-responsive name servers.
 
 ## Inputs
@@ -81,7 +81,7 @@ the ignored result.
 None.
 
 
-[Basic04]:                      ../Basic-TP/basic04.md
+[Connectivity01]:               ../Connectivity-TP/connectivity01.md
 [EDNS Header Flags]:            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-13
 [IANA]:                         https://www.iana.org/
 [Method4]:                      ../Methods.md#method-4-obtain-glue-address-records-from-parent

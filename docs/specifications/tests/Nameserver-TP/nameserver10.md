@@ -39,7 +39,7 @@ see [IANA RCODE Registry].
 
 ## Scope
 
-Issues covered by [Basic04] (basic name server issues) or [Nameserver02] (basic
+Issues covered by [Connectivity01] (basic name server issues) or [Nameserver02] (basic
 EDNS issues) will not result in messages from this test case.
 
 
@@ -143,7 +143,7 @@ No special terminology for this test case.
 
 
 [Argument list]:                           https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Basic04]:                                 ../Basic-TP/basic04.md
+[Connectivity01]:                          ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                                ../SeverityLevelDefinitions.md#critical
 [ERROR]:                                   ../SeverityLevelDefinitions.md#error
 [IANA RCODE Registry]:                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6

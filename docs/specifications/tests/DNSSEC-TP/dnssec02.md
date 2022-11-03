@@ -43,7 +43,7 @@ the DNSKEY record that the DS points at does not have that flag set
 
 This test case will just ignore non-responsive name servers or name servers not
 giving a correct DNS response for an authoritative name server (handled by
-[Basic04]).
+[Connectivity01]).
 
 If no DS record is found in the parent zone or no DNSKEY record is found in the
 *Child Zone* then this test case will be terminated (also see [DNSSEC11]).
@@ -242,7 +242,7 @@ No special terminology for this test case.
 
 
 [Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Basic04]:                                    ../Basic-TP/basic04.md
+[Connectivity01]:                             ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [DNS Query and Response Defaults]:            ../DNSQueryAndResponseDefaults.md
 [DNSSEC Query]:                               ../DNSQueryAndResponseDefaults.md#default-setting-in-dnssec-query

@@ -45,7 +45,7 @@ use in the DNS response is described in
 
 This test case will just ignore non-responsive name servers or name servers not
 giving a correct DNS response for an authoritative name server (covered by
-[Basic04]).
+[Connectivity01]).
 
 This test case is only relevant if the zone has been DNSSEC signed.
 
@@ -312,7 +312,7 @@ should not be used as of [RFC 5890][RFC 5890#section-2.3.1], section 2.3.1.
 
 
 [Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Basic04]:                                    ../Basic-TP/basic04.md
+[Connectivity01]:                             ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [DNSSEC README]:                              README.md
 [DS10_ALGO_NOT_SUPPORTED_BY_ZM]:              #summary

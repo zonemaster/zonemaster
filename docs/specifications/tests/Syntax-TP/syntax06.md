@@ -13,7 +13,7 @@ field should follow the rules of an e-mail address also defined in
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested by [Basic04]. This test
+It is assumed that *Child Zone* is also tested by [Connectivity01]. This test
 case will set DEBUG level on messages for non-responsive name servers.
 
 ## Inputs
@@ -140,7 +140,7 @@ a specific name server.
 any changes to the DNS tree introduced by an [undelegated test] must be
 respected.
 
-[Basic04]:                    ../Basic-TP/basic04.md
+[Connectivity01]:             ../Connectivity-TP/connectivity01.md
 [Method4]:                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [Methods]:                    ../Methods.md
