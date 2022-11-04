@@ -148,17 +148,20 @@ requires 'Zonemaster::LDNS'   => 2.001;
 ## 8. Create a clean Git working area of *develop branch*
 
 Make sure that you have checked out the `develop` branch and that your clone is
-up-to-date. Make sure your working directory is clean. Or clean it.
+up-to-date.
 ```
 git fetch --all
 git branch
 ```
+Check out the right commit of the submodule (LDNS). Zonemaster-LDNS only.
 ```
-git submodule update # Zonemaster-LDNS only
+git submodule update
 ```
+Make sure your working directory is clean.
 ```
 git status --ignored
 ```
+Or clean it.
 ```
 git clean -dfx
 git reset --hard

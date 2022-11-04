@@ -38,7 +38,8 @@ Makefile.PL must be updated.
      git clean -dfx
      git reset --hard
 ```
-  2. Check out the `develop` branch.
+  2. Check out the `develop` branch. Check out the right commit
+     of the submodule (LDNS) if Zonemaster-LDNS.
 ```
      git checkout origin/develop
      git submodule update # Zonemaster-LDNS only

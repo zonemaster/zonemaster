@@ -36,7 +36,7 @@ the `develop` branch and that your clone is up-to-date.
        git fetch --all
        git branch
 
-For Zonemaster-LDNS only - reset submodule (LDNS):
+For Zonemaster-LDNS only - check out submodule to the right commit (LDNS):
 
        git submodule update
 
