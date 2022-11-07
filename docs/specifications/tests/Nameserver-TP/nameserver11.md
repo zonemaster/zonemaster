@@ -46,7 +46,7 @@ report status of *Child Zone*.
 
 Message Tag                       | Level   | Arguments         | Message ID for message tag
 :---------------------------------|:--------|-------------------|---------------------------------------------
-N11_NO_EDNS                       | WARNING | ns_ip_list        | The DNS response, on query with unknown EDNS option-code, contains no EDNS from name servers "{ns_ip_list}".
+N11_NO_EDNS                       | WARNING | ns_ip_list        | The DNS response, on query with unknown EDNS option-code, does not contain any EDNS from name servers "{ns_ip_list}".
 N11_NO_RESPONSE                   | WARNING | ns_ip_list        | There is no response on query with unknown EDNS option-code from name servers "{ns_ip_list}".
 N11_RETURNS_UNKNOWN_OPTION_CODE   | WARNING | ns_ip_list        | The DNS response, on query with unknown EDNS option-code, contains an unknown EDNS option-code from name servers "{ns_ip_list}".
 N11_UNEXPECTED_ANSWER_SECTION     | WARNING | ns_ip_list        | The DNS response, on query with unknown EDNS option-code, does not contain the expected SOA record in the answer section from name servers "{ns_ip_list}".
@@ -106,13 +106,13 @@ what is specified for [EDNS Response] in the same specification.
          server.
       3. Else, if EDNS is unset in the response then add the name server to
          the *No EDNS on Unknown Option Code* set.
-      4. Else, if he answer section has no SOA record with *Child Zone* as owner
+      4. Else, if the answer section has no SOA record with *Child Zone* as owner
          name then add the name server to the
          *Unexpected Answer Section on Unknown Option Code* set.
       5. Else, if the AA flag is unset in the response then add the name server
          to the *Unset AA on Unknown Option Code* set.
       6. Else, if the "OPTION-CODE" from the query is present in the response,
-         then add name server IP to the *Returns Unknown Option Code* set.
+         then add name server to the *Returns Unknown Option Code* set.
       7. Else, no issues were found.
 
 5. If the *No Response on Unknown Option Code* set is non-empty, then output
