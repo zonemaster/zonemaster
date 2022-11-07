@@ -182,7 +182,7 @@ and normalization]".
 8. If the *Parent Name Server IP* set is empty then do:
    1. Return the following from the Method:
       1. Undefined value. (Parent name severs cannot be determined.)
-   3. Exit these test procedures.
+   2. Exit these test procedures.
 
 
 ### Outputs
@@ -190,7 +190,8 @@ and normalization]".
 * A set of name server IP address for the parent zone:
   * Non-empty set: The name servers have been identified.
   * Empty set: Root zone or undelegated test.
-  * Undefined set: The name servers cannot be determined due to errors.
+  * Undefined set: The name servers cannot be determined due to errors in the
+    delegation.
 
 ### Dependencies
 
