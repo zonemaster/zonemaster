@@ -33,8 +33,17 @@ is up to date with the [supported Perl versions] in main README.md.
 META.yml is created by Makefile.PL so if META.yml is not correct, then
 Makefile.PL must be updated.
 
-  1. Make a clean clone for each repo.
-  2. Check out the `develop` branch.
+  1. Make a clean clone for each reposistory
+```
+     git clean -dfx
+     git reset --hard
+```
+  2. Check out the `develop` branch. Check out the right commit
+     of the submodule (LDNS) if Zonemaster-LDNS.
+```
+     git checkout origin/develop
+     git submodule update # Zonemaster-LDNS only
+```
   3. Run
 ```
      perl Makefile.PL --no-ed25519 # zonemaster-ldns only

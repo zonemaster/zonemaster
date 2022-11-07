@@ -70,10 +70,10 @@ git -C zonemaster-engine checkout origin/master
 git -C zonemaster-cli checkout origin/master
 ```
 
-Create `Makefile` in all three repositories
+Make sure repositories are clean and create `Makefile` in all three repositories
 
 ```sh
-(cd zonemaster-ldns; git clean -dfx; git reset --hard; perl Makefile.PL --no-internal-ldns)
+(cd zonemaster-ldns; git submodule update; git clean -dfx; git reset --hard; perl Makefile.PL --no-internal-ldns)
 ```
 > Ubuntu 22.04 does not currently have support for internal LDNS.
 ```sh
