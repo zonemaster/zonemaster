@@ -77,7 +77,7 @@ what is specified for [EDNS Response] in the same specification.
    6. Name server IP address ("Returns Unknown Option Code")
 
 2. Create a [EDNS Query] with query type SOA, *Child Zone* as query name and with
-   no EDNS options of flags ("SOA Query").
+   no EDNS options or flags ("SOA Query").
 
 3. Create a [EDNS Query] with query type SOA, *Child Zone* as query name and with
    EDNS OPTION-CODE set to anything other than what is already assigned in
