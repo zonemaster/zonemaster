@@ -23,8 +23,8 @@ The scenarios are defined in two parts:
 ## Test environment
 
 The tests are assumed to be run in a closed environment with a private DNS tree
-to achive full access to any zone. Configuration data and instructions to set
-this up is available elsewhere in this repository.
+to achieve full access to any zone. Configuration data and instructions to set
+this up are available elsewhere in this repository.
 
 The base domain name for the test zones in this document is assumed to be
 `zone09.xa` and the test domains are assumed to be the scenario name as a
