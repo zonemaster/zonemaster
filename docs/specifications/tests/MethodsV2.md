@@ -4,7 +4,8 @@
 
 * [Objective](#objective)
 * [Scope](#scope)
-* [Internal Methods]
+* [Internal Methods](#internal-methods)
+* [Methods Inputs]
 * [Method: Get parent NS IP addresses][Get-Parent-NS-IP]
 * [Method: Get delegation NS names and IP addresses][Get-Del-NS-Names-and-IPs]
 * [Method: Get delegation NS names][Get-Del-NS-Names]
@@ -15,7 +16,6 @@
 * [Method: Get delegation (Internal)][Get-Delegation]
 * [Method: Get in-bailiwick address records in zone (Internal)][Get-IB-Addr-in-Zone]
 * [Method: Get out-of-bailiwick ip addresses (Internal)][Get-OOB-IPs]
-* [Method: Get data for undelegated test (Internal)][Get-Undel-Data]
 * [Method inter-dependencies](#method-inter-dependencies)
 * [Terminology](#terminology)
 
@@ -56,7 +56,31 @@ Methods, in this document, that are referred to as *Internal* or
 *Internal Methods* may only be referred to from Methods in this document. Test
 Case specifications can freely refer to the other Methods.
 
-[To top]
+0[To top]
+
+
+## Methods Inputs
+
+The following input units are provided when a Method is executed and are
+available to all Methods. All Methods, however, do not use all input units and
+it is specified in the Method inputs subsections which units are used for the
+specific Method.
+
+* "Child Zone" - Mandatory data. The name of the zone to be tested. It must be
+  a [valid domain name].
+* "Root Name Servers" - The default data is the IANA [Root Hints File] with
+  names and IP addresses of the root name servers, but that can optionally be
+  replaced by equivalent information to a private root zone. It must contain at
+  least one [valid name server name] with at least one [valid IP address].
+* "Undelegated Data" - Optonal data. If included it must consist of a set of
+  at least one [valid name server name] and for each name server name an optional
+  set of at least one [valid IP address]. The name servers and IP addresses
+  represent a possible delegation of *Child Zone* from its parent zone (may be
+  indetermined).
+* "Test Type" - Derived data. It is set to "normal test" if *Undelegated Data* is
+  absent (empty) and to "undelegated test" if it is non-empty.
+
+0[To top]
 
 
 ## Method: Get parent NS IP addresses
@@ -92,11 +116,11 @@ but the test case extracts more information.
 
 ### Inputs
 
-* "Child Zone" - The name of the child zone.
-* "Root Name Servers" - The IANA [Root Hints File] with names and IP addresses
-  of the root name servers.
-* "Test Type" - The test type with values "undelegated test" or
-  "normal test".
+This Method uses the following input units defined in section [Methods Inputs]:
+
+* "Child Zone" - The name of the child zone to be tested.
+* "Root Name Servers"
+* "Test Type" - "undelegated test" or "normal test".
 
 ### Prerequisite
 
@@ -119,7 +143,7 @@ and normalization]".
    1. Parent name server IP and the parent zone name ("Parent Name Server IP").
 
 5. Find the parent zone of the *Child Zone* by iteratively
-   [sending] *SOA Child Query* to all name servers found. Start by using
+   sending ("[send]") *SOA Child Query* to all name servers found. Start by using
    the nameservers from *Root Name Servers*.
    1. Follow all paths from root and downwards by using the referrals (non-AA
       response with empty answer section and NS records in the authority
@@ -208,15 +232,18 @@ None.
 ### Objective
 
 Obtain the name server names (from the NS records) and the IP addresses (from
-glue records) from the delegation of the given zone (child zone) from
-the parent zone. [Glue records], if any, are address records for name
-server names. Also obtain the IP addresses for the [out-of-bailiwick] name
-server names, if any. If the [glue records] include address records for
-[out-of-bailiwick] name servers they will be included twice, unless identical.
+Glue Records) from the delegation of the given zone (child zone) from
+the parent zone. [Glue Records], if any, are address records for name
+server names. Also obtain the IP addresses for the [Out-Of-Bailiwick] name
+server names, if any. If the [Glue Records] include address records for
+[Out-Of-Bailiwick] name servers they will be included twice, unless identical.
 
 ### Inputs
 
-* "Child Zone" - The name of the child zone.
+This Method uses the following input units defined in section [Methods Inputs]:
+
+* "Child Zone" - The name of the child zone to be tested.
+
 
 ### Prerequisite
 
@@ -234,7 +261,7 @@ None.
 3. If the *Name Servers* set is empty, then output an empty set and exit these
    test procedures.
 
-4. Extract the set of [out-of-bailiwick] name server names from *Name Servers*
+4. Extract the set of [Out-Of-Bailiwick] name server names from *Name Servers*
    ("OOB Names").
 
 3. Get the IP addresses for name server names in *OOB Names* by using Method
@@ -273,7 +300,10 @@ parent zone.
 
 ### Inputs
 
-* "Child Zone" - The name of the child zone.
+This Method uses the following input units defined in section [Methods Inputs]:
+
+* "Child Zone" - The name of the child zone to be tested.
+
 
 ### Prerequisite
 
@@ -322,14 +352,17 @@ This Method depends on [Get-Del-NS-Names-and-IPs].
 
 In general, this Method replaces [Method4] in [Methods], version 1.
 
-Obtain the IP addresses (from glue records) from the delegation of
-the given zone (child zone) from the parent zone. Glue records are address
-records for [in-bailiwick] name server names, if any. Obtain the IP addresses
-for the [out-of-bailiwick] name server names, if any.
+Obtain the IP addresses (from [Glue Records]) from the delegation of
+the given zone (child zone) from the parent zone. [Glue Records] are address
+records for [In-Bailiwick] name server names, if any. Obtain the IP addresses
+for the [Out-Of-Bailiwick] name server names, if any.
 
 ### Inputs
 
-* "Child Zone" - The name of the child zone.
+This Method uses the following input units defined in section [Methods Inputs]:
+
+* "Child Zone" - The name of the child zone to be tested.
+
 
 ### Prerequisite
 
@@ -380,7 +413,10 @@ Obtain the names of the authoritative name servers for the given zone
 
 ### Inputs
 
-* "Child Zone" - The name of the child zone.
+This Method uses the following input units defined in section [Methods Inputs]:
+
+* "Child Zone" - The name of the child zone to be tested.
+
 
 ### Prerequisite
 
@@ -438,13 +474,16 @@ This Method depends on [Get-Del-NS-IPs].
 ### Objective
 
 Obtain the name server names (extracted from the NS records) from
-apex of the child zone. For [in-bailiwick] name server names obtain
-the IP addresses from the child zone. For the [out-of-bailiwick] name
+apex of the child zone. For [In-Bailiwick] name server names obtain
+the IP addresses from the child zone. For the [Out-Of-Bailiwick] name
 server names obtain the IP addresses from resolver lookup.
 
 ### Inputs
 
-* "Child Zone" - The name of the child zone.
+This Method uses the following input units defined in section [Methods Inputs]:
+
+* "Child Zone" - The name of the child zone to be tested.
+
 
 ### Prerequisite
 
@@ -464,13 +503,13 @@ None.
 4. Create a set of name servers where each unique name server name in *Names*
    is linked to an empty set of IP addresses ("Name Servers").
 
-5. Fetch the IP addresses for any [in-bailiwick] name server
+5. Fetch the IP addresses for any [In-Bailiwick] name server
    names in *Names* by using Method [Get-IB-Addr-in-Zone].
 
 6. Add each fetched IP address, if any, to *Name Servers* to the name
    server name it belongs to.
 
-7. Extract the set of [out-of-bailiwick] name server names from *Names*
+7. Extract the set of [Out-Of-Bailiwick] name server names from *Names*
    ("OOB Names").
 
 8. Get the IP addresses for name server names in *OOB Names* by using Method
@@ -510,7 +549,10 @@ the NS records of apex of the child zone.
 
 ### Inputs
 
-* "Child Zone" - The name of the child zone.
+This Method uses the following input units defined in section [Methods Inputs]:
+
+* "Child Zone" - The name of the child zone to be tested.
+
 
 ### Prerequisite
 
@@ -556,13 +598,13 @@ This Method depends on Method [Get-Zone-NS-Names-and-IPs].
 ### Objective
 
 Obtain the name server names (from the NS records) and the IP addresses (from
-glue records) from the delegation of the given zone (child zone) from
-the parent zone. Glue records are address records for [in-bailiwick] name
+[Glue Records]) from the delegation of the given zone (child zone) from
+the parent zone. [Glue Records] are address records for [In-Bailiwick] name
 server names, if any. Extract addresses even if the resolution goes through
 CNAME. It is, however, not permitted for a NS record to point at a name
 that has a CNAME, but that test is covered by Test Case [DELEGATION05].
 
-IP addresses for [out-of-bailiwick] name server names are not extracted
+IP addresses for [Out-Of-Bailiwick] name server names are not extracted
 with this Method. To get those use Method [Get-Del-NS-IPs] or
 Method [Get-Del-NS-Names-and-IPs].
 
@@ -571,10 +613,14 @@ Methods in this document, but not by Test Case specifications.
 
 ### Inputs
 
-* "Child Zone" - The name of the child zone.
-* "Test Type" - The test type with values "undelegated test" or "normal test".
-* "Root Name Servers" - The IANA [Root Hints File] with names and IP addresses
-  of the root name servers.
+This Method uses the following input units defined in section [Methods Inputs]:
+
+* "Child Zone" - The name of the child zone to be tested.
+* "Root Name Servers"
+* "Undelegated Data" -  The name servers and IP addresses representing a
+  possible delegation of *Child Zone*.
+* "Test Type" - "undelegated test" or "normal test".
+
 
 ### Prerequisite
 
@@ -583,16 +629,15 @@ None.
 ### Test procedure
 
 1. If the *Test Type* is "undelegated test", then:
-   1. Using Method [Get-Undel-Data] get the submitted data for
-      *Child Zone* ("Undelegated Data").
+   1. Use *Undelegated Data*.
    2. Create an empty set of name servers where each unique name server name is
       linked to an empty set of IP addresses ("Name Servers").
    3. Extract all name server names from the *Undelegated Data* set and add to
       the *Name Servers* set.
-   4. For each [in-bailiwick] name server name collect any
+   4. For each [In-Bailiwick] name server name collect any
       IP addresses from *Undelegated Data* and add that to the
       *Name Servers* set under the name server name.
-   5. For any [out-of-bailiwick] name server name the IP address should be
+   5. For any [Out-Of-Bailiwick] name server name the IP address should be
       ignored.
    6. Output the *Name Servers* set.
    7. Exit these test procedures.
@@ -626,7 +671,7 @@ None.
       1. Extract the name server names from the RDATA of the NS records in
          the authority section.
       2. Extract any A or AAAA record from the additional section if the owner
-         name is an [in-bailiwick] name server name matching an NS record
+         name is an [In-Bailiwick] name server name matching an NS record
          from the same response.
       3. Update *Delegation Name Servers* with unique name server names and with
          a possibly empty set of IP addresses.
@@ -636,13 +681,13 @@ None.
       the NS record of the Child Zone do:
       1. Extract the name server names from the RDATA of the NS records.
       2. Extract any A or AAAA record from the additional section if the owner
-         name is an [in-bailiwick] name server name matching an NS record
+         name is an [In-Bailiwick] name server name matching an NS record
          from the same response.
       3. Update *AA Name Servers* with unique name server names and with
          a possibly empty set of IP addresses.
          1. If the name already exists in the set and additional IP addresses
             exists, add those to the name in the set.
-      4. If any [in-bailiwick] name server name from the NS records lacks IP
+      4. If any [In-Bailiwick] name server name from the NS records lacks IP
          address, then:
          1. [Send] two [DNS Queries][DNS Query] with that name server name as
             query name to the parent name server, query type A and AAAA,
@@ -674,8 +719,8 @@ None.
 
 ### Dependencies
 
-This Method depends on the output from either [Get-Parent-NS-IP] (normal test
-type) or [Get-Undel-Data] (undelegated test).
+This Method depends on the output from [Get-Parent-NS-IP] if test type is a
+"normal test".
 
 [To top]
 
@@ -688,7 +733,7 @@ type) or [Get-Undel-Data] (undelegated test).
 ### Objective
 
 From the child zone, obtain the address records matching the
-[in-bailiwick] name server names found in the zone itself.
+[In-Bailiwick] name server names found in the zone itself.
 Extract addresses even if the resolution goes through CNAME.
 It is, however, not permitted for a NS record
 to point at a name that has a CNAME, but that test is
@@ -699,7 +744,10 @@ Methods in this document, but not by Test Case specifications.
 
 ### Inputs
 
-* "Child Zone" - The name of the child zone.
+This Method uses the following input units defined in section [Methods Inputs]:
+
+* "Child Zone" - The name of the child zone to be tested.
+
 
 ### Prerequisite
 
@@ -717,19 +765,19 @@ None.
    empty or undefined, then output an undefined set and exit these test
    procedures.
 
-3. If no name in *Child Zone Name Server Names* is an [in-bailiwick]
+3. If no name in *Child Zone Name Server Names* is an [In-Bailiwick]
    name server name:
    1. Output an empty set.
    2. Exit these test procedures.
 
-4. Create an empty set the [in-bailiwick] name server names from the
+4. Create an empty set the [In-Bailiwick] name server names from the
    *Child Zone Name Server Names* set, where each name is linked to an empty set
    of IP addresses ("Name Servers").
 
 5. For name in *Name Servers* do:
    1. Create the following two [DNS queries][DNS Query]:
-      1. Query type A and the [in-bailiwick] name as the query name ("A Query").
-      2. Query type AAAA and the [in-bailiwick] name as the query name
+      1. Query type A and the [In-Bailiwick] name as the query name ("A Query").
+      2. Query type AAAA and the [In-Bailiwick] name as the query name
          ("AAAA Query").
    2. [Send] *A Query* and *AAAA Query* to all servers in *Name Server IPs*
       and process the [DNS Responses][DNS Response] from each of them.
@@ -749,7 +797,7 @@ None.
 
 * A set of name server names pointing at possibly empty sets of IP addresses:
   * Non-empty set: The normal case.
-  * Empty set: There are no [in-bailiwick] names or those are not defined in
+  * Empty set: There are no [In-Bailiwick] names or those are not defined in
     *Child Zone*, also a normal case.
   * Undefined set: [Get-Del-NS-IPs] returned an empty or undefined set.
 
@@ -767,7 +815,7 @@ This Method depends on [Get-Zone-NS-Names] and [Get-Del-NS-IPs].
 
 ### Objective
 
-Obtain the IP addresses of the out-of-bailiwick name servers for the
+Obtain the IP addresses of the [Out-Of-Bailiwick] name servers for the
 given zone (child zone) and a given set of name server names.
 
 Extract addresses even if the resolution goes through CNAME, here ignoring that
@@ -780,10 +828,17 @@ Methods in this document, but not by Test Case specifications.
 
 ### Inputs
 
-* "Child Zone" - The name of the child zone.
-* "NS Set" - The name servers names as given by the calling Method.
-* "Test Type" - The test type with values "undelegated test" or
-  "normal test".
+This Method uses the following input units defined in section [Methods Inputs]:
+
+* "Child Zone" - The name of the child zone to be tested.
+* "Undelegated Data" -  The name servers and IP addresses representing a
+  possible delegation of *Child Zone*.
+* "Test Type" - "undelegated test" or "normal test".
+
+This Method also used the following input unit from the calling Method:
+
+* "NS Set" - Name servers names to be looked up.
+
 
 ### Prerequisite
 
@@ -796,9 +851,7 @@ None.
 2. Create a set of name servers where each unique name server name in *NS Set*
    is linked to an empty set of IP addresses ("Name Servers").
 
-3. If *Test Type* is "undelegated test", then do:
-   1. Fetch name server name and IP address or addresses using Method
-      [Get-Undel-Data] ("Undelegated Data").
+3. If *Test Type* is "undelegated test", then use *Undelegated Data*.
 
 4. For each name server name ("Name") in *NS Set* do:
 
@@ -834,69 +887,21 @@ None.
 
 ### Dependencies
 
-This Method depends on Method [Get-Undel-Data].
-
-
-[To top]
-
-
-## Method: Get data for undelegated test (Internal)
-
-### Method identifier
-**Get-Undel-Data**
-
-### Objective
-
-Provide the data for undelegated tests, i.e. provide data that is
-comparable to a delegation from the parent zone, but where the
-delegation does not have to exist.
-
-This is an [Internal Method][Internal Methods] that can be referred to by other
-Methods in this document, but not by Test Case specifications.
-
-### Inputs
-
-* "Child Zone" - The name of the child zone.
-* "Undelegated Data" - the submitted delegation data, name server names for
-  *Child Zone*, and any IP addresses for the name server names.
-
-### Prerequisite
-
-* The Test Type of *Child Zone* must be "undelegated test".
-* The *Undelegated Data* must include at least one name server name or else this
-  Method cannot be run.
-
-### Test procedure
-
-1. Get the *Undelegated Data* from the initiation of the test.
-
-2. Return the set of name servers, where each unique name server name
-   links to a possibly empty set of its IP addresses taken from the
-   *Undelegated Data*.
-
-### Outputs
-
-* A set of name servers, where each unique name server name
-  links to a possibly empty set of its IP addresses:
-  * Non-empty set: The only case.
-
-### Dependencies
-
 None.
 
+
 [To top]
+
 
 ## Method inter-dependencies
 
 | Method                      | Level | Dependent on Method        | Level
 |-----------------------------|-------|----------------------------|-------------
-| [Get-Undel-Data]            | 1     | -                          |
 | [Get-Parent-NS-IP]          | 1     | -                          |
-| [Get-OOB-IPs]               | 2     | [Get-Undel-Data]           | 1
-| [Get-Delegation]            | 2     | [Get-Undel-Data]           | 1
-|                             |       | [Get-Parent-NS-IP]         | 1
+| [Get-OOB-IPs]               | 1     | -                          |
+| [Get-Delegation]            | 2     | [Get-Parent-NS-IP]         | 1
 | [Get-Del-NS-Names-and-IPs]  | 3     | [Get-Delegation]           | 2
-|                             |       | [Get-OOB-IPs]              | 2
+|                             |       | [Get-OOB-IPs]              | 1
 | [Get-Del-NS-Names]          | 4     | [Get-Del-NS-Names-and-IPs] | 3
 | [Get-Del-NS-IPs]            | 4     | [Get-Del-NS-Names-and-IPs] | 3
 | [Get-Zone-NS-Names]         | 5     | [Get-Del-NS-IPs]           | 4
@@ -904,7 +909,7 @@ None.
 |                             |       | [Get-Zone-NS-Names]        | 5
 | [Get-Zone-NS-Names-and-IPs] | 7     | [Get-Zone-NS-Names]        | 5
 |                             |       | [Get-IB-Addr-in-Zone]      | 6
-|                             |       | [Get-OOB-IPs]              | 2
+|                             |       | [Get-OOB-IPs]              | 1
 | [Get-Zone-NS-IPs]           | 8     | [Get-Zone-NS-Names-and-IPs]| 7
 
 
@@ -915,16 +920,11 @@ None.
 
 ## Terminology
 
-* "In-bailiwick", "out-of-bailiwick" and "glue record" - The terms are used as
-defined in [RFC 8499], section 7, pages 24-25. In this document, the term
-"in-bailiwick" is limited to the meaning "in domain" in the RFC. The term
-"out-of-bailiwick" here means what is not "in-bailiwick, in domain".
-
-* "Send" and "Sending" - The terms are used when a DNS query is sent to a
-specific name server (name sever IP address).
+* "Glue Record" - The term is used as defined in [RFC 8499], section 7, pages
+  24-25.
 
 * "DNS Lookup" - The term is used when a recursive lookup is used, though any
-changes to the DNS tree introduced by an [undelegated test] must be respected.
+  changes to the DNS tree introduced by an [undelegated test] must be respected.
 
 * "DNS Query" - The term is used for a DNS query that is to follow the
   specification for DNS queries in
@@ -933,6 +933,27 @@ changes to the DNS tree introduced by an [undelegated test] must be respected.
 * "DNS Response" - The term is used when the DNS response is to be handled as
   defined in
   [DNS Query and Response Defaults][DNS Query and Response Defaults#Response].
+
+* "In-Bailiwick" - The term is used as defined in [RFC 8499], section 7,
+  pages 24-25. In this document it is limited to the meaning "in domain" in the
+  RFC.
+
+* "Out-Of-Bailiwick" lue record" - The terms means, in this document, what is
+  not "In-Bailiwick, in domain". [RFC 8499], section 7,  pages 24-25.
+
+* "Send" - The terms are used when a DNS query is sent to a specific name server
+  (name sever IP address).
+
+* "Valid Domain Name" -- The term stands for a non-empty domain name string that
+  has successfully passed the tests and normalizations in the
+  [Requirements and normalization] specification.
+
+* "Valid IP Address" -- The term stands for an IPv4 address within the range
+  0.0.0.0 to 255.255.255.255 or an IPv6 address in the range 0:0:0:0:0:0:0:0 to
+  FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF.
+
+* "Valid Name Server Name" -- The term stands for a [Valid Domain Name] that
+  functions as the name of a name server.
 
 
 [BASIC01]:                                           Basic-TP/basic01.md
@@ -950,13 +971,11 @@ changes to the DNS tree introduced by an [undelegated test] must be respected.
 [Get-IB-Addr-in-Zone]:                               #method-get-in-bailiwick-address-records-in-zone-internal
 [Get-OOB-IPs]:                                       #method-get-out-of-bailiwick-ip-addresses-internal
 [Get-Parent-NS-IP]:                                  #method-get-parent-ns-ip-addresses
-[Get-Undel-Data]:                                    #method-get-data-for-undelegated-test-internal
 [Get-Zone-NS-IPs]:                                   #method-get-zone-ns-ip-addresses
 [Get-Zone-NS-Names-and-IPs]:                         #method-get-zone-ns-names-and-ip-addresses
 [Get-Zone-NS-Names]:                                 #method-get-zone-ns-names
-[Glue records]:                                      #terminology
-[Glue records]:                                      #terminology
-[In-bailiwick]:                                      #terminology
+[Glue Records]:                                      #terminology
+[In-Bailiwick]:                                      #terminology
 [Internal Methods]:                                  #internal-methods
 [Root Hints File]:                                   https://www.internic.net/domain/named.root
 [Method1]:                                           Methods.md#method-1-obtain-the-parent-domain
@@ -965,10 +984,13 @@ changes to the DNS tree introduced by an [undelegated test] must be respected.
 [Method4]:                                           Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                                           Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [Methods]:                                           Methods.md
-[Out-of-bailiwick]:                                  #terminology
+[Methods Inputs]:                                    #methods-inputs
+[Out-Of-Bailiwick]:                                  #terminology
 [RCODE Name]:                                        https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 8499]:                                          https://datatracker.ietf.org/doc/html/rfc8499#section-7
 [Requirements and normalization]:                    RequirementsAndNormalizationOfDomainNames.md
 [Send]:                                              #terminology
-[Sending]:                                           #terminology
+[Valid Domain Name]:                                 #terminology
+[Valid Name Server Name]:                            #terminology
+[Valid IP Address]:                                  #terminology
 [To top]:                                            #methods-common-to-test-case-specifications-version-2
