@@ -122,13 +122,14 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Root Name Servers"
 * "Test Type" - "undelegated test" or "normal test".
 
-### Test procedure
+
+### Procedures
 
 1. If the *Child Zone* is the root zone (".") then output empty set and exit
-   these test procedures.
+   these procedures.
 
 2. If the *Test Type* is "undelegated test" then output empty set and exit
-   these test procedures.
+   these procedures.
 
 3. Create a [DNS Query] with query type SOA and query name *Child Zone*
    ("SOA Child Query").
@@ -195,12 +196,12 @@ This Method uses the following input units defined in section [Methods Inputs]:
    1. Extract the name server IP list.
    2. Return the following from the Method:
       1. The extracted list of name server IP addresses (parent zone name servers).
-   3. Exit these test procedures.
+   3. Exit these procedures.
 
 8. If the *Parent Name Server IP* set is empty then do:
    1. Return the following from the Method:
       1. Undefined value. (Parent name severs cannot be determined.)
-   2. Exit these test procedures.
+   2. Exit these procedures.
 
 
 ### Outputs
@@ -239,17 +240,17 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Child Zone" - The name of the child zone to be tested.
 
 
-### Test procedure
+### Procedures
 
 1. Get the set of name servers where each unique name server name is linked to a
    possibly empty set of its IP addresses by using Method [Get-Delegation]
    ("Name Servers").
 
 2. If the *Name Servers* set is undefined, then output an undefined set and exit
-   these test procedures.
+   these procedures.
 
 3. If the *Name Servers* set is empty, then output an empty set and exit these
-   test procedures.
+   procedures.
 
 4. Extract the set of [Out-Of-Bailiwick] name server names from *Name Servers*
    ("OOB Names").
@@ -295,17 +296,17 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Child Zone" - The name of the child zone to be tested.
 
 
-### Test procedure
+### Procedures
 
 1. Get the set of name servers where each unique name server name is linked to a
    possibly empty set of its IP addresses by using Method
    [Get-Del-NS-Names-and-IPs] ("Name Servers").
 
 2. If the *Name Servers* set is undefined, then output an undefined set and exit
-   these test procedures.
+   these procedures.
 
 3. If the *Name Servers* set is empty, then output an empty set and exit these
-   test procedures.
+   procedures.
 
 3. If the set is empty, then output an empty set and exit these test
    procedures.
@@ -350,17 +351,17 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Child Zone" - The name of the child zone to be tested.
 
 
-### Test procedure
+### Procedures
 
 1. Get the set of name servers where each unique name server name is linked to a
    possibly empty set of its IP addresses by using Method
    [Get-Del-NS-Names-and-IPs] ("Name Servers").
 
 2. If the *Name Servers* set is undefined, then output an undefined set and exit
-   these test procedures.
+   these procedures.
 
 3. If the *Name Servers* set is empty, then output an empty set and exit these
-   test procedures.
+   procedures.
 
 4. Extract the IP addresses from *Name Servers* and create a set of
    unique addresses ("NS IPs").
@@ -400,16 +401,16 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Child Zone" - The name of the child zone to be tested.
 
 
-### Test procedure
+### Procedures
 
 1.  Using Method [Get-Del-NS-IPs], obtain the IP addresses of the
     name servers ("Name Server IPs").
 
 2.  If the *Name Server IPs* set is undefined, then output an undefined set and
-    exit these test procedures.
+    exit these procedures.
 
 3.  If the *Name Server IPs* set is empty, then output an empty set and exit
-    these test procedures.
+    these procedures.
 
 4.  Create an empty set of name server names ("Name Server Names").
 
@@ -463,16 +464,16 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Child Zone" - The name of the child zone to be tested.
 
 
-### Test procedure
+### Procedures
 
 1. Get the name server names for the *Child Zone* as defined in
    the *Child Zone* by using Method [Get-Zone-NS-Names] ("Names").
 
 2. If the *Names* set is undefined, then output an undefined set and
-   exit these test procedures.
+   exit these procedures.
 
 3. If the *Names* set is empty, then output an empty set and exit
-   these test procedures.
+   these procedures.
 
 4. Create a set of name servers where each unique name server name in *Names*
    is linked to an empty set of IP addresses ("Name Servers").
@@ -528,17 +529,17 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Child Zone" - The name of the child zone to be tested.
 
 
-### Test procedure
+### Procedures
 
 1. Get the name servers set where each unique name server name is linked to a
    possibly empty set of its IP addresses by using Method
    [Get-Zone-NS-Names-and-IPs] ("Name Servers");
 
 2. If the *Name Servers* set is undefined, then output an undefined set and
-   exit these test procedures.
+   exit these procedures.
 
 3. If the *Name Servers* set is empty, then output an empty set and exit
-   these test procedures.
+   these procedures.
 
 4. Extract the IP addresses from *Name Servers* and create a
    set of unique IP addresses.
@@ -592,7 +593,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Test Type" - "undelegated test" or "normal test".
 
 
-### Test procedure
+### Procedures
 
 1. If the *Test Type* is "undelegated test", then:
    1. Use *Undelegated Data*.
@@ -606,10 +607,10 @@ This Method uses the following input units defined in section [Methods Inputs]:
    5. For any [Out-Of-Bailiwick] name server name the IP address should be
       ignored.
    6. Output the *Name Servers* set.
-   7. Exit these test procedures.
+   7. Exit these procedures.
 
 2. If *Child Zone* is the root zone ".", then output the set of name server names
-   and IP addresses from *Root Name Servers* and exit these test procedures.
+   and IP addresses from *Root Name Servers* and exit these procedures.
 
 3. Using Method [Get-Parent-NS-IP] extract the name server IP addresses for
    the parent zone ("Parent NS").
@@ -666,10 +667,10 @@ This Method uses the following input units defined in section [Methods Inputs]:
          4. Update *AA Name Servers* with captured IP addresses, if any.
 
 8. If the *Delegation Name Servers* set is non-empty output that and exit these
-   test procedures.
+   procedures.
 
 9. Else, if the *AA Name Servers* set is non-empty output that and exit these
-   test procedures.
+   procedures.
 
 10. Else, if both *Delegation Name Servers* and *AA Name Servers* sets are empty
     then output an empty set.
@@ -715,7 +716,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Child Zone" - The name of the child zone to be tested.
 
 
-### Test procedure
+### Procedures
 
 1. Using Method [Get-Del-NS-IPs], obtain the IP addresses to the name
    servers ("Name Server IPs").
@@ -730,7 +731,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
 3. If no name in *Child Zone Name Server Names* is an [In-Bailiwick]
    name server name:
    1. Output an empty set.
-   2. Exit these test procedures.
+   2. Exit these procedures.
 
 4. Create an empty set the [In-Bailiwick] name server names from the
    *Child Zone Name Server Names* set, where each name is linked to an empty set
@@ -802,9 +803,9 @@ This Method also used the following input unit from the calling Method:
 * "NS Set" - Name servers names to be looked up.
 
 
-### Test procedure
+### Procedures
 
-1. If *NS Set* is empty then output an empty set and exit these test procedures.
+1. If *NS Set* is empty then output an empty set and exit these procedures.
 
 2. Create a set of name servers where each unique name server name in *NS Set*
    is linked to an empty set of IP addresses ("Name Servers").
