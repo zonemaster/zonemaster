@@ -56,7 +56,7 @@ Methods, in this document, that are referred to as *Internal* or
 *Internal Methods* may only be referred to from Methods in this document. Test
 Case specifications can freely refer to the other Methods.
 
-0[To top]
+[To top]
 
 
 ## Methods Inputs
@@ -80,7 +80,7 @@ specific Method.
 * "Test Type" - Derived data. It is set to "normal test" if *Undelegated Data* is
   absent (empty) and to "undelegated test" if it is non-empty.
 
-0[To top]
+[To top]
 
 
 ## Method: Get parent NS IP addresses
@@ -142,9 +142,9 @@ and normalization]".
 4. Create the following empty set:
    1. Parent name server IP and the parent zone name ("Parent Name Server IP").
 
-5. Find the parent zone of the *Child Zone* by iteratively
-   sending ("[send]") *SOA Child Query* to all name servers found. Start by using
-   the nameservers from *Root Name Servers*.
+5. Find the parent zone of the *Child Zone* by iteratively [sending][send]
+   *SOA Child Query* to all name servers found. Start by using the nameservers
+   from *Root Name Servers*.
    1. Follow all paths from root and downwards by using the referrals (non-AA
       response with empty answer section and NS records in the authority
       section).
@@ -889,7 +889,6 @@ None.
 
 None.
 
-
 [To top]
 
 
@@ -911,9 +910,6 @@ None.
 |                             |       | [Get-IB-Addr-in-Zone]      | 6
 |                             |       | [Get-OOB-IPs]              | 1
 | [Get-Zone-NS-IPs]           | 8     | [Get-Zone-NS-Names-and-IPs]| 7
-
-
-
 
 [To top]
 
@@ -954,6 +950,8 @@ None.
 
 * "Valid Name Server Name" -- The term stands for a [Valid Domain Name] that
   functions as the name of a name server.
+
+[To top]
 
 
 [BASIC01]:                                           Basic-TP/basic01.md
