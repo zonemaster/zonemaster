@@ -122,12 +122,6 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Root Name Servers"
 * "Test Type" - "undelegated test" or "normal test".
 
-### Prerequisite
-
-The *Child Zone* name must be a valid name according to
-"[Requirements and normalization of domain names in input][Requirements
-and normalization]".
-
 ### Test procedure
 
 1. If the *Child Zone* is the root zone (".") then output empty set and exit
@@ -245,10 +239,6 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Child Zone" - The name of the child zone to be tested.
 
 
-### Prerequisite
-
-None.
-
 ### Test procedure
 
 1. Get the set of name servers where each unique name server name is linked to a
@@ -305,10 +295,6 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Child Zone" - The name of the child zone to be tested.
 
 
-### Prerequisite
-
-None.
-
 ### Test procedure
 
 1. Get the set of name servers where each unique name server name is linked to a
@@ -364,10 +350,6 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Child Zone" - The name of the child zone to be tested.
 
 
-### Prerequisite
-
-None.
-
 ### Test procedure
 
 1. Get the set of name servers where each unique name server name is linked to a
@@ -417,10 +399,6 @@ This Method uses the following input units defined in section [Methods Inputs]:
 
 * "Child Zone" - The name of the child zone to be tested.
 
-
-### Prerequisite
-
-None.
 
 ### Test procedure
 
@@ -484,10 +462,6 @@ This Method uses the following input units defined in section [Methods Inputs]:
 
 * "Child Zone" - The name of the child zone to be tested.
 
-
-### Prerequisite
-
-None.
 
 ### Test procedure
 
@@ -554,10 +528,6 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Child Zone" - The name of the child zone to be tested.
 
 
-### Prerequisite
-
-None.
-
 ### Test procedure
 
 1. Get the name servers set where each unique name server name is linked to a
@@ -621,10 +591,6 @@ This Method uses the following input units defined in section [Methods Inputs]:
   possible delegation of *Child Zone*.
 * "Test Type" - "undelegated test" or "normal test".
 
-
-### Prerequisite
-
-None.
 
 ### Test procedure
 
@@ -749,10 +715,6 @@ This Method uses the following input units defined in section [Methods Inputs]:
 * "Child Zone" - The name of the child zone to be tested.
 
 
-### Prerequisite
-
-None.
-
 ### Test procedure
 
 1. Using Method [Get-Del-NS-IPs], obtain the IP addresses to the name
@@ -839,10 +801,6 @@ This Method also used the following input unit from the calling Method:
 
 * "NS Set" - Name servers names to be looked up.
 
-
-### Prerequisite
-
-None.
 
 ### Test procedure
 
