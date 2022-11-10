@@ -54,13 +54,16 @@ Assumptions for the scenario specifications:
 * Unless otherwise stated, all name servers responds authoritatively with (or
   without) MX records on MX queries.
 
-* NO-RESPONSE-MX-QUERY
-  * At least one name server returns an authoritative answer on SOA query, but no
-    DNS response on MX query.
+The domain name for the scenario is given in parenthesis after the scenario
+name.
 
-* UNEXPECTED-RCODE-MX
-  * At least one name server returns an authoritative answer on SOA query, but
-    non-NOERROR RCODE on MX query.
+NO-RESPONSE-MX-QUERY (no-response-mx-query.zone09.xa)
+* At least one name server returns an authoritative answer on SOA query, but no
+  DNS response on MX query.
+
+UNEXPECTED-RCODE-MX (unexpected-rcode-mx.zone09.xa)
+* At least one name server returns an authoritative answer on SOA query, but
+  non-NOERROR RCODE on MX query.
 
 * NON-AUTH-MX-RESPONSE
   * At least one name server returns an authoritative answer on SOA query, but
