@@ -903,9 +903,8 @@ None.
   has successfully passed the tests and normalizations in the
   [Requirements and normalization] specification.
 
-* "Valid IP Address" -- The term stands for an IPv4 address within the range
-  0.0.0.0 to 255.255.255.255 or an IPv6 address in the range 0:0:0:0:0:0:0:0 to
-  FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF.
+* "Valid IP Address" -- The term stands for either an [IPv4] address or an [IPv6]
+  address in any address range.
 
 * "Valid Name Server Name" -- The term stands for a [Valid Domain Name] that
   functions as the name of a name server.
@@ -934,6 +933,8 @@ None.
 [Glue Records]:                                      #terminology
 [In-Bailiwick]:                                      #terminology
 [Internal Methods]:                                  #internal-methods
+[IPv4]:                                              https://en.wikipedia.org/wiki/IPv4
+[IPv6]:                                              https://en.wikipedia.org/wiki/IPv6
 [Root Hints File]:                                   https://www.internic.net/domain/named.root
 [Method1]:                                           Methods.md#method-1-obtain-the-parent-domain
 [Method2]:                                           Methods.md#method-2-obtain-glue-name-records-from-parent
