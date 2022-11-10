@@ -47,7 +47,7 @@ e.g. `no-response-mx-query.zone09.xa`,
 
 
 
-[Test cases]:                                           ../specifications/tests/README.md
+[Test cases]:                                           ../tests/README.md
 [unit tests]:                                           https://github.com/zonemaster/zonemaster-engine/tree/master/t
 [test-data]:                                            .
 
