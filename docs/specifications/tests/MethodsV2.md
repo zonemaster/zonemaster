@@ -810,9 +810,7 @@ This Method also used the following input unit from the calling Method:
 2. Create a set of name servers where each unique name server name in *NS Set*
    is linked to an empty set of IP addresses ("Name Servers").
 
-3. If *Test Type* is "undelegated test", then use *Undelegated Data*.
-
-4. For each name server name ("Name") in *NS Set* do:
+3. For each name server name ("Name") in *NS Set* do:
 
    1. If *Test Type* is "undelegated test" and if the *Name*
       has IP address specification (IPv4 or IPv6) in *Undelegated Data*,
