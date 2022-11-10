@@ -1,36 +1,22 @@
 # Specification of test data for ZONE09
 
 
+## Background
+
+See the [test zone and test data README file].
+
+
 ## Test Case
 This document specifies available test data for test case [Zone09].
 
 
-## Test scenarios
+## Test zone name
 
-The purpose of the test scenarios is to cover all reasonable contexts where
-different message tags are outputted when [Zone09] is run on a test zone. The
-message tags are defined in the test case ([Zone09]) and the scenarios are
-defined below.
-
-The scenarios are defined in two parts:
-
-* What messages from [Zone09] are expected to be outputted and what messages
-  are expected not to be outputted when a test zone setup according to the
-  scenario is tested by the test case.
-* Specification of the zone setup for the scenario.
-
-
-## Test environment
-
-The tests are assumed to be run in a closed environment with a private DNS tree
-to achieve full access to any zone. Configuration data and instructions to set
-this up are available elsewhere in this repository.
-
-The base domain name for the test zones in this document is assumed to be
-`zone09.xa` and the test domains are assumed to be the scenario name as a
-subdomain to the base name, e.g. `NO-RESPONSE-MX-QUERY.zone09.xa` except for a
-few cases where the test zone must be the root, a TLD or a domain name under
-.ARPA. Other test domains can be used, if desired.
+The test zone for each test scenario is assumed to be a subdomain delegated from
+the base name (`zone09.xa`) and that subdomain having the same name as the
+scenario (e.g. `no-response-mx-query.zone09.xa`) except where the test domain must
+be the root zone, a TLD or a domain under .ARPA. The names of those zones are
+given below.
 
 
 ## Test scenarios and message tags
@@ -67,12 +53,6 @@ Assumptions for the scenario specifications:
   SOA record on SOA queries.
 * Unless otherwise stated, all name servers responds authoritatively with (or
   without) MX records on MX queries.
-
-The test zone for each test scenario is assumed to be a subdomain delegated from
-the base name (`zone09.xa`) and that subdomain having the same name as the
-scenario (e.g. `no-response-mx-query.zone09.xa`) except where the test domain must
-be the root zone, a TLD or a domain under .ARPA. The names of those zones are
-given below.
 
 * NO-RESPONSE-MX-QUERY
   * At least one name server returns an authoritative answer on SOA query, but no
@@ -129,4 +109,5 @@ given below.
   * The test zone is under .ARPA. No name server responds with an MX RRset.
 
 
-[Zone09]:                  ../../specifications/tests/Zone-TP/zone09.md
+[Zone09]:                                       ../../specifications/tests/Zone-TP/zone09.md
+[test zone and test data README file]:          ../README.md
