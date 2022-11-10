@@ -1,7 +1,7 @@
 # NAMESERVER11: Test for unknown EDNS OPTION-CODE
 
 ## Test case identifier
-**NAMESERVER11** 
+**NAMESERVER11**
 
 ## Table of contents
 
@@ -44,9 +44,15 @@ report status of *Child Zone*.
 
 ## Summary
 
-Message Tag                            | Level     | Arguments           | Message ID for message tag
-:--------------------------------------|:----------|---------------------|---------------------------------------------
-N11_UNKNOWN_OPTION_CODE               | WARNING   | ns_ip_list          | The DNS response contains an unknown EDNS option-code. Returned from name servers "{ns_ip_list}".
+Message Tag                       | Level   | Arguments         | Message ID for message tag
+:---------------------------------|:--------|-------------------|---------------------------------------------
+N11_NO_EDNS                       | WARNING | ns_ip_list        | The DNS response, on query with unknown EDNS option-code, does not contain any EDNS from name servers "{ns_ip_list}".
+N11_NO_RESPONSE                   | WARNING | ns_ip_list        | There is no response on query with unknown EDNS option-code from name servers "{ns_ip_list}".
+N11_RETURNS_UNKNOWN_OPTION_CODE   | WARNING | ns_ip_list        | The DNS response, on query with unknown EDNS option-code, contains an unknown EDNS option-code from name servers "{ns_ip_list}".
+N11_UNEXPECTED_ANSWER_SECTION     | WARNING | ns_ip_list        | The DNS response, on query with unknown EDNS option-code, does not contain the expected SOA record in the answer section from name servers "{ns_ip_list}".
+N11_UNEXPECTED_RCODE              | WARNING | ns_ip_list, rcode | The DNS response, on query with unknown EDNS option-code, has unexpected RCODE name "{rcode}" from name servers "{ns_ip_list}".
+N11_UNSET_AA                      | WARNING | ns_ip_list        | The DNS response, on query with unknown EDNS option-code, is unexpectedly not authoritative from name servers "{ns_ip_list}".
+
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -59,35 +65,78 @@ message. The argument names are defined in the [argument list].
 
 In this section and unless otherwise specified below, the term "[EDNS Query]"
 follows the specification for DNS queries as specified in [DNS Query and Response Defaults].
-The handling of the DNS responses on the DNS queries follow, unless otherwise specified below, 
+The handling of the DNS responses on the DNS queries follow, unless otherwise specified below,
 what is specified for [EDNS Response] in the same specification.
 
 1. Create the following empty sets:
-   1. Name server IP address ("Unknown Option Code")
+   1. Name server IP address ("No Response on Unknown Option Code")
+   2. Name server IP address and [RCODE Name] ("Unexpected RCODE on Unknown Option Code")
+   3. Name server IP address ("No EDNS on Unknown Option Code")
+   4. Name server IP address ("Unexpected Answer Section on Unknown Option Code")
+   5. Name server IP address ("Unset AA on Unknown Option Code")
+   6. Name server IP address ("Returns Unknown Option Code")
 
 2. Create a [EDNS Query] with query type SOA, *Child Zone* as query name and with
-   EDNS OPTION-CODE set to anything other than what is already assigned in
-   the [IANA-DNSSYSTEM-PARAMETERS] and no other EDNS options or flags ("SOA Query").
+   no EDNS options or flags ("SOA Query").
 
-3. Obtain the set of name server IP addresses using [Method4] and [Method5] 
+3. Create a [EDNS Query] with query type SOA, *Child Zone* as query name and with
+   EDNS OPTION-CODE set to anything other than what is already assigned in
+   the [IANA-DNSSYSTEM-PARAMETERS] and no other EDNS options or flags
+   ("SOA Query with EDNS Option").
+
+4. Obtain the set of name server IP addresses using [Method4] and [Method5]
    ("Name Server IP").
 
-4. For each name server in *Name Server IP* do:
+5. For each name server in *Name Server IP* do:
 
-   1. Send *SOA query* to the name server and collect the response.
-   2. If there is no EDNS response, then go to next name server.
-   3. Else, if the EDNS response has the [RCODE Name] "FormErr", then go to next name server.
-   4. Else, if there is an "OPTION-CODE" present in the response, then add name server IP
-      to the *Unknown Option Code* set and go to next name server.
-   5. Else, if the EDNS response meet the following four criteria,
-      then go to next name server (no error):
-      1. The SOA is obtained as response in the ANSWER section.
-      2. If the EDNS response has the [RCODE Name] "NoError".
-      3. The pseudo-section response has an OPT record with version set to 0.
-      4. There is no "OPTION-CODE" present in the response.
+   1. Send *SOA Query* to the name server and collect the response.
+   2. Go to next name server if at least one of the following criteria is met:
+      1. There is no DNS response from the server.
+      2. EDNS is unset in the response.
+      3. The [RCODE Name] in the response is not "NoError".
+      4. The AA flag is unset in the response.
+      5. The answer section has no SOA record with *Child Zone* as owner name.
+   3. Send *SOA Query with EDNS Option* to the name server and collect the
+      response.
+      1. If there is no DNS response from the server then add the name server to
+         the *No Response on Unknown Option Code* set.
+      2. Else, if the [RCODE Name] in the response is not "NoError" then add the
+         name server and [RCODE Name] to the
+         *Unexpected RCODE on Unknown Option Code* set.
+         server.
+      3. Else, if EDNS is unset in the response then add the name server to
+         the *No EDNS on Unknown Option Code* set.
+      4. Else, if the answer section has no SOA record with *Child Zone* as owner
+         name then add the name server to the
+         *Unexpected Answer Section on Unknown Option Code* set.
+      5. Else, if the AA flag is unset in the response then add the name server
+         to the *Unset AA on Unknown Option Code* set.
+      6. Else, if the "OPTION-CODE" from the query is present in the response,
+         then add name server to the *Returns Unknown Option Code* set.
+      7. Else, no issues were found.
 
-5. If the *Unknown Option Code* set is non-empty, then output *[N11_UNKNOWN_OPTION_CODE]* 
-   with the name servers IP addresses from the set.
+5. If the *No Response on Unknown Option Code* set is non-empty, then output
+   *[N11_NO_RESPONSE]* with the name servers IP addresses from the set.
+
+6. If the *Unexpected RCODE on Unknown Option Code* set is non-empty, then for
+   each [RCODE NAME] in the set output *[N11_UNEXPECTED_RCODE]* with the
+   [RCODE Name] and the name servers IP addresses for that [RCODE NAME] in the
+   set.
+
+7. If the *No EDNS on Unknown Option Code* set is non-empty, then output
+   *[N11_NO_EDNS]* with the name servers IP addresses from the set.
+
+8. If the *Unexpected Answer Section on Unknown Option Code* set is non-empty,
+   then output *[N11_UNEXPECTED_ANSWER_SECTION]* with the name servers IP
+   addresses from the set.
+
+9. If the *Unset AA on Unknown Option Code* set is non-empty, then output
+   *[N11_UNSET_AA]* with the name servers IP addresses from the set.
+
+11. If the *Returns Unknown Option Code* set is non-empty, then output
+    *[N11_RETURNS_UNKNOWN_OPTION_CODE]* with the name servers IP addresses from
+    the set.
+
 
 ## Outcome(s)
 
@@ -115,6 +164,7 @@ None.
 
 No special terminology for this test case.
 
+
 [Argument list]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [Connectivity01]:                       ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                             https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#critical
@@ -125,12 +175,17 @@ No special terminology for this test case.
 [IANA-DNSSYSTEM-PARAMETERS]:            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-11
 [INFO]:                                 https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#info
 [Message Tag Specification]:            MessageTagSpecification.md
-[Methods]:                              ../Methods.md
 [Method4]:                              ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[Nameserver02]:                         ../Nameserver-TP/nameserver02.md
+[Methods]:                              ../Methods.md
+[N11_NO_EDNS]:                          #summary
+[N11_NO_RESPONSE]:                      #summary
+[N11_RETURNS_UNKNOWN_OPTION_CODE]:      #summary
+[N11_UNEXPECTED_ANSWER_SECTION]:        #summary
+[N11_UNEXPECTED_RCODE]:                 #summary
+[N11_UNSET_AA]:                         #summary
 [NOTICE]:                               https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#notice
-[N11_UNKNOWN_OPTION_CODE]:             #summary
+[Nameserver02]:                         ../Nameserver-TP/nameserver02.md
 [RCODE Name]:                           https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 6891, section 6.1.2]:              https://tools.ietf.org/html/rfc6891#section-6.1.2
 [RFC 6891]:                             https://tools.ietf.org/html/rfc6891
