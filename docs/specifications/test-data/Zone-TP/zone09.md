@@ -57,11 +57,15 @@ Assumptions for the scenario specifications:
 The domain name for the scenario is given in parenthesis after the scenario
 name.
 
-NO-RESPONSE-MX-QUERY (no-response-mx-query.zone09.xa)
+### NO-RESPONSE-MX-QUERY
+(no-response-mx-query.zone09.xa)
+
 * At least one name server returns an authoritative answer on SOA query, but no
   DNS response on MX query.
 
-UNEXPECTED-RCODE-MX (unexpected-rcode-mx.zone09.xa)
+### UNEXPECTED-RCODE-MX
+(unexpected-rcode-mx.zone09.xa)
+
 * At least one name server returns an authoritative answer on SOA query, but
   non-NOERROR RCODE on MX query.
 
