@@ -47,73 +47,110 @@ NO-MX-ARPA            | (none)                                            | Z09_
 
 ## Zone setup for test scenarios
 
-Assumptions for the scenario specifications:
+Assumptions for the zone setup for the test scenarios:
 * Only MX records in apex are considered.
 * Unless otherwise stated, all name servers responds authoritatively with the
   SOA record on SOA queries.
 * Unless otherwise stated, all name servers responds authoritatively with (or
   without) MX records on MX queries.
+* Unless otherwise stated, all responds are authoritative and with NOERROR
+  RCODE.
 
 The domain name for the scenario is given in parenthesis after the scenario
 name.
 
 ### NO-RESPONSE-MX-QUERY
-(no-response-mx-query.zone09.xa)
+("no-response-mx-query.zone09.xa.")
 
-* At least one name server returns an authoritative answer on SOA query, but no
-  DNS response on MX query.
+* The zone has two name servers.
+* Both name server returns an authoritative answer on SOA query.
+* One name server does not respond on MX query.
 
 ### UNEXPECTED-RCODE-MX
-(unexpected-rcode-mx.zone09.xa)
+("unexpected-rcode-mx.zone09.xa.")
 
-* At least one name server returns an authoritative answer on SOA query, but
-  non-NOERROR RCODE on MX query.
+* The zone has two name servers.
+* Both name server returns an authoritative answer on SOA query.
+* One name server returns non-NOERROR RCODE on MX query.
 
-* NON-AUTH-MX-RESPONSE
-  * At least one name server returns an authoritative answer on SOA query, but
-    NOERROR RCODE and non-AA on MX query.
+### NON-AUTH-MX-RESPONSE
+("non-auth-mx-response.zone09.xa.")
 
-* INCONSISTENT-MX
-  * At least one name server for the zone return MX and at least one return no MX
-    in an authoritative answer.
+* The zone has two name servers.
+* Both name server return an authoritative answer on SOA query.
+* One name server returns NOERROR RCODE and non-AA on MX query.
 
-* INCONSISTENT-MX-DATA
-  * At least two name servers for the zone respond, authoritatively, with
-    different MX RR sets.
+### INCONSISTENT-MX
+("inconsistent-mx.zone09.xa.")
 
-* NULL-MX-WITH-OTHER-MX
-  * The test zone has MX and all its name servers that respond with MX RRset
-    have the same MX RRset and that is a mix of Null MX and non-Null MX.
+* The zone has two name servers.
+* One name server respond with a non-Null MX RRset.
+* The other responds without MX RRset (NODATA).
 
-* NULL-MX-NON-ZERO-PREF
-  * The test zone has MX and all its name servers that respond with MX RRset
-    have the same MX RRset and at least one MX record is a Null MX with a
-    non-zero preference.
+### INCONSISTENT-MX-DATA
+("inconsistent-mx-data.zone09.xa.")
 
-* TLD-EMAIL-DOMAIN (".xa")
-  * The test zone is a TLD and has MX and all its name servers that respond with
-    MX RRset have the same MX RRset with no Null MX.
+* The zone has two name servers.
+* Both name servers respond with an MX RRset.
+* The two MX RRsets are not equal.
 
-* ROOT-EMAIL-DOMAIN (".")
-  * The test zone is the root zone and has MX and all its name servers that
-    respond with MX RRset have the same MX RRset with no Null MX.
+## NULL-MX-WITH-OTHER-MX
+("null-mx-with-other-mx.zone09.xa.")
 
-* MX-DATA
-  * The test zone is neither root nor a TLD. All name servers responds with the
-    same MX RRset. No MX record is a Null MX.
+* All name servers responds with the same MX RRset.
+* The MX RRset is a mix of Null MX and non-Null MX.
 
-* NULL-MX
-  * All name servers for the test zone responds with a single, valid NULL MX.
+### NULL-MX-NON-ZERO-PREF
+("null-mx-non-zero-pref.zone09.xa.")
 
-* NO-MX-SLD
-  * The test zone is neither root, TLD or under .ARPA. No name server responds
-    with an MX RRset.
+* All name servers responds with the same MX RRset.
+* The MX RRset is a single MX record.
+* The MX record is a Null MX with a non-zero preference.
 
-* NO-MX-TLD (".xa")
-  * The test zone is a TLD. No name server responds with an MX RRset.
+### TLD-EMAIL-DOMAIN
+("tld-email-domain-zone09.")
 
-* NO-MX-ARPA ("2.0.192.in-addr.arpa")
-  * The test zone is under .ARPA. No name server responds with an MX RRset.
+* The test zone is a TLD zone.
+* All name servers responds with the same MX RRset.
+* All MX records are non-Null MX.
+
+### ROOT-EMAIL-DOMAIN
+(".")
+
+* The test zone is the root zone.
+* All name servers responds with the same MX RRset.
+* All MX records are non-Null MX.
+
+### MX-DATA
+("mx-data.zone09.xa.")
+
+* All name servers responds with the same MX RRset.
+* All MX records are non-Null MX.
+
+### NULL-MX
+("null-mx.zone09.xa.")
+
+* All name servers responds with the same MX RRset.
+* The MX RRset has a single, valid NULL MX.
+
+### NO-MX-SLD
+("no-mx-sld.zone09.xa.")
+
+* The test zone is neither root, TLD or under .ARPA.
+* All name server responds with no MX RRset (NODATA).
+
+### NO-MX-TLD
+("no-mx-tld-zone09.")
+
+* The test zone is a TLD.
+* All name server responds with no MX RRset (NODATA).
+
+### NO-MX-ARPA
+("no-mx-arpa.zone09.arpa.")
+
+* The test zone is under .ARPA.
+* All name server responds with no MX RRset (NODATA).
+
 
 
 [Zone09]:                                       ../../specifications/tests/Zone-TP/zone09.md
