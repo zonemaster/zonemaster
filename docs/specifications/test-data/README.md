@@ -1,4 +1,4 @@
-# Test zoness and test data for verification of test case implementation
+# Test zones and test data for verification of test case implementation
 
 ## Objective
 
@@ -33,7 +33,8 @@ In the test data specifications the scenarios are defined in two parts:
 
 The tests against the test zones are assumed to be run in a closed environment
 with a private DNS tree to achieve full access to any zone. Configuration data
-and instructions to set this up are available elsewhere in this repository.
+and instructions to set this up are available elsewhere in this repository [to
+be completed and linked from here].
 
 All test zones are created under the non-existing .xa TLD except for a few cases
 where the test zone must be the root, a TLD or a domain name under .ARPA. As the
@@ -50,4 +51,3 @@ e.g. `no-response-mx-query.zone09.xa`,
 [Test cases]:                                           ../tests/README.md
 [unit tests]:                                           https://github.com/zonemaster/zonemaster-engine/tree/master/t
 [test-data]:                                            .
-
