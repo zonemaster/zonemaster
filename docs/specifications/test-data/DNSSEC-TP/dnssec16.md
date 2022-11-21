@@ -39,7 +39,7 @@ The second part specifies the zone setup for the scenario.
 
 ## Test zone names
 
-The test zone for each test scenario in this docuemtn is a subdomain delegated
+The test zone for each test scenario in this documetn is a subdomain delegated
 from the base name (`dnssec16.xa`) and that subdomain having the same name as the
 scenario except where the test domain must be the root zone, a TLD or a domain
 under `.arpa`. The names of those zones are given in section
@@ -98,7 +98,7 @@ Assumptions for the scenario specifications:
 * Zone: "cds-invalid-rrsig.dnssec16.xa."
   * The zone has a *Valid DNSKEY Record* (key 1).
   * The zone has one *Valid CDS Record*, that matches key 1, but the RRSIG of
-    the CDS RRset has has expired.
+    the CDS RRset has expired.
 
 ### CDS-MATCHES-NO-DNSKEY
 * Zone: "cds-matches-no-dnskey.dnssec16.xa."

@@ -7,7 +7,7 @@ directory, else it will not find all included data files.
 In this directory the following items will be found:
 
 * data/
-  *A directory with data files. See README.md in that directory
+  * A directory with data files. See README.md in that directory
 * main.cfg
   * The default main `coredns` configuration file that includes all
     other data files.
@@ -21,7 +21,7 @@ In this directory the following items will be found:
   * A script, generated from the IP plan, to populate the loopback
     interface with IP addresses. Generated versions to be checked-in.
 * make-add-ip.pl
-  * A script that will generate app-ip.sh when the IP plan has
+  * A script that will generate add-ip.sh when the IP plan has
     been updated. To be manually run when needed.
 * named.root
   * Default hint file to be used by `zonemaster-cli` when testing
@@ -44,4 +44,4 @@ Instructions below will be elaborated and updated
 * Maybe installtion of `Bind`
 * Instructions for updating some RRSIG
 * Instructions for running `make-add-ip.pl`
-* Instructions för running `add-ip.sh`
+* Instructions for running `add-ip.sh`

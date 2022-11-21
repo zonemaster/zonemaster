@@ -39,12 +39,12 @@ In the test data specifications the scenarios are defined in two parts:
   the scenario is tested by the test case.
 * Specification of the zone setup for the scenario.
 
-One special aspect is the test scenario name. Since the the name is to be part
+One special aspect is the test scenario name. Since the name is to be part
 of the test zone name there are some requirements on it:
 * Under a specific test case there must not be two scenarios with the same name.
   Two closely related scenarios can, in their names, be separated with a
   relevant suffix.
-* The lenght of the scenario name must not exceed 32 characters to give room for
+* The length of the scenario name must not exceed 32 characters to give room for
   additional parts and still make sure it can fit into a DNS label.
 * The character set of the name is limited to those of a host name, i.e.
   `A-Z0-9-` where `A-Z` will be downcased to `a-z` in the domain name.
@@ -94,7 +94,7 @@ There are some exceptions to the name of the test zone that are defined here:
    since TLD names are not permitted to contain neither dash "-" nor digits.
 3. If the test zone must be in the ARPA tree, then the name is
    `<scenario name>.<test case name>.arpa`, e.g. `no-mx-arpa.zone09.arpa`. In
-   practice such a name will never be inconflict with names in the public DNS
+   practice such a name will never be in conflict with names in the public DNS
    tree since there no such names under public `.arpa`.
 4. If a scenario requires that the parent zone has different settings compared to
    other scenrios for the same test case, then the test zone name is

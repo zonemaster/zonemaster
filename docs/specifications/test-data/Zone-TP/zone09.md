@@ -26,9 +26,9 @@ different message tags are outputted when [Zone09] is run on a test zone. The
 message tags are defined in the test case ([Zone09]) and the scenarios are
 defined below.
 
-The scenarios are defined in two parts. First part defines the expectations on
-message tags from [Zone09] when Zonemaster is run against zone set up for the
-scenario:
+The scenarios are defined in two parts. The first part defines the expectations
+on message tags from [Zone09] when Zonemaster is run against the zone set up for
+the scenario:
 
 * What messages must be outputted (mandatory).
 * What messages must not be outputted (forbidden).
