@@ -1,13 +1,13 @@
 This is work-in-progress.
 
 When loading `coredns` configuration this directory should be the working
-directory, else it will not find all included data files.
+directory, else it will not find all included data files. This directory
+structure holds directories with zonefiles and `coredns` configurations
+for the test zone scenarios.
 
 
-In this directory the following items will be found:
+In this directory the following files will be found:
 
-* data/
-  * A directory with data files. See README.md in that directory
 * main.cfg
   * The default main `coredns` configuration file that includes all
     other data files.
@@ -32,6 +32,38 @@ In this directory the following items will be found:
 * Additional scripts may be needed.
 * Private keys for DNSKEY
 
+
+In this directory the following directories will be found:
+
+* COMMON/
+  * Holds zone files and configuration that are shared between several scenarios
+    for different test cases.
+* Address-TP/
+  * Directory structure for scenarios for test cases in the Adress-TP test module.
+* Basic-TP/
+  * Directory structure for scenarios for test cases in the Basic-TP test module.
+* Connectivity-TP/
+  * Directory structure for scenarios for test cases in the Connectivity-TP test
+    module.
+* Consistency-TP/
+  * Directory structure for scenarios for test cases in the Consistency-TP test
+    module.
+* DNSSEC-TP/
+  * Directory structure for scenarios for test cases in the DNSSEC-TP test
+    module.
+* Delegation-TP/
+  * Directory structure for scenarios for test cases in the Delegation-TP test
+    module.
+* Nameserver-TP/
+  * Directory structure for scenarios for test cases in the Nameserver-TP test
+    module.
+* Syntax-TP/
+  * Directory structure for scenarios for test cases in the Syntax-TP test
+    module.
+* Zone-TP/
+  * Directory structure for scenarios for test cases in the Zone-TP test module.
+
+
 Instructions below will be elaborated and updated
 
 * Installation of `Golang`
@@ -45,3 +77,7 @@ Instructions below will be elaborated and updated
 * Instructions for updating some RRSIG
 * Instructions for running `make-add-ip.pl`
 * Instructions for running `add-ip.sh`
+
+
+
+
