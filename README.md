@@ -22,7 +22,7 @@
 * [Bug reporting](#bug-reporting)
 * [Notable bugs and issues](#notable-bugs-and-issues)
 * [Contact and mailing lists](#contact-and-mailing-lists)
-
+* [License](#license)
 
 ## Introduction
 
@@ -75,9 +75,9 @@ and processor architecture listed below.
 * [CentOS Linux] 7
 * [Debian] 11
 * [Docker]
-* [FreeBSD] 13.0
+* [FreeBSD] 13.1
 * [Ubuntu] 22.04
-* [Rocky Linux] 8.6
+* [Rocky Linux] 9.1
 
 Only the latest long-term supported version of Debian, FreeBSD, Rocky Linux and
 Ubuntu, respectively, is supported. Support for CentOS Linux 7 will be dropped
@@ -97,11 +97,11 @@ at large cloud providers.
 Operating System | MariaDB | PostgreSQL
 ---------------- | --------| ---------------
 CentOS Linux 7   | 5.5     | *not supported*
-Debian 11        | 10.5    | 13.7
+Debian 11        | 10.5 ?? | 13.7 ??
 Docker           | n/a     | n/a
-FreeBSD 13.0     | 5.7 (*) | 13.6
-Ubuntu 22.04     | 10.5    | 14.2
-Rocky Linux 8.6  | 10.3    | 10.19
+FreeBSD 13.1     | 5.7 (*) | 13.9
+Rocky Linux 9.1  | 10.5 ?? | 13.??
+Ubuntu 22.04     | 10.6    | 14.2 ??
 
 * (*) FreeBSD uses MySQL, not MariaDB.
 * SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
@@ -117,11 +117,11 @@ Rocky Linux 8.6  | 10.3    | 10.19
 Operating System | Perl
 ---------------- | ----
 CentOS Linux 7   | 5.16
-Debian 11        | 5.32
+Debian 11        | 5.32 ?
 Docker           | (*)
-FreeBSD 13.0     | 5.32
-Ubuntu 22.04     | 5.34
-Rocky Linux 8.6  | 5.26
+FreeBSD 13.1     | 5.32
+Rocky Linux 9.1  | 5.32 ?
+Ubuntu 22.04     | 5.34 ?
 
 * Zonemaster requieres Perl version 5.16 or higher.
 * Zonemaster has been tested with the default version of Perl in the OSs as
@@ -135,12 +135,12 @@ The latest version of the browser at the time of testing is used.
 
 Operating System | Browser
 ---------------- | -------
-Ubuntu 22.04     | Firefox
-Ubuntu 22.04     | Chrome
+MacOS 13         | Firefox
+MacOS 13         | Chrome
 Windows 10       | Firefox
 Windows 10       | Chrome
-MacOs            | Firefox
-MacOs            | Chrome
+Ubuntu 22.04     | Firefox
+Ubuntu 22.04     | Chrome
 
 Zonemaster GUI is tested manually and with testing tools. See the
 [Zonemaster-gui repository][Zonemaster-GUI] for more details.
@@ -256,6 +256,12 @@ None.
 
 See our [contact and mailing lists] page for contact information and
 information on mailing lists.
+
+
+## License
+
+This is free software under a 2-clause BSD license. The full text of the license can
+be found in the [LICENSE](LICENSE) file included in this respository.
 
 
 [CentOS Linux]:                        https://centos.org/centos-linux/
