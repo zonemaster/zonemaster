@@ -70,8 +70,8 @@ Assumptions for the scenario specifications:
 * For each scenario zone there is one name server configured.
 * Unless stated otherwise, all name servers responds as follows:
   * Responds with a SOA record for the zone on query for SOA.
-  * All responses are authoritative with NOERROR RCODE.
-  * EDNS version 0 is included in all responses on queries with EDNS.
+  * All responses are authoritative with [RCODE Name] "NoError".
+  * EDNS, version 0, is included in all responses on queries with EDNS.
   * EDNS is not included in responses on queries without EDNS.
   * Unknown EDNS option codes are not included in responses.
 
@@ -105,12 +105,12 @@ Assumptions for the scenario specifications:
   
 ### UNEXPECTED-RCODE-FORMERR
 * Zone: "unexpected-rcode-formerr.nameserver11.xa."
-  * The nameserver will respond with FORMERR RCODE if the query includes an
+  * The nameserver will respond with [RCODE Name] "FormErr" if the query includes an
     unknown EDNS OPTION CODE.
 
 ### UNEXPECTED-RCODE-REFUSED
 * Zone: "unexpected-rcode-refused.nameserver11.xa."
-  * The nameserver will respond with REFUSED RCODE if the query includes an
+  * The nameserver will respond with [RCODE Name] "Refused" if the query includes an
     unknown EDNS OPTION CODE.
 
 ### UNSET-AA
@@ -119,7 +119,8 @@ Assumptions for the scenario specifications:
     EDNS OPTION CODE.
 
 
-[NAMESERVER11]:                                 ../../specifications/tests/Nameserver-TP/nameserver11.md
-[Test zone README file]:                        ../README.md
-[Zone setup for test scenarios]:                #zone-setup-for-test-scenarios
+[NAMESERVER11]:                                                   ../../specifications/tests/Nameserver-TP/nameserver11.md
+[RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[Test zone README file]:                                          ../README.md
+[Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios
 

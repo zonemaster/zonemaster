@@ -9,6 +9,7 @@
 * [Test zone names](#test-zone-names)
 * [Test scenarios and message tags](#test-scenarios-and-message-tags)
 * [Zone setup for test scenarios]
+* [Terminology](#terminology)
 
 
 ## Background
@@ -74,91 +75,82 @@ VALID-CDS                    | (none)                                           
 
 Assumptions for the scenario specifications:
 * Only CDS or DNSKEY records in apex are considered.
-* Unless stated otherwise, all name servers responds authoritatively with RCODE
-  NOERROR on all queries.
+* Unless stated otherwise, all name servers responds authoritatively with
+  [RCODE Name] "NoError" on all queries.
 * Unless stated otherwise, all name servers responds authoritatively with (or
   without) CDS records on CDS queries and DNSKEY records on DNSKEY queries,
   respectively.
 * Unless stated otherwise, all RRSIGs are present where expected and are valid.
 * Each zone is served by two nameservers and both responds consistently.
 * No DS record is published at parent zone (`dnssec16.xa`).
-* In this section, a "Valid DNSKEY Record" meets the following requirements:
-  * It is a DNSKEY record in apex.
-  * It uses algorithm 10 (RSA/SHA-512) with 2048 octets key length, see
-    [DNSSEC05] and [DNSSEC14].
-  * Flag bit 7 (zone key) and bit 15 (SEP) are set.
-  * The DNSKEY RRset has been signed by the key and the RRSIG is valid.
-* In this section, a "Valid CDS Record" meets the following requirements:
-  * It is a CDS record in apex.
-  * It uses hash digest 2 (SHA-256), see [DNSSEC01].
-  * Its digest is a digest of a *Valid DNSKEY Record*.
-  * The CDS RRset has been signed by the its DNSKEY and the RRSIG is valid.
 
 ### CDS-INVALID-RRSIG
 * Zone: "cds-invalid-rrsig.dnssec16.xa."
-  * The zone has a *Valid DNSKEY Record* (key 1).
-  * The zone has one *Valid CDS Record*, that matches key 1, but the RRSIG of
-    the CDS RRset has expired.
+  * The zone has a [Well Formed DNSKEY Record] (key 1).
+  * The zone has one [Well Formed CDS Record], that matches key 1, but the RRSIG
+    of the CDS RRset has expired.
 
 ### CDS-MATCHES-NO-DNSKEY
 * Zone: "cds-matches-no-dnskey.dnssec16.xa."
-  * The zone has one *Valid DNSKEY Record* (key 1).
-  * The zone has one *Valid CDS Record* that matches key 1.
-  * The zone has a second *Valid CDS Record* that matches no key by key tag.
+  * The zone has one [Well Formed DNSKEY Record] (key 1).
+  * The zone has one [Well Formed CDS Record] that matches key 1.
+  * The zone has a second [Well Formed CDS Record] that matches no key by key
+    tag.
 
 ### CDS-MATCHES-NON-SEP-DNSKEY
 * Zone: "cds-matches-non-sep-dnskey.dnssec16.xa."
-  * The zone has a *Valid DNSKEY Record*, but but flag bit 15 is unset (key 1).
-  * The zone has one *Valid CDS Record* that matches key 1.
+  * The zone has a [Well Formed DNSKEY Record], but but flag bit 15 is unset (key
+    1).
+  * The zone has one [Well Formed CDS Record] that matches key 1.
 
 ### CDS-MATCHES-NON-ZONE-DNSKEY
 * Zone: "cds-matches-non-zone-dnskey.dnssec16.xa."
-  * The zone has one *Valid DNSKEY Record* (key 1).
-  * The zone has a second *Valid DNSKEY Record*, but flag bit 7 is unset and the
-    key has not signed the DNSKEY RRset (key 2).
-  * The zone has one *Valid CDS Record* and matches key 1 (CDS 1).
-  * The zone has a second *Valid CDS Record*, matching key 2, but the key has not
-    signed the CDS RRset.
+  * The zone has one [Well Formed DNSKEY Record] (key 1).
+  * The zone has a second [Well Formed DNSKEY Record], but flag bit 7 is unset
+    and the key has not signed the DNSKEY RRset (key 2).
+  * The zone has one [Well Formed CDS Record] and matches key 1 (CDS 1).
+  * The zone has a second [Well Formed CDS Record], matching key 2, but the key
+    has not signed the CDS RRset.
 
 ### CDS-NOT-SIGNED-BY-CDS
 * Zone: "cds-not-signed-by-cds.dnssec16.xa."
-  * The zone has two *Valid DNSKEY Record* (key 1 and 2).
-  * The zone has one *Valid CDS Record* that matches key 1.
-  * The zone has a second *Valid CDS Record* that matches key 2, but its DNSKEY
-    has not signed the CDS RRset.
+  * The zone has two [Well Formed DNSKEY Record] (key 1 and 2).
+  * The zone has one [Well Formed CDS Record] that matches key 1.
+  * The zone has a second [Well Formed CDS Record] that matches key 2, but its
+    DNSKEY has not signed the CDS RRset.
 
 ### CDS-SIGNED-BY-UNKNOWN-DNSKEY
 * Zone: "cds-signed-by-unknown-dnskey.dnssec16.xa."
-  * The zone has a *Valid DNSKEY Record* (key 1).
-  * The zone has one *Valid CDS Record*, and it matches key 1.
+  * The zone has a [Well Formed DNSKEY Record] (key 1).
+  * The zone has one [Well Formed CDS Record], and it matches key 1.
   * The CDS RRset has an additional RRSIG that matches no DNSKEY by key tag.
 
 ### CDS-UNSIGNED
 * Zone: "cds-unsigned.dnssec16.xa."
-  * The zone has a *Valid DNSKEY Record* (key 1).
-  * The zone has one *Valid CDS Record*, and it matches key 1, but the CDS RRset
-    is not signed.
+  * The zone has a [Well Formed DNSKEY Record] (key 1).
+  * The zone has one [Well Formed CDS Record], and it matches key 1, but the CDS
+    RRset is not signed.
 
 ### CDS-WITHOUT-DNSKEY
 * Zone: "cds-without-dnskey.dnssec16.xa."
   * The zone has no DNSKEY.
-  * The zone has one *Valid CDS Record* that matches no DNSKEY.
+  * The zone has one [Well Formed CDS Record] that matches no DNSKEY.
 
 ### DELETE-CDS
 * Zone: "delete-cds.dnssec16.xa."
-  * The zone has a *Valid DNSKEY Record*.
+  * The zone has a [Well Formed DNSKEY Record].
   * The zone has one CDS RR that is a Delete CDS.
 
 ### DNSKEY-NOT-SIGNED-BY-CDS
 * Zone: "dnskey-not-signed-by-cds.dnssec16.xa."
-  * The zone has a *Valid DNSKEY Record* (key 1), byt the key has not signed the
-    DNSKEY RRset.
-  * The zone has one *Valid CDS Record*, and it matches key 1.
+  * The zone has a [Well Formed DNSKEY Record] (key 1), byt the key has not
+    signed the DNSKEY RRset.
+  * The zone has one [Well Formed CDS Record], and it matches key 1.
 
 ### MIXED-DELETE-CDS
 * Zone: "mixed-delete-cds.dnssec16.xa."
-  * The zone has a *Valid DNSKEY Record* (key 1).
-  * The zone has one *Valid CDS Record*, and it matches key 1.
+  * The zone has a [Well Formed DNSKEY Record] (key 1).
+  * The zone has one [Well Formed CDS Record], and it matches key 1.
   * The zone has a second CDS RR that is a Delete CDS.
 
 ### NO-CDS
@@ -171,15 +163,34 @@ Assumptions for the scenario specifications:
 
 ### VALID-CDS
 * Zone: "valid-cds.dnssec16.xa."
-  * The zone has a *Valid DNSKEY Record* (key 1).
-  * The zone has one *Valid CDS Record*, and it matches key 1.
+  * The zone has a [Well Formed DNSKEY Record] (key 1).
+  * The zone has one [Well Formed CDS Record], and it matches key 1.
+
+## Terminology
+
+* "Well Formed DNSKEY Record" - The term is used, in this document, for a DNSKEY
+  record that meets the following requirements:
+  * It is a DNSKEY record in apex.
+  * It uses algorithm 10 (RSA/SHA-512) with 2048 octets key length, see
+    [DNSSEC05] and [DNSSEC14].
+  * Flag bit 7 (zone key) and bit 15 (SEP) are set.
+  * The DNSKEY RRset has been signed by the key and the RRSIG is valid.
+
+* "Well Formed CDS Record" - The term is used, in this document, for a CDS record
+  that meets the following requirements:
+  * It is a CDS record in apex.
+  * It uses hash digest 2 (SHA-256), see [DNSSEC01].
+  * Its digest is a digest of a [Well Formed DNSKEY Record].
+  * The CDS RRset has been signed by the its DNSKEY and the RRSIG is valid.
 
 
-
-[DNSSEC01]:                                     ../../specifications/tests/DNSSEC-TP/dnssec01.md
-[DNSSEC05]:                                     ../../specifications/tests/DNSSEC-TP/dnssec05.md
-[DNSSEC14]:                                     ../../specifications/tests/DNSSEC-TP/dnssec14.md
-[DNSSEC16]:                                     ../../specifications/tests/DNSSEC-TP/dnssec16.md
-[Test zone README file]:                        ../README.md
-[Zone setup for test scenarios]:                #zone-setup-for-test-scenarios
+[DNSSEC01]:                                                       ../../specifications/tests/DNSSEC-TP/dnssec01.md
+[DNSSEC05]:                                                       ../../specifications/tests/DNSSEC-TP/dnssec05.md
+[DNSSEC14]:                                                       ../../specifications/tests/DNSSEC-TP/dnssec14.md
+[DNSSEC16]:                                                       ../../specifications/tests/DNSSEC-TP/dnssec16.md
+[RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[Test zone README file]:                                          ../README.md
+[Well Formed CDS Record]:                                         #terminology
+[Well Formed DNSKEY Record]:                                      #terminology
+[Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios
 

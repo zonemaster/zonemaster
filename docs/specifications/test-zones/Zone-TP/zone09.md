@@ -76,8 +76,8 @@ Assumptions for the zone setup for the test scenarios:
   SOA record on SOA queries.
 * Unless otherwise stated, all name servers responds authoritatively with (or
   without) MX records on MX queries.
-* Unless otherwise stated, all responds are authoritative and with NOERROR
-  RCODE.
+* Unless otherwise stated, all responds are authoritative and with [RCODE Name]
+  "NoError".
 
 ### NO-RESPONSE-MX-QUERY
 * Zone: "no-response-mx-query.zone09.xa."
@@ -89,13 +89,13 @@ Assumptions for the zone setup for the test scenarios:
 * Zone: "unexpected-rcode-mx.zone09.xa."
   * The zone has two name servers.
   * Both name servers return an authoritative answer on SOA query.
-  * One name server returns non-NOERROR RCODE on MX query.
+  * One name server returns with any [RCODE Name] except "NoError".
 
 ### NON-AUTH-MX-RESPONSE
 * Zone: "non-auth-mx-response.zone09.xa."
   * The zone has two name servers.
   * Both name server return an authoritative answer on SOA query.
-  * One name server returns NOERROR RCODE and non-AA on MX query.
+  * One name server returns with [RCODE Name] "NoError" and non-AA on MX query.
 
 ### INCONSISTENT-MX
 * Zone: "inconsistent-mx.zone09.xa."
@@ -158,6 +158,7 @@ Assumptions for the zone setup for the test scenarios:
   * All name server responds with no MX RRset (NODATA).
 
 
-[Test zone README file]:                        ../README.md
-[Zone setup for test scenarios]:                #zone-setup-for-test-scenarios
-[Zone09]:                                       ../../specifications/tests/Zone-TP/zone09.md
+[RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[Test zone README file]:                                          ../README.md
+[Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios
+[Zone09]:                                                         ../../specifications/tests/Zone-TP/zone09.md
