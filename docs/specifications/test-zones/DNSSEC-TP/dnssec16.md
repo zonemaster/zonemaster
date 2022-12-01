@@ -40,7 +40,7 @@ The second part specifies the zone setup for the scenario.
 
 ## Test zone names
 
-The test zone for each test scenario in this documetn is a subdomain delegated
+The test zone for each test scenario in this document is a subdomain delegated
 from the base name (`dnssec16.xa`) and that subdomain having the same name as the
 scenario except where the test domain must be the root zone, a TLD or a domain
 under `.arpa`. The names of those zones are given in section
@@ -75,13 +75,13 @@ VALID-CDS                    | (none)                                           
 
 Assumptions for the scenario specifications:
 * Only CDS or DNSKEY records in apex are considered.
-* Unless stated otherwise, all name servers responds authoritatively with
+* Unless stated otherwise, all name servers respond authoritatively with
   [RCODE Name] "NoError" on all queries.
-* Unless stated otherwise, all name servers responds authoritatively with (or
+* Unless stated otherwise, all name servers respond authoritatively with (or
   without) CDS records on CDS queries and DNSKEY records on DNSKEY queries,
   respectively.
 * Unless stated otherwise, all RRSIGs are present where expected and are valid.
-* Each zone is served by two nameservers and both responds consistently.
+* Each zone is served by two nameservers and both respond consistently.
 * No DS record is published at parent zone (`dnssec16.xa`).
 
 ### CDS-INVALID-RRSIG

@@ -72,11 +72,11 @@ NO-MX-ARPA            | (none)                                            | Z09_
 
 Assumptions for the zone setup for the test scenarios:
 * Only MX records in apex are considered.
-* Unless otherwise stated, all name servers responds authoritatively with the
+* Unless otherwise stated, all name servers respond authoritatively with the
   SOA record on SOA queries.
-* Unless otherwise stated, all name servers responds authoritatively with (or
+* Unless otherwise stated, all name servers respond authoritatively with (or
   without) MX records on MX queries.
-* Unless otherwise stated, all responds are authoritative and with [RCODE Name]
+* Unless otherwise stated, all respond are authoritative and with [RCODE Name]
   "NoError".
 
 ### NO-RESPONSE-MX-QUERY
@@ -111,51 +111,51 @@ Assumptions for the zone setup for the test scenarios:
 
 ### NULL-MX-WITH-OTHER-MX
 * Zone: "null-mx-with-other-mx.zone09.xa."
-  * All name servers responds with the same MX RRset.
+  * All name servers respond with the same MX RRset.
   * The MX RRset is a mix of Null MX and non-Null MX.
 
 ### NULL-MX-NON-ZERO-PREF
 * Zone: "null-mx-non-zero-pref.zone09.xa."
-  * All name servers responds with the same MX RRset.
+  * All name servers respond with the same MX RRset.
   * The MX RRset is a single MX record.
   * The MX record is a Null MX with a non-zero preference.
 
 ### TLD-EMAIL-DOMAIN
 * Zone: "tld-email-domain-zone09." (TLD, dash "-", not dot ".")
   * The test zone is a TLD zone.
-  * All name servers responds with the same MX RRset.
+  * All name servers respond with the same MX RRset.
   * All MX records are non-Null MX.
 
 ### ROOT-EMAIL-DOMAIN
 * Zone: "." (root zone)
   * The test zone is the root zone.
-  * All name servers responds with the same MX RRset.
+  * All name servers respond with the same MX RRset.
   * All MX records are non-Null MX.
 
 ### MX-DATA
 * Zone: "mx-data.zone09.xa."
-  * All name servers responds with the same MX RRset.
+  * All name servers respond with the same MX RRset.
   * All MX records are non-Null MX.
 
 ### NULL-MX
 * Zone: "null-mx.zone09.xa."
-  * All name servers responds with the same MX RRset.
+  * All name servers respond with the same MX RRset.
   * The MX RRset has a single, valid NULL MX.
 
 ### NO-MX-SLD
 * Zone: "no-mx-sld.zone09.xa."
   * The test zone is neither root, TLD or under .ARPA.
-  * All name server responds with no MX RRset (NODATA).
+  * All name servers respond with no MX RRset (NODATA).
 
 ### NO-MX-TLD
 * Zone: "no-mx-tld-zone09." (TLD, dash "-", not dot ".")
   * The test zone is a TLD.
-  * All name server responds with no MX RRset (NODATA).
+  * All name servers respond with no MX RRset (NODATA).
 
 ### NO-MX-ARPA
 * Zone: "no-mx-arpa.zone09.arpa."
   * The test zone is under .ARPA.
-  * All name server responds with no MX RRset (NODATA).
+  * All name servers respond with no MX RRset (NODATA).
 
 
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6

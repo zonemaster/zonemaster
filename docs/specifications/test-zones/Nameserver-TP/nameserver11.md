@@ -39,7 +39,7 @@ The second part specifies the zone setup for the scenario.
 
 ## Test zone names
 
-The test zone for each test scenario in this documetn is a subdomain delegated
+The test zone for each test scenario in this document is a subdomain delegated
 from the base name (`nameserver11.xa`) and that subdomain having the same name as the
 scenario. The names of those zones are given in section
 "[Zone setup for test scenarios]" below.
@@ -68,7 +68,7 @@ UNSET-AA                  | N11_UNSET_AA                     | N11_NO_EDNS, N11_
 
 Assumptions for the scenario specifications:
 * For each scenario zone there is one name server configured.
-* Unless stated otherwise, all name servers responds as follows:
+* Unless stated otherwise, all name servers respond as follows:
   * Responds with a SOA record for the zone on query for SOA.
   * All responses are authoritative with [RCODE Name] "NoError".
   * EDNS, version 0, is included in all responses on queries with EDNS.
