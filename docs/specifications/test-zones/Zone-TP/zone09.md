@@ -1,4 +1,4 @@
-# Specification of test data for ZONE09
+# Specification of test zones for ZONE09
 
 ## Table of contents
 
@@ -12,11 +12,11 @@
 
 ## Background
 
-See the [test zone and test data README file].
+See the [test zone README file].
 
 
 ## Test Case
-This document specifies available test data for test case [Zone09]..
+This document specifies defined test zones for test case [Zone09].
 
 
 ## Test scenarios
@@ -158,6 +158,6 @@ Assumptions for the zone setup for the test scenarios:
   * All name server responds with no MX RRset (NODATA).
 
 
-[Test zone and test data README file]:          ../README.md
+[Test zone README file]:                        ../README.md
 [Zone setup for test scenarios]:                #zone-setup-for-test-scenarios
 [Zone09]:                                       ../../specifications/tests/Zone-TP/zone09.md

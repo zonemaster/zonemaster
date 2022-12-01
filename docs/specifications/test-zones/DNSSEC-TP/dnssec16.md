@@ -1,4 +1,4 @@
-# Specification of test data for DNSSEC16
+# Specification of test zones for DNSSEC16
 
 
 ## Table of contents
@@ -13,11 +13,11 @@
 
 ## Background
 
-See the [test zone and test data README file].
+See the [test zone README file].
 
 
 ## Test Case
-This document specifies available test data for test case [DNSSEC16].
+This document specifies defined test zones for test case [DNSSEC16].
 
 
 ## Test scenarios
@@ -180,6 +180,6 @@ Assumptions for the scenario specifications:
 [DNSSEC05]:                                     ../../specifications/tests/DNSSEC-TP/dnssec05.md
 [DNSSEC14]:                                     ../../specifications/tests/DNSSEC-TP/dnssec14.md
 [DNSSEC16]:                                     ../../specifications/tests/DNSSEC-TP/dnssec16.md
-[Test zone and test data README file]:          ../README.md
+[Test zone README file]:                        ../README.md
 [Zone setup for test scenarios]:                #zone-setup-for-test-scenarios
 

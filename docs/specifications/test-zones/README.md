@@ -1,4 +1,4 @@
-# Test zones and test data for verification of test case implementation
+# Test zones for verification of test case implementation
 
 ## Table of contents
 
@@ -13,15 +13,15 @@
 
 ## Objective
 
-The purpose of the structure found here is to define test zones and test data to
-be able to test the correctness of the implementation of the Zonemaster
-[test cases]. The main use case is to be the basis for the [unit tests] in the
-Zonemaster implementation. The second use case is to verify work in progress,
-e.g. implementation of new or updated test cases or updated test case
+The purpose of the structure found here is to define test zones to be able to
+test the correctness of the implementation of the Zonemaster [test cases]. The
+main use case is to be the basis for the [unit tests] in the Zonemaster
+implementation. The second use case is to verify work in progress, e.g.
+implementation of new or updated test cases or updated test case
 implementation where the test case has not changed.
 
 There can be other use cases, but only these two use cases are covered here
-and in the test data specifications.
+and in the test zone specifications.
 
 
 ## Test scenarios
@@ -30,9 +30,9 @@ The goal of the test scenarios is to cover all reasonable contexts where
 different message tags are outputted when a test case is run on test zones. The
 message tags are defined in the test case specifications found via "[test cases]"
 and the scenarios are defined in the test case specific specifications for test
-data found via the [test-data] directory.
+data found via the [test-zones] directory.
 
-In the test data specifications the scenarios are defined in two parts:
+In the test zone specifications the scenarios are defined in two parts:
 
 * What messages from test case that are expected to be outputted and what
   messages are expected not to be outputted when a test zone setup according to
@@ -143,5 +143,5 @@ below.
 [Out-Of-Bailiwick]:                                  #terminology
 [RFC 8499]:                                          https://datatracker.ietf.org/doc/html/rfc8499#section-7
 [Test cases]:                                        ../tests/README.md
-[test-data]:                                         .
-[unit tests]:                                        https://github.com/zonemaster/zonemaster-engine/tree/master/t
+[Test-zones]:                                        .
+[Unit tests]:                                        https://github.com/zonemaster/zonemaster-engine/tree/master/t

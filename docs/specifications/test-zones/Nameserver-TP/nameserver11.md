@@ -1,4 +1,4 @@
-# Specification of test data for NAMESERVER11
+# Specification of test zones for NAMESERVER11
 
 
 ## Table of contents
@@ -13,11 +13,11 @@
 
 ## Background
 
-See the [test zone and test data README file].
+See the [test zone README file].
 
 
 ## Test Case
-This document specifies available test data for test case [NAMESERVER11].
+This document specifies defined test zones for test case [NAMESERVER11].
 
 
 ## Test scenarios
@@ -120,6 +120,6 @@ Assumptions for the scenario specifications:
 
 
 [NAMESERVER11]:                                 ../../specifications/tests/Nameserver-TP/nameserver11.md
-[Test zone and test data README file]:          ../README.md
+[Test zone README file]:                        ../README.md
 [Zone setup for test scenarios]:                #zone-setup-for-test-scenarios
 
