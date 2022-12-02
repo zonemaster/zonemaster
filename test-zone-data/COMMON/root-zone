@@ -1,0 +1,42 @@
+$ORIGIN .
+$TTL 3600
+
+@       SOA     ns1. admin.xb. (
+                2022112300      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+		        NS	ns1.
+                        NS      ns2.
+
+ns1.	A       127.1.0.1
+ns1.	AAAA	fda1:b2:c3::127:1:0:1
+
+ns2.      A       127.1.0.2
+ns2.      AAAA    fda1:b2:c3::127:1:0:2
+
+arpa.	NS	ns1.
+arpa.	NS	ns2.
+
+xa	NS	ns1.xa.
+ns1.xa.	A	127.2.0.11
+ns1.xa.	AAAA	fda1:b2:c3::127:2:0:11
+
+xa	NS	ns2.xa.
+ns2.xa. A       127.2.0.12
+ns2.xa. AAAA    fda1:b2:c3::127:2:0:12
+
+tld-email-domain-zone09		NS	ns1.tld-email-domain-zone09
+ns1.tld-email-domain-zone09	A	127.19.9.41
+ns1.tld-email-domain-zone09	AAAA	fda1:b2:c3::127:19:9:41
+
+tld-email-domain-zone09         NS      ns2.tld-email-domain-zone09
+ns2.tld-email-domain-zone09     A       127.19.9.42
+ns2.tld-email-domain-zone09     AAAA    fda1:b2:c3::127:19:9:42
+
+asnlookup.zonemaster.net. 306	IN	NS	ns2.asnlookup.zonemaster.net.
+asnlookup.zonemaster.net. 306	IN	NS	ns1.asnlookup.zonemaster.net.
+ns1.asnlookup.zonemaster.net. 359 IN	A	127.3.0.1
+ns2.asnlookup.zonemaster.net. 348 IN	A	127.3.0.2

@@ -1,0 +1,27 @@
+$ORIGIN arpa.
+$TTL 3600
+
+@       SOA     a.root-servers.xb. admin.root-servers.xb. (
+                2022100300      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+			NS      ns1.xa.
+			NS	ns2.xa.
+
+1.0.1.127.in-addr.arpa.	PTR	ns1.
+1.0.0.0.0.0.0.0.1.0.0.0.7.2.1.0.0.0.0.0.3.c.0.0.2.b.0.0.1.a.d.f.ip6.arpa. PTR ns1.
+2.0.1.127.in-addr.arpa. PTR     ns2.
+2.0.0.0.0.0.0.0.1.0.0.0.7.2.1.0.0.0.0.0.3.c.0.0.2.b.0.0.1.a.d.f.ip6.arpa. PTR ns2.
+
+11.0.2.127.in-addr.arpa. PTR     ns1.xa.
+1.1.0.0.0.0.0.0.2.0.0.0.7.2.1.0.0.0.0.0.3.c.0.0.2.b.0.0.1.a.d.f.ip6.arpa. PTR ns1.xa.
+12.0.2.127.in-addr.arpa. PTR     ns2.xa.
+2.1.0.0.0.0.0.0.2.0.0.0.7.2.1.0.0.0.0.0.3.c.0.0.2.b.0.0.1.a.d.f.ip6.arpa. PTR ns2.xa.
+
+21.9.19.127.in-addr.arpa. PTR     ns1.zone09.xa.
+1.2.0.0.9.0.0.0.9.1.0.0.7.2.1.0.0.0.0.0.3.c.0.0.2.b.0.0.1.a.d.f.ip6.arpa. PTR ns1.zone09.xa.
+22.9.19.127.in-addr.arpa. PTR     ns2.zone09.xa.
+2.2.0.0.9.0.0.0.9.1.0.0.7.2.1.0.0.0.0.0.3.c.0.0.2.b.0.0.1.a.d.f.ip6.arpa. PTR ns2.zone09.xa.

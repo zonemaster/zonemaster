@@ -1,0 +1,25 @@
+$ORIGIN xa.
+$TTL 3600
+
+@       SOA     ns1.xa. admin.mail.xa. (
+                2022112300      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+        NS      ns1
+	NS	ns2
+
+ns1	A	127.2.0.11
+ns1	AAAA	fda1:b2:c3::127:2:0:11
+
+ns2	A	127.2.0.12
+ns2	AAAA	fda1:b2:c3::127:2:0:12
+
+zone09			NS	ns1.zone09
+zone09                  NS      ns2.zone09
+ns1.zone09		A	127.19.9.21
+ns1.zone09		AAAA	fda1:b2:c3::127:19:9:21
+ns2.zone09		A	127.19.9.22
+ns2.zone09		AAAA	fda1:b2:c3::127:19:9:22

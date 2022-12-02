@@ -1,0 +1,116 @@
+$ORIGIN zone09.xa.
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2022112300      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+    NS  ns1
+	NS	ns2
+
+ns1		A		127.19.9.21
+ns1		AAAA	fda1:b2:c3:0:127:19:9:21
+ns2		A		127.19.9.22
+ns2		AAAA	fda1:b2:c3:0:127:19:9:22
+
+
+inconsistent-mx	NS      ns1.inconsistent-mx
+inconsistent-mx	NS      ns2.inconsistent-mx
+ns1.inconsistent-mx	A       127.19.9.31
+ns1.inconsistent-mx	AAAA    fda1:b2:c3::127:19:9:31
+ns2.inconsistent-mx	A       127.19.9.32
+ns2.inconsistent-mx	AAAA    fda1:b2:c3::127:19:9:32
+
+inconsistent-mx-data        NS      ns1.inconsistent-mx-data
+inconsistent-mx-data        NS      ns2.inconsistent-mx-data
+ns1.inconsistent-mx-data     A       127.19.9.31
+ns1.inconsistent-mx-data     AAAA    fda1:b2:c3::127:19:9:31
+ns2.inconsistent-mx-data     A       127.19.9.32
+ns2.inconsistent-mx-data     AAAA    fda1:b2:c3::127:19:9:32
+
+mx-data        NS      ns1.mx-data
+mx-data        NS      ns2.mx-data
+ns1.mx-data     A       127.19.9.31
+ns1.mx-data     AAAA    fda1:b2:c3::127:19:9:31
+ns2.mx-data     A       127.19.9.32
+ns2.mx-data     AAAA    fda1:b2:c3::127:19:9:32
+
+unexpected-rcode-mx		NS      ns1.unexpected-rcode-mx
+unexpected-rcode-mx		NS      ns2.unexpected-rcode-mx
+ns1.unexpected-rcode-mx	A       127.19.9.31
+ns1.unexpected-rcode-mx	AAAA    fda1:b2:c3::127:19:9:31
+ns2.unexpected-rcode-mx	A       127.19.9.32
+ns2.unexpected-rcode-mx	AAAA    fda1:b2:c3::127:19:9:32
+
+tld-email-domain	NS      ns1.tld-email-domain
+tld-email-domain	NS      ns2.tld-email-domain
+ns1.tld-email-domain	A       127.19.9.31
+ns1.tld-email-domain	AAAA    fda1:b2:c3::127:19:9:31
+ns2.tld-email-domain	A       127.19.9.32
+ns2.tld-email-domain	AAAA    fda1:b2:c3::127:19:9:32
+
+null-mx		NS	ns1.null-mx
+null-mx		NS	ns2.null-mx
+ns1.null-mx	A       127.19.9.31
+ns1.null-mx	AAAA    fda1:b2:c3::127:19:9:31
+ns2.null-mx	A       127.19.9.32
+ns2.null-mx	AAAA    fda1:b2:c3::127:19:9:32
+
+no-mx-sld	NS      ns1.no-mx-sld
+no-mx-sld	NS      ns2.no-mx-sld
+ns1.no-mx-sld	A       127.19.9.31
+ns1.no-mx-sld	AAAA    fda1:b2:c3::127:19:9:31
+ns2.no-mx-sld	A       127.19.9.32
+ns2.no-mx-sld	AAAA    fda1:b2:c3::127:19:9:32
+
+no-mx-tld	NS      ns1.no-mx-tld
+no-mx-tld	NS      ns2.no-mx-tld
+ns1.no-mx-tld	A       127.19.9.31
+ns1.no-mx-tld	AAAA    fda1:b2:c3::127:19:9:31
+ns2.no-mx-tld	A       127.19.9.32
+ns2.no-mx-tld	AAAA    fda1:b2:c3::127:19:9:32
+
+no-mx-arpa	NS      ns1.no-mx-arpa
+no-mx-arpa	NS      ns2.no-mx-arpa
+ns1.no-mx-arpa	A       127.19.9.31
+ns1.no-mx-arpa	AAAA    fda1:b2:c3::127:19:9:31
+ns2.no-mx-arpa	A       127.19.9.32
+ns2.no-mx-arpa	AAAA    fda1:b2:c3::127:19:9:32
+
+non-auth-mx-response        NS      ns1.non-auth-mx-response
+non-auth-mx-response        NS      ns2.non-auth-mx-response
+ns1.non-auth-mx-response     A       127.19.9.31
+ns1.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:31
+ns2.non-auth-mx-response     A       127.19.9.32
+ns2.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:32
+
+no-response-mx-query        NS      ns1.no-response-mx-query
+no-response-mx-query        NS      ns2.no-response-mx-query
+ns1.no-response-mx-query     A       127.19.9.31
+ns1.no-response-mx-query     AAAA    fda1:b2:c3::127:19:9:31
+ns2.no-response-mx-query     A       127.19.9.32
+ns2.no-response-mx-query     AAAA    fda1:b2:c3::127:19:9:32
+
+null-mx-non-zero-pref        NS      ns1.null-mx-non-zero-pref
+null-mx-non-zero-pref        NS      ns2.null-mx-non-zero-pref
+ns1.null-mx-non-zero-pref     A       127.19.9.31
+ns1.null-mx-non-zero-pref     AAAA    fda1:b2:c3::127:19:9:31
+ns2.null-mx-non-zero-pref     A       127.19.9.32
+ns2.null-mx-non-zero-pref     AAAA    fda1:b2:c3::127:19:9:32
+
+null-mx-with-other-mx        NS      ns1.null-mx-with-other-mx
+null-mx-with-other-mx        NS      ns2.null-mx-with-other-mx
+ns1.null-mx-with-other-mx     A       127.19.9.31
+ns1.null-mx-with-other-mx     AAAA    fda1:b2:c3::127:19:9:31
+ns2.null-mx-with-other-mx     A       127.19.9.32
+ns2.null-mx-with-other-mx     AAAA    fda1:b2:c3::127:19:9:32
+
+root-email-domain        NS      ns1.root-email-domain
+root-email-domain        NS      ns2.root-email-domain
+ns1.root-email-domain     A       127.19.9.31
+ns1.root-email-domain     AAAA    fda1:b2:c3::127:19:9:31
+ns2.root-email-domain     A       127.19.9.32
+ns2.root-email-domain     AAAA    fda1:b2:c3::127:19:9:32
