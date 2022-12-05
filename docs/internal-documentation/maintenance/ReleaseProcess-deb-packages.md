@@ -1,5 +1,5 @@
-Release Process - Create .deb Packages
-=====================================
+Release Process - Create .deb packages
+======================================
 
 
 ## Overview
@@ -11,11 +11,14 @@ Zonemaster-LDNS are covered.
 The process to build the packages is split in two steps. In the first step "nightly
 packages" are updated. In the second step packages are promoted to "stable packages".
 
-## 1. Update the nightly packages
+## 1. Update the nightly packages specification
 
 Nightly packages are based on the develop branch of Zonemaster git repositories.
 The sources for nightly packages are kept in the branch `<distribution>-nightly`
-of the [Packages sources] repository.
+of the [Packages sources] repository. Where `<distrubtion>` correspond to the
+name of the Debian or Ubuntu version the branch is building packages for.
+As Ubuntu packages are based on the Debian ones, this will most likely be a
+Debain version name.
 
 For each package:
 
@@ -23,7 +26,7 @@ For each package:
    section of the  `debian/control` file for each  required package to add
    and/or remove any dependencies that have changed.
 
-2. If there are new files (executables as such), update `debian/*.manpages` and
+2. If there are new files (such as executables), update `debian/*.manpages` and
    `debian/*.install` accordingly. This step is not required for new Perl
    modules, but will be for new scripts.
 
@@ -31,14 +34,23 @@ For each package:
 
 
 When a new Zonemaster release of the relevant component has been
-[published on Github], and when the nightly package is working fine, promote it
-to stable. The only difference between a nightly packages and its promoted
-version is the upstream tarball. While the nightly packages use the develop
-branch as upstream, the stable ones use a specific tag.
+[published on Github], and when the nightly package is working fine (the build
+is successfull, it can be installed and is usable), promote it to stable. The
+only difference between a nightly packages and its promoted version is the
+upstream tarball. While the nightly packages use the develop branch as
+upstream, the stable ones use a specific tag.
 
 1. Locally merge the `<distribution>-nightly` branch into `<distribution>` of
    the [Packages sources] repository. The `.gitlab-ci.yml` and `pkg.sh` files
    should not be merged.
+   For instance the following commands could be used to merge
+   `bullseye-nightly` into `bullseye`:
+   ```
+   git checkout bullseye-nightly
+   git merge --no-commit bullseye
+   git restore .gitlab-ci.yml */pkg.sh
+   git commit
+   ```
 
 2. Update the upstream ref in `pkg.sh` with the tag of the corresponding release
    for each package.
