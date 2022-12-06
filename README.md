@@ -97,11 +97,11 @@ at large cloud providers.
 Operating System | MariaDB | PostgreSQL
 ---------------- | --------| ---------------
 CentOS Linux 7   | 5.5     | *not supported*
-Debian 11        | 10.5 ?? | 13.7 ??
+Debian 11        | 10.5    | 13.8
 Docker           | n/a     | n/a
 FreeBSD 13.1     | 5.7 (*) | 13.9
-Rocky Linux 9.1  | 10.5 ?? | 13.??
-Ubuntu 22.04     | 10.6    | 14.2 ??
+Rocky Linux 9.1  | 10.5    | 13.7
+Ubuntu 22.04     | 10.6    | 14.5
 
 * (*) FreeBSD uses MySQL, not MariaDB.
 * SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
