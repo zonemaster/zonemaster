@@ -1,3 +1,4 @@
 ../../config
 ../specifications/functional-tests/Coherency-TP/
 *~
+.DS_Store
