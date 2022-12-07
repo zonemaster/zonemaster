@@ -23,5 +23,5 @@ This instruction is for creating it on Debian. See other files for other OSs.
 4. Clone 'develop' branch from all Zonemaster repositories
 
    ```sh
-   for d in ldns engine cli backend gui; do git clone -b develop https://github.com/zonemaster/zonemaster-$d.git; done
+   for d in ldns engine cli backend; do git clone -b develop https://github.com/zonemaster/zonemaster-$d.git; done
    ```
