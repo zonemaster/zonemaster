@@ -32,12 +32,33 @@ for the test zone scenarios.
    ```
    sudo apt  install golang-go 
    ```
+5. Install `unbound`
+   ```
+   sudo apt install libunbound-dev
+   ```
 5. Install `coredns`:
-   1. Follow https://github.com/coredns/coredns#compilation-from-source
-   2. The `coredns` binary is now found in the top of the `coredns` repository.
-      The command below assumes that it is copied to or symlinked from a
-      directory in PATH.
-6. Create `add-ip.sh` from the address plan (TBD).
+   1. Reference https://github.com/coredns/coredns
+   2. Clone `coredns`:
+   ```
+   git clone https://github.com/coredns/coredns
+   cd coredns
+   ```
+   3. Add the line "unbound:github.com/coredns/unbound" to the plugin.cfg
+      file found in the top of the repository, e.g.
+   ```
+   echo "unbound:github.com/coredns/unbound" >> plugin.cfg
+   ```
+   4. Generate and compile
+   ```
+   go get github.com/coredns/unbound
+   go generate
+   CGO_ENABLED=1 make
+   ```
+   5. `coredns` is now in top of repository. Add it to PATH:
+   ```
+   sudo cp coredns  /usr/local/bin/
+   ```
+   6. Create `add-ip.sh` from the address plan (TBD).
 
 ## Running instructions
 
@@ -50,7 +71,7 @@ Two terminal windows to the computer are needed.
    or again if additional interfaces have been added. (Reboot the computer to
    remove the interfaces.)
    ```
-   sudo add-ip.sh
+   sudo sh add-ip.sh
    ```
 3. Start `coredns`. It will be running in the forground until terminated.
    ```
