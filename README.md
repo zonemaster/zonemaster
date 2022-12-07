@@ -123,7 +123,7 @@ FreeBSD 13.1     | 5.32
 Rocky Linux 9.1  | 5.32 ?
 Ubuntu 22.04     | 5.34 ?
 
-* Zonemaster requieres Perl version 5.16 or higher.
+* Zonemaster requires Perl version 5.16 or higher.
 * Zonemaster has been tested with the default version of Perl in the OSs as
   listed in the table above.
 * (*) Perl is included in the Docker image published on [Docker Hub].
