@@ -1,3 +1,19 @@
+# Test Zone Data
+
+## Table of contents
+
+
+* [Installation instructions](#installation-instructions)
+* [Running instructions](#running-instructions)
+  * [Start coredns in terminal 1](#start-coredns-in-terminal-1)
+  * [Run zonemaster-cli in terminal 2](#run-zonemaster-cli-in-terminal-2)
+  * [Run unit tests in terminal 2](#run-unit-tests-in-terminal-2)
+* [Files in current directory](#files-in-current-directory)
+* [Directories in current directory](#directories-in-current-directory)
+* [Notes](#notes)
+
+
+
 This is work-in-progress.
 
 When loading `coredns` configuration this directory should be the working
@@ -5,16 +21,63 @@ directory, else it will not find all included data files. This directory
 structure holds directories with zonefiles and `coredns` configurations
 for the test zone scenarios.
 
+## Installation instructions
 
-In this directory the following files will be found:
+1. Only Ubuntu 22.04 is supported.
+2. Install Zonemaster-CLI on the computer. Install either current develop branch
+   (to get support for `--hint`) or Zonemaster v2022.2 (first version with
+   support for `--hint`).
+3. Clone this repository or copy its contents to the computer.
+4. Install `go`:
+   ```
+   sudo apt  install golang-go 
+   ```
+5. Install `coredns`:
+   1. Follow https://github.com/coredns/coredns#compilation-from-source
+   2. The `coredns` binary is now found in the top of the `coredns` repository.
+      The command below assumes that it is copied to or symlinked from a
+      directory in PATH.
+6. Create `add-ip.sh` from the address plan (TBD).
+
+## Running instructions
+
+Two terminal windows to the computer are needed.
+
+### Start coredns in terminal 1
+
+1. Change directory to where this README file is.
+2. Create all virtual interfaces. This step has to be done once for each session
+   or again if additional interfaces have been added. (Reboot the computer to
+   remove the interfaces.)
+   ```
+   sudo add-ip.sh
+   ```
+3. Start `coredns`. It will be running in the forground until terminated.
+   ```
+   sudo coredns --conf main.cfg
+   ```
+
+### Run zonemaster-cli in terminal 2
+
+1. Change directory to where this README file is.
+2. Use `zonemaster-cli` with `--hint` and the appropriate name.root hint file.
+   Example:
+   ```
+   zonemaster-cli NO-RESPONSE-MX-QUERY.zone09.xa --raw  --test Zone/zone09 --hints COMMON/hintfile
+   ```
+   
+### Run unit tests in terminal 2
+
+TBD.
+
+
+## Files in current directory
+In this directory the following files are to be found:
 
 * main.cfg
   * The default main `coredns` configuration file that includes all
     other data files.
-* main-XXXX.cfg
-  * An alternative `coredns` configuration file for a specific
-    scenario (XXXX to be the combination of scenario name and test case ID).
-* iptable.md
+* address-plan.md
   * A document that explains the IP plan and that also contains the
     the IP plan in a markdown table.
 * add-ip.sh
@@ -22,17 +85,21 @@ In this directory the following files will be found:
     interface with IP addresses. Generated versions to be checked-in.
 * make-add-ip.pl
   * A script that will generate add-ip.sh when the IP plan has
-    been updated. To be manually run when needed.
-* named.root
+    been updated. To be manually run when needed. (TBD)
+* named.root (TBD)
   * Default hint file to be used by `zonemaster-cli` when testing
     against the test zones created by this structure.
-* named.root-XXXX
+* named.root-XXXX (TBD)
   * An alternative hint file for a specific scenario (XXXX to
     be the combination of scenario name and test case ID).
-* Additional scripts may be needed.
-* Private keys for DNSKEY
+* Additional scripts may be needed. (TB)
+* Private keys for DNSKEY (TBD)
 
 
+
+
+
+## Directories in current directory
 In this directory the following directories will be found:
 
 * COMMON/
@@ -63,6 +130,8 @@ In this directory the following directories will be found:
 * Zone-TP/
   * Directory structure for scenarios for test cases in the Zone-TP test module.
 
+
+## Notes
 
 Instructions below will be elaborated and updated
 
