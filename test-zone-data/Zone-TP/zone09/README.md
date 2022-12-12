@@ -28,7 +28,7 @@ NO-RESPONSE-MX-QUERY  | Z09\_NO\_RESPONSE\_MX\_QUERY                          | 
 $ zonemaster-cli NO-RESPONSE-MX-QUERY.zone09.xa --raw  --test Zone/zone09 --hints COMMON/hintfile --level info
    0.00 INFO      GLOBAL_VERSION   version=v4.5.1
   20.11 WARNING   Z09_NO_RESPONSE_MX_QUERY   ns_ip_list=127.19.9.32;fda1:b2:c3:0:127:19:9:32
-  20.11 INFO      Z09_MX_DATA   mailtarget_list=mail.xa.; ns_ip_list=fda1:b2:c3:0:127:19:9:31;127.19.9.31
+  20.11 INFO      Z09_MX_DATA   mailtarget_list=mail.no-response-mx-query.zone09.xa.; ns_ip_list=127.19.9.31;fda1:b2:c3:0:127:19:9:31
 ```
 -> OK
 
@@ -38,10 +38,10 @@ Scenario name         | Mandatory message tags                            | Forb
 UNEXPECTED-RCODE-MX   | Z09\_UNEXPECTED\_RCODE\_MX                           | (none)
 
 ```
-$ zonemaster-cli NO-RESPONSE-MX-QUERY.zone09.xa --raw  --test Zone/zone09 --hints COMMON/hintfile --level info
+$ zonemaster-cli UNEXPECTED-RCODE-MX.zone09.xa --raw  --test Zone/zone09 --hints COMMON/hintfile --level info
    0.00 INFO      GLOBAL_VERSION   version=v4.5.1
-  20.11 WARNING   Z09_NO_RESPONSE_MX_QUERY   ns_ip_list=127.19.9.32;fda1:b2:c3:0:127:19:9:32
-  20.11 INFO      Z09_MX_DATA   mailtarget_list=mail.xa.; ns_ip_list=fda1:b2:c3:0:127:19:9:31;127.19.9.31
+   0.07 WARNING   Z09_UNEXPECTED_RCODE_MX   ns_ip_list=ARRAY(0x5638fec55130); rcode=NOTIMPL
+   0.07 NOTICE    Z09_MISSING_MAIL_TARGET
 ```
 -> OK
 
@@ -53,7 +53,7 @@ NON-AUTH-MX-RESPONSE  | Z09\_NON\_AUTH\_MX\_RESPONSE                          | 
 ```
 $ zonemaster-cli NON-AUTH-MX-RESPONSE.zone09.xa --raw  --test Zone/zone09 --hint COMMON/hintfile --level info
    0.00 INFO      GLOBAL_VERSION   version=v4.5.1
-   0.12 INFO      Z09_MX_DATA   mailtarget_list=mail.xa.; ns_ip_list=fda1:b2:c3:0:127:19:9:32;fda1:b2:c3:0:127:19:9:31;127.19.9.32;127.19.9.31
+   0.08 INFO      Z09_MX_DATA   mailtarget_list=mail.non-auth-mx-response.zone09.xa.; ns_ip_list=127.19.9.31;127.19.9.32;fda1:b2:c3:0:127:19:9:32;fda1:b2:c3:0:127:19:9:31
 ```
 -> The zone file configuration is not yet correct.
 
@@ -64,10 +64,10 @@ INCONSISTENT-MX       | Z09\_INCONSISTENT\_MX, Z09\_MX\_FOUND, Z09\_NO\_MX\_FOUN
 ```
 $ zonemaster-cli INCONSISTENT-MX.zone09.xa --raw  --test Zone/zone09 --hints COMMON/hintfile --level info
    0.00 INFO      GLOBAL_VERSION   version=v4.5.1
-   0.14 WARNING   Z09_INCONSISTENT_MX
-   0.14 INFO      Z09_NO_MX_FOUND   ns_ip_list=127.19.9.32;fda1:b2:c3:0:127:19:9:32
-   0.14 INFO      Z09_MX_FOUND   ns_ip_list=127.19.9.31;fda1:b2:c3:0:127:19:9:31
-   0.14 INFO      Z09_MX_DATA   mailtarget_list=mail.xa.; ns_ip_list=127.19.9.31;fda1:b2:c3:0:127:19:9:31
+   0.07 WARNING   Z09_INCONSISTENT_MX
+   0.07 INFO      Z09_NO_MX_FOUND   ns_ip_list=127.19.9.32;fda1:b2:c3:0:127:19:9:32
+   0.07 INFO      Z09_MX_FOUND   ns_ip_list=127.19.9.31;fda1:b2:c3:0:127:19:9:31
+   0.07 INFO      Z09_MX_DATA   mailtarget_list=mail.inconsistent-mx.zone09.xa.; ns_ip_list=127.19.9.31;fda1:b2:c3:0:127:19:9:31
 ```
 -> OK
 
@@ -78,9 +78,9 @@ INCONSISTENT-MX-DATA  | Z09\_INCONSISTENT\_MX\_DATA, Z09\_MX\_DATA             |
 ```
 $ zonemaster-cli INCONSISTENT-MX-DATA.zone09.xa --raw  --test Zone/zone09 --hints COMMON/hintfile --level info
    0.00 INFO      GLOBAL_VERSION   version=v4.5.1
-   0.09 WARNING   Z09_INCONSISTENT_MX_DATA
-   0.09 INFO      Z09_MX_DATA   mailtarget_list=mail.xa.;liam.xa.; ns_ip_list=127.19.9.31;fda1:b2:c3:0:127:19:9:31
-   0.09 INFO      Z09_MX_DATA   mailtarget_list=liam.xa.; ns_ip_list=127.19.9.32;fda1:b2:c3:0:127:19:9:32
+   0.08 WARNING   Z09_INCONSISTENT_MX_DATA
+   0.08 INFO      Z09_MX_DATA   mailtarget_list=mail2.inconsistent-mx-data.zone09.xa.; ns_ip_list=127.19.9.32;fda1:b2:c3:0:127:19:9:32
+   0.08 INFO      Z09_MX_DATA   mailtarget_list=mail.inconsistent-mx-data.zone09.xa.;mail2.inconsistent-mx-data.zone09.xa.; ns_ip_list=127.19.9.31;fda1:b2:c3:0:127:19:9:31
 ```
 -> OK
 
@@ -136,7 +136,7 @@ MX-DATA               | Z09\_MX\_DATA                                       | Z0
 ```
 $ zonemaster-cli mx-data.zone09.xa --raw  --test Zone/zone09 --hints COMMON/hintfile --level info
    0.00 INFO      GLOBAL_VERSION   version=v4.5.1
-   0.14 INFO      Z09_MX_DATA   mailtarget_list=mail.xa.; ns_ip_list=fda1:b2:c3:0:127:19:9:31;fda1:b2:c3:0:127:19:9:32;127.19.9.32;127.19.9.31
+   0.07 INFO      Z09_MX_DATA   mailtarget_list=mail.mx-data.zone09.xa.; ns_ip_list=fda1:b2:c3:0:127:19:9:32;127.19.9.32;fda1:b2:c3:0:127:19:9:31;127.19.9.31
 ```
 -> OK
 

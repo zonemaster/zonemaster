@@ -22,6 +22,7 @@ The choice of x have some logic built in when used in the test cases.
 | asnlookup.zonemaster.net. |                         | ns1                     |      |     |                         | 3  | 0  | 1  |
 |                           |                         | ns2                     |      |     |                         | 3  | 0  | 2  |
 | mail                      | mail                    | mail                    | mail |     |                         | 3  | 0  | 25 |
+| mail2                     | mail2                   | mail2                   | mail2|     |                         | 3  | 0  | 26 |
 | resolver                  |                         |                         |      |     |                         | 3  | 0  | 53 |
 |                           |                         | address01               | ns1  |     |                         | 11 | 1  | 21 |
 |                           |                         |                         | ns2  |     |                         | 11 | 1  | 22 |
