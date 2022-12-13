@@ -202,7 +202,7 @@ This test level validates that each change since last release:
 
 
 [CentOS-Preparation]:         https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/distrib-testing/CentOS-build-environment.md
-[Create Test Distribution]      https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess-create-test-distribution.md
+[Create Test Distribution]    https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess-create-test-distribution.md
 [Debian-Preparation]:         https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/distrib-testing/Debian-build-environment.md
 [FreeBSD-Preparation]:        https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/distrib-testing/FreeBSD-build-environment.md
 [Ubuntu-Preparation]:         https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/distrib-testing/Ubuntu-build-environment.md
