@@ -77,11 +77,13 @@ and processor architecture listed below.
 * [Docker]
 * [FreeBSD] 13.1
 * [Ubuntu] 22.04
-* [Rocky Linux] 9.1
+* [Rocky Linux] 8.7
 
-Only the latest long-term supported version of Debian, FreeBSD, Rocky Linux and
-Ubuntu, respectively, is supported. Support for CentOS Linux 7 will be dropped
-by Zonemaster release v2023.1.
+Only the latest long-term supported version of Debian, FreeBSD and Ubuntu,
+respectively, is supported. Zonemaster supports Rocky Linux 8.7, not 9.1, due to
+issues with LDNS and OpenSSL on Rocky Linux 9.1. The plan is to change to Rocky
+Linux 9 in the v2023.1 release. Support for CentOS Linux 7 will be dropped by
+Zonemaster release v2023.1.
 
 Only the Docker images provided by the Zonemaster project on [Docker Hub] are
 supported. Currently only Zonemaster-CLI is supported on Docker. Docker itself
@@ -100,7 +102,7 @@ CentOS Linux 7   | 5.5     | *not supported*
 Debian 11        | 10.5    | 13.8
 Docker           | n/a     | n/a
 FreeBSD 13.1     | 5.7 (*) | 13.9
-Rocky Linux 9.1  | 10.5    | 13.7
+Rocky Linux 8.7  | 10.3 ?? | 10.19 ??
 Ubuntu 22.04     | 10.6    | 14.5
 
 * (*) FreeBSD uses MySQL, not MariaDB.
@@ -120,7 +122,7 @@ CentOS Linux 7   | 5.16
 Debian 11        | 5.32 ?
 Docker           | (*)
 FreeBSD 13.1     | 5.32
-Rocky Linux 9.1  | 5.32 ?
+Rocky Linux 9.1  | 5.26 ??
 Ubuntu 22.04     | 5.34 ?
 
 * Zonemaster requires Perl version 5.16 or higher.
