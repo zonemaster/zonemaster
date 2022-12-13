@@ -119,7 +119,7 @@ Ubuntu 22.04     | 10.6    | 14.5
 Operating System | Perl
 ---------------- | ----
 CentOS Linux 7   | 5.16
-Debian 11        | 5.32 ?
+Debian 11        | 5.32
 Docker           | (*)
 FreeBSD 13.1     | 5.32
 Rocky Linux 9.1  | 5.26 ??
