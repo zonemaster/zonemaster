@@ -56,6 +56,7 @@ The set of configurations must include at least:
          * [Debian-Preparation]
          * [FreeBSD-Preparation]
          * [Ubuntu-Preparation]
+         * Rocky-Linux-Preparation (TBD)
 
    2. Install Zonemaster LDNS
       1. Make sure the requirements for IDN support in [the IDN section](https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md#idn) section are satisfied.
