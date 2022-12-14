@@ -35,10 +35,12 @@ For each package:
 
 When a new Zonemaster release of the relevant component has been
 [published on Github], and when the nightly package is working fine (the build
-is successfull, it can be installed and is usable), promote it to stable. The
-only difference between a nightly packages and its promoted version is the
-upstream tarball. While the nightly packages use the develop branch as
-upstream, the stable ones use a specific tag.
+is successfull, it can be installed and is usable, all of that should have been
+already checked during the relase testing if the package specification has not
+changed since), promote it to stable. The only difference between a nightly
+packages and its promoted version is the upstream tarball. While the nightly
+packages use the develop branch as upstream, the stable ones use a specific
+tag.
 
 1. Locally merge the `<distribution>-nightly` branch into `<distribution>` of
    the [Packages sources] repository. The `.gitlab-ci.yml` and `pkg.sh` files
@@ -62,7 +64,8 @@ upstream, the stable ones use a specific tag.
    For example:  `zonemaster-cli (3.1.0-3+deb11)` is the partial entry for
    Zonemaster CLI version `3.1.0`, the package version is `3` and it is built
    for Debian 11. Package version is incremented when the package sources are
-   updated but the upstream version remains the same.
+   updated but the upstream version (i.e. Zonemaster component version) remains
+   the same.
 
 4. Push the modifications to the packages sources repository. Then the packages
    are automatically built and deployed to package.zonemaster.net.
