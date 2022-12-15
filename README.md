@@ -102,7 +102,7 @@ CentOS Linux 7   | 5.5     | *not supported*
 Debian 11        | 10.5    | 13.8
 Docker           | n/a     | n/a
 FreeBSD 13.1     | 5.7 (*) | 13.9
-Rocky Linux 8.7  | 10.3 ?? | 10.19 ??
+Rocky Linux 8.7  | 10.3    | 10.21
 Ubuntu 22.04     | 10.6    | 14.5
 
 * (*) FreeBSD uses MySQL, not MariaDB.
@@ -122,8 +122,8 @@ CentOS Linux 7   | 5.16
 Debian 11        | 5.32
 Docker           | (*)
 FreeBSD 13.1     | 5.32
-Rocky Linux 9.1  | 5.26 ??
-Ubuntu 22.04     | 5.34 ?
+Rocky Linux 9.1  | 5.26
+Ubuntu 22.04     | 5.34
 
 * Zonemaster requires Perl version 5.16 or higher.
 * Zonemaster has been tested with the default version of Perl in the OSs as
