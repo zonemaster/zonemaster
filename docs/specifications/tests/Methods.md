@@ -17,7 +17,7 @@ removed.
 
 ### Method 1: Obtain the parent domain
 
-This Method tries to obain the parent domain from the domain used as input
+This Method tries to obtain the parent domain from the domain used as input
 to this Method.
 
 1. A recursive SOA-record lookup for the child domain name starting at the
