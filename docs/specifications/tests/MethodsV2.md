@@ -140,22 +140,18 @@ This Method uses the following input units defined in section [Methods Inputs]:
 5. Find the parent zone of the *Child Zone* by iteratively [sending][send]
    *SOA Child Query* to all name servers found. Start by using the nameservers
    from *Root Name Servers*.
-   1. Follow all paths from root and downwards by using the referrals (non-AA
-      response with empty answer section and NS records in the authority
-      section).
-   2. When one of the following criteria is met (not both), then stop the lookup
-      up in that branch and save the name server IP address and zone name for
-      which the server is name server (parent zone) to the *Parent Name Server IP* set.
-      Criteria:
-      * The [DNS response] is a referral to *Child Zone* (owner name of the NS
-        records in authority section is *Child Zone*), or
-      * The [DNS response] has the AA flag set.
-   3. If the lookup reaches a name server that meet at least one of the following
+   1. Follow all paths from root and downwards by using the [Referrals][Referral].
+   2. If the [DNS Response] is a [Referral] to *Child Zone*, or the
+      [DNS response] has the AA flag set, then:
+      1. Stop the lookup up in that branch.
+      2. Save the name server IP address and zone name for which the server is
+         name server (parent zone) to the *Parent Name Server IP* set.
+   3. If the lookup reaches a name server that meets at least one of the following
       criteria, then ignore it.
       1. Does not respond at all.
       2. Responds with an invalid DNS response.
       3. Responds with an [RCODE Name] besides NoError and NXDomain.
-      4. Responds with a non-referral and the AA bit unset.
+      4. Responds with a non-referral (see [Referral]) and the AA bit unset.
    5. Continue until all paths are exhausted.
 
 > *Note that the "parent zone name" is the name of the zone that the name server
@@ -188,8 +184,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
             2. If the [DNS Response], if any, meets exactly one of the following
                criteria then save the IP address and the parent zone name to the
                *Parent Name Server IP* set. Criteria:
-               * The [DNS response] is a referral to *Child Zone* (owner name
-                 of the NS records in authority section is *Child Zone*), or
+               * The [DNS response] is a [Referral] to *Child Zone*, or
                * The [DNS response] has the AA flag set.
 
 7. If the *Parent Name Server IP* set is non-empty then do:
@@ -452,10 +447,10 @@ This Method depends on [Get-Del-NS-IPs].
 
 ### Objective
 
-Obtain the name server names (extracted from the NS records) from
-apex of the child zone. For [In-Bailiwick] name server names obtain
-the IP addresses from the child zone. For the [Out-Of-Bailiwick] name
-server names obtain the IP addresses from resolver lookup.
+Obtain the name server names (extracted from the NS records) from the apex of the
+child zone. For [In-Bailiwick] name server names obtain the IP addresses from the
+child zone. For the [Out-Of-Bailiwick] name server names obtain the IP addresses
+from resolver lookup.
 
 ### Inputs
 
@@ -634,7 +629,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
       1. Does not respond at all, or
       2. Responds with an invalid DNS response, or
       3. Responds with an [RCODE Name] besides NoError.
-   3. If the [DNS Response] contains a referral to the Child Zone:
+   3. If the [DNS Response] is a [Referral] to the Child Zone:
       1. Extract the name server names from the RDATA of the NS records in
          the authority section.
       2. Extract any A or AAAA record from the additional section if the owner
@@ -659,9 +654,9 @@ This Method uses the following input units defined in section [Methods Inputs]:
          1. [Send] two [DNS Queries][DNS Query] with that name server name as
             query name to the parent name server, query type A and AAAA,
             respectively.
-         2. If the [DNS Response] has a delegation (referral) to a sub-zone of
-            Child Zone, follow that delegation, possibly in several steps, by
-            repeating the A and AAAA queries.
+         2. If the [DNS Response] is a [Referral] to a sub-zone of *Child Zone*,
+            follow that delegation, possibly in several steps, by repeating the
+            A and AAAA queries.
          3. If a CNAME is returned, follow that, possibly in several steps, to
             resolve the name to IP addresses, if possible.
          4. Update *AA Name Servers* with captured IP addresses, if any.
@@ -744,13 +739,13 @@ This Method uses the following input units defined in section [Methods Inputs]:
          ("AAAA Query").
    2. [Send] *A Query* and *AAAA Query* to all servers in *Name Server IPs*
       and process the [DNS Responses][DNS Response] from each of them.
-   3. If a delegation (referral) to a sub-zone of Child Zone is returned,
+   3. If a [Referral] to a sub-zone of Child Zone is returned,
       follow that delegation, possibly in several steps, by repeating
       *A Query* and *AAAA Query*.
    4. If a CNAME is returned, follow that, possibly in several
       steps, to resolve the name to IP addresses, if possible.
-   5. Ignore non-referral responses unless AA flag is set (cached data
-      is not accepted) and ignore response with any other [RCODE Name] than
+   5. Ignore non-referral responses [see [Referral] unless AA flag is set (cached
+      data is not accepted) and ignore response with any other [RCODE Name] than
       NoError.
    6. Add found IP addresses for the name server names in *Name Servers*.
 
@@ -891,11 +886,20 @@ None.
   pages 24-25. In this document it is limited to the meaning "in domain" in the
   RFC.
 
-* "Out-Of-Bailiwick" lue record" - The terms means, in this document, what is
-  not "In-Bailiwick, in domain". [RFC 8499], section 7,  pages 24-25.
+* "Out-Of-Bailiwick" - The terms means, in this document, what is not
+  "In-Bailiwick, in domain". [RFC 8499], section 7,  pages 24-25.
+
+* "Referral" - The term means a DNS response with [RCODE Name] NoError, AA flag
+  unset and NS records in the authority section.
+  * The answer section is empty or with CNAME record or records. If the query
+    type is CNAME, then the answer section must be empty.
+  * The additional section may contain address (glue) records (A and AAAA) for
+    the name server names from the RCODE of the NS records.
+  * The referral refers the zone identical to the owner name of the NS records
+    to the name servers specified by the RDATA in the NS records.
 
 * "Send" - The terms are used when a DNS query is sent to a specific name server
-  (name sever IP address).
+  (name server IP address).
 
 * "Valid Domain Name" -- The term stands for a non-empty domain name string that
   has successfully passed the tests and normalizations in the
@@ -944,6 +948,7 @@ None.
 [Out-Of-Bailiwick]:                                  #terminology
 [RCODE Name]:                                        https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 8499]:                                          https://datatracker.ietf.org/doc/html/rfc8499#section-7
+[Referral]:                                          #terminology
 [Requirements and normalization]:                    RequirementsAndNormalizationOfDomainNames.md
 [Send]:                                              #terminology
 [Valid Domain Name]:                                 #terminology
