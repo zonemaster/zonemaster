@@ -45,17 +45,18 @@ The set of configurations must include at least:
 ### Procedure
 
 1. Make sure you have the correct preliminary distribution tarball for each
-   component.
+   component. See [Create Test Distribution].
 
 2. For each configuration:
 
    1. Prepare a machine
       1. Allocate a machine with the architecture specified by the configuration.
       2. Follow the preparation document for the operating system specified by the configuration.
-         * CentOS-Preparation.md (unavailable at this time)
-         * [Debian-Preparation.md](https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/distrib-testing/Debian-Preparation.md)
-         * [FreeBSD-Preparation.md](https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/distrib-testing/FreeBSD-Preparation.md)
-         * Ubuntu-Preparation.md (unavailable at this time)
+         * [CentOS-Preparation]
+         * [Debian-Preparation]
+         * [FreeBSD-Preparation]
+         * [Ubuntu-Preparation]
+         * Rocky-Linux-Preparation (TBD)
 
    2. Install Zonemaster LDNS
       1. Make sure the requirements for IDN support in [the IDN section](https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md#idn) section are satisfied.
@@ -201,4 +202,9 @@ This test level validates that each change since last release:
 
 
 
-[smoke test]: https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md#71-smoke-test
+[CentOS-Preparation]:         https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/distrib-testing/CentOS-build-environment.md
+[Create Test Distribution]:   https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess-create-test-distribution.md
+[Debian-Preparation]:         https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/distrib-testing/Debian-build-environment.md
+[FreeBSD-Preparation]:        https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/distrib-testing/FreeBSD-build-environment.md
+[Ubuntu-Preparation]:         https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/distrib-testing/Ubuntu-build-environment.md
+[smoke test]:                 https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md#71-smoke-test
