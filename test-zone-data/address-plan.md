@@ -90,6 +90,8 @@ The choice of x have some logic built in when used in the test cases.
 |                           |                         |                         | ns2  |     |                         | 15 | 15 | 22 |
 |                           |                         | dnssec16                | ns1  |     |                         | 15 | 16 | 21 |
 |                           |                         |                         | ns2  |     |                         | 15 | 16 | 22 |
+|                           |                         |                         | xxy  | ns1 |                         | 15 | 16 | 31 |
+|                           |                         |                         |      | ns2 |                         | 15 | 16 | 32 |
 |                           |                         | dnssec17                | ns1  |     |                         | 15 | 17 | 21 |
 |                           |                         |                         | ns2  |     |                         | 15 | 17 | 22 |
 |                           |                         | dnssec18                | ns1  |     |                         | 15 | 18 | 21 |

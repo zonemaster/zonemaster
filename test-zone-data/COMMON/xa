@@ -23,3 +23,10 @@ ns1.zone09		A	127.19.9.21
 ns1.zone09		AAAA	fda1:b2:c3::127:19:9:21
 ns2.zone09		A	127.19.9.22
 ns2.zone09		AAAA	fda1:b2:c3::127:19:9:22
+
+dnssec16		NS	ns1.dnssec16
+dnssec16                NS      ns2.dnssec16
+ns1.dnssec16		A	127.15.16.21
+ns1.dnssec16		AAAA	fda1:b2:c3::127:15:16:21
+ns2.dnssec16            A       127.15.16.22
+ns2.dnssec16            AAAA    fda1:b2:c3::127:15:16:22
