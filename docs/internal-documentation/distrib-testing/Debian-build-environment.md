@@ -6,14 +6,7 @@ Zonemaster itself.
 
 This instruction is for creating it on Debian. See other files for other OSs.
 
-> Should this be Debian 9 or Debian 10? Do we need to cover both?
-
-> Is git installed by default?
->
-> Here we need gettext. Anything else?
-
-
-1. Make a clean installation of Debian.
+1. Make a clean installation of Debian 11.
 
 2. Update the package database.
 
@@ -24,7 +17,11 @@ This instruction is for creating it on Debian. See other files for other OSs.
 3. Install prerequisites
 
    ```sh
-   sudo apt-get install cpanminus gettext
+   sudo apt-get install git cpanminus gettext autoconf automake build-essential libdevel-checklib-perl libmodule-install-xsutil-perl libssl-dev libidn2-dev libtool
    ```
 
+4. Clone 'develop' branch from all Zonemaster repositories
 
+   ```sh
+   for d in ldns engine cli backend; do git clone -b develop https://github.com/zonemaster/zonemaster-$d.git; done
+   ```

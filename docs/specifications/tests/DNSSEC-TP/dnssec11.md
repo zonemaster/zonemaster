@@ -7,14 +7,14 @@
 
 ## Table of contents
 
-* [Objective](#Objective)
-* [Scope](#Scope)
-* [Inputs](#Inputs)
-* [Summary](#Summary)
-* [Test procedure](#Test-procedure)
-* [Outcome(s)](#Outcomes)
-* [Special procedural requirements](#Special-procedural-requirements)
-* [Intercase dependencies](#Intercase-dependencies)
+* [Objective](#objective)
+* [Scope](#scope)
+* [Inputs](#inputs)
+* [Summary](#summary)
+* [Test procedure](#test-procedure)
+* [Outcome(s)](#outcomes)
+* [Special procedural requirements](#special-procedural-requirements)
+* [Intercase dependencies](#intercase-dependencies)
 * [Terminology](#terminology)
 
 
@@ -35,7 +35,7 @@ It is assumed that *Child Zone* is tested and reported by other test cases:
 
 * This test case will ignore non-responsive name servers or name servers not
   giving a correct DNS response for an authoritative name server (covered
-  by [Basic04]).
+  by [Connectivity01]).
 * This test case will ignore any irregularities in fetching the DS record from
   parent zone (covered by [DNSSEC02]).
 * This test case will ignore if the DNSKEY and SOA RRsets are not signed
@@ -211,21 +211,21 @@ No special terminology for this test case.
 
 
 [Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Basic04]:                                    ../Basic-TP/basic014.md
+[Connectivity01]:                             ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [DNSSEC README]:                              README.md
 [DNSSEC02]:                                   dnssec02.md
 [DNSSEC08]:                                   dnssec08.md
 [DNSSEC09]:                                   dnssec09.md
-[DS11_DS_BUT_UNSIGNED_ZONE]:                  #Summary
-[DS11_INCONSISTENT_DS]:                       #Summary
-[DS11_INCONSISTENT_SIGNED_ZONE]:              #Summary
-[DS11_UNDETERMINED_DS]:                       #Summary
-[DS11_UNDETERMINED_SIGNED_ZONE]:              #Summary
-[DS11_NS_WITH_SIGNED_ZONE]:                   #Summary
-[DS11_NS_WITH_UNSIGNED_ZONE]:                 #Summary
-[DS11_PARENT_WITHOUT_DS]:                     #Summary
-[DS11_PARENT_WITH_DS]:                        #Summary
+[DS11_DS_BUT_UNSIGNED_ZONE]:                  #summary
+[DS11_INCONSISTENT_DS]:                       #summary
+[DS11_INCONSISTENT_SIGNED_ZONE]:              #summary
+[DS11_UNDETERMINED_DS]:                       #summary
+[DS11_UNDETERMINED_SIGNED_ZONE]:              #summary
+[DS11_NS_WITH_SIGNED_ZONE]:                   #summary
+[DS11_NS_WITH_UNSIGNED_ZONE]:                 #summary
+[DS11_PARENT_WITHOUT_DS]:                     #summary
+[DS11_PARENT_WITH_DS]:                        #summary
 [ERROR]:                                      ../SeverityLevelDefinitions.md#error
 [IANA RCODE List]:                            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [INFO]:                                       ../SeverityLevelDefinitions.md#info

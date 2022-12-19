@@ -8,14 +8,14 @@
 
 ## Table of contents
 
-* [Objective](#Objective)
-* [Scope](#Scope)
-* [Inputs](#Inputs)
-* [Summary](#Summary)
-* [Test procedure](#Test-procedure)
-* [Outcome(s)](#Outcomes)
-* [Special procedural requirements](#Special-procedural-requirements)
-* [Intercase dependencies](#Intercase-dependencies)
+* [Objective](#objective)
+* [Scope](#scope)
+* [Inputs](#inputs)
+* [Summary](#summary)
+* [Test procedure](#test-procedure)
+* [Outcome(s)](#outcomes)
+* [Special procedural requirements](#special-procedural-requirements)
+* [Intercase dependencies](#intercase-dependencies)
 * [Terminology](#terminology)
 
 
@@ -39,7 +39,7 @@ see [IANA RCODE Registry].
 
 ## Scope
 
-Issues covered by [Basic04] (basic name server issues) or [Nameserver02] (basic
+Issues covered by [Connectivity01] (basic name server issues) or [Nameserver02] (basic
 EDNS issues) will not result in messages from this test case.
 
 
@@ -143,16 +143,16 @@ No special terminology for this test case.
 
 
 [Argument list]:                           https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Basic04]:                                 ../Basic-TP/basic04.md
+[Connectivity01]:                          ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                                ../SeverityLevelDefinitions.md#critical
 [ERROR]:                                   ../SeverityLevelDefinitions.md#error
 [IANA RCODE Registry]:                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [INFO]:                                    ../SeverityLevelDefinitions.md#info
 [Method4]:                                 ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                                 ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[N10_EDNS_RESPONSE_ERROR]:                 #Summary
-[N10_NO_RESPONSE_EDNS1_QUERY]:             #Summary
-[N10_UNEXPECTED_RCODE]:                    #Summary
+[N10_EDNS_RESPONSE_ERROR]:                 #summary
+[N10_NO_RESPONSE_EDNS1_QUERY]:             #summary
+[N10_UNEXPECTED_RCODE]:                    #summary
 [NOTICE]:                                  ../SeverityLevelDefinitions.md#notice
 [Nameserver02]:                            ../Nameserver-TP/nameserver02.md
 [RFC 1035#section-4.1.1]:                  https://tools.ietf.org/html/rfc1035#section-4.1.1

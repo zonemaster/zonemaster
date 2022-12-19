@@ -2,27 +2,27 @@
 
 ## Table of contents
 
-* [Introduction](#Introduction)
-* [Background](#Background)
-* [Purpose](#Purpose)
-* [Documentation](#Documentation)
-* [Prerequisites](#Prerequisites)
-  * [Supported processor architectures](#Supported-processor-architectures)
-  * [Supported operating system versions](#Supported-operating-system-versions)
-  * [Supported database engine versions](#Supported-database-engine-versions)
-  * [Supported Perl versions](#Supported-Perl-versions)
-  * [Supported Client Browser versions](#Supported-Client-Browser-versions)
-* [Support of DNSKEY algorithms 15 and 16](#Support-of-DNSKEY-algorithms-15-and-16)
-* [Translation](#Translation)
-* [Zonemaster and its components](#Zonemaster-and-its-components)
-* [Installation](#Installation)
-* [Docker](#Docker)
-* [Versions](#Versions)
-* [Participation](#Participation)
-* [Bug reporting](#Bug-reporting)
-* [Notable bugs and issues](#Notable-bugs-and-issues)
-* [Contact and mailing lists](#Contact-and-mailing-lists)
-
+* [Introduction](#introduction)
+* [Background](#background)
+* [Purpose](#purpose)
+* [Documentation](#documentation)
+* [Prerequisites](#prerequisites)
+  * [Supported processor architectures](#supported-processor-architectures)
+  * [Supported operating system versions](#supported-operating-system-versions)
+  * [Supported database engine versions](#supported-database-engine-versions)
+  * [Supported Perl versions](#supported-perl-versions)
+  * [Supported Client Browser versions](#supported-client-browser-versions)
+* [Support of DNSKEY algorithms 15 and 16](#support-of-dnskey-algorithms-15-and-16)
+* [Translation](#translation)
+* [Zonemaster and its components](#zonemaster-and-its-components)
+* [Installation](#installation)
+* [Docker](#docker)
+* [Versions](#versions)
+* [Participation](#participation)
+* [Bug reporting](#bug-reporting)
+* [Notable bugs and issues](#notable-bugs-and-issues)
+* [Contact and mailing lists](#contact-and-mailing-lists)
+* [License](#license)
 
 ## Introduction
 
@@ -75,13 +75,15 @@ and processor architecture listed below.
 * [CentOS Linux] 7
 * [Debian] 11
 * [Docker]
-* [FreeBSD] 13.0
+* [FreeBSD] 13.1
 * [Ubuntu] 22.04
-* [Rocky Linux] 8.6
+* [Rocky Linux] 8.7
 
-Only the latest long-term supported version of Debian, FreeBSD, Rocky Linux and
-Ubuntu, respectively, is supported. Support for CentOS Linux 7 will be dropped
-by Zonemaster release v2023.1.
+Only the latest long-term supported version of Debian, FreeBSD and Ubuntu,
+respectively, is supported. Zonemaster supports Rocky Linux 8.7, not 9.1, due to
+issues with LDNS and OpenSSL on Rocky Linux 9.1. The plan is to change to Rocky
+Linux 9 in the v2023.1 release. Support for CentOS Linux 7 will be dropped by
+Zonemaster release v2023.1.
 
 Only the Docker images provided by the Zonemaster project on [Docker Hub] are
 supported. Currently only Zonemaster-CLI is supported on Docker. Docker itself
@@ -97,11 +99,11 @@ at large cloud providers.
 Operating System | MariaDB | PostgreSQL
 ---------------- | --------| ---------------
 CentOS Linux 7   | 5.5     | *not supported*
-Debian 11        | 10.5    | 13.7
+Debian 11        | 10.5    | 13.8
 Docker           | n/a     | n/a
-FreeBSD 13.0     | 5.7 (*) | 13.6
-Ubuntu 22.04     | 10.5    | 14.2
-Rocky Linux 8.6  | 10.3    | 10.19
+FreeBSD 13.1     | 5.7 (*) | 13.9
+Rocky Linux 8.7  | 10.3    | 10.21
+Ubuntu 22.04     | 10.6    | 14.5
 
 * (*) FreeBSD uses MySQL, not MariaDB.
 * SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
@@ -119,11 +121,11 @@ Operating System | Perl
 CentOS Linux 7   | 5.16
 Debian 11        | 5.32
 Docker           | (*)
-FreeBSD 13.0     | 5.32
+FreeBSD 13.1     | 5.32
+Rocky Linux 8.7  | 5.26
 Ubuntu 22.04     | 5.34
-Rocky Linux 8.6  | 5.26
 
-* Zonemaster requieres Perl version 5.16 or higher.
+* Zonemaster requires Perl version 5.16 or higher.
 * Zonemaster has been tested with the default version of Perl in the OSs as
   listed in the table above.
 * (*) Perl is included in the Docker image published on [Docker Hub].
@@ -135,12 +137,12 @@ The latest version of the browser at the time of testing is used.
 
 Operating System | Browser
 ---------------- | -------
-Ubuntu 22.04     | Firefox
-Ubuntu 22.04     | Chrome
+MacOS 13         | Firefox
+MacOS 13         | Chrome
 Windows 10       | Firefox
 Windows 10       | Chrome
-MacOs            | Firefox
-MacOs            | Chrome
+Ubuntu 22.04     | Firefox
+Ubuntu 22.04     | Chrome
 
 Zonemaster GUI is tested manually and with testing tools. See the
 [Zonemaster-gui repository][Zonemaster-GUI] for more details.
@@ -256,6 +258,12 @@ None.
 
 See our [contact and mailing lists] page for contact information and
 information on mailing lists.
+
+
+## License
+
+This is free software under a 2-clause BSD license. The full text of the license can
+be found in the [LICENSE](LICENSE) file included in this respository.
 
 
 [CentOS Linux]:                        https://centos.org/centos-linux/

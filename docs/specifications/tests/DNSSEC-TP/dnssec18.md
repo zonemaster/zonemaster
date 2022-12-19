@@ -21,7 +21,7 @@ This Test case is only relevant if
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested by [Basic04]. This test
+It is assumed that *Child Zone* is also tested by [Connectivity01]. This test
 case will just ignore non-responsive name servers or name servers not
 giving a correct DNS response for an authoritative name server.
 
@@ -207,7 +207,7 @@ the ignored protocol.
 None.
 
 
-[Basic04]:                               ../Basic-TP/basic04.md
+[Connectivity01]:                        ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                              ../SeverityLevelDefinitions.md#critical
 [DNSSEC15]:                              dnssec15.md
 [DNSSEC16]:                              dnssec16.md

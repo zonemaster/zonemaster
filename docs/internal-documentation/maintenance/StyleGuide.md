@@ -14,3 +14,6 @@ specified below.
 * For variable names in test case specifications each word is capitalized (e.g.
   "Domain Part"). If a word is an abbreviation, it is usually written with all
   capitals, e.g. "DNS".
+* When writing Markdown documents, use lower case fragments when referring to
+  internal headings' anchors, i.e. use `#objective` not `#Objective` to create
+  a link to the "Objective" section.

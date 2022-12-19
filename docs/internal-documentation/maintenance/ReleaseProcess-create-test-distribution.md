@@ -36,14 +36,15 @@ the `develop` branch and that your clone is up-to-date.
        git fetch --all
        git branch
 
+For Zonemaster-LDNS only - check out submodule to the right commit (LDNS):
+
+       git submodule update
+
 Make sure your working directory is clean.
 
        git status --ignored
 
-> **Note:** To throw away any and all changes to tracked and untracked files you
-> can run `git clean -dfx ; git reset --hard`.
-
-To clean:
+To clean (throw away untracked changes or files):
 
        git clean -dfx
        git reset --hard

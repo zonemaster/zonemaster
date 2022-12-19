@@ -21,7 +21,7 @@ domain (zone) do not point at CNAME records.
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested by [Basic04]. This test
+It is assumed that *Child Zone* is also tested by [Connectivity01]. This test
 case will set DEBUG level on messages for non-responsive name servers.
 
 ## Ordered description of steps to be taken to execute the test case
@@ -105,7 +105,7 @@ any changes to the DNS tree introduced by an [undelegated test] must be
 respected.
 
 
-[Basic04]:               ../Basic-TP/basic04.md
+[Connectivity01]:        ../Connectivity-TP/connectivity01.md
 [DNS Lookup]:            #terminology
 [Method2]:               ../Methods.md#method-2-obtain-glue-name-records-from-parent
 [Method3]:               ../Methods.md#method-3-obtain-name-servers-from-child

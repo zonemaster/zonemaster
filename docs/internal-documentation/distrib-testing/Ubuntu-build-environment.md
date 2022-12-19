@@ -20,7 +20,7 @@ needs for testing and releasing Zonemaster:
 
 ## Instructions
 
-1. Make a clean installation of [Ubuntu 20.04]
+1. Make a clean installation of [Ubuntu] 22.04.
 
 2. Update the package database.
 
@@ -31,7 +31,7 @@ needs for testing and releasing Zonemaster:
 3. Install prerequisites (binaries)
 
    ```sh
-   sudo apt-get install cpanminus gettext autoconf automake build-essential libdevel-checklib-perl libmodule-install-xsutil-perl libssl-dev libidn11-dev libtool
+   sudo apt-get install cpanminus gettext autoconf automake build-essential libdevel-checklib-perl libmodule-install-xsutil-perl libssl-dev libidn2-dev libtool
    ```
 
 4. Install Docker - *only needed if Docker images are to be built*
@@ -58,7 +58,7 @@ needs for testing and releasing Zonemaster:
 
 7. Install binaries for Zonemaster-Engine -
    *only needed if the files listed in [utils README] are to be generated*
-   
+
    > Follow the [Installation instructions] for Zonemaster-Engine for Ubuntu. Only
    > install the dependencies from binary packages and CPAN (if any). Do not
    > install neither Zonemaster::LDNS nor Zonemaster::Engine at this stage.
@@ -69,6 +69,5 @@ needs for testing and releasing Zonemaster:
 [Install Docker Engine on Ubuntu]:         https://docs.docker.com/engine/install/ubuntu/
 [Installation instructions]:               https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Installation.md
 [Instructions for translators]:            https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Translation-translators.md#software-preparation
-[Ubuntu 20.04]:                            https://ubuntu.com/
+[Ubuntu]:                                  https://ubuntu.com/
 [Utils README]:                            ../../../utils/README.md
-
