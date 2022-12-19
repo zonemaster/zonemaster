@@ -15,7 +15,7 @@ in the delegation are consistent with authoritative data.
 
 ## Scope
 
-It is assumed that *Child Zone* has been tested by [Basic04]. This test
+It is assumed that *Child Zone* is also tested by [Connectivity01]. This test
 case will set DEBUG level on messages for non-responsive name servers.
 
 ## Inputs
@@ -184,7 +184,7 @@ respected.
 
 [ADDRESSES_MATCH]:                #outcomes
 [BASIC01]:                        ../Basic-TP/basic01.md
-[Basic04]:                        ../Basic-TP/basic04.md
+[Connectivity01]:                 ../Connectivity-TP/connectivity01.md
 [CHILD_NS_FAILED]:                #outcomes
 [CHILD_ZONE_LAME]:                #outcomes
 [DELEGATION05]:                   ../Delegation-TP/delegation05.md

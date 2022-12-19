@@ -76,14 +76,12 @@ project. All the details are in the [Master Test Plan].
 |[ADDRESS02](Address-TP/address02.md)|Reverse DNS entry exists for name server IP address|
 |[ADDRESS03](Address-TP/address03.md)|Reverse DNS entry matches name server name|
 |**Basic-TP**| |
-|[BASIC00](Basic-TP/basic00.md)|Domain name must be valid|
 |[BASIC01](Basic-TP/basic01.md)|The domain must have a parent domain|
 |[BASIC02](Basic-TP/basic02.md)|The domain must have at least one working name server|
 |[BASIC03](Basic-TP/basic03.md)|The _Broken but functional_ test|
-|[BASIC04](Basic-TP/basic04.md)|Test of basic nameserver and zone functionality|
 |**Connectivity-TP**| |
-|[CONNECTIVITY01](Connectivity-TP/connectivity01.md)|UDP connectivity|
-|[CONNECTIVITY02](Connectivity-TP/connectivity02.md)|TCP connectivity|
+|[CONNECTIVITY01](Connectivity-TP/connectivity01.md)|UDP connectivity to name servers|
+|[CONNECTIVITY02](Connectivity-TP/connectivity02.md)|TCP connectivity to name servers|
 |[CONNECTIVITY03](Connectivity-TP/connectivity03.md)|AS Diversity|
 |**Consistency-TP**| |
 |[CONSISTENCY01](Consistency-TP/consistency01.md)|SOA serial number consistency|
