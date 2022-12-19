@@ -14,7 +14,6 @@ Index of Text Case specifications is also found in [README](README.md).
 | [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic01 | [BASIC01](Basic-TP/basic01.md) |
 | [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic02 | [BASIC02](Basic-TP/basic02.md) |
 | [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic03 | [BASIC03](Basic-TP/basic03.md) |
-| [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic04 | [BASIC04](Basic-TP/basic04.md) |
 | [Address](https://metacpan.org/pod/Zonemaster::Engine::Test::Address) | address01 | [ADDRESS01](Address-TP/address01.md) |
 | [Address](https://metacpan.org/pod/Zonemaster::Engine::Test::Address) | address02 | [ADDRESS02](Address-TP/address02.md) |
 | [Address](https://metacpan.org/pod/Zonemaster::Engine::Test::Address) | address03 | [ADDRESS03](Address-TP/address03.md) |
