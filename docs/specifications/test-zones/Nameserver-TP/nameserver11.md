@@ -119,7 +119,7 @@ Assumptions for the scenario specifications:
     EDNS OPTION CODE.
 
 
-[NAMESERVER11]:                                                   ../../specifications/tests/Nameserver-TP/nameserver11.md
+[NAMESERVER11]:                                                   ../../tests/Nameserver-TP/nameserver11.md
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [Test zone README file]:                                          ../README.md
 [Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios

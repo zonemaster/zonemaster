@@ -161,4 +161,4 @@ Assumptions for the zone setup for the test scenarios:
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [Test zone README file]:                                          ../README.md
 [Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios
-[Zone09]:                                                         ../../specifications/tests/Zone-TP/zone09.md
+[Zone09]:                                                         ../../tests/Zone-TP/zone09.md

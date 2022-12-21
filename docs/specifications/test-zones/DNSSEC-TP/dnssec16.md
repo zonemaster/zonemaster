@@ -184,10 +184,10 @@ Assumptions for the scenario specifications:
   * The CDS RRset has been signed by the its DNSKEY and the RRSIG is valid.
 
 
-[DNSSEC01]:                                                       ../../specifications/tests/DNSSEC-TP/dnssec01.md
-[DNSSEC05]:                                                       ../../specifications/tests/DNSSEC-TP/dnssec05.md
-[DNSSEC14]:                                                       ../../specifications/tests/DNSSEC-TP/dnssec14.md
-[DNSSEC16]:                                                       ../../specifications/tests/DNSSEC-TP/dnssec16.md
+[DNSSEC01]:                                                       ../../tests/DNSSEC-TP/dnssec01.md
+[DNSSEC05]:                                                       ../../tests/DNSSEC-TP/dnssec05.md
+[DNSSEC14]:                                                       ../../tests/DNSSEC-TP/dnssec14.md
+[DNSSEC16]:                                                       ../../tests/DNSSEC-TP/dnssec16.md
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [Test zone README file]:                                          ../README.md
 [Well Formed CDS Record]:                                         #terminology
