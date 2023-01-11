@@ -382,22 +382,22 @@ shelf life of a previous test result, that test result is reused.
 Otherwise a new test request is enqueued.
 
 
-[API documentation]:                  API.md
+[API documentation]:                  ../using/backend-api.md
 [DBD::mysql documentation]:           https://metacpan.org/pod/DBD::mysql#host
 [Default JSON profile file]:          https://github.com/zonemaster/zonemaster-engine/blob/master/share/profile.json
-[Environement Variables]:             EnvironementVariables.md
+[Environement Variables]:             backend-environment-variables.md
 [File format]:                        https://metacpan.org/pod/Config::IniFiles#FILE-FORMAT
 [ISO 3166-1 alpha-2]:                 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 [ISO 639-1]:                          https://en.wikipedia.org/wiki/ISO_639-1
-[Installation instructions]:          Installation.md
-[Language tag]:                       API.md#language-tag
+[Installation instructions]:          ../installation-backend.md
+[Language tag]:                       ../using/backend-api.md#language-tag
 [LDH domain name]:                    https://datatracker.ietf.org/doc/html/rfc3696#section-2
 [MariaDB identifier max lengths]:     https://mariadb.com/kb/en/identifier-names/#maximum-length
 [MariaDB unquoted identifier]:        https://mariadb.com/kb/en/identifier-names/#unquoted
 [MYSQL.host]:                         #host
 [PostgreSQL identifier]:              https://www.postgresql.org/docs/current/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS
-[Profile JSON files]:                 https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
-[Profile name section]:               API.md#profile-name
+[Profile JSON files]:                 profiles.md
+[Profile name section]:               ../using/backend-api.md#profile-name
 [Profiles]:                           Architecture.md#profile
 [SQLITE.database_file]:               #database_file
 [US ASCII printable characters]:      https://en.wikipedia.org/wiki/ASCII#Printable_characters

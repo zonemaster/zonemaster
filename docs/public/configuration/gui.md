@@ -3,7 +3,7 @@
 The GUI can be configured by creating the file
 `DISTBASE/dist/assets/app.config.json`. "DISTBASE" is where the Zonemaster
 Web GUI zip file is installed, which is `/var/www/html/zonemaster-web-gui` by
-default installation (see [Installation instructions](Installation.md)).
+default installation (see [Installation instructions]).
 
 
 This file can by created by copying `app.config.sample.json` found in
@@ -21,7 +21,7 @@ The supported configuration items are the following.
   both the API and GUI are served from the same origin.
 * `"defaultLanguage"`: (*Deprecated*) This **does not** work anymore, to change
   the default language update the Apache configuration as mentionned in the
-  [installation instructions].
+  [installation instructions][Default language].
 * `"enabledLanguages"`: An array of the languages enabled in the GUI, default
   `[ "da", "en", "es", "fi", "fr", "nb", "sv" ]`.
 * `"contactAddress"`: The contact email address displayed in the footer, default
@@ -36,4 +36,5 @@ The supported configuration items are the following.
   default: `5000` (5 seconds).
 
 
-[installation instructions]: Installation.md#change-default-language
+[Default language]:          ../installation/zonemaster-gui.md#change-default-language
+[Installation instructions]: ../installation/zonemaster-gui.md
