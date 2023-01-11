@@ -298,9 +298,9 @@ automatically include the `--platform linux/amd64` option every time you run
 `docker run`.
 
 
-[Connectivity03]:                  https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/Connectivity-TP/connectivity03.md
+[Connectivity03]:                  ../specifications/tests/Connectivity-TP/connectivity03.md
 [Get started]:                     https://www.docker.com/get-started
-[Installation instruction]:        docs/Installation.md
-[Severity Level Definitions]:      https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md
-[Translation]:                     #Translation
+[Installation instruction]:        ../installation/zonemaster-cli.md
+[Severity Level Definitions]:      ../specifications/tests/SeverityLevelDefinitions.md
+[Translation]:                     #translation
 [Enable IPv6 support]:             https://docs.docker.com/config/daemon/ipv6/

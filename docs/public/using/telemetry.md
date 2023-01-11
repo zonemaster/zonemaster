@@ -66,7 +66,7 @@ StatsD metrics can be integrated to a number of metrics backend like Prometheus 
    curl localhost:9102/metrics | grep zonemaster
    ```
 
-[metrics feature]: Installation.md#101-metrics
+[metrics feature]: ../installation/zonemaster-backend.md#111-metrics
 [statsd]:          https://github.com/statsd/statsd
 [StatsD exporter]: https://github.com/prometheus/statsd_exporter
 [StatsD plugin]:   https://github.com/influxdata/telegraf/tree/master/plugins/inputs/statsd

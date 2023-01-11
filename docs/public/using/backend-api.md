@@ -1566,10 +1566,10 @@ The `"params"` object sent to [`start_domain_test`][start_domain_test] or
 [RFC 5952]:                           https://datatracker.ietf.org/doc/html/rfc5952
 [RPCAPI.enable_add_api_user]:         Configuration.md#enable_add_api_user
 [RPCAPI.enable_add_batch_job]:        Configuration.md#enable_add_batch_job
-[Severity Level Definitions]:         https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md
+[Severity Level Definitions]:         ../specifications/tests/SeverityLevelDefinitions.md
 [Severity level]:                     #severity-level
 [start_domain_test]:                  #api-method-start_domain_test
-[Test Cases]:                         https://github.com/zonemaster/zonemaster/tree/master/docs/specifications/tests#list-of-defined-test-cases
+[Test Cases]:                         ../specifications/tests#list-of-defined-test-cases
 [Test Case Identifiers]:              https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/templates/specifications/tests/TestCaseIdentifierSpecification.md
 [Test id]:                            #test-id
 [Test result]:                        #test-result

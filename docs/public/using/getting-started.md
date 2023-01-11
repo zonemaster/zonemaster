@@ -1,4 +1,4 @@
-# Getting started
+# Using the Backend RPCAPI
 
 This is a guide for getting started with the Zonemaster RPC API daemon.
 
@@ -6,7 +6,7 @@ This is a guide for getting started with the Zonemaster RPC API daemon.
 > Note: This guide makes a number of assumptions about you setup:
 >
 > * that it's a Unix-like environment
-> * that you have Zonemaster *backend* installed according to the [installation guide](Installation.md)
+> * that you have Zonemaster-Backend installed according to the [installation guide]
 > * that you have the tools `curl` and `jq` installed
 >
 
@@ -45,3 +45,5 @@ curl -sS -H "Content-Type: application/json" -d '{"jsonrpc": "2.0", "id": 5, "me
 If you're moderatly quick and repeatedly re-run the last command you should be able to see the progress value increase in uneven steps from `0` to `100`.
 Never mind updating the JSON-RPC `"id"` - the server doesn't care.
 Once the progress has reached 100, lots of test results should also be showing up.
+
+[installation guide]: ../installation/zonemaster-backend.md
