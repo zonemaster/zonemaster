@@ -1,43 +1,14 @@
-# Installation
+# Installation: Zonemaster-Engine
 
 ## Table of contents
 
-* [Overview](#overview)
-* [Docker](#docker)
-* [Prerequisites](#prerequisites)
 * [Local installation](#local-installation)
-  * [Installation on Rocky Linux]
-  * [Installation on Debian and Ubuntu]
-  * [Installation on FreeBSD]
-  * [Installation on CentOS 7]
+  * [Installation on Rocky Linux](#installation-on-rocky-linux)
+  * [Installation on Debian and Ubuntu](#installation-on-debian-and-ubuntu)
+  * [Installation on FreeBSD](#installation-on-freebsd)
+  * [Installation on CentOS 7](#installation-on-centos-7)
 * [Post-installation sanity check](#post-installation-sanity-check)
 * [What to do next](#what-to-do-next)
-
-
-## Overview
-
-This document describes prerequisites, installation, post-install sanity
-checking for Zonemaster::Engine, and rounds up with a few pointer to interfaces
-for Zonemaster::Engine. For an overview of the Zonemaster product, please see
-the [main Zonemaster Repository].
-
-
-## Docker
-
-Zonemaster-CLI is available on [Docker Hub], and can be conveniently downloaded
-and run without any installation. See [USING] Zonemaster-CLI for how to run
-Zonemaster-CLI on Docker.
-
-To build your own Docker image, see the [Docker Image Creation] documentation.
-
-The rest of this document is about doing a local installation of
-Zonemaster-Engine, not relevant for running Zonemaster-CLI on Docker.
-
-
-## Prerequisites
-
-For details on supported operating system versions and Perl verisons for
-Zonemaster::Engine, see the [declaration of prerequisites].
 
 
 ## Local installation
@@ -228,19 +199,11 @@ The command is expected to take a few seconds and print some results about the d
 * For a Perl API, see the [Zonemaster::Engine API] documentation.
 
 
-[Declaration of prerequisites]:                      https://github.com/zonemaster/zonemaster#prerequisites
-[Docker Hub]:                                        https://hub.docker.com/u/zonemaster
-[Docker Image Creation]:                             https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess-create-docker-image.md
 [EPEL]:                                              https://fedoraproject.org/wiki/EPEL
-[Installation on Debian and Ubuntu]:                 #installation-on-debian-and-ubuntu
-[Installation on FreeBSD]:                           #installation-on-freebsd
 [Installation on Rocky Linux]:                       #installation-on-rocky-linux
-[Installation on CentOS 7]:                          #installation-on-centos-7
-[JSON-RPC API]:                                      https://github.com/zonemaster/zonemaster-backend/blob/master/docs/API.md
+[JSON-RPC API]:                                      ../using/backend-api.md
 [Mailing list zonemaster-users]:                     https://github.com/zonemaster/zonemaster/blob/master/docs/contact-and-mailing-lists.md#zonemaster-users
-[Main Zonemaster Repository]:                        https://github.com/zonemaster/zonemaster
-[USING]:                                             https://github.com/zonemaster/zonemaster-cli/blob/master/USING.md
-[Zonemaster::Backend installation]:                  https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md
-[Zonemaster::CLI installation]:                      https://github.com/zonemaster/zonemaster-cli/blob/master/docs/Installation.md
+[Zonemaster::Backend installation]:                  zonemaster-backend.md
+[Zonemaster::CLI installation]:                      zonemaster-cli.md
 [Zonemaster::Engine API]:                            http://search.cpan.org/~znmstr/Zonemaster-Engine/lib/Zonemaster/Engine/Overview.pod
-[Zonemaster::GUI installation]:                      https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md
+[Zonemaster::GUI installation]:                      zonemaster-gui.md

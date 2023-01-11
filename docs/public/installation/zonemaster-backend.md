@@ -1,4 +1,4 @@
-# Installation
+# Installation: Zonemaster-Backend
 
 ## Table of contents
 
@@ -790,22 +790,22 @@ cpanm Net::Statsd
 
 -------
 
-[Backend configuration]:              Configuration.md
+[Backend configuration]:              ../configuration/
 [Declaration of prerequisites]:       https://github.com/zonemaster/zonemaster#prerequisites
-[JSON-RPC API]:                       API.md
+[JSON-RPC API]:                       ../using/backend-api.md
 [Main Zonemaster repository]:         https://github.com/zonemaster/zonemaster/blob/master/README.md
 [MariaDB instructions Rocky Linux]:   #81-mariadb-rocky-linux
 [MariaDB instructions Debian]:        #82-mariadb-debianubuntu
 [MariaDB instructions FreeBSD]:       #83-mysql-freebsd
-[metrics]:                            Telemetry.md#metrics
+[metrics]:                            ../using/telemetry.md#metrics
 [Post-installation]:                  #7-post-installation
 [PostgreSQL instructions Rocky Linux]:#91-postgresql-rocky-linux
 [PostgreSQL instructions Debian]:     #92-postgresql-debianubuntu
 [PostgreSQL instructions FreeBSD]:    #93-postgresql-freebsd
 [Removing database]:                  #10-cleaning-up-the-database
-[Upgrade document]:                   Upgrade.md
-[Zonemaster::CLI installation]:       https://github.com/zonemaster/zonemaster-cli/blob/master/docs/Installation.md
-[Zonemaster::Engine installation]:    https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Installation.md
+[Upgrade document]:                   https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Upgrade.md
+[Zonemaster::CLI installation]:       zonemaster-cli.md
+[Zonemaster::Engine installation]:    zonemaster-engine.md
 [Zonemaster::Engine]:                 https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
-[Zonemaster::GUI installation]:       https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md
+[Zonemaster::GUI installation]:       zonemaster-gui.md
 [Zonemaster::LDNS]:                   https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md

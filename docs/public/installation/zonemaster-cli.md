@@ -1,9 +1,7 @@
-# Installation
+# Installation: Zonemaster-CLI
 
 ## Table of contents
 
-* [Overview](#overview)
-* [Docker](#docker)
 * [Prerequisites for CPAN installation](#prerequisites-for-cpan-installation)
 * [Local installation](#local-installation)
   * [Installation on Rocky Linux](#installation-on-rocky-linux)
@@ -15,23 +13,6 @@
 * [What to do next?](#what-to-do-next)
 
 
-## Overview
-
-This document describes prerequisites, installation and post-install sanity
-checking for Zonemaster::CLI. The final section wraps up with a few pointer to
-other interfaces to Zonemaster. For an overview of the Zonemaster product,
-please see the [main Zonemaster Repository].
-
-## Docker
-
-Zonemaster-CLI is available on Docker Hub and can be run on Docker without any
-installation, besides that Docker must be installed. See the [USING]
-Zonemaster-CLI document for how to run it on Docker. Links for installation of
-Docker are found there.
-
-The rest of this document is about doing a local installation of Zonemaster-CLI,
-not relevant for running Zonemaster-CLI on Docker.
-
 ## Prerequisites for CPAN installation
 
 Before installing Zonemaster::CLI from CPAN, you should [install
@@ -42,7 +23,7 @@ to install on Debian using pre-built packages (see below).
 > Zonemaster::CLI. Zonemaster::LDNS has a special installation requirement,
 > and Zonemaster::Engine has a list of dependencies that you may prefer to
 > install from your operating system distribution (rather than CPAN).
-> We recommend following the Zonemaster::Engine installation instruction.
+> We recommend following the [Zonemaster::Engine installation] instruction.
 
 Prerequisite for FreeBSD is that the package system is updated and activated
 (see the FreeBSD section of [Zonemaster::Engine installation]).
@@ -208,11 +189,10 @@ See the [USING] Zonemaster-CLI document for an overview on how to use
 
 
 [Declaration of prerequisites]:                   https://github.com/zonemaster/zonemaster/blob/master/README.md#prerequisites
-[JSON-RPC API]:                                   https://github.com/zonemaster/zonemaster-backend/blob/master/docs/API.md
-[Main Zonemaster repository]:                     https://github.com/zonemaster/zonemaster/blob/master/README.md
+[JSON-RPC API]:                                   ../using/backend-api.md
 [USING]:                                          ../USING.md
-[Zonemaster::Backend installation]:               https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md
-[Zonemaster::Engine installation]:                https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Installation.md
+[Zonemaster::Backend installation]:               zonemaster-backend.md
+[Zonemaster::Engine installation]:                zonemaster-engine.md
 [Zonemaster::Engine]:                             https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
-[Zonemaster::GUI installation]:                   https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md
+[Zonemaster::GUI installation]:                   zonemaster-gui.md
 [Zonemaster::LDNS]:                               https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
