@@ -803,7 +803,7 @@ cpanm Net::Statsd
 [PostgreSQL instructions Debian]:     #92-postgresql-debianubuntu
 [PostgreSQL instructions FreeBSD]:    #93-postgresql-freebsd
 [Removing database]:                  #10-cleaning-up-the-database
-[Upgrade document]:                   https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Upgrade.md
+[Upgrade document]:                   ../upgrade/backend.md
 [Zonemaster::CLI installation]:       zonemaster-cli.md
 [Zonemaster::Engine installation]:    zonemaster-engine.md
 [Zonemaster::Engine]:                 https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
