@@ -188,7 +188,7 @@ See the [USING] Zonemaster-CLI document for an overview on how to use
    installation] instruction.
 
 
-[Declaration of prerequisites]:                   https://github.com/zonemaster/zonemaster/blob/master/README.md#prerequisites
+[Declaration of prerequisites]:                   prerequisites.md
 [JSON-RPC API]:                                   ../using/backend-api.md
 [USING]:                                          ../USING.md
 [Zonemaster::Backend installation]:               zonemaster-backend.md

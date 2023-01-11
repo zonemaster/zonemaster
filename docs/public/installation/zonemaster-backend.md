@@ -791,7 +791,7 @@ cpanm Net::Statsd
 -------
 
 [Backend configuration]:              ../configuration/
-[Declaration of prerequisites]:       https://github.com/zonemaster/zonemaster#prerequisites
+[Declaration of prerequisites]:       prerequisites.md
 [JSON-RPC API]:                       ../using/backend-api.md
 [Main Zonemaster repository]:         https://github.com/zonemaster/zonemaster/blob/master/README.md
 [MariaDB instructions Rocky Linux]:   #81-mariadb-rocky-linux
