@@ -19,7 +19,7 @@ testing is currently done on ARM architecture.
 
 ## Operating systems
 
-Zonesmaster is actively tested on the following operating systems:
+Zonemaster is actively tested on the following operating systems:
 
 * Debian
 * FreeBSD
@@ -68,10 +68,10 @@ system that is supported:
     (scroll down to "Supported FreeBSD releases").
 
 * Rocky Linux:
-  * All major versions that has not reached EOL are supported.
+  * All major versions that have not reached EOL are supported.
     * If the the EOL of a major version is within the expected lifetime of the
       Zonemaster release then that major version is not supported.
-  * Only the newest point releas is tested.
+  * Only the newest point release is tested.
   * Active releases are listed on <https://rockylinux.org/download>.
 
 * Ubuntu:
