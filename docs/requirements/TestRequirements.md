@@ -103,7 +103,7 @@ R07900| A name server should preserve case of query name when creating response.
 R08000| A name server should treat query name without considering character case.          |Ref?                 |[NAMESERVER09]
 R08100| A name server should respond with BADVERS on unsupported EDNS version.             |[RFC6891]           |[NAMESERVER10]
 R08200| A name server should completely ignore unsupported EDNS OPTION-CODE.               |[RFC6891]           |[NAMESERVER11]
-R08300| A name server should completely ignore unsupported ENDS flag bit (Z flag bits).    |[RFC6891]           |[NAMESERVER12]
+R08300| A name server should completely ignore unsupported EDNS flag bit (Z flag bits).    |[RFC6891]           |[NAMESERVER12]
 R08400| A name server with EDNS support should include OPT record in truncated response.   |[RFC6891]           |[NAMESERVER13]
 R08500| A name server should respond with BADVERS and ignore OPTION-CODE on query with unsupported EDNS version and unsupported OPTION-CODE.|[RFC6891]|[NAMESERVER14]
 R08600| The zone (domain) name should only contain legal characters. |[RFC1035] [RFC1123] [RFC2182] [RFC3696]|[SYNTAX01]

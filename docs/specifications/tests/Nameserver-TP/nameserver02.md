@@ -28,7 +28,7 @@ Servers supporting EDNS(0) must reply with EDNS(0)
 > responders MUST include an OPT record in their respective responses.
 
 To eliminating the risk of falsely classifying the server as not supporting
-ENDS due e.g. firewall issues, the UDP buffer size is set to 512 bytes 
+EDNS due e.g. firewall issues, the UDP buffer size is set to 512 bytes 
 (octets).
 
 ## Scope
