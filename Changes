@@ -3,7 +3,7 @@ Release history of Zonemaster
 v2022.2.1 2023-01-31 (public fix version)
 
  [Fixes]
- - Restores Basci00 specification (#1123)
+ - Restores BASIC00 specification (#1123)
  - Fixes typos (#1124)
  - Updates translations. See Zonemaster-Engine, Zonemaster-CLI,
    Zonemaster-Backend and Zonemaster-GUI.
