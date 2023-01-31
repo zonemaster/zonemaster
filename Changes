@@ -1,5 +1,26 @@
 Release history of Zonemaster
 
+v2022.2.1 2023-01-31 (public fix version)
+
+ [Fixes]
+ - Restores Basci00 specification (#1123)
+ - Fixes typos (#1124)
+ - Updates translations. See Zonemaster-Engine, Zonemaster-CLI,
+   Zonemaster-Backend and Zonemaster-GUI.
+ - Fixes bugs in implementation of test cases ADDRESS01, NAMESERVER11 and
+   ZONE01. See Zonemaster-Engine.
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components. For each
+   component, see its Changes file or Github release notes for complete release
+   information.
+
+   Zonemaster-LDNS      v3.1.0  https://github.com/zonemaster/zonemaster-ldns/releases/tag/v3.1.0
+   Zonemaster-Engine    v4.6.1  https://github.com/zonemaster/zonemaster-engine/releases/tag/v4.6.1
+   Zonemaster-CLI       v5.0.1  https://github.com/zonemaster/zonemaster-cli/releases/tag/v5.0.1
+   Zonemaster-Backend  v10.0.1  https://github.com/zonemaster/zonemaster-backend/releases/tag/v10.0.1
+   Zonemaster-GUI       v4.0.1  https://github.com/zonemaster/zonemaster-gui/releases/tag/v4.0.1
+
 
 v2022.2 2022-12-19 (public release version)
 
