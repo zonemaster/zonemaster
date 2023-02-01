@@ -215,11 +215,12 @@ same for all three repositories.
   ../util/check-msg-args xx.po
   ```
 
-* When the update of all *msgstr* is complete run the update command again to
-  create a consistent formatation of the PO file. Do this again if you do further
-  updates.
+* When the update of all *msgstr* is complete run the `tidy-po` command to
+  create a consistent formatation of the PO file. Do this again if you do
+  further updates.
+
   ```
-  ./update-po xx.po
+  make POFILES=xx.po tidy-po
   ```
 
 * You can check all updates that have been done to the xx.po file. That includes
