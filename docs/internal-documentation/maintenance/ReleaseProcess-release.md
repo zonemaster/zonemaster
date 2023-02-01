@@ -267,25 +267,21 @@ Make sure you're up to date and your working directory is completely clean:
 > **Note:** To throw away any and all changes to tracked and untracked files you
 > can run `git clean -dfx ; git reset --hard`.
 
-Create a new branch named `merge-develop-into-master` with both *master* and
-*develop* as ancestors and with the exact contents from *develop*:
+Verify that there are no commits belonging both to `master` and `develop` (this
+could occur when pull requests are merged in the wrong branch):
 
-    # We want the contents of the *develop* branch
-    git checkout -b merge-develop-into-master origin/develop
+    TAG=$( git tag --list --sort=-creatordate | head -n 1 )
+    cat <( git rev-list $TAG^2..develop ) <( git rev-list $TAG..master ) | sort | uniq -d
 
-    # But on top of the history of the *master* branch
-    git reset --soft origin/master
+If the previous command returns such commits, they should have been reverted in
+`master`. Look for such reverts and revert them in another branch
+`prepare-release`, that can be merged into `master` without review or approval:
 
-    # With all differences squashed into a single commit
-    git commit -m 'Update master to state of develop'
+    git checkout -b prepare-release origin/master
+    git revert <COMMIT...>
 
-    # And we want the history of *develop* merged too
-    git merge origin/develop
-
-Create a pull request from `merge-develop-into-master` into `master` and merged
-it. No reviewer or approval is required for this update.
-
-In [Appendix B] it is shown how `merge-develop-into-master` can be verified.
+Finally create a pull request from `develop` into `master` and merge it. No
+reviewer or approval is required for this update.
 
 [(Top)](#table-of-contents)
 
@@ -364,6 +360,8 @@ the "v", which may affect the version comparison.
 [(Top)](#table-of-contents)
 
 ## Appendix B on how to verify merge develop branch into master branch
+
+> Note: appendix to remove
 
 Below are two ways of verifying that the branch created for merging
 develop branch into master branch is correct. The first is to use the
