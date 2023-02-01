@@ -338,19 +338,15 @@ is to make a copy of an existing file.
   grep xx_ /etc/locale.gen  # Works in Debian and Ubuntu
   ```
 
-* Go to the *share* directory and use an existing PO file, say sv.po, and make a
-  copy of that to the new file name. Update it and "add" it to `git` before
-  working on it.
+* Go to the *share* directory and create a new blank PO file. Then "add" it
+  to `git` before working on it.
   ```
   cd share
-  cp sv.po xx.po
-  ./update-po xx.po
+  make POLANG=xx new-po
   git add xx.po
   ```
 
-* When you do the update of the new PO file you have to replace all *msgstr*
-  in Swedish with the translation in the new language, but also update the
-  "Language" field in the header.
+* Verify and update the file header if needed.
 
 * Now you go back to section "[Translation steps]" and continue in the same way
   as with an existing language.
