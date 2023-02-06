@@ -22,7 +22,6 @@ Release process - Release
 * [17. Announce the release](#17-announce-the-release)
 * [18. Merge master into develop](#18-merge-master-into-develop)
 * [Appendix A on version number in Makefile.PL](#appendix-a-on-version-number-in-makefilepl)
-* [Appendix B on how to verify merge develop branch into master branch](#appendix-b-on-how-to-verify-merge-develop-branch-into-master-branch)
 
 ## 1. Overview
 
@@ -359,42 +358,8 @@ the "v", which may affect the version comparison.
 
 [(Top)](#table-of-contents)
 
-## Appendix B on how to verify merge develop branch into master branch
-
-> Note: appendix to remove
-
-Below are two ways of verifying that the branch created for merging
-develop branch into master branch is correct. The first is to use the
-local clone where the `merge-develop-into-master` branch was created.
-
-Run the command
-
-```
-git diff origin/develop merge-develop-into-master
-```
-The result should be no difference, i.e. the contents of the new branch
-is the same as the develop branch. Then run the following two commands
-```
-git merge-base origin/develop merge-develop-into-master
-git show-ref --hash origin/develop
-```
-The two commands should report the same commit.
-
-The second way of verifying is to use Githubs tool for creating pull
-requests. Start to create a pull request from
-`merge-develop-into-master` develop `master` (but do not really create
-it) and inspect what files that Github says will be updated, added or
-deleted.
-
-If Github says that no files are updated, added or created, then
-branch `merge-develop-into-master` is correct, and a pull request into
-`master` branch (not `develop` branch) can be created.
-
-[(Top)](#table-of-contents)
-
 <!-- Zonemaster links point on purpose on the develop branch. -->
 [Appendix A]:                                    #appendix-a-on-version-number-in-makefilepl
-[Appendix B]:                                    #appendix-b-on-how-to-verify-merge-develop-branch-into-master-branch
 [Backend.pm]:                                    https://github.com/zonemaster/zonemaster-backend/blob/develop/lib/Zonemaster/Backend.pm
 [Build Environment Preparation]:                 ../distrib-testing/BuildEnvironmentPreparation.md
 [Build environment for Node.js]:                 ../distrib-testing/Ubuntu-Node.js-build-environment.md
