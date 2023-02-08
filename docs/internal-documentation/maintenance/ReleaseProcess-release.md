@@ -266,8 +266,9 @@ Make sure you're up to date and your working directory is completely clean:
 > **Note:** To throw away any and all changes to tracked and untracked files you
 > can run `git clean -dfx ; git reset --hard`.
 
-Verify that there are no commits belonging both to `master` and `develop` (this
-could occur when pull requests are merged in the wrong branch):
+Verify that there are no commits belonging both to `master` and `develop` since
+last release (this could occur when pull requests are merged in the wrong
+branch):
 
     TAG=$( git tag --list --sort=-creatordate | head -n 1 )
     cat <( git rev-list $TAG^2..develop ) <( git rev-list $TAG..master ) | sort | uniq -d
