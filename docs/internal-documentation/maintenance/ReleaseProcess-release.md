@@ -22,6 +22,7 @@ Release process - Release
 * [17. Announce the release](#17-announce-the-release)
 * [18. Merge master into develop](#18-merge-master-into-develop)
 * [Appendix A on version number in Makefile.PL](#appendix-a-on-version-number-in-makefilepl)
+* [Appendix B on reverting commits](#appendix-b-on-reverting-commits)
 
 ## 1. Overview
 
@@ -266,22 +267,26 @@ Make sure you're up to date and your working directory is completely clean:
 > **Note:** To throw away any and all changes to tracked and untracked files you
 > can run `git clean -dfx ; git reset --hard`.
 
-Verify that there are no commits belonging both to `master` and `develop` since
-last release (this could occur when pull requests are merged in the wrong
-branch):
+Verify if there are commits on `master` since last release:
 
     TAG=$( git tag --list --sort=-creatordate | head -n 1 )
+    git rev-list --count $TAG..master
+
+If the previous command returns a count greater than 0, check for commits
+belonging both to `master` and `develop` branches since last release:
+
     cat <( git rev-list $TAG^2..develop ) <( git rev-list $TAG..master ) | sort | uniq -d
 
-If the previous command returns such commits, they should have been reverted in
-`master`. Look for such reverts and revert them in another branch
-`prepare-release`, that can be merged into `master` without review or approval:
+If the previous command returns such commits, it's assumed they have been
+reverted in `master`. Such reverts need to be reverted (yes revert of the
+revert) in `master` before merging `develop`. [Appendix B] gives some clues on
+how to perform such revert.
 
-    git checkout -b prepare-release origin/master
-    git revert <COMMIT...>
+Otherwise, everything looks good for the merge.
 
-Finally create a pull request from `develop` into `master` and merge it. No
-reviewer or approval is required for this update.
+Finally once `master` branch is ready, create a pull request from `develop`
+into `master` and merge it. No reviewer or approval is required for this
+update.
 
 [(Top)](#table-of-contents)
 
@@ -356,6 +361,47 @@ For other libraries, other formats may be correct. If the version of the
 library only has two levels ("X.Y") then other rules apply. Also note
 that the version in Zonemaster::Backend is speciefied as `X.Y.Z` without
 the "v", which may affect the version comparison.
+
+[(Top)](#table-of-contents)
+
+## Appendix B on reverting commits
+
+When merging `develop` into `master` a merge conflict could occur.  This is due
+to the fact that some commits belongs to both branches. Usually this is the
+result of a merge request in `master` branch instead of `develop` during
+development. Once this happens, the faulty merge is reverted on `master` and
+merged into `develop`. Depending on the steps chosen, this could lead to having
+the same commit in both branches.
+
+To avoid merge conflict, it is necessary to revert the revert commits on
+`master`.
+
+### How would the release officer find the commit to revert?
+
+Usually a revert commit contains a predefined subject (or title) looking like:
+`Revert "subject of the reverted commit"`.
+
+One can looks for commits with this string using a command like:
+
+    TAG=$( git tag --list --sort=-creatordate | head -n 1 )
+    for c in $(cat <( git rev-list $TAG^2..develop ) <( git rev-list $TAG..master ) | sort | uniq -d); \
+        do git log --oneline --grep="Revert \"$(git show -s --pretty=%s $c)\"" $c~..master ^$TAG ; \
+        done
+
+Or look for them visually with:
+
+    git log --oneline --graph $TAG..master
+
+Once found, either revert each commits (`git revert <commit> ...`) or the merge
+commit.
+
+### How would the release officer know the parent number to revert?
+
+In case one reverts the merge commit, since it was merged into master, the
+parent number is `1`.
+
+    git revert -m 1 <merge commit>
+
 
 [(Top)](#table-of-contents)
 
