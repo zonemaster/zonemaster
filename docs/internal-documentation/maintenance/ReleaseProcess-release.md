@@ -270,19 +270,12 @@ Make sure you're up to date and your working directory is completely clean:
 Verify if there are commits on `master` since last release:
 
     TAG=$( git tag --list --sort=-creatordate | head -n 1 )
-    git rev-list --count $TAG..master
+    # count the number of commits in master since last release and
+    # if the count is not 0, look for commits belonging to master and develop
+    [ $(git rev-list --count $TAG..master) -ne 0 ] && cat <( git rev-list $TAG^2..develop ) <( git rev-list $TAG..master ) | sort | uniq -d
 
-If the previous command returns a count greater than 0, check for commits
-belonging both to `master` and `develop` branches since last release:
-
-    cat <( git rev-list $TAG^2..develop ) <( git rev-list $TAG..master ) | sort | uniq -d
-
-If the previous command returns such commits, it's assumed they have been
-reverted in `master`. Such reverts need to be reverted (yes revert of the
-revert) in `master` before merging `develop`. [Appendix B] gives some clues on
-how to perform such revert.
-
-Otherwise, everything looks good for the merge.
+If commits are returned by this previous command, some additional work is
+needed. See [Appendix B] for that.
 
 Finally once `master` branch is ready, create a pull request from `develop`
 into `master` and merge it. No reviewer or approval is required for this
@@ -374,7 +367,7 @@ merged into `develop`. Depending on the steps chosen, this could lead to having
 the same commit in both branches.
 
 To avoid merge conflict, it is necessary to revert the revert commits on
-`master`.
+`master` (yes revert of the revert) before merging `develop` into `master`.
 
 ### How would the release officer find the commit to revert?
 
