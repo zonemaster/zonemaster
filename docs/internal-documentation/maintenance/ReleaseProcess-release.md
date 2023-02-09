@@ -22,7 +22,7 @@ Release process - Release
 * [17. Announce the release](#17-announce-the-release)
 * [18. Merge master into develop](#18-merge-master-into-develop)
 * [Appendix A on version number in Makefile.PL](#appendix-a-on-version-number-in-makefilepl)
-* [Appendix B on how to verify merge develop branch into master branch](#appendix-b-on-how-to-verify-merge-develop-branch-into-master-branch)
+* [Appendix B on reverting commits](#appendix-b-on-reverting-commits)
 
 ## 1. Overview
 
@@ -267,25 +267,19 @@ Make sure you're up to date and your working directory is completely clean:
 > **Note:** To throw away any and all changes to tracked and untracked files you
 > can run `git clean -dfx ; git reset --hard`.
 
-Create a new branch named `merge-develop-into-master` with both *master* and
-*develop* as ancestors and with the exact contents from *develop*:
+Verify if there are commits on `master` since last release:
 
-    # We want the contents of the *develop* branch
-    git checkout -b merge-develop-into-master origin/develop
+    TAG=$( git tag --list --sort=-creatordate | head -n 1 )
+    # count the number of commits in master since last release and
+    # if the count is not 0, look for commits belonging to master and develop
+    [ $(git rev-list --count $TAG..master) -ne 0 ] && cat <( git rev-list $TAG^2..develop ) <( git rev-list $TAG..master ) | sort | uniq -d
 
-    # But on top of the history of the *master* branch
-    git reset --soft origin/master
+If commits are returned by this previous command, some additional work is
+needed. See [Appendix B] for that.
 
-    # With all differences squashed into a single commit
-    git commit -m 'Update master to state of develop'
-
-    # And we want the history of *develop* merged too
-    git merge origin/develop
-
-Create a pull request from `merge-develop-into-master` into `master` and merged
-it. No reviewer or approval is required for this update.
-
-In [Appendix B] it is shown how `merge-develop-into-master` can be verified.
+Finally once `master` branch is ready, create a pull request from `develop`
+into `master` and merge it. No reviewer or approval is required for this
+update.
 
 [(Top)](#table-of-contents)
 
@@ -363,40 +357,50 @@ the "v", which may affect the version comparison.
 
 [(Top)](#table-of-contents)
 
-## Appendix B on how to verify merge develop branch into master branch
+## Appendix B on reverting commits
 
-Below are two ways of verifying that the branch created for merging
-develop branch into master branch is correct. The first is to use the
-local clone where the `merge-develop-into-master` branch was created.
+When merging `develop` into `master` a merge conflict could occur.  This is due
+to the fact that some commits belongs to both branches. Usually this is the
+result of a merge request in `master` branch instead of `develop` during
+development. Once this happens, the faulty merge is reverted on `master` and
+merged into `develop`. Depending on the steps chosen, this could lead to having
+the same commit in both branches.
 
-Run the command
+To avoid merge conflict, it is necessary to revert the revert commits on
+`master` (yes revert of the revert) before merging `develop` into `master`.
 
-```
-git diff origin/develop merge-develop-into-master
-```
-The result should be no difference, i.e. the contents of the new branch
-is the same as the develop branch. Then run the following two commands
-```
-git merge-base origin/develop merge-develop-into-master
-git show-ref --hash origin/develop
-```
-The two commands should report the same commit.
+### How would the release officer find the commit to revert?
 
-The second way of verifying is to use Githubs tool for creating pull
-requests. Start to create a pull request from
-`merge-develop-into-master` develop `master` (but do not really create
-it) and inspect what files that Github says will be updated, added or
-deleted.
+Usually a revert commit contains a predefined subject (or title) looking like:
+`Revert "subject of the reverted commit"`.
 
-If Github says that no files are updated, added or created, then
-branch `merge-develop-into-master` is correct, and a pull request into
-`master` branch (not `develop` branch) can be created.
+One can looks for commits with this string using a command like:
+
+    TAG=$( git tag --list --sort=-creatordate | head -n 1 )
+    for c in $(cat <( git rev-list $TAG^2..develop ) <( git rev-list $TAG..master ) | sort | uniq -d); \
+        do git log --oneline --grep="Revert \"$(git show -s --pretty=%s $c)\"" $c~..master ^$TAG ; \
+        done
+
+Or look for them visually with:
+
+    git log --oneline --graph $TAG..master
+
+Once found, either revert each commits (`git revert <commit> ...`) or the merge
+commit.
+
+### How would the release officer know the parent number to revert?
+
+In case one reverts the merge commit, since it was merged into master, the
+parent number is `1`.
+
+    git revert -m 1 <merge commit>
+
 
 [(Top)](#table-of-contents)
 
 <!-- Zonemaster links point on purpose on the develop branch. -->
 [Appendix A]:                                    #appendix-a-on-version-number-in-makefilepl
-[Appendix B]:                                    #appendix-b-on-how-to-verify-merge-develop-branch-into-master-branch
+[Appendix B]:                                    #appendix-b-on-reverting-commits
 [Backend.pm]:                                    https://github.com/zonemaster/zonemaster-backend/blob/develop/lib/Zonemaster/Backend.pm
 [Build Environment Preparation]:                 ../distrib-testing/BuildEnvironmentPreparation.md
 [Build environment for Node.js]:                 ../distrib-testing/Ubuntu-Node.js-build-environment.md
