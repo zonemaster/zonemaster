@@ -407,6 +407,7 @@ parent number is `1`.
 
 <!-- Zonemaster links point on purpose on the develop branch. -->
 [Appendix A]:                                    #appendix-a-on-version-number-in-makefilepl
+[Appendix B]:                                    #appendix-b-on-reverting-commits
 [Backend.pm]:                                    https://github.com/zonemaster/zonemaster-backend/blob/develop/lib/Zonemaster/Backend.pm
 [Build Environment Preparation]:                 ../distrib-testing/BuildEnvironmentPreparation.md
 [Build environment for Node.js]:                 ../distrib-testing/Ubuntu-Node.js-build-environment.md
