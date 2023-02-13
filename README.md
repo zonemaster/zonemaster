@@ -72,37 +72,36 @@ and processor architecture listed below.
 
 ### Supported operating system versions
 
-* [CentOS Linux] 7
 * [Debian] 11
 * [Docker]
-* [FreeBSD] 13.1
+* [FreeBSD] 13
+* [Rocky Linux] 8
+* [Rocky Linux] 9
+* [Ubuntu] 20.04
 * [Ubuntu] 22.04
-* [Rocky Linux] 8.7
 
-Only the latest long-term supported version of Debian, FreeBSD and Ubuntu,
-respectively, is supported. Zonemaster supports Rocky Linux 8.7, not 9.1, due to
-issues with LDNS and OpenSSL on Rocky Linux 9.1. The plan is to change to Rocky
-Linux 9 in the v2023.1 release. Support for CentOS Linux 7 will be dropped by
-Zonemaster release v2023.1.
+For Debian the "stable" version is supported. For FreeBSD one of the FreeBSD
+supported major versions is supported. For Rocky Linux and Ubuntu long-term
+supported versions are supported unless its support ends before next expected
+release of Zonemaster.
 
 Only the Docker images provided by the Zonemaster project on [Docker Hub] are
 supported. Currently only Zonemaster-CLI is supported on Docker. Docker itself
 can run on any of the [Docker] supported OSs (Linux, MacOS and Windows).
 
-[Rocky Linux] has replaced CentOS in Zonemaster version v2021.2 since CentOS 8
-is not supported anymore and CentOS 7 is old and does not support modern OpenSSL
-required by Zonemaster. Rocky Linux is also a Red Hat derivative and is available
-at large cloud providers.
+[Rocky Linux] has replaced CentOS in Zonemaster version v2021.2. Rocky Linux is
+also a Red Hat derivative and is available at large cloud providers.
 
 ### Supported database engine versions
 
 Operating System | MariaDB | PostgreSQL
 ---------------- | --------| ---------------
-CentOS Linux 7   | 5.5     | *not supported*
 Debian 11        | 10.5    | 13.8
 Docker           | n/a     | n/a
-FreeBSD 13.1     | 5.7 (*) | 13.9
-Rocky Linux 8.7  | 10.3    | 10.21
+FreeBSD 13       | 5.7 (*) | 13.9
+Rocky Linux 8    | 10.3    | 10.21
+Rocky Linux 9    | ???     | ???
+Ubuntu 20.04     | ???     | ???
 Ubuntu 22.04     | 10.6    | 14.5
 
 * (*) FreeBSD uses MySQL, not MariaDB.
@@ -118,11 +117,12 @@ Ubuntu 22.04     | 10.6    | 14.5
 
 Operating System | Perl
 ---------------- | ----
-CentOS Linux 7   | 5.16
 Debian 11        | 5.32
 Docker           | (*)
-FreeBSD 13.1     | 5.32
-Rocky Linux 8.7  | 5.26
+FreeBSD 13       | 5.32
+Rocky Linux 8    | 5.26
+Rocky Linux 9    | 5.32 ??
+Ubuntu 20.04     | ???
 Ubuntu 22.04     | 5.34
 
 * Zonemaster requires Perl version 5.16 or higher.
@@ -158,10 +158,7 @@ installation instructions given for Zonemaster have been followed. A test of the
 domains `ed25519.nl` and `superdns.nl` will reveal if the Zonemaster
 installation has the support or not for algorithms 15 and 16, respectively.
 
-All supported OSs, except CentOS Linux 7, support algorithms 15 and 16 out of the
-box. To get the support in CentOS Linux 7 a newer version of OpenSSL has to be
-installed and Zonemaster-LDNS has to be installed following special instructions
-found in the [Zonemaster-Engine] installation instructions.
+All supported OSs support algorithms 15 and 16 out of the box.
 
 ## Translation
 
@@ -266,7 +263,6 @@ This is free software under a 2-clause BSD license. The full text of the license
 be found in the [LICENSE](LICENSE) file included in this respository.
 
 
-[CentOS Linux]:                        https://centos.org/centos-linux/
 [CPAN]:                                https://www.cpan.org/
 [Connectivity03]:                      docs/specifications/tests/Connectivity-TP/connectivity03.md
 [Contact and mailing lists]:           docs/contact-and-mailing-lists.md

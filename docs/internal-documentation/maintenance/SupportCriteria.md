@@ -13,18 +13,20 @@ tuples.
 
 ## Architectures
 
-Zonemaster is actively tested on the amd64/x86_64 processor architecture.
+Zonemaster is actively tested on the amd64/x86_64 processor architecture. No
+testing is currently done on ARM architecture.
 
 
 ## Operating systems
 
-Zonesmaster is actively tested on these operating systems:
+Zonemaster is actively tested on the following operating systems:
 
 * Debian
 * FreeBSD
 * Rocky Linux
 * Ubuntu
 
+CentOS is no longer supported and has been replaced by Rocky Linux.
 
 ## Operating system versions
 
@@ -41,33 +43,44 @@ system that is supported:
   * Minor version/point release/patch level should not be specified.
   * Operating system versions without long term support form their
     vendor should not be supported.
-  * Only the latest long term version is supported.
-  * Operating system versions that have reached their end-of-life should not be
-    supported.
+  * Operating system versions that have reached their end-of-life (or end of
+    general support) should not be supported.
+  * Operating system versions that are expected to reach their end-of-life (or
+    end of general support) within the lifetime of the Zonemaster version should
+    not be supported.
   * Operating system versions that do not provide the prerequisites for
     Zonemaster should not be supported.
 
 ### Operating system specific guidelines
 
-* CentOS:
-  * Base Distributions are listed here:
-    <https://en.wikipedia.org/wiki/CentOS#End-of-support_schedule>
-
 * Debian:
-  * Current versions of "stable" and "oldstable" are listed here:
-    <https://wiki.debian.org/DebianReleases#Current_Releases.2FRepositories>
+  * Only the current "stable" release is supported.
+  * Current "stable" is listed on
+    <https://wiki.debian.org/DebianReleases#Current_Releases.2FRepositories>.
 
 * FreeBSD:
-  * Supported releases are listed here:
-    <https://www.freebsd.org/security/>
+  * One major branch is supported. The selected major branch is supported for
+    its lifetime, and then replaced by the newest major branch. The replacement
+    is done when EOL will be reached within the expected lifetime of the
+    Zonemaster release.
+  * For the selected major release, only the newest point release is tested.
+  * The active major branches are found on <https://www.freebsd.org/security/>
+    (scroll down to "Supported FreeBSD releases").
 
 * Rocky Linux:
-  * Supported releases are listed here:
-    <https://rockylinux.org/download>
+  * All major versions that have not reached EOL are supported.
+    * If the the EOL of a major version is within the expected lifetime of the
+      Zonemaster release then that major version is not supported.
+  * Only the newest point release is tested.
+  * Active releases are listed on <https://rockylinux.org/download>.
 
 * Ubuntu:
-  * LTS releases are listed here:
-    <https://wiki.ubuntu.com/Releases>
+  * All LTS versions that have not reached the "End of Standard Support" are
+    supported.
+    * If the "End of Standard Support" for an LTS version is within the expected
+      lifetime of the Zonemaster release then that LTS version is not supported.
+  * For each LTS version, only the newest point release is tested.
+  * LTS releases are listed on <https://wiki.ubuntu.com/Releases>.
 
 
 ## Database engines
@@ -95,9 +108,14 @@ Database engine versions that lack required features cannot be supported.
   * <https://packages.debian.org/search?searchon=names&keywords=sqlite3>
 
 * Database engine versions provided FreeBSD are listed here:
-  * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=mariadb>
+  * <https://www.freebsd.org/cgi/ports.cgi?query=mysql&stype=name&sektion=databases>
+    and look for "mysql??-server-*" (FreeBSD does not support MariaDB in a
+    default Backend installation).
   * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=postgresql>
-  * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=sqlite3>
+  * <https://www.freebsd.org/cgi/ports.cgi?query=p5-DBD-SQLite-&stype=name&sektion=databases>
+    (then SQLite binary is included in the Perl package).
+
+* Database engine versions provided by each version of Rocky Linux are listed here: TBP
 
 * Database engine versions provided by each version of Ubuntu are listed here:
   * <https://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=mariadb-server>
@@ -125,14 +143,13 @@ version should be supported.
 
 The point release should not be specified.
 
-* Perl versions provided by CentOS 7 are listed here:
-  * <http://mirror.centos.org/centos/7/os/x86_64/Packages/>
-
 * Perl versions provided by each version of Debian are listed here:
   * <https://packages.debian.org/search?searchon=names&keywords=perl>
 
 * Perl versions provided FreeBSD are listed here:
   * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=lang&query=perl>
+
+* Perl versions provided by each version of Rocky Linux are listed here: TBP
 
 * Perl versions provided by each version of Ubuntu are listed here:
   * <https://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=perl>
@@ -140,6 +157,5 @@ The point release should not be specified.
 
 ## Nice-to-have resources
 
-* [CentOS minor releases](https://wiki.centos.org/Download)
 * [Debian point releases](https://wiki.debian.org/DebianReleases/PointReleases)
 * [Ubuntu patch levels](https://wiki.ubuntu.com/Releases)
