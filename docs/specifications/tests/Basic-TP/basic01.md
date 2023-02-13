@@ -6,15 +6,15 @@
 
 ## Table of contents
 
-* [Objective](#Objective)
-* [Scope](#Scope)
-* [Inputs](#Inputs)
-* [Summary](#Summary)
-* [Test procedure](#Test-procedure)
-* [Outcome(s)](#Outcomes)
-* [Special procedural requirements](#Special-procedural-requirements)
-* [Intercase dependencies](#Intercase-dependencies)
-* [Terminology](#terminology)
+* [Objective](#objective)
+* [Scope](#scope)
+* [Inputs](#inputs)
+* [Summary](#summary)
+* [Test procedure](#test-procedure)
+* [Outcome(s)](#outcomes)
+* [Special procedural requirements](#special-procedural-requirements)
+* [Intercase dependencies](#intercase-dependencies)
+* [terminology](#terminology)
 
 
 ## Objective
@@ -65,7 +65,7 @@ B01_INCONSISTENT_DELEGATION|ERROR  |domain_child, domain_parent, ns_ip_list| The
 B01_NO_CHILD               |ERROR  | domain_child, domain_super            | "{domain_child}" does not exist as a DNS zone. Try to test "{domain_super}" instead.
 B01_PARENT_FOUND           |INFO   | domain, ns_ip_list                    | The parent zone is "{domain}" as returned from name servers "{ns_ip_list}".
 B01_PARENT_UNDETERMINED    |WARNING| ns_ip_list                            | The parent zone cannot be determined on name servers "{ns_ip_list}".
-B01_UNEXPECTED_NS_RESPONSE |WARNING|domain_child, domain_parent, ns_ip_list| Name servers for parent domain "{domain_parent}" give an incorrect response on SOA query for "{domain_child}". Returned from name servers {ns_ip_list}.
+B01_UNEXPECTED_NS_RESPONSE |WARNING|domain_child, domain_parent, ns_ip_list| Name servers for parent domain "{domain_parent}" give an incorrect response on SOA query for "{domain_child}". Returned from name servers "{ns_ip_list}".
 
 
 The value in the Level column is the default severity level of the message. The
@@ -112,7 +112,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
    *Remaining Servers* set.
 
 > *In the loop below the steps tries to capture the name of the parent zone of
-> of **Child Zone** and the IP addresses of the name servers for that parent zone
+> **Child Zone** and the IP addresses of the name servers for that parent zone
 > by collecting those IP addresses and the parent zone name that the server is
 > name server for. Here collection is done, further down (below the loop) the
 > steps will check and compare the found parent zone names.*
