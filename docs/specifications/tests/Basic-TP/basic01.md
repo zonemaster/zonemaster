@@ -14,7 +14,7 @@
 * [Outcome(s)](#outcomes)
 * [Special procedural requirements](#special-procedural-requirements)
 * [Intercase dependencies](#intercase-dependencies)
-* [terminology](#terminology)
+* [Terminology](#terminology)
 
 
 ## Objective
