@@ -55,11 +55,21 @@ the future.
 
 ## Documentation
 
-This is the main project repository. In this
-repository, documentation regarding the [design](docs/design),
-[requirements](docs/requirements) and [specifications](docs/specifications)
-for the Zonemaster implementation are available.
+This is the main project repository. In this repository, documentation
+regarding the [design](docs/internal/design),
+[requirements](docs/internal/requirements) and
+[specifications](docs/public/specifications) for the Zonemaster implementation
+are available.
 We also have a brief [user guide](USING.md).
+
+The [public](docs/public) documentation can be built using
+[`mdbook`](https://rust-lang.github.io/mdBook/) and the following commands:
+
+```
+cd docs/public
+mdbook build
+open book/index.html
+```
 
 ## Prerequisites
 
