@@ -1,6 +1,6 @@
 # Using the Backend RPCAPI
 
-This is a guide for getting started with the Zonemaster RPC API daemon.
+This is a guide for getting started with the Zonemaster [RPCAPI] daemon.
 
 >
 > Note: This guide makes a number of assumptions about you setup:
@@ -46,4 +46,5 @@ If you're moderatly quick and repeatedly re-run the last command you should be a
 Never mind updating the JSON-RPC `"id"` - the server doesn't care.
 Once the progress has reached 100, lots of test results should also be showing up.
 
-[installation guide]: ../installation/zonemaster-backend.md
+[installation guide]: ../../installation/zonemaster-backend.md
+[RPCAPI]:             rpcapi-reference.md

@@ -201,7 +201,7 @@ The command is expected to take a few seconds and print some results about the d
 
 [EPEL]:                                              https://fedoraproject.org/wiki/EPEL
 [Installation on Rocky Linux]:                       #installation-on-rocky-linux
-[JSON-RPC API]:                                      ../using/backend-api.md
+[JSON-RPC API]:                                      ../using/backend/api.md
 [Mailing list zonemaster-users]:                     https://github.com/zonemaster/zonemaster/blob/master/docs/contact-and-mailing-lists.md#zonemaster-users
 [Zonemaster::Backend installation]:                  zonemaster-backend.md
 [Zonemaster::CLI installation]:                      zonemaster-cli.md

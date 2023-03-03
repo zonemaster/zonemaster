@@ -189,7 +189,7 @@ See the [USING] Zonemaster-CLI document for an overview on how to use
 
 
 [Declaration of prerequisites]:                   prerequisites.md
-[JSON-RPC API]:                                   ../using/backend-api.md
+[JSON-RPC API]:                                   ../using/backend/api.md
 [USING]:                                          ../USING.md
 [Zonemaster::Backend installation]:               zonemaster-backend.md
 [Zonemaster::Engine installation]:                zonemaster-engine.md

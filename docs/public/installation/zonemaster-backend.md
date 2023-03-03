@@ -792,12 +792,12 @@ cpanm Net::Statsd
 
 [Backend configuration]:              ../configuration/
 [Declaration of prerequisites]:       prerequisites.md
-[JSON-RPC API]:                       ../using/backend-api.md
+[JSON-RPC API]:                       ../using/backend/api.md
 [Main Zonemaster repository]:         https://github.com/zonemaster/zonemaster/blob/master/README.md
 [MariaDB instructions Rocky Linux]:   #81-mariadb-rocky-linux
 [MariaDB instructions Debian]:        #82-mariadb-debianubuntu
 [MariaDB instructions FreeBSD]:       #83-mysql-freebsd
-[metrics]:                            ../using/telemetry.md#metrics
+[metrics]:                            ../using/backend/telemetry.md#metrics
 [Post-installation]:                  #7-post-installation
 [PostgreSQL instructions Rocky Linux]:#91-postgresql-rocky-linux
 [PostgreSQL instructions Debian]:     #92-postgresql-debianubuntu
