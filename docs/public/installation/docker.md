@@ -8,6 +8,6 @@ Zonemaster-CLI on [Docker].
 To build your own Docker image, see the [Docker Image Creation] documentation.
 
 [Docker Hub]:                          https://hub.docker.com/u/zonemaster
-[Docker Image Creation]:               https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess-create-docker-image.md
+[Docker Image Creation]:               https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
 [Docker]:                              https://www.docker.com/get-started
 [USING]:                               ../using/cli.md

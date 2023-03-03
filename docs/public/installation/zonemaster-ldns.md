@@ -56,6 +56,6 @@ TEST_WITH_NETWORK=1 make test
 
 
 [Docker Hub]:                                        https://hub.docker.com/u/zonemaster
-[Docker Image Creation]:                             https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess-create-docker-image.md
+[Docker Image Creation]:                             https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
 [Installation instructions for Zonemaster::Engine]:  zonemaster-engine.md
 [USING]:                                             ../using/

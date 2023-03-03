@@ -278,7 +278,7 @@ be found in the [LICENSE](LICENSE) file included in this respository.
 [Contact and mailing lists]:           docs/contact-and-mailing-lists.md
 [Debian]:                              https://www.debian.org/
 [Docker Hub]:                          https://hub.docker.com/u/zonemaster
-[Docker Image Creation]:               https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess-create-docker-image.md
+[Docker Image Creation]:               https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
 [Docker]:                              https://www.docker.com/get-started
 [FreeBSD]:                             https://www.freebsd.org/
 [Issues in Zonemaster/Zonemaster]:     https://github.com/zonemaster/zonemaster/issues

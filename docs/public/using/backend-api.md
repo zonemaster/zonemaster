@@ -1570,7 +1570,7 @@ The `"params"` object sent to [`start_domain_test`][start_domain_test] or
 [Severity level]:                     #severity-level
 [start_domain_test]:                  #api-method-start_domain_test
 [Test Cases]:                         ../specifications/tests#list-of-defined-test-cases
-[Test Case Identifiers]:              https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/templates/specifications/tests/TestCaseIdentifierSpecification.md
+[Test Case Identifiers]:              https://github.com/zonemaster/zonemaster/blob/master/docs/internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
 [Test id]:                            #test-id
 [Test result]:                        #test-result
 [Timestamp]:                          #timestamp
