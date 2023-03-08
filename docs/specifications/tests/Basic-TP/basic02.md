@@ -45,7 +45,7 @@ whole testing process, except for the [Basic03] test, is aborted.
 
 Message Tag          | Level    | Arguments     | Message ID for message tag
 :--------------------|:---------|:--------------|:--------------------------
-B02_AUTH_RESPONSE_SOA| DEBUG    |ns_list, domain| Authoritative answer on SOA query for "{domain}" is returned by name servers "{ns_list}".
+B02_AUTH_RESPONSE_SOA| INFO     |ns_list, domain| Authoritative answer on SOA query for "{domain}" is returned by name servers "{ns_list}".
 B02_NO_DELEGATION    | CRITICAL | domain        | There is no delegation (name servers) for "{domain}" which means it does not exist as a zone.
 B02_NO_WORKING_NS    | CRITICAL | domain        | There is no working name server for "{domain}" so it is unreachable.
 B02_NS_BROKEN        | ERROR    | ns            | Broken response from name server "{ns}" on an SOA query.
