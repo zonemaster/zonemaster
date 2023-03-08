@@ -110,11 +110,11 @@ queries follow, unless otherwise specified below, what is specified for
       1. Send *SOA Query* to the name server IP.
       2. If there is no [DNS Response], then add the name server name and IP
          address to the *No Response From NS* set.
-      3. Else, if the AA flag is not set in the [DNS Response], then add the name
-         server name and IP address to the *NS not auth* set.
-      4. Else, if the [RCODE Name] is not "NoError" in the [DNS Response], then
+      3. Else, if the [RCODE Name] is not "NoError" in the [DNS Response], then
          add the name server name, IP address and the [RCODE Name] to the
          *Unexpected RCODE* set.
+      4. Else, if the AA flag is not set in the [DNS Response], then add the name
+         server name and IP address to the *NS not auth* set.
       5. Else do:
          1. If the answer section in the [DNS Response] contains an SOA record
             with *Child Zone* as owner name, then add the name server name and IP
