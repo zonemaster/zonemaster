@@ -45,7 +45,7 @@ whole testing process, except for the [Basic03] test, is aborted.
 
 Message Tag          | Level    | Arguments     | Message ID for message tag
 :--------------------|:---------|:--------------|:--------------------------
-B02_AUTH_RESPONSE_SOA| DEBUG    |ns_list, domain| Authoritative answer on SOA query for "{domain}" is returned by name servers "{ns_list}".
+B02_AUTH_RESPONSE_SOA| INFO     |ns_list, domain| Authoritative answer on SOA query for "{domain}" is returned by name servers "{ns_list}".
 B02_NO_DELEGATION    | CRITICAL | domain        | There is no delegation (name servers) for "{domain}" which means it does not exist as a zone.
 B02_NO_WORKING_NS    | CRITICAL | domain        | There is no working name server for "{domain}" so it is unreachable.
 B02_NS_BROKEN        | ERROR    | ns            | Broken response from name server "{ns}" on an SOA query.
@@ -110,11 +110,11 @@ queries follow, unless otherwise specified below, what is specified for
       1. Send *SOA Query* to the name server IP.
       2. If there is no [DNS Response], then add the name server name and IP
          address to the *No Response From NS* set.
-      3. Else, if the AA flag is not set in the [DNS Response], then add the name
-         server name and IP address to the *NS not auth* set.
-      4. Else, if the [RCODE Name] is not "NoError" in the [DNS Response], then
+      3. Else, if the [RCODE Name] is not "NoError" in the [DNS Response], then
          add the name server name, IP address and the [RCODE Name] to the
          *Unexpected RCODE* set.
+      4. Else, if the AA flag is not set in the [DNS Response], then add the name
+         server name and IP address to the *NS not auth* set.
       5. Else do:
          1. If the answer section in the [DNS Response] contains an SOA record
             with *Child Zone* as owner name, then add the name server name and IP
