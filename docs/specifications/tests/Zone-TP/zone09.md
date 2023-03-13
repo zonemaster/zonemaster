@@ -112,7 +112,7 @@ Z09_NULL_MX_NON_ZERO_PREF  | NOTICE|                             | The zone has 
 Z09_NULL_MX_WITH_OTHER_MX  |WARNING|                             | The zone has a Null MX mixed with other MX records.
 Z09_ROOT_EMAIL_DOMAIN      | NOTICE|                             | Root zone with an unexpected MX RRset (non-Null MX).
 Z09_TLD_EMAIL_DOMAIN       |WARNING|                             | The zone is a TLD and has an unexpected MX RRset (non-Null MX).
-Z09_UNEXPECTED_RCODE_MX    |WARNING | ns_ip_list, rcode          | Unexpected RCODE value on the MX query from name servers "{ns_ip_list}".
+Z09_UNEXPECTED_RCODE_MX    |WARNING | ns_ip_list, rcode          | Unexpected RCODE value ({rcode}) in response to MX query. Responses from name servers "{ns_ip_list}".
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
