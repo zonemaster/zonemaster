@@ -1,4 +1,4 @@
-- [Installation]()
+- [Installation](installation/README.md)
     - [Prerequisites](installation/prerequisites.md)
     - [Zonemaster-LDNS](installation/zonemaster-ldns.md)
     - [Zonemaster-Engine](installation/zonemaster-engine.md)
