@@ -65,10 +65,10 @@ perl -E 'use Zonemaster::Backend; say $Zonemaster::Backend::VERSION;'
 ```
 
 [Installation instructions]: ../installation/zonemaster-backend.md
-[Upgrade to 1.0.3]:  https://github.com/zonemaster/zonemaster-backend/tree/master/docs/upgrade/upgrade_zonemaster_backend_ver_1.0.3.md
-[Upgrade to 1.1.0]:  https://github.com/zonemaster/zonemaster-backend/tree/master/docs/upgrade/upgrade_zonemaster_backend_ver_1.1.0.md
-[Upgrade to 5.0.0]:  https://github.com/zonemaster/zonemaster-backend/tree/master/docs/upgrade/upgrade_zonemaster_backend_ver_5.0.0.md
-[Upgrade to 5.0.2]:  https://github.com/zonemaster/zonemaster-backend/tree/master/docs/upgrade/upgrade_zonemaster_backend_ver_5.0.2.md
-[Upgrade to 8.0.0]:  https://github.com/zonemaster/zonemaster-backend/tree/master/docs/upgrade/upgrade_zonemaster_backend_ver_8.0.0.md
-[Upgrade to 9.0.0]:  https://github.com/zonemaster/zonemaster-backend/tree/master/docs/upgrade/upgrade_zonemaster_backend_ver_9.0.0.md
+[Upgrade to 1.0.3]:          backend/upgrade_zonemaster_backend_ver_1.0.3.md
+[Upgrade to 1.1.0]:          backend/upgrade_zonemaster_backend_ver_1.1.0.md
+[Upgrade to 5.0.0]:          backend/upgrade_zonemaster_backend_ver_5.0.0.md
+[Upgrade to 5.0.2]:          backend/upgrade_zonemaster_backend_ver_5.0.2.md
+[Upgrade to 8.0.0]:          backend/upgrade_zonemaster_backend_ver_8.0.0.md
+[Upgrade to 9.0.0]:          backend/upgrade_zonemaster_backend_ver_9.0.0.md
 [Zonemaster::Engine installation]: ../installation/zonemaster-engine.md
