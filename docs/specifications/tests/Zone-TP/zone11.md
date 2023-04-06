@@ -25,30 +25,7 @@ structured format.
 
 This test case looks up SPF records in the domain to be tested. It checks that
 there is at most one published SPF version 1 policy and, if present, also checks
-the following:
-
- * the policy has correct syntax;
- * the policy uses no deprecated [terms][SPF term] nor deprecated [macros][macro].
-
-## Caveat
-
-In order to avoid any denial-of-service attacks, SPF imposes limits on the
-number of recursive DNS lookups an SPF validator may carry out when evaluating a
-policy. This test case will generate an error if it can be certain that a policy
-would generate more than 10 recursive DNS queries by a validator. A policy may
-also use `include` mechanisms or `redirect` modifiers for indirection, but in
-order to keep the test case simple, Zonemaster will not follow these terms.
-
-For that reason, if the published SPF policy contains `include` mechanisms or
-a `redirect` modifier, Zonemaster not raising an error about a too complex
-policy does not mean that the policy will never exceed DNS processing limits
-specified in [RFC 7208, section 4.6.4][RFC7208#4.6.4]. Due to the macro
-expansion facilities of SPF, such problems may only be restricted to certain
-sender domains.
-
-A true SPF validator would need, as inputs, the IPv4 or IPv6 address of the
-sending mail host along with the domain to test. Consequently, Zonemaster will
-not attempt to evaluate the published SPF policy.
+its syntax.
 
 ## Scope
 
@@ -63,21 +40,14 @@ server.
 
 ## Summary
 
-Message Tag                     | Level   | Arguments                | Message ID for message tag
-:-------------------------------|:--------|:-------------------------|:--------------------------------------------
-Z11_INCONSISTENT_SPF_POLICIES   | WARNING |                          | The *Child Zone* publishes different SPF policies on different name servers.
-Z11_NO_SPF_FOUND                | DEBUG   |                          | The *Child Zone* does not publish an SPF policy.
-Z11_SPF1_DUPLICATE_MODIFIER     | ERROR   | ns_ip_list, spf_modifier | The *Child Zone*’s SPF version 1 policy contains more than one {spf_modifier} modifier. Policy retrieved from the following nameservers: {ns_ip_list}.
-Z11_SPF1_HAS_P_MACRO            | WARNING | ns_ip_list               | The *Child Zone*’s SPF version 1 policy contains a %{p} macro, which should no longer be used. Policy retrieved from the following nameservers: {ns_ip_list}.
-Z11_SPF1_HAS_PTR                | WARNING | ns_ip_list               | The *Child Zone*’s SPF version 1 policy contains a ptr mechanism, which should no longer be used. Policy retrieved from the following nameservers: {ns_ip_list}.
-Z11_SPF1_MULTIPLE_RECORDS       | ERROR   | ns_ip_list               | The *Child Zone* publishes more than one SPF version 1 policy. Policies retrieved from the following nameservers: {ns_ip_list}.
-Z11_SPF1_RECURSIVE              | NOTICE  | ns_ip_list               | The *Child Zone*’s SPF version 1 policy uses "include" or "redirect". Policy retrieved from the following nameservers: {ns_ip_list}.
-Z11_SPF1_REDIRECT_AND_ALL       | WARNING | ns_ip_list               | The *Child Zone*’s SPF version 1 policy contains both the "all" keyword and a redirect modifier, which will cause "all" to be ignored. Policy retrieved from the following nameservers: {ns_ip_list}.
-Z11_SPF1_REDIRECT_NOT_AT_END    | WARNING | ns_ip_list               | The *Child Zone*’s SPF version 1 policy contains a redirect modifier, but it does not appear at the end of the string. Policy retrieved from the following nameservers: {ns_ip_list}.
-Z11_SPF1_SYNTAX_ERROR           | ERROR   | ns_ip_list               | The *Child Zone*’s SPF version 1 policy has a syntax error. Policy retrieved from the following nameservers: {ns_ip_list}.
-Z11_SPF1_SYNTAX_OK              | INFO    |                          | The *Child Zone*’s SPF version 1 policy has correct syntax.
-Z11_SPF1_TOO_COMPLEX            | ERROR   | ns_ip_list, count        | Evaluating the *Child Zone*’s SPF version 1 policy would require {count} recursive DNS lookups by an SPF validator, exceeding the limit of 10. Policy retrieved from the following nameservers: {ns_ip_list}.
-Z11_UNABLE_TO_CHECK_FOR_SPF     | ERROR   |                          | Unable to check whether *Child Zone* publishes an SPF policy.
+Message Tag                     | Level   | Arguments    | Message ID for message tag
+:-------------------------------|:--------|:-------------|:--------------------------------------------
+Z11_INCONSISTENT_SPF_POLICIES   | WARNING |              | The *Child Zone* publishes different SPF policies on different name servers.
+Z11_NO_SPF_FOUND                | DEBUG   |              | The *Child Zone* does not publish an SPF policy.
+Z11_SPF1_MULTIPLE_RECORDS       | ERROR   | ns_ip_list   | The *Child Zone* publishes more than one SPF version 1 policy. Policies retrieved from the following nameservers: {ns_ip_list}.
+Z11_SPF1_SYNTAX_ERROR           | ERROR   | ns_ip_list   | The *Child Zone*’s SPF version 1 policy has a syntax error. Policy retrieved from the following nameservers: {ns_ip_list}.
+Z11_SPF1_SYNTAX_OK              | INFO    |              | The *Child Zone*’s SPF version 1 policy has correct syntax.
+Z11_UNABLE_TO_CHECK_FOR_SPF     | ERROR   |              | Unable to check whether *Child Zone* publishes an SPF policy.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -136,7 +106,8 @@ same specification.
 
 7. Compare the set of *SPF-Policies* retrieved from all name servers. If at
    least two different name servers have returned different sets of SPF
-   policies, then output *[Z11_INCONSISTENT_SPF_POLICIES]*.
+   policies, then output *[Z11_INCONSISTENT_SPF_POLICIES]* and terminate the
+   test.
 
 8. If the *SPF-Policies* set contains at least two pairs with the same IP
    address, then output *[Z11_SPF1_MULTIPLE_RECORDS]* with the list of
@@ -149,38 +120,7 @@ same specification.
     check] for SPF version 1 records, then output *[Z11_SPF1_SYNTAX_ERROR]* and
     terminate the test.
 
-11. If the *SPF Policy* contains more than one `redirect` modifier, or more than
-    one `exp` modifier, then output *[Z11_SPF1_DUPLICATE_MODIFIER]*.
-
-12. If the *SPF Policy* contains exactly one `redirect` modifier anywhere except
-    at the end of the policy text, then output *[Z11_SPF1_REDIRECT_NOT_AT_END]*.
-
-13. If the *SPF Policy* contains both a `redirect` modifier and an `all`
-    mechanism, then output *[Z11_SPF1_REDIRECT_AND_ALL]*.
-
-14. If the *SPF Policy* contains at least one `ptr` mechanism, then output
-    *[Z11_SPF1_HAS_PTR]*.
-
-15. Count the total number of terms in the *SPF Policy* that is either a
-    mechanism of type `include`, `a`, `mx`, `ptr`, `exists` or a modifier of
-    type `redirect` ("DNS Lookup count").
-
-16. If the `%{p}` [macro] appears as a domain-spec for an [SPF term] in the
-    *SPF Policy*, then:
-
-    1. Output *[Z11_SPF1_HAS_P_MACRO]*.
-
-    2. If the same policy contains no `ptr` mechanism, then increment the *DNS
-    Lookup count*.
-
-17. If the *DNS Lookup count* is greater than 10, then output
-    *[Z11_SPF1_TOO_COMPLEX]*.
-
-18. If the *DNS Lookup count* is less than or equal to 10 and the *SPF Policy*
-    contains a `redirect` modifier or at least one `include` mechanism, then
-    output *[Z11_SPF1_RECURSIVE]*.
-
-19. If no other message was outputted by this test case, then output
+11. If no other message was outputted by this test case, then output
     *[Z11_SPF1_SYNTAX_OK]*.
 
 ## Outcome(s)
@@ -216,19 +156,12 @@ None.
   resource record’s data to a single contiguous string, as specified in [RFC
   7208, section 3.3][RFC7208#3.3].
 
-* "macro" - The term is used to refer to the macros permissible in SPF
-  domain-specs, as specified in [RFC 7208, section 7][RFC7208#7].
-
 * "passing the syntax check" - The term is used in this document to refer to
   text that is valid according to the ABNF grammar published in [RFC
   7208][RFC7208] starting from [section 4.5][RFC7208#4.5].
 
 * "using Method" - The term is used when data is fetched using the defined
   [Method][Methods].
-
-* "SPF term" - The term is used to refer to either an SPF mechanism as defined
-  in [RFC 7208, section 5][RFC7208#5] or an SPF modifier as defined in [RFC
-  7208, section 6][RFC7208#6].
 
 [Argument list]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [argument]:                             #terminology
@@ -240,7 +173,6 @@ None.
 [DNS Response]:                         ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
 [ERROR]:                                ../SeverityLevelDefinitions.md#error
 [INFO]:                                 ../SeverityLevelDefinitions.md#info
-[macro]:                                #terminology
 [Message Tag Specification]:            MessageTagSpecification.md
 [Method4]:                              ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
@@ -250,29 +182,20 @@ None.
 [RCODE Name]:                           https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC7208#3.3]:                          https://www.rfc-editor.org/rfc/rfc7208#section-3.3
 [RFC7208#4.5]:                          https://www.rfc-editor.org/rfc/rfc7208#section-4.5
-[RFC7208#4.6.4]:                        https://www.rfc-editor.org/rfc/rfc7208#section-4.6.4
 [RFC7208#4]:                            https://www.rfc-editor.org/rfc/rfc7208#section-4
 [RFC7208#5]:                            https://www.rfc-editor.org/rfc/rfc7208#section-5
 [RFC7208#6]:                            https://www.rfc-editor.org/rfc/rfc7208#section-6
 [RFC7208#7]:                            https://www.rfc-editor.org/rfc/rfc7208#section-7
 [RFC7208]:                              https://www.rfc-editor.org/rfc/rfc7208
 [Severity Level Definitions]:           ../SeverityLevelDefinitions.md
-[SPF term]:                             #terminology
 [SPF TXT record]:                       #terminology
 [Test Case Identifier Specification]:   TestCaseIdentifierSpecification.md
 [Undelegated test]:                     ../../test-types/undelegated-test.md
 [WARNING]:                              ../SeverityLevelDefinitions.md#warning
 [Z11_INCONSISTENT_SPF_POLICIES]:        #summary
 [Z11_NO_SPF_FOUND]:                     #summary
-[Z11_SPF1_DUPLICATE_MODIFIER]:          #summary
-[Z11_SPF1_HAS_P_MACRO]:                 #summary
-[Z11_SPF1_HAS_PTR]:                     #summary
 [Z11_SPF1_MULTIPLE_RECORDS]:            #summary
-[Z11_SPF1_RECURSIVE]:                   #summary
-[Z11_SPF1_REDIRECT_AND_ALL]:            #summary
-[Z11_SPF1_REDIRECT_NOT_AT_END]:         #summary
 [Z11_SPF1_SYNTAX_ERROR]:                #summary
 [Z11_SPF1_SYNTAX_OK]:                   #summary
-[Z11_SPF1_TOO_COMPLEX]:                 #summary
 [Z11_UNABLE_TO_CHECK_FOR_SPF]:          #summary
 [Zonemaster-Engine profile]:            https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
