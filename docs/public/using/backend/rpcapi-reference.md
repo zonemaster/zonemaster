@@ -30,20 +30,35 @@
   * [Timestamp (deprecated)](#timestamp-deprecated)
   * [Timestamp](#timestamp)
   * [Username](#username)
-* [API method: version_info](#api-method-version_info)
-* [API method: profile_names](#api-method-profile_names)
-* [API method: get_language_tags](#api-method-get_language_tags)
-* [API method: get_host_by_name](#api-method-get_host_by_name)
-* [API method: get_data_from_parent_zone](#api-method-get_data_from_parent_zone)
-* [API method: start_domain_test](#api-method-start_domain_test)
-* [API method: test_progress](#api-method-test_progress)
-* [API method: get_test_results](#api-method-get_test_results)
-* [API method: get_test_history](#api-method-get_test_history)
-  * [Undelegated and delegated](#undelegated-and-delegated)
-* [API method: add_api_user](#api-method-add_api_user)
-* [API method: add_batch_job](#api-method-add_batch_job)
-* [API method: get_batch_job_result](#api-method-get_batch_job_result)
-* [API method: get_test_params](#api-method-get_test_params)
+* [API methods](#api-methods)
+  * [API method: system_versions](#api-method-system_versions)
+  * [API method: conf_profiles](#api-method-conf_profiles)
+  * [API method: conf_languages](#api-method-conf_languages)
+  * [API method: lookup_address_records](#api-method-lookup_address_records)
+  * [API method: lookup_delegation_data](#api-method-lookup_delegation_data)
+  * [API method: job_create](#api-method-job_create)
+  * [API method: job_status](#api-method-job_status)
+  * [API method: job_results](#api-method-job_results)
+  * [API method: job_params](#api-method-job_params)
+  * [API method: domain_history](#api-method-domain_history)
+    * [Undelegated and delegated](#undelegated-and-delegated)
+  * [API method: user_create](#api-method-user_create)
+  * [API method: batch_create](#api-method-batch_create)
+  * [API method: batch_status](#api-method-batch_status)
+* [Deprecated](#deprecated)
+  * [API method: version_info](#api-method-version_info)
+  * [API method: profile_names](#api-method-profile_names)
+  * [API method: get_language_tags](#api-method-get_language_tags)
+  * [API method: get_host_by_name](#api-method-get_host_by_name)
+  * [API method: get_data_from_parent_zone](#api-method-get_data_from_parent_zone)
+  * [API method: start_domain_test](#api-method-start_domain_test)
+  * [API method: test_progress](#api-method-test_progress)
+  * [API method: get_test_results](#api-method-get_test_results)
+  * [API method: get_test_history](#api-method-get_test_history)
+  * [API method: add_api_user](#api-method-add_api_user)
+  * [API method: add_batch_job](#api-method-add_batch_job)
+  * [API method: get_batch_job_result](#api-method-get_batch_job_result)
+  * [API method: get_test_params](#api-method-get_test_params)
 
 
 ## Purpose
@@ -329,9 +344,9 @@ with this type, it returns the following error message:
     }
 }
 ```
-The error code is "009" (as above) if method [`start_domain_test`][API start_domain_test]
+The error code is "009" (as above) if method [`job_create`][API job_create]
 was requested.
-Instead it will be "015" if method [`add_batch_job`][add_batch_job] is requested.
+Instead it will be "015" if method [`batch_create`][API batch_create] is requested.
 
 
 ### Progress percentage
@@ -396,16 +411,6 @@ Sometimes additional keys are present.
 This key is added when the module name is `"NAMESERVER"`.
 
 
-### Timestamp (deprecated)
-
-Basic data type: string
-
-**Deprecated representation** (planned removal: v2023.1).
-
-Default database timestamp format: "Y-M-D H:M:S.ms".
-Example: "2017-12-18 07:56:17.156939"
-
-
 ### Timestamp
 
 Basic data type: string
@@ -435,7 +440,9 @@ The items of the array are objects with two keys, `"path"` and `"message"`:
   referenced by `"path"`.
 
 
-## API method: `version_info`
+## API methods
+
+### API method: `system_versions`
 
 Returns the version of the Zonemaster-LDNS, Zonemaster-Engine and Zonemaster-Backend software combination.
 
@@ -444,7 +451,7 @@ Example request:
 {
   "jsonrpc": "2.0",
   "id": 1,
-  "method": "version_info"
+  "method": "system_versions"
 }
 ```
 
@@ -466,6 +473,7 @@ Example response:
 
 An object with the following properties:
 
+* `"zonemaster_ldns"`: A string. The version number of the running *Zonemaster LDNS*.
 * `"zonemaster_backend"`: A string. The version number of the running *Zonemaster Backend*.
 * `"zonemaster_engine"`: A string. The version number of the *Zonemaster Engine* used by the *RPC API daemon*.
 
@@ -477,7 +485,7 @@ An object with the following properties:
 >
 
 
-## API method: `profile_names`
+### API method: `conf_profiles`
 
 Returns the names of the public subset of the
 [available profiles][Profile sections].
@@ -487,7 +495,7 @@ Example request:
 {
   "jsonrpc": "2.0",
   "id": 1,
-  "method": "profile_names"
+  "method": "conf_profiles"
 }
 ```
 
@@ -496,20 +504,25 @@ Example response:
 {
   "jsonrpc": "2.0",
   "id": 1,
-  "result": [
-    "default",
-    "another-profile"
-  ]
+  "result": {
+    "profiles": [
+      "default",
+      "another-profile"
+    ]
+  }
 }
 ```
 
 
 #### `"result"`
 
-An array of [*Profile names*][Profile name] in lower case. `"default"` is always included.
+An oject with the following property:
+
+* `"profiles"`: An array of [*Profile names*][Profile name] in lower case.
+  `"default"` is always included.
 
 
-## API method: `get_language_tags`
+### API method: `conf_languages`
 
 Returns the set of valid [*language tags*][Language tag].
 
@@ -525,7 +538,7 @@ Example request:
 {
   "jsonrpc": "2.0",
   "id": 1,
-  "method": "get_language_tags"
+  "method": "conf_languages"
 }
 ```
 
@@ -534,29 +547,33 @@ Example response:
 {
   "jsonrpc": "2.0",
   "id": 1,
-  "result": [
-    "da",
-    "da_DK",
-    "en",
-    "en_US",
-    "es",
-    "es_ES",
-    "fi",
-    "fi_FI",
-    "fr",
-    "fr_FR",
-    "nb",
-    "nb_NO",
-    "sv",
-    "sv_SE"
-  ]
+  "result": {
+    "languages": [
+      "da",
+      "da_DK",
+      "en",
+      "en_US",
+      "es",
+      "es_ES",
+      "fi",
+      "fi_FI",
+      "fr",
+      "fr_FR",
+      "nb",
+      "nb_NO",
+      "sv",
+      "sv_SE"
+    ]
+  }
 }
 ```
 
 
 #### `"result"`
 
-An array of [*language tags*][Language tag]. It is never empty.
+An oject with the following property:
+
+* `"languages"`: An array of [*language tags*][Language tag]. It is never empty.
 
 
 #### `"error"`
@@ -569,7 +586,7 @@ An array of [*language tags*][Language tag]. It is never empty.
 >
 
 
-## API method: `get_host_by_name`
+### API method: `lookup_address_records`
 
 Looks up the A and AAAA records for a hostname ([*domain name*][Domain name]) on the public Internet.
 
@@ -580,7 +597,7 @@ Example request:
 {
   "jsonrpc": "2.0",
   "id": 2,
-  "method": "get_host_by_name",
+  "method": "lookup_address_records",
   "params": {"hostname": "zonemaster.net"}
 }
 ```
@@ -590,14 +607,16 @@ Example response:
 {
   "jsonrpc": "2.0",
   "id": 2,
-  "result": [
-    {
-      "zonemaster.net": "192.134.4.83"
-    },
-    {
-      "zonemaster.net": "2001:67c:2218:3::1:83"
-    }
-  ]
+  "result": {
+    "address_records": [
+      {
+        "zonemaster.net": "192.134.4.83"
+      },
+      {
+        "zonemaster.net": "2001:67c:2218:3::1:83"
+      }
+    ]
+  }
 }
 ```
 
@@ -611,10 +630,13 @@ An object with the property:
 
 #### `"result"`
 
-A list of one or two objects representing IP addresses (if 2 one is for IPv4 the
-other for IPv6). The objects each have a single key and value. The key is the
-[*domain name*][Domain name] given as input. The value is an IP address for the name, or the
-value `0.0.0.0` if the lookup returned no A or AAAA records.
+An oject with the following property:
+
+* `"address_record"`: A list of one or two objects representing IP addresses
+  (if 2 one is for IPv4 the other for IPv6). The objects each have a single key
+  and value. The key is the [*domain name*][Domain name] given as input. The
+  value is an IP address for the name, or the value `0.0.0.0` if the lookup
+  returned no A or AAAA records.
 
 >
 > TODO: If the name resolves to two or more IPv4 address, how is that represented?
@@ -644,7 +666,7 @@ value `0.0.0.0` if the lookup returned no A or AAAA records.
 }
 ```
 
-## API method: `get_data_from_parent_zone`
+### API method: `lookup_delegation_data`
 
 Returns all the NS/IP and DS/DNSKEY/ALGORITHM pairs of the domain from the
 parent zone.
@@ -655,7 +677,7 @@ Example request:
 {
   "jsonrpc": "2.0",
   "id": 3,
-  "method": "get_data_from_parent_zone",
+  "method": "lookup_delegation_data",
   "params": {"domain": "zonemaster.net"}
 }
 ```
@@ -742,7 +764,7 @@ An object with the following properties:
 ```
 
 
-## API method: `start_domain_test`
+### API method: `job_create`
 
 Enqueues a new *test* and returns the [*test id*][Test id] of the *test*.
 
@@ -751,7 +773,7 @@ Example request:
 {
   "jsonrpc": "2.0",
   "id": 4,
-  "method": "start_domain_test",
+  "method": "job_create",
   "params": {
     "client_id": "Zonemaster Dancer Frontend",
     "domain": "zonemaster.net",
@@ -779,7 +801,9 @@ Example response:
 {
   "jsonrpc": "2.0",
   "id": 4,
-  "result": "c45a3f8256c4a155"
+  "result": {
+    "job_id": "c45a3f8256c4a155"
+  }
 }
 ```
 
@@ -805,7 +829,9 @@ An object with the following properties:
 
 #### `"result"`
 
-A [*test id*][Test id].
+An object with the following property:
+
+* `"job_id"`: A [*test id*][Test id].
 
 If a test has been requested with the same parameters (as listed below) not more
 than "reuse time" ago, then a new request will not trigger a new test. Instead
@@ -863,7 +889,7 @@ Example of error response:
 
 
 
-## API method: `test_progress`
+### API method: `job_status`
 
 Reports on the progress of a *test*.
 
@@ -874,7 +900,7 @@ Example request:
 {
   "jsonrpc": "2.0",
   "id": 5,
-  "method": "test_progress",
+  "method": "job_status",
   "params": {"test_id": "c45a3f8256c4a155"}
 }
 ```
@@ -884,7 +910,9 @@ Example response:
 {
   "jsonrpc": "2.0",
   "id": 5,
-  "result": 100
+  "result": {
+    "progress": 100
+  }
 }
 ```
 
@@ -898,7 +926,9 @@ An object with the property:
 
 #### `"result"`
 
-A [*progress percentage*][Progress percentage].
+An object with the following property:
+
+* `"progress"`: A [*progress percentage*][Progress percentage].
 
 
 #### `"error"`
@@ -908,7 +938,7 @@ A [*progress percentage*][Progress percentage].
 >
 
 
-## API method: `get_test_results`
+### API method: `job_results`
 
 Return all [*test result*][Test result] objects of a *test*, with *messages* in the requested language as selected by the
 [*language tag*][Language tag].
@@ -918,7 +948,7 @@ Example request:
 {
   "jsonrpc": "2.0",
   "id": 6,
-  "method": "get_test_results",
+  "method": "job_results",
   "params": {
     "id": "c45a3f8256c4a155",
     "language": "en"
@@ -926,7 +956,7 @@ Example request:
 }
 ```
 
-The `id` parameter must match the `result` in the response to a [`start_domain_test`][start_domain_test]
+The `id` parameter must match the `result` in the response to a [`job_create`][API job_create]
 call, and that test must have been completed.
 
 Example response:
@@ -935,7 +965,6 @@ Example response:
   "jsonrpc": "2.0",
   "id": 6,
   "result": {
-    "creation_time": "2016-11-15 11:53:13.965982",
     "created_at": "2016-11-15T11:53:13Z",
     "hash_id": "c45a3f8256c4a155",
     "params": {
@@ -996,32 +1025,95 @@ An object with the following properties:
 
 #### `"result"`
 
-* `"creation_time"`: **Deprecated** (planned removal: v2023.1). A [*deprecated timestamp*][Timestamp deprecated].
-  The time in UTC at which the *test* was created.
+An object with the following properties:
+
 * `"created_at"`: A [*timestamp*][Timestamp]. The time in UTC at which the *test*
   was created.
 * `"hash_id"`: A [*test id*][Test id]. The *test* in question.
 * `"params"`: See below.
-  `start_domain_test` when the *test* was started.
 * `"results"`: A list of [*test result*][Test result] objects.
 * `"testcase_descriptions"`: A map with the *[Test Case Identifiers]* as keys and the
   translated *Test Case Description* of the corresponding *[Test Cases]* as values.
 
-If the test was created by [`start_domain_test`][start_domain_test] then `"params"`
-is a normalized version `"params"` object sent to [`start_domain_test`][start_domain_test]
+If the test was created by [`job_create`][API job_create] then `"params"`
+is a normalized version `"params"` object sent to [`job_create`][API job_create]
 when the *test* was created.
 
-If the test was created with [`add_batch_job`][add_batch_job] then `"params"`
+If the test was created with [`batch_create`][API batch_create] then `"params"`
 is a normalized version of an object created from the following parts:
-* The keys from the`"test_params"` object sent to [`add_batch_job`][add_batch_job]
+* The keys from the`"test_params"` object sent to [`batch_create`][API batch_create]
   when the *test* was created as part of a batch.
 * The `"domain"` key holding the specific [*domain name*][Domain name] for this
   test result from the `"domains"` object included in the call to
-  [`add_batch_job`][add_batch_job].
+  [`batch_create`][API batch_create].
 
 >
 > TODO: Change name in the API of `"hash_id"` to `"test_id"`
 >
+
+
+#### `"error"`
+
+>
+> TODO: List all possible error codes and describe what they mean enough for clients to know how react to them.
+>
+
+
+### API method: `job_params`
+
+Return a normalized *params* objects of a *test*.
+
+Example request:
+
+*Valid syntax:*
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 143014426992009,
+    "method": "job_params",
+    "params": {"test_id": "6814584dc820354a"}
+}
+```
+
+Example response:
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 143014426992009,
+    "result": {
+         "domain": "zonemaster.net",
+         "profile": "default",
+         "client_id": "Zonemaster Dancer Frontend",
+         "nameservers": [
+            {
+                "ns": "ns3.nic.se",
+                "ip": "2001:67c:124c:2007::45"
+            },
+            {
+                "ip": "192.93.0.4",
+                "ns": "ns2.nic.fr"
+            }
+         ],
+         "ipv4": true,
+         "ipv6": true,
+         "client_version": "1.0.1",
+         "ds_info": []
+    }
+}
+```
+
+
+#### `"params"`
+
+An object with the property:
+
+* `"test_id"`: A [*test id*][Test id], required.
+
+
+#### `"result"`
+
+The `"params"` object sent to [`job_create`][API job_create] or
+[`batch_create`][API batch_create] when the *test* was started.
 
 
 #### `"error"`
@@ -1031,7 +1123,7 @@ is a normalized version of an object created from the following parts:
   >
 
 
-## API method: `get_test_history`
+### API method: `domain_history`
 
 Returns a list of completed *tests* for a domain.
 
@@ -1040,7 +1132,7 @@ Example request:
 {
   "jsonrpc": "2.0",
   "id": 7,
-  "method": "get_test_history",
+  "method": "domain_history",
   "params": {
     "offset": 0,
     "limit": 200,
@@ -1057,23 +1149,23 @@ Example response:
 {
   "id": 7,
   "jsonrpc": "2.0",
-  "result": [
-    {
-      "id": "c45a3f8256c4a155",
-      "creation_time": "2016-11-15 11:53:13.965982",
-      "created_at": "2016-11-15T11:53:13Z",
-      "undelegated": true,
-      "overall_result": "error",
-    },
-    {
-      "id": "32dd4bc0582b6bf9",
-      "undelegated": false,
-      "creation_time": "2016-11-14 08:46:41.532047",
-      "created_at": "2016-11-14T08:46:41Z",
-      "overall_result": "error",
-    },
-    ...
-  ]
+  "result": {
+    "history": [
+      {
+        "id": "c45a3f8256c4a155",
+        "created_at": "2016-11-15T11:53:13Z",
+        "undelegated": true,
+        "overall_result": "error",
+      },
+      {
+        "id": "32dd4bc0582b6bf9",
+        "undelegated": false,
+        "created_at": "2016-11-14T08:46:41Z",
+        "overall_result": "error",
+      },
+      ...
+    ]
+  }
 }
 ```
 
@@ -1086,7 +1178,7 @@ Example response:
 ### Undelegated and delegated
 
 A test is considered to be `"delegated"` below if the test was started, by
-[`start_domain_test`][start_domain_test] or [`add_batch_job`][add_batch_job]
+[`job_create`][API job_create] or [`batch_create`][API batch_create]
 without specifying neither `"nameserver"` nor `"ds_info"`. Else it is considered to
 be `"undelegated"`.
 
@@ -1109,8 +1201,6 @@ The value of "frontend_params" is an object with the following properties:
 An object with the following properties:
 
 * `"id"` A *test id*.
-* `"creation_time"`: **Deprecated** (planned removal: v2023.1). A [*deprecated timestamp*][Timestamp deprecated].
-  The time in UTC at which the *test* was created.
 * `"created_at"`: A [*timestamp*][Timestamp]. The time in UTC at which the *test*
   was created.
 * `"overall_result"`: A string. It reflects the most severe problem level among
@@ -1132,12 +1222,12 @@ An object with the following properties:
 >
 
 
-## API method: `add_api_user`
+### API method: `user_create`
 
-In order to use the [`add_batch_job`][add_batch_job] method a
+In order to use the [`batch_create`][API batch_create] method a
 [*username*][Username] and its [*api key*][Api key] must be added by this method.
 
-This method is not available if [`RPCAPI.enable_add_api_user`][RPCAPI.enable_add_api_user]
+This method is not available if [`RPCAPI.enable_user_create`][RPCAPI.enable_user_create]
 is disabled (disabled by default). This method is not available unless the connection to
 RPCAPI is over localhost (*administrative* method).
 
@@ -1146,7 +1236,7 @@ Example request:
 ```json
 {
   "jsonrpc": "2.0",
-  "method": "add_api_user",
+  "method": "user_create",
   "id": 4711,
   "params": {
     "username": "citron",
@@ -1160,7 +1250,9 @@ Example response:
 {
   "id": 4711,
   "jsonrpc": "2.0",
-  "result": 1
+  "result": {
+    "success": 1
+  }
 }
 ```
 
@@ -1176,7 +1268,10 @@ An object with the following properties:
 
 #### `"result"`
 
-An integer. The value is equal to 1 if the registration is a success, or 0 if it failed.
+An object with the following property:
+
+* `"success"`: An integer. The value is equal to 1 if the registration is a
+  success, or 0 if it failed.
 
 
 #### `"error"`
@@ -1245,7 +1340,7 @@ Trying to add a user over non-localhost:
     "data": {
       "remote_ip": "10.0.0.1"
     },
-    "message": "Call to \"add_api_user\" method not permitted from a remote IP"
+    "message": "Call to \"user_create\" method not permitted from a remote IP"
   }
 }
 ```
@@ -1255,21 +1350,21 @@ Trying to add a user when the method is disabled:
 {
   "error": {
     "code": -32601,
-    "message": "Procedure 'add_api_user' not found"
+    "message": "Procedure 'user_create' not found"
   }
 }
 ```
 
-## API method: `add_batch_job`
+### API method: `batch_create`
 
 Add a new *batch test* composed by a set of [*domain name*][Domain name] and a *params* object.
 All the domains will be tested using identical parameters.
 
-This method is not available if [`RPCAPI.enable_add_batch_job`][RPCAPI.enable_add_batch_job]
+This method is not available if [`RPCAPI.enable_batch_create`][RPCAPI.enable_batch_create]
 is disabled (enabled by default).
 
 A [*username*][Username] and its [*api key*][Api key] can be added with the
-[`add_api_user`][add_api_user] method. A [*username*][Username] can only have
+[`user_create`][API user_create] method. A [*username*][Username] can only have
 one un-finished *batch* at a time.
 
 *Tests* enqueud using this method are assigned a [*priority*][Priority] of 5.
@@ -1280,7 +1375,7 @@ Example request:
 {
   "jsonrpc": "2.0",
   "id": 147559211348450,
-  "method": "add_batch_job",
+  "method": "batch_create",
   "params" : {
     "api_key": "fromage",
     "username": "citron",
@@ -1299,7 +1394,9 @@ Example response:
 {
     "jsonrpc": "2.0",
     "id": 147559211348450,
-    "result": 8
+    "result": {
+      "batch_id": 8
+    }
 }
 ```
 
@@ -1329,7 +1426,9 @@ The value of `"test_params"` is an object with the following properties:
 
 #### `"result"`
 
-A [*batch id*][Batch id].
+An object with the following property:
+
+* `"batch_id"`: An integer. The [*batch id*][Batch id].
 
 
 #### `"error"`
@@ -1346,7 +1445,6 @@ request:
   "jsonrpc": "2.0",
   "error": {
     "data": {
-      "creation_time": "2021-09-27 07:33:40",
       "created_at": "2021-09-27T07:33:40Z",
       "batch_id": 1
     },
@@ -1396,14 +1494,14 @@ Trying to add a batch when the method has been disabled.
 ```
 {
   "error": {
-    "message": "Procedure 'add_batch_job' not found",
+    "message": "Procedure 'batch_create' not found",
     "code": -32601
   }
 }
 ```
 
 
-## API method: `get_batch_job_result`
+### API method: `batch_status`
 
 Return all [*test id*][Test id] objects of a *batch test*, with the number of finshed *test*.
 
@@ -1414,8 +1512,10 @@ Example request:
 {
     "jsonrpc": "2.0",
     "id": 147559211994909,
-    "method": "get_batch_job_result",
-    "params": {"batch_id": "8"}
+    "method": "batch_status",
+    "params": {
+        "batch_id": "8"
+    }
 }
 ```
 
@@ -1473,72 +1573,107 @@ If the `batch_id` is undefined the following error is returned:
 }
 ```
 
-## API method: `get_test_params`
 
-Return a normalized *params* objects of a *test*.
+## Deprecated
 
-Example request:
+> For details of the deprecated methods' return values see the [version of this
+> document][API v10.0.0] included in the v2022.2 release, tagged as "v10.0.0".
 
-*Valid syntax:*
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 143014426992009,
-    "method": "get_test_params",
-    "params": {"test_id": "6814584dc820354a"}
-}
-```
+### API method: `version_info`
 
-Example response:
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 143014426992009,
-    "result": {
-         "domain": "zonemaster.net",
-         "profile": "default",
-         "client_id": "Zonemaster Dancer Frontend",
-         "nameservers": [
-            {
-                "ns": "ns3.nic.se",
-                "ip": "2001:67c:124c:2007::45"
-            },
-            {
-                "ip": "192.93.0.4",
-                "ns": "ns2.nic.fr"
-            }
-         ],
-         "ipv4": true,
-         "ipv6": true,
-         "client_version": "1.0.1",
-         "ds_info": []
-    }
-}
-```
+**Deprecated** (planned removal: v2024.1).
+Replaced by [`system_versions`][API system_versions].
 
 
-#### `"params"`
+### API method: `profile_names`
 
-An object with the property:
-
-* `"test_id"`: A [*test id*][Test id], required.
-
-
-#### `"result"`
-
-The `"params"` object sent to [`start_domain_test`][start_domain_test] or
-[`add_batch_job`][add_batch_job] when the *test* was started.
+**Deprecated** (planned removal: v2024.1).
+Replaced by [`conf_profiles`][API conf_profiles].
 
 
-#### `"error"`
+### API method: `get_language_tags`
 
->
-> TODO: List all possible error codes and describe what they mean enough for clients to know how react to them.
->
+**Deprecated** (planned removal: v2024.1).
+Replaced by [`conf_languages`][API conf_languages].
 
-[add_api_user]:                       #api-method-add_api_user
-[add_batch_job]:                      #api-method-add_batch_job
+### API method: `get_host_by_name`
+
+**Deprecated** (planned removal: v2024.1).
+Replaced by [`lookup_address_records`][API lookup_address_records].
+
+
+### API method: `get_data_from_parent_zone`
+
+**Deprecated** (planned removal: v2024.1).
+Replaced by [`lookup_delegation_data`][API lookup_delegation_data].
+
+
+### API method: `start_domain_test`
+
+**Deprecated** (planned removal: v2024.1).
+Replaced by [`job_create`][API job_create].
+
+
+### API method: `test_progress`
+
+**Deprecated** (planned removal: v2024.1).
+Replaced by [`job_status`][API job_status].
+
+
+### API method: `get_test_results`
+
+**Deprecated** (planned removal: v2024.1).
+Replaced by [`job_results`][API job_results].
+
+
+### API method: `get_test_history`
+
+**Deprecated** (planned removal: v2024.1).
+Replaced by [`domain_history`][API domain_history].
+
+
+### API method: `add_api_user`
+
+**Deprecated** (planned removal: v2024.1).
+Replaced by [`user_create`][API user_create].
+
+
+### API method: `add_batch_job`
+
+**Deprecated** (planned removal: v2024.1).
+Replaced by [`batch_create`][API batch_create].
+
+
+### API method: `get_batch_job_result`
+
+**Deprecated** (planned removal: v2024.1).
+Replaced by [`batch_status`][API batch_status].
+
+
+### API method: `get_test_params`
+
+**Deprecated** (planned removal: v2024.1).
+Replaced by [`job_params`][API job_params].
+
+
+[API add_api_user]:                   #api-method-add_api_user
+[API add_batch_job]:                  #api-method-add_batch_job
+[API batch_create]:                   #api-method-batch_create
+[API batch_status]:                   #api-method-batch_status
+[API conf_languages]:                 #api-method-conf_languages
+[API conf_profiles]:                  #api-method-conf_profiles
+[API domain_history]:                 #api-method-domain_history
+[API job_create]:                     #api-method-job_create
+[API job_params]:                     #api-method-job_params
+[API job_results]:                    #api-method-job_results
+[API job_status]:                     #api-method-job_status
 [API key]:                            #api-key
+[API lookup_address_records]:         #api-method-lookup_address_records
+[API lookup_delegation_data]:         #api-method-lookup_delegation_data
+[API start_domain_test]:              #api-method-start_domain_test
+[API system_versions]:                #api-method-system_versions
+[API user_create]:                    #api-method-user_create
+[API v10.0.0]:                        https://github.com/zonemaster/zonemaster-backend/blob/v10.0.0/docs/API.md
 [Batch id]:                           #batch-id
 [Client id]:                          #client-id
 [Client version]:                     #client-version
@@ -1552,7 +1687,7 @@ The `"params"` object sent to [`start_domain_test`][start_domain_test] or
 [JSON Pointer]:                       https://datatracker.ietf.org/doc/html/rfc6901
 [JSON-RPC 2.0]:                       https://www.jsonrpc.org/specification
 [Language tag]:                       #language-tag
-[LANGUAGE.locale]:                    Configuration.md#locale
+[LANGUAGE.locale]:                    ../../configuration/backend.md#locale
 [Name server]:                        #name-server
 [net.ipv4]:                           https://metacpan.org/pod/Zonemaster::Engine::Profile#net.ipv4
 [net.ipv6]:                           https://metacpan.org/pod/Zonemaster::Engine::Profile#net.ipv6
@@ -1560,22 +1695,22 @@ The `"params"` object sent to [`start_domain_test`][start_domain_test] or
 [Priority]:                           #priority
 [Privilege levels]:                   #privilege-levels
 [Profile name]:                       #profile-name
-[Profile sections]:                   Configuration.md#public-profiles-and-private-profiles-sections
+[Profile sections]:                   ../../configuration/backend.md#public-profiles-and-private-profiles-sections
 [Progress percentage]:                #progress-percentage
 [Queue]:                              #queue
 [RFC 5952]:                           https://datatracker.ietf.org/doc/html/rfc5952
-[RPCAPI.enable_add_api_user]:         Configuration.md#enable_add_api_user
-[RPCAPI.enable_add_batch_job]:        Configuration.md#enable_add_batch_job
-[Severity Level Definitions]:         ../specifications/tests/SeverityLevelDefinitions.md
+[RPCAPI.enable_add_api_user]:         ../../configuration/backend.md#enable_add_api_user
+[RPCAPI.enable_add_batch_job]:        ../../configuration/backend.md#enable_add_batch_job
+[RPCAPI.enable_batch_create]:         ../../configuration/backend.md#enable_batch_create
+[RPCAPI.enable_user_create]:          ../../configuration/backend.md#enable_user_create
+[Severity Level Definitions]:         ../../specifications/tests/SeverityLevelDefinitions.md
 [Severity level]:                     #severity-level
-[start_domain_test]:                  #api-method-start_domain_test
-[Test Cases]:                         ../specifications/tests#list-of-defined-test-cases
+[Test Cases]:                         ../../specifications/tests#list-of-defined-test-cases
 [Test Case Identifiers]:              https://github.com/zonemaster/zonemaster/blob/master/docs/internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
 [Test id]:                            #test-id
 [Test result]:                        #test-result
 [Timestamp]:                          #timestamp
-[Timestamp deprecated]:               #timestamp-deprecated
 [Username]:                           #username
 [Validation error data]:              #validation-error-data
-[ZONEMASTER.age_reuse_previous_test]: Configuration.md#age_reuse_previous_test
-[ZONEMASTER.lock_on_queue]:           Configuration.md#lock_on_queue
+[ZONEMASTER.age_reuse_previous_test]: ../../configuration/backend.md#age_reuse_previous_test
+[ZONEMASTER.lock_on_queue]:           ../../configuration/backend.md#lock_on_queue
