@@ -16,6 +16,21 @@ cd ../docs/public/specifications/tests
 ```
 3. Submit to git.
 
+## [updateTestPlanReadme.pl]
+
+This tool extracts all Test Case specifications per Test Plan and creates
+Markdown tables. The tables are automatically added to the Test Plan README.md
+file. These tables should be recreated at each Zonemaster release.
+
+Use:
+
+1. Do:
+```
+cd ../docs/public/specifications/tests
+../../../../utils/updateTestPlanReadme.pl
+```
+2. Submit to git.
+
 ## [generateTestMessages.pl]
 
 This tools creates a map between the Zonemaster messages tags from
@@ -54,11 +69,11 @@ cd ../docs/public/specifications/tests
 2. Submit to git.
 
 
-[generateImplementedTestCases.pl]:		generateImplementedTestCases.pl
-[generateTestCaseList.pl]:      		generateTestCaseList.pl
-[generateTestMessages.pl]:      		generateTestMessages.pl
-[ImplementedTestCases.md]:			../docs/specifications/tests/ImplementedTestCases.md
-[TestMessages.md]:              		../docs/specifications/tests/TestMessages.md
-[Test Case README]:             		../docs/specifications/tests/README.md
-[Zonemaster-Engine]:            		https://github.com/zonemaster/zonemaster-engine
-
+[generateImplementedTestCases.pl]: generateImplementedTestCases.pl
+[generateTestCaseList.pl]:         generateTestCaseList.pl
+[generateTestMessages.pl]:         generateTestMessages.pl
+[ImplementedTestCases.md]:         ../docs/specifications/tests/ImplementedTestCases.md
+[Test Case README]:                ../docs/specifications/tests/README.md
+[TestMessages.md]:                 ../docs/specifications/tests/TestMessages.md
+[updateTestPlanReadme.pl]:         generateTestMessages.pl
+[Zonemaster-Engine]:               https://github.com/zonemaster/zonemaster-engine
