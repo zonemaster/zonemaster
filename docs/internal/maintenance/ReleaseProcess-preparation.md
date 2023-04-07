@@ -98,7 +98,7 @@ version              | version number of the new release
 [CI]:                                      https://github.com/travis-ci/travis-ci
 [declaration of prerequisites]:            https://github.com/zonemaster/zonemaster/blob/develop/README.md#prerequisites
 [license string]:                          https://metacpan.org/pod/CPAN::Meta::Spec#license
-[SupportCriteria]:                         https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/maintenance/SupportCriteria.md
+[SupportCriteria]:                         https://github.com/zonemaster/zonemaster/blob/develop/docs/internal/maintenance/SupportCriteria.md
 [ldns.travis]:                             https://github.com/zonemaster/zonemaster-ldns/blob/develop/.travis.yml
 [engine.travis]:                           https://github.com/zonemaster/zonemaster-engine/blob/develop/.travis.yml
 [cli.travis]:                              https://github.com/zonemaster/zonemaster-cli/blob/develop/.travis.yml

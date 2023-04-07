@@ -1,3 +1,4 @@
+
 # ![Zonemaster](docs/images/zonemaster_logo_2021_color.png)
 
 ## Table of contents
@@ -7,11 +8,6 @@
 * [Purpose](#purpose)
 * [Documentation](#documentation)
 * [Prerequisites](#prerequisites)
-  * [Supported processor architectures](#supported-processor-architectures)
-  * [Supported operating system versions](#supported-operating-system-versions)
-  * [Supported database engine versions](#supported-database-engine-versions)
-  * [Supported Perl versions](#supported-perl-versions)
-  * [Supported Client Browser versions](#supported-client-browser-versions)
 * [Support of DNSKEY algorithms 15 and 16](#support-of-dnskey-algorithms-15-and-16)
 * [Translation](#translation)
 * [Zonemaster and its components](#zonemaster-and-its-components)
@@ -55,97 +51,25 @@ the future.
 
 ## Documentation
 
-This is the main project repository. In this
-repository, documentation regarding the [design](docs/design),
-[requirements](docs/requirements) and [specifications](docs/specifications)
-for the Zonemaster implementation are available.
+This is the main project repository. In this repository, documentation
+regarding the [design](docs/internal/design),
+[requirements](docs/internal/requirements) and
+[specifications](docs/public/specifications) for the Zonemaster implementation
+are available.
 We also have a brief [user guide](USING.md).
+
+The [public](docs/public) documentation can be built using
+[`mdbook`](https://rust-lang.github.io/mdBook/) and the following commands:
+
+```
+cd docs/public
+mdbook build
+open book/index.html
+```
 
 ## Prerequisites
 
-Zonemaster comes with documentation for and has been tested on the operating systems
-and processor architecture listed below.
-
-### Supported processor architectures
-
-* x86_64 / amd64
-
-### Supported operating system versions
-
-* [Debian] 11
-* [Docker]
-* [FreeBSD] 13
-* [Rocky Linux] 8
-* [Rocky Linux] 9
-* [Ubuntu] 20.04
-* [Ubuntu] 22.04
-
-For Debian the "stable" version is supported. For FreeBSD one of the FreeBSD
-supported major versions is supported. For Rocky Linux and Ubuntu long-term
-supported versions are supported unless its support ends before next expected
-release of Zonemaster.
-
-Only the Docker images provided by the Zonemaster project on [Docker Hub] are
-supported. Currently only Zonemaster-CLI is supported on Docker. Docker itself
-can run on any of the [Docker] supported OSs (Linux, MacOS and Windows).
-
-[Rocky Linux] has replaced CentOS in Zonemaster version v2021.2. Rocky Linux is
-also a Red Hat derivative and is available at large cloud providers.
-
-### Supported database engine versions
-
-Operating System | MariaDB | PostgreSQL
----------------- | --------| ---------------
-Debian 11        | 10.5    | 13.8
-Docker           | n/a     | n/a
-FreeBSD 13       | 5.7 (*) | 13.9
-Rocky Linux 8    | 10.3    | 10.21
-Rocky Linux 9    | ???     | ???
-Ubuntu 20.04     | ???     | ???
-Ubuntu 22.04     | 10.6    | 14.5
-
-* (*) FreeBSD uses MySQL, not MariaDB.
-* SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
-  Zonemaster-Backend.
-* Zonemaster Backend has been tested with the combination of OS and database
-  engine version listed in the table above.
-* Zonemaster depends on functionality introduced in PostgreSQL version 10, and
-  earlier versions of PostgreSQL are as such not supported.
-* Zonemaster Backend has not been published on [Docker Hub].
-
-### Supported Perl versions
-
-Operating System | Perl
----------------- | ----
-Debian 11        | 5.32
-Docker           | (*)
-FreeBSD 13       | 5.32
-Rocky Linux 8    | 5.26
-Rocky Linux 9    | 5.32 ??
-Ubuntu 20.04     | ???
-Ubuntu 22.04     | 5.34
-
-* Zonemaster requires Perl version 5.16 or higher.
-* Zonemaster has been tested with the default version of Perl in the OSs as
-  listed in the table above.
-* (*) Perl is included in the Docker image published on [Docker Hub].
-
-### Supported Client Browser versions
-
-Zonemaster GUI is tested against the combination and browser in the table below.
-The latest version of the browser at the time of testing is used.
-
-Operating System | Browser
----------------- | -------
-MacOS 13         | Firefox
-MacOS 13         | Chrome
-Windows 10       | Firefox
-Windows 10       | Chrome
-Ubuntu 22.04     | Firefox
-Ubuntu 22.04     | Chrome
-
-Zonemaster GUI is tested manually and with testing tools. See the
-[Zonemaster-gui repository][Zonemaster-GUI] for more details.
+See [Prerequisites] document.
 
 ## Support of DNSKEY algorithms 15 and 16
 
@@ -266,11 +190,9 @@ be found in the [LICENSE](LICENSE) file included in this respository.
 [CPAN]:                                https://www.cpan.org/
 [Connectivity03]:                      docs/specifications/tests/Connectivity-TP/connectivity03.md
 [Contact and mailing lists]:           docs/contact-and-mailing-lists.md
-[Debian]:                              https://www.debian.org/
 [Docker Hub]:                          https://hub.docker.com/u/zonemaster
-[Docker Image Creation]:               https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess-create-docker-image.md
+[Docker Image Creation]:               https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
 [Docker]:                              https://www.docker.com/get-started
-[FreeBSD]:                             https://www.freebsd.org/
 [Issues in Zonemaster/Zonemaster]:     https://github.com/zonemaster/zonemaster/issues
 [Issues in Zonemaster::Backend]:       https://github.com/zonemaster/zonemaster-backend/issues
 [Issues in Zonemaster::CLI]:           https://github.com/zonemaster/zonemaster-cli/issues
@@ -279,9 +201,8 @@ be found in the [LICENSE](LICENSE) file included in this respository.
 [Issues in Zonemaster::LDNS]:          https://github.com/zonemaster/zonemaster-ldns/issues
 [LDNS]:                                https://www.nlnetlabs.nl/projects/ldns/about/
 [OpenSSL]:                             https://www.openssl.org/
-[Rocky Linux]:                         https://rockylinux.org/
+[Prerequisites]:                       docs/public/installation/prerequisites.md
 [USING]:                               https://github.com/zonemaster/zonemaster-cli/blob/master/USING.md
-[Ubuntu]:                              https://ubuntu.com/
 [Zonemaster latest version]:           https://github.com/zonemaster/zonemaster/releases/latest
 [Zonemaster release list]:             https://github.com/zonemaster/zonemaster/releases
 [Zonemaster-Backend]:                  https://github.com/zonemaster/zonemaster-backend

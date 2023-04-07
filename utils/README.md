@@ -11,8 +11,8 @@ Use:
 1. Remove Test Case table from [Test Case README] and save the file
 2. Do:
 ```
-cd ../docs/specifications/tests
-../../../utils/generateTestCaseList.pl >> README.md
+cd ../docs/public/specifications/tests
+../../../../utils/generateTestCaseList.pl >> README.md
 ```
 3. Submit to git.
 
@@ -30,8 +30,8 @@ Use:
 
 1. Do:
 ```
-cd ../docs/specifications/tests
-../../../utils/generateTestMessages.pl > TestMessages.md
+cd ../docs/public/specifications/tests
+../../../../utils/generateTestMessages.pl > TestMessages.md
 ```
 2. Submit to git.
 
@@ -48,8 +48,8 @@ Use:
 
 1. Do:
 ```
-cd ../docs/specifications/tests
-../../../utils/generateImplementedTestCases.pl > ImplementedTestCases.md
+cd ../docs/public/specifications/tests
+../../../../utils/generateImplementedTestCases.pl > ImplementedTestCases.md
 ```
 2. Submit to git.
 

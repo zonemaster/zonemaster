@@ -202,9 +202,9 @@ This test level validates that each change since last release:
 
 
 
-[CentOS-Preparation]:         https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/distrib-testing/CentOS-build-environment.md
-[Create Test Distribution]:   https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/maintenance/ReleaseProcess-create-test-distribution.md
-[Debian-Preparation]:         https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/distrib-testing/Debian-build-environment.md
-[FreeBSD-Preparation]:        https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/distrib-testing/FreeBSD-build-environment.md
-[Ubuntu-Preparation]:         https://github.com/zonemaster/zonemaster/blob/master/docs/internal-documentation/distrib-testing/Ubuntu-build-environment.md
+[CentOS-Preparation]:         ../distrib-testing/CentOS-build-environment.md
+[Create Test Distribution]:   ../maintenance/ReleaseProcess-create-test-distribution.md
+[Debian-Preparation]:         ../distrib-testing/Debian-build-environment.md
+[FreeBSD-Preparation]:        ../distrib-testing/FreeBSD-build-environment.md
+[Ubuntu-Preparation]:         ../distrib-testing/Ubuntu-build-environment.md
 [smoke test]:                 https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md#71-smoke-test

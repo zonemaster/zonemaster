@@ -66,7 +66,7 @@ For use case 7, install an environment as for use cases
 
 
 <!-- Zonemaster links point on purpose on the develop branch. -->
-[BuildEnvironmentPreparation]:        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal-documentation/distrib-testing/BuildEnvironmentPreparation.md
+[BuildEnvironmentPreparation]:        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal/distrib-testing/BuildEnvironmentPreparation.md
 [CentOS build environment]:           CentOS-build-environment.md
 [Debian build environment]:           Debian-build-environment.md
 [FreeBSD build environment]:          FreeBSD-build-environment.md
