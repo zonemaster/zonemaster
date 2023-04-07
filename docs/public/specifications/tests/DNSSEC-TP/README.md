@@ -4,7 +4,6 @@ These are the DNSSEC tests for a domain.
 
 This document uses the terminology defined in the [Master Test Plan].
 
-The list of Connectivity test cases is found in the [Test Case README].
 
 ## Default DNS query flags for all DNSSEC tests
 

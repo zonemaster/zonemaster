@@ -7,8 +7,6 @@ if a subset of tests is asked for that would not normally include them.
 
 These documents uses the terminology defined in the [Master Test Plan].
 
-The list of Basic test cases is found in the [Test Case README].
-
 
 [Master Test Plan]:             ../MasterTestPlan.md
 [Test Case README]:             ../README.md
