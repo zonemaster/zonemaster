@@ -1,7 +1,7 @@
 # ZONE11: SPF policy validation
 
 ## Test case identifier
-**Zone11**
+**ZONE11**
 
 ## Table of contents
 
@@ -23,9 +23,9 @@ allowing domain name owners to specify which hosts are allowed to send mail
 claiming to be from that domain. It is implemented by means of TXT records in a
 structured format.
 
-This test case looks up SPF records in the domain to be tested. It checks that
-there is at most one published SPF version 1 policy and, if present, also checks
-its syntax.
+This test case looks up SPF records in the apex of the domain to be tested. It
+checks that there is at most one published SPF version 1 policy and, if
+present, also checks its syntax.
 
 ## Scope
 
@@ -47,7 +47,7 @@ Z11_NO_SPF_FOUND                | DEBUG   |              | The *Child Zone* does
 Z11_SPF1_MULTIPLE_RECORDS       | ERROR   | ns_ip_list   | The *Child Zone* publishes more than one SPF version 1 policy. Policies retrieved from the following nameservers: {ns_ip_list}.
 Z11_SPF1_SYNTAX_ERROR           | ERROR   | ns_ip_list   | The *Child Zone*’s SPF version 1 policy has a syntax error. Policy retrieved from the following nameservers: {ns_ip_list}.
 Z11_SPF1_SYNTAX_OK              | INFO    |              | The *Child Zone*’s SPF version 1 policy has correct syntax.
-Z11_UNABLE_TO_CHECK_FOR_SPF     | ERROR   |              | Unable to check whether *Child Zone* publishes an SPF policy.
+Z11_UNABLE_TO_CHECK_FOR_SPF     | ERROR   |              | None of the name servers for *Child Zone* responded with an authoritative NOERROR response to queries for SPF policies.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
