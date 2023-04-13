@@ -18,14 +18,14 @@
 
 ## Objective
 
-Sender Policy Framework (SPF), described in [RFC 7208][RFC7208], is a mechanism
+Sender Policy Framework (SPF), described in [RFC 7208], is a mechanism
 allowing domain name owners to specify which hosts are allowed to send mail
 claiming to be from that domain. It is implemented by means of TXT records in a
 structured format.
 
-This test case looks up SPF records in the apex of the domain to be tested. It
-checks that there is at most one published SPF version 1 policy and, if
-present, also checks its syntax.
+This test case looks up SPF records in the apex of *Child Zone*. It checks
+that there is at most one published SPF version 1 policy and, if present, also
+checks its syntax.
 
 ## Scope
 
@@ -47,7 +47,7 @@ Z11_NO_SPF_FOUND                | DEBUG   |              | The *Child Zone* does
 Z11_SPF1_MULTIPLE_RECORDS       | ERROR   | ns_ip_list   | The *Child Zone* publishes more than one SPF version 1 policy. Policies retrieved from the following nameservers: {ns_ip_list}.
 Z11_SPF1_SYNTAX_ERROR           | ERROR   | ns_ip_list   | The *Child Zone*’s SPF version 1 policy has a syntax error. Policy retrieved from the following nameservers: {ns_ip_list}.
 Z11_SPF1_SYNTAX_OK              | INFO    |              | The *Child Zone*’s SPF version 1 policy has correct syntax.
-Z11_UNABLE_TO_CHECK_FOR_SPF     | ERROR   |              | None of the name servers for *Child Zone* responded with an authoritative NOERROR response to queries for SPF policies.
+Z11_UNABLE_TO_CHECK_FOR_SPF     | ERROR   |              | None of the name servers for *Child Zone* responded with an authoritative response to queries for SPF policies.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -92,9 +92,12 @@ same specification.
       and the empty string to the *SPF-Policies* set.
 
    5. If the name server responds with at least one TXT record that is an [SPF
-      TXT record], then, for each [SPF TXT record], add the pair consisting of
-      the *Name Server IP* and the lowercased [concatenation][concatenate] of
-      all strings in the TXT record’s data to the *SPF-Policies* set.
+      TXT record], then, for each [SPF TXT record] do:
+
+       1. [Concatenate] all strings in the RDATA field.
+       2. Lowercase the resulting string.
+       3. Add a pair consisting of the *Name Server IP* and the lowercase
+          string thus derived from the RDATA field to the *SPF-Policies* set.
 
    6. Go to the next name server.
 
@@ -154,11 +157,11 @@ None.
 
 * "concatenate" - The term is used to refer to the conversion of a TXT
   resource record’s data to a single contiguous string, as specified in [RFC
-  7208, section 3.3][RFC7208#3.3].
+  7208, section 3.3][RFC 7208#3.3].
 
 * "passing the syntax check" - The term is used in this document to refer to
-  text that is valid according to the ABNF grammar published in [RFC
-  7208][RFC7208] starting from [section 4.5][RFC7208#4.5].
+  text that is valid according to the ABNF grammar published in [RFC 7208]
+  starting from [section 4.5][RFC 7208#4.5].
 
 * "using Method" - The term is used when data is fetched using the defined
   [Method][Methods].
@@ -180,13 +183,9 @@ None.
 [NOTICE]:                               ../SeverityLevelDefinitions.md#notice
 [passing the syntax check]:             #terminology
 [RCODE Name]:                           https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[RFC7208#3.3]:                          https://www.rfc-editor.org/rfc/rfc7208#section-3.3
-[RFC7208#4.5]:                          https://www.rfc-editor.org/rfc/rfc7208#section-4.5
-[RFC7208#4]:                            https://www.rfc-editor.org/rfc/rfc7208#section-4
-[RFC7208#5]:                            https://www.rfc-editor.org/rfc/rfc7208#section-5
-[RFC7208#6]:                            https://www.rfc-editor.org/rfc/rfc7208#section-6
-[RFC7208#7]:                            https://www.rfc-editor.org/rfc/rfc7208#section-7
-[RFC7208]:                              https://www.rfc-editor.org/rfc/rfc7208
+[RFC 7208#3.3]:                         https://www.rfc-editor.org/rfc/rfc7208#section-3.3
+[RFC 7208#4.5]:                         https://www.rfc-editor.org/rfc/rfc7208#section-4.5
+[RFC 7208]:                             https://www.rfc-editor.org/rfc/rfc7208
 [Severity Level Definitions]:           ../SeverityLevelDefinitions.md
 [SPF TXT record]:                       #terminology
 [Test Case Identifier Specification]:   TestCaseIdentifierSpecification.md
