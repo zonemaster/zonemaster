@@ -40,14 +40,15 @@ server.
 
 ## Summary
 
-Message Tag                     | Level   | Arguments    | Message ID for message tag
-:-------------------------------|:--------|:-------------|:--------------------------------------------
-Z11_INCONSISTENT_SPF_POLICIES   | WARNING |              | The *Child Zone* publishes different SPF policies on different name servers.
-Z11_NO_SPF_FOUND                | DEBUG   |              | The *Child Zone* does not publish an SPF policy.
-Z11_SPF1_MULTIPLE_RECORDS       | ERROR   | ns_ip_list   | The *Child Zone* publishes more than one SPF version 1 policy. Policies retrieved from the following nameservers: {ns_ip_list}.
-Z11_SPF1_SYNTAX_ERROR           | ERROR   | ns_ip_list   | The *Child Zone*’s SPF version 1 policy has a syntax error. Policy retrieved from the following nameservers: {ns_ip_list}.
-Z11_SPF1_SYNTAX_OK              | INFO    |              | The *Child Zone*’s SPF version 1 policy has correct syntax.
-Z11_UNABLE_TO_CHECK_FOR_SPF     | ERROR   |              | None of the name servers for *Child Zone* responded with an authoritative response to queries for SPF policies.
+Message Tag                      | Level   | Arguments    | Message ID for message tag
+:--------------------------------|:--------|:-------------|:--------------------------------------------
+Z11_INCONSISTENT_SPF_POLICIES    | WARNING |              | The *Child Zone* publishes different SPF policies on different name servers.
+Z11_DIFFERENT_SPF_POLICIES_FOUND | NOTICE  | ns_ip_list   | The following name servers returned the same SPF version 1 policy, but other name servers returned a different policy. Name servers: {ns_ip_list}.
+Z11_NO_SPF_FOUND                 | DEBUG   |              | The *Child Zone* does not publish an SPF policy.
+Z11_SPF1_MULTIPLE_RECORDS        | ERROR   | ns_ip_list   | The following name servers returned more than one SPF version 1 policy for the *Child Zone*. Name servers: {ns_ip_list}.
+Z11_SPF1_SYNTAX_ERROR            | ERROR   | ns_ip_list   | The *Child Zone*’s SPF version 1 policy has a syntax error. Policy retrieved from the following nameservers: {ns_ip_list}.
+Z11_SPF1_SYNTAX_OK               | INFO    |              | The *Child Zone*’s SPF version 1 policy has correct syntax.
+Z11_UNABLE_TO_CHECK_FOR_SPF      | ERROR   |              | None of the name servers for *Child Zone* responded with an authoritative response to queries for SPF policies.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -109,8 +110,14 @@ same specification.
 
 7. Compare the set of *SPF-Policies* retrieved from all name servers. If at
    least two different name servers have returned different sets of SPF
-   policies, then output *[Z11_INCONSISTENT_SPF_POLICIES]* and terminate the
-   test.
+   policies, then:
+
+   1. Output *[Z11_INCONSISTENT_SPF_POLICIES]*.
+   2. Group *SPF-Policies* by equal sets of SPF policies, such that a set of
+      SPF policies is mapped to the list of *Name Server IPs* that returned it.
+   3. For each such group of name servers, output
+      *[Z11_DIFFERENT_SPF_POLICIES_FOUND]*.
+   4. Terminate the test.
 
 8. If the *SPF-Policies* set contains at least two pairs with the same IP
    address, then output *[Z11_SPF1_MULTIPLE_RECORDS]* with the list of
@@ -191,6 +198,7 @@ None.
 [Test Case Identifier Specification]:   TestCaseIdentifierSpecification.md
 [Undelegated test]:                     ../../test-types/undelegated-test.md
 [WARNING]:                              ../SeverityLevelDefinitions.md#warning
+[Z11_DIFFERENT_SPF_POLICIES_FOUND]:     #summary
 [Z11_INCONSISTENT_SPF_POLICIES]:        #summary
 [Z11_NO_SPF_FOUND]:                     #summary
 [Z11_SPF1_MULTIPLE_RECORDS]:            #summary
