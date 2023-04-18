@@ -6,7 +6,6 @@
 ## Table of contents
 
 * [Objective](#objective)
-* [Caveat](#caveat)
 * [Scope](#scope)
 * [Inputs](#inputs)
 * [Summary](#summary)
@@ -44,8 +43,8 @@ Message Tag                      | Level   | Arguments    | Message ID for messa
 :--------------------------------|:--------|:-------------|:--------------------------------------------
 Z11_INCONSISTENT_SPF_POLICIES    | WARNING |              | The *Child Zone* publishes different SPF policies on different name servers.
 Z11_DIFFERENT_SPF_POLICIES_FOUND | NOTICE  | ns_ip_list   | The following name servers returned the same SPF version 1 policy, but other name servers returned a different policy. Name servers: {ns_ip_list}.
-Z11_NO_SPF_FOUND                 | DEBUG   |              | The *Child Zone* does not publish an SPF policy.
-Z11_SPF1_MULTIPLE_RECORDS        | ERROR   | ns_ip_list   | The following name servers returned more than one SPF version 1 policy for the *Child Zone*. Name servers: {ns_ip_list}.
+Z11_NO_SPF_FOUND                 | INFO    |              | The *Child Zone* does not publish an SPF policy.
+Z11_SPF1_MULTIPLE_RECORDS        | ERROR   | ns_ip_list   | The following name servers returned more than one SPF version 1 policy. Name servers: {ns_ip_list}.
 Z11_SPF1_SYNTAX_ERROR            | ERROR   | ns_ip_list   | The *Child Zone*’s SPF version 1 policy has a syntax error. Policy retrieved from the following nameservers: {ns_ip_list}.
 Z11_SPF1_SYNTAX_OK               | INFO    |              | The *Child Zone*’s SPF version 1 policy has correct syntax.
 Z11_UNABLE_TO_CHECK_FOR_SPF      | ERROR   |              | None of the name servers for *Child Zone* responded with an authoritative response to queries for SPF policies.
@@ -119,7 +118,7 @@ same specification.
       *[Z11_DIFFERENT_SPF_POLICIES_FOUND]*.
    4. Terminate the test.
 
-8. If the *SPF-Policies* set contains at least two pairs with the same IP
+8. If the *SPF-Policies* set contains at least two entries with the same IP
    address, then output *[Z11_SPF1_MULTIPLE_RECORDS]* with the list of
    nameservers that returned more than one SPF policy and terminate the test.
 
@@ -168,7 +167,9 @@ None.
 
 * "passing the syntax check" - The term is used in this document to refer to
   text that is valid according to the ABNF grammar published in [RFC 7208]
-  starting from [section 4.5][RFC 7208#4.5].
+  starting from [section 4.5][RFC 7208#4.5]. Alternatively, the reader may use
+  an [online SPF syntax validator]; however, such online validators should not
+  be used as normative references.
 
 * "using Method" - The term is used when data is fetched using the defined
   [Method][Methods].
@@ -188,6 +189,7 @@ None.
 [Method5]:                              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [Methods]:                              ../Methods.md
 [NOTICE]:                               ../SeverityLevelDefinitions.md#notice
+[online SPF syntax validator]:          https://vamsoft.com/support/tools/spf-syntax-validator
 [passing the syntax check]:             #terminology
 [RCODE Name]:                           https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 7208#3.3]:                         https://www.rfc-editor.org/rfc/rfc7208#section-3.3
