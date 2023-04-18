@@ -43,7 +43,7 @@ Message Tag                      | Level   | Arguments    | Message ID for messa
 :--------------------------------|:--------|:-------------|:--------------------------------------------
 Z11_INCONSISTENT_SPF_POLICIES    | WARNING |              | The *Child Zone* publishes different SPF policies on different name servers.
 Z11_DIFFERENT_SPF_POLICIES_FOUND | NOTICE  | ns_ip_list   | The following name servers returned the same SPF version 1 policy, but other name servers returned a different policy. Name servers: {ns_ip_list}.
-Z11_NO_SPF_FOUND                 | INFO    |              | The *Child Zone* does not publish an SPF policy.
+Z11_NO_SPF_FOUND                 | NOTICE  |              | The *Child Zone* does not publish an SPF policy.
 Z11_SPF1_MULTIPLE_RECORDS        | ERROR   | ns_ip_list   | The following name servers returned more than one SPF version 1 policy. Name servers: {ns_ip_list}.
 Z11_SPF1_SYNTAX_ERROR            | ERROR   | ns_ip_list   | The *Child Zone*’s SPF version 1 policy has a syntax error. Policy retrieved from the following nameservers: {ns_ip_list}.
 Z11_SPF1_SYNTAX_OK               | INFO    |              | The *Child Zone*’s SPF version 1 policy has correct syntax.
