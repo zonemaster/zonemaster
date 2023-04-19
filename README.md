@@ -188,7 +188,6 @@ be found in the [LICENSE](LICENSE) file included in this respository.
 
 
 [CPAN]:                                https://www.cpan.org/
-[Connectivity03]:                      docs/specifications/tests/Connectivity-TP/connectivity03.md
 [Contact and mailing lists]:           docs/contact-and-mailing-lists.md
 [Docker Hub]:                          https://hub.docker.com/u/zonemaster
 [Docker Image Creation]:               https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
@@ -213,5 +212,3 @@ be found in the [LICENSE](LICENSE) file included in this respository.
 [Zonemaster-LDNS]:                     https://github.com/zonemaster/zonemaster-ldns
 [Zonemaster/Zonemaster]:               https://github.com/zonemaster/zonemaster
 [Zonemaster/zonemaster-engine#833]:    https://github.com/zonemaster/zonemaster-engine/issues/833
-
-

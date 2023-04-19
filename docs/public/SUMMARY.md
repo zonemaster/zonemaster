@@ -50,6 +50,7 @@
             - [Connectivity01](specifications/tests/Connectivity-TP/connectivity01.md)
             - [Connectivity02](specifications/tests/Connectivity-TP/connectivity02.md)
             - [Connectivity03](specifications/tests/Connectivity-TP/connectivity03.md)
+            - [Connectivity04](specifications/tests/Connectivity-TP/connectivity04.md)
         - [Consistency-TP](specifications/tests/Consistency-TP/README.md)
             - [Consistency01](specifications/tests/Consistency-TP/consistency01.md)
             - [Consistency02](specifications/tests/Consistency-TP/consistency02.md)

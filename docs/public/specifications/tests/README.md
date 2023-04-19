@@ -83,6 +83,7 @@ project. All the details are in the [Master Test Plan].
 |[CONNECTIVITY01](Connectivity-TP/connectivity01.md)|UDP connectivity to name servers|
 |[CONNECTIVITY02](Connectivity-TP/connectivity02.md)|TCP connectivity to name servers|
 |[CONNECTIVITY03](Connectivity-TP/connectivity03.md)|AS Diversity|
+|[CONNECTIVITY04](Connectivity-TP/connectivity04.md)|IP Prefix Diversity|
 |**Consistency-TP**| |
 |[CONSISTENCY01](Consistency-TP/consistency01.md)|SOA serial number consistency|
 |[CONSISTENCY02](Consistency-TP/consistency02.md)|SOA RNAME consistency|
