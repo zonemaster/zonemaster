@@ -132,6 +132,7 @@ project. All the details are in the [Master Test Plan].
 |[NAMESERVER12](Nameserver-TP/nameserver12.md)|Test for unknown EDNS flags|
 |[NAMESERVER13](Nameserver-TP/nameserver13.md)|Test for truncated response on EDNS query|
 |[NAMESERVER14](Nameserver-TP/nameserver14.md)|Test for unknown version with unknown OPTION-CODE|
+|[NAMESERVER15](Nameserver-TP/nameserver15.md)|Checking for software version|
 |**Syntax-TP**| |
 |[SYNTAX01](Syntax-TP/syntax01.md)|No illegal characters in the domain name|
 |[SYNTAX02](Syntax-TP/syntax02.md)|No hyphen ('-') at the start or end of the domain name|
