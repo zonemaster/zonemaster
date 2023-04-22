@@ -105,7 +105,7 @@ $ zonemaster-cli cds-unsigned.dnssec16.xa --raw  --test DNSSEC/dnssec16 --hints 
    0.08 NOTICE    DS16_CDS_NOT_SIGNED_BY_CDS   keytag=24862; ns_ip_list=127.15.16.31;127.15.16.32;fda1:b2:c3:0:127:15:16:31;fda1:b2:c3:0:127:15:16:32
    0.08 ERROR     DS16_CDS_UNSIGNED   ns_ip_list=127.15.16.31;127.15.16.32;fda1:b2:c3:0:127:15:16:31;fda1:b2:c3:0:127:15:16:32
 ```
--> Mismatch
+-> OK
 
 
 
