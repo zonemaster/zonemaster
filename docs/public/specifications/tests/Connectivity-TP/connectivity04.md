@@ -1,7 +1,6 @@
 # CONNECTIVITY04: IP Prefix Diversity
 
 ## Test case identifier
-
 **CONNECTIVITY04**
 
 ## Table of contents
@@ -25,7 +24,7 @@ authoritative name servers are announced from different IP prefixes.
 
 This Test is done separately on IPv4 and IPv6, and both must match the criterion.
 
-[RFC 2182][RFC 2182#3.1], section 3.1, clearly specifies that distinct authoritative 
+[RFC 2182, section 3.1][RFC 2182#3.1], clearly specifies that distinct authoritative
 name servers for a child domain should be placed in different topological and 
 geographical locations. The objective is to minimise the likelihood of a single 
 failure disabling all of them.
@@ -48,14 +47,14 @@ giving a correct DNS response for an authoritative name server.
 
 ## Summary
 
-Message Tag                | Level    | Arguments                   | Message ID for message tag
-:--------------------------|:---------|:----------------------------|:--------------------------
+Message Tag                 | Level   | Arguments                   | Message ID for message tag
+:---------------------------|:--------|:----------------------------|:------------------------------------------------------------------------------------------------
 CN04_EMPTY_PREFIX_SET       | ERROR   | ns_ip                       | Prefix database returned no information for IP address {ns_ip}.
 CN04_ERROR_PREFIX_DATABASE  | ERROR   | ns_ip                       | Prefix database error. No data to analyze for IP address {ns_ip}.
-CN04_IPV4_SAME_PREFIX       | WARNING | ns_ip_list, ip_prefix       | Name server(s) with IPv4 addres(ses) {ns_ip_list} are announced in the same IP prefix ({ip_prefix}).
-CN04_IPV4_DIFFERENT_PREFIX  | INFO    | ns_ip_list, ip_prefix_list  | Name server(s) with IPv4 addres(ses) {ns_ip_list} are announced in different IP prefix(es) ({ip_prefix_list}).
-CN04_IPV6_SAME_PREFIX       | WARNING | ns_ip_list, ip_prefix       | Name server(s) with IPv6 addres(ses) {ns_ip_list} are announced in the same IP prefix ({ip_prefix}).
-CN04_IPV6_DIFFERENT_PREFIX  | INFO    | ns_ip_list, ip_prefix_list  | Name server(s) with IPv6 addres(ses) {ns_ip_list} are announced in different IP prefix(es) ({ip_prefix_list}).
+CN04_IPV4_SAME_PREFIX       | WARNING | ns_ip_list, ip_prefix       | The following name server(s) are announced in the same IPv4 prefix ({ip_prefix}): "{ns_ip_list}"
+CN04_IPV4_DIFFERENT_PREFIX  | INFO    | ns_ip_list                  | The following name server(s) are announced in unique IPv4 prefix(es): "{ns_ip_list}"
+CN04_IPV6_SAME_PREFIX       | WARNING | ns_ip_list, ip_prefix       | The following name server(s) are announced in the same IPv6 prefix ({ip_prefix}): "{ns_ip_list}"
+CN04_IPV6_DIFFERENT_PREFIX  | INFO    | ns_ip_list                  | The following name server(s) are announced in unique IPv6 prefix(es): "{ns_ip_list}"
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine Profile]. Also see the
@@ -72,31 +71,31 @@ message. The argument names are defined in the [Argument List].
    3. IP prefix and name server IP address ("IPv4 Prefix")
    4. IP prefix and name server IP address ("IPv6 Prefix")
 
-1. Obtain the set of name server IP addresses using [Method4] and [Method5]
+2. Obtain the set of name server IP addresses using [Method4] and [Method5]
    ("Name Server IP").
 
-2. For each name server IP in *Name Server IP* do:
+3. For each name server IP in *Name Server IP* do:
    1. Add IPv4 addresses to the *NS IPv4 IPs* set.
    2. Add IPv6 addresses to the *NS IPv6 IPs* set.
 
-2. For each IP address ("NS IP Address") in *NS IPv4 IPs* and *NS IPv6 IPs*,
+4. For each IP address in *NS IPv4 IPs* and *NS IPv6 IPs* ("NS IP Address"),
    respectively, do:
-   1. Determine the IP prefix in which *NS IP Address* is announced using either
-      the *[Cymru Database]* or the *[RIPE Database]* (details in sections below).
+   1. Determine the IP prefix in which *NS IP Address* is announced
+      using *Prefix Database* (details in sections below).
    2. Add found IP prefix, if any, with *NS IP Address* to the *IPv4 Prefix*
       and *IPv6 Prefix* sets, respectively.
 
-3. If the set *IPv4 Prefix* is non-empty, then do:
-   1. For each IP prefix ("Prefix") in the set that have more than one member, output
-      *[CN04_IPV4_SAME_PREFIX]* with *Prefix* and list of all members for that *Prefix*.
-   2. Otherwise, output *[CN04_IPV4_DIFFERENT_PREFIX]* with the combined set of remaining
-      prefixes (those not included in the previous step) and their associated members.
+5. If the *IPv4 Prefix* set is non-empty, then do:
+   1. For each IP prefix in the set that has two or more members, output
+      *[CN04_IPV4_SAME_PREFIX]* with the prefix and list of all members for that prefix.
+   2. For each IP prefix in the set that has exactly one member, output
+      *[CN04_IPV4_DIFFERENT_PREFIX]* with the combined set of their associated members.
 
-4. If the set *IPv6 Prefix* is non-empty, then do:
-   1. For each IP prefix ("Prefix") in the set that have more than one member, output
-      *[CN04_IPV6_SAME_PREFIX]* with *Prefix* and list of all members for that *Prefix*.
-   2. Otherwise, output *[CN04_IPV6_DIFFERENT_PREFIX]* with the combined set of remaining
-      prefixes (those not included in the previous step) and their associated members.
+6. If the *IPv6 Prefix* set is non-empty, then do:
+   1. For each IP prefix in the set that has two or more members, output
+      *[CN04_IPV6_SAME_PREFIX]* with the prefix and list of all members for that prefix.
+   2. For each IP prefix in the set that has exactly one member, output
+      *[CN04_IPV6_DIFFERENT_PREFIX]* with the combined set of their associated members.
 
 ## Outcome(s)
 
@@ -143,19 +142,22 @@ origin6.asnlookup.zonemaster.net
 
 5. [Send] *TXT Query* to the *Cymru Base Name*.
 
-6. If at least one of the following criteria is met, output *[CN04_EMPTY_PREFIX_SET]* and exit this lookup:
+6. If at least one of the following criteria is met, output
+   *[CN04_EMPTY_PREFIX_SET]* and exit this lookup:
    1. The [DNS Response] has the [RCODE Name] NXDomain.
    2. The [DNS Response] has the [RCODE Name] NoError and an empty answer section.
 
-7. If at least one of the following criteria is met, output *[CN04_ERROR_PREFIX_DATABASE]* and exit this lookup:
+7. If at least one of the following criteria is met, output
+   *[CN04_ERROR_PREFIX_DATABASE]* and exit this lookup:
    1. There is no response.
-   2. The [DNS Response] has the [RCODE Name] NoError.
+   2. The [DNS Response] does not have the [RCODE Name] NoError.
 
-8. Extract the TXT record(s) from the response (see [IP to ASN Mapping] for examples), and do:
+8. Extract the TXT record(s) from the response (see [IP to ASN Mapping]
+   for examples), and do:
    1. If there are multiple strings (i.e., TXT records), ignore all strings
       except for the string with the most specific subnet.
    2. Extract the IP prefix from the string.
-   4. If it was not possible to extract the IP prefix (i.e., malformed response),
+   3. If it was not possible to extract the IP prefix (i.e., malformed response),
       output *[CN04_ERROR_PREFIX_DATABASE]* and exit this lookup.
 
 9. Return the IP prefix.
