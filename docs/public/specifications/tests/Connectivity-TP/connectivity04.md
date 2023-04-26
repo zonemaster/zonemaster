@@ -12,6 +12,7 @@
 * [Test procedure](#test-procedure)
 * [Outcome(s)](#outcomes)
 * [Special procedural requirements](#special-procedural-requirements)
+* [Prefix lookup methods](#prefix-lookup-methods)
 * [Cymru prefix lookup](#cymru-prefix-lookup)
 * [RIPE prefix lookup](#ripe-prefix-lookup)
 * [Intercase dependencies](#intercase-dependencies)
@@ -81,20 +82,20 @@ message. The argument names are defined in the [Argument List].
 4. For each IP address in *NS IPv4 IPs* and *NS IPv6 IPs* ("NS IP Address"),
    respectively, do:
    1. Determine the IP prefix in which *NS IP Address* is announced
-      using *Prefix Database* (details in sections below).
+      using *Prefix Database*. See [Prefix Lookup Methods] section below.
    2. Add found IP prefix, if any, with *NS IP Address* to the *IPv4 Prefix*
       and *IPv6 Prefix* sets, respectively.
 
 5. If the *IPv4 Prefix* set is non-empty, then do:
    1. For each IP prefix in the set that has two or more members, output
       *[CN04_IPV4_SAME_PREFIX]* with the prefix and list of all members for that prefix.
-   2. For each IP prefix in the set that has exactly one member, output
+   2. For all IP prefixes in the set that have exactly one member, output
       *[CN04_IPV4_DIFFERENT_PREFIX]* with the combined set of their associated members.
 
 6. If the *IPv6 Prefix* set is non-empty, then do:
    1. For each IP prefix in the set that has two or more members, output
       *[CN04_IPV6_SAME_PREFIX]* with the prefix and list of all members for that prefix.
-   2. For each IP prefix in the set that has exactly one member, output
+   2. For all IP prefixes in the set that have exactly one member, output
       *[CN04_IPV6_DIFFERENT_PREFIX]* with the combined set of their associated members.
 
 ## Outcome(s)
@@ -116,6 +117,11 @@ ASN lookup (Cymru or RIPE RIS). The service must be available over the network.
 
 The *Child Zone* must be a valid name meeting
 "[Requirements and normalization of domain names in input]".
+
+## Prefix lookup methods
+
+Use the prefix method set in *Prefix Database* in "Inputs" and refer to
+the appropriate section below.
 
 ### Cymru prefix lookup
 
@@ -149,14 +155,14 @@ origin6.asnlookup.zonemaster.net
 
 7. If at least one of the following criteria is met, output
    *[CN04_ERROR_PREFIX_DATABASE]* and exit this lookup:
-   1. There is no response.
+   1. There is no DNS response.
    2. The [DNS Response] does not have the [RCODE Name] NoError.
 
 8. Extract the TXT record(s) from the response (see [IP to ASN Mapping]
    for examples), and do:
    1. If there are multiple strings (i.e., TXT records), ignore all strings
       except for the string with the most specific subnet.
-   2. Extract the IP prefix from the string.
+   2. Extract and [concatenate] the IP prefix from the string.
    3. If it was not possible to extract the IP prefix (i.e., malformed response),
       output *[CN04_ERROR_PREFIX_DATABASE]* and exit this lookup.
 
@@ -180,7 +186,7 @@ The RIPE Prefix lookup is described on the RIPE [RISwhois] page.
 whois -h riswhois.ripe.net " -F -M 192.0.2.10"
 ```
 
-3. Send *WHOIS Query* to the *RIS Whois Server*.
+3. [Send] *WHOIS Query* to the *RIS Whois Server*.
 
 4. If there is no response, output *[CN04_ERROR_PREFIX_DATABASE]* and exit this lookup.
 
@@ -198,38 +204,46 @@ None
 
 ## Terminology
 
-* "Send" - The term is used when a DNS query is sent to
-  a specific name server (name server IP address).
+* "Concatenate" - The term is used to refer to the conversion of a TXT
+  resource record’s data to a single contiguous string, as specified in [RFC
+  7208, section 3.3][RFC7208#3.3].
 
-[Argument List]:                         https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[CN04_EMPTY_PREFIX_SET]:                 #outcomes
-[CN04_ERROR_PREFIX_DATABASE]:            #outcomes
-[CN04_IPV4_DIFFERENT_PREFIX]:            #outcomes
-[CN04_IPV4_SAME_PREFIX]:                 #outcomes
-[CN04_IPV6_DIFFERENT_PREFIX]:            #outcomes
-[CN04_IPV6_SAME_PREFIX]:                 #outcomes
-[CRITICAL]:                             ../SeverityLevelDefinitions.md#critical
-[Cymru Database]:                       #cymru-prefix-lookup
-[DEBUG]:                                ../SeverityLevelDefinitions.md#notice
-[DNS Query and Response Defaults]:      ../DNSQueryAndResponseDefaults.md
-[DNS Query]:                            ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
-[DNS Response]:                         ./DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
-[ERROR]:                                ../SeverityLevelDefinitions.md#error
-[INFO]:                                 ../SeverityLevelDefinitions.md#info
-[IP to ASN Mapping]:                    https://team-cymru.com/community-services/ip-asn-mapping/#dns
-[Message Tag Specification]:            ../../../../internal/templates/specifications/tests/MessageTagSpecification.md
-[Method4]:                              ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]:                              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[Methods]:                              ../Methods.md
-[NOTICE]:                               ../SeverityLevelDefinitions.md#notice
-[RCODE Name]:                           https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[RFC 1035#3.5]:                         https://tools.ietf.org/html/rfc1035#section-3.5
-[RFC 2182#3.1]:                         https://tools.ietf.org/html/rfc2182#section-3.1
-[RFC 3596#2.5]:                         https://tools.ietf.org/html/rfc3596#section-2.5
-[RIPE Database]:                        #ripe-prefix-lookup
-[RISwhois]:                             https://www.ripe.net/analyse/archived-projects/ris-tools-web-interfaces/riswhois
-[Send]:                                 #terminology
-[Severity Level Definitions]:           ../SeverityLevelDefinitions.md
-[Test Case Identifier Specification]:   ../../../../internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
-[WARNING]:                              ../SeverityLevelDefinitions.md#warning
-[Zonemaster-Engine Profile]:            https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+* "Send" - The term is used when a query is sent to
+  a specific server (server IP address).
+
+[Argument List]:                                                https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[CN04_EMPTY_PREFIX_SET]:                                        #outcomes
+[CN04_ERROR_PREFIX_DATABASE]:                                   #outcomes
+[CN04_IPV4_DIFFERENT_PREFIX]:                                   #outcomes
+[CN04_IPV4_SAME_PREFIX]:                                        #outcomes
+[CN04_IPV6_DIFFERENT_PREFIX]:                                   #outcomes
+[CN04_IPV6_SAME_PREFIX]:                                        #outcomes
+[Concatenate]:                                                  #terminology
+[CRITICAL]:                                                     ../SeverityLevelDefinitions.md#critical
+[Cymru Database]:                                               #cymru-prefix-lookup
+[DEBUG]:                                                        ../SeverityLevelDefinitions.md#notice
+[DNS Query and Response Defaults]:                              ../DNSQueryAndResponseDefaults.md
+[DNS Query]:                                                    ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
+[DNS Response]:                                                 ./DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
+[ERROR]:                                                        ../SeverityLevelDefinitions.md#error
+[INFO]:                                                         ../SeverityLevelDefinitions.md#info
+[IP to ASN Mapping]:                                            https://team-cymru.com/community-services/ip-asn-mapping/#dns
+[Message Tag Specification]:                                    ../../../../internal/templates/specifications/tests/MessageTagSpecification.md
+[Method4]:                                                      ../Methods.md#method-4-obtain-glue-address-records-from-parent
+[Method5]:                                                      ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[Methods]:                                                      ../Methods.md
+[NOTICE]:                                                       ../SeverityLevelDefinitions.md#notice
+[Prefix Lookup Methods]:                                        #prefix-lookup-methods
+[RCODE Name]:                                                   https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[Requirements and normalization of domain names in input]:      https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/RequirementsAndNormalizationOfDomainNames.md
+[RFC 1035#3.5]:                                                 https://datatracker.ietf.org/doc/html/rfc1035#section-3.5
+[RFC 2182#3.1]:                                                 https://datatracker.ietf.org/doc/html/rfc2182#section-3.1
+[RFC 3596#2.5]:                                                 https://datatracker.ietf.org/doc/html/rfc3596#section-2.5
+[RFC7208#3.3]:                                                  https://datatracker.ietf.org/doc/html/rfc7208#section-3.3
+[RIPE Database]:                                                #ripe-prefix-lookup
+[RISwhois]:                                                     https://www.ripe.net/analyse/archived-projects/ris-tools-web-interfaces/riswhois
+[Send]:                                                         #terminology
+[Severity Level Definitions]:                                   ../SeverityLevelDefinitions.md
+[Test Case Identifier Specification]:                           ../../../../internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
+[WARNING]:                                                      ../SeverityLevelDefinitions.md#warning
+[Zonemaster-Engine Profile]:                                    https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
