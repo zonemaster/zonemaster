@@ -36,8 +36,8 @@ giving a correct DNS response for an authoritative name server.
 
 Message Tag                 | Level   | Arguments                      | Message ID for message tag
 :---------------------------|:--------|:-------------------------------|:----------------------------------------------------------------------------------------------------------------------------
-N15_SOFTWARE_VERSION        | INFO    | ns_ip_list, query_name, string | The following name server(s) respond to version query "{query_name}" with string "{string}". Returned from name servers: "{ns_ip_list}"
-N15_NO_VERSION              | INFO    | ns_ip_list                     | The following name server(s) do not respond to version queries. Returned from name servers: "{ns_ip_list}"
+N15_SOFTWARE_VERSION        | INFO    | ns_ip_list, query_name, string | The following name server(s) respond to software version query "{query_name}" with string "{string}". Returned from name servers: "{ns_ip_list}"
+N15_NO_VERSION              | INFO    | ns_ip_list                     | The following name server(s) do not respond to software version queries. Returned from name servers: "{ns_ip_list}"
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine Profile]. Also see the
@@ -78,8 +78,8 @@ message. The argument names are defined in the [Argument List].
       add name server to the *No Version* set.
 
 6. If the *TXT Data* set is non-empty, then, for each unique
-   TXT string in the set, output *[N15_SOFTWARE_VERSION]* with
-   name server IP list, query name and TXT string.
+   string and query name pair in the set, output *[N15_SOFTWARE_VERSION]*
+   with name server IP list, query name and string.
 
 7. If the *No Version* set is non-empty, then output
    *[N15_NO_VERSION]* with name server IP list.
