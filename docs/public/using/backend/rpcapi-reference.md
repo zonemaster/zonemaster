@@ -516,7 +516,7 @@ Example response:
 
 #### `"result"`
 
-An oject with the following property:
+An object with the following property:
 
 * `"profiles"`: An array of [*Profile names*][Profile name] in lower case.
   `"default"` is always included.
@@ -571,7 +571,7 @@ Example response:
 
 #### `"result"`
 
-An oject with the following property:
+An object with the following property:
 
 * `"languages"`: An array of [*language tags*][Language tag]. It is never empty.
 
@@ -630,7 +630,7 @@ An object with the property:
 
 #### `"result"`
 
-An oject with the following property:
+An object with the following property:
 
 * `"address_record"`: A list of one or two objects representing IP addresses
   (if 2 one is for IPv4 the other for IPv6). The objects each have a single key

@@ -5,7 +5,7 @@ it will be hard or impossible to perform any other tests at all. The
 test code should be constructed so that these tests are always run, even
 if a subset of tests is asked for that would not normally include them.
 
-These documents uses the terminology defined in the [Master Test Plan].
+This document uses the terminology defined in the [Master Test Plan].
 
 
 [Master Test Plan]:             ../MasterTestPlan.md
