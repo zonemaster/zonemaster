@@ -12,10 +12,9 @@ my $dirloc = '.'; # directory for serching test cases
 my $help;
 my $DEBUG = 0;
 
-# global variables
-my $tcCounter = 0;
-
 sub main {
+    my $tcCounter = 0;
+
     GetOptions(
         'help|?'  => \$help,
         'dir|d=s' => \$dirloc,
@@ -57,7 +56,7 @@ sub main {
 
     foreach my $d (@directories) {
         say STDERR "Processing directory $d" if $DEBUG;
-        tcList($d);
+        $tcCounter += tcList($d);
     }
 
     if ($tcCounter == 0) {
@@ -71,6 +70,7 @@ sub tcList
 {
     my $tcDir = shift;
 
+    my $tcCount = 0;
     my $script_name = basename($0);
 
     my $output = <<"HEADER";
@@ -95,14 +95,17 @@ HEADER
             next;
         }
         $output .= tcName("$tcDir/$f");
+        $tcCount++;
     }
 
     if ( ! grep( /^README\.md$/, @files ) ) {
         warn "No README.md file in folder $tcDir\n";
-        return;
+    }
+    else {
+        writeReadme( "$tcDir/README.md", $output );
     }
 
-    writeReadme( "$tcDir/README.md", $output );
+    return $tcCount;
 }
 
 sub writeReadme
@@ -149,7 +152,6 @@ sub tcName
     } else {
         warn "$tcPath: empty file or empty first line\n";
     }
-    $tcCounter++; # increase the global counter
     close $file;
 
     return $output;
