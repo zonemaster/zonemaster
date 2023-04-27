@@ -38,6 +38,6 @@ $ORIGIN 22.9.19.127.in-addr.arpa.
 $ORIGIN 2.2.0.0.9.0.0.0.9.1.0.0.7.2.1.0.0.0.0.0.3.c.0.0.2.b.0.0.1.a.d.f.ip6.arpa.
 @                       PTR  ns2.zone09.xa.
 
-$ORIGIN arpa. ; Rest to default
+$ORIGIN arpa. ; Reset to default
 
 ;EOF

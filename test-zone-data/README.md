@@ -14,7 +14,7 @@
 
 When loading `coredns` configuration the [test-zone-data] directory should be
 the working directory, else it will not find all included data files. That
-directory structure holds directories with zonefiles and `coredns` configurations
+directory structure holds directories with zone files and `coredns` configurations
 for the test zone scenarios.
 
 ## Installation instructions
@@ -71,7 +71,7 @@ Two terminal windows to the computer are needed.
    ```
    sudo sh add-ip.sh
    ```
-3. Start `coredns`. It will be running in the forground until terminated.
+3. Start `coredns`. It will be running in the foreground until terminated.
    ```
    sudo coredns --conf main.cfg
    ```
@@ -91,10 +91,9 @@ Two terminal windows to the computer are needed.
    0.07 NOTICE    Z09_MISSING_MAIL_TARGET
    ```
 
-For more examples and for how to interpret the example above, go to section
-"[Directories](#directories)" below and step down into a test module and under
-that the test case and see the README file of the test case.
-
+For more examples and information on how to interpret the example above, go to
+section “[Directories](#directories)” below, find the test module, then the test
+case within the module, and read the test case’s README file.
 
 ### Run unit tests in terminal 2
 
@@ -113,7 +112,7 @@ this README file. More files are found in the directories below.
     other data files.
 * [address-plan.md](address-plan.md)
   * A document that explains the IP plan and that also contains the
-    the IP plan in a markdown table.
+    IP plan in a markdown table.
 * [add-ip.sh](add-ip.sh)
   * A script, generated from the IP plan, to populate the loopback
     interface with IP addresses. Generated versions to be checked-in.

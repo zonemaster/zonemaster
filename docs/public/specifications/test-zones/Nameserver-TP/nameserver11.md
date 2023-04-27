@@ -27,15 +27,7 @@ different message tags are outputted when [NAMESERVER11] is run on a test zone.
 The message tags are defined in the test case ([NAMESERVER11]) and the scenarios
 are defined below.
 
-The scenarios are defined in two parts. First part defines the expectations on
-message tags from [NAMESERVER11] when Zonemaster is run against zone set up for
-the scenario:
-
-* What messages must be outputted (mandatory).
-* What messages must not be outputted (forbidden).
-
-The second part specifies the zone setup for the scenario.
-
+The test scenarios are structured as stated in the [test zone README file].
 
 ## Test zone names
 

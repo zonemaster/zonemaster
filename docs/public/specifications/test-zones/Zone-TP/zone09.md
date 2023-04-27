@@ -26,19 +26,12 @@ different message tags are outputted when [Zone09] is run on a test zone. The
 message tags are defined in the test case ([Zone09]) and the scenarios are
 defined below.
 
-The scenarios are defined in two parts. The first part defines the expectations
-on message tags from [Zone09] when Zonemaster is run against the zone set up for
-the scenario:
-
-* What messages must be outputted (mandatory).
-* What messages must not be outputted (forbidden).
-
-The second part specifies the zone setup for the scenario.
+The test scenarios are structured as stated in the [test zone README file].
 
 
 ## Test zone names
 
-The test zone for each test scenario in this docuemtn is a subdomain delegated
+The test zone for each test scenario in this documetn is a subdomain delegated
 from the base name (`zone09.xa`) and that subdomain having the same name as the
 scenario except where the test domain must be the root zone, a TLD or a domain
 under `.arpa`. The names of those zones are given in section

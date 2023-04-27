@@ -28,14 +28,7 @@ different message tags are outputted when [DNSSEC16] is run on a test zone. The
 message tags are defined in the test case ([DNSSEC16]) and the scenarios are
 defined below.
 
-The scenarios are defined in two parts. First part defines the expectations on
-message tags from [DNSSEC16] when Zonemaster is run against zone set up for the
-scenario:
-
-* What messages must be outputted (mandatory).
-* What messages must not be outputted (forbidden).
-
-The second part specifies the zone setup for the scenario.
+The test scenarios are structured as stated in the [test zone README file].
 
 
 ## Test zone names
@@ -99,7 +92,7 @@ Assumptions for the scenario specifications:
 
 ### CDS-MATCHES-NON-SEP-DNSKEY
 * Zone: "cds-matches-non-sep-dnskey.dnssec16.xa."
-  * The zone has a [Well Formed DNSKEY Record], but but flag bit 15 is unset (key
+  * The zone has a [Well Formed DNSKEY Record], but flag bit 15 is unset (key
     1).
   * The zone has one [Well Formed CDS Record] that matches key 1.
 
@@ -143,7 +136,7 @@ Assumptions for the scenario specifications:
 
 ### DNSKEY-NOT-SIGNED-BY-CDS
 * Zone: "dnskey-not-signed-by-cds.dnssec16.xa."
-  * The zone has a [Well Formed DNSKEY Record] (key 1), byt the key has not
+  * The zone has a [Well Formed DNSKEY Record] (key 1), but the key has not
     signed the DNSKEY RRset.
   * The zone has one [Well Formed CDS Record], and it matches key 1.
 
@@ -155,7 +148,7 @@ Assumptions for the scenario specifications:
 
 ### NO-CDS
 * Zone: "no-cds.dnssec16.xa."
-  * The name servers gives no CDS RRset on CDS query (NODATA).
+  * The name servers give no CDS RRset on CDS query (NODATA).
 
 ### NOT-AA
 * Zone: "not-aa.dnssec16.xa."
@@ -171,7 +164,7 @@ Assumptions for the scenario specifications:
 * "Well Formed DNSKEY Record" - The term is used, in this document, for a DNSKEY
   record that meets the following requirements:
   * It is a DNSKEY record in apex.
-  * It uses algorithm 10 (RSA/SHA-512) with 2048 octets key length, see
+  * It uses algorithm 10 (RSA/SHA-512) with a 2048-bit key length, see
     [DNSSEC05] and [DNSSEC14].
   * Flag bit 7 (zone key) and bit 15 (SEP) are set.
   * The DNSKEY RRset has been signed by the key and the RRSIG is valid.

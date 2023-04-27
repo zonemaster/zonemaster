@@ -1,7 +1,7 @@
 # DNSSEC16
 
 [This directory](.), i.e. the same directory as this README file, holds
-zonefiles and `coredns` configuration files for scenarios for test case DNSSEC16:
+zone files and `coredns` configuration files for scenarios for test case DNSSEC16:
 
 * CDS-INVALID-RRSIG
 * CDS-MATCHES-NO-DNSKEY

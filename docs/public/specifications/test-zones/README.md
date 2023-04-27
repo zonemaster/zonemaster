@@ -118,12 +118,12 @@ If a scenario requries that a certain name is outside its own zone, it should be
 stored within the `.xb` TLD (also a non-existing TLD) using the same name
 structure as under `.xa`, i.e. names for a scenario should be stored under
 `<scenario name>.<test case name>.xb`, e.g. `no-mx-arpa.zone09.xb`. If required
-test zones can be created in the same way under `.xc` and `.xc`.
+test zones can be created in the same way under `.xc` and `.xd`.
 
 What was stated above on data outside its own zone does not apply to reverse data
-since that must be stored in the `in-addr.arpa` or `ipv6.arpa` tree, and the
+since that must be stored in the `in-addr.arpa` or `ip6.arpa` tree, and the
 owner names of such data must follow the reverse data standards. There is no
-requirements of creating separate zones for `in-addr.arpa` or `ipv6.arpa` or
+requirements of creating separate zones for `in-addr.arpa` or `ip6.arpa` or
 below.
 
 
