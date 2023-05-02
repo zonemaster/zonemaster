@@ -223,17 +223,16 @@ None
 [CN04_IPV6_DIFFERENT_PREFIX]:                                   #outcomes
 [CN04_IPV6_SAME_PREFIX]:                                        #outcomes
 [Concatenate]:                                                  #terminology
-[Connectivity01]:                                               ../Connectivity-TP/connectivity01.md
+[Connectivity01]:                                               connectivity01.md
 [CRITICAL]:                                                     ../SeverityLevelDefinitions.md#critical
 [Cymru Database]:                                               #cymru-prefix-lookup
 [DEBUG]:                                                        ../SeverityLevelDefinitions.md#notice
 [DNS Query and Response Defaults]:                              ../DNSQueryAndResponseDefaults.md
 [DNS Query]:                                                    ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
-[DNS Response]:                                                 ./DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
+[DNS Response]:                                                 ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
 [ERROR]:                                                        ../SeverityLevelDefinitions.md#error
 [INFO]:                                                         ../SeverityLevelDefinitions.md#info
 [IP to ASN Mapping]:                                            https://team-cymru.com/community-services/ip-asn-mapping/#dns
-[Message Tag Specification]:                                    ../../../../internal/templates/specifications/tests/MessageTagSpecification.md
 [Method4]:                                                      ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                                                      ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [Methods]:                                                      ../Methods.md
@@ -249,6 +248,5 @@ None
 [RISwhois]:                                                     https://www.ripe.net/analyse/archived-projects/ris-tools-web-interfaces/riswhois
 [Send]:                                                         #terminology
 [Severity Level Definitions]:                                   ../SeverityLevelDefinitions.md
-[Test Case Identifier Specification]:                           ../../../../internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
 [WARNING]:                                                      ../SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine Profile]:                                    https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
