@@ -14,7 +14,7 @@
         - [v5.0.2](upgrade/backend/upgrade_zonemaster_backend_ver_5.0.2.md)
         - [v8.0.0](upgrade/backend/upgrade_zonemaster_backend_ver_8.0.0.md)
         - [v9.0.0](upgrade/backend/upgrade_zonemaster_backend_ver_9.0.0.md)
-- [Configuration]()
+- [Configuration](configuration/README.md)
     - [Profiles](configuration/profiles.md)
     - [Backend](configuration/backend.md)
         - [Environment Variables](configuration/backend-environment-variables.md)
