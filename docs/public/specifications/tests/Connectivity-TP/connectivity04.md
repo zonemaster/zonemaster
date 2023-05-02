@@ -13,8 +13,8 @@
 * [Outcome(s)](#outcomes)
 * [Special procedural requirements](#special-procedural-requirements)
 * [Prefix lookup methods](#prefix-lookup-methods)
-* [Cymru prefix lookup](#cymru-prefix-lookup)
-* [RIPE prefix lookup](#ripe-prefix-lookup)
+  * [Cymru prefix lookup](#cymru-prefix-lookup)
+  * [RIPE prefix lookup](#ripe-prefix-lookup)
 * [Intercase dependencies](#intercase-dependencies)
 * [Terminology](#terminology)
 
@@ -88,15 +88,19 @@ message. The argument names are defined in the [Argument List].
 
 5. If the *IPv4 Prefix* set is non-empty, then do:
    1. For each IP prefix in the set that has two or more members, output
-      *[CN04_IPV4_SAME_PREFIX]* with the prefix and list of all members for that prefix.
+      *[CN04_IPV4_SAME_PREFIX]* with the prefix and list of all members
+      (name server IP addresses) for that prefix.
    2. For all IP prefixes in the set that have exactly one member, output
-      *[CN04_IPV4_DIFFERENT_PREFIX]* with the combined set of their associated members.
+      *[CN04_IPV4_DIFFERENT_PREFIX]* with the combined set of their associated
+      members (name server IP addresses).
 
 6. If the *IPv6 Prefix* set is non-empty, then do:
    1. For each IP prefix in the set that has two or more members, output
-      *[CN04_IPV6_SAME_PREFIX]* with the prefix and list of all members for that prefix.
+      *[CN04_IPV6_SAME_PREFIX]* with the prefix and list of all members
+      (name server IP addresses) for that prefix.
    2. For all IP prefixes in the set that have exactly one member, output
-      *[CN04_IPV6_DIFFERENT_PREFIX]* with the combined set of their associated members.
+      *[CN04_IPV6_DIFFERENT_PREFIX]* with the combined set of their associated
+      members (name server IP addresses).
 
 ## Outcome(s)
 
@@ -156,7 +160,7 @@ origin6.asnlookup.zonemaster.net
 7. If at least one of the following criteria is met, output
    *[CN04_ERROR_PREFIX_DATABASE]* and exit this lookup:
    1. There is no DNS response.
-   2. The [DNS Response] does not have the [RCODE Name] NoError.
+   2. The [DNS Response] does not have the [RCODE Name] NoError or NXDomain.
 
 8. Extract the TXT record(s) from the response (see [IP to ASN Mapping]
    for examples), and do:
@@ -219,6 +223,7 @@ None
 [CN04_IPV6_DIFFERENT_PREFIX]:                                   #outcomes
 [CN04_IPV6_SAME_PREFIX]:                                        #outcomes
 [Concatenate]:                                                  #terminology
+[Connectivity01]:                                               ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                                                     ../SeverityLevelDefinitions.md#critical
 [Cymru Database]:                                               #cymru-prefix-lookup
 [DEBUG]:                                                        ../SeverityLevelDefinitions.md#notice
