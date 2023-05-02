@@ -6,7 +6,7 @@
     - [Zonemaster-Backend](installation/zonemaster-backend.md)
     - [Zonemaster-GUI](installation/zonemaster-gui.md)
     - [Docker](installation/docker.md)
-- [Upgrading]()
+- [Upgrading](upgrade/README.md)
     - [Backend](upgrade/backend.md)
         - [v1.0.3](upgrade/backend/upgrade_zonemaster_backend_ver_1.0.3.md)
         - [v1.1.0](upgrade/backend/upgrade_zonemaster_backend_ver_1.1.0.md)
