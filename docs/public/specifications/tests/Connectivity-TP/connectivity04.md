@@ -52,10 +52,10 @@ Message Tag                 | Level   | Arguments                   | Message ID
 :---------------------------|:--------|:----------------------------|:------------------------------------------------------------------------------------------------
 CN04_EMPTY_PREFIX_SET       | ERROR   | ns_ip                       | Prefix database returned no information for IP address {ns_ip}.
 CN04_ERROR_PREFIX_DATABASE  | ERROR   | ns_ip                       | Prefix database error. No data to analyze for IP address {ns_ip}.
-CN04_IPV4_SAME_PREFIX       | WARNING | ns_ip_list, ip_prefix       | The following name server(s) are announced in the same IPv4 prefix ({ip_prefix}): "{ns_ip_list}"
-CN04_IPV4_DIFFERENT_PREFIX  | INFO    | ns_ip_list                  | The following name server(s) are announced in unique IPv4 prefix(es): "{ns_ip_list}"
-CN04_IPV6_SAME_PREFIX       | WARNING | ns_ip_list, ip_prefix       | The following name server(s) are announced in the same IPv6 prefix ({ip_prefix}): "{ns_ip_list}"
-CN04_IPV6_DIFFERENT_PREFIX  | INFO    | ns_ip_list                  | The following name server(s) are announced in unique IPv6 prefix(es): "{ns_ip_list}"
+CN04_IPV4_SAME_PREFIX       | WARNING | ns_list, ip_prefix          | The following name server(s) are announced in the same IPv4 prefix ({ip_prefix}): "{ns_list}"
+CN04_IPV4_DIFFERENT_PREFIX  | INFO    | ns_list                     | The following name server(s) are announced in unique IPv4 prefix(es): "{ns_list}"
+CN04_IPV6_SAME_PREFIX       | WARNING | ns_list, ip_prefix          | The following name server(s) are announced in the same IPv6 prefix ({ip_prefix}): "{ns_list}"
+CN04_IPV6_DIFFERENT_PREFIX  | INFO    | ns_list                     | The following name server(s) are announced in unique IPv6 prefix(es): "{ns_list}"
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine Profile]. Also see the
@@ -67,40 +67,40 @@ message. The argument names are defined in the [Argument List].
 ## Test procedure
 
 1. Create the following empty sets:
-   1. Name server IP address ("NS IPv4 IPs")
-   2. Name server IP address ("NS IPv6 IPs")
-   3. IP prefix and name server IP address ("IPv4 Prefix")
-   4. IP prefix and name server IP address ("IPv6 Prefix")
+   1. Name server name and IP address ("NS IPv4")
+   2. Name server name and IP address ("NS IPv6")
+   3. IP prefix, name server name and IP address ("IPv4 Prefix")
+   4. IP prefix, name server name and IP address ("IPv6 Prefix")
 
-2. Obtain the set of name server IP addresses using [Method4] and [Method5]
-   ("Name Server IP").
+2. Obtain the set of name server names and IP addresses using [Method4]
+   and [Method5] ("Name Servers").
 
-3. For each name server IP in *Name Server IP* do:
-   1. Add IPv4 addresses to the *NS IPv4 IPs* set.
-   2. Add IPv6 addresses to the *NS IPv6 IPs* set.
+3. For each name server IP address in *Name Servers* do:
+   1. Add IPv4 addresses with name server name to the *NS IPv4* set.
+   2. Add IPv6 addresses with name server name to the *NS IPv6* set.
 
-4. For each IP address in *NS IPv4 IPs* and *NS IPv6 IPs* ("NS IP Address"),
+4. For each IP address in *NS IPv4* and *NS IPv6* ("NS IP Address"),
    respectively, do:
    1. Determine the IP prefix in which *NS IP Address* is announced
       using *Prefix Database*. See [Prefix Lookup Methods] section below.
-   2. Add found IP prefix, if any, with *NS IP Address* to the *IPv4 Prefix*
-      and *IPv6 Prefix* sets, respectively.
+   2. Add found IP prefix, if any, with *NS IP Address* and name server name
+      to the *IPv4 Prefix* and *IPv6 Prefix* sets, respectively.
 
 5. If the *IPv4 Prefix* set is non-empty, then do:
    1. For each IP prefix in the set that has two or more members, output
       *[CN04_IPV4_SAME_PREFIX]* with the prefix and list of all members
-      (name server IP addresses) for that prefix.
+      (name server names and IP addresses) for that prefix.
    2. For all IP prefixes in the set that have exactly one member, output
       *[CN04_IPV4_DIFFERENT_PREFIX]* with the combined set of their associated
-      members (name server IP addresses).
+      members (name server names and IP addresses).
 
 6. If the *IPv6 Prefix* set is non-empty, then do:
    1. For each IP prefix in the set that has two or more members, output
       *[CN04_IPV6_SAME_PREFIX]* with the prefix and list of all members
-      (name server IP addresses) for that prefix.
+      (name server names and IP addresses) for that prefix.
    2. For all IP prefixes in the set that have exactly one member, output
       *[CN04_IPV6_DIFFERENT_PREFIX]* with the combined set of their associated
-      members (name server IP addresses).
+      members (name server names and IP addresses).
 
 ## Outcome(s)
 
