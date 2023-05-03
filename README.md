@@ -126,8 +126,8 @@ The Zonemaster Product includes the following components:
 ## Installation
 
 Zonemaster itself can be installed manually. It can also be run using
-[Docker]. For detailed instructions on both options, see the
-[Installation][Installation] document.
+[Docker]. For detailed instructions on both options, see the [Installation]
+document.
 
 ## Versions
 
@@ -182,6 +182,7 @@ be found in the [LICENSE](LICENSE) file included in this respository.
 [Connectivity03]:                      docs/specifications/tests/Connectivity-TP/connectivity03.md
 [Contact and mailing lists]:           docs/contact-and-mailing-lists.md
 [Docker]:                              https://www.docker.com/get-started
+[Installation]:                        docs/public/installation/README.md
 [Issues in Zonemaster/Zonemaster]:     https://github.com/zonemaster/zonemaster/issues
 [Issues in Zonemaster::Backend]:       https://github.com/zonemaster/zonemaster-backend/issues
 [Issues in Zonemaster::CLI]:           https://github.com/zonemaster/zonemaster-cli/issues
@@ -202,7 +203,3 @@ be found in the [LICENSE](LICENSE) file included in this respository.
 [Zonemaster-LDNS]:                     https://github.com/zonemaster/zonemaster-ldns
 [Zonemaster/Zonemaster]:               https://github.com/zonemaster/zonemaster
 [Zonemaster/zonemaster-engine#833]:    https://github.com/zonemaster/zonemaster-engine/issues/833
-
-
-
-[Installation]: docs/public/installation/README.md

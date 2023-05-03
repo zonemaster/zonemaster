@@ -1,6 +1,6 @@
 # Address Test Plan
 
-These tests focuses on the Address specific test cases of the DNS tests.
+These tests focus on the Address specific test cases of the DNS tests.
 
 This document uses the terminology defined in the [Master Test Plan].
 

@@ -2,7 +2,7 @@
 
 ## Manual installation
 
-Before installing Zonemaster, check the [prerequisites][prerequisites] first.
+Before installing Zonemaster, check the [prerequisites] first.
 
 Start by installing the following components, in order:
 
@@ -18,9 +18,9 @@ At this point, tests can be run from the command-line on the local machine. To i
 ## Docker
 
 Alternatively, Zonemaster-CLI is available on [Docker Hub], and can be
-conveniently downloaded and run without any installation. Through Docker
-Zonemaster-CLI can be run on Linux, MacOS and Windows. See [USING]
-Zonemaster-CLI for how to run Zonemaster-CLI on [Docker].
+conveniently downloaded and run without any installation. Through [Docker]
+Zonemaster-CLI can be run on Linux, MacOS and Windows. See [Using the CLI] for
+how to run Zonemaster-CLI on Docker.
 
 To build your own Docker image, see the [Docker Image Creation] documentation.
 
@@ -28,7 +28,7 @@ To build your own Docker image, see the [Docker Image Creation] documentation.
 [Docker Image Creation]:               https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
 [Docker]:                              https://www.docker.com/get-started
 [prerequisites]:                       prerequisites.md
-[USING]:                               https://github.com/zonemaster/zonemaster-cli/blob/master/USING.md
+[Using the CLI]:                       ../using/cli.md
 [Zonemaster-Backend]:                  zonemaster-backend.md
 [Zonemaster-CLI]:                      zonemaster-cli.md
 [Zonemaster-Engine]:                   zonemaster-engine.md
