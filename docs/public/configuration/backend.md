@@ -4,6 +4,8 @@
 
 * [Introduction](#introduction)
 * [RPCAPI section](#rpcapi-section)
+  * [enable_batch_create](#enable_batch_create)
+  * [enable_user_create](#enable_user_create)
   * [enable_add_batch_job](#enable_add_batch_job)
   * [enable_add_api_user](#enable_add_api_user)
 * [DB section](#db-section)
@@ -61,21 +63,38 @@ In addition to the configuration file, some settings can configured using
 
 ## RPCAPI section
 
-Available keys: `enable_add_batch_job`, `enable_add_api_user`.
+Available keys: `enable_batch_create`, `enable_user_create`,
+`enable_add_batch_job`, `enable_add_api_user`.
 
-### enable_add_batch_job
+### enable_batch_create
 
-Boolean value to enable the `enable_add_batch_job` methods of the API.
+Boolean value to enable the `batch_create` methods of the API.
 
 Accepted values: `yes` (or `true`) or `no` (or `false`),
 default to `yes` (enabled).
 
-### enable_add_api_user
+### enable_user_create
 
-Boolean value to enable the `add_api_user` method of the API.
+Boolean value to enable the `user_create` method of the API.
 
 Accepted values: `yes` (or `true`) or `no` (or `false`),
 default to `no` (disabled).
+
+### enable_add_batch_job
+
+Deprecated (planned removal: v2024.1). Use
+[enable_batch_create][RPCAPI.enable_batch_create] instead.
+
+If defined, the [enable_batch_create][RPCAPI.enable_batch_create]
+property takes precedence over this.
+
+### enable_add_api_user
+
+Deprecated (planned removal: v2024.1). Use
+[enable_user_create][RPCAPI.enable_user_create] instead.
+
+If defined, the [enable_user_create][RPCAPI.enable_user_create] property
+takes precedence over this.
 
 
 ## DB section
@@ -399,6 +418,8 @@ Otherwise a new test request is enqueued.
 [Profile JSON files]:                 profiles.md
 [Profile name section]:               ../using/backend/api.md#profile-name
 [Profiles]:                           Architecture.md#profile
+[RPCAPI.enable_batch_create]:         #enable_batch_create
+[RPCAPI.enable_user_create]:          #enable_user_create
 [SQLITE.database_file]:               #database_file
 [US ASCII printable characters]:      https://en.wikipedia.org/wiki/ASCII#Printable_characters
 [Zonemaster-Engine share directory]:  https://github.com/zonemaster/zonemaster-engine/tree/master/share
