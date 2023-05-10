@@ -5,7 +5,7 @@
 * [Objective](#objective)
 * [Test scenarios](#test-scenarios)
 * [Test environment](#test-environment)
-* [Naming convensions](#naming-convensions)
+* [Naming conventions](#naming-conventions)
   * [Test zone names](#test-zone-names)
   * [Data outside the test zones](#data-outside-the-test-zones)
 * [Terminology](#terminology)
@@ -59,7 +59,7 @@ with a private DNS tree to achieve full access to any zone. Configuration data
 and instructions to set this up are available in the [test-zone-data] directory
 in this repository.
 
-## Naming convensions
+## Naming conventions
 
 In this document, domain names are given without trailing dot, except for the root
 zone (or node) given as a dot `.`.
@@ -100,21 +100,21 @@ There are some exceptions to the name of the test zone that are identified here:
    practice such a name will never be in conflict with names in the public DNS
    tree since there no such names under public `.arpa`.
 4. If a scenario requires that the parent zone has different settings compared to
-   other scenrios for the same test case, then the test zone name is
+   other scenarios for the same test case, then the test zone name is
    `child.<scenario name>.<test case name>.xa`, e.g.
    `child.no-response-mx-query.zone09.xa`, where
    `no-response-mx-query.zone09.xa`, instead of `zone09.xa`, is the parent zone
    of the test zone.
 5. If a scenario requires that the grandparent zone has different settings
-   compared to other scenrios for the same test case, then the test zone name is
+   compared to other scenarios for the same test case, then the test zone name is
    `child.parent.<scenario name>.<test case name>.xa`, e.g.
    `child.parent.no-response-mx-query.zone09.xa`, where
-   `no-response-mx-query.zone09.xa`, instead of `zone09.xa`, is the grand parent
+   `no-response-mx-query.zone09.xa`, instead of `zone09.xa`, is the grandparent
    zone of the test zone.
 
 ### Data outside the test zones
 
-If a scenario requries that a certain name is outside its own zone, it should be
+If a scenario requires that a certain name is outside its own zone, it should be
 stored within the `.xb` TLD (also a non-existing TLD) using the same name
 structure as under `.xa`, i.e. names for a scenario should be stored under
 `<scenario name>.<test case name>.xb`, e.g. `no-mx-arpa.zone09.xb`. If required
@@ -123,7 +123,7 @@ test zones can be created in the same way under `.xc` and `.xd`.
 What was stated above on data outside its own zone does not apply to reverse data
 since that must be stored in the `in-addr.arpa` or `ip6.arpa` tree, and the
 owner names of such data must follow the reverse data standards. There is no
-requirements of creating separate zones for `in-addr.arpa` or `ip6.arpa` or
+requirements for creating separate zones for `in-addr.arpa` or `ip6.arpa` or
 below.
 
 

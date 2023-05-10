@@ -69,12 +69,12 @@ Assumptions for the scenario specifications:
 
 ### NO-EDNS-ON-UNKNOWN-OC
 * Zone: "no-edns-on-unknown-oc.nameserver11.xa."
-  * The nameserver will respond without EDNS if the query includes an unknown
+  * The name server will respond without EDNS if the query includes an unknown
     EDNS OPTION CODE.
 
 ### NO-ERROR
 * Zone: "no-error.nameserver11.xa."
-  * The nameserver will respond as default (no error).
+  * The name server will respond as default (no error).
 
 ### NO-RESPONSE-ON-EDNS
 * Zone: "no-response-on-edns.nameserver11.xa."
@@ -82,32 +82,32 @@ Assumptions for the scenario specifications:
 
 ### NO-RESPONSE-ON-UNKNOWN-OC
 * Zone: "no-response-on-unknown-oc.nameserver11.xa."
-  * The nameserver will not respond if the query includes an unknown EDNS OPTION
+  * The name server will not respond if the query includes an unknown EDNS OPTION
     CODE.
   
 ### RETURNS-UNKNOWN-OC
 * Zone: "returns-unknown-oc.nameserver11.xa."
-  * The nameserver will respond with an unknown EDNS OPTION CODE if the query
+  * The name server will respond with an unknown EDNS OPTION CODE if the query
     includes an unknown EDNS OPTION CODE.
 
 ### UNEXPECTED-ANSWER-SECTION
 * Zone: "unexpected-answer-section.nameserver11.xa."
-  * The nameserver will respond without the SOA record if the query includes an
+  * The name server will respond without the SOA record if the query includes an
     unknown EDNS OPTION CODE.
   
 ### UNEXPECTED-RCODE-FORMERR
 * Zone: "unexpected-rcode-formerr.nameserver11.xa."
-  * The nameserver will respond with [RCODE Name] "FormErr" if the query includes an
+  * The name server will respond with [RCODE Name] "FormErr" if the query includes an
     unknown EDNS OPTION CODE.
 
 ### UNEXPECTED-RCODE-REFUSED
 * Zone: "unexpected-rcode-refused.nameserver11.xa."
-  * The nameserver will respond with [RCODE Name] "Refused" if the query includes an
+  * The name server will respond with [RCODE Name] "Refused" if the query includes an
     unknown EDNS OPTION CODE.
 
 ### UNSET-AA
 * Zone: "unset-aa.nameserver11.xa."
-  * The nameserver will respond with AA unset if the query includes an unknown
+  * The name server will respond with AA unset if the query includes an unknown
     EDNS OPTION CODE.
 
 

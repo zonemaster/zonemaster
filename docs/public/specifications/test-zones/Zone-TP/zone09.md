@@ -16,6 +16,7 @@ See the [test zone README file].
 
 
 ## Test Case
+
 This document specifies defined test zones for test case [Zone09].
 
 
@@ -31,7 +32,7 @@ The test scenarios are structured as stated in the [test zone README file].
 
 ## Test zone names
 
-The test zone for each test scenario in this documetn is a subdomain delegated
+The test zone for each test scenario in this document is a subdomain delegated
 from the base name (`zone09.xa`) and that subdomain having the same name as the
 scenario except where the test domain must be the root zone, a TLD or a domain
 under `.arpa`. The names of those zones are given in section
@@ -69,7 +70,7 @@ Assumptions for the zone setup for the test scenarios:
   SOA record on SOA queries.
 * Unless otherwise stated, all name servers respond authoritatively with (or
   without) MX records on MX queries.
-* Unless otherwise stated, all respond are authoritative and with [RCODE Name]
+* Unless otherwise stated, all responses are authoritative and with [RCODE Name]
   "NoError".
 
 ### NO-RESPONSE-MX-QUERY

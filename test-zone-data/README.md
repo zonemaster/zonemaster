@@ -32,7 +32,7 @@ for the test zone scenarios.
    ```
    sudo apt install libunbound-dev
    ```
-5. Install `coredns`:
+6. Install `coredns`:
    1. Reference https://github.com/coredns/coredns
    2. Clone `coredns`:
    ```
@@ -55,8 +55,8 @@ for the test zone scenarios.
    ```
    sudo cp coredns  /usr/local/bin/
    ```
-   6. Update `add-ip.sh` based on the address plan if addresses have been added
-      to the address plan.
+   6. Update [`add-ip.sh`][add-ip.sh] based on the address plan if addresses have
+      been added to [address-plan.md].
 
 ## Running instructions
 
@@ -105,29 +105,31 @@ in terminal 2 and the data can be recorded and saved as data files. See the
 ## Files
 
 The following files are found in [this directory](.), i.e. the same directory as
-this README file. More files are found in the directories below.
+this README file.
 
-* [main.cfg](main.cfg)
+* [main.cfg]
   * The default main `coredns` configuration file that includes all
     other data files.
-* [address-plan.md](address-plan.md)
+* [address-plan.md]
   * A document that explains the IP plan and that also contains the
     IP plan in a markdown table.
-* [add-ip.sh](add-ip.sh)
+* [add-ip.sh]
   * A script, generated from the IP plan, to populate the loopback
     interface with IP addresses. Generated versions to be checked-in.
 * make-add-ip.pl (*not yet available*)
   * A script that will generate add-ip.sh when the IP plan has
     been updated. To be manually run when needed.
 
+More files are found in the directories below.
+
 
 ## Directories
 
-The following directories are found in [this directory](.), i.e. the same
-directory as this README file. More files and sub-directories are found in those
-directories.
+The following directories are found in [this directory][test-zone-data], i.e.
+the same directory as this README file. More files and sub-directories are found
+in those directories.
 
-* [COMMON/](COMMON/)
+* [COMMON/]
   * Holds zone files and configuration that are shared between several scenarios
     for different test cases.
 * Address-TP/ (*not yet available*)
@@ -140,7 +142,7 @@ directories.
 * Consistency-TP/ (*not yet available*)
   * Directory structure for scenarios for test cases in the Consistency-TP test
     module.
-* [DNSSEC-TP/](DNSSEC-TP/)
+* [DNSSEC-TP/]
   * Directory structure for scenarios for test cases in the DNSSEC-TP test
     module.
 * Delegation-TP/ (*not yet available*)
@@ -152,11 +154,17 @@ directories.
 * Syntax-TP/ (*not yet available*)
   * Directory structure for scenarios for test cases in the Syntax-TP test
     module.
-* [Zone-TP/](Zone-TP/)
+* [Zone-TP/]
   * Directory structure for scenarios for test cases in the Zone-TP test module.
 
 
-[test-zone-data]:                                      .
-[Zonemaster-Engine]:                                   https://github.com/zonemaster/zonemaster-engine/
+[add-ip.sh]:                                           add-ip.sh
+[address-plan.md]:                                     address-plan.md
+[COMMON/]:                                             COMMON/
+[DNSSEC-TP/]:                                          DNSSEC-TP/
+[main.cfg]:                                            main.cfg
 [t]:                                                   https://github.com/zonemaster/zonemaster-engine/tree/develop/t
+[test-zone-data]:                                      .
+[Zone-TP/]:                                            Zone-TP/
+[Zonemaster-Engine]:                                   https://github.com/zonemaster/zonemaster-engine/
 
