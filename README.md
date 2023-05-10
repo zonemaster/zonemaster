@@ -125,18 +125,9 @@ The Zonemaster Product includes the following components:
 
 ## Installation
 
-To install Zonemaster, start with installation of [Zonemaster-Engine] (which will
-draw in Zonemaster-LDNS) and then continue with the other parts. You will find
-installation instructions from the links above.
-
-## Docker
-
-Zonemaster-CLI is available on [Docker Hub], and can be conveniently downloaded
-and run without any installation. Through Docker Zonemaster-CLI can be run on
-Linux, MacOS and Windows. See [USING] Zonemaster-CLI for how to run
-Zonemaster-CLI on [Docker]. 
-
-To build your own Docker image, see the [Docker Image Creation] documentation.
+Zonemaster itself can be installed manually. It can also be run using
+[Docker]. For detailed instructions on both options, see the [Installation]
+document.
 
 ## Versions
 
@@ -188,11 +179,9 @@ be found in the [LICENSE](LICENSE) file included in this respository.
 
 
 [CPAN]:                                https://www.cpan.org/
-[Connectivity03]:                      docs/specifications/tests/Connectivity-TP/connectivity03.md
 [Contact and mailing lists]:           docs/contact-and-mailing-lists.md
-[Docker Hub]:                          https://hub.docker.com/u/zonemaster
-[Docker Image Creation]:               https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
 [Docker]:                              https://www.docker.com/get-started
+[Installation]:                        docs/public/installation/README.md
 [Issues in Zonemaster/Zonemaster]:     https://github.com/zonemaster/zonemaster/issues
 [Issues in Zonemaster::Backend]:       https://github.com/zonemaster/zonemaster-backend/issues
 [Issues in Zonemaster::CLI]:           https://github.com/zonemaster/zonemaster-cli/issues
@@ -213,5 +202,3 @@ be found in the [LICENSE](LICENSE) file included in this respository.
 [Zonemaster-LDNS]:                     https://github.com/zonemaster/zonemaster-ldns
 [Zonemaster/Zonemaster]:               https://github.com/zonemaster/zonemaster
 [Zonemaster/zonemaster-engine#833]:    https://github.com/zonemaster/zonemaster-engine/issues/833
-
-

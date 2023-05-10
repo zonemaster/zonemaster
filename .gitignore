@@ -5,3 +5,6 @@
 
 # MacOS attribute file
 .DS_Store
+
+# Ignore output by mdbook
+docs/public/book

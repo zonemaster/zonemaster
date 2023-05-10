@@ -40,10 +40,10 @@ DS16_CDS_INVALID_RRSIG               | ERROR   | CDS RRset is signed with an inv
 DS16_CDS_MATCHES_NON_SEP_DNSKEY      | NOTICE  | CDS record matches a DNSKEY with SEP bit (bit 15) unset.
 DS16_CDS_MATCHES_NON_ZONE_DNSKEY     | ERROR   | CDS record matches a DNSKEY with zone bit (bit 7) unset.
 DS16_CDS_MATCHES_NO_DNSKEY           | WARNING | CDS record does not match any DNSKEY in DNSKEY RRset.
-DS16_CDS_NOT_SIGNED_BY_CDS           | NOTICE  | CDS RRset is signed but not by the key that the CDS record points to.
-DS16_CDS_SIGNED_BY_UNKNOWN_DNSKEY    | ERROR   | CDS RRset is signed but not by a key in DNSKEY RRset.
-DS16_CDS_UNSIGNED                    | ERROR   | CDS RRset is not signed.
-DS16_CDS_WITHOUT_DNSKEY              | ERROR   | CDS RRset exists, but no DNSKEY RRset.
+DS16_CDS_NOT_SIGNED_BY_CDS           | NOTICE  | CDS RRset is not signed by the key that the CDS record points to.
+DS16_CDS_SIGNED_BY_UNKNOWN_DNSKEY    | ERROR   | CDS RRset is signed by a key not in DNSKEY RRset.
+DS16_CDS_UNSIGNED                    | ERROR   | CDS RRset is unsigned.
+DS16_CDS_WITHOUT_DNSKEY              | ERROR   | CDS RRset exists, but there is no DNSKEY RRset.
 DS16_DELETE_CDS                      | INFO    | CDS RRset has a "delete" CDS record as a single record.
 DS16_DNSKEY_NOT_SIGNED_BY_CDS        | WARNING | DNSKEY RRset is not signed by the key or keys that the CDS records point to.
 DS16_MIXED_DELETE_CDS                | ERROR   | "Delete" CDS record is mixed with normal CDS record.
@@ -144,8 +144,8 @@ DS16_MIXED_DELETE_CDS                | ERROR   | "Delete" CDS record is mixed wi
              key tag of CDS record to the *DNSKEY Not Signed By CDS* set.
           2. If the CDS RRset has not been signed by the DNSKEY record that
              the CDS record points at then add the name server IP address and
-             key tag of CDS record to the *DNSKEY Not Signed By CDS* set.
-          3. If bit 15 of the flags field of the DNSKEY that the DS record
+             key tag of CDS record to the *CDS Not Signed By CDS* set.
+          3. If bit 15 of the flags field of the DNSKEY that the CDS record
              points at is unset (value 0) then add the name server IP address
              and the key tag of the CDS record to the
              *CDS points to non-SEP DNSKEY* set.

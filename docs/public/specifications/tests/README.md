@@ -152,3 +152,4 @@ project. All the details are in the [Master Test Plan].
 |[ZONE08](Zone-TP/zone08.md)|MX is not an alias|
 |[ZONE09](Zone-TP/zone09.md)|MX record present|
 |[ZONE10](Zone-TP/zone10.md)|No multiple SOA records|
+|[ZONE11](Zone-TP/zone11.md)|Presence of SPF policy|
