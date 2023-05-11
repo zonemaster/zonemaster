@@ -22,8 +22,8 @@ specified below.
   I.e. write as `<https://example.com/>` not just as `https://example.com/`.
 
   If the angle brackets are not included the URL is still rendered as a link on
-  Github (per [GFM autolink] syntax), but other tools (e.g. link checking tools)
-  are may not recognize it as a link.
+  Github (per [GFM autolink] syntax), but other tools may not recognize it as a
+  link.
 
 [CommonMark autolink]: https://spec.commonmark.org/0.30/#autolinks
 [GFM autolink]: https://github.github.com/gfm/#autolinks-extension-
