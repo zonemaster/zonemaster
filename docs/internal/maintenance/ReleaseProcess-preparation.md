@@ -9,14 +9,14 @@ development has been completed.
 
 ## 1. Update prerequisites
 
-Make sure the [declaration of prerequisites] in main README.md is up to date
-with regard to [SupportCriteria].
+Make sure the [declaration of prerequisites] is up to date with regard to
+[SupportCriteria].
 
 
 ## 2. Update [CI] configuration
 
 Make sure the Travis configuration for each repo, in the `develop` branch
-is up to date with the [supported Perl versions] in main README.md.
+is up to date with the [supported Perl versions].
 
  * zonemaster-ldns - [.travis.yml][ldns.travis]
  * zonemaster-engine - [.travis.yml][engine.travis]
@@ -94,15 +94,14 @@ resources.repository | link to the repository
 version              | version number of the new release
 
 
-<!-- Zonemaster links point on purpose on the develop branch. -->
 [CI]:                                      https://github.com/travis-ci/travis-ci
-[declaration of prerequisites]:            https://github.com/zonemaster/zonemaster/blob/develop/README.md#prerequisites
+[declaration of prerequisites]:            ../../public/installation/prerequisites.md
 [license string]:                          https://metacpan.org/pod/CPAN::Meta::Spec#license
-[SupportCriteria]:                         https://github.com/zonemaster/zonemaster/blob/develop/docs/internal/maintenance/SupportCriteria.md
+[SupportCriteria]:                         ../../internal/maintenance/SupportCriteria.md
 [ldns.travis]:                             https://github.com/zonemaster/zonemaster-ldns/blob/develop/.travis.yml
 [engine.travis]:                           https://github.com/zonemaster/zonemaster-engine/blob/develop/.travis.yml
 [cli.travis]:                              https://github.com/zonemaster/zonemaster-cli/blob/develop/.travis.yml
 [backend.travis]:                          https://github.com/zonemaster/zonemaster-backend/blob/develop/.travis.yml
-[supported Perl versions]:                 https://github.com/zonemaster/zonemaster/blob/develop/README.md#supported-perl-versions
+[supported Perl versions]:                 ../../public/installation/prerequisites.md#supported-perl-versions
 [Appendix META]:                           #appendix-meta
 [Versions and Releases]:                   ../../design/Versions%20and%20Releases.md

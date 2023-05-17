@@ -72,7 +72,8 @@ system that is supported:
     * If the the EOL of a major version is within the expected lifetime of the
       Zonemaster release then that major version is not supported.
   * Only the newest point release is tested.
-  * Active releases are listed on <https://rockylinux.org/download>.
+  * Active releases are listed on <https://rockylinux.org/download> and
+    <https://en.wikipedia.org/wiki/Rocky_Linux#Releases>.
 
 * Ubuntu:
   * All LTS versions that have not reached the "End of Standard Support" are
