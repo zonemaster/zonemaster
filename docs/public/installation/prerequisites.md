@@ -9,18 +9,18 @@ and processor architecture listed below.
 
 ## Supported operating system versions
 
-* [CentOS Linux] 7
 * [Debian] 11
 * [Docker]
-* [FreeBSD] 13.1
-* [Ubuntu] 22.04
+* [FreeBSD] 13.2
 * [Rocky Linux] 8.7
+* [Rocky Linux] 9.2
+* [Ubuntu] 20.04
+* [Ubuntu] 22.04
 
-Only the latest long-term supported version of Debian, FreeBSD and Ubuntu,
-respectively, is supported. Zonemaster supports Rocky Linux 8.7, not 9.1, due to
-issues with LDNS and OpenSSL on Rocky Linux 9.1. The plan is to change to Rocky
-Linux 9 in the v2023.1 release. Support for CentOS Linux 7 will be dropped by
-Zonemaster release v2023.1.
+Only the latest long-term supported version of Debian and FreeBSD, respectively,
+is supported. All long-term supported versions of Rocky Linux and Ubuntu are
+supported, unless such a version has end of support before the expected next
+release of Zonemaster.
 
 Only the Docker images provided by the Zonemaster project on [Docker Hub] are
 supported. Currently only Zonemaster-CLI is supported on Docker. Docker itself
@@ -35,12 +35,13 @@ at large cloud providers.
 
 Operating System | MariaDB | PostgreSQL
 ---------------- | --------| ---------------
-CentOS Linux 7   | 5.5     | *not supported*
-Debian 11        | 10.5    | 13.8
+Debian 11        | 10.5 ?  | 13.11 ?
 Docker           | n/a     | n/a
-FreeBSD 13.1     | 5.7 (*) | 13.9
-Rocky Linux 8.7  | 10.3    | 10.21
-Ubuntu 22.04     | 10.6    | 14.5
+FreeBSD 13.2     | 8.0 (*) | 13.11
+Rocky Linux 8.7  | 10.3 ?  | 10.21 ?
+Rocky Linux 9.2  | ??      | ??
+Ubuntu 20.04     | 10.3 ?  | 12.x ?
+Ubuntu 22.04     | 10.6 ?  | 14.5 ?
 
 * (*) FreeBSD uses MySQL, not MariaDB.
 * SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
@@ -55,12 +56,13 @@ Ubuntu 22.04     | 10.6    | 14.5
 
 Operating System | Perl
 ---------------- | ----
-CentOS Linux 7   | 5.16
-Debian 11        | 5.32
+Debian 11        | 5.32 ?
 Docker           | (*)
 FreeBSD 13.1     | 5.32
-Rocky Linux 8.7  | 5.26
-Ubuntu 22.04     | 5.34
+Rocky Linux 8.7  | 5.26 ?
+Rocky Linux 9.2  | ??
+Ubuntu 20.04     | 5.30 ?
+Ubuntu 22.04     | 5.34 ?
 
 * Zonemaster requires Perl version 5.16 or higher.
 * Zonemaster has been tested with the default version of Perl in the OSs as
@@ -84,7 +86,6 @@ Ubuntu 22.04     | Chrome
 Zonemaster GUI is tested manually and with testing tools. See the
 [Zonemaster-gui repository][Zonemaster-GUI] for more details.
 
-[CentOS Linux]:                        https://centos.org/centos-linux/
 [Debian]:                              https://www.debian.org/
 [Docker Hub]:                          https://hub.docker.com/u/zonemaster
 [Docker]:                              https://www.docker.com/get-started
