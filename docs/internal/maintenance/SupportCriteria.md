@@ -89,7 +89,7 @@ Zonemaster provides database integrations for these database engines:
 
 * MariaDB (MySQL)
 * PostgreSQL
-* SQLite
+* SQLite (included in Zonemaster-Backend dependency)
 
 
 ## Database engine versions
@@ -99,28 +99,21 @@ operating system version should be supported.
 
 Database engine versions that lack required features cannot be supported.
 
-* Database engine versions provided by CentOS 7 are listed here:
-  * http://mirror.centos.org/centos/7/os/x86_64/Packages/
-
 * Database engine versions provided by each version of Debian are listed here:
   * <https://packages.debian.org/search?searchon=names&keywords=mariadb-server>
   * <https://packages.debian.org/search?searchon=names&keywords=postgresql>
-  * <https://packages.debian.org/search?searchon=names&keywords=sqlite3>
 
 * Database engine versions provided FreeBSD are listed here:
   * <https://www.freebsd.org/cgi/ports.cgi?query=mysql&stype=name&sektion=databases>
     and look for "mysql??-server-*" (FreeBSD does not support MariaDB in a
     default Backend installation).
   * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=postgresql>
-  * <https://www.freebsd.org/cgi/ports.cgi?query=p5-DBD-SQLite-&stype=name&sektion=databases>
-    (then SQLite binary is included in the Perl package).
 
 * Database engine versions provided by each version of Rocky Linux are listed here: TBP
 
 * Database engine versions provided by each version of Ubuntu are listed here:
   * <https://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=mariadb-server>
   * <https://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=postgresql>
-  * <https://packages.ubuntu.com/search?suite=default&section=all&arch=any&searchon=names&keywords=sqlite3>
 
 
 ## Translation locales
