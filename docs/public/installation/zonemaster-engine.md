@@ -8,6 +8,7 @@
   * [Installation on FreeBSD](#installation-on-freebsd)
   * [Installation on CentOS 7](#installation-on-centos-7)
 * [Post-installation sanity check](#post-installation-sanity-check)
+* [Troubleshooting installation](#troubleshooting-installation)
 * [What to do next](#what-to-do-next)
 
 
@@ -36,13 +37,13 @@
 4) Install packages from CPAN:
 
    ```sh
-   sudo cpanm Module::Install::XSUtil MooseX::Singleton Net::IP::XS
+   sudo cpanm --notest Module::Install::XSUtil MooseX::Singleton Net::IP::XS
    ```
 
 5) Install Zonemaster::LDNS and Zonemaster::Engine:
 
      ```sh
-     sudo cpanm Zonemaster::LDNS Zonemaster::Engine
+     sudo cpanm --notest Zonemaster::LDNS Zonemaster::Engine
      ```
 
 ### Installation on Debian and Ubuntu
@@ -85,7 +86,7 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 3) Install Zonemaster::LDNS and Zonemaster::Engine.
 
    ```sh
-   sudo cpanm Zonemaster::LDNS Zonemaster::Engine
+   sudo cpanm --notest Zonemaster::LDNS Zonemaster::Engine
    ```
 
 ### Installation on FreeBSD
@@ -131,13 +132,13 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 6) Install Zonemaster::LDNS:
 
    ```sh
-   cpanm --configure-args="--no-internal-ldns" Zonemaster::LDNS
+   cpanm --notest --configure-args="--no-internal-ldns" Zonemaster::LDNS
    ```
 
 7) Install Zonemaster::Engine:
 
    ```sh
-   cpanm Zonemaster::Engine
+   cpanm --notest Zonemaster::Engine
    ```
 
 ### Installation on CentOS 7
@@ -164,19 +165,19 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 3) Install packages from CPAN:
 
    ```sh
-   sudo cpanm Module::Install::XSUtil MooseX::Singleton Net::IP::XS
+   sudo cpanm --notest Module::Install::XSUtil MooseX::Singleton Net::IP::XS
    ```
 
 4) Install Zonemaster::LDNS with support for DNSSEC algorithms 15 and 16:
 
      ```sh
-     sudo cpanm --configure-args="--openssl-lib=/usr/lib64/openssl11 --openssl-inc=/usr/include/openssl11" Zonemaster::LDNS
+     sudo cpanm --notest --configure-args="--openssl-lib=/usr/lib64/openssl11 --openssl-inc=/usr/include/openssl11" Zonemaster::LDNS
      ```
 
 5) Finally install Zonemaster::Engine
 
      ```sh
-     sudo cpanm Zonemaster::Engine
+     sudo cpanm --notest Zonemaster::Engine
      ```
 
 
@@ -189,6 +190,15 @@ time perl -MZonemaster::Engine -E 'say join "\n", Zonemaster::Engine->test_modul
 ```
 
 The command is expected to take a few seconds and print some results about the delegation of zonemaster.net.
+
+
+## Troubleshooting installation
+
+If you have any issue with installation, and installed with `cpanm`, redo the
+installation above but without the `--notest` option. Installation will take
+longer time.
+
+Take note of any error messages and search for solution.
 
 
 ## What to do next
