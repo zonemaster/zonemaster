@@ -225,44 +225,31 @@ This parameter is a string that is either
 
 Basic data type: string
 
-A string matching one of the following regular expression:
-* `/^[a-z]{2}$/`, preferred format.
-* `/^[a-z]{2}_[A-Z]{2}$/`, **deprecated** format, use the preferred format instead
-  (planned removal: v2023.1).
+A string matching `/^[a-z]{2}$/`.
 
 The set of valid *language tags* is further constrained by the
 [`LANGUAGE.locale`][LANGUAGE.locale] property.
-* If the *language tag* is a five character string, it needs to match a *locale
-  tag* in [`LANGUAGE.locale`][LANGUAGE.locale].
-* If the *language tag* is a two-character string, it needs to match the
-  first two characters of exactly one *locale tag* in [`LANGUAGE.locale`][LANGUAGE.locale].
-  (So that it is unambiguous which *locale tag* is matched.)
-
-E.g. if [`LANGUAGE.locale`][LANGUAGE.locale] is "en_US en_UK sv_SE", all the valid *language tags*
-are "en_US", "en_UK", "sv_SE" and "sv".
-
-The use of `language tags` that include the country code is *deprecated* (planned
-removal: v2023.1).
+A *language tag* needs to match the language code of a *locale tag* in
+[`LANGUAGE.locale`][LANGUAGE.locale].
 
 #### Design
 
-The two first characters of the *language tag* are intended to be an
-[ISO 639-1] two-character language code and the optional two last characters
-are intended to be an [ISO 3166-1 alpha-2] two-character country code.
+The *language tag* values are intended to be [ISO 639-1] two-character language
+codes.
 
 #### Out-of-the box support
 
 A default installation will accept the following *language tags*:
 
-Language | Preferred language tag | Deprecated language tag
----------|------------------------|------------------
-Danish   | da                     | da_DK
-English  | en                     | en_US
-Spanish  | es                     | es_ES
-Finnish  | fi                     | fi_FI
-French   | fr                     | fr_FR
-Norwegian| nb                     | nb_NO
-Swedish  | sv                     | sv_SE
+Language | Language tag
+---------|-------------
+Danish   | da
+English  | en
+Spanish  | es
+Finnish  | fi
+French   | fr
+Norwegian| nb
+Swedish  | sv
 
 
 ### Name server
@@ -526,13 +513,6 @@ An object with the following property:
 
 Returns the set of valid [*language tags*][Language tag].
 
-> Note: If there are two [*locale tags*][LANGUAGE.locale] in [LANGUAGE.locale]
-> that would give the same [short language tag][Language tag] then the short tag
-> is excluded from the set of valid [*language tags*][Language tag].
->
-> Note: Language tags that include country code are *deprecated* (planned
-> removal: v2023.1).
-
 Example request:
 ```json
 {
@@ -550,19 +530,12 @@ Example response:
   "result": {
     "languages": [
       "da",
-      "da_DK",
       "en",
-      "en_US",
       "es",
-      "es_ES",
       "fi",
-      "fi_FI",
       "fr",
-      "fr_FR",
       "nb",
-      "nb_NO",
-      "sv",
-      "sv_SE"
+      "sv"
     ]
   }
 }

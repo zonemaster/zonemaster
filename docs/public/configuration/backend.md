@@ -222,34 +222,25 @@ The LANGUAGE section has one key, `locale`.
 
 ### locale
 
-A string matching one of the following descriptions:
-* A space separated list of one or more `locale tags` where each tag matches the
-  regular expression `/^[a-z]{2}_[A-Z]{2}$/`.
-* The empty string. **Deprecated**, remove the LANGUAGE.locale entry or specify
-  LANGUAGE.locale = en_US instead. (Planned removal in version v2023.1.)
+A string representing a space-separated list of one or more `locale tags`.
+Each tag consists of a two-lowercase-letter language code, an underscore
+character, and a two-uppercase-letter country code (i.e. it matches the regular
+expression `/^[a-z]{2}_[A-Z]{2}$/`).
+Each `locale tag` must have a unique language code.
 
-It is an error to repeat the same `locale tag`.
-
-If the `locale` key is empty or absent, the `locale tag` value
-"en_US" is set by default.
-
-The use of two or more `locale tags` with the same language code is
-**deprecated** and is planned to be illegal from version v2023.1.
+Default value: `en_US`.
 
 #### Design
 
-The two first characters of a `locale tag` are intended to be an
-[ISO 639-1] two-character language code and the two last characters
-are intended to be an [ISO 3166-1 alpha-2] two-character country code.
+The language code of a `locale tag` is intended to be an [ISO 639-1] code.
+The country code is intended to be an [ISO 3166-1 alpha-2] code.
 A `locale tag` is a locale setting for the available translation
 of messages without ".UTF-8", which is implied.
 
 #### Usage
 
 Removing a language from the configuration file just blocks that
-language from being allowed. If there are more than one `locale tag`
-(with different country codes) for the same language, then
-all those must be removed to block that language.
+language from being allowed.
 
 English is the Zonemaster default language, but it can be blocked
 from being allowed by RPC-API by including some `locale tag` in the
