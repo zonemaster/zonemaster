@@ -59,7 +59,7 @@ Operating System | Perl
 Debian 11        | 5.32
 Docker           | (*)
 FreeBSD 13.1     | 5.32
-Rocky Linux 8.7  | 5.26 ?
+Rocky Linux 8.8  | 5.26
 Rocky Linux 9.2  | ??
 Ubuntu 20.04     | 5.30 ?
 Ubuntu 22.04     | 5.34 ?
