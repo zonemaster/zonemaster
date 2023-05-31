@@ -39,7 +39,7 @@ Debian 11        | 10.5    | 13.10
 Docker           | n/a     | n/a
 FreeBSD 13.2     | 8.0 (*) | 13.11
 Rocky Linux 8.8  | 10.3    | 10.23
-Rocky Linux 9.2  | ??      | ??
+Rocky Linux 9.2  | 10.5    | 13.10
 Ubuntu 20.04     | 10.3 ?  | 12.x ?
 Ubuntu 22.04     | 10.6 ?  | 14.5 ?
 
