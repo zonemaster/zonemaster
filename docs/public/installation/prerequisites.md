@@ -12,7 +12,7 @@ and processor architecture listed below.
 * [Debian] 11
 * [Docker]
 * [FreeBSD] 13.2
-* [Rocky Linux] 8.7
+* [Rocky Linux] 8.8
 * [Rocky Linux] 9.2
 * [Ubuntu] 20.04
 * [Ubuntu] 22.04
