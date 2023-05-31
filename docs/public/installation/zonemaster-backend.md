@@ -465,12 +465,10 @@ sudo sed -i '/\bengine\b/ s/=.*/= MySQL/' /etc/zonemaster/backend_config.ini
 
 > **Note:** See the [backend configuration] documentation for details.
 
-Install, configure and start database engine:
+Install database engine:
 
 ```sh
 sudo dnf -y install mariadb-server perl-DBD-mysql
-sudo systemctl enable mariadb
-sudo systemctl start mariadb
 ```
 
 To create the database and the database user (unless you keep an old database).
@@ -478,12 +476,9 @@ Edit the commands first if you want a non-default database name, user name or
 password. To be safe, run the commands one by one.
 
 ```sh
+sudo systemctl start mariadb
 sudo mysql -e "CREATE DATABASE zonemaster;"
-```
-```sh
 sudo mysql -e "CREATE USER 'zonemaster'@'localhost' IDENTIFIED BY 'zonemaster';"
-```
-```sh
 sudo mysql -e "GRANT ALL ON zonemaster.* TO 'zonemaster'@'localhost';"
 ```
 
@@ -599,14 +594,12 @@ sudo sed -i '/\bengine\b/ s/=.*/= PostgreSQL/' /etc/zonemaster/backend_config.in
 
 > **Note:** See the [backend configuration] documentation for details.
 
-Install, configure and start database engine:
+Install, initialize and configure database engine:
 
 ```sh
 sudo dnf -y install postgresql-server perl-DBD-Pg
 sudo postgresql-setup --initdb --unit postgresql
 sudo sed -i '/^[^#]/ s/ident$/md5/' /var/lib/pgsql/data/pg_hba.conf
-sudo systemctl enable postgresql
-sudo systemctl start postgresql
 ```
 
 To create the database and the database user (unless you keep an old database).
@@ -614,9 +607,8 @@ Edit the command first if you want a non-default database name, user name or
 password. To be safe run the commands one by one.
 
 ```sh
+sudo systemctl start postgresql
 sudo -u postgres psql -c "CREATE USER zonemaster WITH PASSWORD 'zonemaster';"
-```
-```sh
 sudo -u postgres psql -c "CREATE DATABASE zonemaster WITH OWNER 'zonemaster' ENCODING 'UTF8';"
 ```
 
