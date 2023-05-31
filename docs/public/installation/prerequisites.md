@@ -40,8 +40,8 @@ Docker           | n/a     | n/a
 FreeBSD 13.2     | 8.0 (*) | 13.11
 Rocky Linux 8.8  | 10.3    | 10.23
 Rocky Linux 9.2  | 10.5    | 13.10
-Ubuntu 20.04     | 10.3 ?  | 12.x ?
-Ubuntu 22.04     | 10.6 ?  | 14.5 ?
+Ubuntu 20.04     | 10.3   | 12.15
+Ubuntu 22.04     | 10.6   | 14.8
 
 * (*) FreeBSD uses MySQL, not MariaDB.
 * SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
@@ -61,8 +61,8 @@ Docker           | (*)
 FreeBSD 13.1     | 5.32
 Rocky Linux 8.8  | 5.26
 Rocky Linux 9.2  | 5.32
-Ubuntu 20.04     | 5.30 ?
-Ubuntu 22.04     | 5.34 ?
+Ubuntu 20.04     | 5.30
+Ubuntu 22.04     | 5.34
 
 * Zonemaster requires Perl version 5.16 or higher.
 * Zonemaster has been tested with the default version of Perl in the OSs as
