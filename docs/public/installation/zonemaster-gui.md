@@ -266,14 +266,14 @@ Make sure Zonemaster-GUI is properly installed.
    its page footer.
 
 3. Verify that when you mouse over this text the versions of the following
-   Zonemaster components are shown: Backend, Engine and GUI.
+   Zonemaster components are shown: Backend, Engine, LDNS and GUI.
 
 ## What to do next?
 
  * For a JSON-RPC API, see the Zonemaster::Backend [JSON-RPC API] documentation.
  * For a command line interface, follow the [Zonemaster::CLI installation] instruction.
  * For a Perl API, see the [Zonemaster::Engine API] documentation.
- * For Https, see [Let's Encrypt / Certbot].
+ * For HTTPS, see [Let's Encrypt / Certbot].
 
 ## Serving the GUI and API from a custom base url
 
@@ -336,7 +336,7 @@ where `<LANG>` is the language code of you choice.
 
 
 [JSON-RPC API]:                     ../using/zonemaster-api.md
-[Let's Encrypt / Certbot]:          https://certbot.eff.org/all-instructions/
+[Let's Encrypt / Certbot]:          https://certbot.eff.org/instructions
 [Main Zonemaster repository]:       https://github.com/zonemaster/zonemaster/blob/master/README.md
 [Tutorial on Apache on FreeBSD]:    https://www.digitalocean.com/community/tutorials/how-to-install-an-apache-mysql-and-php-famp-stack-on-freebsd-10-1
 [Zonemaster::Backend installation]: zonemaster-backend.md

@@ -210,6 +210,12 @@ sudo apt install jq libclass-method-modifiers-perl libconfig-inifiles-perl libdb
 > **Note**: libio-stringy-perl is listed here even though it's not a direct
 > dependency. It's an undeclared dependency of libconfig-inifiles-perl.
 
+For Ubuntu 20.04 only, install JSON::Validator from CPAN as the one in the system packages repository is too old:
+
+```sh
+sudo cpanm --notest JSON::Validator
+```
+
 Install Zonemaster::Backend:
 
 ```sh
@@ -790,7 +796,7 @@ cpanm Net::Statsd
 
 -------
 
-[Backend configuration]:              ../configuration/
+[Backend configuration]:              ../configuration/backend.md
 [Declaration of prerequisites]:       prerequisites.md
 [JSON-RPC API]:                       ../using/backend/api.md
 [Main Zonemaster repository]:         https://github.com/zonemaster/zonemaster/blob/master/README.md
