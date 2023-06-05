@@ -266,7 +266,8 @@ Make sure Zonemaster-GUI is properly installed.
    its page footer.
 
 3. Verify that when you mouse over this text the versions of the following
-   Zonemaster components are shown: Backend, Engine, LDNS and GUI.
+   Zonemaster components are shown: Zonemaster-LDNS, Zonemaster-Engine,
+   Zonemaster-Backend and Zonemaster-GUI.
 
 ## What to do next?
 

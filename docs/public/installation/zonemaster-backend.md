@@ -25,7 +25,8 @@
 * [6. Installation on CentOS Linux 7](#6-installation-on-centos-linux-7)
 * [7. Post-installation](#7-post-installation)
   * [7.1 Smoke test](#71-smoke-test)
-  * [7.2 What to do next?](#72-what-to-do-next)
+  * [7.2 Troubleshooting installation](#troubleshooting-installation)
+  * [7.3 What to do next?](#72-what-to-do-next)
 * [8. Installation with MariaDB](#8-installation-with-mariadb)
   * [8.1 MariaDB (Rocky Linux)](#81-mariadb-rocky-linux)
   * [8.2. MariaDB (Debian/Ubuntu)](#82-mariadb-debianubuntu)
@@ -446,8 +447,13 @@ The command is expected to immediately print out a testid,
 followed by a percentage ticking up from 0% to 100%.
 Once the number reaches 100% a JSON object is printed and zmtest terminates.
 
+### 7.2 Troubleshooting installation
 
-### 7.2. What to do next?
+If you have any issue with installation, and installed with `cpanm`, redo the
+installation above but without the `--notest` and with the `--verbose` option.
+Installation will take longer time.
+
+### 7.3. What to do next?
 
 * For a web interface, follow the [Zonemaster::GUI installation] instructions.
 * For a command line interface, follow the [Zonemaster::CLI installation] instruction.
