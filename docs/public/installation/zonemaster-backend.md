@@ -87,13 +87,13 @@ sudo dnf -y install jq perl-Class-Method-Modifiers perl-Config-IniFiles perl-DBD
 Install dependencies not available from binary packages:
 
 ```sh
-sudo cpanm Daemon::Control JSON::Validator Log::Any Log::Any::Adapter::Dispatch Starman
+sudo cpanm --notest Daemon::Control JSON::Validator Log::Any Log::Any::Adapter::Dispatch Starman
 ```
 
 Install Zonemaster::Backend:
 
 ```sh
-sudo cpanm Zonemaster::Backend
+sudo cpanm --notest Zonemaster::Backend
 ```
 
 > The command above might try to install "DBD::Pg" and "DBD::mysql".
@@ -220,7 +220,7 @@ sudo cpanm --notest JSON::Validator
 Install Zonemaster::Backend:
 
 ```sh
-sudo cpanm Zonemaster::Backend
+sudo cpanm --notest Zonemaster::Backend
 ```
 
 > The command above might try to install "DBD::Pg" and "DBD::mysql".
@@ -332,7 +332,7 @@ pkg install jq p5-Class-Method-Modifiers p5-Config-IniFiles p5-Daemon-Control p5
 Install Zonemaster::Backend:
 
 ```sh
-cpanm Zonemaster::Backend
+cpanm --notest Zonemaster::Backend
 ```
 
 > The command above might try to install "DBD::Pg" and "DBD::mysql".
@@ -784,7 +784,7 @@ The list of metrics is available in the [Telemetry document][metrics].
 ### 11.1.1 Installation on Rocky Linux
 
 ```sh
-sudo cpanm Net::Statsd
+sudo cpanm --notest Net::Statsd
 ```
 
 ### 11.1.2 Installation on Debian / Ubuntu
@@ -797,7 +797,7 @@ sudo apt install libnet-statsd-perl
 ### 11.1.3 Installation on Freebsd
 
 ```sh
-cpanm Net::Statsd
+cpanm --notest Net::Statsd
 ```
 
 -------
