@@ -6,7 +6,6 @@
   * [Installation on Rocky Linux](#installation-on-rocky-linux)
   * [Installation on Debian and Ubuntu](#installation-on-debian-and-ubuntu)
   * [Installation on FreeBSD](#installation-on-freebsd)
-  * [Installation on CentOS 7](#installation-on-centos-7)
 * [Post-installation sanity check](#post-installation-sanity-check)
 * [Troubleshooting installation](#troubleshooting-installation)
 * [What to do next](#what-to-do-next)
@@ -141,46 +140,6 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
    cpanm --notest Zonemaster::Engine
    ```
 
-### Installation on CentOS 7
-
-> **Please note!** CentOS 7 will only be supported until the release of
-> v2023.1, which is expected to happen during the spring of 2023. Consider
-> [Rocky Linux][Installation on Rocky Linux] for an alternative Red Hat Linux
-> derivative.
-> If you like you could [reach out to let us know to which OS you
-> migrated][Mailing list zonemaster-users].
-
-1) Install the [EPEL] repository:
-
-   ```sh
-   sudo yum --assumeyes --enablerepo=extras install epel-release
-   ```
-
-2) Install binary packages:
-
-   ```sh
-   sudo yum --assumeyes install cpanminus gcc libidn2-devel openssl-devel openssl11-devel perl-Class-Accessor perl-Clone perl-core perl-Devel-CheckLib perl-Email-Valid perl-File-ShareDir perl-File-Slurp perl-libintl perl-IO-Socket-INET6 perl-List-MoreUtils perl-Locale-PO perl-Log-Any perl-Module-Find perl-Module-Install perl-Moose perl-Net-DNS perl-Pod-Coverage perl-Readonly perl-Test-Differences perl-Test-Exception perl-Test-Fatal perl-Test-NoWarnings perl-Test-Pod perl-Text-CSV perl-Test-Simple perl-YAML
-   ```
-
-3) Install packages from CPAN:
-
-   ```sh
-   sudo cpanm --notest Module::Install::XSUtil MooseX::Singleton Net::IP::XS
-   ```
-
-4) Install Zonemaster::LDNS with support for DNSSEC algorithms 15 and 16:
-
-     ```sh
-     sudo cpanm --notest --configure-args="--openssl-lib=/usr/lib64/openssl11 --openssl-inc=/usr/include/openssl11" Zonemaster::LDNS
-     ```
-
-5) Finally install Zonemaster::Engine
-
-     ```sh
-     sudo cpanm --notest Zonemaster::Engine
-     ```
-
-
 ## Post-installation sanity check
 
 Make sure Zonemaster::Engine is properly installed.
@@ -210,7 +169,6 @@ Take note of any error messages and search for solution.
 
 
 [EPEL]:                                              https://fedoraproject.org/wiki/EPEL
-[Installation on Rocky Linux]:                       #installation-on-rocky-linux
 [JSON-RPC API]:                                      ../using/backend/api.md
 [Mailing list zonemaster-users]:                     https://github.com/zonemaster/zonemaster/blob/master/docs/contact-and-mailing-lists.md#zonemaster-users
 [Zonemaster::Backend installation]:                  zonemaster-backend.md
