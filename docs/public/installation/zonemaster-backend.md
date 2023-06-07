@@ -25,7 +25,8 @@
 * [6. Installation on CentOS Linux 7](#6-installation-on-centos-linux-7)
 * [7. Post-installation](#7-post-installation)
   * [7.1 Smoke test](#71-smoke-test)
-  * [7.2 What to do next?](#72-what-to-do-next)
+  * [7.2 Troubleshooting installation](#72-troubleshooting-installation)
+  * [7.3 What to do next?](#73-what-to-do-next)
 * [8. Installation with MariaDB](#8-installation-with-mariadb)
   * [8.1 MariaDB (Rocky Linux)](#81-mariadb-rocky-linux)
   * [8.2. MariaDB (Debian/Ubuntu)](#82-mariadb-debianubuntu)
@@ -86,13 +87,13 @@ sudo dnf -y install jq perl-Class-Method-Modifiers perl-Config-IniFiles perl-DBD
 Install dependencies not available from binary packages:
 
 ```sh
-sudo cpanm Daemon::Control JSON::Validator Log::Any Log::Any::Adapter::Dispatch Starman
+sudo cpanm --notest Daemon::Control JSON::Validator Log::Any Log::Any::Adapter::Dispatch Starman
 ```
 
 Install Zonemaster::Backend:
 
 ```sh
-sudo cpanm Zonemaster::Backend
+sudo cpanm --notest Zonemaster::Backend
 ```
 
 > The command above might try to install "DBD::Pg" and "DBD::mysql".
@@ -210,10 +211,16 @@ sudo apt install jq libclass-method-modifiers-perl libconfig-inifiles-perl libdb
 > **Note**: libio-stringy-perl is listed here even though it's not a direct
 > dependency. It's an undeclared dependency of libconfig-inifiles-perl.
 
+For Ubuntu 20.04 only, install JSON::Validator from CPAN as the one in the system packages repository is too old:
+
+```sh
+sudo cpanm --notest JSON::Validator
+```
+
 Install Zonemaster::Backend:
 
 ```sh
-sudo cpanm Zonemaster::Backend
+sudo cpanm --notest Zonemaster::Backend
 ```
 
 > The command above might try to install "DBD::Pg" and "DBD::mysql".
@@ -325,7 +332,7 @@ pkg install jq p5-Class-Method-Modifiers p5-Config-IniFiles p5-Daemon-Control p5
 Install Zonemaster::Backend:
 
 ```sh
-cpanm Zonemaster::Backend
+cpanm --notest Zonemaster::Backend
 ```
 
 > The command above might try to install "DBD::Pg" and "DBD::mysql".
@@ -440,8 +447,13 @@ The command is expected to immediately print out a testid,
 followed by a percentage ticking up from 0% to 100%.
 Once the number reaches 100% a JSON object is printed and zmtest terminates.
 
+### 7.2 Troubleshooting installation
 
-### 7.2. What to do next?
+If you have any issue with installation, and installed with `cpanm`, redo the
+installation above but without the `--notest` and with the `--verbose` option.
+Installation will take longer time.
+
+### 7.3. What to do next?
 
 * For a web interface, follow the [Zonemaster::GUI installation] instructions.
 * For a command line interface, follow the [Zonemaster::CLI installation] instruction.
@@ -772,7 +784,7 @@ The list of metrics is available in the [Telemetry document][metrics].
 ### 11.1.1 Installation on Rocky Linux
 
 ```sh
-sudo cpanm Net::Statsd
+sudo cpanm --notest Net::Statsd
 ```
 
 ### 11.1.2 Installation on Debian / Ubuntu
@@ -785,12 +797,12 @@ sudo apt install libnet-statsd-perl
 ### 11.1.3 Installation on Freebsd
 
 ```sh
-cpanm Net::Statsd
+cpanm --notest Net::Statsd
 ```
 
 -------
 
-[Backend configuration]:              ../configuration/
+[Backend configuration]:              ../configuration/backend.md
 [Declaration of prerequisites]:       prerequisites.md
 [JSON-RPC API]:                       ../using/backend/api.md
 [Main Zonemaster repository]:         https://github.com/zonemaster/zonemaster/blob/master/README.md

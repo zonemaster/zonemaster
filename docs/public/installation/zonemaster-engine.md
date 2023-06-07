@@ -80,7 +80,7 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 2) Install dependencies from binary packages:
 
    ```sh
-   sudo apt install autoconf automake build-essential cpanminus libclass-accessor-perl libclone-perl libdevel-checklib-perl libemail-valid-perl libfile-sharedir-perl libfile-slurp-perl libidn2-dev libintl-perl libio-socket-inet6-perl liblist-moreutils-perl liblocale-po-perl liblog-any-perl libmodule-find-perl libmodule-install-perl libmodule-install-xsutil-perl libmoose-perl libmoosex-singleton-perl libnet-dns-perl libnet-ip-xs-perl libpod-coverage-perl libreadonly-perl libssl-dev libtest-differences-perl libtest-exception-perl libtest-fatal-perl libtest-nowarnings-perl libtest-pod-perl libtext-csv-perl libtool m4
+   sudo apt install autoconf automake build-essential cpanminus libclass-accessor-perl libclone-perl libdevel-checklib-perl libemail-valid-perl libfile-sharedir-perl libfile-slurp-perl libidn2-dev libintl-perl libio-socket-inet6-perl liblist-moreutils-perl liblocale-po-perl liblog-any-perl libmodule-find-perl libmodule-install-perl libmodule-install-xsutil-perl libmoose-perl libmoosex-singleton-perl libnet-dns-perl libnet-ip-xs-perl libpod-coverage-perl libreadonly-perl libssl-dev libtest-differences-perl libtest-exception-perl libtest-fatal-perl libtest-nowarnings-perl libtest-pod-perl libtext-csv-perl libyaml-libyaml-perl libtool m4
    ```
 
 3) Install Zonemaster::LDNS and Zonemaster::Engine.
@@ -195,8 +195,8 @@ The command is expected to take a few seconds and print some results about the d
 ## Troubleshooting installation
 
 If you have any issue with installation, and installed with `cpanm`, redo the
-installation above but without the `--notest` option. Installation will take
-longer time.
+installation above but without the `--notest` and with the `--verbose` option.
+Installation will take longer time.
 
 Take note of any error messages and search for solution.
 
