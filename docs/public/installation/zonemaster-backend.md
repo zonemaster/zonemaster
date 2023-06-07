@@ -31,7 +31,6 @@
   * [7.2. MariaDB (Debian/Ubuntu)][MariaDB instructions Debian]
   * [7.3. MySQL (FreeBSD)][MariaDB instructions FreeBSD]
 * [8. Installation with PostgreSQL](#8-installation-with-postgresql)
-
   * [8.1. PostgreSQL (Rocky Linux)][PostgreSQL instructions Rocky Linux]
   * [8.2. PostgreSQL (Debian/Ubuntu)][PostgreSQL instructions Debian]
   * [8.3. PostgreSQL (FreeBSD)][PostgreSQL instructions FreeBSD]
