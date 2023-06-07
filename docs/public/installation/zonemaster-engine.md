@@ -157,8 +157,6 @@ If you have any issue with installation, and installed with `cpanm`, redo the
 installation above but without the `--notest` and with the `--verbose` option.
 Installation will take longer time.
 
-Take note of any error messages and search for solution.
-
 
 ## What to do next
 
