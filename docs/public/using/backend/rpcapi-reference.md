@@ -305,7 +305,7 @@ type, it returns the following error message:
             {
               "path": "/profile",
               "message": "String does not match (?^ui:^[a-z0-9]$|^[a-z0-9][a-z0-9_-]{0,30}[a-z0-9]$)."
-            },
+            }
         ],
         "code":"-32602"
     }
@@ -325,7 +325,7 @@ with this type, it returns the following error message:
             {
               "path": "/profile",
               "message": "Unknown profile"
-            },
+            }
         ],
         "code":"-32602"
     }
@@ -624,6 +624,8 @@ An object with the following property:
 
 ```json
 {
+  "jsonrpc": "2.0",
+  "id": 1624630143271,
   "error": {
     "message": "Invalid method parameter(s).",
     "code": "-32602",
@@ -633,9 +635,7 @@ An object with the following property:
         "message": "Missing property"
       }
     ]
-  },
-  "jsonrpc": "2.0",
-  "id": 1624630143271
+  }
 }
 ```
 
@@ -721,6 +721,8 @@ An object with the following properties:
 
 ```json
 {
+  "jsonrpc": "2.0",
+  "id": 1624630143271,
   "error": {
     "data": [
       {
@@ -730,9 +732,7 @@ An object with the following properties:
     ],
     "code": "-32602",
     "message": "Invalid method parameter(s)."
-  },
-  "id": 1624630143271,
-  "jsonrpc": "2.0"
+  }
 }
 ```
 
@@ -829,6 +829,8 @@ Example of error response:
 
 ```json
 {
+  "jsonrpc": "2.0",
+  "id": 1,
   "error": {
     "code": "-32602",
     "data": [
@@ -854,9 +856,7 @@ Example of error response:
       }
     ],
     "message": "Invalid method parameter(s)."
-  },
-  "id": 1,
-  "jsonrpc": "2.0"
+  }
 }
 ```
 
@@ -1120,21 +1120,21 @@ Example request:
 Example response:
 ```json
 {
-  "id": 7,
   "jsonrpc": "2.0",
+  "id": 7,
   "result": {
     "history": [
       {
         "id": "c45a3f8256c4a155",
         "created_at": "2016-11-15T11:53:13Z",
         "undelegated": true,
-        "overall_result": "error",
+        "overall_result": "error"
       },
       {
         "id": "32dd4bc0582b6bf9",
         "undelegated": false,
         "created_at": "2016-11-14T08:46:41Z",
-        "overall_result": "error",
+        "overall_result": "error"
       },
       ...
     ]
@@ -1221,8 +1221,8 @@ Example request:
 Example response:
 ```json
 {
-  "id": 4711,
   "jsonrpc": "2.0",
+  "id": 4711,
   "result": {
     "success": 1
   }
@@ -1288,6 +1288,8 @@ Omitting params:
 
 ```json
 {
+  "jsonrpc": "2.0",
+  "id": 1,
   "error": {
     "data": [
       {
@@ -1297,17 +1299,15 @@ Omitting params:
     ],
     "message": "Invalid method parameter(s).",
     "code": "-32602"
-  },
-  "jsonrpc": "2.0",
-  "id": 1
+  }
 }
 ```
 
 Trying to add a user over non-localhost:
 ```json
 {
-  "id": 1,
   "jsonrpc": "2.0",
+  "id": 1,
   "error": {
     "code": -32603,
     "data": {
@@ -1416,6 +1416,7 @@ request:
 ```json
 {
   "jsonrpc": "2.0",
+  "id": 1,
   "error": {
     "data": {
       "created_at": "2021-09-27T07:33:40Z",
@@ -1423,8 +1424,7 @@ request:
     },
     "code": -32603,
     "message": "Batch job still running"
-  },
-  "id": 1
+  }
 }
 
 ```
@@ -1432,15 +1432,15 @@ request:
 Trying to add a batch when wrong [*username*][Username] or [*api key*][Api key] is used:
 ```json
 {
+  "jsonrpc": "2.0",
+  "id": 1,
   "error": {
     "message": "User not authorized to use batch mode",
     "code": -32603,
     "data": {
       "username": "citron"
     }
-  },
-  "id": 1,
-  "jsonrpc": "2.0"
+  }
 }
 ```
 
@@ -1448,8 +1448,8 @@ Trying to add a batch with an empty list of domains:
 
 ```json
 {
-  "id": 1,
   "jsonrpc": "2.0",
+  "id": 1,
   "error": {
     "data": [
       {
@@ -1534,6 +1534,7 @@ If the `batch_id` is undefined the following error is returned:
 
 ```json
 {
+  "jsonrpc": "2.0",
   "id": 1,
   "error": {
     "data": {
@@ -1541,8 +1542,7 @@ If the `batch_id` is undefined the following error is returned:
     },
     "message": "Unknown batch",
     "code": -32603
-  },
-  "jsonrpc": "2.0"
+  }
 }
 ```
 
