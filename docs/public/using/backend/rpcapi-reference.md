@@ -894,7 +894,7 @@ Example request:
 }
 ```
 
-The `id` parameter must match the `result` in the response to a [`start_domain_test`][start_domain_test]
+The `id` parameter must match the `result` in the response to a [`start_domain_test`][API start_domain_test]
 call, and that test must have been completed.
 
 Example response:
@@ -973,17 +973,17 @@ An object with the following properties:
 * `"testcase_descriptions"`: A map with the *[Test Case Identifiers]* as keys and the
   translated *Test Case Description* of the corresponding *[Test Cases]* as values.
 
-If the test was created by [`start_domain_test`][start_domain_test] then `"params"`
-is a normalized version `"params"` object sent to [`start_domain_test`][start_domain_test]
+If the test was created by [`start_domain_test`][API start_domain_test] then `"params"`
+is a normalized version `"params"` object sent to [`start_domain_test`][API start_domain_test]
 when the *test* was created.
 
-If the test was created with [`add_batch_job`][add_batch_job] then `"params"`
+If the test was created with [`add_batch_job`][API add_batch_job] then `"params"`
 is a normalized version of an object created from the following parts:
-* The keys from the`"test_params"` object sent to [`add_batch_job`][add_batch_job]
+* The keys from the`"test_params"` object sent to [`add_batch_job`][API add_batch_job]
   when the *test* was created as part of a batch.
 * The `"domain"` key holding the specific [*domain name*][Domain name] for this
   test result from the `"domains"` object included in the call to
-  [`add_batch_job`][add_batch_job].
+  [`add_batch_job`][API add_batch_job].
 
 >
 > TODO: Change name in the API of `"hash_id"` to `"test_id"`
@@ -1050,8 +1050,8 @@ An object with the property:
 
 #### `"result"`
 
-The `"params"` object sent to [`start_domain_test`][start_domain_test] or
-[`add_batch_job`][add_batch_job] when the *test* was started.
+The `"params"` object sent to [`start_domain_test`][API start_domain_test] or
+[`add_batch_job`][API add_batch_job] when the *test* was started.
 
 
 #### `"error"`
@@ -1116,7 +1116,7 @@ Example response:
 ### Undelegated and delegated
 
 A test is considered to be `"delegated"` below if the test was started, by
-[`start_domain_test`][start_domain_test] or [`add_batch_job`][add_batch_job]
+[`start_domain_test`][API start_domain_test] or [`add_batch_job`][API add_batch_job]
 without specifying neither `"nameserver"` nor `"ds_info"`. Else it is considered to
 be `"undelegated"`.
 
@@ -1162,7 +1162,7 @@ An object with the following properties:
 
 ### API method: `add_api_user`
 
-In order to use the [`add_batch_job`][add_batch_job] method a
+In order to use the [`add_batch_job`][API add_batch_job] method a
 [*username*][Username] and its [*api key*][Api key] must be added by this method.
 
 This method is not available if [`RPCAPI.enable_add_api_user`][RPCAPI.enable_add_api_user]
@@ -1297,7 +1297,7 @@ This method is not available if [`RPCAPI.enable_add_batch_job`][RPCAPI.enable_ad
 is disabled (enabled by default).
 
 A [*username*][Username] and its [*api key*][Api key] can be added with the
-[`add_api_user`][add_api_user] method. A [*username*][Username] can only have
+[`add_api_user`][API add_api_user] method. A [*username*][Username] can only have
 one un-finished *batch* at a time.
 
 *Tests* enqueud using this method are assigned a [*priority*][Priority] of 5.
@@ -1338,7 +1338,7 @@ An object with the following properties:
 
 * `"username"`: A [*username*][Username], required. The name of the account of an authorized user.
 * `"api_key"`: An [*api key*][Api key], required. The api_key associated with the username.
-* `"domains"`: A list of [*domain names*][Domain names], required. The domains to be tested.
+* `"domains"`: A list of [*domain names*][Domain name], required. The domains to be tested.
 * `"test_params"`: As described below, optional. (default: `{}`)
 
 The value of `"test_params"` is an object with the following properties:
