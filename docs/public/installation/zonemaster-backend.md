@@ -80,13 +80,13 @@ for Zonemaster::Backend, see the [declaration of prerequisites].
 Install dependencies available from binary packages:
 
 ```sh
-sudo dnf -y install jq perl-Class-Method-Modifiers perl-Config-IniFiles perl-DBD-SQLite perl-DBI perl-HTML-Parser perl-JSON-RPC perl-libwww-perl perl-Log-Dispatch perl-Mojolicious perl-Parallel-ForkManager perl-Plack perl-Plack-Middleware-ReverseProxy perl-Plack-Test perl-Role-Tiny perl-Router-Simple perl-Test-Differences perl-Test-Exception perl-Test-Mojo perl-Test-NoWarnings perl-Try-Tiny perl-libintl redhat-lsb-core
+sudo dnf -y install jq perl-Class-Method-Modifiers perl-Config-IniFiles perl-DBD-SQLite perl-DBI perl-File-ShareDir perl-File-Slurp perl-HTML-Parser perl-JSON-PP perl-libwww-perl perl-Log-Dispatch perl-Mojolicious perl-Moose perl-Parallel-ForkManager perl-Plack perl-Plack-Middleware-ReverseProxy perl-Plack-Test perl-Role-Tiny perl-Test-Differences perl-Test-Exception perl-Test-Mojo perl-Test-NoWarnings perl-Try-Tiny perl-libintl
 ```
 
 Install dependencies not available from binary packages:
 
 ```sh
-sudo cpanm --notest Daemon::Control JSON::Validator Log::Any Log::Any::Adapter::Dispatch Starman
+sudo cpanm --notest Daemon::Control JSON::RPC JSON::Validator Log::Any Log::Any::Adapter::Dispatch Net::IP::XS Router::Simple Starman
 ```
 
 Install Zonemaster::Backend:
@@ -111,9 +111,9 @@ cd `perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Backend")'`
 sudo install -v -m 755 -d /etc/zonemaster
 sudo install -v -m 640 -g zonemaster ./backend_config.ini /etc/zonemaster/
 sudo install -v -m 775 -g zonemaster -d /var/log/zonemaster
-sudo install -v -m 755 ./zm-rpcapi.lsb /etc/init.d/zm-rpcapi
-sudo install -v -m 755 ./zm-testagent.lsb /etc/init.d/zm-testagent
 sudo install -v -m 755 ./tmpfiles.conf /usr/lib/tmpfiles.d/zonemaster.conf
+sudo install -v -m 644 ./zm-rpcapi.service /etc/systemd/system/
+sudo install -v -m 644 ./zm-testagent.service /etc/systemd/system/
 ```
 
 ### 3.2 Database engine installation (Rocky Linux)
@@ -465,12 +465,10 @@ sudo sed -i '/\bengine\b/ s/=.*/= MySQL/' /etc/zonemaster/backend_config.ini
 
 > **Note:** See the [backend configuration] documentation for details.
 
-Install, configure and start database engine:
+Install database engine:
 
 ```sh
-sudo dnf -y install mariadb-server
-sudo systemctl enable mariadb
-sudo systemctl start mariadb
+sudo dnf -y install mariadb-server perl-DBD-mysql
 ```
 
 To create the database and the database user (unless you keep an old database).
@@ -478,12 +476,9 @@ Edit the commands first if you want a non-default database name, user name or
 password. To be safe, run the commands one by one.
 
 ```sh
+sudo systemctl start mariadb
 sudo mysql -e "CREATE DATABASE zonemaster;"
-```
-```sh
 sudo mysql -e "CREATE USER 'zonemaster'@'localhost' IDENTIFIED BY 'zonemaster';"
-```
-```sh
 sudo mysql -e "GRANT ALL ON zonemaster.* TO 'zonemaster'@'localhost';"
 ```
 
@@ -599,14 +594,12 @@ sudo sed -i '/\bengine\b/ s/=.*/= PostgreSQL/' /etc/zonemaster/backend_config.in
 
 > **Note:** See the [backend configuration] documentation for details.
 
-Install, configure and start database engine:
+Install, initialize and configure database engine:
 
 ```sh
 sudo dnf -y install postgresql-server perl-DBD-Pg
 sudo postgresql-setup --initdb --unit postgresql
 sudo sed -i '/^[^#]/ s/ident$/md5/' /var/lib/pgsql/data/pg_hba.conf
-sudo systemctl enable postgresql
-sudo systemctl start postgresql
 ```
 
 To create the database and the database user (unless you keep an old database).
@@ -614,9 +607,8 @@ Edit the command first if you want a non-default database name, user name or
 password. To be safe run the commands one by one.
 
 ```sh
+sudo systemctl start postgresql
 sudo -u postgres psql -c "CREATE USER zonemaster WITH PASSWORD 'zonemaster';"
-```
-```sh
 sudo -u postgres psql -c "CREATE DATABASE zonemaster WITH OWNER 'zonemaster' ENCODING 'UTF8';"
 ```
 
