@@ -107,9 +107,9 @@ None
 
 None
 
-[RFC 1034]: https://tools.ietf.org/html/rfc1034
-[RFC 3901]: https://tools.ietf.org/html/rfc3901
-[RFC 4472]: https://tools.ietf.org/html/rfc4472
+[RFC 1034]: https://datatracker.ietf.org/doc/html/rfc1034
+[RFC 3901]: https://datatracker.ietf.org/doc/html/rfc3901
+[RFC 4472]: https://datatracker.ietf.org/doc/html/rfc4472
 
 [Method2]:  ../Methods.md#method-2-obtain-glue-name-records-from-parent
 [Method3]:  ../Methods.md#method-3-obtain-name-servers-from-child

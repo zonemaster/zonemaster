@@ -387,15 +387,16 @@ Otherwise a new test request is enqueued.
 [File format]:                        https://metacpan.org/pod/Config::IniFiles#FILE-FORMAT
 [ISO 3166-1 alpha-2]:                 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 [ISO 639-1]:                          https://en.wikipedia.org/wiki/ISO_639-1
-[Installation instructions]:          ../installation-backend.md
+[Installation instructions]:          ../installation/zonemaster-backend.md
 [Language tag]:                       ../using/backend/api.md#language-tag
 [LDH domain name]:                    https://datatracker.ietf.org/doc/html/rfc3696#section-2
 [MariaDB identifier max lengths]:     https://mariadb.com/kb/en/identifier-names/#maximum-length
 [MariaDB unquoted identifier]:        https://mariadb.com/kb/en/identifier-names/#unquoted
 [MYSQL.host]:                         #host
+[MYSQL.port]:                         #port
 [PostgreSQL identifier]:              https://www.postgresql.org/docs/current/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS
 [Profile JSON files]:                 profiles.md
-[Profile name section]:               ../using/backend/api.md#profile-name
+[Profile name section]:               ../using/backend/rpcapi-reference.md#profile-name
 [Profiles]:                           Architecture.md#profile
 [RPCAPI.enable_add_api_user]:         #enable_add_api_user
 [RPCAPI.enable_add_batch_job]:        #enable_add_batch_job

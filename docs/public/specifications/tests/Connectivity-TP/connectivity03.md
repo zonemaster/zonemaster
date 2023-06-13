@@ -183,7 +183,7 @@ None
 [Cymru database]:       #cymru-asn-lookup
 [EMPTY_ASN_SET]:        #outcomes 
 [ERROR_ASN_DATABASE]:   #outcomes 
-[IP to ASN Mapping]:    https://team-cymru.com/community-services/ip-asn-mapping/#dns
+[IP to ASN Mapping]:    https://www.team-cymru.com/ip-asn-mapping
 [IPV4_DIFFERENT_ASN]:   #outcomes 
 [IPV4_ONE_ASN]:         #outcomes 
 [IPV4_SAME_ASN]:        #outcomes 
@@ -192,10 +192,10 @@ None
 [IPV6_SAME_ASN]:        #outcomes 
 [Method4]:              ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[RFC 1035#3.5]:         https://tools.ietf.org/html/rfc1035#section-3.5
-[RFC 1930]:             https://tools.ietf.org/html/rfc1930
-[RFC 2182#3.1]:         https://tools.ietf.org/html/rfc2182#section-3.1
-[RFC 3596#2.5]:         https://tools.ietf.org/html/rfc3596#section-2.5
+[RFC 1035#3.5]:         https://datatracker.ietf.org/doc/html/rfc1035#section-3.5
+[RFC 1930]:             https://datatracker.ietf.org/doc/html/rfc1930
+[RFC 2182#3.1]:         https://datatracker.ietf.org/doc/html/rfc2182#section-3.1
+[RFC 3596#2.5]:         https://datatracker.ietf.org/doc/html/rfc3596#section-2.5
 [RIPE database]:        #ripe-asn-lookup
 [RISwhois]:             https://www.ripe.net/analyse/archived-projects/ris-tools-web-interfaces/riswhois
 [Wikipedia]:            https://en.wikipedia.org/wiki/Autonomous_system_(Internet)

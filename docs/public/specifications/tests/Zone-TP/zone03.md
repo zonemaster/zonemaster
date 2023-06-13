@@ -8,9 +8,9 @@
 The SOA retry value is the number of seconds that describes
 minimum time elapsed since a failed zone refresh from the primary
 name server. The SOA refresh value is described
-in section 3.3.13 in [RFC 1035](https://tools.ietf.org/html/rfc1035),
+in section 3.3.13 in [RFC 1035](https://datatracker.ietf.org/doc/html/rfc1035),
 and clarified in section 2.2 of
-[RFC 1912](https://tools.ietf.org/html/rfc1912).
+[RFC 1912](https://datatracker.ietf.org/doc/html/rfc1912).
 
 > It's typically some fraction of the refresh interval.
 

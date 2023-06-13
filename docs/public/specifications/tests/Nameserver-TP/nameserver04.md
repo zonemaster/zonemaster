@@ -8,7 +8,7 @@
 Responses from the authoritative name servers must contain same source IP
 address as the destination IP address of the initial query. This has been
 clarified in section 4 of
-[RFC 2181](https://tools.ietf.org/html/rfc2181#section-4).
+[RFC 2181](https://datatracker.ietf.org/doc/html/rfc2181#section-4).
 
 ### Inputs
 

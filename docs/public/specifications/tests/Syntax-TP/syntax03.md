@@ -8,7 +8,7 @@
 There must be no double hyphen ('--') in position 3 and 4 of the domain name,
 unless the domain name has the prefix 'xn--' which is used for
 internationalization.
-See section 5 of [RFC 3696](https://tools.ietf.org/html/rfc3696#section-5),
+See section 5 of [RFC 3696](https://datatracker.ietf.org/doc/html/rfc3696#section-5),
 "Implications of internationalization".
 
 

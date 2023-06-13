@@ -10,7 +10,7 @@ Scope
 The scope of the testing will limited to the functional testing (End-to-End testing) of the GUI. 
 Security and Performance testing are not included.
 
-[![Build Status](https://travis-ci.org/zonemaster/zonemaster-gui.svg?branch=master)](https://travis-ci.org/zonemaster/zonemaster-gui)
+[![Build Status](https://travis-ci.org/zonemaster/zonemaster-gui.svg?branch=master)](https://app.travis-ci.com/github/zonemaster/zonemaster-gui)
 
 |Req| Test requirement                           |How Verified|
 |:--|:-------------------------------------------|------------|
@@ -27,7 +27,7 @@ Security and Performance testing are not included.
 |FR11|The simple view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc. | [Script](https://github.com/zonemaster/zonemaster-gui/blob/master/e2e/FR05.e2e-spec.ts) |
 |FR12|The simple view should support an advanced view expanding when the checkbox is enabled|[Script](https://github.com/zonemaster/zonemaster-gui/blob/master/e2e/FR12.e2e-spec.ts)|
 |FR13|The advanced view should support the possibility of enabling or disabling IPv4 or IPv6 |[Script](https://github.com/zonemaster/zonemaster-gui/blob/master/e2e/FR13.e2e-spec.ts)|
-|FR14|The advanced view should support the possibility of choosing a profile from multiple profiles|[Script](https://github.com/zonemaster/zonemaster-gui/blob/master/e2e/FR14.e2e-spec.ts)|            
+|FR14|The advanced view should support the possibility of choosing a profile from multiple profiles|[Script](https://github.com/zonemaster/zonemaster-gui/blob/master/e2e/FR14.e2e-spec.ts)|
 |FR15|The advanced view should look the same in latest version of different browsers such as Firefox, Internet Explorer, Chrome, Safari etc.  |[Script](https://github.com/zonemaster/zonemaster-gui/blob/master/e2e/FR15.e2e-spec.ts)|
 |FR16|The advanced view should have a text describing what undelegated means? |[Script](https://github.com/zonemaster/zonemaster-gui/blob/master/e2e/FR16.e2e-spec.ts)|
 |FR17|Able to specify delegation parameters  |[Script](https://github.com/zonemaster/zonemaster-gui/blob/master/e2e/FR17.e2e-spec.ts)|

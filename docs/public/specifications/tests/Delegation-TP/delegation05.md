@@ -114,8 +114,8 @@ respected.
 [NO_NS_CNAME]:           #outcomes
 [NO_RESPONSE]:           #outcomes
 [NS_IS_CNAME]:           #outcomes
-[RFC 2181#10.3]:         https://tools.ietf.org/html/rfc2181#section-10.3
-[RFC 8499#7]:            https://tools.ietf.org/html/rfc8499#section-7
+[RFC 2181#10.3]:         https://datatracker.ietf.org/doc/html/rfc2181#section-10.3
+[RFC 8499#7]:            https://datatracker.ietf.org/doc/html/rfc8499#section-7
 [UNEXPECTED_RCODE]:      #outcomes
 [in-bailiwick]:          #terminology
 [in-domain]:             #terminology

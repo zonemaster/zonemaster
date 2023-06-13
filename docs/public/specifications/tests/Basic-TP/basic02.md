@@ -205,4 +205,4 @@ None.
 [Severity Level Definitions]:                                     ../SeverityLevelDefinitions.md
 [Undelegated test]:                                               ../../test-types/undelegated-test.md
 [WARNING]:                                                        ../SeverityLevelDefinitions.md#warning
-[Zonemaster-Engine profile]:                                      https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Zonemaster-Engine profile]:                                      ../../../configuration/profiles.md

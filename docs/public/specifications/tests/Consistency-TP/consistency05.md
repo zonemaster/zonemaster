@@ -197,7 +197,7 @@ respected.
 [Methods]:                        ../Methods.md
 [NO_RESPONSE]:                    #outcomes
 [OUT_OF_BAILIWICK_ADDR_MISMATCH]: #outcomes
-[RFC 7719]:                       https://tools.ietf.org/html/rfc7719
+[RFC 7719]:                       https://datatracker.ietf.org/doc/html/rfc7719
 [UNDEL_OOB_ADDR_MISMATCH]:        #outcomes
 [name server requirement]:        https://www.iana.org/help/nameserver-requirements
 [terminology]:                    #terminology

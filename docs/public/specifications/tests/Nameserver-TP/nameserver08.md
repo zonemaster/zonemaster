@@ -14,7 +14,7 @@ appeared in the request, preserving the original case.
 Therefore, another way to add entropy to requests is to randomly vary the case
 of letters in domain names queried. This technique, also known as "0x20" because
 bit 0x20 is used to set the case of of US-ASCII letters, was first proposed in
-the [IETF internet draft](https://tools.ietf.org/html/draft-vixie-dnsext-dns0x20-00) Use of Bit 0x20 in DNS Labels to Improve Transaction
+the [IETF internet draft](https://datatracker.ietf.org/doc/html/draft-vixie-dnsext-dns0x20-00) Use of Bit 0x20 in DNS Labels to Improve Transaction
 Identity. With this technique, the nameserver response must match not only the
 query name, but the case of every letter in the name string; for example,
 wWw.eXaMpLe.CoM or WwW.ExamPLe.COm. This may add little or no entropy to queries

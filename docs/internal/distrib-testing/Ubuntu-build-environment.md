@@ -67,7 +67,7 @@ needs for testing and releasing Zonemaster:
 
 
 [Install Docker Engine on Ubuntu]:         https://docs.docker.com/engine/install/ubuntu/
-[Installation instructions]:               https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Installation.md
-[Instructions for translators]:            https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Translation-translators.md#software-preparation
+[Installation instructions]:               ../../public/installation/zonemaster-engine.md
+[Instructions for translators]:            ../maintenance/Instructions-for-translators.md#software-preparation
 [Ubuntu]:                                  https://ubuntu.com/
 [Utils README]:                            ../../../utils/README.md

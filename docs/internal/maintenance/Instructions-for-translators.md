@@ -407,16 +407,16 @@ make update-po MSGMERGE_OPTS=--no-fuzzy-matching
 [Technical details]:                           #technical-details
 [Tools]:                                       #tools
 [Translation steps]:                           #translation-steps
-[Translation]:                                 https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Translation.pod
+[Translation]:                                 https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Translation.pod
 [Updates to msgids]:                           #updates-to-msgids
 [Wikipedia]:                                   https://www.wikipedia.org/
-[Zonemaster GUI translation guide]:            https://github.com/zonemaster/zonemaster-gui/blob/develop/docs/TranslationGuide.md
+[Zonemaster GUI translation guide]:            https://github.com/zonemaster/zonemaster-gui/blob/master/docs/TranslationGuide.md
 [Zonemaster-Backend repository]:               https://github.com/zonemaster/zonemaster-backend
 [Zonemaster-CLI repository]:                   https://github.com/zonemaster/zonemaster-cli
 [Zonemaster-Engine repository]:                https://github.com/zonemaster/zonemaster-engine
-[Zonemaster-backend share]:                    https://github.com/zonemaster/zonemaster-backend/tree/develop/share
-[Zonemaster-cli share]:                        https://github.com/zonemaster/zonemaster-cli/tree/develop/share
-[Zonemaster-engine share]:                     https://github.com/zonemaster/zonemaster-engine/tree/develop/share
+[Zonemaster-backend share]:                    https://github.com/zonemaster/zonemaster-backend/tree/master/share
+[Zonemaster-cli share]:                        https://github.com/zonemaster/zonemaster-cli/tree/master/share
+[Zonemaster-engine share]:                     https://github.com/zonemaster/zonemaster-engine/tree/master/share
 
 
 

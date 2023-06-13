@@ -6,7 +6,7 @@
 different
 
 ### Objective 
-Section 3.6.2 of [RFC 1034](https://tools.ietf.org/html/rfc1034)
+Section 3.6.2 of [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)
 mentions that if a CNAME RR is present at a node, no other data should be
 present; this ensures that the data for a canonical name and its aliases cannot
 be different.  This rule also insures that a cached CNAME can be used without

@@ -62,7 +62,7 @@ None
 None
 
 
-[RFC 1034]: https://tools.ietf.org/html/rfc1034
+[RFC 1034]: https://datatracker.ietf.org/doc/html/rfc1034
 
 [Method2]:  ../Methods.md#method-2-obtain-glue-name-records-from-parent
 

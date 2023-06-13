@@ -5,7 +5,7 @@
 **RESTRICTION02:** Domain name length
 
 ### Objective
-Section 3.1 of [RFC 1035](https://tools.ietf.org/html/rfc1035) mentions that the
+Section 3.1 of [RFC 1035](https://datatracker.ietf.org/doc/html/rfc1035) mentions that the
 the total length of a domain name (i.e., label octets and label length octets) 
 is restricted to 255 octets or less.
 

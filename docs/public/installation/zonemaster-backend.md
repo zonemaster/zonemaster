@@ -3,7 +3,7 @@
 ## Table of contents
 
 * [1. Overview](#1-overview)
-* [2. Prerequisites](#2-prerequisites)
+* [2. Prerequisites][prerequisites section]
 * [3. Installation on Rocky Linux](#3-installation-on-rocky-linux)
   * [3.1 Install Zonemaster::Backend and related dependencies (Rocky Linux)](#31-install-zonemasterbackend-and-related-dependencies-rocky-linux)
   * [3.2 Database engine installation (Rocky Linux)](#32-database-engine-installation-rocky-linux)
@@ -75,7 +75,7 @@ for Zonemaster::Backend, see the [declaration of prerequisites].
 ### 3.1 Install Zonemaster::Backend and related dependencies (Rocky Linux)
 
 > **Note:** Zonemaster::LDNS and Zonemaster::Engine are not listed here as they
-> are dealt with in the [prerequisites](#prerequisites) section.
+> are dealt with in the [prerequisites section].
 
 Install dependencies available from binary packages:
 
@@ -182,7 +182,7 @@ See the [post-installation] section for post-installation matters.
 ### 4.1 Install Zonemaster::Backend and related dependencies (Debian/Ubuntu)
 
 > **Note:** Zonemaster::LDNS and Zonemaster::Engine are not listed here as they
-> are dealt with in the [prerequisites](#prerequisites) section.
+> are dealt with in the [prerequisites section].
 
 Install required locales:
 
@@ -319,7 +319,7 @@ su -l
 ### 5.1 Install Zonemaster::Backend and related dependencies (FreeBSD)
 
 > **Note:** Zonemaster::LDNS and Zonemaster::Engine are not listed here as they
-> are dealt with in the [prerequisites](#prerequisites) section.
+> are dealt with in the [prerequisites section].
 
 Install dependencies available from binary packages:
 
@@ -786,7 +786,7 @@ cpanm --notest Net::Statsd
 
 [Backend configuration]:              ../configuration/backend.md
 [Declaration of prerequisites]:       prerequisites.md
-[JSON-RPC API]:                       ../using/backend/api.md
+[JSON-RPC API]:                       ../using/backend/rpcapi-reference.md
 [Main Zonemaster repository]:         https://github.com/zonemaster/zonemaster/blob/master/README.md
 [MariaDB instructions Rocky Linux]:   #71-mariadb-rocky-linux
 [MariaDB instructions Debian]:        #72-mariadb-debianubuntu
@@ -796,8 +796,9 @@ cpanm --notest Net::Statsd
 [PostgreSQL instructions Rocky Linux]:#81-postgresql-rocky-linux
 [PostgreSQL instructions Debian]:     #82-postgresql-debianubuntu
 [PostgreSQL instructions FreeBSD]:    #83-postgresql-freebsd
+[Prerequisites section]:              #2-prerequisites
 [Removing database]:                  #9-cleaning-up-the-database
-[Upgrade document]:                   ../upgrade/backend.md
+[Upgrade document]:                   ../upgrading/backend.md
 [Zonemaster::CLI installation]:       zonemaster-cli.md
 [Zonemaster::Engine installation]:    zonemaster-engine.md
 [Zonemaster::Engine]:                 https://github.com/zonemaster/zonemaster-engine/blob/master/README.md

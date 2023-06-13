@@ -27,6 +27,6 @@ installed Zonemaster, since such modifications will be overwritten by updates
 of Zonemaster.
 
 
-[profile.json]:                        https://github.com/zonemaster/zonemaster-engine/tree/master/share/profile.json
-[profile_additional_properties.json]:  https://github.com/zonemaster/zonemaster-engine/tree/master/share/profile_additional_properties.json
+[profile.json]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/share/profile.json
+[profile_additional_properties.json]:  https://github.com/zonemaster/zonemaster-engine/blob/master/share/profile_additional_properties.json
 [Profile properties]:                  https://metacpan.org/pod/Zonemaster::Engine::Profile#PROFILE-PROPERTIES

@@ -46,7 +46,7 @@ The available profile choices are configured in a JSON file that maps profile na
 
 
 -------
-[Zonemaster Backend RPC-API]: https://github.com/zonemaster/zonemaster-backend/blob/master/docs/API.md
-[Zonemaster Backend configuration]: https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Configuration.md#public-profiles-and-private-profiles-sections
+[Zonemaster Backend RPC-API]: ../../public/using/backend/rpcapi-reference.md
+[Zonemaster Backend configuration]: ../../public/configuration/backend.md#public-profiles-and-private-profiles-sections
 [Zonemaster::Engine::Profile]: https://metacpan.org/pod/Zonemaster::Engine::Profile
 

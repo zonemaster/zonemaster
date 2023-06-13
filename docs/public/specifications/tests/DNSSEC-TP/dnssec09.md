@@ -206,7 +206,7 @@ No special terminology for this test case.
 [Method4]:                                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NOTICE]:                                     ../SeverityLevelDefinitions.md#notice
-[RFC 4035#section-2.2]:                       https://tools.ietf.org/html/rfc4035#section-2.2
+[RFC 4035#section-2.2]:                       https://datatracker.ietf.org/doc/html/rfc4035#section-2.2
 [Severity Level Definitions]:                 ../SeverityLevelDefinitions.md
 [WARNING]:                                    ../SeverityLevelDefinitions.md#warning
-[Zonemaster-Engine profile]:                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Zonemaster-Engine profile]:                  ../../../configuration/profiles.md

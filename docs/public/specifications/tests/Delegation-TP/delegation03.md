@@ -109,9 +109,9 @@ names are below the root apex '.'.
 
 
 
-[RFC 7719]: https://tools.ietf.org/html/rfc7719
+[RFC 7719]: https://datatracker.ietf.org/doc/html/rfc7719
 
-[RFC 1035]: https://tools.ietf.org/html/rfc1035
+[RFC 1035]: https://datatracker.ietf.org/doc/html/rfc1035
 
 [IANA]: https://www.iana.org/help/nameserver-requirements
 

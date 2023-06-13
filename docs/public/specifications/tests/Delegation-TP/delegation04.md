@@ -6,7 +6,7 @@
 
 ### Objective
 
-Subsection 6.1 of [RFC 2181](https://tools.ietf.org/html/rfc2181) specifies
+Subsection 6.1 of [RFC 2181](https://datatracker.ietf.org/doc/html/rfc2181) specifies
 that the nameservers must answer authoritatively for the domain. Answers
 to queries to the name servers for the designated zone must have the "AA"
 bit set.

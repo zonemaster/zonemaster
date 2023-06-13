@@ -59,7 +59,7 @@ project. All the details are in the [Master Test Plan].
 [Master Test Plan]:                            MasterTestPlan.md
 [Nameserver-TP]:                               Nameserver-TP/README.md
 [Syntax-TP]:                                   Syntax-TP/README.md
-[Test requirements]:                           ../../requirements/TestRequirements.md
+[Test requirements]:                           ../../../internal/test-requirements/TestRequirements.md
 [Zone-TP]:                                     Zone-TP/README.md
 [Background]:                                  #background
 [Elaboration of the test case]:                #elaboration-of-the-test-case

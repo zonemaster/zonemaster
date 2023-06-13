@@ -159,5 +159,5 @@ tarballs, zip file or Docker image:
 [Create Docker Image]:                        ReleaseProcess-create-docker-image.md
 [NVM]:                                        https://github.com/nvm-sh/nvm
 [Node.js]:                                    https://nodejs.org/en/
-[SystemTesting]:                              https://github.com/zonemaster/zonemaster/blob/develop/docs/internal/maintenance/SystemTesting.md
+[SystemTesting]:                              SystemTesting.md
 

@@ -6,12 +6,12 @@
 domain name that exist but no relevant answers in the answer section
 
 ### Objective 
-Section 1 of [RFC 2308](https://tools.ietf.org/html/rfc2308) mentions that
+Section 1 of [RFC 2308](https://datatracker.ietf.org/doc/html/rfc2308) mentions that
 "NODATA" is a pseudo RCODE. "NODATA" indicates that there are RRs for the requested
 domain name, but none of them match the record type queried.
 
 "NODATA" is indicated by an answer with RCODE set to "NOERROR" (defined in RFC
-[RFC 1035](https://tools.ietf.org/html/rfc1035)) and no relevant answers in the
+[RFC 1035](https://datatracker.ietf.org/doc/html/rfc1035)) and no relevant answers in the
 answer section.
 
 This test is to verify whether the engine responds with NODATA when

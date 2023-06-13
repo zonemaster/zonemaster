@@ -76,36 +76,36 @@ The set of configurations must include at least:
          The output from command should be "1".
 
    3. Install Zonemaster Engine
-      1. Install dependencies according to the [installation instruction](https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Installation.md).
+      1. Install dependencies according to the [installation instruction](../../public/installation/zonemaster-engine.md).
       2. Install the preliminary distribution tarball for zonemaster-engine.
 
          ```sh
          sudo cpanm Zonemaster-Engine-${ENGINE_VERSION}.tar.gz
          ```
 
-      3. Follow the [post-installation sanity check](https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Installation.md#post-installation-sanity-check) section of the installation guide to the letter.
+      3. Follow the [post-installation sanity check](../../public/installation/zonemaster-engine.md#post-installation-sanity-check) section of the installation guide to the letter.
 
    4. Install Zonemaster Backend
-      1. Install dependencies according to the [installation instruction](https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md).
+      1. Install dependencies according to the [installation instruction](../../public/installation/zonemaster-backend.md).
       2. Install the preliminary distribution tarball for zonemaster-backend.
 
          ```sh
          sudo cpanm Zonemaster-Backend-${BACKEND_VERSION}.tar.gz
          ```
 
-      3. Follow the [configuration](https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md#configuration) section of the installation guide to the letter.
-      4. Follow the [startup](https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md#startup) section of the installation guide to the letter.
-      5. Follow the [smoke test] section of the installation guide to the letter.
+      3. Follow the configuration section of the [installation instruction](../../public/installation/zonemaster-backend.md) to the letter.
+      4. Follow the startup section of the installation guide to the letter.
+      5. Follow the [smoke test] section of the [installation instruction](../../public/installation/zonemaster-backend.md) to the letter.
 
    5. Install Zonemaster GUI
-      1. Follow the prerequisites section of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md)
+      1. Follow the prerequisites section of the [installation instruction](../../public/installation/zonemaster-gui.md)
          to the letter.
-      3. Follow the installation section of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md)
+      3. Follow the installation section of the [installation instruction](../../public/installation/zonemaster-gui.md)
          to the letter. 
-      2. Follow the configuration, startup and sanity check sections of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md)
+      2. Follow the configuration, startup and sanity check sections of the [installation instruction](../../public/installation/zonemaster-gui.md)
          to the letter.
 
-         *The following should be put into a sanity check section of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md).*
+         *The following should be put into a sanity check section of the [installation instruction](../../public/installation/zonemaster-gui.md).*
 
          > ```
          > http://localhost/
@@ -115,7 +115,7 @@ The set of configurations must include at least:
          > Zonemaster logotype.
 
    6. Install Zonemaster CLI
-      1. Follow the prerequisites section of [installation.md](https://github.com/zonemaster/zonemaster-cli/blob/master/docs/Installation.md)
+      1. Follow the prerequisites section of the [installation instruction](../../public/installation/zonemaster-cli.md)
          to the letter.
       2. Install the preliminary distribution tarball for zonemaster-backend.
 
@@ -123,10 +123,10 @@ The set of configurations must include at least:
          sudo cpanm Zonemaster-CLI-${CLI_VERSION}.tar.gz
          ```
 
-      3. Follow the configuration and sanity check sections of [installation.md](https://github.com/zonemaster/zonemaster-cli/blob/master/docs/Installation.md)
+      3. Follow the configuration and sanity check sections of the [installation instruction](../../public/installation/zonemaster-cli.md)
          to the letter.
 
-         *The following should be put into a sanity check section of [installation.md](https://github.com/zonemaster/zonemaster-cli/blob/master/docs/Installation.md).*
+         *The following should be put into a sanity check section of the [installation instruction](../../public/installation/zonemaster-cli.md).*
 
          > ```
          > zonemaster-cli --version
@@ -207,4 +207,4 @@ This test level validates that each change since last release:
 [Debian-Preparation]:         ../distrib-testing/Debian-build-environment.md
 [FreeBSD-Preparation]:        ../distrib-testing/FreeBSD-build-environment.md
 [Ubuntu-Preparation]:         ../distrib-testing/Ubuntu-build-environment.md
-[smoke test]:                 https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md#71-smoke-test
+[smoke test]:                 ../../public/installation/zonemaster-backend.md#61-smoke-test

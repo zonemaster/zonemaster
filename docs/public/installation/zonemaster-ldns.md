@@ -53,7 +53,7 @@ add a simple function that converts strings from Perl's internal encoding
 to IDNA domain name format.
 In order to convert strings from whatever encoding you have to Perl's
 internal format, use L<Encode>.
-If you need any kind of control or options, use L<Net::LibIDN>.
+If you need any kind of control or options, use [Net::LibIDN].
 The included function here is only meant to assist in the most basic case,
 although that should cover a lot of real-world use cases.
 
@@ -151,6 +151,7 @@ TEST_WITH_NETWORK=1 make test
 
 
 [Docker Hub]:                                        https://hub.docker.com/u/zonemaster
-[Docker Image Creation]:                             https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
+[Docker Image Creation]:                             ../../internal/maintenance/ReleaseProcess-create-docker-image.md
 [Installation instructions for Zonemaster::Engine]:  zonemaster-engine.md
+[Net::LibIDN]:                                       https://metacpan.org/pod/Net::LibIDN
 [USING]:                                             ../using/

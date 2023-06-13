@@ -232,14 +232,14 @@ None
 [DNS Response]:                                                 ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
 [ERROR]:                                                        ../SeverityLevelDefinitions.md#error
 [INFO]:                                                         ../SeverityLevelDefinitions.md#info
-[IP to ASN Mapping]:                                            https://team-cymru.com/community-services/ip-asn-mapping/#dns
+[IP to ASN Mapping]:                                            https://www.team-cymru.com/ip-asn-mapping
 [Method4]:                                                      ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                                                      ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [Methods]:                                                      ../Methods.md
 [NOTICE]:                                                       ../SeverityLevelDefinitions.md#notice
 [Prefix Lookup Methods]:                                        #prefix-lookup-methods
 [RCODE Name]:                                                   https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[Requirements and normalization of domain names in input]:      https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/RequirementsAndNormalizationOfDomainNames.md
+[Requirements and normalization of domain names in input]:      ../RequirementsAndNormalizationOfDomainNames.md
 [RFC 1035#3.5]:                                                 https://datatracker.ietf.org/doc/html/rfc1035#section-3.5
 [RFC 2182#3.1]:                                                 https://datatracker.ietf.org/doc/html/rfc2182#section-3.1
 [RFC 3596#2.5]:                                                 https://datatracker.ietf.org/doc/html/rfc3596#section-2.5
@@ -249,4 +249,4 @@ None
 [Send]:                                                         #terminology
 [Severity Level Definitions]:                                   ../SeverityLevelDefinitions.md
 [WARNING]:                                                      ../SeverityLevelDefinitions.md#warning
-[Zonemaster-Engine Profile]:                                    https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Zonemaster-Engine Profile]:                                    ../../../configuration/profiles.md

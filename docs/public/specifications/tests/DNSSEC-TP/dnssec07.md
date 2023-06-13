@@ -10,11 +10,11 @@ secure chain up to the root. If there is no DS record published at the
 parent zone, this might be a configuration error.
 
 The method for authentication a DNS response is described in section 5 of
-[RFC 4035](https://tools.ietf.org/html/rfc4035#section-5). The DS record
+[RFC 4035](https://datatracker.ietf.org/doc/html/rfc4035#section-5). The DS record
 is described in section 5 of [RFC 4034](
-https://tools.ietf.org/html/rfc4034#section-5) and the DNSKEY record is
+https://datatracker.ietf.org/doc/html/rfc4034#section-5) and the DNSKEY record is
 described in section 2 of [RFC 4034](
-https://tools.ietf.org/html/rfc4034#section-2).
+https://datatracker.ietf.org/doc/html/rfc4034#section-2).
 
 ### Inputs
 

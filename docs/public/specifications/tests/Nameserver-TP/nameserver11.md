@@ -167,13 +167,13 @@ No special terminology for this test case.
 
 [Argument list]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [Connectivity01]:                       ../Connectivity-TP/connectivity01.md
-[CRITICAL]:                             https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#critical
+[CRITICAL]:                             ../SeverityLevelDefinitions.md#critical
 [DNS Query and Response Defaults]:      ../DNSQueryAndResponseDefaults.md
 [EDNS Query]:                            ../DNSQueryAndResponseDefaults.md#default-setting-in-edns-query
 [EDNS Response]:                         ../DNSQueryAndResponseDefaults.md#default-handling-of-an-edns-response
-[ERROR]:                                https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#error
+[ERROR]:                                ../SeverityLevelDefinitions.md#error
 [IANA-DNSSYSTEM-PARAMETERS]:            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-11
-[INFO]:                                 https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#info
+[INFO]:                                 ../SeverityLevelDefinitions.md#info
 [Message Tag Specification]:            MessageTagSpecification.md
 [Method4]:                              ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
@@ -184,12 +184,12 @@ No special terminology for this test case.
 [N11_UNEXPECTED_ANSWER_SECTION]:        #summary
 [N11_UNEXPECTED_RCODE]:                 #summary
 [N11_UNSET_AA]:                         #summary
-[NOTICE]:                               https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#notice
+[NOTICE]:                               ../SeverityLevelDefinitions.md#notice
 [Nameserver02]:                         ../Nameserver-TP/nameserver02.md
 [RCODE Name]:                           https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[RFC 6891, section 6.1.2]:              https://tools.ietf.org/html/rfc6891#section-6.1.2
-[RFC 6891]:                             https://tools.ietf.org/html/rfc6891
-[Severity Level Definitions]:           https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md
+[RFC 6891, section 6.1.2]:              https://datatracker.ietf.org/doc/html/rfc6891#section-6.1.2
+[RFC 6891]:                             https://datatracker.ietf.org/doc/html/rfc6891
+[Severity Level Definitions]:           ../SeverityLevelDefinitions.md
 [Test Case Identifier Specification]:   TestCaseIdentifierSpecification.md
-[WARNING]:                              https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#warning
-[Zonemaster-Engine profile]:            https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[WARNING]:                              ../SeverityLevelDefinitions.md#warning
+[Zonemaster-Engine profile]:            ../../../configuration/profiles.md

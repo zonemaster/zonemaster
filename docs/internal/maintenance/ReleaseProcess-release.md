@@ -416,9 +416,9 @@ parent number is `1`.
 [Create Docker Image]:                           ReleaseProcess-create-docker-image.md
 [Docker Hub]:                                    https://hub.docker.com/u/zonemaster
 [Engine.pm]:                                     https://github.com/zonemaster/zonemaster-engine/blob/develop/lib/Zonemaster/Engine.pm
-[Installation.md GUI]:                           https://github.com/zonemaster/zonemaster-gui/blob/develop/docs/Installation.md
+[Installation.md GUI]:                           ../../public/installation/zonemaster-gui.md
 [LDNS.pm]:                                       https://github.com/zonemaster/zonemaster-ldns/blob/develop/lib/Zonemaster/LDNS.pm
-[PAUSE]:                                         https://pause.perl.org/
+[PAUSE]:                                         https://pause.perl.org/pause/query
 [Package.json GUI]:                              https://github.com/zonemaster/zonemaster-gui/blob/develop/package.json
 [Release process - Create Test Distribution]:    ReleaseProcess-create-test-distribution.md
 [Utils Zonemaster]:                              ../../../utils/

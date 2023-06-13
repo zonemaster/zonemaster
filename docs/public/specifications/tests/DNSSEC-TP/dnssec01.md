@@ -234,8 +234,8 @@ No special terminology for this test case.
 [INFO]:                                               ../SeverityLevelDefinitions.md#info
 [Method1]:                                            ../Methods.md#method-1-obtain-the-parent-domain
 [NOTICE]:                                             ../SeverityLevelDefinitions.md#notice
-[RFC 8624#3.3]:                                       https://tools.ietf.org/html/rfc8624#section-3.3
+[RFC 8624#3.3]:                                       https://datatracker.ietf.org/doc/html/rfc8624#section-3.3
 [Severity Level Definitions]:                         ../SeverityLevelDefinitions.md
 [Undelegated]:                                        ../../test-types/undelegated-test.md
 [WARNING]:                                            ../SeverityLevelDefinitions.md#warning
-[Zonemaster-Engine profile]:                          https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Zonemaster-Engine profile]:                          ../../../configuration/profiles.md

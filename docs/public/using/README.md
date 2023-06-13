@@ -26,4 +26,4 @@ There are three ways one can use the Zonemaster software:
 [Zonemaster-Engine]:         ../installation/zonemaster-engine.md
 [Zonemaster-GUI]:            ../installation/zonemaster-gui.md
 [Zonemaster-GUI using]:      gui/README.md
-[zonemaster.net]:            https://www.zonemaster.net
+[zonemaster.net]:            https://zonemaster.net/

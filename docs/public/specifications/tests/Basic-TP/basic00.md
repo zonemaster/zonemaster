@@ -8,15 +8,15 @@
 In order to begin testing the domain name from the input must be a valid
 domain name. The domain name must either be
 
-1. a valid IDN name (Internationalized Domain Name) ([RFC 5890](https://tools.ietf.org/html/rfc5890#page-13),
+1. a valid IDN name (Internationalized Domain Name) ([RFC 5890](https://datatracker.ietf.org/doc/html/rfc5890#page-13),
 section 2.3.2.3), or
 2. a valid ASCII domain.
 
 The ASCII domain name is valid if it follows the rules defined in section 2.1
-of [RFC 1123](https://tools.ietf.org/html/rfc1123#section-2.1), i.e. only
+of [RFC 1123](https://datatracker.ietf.org/doc/html/rfc1123#section-2.1), i.e. only
 consists of the ASCII characters "a-z", "A-Z", "0-9", "." and "-" with the
 extension of the "_" character, standardized for SRV records
-([RFC 2782](https://tools.ietf.org/html/rfc2782)). The "." character is
+([RFC 2782](https://datatracker.ietf.org/doc/html/rfc2782)). The "." character is
 the delimiter between labels, and a label must not start or end with a
 "-" character. There are also length limitations of the domain names and
 its labels (specified below).

@@ -76,7 +76,7 @@ None
 [NO_RESPONSE]:                #outcomes
 [NO_RESPONSE_SOA_QUERY]:      #outcomes
 [ONE_SOA_RNAME]:              #outcomes
-[RFC 1034]:                   https://tools.ietf.org/html/rfc1034
-[RFC 1035]:                   https://tools.ietf.org/html/rfc1035
-[RFC 1982]:                   https://tools.ietf.org/html/rfc1982
+[RFC 1034]:                   https://datatracker.ietf.org/doc/html/rfc1034
+[RFC 1035]:                   https://datatracker.ietf.org/doc/html/rfc1035
+[RFC 1982]:                   https://datatracker.ietf.org/doc/html/rfc1982
 
