@@ -401,6 +401,8 @@ Otherwise a new test request is enqueued.
 [Profile JSON files]:                 profiles.md
 [Profile name section]:               ../using/backend/api.md#profile-name
 [Profiles]:                           Architecture.md#profile
+[RPCAPI.enable_add_api_user]:         #enable_add_api_user
+[RPCAPI.enable_add_batch_job]:        #enable_add_batch_job
 [RPCAPI.enable_batch_create]:         #enable_batch_create
 [RPCAPI.enable_user_create]:          #enable_user_create
 [SQLITE.database_file]:               #database_file
