@@ -279,46 +279,6 @@ Below are the current error messages for an incorrect *profile name*. The
 messages should, however, considered to be unstable and are planned to be updated
 to gain consistent error messages from the RPCAPI.
 
-When a method receives an illegal *profile name* value for a parameter with this
-type, it returns the following error message:
-
-```json
-{
-    "jsonrpc":"2.0",
-    "id":1,
-    "error":{
-        "message":"Invalid method parameter(s).",
-        "data": [
-            {
-              "path": "/profile",
-              "message": "String does not match (?^ui:^[a-z0-9]$|^[a-z0-9][a-z0-9_-]{0,30}[a-z0-9]$)."
-            }
-        ],
-        "code":"-32602"
-    }
-}
-```
-
-When a method receives a legal but undefined *profile name* value for a parameter
-with this type, it returns the following error message:
-
-```json
-{
-    "jsonrpc":"2.0",
-    "id":1,
-    "error":{
-        "message":"Invalid method parameter(s).",
-        "data": [
-            {
-              "path": "/profile",
-              "message": "Unknown profile"
-            }
-        ],
-        "code":"-32602"
-    }
-}
-```
-
 
 ### Progress percentage
 
