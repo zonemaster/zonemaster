@@ -318,9 +318,6 @@ with this type, it returns the following error message:
     }
 }
 ```
-The error code is "009" (as above) if method [`job_create`][API job_create]
-was requested.
-Instead it will be "015" if method [`batch_create`][API batch_create] is requested.
 
 
 ### Progress percentage
