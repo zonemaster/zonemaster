@@ -66,35 +66,27 @@ In addition to the configuration file, some settings can configured using
 Available keys: `enable_batch_create`, `enable_user_create`,
 `enable_add_batch_job`, `enable_add_api_user`.
 
-### enable_batch_create
+### enable_add_batch_job
 
-Boolean value to enable the `batch_create` methods of the API.
+Boolean value to enable the `add_batch_job` and `batch_create` methods of the API.
 
 Accepted values: `yes` (or `true`) or `no` (or `false`),
 default to `yes` (enabled).
 
-### enable_user_create
+### enable_add_api_user
 
-Boolean value to enable the `user_create` method of the API.
+Boolean value to enable the `add_api_user` and `user_create` method of the API.
 
 Accepted values: `yes` (or `true`) or `no` (or `false`),
 default to `no` (disabled).
 
-### enable_add_batch_job
+### enable_batch_create
 
-Deprecated (planned removal: v2024.1). Use
-[enable_batch_create][RPCAPI.enable_batch_create] instead.
+An experimental alias for [enable_add_batch_job][RPCAPI.enable_add_batch_job].
 
-If defined, the [enable_batch_create][RPCAPI.enable_batch_create]
-property takes precedence over this.
+### enable_user_create
 
-### enable_add_api_user
-
-Deprecated (planned removal: v2024.1). Use
-[enable_user_create][RPCAPI.enable_user_create] instead.
-
-If defined, the [enable_user_create][RPCAPI.enable_user_create] property
-takes precedence over this.
+An experimental alias for [enable_add_api_user][RPCAPI.enable_add_api_user].
 
 
 ## DB section
@@ -409,6 +401,8 @@ Otherwise a new test request is enqueued.
 [Profile JSON files]:                 profiles.md
 [Profile name section]:               ../using/backend/api.md#profile-name
 [Profiles]:                           Architecture.md#profile
+[RPCAPI.enable_add_api_user]:         #enable_add_api_user
+[RPCAPI.enable_add_batch_job]:        #enable_add_batch_job
 [RPCAPI.enable_batch_create]:         #enable_batch_create
 [RPCAPI.enable_user_create]:          #enable_user_create
 [SQLITE.database_file]:               #database_file
