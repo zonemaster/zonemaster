@@ -275,11 +275,6 @@ in the configuration file as specified in the Configuration document
 
 The name of a [*profile*](Architecture.md#profile).
 
-Below are the current error messages for an incorrect *profile name*. The
-messages should, however, considered to be unstable and are planned to be updated
-to gain consistent error messages from the RPCAPI.
-
-
 ### Progress percentage
 
 Basic data type: number (integer)
