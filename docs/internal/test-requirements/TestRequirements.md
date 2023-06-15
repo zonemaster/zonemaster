@@ -29,13 +29,13 @@ R00500| IDN labels (names) should be valid.                                     
 R00600| Non-IDN ASCII labels (names) should be valid.                                      |[RFC1123] [RFC2782]  |[BASIC00]
 R00700| A DNS zone should have a parent zone from which it is delegated.                   |                     |[BASIC01]
 R00800| A DNS zone should have at least one accessible name server that hosts it.          |                     |[BASIC02]
-R00900| A name server for a zone should respond on a query.                                |                     |[BASIC04]
-R01000| A name server for a zone should respond with SOA record on SOA query.              |[RFC2181]            |[BASIC04] [DELEGATION06]
-R01100| A name server for a zone should respond with RCODE NoError on SOA query.           |                     |[BASIC04]
-R01200| A name server for a zone should respond with AA flag set on SOA query.             |[RFC2181]            |[BASIC04]
-R01300| A name server for a zone should respond with NS RRset on NS query.                 |[RFC2181]            |[BASIC04]
-R01400| A name server for a zone should respond with RCODE NoError on NS query.            |                     |[BASIC04]
-R01500| A name server for a zone should respond with AA flag set on NS query.              |[RFC2181]            |[BASIC04]
+R00900| A name server for a zone should respond on a query.                                |                     |[CONNECTIVITY01] [CONNECTIVITY02]
+R01000| A name server for a zone should respond with SOA record on SOA query.              |[RFC2181]            |[CONNECTIVITY01] [CONNECTIVITY02] [DELEGATION06]
+R01100| A name server for a zone should respond with RCODE NoError on SOA query.           |                     |[CONNECTIVITY01] [CONNECTIVITY02]
+R01200| A name server for a zone should respond with AA flag set on SOA query.             |[RFC2181]            |[CONNECTIVITY01] [CONNECTIVITY02]
+R01300| A name server for a zone should respond with NS RRset on NS query.                 |[RFC2181]            |[CONNECTIVITY01] [CONNECTIVITY02]
+R01400| A name server for a zone should respond with RCODE NoError on NS query.            |                     |[CONNECTIVITY01] [CONNECTIVITY02]
+R01500| A name server for a zone should respond with AA flag set on NS query.              |[RFC2181]            |[CONNECTIVITY01] [CONNECTIVITY02]
 R01600| A name server should respond on port 53 over UDP.                                  |[RFC1035]            |[CONNECTIVITY01]
 R01700| A name server should respond on port 53 over TCP.                                  |[RFC7766]            |[CONNECTIVITY02]
 R01800| The name server IP addresses should be announce from different ASNs.               |[RFC2182]            |[CONNECTIVITY03]
@@ -130,6 +130,7 @@ R16000| The SOA MNAME field should not point at a CNAME.                        
 R17000| The mail exchange field in MX records should not point at a CNAME.                 |[RFC2181] [RFC5321] |[ZONE08]
 R18000| Apex of every zone should be a valid mail domain.                                  |[RFC2142]           |[ZONE09]
 R19000| The should be exactly one SOA record in every zone.                                |[RFC1035]           |[ZONE10]
+
 <!-- END-TABLE -->
 <!-- When updating the table, read TestRequirements-table-specification.txt -->
 
@@ -140,7 +141,6 @@ R19000| The should be exactly one SOA record in every zone.                     
 [BASIC00]:        ../../public/specifications/tests/Basic-TP/basic00.md
 [BASIC01]:        ../../public/specifications/tests/Basic-TP/basic01.md
 [BASIC02]:        ../../public/specifications/tests/Basic-TP/basic02.md
-[BASIC04]:        ../../public/specifications/tests/Basic-TP/basic04.md
 [CONNECTIVITY01]: ../../public/specifications/tests/Connectivity-TP/connectivity01.md
 [CONNECTIVITY02]: ../../public/specifications/tests/Connectivity-TP/connectivity02.md
 [CONNECTIVITY03]: ../../public/specifications/tests/Connectivity-TP/connectivity03.md
