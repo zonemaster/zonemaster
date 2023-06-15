@@ -104,4 +104,4 @@ version              | version number of the new release
 [backend.travis]:                          https://github.com/zonemaster/zonemaster-backend/blob/develop/.travis.yml
 [supported Perl versions]:                 ../../public/installation/prerequisites.md#supported-perl-versions
 [Appendix META]:                           #appendix-meta
-[Versions and Releases]:                   ../../design/Versions%20and%20Releases.md
+[Versions and Releases]:                   ../design/Versions%20and%20Releases.md

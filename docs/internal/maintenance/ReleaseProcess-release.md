@@ -423,7 +423,7 @@ parent number is `1`.
 [Release process - Create Test Distribution]:    ReleaseProcess-create-test-distribution.md
 [Utils Zonemaster]:                              ../../../utils/
 [Version.ts GUI]:                                https://github.com/zonemaster/zonemaster-gui/blob/develop/src/environments/version.ts
-[Versions and releases]:                         ../../design/Versions%20and%20Releases.md
+[Versions and releases]:                         ../design/Versions%20and%20Releases.md
 [ZNMSTR]:                                        https://metacpan.org/author/ZNMSTR
 [Zonemaster Product Releases]:                   https://github.com/zonemaster/zonemaster/releases
 [Zonemaster main README]:                        ../../../README.md

@@ -29,8 +29,7 @@ Not all issues in the tracker are bugs, and not all reported bugs are
 software bugs, but can be protocol errors in DNS, or user or documentation
 errors.
 
-Bug fixes are included in minor releases. See the
-[version numbering policy](../../design/Versions%20and%20Releases.md)
+Bug fixes are included in minor releases. See the [version numbering policy]
 document for documentation on version numbers for releases.
 
 ### Minor Changes
@@ -39,8 +38,7 @@ Minor changes are new features, changes or deprecated functionality that
 do not break backwards compatibility, neither force any user to change or
 update their environment that currently runs the software. 
 
-Minor changes are included in minor releases. See the
-[version numbering policy](../../design/Versions%20and%20Releases.md)
+Minor changes are included in minor releases. See the [version numbering policy]
 document for documentation on version numbers for releases.
 
 ## Major changes 
@@ -49,8 +47,7 @@ Any change and specification that requires changes in the software
 architecture, an API change or new major features could be classified
 under the category "Major change".
 
-Major changes are included in major releases. See the
-[version numbering policy](../../design/Versions%20and%20Releases.md)
+Major changes are included in major releases. See the [version numbering policy]
 document for documentation on version numbers for releases.
 
 ## Process to implement the change
@@ -94,3 +91,7 @@ with the steering committee.
 New requirements that are acknowledged (by the development team and the
 steering committee)  make it to the roadmap and planned for specification
 and implementation. They are also added to the current set of requirements.
+
+
+
+[version numbering policy]: ../design/Versions%20and%20Releases.md
