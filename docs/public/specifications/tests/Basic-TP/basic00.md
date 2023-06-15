@@ -8,7 +8,7 @@
 In order to begin testing the domain name from the input must be a valid
 domain name. The domain name must either be
 
-1. a valid IDN name (Internationalized Domain Name) ([RFC 5890](https://datatracker.ietf.org/doc/html/rfc5890#page-13),
+1. a valid IDN name (Internationalized Domain Name) ([RFC 5890](https://datatracker.ietf.org/doc/html/rfc5890#section-2.3.2.3),
 section 2.3.2.3), or
 2. a valid ASCII domain.
 

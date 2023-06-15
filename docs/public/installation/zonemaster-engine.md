@@ -174,7 +174,7 @@ Installation will take longer time.
 * For a Perl API, see the [Zonemaster::Engine API] documentation.
 
 
-[EPEL]:                                              https://docs.rockylinux.org/books/admin_guide/13-softwares/?h=epel#the-epel-repository
+[EPEL]:                                              https://docs.fedoraproject.org/en-US/epel/
 [JSON-RPC API]:                                      ../using/backend/rpcapi-reference.md
 [Mailing list zonemaster-users]:                     ../../contact-and-mailing-lists.md#zonemaster-users
 [Zonemaster::Backend installation]:                  zonemaster-backend.md
