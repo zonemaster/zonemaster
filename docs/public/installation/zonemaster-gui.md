@@ -282,14 +282,14 @@ RewriteRule ^$ /<LANG>/ [R,L]
 where `<LANG>` is the language code of you choice.
 
 
-[JSON-RPC API]:                     ../using/zonemaster-api.md
+[JSON-RPC API]:                     ../using/backend/rpcapi-reference.md
 [Let's Encrypt / Certbot]:          https://certbot.eff.org/instructions
 [Main Zonemaster repository]:       https://github.com/zonemaster/zonemaster/blob/master/README.md
 [Tutorial on Apache on FreeBSD]:    https://www.digitalocean.com/community/tutorials/how-to-install-an-apache-mysql-and-php-famp-stack-on-freebsd-10-1
 [Zonemaster::Backend installation]: zonemaster-backend.md
 [Zonemaster::Backend]:              https://github.com/zonemaster/zonemaster-backend/blob/master/README.md
 [Zonemaster::CLI installation]:     zonemaster-cli.md
-[Zonemaster::Engine API]:           http://search.cpan.org/%7Eznmstr/Zonemaster-Engine/lib/Zonemaster/Engine/Overview.pod
+[Zonemaster::Engine API]:           https://metacpan.org/dist/Zonemaster-Engine/view/lib/Zonemaster/Engine/Overview.pod
 [Zonemaster::Engine installation]:  zonemaster-engine.md
 [Zonemaster::Engine]:               https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
 [Zonemaster::LDNS]:                 https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md

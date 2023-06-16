@@ -12,7 +12,7 @@ the performance for any resolver trying to resolve the name.
 
 The objective of this test is to resolve the domain using all the listed
 name servers used in the delegation. More information about resolver
-behavior is in section 7 of [RFC 1035](https://tools.ietf.org/html/rfc1035).
+behavior is in section 7 of [RFC 1035](https://datatracker.ietf.org/doc/html/rfc1035).
 
 ### Inputs
 

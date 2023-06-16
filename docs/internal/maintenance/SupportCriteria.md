@@ -1,5 +1,6 @@
 Support criteria
 ================
+
 This document hosts a set of guiding principles for selecting configuration
 parameter items to support.
 
@@ -105,10 +106,10 @@ Database engine versions that lack required features cannot be supported.
   * <https://packages.debian.org/search?searchon=names&keywords=postgresql>
 
 * Database engine versions provided FreeBSD are listed here:
-  * <https://www.freebsd.org/cgi/ports.cgi?query=mysql&stype=name&sektion=databases>
+  * <https://ports.freebsd.org/cgi/ports.cgi?query=mysql&stype=name&sektion=databases>
     and look for "mysql??-server-*" (FreeBSD does not support MariaDB in a
     default Backend installation).
-  * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=postgresql>
+  * <https://ports.freebsd.org/cgi/ports.cgi?stype=name&sektion=databases&query=postgresql>
 
 * Database engine versions provided by each version of Rocky Linux are listed here: TBP
 
@@ -141,7 +142,7 @@ The point release should not be specified.
   * <https://packages.debian.org/search?searchon=names&keywords=perl>
 
 * Perl versions provided FreeBSD are listed here:
-  * <https://www.freebsd.org/cgi/ports.cgi?stype=name&sektion=lang&query=perl>
+  * <https://ports.freebsd.org/cgi/ports.cgi?stype=name&sektion=lang&query=perl>
 
 * Perl versions provided by each version of Rocky Linux are listed here: TBP
 

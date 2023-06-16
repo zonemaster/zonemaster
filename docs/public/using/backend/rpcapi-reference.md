@@ -15,7 +15,7 @@
   * [Client id](#client-id)
   * [Client version](#client-version)
   * [Domain name](#domain-name)
-  * [DS info](#dS-info)
+  * [DS info](#ds-info)
   * [IP address](#ip-address)
   * [Language tag](#language-tag)
   * [Name server](#name-server)
@@ -27,7 +27,6 @@
   * [Severity level](#severity-level)
   * [Test id](#test-id)
   * [Test result](#test-result)
-  * [Timestamp (deprecated)](#timestamp-deprecated)
   * [Timestamp](#timestamp)
   * [Username](#username)
 * [API methods](#api-methods)
@@ -1301,8 +1300,8 @@ The value of `"test_params"` is an object with the following properties:
 * `"client_version"`: A [*client version*][Client version], optional. (default: unset)
 * `"nameservers"`: A list of [*name server*][Name server] objects, optional. (default: `[]`)
 * `"ds_info"`: A list of [*DS info*][DS info] objects, optional. (default: `[]`)
-* `"ipv6"`: A boolean, optional. (default: [`net.ipv4`][net.ipv4] profile value).
-* `"ipv4"`: A boolean, optional. (default: [`net.ipv6`][net.ipv6] profile value).
+* `"ipv4"`: A boolean, optional. (default: [`net.ipv4`][net.ipv4] profile value).
+* `"ipv6"`: A boolean, optional. (default: [`net.ipv6`][net.ipv6] profile value).
 * `"priority"`: A [*priority*][Priority], optional. (default: `5`)
 * `"queue"`: A [*queue*][Queue], optional. (default: `0`)
 
@@ -1521,7 +1520,7 @@ There are also some experimental API methods documented only by name:
 [Severity Level Definitions]:         ../../specifications/tests/SeverityLevelDefinitions.md
 [Severity level]:                     #severity-level
 [Test Cases]:                         ../../specifications/tests#list-of-defined-test-cases
-[Test Case Identifiers]:              https://github.com/zonemaster/zonemaster/blob/master/docs/internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
+[Test Case Identifiers]:              ../../../internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
 [Test id]:                            #test-id
 [Test result]:                        #test-result
 [Timestamp]:                          #timestamp

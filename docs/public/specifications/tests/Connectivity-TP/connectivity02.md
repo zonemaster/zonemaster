@@ -191,4 +191,4 @@ No special terminology for this Test Case.
 [RFC 7766#5]:                                                     https://www.rfc-editor.org/rfc/rfc7766#section-5
 [Severity Level Definitions]:                                     ../SeverityLevelDefinitions.md
 [WARNING]:                                                        ../SeverityLevelDefinitions.md#warning
-[Zonemaster-Engine profile]:                                      https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Zonemaster-Engine profile]:                                      ../../../configuration/profiles.md

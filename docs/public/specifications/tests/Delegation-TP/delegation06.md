@@ -6,7 +6,7 @@
 
 ### Objective
 
-Section 6.1 of the [RFC 2181](https://tools.ietf.org/html/rfc2181) specifies
+Section 6.1 of the [RFC 2181](https://datatracker.ietf.org/doc/html/rfc2181) specifies
 that the SOA record is mandatory for every zone. 
 
 This test is intended to verify the prescence of a SOA record for the

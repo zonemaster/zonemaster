@@ -146,13 +146,13 @@ respected.
 [Methods]:                    ../Methods.md
 [NO_RESPONSE]:                #outcomes
 [NO_RESPONSE_SOA_QUERY]:      #outcomes
-[RFC 1035#3.3.13]:            https://tools.ietf.org/html/rfc1035#section-3.3.13
-[RFC 1035#5.1]:               https://tools.ietf.org/html/rfc1035#section-5.1
-[RFC 1035#5.3]:               https://tools.ietf.org/html/rfc1035#section-5.3
-[RFC 1035#8]:                 https://tools.ietf.org/html/rfc1035#section-8
-[RFC 1035]:                   https://tools.ietf.org/html/rfc1035
-[RFC 1912#2.2]:               https://tools.ietf.org/html/rfc1912#section-2.2
-[RFC 5322#3.4.1]:             https://tools.ietf.org/html/rfc5322#section-3.4.1
+[RFC 1035#3.3.13]:            https://datatracker.ietf.org/doc/html/rfc1035#section-3.3.13
+[RFC 1035#5.1]:               https://datatracker.ietf.org/doc/html/rfc1035#section-5.1
+[RFC 1035#5.3]:               https://datatracker.ietf.org/doc/html/rfc1035#section-5.3
+[RFC 1035#8]:                 https://datatracker.ietf.org/doc/html/rfc1035#section-8
+[RFC 1035]:                   https://datatracker.ietf.org/doc/html/rfc1035
+[RFC 1912#2.2]:               https://datatracker.ietf.org/doc/html/rfc1912#section-2.2
+[RFC 5322#3.4.1]:             https://datatracker.ietf.org/doc/html/rfc5322#section-3.4.1
 [RNAME_MAIL_DOMAIN_INVALID]:  #outcomes
 [RNAME_MAIL_DOMAIN_LOCALHOST]:#outcomes
 [RNAME_MAIL_ILLEGAL_CNAME]:   #outcomes

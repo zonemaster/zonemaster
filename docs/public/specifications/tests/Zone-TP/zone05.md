@@ -10,8 +10,8 @@ keeps the zone valid without any contact with the primary name server.
 This value should be greater than how long a major outage would
 typically last. The expire value should also be larger than the
 refresh and retry values, as described in section 3.3.13 in
-[RFC 1035](https://tools.ietf.org/html/rfc1035), and clarified in
-section 2.2 of [RFC 1912](https://tools.ietf.org/html/rfc1912).
+[RFC 1035](https://datatracker.ietf.org/doc/html/rfc1035), and clarified in
+section 2.2 of [RFC 1912](https://datatracker.ietf.org/doc/html/rfc1912).
 
 Setting the expire value low will increase the risk of any unwanted
 non-availability of the zone because of any failures in contacting

@@ -361,7 +361,7 @@ a specific name server. Compare with "[DNS Lookup]".
 [DNS Query]:                                                      ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
 [DNS Response]:                                                   ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
 [ERROR]:                                                          ../SeverityLevelDefinitions.md#error
-[Get parent zone]:                                                ../MethodsV2.md#method-get-parent-zone
+[Get parent zone]:                                                ../MethodsV2.md#method-get-parent-ns-ip-addresses
 [INFO]:                                                           ../SeverityLevelDefinitions.md#info
 [List of Root Servers]:                                           https://www.iana.org/domains/root/servers
 [NOTICE]:                                                         ../SeverityLevelDefinitions.md#notice
@@ -373,4 +373,4 @@ a specific name server. Compare with "[DNS Lookup]".
 [Severity Level Definitions]:                                     ../SeverityLevelDefinitions.md
 [Undelegated test]:                                               ../../test-types/undelegated-test.md
 [WARNING]:                                                        ../SeverityLevelDefinitions.md#warning
-[Zonemaster-Engine profile]:                                      https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Zonemaster-Engine profile]:                                      ../../../configuration/profiles.md

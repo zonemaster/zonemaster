@@ -299,7 +299,7 @@ automatically include the `--platform linux/amd64` option every time you run
 
 
 [Connectivity03]:                  ../specifications/tests/Connectivity-TP/connectivity03.md
-[Get started]:                     https://www.docker.com/get-started
+[Get started]:                     https://www.docker.com/get-started/
 [Installation instruction]:        ../installation/zonemaster-cli.md
 [Severity Level Definitions]:      ../specifications/tests/SeverityLevelDefinitions.md
 [Translation]:                     #translation

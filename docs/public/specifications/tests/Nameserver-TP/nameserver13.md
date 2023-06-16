@@ -91,5 +91,5 @@ None.
 [NO_EDNS_SUPPORT]: #outcomes
 [NO_RESPONSE]: #outcomes
 [NS_ERROR]: #outcomes
-[RFC 6891, section 7]: https://tools.ietf.org/html/rfc6891#section-7
-[RFC 6891]: https://tools.ietf.org/html/rfc6891
+[RFC 6891, section 7]: https://datatracker.ietf.org/doc/html/rfc6891#section-7
+[RFC 6891]: https://datatracker.ietf.org/doc/html/rfc6891

@@ -225,32 +225,32 @@ respected.
 [Argument list]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [CONNECTIVITY01]:                       ../Connectivity-TP/connectivity01.md
 [CONSISTENCY06]:                        ../Consistency-TP/consistency06.md
-[CRITICAL]:                             https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#critical
+[CRITICAL]:                             ../SeverityLevelDefinitions.md#critical
 [DNS Lookup]:                           #terminology
 [DNS Query and Response Defaults]:      ../DNSQueryAndResponseDefaults.md
 [DNS Query]:                            ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
 [DNS Response]:                         ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
 [draft-jabley-dnsop-missing-mname]:     https://www.ietf.org/archive/id/draft-jabley-dnsop-missing-mname-00.html
-[ERROR]:                                https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#error
-[INFO]:                                 https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#info
+[ERROR]:                                ../SeverityLevelDefinitions.md#error
+[INFO]:                                 ../SeverityLevelDefinitions.md#info
 [Message Tag Specification]:            MessageTagSpecification.md
 [Methods]:                              ../Methods.md
 [Method3]:                              ../Methods.md#method-3-obtain-name-servers-from-child
 [Method4]:                              ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[NOTICE]:                               https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#notice
+[NOTICE]:                               ../SeverityLevelDefinitions.md#notice
 [RCODE Name]:                           https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC1035]:                              https://datatracker.ietf.org/doc/html/rfc1035#section-3.3.13
 [RFC1982]:                              https://datatracker.ietf.org/doc/html/rfc1982
 [RFC1996]:                              https://datatracker.ietf.org/doc/html/rfc1996#section-2
 [RFC2136]:                              https://datatracker.ietf.org/doc/html/rfc2136#section-1
 [RFC2181]:                              https://datatracker.ietf.org/doc/html/rfc2181#section-7.3
-[Severity Level Definitions]:           https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md
+[Severity Level Definitions]:           ../SeverityLevelDefinitions.md
 [SYNTAX07]:                             ../Syntax-TP/syntax07.md
 [Test Case Identifier Specification]:   TestCaseIdentifierSpecification.md
 [Undelegated test]:                     ../../test-types/undelegated-test.md
-[WARNING]:                              https://github.com/zonemaster/zonemaster/blob/master/docs/specifications/tests/SeverityLevelDefinitions.md#warning
-[Zonemaster-Engine profile]:            https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[WARNING]:                              ../SeverityLevelDefinitions.md#warning
+[Zonemaster-Engine profile]:            ../../../configuration/profiles.md
 [Z01_MNAME_HAS_LOCALHOST_ADDR]:         #summary
 [Z01_MNAME_IS_DOT]:                     #summary
 [Z01_MNAME_IS_LOCALHOST]:               #summary

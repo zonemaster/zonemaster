@@ -155,10 +155,10 @@ No special terminology for this test case.
 [N10_UNEXPECTED_RCODE]:                    #summary
 [NOTICE]:                                  ../SeverityLevelDefinitions.md#notice
 [Nameserver02]:                            ../Nameserver-TP/nameserver02.md
-[RFC 1035#section-4.1.1]:                  https://tools.ietf.org/html/rfc1035#section-4.1.1
-[RFC 4033#section-3]:                      https://tools.ietf.org/html/rfc4033#section-3
-[RFC 6891#section-6.1.3]:                  https://tools.ietf.org/html/rfc6891#section-6.1.3
-[RFC 6891]:                                https://tools.ietf.org/html/rfc6891
+[RFC 1035#section-4.1.1]:                  https://datatracker.ietf.org/doc/html/rfc1035#section-4.1.1
+[RFC 4033#section-3]:                      https://datatracker.ietf.org/doc/html/rfc4033#section-3
+[RFC 6891#section-6.1.3]:                  https://datatracker.ietf.org/doc/html/rfc6891#section-6.1.3
+[RFC 6891]:                                https://datatracker.ietf.org/doc/html/rfc6891
 [Severity Level Definitions]:              ../SeverityLevelDefinitions.md
 [WARNING]:                                 ../SeverityLevelDefinitions.md#warning
-[Zonemaster-Engine profile]:               https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Zonemaster-Engine profile]:               ../../../configuration/profiles.md

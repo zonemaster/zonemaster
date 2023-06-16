@@ -19,7 +19,7 @@ Make sure the Travis configuration for each repo, in the `develop` branch
 is up to date with the [supported Perl versions].
 
  * zonemaster-ldns - [.travis.yml][ldns.travis]
- * zonemaster-engine - [.travis.yml][engine.travis]
+ * zonemaster-engine - [.github/workflows/ci.yml][engine.github-actions]
  * zonemaster-cli - [.travis.yml][cli.travis]
  * zonemaster-backend - [.travis.yml][backend.travis]
 
@@ -97,11 +97,11 @@ version              | version number of the new release
 [CI]:                                      https://github.com/travis-ci/travis-ci
 [declaration of prerequisites]:            ../../public/installation/prerequisites.md
 [license string]:                          https://metacpan.org/pod/CPAN::Meta::Spec#license
-[SupportCriteria]:                         ../../internal/maintenance/SupportCriteria.md
+[SupportCriteria]:                         SupportCriteria.md
 [ldns.travis]:                             https://github.com/zonemaster/zonemaster-ldns/blob/develop/.travis.yml
-[engine.travis]:                           https://github.com/zonemaster/zonemaster-engine/blob/develop/.travis.yml
+[engine.github-actions]:                   https://github.com/zonemaster/zonemaster-engine/blob/develop/.github/workflows/ci.yml
 [cli.travis]:                              https://github.com/zonemaster/zonemaster-cli/blob/develop/.travis.yml
 [backend.travis]:                          https://github.com/zonemaster/zonemaster-backend/blob/develop/.travis.yml
 [supported Perl versions]:                 ../../public/installation/prerequisites.md#supported-perl-versions
 [Appendix META]:                           #appendix-meta
-[Versions and Releases]:                   ../../design/Versions%20and%20Releases.md
+[Versions and Releases]:                   ../design/Versions%20and%20Releases.md

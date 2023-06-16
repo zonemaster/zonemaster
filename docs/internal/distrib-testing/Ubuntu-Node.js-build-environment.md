@@ -38,5 +38,5 @@ here.
    ```
 
 [known issue]:                          https://github.com/nvm-sh/nvm#troubleshooting-on-linux
-[Node.js]:                              https://nodejs.org/en/
+[Node.js]:                              https://nodejs.org/en
 [NVM]:                                  https://github.com/nvm-sh/nvm

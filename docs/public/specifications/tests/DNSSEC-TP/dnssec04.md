@@ -15,7 +15,7 @@ operational problem just in case of temporary network problems, and longer
 than 180 days will create wide open holes for replay attacks.
 
 The considerations are described in [RFC6781](
-https://tools.ietf.org/html/rfc6781).
+https://datatracker.ietf.org/doc/html/rfc6781).
 
 ### Inputs
 

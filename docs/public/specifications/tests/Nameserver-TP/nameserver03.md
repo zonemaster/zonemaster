@@ -12,7 +12,7 @@ not do disclose the whole zone content to the public. This test case
 checks the availability of the AXFR mechanism.
 
 AXFR is defined in its latest revision in
-[RFC 5936](https://tools.ietf.org/html/rfc5936).
+[RFC 5936](https://datatracker.ietf.org/doc/html/rfc5936).
 
 ### Inputs
 

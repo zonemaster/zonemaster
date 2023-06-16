@@ -126,4 +126,4 @@ cd `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backen
 perl patch/patch_postgresql_db_zonemaster_backend_ver_8.0.0.pl
 ```
 
-[Configuration document]: ../Configuration.md
+[Configuration document]: ../../configuration/backend.md

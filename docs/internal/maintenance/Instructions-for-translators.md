@@ -382,6 +382,7 @@ make update-po MSGMERGE_OPTS=--no-fuzzy-matching
 ```
 
 
+<!-- Zonemaster links point on purpose on the develop branch. -->
 [Adding a new SSH key to your GitHub account]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
 [Adding a new language]:                       #adding-a-new-language
 [Arguments for test case messages]:            https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/logentry_args.md

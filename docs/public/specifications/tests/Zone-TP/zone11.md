@@ -207,4 +207,4 @@ None.
 [Z11_SPF1_SYNTAX_ERROR]:                #summary
 [Z11_SPF1_SYNTAX_OK]:                   #summary
 [Z11_UNABLE_TO_CHECK_FOR_SPF]:          #summary
-[Zonemaster-Engine profile]:            https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Zonemaster-Engine profile]:            ../../../configuration/profiles.md

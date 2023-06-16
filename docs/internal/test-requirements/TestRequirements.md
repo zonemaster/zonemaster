@@ -29,13 +29,13 @@ R00500| IDN labels (names) should be valid.                                     
 R00600| Non-IDN ASCII labels (names) should be valid.                                      |[RFC1123] [RFC2782]  |[BASIC00]
 R00700| A DNS zone should have a parent zone from which it is delegated.                   |                     |[BASIC01]
 R00800| A DNS zone should have at least one accessible name server that hosts it.          |                     |[BASIC02]
-R00900| A name server for a zone should respond on a query.                                |                     |[BASIC04]
-R01000| A name server for a zone should respond with SOA record on SOA query.              |[RFC2181]            |[BASIC04] [DELEGATION06]
-R01100| A name server for a zone should respond with RCODE NoError on SOA query.           |                     |[BASIC04]
-R01200| A name server for a zone should respond with AA flag set on SOA query.             |[RFC2181]            |[BASIC04]
-R01300| A name server for a zone should respond with NS RRset on NS query.                 |[RFC2181]            |[BASIC04]
-R01400| A name server for a zone should respond with RCODE NoError on NS query.            |                     |[BASIC04]
-R01500| A name server for a zone should respond with AA flag set on NS query.              |[RFC2181]            |[BASIC04]
+R00900| A name server for a zone should respond on a query.                                |                     |[CONNECTIVITY01] [CONNECTIVITY02]
+R01000| A name server for a zone should respond with SOA record on SOA query.              |[RFC2181]            |[CONNECTIVITY01] [CONNECTIVITY02] [DELEGATION06]
+R01100| A name server for a zone should respond with RCODE NoError on SOA query.           |                     |[CONNECTIVITY01] [CONNECTIVITY02]
+R01200| A name server for a zone should respond with AA flag set on SOA query.             |[RFC2181]            |[CONNECTIVITY01] [CONNECTIVITY02]
+R01300| A name server for a zone should respond with NS RRset on NS query.                 |[RFC2181]            |[CONNECTIVITY01] [CONNECTIVITY02]
+R01400| A name server for a zone should respond with RCODE NoError on NS query.            |                     |[CONNECTIVITY01] [CONNECTIVITY02]
+R01500| A name server for a zone should respond with AA flag set on NS query.              |[RFC2181]            |[CONNECTIVITY01] [CONNECTIVITY02]
 R01600| A name server should respond on port 53 over UDP.                                  |[RFC1035]            |[CONNECTIVITY01]
 R01700| A name server should respond on port 53 over TCP.                                  |[RFC7766]            |[CONNECTIVITY02]
 R01800| The name server IP addresses should be announce from different ASNs.               |[RFC2182]            |[CONNECTIVITY03]
@@ -130,105 +130,105 @@ R16000| The SOA MNAME field should not point at a CNAME.                        
 R17000| The mail exchange field in MX records should not point at a CNAME.                 |[RFC2181] [RFC5321] |[ZONE08]
 R18000| Apex of every zone should be a valid mail domain.                                  |[RFC2142]           |[ZONE09]
 R19000| The should be exactly one SOA record in every zone.                                |[RFC1035]           |[ZONE10]
+
 <!-- END-TABLE -->
 <!-- When updating the table, read TestRequirements-table-specification.txt -->
 
 
-[ADDRESS01]:      ../specifications/tests/Address-TP/address01.md
-[ADDRESS02]:      ../specifications/tests/Address-TP/address02.md
-[ADDRESS03]:      ../specifications/tests/Address-TP/address03.md
-[BASIC00]:        ../specifications/tests/Basic-TP/basic00.md
-[BASIC01]:        ../specifications/tests/Basic-TP/basic01.md
-[BASIC02]:        ../specifications/tests/Basic-TP/basic02.md
-[BASIC04]:        ../specifications/tests/Basic-TP/basic04.md
-[CONNECTIVITY01]: ../specifications/tests/Connectivity-TP/connectivity01.md
-[CONNECTIVITY02]: ../specifications/tests/Connectivity-TP/connectivity02.md
-[CONNECTIVITY03]: ../specifications/tests/Connectivity-TP/connectivity03.md
-[CONNECTIVITY04]: ../specifications/tests/Connectivity-TP/connectivity04.md
-[CONSISTENCY01]:  ../specifications/tests/Consistency-TP/consistency01.md
-[CONSISTENCY02]:  ../specifications/tests/Consistency-TP/consistency02.md
-[CONSISTENCY03]:  ../specifications/tests/Consistency-TP/consistency03.md
-[CONSISTENCY04]:  ../specifications/tests/Consistency-TP/consistency04.md
-[CONSISTENCY05]:  ../specifications/tests/Consistency-TP/consistency05.md
-[CONSISTENCY06]:  ../specifications/tests/Consistency-TP/consistency06.md
-[DELEGATION01]:   ../specifications/tests/Delegation-TP/delegation01.md
-[DELEGATION02]:   ../specifications/tests/Delegation-TP/delegation02.md
-[DELEGATION03]:   ../specifications/tests/Delegation-TP/delegation03.md
-[DELEGATION04]:   ../specifications/tests/Delegation-TP/delegation04.md
-[DELEGATION05]:   ../specifications/tests/Delegation-TP/delegation05.md
-[DELEGATION06]:   ../specifications/tests/Delegation-TP/delegation06.md
-[DELEGATION07]:   ../specifications/tests/Delegation-TP/delegation07.md
-[DNSSEC01]:       ../specifications/tests/DNSSEC-TP/dnssec01.md
-[DNSSEC02]:       ../specifications/tests/DNSSEC-TP/dnssec02.md
-[DNSSEC03]:       ../specifications/tests/DNSSEC-TP/dnssec03.md
-[DNSSEC04]:       ../specifications/tests/DNSSEC-TP/dnssec04.md
-[DNSSEC05]:       ../specifications/tests/DNSSEC-TP/dnssec05.md
-[DNSSEC06]:       ../specifications/tests/DNSSEC-TP/dnssec06.md
-[DNSSEC07]:       ../specifications/tests/DNSSEC-TP/dnssec07.md
-[DNSSEC08]:       ../specifications/tests/DNSSEC-TP/dnssec08.md
-[DNSSEC09]:       ../specifications/tests/DNSSEC-TP/dnssec09.md
-[DNSSEC10]:       ../specifications/tests/DNSSEC-TP/dnssec10.md
-[DNSSEC11]:       ../specifications/tests/DNSSEC-TP/dnssec11.md
-[DNSSEC12]:       ../specifications/tests/DNSSEC-TP/dnssec12.md
-[DNSSEC13]:       ../specifications/tests/DNSSEC-TP/dnssec13.md
-[DNSSEC14]:       ../specifications/tests/DNSSEC-TP/dnssec14.md
+[ADDRESS01]:      ../../public/specifications/tests/Address-TP/address01.md
+[ADDRESS02]:      ../../public/specifications/tests/Address-TP/address02.md
+[ADDRESS03]:      ../../public/specifications/tests/Address-TP/address03.md
+[BASIC00]:        ../../public/specifications/tests/Basic-TP/basic00.md
+[BASIC01]:        ../../public/specifications/tests/Basic-TP/basic01.md
+[BASIC02]:        ../../public/specifications/tests/Basic-TP/basic02.md
+[CONNECTIVITY01]: ../../public/specifications/tests/Connectivity-TP/connectivity01.md
+[CONNECTIVITY02]: ../../public/specifications/tests/Connectivity-TP/connectivity02.md
+[CONNECTIVITY03]: ../../public/specifications/tests/Connectivity-TP/connectivity03.md
+[CONNECTIVITY04]: ../../public/specifications/tests/Connectivity-TP/connectivity04.md
+[CONSISTENCY01]:  ../../public/specifications/tests/Consistency-TP/consistency01.md
+[CONSISTENCY02]:  ../../public/specifications/tests/Consistency-TP/consistency02.md
+[CONSISTENCY03]:  ../../public/specifications/tests/Consistency-TP/consistency03.md
+[CONSISTENCY04]:  ../../public/specifications/tests/Consistency-TP/consistency04.md
+[CONSISTENCY05]:  ../../public/specifications/tests/Consistency-TP/consistency05.md
+[CONSISTENCY06]:  ../../public/specifications/tests/Consistency-TP/consistency06.md
+[DELEGATION01]:   ../../public/specifications/tests/Delegation-TP/delegation01.md
+[DELEGATION02]:   ../../public/specifications/tests/Delegation-TP/delegation02.md
+[DELEGATION03]:   ../../public/specifications/tests/Delegation-TP/delegation03.md
+[DELEGATION04]:   ../../public/specifications/tests/Delegation-TP/delegation04.md
+[DELEGATION05]:   ../../public/specifications/tests/Delegation-TP/delegation05.md
+[DELEGATION06]:   ../../public/specifications/tests/Delegation-TP/delegation06.md
+[DELEGATION07]:   ../../public/specifications/tests/Delegation-TP/delegation07.md
+[DNSSEC01]:       ../../public/specifications/tests/DNSSEC-TP/dnssec01.md
+[DNSSEC02]:       ../../public/specifications/tests/DNSSEC-TP/dnssec02.md
+[DNSSEC03]:       ../../public/specifications/tests/DNSSEC-TP/dnssec03.md
+[DNSSEC04]:       ../../public/specifications/tests/DNSSEC-TP/dnssec04.md
+[DNSSEC05]:       ../../public/specifications/tests/DNSSEC-TP/dnssec05.md
+[DNSSEC06]:       ../../public/specifications/tests/DNSSEC-TP/dnssec06.md
+[DNSSEC07]:       ../../public/specifications/tests/DNSSEC-TP/dnssec07.md
+[DNSSEC08]:       ../../public/specifications/tests/DNSSEC-TP/dnssec08.md
+[DNSSEC09]:       ../../public/specifications/tests/DNSSEC-TP/dnssec09.md
+[DNSSEC10]:       ../../public/specifications/tests/DNSSEC-TP/dnssec10.md
+[DNSSEC11]:       ../../public/specifications/tests/DNSSEC-TP/dnssec11.md
+[DNSSEC12]:       ../../public/specifications/tests/DNSSEC-TP/dnssec12.md
+[DNSSEC13]:       ../../public/specifications/tests/DNSSEC-TP/dnssec13.md
+[DNSSEC14]:       ../../public/specifications/tests/DNSSEC-TP/dnssec14.md
 [IANA]:           https://www.iana.org/help/nameserver-requirements
-[NAMESERVER01]:   ../specifications/tests/Nameserver-TP/nameserver01.md
-[NAMESERVER02]:   ../specifications/tests/Nameserver-TP/nameserver02.md
-[NAMESERVER03]:   ../specifications/tests/Nameserver-TP/nameserver03.md
-[NAMESERVER04]:   ../specifications/tests/Nameserver-TP/nameserver04.md
-[NAMESERVER05]:   ../specifications/tests/Nameserver-TP/nameserver05.md
-[NAMESERVER06]:   ../specifications/tests/Nameserver-TP/nameserver06.md
-[NAMESERVER07]:   ../specifications/tests/Nameserver-TP/nameserver07.md
-[NAMESERVER08]:   ../specifications/tests/Nameserver-TP/nameserver08.md
-[NAMESERVER09]:   ../specifications/tests/Nameserver-TP/nameserver09.md
-[NAMESERVER10]:   ../specifications/tests/Nameserver-TP/nameserver10.md
-[NAMESERVER11]:   ../specifications/tests/Nameserver-TP/nameserver11.md
-[NAMESERVER12]:   ../specifications/tests/Nameserver-TP/nameserver12.md
-[NAMESERVER13]:   ../specifications/tests/Nameserver-TP/nameserver13.md
-[NAMESERVER14]:   ../specifications/tests/Nameserver-TP/nameserver14.md
-[RFC0952]:       https://tools.ietf.org/html/rfc952
-[RFC1034]:       https://tools.ietf.org/html/rfc1034
-[RFC1035]:       https://tools.ietf.org/html/rfc1035
-[RFC1123]:       https://tools.ietf.org/html/rfc1123
-[RFC1912]:       https://tools.ietf.org/html/rfc1912
-[RFC2142]:       https://tools.ietf.org/html/rfc2142
-[RFC2181]:       https://tools.ietf.org/html/rfc2181
-[RFC2182]:       https://tools.ietf.org/html/rfc2182
-[RFC2782]:       https://tools.ietf.org/html/rfc2782
-[RFC2870]:       https://tools.ietf.org/html/rfc2870
-[RFC3110]:       https://tools.ietf.org/html/rfc3110
-[RFC3696]:       https://tools.ietf.org/html/rfc3696
-[RFC3901]:       https://tools.ietf.org/html/rfc3901
-[RFC4035]:       https://tools.ietf.org/html/rfc4035
-[RFC4074]:       https://tools.ietf.org/html/rfc4074
-[RFC4472]:       https://tools.ietf.org/html/rfc4472
-[RFC5155]:       https://tools.ietf.org/html/rfc5155
-[RFC5321]:       https://tools.ietf.org/html/rfc5321
-[RFC5358]:       https://tools.ietf.org/html/rfc5358
-[RFC5702]:       https://tools.ietf.org/html/rfc5702
-[RFC5890]:       https://tools.ietf.org/html/rfc5890
-[RFC6781]:       https://tools.ietf.org/html/rfc6781
-[RFC6840]:       https://tools.ietf.org/html/rfc6840
-[RFC6891]:       https://tools.ietf.org/html/rfc6891
-[RFC7766]:       https://tools.ietf.org/html/rfc7766
-[RFC8624]:       https://tools.ietf.org/html/rfc8624
+[NAMESERVER01]:   ../../public/specifications/tests/Nameserver-TP/nameserver01.md
+[NAMESERVER02]:   ../../public/specifications/tests/Nameserver-TP/nameserver02.md
+[NAMESERVER03]:   ../../public/specifications/tests/Nameserver-TP/nameserver03.md
+[NAMESERVER04]:   ../../public/specifications/tests/Nameserver-TP/nameserver04.md
+[NAMESERVER05]:   ../../public/specifications/tests/Nameserver-TP/nameserver05.md
+[NAMESERVER06]:   ../../public/specifications/tests/Nameserver-TP/nameserver06.md
+[NAMESERVER07]:   ../../public/specifications/tests/Nameserver-TP/nameserver07.md
+[NAMESERVER08]:   ../../public/specifications/tests/Nameserver-TP/nameserver08.md
+[NAMESERVER09]:   ../../public/specifications/tests/Nameserver-TP/nameserver09.md
+[NAMESERVER10]:   ../../public/specifications/tests/Nameserver-TP/nameserver10.md
+[NAMESERVER11]:   ../../public/specifications/tests/Nameserver-TP/nameserver11.md
+[NAMESERVER12]:   ../../public/specifications/tests/Nameserver-TP/nameserver12.md
+[NAMESERVER13]:   ../../public/specifications/tests/Nameserver-TP/nameserver13.md
+[NAMESERVER14]:   ../../public/specifications/tests/Nameserver-TP/nameserver14.md
+[RFC0952]:       https://datatracker.ietf.org/doc/html/rfc952
+[RFC1034]:       https://datatracker.ietf.org/doc/html/rfc1034
+[RFC1035]:       https://datatracker.ietf.org/doc/html/rfc1035
+[RFC1123]:       https://datatracker.ietf.org/doc/html/rfc1123
+[RFC1912]:       https://datatracker.ietf.org/doc/html/rfc1912
+[RFC2142]:       https://datatracker.ietf.org/doc/html/rfc2142
+[RFC2181]:       https://datatracker.ietf.org/doc/html/rfc2181
+[RFC2182]:       https://datatracker.ietf.org/doc/html/rfc2182
+[RFC2782]:       https://datatracker.ietf.org/doc/html/rfc2782
+[RFC2870]:       https://datatracker.ietf.org/doc/html/rfc2870
+[RFC3110]:       https://datatracker.ietf.org/doc/html/rfc3110
+[RFC3696]:       https://datatracker.ietf.org/doc/html/rfc3696
+[RFC3901]:       https://datatracker.ietf.org/doc/html/rfc3901
+[RFC4035]:       https://datatracker.ietf.org/doc/html/rfc4035
+[RFC4074]:       https://datatracker.ietf.org/doc/html/rfc4074
+[RFC4472]:       https://datatracker.ietf.org/doc/html/rfc4472
+[RFC5155]:       https://datatracker.ietf.org/doc/html/rfc5155
+[RFC5321]:       https://datatracker.ietf.org/doc/html/rfc5321
+[RFC5358]:       https://datatracker.ietf.org/doc/html/rfc5358
+[RFC5702]:       https://datatracker.ietf.org/doc/html/rfc5702
+[RFC5890]:       https://datatracker.ietf.org/doc/html/rfc5890
+[RFC6781]:       https://datatracker.ietf.org/doc/html/rfc6781
+[RFC6840]:       https://datatracker.ietf.org/doc/html/rfc6840
+[RFC6891]:       https://datatracker.ietf.org/doc/html/rfc6891
+[RFC7766]:       https://datatracker.ietf.org/doc/html/rfc7766
+[RFC8624]:       https://datatracker.ietf.org/doc/html/rfc8624
 [RIPE-203]:       https://www.ripe.net/publications/docs/ripe-203
-[SYNTAX01]:       ../specifications/tests/Syntax-TP/syntax01.md
-[SYNTAX02]:       ../specifications/tests/Syntax-TP/syntax02.md
-[SYNTAX03]:       ../specifications/tests/Syntax-TP/syntax03.md
-[SYNTAX04]:       ../specifications/tests/Syntax-TP/syntax04.md
-[SYNTAX05]:       ../specifications/tests/Syntax-TP/syntax05.md
-[SYNTAX06]:       ../specifications/tests/Syntax-TP/syntax06.md
-[SYNTAX07]:       ../specifications/tests/Syntax-TP/syntax07.md
-[SYNTAX08]:       ../specifications/tests/Syntax-TP/syntax08.md
-[ZONE01]:         ../specifications/tests/Zone-TP/zone01.md
-[ZONE02]:         ../specifications/tests/Zone-TP/zone02.md
-[ZONE03]:         ../specifications/tests/Zone-TP/zone03.md
-[ZONE04]:         ../specifications/tests/Zone-TP/zone04.md
-[ZONE05]:         ../specifications/tests/Zone-TP/zone05.md
-[ZONE06]:         ../specifications/tests/Zone-TP/zone06.md
-[ZONE07]:         ../specifications/tests/Zone-TP/zone07.md
-[ZONE08]:         ../specifications/tests/Zone-TP/zone08.md
-[ZONE09]:         ../specifications/tests/Zone-TP/zone09.md
-[ZONE10]:         ../specifications/tests/Zone-TP/zone10.md
+[SYNTAX01]:       ../../public/specifications/tests/Syntax-TP/syntax01.md
+[SYNTAX02]:       ../../public/specifications/tests/Syntax-TP/syntax02.md
+[SYNTAX03]:       ../../public/specifications/tests/Syntax-TP/syntax03.md
+[SYNTAX04]:       ../../public/specifications/tests/Syntax-TP/syntax04.md
+[SYNTAX05]:       ../../public/specifications/tests/Syntax-TP/syntax05.md
+[SYNTAX06]:       ../../public/specifications/tests/Syntax-TP/syntax06.md
+[SYNTAX07]:       ../../public/specifications/tests/Syntax-TP/syntax07.md
+[SYNTAX08]:       ../../public/specifications/tests/Syntax-TP/syntax08.md
+[ZONE01]:         ../../public/specifications/tests/Zone-TP/zone01.md
+[ZONE02]:         ../../public/specifications/tests/Zone-TP/zone02.md
+[ZONE03]:         ../../public/specifications/tests/Zone-TP/zone03.md
+[ZONE04]:         ../../public/specifications/tests/Zone-TP/zone04.md
+[ZONE05]:         ../../public/specifications/tests/Zone-TP/zone05.md
+[ZONE06]:         ../../public/specifications/tests/Zone-TP/zone06.md
+[ZONE07]:         ../../public/specifications/tests/Zone-TP/zone07.md
+[ZONE08]:         ../../public/specifications/tests/Zone-TP/zone08.md
+[ZONE09]:         ../../public/specifications/tests/Zone-TP/zone09.md
+[ZONE10]:         ../../public/specifications/tests/Zone-TP/zone10.md

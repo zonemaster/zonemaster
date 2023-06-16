@@ -361,7 +361,7 @@ The technical review team must approve any changes made to the test
 cases.
 
 
-[Test Requirements]:            ../../requirements/TestRequirements.md
+[Test requirements]:            ../../../internal/test-requirements/TestRequirements.md
 [Basic]:                        Basic-TP/README.md
 [Delegation]:                   Delegation-TP/README.md
 [Consistency]:                  Consistency-TP/README.md

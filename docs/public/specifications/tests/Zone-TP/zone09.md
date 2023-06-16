@@ -276,13 +276,13 @@ in an email address.
 [Method5]:                                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NOTICE]:                                     ../SeverityLevelDefinitions.md#notice
 [Null MX]:                                    #terminology
-[RFC 2142#section-7]:                         https://tools.ietf.org/html/rfc2142#section-7
-[RFC 2142]:                                   https://tools.ietf.org/html/rfc2142
-[RFC 3172]:                                   https://tools.ietf.org/html/rfc3172
-[RFC 5321#section-2.3.5]:                     https://tools.ietf.org/html/rfc5321#section-2.3.5
-[RFC 5321#section-5.1]:                       https://tools.ietf.org/html/rfc5321#section-5.1
-[RFC 7505#section-3]:                         https://tools.ietf.org/html/rfc7505#section-3
-[RFC 7505]:                                   https://tools.ietf.org/html/rfc7505
+[RFC 2142#section-7]:                         https://datatracker.ietf.org/doc/html/rfc2142#section-7
+[RFC 2142]:                                   https://datatracker.ietf.org/doc/html/rfc2142
+[RFC 3172]:                                   https://datatracker.ietf.org/doc/html/rfc3172
+[RFC 5321#section-2.3.5]:                     https://datatracker.ietf.org/doc/html/rfc5321#section-2.3.5
+[RFC 5321#section-5.1]:                       https://datatracker.ietf.org/doc/html/rfc5321#section-5.1
+[RFC 7505#section-3]:                         https://datatracker.ietf.org/doc/html/rfc7505#section-3
+[RFC 7505]:                                   https://datatracker.ietf.org/doc/html/rfc7505
 [Severity Level Definitions]:                 ../SeverityLevelDefinitions.md
 [TLD]:                                        #terminology
 [WARNING]:                                    ../SeverityLevelDefinitions.md#warning
@@ -299,4 +299,4 @@ in an email address.
 [Z09_ROOT_EMAIL_DOMAIN]:                      #summary
 [Z09_TLD_EMAIL_DOMAIN]:                       #summary
 [Z09_UNEXPECTED_RCODE_MX]:                    #summary
-[Zonemaster-Engine profile]:                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Zonemaster-Engine profile]:                  ../../../configuration/profiles.md

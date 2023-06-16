@@ -59,7 +59,7 @@ The set of configurations must include at least:
          * Rocky-Linux-Preparation (TBD)
 
    2. Install Zonemaster LDNS
-      1. Make sure the requirements for IDN support in [the IDN section](https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md#idn) section are satisfied.
+      1. Make sure the [requirements for IDN support] are satisfied.
       2. Make sure that OpenSSL is installed.
       3. Install the preliminary distribution tarball for zonemaster-ldns.
 
@@ -76,36 +76,33 @@ The set of configurations must include at least:
          The output from command should be "1".
 
    3. Install Zonemaster Engine
-      1. Install dependencies according to the [installation instruction](https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Installation.md).
+      1. Install dependencies according to the [Engine installation] instructions.
       2. Install the preliminary distribution tarball for zonemaster-engine.
 
          ```sh
          sudo cpanm Zonemaster-Engine-${ENGINE_VERSION}.tar.gz
          ```
 
-      3. Follow the [post-installation sanity check](https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Installation.md#post-installation-sanity-check) section of the installation guide to the letter.
+      3. Follow the [post-installation sanity check][Engine sanity check] section of the installation guide to the letter.
 
    4. Install Zonemaster Backend
-      1. Install dependencies according to the [installation instruction](https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md).
+      1. Install dependencies according to the [Backend installation] instructions.
       2. Install the preliminary distribution tarball for zonemaster-backend.
 
          ```sh
          sudo cpanm Zonemaster-Backend-${BACKEND_VERSION}.tar.gz
          ```
 
-      3. Follow the [configuration](https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md#configuration) section of the installation guide to the letter.
-      4. Follow the [startup](https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md#startup) section of the installation guide to the letter.
-      5. Follow the [smoke test] section of the installation guide to the letter.
+      3. Follow the configuration section of the [Backend installation] instructions to the letter.
+      4. Follow the startup section of the installation guide to the letter.
+      5. Follow the [smoke test] section of the [Backend installation] instructions to the letter.
 
    5. Install Zonemaster GUI
-      1. Follow the prerequisites section of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md)
-         to the letter.
-      3. Follow the installation section of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md)
-         to the letter. 
-      2. Follow the configuration, startup and sanity check sections of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md)
-         to the letter.
+      1. Follow the prerequisites section of the [GUI installation] instructions to the letter.
+      3. Follow the installation section of the [GUI installation] instructions to the letter. 
+      2. Follow the configuration, startup and sanity check sections of the [GUI installation] instructions to the letter.
 
-         *The following should be put into a sanity check section of [installation.md](https://github.com/zonemaster/zonemaster-gui/blob/master/docs/Installation.md).*
+         *The following should be put into a sanity check section of the [GUI installation] instructions.*
 
          > ```
          > http://localhost/
@@ -115,18 +112,16 @@ The set of configurations must include at least:
          > Zonemaster logotype.
 
    6. Install Zonemaster CLI
-      1. Follow the prerequisites section of [installation.md](https://github.com/zonemaster/zonemaster-cli/blob/master/docs/Installation.md)
-         to the letter.
+      1. Follow the prerequisites section of the [CLI installation] installation to the letter.
       2. Install the preliminary distribution tarball for zonemaster-backend.
 
          ```sh
          sudo cpanm Zonemaster-CLI-${CLI_VERSION}.tar.gz
          ```
 
-      3. Follow the configuration and sanity check sections of [installation.md](https://github.com/zonemaster/zonemaster-cli/blob/master/docs/Installation.md)
-         to the letter.
+      3. Follow the configuration and sanity check sections of the [CLI installation] instructions to the letter.
 
-         *The following should be put into a sanity check section of [installation.md](https://github.com/zonemaster/zonemaster-cli/blob/master/docs/Installation.md).*
+         *The following should be put into a sanity check section of the [CLI installation] instructions.*
 
          > ```
          > zonemaster-cli --version
@@ -202,9 +197,15 @@ This test level validates that each change since last release:
 
 
 
-[CentOS-Preparation]:         ../distrib-testing/CentOS-build-environment.md
-[Create Test Distribution]:   ../maintenance/ReleaseProcess-create-test-distribution.md
-[Debian-Preparation]:         ../distrib-testing/Debian-build-environment.md
-[FreeBSD-Preparation]:        ../distrib-testing/FreeBSD-build-environment.md
-[Ubuntu-Preparation]:         ../distrib-testing/Ubuntu-build-environment.md
-[smoke test]:                 https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Installation.md#71-smoke-test
+[Backend installation]:         ../../public/installation/zonemaster-backend.md
+[CLI installation]:             ../../public/installation/zonemaster-cli.md
+[CentOS-Preparation]:           ../distrib-testing/CentOS-build-environment.md
+[Create Test Distribution]:     ../maintenance/ReleaseProcess-create-test-distribution.md
+[Debian-Preparation]:           ../distrib-testing/Debian-build-environment.md
+[Engine installation]:          ../../public/installation/zonemaster-engine.md
+[Engine sanity check]:          ../../public/installation/zonemaster-engine.md#post-installation-sanity-check
+[FreeBSD-Preparation]:          ../distrib-testing/FreeBSD-build-environment.md
+[GUI installation]:             ../../public/installation/zonemaster-gui.md
+[Requirements for IDN support]: https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md#idn
+[Smoke test]:                   ../../public/installation/zonemaster-backend.md#61-smoke-test
+[Ubuntu-Preparation]:           ../distrib-testing/Ubuntu-build-environment.md

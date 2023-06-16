@@ -121,7 +121,7 @@ None
 [DEBUG]:                                                        ../SeverityLevelDefinitions.md#notice
 [DNS Query and Response Defaults]:                              ../DNSQueryAndResponseDefaults.md
 [DNS Query]:                                                    ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
-[DNS Response]:                                                 ./DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
+[DNS Response]:                                                 ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
 [ERROR]:                                                        ../SeverityLevelDefinitions.md#error
 [INFO]:                                                         ../SeverityLevelDefinitions.md#info
 [Message Tag Specification]:                                    ../../../../internal/templates/specifications/tests/MessageTagSpecification.md
@@ -132,11 +132,11 @@ None
 [N15_SOFTWARE_VERSION]:                                         #summary
 [NOTICE]:                                                       ../SeverityLevelDefinitions.md#notice
 [RCODE Name]:                                                   https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[Requirements and normalization of domain names in input]:      https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/RequirementsAndNormalizationOfDomainNames.md
+[Requirements and normalization of domain names in input]:      ../RequirementsAndNormalizationOfDomainNames.md
 [RFC2929]:                                                      https://datatracker.ietf.org/doc/html/rfc2929#section-3.2
 [RFC7208#3.3]:                                                  https://datatracker.ietf.org/doc/html/rfc7208#section-3.3
 [Send]:                                                         #terminology
 [Severity Level Definitions]:                                   ../SeverityLevelDefinitions.md
 [Test Case Identifier Specification]:                           ../../../../internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
 [WARNING]:                                                      ../SeverityLevelDefinitions.md#warning
-[Zonemaster-Engine Profile]:                                    https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Zonemaster-Engine Profile]:                                    ../../../configuration/profiles.md

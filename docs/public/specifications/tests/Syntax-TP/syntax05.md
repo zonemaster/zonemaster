@@ -8,7 +8,7 @@
 The SOA RNAME field does not allow the '@' characters to be used for
 describing a mailbox. The first dot ('.') is thus translated into the
 '@' character. This is a common mistake. The rules are defined in
-[RFC 1035](https://tools.ietf.org/rfc/rfc1035.txt).
+[RFC 1035](https://datatracker.ietf.org/doc/html/rfc1035).
 
 ### Inputs
 

@@ -512,6 +512,6 @@ No special terminology for this specification.
 [Unicode SpecialCasing]:                 https://www.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt
 [Unicode TR 15]:                         https://unicode.org/reports/tr15/
 [Unicode TR 46#Notation]:                http://unicode.org/reports/tr46/#Notation
-[Unicode TR 46]:                         http://unicode.org/reports/tr46
+[Unicode TR 46]:                         http://unicode.org/reports/tr46/
 [Unicode]:                               https://unicode.org/main.html
-[Zonemaster-Engine profile]:             https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Zonemaster-Engine profile]:             ../../configuration/profiles.md

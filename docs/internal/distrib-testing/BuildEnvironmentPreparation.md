@@ -72,7 +72,7 @@ For use case 7, install an environment as for use cases
 [FreeBSD build environment]:          FreeBSD-build-environment.md
 [Ubuntu build environment]:           Ubuntu-build-environment.md
 [Ubuntu Node.js environment]:         Ubuntu-Node.js-build-environment.md
-[create test distribution]:           ../../maintenance/ReleaseProcess-create-test-distribution.md
-[installation instructions]:          https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Installation.md
-[instructions for translators]:       https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Translation-translators.md
+[create test distribution]:           ../maintenance/ReleaseProcess-create-test-distribution.md
+[Installation instructions]:          https://github.com/zonemaster/zonemaster/blob/develop/docs/public/installation/zonemaster-engine.md
+[instructions for translators]:       https://github.com/zonemaster/zonemaster/blob/develop/docs/internal/maintenance/Instructions-for-translators.md
 [utils README]:                       ../../../utils/README.md

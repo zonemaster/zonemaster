@@ -188,7 +188,7 @@ None.
 [Method4]:                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NOTICE]:                     ../SeverityLevelDefinitions.md#notice
-[RFC 7344#4]:                 https://tools.ietf.org/html/rfc7344#section-4
-[RFC 7344]:                   https://tools.ietf.org/html/rfc7344
-[RFC 8078]:                   https://tools.ietf.org/html/rfc8078
+[RFC 7344#4]:                 https://datatracker.ietf.org/doc/html/rfc7344#section-4
+[RFC 7344]:                   https://datatracker.ietf.org/doc/html/rfc7344
+[RFC 8078]:                   https://datatracker.ietf.org/doc/html/rfc8078
 [WARNING]:                    ../SeverityLevelDefinitions.md#warning

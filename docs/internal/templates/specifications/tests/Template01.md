@@ -287,40 +287,40 @@ No special terminology for this test case.
 
 > > Links to pages on Zonemaster/Zonemaster:
 
-[Severity Level Definitions]:                                     https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md
-[DEBUG]:                                                          https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#notice
-[INFO]:                                                           https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#info
-[NOTICE]:                                                         https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#notice
-[WARNING]:                                                        https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#warning
-[ERROR]:                                                          https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#error
-[CRITICAL]:                                                       https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/SeverityLevelDefinitions.md#critical
+[Severity Level Definitions]:                                     ../../../../public/specifications/tests/SeverityLevelDefinitions.md
+[DEBUG]:                                                          ../../../../public/specifications/tests/SeverityLevelDefinitions.md#notice
+[INFO]:                                                           ../../../../public/specifications/tests/SeverityLevelDefinitions.md#info
+[NOTICE]:                                                         ../../../../public/specifications/tests/SeverityLevelDefinitions.md#notice
+[WARNING]:                                                        ../../../../public/specifications/tests/SeverityLevelDefinitions.md#warning
+[ERROR]:                                                          ../../../../public/specifications/tests/SeverityLevelDefinitions.md#error
+[CRITICAL]:                                                       ../../../../public/specifications/tests/SeverityLevelDefinitions.md#critical
 
-[Connectivity01]:                                                 https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/Connectivity-TP/connectivity01.md
+[Connectivity01]:                                                 ../../../../public/specifications/tests/Connectivity-TP/connectivity01.md
 
-[DNS Query and Response Defaults]:                                https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md
-[DNS Query]:                                                      https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
-[DNS Response]:                                                   https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
-[DNSSEC Query]:                                                   https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-dnssec-query
-[DNSSEC Response]:                                                https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
-[EDNS Query]:                                                     https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-edns-query
-[EDNS Response]:                                                  https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-an-edns-response
+[DNS Query and Response Defaults]:                                ../../../../public/specifications/tests/DNSQueryAndResponseDefaults.md
+[DNS Query]:                                                      ../../../../public/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
+[DNS Response]:                                                   ../../../../public/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
+[DNSSEC Query]:                                                   ../../../../public/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-dnssec-query
+[DNSSEC Response]:                                                ../../../../public/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
+[EDNS Query]:                                                     ../../../../public/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-edns-query
+[EDNS Response]:                                                  ../../../../public/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-an-edns-response
 
-[Methods]:                                                        https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/Methods.md
-[MethodsV2]:                                                      https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/MethodsV2.md
-[Undelegated test]:                                               https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/test-types/undelegated-test.md
+[Methods]:                                                        ../../../../public/specifications/tests/Methods.md
+[MethodsV2]:                                                      ../../../../public/specifications/tests/MethodsV2.md
+[Undelegated test]:                                               ../../../../public/specifications/test-types/undelegated-test.md
 
-[Requirements and normalization of domain names in input]:        https://github.com/zonemaster/zonemaster/blob/develop/docs/specifications/tests/RequirementsAndNormalizationOfDomainNames.md
+[Requirements and normalization of domain names in input]:        ../../../../public/specifications/tests/RequirementsAndNormalizationOfDomainNames.md
 
 > > Links to other repositories:
 
 [Argument list]:                                                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
-[Zonemaster-Engine profile]:                                      https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Zonemaster-Engine profile]:                                      ../../../../public/configuration/profiles.md
 
 > > External links:
 
 [Dig]:                                                            https://en.wikipedia.org/wiki/Dig_(command)
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[RFC 4035#section-3.1.3]:                                         https://tools.ietf.org/html/rfc4035#section-3.1.3
+[RFC 4035#section-3.1.3]:                                         https://datatracker.ietf.org/doc/html/rfc4035#section-3.1.3
 [RFC 8499#page-25]:                                               https://datatracker.ietf.org/doc/html/rfc8499#page-25
 [RFC 8499#page-24]:                                               https://datatracker.ietf.org/doc/html/rfc8499#page-24
 

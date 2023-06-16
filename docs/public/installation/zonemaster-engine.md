@@ -174,10 +174,10 @@ Installation will take longer time.
 * For a Perl API, see the [Zonemaster::Engine API] documentation.
 
 
-[EPEL]:                                              https://fedoraproject.org/wiki/EPEL
-[JSON-RPC API]:                                      ../using/backend/api.md
-[Mailing list zonemaster-users]:                     https://github.com/zonemaster/zonemaster/blob/master/docs/contact-and-mailing-lists.md#zonemaster-users
+[EPEL]:                                              https://docs.fedoraproject.org/en-US/epel/
+[JSON-RPC API]:                                      ../using/backend/rpcapi-reference.md
+[Mailing list zonemaster-users]:                     ../../contact-and-mailing-lists.md#zonemaster-users
 [Zonemaster::Backend installation]:                  zonemaster-backend.md
 [Zonemaster::CLI installation]:                      zonemaster-cli.md
-[Zonemaster::Engine API]:                            http://search.cpan.org/~znmstr/Zonemaster-Engine/lib/Zonemaster/Engine/Overview.pod
+[Zonemaster::Engine API]:                            https://metacpan.org/pod/Zonemaster::Engine
 [Zonemaster::GUI installation]:                      zonemaster-gui.md

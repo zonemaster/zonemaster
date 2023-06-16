@@ -88,7 +88,7 @@ Zonemaster GUI is tested manually and with testing tools. See the
 
 [Debian]:                              https://www.debian.org/
 [Docker Hub]:                          https://hub.docker.com/u/zonemaster
-[Docker]:                              https://www.docker.com/get-started
+[Docker]:                              https://www.docker.com/get-started/
 [FreeBSD]:                             https://www.freebsd.org/
 [Rocky Linux]:                         https://rockylinux.org/
 [Ubuntu]:                              https://ubuntu.com/

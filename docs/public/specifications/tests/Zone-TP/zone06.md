@@ -12,10 +12,10 @@ shorter. The use of the SOA minimum value today is the negative cache
 (where a resolver find content is missing).
 
 The SOA minimum field is described in section 3.3.13 in
-[RFC 1035](https://tools.ietf.org/html/rfc1035), and clarified in
-section 2.2 of [RFC 1912](https://tools.ietf.org/html/rfc1912).
+[RFC 1035](https://datatracker.ietf.org/doc/html/rfc1035), and clarified in
+section 2.2 of [RFC 1912](https://datatracker.ietf.org/doc/html/rfc1912).
 The description of the implementation of negative caching is in
-[RFC 2308](https://tools.ietf.org/html/rfc2308) (although it has been
+[RFC 2308](https://datatracker.ietf.org/doc/html/rfc2308) (although it has been
 updated by several DNSSEC related RFCs, it is still relevant for this
 purpose).
 

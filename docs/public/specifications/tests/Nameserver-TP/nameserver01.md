@@ -94,6 +94,6 @@ Valid domain names according to the "IDNA 2008 specification" is found in
 [Method5]: ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NO_RECURSOR]: #outcomes
 [NO_RESPONSE]: #outcomes
-[RFC 2870]: https://tools.ietf.org/html/rfc2870
-[RFC 5358]: https://tools.ietf.org/html/rfc5358
-[RFC 5890]: https://tools.ietf.org/html/rfc5890
+[RFC 2870]: https://datatracker.ietf.org/doc/html/rfc2870
+[RFC 5358]: https://datatracker.ietf.org/doc/html/rfc5358
+[RFC 5890]: https://datatracker.ietf.org/doc/html/rfc5890

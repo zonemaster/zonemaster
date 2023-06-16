@@ -94,7 +94,7 @@ a specific name server.
 [NO_RESPONSE]:               #outcomes
 [NO_SOA_IN_RESPONSE]:        #outcomes
 [ONE_SOA]:                   #outcomes
-[RFC 1035#5.2]:              https://tools.ietf.org/html/rfc1035#section-5.2
+[RFC 1035#5.2]:              https://datatracker.ietf.org/doc/html/rfc1035#section-5.2
 [WRONG_SOA]:                 #outcomes
 [terminology]:               #terminology
 

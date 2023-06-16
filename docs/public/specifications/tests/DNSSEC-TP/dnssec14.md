@@ -124,12 +124,12 @@ None.
 [KEY_SIZE_OK]:                                           #outcomes
 [Method4]:                                               ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                                               ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[NIST SP 800-57 Part 1 Rev. 4]:                          https://csrc.nist.gov/publications/detail/sp/800-57-part-1/rev-4/final
+[NIST SP 800-57 Part 1 Rev. 4]:                          https://csrc.nist.gov/publications/detail/sp/800-57-part-1/rev-4/archive/2016-01-28
 [NO_RESPONSE]:                                           #outcomes
 [NO_RESPONSE_DNSKEY]:                                    #outcomes
-[RFC 3110]:                                              https://tools.ietf.org/html/rfc3110
-[RFC 5155]:                                              https://tools.ietf.org/html/rfc5155
-[RFC 5702]:                                              https://tools.ietf.org/html/rfc5702#section-2
+[RFC 3110]:                                              https://datatracker.ietf.org/doc/html/rfc3110
+[RFC 5155]:                                              https://datatracker.ietf.org/doc/html/rfc5155
+[RFC 5702]:                                              https://datatracker.ietf.org/doc/html/rfc5702#section-2
 [RFC 8624]:                                              https://www.rfc-editor.org/rfc/rfc8624.html#section-3.1
 [Recommendation for key Management, part 1, revision 4]: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf
 

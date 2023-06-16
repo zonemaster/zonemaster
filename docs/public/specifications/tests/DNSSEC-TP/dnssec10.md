@@ -345,4 +345,4 @@ should not be used as of [RFC 5890][RFC 5890#section-2.3.1], section 2.3.1.
 [RFC 5890#section-2.3.1]:                     https://datatracker.ietf.org/doc/html/rfc5890#section-2.3.1
 [Severity Level Definitions]:                 ../SeverityLevelDefinitions.md
 [WARNING]:                                    ../SeverityLevelDefinitions.md#warning
-[Zonemaster-Engine profile]:                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/Profiles.md
+[Zonemaster-Engine profile]:                  ../../../configuration/profiles.md
