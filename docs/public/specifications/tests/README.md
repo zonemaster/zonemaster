@@ -76,13 +76,15 @@ project. All the details are in the [Master Test Plan].
 |[ADDRESS02](Address-TP/address02.md)|Reverse DNS entry exists for name server IP address|
 |[ADDRESS03](Address-TP/address03.md)|Reverse DNS entry matches name server name|
 |**Basic-TP**| |
-|[BASIC01](Basic-TP/basic01.md)|The domain must have a parent domain|
+|[BASIC00](Basic-TP/basic00.md)|Domain name must be valid|
+|[BASIC01](Basic-TP/basic01.md)|Check for the parent zone and the zone itself|
 |[BASIC02](Basic-TP/basic02.md)|The domain must have at least one working name server|
 |[BASIC03](Basic-TP/basic03.md)|The _Broken but functional_ test|
 |**Connectivity-TP**| |
 |[CONNECTIVITY01](Connectivity-TP/connectivity01.md)|UDP connectivity to name servers|
 |[CONNECTIVITY02](Connectivity-TP/connectivity02.md)|TCP connectivity to name servers|
 |[CONNECTIVITY03](Connectivity-TP/connectivity03.md)|AS Diversity|
+|[CONNECTIVITY04](Connectivity-TP/connectivity04.md)|IP Prefix Diversity|
 |**Consistency-TP**| |
 |[CONSISTENCY01](Consistency-TP/consistency01.md)|SOA serial number consistency|
 |[CONSISTENCY02](Consistency-TP/consistency02.md)|SOA RNAME consistency|
@@ -132,6 +134,7 @@ project. All the details are in the [Master Test Plan].
 |[NAMESERVER12](Nameserver-TP/nameserver12.md)|Test for unknown EDNS flags|
 |[NAMESERVER13](Nameserver-TP/nameserver13.md)|Test for truncated response on EDNS query|
 |[NAMESERVER14](Nameserver-TP/nameserver14.md)|Test for unknown version with unknown OPTION-CODE|
+|[NAMESERVER15](Nameserver-TP/nameserver15.md)|Checking for revealed software version|
 |**Syntax-TP**| |
 |[SYNTAX01](Syntax-TP/syntax01.md)|No illegal characters in the domain name|
 |[SYNTAX02](Syntax-TP/syntax02.md)|No hyphen ('-') at the start or end of the domain name|
@@ -152,4 +155,4 @@ project. All the details are in the [Master Test Plan].
 |[ZONE08](Zone-TP/zone08.md)|MX is not an alias|
 |[ZONE09](Zone-TP/zone09.md)|MX record present|
 |[ZONE10](Zone-TP/zone10.md)|No multiple SOA records|
-|[ZONE11](Zone-TP/zone11.md)|Presence of SPF policy|
+|[ZONE11](Zone-TP/zone11.md)|SPF policy validation|
