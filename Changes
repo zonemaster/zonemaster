@@ -5,7 +5,7 @@ v2023.1 2023-06-21 (public release version)
  [Breaking changes]
  - Changes out zonemaster-cli with option --version. See Zonemaster-CLI
  - Removes deprecated features related to locale. See Zonemaster-Backend
- - Remove deprecated "creation_time" key. See Zonemaster-Backend
+ - Removes deprecated "creation_time" key. See Zonemaster-Backend
 
  [Features]
  - Adds new experimental Backend API methods and method names in documentation
@@ -13,20 +13,21 @@ v2023.1 2023-06-21 (public release version)
  - Moves most documentation from other repositories to this repository (#1156,
    #1147)
  - Adds specification of test data and zone files for unit testing (#1151)
- - Creates test case specification "IP Prefix Diversity", CONNECTIVITY04 (#1149)
- - Creates Test case sepecification "Checking for revealed software version",
+ - Adds test case specification "IP Prefix Diversity", CONNECTIVITY04 (#1149)
+ - Adds test case specification "Checking for revealed software version",
    NAMESERVER15 (#1150)
- - Adds test case specification for testing SPF, ZONE11 (#1146, #1148)
+ - Adds test case specification "SPF policy validation", ZONE11 (#1146, #1148)
  - Expands DNAME support. See Zonemaster-LDNS
- - Updates or adds implementation of test cases BASIC01, CONNECTIVITY04,
-   CONNECTIVITY03, NAMESERVER15, BASIC02, NAMESERVER15 and ZONE09. See
+ - Adds implementation of test cases CONNECTIVITY04 and NAMESERVER15. See
+   Zonemaster-Engine
+ - Updates implementation of test cases BASIC01, BASIC02, CONNECTIVITY03, and ZONE09. See
    Zonemaster-Engine
  - Updates various options for zonemaster-cli. See Zonemaster-CLI
  - Improves GUI result page. See Zonemaster-GUI
 
  [Fixes]
  - Fixes links in documentation (#1164)
- - Cleans up in documentation (#1163)
+ - Clean-up in documentation (#1163)
  - Updates installation instructions (#1157, #1161, #1160, #1158)
  - Adds style guide item on autolinks (#1081)
  - Adds missing dependency for Debian in Distribution Testing document (#1155)
