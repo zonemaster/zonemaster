@@ -11,10 +11,25 @@ Use:
 1. Remove Test Case table from [Test Case README] and save the file
 2. Do:
 ```
-cd ../docs/specifications/tests
-../../../utils/generateTestCaseList.pl >> README.md
+cd ../docs/public/specifications/tests
+../../../../utils/generateTestCaseList.pl >> README.md
 ```
 3. Submit to git.
+
+## [updateTestPlanReadme.pl]
+
+This tool extracts all Test Case specifications per Test Plan and creates
+Markdown tables. The tables are automatically added to the Test Plan README.md
+file. These tables should be recreated at each Zonemaster release.
+
+Use:
+
+1. Do:
+```
+cd ../docs/public/specifications/tests
+../../../../utils/updateTestPlanReadme.pl
+```
+2. Submit to git.
 
 ## [generateTestMessages.pl]
 
@@ -30,8 +45,8 @@ Use:
 
 1. Do:
 ```
-cd ../docs/specifications/tests
-../../../utils/generateTestMessages.pl > TestMessages.md
+cd ../docs/public/specifications/tests
+../../../../utils/generateTestMessages.pl > TestMessages.md
 ```
 2. Submit to git.
 
@@ -48,17 +63,17 @@ Use:
 
 1. Do:
 ```
-cd ../docs/specifications/tests
-../../../utils/generateImplementedTestCases.pl > ImplementedTestCases.md
+cd ../docs/public/specifications/tests
+../../../../utils/generateImplementedTestCases.pl > ImplementedTestCases.md
 ```
 2. Submit to git.
 
 
-[generateImplementedTestCases.pl]:		generateImplementedTestCases.pl
-[generateTestCaseList.pl]:      		generateTestCaseList.pl
-[generateTestMessages.pl]:      		generateTestMessages.pl
-[ImplementedTestCases.md]:			../docs/specifications/tests/ImplementedTestCases.md
-[TestMessages.md]:              		../docs/specifications/tests/TestMessages.md
-[Test Case README]:             		../docs/specifications/tests/README.md
-[Zonemaster-Engine]:            		https://github.com/zonemaster/zonemaster-engine
-
+[generateImplementedTestCases.pl]: generateImplementedTestCases.pl
+[generateTestCaseList.pl]:         generateTestCaseList.pl
+[generateTestMessages.pl]:         generateTestMessages.pl
+[ImplementedTestCases.md]:         ../docs/specifications/tests/ImplementedTestCases.md
+[Test Case README]:                ../docs/specifications/tests/README.md
+[TestMessages.md]:                 ../docs/specifications/tests/TestMessages.md
+[updateTestPlanReadme.pl]:         generateTestMessages.pl
+[Zonemaster-Engine]:               https://github.com/zonemaster/zonemaster-engine

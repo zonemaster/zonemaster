@@ -1,0 +1,137 @@
+$ORIGIN dnssec16.xa.
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2022121300      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+		NS	ns1
+		NS	ns2
+
+ns1		A	127.15.16.21
+ns1		AAAA	fda1:b2:c3:0:127:15:16:21
+ns2		A	127.15.16.22
+ns2		AAAA	fda1:b2:c3:0:127:15:16:22
+
+$ORIGIN cds-invalid-rrsig.dnssec16.xa.
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.15.16.31	
+ns1		AAAA	fda1:b2:c3:0:127:15:16:31
+ns2		A	127.15.16.32
+ns2		AAAA	fda1:b2:c3:0:127:15:16:32
+
+$ORIGIN cds-matches-no-dnskey.dnssec16.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.15.16.31
+ns1             AAAA    fda1:b2:c3:0:127:15:16:31
+ns2             A       127.15.16.32
+ns2             AAAA    fda1:b2:c3:0:127:15:16:32
+
+$ORIGIN cds-matches-non-sep-dnskey.dnssec16.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.15.16.31
+ns1             AAAA    fda1:b2:c3:0:127:15:16:31
+ns2             A       127.15.16.32
+ns2             AAAA    fda1:b2:c3:0:127:15:16:32
+
+$ORIGIN cds-matches-non-zone-dnskey.dnssec16.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.15.16.31
+ns1             AAAA    fda1:b2:c3:0:127:15:16:31
+ns2             A       127.15.16.32
+ns2             AAAA    fda1:b2:c3:0:127:15:16:32
+
+$ORIGIN cds-not-signed-by-cds.dnssec16.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.15.16.31
+ns1             AAAA    fda1:b2:c3:0:127:15:16:31
+ns2             A       127.15.16.32
+ns2             AAAA    fda1:b2:c3:0:127:15:16:32
+
+$ORIGIN cds-signed-by-unknown-dnskey.dnssec16.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.15.16.31
+ns1             AAAA    fda1:b2:c3:0:127:15:16:31
+ns2             A       127.15.16.32
+ns2             AAAA    fda1:b2:c3:0:127:15:16:32
+
+$ORIGIN cds-unsigned.dnssec16.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.15.16.31
+ns1             AAAA    fda1:b2:c3:0:127:15:16:31
+ns2             A       127.15.16.32
+ns2             AAAA    fda1:b2:c3:0:127:15:16:32
+
+$ORIGIN cds-without-dnskey.dnssec16.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.15.16.31
+ns1             AAAA    fda1:b2:c3:0:127:15:16:31
+ns2             A       127.15.16.32
+ns2             AAAA    fda1:b2:c3:0:127:15:16:32
+
+$ORIGIN delete-cds.dnssec16.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.15.16.31
+ns1             AAAA    fda1:b2:c3:0:127:15:16:31
+ns2             A       127.15.16.32
+ns2             AAAA    fda1:b2:c3:0:127:15:16:32
+
+$ORIGIN dnskey-not-signed-by-cds.dnssec16.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.15.16.31
+ns1             AAAA    fda1:b2:c3:0:127:15:16:31
+ns2             A       127.15.16.32
+ns2             AAAA    fda1:b2:c3:0:127:15:16:32
+
+$ORIGIN mixed-delete-cds.dnssec16.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.15.16.31
+ns1             AAAA    fda1:b2:c3:0:127:15:16:31
+ns2             A       127.15.16.32
+ns2             AAAA    fda1:b2:c3:0:127:15:16:32
+
+$ORIGIN no-cds.dnssec16.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.15.16.31
+ns1             AAAA    fda1:b2:c3:0:127:15:16:31
+ns2             A       127.15.16.32
+ns2             AAAA    fda1:b2:c3:0:127:15:16:32
+
+$ORIGIN not-aa.dnssec16.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.15.16.31
+ns1             AAAA    fda1:b2:c3:0:127:15:16:31
+ns2             A       127.15.16.32
+ns2             AAAA    fda1:b2:c3:0:127:15:16:32
+
+$ORIGIN valid-cds.dnssec16.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.15.16.31
+ns1             AAAA    fda1:b2:c3:0:127:15:16:31
+ns2             A       127.15.16.32
+ns2             AAAA    fda1:b2:c3:0:127:15:16:32
+
+$ORIGIN test.dnssec16.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.15.16.31
+ns1             AAAA    fda1:b2:c3:0:127:15:16:31
+ns2             A       127.15.16.32
+ns2             AAAA    fda1:b2:c3:0:127:15:16:32
