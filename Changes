@@ -1,5 +1,54 @@
 Release history of Zonemaster
 
+v2023.1 2023-06-21 (public release version)
+
+ [Breaking changes]
+ - Changes out zonemaster-cli with option --version. See Zonemaster-CLI
+ - Removes deprecated features related to locale. See Zonemaster-Backend
+ - Remove deprecated "creation_time" key. See Zonemaster-Backend
+
+ [Features]
+ - Adds new experimental Backend API methods and method names in documentation
+   (#1162)
+ - Moves most documentation from other repositories to this repository (#1156,
+   #1147)
+ - Adds specification of test data and zone files for unit testing (#1151)
+ - Creates test case specification "IP Prefix Diversity", CONNECTIVITY04 (#1149)
+ - Creates Test case sepecification "Checking for revealed software version",
+   NAMESERVER15 (#1150)
+ - Adds test case specification for testing SPF, ZONE11 (#1146, #1148)
+ - Expands DNAME support. See Zonemaster-LDNS
+ - Updates or adds implementation of test cases BASIC01, CONNECTIVITY04,
+   CONNECTIVITY03, NAMESERVER15, BASIC02, NAMESERVER15 and ZONE09. See
+   Zonemaster-Engine
+ - Updates various options for zonemaster-cli. See Zonemaster-CLI
+ - Improves GUI result page. See Zonemaster-GUI
+
+ [Fixes]
+ - Fixes links in documentation (#1164)
+ - Cleans up in documentation (#1163)
+ - Updates installation instructions (#1157, #1161, #1160, #1158)
+ - Adds style guide item on autolinks (#1081)
+ - Adds missing dependency for Debian in Distribution Testing document (#1155)
+ - Fixes typos and inconsistencies in DNSSEC16 and DNSSEC17 test case
+   specifications (#1152)
+ - Corrects the specification of test case ZONE09 (#1128)
+ - Updates test case specification BASIC02 (#1145)
+ - Updates translations. See Zonemaster-Engine, Zonemaster-CLI,
+   Zonemaster-Backend and Zonemaster-GUI
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components. For
+   each component, see its Changes file or Github release notes for complete
+   release information.
+
+   Zonemaster-LDNS      v3.2.0  https://github.com/zonemaster/zonemaster-ldns/releases/tag/v3.2.0
+   Zonemaster-Engine    v4.7.0  https://github.com/zonemaster/zonemaster-engine/releases/tag/v4.7.0
+   Zonemaster-CLI       v6.0.0  https://github.com/zonemaster/zonemaster-cli/releases/tag/v6.0.0
+   Zonemaster-Backend  v11.0.0  https://github.com/zonemaster/zonemaster-backend/releases/tag/v11.0.0
+   Zonemaster-GUI       v4.1.0  https://github.com/zonemaster/zonemaster-gui/releases/tag/v4.1.0
+
+
 v2022.2.2 2023-03-01 (public fix version)
 
  [Fixes]
