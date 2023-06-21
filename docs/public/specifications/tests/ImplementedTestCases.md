@@ -20,6 +20,7 @@ Index of Text Case specifications is also found in [README](README.md).
 | [Connectivity](https://metacpan.org/pod/Zonemaster::Engine::Test::Connectivity) | connectivity01 | [CONNECTIVITY01](Connectivity-TP/connectivity01.md) |
 | [Connectivity](https://metacpan.org/pod/Zonemaster::Engine::Test::Connectivity) | connectivity02 | [CONNECTIVITY02](Connectivity-TP/connectivity02.md) |
 | [Connectivity](https://metacpan.org/pod/Zonemaster::Engine::Test::Connectivity) | connectivity03 | [CONNECTIVITY03](Connectivity-TP/connectivity03.md) |
+| [Connectivity](https://metacpan.org/pod/Zonemaster::Engine::Test::Connectivity) | connectivity04 | [CONNECTIVITY04](Connectivity-TP/connectivity04.md) |
 | [Consistency](https://metacpan.org/pod/Zonemaster::Engine::Test::Consistency) | consistency01 | [CONSISTENCY01](Consistency-TP/consistency01.md) |
 | [Consistency](https://metacpan.org/pod/Zonemaster::Engine::Test::Consistency) | consistency02 | [CONSISTENCY02](Consistency-TP/consistency02.md) |
 | [Consistency](https://metacpan.org/pod/Zonemaster::Engine::Test::Consistency) | consistency03 | [CONSISTENCY03](Consistency-TP/consistency03.md) |
@@ -63,6 +64,7 @@ Index of Text Case specifications is also found in [README](README.md).
 | [Nameserver](https://metacpan.org/pod/Zonemaster::Engine::Test::Nameserver) | nameserver11 | [NAMESERVER11](Nameserver-TP/nameserver11.md) |
 | [Nameserver](https://metacpan.org/pod/Zonemaster::Engine::Test::Nameserver) | nameserver12 | [NAMESERVER12](Nameserver-TP/nameserver12.md) |
 | [Nameserver](https://metacpan.org/pod/Zonemaster::Engine::Test::Nameserver) | nameserver13 | [NAMESERVER13](Nameserver-TP/nameserver13.md) |
+| [Nameserver](https://metacpan.org/pod/Zonemaster::Engine::Test::Nameserver) | nameserver15 | [NAMESERVER15](Nameserver-TP/nameserver15.md) |
 | [Syntax](https://metacpan.org/pod/Zonemaster::Engine::Test::Syntax) | syntax01 | [SYNTAX01](Syntax-TP/syntax01.md) |
 | [Syntax](https://metacpan.org/pod/Zonemaster::Engine::Test::Syntax) | syntax02 | [SYNTAX02](Syntax-TP/syntax02.md) |
 | [Syntax](https://metacpan.org/pod/Zonemaster::Engine::Test::Syntax) | syntax03 | [SYNTAX03](Syntax-TP/syntax03.md) |

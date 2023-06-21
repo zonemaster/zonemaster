@@ -24,3 +24,4 @@ This document uses the terminology defined in the [Master Test Plan].
 |[ZONE08](zone08.md)|MX is not an alias|
 |[ZONE09](zone09.md)|MX record present|
 |[ZONE10](zone10.md)|No multiple SOA records|
+|[ZONE11](zone11.md)|SPF policy validation|
