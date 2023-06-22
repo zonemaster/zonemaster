@@ -48,9 +48,10 @@ tag.
    For instance the following commands could be used to merge
    `bullseye-nightly` into `bullseye`:
    ```
-   git checkout bullseye-nightly
-   git merge --no-commit bullseye
-   git restore .gitlab-ci.yml */pkg.sh
+   git checkout bullseye
+   git merge --no-commit bullseye-nightly
+   git reset HEAD -- .gitlab-ci.yml */pkg.sh
+   git checkout -- .gitlab-ci.yml */pkg.sh
    git commit
    ```
 
