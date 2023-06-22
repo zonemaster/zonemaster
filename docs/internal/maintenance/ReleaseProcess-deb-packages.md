@@ -60,13 +60,12 @@ tag.
 
 3. Update the `changelog` for each package, by adding a new entry. The first line
    should contain the package version in format
-   `<project version>-<package version>+deb<debian version>`.
+   `<project version>-<package version>`.
 
-   For example:  `zonemaster-cli (3.1.0-3+deb11)` is the partial entry for
-   Zonemaster CLI version `3.1.0`, the package version is `3` and it is built
-   for Debian 11. Package version is incremented when the package sources are
-   updated but the upstream version (i.e. Zonemaster component version) remains
-   the same.
+   For example:  `zonemaster-cli (3.1.0-3)` is the partial entry for
+   Zonemaster-CLI version `3.1.0`, the package version is `3`. Package version
+   is incremented when the package sources are updated but the upstream version
+   (i.e. Zonemaster component version) remains the same.
 
 4. Push the modifications to the packages sources repository. Then the packages
    are automatically built and deployed to package.zonemaster.net.
