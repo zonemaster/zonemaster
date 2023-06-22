@@ -15,10 +15,10 @@ packages" are updated. In the second step packages are promoted to "stable packa
 
 Nightly packages are based on the develop branch of Zonemaster git repositories.
 The sources for nightly packages are kept in the branch `<distribution>-nightly`
-of the [Packages sources] repository. Where `<distrubtion>` correspond to the
+of the [Packages sources] repository. Where `<distribution>` corresponds to the
 name of the Debian or Ubuntu version the branch is building packages for.
 As Ubuntu packages are based on the Debian ones, this will most likely be a
-Debain version name.
+Debian version name.
 
 For each package:
 
@@ -100,7 +100,7 @@ sudo apt install zonemaster-cli
 
 Edit the `.gitlab-ci.yml` file to add three new jobs for the new OS version.
 The name of the job is in the format `{step}:{os}:{version codename}`, where
-step in one of `build`, `publish` and `test`. The jobs must extend a parent job
+step is one of `build`, `publish` and `test`. The jobs must extend a parent job
 named `.{step}`. The build and publish steps must also define the following
 variables:
 * `OS`: OS name as it is in the `/etc/os-release`;
@@ -167,7 +167,7 @@ ones in the CI file.
 
 ### Publication pipeline overview
 
-The continuous deployment pipeline perform 3 tasks:
+The continuous deployment pipeline performs 3 tasks:
 
 1. `build`: build the packages using the `build.sh` script in the packages
    sources repository.
