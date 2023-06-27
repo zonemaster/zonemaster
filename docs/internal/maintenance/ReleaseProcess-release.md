@@ -8,7 +8,7 @@ Release process - Release
 * [3. Updates to repositories](#3-updates-to-repositories)
 * [4. Determine the new version number](#4-determine-the-new-version-number)
 * [5. Update the Changes file](#5-update-the-changes-file)
-* [6. Set version number](#6-set-version-number)
+* [6. Set version number for Perl modules](#6-set-version-number-for-perl-modules)
 * [7. Set version number for GUI](#7-set-version-number-for-gui)
 * [8. Update Makefile.PL with required version](#8-update-makefilepl-with-required-version)
 * [9. Create a clean Git working area of *develop branch*](#9-create-a-clean-git-working-area-of-develop-branch)
@@ -24,6 +24,7 @@ Release process - Release
 * [19. Merge master into develop](#19-merge-master-into-develop)
 * [Appendix A on version number in Makefile.PL](#appendix-a-on-version-number-in-makefilepl)
 * [Appendix B on reverting commits](#appendix-b-on-reverting-commits)
+
 
 ## 1. Overview
 
@@ -87,7 +88,7 @@ The updates to the *Changes* file are done to the *develop branch*.
  
 [(Top)](#table-of-contents)
 
-## 6. Set version number
+## 6. Set version number for Perl modules
 
 > This step does not apply to Zonemaster/Zonemaster and Zonemaster-GUI
 
