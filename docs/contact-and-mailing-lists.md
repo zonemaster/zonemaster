@@ -16,7 +16,7 @@ it is used to announce that a new Zonemaster release has been
 published, but also to report on severe security problems.
 
 The members of the list are not able to post any messages to the
-list. This if for one-way communication only.
+list. This is for one-way communication only.
 
 To sign-up on the list, go to
 https://lists.iis.se/mailman/listinfo/zonemaster-announce
@@ -46,7 +46,7 @@ help you solving the issue. Zonemaster can hopefully point out what
 is wrong, but to have that issue resolved, you have to turn to
 your DNS operator.
 
-If Zonemaster do not report when there is a DNS error, or if
+If Zonemaster does not report when there is a DNS error, or if
 Zonemaster falsely reports an error, then we are very interested
 to hear from you.
 
