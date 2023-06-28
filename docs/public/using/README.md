@@ -1,5 +1,8 @@
 # Zonemaster users guide
 
+*Click on [SUMMARY](../SUMMARY.md) to view a linked tree structur of all documents
+under "public".*
+
 The purpose of the Zonemaster project is to develop a DNS validation software.
 There are three ways one can use the Zonemaster software:
 

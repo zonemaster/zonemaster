@@ -1,3 +1,7 @@
+<!-- This file must match the format described in 
+ https://rust-lang.github.io/mdBook/format/summary.html -->
+# Documents in public document tree
+
 - [Installation](installation/README.md)
     - [Prerequisites](installation/prerequisites.md)
     - [Zonemaster-LDNS](installation/zonemaster-ldns.md)
