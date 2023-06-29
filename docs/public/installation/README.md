@@ -1,8 +1,5 @@
 # Installation instructions
 
-*Click on [SUMMARY](../SUMMARY.md) to view a linked tree structur of all documents
-under "public".*
-
 ## Manual installation
 
 Before installing Zonemaster, check the [prerequisites] first.
