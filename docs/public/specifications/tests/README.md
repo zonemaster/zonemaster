@@ -30,7 +30,7 @@ project. All the details are in the [Master Test Plan].
 
 ## Elaboration of the Test Case
 
-Test cases are written for almost all Test Requirement. There could be the case
+Test cases are written for almost all Test Requirements. There could be the case
 that a requirement can be implemented by doing more test cases than one, or
 that several requirements are solved by only one test case.
 
