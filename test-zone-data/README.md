@@ -21,7 +21,7 @@ for the test zone scenarios.
 
 1. Only Ubuntu 22.04 is supported.
 2. Install Zonemaster-CLI on the computer. Install current develop branch or the
-   latest version of Zonemaster (it will not with older version than v2022.2,
+   latest version of Zonemaster (it will not work with older version than v2022.2,
    first version with support for `--hint`).
 3. Clone this repository or copy its contents to the computer.
 4. Install `go`:
@@ -133,7 +133,7 @@ in those directories.
   * Holds zone files and configuration that are shared between several scenarios
     for different test cases.
 * Address-TP/ (*not yet available*)
-  * Directory structure for scenarios for test cases in the Adress-TP test module.
+  * Directory structure for scenarios for test cases in the Address-TP test module.
 * Basic-TP/ (*not yet available*)
   * Directory structure for scenarios for test cases in the Basic-TP test module.
 * Connectivity-TP/ (*not yet available*)

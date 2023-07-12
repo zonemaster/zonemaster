@@ -4,7 +4,8 @@
 * [Background]
 * [Mapping the Test Requirements to Test Case]
 * [Elaboration of the test case]
-* [Document Hierarchy]
+* [Document hierarchy]
+* [Other documents]
 * [List of Defined Test Cases]
 
 ## Background
@@ -12,59 +13,86 @@
 This is the collection of **Test Case** specifications for the Zonemaster
 project. All the details are in the [Master Test Plan].
 
-1. The test cases that has been elaborated as Test Case specifications 
-   have been defined as a list of [test requirements]. Each test falls
-   under a specific category.
-2. The document hierarchy of the Test Case specifications could be found in
-   the [Master Test Plan].
+* The test cases that has been elaborated as Test Case specifications have been
+  defined as a list of [test requirements]. Each test falls under a specific
+  category.
+* The document hierarchy of the Test Case specifications could be found in the
+  [Master Test Plan].
 
 ## Mapping the Test Requirements to Test Case
 
-1. Each test level has been separated into a separate directory below
-   this directory.
-2. Under each test level directory there is a level document (README.md)
-   describing the test level. Links are found below.
-3. The Test Cases are listed below. The mapping from Test Requirement
-   to Test Case is found in the [Test requirements] document.
+* Each test level has been separated into a separate directory below this
+  directory.
+* Under each test level directory there is a level document (README.md)
+  describing the test level. Links are found below.
+* The Test Cases are listed below. The mapping from Test Requirement to Test Case
+  is found in the [Test requirements] document.
 
-## Elaboration of the test case
+## Elaboration of the Test Case
 
-1. Test cases are written for almost all Test Requirement. There could
-   be the case that a requirement can be implemented by doing more test
-   cases than one, or that several requirements are solved by only one
-   test case.
+Test cases are written for almost all Test Requirements. There could be the case
+that a requirement can be implemented by doing more test cases than one, or
+that several requirements are solved by only one test case.
 
-## Document Hierarchy
+## Document hierarchy
 
-1. Each Test Level described in [Master Test Plan] should be linked
-   directly to the correct level document (the README.md in the test
-   level directory). The level documents are found here:
-   * [Address-TP]
-   * [Basic-TP]
-   * [Connectivity-TP]
-   * [Consistency-TP]
-   * [DNSSEC-TP]
-   * [Delegation-TP]
-   * [Nameserver-TP]
-   * [Syntax-TP]
-   * [Zone-TP]
+Each Test Level described in [Master Test Plan] should be linked directly to the
+correct level document (the README.md in the test level directory). The level
+documents are found here:
 
-[Mapping the Test Requirements to Test Case]:  #mapping-the-test-requirements-to-test-case
-[Address-TP]:                                  Address-TP/README.md
-[Basic-TP]:                                    Basic-TP/README.md
-[Connectivity-TP]:                             Connectivity-TP/README.md
-[Consistency-TP]:                              Consistency-TP/README.md
-[DNSSEC-TP]:                                   DNSSEC-TP/README.md
-[Delegation-TP]:                               Delegation-TP/README.md
-[Master Test Plan]:                            MasterTestPlan.md
-[Nameserver-TP]:                               Nameserver-TP/README.md
-[Syntax-TP]:                                   Syntax-TP/README.md
-[Test requirements]:                           ../../../internal/test-requirements/TestRequirements.md
-[Zone-TP]:                                     Zone-TP/README.md
-[Background]:                                  #background
-[Elaboration of the test case]:                #elaboration-of-the-test-case
-[Document Hierarchy]:                          #document-hierarchy
-[List of Defined Test Cases]:                  #list-of-defined-test-cases
+* [Address-TP]
+* [Basic-TP]
+* [Connectivity-TP]
+* [Consistency-TP]
+* [DNSSEC-TP]
+* [Delegation-TP]
+* [Nameserver-TP]
+* [Syntax-TP]
+* [Zone-TP]
+
+## Other documents
+
+The following documents are linked from and used by the Test Case
+specifications listed in the table below:
+
+* [DNS Query and Response Defaults]
+* [Methods common to Test Case Specifications (version 1)]
+* [Methods common to Test Case Specifications (version 2)]
+* [Requirements and normalization of domain names in input]
+* [Severity Level Definitions]
+
+The following documents are useful documents when studying the
+Test Case specifications:
+
+* [Mapping test messages to Test Cases]
+* [Implemented Test Cases]
+* [Zonemaster Master Test Plan]
+
+[Address-TP]:                                                Address-TP/README.md
+[Background]:                                                #background
+[Basic-TP]:                                                  Basic-TP/README.md
+[Connectivity-TP]:                                           Connectivity-TP/README.md
+[Consistency-TP]:                                            Consistency-TP/README.md
+[DNS Query and Response Defaults]:                           DNSQueryAndResponseDefaults.md
+[DNSSEC-TP]:                                                 DNSSEC-TP/README.md
+[Delegation-TP]:                                             Delegation-TP/README.md
+[Document Hierarchy]:                                        #document-hierarchy
+[Elaboration of the test case]:                              #elaboration-of-the-test-case
+[Implemented Test Cases]:                                    ImplementedTestCases.md
+[List of Defined Test Cases]:                                #list-of-defined-test-cases
+[Mapping test messages to Test Cases]:                       TestMessages.md
+[Mapping the Test Requirements to Test Case]:                #mapping-the-test-requirements-to-test-case
+[Master Test Plan]:                                          MasterTestPlan.md
+[Methods common to Test Case Specifications (version 1)]:    Methods.md
+[Methods common to Test Case Specifications (version 2)]:    MethodsV2.md
+[Nameserver-TP]:                                             Nameserver-TP/README.md
+[Other documents]:                                           #other-documents
+[Requirements and normalization of domain names in input]:   RequirementsAndNormalizationOfDomainNames.md
+[Severity Level Definitions]:                                SeverityLevelDefinitions.md
+[Syntax-TP]:                                                 Syntax-TP/README.md
+[Test requirements]:                                         ../../../internal/test-requirements/TestRequirements.md
+[Zone-TP]:                                                   Zone-TP/README.md
+[Zonemaster Master Test Plan]:                               MasterTestPlan.md
 
 ## List of Defined Test Cases
 <!-- Table generated by script generateTestCaseList.pl from Zonemaster/Zonemaster utils directory -->

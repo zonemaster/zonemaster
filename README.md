@@ -1,5 +1,5 @@
 
-# ![Zonemaster](docs/images/zonemaster_logo_2021_color.png)
+# ![Zonemaster](assets/images/zonemaster_logo_2021_color.png)
 
 ## Table of contents
 
@@ -51,12 +51,18 @@ the future.
 
 ## Documentation
 
-This is the main project repository. In this repository, documentation
-regarding the [design](docs/internal/design),
-[requirements](docs/internal/requirements) and
-[specifications](docs/public/specifications) for the Zonemaster implementation
-are available.
-We also have a brief [user guide](USING.md).
+This is the main project repository. In this repository, most documentation of
+Zonemaster is found.
+
+In the [public documentation](docs/public/README.md) you will find e.g.
+[specifications](docs/public/specifications/tests/README.md) of all Test Cases
+for the Zonemaster implementation, as well as
+[installation instructions](docs/public/installation/README.md) and
+[user guides](docs/public/using/README.md) for each Zonemaster component.
+
+In the internal tree you can find documentation regarding the
+[design](docs/internal/design) and [requirements](docs/internal/requirements) of
+the Zonemaster implementation.
 
 The [public](docs/public) documentation can be built using
 [`mdbook`](https://rust-lang.github.io/mdBook/) and the following commands:
