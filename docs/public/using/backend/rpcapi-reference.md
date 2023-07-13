@@ -1248,8 +1248,7 @@ This method is not available if [`RPCAPI.enable_add_batch_job`][RPCAPI.enable_ad
 is disabled (enabled by default).
 
 A [*username*][Username] and its [*api key*][Api key] can be added with the
-[`add_api_user`][API add_api_user] method. A [*username*][Username] can only have
-one un-finished *batch* at a time.
+[`add_api_user`][API add_api_user] method.
 
 *Tests* enqueud using this method are assigned a [*priority*][Priority] of 5.
 
