@@ -419,9 +419,9 @@ In other cases, no message or only messages with severity level
 
 ## Special procedural requirements
 
-If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
-result of any test using this transport protocol. Log a message reporting
-on the ignored result.
+If either IPv4 or IPv6 transport is disabled, skip sending queries over that
+transport protocol. A message will be outputted reporting that the transport
+protocol has been skipped.
 
 See the [DNSSEC README] document about DNSSEC algorithms.
 
@@ -432,6 +432,9 @@ None.
 
 
 ## Terminology
+
+No special terminology for this Test Case.
+
 
 ### The Non-Existent Query Name
 
