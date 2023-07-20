@@ -416,9 +416,9 @@ In other cases, no message or only messages with severity level
 
 ## Special procedural requirements
 
-If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
-result of any test using this transport protocol. Log a message reporting
-on the ignored result.
+If either IPv4 or IPv6 transport is disabled, skip sending queries over that
+transport protocol. A message will be outputted reporting that the transport
+protocol has been skipped.
 
 See the [DNSSEC README] document about DNSSEC algorithms.
 
@@ -430,12 +430,7 @@ None.
 
 ## Terminology
 
-### The Nonexistent Query Name
-
-The term "The Nonexistent Query Name" is used for a name in the *Child Zone*,
-just below apex constructed for this test case to, with high certainty, not
-exist, as a directly defined name. The first label starts with "xx--" which
-should not be used as of [RFC 5890][RFC 5890#section-2.3.1], section 2.3.1.
+No special terminology for this Test Case.
 
 
 [Argument list]:                              ../ArgumentsForTestCaseMessages.md
