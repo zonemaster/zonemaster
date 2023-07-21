@@ -1252,6 +1252,10 @@ A [*username*][Username] and its [*api key*][Api key] can be added with the
 
 *Tests* enqueud using this method are assigned a [*priority*][Priority] of 5.
 
+> In previous versions of Zonemaster-Backend a new batch could not be created by
+> the same [*username*][Username] if that *username* had created a batch that was
+> not yet finished. That restriction has been removed.
+
 
 Example request:
 ```json
@@ -1312,28 +1316,8 @@ A [*batch id*][Batch id].
 
 #### `"error"`
 
-* You cannot create a new batch job if a *batch* with unfinished *tests* already
-  exists for this [*username*][Username].
 * If the given `profile` is not among the [available profiles][Profile sections],
   a user error is returned, see the [profile name section][profile name].
-
-Trying to add a batch when a batch is still running for the [*username*][Username] in the
-request:
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "error": {
-    "data": {
-      "created_at": "2021-09-27T07:33:40Z",
-      "batch_id": 1
-    },
-    "code": -32603,
-    "message": "Batch job still running"
-  }
-}
-
-```
 
 Trying to add a batch when wrong [*username*][Username] or [*api key*][Api key] is used:
 ```json
