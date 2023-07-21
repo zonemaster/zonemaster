@@ -183,8 +183,8 @@ The continuous deployment pipeline perform 3 tasks:
 * [Debian maintainer guide](https://www.debian.org/doc/manuals/maint-guide/)
 * [Third party repository in Debian](https://wiki.debian.org/DebianRepository/UseThirdParty)
 
-[aptly]: https://www.aptly.info
-[Packages sources]: https://gitlab.rd.nic.fr/zonemaster/packages/debian
-[Common Gitlab pipeline]: https://gitlab.rd.nic.fr/zonemaster/ci/-/blob/main/deb-packaging.yml
-[`package.zonemaster.net` content]: https://gitlab.rd.nic.fr/zonemaster/packages/www/
-[published on Github]: ReleaseProcess-release.md#16-tag-the-release-with-git
+[aptly]:                              https://www.aptly.info
+[Packages sources]:                   https://gitlab.rd.nic.fr/zonemaster/packages/debian
+[Common Gitlab pipeline]:             https://gitlab.rd.nic.fr/zonemaster/ci/-/blob/main/deb-packaging.yml
+[`package.zonemaster.net` content]:   https://gitlab.rd.nic.fr/zonemaster/packages/www/
+[published on Github]:                ReleaseProcess-release.md#17-tag-the-release-with-git

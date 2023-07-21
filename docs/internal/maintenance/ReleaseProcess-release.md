@@ -8,21 +8,23 @@ Release process - Release
 * [3. Updates to repositories](#3-updates-to-repositories)
 * [4. Determine the new version number](#4-determine-the-new-version-number)
 * [5. Update the Changes file](#5-update-the-changes-file)
-* [6. Set all version numbers](#6-set-all-version-numbers)
-* [7. Update Makefile.PL with required version](#7-update-makefilepl-with-required-version)
-* [8. Create a clean Git working area of *develop branch*](#8-create-a-clean-git-working-area-of-develop-branch)
-* [9. Produce distribution tarballs](#9-produce-distribution-tarballs)
-* [10. Produce distribution zip file](#10-produce-distribution-zip-file)
-* [11. Update Zonemaster repository main _README.md_](#11-update-zonemaster-repository-main-readmemd)
-* [12. Generate documents](#12-generate-documents)
-* [13. Upload to CPAN](#13-upload-to-cpan)
-* [14. Merge develop branch into master](#14-merge-develop-branch-into-master)
-* [15. Create Docker images and upload image to Docker Hub](#15-create-docker-images-and-upload-image-to-docker-hub)
-* [16. Tag the release with git](#16-tag-the-release-with-git)
-* [17. Announce the release](#17-announce-the-release)
-* [18. Merge master into develop](#18-merge-master-into-develop)
+* [6. Set version number for Perl modules](#6-set-version-number-for-perl-modules)
+* [7. Set version number for GUI](#7-set-version-number-for-gui)
+* [8. Update Makefile.PL with required version](#8-update-makefilepl-with-required-version)
+* [9. Create a clean Git working area of *develop branch*](#9-create-a-clean-git-working-area-of-develop-branch)
+* [10. Produce distribution tarballs](#10-produce-distribution-tarballs)
+* [11. Produce distribution zip file](#11-produce-distribution-zip-file)
+* [12. Update Zonemaster repository main _README.md_](#12-update-zonemaster-repository-main-readmemd)
+* [13. Generate documents](#13-generate-documents)
+* [14. Upload to CPAN](#14-upload-to-cpan)
+* [15. Merge develop branch into master](#15-merge-develop-branch-into-master)
+* [16. Create Docker images and upload image to Docker Hub](#16-create-docker-images-and-upload-image-to-docker-hub)
+* [17. Tag the release with git](#17-tag-the-release-with-git)
+* [18. Announce the release](#18-announce-the-release)
+* [19. Merge master into develop](#19-merge-master-into-develop)
 * [Appendix A on version number in Makefile.PL](#appendix-a-on-version-number-in-makefilepl)
 * [Appendix B on reverting commits](#appendix-b-on-reverting-commits)
+
 
 ## 1. Overview
 
@@ -86,9 +88,9 @@ The updates to the *Changes* file are done to the *develop branch*.
  
 [(Top)](#table-of-contents)
 
-## 6. Set all version numbers
+## 6. Set version number for Perl modules
 
-> This section is not relevant for Zonemaster/Zonemaster.
+> This step does not apply to Zonemaster/Zonemaster and Zonemaster-GUI
 
 The version numbers is to be set in these Perl modules in the *develop branch*:
 
@@ -97,21 +99,32 @@ The version numbers is to be set in these Perl modules in the *develop branch*:
  * zonemaster-cli - [CLI.pm]
  * zonemaster-backend - [Backend.pm]
 
-The GUI has no Perl. Update the following files in the *develop branch*:
+[(Top)](#table-of-contents)
 
- * zonemaster-gui
-   - [docs/Installation.md][Installation.md GUI]
-     - The version is part of the download path (a directory). It can be
-       repeated several times, once per OS.
-   - [package.json][package.json GUI]
-     - In the top of the file, the version is given after "version".
-     - The file `package-lock.json` is ignored
-   - [src/environments/version.ts][Version.ts GUI]
-     - "version" should point at the version number.
+## 7. Set version number for GUI
+
+> This step applies to Zonemaster-GUI only
+
+Update the following files in the *develop branch* of **Zonemaster-GUI**:
+
+ * [package.json][package.json GUI]
+   - In the top of the file, the version is given after "version".
+   - The file `package-lock.json` is ignored
+ * [src/environments/version.ts][Version.ts GUI]
+   - "version" should point at the version number.
+
+Update the following file in the *develop branch* of **Zonemaster/Zonemaster**:
+
+ * [public/installation/zonemaster-gui.md][Installation.md GUI]
+   - The version is part of the download path (a directory). It is repeated
+     several times, once per OS.
+
+> The update of the installation document can preferably be done in the same
+> pull request as the update of the `Changes` file for Zonemaster/Zonemaster
 
 [(Top)](#table-of-contents)
 
-## 7. Update Makefile.PL with required version
+## 8. Update Makefile.PL with required version
 
 > This section is relevant for Zonemaster-Engine, Zonemaster-CLI and
 > Zonemaster-Backend.
@@ -145,7 +158,7 @@ requires 'Zonemaster::LDNS'   => 2.001;
 
 [(Top)](#table-of-contents)
 
-## 8. Create a clean Git working area of *develop branch*
+## 9. Create a clean Git working area of *develop branch*
 
 Make sure that you have checked out the `develop` branch and that your clone is
 up-to-date.
@@ -169,7 +182,7 @@ git reset --hard
 
 [(Top)](#table-of-contents)
 
-## 9. Produce distribution tarballs
+## 10. Produce distribution tarballs
 
 > This section is not relevant for Zonemaster-GUI or Zonemaster/Zonemaster
 
@@ -188,7 +201,7 @@ make dist
 ```
 [(Top)](#table-of-contents)
 
-## 10. Produce distribution zip file
+## 11. Produce distribution zip file
 
 > This section is relevant for Zonemaster-GUI only.
 
@@ -210,7 +223,7 @@ Its name is `zonemaster_web_gui.zip`.
 
 [(Top)](#table-of-contents)
 
-## 11. Update Zonemaster repository main _README.md_
+## 12. Update Zonemaster repository main _README.md_
 
 > This section is relevant for Zonemaster/Zonemaster only.
 
@@ -221,7 +234,7 @@ If needed, update the following section of the Zonemaster repository main
 
 [(Top)](#table-of-contents)
 
-## 12. Generate documents
+## 13. Generate documents
 
 > This section is relevant for Zonemaster/Zonemaster only.
 
@@ -241,7 +254,7 @@ updated this section can be skipped.
 
 [(Top)](#table-of-contents)
 
-## 13. Upload to CPAN
+## 14. Upload to CPAN
 
 > This section is not relevant for Zonemaster-GUI or Zonemaster/Zonemaster.
 
@@ -252,7 +265,7 @@ this.
 
 [(Top)](#table-of-contents)
 
-## 14. Merge develop branch into master
+## 15. Merge develop branch into master
 
 > For the steps in this section, it is assumed that the git "remote"
 > which is called "origin" points at "zonemaster/zonemaster.git",
@@ -283,7 +296,7 @@ update.
 
 [(Top)](#table-of-contents)
 
-## 15. Create Docker images and upload image to Docker Hub
+## 16. Create Docker images and upload image to Docker Hub
 
 1. Follow the instructions in [Create Docker Image] to build a Docker images.
 2. Upload the Zonemaster-CLI image to [Docker Hub] for Zonemaster using the
@@ -291,7 +304,7 @@ update.
 
 [(Top)](#table-of-contents)
 
-## 16. Tag the release with git
+## 17. Tag the release with git
 
 For each repository, go to "releases" in Github and select "draft a new release".
 Use the version number as tag and create a new release description. Use the
@@ -314,13 +327,13 @@ The releases pages:
 
 [(Top)](#table-of-contents)
 
-## 17. Announce the release
+## 18. Announce the release
 
 Send emails to the mailing lists `zonemaster-users` and `zonemaster-announce`.
 
 [(Top)](#table-of-contents)
 
-## 18. Merge master into develop
+## 19. Merge master into develop
 
 Create a pull request from `master` on github back into `develop` and merge
 it. No review or approval is required for this update.
