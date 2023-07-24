@@ -1316,8 +1316,8 @@ A [*batch id*][Batch id].
 
 #### `"error"`
 
-* If the given `profile` is not among the [available profiles][Profile sections],
-  a user error is returned, see the [profile name section][profile name].
+If the given `profile` is not among the [available profiles][Profile sections], a
+user error is returned, see the [profile name section][profile name].
 
 Trying to add a batch when wrong [*username*][Username] or [*api key*][Api key] is used:
 ```json
