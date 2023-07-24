@@ -1254,7 +1254,7 @@ A [*username*][Username] and its [*api key*][Api key] can be added with the
 
 > In previous versions of Zonemaster-Backend a new batch could not be created by
 > the same [*username*][Username] if that *username* had created a batch that was
-> not yet finished. That restriction has been removed.
+> not yet finished. That restriction has been removed in version 2023.2.
 
 
 Example request:
