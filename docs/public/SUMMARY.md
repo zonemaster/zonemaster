@@ -1,3 +1,7 @@
+<!-- This file must match the format described in 
+ https://rust-lang.github.io/mdBook/format/summary.html -->
+# Documents in public document tree
+
 - [Installation](installation/README.md)
     - [Prerequisites](installation/prerequisites.md)
     - [Zonemaster-LDNS](installation/zonemaster-ldns.md)
@@ -30,7 +34,14 @@
 - [Specifications](specifications/README.md)
     - [Test Types](specifications/test-types/README.md)
         - [Undelegated Test](specifications/test-types/undelegated-test.md)
-    - [Tests](specifications/tests/README.md)
+    - [Test Zones](specifications/test-zones/README.md)
+        - [DNSSEC-TP](specifications/test-zones/DNSSEC-TP/README.md)
+          - [DNSSEC16](specifications/test-zones/DNSSEC-TP/dnssec16.md)
+        - [Nameserver-TP](specifications/test-zones/Nameserver-TP/README.md)
+          - [NAMESERVER11](specifications/test-zones/Nameserver-TP/nameserver11.md)
+        - [Zone-TP](specifications/test-zones/Zone-TP/README.md)
+          - [ZONE09](specifications/test-zones/Zone-TP/zone09.md)
+    - [Test Cases](specifications/tests/README.md)
         - [Master Test Plan](specifications/tests/MasterTestPlan.md)
         - [Methods](specifications/tests/Methods.md)
         - [MethodsV2](specifications/tests/MethodsV2.md)

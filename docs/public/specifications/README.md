@@ -1,11 +1,9 @@
-![Zonemaster](/docs/images/zonemaster_logo_2021_color.png)
-==========
+# Specifications
 
-### Purpose of this directory
+* [Test Cases](tests/README.md): contains the specifications of the *Test Cases*
+  that the Zonemaster implementation is based on.
+* [Test types](test-types/README.md): contains the specification of *Test Types*,
+  currently only for undelegated tests.
+* [Test zones](test-zones/README.md): contains the specifications of *Test Zones*
+  for the verification of Test Case implementation.
 
-This directory contains detailed technical specifications for the DNS tests performed by Zonemaster.
-
-The [tests](tests/) directory contains the **Test Cases** that the Zonemaster implementation is based on. 
-
-The [test-types](test-types/) directory contains **Test Type** specification, currently only 
-specification for undelegated tests.
