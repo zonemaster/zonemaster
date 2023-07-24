@@ -1,7 +1,4 @@
-![Zonemaster](/docs/images/zonemaster_logo_2021_color.png)
-==========
-
-### Purpose of this directory
+# Test Types
 
 This directory contains **Test Type** specifications, currently only 
 specification for undelegated tests.

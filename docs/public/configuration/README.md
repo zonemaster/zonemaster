@@ -1,12 +1,11 @@
 # Configuration
 
-This section contains information about:
+This section contains information about configuration of the different components
+of Zonemaster:
 
-  * [setting up profiles] in [Zonemaster-Engine];
-  * [configuring the backend];
-  * and [configuring the GUI].
+* Setting up or modifying the [profile](profiles.md) in Zonemaster-Engine.
+* Configuring Zonemaster-Backend in the [Backend configuration file](backend.md).
+* Using [environment variables](backend-environment-variables.md) for
+  Zonemaster-Backend.
+* Configuring Zonemaster-GUI in the [GUI configuration file](gui.md).
 
-[configuring the backend]: backend.md
-[configuring the GUI]:     gui.md
-[setting up profiles]:     profiles.md
-[Zonemaster-Engine]:       https://github.com/zonemaster/zonemaster-engine
