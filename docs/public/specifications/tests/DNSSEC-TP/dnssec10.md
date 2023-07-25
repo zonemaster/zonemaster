@@ -81,16 +81,16 @@ DS10_NO_DNSSEC_SUPPORT             | NOTICE  | ns_list    | The zone is not DNSS
 DS10_NSEC3PARAM_QUERY_RESPONSE_ERR | ERROR   | ns_ip_list | No response or error in response on query for NSEC3PARAM. Fetched from the nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC3PARAM_GIVES_ERR_ANSWER   | ERROR   | ns_ip_list | Unexpected DNS record in the answer section on an NSEC3PARAM query. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC3_ERR_TYPE_LIST           | ERROR   | ns_ip_list | NSEC3 record for the zone apex with incorrect type list. Fetched from nameservers with IP addresses "{ns_ip_list}".
-DS10_NSEC3_MISMATCHES_APEX         | ERROR   | ns_ip_list | The NSEC3 record returned does not match the zone name, which it should. Fetched from nameservers with IP addresses "{ns_ip_list}".
+DS10_NSEC3_MISMATCHES_APEX         | ERROR   | ns_ip_list | The returned NSEC3 record unexpectedly does not match the zone name. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC3_MISSING_SIGNATURE       | ERROR   | ns_ip_list | Missing RRSIG (signature) for the NSEC3 record or records. Fetched from the nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC3_NODATA_MISSING_SOA      | ERROR   | ns_ip_list | Missing SOA record in NODATA response with NSEC3. Fetched from nameservers with IP addresses "{ns_ip_list}".
-DS10_NSEC3_NODATA_WRONG_SOA        | ERROR   | ns_ip_list | Wrong owner name on SOA record in NODATA response with NSEC3. Fetched from nameservers with IP addresses "{ns_ip_list}".
+DS10_NSEC3_NODATA_WRONG_SOA        | ERROR   | ns_ip_list, domain | Wrong owner name ({"domain"}) on SOA record in NODATA response with NSEC3. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC3_RRSIG_VERIFY_ERROR      | ERROR   |ns_ip_list, keytag| The RRSIG (signature) with tag {keytag} for the NSEC3 record cannot be verified. Fetched from the nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC_ERR_TYPE_LIST            | ERROR   | ns_ip_list | NSEC record for the zone apex with incorrect type list. Fetched from nameservers with IP addresses "{ns_ip_list}".
-DS10_NSEC_MISMATCH_APEX            | ERROR   | ns_ip_list | NSEC record with a non-apex owner name, which is unexpected. Fetched from nameservers with IP addresses "{ns_ip_list}".
+DS10_NSEC_MISMATCH_APEX            | ERROR   | ns_ip_list | The returned NSEC record has an unexpected non-apex owner name. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC_MISSING_SIGNATURE        | ERROR   | ns_ip_list | Missing RRSIG (signature) for the NSEC record or records. Fetched from the nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC_NODATA_MISSING_SOA       | ERROR   | ns_ip_list | Missing SOA record in NODATA response with NSEC. Fetched from nameservers with IP addresses "{ns_ip_list}".
-DS10_NSEC_NODATA_WRONG_SOA         | ERROR   | ns_ip_list | Wrong owner name on SOA record in NODATA response with NSEC. Fetched from nameservers with IP addresses "{ns_ip_list}".
+DS10_NSEC_NODATA_WRONG_SOA         | ERROR   | ns_ip_list, domain | Wrong owner name ("{domain}") on SOA record in NODATA response with NSEC. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC_GIVES_ERR_ANSWER         | ERROR   | ns_ip_list | Unexpected DNS record in the answer section on an NSEC query. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC_QUERY_RESPONSE_ERROR     | ERROR   | ns_ip_list | No response or error in response on query for NSEC. Fetched from the nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC_RRSIG_VERIFY_ERROR       | ERROR   | ns_ip_list, keytag | The RRSIG (signature) with tag {keytag} for the NSEC record cannot be verified. Fetched from the nameservers with IP addresses "{ns_ip_list}".
@@ -104,7 +104,7 @@ severity level can be changed in the [Zonemaster-Engine profile]. Also see the
 The argument names in the Arguments column lists the arguments used in the
 message. The argument names are defined in the [argument list].
 
-For the Zonemaster defintion of the mnemonics for DNSKEY algorithms, see the
+For the Zonemaster definition of the mnemonics for DNSKEY algorithms, see the
 algorithm table in the "Objective" section in [DNSSEC05][DNSSEC05#objective].
 
 ### Comments on mixing of NSEC and NSEC3
@@ -159,7 +159,8 @@ A complete list of all DNS Resource Record types can be found in the
     7.  Name server IP address ("NSEC Incorrect Type List").
     8.  Name server IP address ("NSEC Mismatches Apex").
     9.  Name server IP address ("NSEC Missing Signature").
-    10. Name server IP address ("NSEC NODATA Wrong SOA").
+    10. Name server IP address and owner name (domain name data)
+        ("NSEC NODATA Wrong SOA").
     11. Name server IP address ("NSEC NODATA Missing SOA").
     12. Name server IP address ("NSEC Query Gives Erroneous Answer").
     13. Name server IP address ("NSEC Query Gives NSEC3 NODATA").
@@ -168,7 +169,8 @@ A complete list of all DNS Resource Record types can be found in the
     16. Name server IP address ("NSEC3 Incorrect Type List").
     17. Name server IP address ("NSEC3 Mismatches Apex").
     18. Name server IP address ("NSEC3 Missing Signature").
-    19. Name server IP address ("NSEC3 NODATA Wrong SOA").
+    19. Name server IP address and owner name (domain name data)
+        ("NSEC3 NODATA Wrong SOA").
     20. Name server IP address ("NSEC3 NODATA Missing SOA").
     21. Name server IP address ("NSEC3 RRSIG Verify Error").
     22. Name server IP address ("NSEC3PARAM In Answer").
@@ -211,7 +213,8 @@ A complete list of all DNS Resource Record types can be found in the
              2. If the SOA record is missing from the authority section then add name
                 server IP to the *NSEC3 NODATA Missing SOA* set.
              3. Else if the owner name of SOA record is is not *Child Zone* then
-                add name server IP to the *NSEC3 NODATA Wrong SOA* set.
+                add name server IP and owner name to the *NSEC3 NODATA Wrong SOA*
+                set.
              4. If the authority section contains more than one NSEC3 record then
                 add name server IP to the *Erroneous Multiple NSEC3* set.
              5. Else do:
@@ -265,7 +268,8 @@ A complete list of all DNS Resource Record types can be found in the
              2. If the SOA record is missing the authority section then add the
                 name server IP to the *NSEC NODATA Missing SOA* set.
              3. Else if the owner name of the SOA record is not *Child Zone* then
-                add name server IP to the *NSEC NODATA Wrong SOA* set.
+                add name server IP and the owner name to the
+                *NSEC NODATA Wrong SOA* set.
              4. If the authority section contains more than one NSEC record then
                 add name server IP to the *Erroneous Multiple NSEC* set.
              5. Else do:
@@ -352,8 +356,9 @@ A complete list of all DNS Resource Record types can be found in the
 17. If the *NSEC Mismatches Apex* set is non-empty, then output
     *[DS10_NSEC_MISMATCH_APEX] with the list of name server IP in the set.
 
-18. If the *NSEC NODATA Wrong SOA* set is non-empty, then output
-    *[DS10_NSEC_NODATA_WRONG_SOA]* with the list of name server IP in the set.
+18. If the *NSEC NODATA Wrong SOA* set is non-empty, then for each owner name
+    in the set output *[DS10_NSEC_NODATA_WRONG_SOA]* with the owner name and the
+    list of name server IP in the set for that owner name.
 
 19. If the *NSEC NODATA Missing SOA* set is non-empty, then output
     *[DS10_NSEC_NODATA_MISSING_SOA]* with the list of name server IP in the set.
@@ -372,14 +377,15 @@ A complete list of all DNS Resource Record types can be found in the
 23. If the *NSEC3 Mismatches Apex* set is non-empty, then output
     *[DS10_NSEC3_MISMATCHES_APEX] with the list of name server IP in the set.
 
-24. If the *NSEC3 NODATA Wrong SOA* set is non-empty, then output
-    *[DS10_NSEC3_NODATA_WRONG_SOA]* with the list of name server IP in the set.
+24. If the *NSEC3 NODATA Wrong SOA* set is non-empty, then for each owner name
+    in the set output *[DS10_NSEC3_NODATA_WRONG_SOA]* with the owner name and the
+    list of name server IP in the set for that owner name.
 
 25. If the *NSEC3 NODATA Missing SOA* set is non-empty, then output
     *[DS10_NSEC3_NODATA_MISSING_SOA]* with the list of name server IP in the set.
 
 26. If the *NSEC3PARAM Query Gives Erroneous Answer* set is non-empty, then
-    output *[DS10_NSEC3PARAM_Q_GIVES_ERR_ANSWER]* with the list of name server IP
+    output *[DS10_NSEC3PARAM_GIVES_ERR_ANSWER]* with the list of name server IP
     in the set.
 
 27. If the *NSEC3PARAM Query Response Error* set is non-empty, then output
@@ -472,8 +478,8 @@ No special terminology for this Test Case.
 [DS10_MISSING_NSEC_NSEC3]:                    #summary
 [DS10_MIXED_NSEC_NSEC3]:                      #summary
 [DS10_NO_DNSSEC_SUPPORT]:                     #summary
+[DS10_NSEC3PARAM_GIVES_ERR_ANSWER]:           #summary
 [DS10_NSEC3PARAM_QUERY_RESPONSE_ERR]:         #summary
-[DS10_NSEC3PARAM_Q_GIVES_ERR_ANSWER]:         #summary
 [DS10_NSEC3_ERR_TYPE_LIST]:                   #summary
 [DS10_NSEC3_MISMATCHES_APEX]:                 #summary
 [DS10_NSEC3_MISSING_SIGNATURE]:               #summary
