@@ -11,6 +11,7 @@
 * [Scope](#scope)
 * [Inputs](#inputs)
 * [Summary](#summary)
+  * [Comments on mixing of NSEC and NSEC3](#comments-on-mixing-of-nsec-and-nsec3)
 * [Test procedure](#test-procedure)
 * [Outcome(s)](#outcomes)
 * [Special procedural requirements](#special-procedural-requirements)
@@ -106,6 +107,22 @@ message. The argument names are defined in the [argument list].
 For the Zonemaster defintion of the mnemonics for DNSKEY algorithms, see the
 algorithm table in the "Objective" section in [DNSSEC05][DNSSEC05#objective].
 
+### Comments on mixing of NSEC and NSEC3
+
+In the "Test procedure" below, If the server returns an NSEC record (either in
+the answer section when querying for NSEC or on the authority section when
+querying for NSEC3PARAM) it is considered to be "NSEC type" for the zone.
+
+If the server returns NSEC3PARAM record in the answer section when querying for
+it or an NSEC3 record in the authority section when querying for NSEC it is
+considered the server to "NSEC3 type" for the zone.
+
+*[DS10_MIXED_NSEC_NSEC3]* means that one or several servers have been
+identified as both NSEC type and NSEC3 type.
+
+*[DS10_INCONSISTENT_NSEC_NSEC3]* means that some servers are non-mixed
+"NSEC type" and others are non-mixed NSEC3 type for the same zone.
+
 
 ## Test procedure
 
@@ -160,8 +177,6 @@ A complete list of all DNS Resource Record types can be found in the
     25. Name server IP address ("NSEC3PARAM Query Response Error").
     26. Name server name and IP address ("Responds without DNSKEY").
     27. Name server IP address ("Responds with DNSKEY").
-
-
 
 6.  For each name server IP address in *NS IP* do:
 
