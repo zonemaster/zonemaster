@@ -75,12 +75,12 @@ DS10_INCONSISTENT_NSEC             | ERROR   | ns_ip_list | Inconsistent respons
 DS10_INCONSISTENT_NSEC3            | ERROR   | ns_ip_list | Inconsistent responses from zone with NSEC3. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_INCONSISTENT_NSEC_NSEC3       | ERROR   |ns_ip_list_nsec, ns_ip_list_nsec3| The zone is inconsistent on NSEC and NSEC3. NSEC is fetched from nameservers with IP addresses "{ns_ip_list_nsec}". NSEC3 is fetched from nameservers with IP addresses "{ns_ip_list_nsec3}".
 DS10_MISSING_NSEC_NSEC3            | ERROR   | ns_ip_list | NSEC or NSEC3 is expected but both are missing. Fetched from nameservers with IP addresses "{ns_ip_list}".
-DS10_MIXED_NSEC_NSEC3              | ERROR   | ns_ip_list | Both NSEC and NSEC3 are responded from the zone, which is . Fetched from the nameservers with IP addresses "{ns_ip_list}".
+DS10_MIXED_NSEC_NSEC3              | ERROR   | ns_ip_list | The zone responds with both NSEC and NSEC3, where only one of them is expected. Fetched from the nameservers with IP addresses "{ns_ip_list}".
 DS10_NO_DNSSEC_SUPPORT             | NOTICE  | ns_list    | The zone is not DNSSEC signed or not properly DNSSEC signed. Testing for NSEC and NSEC3 has been skipped. Fetched from the nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC3PARAM_QUERY_RESPONSE_ERR | ERROR   | ns_ip_list | No response or error in response on query for NSEC3PARAM. Fetched from the nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC3PARAM_GIVES_ERR_ANSWER   | ERROR   | ns_ip_list | Unexpected DNS record in the answer section on an NSEC3PARAM query. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC3_ERR_TYPE_LIST           | ERROR   | ns_ip_list | NSEC3 record for the zone apex with incorrect type list. Fetched from nameservers with IP addresses "{ns_ip_list}".
-DS10_NSEC3_MISMATCH_APEX           | ERROR   | ns_ip_list | NSEC3 record with a non-apex owner name, which is unexpectation. Fetched from nameservers with IP addresses "{ns_ip_list}".
+DS10_NSEC3_MISMATCHES_APEX         | ERROR   | ns_ip_list | The NSEC3 record returned does not match the zone name, which it should. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC3_MISSING_SIGNATURE       | ERROR   | ns_ip_list | Missing RRSIG (signature) for the NSEC3 record or records. Fetched from the nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC3_NODATA_MISSING_SOA      | ERROR   | ns_ip_list | Missing SOA record in NODATA response with NSEC3. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC3_NODATA_WRONG_SOA        | ERROR   | ns_ip_list | Wrong owner name on SOA record in NODATA response with NSEC3. Fetched from nameservers with IP addresses "{ns_ip_list}".
@@ -200,11 +200,12 @@ A complete list of all DNS Resource Record types can be found in the
                 1. If the hash owner name of the NSEC3 record does not match apex
                    of *Child Zone* then add name server IP to the
                    *NSEC3 Mismatches Apex* set.
-                2. Else if the type list in the NSEC3 record does not match the
-                   following criteria then add name server IP to the
+                2. Else if the type list in the NSEC3 record matche at least one
+                   of the following criteria then add name server IP to the
                    *NSEC3 Incorrect Type List* set:
-                   1. Contains SOA, NS, DNSKEY, NSEC3PARAM and RRSIG.
-                   2. Does not contain NSEC or NSEC3.
+                   1. At least one of SOA, NS, DNSKEY, NSEC3PARAM or RRSIG is
+                      missing.
+                   2. At least one of NSEC or NSEC3 is included.
                 3. Retrieve the NSEC3 record from the response.
                 4. Retrieve the RRSIG records for the retrieved NSEC3 record.
                 5. If the NSEC3 records do not have a matching RRSIG
@@ -252,11 +253,11 @@ A complete list of all DNS Resource Record types can be found in the
              5. Else do:
                 1. If the owner name of the NSEC record is not *Child Zone* then
                    add name server IP to the *NSEC Mismatches Apex* set.
-                2. Else if the type list in the NSEC record does not match the
-                   following criteria then add name server IP to the
+                2. Else if the type list in the NSEC record matches at least one
+                   of the following criteria then add name server IP to the
                    *NSEC Incorrect Type List* set:
-                   1. Contains SOA, NS, DNSKEY, NSEC and RRSIG.
-                   2. Does not contain NSEC3PARAM or NSEC3.
+                   1. At least one of SOA, NS, DNSKEY, NSEC or RRSIG is missing.
+                   2. At least one of NSEC3PARAM or NSEC3 is included.
                 3. Retrieve the NSEC record from the response.
                 4. Retrieve the RRSIG records for the retrieved NSEC record.
                 5. If the NSEC record does not have a matching RRSIG
@@ -351,7 +352,7 @@ A complete list of all DNS Resource Record types can be found in the
     *[DS10_NSEC3_ERR_TYPE_LIST] with the list of name server IP in the set.
 
 23. If the *NSEC3 Mismatches Apex* set is non-empty, then output
-    *[DS10_NSEC3_MISMATCH_APEX] with the list of name server IP in the set.
+    *[DS10_NSEC3_MISMATCHES_APEX] with the list of name server IP in the set.
 
 24. If the *NSEC3 NODATA Wrong SOA* set is non-empty, then output
     *[DS10_NSEC3_NODATA_WRONG_SOA]* with the list of name server IP in the set.
@@ -436,7 +437,6 @@ No special terminology for this Test Case.
 [Argument list]:                              ../ArgumentsForTestCaseMessages.md
 [Connectivity01]:                             ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
-[Connectivity01]:                             ../Connectivity-TP/connectivity01.md
 [DNS Query and Response Defaults]:            ../DNSQueryAndResponseDefaults.md
 [DNSSEC Query]:                               ../DNSQueryAndResponseDefaults.md#default-setting-in-dnssec-query
 [DNSSEC README]:                              README.md
@@ -456,7 +456,7 @@ No special terminology for this Test Case.
 [DS10_NSEC3PARAM_QUERY_RESPONSE_ERR]:         #summary
 [DS10_NSEC3PARAM_Q_GIVES_ERR_ANSWER]:         #summary
 [DS10_NSEC3_ERR_TYPE_LIST]:                   #summary
-[DS10_NSEC3_MISMATCH_APEX]:                   #summary
+[DS10_NSEC3_MISMATCHES_APEX]:                 #summary
 [DS10_NSEC3_MISSING_SIGNATURE]:               #summary
 [DS10_NSEC3_NODATA_MISSING_SOA]:              #summary
 [DS10_NSEC3_NODATA_WRONG_SOA]:                #summary
@@ -482,7 +482,6 @@ No special terminology for this Test Case.
 [RFC 5155#section-3]:                         https://datatracker.ietf.org/doc/html/rfc5155#section-3
 [RFC 5155#section-4]:                         https://datatracker.ietf.org/doc/html/rfc5155#section-4
 [RFC 5155#section-7.2]:                       https://datatracker.ietf.org/doc/html/rfc5155#section-7.2
-[RFC 5890#section-2.3.1]:                     https://datatracker.ietf.org/doc/html/rfc5890#section-2.3.1
 [Severity Level Definitions]:                 ../SeverityLevelDefinitions.md
 [WARNING]:                                    ../SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:                  ../../../configuration/profiles.md
