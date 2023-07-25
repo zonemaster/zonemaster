@@ -96,13 +96,15 @@ DS10_NSEC_RRSIG_VERIFY_ERROR       | ERROR   | ns_ip_list, keytag | The RRSIG (s
 DS10_SERVER_NO_DNSSEC_SUPPORT      | ERROR   | ns_list    | The following name servers do not support DNSSEC or have not been properly configured. Testing for NSEC and NSEC3 has been skipped on these servers. Fetched from the nameservers with IP addresses "{ns_list}".
 
 
-
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
 [Severity Level Definitions] document.
 
 The argument names in the Arguments column lists the arguments used in the
 message. The argument names are defined in the [argument list].
+
+For the Zonemaster defintion of the mnemonics for DNSKEY algorithms, see the
+algorithm table in the "Objective" section in [DNSSEC05][DNSSEC05#objective].
 
 
 ## Test procedure
@@ -444,6 +446,7 @@ No special terminology for this Test Case.
 [DNSSEC Query]:                               ../DNSQueryAndResponseDefaults.md#default-setting-in-dnssec-query
 [DNSSEC README]:                              README.md
 [DNSSEC Response]:                            ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
+[DNSSEC05#objective]:                         ../DNSSEC-TP/dnssec05.md#objective
 [DS10_ALGO_NOT_SUPPORTED_BY_ZM]:              #summary
 [DS10_ERR_MULT_NSEC3]:                        #summary
 [DS10_ERR_MULT_NSEC]:                         #summary
