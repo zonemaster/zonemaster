@@ -200,7 +200,7 @@ A complete list of all DNS Resource Record types can be found in the
                 1. If the hash owner name of the NSEC3 record does not match apex
                    of *Child Zone* then add name server IP to the
                    *NSEC3 Mismatches Apex* set.
-                2. Else if the type list in the NSEC3 record matche at least one
+                2. Else if the type list in the NSEC3 record matches at least one
                    of the following criteria then add name server IP to the
                    *NSEC3 Incorrect Type List* set:
                    1. At least one of SOA, NS, DNSKEY, NSEC3PARAM or RRSIG is
