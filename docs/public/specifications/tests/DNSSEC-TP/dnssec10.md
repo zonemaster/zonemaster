@@ -84,15 +84,15 @@ DS10_NSEC3_MISMATCHES_APEX         | ERROR   | ns_ip_list | The NSEC3 record ret
 DS10_NSEC3_MISSING_SIGNATURE       | ERROR   | ns_ip_list | Missing RRSIG (signature) for the NSEC3 record or records. Fetched from the nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC3_NODATA_MISSING_SOA      | ERROR   | ns_ip_list | Missing SOA record in NODATA response with NSEC3. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC3_NODATA_WRONG_SOA        | ERROR   | ns_ip_list | Wrong owner name on SOA record in NODATA response with NSEC3. Fetched from nameservers with IP addresses "{ns_ip_list}".
-DS10_NSEC3_RRSIG_VERIFY_ERROR      | ERROR   |ns_ip_list, keytag| The RRSIG (signatures) with tag {keytag} for the NSEC3 record cannot be verified. Fetched from the nameservers with IP addresses "{ns_ip_list}".
+DS10_NSEC3_RRSIG_VERIFY_ERROR      | ERROR   |ns_ip_list, keytag| The RRSIG (signature) with tag {keytag} for the NSEC3 record cannot be verified. Fetched from the nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC_ERR_TYPE_LIST            | ERROR   | ns_ip_list | NSEC record for the zone apex with incorrect type list. Fetched from nameservers with IP addresses "{ns_ip_list}".
-DS10_NSEC_MISMATCH_APEX            | ERROR   | ns_ip_list | NSEC record with a non-apex owner name, which is unexpectation. Fetched from nameservers with IP addresses "{ns_ip_list}".
+DS10_NSEC_MISMATCH_APEX            | ERROR   | ns_ip_list | NSEC record with a non-apex owner name, which is unexpected. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC_MISSING_SIGNATURE        | ERROR   | ns_ip_list | Missing RRSIG (signature) for the NSEC record or records. Fetched from the nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC_NODATA_MISSING_SOA       | ERROR   | ns_ip_list | Missing SOA record in NODATA response with NSEC. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC_NODATA_WRONG_SOA         | ERROR   | ns_ip_list | Wrong owner name on SOA record in NODATA response with NSEC. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC_GIVES_ERR_ANSWER         | ERROR   | ns_ip_list | Unexpected DNS record in the answer section on an NSEC query. Fetched from nameservers with IP addresses "{ns_ip_list}".
 DS10_NSEC_QUERY_RESPONSE_ERROR     | ERROR   | ns_ip_list | No response or error in response on query for NSEC. Fetched from the nameservers with IP addresses "{ns_ip_list}".
-DS10_NSEC_RRSIG_VERIFY_ERROR       | ERROR   | ns_ip_list, keytag | The RRSIG (signatures) with tag {keytag} for the NSEC record cannot be verified. Fetched from the nameservers with IP addresses "{ns_ip_list}".
+DS10_NSEC_RRSIG_VERIFY_ERROR       | ERROR   | ns_ip_list, keytag | The RRSIG (signature) with tag {keytag} for the NSEC record cannot be verified. Fetched from the nameservers with IP addresses "{ns_ip_list}".
 DS10_SERVER_NO_DNSSEC_SUPPORT      | ERROR   | ns_list    | The following name servers do not support DNSSEC or have not been properly configured. Testing for NSEC and NSEC3 has been skipped on these servers. Fetched from the nameservers with IP addresses "{ns_list}".
 
 
@@ -173,7 +173,7 @@ A complete list of all DNS Resource Record types can be found in the
        to the *Responds without DNSKEY* set and go to next server.
     4. Else, add name server IP to the *Responds with DNSKEY* set and retrieve
        the DNSKEY records from the answer section to be used in validation below.
-    5. Send *NSEC* query to the name server IP and do:
+    5. Send *NSEC Query* to the name server IP and do:
        1. If at least one of the following criteria is met, then add the name
           server IP to the *NSEC Query Response Error* set:
           1. There is no DNS response.
@@ -185,12 +185,12 @@ A complete list of all DNS Resource Record types can be found in the
           2. Else then add the name server IP to the
              *NSEC Query Gives Erroneous Answer* set.
        3. Else if the answer section is empty, then do:
-          1. If the autority section contains no NSEC3 record then add the name
+          1. If the authority section contains no NSEC3 record then add the name
              server IP to the *Expected NSEC3 Missing* set.
           2. Else do:
              1. Add the name server IP to the *NSEC Query Gives NSEC3 NODATA*
                 set.
-             2. If the SOA record is missing the authority section then add name
+             2. If the SOA record is missing from the authority section then add name
                 server IP to the *NSEC3 NODATA Missing SOA* set.
              3. Else if the owner name of SOA record is is not *Child Zone* then
                 add name server IP to the *NSEC3 NODATA Wrong SOA* set.
@@ -228,25 +228,25 @@ A complete list of all DNS Resource Record types can be found in the
                          3. The RRSIG cannot be validated by the DNSKEY record
                             appointed.
 
-    6. Send *NSEC3PARAM* query to the name server IP and do:
+    6. Send *NSEC3PARAM Query* to the name server IP and do:
        1. If at least one of the following criteria is met, then add the name
           server IP to the *NSEC3PARAM Query Response Error* set:
           1. There is no DNS response.
           2. The [RCODE Name] in the response is not "NoError".
           3. The AA flag is not set in the response.
        2. Else if the answer section is non-empty, then do:
-          1. Else if the answer section has a NSEC3PARAM RR then add the name
+          1. If the answer section has a NSEC3PARAM RR then add the name
              server IP to the *NSEC3PARAM In Answer* set.
           2. Else, then add the name server IP to the
              *NSEC3PARAM Query Gives Erroneous Answer* set.
        3. Else if the answer section is empty, then do:
-          1. If the autority section contains no NSEC record then add the name
+          1. If the authority section contains no NSEC record then add the name
              server IP to the *Expected NSEC Missing* set.
           2. Else do:
              1. Add the name server IP to the *NSEC3PARAM Query Gives NSEC NODATA* set.
-             2. If the SOA record is missing the authority section then add name
-                server IP to the *NSEC NODATA Missing SOA* set.
-             3. Else if the owner name of SOA record is is not *Child Zone* then
+             2. If the SOA record is missing the authority section then add the
+                name server IP to the *NSEC NODATA Missing SOA* set.
+             3. Else if the owner name of the SOA record is not *Child Zone* then
                 add name server IP to the *NSEC NODATA Wrong SOA* set.
              4. If the authority section contains more than one NSEC record then
                 add name server IP to the *Erroneous Multiple NSEC* set.
