@@ -19,7 +19,7 @@ The members of the list are not able to post any messages to the
 list. This is for one-way communication only.
 
 To sign-up on the list, go to
-https://lists.iis.se/mailman/listinfo/zonemaster-announce
+https://lists.iis.se/postorius/lists/zonemaster-announce.lists.iis.se/
 
 ### zonemaster-users
 
@@ -37,7 +37,7 @@ The members of the list can post messages to the list, but those
 must of course be relevant and respectful.
 
 To sign-up on the list, go to
-https://lists.iis.se/mailman/listinfo/zonemaster-users
+https://lists.iis.se/postorius/lists/zonemaster-users.lists.iis.se/
 
 ## Questions on problems with a domain name
 
