@@ -84,7 +84,7 @@ DS10_NSEC3_ERR_TYPE_LIST           | ERROR   | ns_list | NSEC3 record for the zo
 DS10_NSEC3_MISMATCHES_APEX         | ERROR   | ns_list | The returned NSEC3 record unexpectedly does not match the zone name. Fetched from nameservers with IP addresses "{ns_list}".
 DS10_NSEC3_MISSING_SIGNATURE       | ERROR   | ns_list | Missing RRSIG (signature) for the NSEC3 record or records. Fetched from the nameservers with IP addresses "{ns_list}".
 DS10_NSEC3_NODATA_MISSING_SOA      | ERROR   | ns_list | Missing SOA record in NODATA response with NSEC3. Fetched from nameservers with IP addresses "{ns_list}".
-DS10_NSEC3_NODATA_WRONG_SOA        | ERROR   | ns_list, domain | Wrong owner name ("{domain}"}) on SOA record in NODATA response with NSEC3. Fetched from nameservers with IP addresses "{ns_list}".
+DS10_NSEC3_NODATA_WRONG_SOA        | ERROR   | ns_list, domain | Wrong owner name ("{domain}") on SOA record in NODATA response with NSEC3. Fetched from nameservers with IP addresses "{ns_list}".
 DS10_NSEC3_RRSIG_VERIFY_ERROR      | ERROR   |ns_list, keytag| The RRSIG (signature) with tag {keytag} for the NSEC3 record cannot be verified. Fetched from the nameservers with IP addresses "{ns_list}".
 DS10_NSEC_ERR_TYPE_LIST            | ERROR   | ns_list | NSEC record for the zone apex with incorrect type list. Fetched from nameservers with IP addresses "{ns_list}".
 DS10_NSEC_MISMATCHES_APEX          | ERROR   | ns_list | The returned NSEC record has an unexpected non-apex owner name. Fetched from nameservers with IP addresses "{ns_list}".
