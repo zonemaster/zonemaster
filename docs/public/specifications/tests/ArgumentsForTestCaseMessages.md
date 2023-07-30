@@ -147,11 +147,11 @@ defined *arguments*.
 Message names maked with a question mark should not be considered stable.
 
 
-[Basic.pm]:                                  ../lib/Zonemaster/Engine/Test/Basic.pm
+[Basic.pm]:                                  https://github.com/zonemaster/zonemaster-engine/blob/master/lib/Zonemaster/Engine/Test/Basic.pm
 [DNS RR TYPEs]:                              https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 [DNS RCODEs]:                                https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [DNSSEC05#objective]:                        DNSSEC-TP/dnssec05.md#objective
 [DS Digest algorithm]:                       https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xhtml
-[fr.po]:                                     ../share/fr.po
+[fr.po]:                                     https://github.com/zonemaster/zonemaster-engine/blob/master/share/fr.po
 [RFC1035, section 4.1.2]:                    https://datatracker.ietf.org/doc/html/rfc1035#section-4.1.2
-[sv.po]:                                     ../share/sv.po
+[sv.po]:                                     https://github.com/zonemaster/zonemaster-engine/blob/master/share/sv.po
