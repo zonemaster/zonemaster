@@ -56,6 +56,7 @@ and updated messages (*msgids* and *msgstr*).
 | ds_algo_descr  | Text                                     | The human readable description of a [DS Digest algorithm].              |
 | ds_algo_mnemo  | Text                                     | The mnemonic of a [DS Digest algorithm].                                |
 | ds_algo_num    | Non-negative integer                     | The numeric value for a [DS Digest algorithm].                          |
+| int            | integer                                  | An integer. If "algo_num", "ds_also_num", "keytag", "soaserial" or some other specific name is applicale, utse that instead. |
 | ip_prefix      | IP prefix                                | An IP prefix (i.e., an IP address with a network mask in CIDR notation).|
 | keytag         | Non-negative integer                     | A keytag for a DNSKEY record or a keytag used in a DS or RRSIG record.  |
 | label          | Domain name label                        | A single label, i.e. the string between the dots, from a domain name.   |
