@@ -49,9 +49,9 @@ and updated messages (*msgids* and *msgstr*).
 
 | Argument name  | Type of value                            | Description and formatting                                              |
 |--------------- |------------------------------------------|-------------------------------------------------------------------------|
-| algo_descr     | Text                                     | The human readable description of a [DNSSEC algorithm].                 |
-| algo_mnemo     | Text                                     | The mnemonic of a [DNSSEC algorithm].                                   |
-| algo_num       | Non-negative integer                     | The numeric value for a [DNSSEC algorithm].                             |
+| algo_descr     | Text                                     | The human readable description of a DNSSEC algorithm as in table in [DNSSEC05][DNSSEC05#objective].|
+| algo_mnemo     | Text                                     | The mnemonic of a DNSSEC algorithm as in table in [DNSSEC05][DNSSEC05#objective].|
+| algo_num       | Non-negative integer                     | The numeric value for a DNSSEC algorithm as in table in [DNSSEC05][DNSSEC05#objective].|
 | domain         | Domain name                              | A domain name. If "nsname", "mailtarget" or "query_name" is also applicable, use that one instead.      |
 | ds_algo_descr  | Text                                     | The human readable description of a [DS Digest algorithm].              |
 | ds_algo_mnemo  | Text                                     | The mnemonic of a [DS Digest algorithm].                                |
@@ -150,9 +150,8 @@ Message names maked with a question mark should not be considered stable.
 [Basic.pm]:                                  ../lib/Zonemaster/Engine/Test/Basic.pm
 [DNS RR TYPEs]:                              https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 [DNS RCODEs]:                                https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[DNSSEC algorithm]:                          https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xhtml
+[DNSSEC05#objective]:                        DNSSEC-TP/dnssec05.md#objective
 [DS Digest algorithm]:                       https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xhtml
 [fr.po]:                                     ../share/fr.po
 [RFC1035, section 4.1.2]:                    https://datatracker.ietf.org/doc/html/rfc1035#section-4.1.2
 [sv.po]:                                     ../share/sv.po
-
