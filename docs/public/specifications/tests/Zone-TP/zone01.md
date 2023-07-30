@@ -222,7 +222,7 @@ None.
 any changes to the DNS tree introduced by an [undelegated test] must be
 respected.
 
-[Argument list]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Argument list]:                        ../ArgumentsForTestCaseMessages.md
 [CONNECTIVITY01]:                       ../Connectivity-TP/connectivity01.md
 [CONSISTENCY06]:                        ../Consistency-TP/consistency06.md
 [CRITICAL]:                             ../SeverityLevelDefinitions.md#critical

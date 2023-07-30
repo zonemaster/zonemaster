@@ -342,7 +342,7 @@ records).
 a specific name server. Compare with "[DNS Lookup]".
 
 
-[Argument list]:                                                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Argument list]:                                                  ../ArgumentsForTestCaseMessages.md
 [B01_CHILD_FOUND]:                                                #Summary
 [B01_CHILD_IS_ALIAS]:                                             #Summary
 [B01_CHILD_NOT_EXIST]:                                            #Summary
