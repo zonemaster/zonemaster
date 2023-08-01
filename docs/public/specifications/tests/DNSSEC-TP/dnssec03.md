@@ -20,10 +20,10 @@
 
 ## Objective
 
-The NSEC3 record type and its parameter are defined in [RFC 5155]. The
+The NSEC3 record type and its parameters are defined in [RFC 5155]. The
 recommended values of the parameters have been updated by [RFC 9276].
 
-For NSEC3 there are four fields that determines how the NSEC3 record are created
+For NSEC3 there are four fields that determine how the NSEC3 record are created
 and interpreted ([RFC 5155][RFC 5155#section-3], section3):
 
 * Hash algorithm
@@ -33,16 +33,16 @@ and interpreted ([RFC 5155][RFC 5155#section-3], section3):
 
 **Hash algorithm:** The only legal value of the hash algorithm is value 1
 (SHA-1). See ([RFC 5155][RFC 5155#section-11], section 11 and
-[IANA NSEC3 Parameterssregistry]).
+[IANA NSEC3 Parameters registry]).
 
-**Flags:** The only defined flags in the flag field is bit 7, "opt-out". I may
+**Flags:** The only defined flags in the flag field is bit 7, "opt-out". It may
 only be set in the NSEC record, not in the NSEC3PARAM record
 ([RFC 5155][RFC 5155#section-11], section 11 and
-[IANA NSEC3 Parameterssregistry]). "For small zones, the use of opt-out-based
+[IANA NSEC3 Parameters registry]). "For small zones, the use of opt-out-based
 NSEC3 records is NOT RECOMMENDED. For very large and sparsely signed zones, where
 the majority of the records are insecure delegations, opt-out MAY be used"
 ([RFC 9276][RFC 9276#section-3.1], section 3.1). This means that unless the zone
-is a TLD or a TLD like domain found in the [Public Suffix List] it is should
+is a TLD or a TLD like domain found in the [Public Suffix List] it should
 not have the opt-out bit set.
 
 **Iterations:** For a name server an increased number of NSEC3 iterations have a
@@ -74,29 +74,29 @@ This test case is only relevant if the zone has been DNSSEC signed.
 
 ## Summary
 
-* If no DNSKEY records are found, then further investigation will not be done.
+* If no DNSKEY records are found, no further investigation will be done.
 
 Message Tag outputted              | Level   | Arguments  | Message ID for message tag
 :----------------------------------|:--------|:-----------|:--------------------------------------------
-DS03_NO_DNSSEC_SUPPORT             | NOTICE  | ns_list | The zone is not DNSSEC signed or not properly DNSSEC signed. Testing for NSEC3 has been skipped. Fetched from name servers "{ns_list}".
-DS03_SERVER_NO_DNSSEC_SUPPORT      | ERROR   | ns_list | The following name servers do not support DNSSEC or have not been properly configured. Testing for NSEC3 has been skipped on those servers. Fetched from name servers "{ns_list}".
-DS03_NO_NSEC3                      | INFO    | ns_list | The zone does not use NSEC3. Testing for NSEC3 has been skipped. Fetched from name servers "{ns_list}".
-DS03_SERVER_NO_NSEC3               | ERROR   | ns_list | The following name servers do not use NSEC3, but others do. Testing for NSEC3 has been skipped on the following servers. Fetched from name servers "{ns_list}".
 DS03_ERR_MULT_NSEC3                | ERROR   | ns_list | Multiple NSEC3 records when one is expected. Fetched from name servers "{ns_list}".
-DS03_INCONSISTENT_SALT_LENTH       | ERROR   |         | Inconsistent salt length in NSEC3 in responses for the child zone from different name servers.
-DS03_LEGAL_EMPTY_SALT              | INFO    | ns_list | The following servers respond with a legal empty salt in NSEC3. Fetched from name servers "{ns_list}".
-DS03_ILLEGAL_SALT_LENGTH           | WARNING | ns_list int | The following servers respond with a non-empty salt in NSEC3 ({int} octets). Fetched from name servers "{ns_list}".
+DS03_ILLEGAL_HASH_ALGO             | ERRRO   | ns_list, algo_num | The following servers respond with an illegal hash algorithm for NSEC3 ({algo_num}). Fetched from name servers "{ns_list}".
+DS03_ILLEGAL_ITERATION_VALUE       | ERROR   | ns_list, int | The following servers respond with the NSEC3 iteration value {int} (not recommended). Fetched from name servers "{ns_list}".
+DS03_ILLEGAL_SALT_LENGTH           | WARNING | ns_list, int | The following servers respond with a non-empty salt in NSEC3 ({int} octets). Fetched from name servers "{ns_list}".
 DS03_INCONSISTENT_HASH_ALGO        | ERROR   |         | Inconsistent hash algorithms in NSEC3 in responses for the child zone from different name servers.
-DS03_LEGAL_HASH_ALGO               | INFO    | ns_list | The following servers respond with a legal hash algorithm in NSEC3. Fetched from name servers "{ns_list}".
-DS03_ILLEGAL_HASH_ALGO             | ERRRO   | ns_list algo_num | The following servers respond with an illegal hash algorithm for NSEC3 ({algo_num}). Fetched from name servers "{ns_list}".
-DS03_INCONSISTENT_NSEC3_FLAGS      | ERROR   |         | Inconsistent NSEC3 flags in responses for the child zone from different name servers.
-DS03_UNASSIGNED_FLAG_USED          | ERROR   | ns_list int | The following servers respond with an NSEC3 record where an unassigned flag is used (flag {int}). Fetched from name servers "{ns_list}".
-DS03_NSEC3_OPT_OUT_ENABLED_TLD     | INFO    | ns_list | The following servers respond with NSEC3 opt-out enabled. Fetched from name servers "{ns_list}".
-DS03_NSEC3_OPT_OUT_ENABLED_NON_TLD | NOTICE  | ns_list | The following servers respond with NSEC3 opt-out enabled (not recommended). Fetched from name servers "{ns_list}".
-DS03_NSEC3_OPT_OUT_DISABLED        | INFO    | ns_list | The following servers respond with NSEC3 opt-out disabled (as recommended). Fetched from name servers "{ns_list}".
 DS03_INCONSISTENT_ITERATION        | ERROR   |         | Inconsistent NSEC3 iteration values in responses for the child zone from different name servers.
+DS03_INCONSISTENT_NSEC3_FLAGS      | ERROR   |         | Inconsistent NSEC3 flags in responses for the child zone from different name servers.
+DS03_INCONSISTENT_SALT_LENGTH      | ERROR   |         | Inconsistent salt length in NSEC3 in responses for the child zone from different name servers.
+DS03_LEGAL_EMPTY_SALT              | INFO    | ns_list | The following servers respond with a legal empty salt in NSEC3. Fetched from name servers "{ns_list}".
+DS03_LEGAL_HASH_ALGO               | INFO    | ns_list | The following servers respond with a legal hash algorithm in NSEC3. Fetched from name servers "{ns_list}".
 DS03_LEGAL_ITERATION_VALUE         | INFO    | ns_list | The following servers respond with no NSEC3 iterations (as recommended). Fetched from name servers "{ns_list}".
-DS03_ILLEGAL_ITERATION_VALUE       | ERROR   | ns_list int | The following servers respond with the NSEC3 iteration value {int} (not recommended). Fetched from name servers "{ns_list}".
+DS03_NO_DNSSEC_SUPPORT             | NOTICE  | ns_list | The zone is not DNSSEC signed or not properly DNSSEC signed. Testing for NSEC3 has been skipped. Fetched from name servers "{ns_list}".
+DS03_NO_NSEC3                      | INFO    | ns_list | The zone does not use NSEC3. Testing for NSEC3 has been skipped. Fetched from name servers "{ns_list}".
+DS03_NSEC3_OPT_OUT_DISABLED        | INFO    | ns_list | The following servers respond with NSEC3 opt-out disabled (as recommended). Fetched from name servers "{ns_list}".
+DS03_NSEC3_OPT_OUT_ENABLED_NON_TLD | NOTICE  | ns_list | The following servers respond with NSEC3 opt-out enabled (not recommended). Fetched from name servers "{ns_list}".
+DS03_NSEC3_OPT_OUT_ENABLED_TLD     | INFO    | ns_list | The following servers respond with NSEC3 opt-out enabled. Fetched from name servers "{ns_list}".
+DS03_SERVER_NO_DNSSEC_SUPPORT      | ERROR   | ns_list | The following name servers do not support DNSSEC or have not been properly configured. Testing for NSEC3 has been skipped on those servers. Fetched from name servers "{ns_list}".
+DS03_SERVER_NO_NSEC3               | ERROR   | ns_list | The following name servers do not use NSEC3, but others do. Testing for NSEC3 has been skipped on the following servers. Fetched from name servers "{ns_list}".
+DS03_UNASSIGNED_FLAG_USED          | ERROR   | ns_list, int | The following servers respond with an NSEC3 record where an unassigned flag is used (flag {int}). Fetched from name servers "{ns_list}".
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -140,7 +140,7 @@ A complete list of all DNS Resource Record types can be found in the
     5.  Name server IP address ("Multiple NSEC3").
     6.  Name server IP address and NSEC3 hash algorithm ("Hash Algorithm").
     7.  Name server IP address and NSEC3 flags ("NSEC3 Flags").
-    8.  Name server IP address and NSEC3 iterations Value ("NSEC3 Iterations").
+    8.  Name server IP address and NSEC3 iterations value ("NSEC3 Iterations").
     9.  Name server IP address and NSEC3 salt length ("NSEC3 Salt Length").
 
 6.  For each name server IP address in *NS IP* do:
@@ -158,7 +158,7 @@ A complete list of all DNS Resource Record types can be found in the
     5. Send *NSEC Query* to the name server IP and do:
 
        1. If the authority section contains no NSEC3 record then add the name
-          server IP to the *Responds Without NSEC3* set an to to next name
+          server IP to the *Responds Without NSEC3* set and go to next name
           server.
        2. Else do:
           1. If there are more than one NSEC record in the authority section then
@@ -230,12 +230,12 @@ A complete list of all DNS Resource Record types can be found in the
 
 13. If the *NSEC3 Salt Length* set is non-empty then do:
     1. If the set has more than one salt length then output
-       *[DS03_INCONSISTENT_SALT_LENTH]*.
+       *[DS03_INCONSISTENT_SALT_LENGTH]*.
     2. For each iteration value do:
        1. If the length is 0 output *[DS03_LEGAL_EMPTY_SALT]* with the name
           servers IP addresses from the set with that salt length.
        2. Else, output *[DS03_ILLEGAL_SALT_LENGTH]* with the length and the
-          name servers IP addresses from the set with that salt lenght.
+          name servers IP addresses from the set with that salt length.
 
 ## Outcome(s)
 
@@ -268,7 +268,7 @@ None.
 
 No special terminology for this Test Case.
 
-[Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Argument list]:                              ../ArgumentsForTestCaseMessages.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [Connectivity01]:                             ../Connectivity-TP/connectivity01.md
 [DNS Query and Response Defaults]:            ../DNSQueryAndResponseDefaults.md
@@ -282,7 +282,7 @@ No special terminology for this Test Case.
 [DS03_INCONSISTENT_HASH_ALGO]:                #summary
 [DS03_INCONSISTENT_ITERATION]:                #summary
 [DS03_INCONSISTENT_NSEC3_FLAGS]:              #summary
-[DS03_INCONSISTENT_SALT_LENTH]:               #summary
+[DS03_INCONSISTENT_SALT_LENGTH]:              #summary
 [DS03_LEGAL_EMPTY_SALT]:                      #summary
 [DS03_LEGAL_HASH_ALGO]:                       #summary
 [DS03_LEGAL_ITERATION_VALUE]:                 #summary
@@ -295,7 +295,7 @@ No special terminology for this Test Case.
 [DS03_SERVER_NO_NSEC3]:                       #summary
 [DS03_UNASSIGNED_FLAG_USED]:                  #summary
 [ERROR]:                                      ../SeverityLevelDefinitions.md#error
-[IANA NSEC3 Parameterssregistry]:             https://www.iana.org/assignments/dnssec-nsec3-parameters/dnssec-nsec3-parameters.xhtml
+[IANA NSEC3 Parameters registry]:             https://www.iana.org/assignments/dnssec-nsec3-parameters/dnssec-nsec3-parameters.xhtml
 [IANA RR Type List]:                          https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 [INFO]:                                       ../SeverityLevelDefinitions.md#info
 [Method4]:                                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
@@ -314,3 +314,4 @@ No special terminology for this Test Case.
 [Test procedure]:                             #test-procedure
 [WARNING]:                                    ../SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:                  ../../../configuration/profiles.md
+B
