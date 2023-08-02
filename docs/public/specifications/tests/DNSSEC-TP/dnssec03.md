@@ -314,4 +314,3 @@ No special terminology for this Test Case.
 [Test procedure]:                             #test-procedure
 [WARNING]:                                    ../SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:                  ../../../configuration/profiles.md
-B
