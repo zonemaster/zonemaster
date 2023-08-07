@@ -5,7 +5,8 @@ v2023.1.3 2023-08-07 (public fix version)
  [Fixes]
  - Fixes bug that made all tests of zone names that starts with the same
    letters as the whole first label of the parent zone fail, e.g.
-   "NOrid.NO" and "FRance.FR". See Zonemaster-Engine.
+   "NOrid.NO" and "FRance.FR". The bug was introduces in v2023.1.1. See
+   Zonemaster-Engine.
 
  [Zonemaster product]
  - This version of Zonemaster also consists of the following components. For
