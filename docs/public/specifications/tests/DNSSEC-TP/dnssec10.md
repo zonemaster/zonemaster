@@ -94,6 +94,10 @@ DS10_NSEC_NODATA_WRONG_SOA         | ERROR   | ns_list, domain | Wrong owner nam
 DS10_NSEC_GIVES_ERR_ANSWER         | ERROR   | ns_list | Unexpected DNS record in the answer section on an NSEC query. Fetched from name servers "{ns_list}".
 DS10_NSEC_QUERY_RESPONSE_ERROR     | ERROR   | ns_list | No response or error in response on query for NSEC. Fetched from name servers "{ns_list}".
 DS10_NSEC_RRSIG_VERIFY_ERROR       | ERROR   | ns_list, keytag | The RRSIG (signature) with tag {keytag} for the NSEC record cannot be verified. Fetched from name servers "{ns_list}".
+DS10_NSEC_RRSIG_EXPIRED            | ERROR   | ns_list, keytag | The RRSIG (signature) with tag {keytag} for the NSEC record has expired. Fetched from name servers "{ns_list}".
+DS10_NSEC_RRSIG_NOT_YET_VALID      | ERROR   | ns_list, keytag | The RRSIG (signature) with tag {keytag} for the NSEC record it not yet valid. Fetched from name servers "{ns_list}".
+DS10_NSEC_RRSIG_NO_DNSKEY          | WARNING | ns_list, keytag | There is no DNSKEY record matching the RRSIG (signature) with tag {keytag} for the NSEC record. Fetched from name servers "{ns_list}".
+DS10_NSEC_NO_VERIFIED_SIGNATURE    | ERROR   | ns_list | There is no RRSIG (signature) for the NSEC record that can be verified. Fetched from name servers "{ns_list}".
 DS10_SERVER_NO_DNSSEC_SUPPORT      | ERROR   | ns_list | The following name servers do not support DNSSEC or have not been properly configured. Testing for NSEC and NSEC3 has been skipped on these servers. Fetched from name servers "{ns_list}".
 
 
@@ -169,7 +173,11 @@ A complete list of all DNS Resource Record types can be found in the
     11. Name server IP address ("NSEC NODATA Missing SOA").
     12. Name server IP address ("NSEC Query Gives Erroneous Answer").
     13. Name server IP address ("NSEC Query Gives NSEC3 NODATA").
-    14. Name server IP address ("NSEC RRSIG Verify Error").
+    14. Name server IP address and key tag ("NSEC RRSIG Verify Error").
+    14. Name server IP address and key tag ("NSEC RRSIG Expired").
+    14. Name server IP address and key tag ("NSEC RRSIG Not Yet Valid").
+    14. Name server IP address and key tag ("NSEC RRSIG No DNSKEY").
+    14. Name server IP address ("NSEC RRSIG Verified").
     15. Name server IP address ("NSEC Query Response Error").
     16. Name server IP address ("NSEC3 Incorrect Type List").
     17. Name server IP address ("NSEC3 Mismatches Apex").
@@ -294,18 +302,28 @@ A complete list of all DNS Resource Record types can be found in the
                    1. Use the DNSKEY records retrieved above.
                    2. For each NSEC RRSIG do:
                       1. Verify the RRSIG record by the DNSKEY records.
-                      2. If the Zonemaster installation does not have support for
+                      2. If there is no DNSKEY that matches RRSIG by key tag,
+                         then add the name server IP and RRSIG key ID to the
+                         *NSEC RRSIG No DNSKEY* set.
+                      3. If the RRSIG record has a validity period that ends
+                         before the time of test execution, then add the name
+                         server IP and RRSIG key ID to the
+                         *NSEC RRSIG Expired* set.
+                      4. If the RRSIG record has a validity period that starts
+                         after the time of test execution, then add the name
+                         server IP and RRSIG key ID to the
+                         *NSEC RRSIG Not Yet Valid* set.
+                      5. If the Zonemaster installation does not have support for
                          the DNSKEY algorithm that created the RRSIG, then add
                          name server IP, DNSKEY algorithm and DNSKEY key tag to
                          the *Algo Not Supported By ZM* set.
-                      3. Else, if one or more of the following criteria is met,
-                         add the name server IP and RRSIG key ID to the
-                         *NSEC RRSIG Verify Error* set.
-                         1. The RRSIG record has a validity period that starts
-                            after or ends before the time of test execution.
-                         2. There is no DNSKEY that matches RRSIG by key tag.
-                         3. The RRSIG cannot be validated by the DNSKEY record
-                            appointed.
+                      6. If the RRSIG cannot be validated by the DNSKEY record
+                         appointed, then add
+                         name server IP, DNSKEY algorithm and DNSKEY key tag to
+                         the *NSEC RRSIG Verify Error* set.
+                      7. Else, add the name server IP to the
+                         *NSEC RRSIG Verified* set (unless it is already a member
+                         of the set).
 
 7.  If the *Erroneous Multiple NSEC* set is non-empty then output
     *[DS10_ERR_MULT_NSEC]* with the name server IP addresses from the
@@ -405,9 +423,31 @@ A complete list of all DNS Resource Record types can be found in the
     *[DS10_NSEC3_MISSING_SIGNATURE]* with the name server IP addresses from the
     set.
 
+30. If the *NSEC RRSIG No DNSKEY* set is non-empty, then for each key ID
+    output *[DS10_NSEC_RRSIG_NO_DNSKEY]* with the key ID and the name server
+    IP addresses from the set for the key ID.
+
+30. If the *NSEC RRSIG Expired* set is non-empty, then for each key ID
+    output *[DS10_NSEC_RRSIG_EXPIRED]* with the key ID and the name server
+    IP addresses from the set for the key ID.
+
+30. If the *NSEC RRSIG Not Yet Valid* set is non-empty, then for each key ID
+    output *[DS10_NSEC_RRSIG_NOT_YET_VALID]* with the key ID and the name server
+    IP addresses from the set for the key ID.
+
 30. If the *NSEC RRSIG Verify Error* set is non-empty, then for each key ID
     output *[DS10_NSEC_RRSIG_VERIFY_ERROR]* with the key ID and the name server
     IP addresses from the set for the key ID.
+
+30. If the combined set of the unique name server IP addresses of the
+    *NSEC RRSIG No DNSKEY*, *NSEC RRSIG Expired*, *NSEC RRSIG Not Yet Valid* and
+    *NSEC RRSIG Verify Error* sets is non-empty, then do:
+    1. For each name server IP address in the combined set store the IP address
+       in a temporary set for the next step if the IP address is not a member of
+       the *NSEC RRSIG Verified*.
+    2. If the temporary set is non-empty then output
+       *[DS10_NSEC_NO_VERIFIED_SIGNATURE]* with the name server IP addresses from
+       the set.
 
 31. If the *NSEC3 RRSIG Verify Error* set is non-empty, then for each key ID
     output *[DS10_NSEC3_RRSIG_VERIFY_ERROR]* with the key ID and the name server
@@ -500,6 +540,10 @@ No special terminology for this Test Case.
 [DS10_NSEC_QUERY_RESPONSE_ERROR]:             #summary
 [DS10_NSEC_RRSIG_VERIFY_ERROR]:               #summary
 [DS10_SERVER_NO_DNSSEC_SUPPORT]:              #summary
+[DS10_NSEC_RRSIG_EXPIRED]:                    #summary
+[DS10_NSEC_RRSIG_NOT_YET_VALID]:              #summary
+[DS10_NSEC_RRSIG_NO_DNSKEY]:                  #summary
+[DS10_NSEC_NO_VERIFIED_SIGNATURE]:            #summary
 [ERROR]:                                      ../SeverityLevelDefinitions.md#error
 [IANA RR Type List]:                          https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 [INFO]:                                       ../SeverityLevelDefinitions.md#info
