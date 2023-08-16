@@ -178,28 +178,28 @@ A complete list of all DNS Resource Record types can be found in the
     12. Name server IP address ("NSEC Query Gives Erroneous Answer").
     13. Name server IP address ("NSEC Query Gives NSEC3 NODATA").
     14. Name server IP address and key tag ("NSEC RRSIG Verify Error").
-    14. Name server IP address and key tag ("NSEC RRSIG Expired").
-    14. Name server IP address and key tag ("NSEC RRSIG Not Yet Valid").
-    14. Name server IP address and key tag ("NSEC RRSIG No DNSKEY").
-    14. Name server IP address ("NSEC RRSIG Verified").
-    15. Name server IP address ("NSEC Query Response Error").
-    16. Name server IP address ("NSEC3 Incorrect Type List").
-    17. Name server IP address ("NSEC3 Mismatches Apex").
-    18. Name server IP address ("NSEC3 Missing Signature").
-    19. Name server IP address and owner name (domain name data)
+    15. Name server IP address and key tag ("NSEC RRSIG Expired").
+    16. Name server IP address and key tag ("NSEC RRSIG Not Yet Valid").
+    17. Name server IP address and key tag ("NSEC RRSIG No DNSKEY").
+    18. Name server IP address ("NSEC RRSIG Verified").
+    19. Name server IP address ("NSEC Query Response Error").
+    20. Name server IP address ("NSEC3 Incorrect Type List").
+    21. Name server IP address ("NSEC3 Mismatches Apex").
+    22. Name server IP address ("NSEC3 Missing Signature").
+    23. Name server IP address and owner name (domain name data)
         ("NSEC3 NODATA Wrong SOA").
-    20. Name server IP address ("NSEC3 NODATA Missing SOA").
-    21. Name server IP address and key tag ("NSEC3 RRSIG Verify Error").
-    21. Name server IP address and key tag ("NSEC3 RRSIG Expired").
-    21. Name server IP address and key tag ("NSEC3 RRSIG Not Yet Valid").
-    21. Name server IP address and key tag ("NSEC3 RRSIG No DNSKEY").
-    21. Name server IP address ("NSEC3 RRSIG Verified").
-    22. Name server IP address ("NSEC3PARAM In Answer").
-    23. Name server IP address ("NSEC3PARAM Query Gives Erroneous Answer").
-    24. Name server IP address ("NSEC3PARAM Query Gives NSEC NODATA").
-    25. Name server IP address ("NSEC3PARAM Query Response Error").
-    26. Name server IP address ("Responds without DNSKEY").
-    27. Name server IP address ("Responds with DNSKEY").
+    24. Name server IP address ("NSEC3 NODATA Missing SOA").
+    25. Name server IP address and key tag ("NSEC3 RRSIG Verify Error").
+    26. Name server IP address and key tag ("NSEC3 RRSIG Expired").
+    27. Name server IP address and key tag ("NSEC3 RRSIG Not Yet Valid").
+    28. Name server IP address and key tag ("NSEC3 RRSIG No DNSKEY").
+    29. Name server IP address ("NSEC3 RRSIG Verified").
+    30. Name server IP address ("NSEC3PARAM In Answer").
+    31. Name server IP address ("NSEC3PARAM Query Gives Erroneous Answer").
+    32. Name server IP address ("NSEC3PARAM Query Gives NSEC NODATA").
+    33. Name server IP address ("NSEC3PARAM Query Response Error").
+    34. Name server IP address ("Responds without DNSKEY").
+    35. Name server IP address ("Responds with DNSKEY").
 
 6.  For each name server IP address in *NS IP* do:
 
@@ -445,19 +445,19 @@ A complete list of all DNS Resource Record types can be found in the
     output *[DS10_NSEC_RRSIG_NO_DNSKEY]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-30. If the *NSEC RRSIG Expired* set is non-empty, then for each key ID
+31. If the *NSEC RRSIG Expired* set is non-empty, then for each key ID
     output *[DS10_NSEC_RRSIG_EXPIRED]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-30. If the *NSEC RRSIG Not Yet Valid* set is non-empty, then for each key ID
+32. If the *NSEC RRSIG Not Yet Valid* set is non-empty, then for each key ID
     output *[DS10_NSEC_RRSIG_NOT_YET_VALID]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-30. If the *NSEC RRSIG Verify Error* set is non-empty, then for each key ID
+33. If the *NSEC RRSIG Verify Error* set is non-empty, then for each key ID
     output *[DS10_NSEC_RRSIG_VERIFY_ERROR]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-30. If the combined set of the unique name server IP addresses of the
+34. If the combined set of the unique name server IP addresses of the
     *NSEC RRSIG No DNSKEY*, *NSEC RRSIG Expired*, *NSEC RRSIG Not Yet Valid* and
     *NSEC RRSIG Verify Error* sets is non-empty, then do:
     1. For each name server IP address in the combined set store the IP address
@@ -467,23 +467,23 @@ A complete list of all DNS Resource Record types can be found in the
        *[DS10_NSEC_NO_VERIFIED_SIGNATURE]* with the name server IP addresses from
        the set.
 
-31. If the *NSEC3 RRSIG No DNSKEY* set is non-empty, then for each key ID
+35. If the *NSEC3 RRSIG No DNSKEY* set is non-empty, then for each key ID
     output *[DS10_NSEC3_RRSIG_NO_DNSKEY]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-31. If the *NSEC3 RRSIG Expired* set is non-empty, then for each key ID
+36. If the *NSEC3 RRSIG Expired* set is non-empty, then for each key ID
     output *[DS10_NSEC3_RRSIG_EXPIRED]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-31. If the *NSEC3 RRSIG Not Yet Valid* set is non-empty, then for each key ID
+37. If the *NSEC3 RRSIG Not Yet Valid* set is non-empty, then for each key ID
     output *[DS10_NSEC3_RRSIG_NOT_YET_VALID]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-31. If the *NSEC3 RRSIG Verify Error* set is non-empty, then for each key ID
+38. If the *NSEC3 RRSIG Verify Error* set is non-empty, then for each key ID
     output *[DS10_NSEC3_RRSIG_VERIFY_ERROR]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-31. If the combined set of the unique name server IP addresses of the
+39. If the combined set of the unique name server IP addresses of the
     *NSEC3 RRSIG No DNSKEY*, *NSEC3 RRSIG Expired*, *NSEC3 RRSIG Not Yet Valid*
     and *NSEC3 RRSIG Verify Error* sets is non-empty, then do:
     1. For each name server IP address in the combined set store the IP address
@@ -493,20 +493,20 @@ A complete list of all DNS Resource Record types can be found in the
        *[DS10_NSEC3_NO_VERIFIED_SIGNATURE]* with the name server IP addresses
        from the set.
 
-32. If the *Algo Not Supported By ZM* set is non-empty, then output
+40. If the *Algo Not Supported By ZM* set is non-empty, then output
     *[DS10_ALGO_NOT_SUPPORTED_BY_ZM]* for each DNSKEY key tag with the name
     server IP addresses, the key tag and the algorithm name and code from the
     set.
 
-33. If the *Responds with DNSKEY* set is empty and the *Responds without DNSKEY*
+41. If the *Responds with DNSKEY* set is empty and the *Responds without DNSKEY*
     is non-empty then output *[DS10_NO_DNSSEC_SUPPORT]* with the name server IP
     addresses from the *Responds without DNSKEY* set.
 
-34. If both the *Responds with DNSKEY* set and the *Responds without DNSKEY* set
+42. If both the *Responds with DNSKEY* set and the *Responds without DNSKEY* set
     are non-empty then output *[DS10_SERVER_NO_DNSSEC_SUPPORT]* with the name
     server IP addresses from the *Responds without DNSKEY* set.
 
-35. If the *Expected NSEC3 Missing* set or the *Expected NSEC Missing* set (or
+43. If the *Expected NSEC3 Missing* set or the *Expected NSEC Missing* set (or
     both) is non-empty then output *[DS10_EXPECTED_NSEC_NSEC3_MISSING]* with the
     name server IP addresses from the sets.
 
