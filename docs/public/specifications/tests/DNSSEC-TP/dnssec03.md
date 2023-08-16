@@ -80,8 +80,8 @@ Message Tag outputted              | Level   | Arguments  | Message ID for messa
 :----------------------------------|:--------|:-----------|:--------------------------------------------
 DS03_ERR_MULT_NSEC3                | ERROR   | ns_list | Multiple NSEC3 records when one is expected. Fetched from name servers "{ns_list}".
 DS03_ILLEGAL_HASH_ALGO             | ERRRO   | ns_list, algo_num | The following servers respond with an illegal hash algorithm for NSEC3 ({algo_num}). Fetched from name servers "{ns_list}".
-DS03_ILLEGAL_ITERATION_VALUE       | ERROR   | ns_list, int | The following servers respond with the NSEC3 iteration value {int} (not recommended). Fetched from name servers "{ns_list}".
-DS03_ILLEGAL_SALT_LENGTH           | WARNING | ns_list, int | The following servers respond with a non-empty salt in NSEC3 ({int} octets). Fetched from name servers "{ns_list}".
+DS03_ILLEGAL_ITERATION_VALUE       | ERROR   | ns_list, int | The following servers respond with the NSEC3 iteration value {int}. The recommended practice is to set this value to 0. Fetched from name servers "{ns_list}".
+DS03_ILLEGAL_SALT_LENGTH           | WARNING | ns_list, int | The following servers respond with a non-empty salt in NSEC3 ({int} octets). The recommended practice is to use an empty salt. Fetched from name servers "{ns_list}".
 DS03_INCONSISTENT_HASH_ALGO        | ERROR   |         | Inconsistent hash algorithms in NSEC3 in responses for the child zone from different name servers.
 DS03_INCONSISTENT_ITERATION        | ERROR   |         | Inconsistent NSEC3 iteration values in responses for the child zone from different name servers.
 DS03_INCONSISTENT_NSEC3_FLAGS      | ERROR   |         | Inconsistent NSEC3 flags in responses for the child zone from different name servers.
@@ -92,7 +92,7 @@ DS03_LEGAL_ITERATION_VALUE         | INFO    | ns_list | The following servers r
 DS03_NO_DNSSEC_SUPPORT             | NOTICE  | ns_list | The zone is not DNSSEC signed or not properly DNSSEC signed. Testing for NSEC3 has been skipped. Fetched from name servers "{ns_list}".
 DS03_NO_NSEC3                      | INFO    | ns_list | The zone does not use NSEC3. Testing for NSEC3 has been skipped. Fetched from name servers "{ns_list}".
 DS03_NSEC3_OPT_OUT_DISABLED        | INFO    | ns_list | The following servers respond with NSEC3 opt-out disabled (as recommended). Fetched from name servers "{ns_list}".
-DS03_NSEC3_OPT_OUT_ENABLED_NON_TLD | NOTICE  | ns_list | The following servers respond with NSEC3 opt-out enabled (not recommended). Fetched from name servers "{ns_list}".
+DS03_NSEC3_OPT_OUT_ENABLED_NON_TLD | NOTICE  | ns_list | The following servers respond with NSEC3 opt-out enabled. The recommended practice is to disable opt-out. Fetched from name servers "{ns_list}".
 DS03_NSEC3_OPT_OUT_ENABLED_TLD     | INFO    | ns_list | The following servers respond with NSEC3 opt-out enabled. Fetched from name servers "{ns_list}".
 DS03_SERVER_NO_DNSSEC_SUPPORT      | ERROR   | ns_list | The following name servers do not support DNSSEC or have not been properly configured. Testing for NSEC3 has been skipped on those servers. Fetched from name servers "{ns_list}".
 DS03_SERVER_NO_NSEC3               | ERROR   | ns_list | The following name servers do not use NSEC3, but others do. Testing for NSEC3 has been skipped on the following servers. Fetched from name servers "{ns_list}".
@@ -114,7 +114,7 @@ servers.
 ## Test procedure
 
 In this section and unless otherwise specified below, the term "[DNSSEC Query]"
-follow the specification for DNS queries as specified in
+follows the specification for DNS queries as specified in
 [DNS Query and Response Defaults]. The handling of the DNS responses on the DNS
 queries follow, unless otherwise specified below, what is specified for
 [DNSSEC Response] in the same specification.
