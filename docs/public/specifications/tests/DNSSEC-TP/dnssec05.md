@@ -24,27 +24,27 @@ Algorithm no | Algorithm (or description)    | Mnemonic          | Note
 1            | RSA/MD5                       | RSAMD5            |
 2            | Diffie-Hellman                | DH                |
 3            | DSA/SHA1                      | DSA               |
-4            | Reserved                      | reserved          | (1)
+4            | Reserved                      | RESERVED          | (1)
 5            | RSA/SHA-1                     | RSASHA1           |
 6            | DSA-NSEC3-SHA1                | DSA-NSEC3-SHA1    |
 7            | RSASHA1-NSEC3-SHA1            | RSASHA1-NSEC3-SHA1|
 8            | RSA/SHA-256                   | RSASHA256         |
-9            | Reserved                      | reserved          | (1)
+9            | Reserved                      | RESERVED          | (1)
 10           | RSA/SHA-512                   | RSASHA512         |
-11           | Reserved                      | reserved          | (1)
+11           | Reserved                      | RESERVED          | (1)
 12           | GOST R 34.10-2001             | ECC-GOST          |
 13           | ECDSA Curve P-256 with SHA-256| ECDSAP256SHA256   |
 14           | ECDSA Curve P-384 with SHA-384| ECDSAP384SHA384   |
 15           | Ed25519                       | ED25519           |
 16           | Ed448                         | ED448             |
-17-122       | Unassigned                    | unassigned        | (1)
-123-251      | Reserved                      | reserved          | (1)
+17-122       | Unassigned                    | UNASSIGNED        | (1)
+123-251      | Reserved                      | RESERVED          | (1)
 252          | Reserved for Indirect Keys    | INDIRECT          |
 253          | private algorithm             | PRIVATEDNS        |
 254          | private algorithm OID         | PRIVATEOID        |
-255          | Reserved                      | reserved          | (1)
+255          | Reserved                      | RESERVED          | (1)
 
-(1) Mnemonic defined for Zonemaster usage when missing in the IANA table.
+(1) Mnemonic defined for Zonemaster usage when undefined in the IANA table.
 
 
 ## Scope
