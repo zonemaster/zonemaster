@@ -37,7 +37,7 @@ giving a correct DNS response for an authoritative name server.
 Message Tag                | Level   | Arguments                   | Message ID for message tag
 :--------------------------|:--------|:----------------------------|:----------------------------------------------------------------------------------------------------------------------------
 N15_SOFTWARE_VERSION       | NOTICE  | ns_list, query_name, string | The following name server(s) respond to software version query "{query_name}" with string "{string}". Returned from name servers: "{ns_list}"
-N15_ERROR_ON_VERSION_QUERY | NOTICE  | ns_list                     | The following name server(s) do not respond or responds with SERVFAIL to software version query. Returned from name servers: "{ns_list}"
+N15_ERROR_ON_VERSION_QUERY | NOTICE  | ns_list, query_name         | The following name server(s) do not respond or responds with SERVFAIL to software version query with query name {query_name}. Returned from name servers: "{ns_list}"
 N15_NO_VERSION_REVEALED    | INFO    | ns_list                     | The following name server(s) do not revealed the software version. Name servers: "{ns_list}"
 
 The value in the Level column is the default severity level of the message. The
@@ -56,7 +56,7 @@ servers.
 
 1.  Create the following empty sets:
     1. Name server IP, query name and string ("TXT Data")
-    2. Name server IP ("Error On Version Query")
+    2. Name server IP and query name ("Error On Version Query")
     2. Name server IP ("Sending Version Query")
 
 2.  Create a [DNS Query] with query type SOA and query name *Child Zone*
@@ -79,8 +79,8 @@ servers.
        1. [Send] *TXT Query* with query name to
           the name server and collect the response.
        2. If there is no DNS response or the response has the [RCODE Name]
-          ServFail, add name server to the *Error On Version Query* set and go to
-          next query name.
+          ServFail, add name server and query name to the
+          *Error On Version Query* set and go to next query name.
        3. If the [DNS Response] does not have any TXT record in the answer
           section with query name as owner name, go to next query name.
        4. For each TXT record in the answer section of the [DNS Response]
@@ -93,8 +93,9 @@ servers.
     string and query name pair in the set, output *[N15_SOFTWARE_VERSION]*
     with name server IP list, query name and string.
 
-8.  If the *Error On Version Query* set is non-empty, then output
-    *[N15_ERROR_ON_VERSION_QUERY]* with name server IP list.
+8.  If the *Error On Version Query* set is non-empty, then output for each query
+    name in the set out put *[N15_ERROR_ON_VERSION_QUERY]* with the query name
+    and the list of name server IP addresses.
 
 9.  For each name server IP in the *Sending Version Query* set, remove that name
     server IP from the set if the name server IP is also a member of the
