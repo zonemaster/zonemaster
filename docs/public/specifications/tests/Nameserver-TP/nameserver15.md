@@ -153,9 +153,9 @@ None
 [Method4]:                                                      ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                                                      ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [Methods]:                                                      ../Methods.md
-[N15_SOFTWARE_VERSION]:                                         #summary
-[N15_NO_VERSION_REVEALED]:                                      #summary
 [N15_ERROR_ON_VERSION_QUERY]:                                   #summary
+[N15_NO_VERSION_REVEALED]:                                      #summary
+[N15_SOFTWARE_VERSION]:                                         #summary
 [NOTICE]:                                                       ../SeverityLevelDefinitions.md#notice
 [RCODE Name]:                                                   https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [Requirements and normalization of domain names in input]:      ../RequirementsAndNormalizationOfDomainNames.md
