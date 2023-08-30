@@ -25,4 +25,6 @@ hence is an invalid path.
 The GUI will rewrite `<lang>/test/<test-id>` to `<lang>/result/<test-id>`
 before the result is displayed.
 
-The GUI will redirect from `<path>` to `<lang>/<path>` automatically.
+The GUI will redirect from `<path>` to `<lang>/<path>` automatically using the
+user browser language, defaulting to the default language defined in the
+reverse proxy configuration.
