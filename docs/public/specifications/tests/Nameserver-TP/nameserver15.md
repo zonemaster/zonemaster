@@ -38,7 +38,7 @@ Message Tag                | Level   | Arguments                   | Message ID 
 :--------------------------|:--------|:----------------------------|:----------------------------------------------------------------------------------------------------------------------------
 N15_SOFTWARE_VERSION       | NOTICE  | ns_list, query_name, string | The following name server(s) respond to software version query "{query_name}" with string "{string}". Returned from name servers: "{ns_list}"
 N15_ERROR_ON_VERSION_QUERY | NOTICE  | ns_list                     | The following name server(s) do not respond or responds with SERVFAIL to software version query. Returned from name servers: "{ns_list}"
-N15_NO_VERSION_REVEALED    | INFO    | ns_list                     | No name server revealed the software version. Returned from name servers: "{ns_list}"
+N15_NO_VERSION_REVEALED    | INFO    | ns_list                     | The following name server(s) do not revealed the software version. Name servers: "{ns_list}"
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine Profile]. Also see the
@@ -54,51 +54,55 @@ servers.
 
 ## Test procedure
 
-1. Create a [DNS Query] with query type SOA and query name *Child Zone*
-   ("SOA Query").
+1.  Create the following empty sets:
+    1. Name server IP, query name and string ("TXT Data")
+    2. Name server IP ("Error On Version Query")
+    2. Name server IP ("Sending Version Query")
 
-2. Create the following empty sets:
-   1. Name server IP, query name and string ("TXT Data")
-   2. Name server IP ("Error On Version Query")
-   2. Name server IP ("Sending Version Query")
+2.  Create a [DNS Query] with query type SOA and query name *Child Zone*
+    ("SOA Query").
 
-3. Create a [DNS Query] with query type TXT and query class CHAOS ("TXT Query").
+3.  Create a [DNS Query] with query type TXT and query class CHAOS ("TXT Query").
 
-4. Create the set of query names with values "version.bind"
-   and "version.server" ("Query Names").
+4.  Create the set of query names with values "version.bind"
+    and "version.server" ("Query Names").
 
-5. Obtain the set of name server IP addresses using [Method4] and
-   [Method5] ("Name Server IP").
+5.  Obtain the set of name server IP addresses using [Method4] and
+    [Method5] ("Name Server IP").
 
-6. For each name server in *Name Server IP* do:
+6.  For each name server in *Name Server IP* do:
 
-   1. Send *SOA Query* to the name server IP.
-   2. If there is no DNS response, then go to next name server IP.
-   3. Add the name server IP to the *Sending Version Query* set.
-   4. For each query name in *Query Names* do:
-      1. [Send] *TXT Query* with query name to
-         the name server and collect the response.
-      2. If there is no DNS response or the response has the [RCODE Name]
-         ServFail, add name server to the *Error On Version Query* set and go to
-         next query name.
-      3. If the [DNS Response] does not have any TXT record in the answer section
-          with query name as owner name, go to next query name.
-      4. For each TXT record in the answer section of the [DNS Response]
-         with owner name query name, extract and [concatenate] the string(s)
-         from the RDATA of the record.
-      5. If the extracted string is non-empty, add *Name Server IP*, query name
-         and the string to the *TXT Data* set.
+    1. Send *SOA Query* to the name server IP.
+    2. If there is no DNS response, then go to next name server IP.
+    3. Add the name server IP to the *Sending Version Query* set.
+    4. For each query name in *Query Names* do:
+       1. [Send] *TXT Query* with query name to
+          the name server and collect the response.
+       2. If there is no DNS response or the response has the [RCODE Name]
+          ServFail, add name server to the *Error On Version Query* set and go to
+          next query name.
+       3. If the [DNS Response] does not have any TXT record in the answer
+          section with query name as owner name, go to next query name.
+       4. For each TXT record in the answer section of the [DNS Response]
+          with owner name query name, extract and [concatenate] the string(s)
+          from the RDATA of the record.
+       5. If the extracted string is non-empty, add *Name Server IP*, query name
+          and the string to the *TXT Data* set.
 
-7. If the *TXT Data* set is non-empty, then, for each unique
-   string and query name pair in the set, output *[N15_SOFTWARE_VERSION]*
-   with name server IP list, query name and string.
+7.  If the *TXT Data* set is non-empty, then, for each unique
+    string and query name pair in the set, output *[N15_SOFTWARE_VERSION]*
+    with name server IP list, query name and string.
 
-8. If the *Error On Version Query* set is non-empty, then output
-   *[N15_ERROR_ON_VERSION_QUERY]* with name server IP list.
+8.  If the *Error On Version Query* set is non-empty, then output
+    *[N15_ERROR_ON_VERSION_QUERY]* with name server IP list.
 
-9. If neither *[N15_SOFTWARE_VERSION]* nor *[N15_ERROR_ON_VERSION_QUERY]* was
-   outputted, then output *[N15_NO_VERSION_REVEALED]* with the list of the name
-   servers in the *Sending Version Query* set.
+9.  For each name server IP in the *Sending Version Query* set, remove that name
+    server IP from the set if the name server IP is also a member of the
+    *TXT Data* set.
+
+10. If the *Sending Version Query* set is non-empty then output
+    *[N15_NO_VERSION_REVEALED]* with the list of the name servers in the
+    *Sending Version Query* set.
 
 
 ## Outcome(s)
