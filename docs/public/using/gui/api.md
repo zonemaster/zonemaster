@@ -26,5 +26,5 @@ The GUI will rewrite `<lang>/test/<test-id>` to `<lang>/result/<test-id>`
 before the result is displayed.
 
 The GUI will redirect from `<path>` to `<lang>/<path>` automatically using the
-user browser language, defaulting to the default language defined in the
-reverse proxy configuration.
+user browser language, if supported and configured by the installation.
+Else it uses the default language defined in the reverse proxy configuration.
