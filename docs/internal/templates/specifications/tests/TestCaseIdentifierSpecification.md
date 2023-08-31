@@ -1,6 +1,6 @@
 # Test Case Identifier Specification
 
-All test cases belong to one module, and it gets its name from that module's
+All test cases belong to one module and their names are based on that module’s
 name. The following modules are defined and available:
 
 * Address
