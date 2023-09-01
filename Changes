@@ -1,5 +1,26 @@
 Release history of Zonemaster
 
+v2023.1.4 2023-09-05 (public fix version)
+
+ [Fixes]
+ - Fixes a bug (regression) in test case BASIC01 that made tests of zones
+   fail if the delegation to the zone had no glue record, which is as
+   expected if the zone has no in-bailiwick NS. The bug was introduced
+   in version v4.7.2 in release v2023.1.2. See Zonemaster-Engine.
+ - Fixes broken links in the FAQ. See Zonemaster-GUI.
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components. For
+   each component, see its Changes file or Github release notes for complete
+   release information.
+
+   Zonemaster-LDNS      v3.2.0  https://github.com/zonemaster/zonemaster-ldns/releases/tag/v3.2.0
+   Zonemaster-Engine    v4.7.2  https://github.com/zonemaster/zonemaster-engine/releases/tag/v4.7.3
+   Zonemaster-CLI       v6.0.2  https://github.com/zonemaster/zonemaster-cli/releases/tag/v6.0.3
+   Zonemaster-Backend  v11.0.1  https://github.com/zonemaster/zonemaster-backend/releases/tag/v11.0.2
+   Zonemaster-GUI       v4.1.0  https://github.com/zonemaster/zonemaster-gui/releases/tag/v4.1.1
+
+
 v2023.1.3 2023-08-07 (public fix version)
 
  [Fixes]
