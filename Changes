@@ -4,9 +4,9 @@ v2023.1.4 2023-09-05 (public fix version)
 
  [Fixes]
  - Fixes a bug (regression) in test case BASIC01 that made tests of zones
-   fail if the delegation to the zone had no glue record, which is as
-   expected if the zone has no in-bailiwick NS. The bug was introduced
-   in version v4.7.2 in release v2023.1.2. See Zonemaster-Engine.
+   fail in some cases. The bug was introduced in release v2023.1. See
+   Zonemaster-Engine and its release notes or Changes file for more
+   information.
  - Fixes broken links in the FAQ. See Zonemaster-GUI.
 
  [Zonemaster product]
