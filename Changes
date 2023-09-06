@@ -1,6 +1,6 @@
 Release history of Zonemaster
 
-v2023.1.4 2023-09-05 (public fix version)
+v2023.1.4 2023-09-08 (public fix version)
 
  [Fixes]
  - Fixes a bug (regression) in test case BASIC01 that made tests of zones
