@@ -3,10 +3,11 @@ Release history of Zonemaster
 v2023.1.4 2023-09-08 (public fix version)
 
  [Fixes]
- - Fixes a bug (regression) in test case BASIC01 that made tests of zones
-   fail in some cases. The bug was introduced in release v2023.1. See
-   Zonemaster-Engine and its release notes or Changes file for more
-   information.
+ - Fixes a bug in test case BASIC01 that made tests of zones fail in
+   some cases. The bug was introduced in release v2023.1. See
+   Zonemaster-Engine.
+ - Disable blacklisting in some cases to prevent false errors and
+   warnings. See Zonemaster-Engine.
  - Fixes broken links in the FAQ. See Zonemaster-GUI.
 
  [Zonemaster product]
