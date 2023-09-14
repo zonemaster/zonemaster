@@ -37,8 +37,8 @@ giving a correct DNS response for an authoritative name server.
 Message Tag                | Level   | Arguments                   | Message ID for message tag
 :--------------------------|:--------|:----------------------------|:----------------------------------------------------------------------------------------------------------------------------
 N15_SOFTWARE_VERSION       | NOTICE  | ns_list, query_name, string | The following name server(s) respond to software version query "{query_name}" with string "{string}". Returned from name servers: "{ns_list}"
-N15_ERROR_ON_VERSION_QUERY | NOTICE  | ns_list, query_name         | The following name server(s) do not respond or responds with SERVFAIL to software version query with query name {query_name}. Returned from name servers: "{ns_list}"
-N15_NO_VERSION_REVEALED    | INFO    | ns_list                     | The following name server(s) do not revealed the software version. Name servers: "{ns_list}"
+N15_ERROR_ON_VERSION_QUERY | NOTICE  | ns_list, query_name         | The following name server(s) do not respond or respond with SERVFAIL to software version query "{query_name}". Returned from name servers: "{ns_list}"
+N15_NO_VERSION_REVEALED    | INFO    | ns_list                     | The following name server(s) do not reveal the software version. Returned from name servers: "{ns_list}"
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine Profile]. Also see the
@@ -57,7 +57,7 @@ servers.
 1.  Create the following empty sets:
     1. Name server IP, query name and string ("TXT Data")
     2. Name server IP and query name ("Error On Version Query")
-    2. Name server IP ("Sending Version Query")
+    3. Name server IP ("Sending Version Query")
 
 2.  Create a [DNS Query] with query type SOA and query name *Child Zone*
     ("SOA Query").
@@ -71,7 +71,6 @@ servers.
     [Method5] ("Name Server IP").
 
 6.  For each name server in *Name Server IP* do:
-
     1. Send *SOA Query* to the name server IP.
     2. If there is no DNS response, then go to next name server IP.
     3. Add the name server IP to the *Sending Version Query* set.
@@ -93,8 +92,8 @@ servers.
     string and query name pair in the set, output *[N15_SOFTWARE_VERSION]*
     with name server IP list, query name and string.
 
-8.  If the *Error On Version Query* set is non-empty, then output for each query
-    name in the set out put *[N15_ERROR_ON_VERSION_QUERY]* with the query name
+8.  If the *Error On Version Query* set is non-empty, then for each query name
+    in the set output *[N15_ERROR_ON_VERSION_QUERY]* with the query name
     and the list of name server IP addresses.
 
 9.  For each name server IP in the *Sending Version Query* set, remove that name
