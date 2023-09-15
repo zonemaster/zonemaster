@@ -17,10 +17,14 @@
 
 ## Objective
 
-This Test Case verifies if a name server responds to TXT queries in the CHAOS class, specifically
-about its software version as it may sometimes be desirable not to reveal that information.
+This Test Case verifies if a name server responds to TXT queries in the CHAOS
+[DNS Class], specifically about its software version as it may sometimes be
+desirable not to reveal that information. The CHAOS class identifier is usually
+abbreviated as "CH".
 
-A description of DNS classes can be found in [RFC2929], section 3.2.
+A list of DNS classes and references for those are found in the
+[IANA DNS Class database][DNS Class].
+
 
 ## Scope
 
@@ -36,9 +40,11 @@ giving a correct DNS response for an authoritative name server.
 
 Message Tag                | Level   | Arguments                   | Message ID for message tag
 :--------------------------|:--------|:----------------------------|:----------------------------------------------------------------------------------------------------------------------------
-N15_SOFTWARE_VERSION       | NOTICE  | ns_list, query_name, string | The following name server(s) respond to software version query "{query_name}" with string "{string}". Returned from name servers: "{ns_list}"
 N15_ERROR_ON_VERSION_QUERY | NOTICE  | ns_list, query_name         | The following name server(s) do not respond or respond with SERVFAIL to software version query "{query_name}". Returned from name servers: "{ns_list}"
 N15_NO_VERSION_REVEALED    | INFO    | ns_list                     | The following name server(s) do not reveal the software version. Returned from name servers: "{ns_list}"
+N15_SOFTWARE_VERSION       | NOTICE  | ns_list, query_name, string | The following name server(s) respond to software version query "{query_name}" with string "{string}". Returned from name servers: "{ns_list}"
+N15_WRONG_CLASS            | WARNING | ns_list                     | The following name server(s) does not return CH class record(s) on CH class query:  "{ns_list}"
+
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine Profile]. Also see the
@@ -58,11 +64,13 @@ servers.
     1. Name server IP, query name and string ("TXT Data")
     2. Name server IP and query name ("Error On Version Query")
     3. Name server IP ("Sending Version Query")
+    4. Name server IP ("Wrong Record Class")
 
 2.  Create a [DNS Query] with query type SOA and query name *Child Zone*
     ("SOA Query").
 
-3.  Create a [DNS Query] with query type TXT and query class CHAOS ("TXT Query").
+3.  Create a [DNS Query] with query type TXT and [query class][DNS Class] CH
+    ("TXT Query").
 
 4.  Create the set of query names with values "version.bind"
     and "version.server" ("Query Names").
@@ -75,22 +83,24 @@ servers.
     2. If there is no DNS response, then go to next name server IP.
     3. Add the name server IP to the *Sending Version Query* set.
     4. For each query name in *Query Names* do:
-       1. [Send] *TXT Query* with query name to
-          the name server and collect the response.
+       1. [Send] *TXT Query* with query name to the name server and collect the
+          response.
        2. If there is no DNS response or the response has the [RCODE Name]
           ServFail, add name server and query name to the
           *Error On Version Query* set and go to next query name.
        3. If the [DNS Response] does not have any TXT record in the answer
           section with query name as owner name, go to next query name.
-       4. For each TXT record in the answer section of the [DNS Response]
-          with owner name query name, extract and [concatenate] the string(s)
-          from the RDATA of the record.
-       5. If the extracted string is non-empty, add *Name Server IP*, query name
-          and the string to the *TXT Data* set.
+       4. For each TXT record in the answer section of the [DNS Response] do:
+          1. If [DNS Class] of the TXT record is not CH, then add name server
+             to the *Wrong Record Class* set.
+          2. Extract and [concatenate] the string(s) from the RDATA of the
+             record.
+          3. If the extracted string is non-empty, add name server, query name
+             and the string to the *TXT Data* set.
 
-7.  If the *TXT Data* set is non-empty, then, for each unique
-    string and query name pair in the set, output *[N15_SOFTWARE_VERSION]*
-    with name server IP list, query name and string.
+7.  If the *TXT Data* set is non-empty, then, for each unique string and query
+    name pair in the set, output *[N15_SOFTWARE_VERSION]* with name server IP
+    list, query name and string.
 
 8.  If the *Error On Version Query* set is non-empty, then for each query name
     in the set output *[N15_ERROR_ON_VERSION_QUERY]* with the query name
@@ -103,6 +113,10 @@ servers.
 10. If the *Sending Version Query* set is non-empty then output
     *[N15_NO_VERSION_REVEALED]* with the list of the name servers in the
     *Sending Version Query* set.
+
+11. If the *Wrong Record Class* set is non-empty then output
+    *[N15_WRONG_CLASS]* with the list of the name servers in the
+    *Wrong Record Class* set.
 
 
 ## Outcome(s)
@@ -140,10 +154,11 @@ None
 
 
 [Argument List]:                                                https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[CRITICAL]:                                                     ../SeverityLevelDefinitions.md#critical
 [Concatenate]:                                                  #terminology
 [Connectivity01]:                                               ../Connectivity-TP/connectivity01.md
-[CRITICAL]:                                                     ../SeverityLevelDefinitions.md#critical
 [DEBUG]:                                                        ../SeverityLevelDefinitions.md#notice
+[DNS Class]:                                                    https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-2
 [DNS Query and Response Defaults]:                              ../DNSQueryAndResponseDefaults.md
 [DNS Query]:                                                    ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
 [DNS Response]:                                                 ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
@@ -158,9 +173,9 @@ None
 [N15_SOFTWARE_VERSION]:                                         #summary
 [NOTICE]:                                                       ../SeverityLevelDefinitions.md#notice
 [RCODE Name]:                                                   https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[Requirements and normalization of domain names in input]:      ../RequirementsAndNormalizationOfDomainNames.md
 [RFC2929]:                                                      https://datatracker.ietf.org/doc/html/rfc2929#section-3.2
 [RFC7208#3.3]:                                                  https://datatracker.ietf.org/doc/html/rfc7208#section-3.3
+[Requirements and normalization of domain names in input]:      ../RequirementsAndNormalizationOfDomainNames.md
 [Send]:                                                         #terminology
 [Severity Level Definitions]:                                   ../SeverityLevelDefinitions.md
 [Test Case Identifier Specification]:                           ../../../../internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
