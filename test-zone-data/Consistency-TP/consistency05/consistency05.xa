@@ -1,0 +1,59 @@
+$ORIGIN consistency05.xa.
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2023092100      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+        NS    ns1
+        NS    ns2
+
+ns1     A     127.14.5.21
+ns1     AAAA  fda1:b2:c3:0:127:14:5:21
+ns2     A     127.14.5.22
+ns2     AAAA  fda1:b2:c3:0:127:14:5:22
+
+addresses-match-1	NS	ns1.addresses-match-1
+addresses-match-1       NS      ns2.addresses-match-1
+ns1.addresses-match-1	A	127.14.5.31
+ns1.addresses-match-1	AAAA	fda1:b2:c3:0:127:14:5:31
+ns2.addresses-match-1   A       127.14.5.32
+ns2.addresses-match-1   AAAA    fda1:b2:c3:0:127:14:5:32
+
+addresses-match-2       NS      ns1.addresses-match-1
+addresses-match-2       NS      ns2.addresses-match-1
+
+child-ns-failed		NS	ns1.child-ns-failed
+child-ns-failed         NS      ns2.child-ns-failed
+ns1.child-ns-failed	A	127.14.5.31
+ns1.child-ns-failed	AAAA	fda1:b2:c3:0:127:14:5:31
+ns2.child-ns-failed     A       127.14.5.32
+ns2.child-ns-failed     AAAA    fda1:b2:c3:0:127:14:5:32
+
+no-response		NS	ns1.no-response
+no-response             NS      ns2.no-response
+ns1.no-response		A	127.14.5.31
+ns1.no-response		AAAA	fda1:b2:c3:0:127:14:5:31
+ns2.no-response         A       127.14.5.32
+ns2.no-response         AAAA    fda1:b2:c3:0:127:14:5:32
+
+in-bailiwick-addr-mismatch	NS	ns1.in-bailiwick-addr-mismatch
+in-bailiwick-addr-mismatch      NS      ns2.in-bailiwick-addr-mismatch
+ns1.in-bailiwick-addr-mismatch	A	127.14.5.31
+ns1.in-bailiwick-addr-mismatch  AAAA	fda1:b2:c3:0:127:14:5:31
+ns1.in-bailiwick-addr-mismatch  A       127.14.5.32
+ns1.in-bailiwick-addr-mismatch  AAAA    fda1:b2:c3:0:127:14:5:32
+
+out-of-bailiwick-addr-mismatch      NS      ns1.in-bailiwick-addr-mismatch
+out-of-bailiwick-addr-mismatch      NS      ns2.in-bailiwick-addr-mismatch
+
+extra-address-child	NS	ns1.extra-address-child
+extra-address-child     NS      ns2.extra-address-child
+ns1.extra-address-child	A	127.14.5.31
+ns1.extra-address-child	AAAA	fda1:b2:c3:0:127:14:5:31
+ns2.extra-address-child A       127.14.5.32
+ns2.extra-address-child AAAA    fda1:b2:c3:0:127:14:5:32
+

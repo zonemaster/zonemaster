@@ -14,6 +14,18 @@ ip addr add fda1:b2:c3::127:2:0:11/128 dev lo
 ip addr add 127.2.0.12/32 dev lo
 ip addr add fda1:b2:c3::127:2:0:12/128 dev lo
 
+ip addr add 127.14.5.21/32 dev lo
+ip addr add fda1:b2:c3::127:14:5:21/128 dev lo
+
+ip addr add 127.14.5.22/32 dev lo
+ip addr add fda1:b2:c3::127:14:5:22/128 dev lo
+
+ip addr add 127.14.5.31/32 dev lo
+ip addr add fda1:b2:c3::127:14:5:31/128 dev lo
+
+ip addr add 127.14.5.32/32 dev lo
+ip addr add fda1:b2:c3::127:14:5:32/128 dev lo
+
 ip addr add 127.15.16.21/32 dev lo
 ip addr add fda1:b2:c3::127:15:16:21/128 dev lo
 

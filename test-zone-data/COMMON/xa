@@ -2,7 +2,7 @@ $ORIGIN xa.
 $TTL 3600
 
 @       SOA     ns1.xa. admin.mail.xa. (
-                2022112300      ; serial
+                2023092100      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -32,5 +32,10 @@ ns1.dnssec16    AAAA  fda1:b2:c3::127:15:16:21
 ns2.dnssec16    A     127.15.16.22
 ns2.dnssec16    AAAA  fda1:b2:c3::127:15:16:22
 
-
+consistency05	NS	ns1.consistency05
+consistency05   NS      nss.consistency05
+ns1.consistency05	A	127.14.5.21
+ns1.consistency05       AAAA	fda1:b2:c3::127:14:5:21
+ns2.consistency05       A       127.14.5.22
+ns2.consistency05       AAAA    fda1:b2:c3::127:14:5:22
 ;EOF
