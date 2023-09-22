@@ -35,10 +35,10 @@ ns2.child-ns-failed     AAAA    fda1:b2:c3:0:127:14:5:32
 
 no-response		NS	ns1.no-response
 no-response             NS      ns2.no-response
-ns1.no-response		A	127.14.5.31
-ns1.no-response		AAAA	fda1:b2:c3:0:127:14:5:31
-ns2.no-response         A       127.14.5.32
-ns2.no-response         AAAA    fda1:b2:c3:0:127:14:5:32
+ns1.no-response		A	127.14.5.33
+ns1.no-response		AAAA	fda1:b2:c3:0:127:14:5:33
+ns2.no-response         A       127.14.5.34
+ns2.no-response         AAAA    fda1:b2:c3:0:127:14:5:34
 
 in-bailiwick-addr-mismatch	NS	ns1.in-bailiwick-addr-mismatch
 in-bailiwick-addr-mismatch      NS      ns2.in-bailiwick-addr-mismatch
