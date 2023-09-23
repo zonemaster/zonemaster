@@ -77,9 +77,11 @@ the specific scenario:
 * EDNS is not included in responses on queries without EDNS.
 
 ### ADDRESSES-MATCH-1
+The "happy path". Everything is fine.
 * Zone: "addresses-match-1.consistency05.xa."
 
 ### ADDRESSES-MATCH-2
+Also the "happy path". Out-of-bailiwick NS this time. And no glue.
 * Zone: "addresses-match-2.consistency05.xa."
   * Both ns1 and ns2 are out-of-bailiwick under the xb tree.
   * ns1 is "ns1.addresses-match-2.consistency05.xb"
@@ -90,18 +92,22 @@ the specific scenario:
     address records for ns1 and ns2.
 
 ### ADDRESSES-MATCH-3
+One NS does not give AA answer, but else fine.
 * Zone: "addresses-match-3.consistency05.xa."
   * ns1 responds with AA flag unset.
 
 ### ADDRESSES-MATCH-4
+One NS does give SERVFAIL response, but else fine.
 * Zone: "addresses-match-4.consistency05.xa."
   * ns1 responds with [RCODE Name] "ServFail".
 
 ### ADDRESSES-MATCH-5
+One NS does not respond, but else fine.
 * Zone: "addresses-match-5.consistency05.xa."
   * ns1 gives no response at all.
 
 ### ADDRESSES-MATCH-6
+Also "happy path". Out-of-bailiwick NS, but with glue.
 * Zone: "child.addresses-match-6.consistency05.xa."
   * Both ns1 and ns2 are out-of-bailiwick
   * ns1 is "ns1.sibbling.addresses-match-6.consistency05.xa"
@@ -111,6 +117,7 @@ the specific scenario:
     "sibbling" zone has full set of address records.
 
 ### ADDRESSES-MATCH-7
+Also "happy path". NS in subdomain.
 * Zone: "addresses-match-6.consistency05.xa."
   * ns1 is "ns1.subdomain.addresses-match-6.consistency05.xa."
   * ns2 is "ns1.subdomain.addresses-match-6.consistency05.xa."
@@ -120,26 +127,32 @@ the specific scenario:
   * ns1 and ns2 are defined with address records in the "subdomain" zone.
 
 ### CHILD-ZONE-LAME-1
+Lame. No NS responds.
 * Zone: "child-zone-lame-1.consistency05.xa."
   * ns1 and ns2 do not respond.
 
 ### CHILD-ZONE-LAME-2
+Lame. One NS non-AA and one NS SERVFAIL.
 * Zone: "child-zone-lame-2.consistency05.xa."
   * ns1 respones with AA bit unset.
   * ns2 responds with [RCODE Name] "ServFail".
 
 ### IB-ADDR-MISMATCH
+For one NS (in-bailiwick) glue does not match AA address response.
 * Zone: "ib-addr-mismatch.consistency05.xa."
   * ns2 is defined in the zone, but with other addresses (IPv4 and IPv6)
   * Both sets of IP addresses of ns2 must be identical as name servers.
 
 ### EXTRA-ADDRESS-CHILD
+Child zone has one extra address record on the NS name.
 * Zone: "extra-address-child.consistency05.xa."
   * The zone has address records for ns2 that match glue, but in addition
     the zone has extra A and AAAA records for ns2.
   * All IP address for ns2 must be identical as name servers.
 
-### OOB-ADDR-MISMATCH 
+### OOB-ADDR-MISMATCH
+For one NS (out-of-bailiwick, but with glue) glue does not match
+AA address response.
 * Zone: "child.oob-addr-mismatch.consistency05.xa."
   * Both ns1 and ns2 are out-of-bailiwick
   * ns1 is "ns1.sibbling.oob-addr-mismatch.consistency05.xa"
