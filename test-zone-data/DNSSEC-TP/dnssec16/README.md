@@ -74,7 +74,7 @@ $ zonemaster-cli cds-matches-non-zone-dnskey.dnssec16.xa --raw  --test DNSSEC/dn
 
 Scenario name                | Mandatory message tags                            | Forbidden message tags
 :----------------------------|:--------------------------------------------------|:-------------------------------------------
-CDS-NOT-SIGNED\_BY\_CDS        | DS16\_CDS\_NOT\_SIGNED\_BY\_CDS                        | DS16\_CDS\_INVALID\_RRSIG, DS16\_CDS\_MATCHES\_NON\_SEP\_DNSKEY, DS16\_CDS\_MATCHES\_NON\_ZONE\_DNSKEY, DS16\_CDS\_MATCHES\_NO\_DNSKEY, DS16\_CDS\_SIGNED\_BY\_UNKNOWN\_DNSKEY, DS16\_CDS\_UNSIGNED, DS16\_CDS\_WITHOUT\_DNSKEY, DS16\_DELETE\_CDS, DS16\_DNSKEY\_NOT\_SIGNED\_BY\_CDS, DS16\_MIXED\_DELETE\_CDS
+CDS-NOT-SIGNED-BY-CDS        | DS16\_CDS\_NOT\_SIGNED\_BY\_CDS                        | DS16\_CDS\_INVALID\_RRSIG, DS16\_CDS\_MATCHES\_NON\_SEP\_DNSKEY, DS16\_CDS\_MATCHES\_NON\_ZONE\_DNSKEY, DS16\_CDS\_MATCHES\_NO\_DNSKEY, DS16\_CDS\_SIGNED\_BY\_UNKNOWN\_DNSKEY, DS16\_CDS\_UNSIGNED, DS16\_CDS\_WITHOUT\_DNSKEY, DS16\_DELETE\_CDS, DS16\_DNSKEY\_NOT\_SIGNED\_BY\_CDS, DS16\_MIXED\_DELETE\_CDS
 ```
 $ zonemaster-cli cds-not-signed-by-cds.dnssec16.xa --raw  --test DNSSEC/dnssec16 --hints COMMON/hintfile --level info
    0.00 INFO      GLOBAL_VERSION   version=v4.5.1
@@ -98,7 +98,7 @@ $ zonemaster-cli cds-signed-by-unknown-dnskey.dnssec16.xa --raw  --test DNSSEC/d
 
 Scenario name                | Mandatory message tags                            | Forbidden message tags
 :----------------------------|:--------------------------------------------------|:-------------------------------------------
-CDS-UNSIGNED                 | DS16\_CDS\_UNSIGNED                                 | DS16\_CDS\_INVALID\_RRSIG, DS16\_CDS\_MATCHES\_NON\_SEP\_DNSKEY, DS16\_CDS\_MATCHES\_NON\_ZONE\_DNSKEY, DS16\_CDS\_MATCHES\_NO\_DNSKEY, DS16\_CDS\_NOT\_SIGNED\_BY\_CDS, DS16\_CDS\_SIGNED\_BY\_UNKNOWN\_DNSKEY, DS16\_CDS\_WITHOUT\_DNSKEY, DS16\_DELETE\_CDS, DS16\_DNSKEY\_NOT\_SIGNED\_BY\_CDS, DS16\_MIXED\_DELETE\_CDS
+CDS-UNSIGNED                 | DS16\_CDS\_UNSIGNED, DS16_CDS_NOT_SIGNED_BY_CDS      | DS16\_CDS\_INVALID\_RRSIG, DS16\_CDS\_MATCHES\_NON\_SEP\_DNSKEY, DS16\_CDS\_MATCHES\_NON\_ZONE\_DNSKEY, DS16\_CDS\_MATCHES\_NO\_DNSKEY, DS16\_CDS\_SIGNED\_BY\_UNKNOWN\_DNSKEY, DS16\_CDS\_WITHOUT\_DNSKEY, DS16\_DELETE\_CDS, DS16\_DNSKEY\_NOT\_SIGNED\_BY\_CDS, DS16\_MIXED\_DELETE\_CDS
 ```
 $ zonemaster-cli cds-unsigned.dnssec16.xa --raw  --test DNSSEC/dnssec16 --hints COMMON/hintfile --level info
    0.00 INFO      GLOBAL_VERSION   version=v4.5.1
@@ -172,9 +172,10 @@ Scenario name                | Mandatory message tags                           
 :----------------------------|:--------------------------------------------------|:-------------------------------------------
 NOT-AA                       | (none)                                            | DS16\_CDS\_INVALID\_RRSIG, DS16\_CDS\_MATCHES\_NON\_SEP\_DNSKEY, DS16\_CDS\_MATCHES\_NON\_ZONE\_DNSKEY, DS16\_CDS\_MATCHES\_NO\_DNSKEY, DS16\_CDS\_NOT\_SIGNED\_BY\_CDS, DS16\_CDS\_SIGNED\_BY\_UNKNOWN\_DNSKEY, DS16\_CDS\_UNSIGNED, DS16\_CDS\_WITHOUT\_DNSKEY, DS16\_DELETE\_CDS, DS16\_DNSKEY\_NOT\_SIGNED\_BY\_CDS, DS16\_MIXED\_DELETE\_CDS
 ```
-
+$ zonemaster-cli not-aa.dnssec16.xa --raw  --test DNSSEC/dnssec16 --hints COMMON/hintfile --level info
+   0.00 INFO      GLOBAL_VERSION   version=v4.5.1
 ```
--> ??
+-> OK
 
 
 
