@@ -71,35 +71,35 @@ the specific scenario:
 * EDNS is not included in responses on queries without EDNS.
 
 ### ONE-SOA-MNAME-1
-The "happy path". Everything is fine.
+* The "happy path". Everything is fine.
 * Zone: "one-soa-mname-1.consistency06.xa."
 
 ### ONE-SOA-MNAME-2
-Not so "happy path". One name server does not respond.
+* Not so "happy path". One name server does not respond.
 * Zone: "one-soa-mname-2.consistency06.xa."
   * ns1 gives no response at all.
 
 ### ONE-SOA-MNAME-3
-Not so "happy path". One name server responds without SOA
+* Not so "happy path". One name server responds without SOA
 * Zone: "one-soa-mname-3.consistency06.xa."
   * ns1 responds, but with no SOA record in the answer section
     (maybe answering but not having the zone).
 
 ### MULTIPLE-SOA-MNAMES-1
-Different SOA MNAME on the servers
+* Different SOA MNAME on the servers
 * Zone: "multiple-soa-mnames-1.consistency06.xa."
   * MNAME in SOA on ns1 equal to ns1
   * MNAME in SOA on ns2 equal to ns2
 
 ### MULTIPLE-SOA-MNAMES-2
-Different SOA MNAME on two servers and a third not responding server
+* Different SOA MNAME on two servers and a third not responding server
 * Zone: "multiple-soa-mnames-2.consistency06.xa."
   * MNAME in SOA on ns1 equal to ns1
   * MNAME in SOA on ns2 equal to ns2
   * Also delegated to ns3, for which there is no response.
 
 ### NO-RESPONSE
-No name server responds.
+* No name server responds.
 * Zone: "no-response.consistency06.xa."
   * ns1 gives no response at all.
   * ns2 gives no response at all.
