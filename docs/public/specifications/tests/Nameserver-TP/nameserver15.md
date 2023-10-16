@@ -43,7 +43,7 @@ Message Tag                | Level   | Arguments                   | Message ID 
 N15_ERROR_ON_VERSION_QUERY | NOTICE  | ns_list, query_name         | The following name server(s) do not respond or respond with SERVFAIL to software version query "{query_name}". Returned from name servers: "{ns_list}"
 N15_NO_VERSION_REVEALED    | INFO    | ns_list                     | The following name server(s) do not reveal the software version. Returned from name servers: "{ns_list}"
 N15_SOFTWARE_VERSION       | NOTICE  | ns_list, query_name, string | The following name server(s) respond to software version query "{query_name}" with string "{string}". Returned from name servers: "{ns_list}"
-N15_WRONG_CLASS            | WARNING | ns_list                     | The following name server(s) does not return CH class record(s) on CH class query:  "{ns_list}"
+N15_WRONG_CLASS            | WARNING | ns_list                     | The following name server(s) do not return CH class record(s) on CH class query. Returned from name servers: "{ns_list}"
 
 
 The value in the Level column is the default severity level of the message. The
