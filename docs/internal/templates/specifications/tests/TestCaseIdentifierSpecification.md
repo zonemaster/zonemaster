@@ -13,15 +13,16 @@ name. The following modules are defined and available:
 * Syntax
 * Zone
 
-The module name is not case sensitive, but camel case, as defined above,
-should be prefered.
+The module name is not case sensitive, but the forms defined above,
+should be used when referring to the modules, i.e. "Address" and neither
+"ADDRESS" nor "address".
 
 The test case identifier in the test case specification (both in the main
 headline and in the "Test case identifier" section) uses the module name,
 as defined above, and has the format: `{Module name} + {Index}`
 
 When referencing to a test case the module name may be used in other letter
-case, but for readability, camel case sould be prefered.
+case, but for readability, PascalCase should be prefered.
 
 The `{Index}` is a two-digit suffix 01-99, and should be selected so that the test
 case identifier is unique. Normally the first free index is selected.
