@@ -65,85 +65,96 @@ UNASSIGNED-FLAG-USED        | DS03_UNASSIGNED_FLAG_USED                         
 
 Assumptions for the scenario specifications, unless stated otherwise for the
 specific scenario:
-* Each zone is hosted by two NS, ns1 and ns2.
-* Both ns have equal hosting.
-* NS in delegation is equal to NS in zone.
-* All responses are authoritative.
-* RRSIG in responses are disregarded.
-* The actual owner name of the NSEC3 record will not be verified.
-* The record type list of the NSEC3 record will not be verified.
-* The zone is to respond with one SOA record with the zone name as owner name
-  on SOA query.
-* The zone is to respond with one DNSKEY record with the zone name as owner
-  name on DNSKEY query.
-* The zone is to respond with one NSEC3 record with a hash owner name on NSEC
-  (note, NSEC not NSEC3) query.
-* The NSEC3 record is to have the following settings:
+1. Each zone is hosted by two NS, ns1 and ns2.
+2. Both ns have equal hosting.
+3. NS in delegation is equal to NS in zone.
+4. All responses are authoritative.
+5. RRSIG in responses are disregarded.
+6. The actual owner name of the NSEC3 record will not be verified.
+7. The record type list of the NSEC3 record will not be verified.
+8. The zone is to respond with one SOA record with the zone name as owner name
+   on SOA query.
+9. The zone is to respond with one DNSKEY record with the zone name as owner
+   name on DNSKEY query.
+10. The zone is to respond with one NSEC3 record with a hash owner name in
+    authority section on NSEC query (note, NSEC not NSEC3). NODATA response.
+11. The NSEC3 record is to have the following settings:
   * Hash algo = 1
   * Flags = 0
   * Iteration = 0
   * Salt = "-" (no salt)
 
 ### NO-DNSSEC-SUPPORT
-* No DNSSEC support in the zone.
+No DNSSEC support in the zone.
+
 * Zone: "no-dnssec-support.dnssec03.xa."
-  * No DNSKEY in query for DNSKEY.
+  * No DNSKEY in query for DNSKEY (9).
 
 ### NO-NSEC3
-* No NSEC3 support in the zone.
+No NSEC3 support in the zone.
+
 * Zone: "no-nsec3.dnssec03.xa."
-  * No NSEC3 in query for NSEC (NODATA).
-  
+  * No NSEC3 in query for NSEC (10).
+
 ### GOOD-VALUES
-* Happy path
+Happy path
+
 * Zone: "good-values.dnssec03.xa."
 
 ### ERR-MULT-NSEC3
-* Strange response with two NSEC3 records.
+Strange response with two NSEC3 records.
+
 * Zone: "err-mult-nsec3.dnssec03.xa."
   * Two NSEC3 records, with different hash owner name are to be included in the
-    response. RDATA can be identical.
+    response. RDATA can be identical. (10)
     
 ### BAD-VALUES
-* The NSEC3 record has values no permitted by RFC 9276, see the specification of
-  test case [DNSSEC03].
+The NSEC3 record has values no permitted by RFC 9276, see the specification of
+test case [DNSSEC03].
+
 * Zone: "bad-values.dnssec03.xa."
-  * Hash algo = 2
-  * Flags = 1
-  * Iteration = 1
-  * Salt = "8104"
+  * The following values in NSEC3 (11):
+    * Hash algo = 2
+    * Flags = 1
+    * Iteration = 1
+    * Salt = "8104"
 
 ### INCONSISTENT-VALUES
-* The NSEC3 records returned from the two NS are not equal.
+The NSEC3 records returned from the two NS are not equal.
+
 * Zone: "inconsistent-values.dnssec03.xa."
-  * Both NS give the same owner name of the NSEC3 record.
-  * ns1 gives standard values, whereas ns2 responds with an NSEC3 record with
-    the following values:
+  * Both NS give the same owner name of the NSEC3 record, but
+    ns1 gives standard values, whereas ns2 responds with an NSEC3 record with
+    the following values: (2, 11)
     * Hash algo = 2
     * Flags = 1
     * Iteration = 1
     * Salt = "8104"
     
 ### NSEC3-OPT-OUT-ENABLED-TLD
-* On a TLD, opt-out just gives an INFO message.
+On a TLD, opt-out just gives an INFO message.
+
 * Zone: "nsec3-opt-out-enabled-tld-dnssec03." (TLD)
-  * NSEC3 record with the following value:
+  * NSEC3 record with the following value: (11)
     * Flags = 1
 
 ### SERVER-NO-DNSSEC-SUPPORT
-* One NS of two does not support DNSSEC (no DNSKEY)
+One NS of two does not support DNSSEC (no DNSKEY)
+
 * Zone: "server-no-dnssec-support.dnssec03.xa"
-  * ns2 does not return any DNSKEY record on DNSKEY query.
+  * ns2 does not return any DNSKEY record on DNSKEY query (2, 9)
 
 ### SERVER-NO-NSEC3
-* One NS of two does not have NSEC3
+One NS of two does not have NSEC3
+
 * Zone: "server-no-nsec3.dnssec03.xa"
-  * ns2 does not return any NSEC3 record on NSEC query.
+  * ns2 does not return any NSEC3 record on NSEC query (2, 10)
 
 ### UNASSIGNED-FLAG-USED
-* Unassigned flag used.
+Unassigned flag used.
+
 * Zone: "unassigned-flag-used.dnssec03.xa"
-  * NSEC3 record with the following value:
+  * NSEC3 record with the following value: (11)
     * Flags = 3
 
 
