@@ -53,7 +53,8 @@ ADDRESSES-MATCH-6         | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR
 ADDRESSES-MATCH-7         | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
 CHILD-ZONE-LAME-1         | CHILD_ZONE_LAME, CHILD_NS_FAILED | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, NO_RESPONSE, ADDRESSES_MATCH
 CHILD-ZONE-LAME-2         | CHILD_ZONE_LAME, NO_RESPONSE     | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_NS_FAILED, ADDRESSES_MATCH
-IB-ADDR-MISMATCH          | IN_BAILIWICK_ADDR_MISMATCH       | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
+IB-ADDR-MISMATCH-1        | IN_BAILIWICK_ADDR_MISMATCH       | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
+IB-ADDR-MISMATCH-2        | IN_BAILIWICK_ADDR_MISMATCH       | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 EXTRA-ADDRESS-CHILD       | EXTRA_ADDRESS_CHILD              | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 OOB-ADDR-MISMATCH         | OUT_OF_BAILIWICK_ADDR_MISMATCH   | IN_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 
@@ -137,11 +138,21 @@ the specific scenario:
   * ns1 respones with AA bit unset.
   * ns2 responds with [RCODE Name] "ServFail".
 
-### IB-ADDR-MISMATCH
-* For one NS (in-bailiwick) glue does not match AA address response.
+### IB-ADDR-MISMATCH-1
+* For one NS (in-bailiwick), the glue does not match address response from the
+  zone.
 * Zone: "ib-addr-mismatch.consistency05.xa."
-  * ns2 is defined in the zone, but with other addresses (IPv4 and IPv6)
-  * Both sets of IP addresses of ns2 must be identical as name servers.
+  * ns2 is defined in the zone, but with different addresses (IPv4 and IPv6),
+    i.e. not the samme as in glue.
+  * Both ns2 (address from glue and address from zone) are to be identical as
+    name servers (give the same responses).
+
+### IB-ADDR-MISMATCH-2
+* For one NS (in-bailiwick), the glue does not match any address records in
+  the zone.
+* Zone: "ib-addr-mismatch.consistency05.xa."
+  * ns2 is not defined in the zone, i.e. there are no address records for ns2
+    (IPv4 or IPv6) in the zone.
 
 ### EXTRA-ADDRESS-CHILD
 * Child zone has one extra address record on the NS name.
