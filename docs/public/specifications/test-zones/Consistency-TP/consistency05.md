@@ -118,11 +118,11 @@ the specific scenario:
 
 ### ADDRESSES-MATCH-7
 * Also "happy path". NS in subdomain.
-* Zone: "addresses-match-6.consistency05.xa."
-  * ns1 is "ns1.subdomain.addresses-match-6.consistency05.xa."
-  * ns2 is "ns1.subdomain.addresses-match-6.consistency05.xa."
+* Zone: "addresses-match-7.consistency05.xa."
+  * ns1 is "ns1.subdomain.addresses-match-7.consistency05.xa."
+  * ns2 is "ns2.subdomain.addresses-match-7.consistency05.xa."
   * Delegation is with glue.
-  * "subdomain.addresses-match-6.consistency05.xa" is delegated to the same
+  * "subdomain.addresses-match-7.consistency05.xa" is delegated to the same
     ns1 and ns2.
   * ns1 and ns2 are defined with address records in the "subdomain" zone.
 
