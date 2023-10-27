@@ -275,6 +275,18 @@ test cases:
 | 127.17.15.0/8   | Nameserver15 scenarios                                      |
 | 127.17.15.21    | ns1.nameserver15.xa                                         |
 | 127.17.15.22    | ns2.nameserver15.xa                                         |
+| 127.17.15.31    | ns1.no-version-revealed-1.nameserver15.xa                   |
+| 127.17.15.32    | ns1.no-version-revealed-2.nameserver15.xa                   |
+| 127.17.15.33    | ns1.no-version-revealed-3.nameserver15.xa                   |
+| 127.17.15.34    | ns1.no-version-revealed-4.nameserver15.xa.                  |
+| 127.17.15.35    | ns1.no-version-revealed-5.nameserver15.xa.                  |
+| 127.17.15.36    | ns1.no-version-revealed-6.nameserver15.xa.                  |
+| 127.17.15.37    | ns1.error-on-version-query-1.nameserver15.xa.               |
+| 127.17.15.38    | ns1.error-on-version-query-2.nameserver15.xa.               |
+| 127.17.15.39    | ns1.software-version-1.nameserver15.xa.                     |
+| 127.17.15.40    | ns1.software-version-2.nameserver15.xa.                     |
+| 127.17.15.41    | ns1.wrong-class-1.nameserver15.xa.                          |
+| 127.17.15.42    | ns1.wrong-class-2.nameserver15.xa.                          |
 
 
 ### Syntax test level address plan
