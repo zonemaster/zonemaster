@@ -95,7 +95,10 @@ servers.
              to the *Wrong Record Class* set.
           2. Extract and [concatenate] the string(s) from the RDATA of the
              record.
-          3. If the extracted string is non-empty, add name server, query name
+          3. Remove any leading or trailing [SPACE] (U+0020) or
+             [CHARACTER TABULATION] (horizontal tab, U+0009) characters from the
+             concatenated string.
+          4. If the extracted string is non-empty, add name server, query name
              and the string to the *TXT Data* set.
 
 7.  If the *TXT Data* set is non-empty, then, for each unique string and query
@@ -155,6 +158,7 @@ None
 
 [Argument List]:                                                https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [CRITICAL]:                                                     ../SeverityLevelDefinitions.md#critical
+[CHARACTER TABULATION]:                                         https://codepoints.net/U+0009
 [Concatenate]:                                                  #terminology
 [Connectivity01]:                                               ../Connectivity-TP/connectivity01.md
 [DEBUG]:                                                        ../SeverityLevelDefinitions.md#notice
@@ -176,6 +180,7 @@ None
 [RFC2929]:                                                      https://datatracker.ietf.org/doc/html/rfc2929#section-3.2
 [RFC7208#3.3]:                                                  https://datatracker.ietf.org/doc/html/rfc7208#section-3.3
 [Requirements and normalization of domain names in input]:      ../RequirementsAndNormalizationOfDomainNames.md
+[SPACE]:                                                        https://codepoints.net/U+0020
 [Send]:                                                         #terminology
 [Severity Level Definitions]:                                   ../SeverityLevelDefinitions.md
 [Test Case Identifier Specification]:                           ../../../../internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
