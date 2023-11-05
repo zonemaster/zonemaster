@@ -64,17 +64,20 @@ specific scenario:
   * All NS IP addresses respond with identical zone content.
 
 ### REFERRAL-SIZE-OK
-* This is the happy path.
+This is the happy path.
+
 * Zone: "referral-size-ok.delegation03.xa."
 
 ### REFERRAL-SIZE-TOO-LARGE-1
-* Referal is too large and NS are in-bailiwick
+Referal is too large and NS are in-bailiwick
+
 * Zone: "referral-size-too-large-1.delegation03.xa"
   * ns1 is "ns1.abcdefghijklmnopqrstuv.referral-size-too-large-1.delegation03.xa"
   * ns2 is "ns2.abcdefghijklmnopqrstuv.referral-size-too-large-1.delegation03.xa"
 
 ### REFERRAL-SIZE-TOO-LARGE-2
-* Referal is too large and NS are out-of-bailiwick with no glue.
+Referal is too large and NS are out-of-bailiwick with no glue.
+
 * Zone: "referral-size-too-large-2.delegation03.xa"
   * The zone is delegated to ns1, ns2, ns3 and ns4.
   * ns1 is "ns1.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"

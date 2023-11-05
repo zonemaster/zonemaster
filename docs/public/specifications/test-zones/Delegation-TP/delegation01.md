@@ -74,11 +74,13 @@ specific scenario:
   * All NS IP addresses respond with identical zone content.
 
 ### ENOUGH-1
-* This is the happy path.
+This is the happy path.
+
 * Zone: "enough-1.delegation01.xa."
 
 ### ENOUGH-2
-* This is also a happy path. Out-of-bailiwick.
+This is also a happy path. Out-of-bailiwick.
+
 * Zone: "enough-2.delegation01.xa"
   * Both ns1 and ns2 are out-of-bailiwick under the xb tree.
   * ns1 is "ns1.enough-2.delegation01.xb"
@@ -88,7 +90,8 @@ specific scenario:
   * The "ns2.enough-2.delegation01.xb" zone has full set of address records.
 
 ### ENOUGH-3
-* This is also a happy path. Also out-of-bailiwick, but with sibbling glue.
+This is also a happy path. Also out-of-bailiwick, but with sibbling glue.
+
 * Zone: "child.enough-3.delegation01.xa"
   * Both ns1 and ns2 are out-of-bailiwick
   * ns1 is "ns1.sibbling.enough-3.delegation01.xa"
@@ -98,33 +101,39 @@ specific scenario:
   * The "sibbling" zone has full set of address records.
 
 ### ENOUGH-DEL-NOT-CHILD
-* Only one NS in child zone.
+Only one NS in child zone.
+
 * Zone: "enough-del-not-child.delegation01.xa"
   * The child zone has only one NS, for ns1.
 
 ### ENOUGH-CHILD-NOT-DEL
-* Only one NS in delegation.
+Only one NS in delegation.
+
 * Zone: "enough-child-not-del.delegation01.xa"
   * The delegation has only on NS, for ns1.
 
 ### IPV6-AND-DEL-OK-NO-IPV4-CHILD
-* No IPv4 in zone
+No IPv4 in zone
+
 * Zone: "ipv6-and-del-ok-no-ipv4-child.delegation01.xa"
   * No A records for ns1 and ns2 in zone.
 
 ### IPV4-AND-DEL-OK-NO-IPV6-CHILD
-* No IPv6 in zone
+No IPv6 in zone
+
 * Zone: "ipv4-and-del-ok-no-ipv6-child.delegation01.xa"
   * No AAAA records for ns1 and ns2 in zone.
 
 ### NO-IPV4-1
-* No IPv4 in delegation or zone.
+No IPv4 in delegation or zone.
+
 * Zone: "no-ipv4-1.delegation01.xa"
   * No A glue for ns1 and ns2.
   * No A records in zone for ns1 and ns2.
 
 ### NO-IPV4-2
-* No IPv4 in delegation or zone. Out-of-bailiwick NS and no glue.
+No IPv4 in delegation or zone. Out-of-bailiwick NS and no glue.
+
 * Zone: "no-ipv4-2.delegation01.xa"
   * Both ns1 and ns2 are out-of-bailiwick under the xb tree.
   * ns1 is "ns1.no-ipv4-2.delegation01.xb"
@@ -135,7 +144,8 @@ specific scenario:
     * AAAA only, not A
 
 ### NO-IPV4-3
-* No IPv4 in delegation or zone. Out-of-bailiwick NS, but with sibbling glue.
+No IPv4 in delegation or zone. Out-of-bailiwick NS, but with sibbling glue.
+
 * Zone: "child.no-ipv4-3.delegation01.xa"
   * Both ns1 and ns2 are out-of-bailiwick
   * ns1 is "ns1.sibbling.no-ipv4-3.delegation01.xa"
@@ -146,13 +156,15 @@ specific scenario:
     * AAAA only, not A.
 
 ### NO-IPV6-1
-* No Ipv6 in delegation or zone.
+No Ipv6 in delegation or zone.
+
 * Zone: "no-ipv6-1.delegation01.xa"
   * No AAAA glue for ns1 and ns2.
   * No AAAA records in zone for ns1 and ns2.
 
 ### NO-IPV6-2
-* No Ipv6 in delegation or zone. Out-of-bailiwick NS and no glue.
+No Ipv6 in delegation or zone. Out-of-bailiwick NS and no glue.
+
 * Zone: "no-ipv6-2.delegation01.xa"
   * Both ns1 and ns2 are out-of-bailiwick under the xb tree.
   * ns1 is "ns1.no-ipv6-2.delegation01.xb"
@@ -163,7 +175,8 @@ specific scenario:
     * A only, not AAAA
 
 ### NO-IPV6-3
-* No Ipv6 in delegation or zone. Out-of-bailiwick NS, but with sibbling glue.
+No Ipv6 in delegation or zone. Out-of-bailiwick NS, but with sibbling glue.
+
 * Zone: "child.no-ipv6-3.delegation01.xa"
   * Both ns1 and ns2 are out-of-bailiwick
   * ns1 is "ns1.sibbling.no-ipv6-3.delegation01.xa"

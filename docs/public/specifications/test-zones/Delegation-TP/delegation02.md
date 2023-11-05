@@ -66,11 +66,13 @@ specific scenario:
   * All NS IP addresses respond with identical zone content.
 
 ### ALL-DISTINCT-1
-* This is the happy path.
+This is the happy path.
+
 * Zone: "all-distinct-1.delegation02.xa."
 
 ### ALL-DISTINCT-2
-* This is also a happy path. Out-of-bailiwick.
+This is also a happy path. Out-of-bailiwick.
+
 * Zone: "all-distinct-2.delegation02.xa"
   * Both ns1 and ns2 are out-of-bailiwick under the xb tree.
   * ns1 is "ns1.all-distinct-2.delegation02.xb"
@@ -80,7 +82,8 @@ specific scenario:
   * The "ns2.enough-2.delegation02.xb" zone has full set of address records.
 
 ### ALL-DISTINCT-3
-* This is also a happy path. Also out-of-bailiwick, but with sibbling glue.
+This is also a happy path. Also out-of-bailiwick, but with sibbling glue.
+
 * Zone: "child.all-distinct-3.delegation02.xa"
   * Both ns1 and ns2 are out-of-bailiwick
   * ns1 is "ns1.sibbling.all-distinct-3.delegation02.xa"
@@ -90,14 +93,16 @@ specific scenario:
   * The "sibbling" zone has full set of address records.
 
 ### DEL-NON-DISTINCT
-* The glue records use the same IP addresses
+The glue records use the same IP addresses
+
 * Zone: "del-non-distinct.delegation02.xa"
   * ns1 and ns2 in the glue have the ns1 IPv4 address
   * ns1 and ns2 in the glue have the ns2 IPv6 address
   * ns1 and ns2 are distinct in the zone
 
 ### CHILD-NON-DISTINCT
-* The address records in the zone use the same IP addresses
+The address records in the zone use the same IP addresses
+
 * Zone: "child-non-distinct.delegation02.xa"
   * ns1 and ns2 in the zone have the ns1 IPv4 address
   * ns1 and ns2 in the zone have the ns2 IPv6 address
