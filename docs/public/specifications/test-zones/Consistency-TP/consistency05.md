@@ -51,9 +51,9 @@ ADDRESSES-MATCH-4         | ADDRESSES_MATCH, CHILD_NS_FAILED | IN_BAILIWICK_ADDR
 ADDRESSES-MATCH-5         | ADDRESSES_MATCH, NO_RESPONSE     | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED
 ADDRESSES-MATCH-6         | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
 ADDRESSES-MATCH-7         | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
-CHILD-ZONE-LAME-1         | CHILD_ZONE_LAME, CHILD_NS_FAILED | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, NO_RESPONSE, ADDRESSES_MATCH
-CHILD-ZONE-LAME-2         | CHILD_ZONE_LAME, NO_RESPONSE     | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_NS_FAILED, ADDRESSES_MATCH
-IB-ADDR-MISMATCH-1        | IN_BAILIWICK_ADDR_MISMATCH       | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
+CHILD-ZONE-LAME-1         | CHILD_ZONE_LAME, NO_RESPONSE     | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, NO_RESPONSE, ADDRESSES_MATCH
+CHILD-ZONE-LAME-2         | CHILD_ZONE_LAME, CHILD_NS_FAILED | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_NS_FAILED, ADDRESSES_MATCH
+IB-ADDR-MISMATCH-1        | IN_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD | OUT_OF_BAILIWICK_ADDR_MISMATCH, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 IB-ADDR-MISMATCH-2        | IN_BAILIWICK_ADDR_MISMATCH       | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 EXTRA-ADDRESS-CHILD       | EXTRA_ADDRESS_CHILD              | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 OOB-ADDR-MISMATCH         | OUT_OF_BAILIWICK_ADDR_MISMATCH   | IN_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
@@ -78,11 +78,13 @@ the specific scenario:
 * EDNS is not included in responses on queries without EDNS.
 
 ### ADDRESSES-MATCH-1
-* The "happy path". Everything is fine.
+The "happy path". Everything is fine.
+
 * Zone: "addresses-match-1.consistency05.xa."
 
 ### ADDRESSES-MATCH-2
-* Also the "happy path". Out-of-bailiwick NS this time. And no glue.
+Also the "happy path". Out-of-bailiwick NS this time. And no glue.
+
 * Zone: "addresses-match-2.consistency05.xa."
   * Both ns1 and ns2 are out-of-bailiwick under the xb tree.
   * ns1 is "ns1.addresses-match-2.consistency05.xb"
@@ -93,22 +95,26 @@ the specific scenario:
     address records for ns1 and ns2.
 
 ### ADDRESSES-MATCH-3
-* One NS does not give AA answer, but else fine.
+One NS does not give AA answer, but else fine.
+
 * Zone: "addresses-match-3.consistency05.xa."
   * ns1 responds with AA flag unset.
 
 ### ADDRESSES-MATCH-4
-* One NS does give SERVFAIL response, but else fine.
+One NS does give SERVFAIL response, but else fine.
+
 * Zone: "addresses-match-4.consistency05.xa."
   * ns1 responds with [RCODE Name] "ServFail".
 
 ### ADDRESSES-MATCH-5
-* One NS does not respond, but else fine.
+One NS does not respond, but else fine.
+
 * Zone: "addresses-match-5.consistency05.xa."
   * ns1 gives no response at all.
 
 ### ADDRESSES-MATCH-6
-* Also "happy path". Out-of-bailiwick NS, but with glue.
+Also "happy path". Out-of-bailiwick NS, but with glue.
+
 * Zone: "child.addresses-match-6.consistency05.xa."
   * Both ns1 and ns2 are out-of-bailiwick
   * ns1 is "ns1.sibbling.addresses-match-6.consistency05.xa"
@@ -118,7 +124,8 @@ the specific scenario:
     "sibbling" zone has full set of address records.
 
 ### ADDRESSES-MATCH-7
-* Also "happy path". NS in subdomain.
+Also "happy path". NS in subdomain.
+
 * Zone: "addresses-match-7.consistency05.xa."
   * ns1 is "ns1.subdomain.addresses-match-7.consistency05.xa."
   * ns2 is "ns2.subdomain.addresses-match-7.consistency05.xa."
@@ -128,42 +135,50 @@ the specific scenario:
   * ns1 and ns2 are defined with address records in the "subdomain" zone.
 
 ### CHILD-ZONE-LAME-1
-* Lame. No NS responds.
+Lame. No NS responds.
+
 * Zone: "child-zone-lame-1.consistency05.xa."
   * ns1 and ns2 do not respond.
 
 ### CHILD-ZONE-LAME-2
-* Lame. One NS non-AA and one NS SERVFAIL.
+Lame. One NS non-AA and one NS SERVFAIL.
+
 * Zone: "child-zone-lame-2.consistency05.xa."
   * ns1 respones with AA bit unset.
   * ns2 responds with [RCODE Name] "ServFail".
 
 ### IB-ADDR-MISMATCH-1
-* For one NS (in-bailiwick), the glue does not match address response from the
-  zone.
+For one NS (in-bailiwick), the glue does not match address response from the
+zone.
+
 * Zone: "ib-addr-mismatch.consistency05.xa."
   * ns2 is defined in the zone, but with different addresses (IPv4 and IPv6),
     i.e. not the samme as in glue.
-  * Both ns2 (address from glue and address from zone) are to be identical as
-    name servers (give the same responses).
+  * Both ns2 servers (IP address sets from glue and child, respectively) must
+    give identical DNS responses.
+
 
 ### IB-ADDR-MISMATCH-2
-* For one NS (in-bailiwick), the glue does not match any address records in
-  the zone.
+For one NS (in-bailiwick), the glue does not match any address records in the
+zone.
+
 * Zone: "ib-addr-mismatch.consistency05.xa."
   * ns2 is not defined in the zone, i.e. there are no address records for ns2
     (IPv4 or IPv6) in the zone.
 
 ### EXTRA-ADDRESS-CHILD
-* Child zone has one extra address record on the NS name.
+Child zone has one extra address record on the NS name.
+
 * Zone: "extra-address-child.consistency05.xa."
   * The zone has address records for ns2 that match glue, but in addition
     the zone has extra A and AAAA records for ns2.
-  * All IP address for ns2 must be identical as name servers.
+  * Both ns2 servers (both sets of IP addresses from child) must give identical
+    DNS responses.
 
 ### OOB-ADDR-MISMATCH
-* For one NS (out-of-bailiwick, but with glue) glue does not match
-  AA address response.
+For one NS (out-of-bailiwick, but with glue) glue does not match AA address
+response.
+
 * Zone: "child.oob-addr-mismatch.consistency05.xa."
   * Both ns1 and ns2 are out-of-bailiwick
   * ns1 is "ns1.sibbling.oob-addr-mismatch.consistency05.xa"
