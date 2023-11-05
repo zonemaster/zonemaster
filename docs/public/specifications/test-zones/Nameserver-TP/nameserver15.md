@@ -71,13 +71,15 @@ Assumptions for the scenario specifications:
   * EDNS is not included in responses on queries without EDNS.
 
 ### NO-VERSION-REVEALED-1
-* This is a happy path
+This is a happy path
+
 * Zone: "no-version-revealed-1.nameserver15.xa."
   * The name server responds with empty answer section on both software version
     query names.
 
 ### NO-VERSION-REVEALED-2
-* This is a happy path
+This is a happy path
+
 * Zone: "no-version-revealed-2.nameserver15.xa."
   * The name server responds with empty answer section on both software version
     query names.
@@ -85,7 +87,8 @@ Assumptions for the scenario specifications:
     version query names.
 
 ### NO-VERSION-REVEALED-3
-* This is a happy path
+This is a happy path
+
 * Zone: "no-version-revealed-3.nameserver15.xa."
   * The name server responds with empty answer section on both software version
     query names.
@@ -93,7 +96,8 @@ Assumptions for the scenario specifications:
     version query names.
 
 ### NO-VERSION-REVEALED-4
-* This is a happy path
+This is a happy path
+
 * Zone: "no-version-revealed-4.nameserver15.xa."
   * The name server responds with a single CNAME record and no other record in
     answer section on both software version query names.
@@ -101,19 +105,22 @@ Assumptions for the scenario specifications:
     * "version.server. CNAME version.bind." when query name is version.server.
 
 ### NO-VERSION-REVEALED-5
-* This is a happy path
+This is a happy path
+
 * Zone: "no-version-revealed-5.nameserver15.xa."
   * RDATA of the TXT records for both software version query names is the empty
     string.
 
 ### NO-VERSION-REVEALED-6
-* This is a happy path
+This is a happy path
+
 * Zone: "no-version-revealed-6.nameserver15.xa."
   * RDATA of the TXT records for both software version query names only consists
     of space characters.
 
 ### ERROR-ON-VERSION-QUERY-1
-* Unexpected response from server
+Unexpected response from server
+
 * Zone: "error-on-version-query-1.nameserver15.xa."
   * The name server responds with empty answer section on both software version
     query names.
@@ -121,27 +128,31 @@ Assumptions for the scenario specifications:
     version query names.
 
 ### ERROR-ON-VERSION-QUERY-2
-* Unexpected response from server
+Unexpected response from server
+
 * Zone: "error-on-version-query-2.nameserver15.xa."
   * The name server does not respond at all to the queries with the software
     version query names.
 
 ### SOFTWARE-VERSION-1
-* Normal version string
+Normal version string
+
 * Zone: "software-version-1.nameserver15.xa."
   * Empty response on software query name "version.bind".
   * TXT record with RDATA "v0" in response on software query name
     "version.server" in answer section.
 
 ### SOFTWARE-VERSION-2
-* Normal version string
+Normal version string
+
 * Zone: "software-version-2.nameserver15.xa."
   * Empty response on software query name "version.server".
   * TXT record with RDATA "v0" in response on software query name
     "version.bind" in answer section.
 
 ### WRONG-CLASS-1
-* Version string returned in wrong class
+Version string returned in wrong class
+
 * Zone: "wrong-class-1.nameserver15.xa."
   * Empty response on software query name "version.bind".
   * TXT record with RDATA "v0" in response on software query name
@@ -149,7 +160,8 @@ Assumptions for the scenario specifications:
     * TXT record is in IN class, not CH class.
 
 ### WRONG-CLASS-2
-* Version string returned in wrong class
+Version string returned in wrong class
+
 * Zone: "wrong-class-2.nameserver15.xa."
   * Empty response on software query name "version.server".
   * TXT record with RDATA "v0" in response on software query name
