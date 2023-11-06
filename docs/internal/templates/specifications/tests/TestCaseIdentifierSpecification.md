@@ -1,7 +1,7 @@
 # Test Case Identifier Specification
 
-All test cases belong to one module and their names are based on that module’s
-name. The following modules are defined and available:
+All test cases belong to one specific test level and their names are based on
+that test level’s name. The following test levels are defined and available:
 
 * Address
 * Basic
@@ -13,19 +13,20 @@ name. The following modules are defined and available:
 * Syntax
 * Zone
 
-The module name is not case sensitive, but the forms defined above,
-should be used when referring to the modules, i.e. "Address" and neither
-"ADDRESS" nor "address".
+The test level name is not case sensitive, but the forms defined above
+must be used when referring to the test levels, i.e. only the first letter
+uppercase, expect for acronyms, in the case all uppercase is used.
+For exemple "Address" and neither "ADDRESS" nor "address".
 
 The test case identifier in the test case specification (both in the main
-headline and in the "Test case identifier" section) uses the module name,
-as defined above, and has the format: `{Module name} + {Index}`
+headline and in the "Test case identifier" section) uses the test level name,
+as defined above, and has the format: `{Test level name} + {Index}`
 
-When referencing to a test case the module name may be used in other letter
-case, but for readability, PascalCase should be prefered.
+When referencing to a test case, for readability, the letter case defined
+above must be used for the test level name.
 
-The `{Index}` is a two-digit suffix 01-99, and should be selected so that the test
-case identifier is unique. Normally the first free index is selected.
+The `{Index}` is a two-digit suffix 01-99, and should be selected so that the
+test case identifier is unique. Normally the first free index is selected.
 
 Example of test case identifiers:
 
