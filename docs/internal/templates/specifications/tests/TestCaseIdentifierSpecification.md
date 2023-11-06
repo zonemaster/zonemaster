@@ -15,7 +15,7 @@ that test level’s name. The following test levels are defined and available:
 
 The test level name is not case sensitive, but the forms defined above
 must be used when referring to the test levels, i.e. only the first letter
-uppercase, expect for acronyms, in the case all uppercase is used.
+uppercase, expect for acronyms for wich all uppercase is used.
 For exemple "Address" and neither "ADDRESS" nor "address".
 
 The test case identifier in the test case specification (both in the main
