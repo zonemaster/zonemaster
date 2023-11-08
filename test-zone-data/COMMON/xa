@@ -38,4 +38,11 @@ ns1.consistency05	A	127.14.5.21
 ns1.consistency05       AAAA	fda1:b2:c3::127:14:5:21
 ns2.consistency05       A       127.14.5.22
 ns2.consistency05       AAAA    fda1:b2:c3::127:14:5:22
+
+consistency06   NS      ns1.consistency06
+consistency06   NS      nss.consistency06
+ns1.consistency06       A       127.14.6.21
+ns1.consistency06       AAAA    fda1:b2:c3::127:14:6:21
+ns2.consistency06       A       127.14.6.22
+ns2.consistency06       AAAA    fda1:b2:c3::127:14:6:22
 ;EOF
