@@ -23,37 +23,82 @@ ns1.addresses-match-1	AAAA	fda1:b2:c3:0:127:14:5:31
 ns2.addresses-match-1   A       127.14.5.32
 ns2.addresses-match-1   AAAA    fda1:b2:c3:0:127:14:5:32
 
-addresses-match-2       NS      ns1.addresses-match-1
-addresses-match-2       NS      ns2.addresses-match-1
+addresses-match-2       NS      ns1.addresses-match-2.consistency05.xb.
+addresses-match-2       NS      ns2.addresses-match-2.consistency05.xb.
 
-child-ns-failed		NS	ns1.child-ns-failed
-child-ns-failed         NS      ns2.child-ns-failed
-ns1.child-ns-failed	A	127.14.5.31
-ns1.child-ns-failed	AAAA	fda1:b2:c3:0:127:14:5:31
-ns2.child-ns-failed     A       127.14.5.32
-ns2.child-ns-failed     AAAA    fda1:b2:c3:0:127:14:5:32
+addresses-match-3       NS      ns1.addresses-match-3
+addresses-match-3       NS      ns2.addresses-match-3
+ns1.addresses-match-3   A       127.14.5.31
+ns1.addresses-match-3   AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.addresses-match-3   A       127.14.5.32
+ns2.addresses-match-3   AAAA    fda1:b2:c3:0:127:14:5:32
 
-no-response		NS	ns1.no-response
-no-response             NS      ns2.no-response
-ns1.no-response		A	127.14.5.33
-ns1.no-response		AAAA	fda1:b2:c3:0:127:14:5:33
-ns2.no-response         A       127.14.5.34
-ns2.no-response         AAAA    fda1:b2:c3:0:127:14:5:34
+addresses-match-4       NS      ns1.addresses-match-4
+addresses-match-4       NS      ns2.addresses-match-4
+ns1.addresses-match-4   A       127.14.5.31
+ns1.addresses-match-4   AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.addresses-match-4   A       127.14.5.32
+ns2.addresses-match-4   AAAA    fda1:b2:c3:0:127:14:5:32
 
-in-bailiwick-addr-mismatch	NS	ns1.in-bailiwick-addr-mismatch
-in-bailiwick-addr-mismatch      NS      ns2.in-bailiwick-addr-mismatch
-ns1.in-bailiwick-addr-mismatch	A	127.14.5.31
-ns1.in-bailiwick-addr-mismatch  AAAA	fda1:b2:c3:0:127:14:5:31
-ns1.in-bailiwick-addr-mismatch  A       127.14.5.32
-ns1.in-bailiwick-addr-mismatch  AAAA    fda1:b2:c3:0:127:14:5:32
+addresses-match-5       NS      ns1.addresses-match-5
+addresses-match-5       NS      ns2.addresses-match-5
+ns1.addresses-match-5   A       127.14.5.31
+ns1.addresses-match-5   AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.addresses-match-5   A       127.14.5.32
+ns2.addresses-match-5   AAAA    fda1:b2:c3:0:127:14:5:32
 
-out-of-bailiwick-addr-mismatch      NS      ns1.in-bailiwick-addr-mismatch
-out-of-bailiwick-addr-mismatch      NS      ns2.in-bailiwick-addr-mismatch
+addresses-match-6       NS      ns1.addresses-match-6
+addresses-match-6       NS      ns2.addresses-match-6
+ns1.addresses-match-6   A       127.14.5.31
+ns1.addresses-match-6   AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.addresses-match-6   A       127.14.5.32
+ns2.addresses-match-6   AAAA    fda1:b2:c3:0:127:14:5:32
 
-extra-address-child	NS	ns1.extra-address-child
+addresses-match-7       NS      ns1.addresses-match-7
+addresses-match-7       NS      ns2.addresses-match-7
+ns1.addresses-match-7   A       127.14.5.31
+ns1.addresses-match-7   AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.addresses-match-7   A       127.14.5.32
+ns2.addresses-match-7   AAAA    fda1:b2:c3:0:127:14:5:32
+
+child-zone-lame-1	NS	ns1.child-zone-lame-1
+child-zone-lame-1	NS	ns2.child-zone-lame-1
+ns1.child-zone-lame-1	A	127.14.5.31
+ns1.child-zone-lame-1	AAAA	fda1:b2:c3:0:127:14:5:31
+ns2.child-zone-lame-1   A       127.14.5.32
+ns2.child-zone-lame-1   AAAA    fda1:b2:c3:0:127:14:5:32
+
+child-zone-lame-2       NS      ns1.child-zone-lame-2
+child-zone-lame-2       NS      ns2.child-zone-lame-2
+ns1.child-zone-lame-2   A       127.14.5.31
+ns1.child-zone-lame-2   AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.child-zone-lame-2   A       127.14.5.32
+ns2.child-zone-lame-2   AAAA    fda1:b2:c3:0:127:14:5:32
+
+ib-addr-mismatch-1	NS	ns1.ib-addr-mismatch-1
+ib-addr-mismatch-1      NS      ns2.ib-addr-mismatch-1
+ns1.ib-addr-mismatch-1	A	127.14.5.39
+ns1.ib-addr-mismatch-1	AAAA	fda1:b2:c3:0:127:14:5:39
+ns2.ib-addr-mismatch-1  A       127.14.5.32
+ns2.ib-addr-mismatch-1  AAAA    fda1:b2:c3:0:127:14:5:32
+
+ib-addr-mismatch-2      NS      ns1.ib-addr-mismatch-2
+ib-addr-mismatch-2      NS      ns2.ib-addr-mismatch-2
+ns1.ib-addr-mismatch-2  A       127.14.5.31
+ns1.ib-addr-mismatch-2  AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.ib-addr-mismatch-2  A       127.14.5.32
+ns2.ib-addr-mismatch-2  AAAA    fda1:b2:c3:0:127:14:5:32
+
+extra-address-child     NS      ns1.extra-address-child
 extra-address-child     NS      ns2.extra-address-child
-ns1.extra-address-child	A	127.14.5.31
-ns1.extra-address-child	AAAA	fda1:b2:c3:0:127:14:5:31
+ns1.extra-address-child A       127.14.5.31
+ns1.extra-address-child AAAA    fda1:b2:c3:0:127:14:5:31
 ns2.extra-address-child A       127.14.5.32
 ns2.extra-address-child AAAA    fda1:b2:c3:0:127:14:5:32
 
+oob-addr-mismatch       NS      ns1.oob-addr-mismatch
+oob-addr-mismatch       NS      ns2.oob-addr-mismatch
+ns1.oob-addr-mismatch   A       127.14.5.31
+ns1.oob-addr-mismatch   AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.oob-addr-mismatch   A       127.14.5.32
+ns2.oob-addr-mismatch   AAAA    fda1:b2:c3:0:127:14:5:32

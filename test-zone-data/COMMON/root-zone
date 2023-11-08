@@ -28,6 +28,14 @@ xa.       NS      ns2.xa.
 ns2.xa.   A       127.2.0.12
 ns2.xa.   AAAA    fda1:b2:c3::127:2:0:12
 
+xb.       NS      ns1.xb.
+ns1.xb.   A       127.2.0.13
+ns1.xb.   AAAA    fda1:b2:c3::127:2:0:13
+
+xb.       NS      ns2.xb.
+ns2.xb.   A       127.2.0.14
+ns2.xb.   AAAA    fda1:b2:c3::127:2:0:14
+
 tld-email-domain-zone09.        NS     ns1.tld-email-domain-zone09
 ns1.tld-email-domain-zone09.    A      127.19.9.41
 ns1.tld-email-domain-zone09.    AAAA   fda1:b2:c3::127:19:9:41
