@@ -1,14 +1,21 @@
 # CONSISTENCY05
 
 [This directory](.), i.e. the same directory as this README file, holds
-zonefiles and `coredns` configuration files for scenarios for test case ZONE09:
+zonefiles and `coredns` configuration files for scenarios for test case CONISTENCY05:
 
-* CHILD_NS_FAILED
-* NO_RESPONSE
-* IN_BAILIWICK_ADDR_MISMATCH
-* OUT_OF_BAILIWICK_ADDR_MISMATCH
-* EXTRA_ADDRESS_CHILD
-* ADDRESSES_MATCH
+* ADDRESSES-MATCH-1
+* ADDRESSES-MATCH-2
+* ADDRESSES-MATCH-3
+* ADDRESSES-MATCH-4
+* ADDRESSES-MATCH-5
+* ADDRESSES-MATCH-6
+* ADDRESSES-MATCH-7
+* CHILD-ZONE-LAME-1
+* CHILD-ZONE-LAME-2
+* IB-ADDR-MISMATCH-1
+* IB-ADDR-MISMATCH-2
+* OOB-ADDR-MISMATCH
+* EXTRA-ADDRESS-CHILD
 
 ## zonemaster-cli commands and their output for each test scenario
 
