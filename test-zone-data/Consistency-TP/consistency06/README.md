@@ -100,6 +100,7 @@ $ zonemaster-cli ONE-SOA-MNAME-3.consistency06.xa --raw  --test Consistency/cons
    0.17 DEBUG    TEST_CASE_END   testcase=consistency06
    0.17 DEBUG    MODULE_END   module=Consistency
 ```
+--> OK
 
 Scenario name         | Mandatory message tags                            | Forbidden mess
 age tags
