@@ -235,7 +235,7 @@ $ zonemaster-cli ADDRESSES-MATCH-7.consistency05.xa --raw  --test Consistency/co
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
-CHILD-ZONE-LAME-1     | CHILD_ZONE_LAME, CHILD_NS_FAILED	          | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, NO_RESPONSE, ADDRESSES_MATCH
+CHILD-ZONE-LAME-1     | CHILD_ZONE_LAME, NO_RESPONSE    	          | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, NO_RESPONSE, ADDRESSES_MATCH
 
 ```
 $ zonemaster-cli CHILD-ZONE-LAME-1.consistency05.xa --raw  --test Consistency/consistency05 --hints COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR'
@@ -258,11 +258,11 @@ $ zonemaster-cli CHILD-ZONE-LAME-1.consistency05.xa --raw  --test Consistency/co
   40.23 DEBUG    TEST_CASE_END   testcase=consistency05
   40.23 DEBUG    MODULE_END   module=Consistency
 ```
---> missing CHILD_NS_FAILED
+--> missing NO_RESPONSE
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
-CHILD-ZONE-LAME-2     | CHILD_ZONE_LAME, NO_RESPONSE	                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_NS_FAILED, ADDRESSES_MATCH
+CHILD-ZONE-LAME-2     | CHILD_ZONE_LAME, CHILD_NS_FAILED                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_NS_FAILED, ADDRESSES_MATCH
 
 ```
 $ zonemaster-cli CHILD-ZONE-LAME-2.consistency05.xa --raw  --test Consistency/consistency05 --hints COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR'
@@ -293,11 +293,11 @@ $ zonemaster-cli CHILD-ZONE-LAME-2.consistency05.xa --raw  --test Consistency/co
    0.23 DEBUG    TEST_CASE_END   testcase=consistency05
    0.23 DEBUG    MODULE_END   module=Consistency
 ```
---> missing NO_RESPONSE and extra CHILD_NS_FAILED
+--> OK
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
-IB-ADDR-MISMATCH-1    | IN_BAILIWICK_ADDR_MISMATCH			  | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
+IB-ADDR-MISMATCH-1    | IN_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD	  | OUT_OF_BAILIWICK_ADDR_MISMATCH, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 
 ```
 $ zonemaster-cli IB-ADDR-MISMATCH-1.consistency05.xa --raw  --test Consistency/consistency05 --hints COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR'
@@ -321,7 +321,7 @@ $ zonemaster-cli IB-ADDR-MISMATCH-1.consistency05.xa --raw  --test Consistency/c
    0.22 DEBUG    TEST_CASE_END   testcase=consistency05
    0.22 DEBUG    MODULE_END   module=Consistency
 ```
---> Gets extra EXTRA_ADDRESS_CHILD
+--> OK
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
