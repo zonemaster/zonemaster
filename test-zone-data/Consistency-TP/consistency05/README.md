@@ -258,7 +258,8 @@ $ zonemaster-cli CHILD-ZONE-LAME-1.consistency05.xa --raw  --test Consistency/co
   40.23 DEBUG    TEST_CASE_END   testcase=consistency05
   40.23 DEBUG    MODULE_END   module=Consistency
 ```
---> missing NO_RESPONSE
+--> missing NO_RESPONSE -- Judged to be a bug in the implementation. See issue [zonemaster-engine#1301].
+
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
@@ -405,3 +406,6 @@ $ zonemaster-cli child.OOB-ADDR-MISMATCH.consistency05.xa --raw  --test Consiste
 ```
 --> OK
 
+
+
+[zonemaster-engine#1301]:                                 https://github.com/zonemaster/zonemaster-engine/issues/1301

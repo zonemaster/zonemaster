@@ -158,7 +158,7 @@ $ zonemaster-cli MULTIPLE-SOA-MNAMES-2.consistency06.xa --raw  --test Consistenc
    0.18 DEBUG    TEST_CASE_END   testcase=consistency06
    0.18 DEBUG    MODULE_END   module=Consistency
 ```
---> missing NO_RESPONSE
+--> missing NO_RESPONSE -- Judged to be a bug in the implementation. See issue [zonemaster-engine#1300].
 
 Scenario name         | Mandatory message tags                            | Forbidden mess
 age tags
@@ -184,5 +184,7 @@ $ zonemaster-cli NO-RESPONSE.consistency06.xa --raw  --test Consistency/consiste
   40.19 DEBUG    TEST_CASE_END   testcase=consistency06
   40.19 DEBUG    MODULE_END   module=Consistency
 ```
---> missing NO_RESPONSE
+--> missing NO_RESPONSE -- Judged to be a bug in the implementation. See issue [zonemaster-engine#1300].
 
+
+[zonemaster-engine#1300]:                                 https://github.com/zonemaster/zonemaster-engine/issues/1300
