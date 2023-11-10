@@ -55,8 +55,6 @@ for the test zone scenarios.
    ```
    sudo cp coredns  /usr/local/bin/
    ```
-   6. Update [`add-ip.sh`][add-ip.sh] based on the address plan if addresses have
-      been added to [address-plan.md].
 
 ## Running instructions
 
@@ -65,11 +63,13 @@ Two terminal windows to the computer are needed.
 ### Start coredns in terminal 1
 
 1. Change to the [test-zone-data] directory (where this README file is).
-2. Create all virtual interfaces. This step has to be done once for each session
+2. If new IP addresses have been taken into use, [address-plan.md] must be
+   updated.
+3. Create all virtual interfaces. This step has to be done once for each session
    or again if additional interfaces have been added. (Reboot the computer to
    remove the interfaces, if needed.)
    ```
-   sudo sh add-ip.sh
+   ./set-ip.sh
    ```
 3. Start `coredns`. It will be running in the foreground until terminated.
    ```
@@ -113,12 +113,9 @@ this README file.
 * [address-plan.md]
   * A document that explains the IP plan and that also contains the
     IP plan in a markdown table.
-* [add-ip.sh]
-  * A script, generated from the IP plan, to populate the loopback
-    interface with IP addresses. Generated versions to be checked-in.
-* make-add-ip.pl (*not yet available*)
-  * A script that will generate add-ip.sh when the IP plan has
-    been updated. To be manually run when needed.
+* [set-ip.sh]
+  * A script to populate the loopback based on the content of
+    [address-plan.md].
 
 More files are found in the directories below.
 
@@ -139,7 +136,7 @@ in those directories.
 * Connectivity-TP/ (*not yet available*)
   * Directory structure for scenarios for test cases in the Connectivity-TP test
     module.
-* Consistency-TP/ (*not yet available*)
+* [Consistency-TP/]
   * Directory structure for scenarios for test cases in the Consistency-TP test
     module.
 * [DNSSEC-TP/]
@@ -161,8 +158,10 @@ in those directories.
 [add-ip.sh]:                                           add-ip.sh
 [address-plan.md]:                                     address-plan.md
 [COMMON/]:                                             COMMON/
+[Consistency-TP/]:                                     Consistency-TP/
 [DNSSEC-TP/]:                                          DNSSEC-TP/
 [main.cfg]:                                            main.cfg
+[set-ip.sh]:                                           set-ip.sh
 [t]:                                                   https://github.com/zonemaster/zonemaster-engine/tree/develop/t
 [test-zone-data]:                                      .
 [Zone-TP/]:                                            Zone-TP/
