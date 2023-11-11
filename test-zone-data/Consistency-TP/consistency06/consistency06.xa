@@ -46,6 +46,7 @@ ns2.multiple-soa-mnames-1	AAAA    fda1:b2:c3:0:127:14:6:32
 
 multiple-soa-mnames-2           NS      ns1.multiple-soa-mnames-2
 multiple-soa-mnames-2           NS      ns2.multiple-soa-mnames-2
+multiple-soa-mnames-2           NS      ns3.multiple-soa-mnames-2
 ns1.multiple-soa-mnames-2       A       127.14.6.31
 ns1.multiple-soa-mnames-2       AAAA    fda1:b2:c3:0:127:14:6:31
 ns2.multiple-soa-mnames-2       A       127.14.6.32
