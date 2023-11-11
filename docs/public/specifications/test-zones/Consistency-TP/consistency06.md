@@ -47,6 +47,7 @@ Scenario name             | Mandatory message tag                | Forbidden mes
 ONE-SOA-MNAME-1           | ONE_SOA_MNAME                        | NO_RESPONSE, NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
 ONE-SOA-MNAME-2           | ONE_SOA_MNAME, NO_RESPONSE           | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
 ONE-SOA-MNAME-3           | ONE_SOA_MNAME, NO_RESPONSE_SOA_QUERY | NO_RESPONSE, MULTIPLE_SOA_MNAMES
+ONE-SOA-MNAME-4           | ONE_SOA_MNAME, NO_RESPONSE           | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
 MULTIPLE-SOA-MNAMES-1     | MULTIPLE_SOA_MNAMES                  | NO_RESPONSE, NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
 MULTIPLE-SOA-MNAMES-2     | MULTIPLE_SOA_MNAMES,NO_RESPONSE      | NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
 NO-RESPONSE               | NO_RESPONSE                          | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES, ONE_SOA_MNAME
@@ -87,6 +88,14 @@ Not so "happy path". One name server responds without SOA
 * Zone: "one-soa-mname-3.consistency06.xa."
   * ns1 responds, but with no SOA record in the answer section
     (maybe answering but not having the zone).
+
+### ONE-SOA-MNAME-4
+Not so "happy path". One name server does not respond. That ns is also missing in
+the zone.
+
+* Zone: "one-soa-mname-4.consistency06.xa."
+  * ns2 gives no response at all.
+  * ns2 is missing in the zone (but available in the delegation)
 
 ### MULTIPLE-SOA-MNAMES-1
 Different SOA MNAME on the servers
