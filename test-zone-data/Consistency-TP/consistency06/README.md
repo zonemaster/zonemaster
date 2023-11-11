@@ -5,6 +5,7 @@
 * ONE-SOA-MNAME-1
 * ONE-SOA-MNAME-2
 * ONE-SOA-MNAME-3
+* ONE-SOA-MNAME-4
 * MULTIPLE-SOA-MNAMES-1
 * MULTIPLE-SOA-MNAMES-2
 * NO-RESPONSE
@@ -101,6 +102,23 @@ $ zonemaster-cli ONE-SOA-MNAME-3.consistency06.xa --raw  --test Consistency/cons
    0.17 DEBUG    MODULE_END   module=Consistency
 ```
 --> OK
+
+Scenario name         | Mandatory message tags                            | Forbidden mess
+age tags
+:---------------------|:--------------------------------------------------|:-------------------------------------------
+ONE-SOA-MNAME-4       | ONE_SOA_MNAME, NO_RESPONSE                        | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
+```
+$ zonemaster-cli ONE-SOA-MNAME-4.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR|DEPENDENCY_VERSION'
+   0.00 DEBUG    START_TIME   string=2023-11-11 22:14:42 +0000; time_t=1699740882
+   0.00 DEBUG    TEST_ARGS   args=Zonemaster::Engine::Zone=HASH(0x55976cbce390); module=Consistency; testcase=consistency06
+   0.00 INFO     GLOBAL_VERSION   version=v4.7.3
+   0.00 DEBUG    MODULE_VERSION   module=Zonemaster::Engine::Test::Consistency; version=v1.1.16
+   0.00 DEBUG    TEST_CASE_START   testcase=consistency06
+  20.22 INFO     ONE_SOA_MNAME   mname=ns1.one-soa-mname-4.consistency06.xa.
+  20.22 DEBUG    TEST_CASE_END   testcase=consistency06
+  20.22 DEBUG    MODULE_END   module=Consistency
+```
+--> missing NO_RESPONSE -- Judged to be a bug in the implementation. See issue [zonemaster-engine#1300].
 
 Scenario name         | Mandatory message tags                            | Forbidden mess
 age tags

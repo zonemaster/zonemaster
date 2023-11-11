@@ -37,6 +37,13 @@ ns1.one-soa-mname-3		AAAA    fda1:b2:c3:0:127:14:6:31
 ns2.one-soa-mname-3		A       127.14.6.32
 ns2.one-soa-mname-3		AAAA    fda1:b2:c3:0:127:14:6:32
 
+one-soa-mname-4			NS      ns1.one-soa-mname-4
+one-soa-mname-4			NS      ns2.one-soa-mname-4
+ns1.one-soa-mname-4		A       127.14.6.31
+ns1.one-soa-mname-4		AAAA    fda1:b2:c3:0:127:14:6:31
+ns2.one-soa-mname-4		A       127.14.6.32
+ns2.one-soa-mname-4		AAAA    fda1:b2:c3:0:127:14:6:32
+
 multiple-soa-mnames-1		NS      ns1.multiple-soa-mnames-1
 multiple-soa-mnames-1		NS      ns2.multiple-soa-mnames-1
 ns1.multiple-soa-mnames-1	A       127.14.6.31
