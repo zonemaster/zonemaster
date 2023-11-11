@@ -137,8 +137,9 @@ age tags
 MULTIPLE-SOA-MNAMES-2 | MULTIPLE_SOA_MNAMES, NO_RESPONSE                  | NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
 ```
 $ zonemaster-cli MULTIPLE-SOA-MNAMES-2.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR'
-   0.00 DEBUG    START_TIME   string=2023-11-08 18:42:40 +0000; time_t=1699468960
-   0.00 DEBUG    TEST_ARGS   args=Zonemaster::Engine::Zone=HASH(0x5575f458f0d8); module=Consistency; testcase=consistency06
+ COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR'
+   0.00 DEBUG    START_TIME   string=2023-11-11 21:28:33 +0000; time_t=1699738113
+   0.00 DEBUG    TEST_ARGS   args=Zonemaster::Engine::Zone=HASH(0x55b13971e0f8); module=Consistency; testcase=consistency06
    0.00 INFO     GLOBAL_VERSION   version=v4.7.3
    0.00 DEBUG    DEPENDENCY_VERSION   name=Zonemaster::LDNS; version=3.2.0
    0.00 DEBUG    DEPENDENCY_VERSION   name=IO::Socket::INET6; version=2.73
@@ -152,13 +153,17 @@ $ zonemaster-cli MULTIPLE-SOA-MNAMES-2.consistency06.xa --raw  --test Consistenc
    0.00 DEBUG    DEPENDENCY_VERSION   name=Readonly; version=2.05
    0.00 DEBUG    MODULE_VERSION   module=Zonemaster::Engine::Test::Consistency; version=v1.1.16
    0.00 DEBUG    TEST_CASE_START   testcase=consistency06
-   0.18 NOTICE   MULTIPLE_SOA_MNAMES   count=2
-   0.18 DEBUG    SOA_MNAME   mname=ns1.multiple-soa-mnames-2.consistency06.xa.; ns_list=ns1.multiple-soa-mnames-2.consistency06.xa/127.14.6.31;ns1.multiple-soa-mnames-2.consistency06.xa/fda1:b2:c3:0:127:14:6:31
-   0.18 DEBUG    SOA_MNAME   mname=ns2.multiple-soa-mnames-2.consistency06.xa.; ns_list=ns2.multiple-soa-mnames-2.consistency06.xa/127.14.6.32;ns2.multiple-soa-mnames-2.consistency06.xa/fda1:b2:c3:0:127:14:6:32
-   0.18 DEBUG    TEST_CASE_END   testcase=consistency06
-   0.18 DEBUG    MODULE_END   module=Consistency
+  20.31 DEBUG    NO_RESPONSE   ns=ns3.multiple-soa-mnames-2.consistency06.xa/127.14.6.33
+  20.31 DEBUG    NO_RESPONSE   ns=ns3.multiple-soa-mnames-2.consistency06.xa/fda1:b2:c3:0:127:14:6:33
+  20.31 DEBUG    NO_RESPONSE   ns=ns3.multiple-soa-mnames-2.consistency06.xa/127.14.6.33
+  20.31 DEBUG    NO_RESPONSE   ns=ns3.multiple-soa-mnames-2.consistency06.xa/fda1:b2:c3:0:127:14:6:33
+  20.31 NOTICE   MULTIPLE_SOA_MNAMES   count=2
+  20.31 DEBUG    SOA_MNAME   mname=ns2.multiple-soa-mnames-2.consistency06.xa.; ns_list=ns2.multiple-soa-mnames-2.consistency06.xa/127.14.6.32;ns2.multiple-soa-mnames-2.consistency06.xa/fda1:b2:c3:0:127:14:6:32
+  20.31 DEBUG    SOA_MNAME   mname=ns1.multiple-soa-mnames-2.consistency06.xa.; ns_list=ns1.multiple-soa-mnames-2.consistency06.xa/127.14.6.31;ns1.multiple-soa-mnames-2.consistency06.xa/fda1:b2:c3:0:127:14:6:31
+  20.31 DEBUG    TEST_CASE_END   testcase=consistency06
+  20.31 DEBUG    MODULE_END   module=Consistency
 ```
---> missing NO_RESPONSE -- Judged to be a bug in the implementation. See issue [zonemaster-engine#1300].
+--> OK
 
 Scenario name         | Mandatory message tags                            | Forbidden mess
 age tags
