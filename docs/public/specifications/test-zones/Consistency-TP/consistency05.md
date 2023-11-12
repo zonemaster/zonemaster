@@ -55,6 +55,7 @@ CHILD-ZONE-LAME-1         | CHILD_ZONE_LAME, NO_RESPONSE     | IN_BAILIWICK_ADDR
 CHILD-ZONE-LAME-2         | CHILD_ZONE_LAME, CHILD_NS_FAILED | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_NS_FAILED, ADDRESSES_MATCH
 IB-ADDR-MISMATCH-1        | IN_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD | OUT_OF_BAILIWICK_ADDR_MISMATCH, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 IB-ADDR-MISMATCH-2        | IN_BAILIWICK_ADDR_MISMATCH       | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
+IB-ADDR-MISMATCH-3        | IN_BAILIWICK_ADDR_MISMATCH, NO_RESPONSE | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 EXTRA-ADDRESS-CHILD       | EXTRA_ADDRESS_CHILD              | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 OOB-ADDR-MISMATCH         | OUT_OF_BAILIWICK_ADDR_MISMATCH   | IN_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 
@@ -151,7 +152,7 @@ Lame. One NS non-AA and one NS SERVFAIL.
 For one NS (in-bailiwick), the glue does not match address response from the
 zone.
 
-* Zone: "ib-addr-mismatch.consistency05.xa."
+* Zone: "ib-addr-mismatch-1.consistency05.xa."
   * ns2 is defined in the zone, but with different addresses (IPv4 and IPv6),
     i.e. not the samme as in glue.
   * Both ns2 servers (IP address sets from glue and child, respectively) must
@@ -162,9 +163,19 @@ zone.
 For one NS (in-bailiwick), the glue does not match any address records in the
 zone.
 
-* Zone: "ib-addr-mismatch.consistency05.xa."
+* Zone: "ib-addr-mismatch-2.consistency05.xa."
   * ns2 is not defined in the zone, i.e. there are no address records for ns2
     (IPv4 or IPv6) in the zone.
+
+### IB-ADDR-MISMATCH-3
+For ns2 (in-bailiwick), there is no NS for ns2 and the glue does not match any
+address records in the zone. Furthermore, ns2 does not respond.
+
+* Zone: "ib-addr-mismatch-3.consistency05.xa."
+  * There is no NS record with ns2 in RDATA.
+  * ns2 is not defined in the zone, i.e. there are no address records for ns2
+    (IPv4 or IPv6) in the zone.
+  * ns2 does not respond (but it is in the delegation)
 
 ### EXTRA-ADDRESS-CHILD
 Child zone has one extra address record on the NS name.
