@@ -14,6 +14,7 @@ zonefiles and `coredns` configuration files for scenarios for test case CONISTEN
 * CHILD-ZONE-LAME-2
 * IB-ADDR-MISMATCH-1
 * IB-ADDR-MISMATCH-2
+* IB-ADDR-MISMATCH-3
 * OOB-ADDR-MISMATCH
 * EXTRA-ADDRESS-CHILD
 
@@ -350,6 +351,25 @@ $ zonemaster-cli IB-ADDR-MISMATCH-2.consistency05.xa --raw  --test Consistency/c
    0.20 DEBUG    MODULE_END   module=Consistency
 ```
 --> OK
+
+
+Scenario name         | Mandatory message tags                            | Forbidden message tags
+:---------------------|:--------------------------------------------------|:-------------------------------------------
+IB-ADDR-MISMATCH-3    | IN_BAILIWICK_ADDR_MISMATCH, NO_RESPONSE           | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
+
+```
+$ zonemaster-cli IB-ADDR-MISMATCH-3.consistency05.xa --raw  --test Consistency/consistency05 --hints COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR|DEPENDENCY_VERSION'
+   0.00 DEBUG    START_TIME   string=2023-11-12 13:12:47 +0000; time_t=1699794767
+   0.00 DEBUG    TEST_ARGS   args=Zonemaster::Engine::Zone=HASH(0x5606f4c1f880); module=Consistency; testcase=consistency05
+   0.00 INFO     GLOBAL_VERSION   version=v4.7.3
+   0.00 DEBUG    MODULE_VERSION   module=Zonemaster::Engine::Test::Consistency; version=v1.1.16
+   0.00 DEBUG    TEST_CASE_START   testcase=consistency05
+  20.36 ERROR    IN_BAILIWICK_ADDR_MISMATCH   parent_addresses=ns1.ib-addr-mismatch-3.consistency05.xa./127.14.5.31;ns1.ib-addr-mismatch-3.consistency05.xa./fda1:b2:c3:0:127:14:5:31;ns2.ib-addr-mismatch-3.consistency05.xa./127.14.5.32;ns2.ib-addr-mismatch-3.consistency05.xa./fda1:b2:c3:0:127:14:5:32; zone_addresses=ns1.ib-addr-mismatch-3.consistency05.xa./127.14.5.31;ns1.ib-addr-mismatch-3.consistency05.xa./fda1:b2:c3:0:127:14:5:31
+  20.36 DEBUG    TEST_CASE_END   testcase=consistency05
+  20.36 DEBUG    MODULE_END   module=Consistency
+```
+--> missing NO_RESPONSE -- Judged to be a bug in the implementation. See issue [zonemaster-engine#1301].
+
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
