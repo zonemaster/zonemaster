@@ -2,7 +2,7 @@ $ORIGIN consistency06.xa.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2023092100      ; serial
+                2023111300      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -61,9 +61,10 @@ ns2.multiple-soa-mnames-2       AAAA    fda1:b2:c3:0:127:14:6:32
 ns3.multiple-soa-mnames-2       A       127.14.6.33
 ns3.multiple-soa-mnames-2       AAAA    fda1:b2:c3:0:127:14:6:33
 
-no-response                     NS      ns1.no-response
-no-response                     NS      ns2.no-response
-ns1.no-response                 A       127.14.6.31
-ns1.no-response                 AAAA    fda1:b2:c3:0:127:14:6:31
-ns2.no-response                 A       127.14.6.32
-ns2.no-response                 AAAA    fda1:b2:c3:0:127:14:6:32
+$ORIGIN no-response.consistency06.xa.
+@                               NS      ns1
+@                               NS      ns2
+ns1                             A       127.14.6.31
+ns1                             AAAA    fda1:b2:c3:0:127:14:6:31
+ns2                             A       127.14.6.32
+ns2                             AAAA    fda1:b2:c3:0:127:14:6:32
