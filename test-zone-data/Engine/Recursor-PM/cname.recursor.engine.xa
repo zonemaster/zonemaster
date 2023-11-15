@@ -1,0 +1,69 @@
+$TTL 3600
+$ORIGIN cname.recursor.engine.xa.
+
+@                       SOA  (
+                                   ns1
+                                   root
+                                   2023111502
+                                   86400
+                                   14400
+                                   3600000
+                                   3600
+                                 )
+
+@                       NS    ns1
+ns1                     A     127.30.1.31
+ns1                     AAAA  fda1:b2:c3:0:127:30:1:31
+
+; For scenario GOOD-CNAME-1
+good-cname-1                  CNAME good-cname-1-target 
+good-cname-1-target           A     127.0.0.1
+
+; For scenario GOOD-CNAME-2
+good-cname-2                  CNAME good-cname-2-target
+good-cname-2-target           A     127.0.0.1
+good-cname-2-target           A     127.0.0.2
+
+; For scenario GOOD-CNAME-CHAIN
+good-cname-chain              CNAME good-cname-chain-two
+good-cname-chain-two          CNAME good-cname-chain-three
+good-cname-chain-three        CNAME good-cname-chain-target
+good-cname-chain-target       A     127.0.0.1
+
+; For scenario GOOD-CNAME-OUT-OF-ZONE
+good-cname-out-of-zone        CNAME target.goodsub
+goodsub                       NS    ns1.goodsub
+ns1.goodsub                   A     127.30.1.34
+ns1.goodsub                   AAAA  fda1:b2:c3::127:30:1:34
+
+; For scenario NXDOMAIN-VIA-CNAME
+nxdomain-via-cname            CNAME nxdomain-via-cname-target
+
+; For scenario NODATA-VIA-CNAME
+nodata-via-cname              CNAME nodata-via-cname-target
+nodata-via-cname-target       HINFO No-CPU No-OS
+
+; For scenario MULT-CNAME
+mult-cname                    CNAME mult-cname-target-1
+mult-cname                    CNAME mult-cname-target-2
+mult-cname-target-1           A     127.0.0.1
+mult-cname-target-2           A     127.0.0.2
+
+; For scenario LOOPED-CNAME-IN-ZONE-1
+looped-cname-in-zone-1        CNAME looped-cname-in-zone-1
+
+; For scenario LOOPED-CNAME-IN-ZONE-2
+looped-cname-in-zone-2        CNAME looped-cname-in-zone-2-a
+looped-cname-in-zone-2-a      CNAME looped-cname-in-zone-2-b
+looped-cname-in-zone-2-b      CNAME looped-cname-in-zone-2-a
+
+; For scenario LOOPED-CNAME-OUT-OF-ZONE
+sub2                          NS    ns1.sub2
+ns1.sub2                      A     127.30.1.32
+ns1.sub2                      AAAA  fda1:b2:c3:0:127:30:1:32
+
+sub3                          NS    ns1.sub3
+ns1.sub3                      A     127.30.1.33
+ns1.sub3                      AAAA  fda1:b2:c3:0:127:30:1:33
+
+
