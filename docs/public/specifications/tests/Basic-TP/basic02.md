@@ -177,7 +177,7 @@ means what is not "in-bailiwick, in domain", in this document.
 None.
 
 
-[Argument list]:                                                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Argument list]:                                                  ../ArgumentsForTestCaseMessages.md
 [B02_AUTH_RESPONSE_SOA]:                                          #outcomes
 [B02_NO_DELEGATION]:                                              #outcomes
 [B02_NO_WORKING_NS]:                                              #outcomes

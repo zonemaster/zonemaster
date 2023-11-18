@@ -114,7 +114,7 @@ None
 * "Send" - The term is used when a DNS query is sent to
   a specific name server (name server IP address).
 
-[Argument List]:                                                https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Argument List]:                                                ../ArgumentsForTestCaseMessages.md
 [Concatenate]:                                                  #terminology
 [Connectivity01]:                                               ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                                                     ../SeverityLevelDefinitions.md#critical
