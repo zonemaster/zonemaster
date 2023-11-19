@@ -260,7 +260,7 @@ of a single label (ignoring the empty label after the final dot).
 The term "Email Domain" is used for the domain name at right of the at-sign ("@")
 in an email address.
 
-[Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Argument list]:                              ../ArgumentsForTestCaseMessages.md
 [Connectivity01]:                             ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [DNS Query and Response Defaults]:            ../DNSQueryAndResponseDefaults.md

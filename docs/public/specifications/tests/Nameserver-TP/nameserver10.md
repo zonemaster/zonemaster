@@ -142,7 +142,7 @@ None
 No special terminology for this test case.
 
 
-[Argument list]:                           https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Argument list]:                           ../ArgumentsForTestCaseMessages.md
 [Connectivity01]:                          ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                                ../SeverityLevelDefinitions.md#critical
 [ERROR]:                                   ../SeverityLevelDefinitions.md#error

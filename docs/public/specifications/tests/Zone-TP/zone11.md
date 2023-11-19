@@ -174,7 +174,7 @@ None.
 * "using Method" - The term is used when data is fetched using the defined
   [Method][Methods].
 
-[Argument list]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Argument list]:                        ../ArgumentsForTestCaseMessages.md
 [argument]:                             #terminology
 [concatenate]:                          #terminology
 [Connectivity01]:                       ../Connectivity-TP/connectivity01.md
