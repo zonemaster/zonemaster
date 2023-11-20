@@ -32,6 +32,14 @@ ns1.dnssec16    AAAA  fda1:b2:c3::127:15:16:21
 ns2.dnssec16    A     127.15.16.22
 ns2.dnssec16    AAAA  fda1:b2:c3::127:15:16:22
 
+$ORIGIN nameserver15.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.17.15.21
+ns1     AAAA    fda1:b2:c3:0:127:17:15:21
+ns2     A       127.17.15.22
+ns2     AAAA    fda1:b2:c3:0:127:17:15:22
+
 
 $ORIGIN recursor.engine.xa.
 @               NS    ns1

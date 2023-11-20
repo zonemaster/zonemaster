@@ -163,7 +163,7 @@ None.
 No special terminology for this Test Case.
 
 
-[Argument list]:                                                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Argument list]:                                                  ../ArgumentsForTestCaseMessages.md
 [CN02_MISSING_NS_RECORD_TCP]:                                     #summary
 [CN02_MISSING_SOA_RECORD_TCP]:                                    #summary
 [CN02_NO_RESPONSE_NS_QUERY_TCP]:                                  #summary
