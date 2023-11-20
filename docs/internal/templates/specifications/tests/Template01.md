@@ -297,6 +297,7 @@ No special terminology for this test case.
 
 [Connectivity01]:                                                 ../../../../public/specifications/tests/Connectivity-TP/connectivity01.md
 
+[Argument list]:                                                  ../../../../public/specifications/tests/ArgumentsForTestCaseMessages.md
 [DNS Query and Response Defaults]:                                ../../../../public/specifications/tests/DNSQueryAndResponseDefaults.md
 [DNS Query]:                                                      ../../../../public/specifications/tests/DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
 [DNS Response]:                                                   ../../../../public/specifications/tests/DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
@@ -311,9 +312,6 @@ No special terminology for this test case.
 
 [Requirements and normalization of domain names in input]:        ../../../../public/specifications/tests/RequirementsAndNormalizationOfDomainNames.md
 
-> > Links to other repositories:
-
-[Argument list]:                                                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
 [Zonemaster-Engine profile]:                                      ../../../../public/configuration/profiles.md
 
 > > External links:

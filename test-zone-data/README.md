@@ -24,7 +24,7 @@ for the test zone scenarios.
    latest version of Zonemaster (it will not work with older version than v2022.2,
    first version with support for `--hint`).
 3. Clone this repository or copy its contents to the computer.
-4. Install `go`:
+4. Install `go` (here version 1.20 is assumed):
    ```
    sudo apt install golang-go 
    ```
@@ -44,18 +44,21 @@ for the test zone scenarios.
    ```
    echo "unbound:github.com/coredns/unbound" >> plugin.cfg
    ```
-   4. Generate and compile
+   4. Add support for CHAOS class in more plugins. In
+      `coredns/core/dnsserver/server.go` find `EnableChaos` at the end of the
+      file. Add "template" and "acl" to the plugins that accepts CHAOS class. For
+      reference see https://github.com/coredns/coredns/discussions/6373
+   5. Generate and compile
    ```
    go get github.com/coredns/unbound
    go generate
    CGO_ENABLED=1 make
    ```
-   5. `coredns` is now in top of repository. Add it to PATH and repeat this step
+   6. `coredns` is now in top of repository. Add it to PATH and repeat this step
       every time `coredns` is recompiled (or create a symlink instead).
    ```
    sudo cp coredns  /usr/local/bin/
    ```
-
 ## Running instructions
 
 Two terminal windows to the computer are needed.
@@ -155,7 +158,6 @@ in those directories.
   * Directory structure for scenarios for test cases in the Zone-TP test module.
 
 
-[add-ip.sh]:                                           add-ip.sh
 [address-plan.md]:                                     address-plan.md
 [COMMON/]:                                             COMMON/
 [Consistency-TP/]:                                     Consistency-TP/
