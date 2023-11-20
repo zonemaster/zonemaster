@@ -311,7 +311,7 @@ exist, as a directly defined name. The first label starts with "xx--" which
 should not be used as of [RFC 5890][RFC 5890#section-2.3.1], section 2.3.1.
 
 
-[Argument list]:                              https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Argument list]:                              ../ArgumentsForTestCaseMessages.md
 [Connectivity01]:                             ../Connectivity-TP/connectivity01.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
 [DNSSEC README]:                              README.md

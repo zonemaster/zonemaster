@@ -183,7 +183,7 @@ None.
 No special terminology for this test case.
 
 
-[Argument list]:                                                  https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Argument list]:                                                  ../ArgumentsForTestCaseMessages.md
 [Basic02]:                                                        basic02.md
 [CN01_IPV4_DISABLED]:                                             #summary
 [CN01_IPV6_DISABLED]:                                             #summary
