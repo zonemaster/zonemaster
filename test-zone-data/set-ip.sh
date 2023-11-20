@@ -13,21 +13,16 @@ if ! sudo echo ; then
 fi
 
 
-usage() { echo "Usage: $0 [-o] [-v]" 1>&2;
+usage() { echo "Usage: $0 [-o]" 1>&2;
           echo 1>&2;
           echo "-o  only output to standard output the command to add the address" 1>&2;
-          echo "-v  be verbose when adding the address" 1>&2;
           exit 1; }
 
 printstdout=false
-verbose=false
 while getopts "ov" o; do
     case "${o}" in
         o)
             printstdout=true
-            ;;
-        v)
-            verbose=true
             ;;
         *)
             usage
@@ -52,10 +47,8 @@ add_ipv4_address() {
   if $printstdout; then
       echo $cmd
   else
-      if $verbose; then
-          echo "Adding IPv4 address: $ip"
-      fi
-      $cmd
+      echo -n "Adding $ip : "
+      $cmd && echo "added"
   fi
 }
 
@@ -68,10 +61,8 @@ add_ipv6_address() {
   if $printstdout; then
       echo $cmd
   else
-      if $verbose; then
-          echo "Adding IPv6 address: fda1:b2:c3::$ipv6"
-      fi
-      $cmd
+      echo -n "Adding fda1:b2:c3::$ipv6 : "
+      $cmd && echo "added"
   fi  
 }
 
