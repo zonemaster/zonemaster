@@ -216,8 +216,9 @@ A complete list of all DNS Resource Record types can be found in the
              addresses from the set with that flag list value.
           2. Else, output *[DS03_NSEC3_OPT_OUT_ENABLED_NON_TLD]* with the name
              servers IP addresses from the set with that flag list value.
-       3. Else, output *[DS03_NSEC3_OPT_OUT_DISABLED]* with the name servers IP
-             addresses from the set with that flag list value.
+       3. If flag 7 (bit 7) is unset, then output
+          *[DS03_NSEC3_OPT_OUT_DISABLED]* with the name servers IP addresses from
+          the set with that flag list value.
 
 13. If the *NSEC3 Iterations* set is non-empty then do:
     1. If the set has more than one iteration value then output
