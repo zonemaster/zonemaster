@@ -171,8 +171,8 @@ A complete list of all DNS Resource Record types can be found in the
        IP to the *Responds Without NSEC3* set and go to next name server.
     9. Else do:
        1. If there are more than one NSEC3 record in the authority section then
-          add name server IP to the *Multiple NSEC3* set and use one of them for
-          the following steps.
+          add name server IP to the *Multiple NSEC3* set and use the first one
+          for the following steps.
        2. Add name server IP to the *Responds With NSEC3* set.
        3. Extract the NSEC3 hash algorithm and add it and the name server IP to
           the *Hash Algorithm* set.
