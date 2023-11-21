@@ -24,7 +24,7 @@ The NSEC3 record type and its parameters are defined in [RFC 5155]. The
 recommended values of the parameters have been updated by [RFC 9276].
 
 For NSEC3 there are four fields that determine how the NSEC3 record are created
-and interpreted ([RFC 5155][RFC 5155#section-3], section3):
+and interpreted ([RFC 5155][RFC 5155#section-3], section 3):
 
 * Hash algorithm
 * Flags
@@ -35,9 +35,9 @@ and interpreted ([RFC 5155][RFC 5155#section-3], section3):
 (SHA-1). See ([RFC 5155][RFC 5155#section-11], section 11 and
 [IANA NSEC3 Parameters registry]).
 
-**Flags:** The only defined flags in the flag field is bit 7, "opt-out". It may
-only be set in the NSEC record, not in the NSEC3PARAM record
-([RFC 5155][RFC 5155#section-11], section 11 and
+**Flags:** The only defined flags in the flag field is bit 7 (the least
+significant bit), "opt-out". It may only be set in the NSEC record, not in the
+NSEC3PARAM record ([RFC 5155][RFC 5155#section-11], section 11 and
 [IANA NSEC3 Parameters registry]). "For small zones, the use of opt-out-based
 NSEC3 records is NOT RECOMMENDED. For very large and sparsely signed zones, where
 the majority of the records are insecure delegations, opt-out MAY be used"
@@ -76,9 +76,10 @@ This test case is only relevant if the zone has been DNSSEC signed.
 
 * If no DNSKEY records are found, no further investigation will be done.
 
-Message Tag outputted              | Level   | Arguments| Message ID for message tag
-:----------------------------------|:--------|:---------|:--------------------------------------------
-DS03_ERR_MULT_NSEC3                | ERROR   | ns_list  | Multiple NSEC3 records when one is expected. Fetched from name servers "{ns_list}".
+Message Tag outputted              | Level   |Arguments| Message ID for message tag
+:----------------------------------|:--------|:--------|:--------------------------------------------
+DS03_ERROR_RESPONSE_NSEC_QUERY     | ERROR   | ns_list | The following servers give erroneous response to NSEC query. Fetched from name servers "{ns_list}".
+DS03_ERR_MULT_NSEC3                | ERROR   | ns_list | Multiple NSEC3 records when one is expected. Fetched from name servers "{ns_list}".
 DS03_ILLEGAL_HASH_ALGO             | ERROR   | ns_list, algo_num | The following servers respond with an illegal hash algorithm for NSEC3 ({algo_num}). Fetched from name servers "{ns_list}".
 DS03_ILLEGAL_ITERATION_VALUE       | ERROR   | ns_list, int | The following servers respond with the NSEC3 iteration value {int}. The recommended practice is to set this value to 0. Fetched from name servers "{ns_list}".
 DS03_ILLEGAL_SALT_LENGTH           | WARNING | ns_list, int | The following servers respond with a non-empty salt in NSEC3 ({int} octets). The recommended practice is to use an empty salt. Fetched from name servers "{ns_list}".
@@ -91,12 +92,13 @@ DS03_LEGAL_HASH_ALGO               | INFO    | ns_list | The following servers r
 DS03_LEGAL_ITERATION_VALUE         | INFO    | ns_list | The following servers respond with NSEC3 iteration value set to zero (as recommended). Fetched from name servers "{ns_list}".
 DS03_NO_DNSSEC_SUPPORT             | NOTICE  | ns_list | The zone is not DNSSEC signed or not properly DNSSEC signed. Testing for NSEC3 has been skipped. Fetched from name servers "{ns_list}".
 DS03_NO_NSEC3                      | INFO    | ns_list | The zone does not use NSEC3. Testing for NSEC3 has been skipped. Fetched from name servers "{ns_list}".
+DS03_NO_RESPONSE_NSEC_QUERY        | ERROR   | ns_list | The following servers unexpectedly give no response to NSEC query. Fetched from name servers "{ns_list}".
 DS03_NSEC3_OPT_OUT_DISABLED        | INFO    | ns_list | The following servers respond with NSEC3 opt-out disabled (as recommended). Fetched from name servers "{ns_list}".
 DS03_NSEC3_OPT_OUT_ENABLED_NON_TLD | NOTICE  | ns_list | The following servers respond with NSEC3 opt-out enabled. The recommended practice is to disable opt-out. Fetched from name servers "{ns_list}".
 DS03_NSEC3_OPT_OUT_ENABLED_TLD     | INFO    | ns_list | The following servers respond with NSEC3 opt-out enabled. Fetched from name servers "{ns_list}".
 DS03_SERVER_NO_DNSSEC_SUPPORT      | ERROR   | ns_list | The following name servers do not support DNSSEC or have not been properly configured. Testing for NSEC3 has been skipped on those servers. Fetched from name servers "{ns_list}".
 DS03_SERVER_NO_NSEC3               | ERROR   | ns_list | The following name servers do not use NSEC3, but others do. Testing for NSEC3 has been skipped on the following servers. Fetched from name servers "{ns_list}".
-DS03_UNASSIGNED_FLAG_USED          | ERROR   | ns_list, int | The following servers respond with an NSEC3 record where an unassigned flag is used (flag {int}). Fetched from name servers "{ns_list}".
+DS03_UNASSIGNED_FLAG_USED          | ERROR   | ns_list, int | The following servers respond with an NSEC3 record where an unassigned flag is used (bit {int}). Fetched from name servers "{ns_list}".
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -142,6 +144,8 @@ A complete list of all DNS Resource Record types can be found in the
     7.  Name server IP address and NSEC3 flags ("NSEC3 Flags").
     8.  Name server IP address and NSEC3 iterations value ("NSEC3 Iterations").
     9.  Name server IP address and NSEC3 salt length ("NSEC3 Salt Length").
+    10. Name server IP address ("No Response NSEC Query")
+    11. Name server IP address ("Error Response NSEC Query")
 
 6.  For each name server IP address in *NS IP* do:
 
@@ -155,24 +159,29 @@ A complete list of all DNS Resource Record types can be found in the
        matching *Child Zone* in the answer section, add name server IP to the
        *Responds Without DNSKEY* set and go to next name server.
     4. Add name server IP to the *Responds With DNSKEY* set.
-    5. Send *NSEC Query* to the name server IP and do:
-
-       1. If the authority section contains no NSEC3 record then add the name
-          server IP to the *Responds Without NSEC3* set and go to next name
-          server.
-       2. Else do:
-          1. If there are more than one NSEC record in the authority section then
-             add name server IP to the *Multiple NSEC3* set and use one of them
-             for the following steps.
-          2. Add name server IP to the *Responds With NSEC3* set.
-          3. Extract the NSEC3 hash algorithm and add it and the name server IP
-             to the *Hash Algorithm* set.
-          4. Extract the NSEC3 flags and add them and the name server IP to the
-             *NSEC3 flags* set.
-          5. Extract the NSEC3 hash iterations value and add it and the name
-             server IP to the *NSEC3 Iterations* set.
-          6. Extract the NSEC3 salt length and add it and the name server IP to
-             the *NSEC3 Salt Length* set.
+    5. Send *NSEC Query* to the name server IP.
+    6. If there is no DNS response do:
+       1. Add name server IP to the *No Response NSEC Query* set.
+       2. Go to next name server IP.
+    7. If the [RCODE Name] in the response is not "NoError" or if the AA flag is
+       not set in the response (or both) then do:
+       1. Add name server IP to the *Error Response NSEC Query* set.
+       2. Go to next name server IP.
+    8. If the authority section contains no NSEC3 record then add the name server
+       IP to the *Responds Without NSEC3* set and go to next name server.
+    9. Else do:
+       1. If there are more than one NSECS record in the authority section then
+          add name server IP to the *Multiple NSEC3* set and use one of them for
+          the following steps.
+       2. Add name server IP to the *Responds With NSEC3* set.
+       3. Extract the NSEC3 hash algorithm and add it and the name server IP to
+          the *Hash Algorithm* set.
+       4. Extract the NSEC3 flags and add them and the name server IP to the
+          *NSEC3 flags* set.
+       5. Extract the NSEC3 hash iterations value and add it and the name server
+          IP to the *NSEC3 Iterations* set.
+       6. Extract the NSEC3 salt length and add it and the name server IP to the
+          *NSEC3 Salt Length* set.
 
 7.  If the *Responds With DNSKEY* set is empty and the *Responds Without DNSKEY*
     is non-empty then output *[DS03_NO_DNSSEC_SUPPORT]* with the name server IP
@@ -220,7 +229,7 @@ A complete list of all DNS Resource Record types can be found in the
           *[DS03_NSEC3_OPT_OUT_DISABLED]* with the name servers IP addresses from
           the set with that flag list value.
 
-13. If the *NSEC3 Iterations* set is non-empty then do:
+14. If the *NSEC3 Iterations* set is non-empty then do:
     1. If the set has more than one iteration value then output
        *[DS03_INCONSISTENT_ITERATION]*.
     2. For each iteration value do:
@@ -229,7 +238,7 @@ A complete list of all DNS Resource Record types can be found in the
        2. Else, output *[DS03_ILLEGAL_ITERATION_VALUE]* with the value and the
           name servers IP addresses from the set with that iteration value.
 
-13. If the *NSEC3 Salt Length* set is non-empty then do:
+15. If the *NSEC3 Salt Length* set is non-empty then do:
     1. If the set has more than one salt length then output
        *[DS03_INCONSISTENT_SALT_LENGTH]*.
     2. For each iteration value do:
@@ -237,6 +246,15 @@ A complete list of all DNS Resource Record types can be found in the
           servers IP addresses from the set with that salt length.
        2. Else, output *[DS03_ILLEGAL_SALT_LENGTH]* with the length and the
           name servers IP addresses from the set with that salt length.
+
+16. If the *No Response NSEC Query* set is non-empty then output
+    *[DS03_NO_RESPONSE_NSEC_QUERY]* with the name server IP addresses from the
+    set.
+
+17. If the *Error Response NSEC Query* set is non-empty then output
+    *[DS03_ERROR_RESPONSE_NSEC_QUERY]* with the name server IP addresses from the
+    set.
+
 
 ## Outcome(s)
 
@@ -276,6 +294,7 @@ No special terminology for this Test Case.
 [DNSSEC Query]:                               ../DNSQueryAndResponseDefaults.md#default-setting-in-dnssec-query
 [DNSSEC README]:                              README.md
 [DNSSEC Response]:                            ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
+[DS03_ERROR_RESPONSE_NSEC_QUERY]:             #summary
 [DS03_ERR_MULT_NSEC3]:                        #summary
 [DS03_ILLEGAL_HASH_ALGO]:                     #summary
 [DS03_ILLEGAL_ITERATION_VALUE]:               #summary
@@ -289,6 +308,7 @@ No special terminology for this Test Case.
 [DS03_LEGAL_ITERATION_VALUE]:                 #summary
 [DS03_NO_DNSSEC_SUPPORT]:                     #summary
 [DS03_NO_NSEC3]:                              #summary
+[DS03_NO_RESPONSE_NSEC_QUERY]:                #summary
 [DS03_NSEC3_OPT_OUT_DISABLED]:                #summary
 [DS03_NSEC3_OPT_OUT_ENABLED_NON_TLD]:         #summary
 [DS03_NSEC3_OPT_OUT_ENABLED_TLD]:             #summary
