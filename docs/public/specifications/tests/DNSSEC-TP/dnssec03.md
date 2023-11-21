@@ -92,7 +92,7 @@ DS03_LEGAL_HASH_ALGO               | INFO    | ns_list | The following servers r
 DS03_LEGAL_ITERATION_VALUE         | INFO    | ns_list | The following servers respond with NSEC3 iteration value set to zero (as recommended). Fetched from name servers "{ns_list}".
 DS03_NO_DNSSEC_SUPPORT             | NOTICE  | ns_list | The zone is not DNSSEC signed or not properly DNSSEC signed. Testing for NSEC3 has been skipped. Fetched from name servers "{ns_list}".
 DS03_NO_NSEC3                      | INFO    | ns_list | The zone does not use NSEC3. Testing for NSEC3 has been skipped. Fetched from name servers "{ns_list}".
-DS03_NO_RESPONSE_NSEC_QUERY        | ERROR   | ns_list | The following servers unexpectedly give no response to NSEC query. Fetched from name servers "{ns_list}".
+DS03_NO_RESPONSE_NSEC_QUERY        | ERROR   | ns_list | The following servers do not respond to NSEC query. Fetched from name servers "{ns_list}".
 DS03_NSEC3_OPT_OUT_DISABLED        | INFO    | ns_list | The following servers respond with NSEC3 opt-out disabled (as recommended). Fetched from name servers "{ns_list}".
 DS03_NSEC3_OPT_OUT_ENABLED_NON_TLD | NOTICE  | ns_list | The following servers respond with NSEC3 opt-out enabled. The recommended practice is to disable opt-out. Fetched from name servers "{ns_list}".
 DS03_NSEC3_OPT_OUT_ENABLED_TLD     | INFO    | ns_list | The following servers respond with NSEC3 opt-out enabled. Fetched from name servers "{ns_list}".
