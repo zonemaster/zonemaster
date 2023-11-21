@@ -79,7 +79,7 @@ This test case is only relevant if the zone has been DNSSEC signed.
 Message Tag outputted              | Level   | Arguments| Message ID for message tag
 :----------------------------------|:--------|:---------|:--------------------------------------------
 DS03_ERR_MULT_NSEC3                | ERROR   | ns_list  | Multiple NSEC3 records when one is expected. Fetched from name servers "{ns_list}".
-DS03_ILLEGAL_HASH_ALGO             | ERRRO   | ns_list, algo_num | The following servers respond with an illegal hash algorithm for NSEC3 ({algo_num}). Fetched from name servers "{ns_list}".
+DS03_ILLEGAL_HASH_ALGO             | ERROR   | ns_list, algo_num | The following servers respond with an illegal hash algorithm for NSEC3 ({algo_num}). Fetched from name servers "{ns_list}".
 DS03_ILLEGAL_ITERATION_VALUE       | ERROR   | ns_list, int | The following servers respond with the NSEC3 iteration value {int}. The recommended practice is to set this value to 0. Fetched from name servers "{ns_list}".
 DS03_ILLEGAL_SALT_LENGTH           | WARNING | ns_list, int | The following servers respond with a non-empty salt in NSEC3 ({int} octets). The recommended practice is to use an empty salt. Fetched from name servers "{ns_list}".
 DS03_INCONSISTENT_HASH_ALGO        | ERROR   |         | Inconsistent hash algorithm in NSEC3 in responses for the child zone from different name servers.
