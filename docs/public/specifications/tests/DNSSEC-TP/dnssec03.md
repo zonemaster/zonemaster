@@ -170,7 +170,7 @@ A complete list of all DNS Resource Record types can be found in the
     8. If the authority section contains no NSEC3 record then add the name server
        IP to the *Responds Without NSEC3* set and go to next name server.
     9. Else do:
-       1. If there are more than one NSECS record in the authority section then
+       1. If there are more than one NSEC3 record in the authority section then
           add name server IP to the *Multiple NSEC3* set and use one of them for
           the following steps.
        2. Add name server IP to the *Responds With NSEC3* set.
