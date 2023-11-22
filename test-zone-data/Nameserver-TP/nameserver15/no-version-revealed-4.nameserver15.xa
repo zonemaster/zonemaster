@@ -1,0 +1,18 @@
+$ORIGIN no-version-revealed-4.nameserver15.xa.
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2022112300      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS      ns1
+
+ns1     A     127.17.15.34
+ns1     AAAA  fda1:b2:c3:0:127:17:15:34
+
+
+
+; EOF

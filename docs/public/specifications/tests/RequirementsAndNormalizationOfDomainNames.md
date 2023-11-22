@@ -451,7 +451,7 @@ No special terminology for this specification.
 
 
 [AMBIGUOUS_DOWNCASING]:                  #summary
-[Argument list]:                         https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Argument list]:                         ../ArgumentsForTestCaseMessages.md
 [CHARACTER TABULATION]:                  https://codepoints.net/U+0009
 [DOMAIN_NAME_TOO_LONG]:                  #summary
 [Detailed requirements]:                 #detailed-requirements

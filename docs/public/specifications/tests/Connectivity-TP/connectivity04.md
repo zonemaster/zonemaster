@@ -215,7 +215,7 @@ None
 * "Send" - The term is used when a query is sent to
   a specific server (server IP address).
 
-[Argument List]:                                                https://github.com/zonemaster/zonemaster-engine/blob/master/docs/logentry_args.md
+[Argument List]:                                                ../ArgumentsForTestCaseMessages.md
 [CN04_EMPTY_PREFIX_SET]:                                        #outcomes
 [CN04_ERROR_PREFIX_DATABASE]:                                   #outcomes
 [CN04_IPV4_DIFFERENT_PREFIX]:                                   #outcomes
