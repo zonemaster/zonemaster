@@ -30,7 +30,7 @@ subzones are created. The names are given in section
 
 ## Test scenarios
 
-Scenario name                | Expectec output
+Scenario name                | Expected output
 :----------------------------|:---------------------------------------------------------------------------------------------
 GOOD-CNAME-1                 | True
 GOOD-CNAME-2                 | True
@@ -127,7 +127,7 @@ exist.
 
 * Query name: "nxdomain-via-cname.cname.recursor.engine.xa"
   * The [RCODE Name] in the response is NxDomain.
-  * The target of the CNAME, `nxdomain-via-cname-target` does not exist in the,
+  * The target of the CNAME, `nxdomain-via-cname-target` does not exist in the
     zone and is not delegated.
   * To be found in the answer section:
 ```
