@@ -166,25 +166,37 @@ Scenario name                | Mandatory message tags                           
 :----------------------------|:--------------------------------------------------|:-------------------------------------------
 ERROR-RESPONSE-NSEC-QUERY    | DS03_LEGAL_EMPTY_SALT, DS03_LEGAL_HASH_ALGO, DS03_LEGAL_ITERATION_VALUE, DS03_NSEC3_OPT_OUT_DISABLED, DS03_ERROR_RESPONSE_NSEC_QUERY | DS03_ERR_MULT_NSEC3, DS03_ILLEGAL_HASH_ALGO, DS03_ILLEGAL_ITERATION_VALUE, DS03_ILLEGAL_SALT_LENGTH, DS03_INCONSISTENT_HASH_ALGO, DS03_INCONSISTENT_ITERATION, DS03_INCONSISTENT_NSEC3_FLAGS, DS03_INCONSISTENT_SALT_LENGTH, DS03_NO_DNSSEC_SUPPORT, DS03_NO_NSEC3, DS03_NSEC3_OPT_OUT_ENABLED_NON_TLD, DS03_NSEC3_OPT_OUT_ENABLED_TLD, DS03_SERVER_NO_DNSSEC_SUPPORT, DS03_SERVER_NO_NSEC3, DS03_UNASSIGNED_FLAG_USED, DS03_NO_RESPONSE_NSEC_QUERY
 ```
-$ zonemaster-cli --raw  --test DNSSEC/dnssec03 --hints COMMON/hintfile --level info error-response-nsec-query.dnssec03.xa
-
+$ zonemaster-cli --raw  --test DNSSEC/dnssec03 --hints COMMON/hintfile --level info error-response-nsec-query.dnssec03.xa  
+   0.00 INFO     GLOBAL_VERSION   version=v4.7.3
+   0.11 INFO     DS03_LEGAL_HASH_ALGO   ns_list=ns2.error-response-nsec-query.dnssec03.xa/127.15.3.32;ns2.error-response-nsec-query.dnssec03.xa/fda1:b2:c3:0:127:15:3:32
+   0.11 INFO     DS03_NSEC3_OPT_OUT_DISABLED   ns_list=ns2.error-response-nsec-query.dnssec03.xa/127.15.3.32;ns2.error-response-nsec-query.dnssec03.xa/fda1:b2:c3:0:127:15:3:32
+   0.11 INFO     DS03_LEGAL_ITERATION_VALUE   ns_list=ns2.error-response-nsec-query.dnssec03.xa/127.15.3.32;ns2.error-response-nsec-query.dnssec03.xa/fda1:b2:c3:0:127:15:3:32
+   0.11 INFO     DS03_LEGAL_EMPTY_SALT   ns_list=ns2.error-response-nsec-query.dnssec03.xa/127.15.3.32;ns2.error-response-nsec-query.dnssec03.xa/fda1:b2:c3:0:127:15:3:32
+   0.11 ERROR    DS03_ERROR_RESPONSE_NSEC_QUERY   ns_list=ns1.error-response-nsec-query.dnssec03.xa/127.15.3.31;ns1.error-response-nsec-query.dnssec03.xa/fda1:b2:c3:0:127:15:3:31
 ```
---> ??
+--> OK
 
 Scenario name                | Mandatory message tags                            | Forbidden message tags
 :----------------------------|:--------------------------------------------------|:-------------------------------------------
 NO-RESPONSE-NSEC-QUERY       | DS03_LEGAL_EMPTY_SALT, DS03_LEGAL_HASH_ALGO, DS03_LEGAL_ITERATION_VALUE, DS03_NSEC3_OPT_OUT_DISABLED, DS03_NO_RESPONSE_NSEC_QUERY | DS03_ERR_MULT_NSEC3, DS03_ILLEGAL_HASH_ALGO, DS03_ILLEGAL_ITERATION_VALUE, DS03_ILLEGAL_SALT_LENGTH, DS03_INCONSISTENT_HASH_ALGO, DS03_INCONSISTENT_ITERATION, DS03_INCONSISTENT_NSEC3_FLAGS, DS03_INCONSISTENT_SALT_LENGTH, DS03_NO_DNSSEC_SUPPORT, DS03_NO_NSEC3, DS03_NSEC3_OPT_OUT_ENABLED_NON_TLD, DS03_NSEC3_OPT_OUT_ENABLED_TLD, DS03_SERVER_NO_DNSSEC_SUPPORT, DS03_SERVER_NO_NSEC3, DS03_UNASSIGNED_FLAG_USED, DS03_ERROR_RESPONSE_NSEC_QUERY
 ```
 $ zonemaster-cli --raw  --test DNSSEC/dnssec03 --hints COMMON/hintfile --level info no-response-nsec-query.dnssec03.xa
-
+   0.00 INFO     GLOBAL_VERSION   version=v4.7.3
+  20.15 INFO     DS03_LEGAL_HASH_ALGO   ns_list=ns1.no-response-nsec-query.dnssec03.xa/127.15.3.31;ns1.no-response-nsec-query.dnssec03.xa/fda1:b2:c3:0:127:15:3:31
+  20.15 INFO     DS03_NSEC3_OPT_OUT_DISABLED   ns_list=ns1.no-response-nsec-query.dnssec03.xa/127.15.3.31;ns1.no-response-nsec-query.dnssec03.xa/fda1:b2:c3:0:127:15:3:31
+  20.15 INFO     DS03_LEGAL_ITERATION_VALUE   ns_list=ns1.no-response-nsec-query.dnssec03.xa/127.15.3.31;ns1.no-response-nsec-query.dnssec03.xa/fda1:b2:c3:0:127:15:3:31
+  20.15 INFO     DS03_LEGAL_EMPTY_SALT   ns_list=ns1.no-response-nsec-query.dnssec03.xa/127.15.3.31;ns1.no-response-nsec-query.dnssec03.xa/fda1:b2:c3:0:127:15:3:31
+  20.15 ERROR    DS03_NO_RESPONSE_NSEC_QUERY   ns_list=ns2.no-response-nsec-query.dnssec03.xa/127.15.3.32;ns2.no-response-nsec-query.dnssec03.xa/fda1:b2:c3:0:127:15:3:32
 ```
---> ??
+--> OK
 
 Scenario name                | Mandatory message tags                            | Forbidden message tags
 :----------------------------|:--------------------------------------------------|:-------------------------------------------
 ERROR-NSEC-QUERY            | DS03_ERROR_RESPONSE_NSEC_QUERY, DS03_NO_RESPONSE_NSEC_QUERY | DS03_ERR_MULT_NSEC3, DS03_ILLEGAL_HASH_ALGO, DS03_ILLEGAL_ITERATION_VALUE, DS03_ILLEGAL_SALT_LENGTH, DS03_INCONSISTENT_HASH_ALGO, DS03_INCONSISTENT_ITERATION, DS03_INCONSISTENT_NSEC3_FLAGS, DS03_INCONSISTENT_SALT_LENGTH, DS03_LEGAL_EMPTY_SALT, DS03_LEGAL_HASH_ALGO, DS03_LEGAL_ITERATION_VALUE, DS03_NO_DNSSEC_SUPPORT, DS03_NO_NSEC3, DS03_NSEC3_OPT_OUT_DISABLED, DS03_NSEC3_OPT_OUT_ENABLED_NON_TLD, DS03_NSEC3_OPT_OUT_ENABLED_TLD, DS03_SERVER_NO_DNSSEC_SUPPORT, DS03_SERVER_NO_NSEC3, DS03_UNASSIGNED_FLAG_USED
 ```
-$ zonemaster-cli --raw  --test DNSSEC/dnssec03 --hints COMMON/hintfile --level info error-nsec-query.dnssec03.xa
-
+$ zonemaster-cli --raw  --test DNSSEC/dnssec03 --hints COMMON/hintfile --level info error-nsec-query.dnssec03.xa 
+   0.00 INFO     GLOBAL_VERSION   version=v4.7.3
+  20.16 ERROR    DS03_NO_RESPONSE_NSEC_QUERY   ns_list=ns2.error-nsec-query.dnssec03.xa/127.15.3.32;ns2.error-nsec-query.dnssec03.xa/fda1:b2:c3:0:127:15:3:32
+  20.16 ERROR    DS03_ERROR_RESPONSE_NSEC_QUERY   ns_list=ns1.error-nsec-query.dnssec03.xa/127.15.3.31;ns1.error-nsec-query.dnssec03.xa/fda1:b2:c3:0:127:15:3:31
 ```
---> ??
+--> OK
