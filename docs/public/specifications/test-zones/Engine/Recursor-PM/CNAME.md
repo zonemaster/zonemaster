@@ -129,6 +129,7 @@ exist.
   * The [RCODE Name] in the response is NxDomain.
   * The target of the CNAME, `nxdomain-via-cname-target` does not exist in the
     zone and is not delegated.
+  * SOA of "cname.recursor.engine.xa" to be found in authority section.
   * To be found in the answer section:
 ```
    nxdomain-via-cname       CNAME nxdomain-via-cname-target
@@ -141,6 +142,7 @@ not with any A record.
 * Query name: "nodata-via-cname.cname.recursor.engine.xa"
   * The target of the CNAME, `nodata-via-cname-target`, exists in the zone but
     has neither `A` or `CNAME` record, and is not delegated.
+  * SOA of "cname.recursor.engine.xa" to be found in authority section.
   * To be found in the answer section:
 ```
    nodata-via-cname       CNAME nodata-via-cname-target
