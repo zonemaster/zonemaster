@@ -171,7 +171,7 @@ Error in response from one NS on NSEC query.
 
 
 ### NO-RESPONSE-NSEC-QUERY
-No in response from one NS on NSEC query.
+No response from one NS on NSEC query.
 
 * Zone: "no-response-nsec-query.dnssec03.xa"
  * Normal responses from ns1.
@@ -179,7 +179,7 @@ No in response from one NS on NSEC query.
  * No response on NSEC query from ns2.
 
 ### ERROR-NSEC-QUERY
-No response and error in response, respectively, from the NS.
+No response and error in response on NSEC query, respectively, from two NS.
 
 * Zone: "error-nsec-query.dnssec03.xa"
  * Normal response on DNSKEY query from ns1 and ns2.
