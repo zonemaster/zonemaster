@@ -19,7 +19,6 @@ usage() { echo "Usage: $0 [-o]" 1>&2;
           exit 1; }
 
 printstdout=false
-
 while getopts "ov" o; do
     case "${o}" in
         o)
