@@ -16,7 +16,7 @@ reference to the RFC.
 
 The table of algorithms below is copied from [IANA registry]. Only the first
 three columns are copied. The complete table is available at [IANA registry].
-In the table below, however, mnemonic is defined when empty in the IANA table.
+In the table below, however, mnemonic is defined when undefined in the IANA table.
 
 Algorithm no | Algorithm (or description)    | Mnemonic          | Note
 :------------|:------------------------------|:------------------|:----
