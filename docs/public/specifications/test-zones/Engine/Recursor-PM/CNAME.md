@@ -135,8 +135,8 @@ exist.
 ```
 
 ### NODATA-VIA-CNAME
-The query name exists, but as CNAME record. The target name of CNAME does not
-exist.
+The query name exists, but as CNAME record. The target name of CNAME exists, but
+not with any A record.
 
 * Query name: "nodata-via-cname.cname.recursor.engine.xa"
   * The target of the CNAME, `nodata-via-cname-target`, exists in the zone but
