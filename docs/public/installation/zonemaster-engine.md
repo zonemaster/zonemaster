@@ -44,7 +44,7 @@
 5) Install packages from CPAN:
 
    ```sh
-   sudo cpanm --notest Locale::PO Log::Any Module::Install::XSUtil MooseX::Singleton Net::IP::XS YAML::XS
+   sudo cpanm --notest Locale::PO Log::Any MIME::Base32 Module::Install::XSUtil MooseX::Singleton Net::IP::XS YAML::XS
    ```
 
 6) Install Zonemaster::LDNS and Zonemaster::Engine:
@@ -87,7 +87,7 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 2) Install dependencies from binary packages:
 
    ```sh
-   sudo apt install autoconf automake build-essential cpanminus libclass-accessor-perl libclone-perl libdevel-checklib-perl libemail-valid-perl libfile-sharedir-perl libfile-slurp-perl libidn2-dev libintl-perl libio-socket-inet6-perl liblist-moreutils-perl liblocale-po-perl liblog-any-perl libmodule-find-perl libmodule-install-perl libmodule-install-xsutil-perl libmoose-perl libmoosex-singleton-perl libnet-dns-perl libnet-ip-xs-perl libpod-coverage-perl libreadonly-perl libssl-dev libtest-differences-perl libtest-exception-perl libtest-fatal-perl libtest-nowarnings-perl libtest-pod-perl libtext-csv-perl libyaml-libyaml-perl libtool m4
+   sudo apt install autoconf automake build-essential cpanminus libclass-accessor-perl libclone-perl libdevel-checklib-perl libemail-valid-perl libfile-sharedir-perl libfile-slurp-perl libidn2-dev libintl-perl libio-socket-inet6-perl liblist-moreutils-perl liblocale-po-perl liblog-any-perl libmime-base32-perl libmodule-find-perl libmodule-install-perl libmodule-install-xsutil-perl libmoose-perl libmoosex-singleton-perl libnet-dns-perl libnet-ip-xs-perl libpod-coverage-perl libreadonly-perl libssl-dev libtest-differences-perl libtest-exception-perl libtest-fatal-perl libtest-nowarnings-perl libtest-pod-perl libtext-csv-perl libyaml-libyaml-perl libtool m4
    ```
 
 3) Install Zonemaster::LDNS and Zonemaster::Engine.
@@ -133,7 +133,7 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 5) Install dependencies from binary packages:
 
    ```sh
-   pkg install devel/gmake libidn2 p5-App-cpanminus p5-Class-Accessor p5-Clone p5-Devel-CheckLib p5-Email-Valid p5-File-ShareDir p5-File-Slurp p5-IO-Socket-INET6 p5-List-MoreUtils p5-Locale-libintl p5-Log-Any p5-Module-Find p5-Module-Install p5-Module-Install-XSUtil p5-Moose p5-MooseX-Singleton p5-Net-DNS p5-Net-IP-XS p5-Pod-Coverage p5-Readonly p5-Test-Differences p5-Test-Exception p5-Test-Fatal p5-Test-NoWarnings p5-Test-Pod p5-Text-CSV dns/ldns
+   pkg install devel/gmake libidn2 p5-App-cpanminus p5-Class-Accessor p5-Clone p5-Devel-CheckLib p5-Email-Valid p5-File-ShareDir p5-File-Slurp p5-IO-Socket-INET6 p5-List-MoreUtils p5-Locale-libintl p5-Log-Any p5-MIME-Base32 p5-Module-Find p5-Module-Install p5-Module-Install-XSUtil p5-Moose p5-MooseX-Singleton p5-Net-DNS p5-Net-IP-XS p5-Pod-Coverage p5-Readonly p5-Test-Differences p5-Test-Exception p5-Test-Fatal p5-Test-NoWarnings p5-Test-Pod p5-Text-CSV dns/ldns
    ```
 
 6) Install Zonemaster::LDNS:
