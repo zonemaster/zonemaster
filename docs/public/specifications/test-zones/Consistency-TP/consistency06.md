@@ -57,7 +57,7 @@ NO-RESPONSE               | NO_RESPONSE                          | NO_RESPONSE_S
 
 Assumptions for the scenario specifications unless otherwise specified for
 the specific scenario:
-* For each scenario zone there are two name server configured.
+* For each scenario zone there are two name servers configured.
   * Both NS (ns1 and ns2) are equal in delegation and in zone.
   * Both NS are in-bailiwick
   * Both NS have both IPv4 and IPv6 addresses

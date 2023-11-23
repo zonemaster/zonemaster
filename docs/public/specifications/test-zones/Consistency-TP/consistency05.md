@@ -64,7 +64,7 @@ OOB-ADDR-MISMATCH         | OUT_OF_BAILIWICK_ADDR_MISMATCH   | IN_BAILIWICK_ADDR
 
 Assumptions for the scenario specifications unless otherwise specified for
 the specific scenario:
-* For each scenario zone there are two name server configured.
+* For each scenario zone there are two name servers configured.
   * Both NS (ns1 and ns2) are equal in delegation and in zone.
   * Both NS are in-bailiwick
   * Both NS have both IPv4 and IPv6 addresses
@@ -149,19 +149,19 @@ Lame. One NS non-AA and one NS SERVFAIL.
   * ns2 responds with [RCODE Name] "ServFail".
 
 ### IB-ADDR-MISMATCH-1
-For one NS (in-bailiwick), the glue does not match address response from the
-zone.
+For one NS (in-bailiwick), the addresses in the glue do not match those in the
+authoritative data from the zone.
 
 * Zone: "ib-addr-mismatch-1.consistency05.xa."
   * ns2 is defined in the zone, but with different addresses (IPv4 and IPv6),
-    i.e. not the samme as in glue.
+    i.e. not the same as in glue.
   * Both ns2 servers (IP address sets from glue and child, respectively) must
     give identical DNS responses.
 
 
 ### IB-ADDR-MISMATCH-2
-For one NS (in-bailiwick), the glue does not match any address records in the
-zone.
+For one NS (in-bailiwick), address records exist in the glue, but not in the
+authoritative data for the zone.
 
 * Zone: "ib-addr-mismatch-2.consistency05.xa."
   * ns2 is not defined in the zone, i.e. there are no address records for ns2
@@ -196,11 +196,10 @@ response.
   * ns2 is "ns2.sibbling.oob-addr-mismatch.consistency05.xa"
   * Delegation is with glue.
   * The test zone ("child") has no address records for the NS names.
-  * The "sibbling" zone has full set of address records
-  * ns1 in the "sibbling" zone matches the addresses of glue.
-  * ns2 in the "sibbling" zone does not match the addresses of glue.
-  * All IP addresses of ns1 and ns2 must server the identical versions
-    of the zone.
+  * The "sibling" zone has full set of address records
+  * ns1 in the "sibling" zone matches the addresses of glue.
+  * ns2 in the "sibling" zone does not match the addresses of glue.
+  * All IP addresses of ns1 and ns2 must serve identical versions of the zone.
 
 
 [CONSISTENCY05]:                                                  ../../tests/Consistency-TP/consistency05.md

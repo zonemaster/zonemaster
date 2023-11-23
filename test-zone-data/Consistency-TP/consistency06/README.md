@@ -1,4 +1,4 @@
-# CONSISTENCY05
+# CONSISTENCY06
 
 [This directory](.), i.e. the same directory as this README file, holds zonefiles and `coredns` configuration files for scenarios for test case CONSISTENCY06:
 
@@ -14,8 +14,7 @@
 
 The level (`--level`) must be set to the lowest level of the message tags. For this test case `INFO` is the lowest level.
 
-Scenario name         | Mandatory message tags                            | Forbidden mess
-age tags
+Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 ONE-SOA-MNAME-1       | ONE_SOA_MNAME                                     | NO_RESPONSE, NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
 ```
@@ -41,8 +40,7 @@ $ zonemaster-cli ONE-SOA-MNAME-1.consistency06.xa --raw  --test Consistency/cons
 ```
 --> OK
 
-Scenario name         | Mandatory message tags                            | Forbidden mess
-age tags
+Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 ONE-SOA-MNAME-2       | ONE_SOA_MNAME, NO_RESPONSE                         | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
 ```
@@ -72,8 +70,7 @@ $ zonemaster-cli ONE-SOA-MNAME-2.consistency06.xa --raw  --test Consistency/cons
 ```
 --> OK
 
-Scenario name         | Mandatory message tags                            | Forbidden mess
-age tags
+Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 ONE-SOA-MNAME-3       | ONE_SOA_MNAME, NO_RESPONSE_SOA_QUERY              | NO_RESPONSE, MULTIPLE_SOA_MNAMES
 ```
@@ -103,8 +100,7 @@ $ zonemaster-cli ONE-SOA-MNAME-3.consistency06.xa --raw  --test Consistency/cons
 ```
 --> OK
 
-Scenario name         | Mandatory message tags                            | Forbidden mess
-age tags
+Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 ONE-SOA-MNAME-4       | ONE_SOA_MNAME, NO_RESPONSE                        | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
 ```
@@ -120,8 +116,7 @@ $ zonemaster-cli ONE-SOA-MNAME-4.consistency06.xa --raw  --test Consistency/cons
 ```
 --> missing NO_RESPONSE -- Judged to be a bug in the implementation. See issue [zonemaster-engine#1300].
 
-Scenario name         | Mandatory message tags                            | Forbidden mess
-age tags
+Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 MULTIPLE-SOA-MNAMES-1 | MULTIPLE_SOA_MNAMES                               | NO_RESPONSE, NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
 ```
@@ -149,8 +144,7 @@ $ zonemaster-cli MULTIPLE-SOA-MNAMES-1.consistency06.xa --raw  --test Consistenc
 ```
 --> OK
 
-Scenario name         | Mandatory message tags                            | Forbidden mess
-age tags
+Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 MULTIPLE-SOA-MNAMES-2 | MULTIPLE_SOA_MNAMES, NO_RESPONSE                  | NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
 ```
@@ -183,8 +177,7 @@ $ zonemaster-cli MULTIPLE-SOA-MNAMES-2.consistency06.xa --raw  --test Consistenc
 ```
 --> OK
 
-Scenario name         | Mandatory message tags                            | Forbidden mess
-age tags
+Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 NO-RESPONSE           | NO-RESPONSE                                       | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES, ONE_SOA_MNAME
 ```
