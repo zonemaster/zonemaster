@@ -460,9 +460,6 @@ sub3.cname.recursor.engine.xa. 3600 IN	NS	ns1.sub3.cname.recursor.engine.xa.
 ;; MSG SIZE  rcvd: 293
 ```
 
-To be completed.
-
-
 
 [CNAME.md]:                            ../../../docs/public/specifications/test-zones/Engine/Recursor-PM/CNAME.md
 [Recursor.pm]:                         https://github.com/zonemaster/zonemaster-engine/blob/master/lib/Zonemaster/Engine/Recursor.pm
