@@ -1,0 +1,36 @@
+; Must be kept zone independent to work for any level of zone including TLD.
+
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2022121300      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+        DNSKEY  256 3 8 (
+				AwEAAakN9dPQcFI31NqnC2y9E5gCzNAeQdLvbEcNJ8bO
+				xqXwkNlKZ1bA7YLWpFpofYDvWQDKK2RMtvkL7ZWGokve
+				EA1edxVhtxSjJ+HrlJ3GGnXqeEzuEK6OkVdGvVmgjv6J
+				XAsOuKxnYnhUc39WvnA2UxNhqPaqKB2Hxlcqu2LwSAnt
+				) ; ZSK; alg = RSASHA256 ; key id = 53655
+        DNSKEY  257 3 8 (
+				AwEAAdjFhIuIbkugW2DTaHNGN0PVV79EBGxlUEmnim0K
+				QHfnzZt6Qr9L0BSQ5wRNV3MqEQnMHBxq3okabyT+S/zf
+				8PNaKWybyE3HGs7tF1OCbarxqQ0WlEY6MrefzB7gPL0m
+				uyaAYT4PUW8dsIRrRQAqTxQXiLDgAJAfynF6bCgT7urA
+				PqtCOOgzfj0XzfWCPbG7iFy506CQfX77MlgiDOLkB3sd
+				/Z8x4Ahp0UowQUdyrP9M8mMeD/d/UI/kDQ9KiT2VWpaG
+				bW2ZH2unz++7alWQG73nt+8gT//mjj8EaJU3Xmfm3Q/i
+				zu54ASzsQ/+76b225SC7URTfXUZiGHG3XvVOyUc=
+				) ; KSK; alg = RSASHA256 ; key id = 23401
+
+		NS	ns1
+		NS	ns2
+ns1		A	127.15.3.31	
+ns1		AAAA	fda1:b2:c3:0:127:15:3:31
+ns2		A	127.15.3.32
+ns2		AAAA	fda1:b2:c3:0:127:15:3:32
+
+
