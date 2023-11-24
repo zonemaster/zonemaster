@@ -74,7 +74,7 @@ Two terminal windows to the computer are needed.
    ```
    ./set-ip.sh
    ```
-3. Start `coredns`. It will be running in the foreground until terminated.
+4. Start `coredns`. It will be running in the foreground until terminated.
    ```
    sudo coredns --conf main.cfg
    ```

@@ -1,0 +1,116 @@
+$ORIGIN dnssec03.xa.                              ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2022121300      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+		NS	ns1
+		NS	ns2
+
+ns1		A	127.15.3.21
+ns1		AAAA	fda1:b2:c3:0:127:15:3:21
+ns2		A	127.15.3.22
+ns2		AAAA	fda1:b2:c3:0:127:15:3:22
+
+$ORIGIN no-dnssec-support.dnssec03.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.15.3.31
+ns1		AAAA	fda1:b2:c3:0:127:15:3:31
+ns2		A	127.15.3.32
+ns2		AAAA	fda1:b2:c3:0:127:15:3:32
+
+$ORIGIN no-nsec3.dnssec03.xa.                     ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.15.3.31
+ns1		AAAA	fda1:b2:c3:0:127:15:3:31
+ns2		A	127.15.3.32
+ns2		AAAA	fda1:b2:c3:0:127:15:3:32
+
+$ORIGIN good-values.dnssec03.xa.                  ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.15.3.31
+ns1		AAAA	fda1:b2:c3:0:127:15:3:31
+ns2		A	127.15.3.32
+ns2		AAAA	fda1:b2:c3:0:127:15:3:32
+
+$ORIGIN err-mult-nsec3.dnssec03.xa.               ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.15.3.31
+ns1		AAAA	fda1:b2:c3:0:127:15:3:31
+ns2		A	127.15.3.32
+ns2		AAAA	fda1:b2:c3:0:127:15:3:32
+
+$ORIGIN bad-values.dnssec03.xa.                   ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.15.3.31
+ns1		AAAA	fda1:b2:c3:0:127:15:3:31
+ns2		A	127.15.3.32
+ns2		AAAA	fda1:b2:c3:0:127:15:3:32
+
+$ORIGIN inconsistent-values.dnssec03.xa.          ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.15.3.31
+ns1		AAAA	fda1:b2:c3:0:127:15:3:31
+ns2		A	127.15.3.32
+ns2		AAAA	fda1:b2:c3:0:127:15:3:32
+
+;;;; nsec3-opt-out-enabled-tld-dnssec03. (TLD) delegated from root zone
+
+$ORIGIN server-no-dnssec-support.dnssec03.xa.     ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.15.3.31
+ns1		AAAA	fda1:b2:c3:0:127:15:3:31
+ns2		A	127.15.3.32
+ns2		AAAA	fda1:b2:c3:0:127:15:3:32
+
+$ORIGIN server-no-nsec3.dnssec03.xa.       ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.15.3.31
+ns1		AAAA	fda1:b2:c3:0:127:15:3:31
+ns2		A	127.15.3.32
+ns2		AAAA	fda1:b2:c3:0:127:15:3:32
+
+$ORIGIN unassigned-flag-used.dnssec03.xa.       ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.15.3.31
+ns1		AAAA	fda1:b2:c3:0:127:15:3:31
+ns2		A	127.15.3.32
+ns2		AAAA	fda1:b2:c3:0:127:15:3:32
+
+$ORIGIN error-response-nsec-query.dnssec03.xa.       ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.15.3.31
+ns1		AAAA	fda1:b2:c3:0:127:15:3:31
+ns2		A	127.15.3.32
+ns2		AAAA	fda1:b2:c3:0:127:15:3:32
+
+$ORIGIN no-response-nsec-query.dnssec03.xa.     ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.15.3.31
+ns1		AAAA	fda1:b2:c3:0:127:15:3:31
+ns2		A	127.15.3.32
+ns2		AAAA	fda1:b2:c3:0:127:15:3:32
+
+$ORIGIN error-nsec-query.dnssec03.xa.         ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.15.3.31
+ns1		AAAA	fda1:b2:c3:0:127:15:3:31
+ns2		A	127.15.3.32
+ns2		AAAA	fda1:b2:c3:0:127:15:3:32
+
