@@ -24,11 +24,11 @@ Req ID| Requirement specification                                               
 R00100| A name server IP address should be globally routable on Internet.                  |                     |[ADDRESS01]
 R00200| A name server IP address should be registered in the DNS reverse lookup tree.      |                     |[ADDRESS02]
 R00300| A name server IP address reverse lookup entry should be valid.                     |[RFC1912]            |[ADDRESS03]
-R00400| The zone name should consists of valid IDN or non-IDN ASCII labels (names).        |                     |[BASIC00]
-R00500| IDN labels (names) should be valid.                                                |[RFC5890]            |[BASIC00]
-R00600| Non-IDN ASCII labels (names) should be valid.                                      |[RFC1123] [RFC2782]  |[BASIC00]
-R00700| A DNS zone should have a parent zone from which it is delegated.                   |                     |[BASIC01]
-R00800| A DNS zone should have at least one accessible name server that hosts it.          |                     |[BASIC02]
+R00400| The zone name should consists of valid IDN or non-IDN ASCII labels (names).        |                     |[RequirementsAndNormalizationOfDomainNames]
+R00500| IDN labels (names) should be valid.                                                |[RFC5890]            |[RequirementsAndNormalizationOfDomainNames]
+R00600| Non-IDN ASCII labels (names) should be valid.                                      |[RFC1123] [RFC2782]  |[RequirementsAndNormalizationOfDomainNames]
+R00700| A DNS zone should have a parent zone from which it is delegated.                   |                     |[RequirementsAndNormalizationOfDomainNames]
+R00800| A DNS zone should have at least one accessible name server that hosts it.          |                     |[RequirementsAndNormalizationOfDomainNames]
 R00900| A name server for a zone should respond on a query.                                |                     |[CONNECTIVITY01] [CONNECTIVITY02]
 R01000| A name server for a zone should respond with SOA record on SOA query.              |[RFC2181]            |[CONNECTIVITY01] [CONNECTIVITY02] [DELEGATION06]
 R01100| A name server for a zone should respond with RCODE NoError on SOA query.           |                     |[CONNECTIVITY01] [CONNECTIVITY02]
@@ -134,11 +134,9 @@ R19000| The should be exactly one SOA record in every zone.                     
 <!-- END-TABLE -->
 <!-- When updating the table, read TestRequirements-table-specification.txt -->
 
-
 [ADDRESS01]:      ../../public/specifications/tests/Address-TP/address01.md
 [ADDRESS02]:      ../../public/specifications/tests/Address-TP/address02.md
 [ADDRESS03]:      ../../public/specifications/tests/Address-TP/address03.md
-[BASIC00]:        ../../public/specifications/tests/Basic-TP/basic00.md
 [BASIC01]:        ../../public/specifications/tests/Basic-TP/basic01.md
 [BASIC02]:        ../../public/specifications/tests/Basic-TP/basic02.md
 [CONNECTIVITY01]: ../../public/specifications/tests/Connectivity-TP/connectivity01.md
@@ -187,6 +185,7 @@ R19000| The should be exactly one SOA record in every zone.                     
 [NAMESERVER12]:   ../../public/specifications/tests/Nameserver-TP/nameserver12.md
 [NAMESERVER13]:   ../../public/specifications/tests/Nameserver-TP/nameserver13.md
 [NAMESERVER14]:   ../../public/specifications/tests/Nameserver-TP/nameserver14.md
+[RequirementsAndNormalizationOfDomainNames]: ../../public/specifications/tests/RequirementsAndNormalizationOfDomainNames.md
 [RFC0952]:       https://datatracker.ietf.org/doc/html/rfc952
 [RFC1034]:       https://datatracker.ietf.org/doc/html/rfc1034
 [RFC1035]:       https://datatracker.ietf.org/doc/html/rfc1035
