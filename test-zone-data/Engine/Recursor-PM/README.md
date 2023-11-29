@@ -50,6 +50,8 @@ cname.recursor.engine.xa. 3600	IN	NS	ns1.cname.recursor.engine.xa.
 ;; WHEN: Wed Nov 22 21:27:07 UTC 2023
 ;; MSG SIZE  rcvd: 299
 ```
+--> OK
+
 
 Scenario name                | Expected output
 :----------------------------|:---------------------------------------------------------------------------------------------
@@ -82,6 +84,8 @@ cname.recursor.engine.xa. 3600	IN	NS	ns1.cname.recursor.engine.xa.
 ;; WHEN: Wed Nov 22 21:28:01 UTC 2023
 ;; MSG SIZE  rcvd: 359
 ```
+--> OK
+
 
 Scenario name                | Expected output
 :----------------------------|:---------------------------------------------------------------------------------------------
@@ -115,6 +119,7 @@ cname.recursor.engine.xa. 3600	IN	NS	ns1.cname.recursor.engine.xa.
 ;; WHEN: Wed Nov 22 21:28:47 UTC 2023
 ;; MSG SIZE  rcvd: 527
 ```
+--> OK
 
 Scenario name                | Expected output
 :----------------------------|:---------------------------------------------------------------------------------------------
@@ -176,6 +181,8 @@ goodsub.cname.recursor.engine.xa. 3600 IN NS	ns1.goodsub.cname.recursor.engine.x
 ;; WHEN: Wed Nov 22 21:34:13 UTC 2023
 ;; MSG SIZE  rcvd: 217
 ```
+--> OK
+
 
 Scenario name                | Expected output
 :----------------------------|:---------------------------------------------------------------------------------------------
@@ -206,6 +213,8 @@ cname.recursor.engine.xa. 3600	IN	SOA	ns1.cname.recursor.engine.xa. root.cname.r
 ;; WHEN: Wed Nov 22 21:55:26 UTC 2023
 ;; MSG SIZE  rcvd: 308
 ```
+--> OK
+
 
 Scenario name                | Expected output
 :----------------------------|:---------------------------------------------------------------------------------------------
@@ -236,6 +245,8 @@ cname.recursor.engine.xa. 3600	IN	SOA	ns1.cname.recursor.engine.xa. root.cname.r
 ;; WHEN: Wed Nov 22 21:59:03 UTC 2023
 ;; MSG SIZE  rcvd: 302
 ```
+--> OK
+
 
 Scenario name                | Expected output
 :----------------------------|:---------------------------------------------------------------------------------------------
@@ -266,6 +277,8 @@ mult-cname-target-2.cname.recursor.engine.xa. 3600 IN A	127.0.0.2
 ;; WHEN: Wed Nov 22 21:16:02 UTC 2023
 ;; MSG SIZE  rcvd: 382
 ```
+--> OK
+
 
 Scenario name                | Expected output
 :----------------------------|:---------------------------------------------------------------------------------------------
@@ -305,6 +318,10 @@ cname.recursor.engine.xa. 3600	IN	NS	ns1.cname.recursor.engine.xa.
 ;; WHEN: Wed Nov 22 21:42:06 UTC 2023
 ;; MSG SIZE  rcvd: 246
 ```
+--> Not fully OK. Even though multiple copies of a DNS record are only considered
+to be a single record from a DNS perspective, there should only be one copy. The
+behavior is considered to be a bug in CoreDNS and has been reported
+(https://github.com/coredns/coredns/issues/6421).
 
 
 Scenario name                | Expected output
@@ -315,13 +332,13 @@ LOOPED-CNAME-IN-ZONE-2       | Undefined and tag `CNAME_LOOP_INNER`
 ; (1 server found)
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 49961
-;; flags: qr aa rd; QUERY: 1, ANSWER: 10, AUTHORITY: 1, ADDITIONAL: 1
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 13110
+;; flags: qr aa rd; QUERY: 1, ANSWER: 3, AUTHORITY: 1, ADDITIONAL: 1
 ;; WARNING: recursion requested but not available
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 1232
-; COOKIE: ae5d5bc049bae7b0 (echoed)
+; COOKIE: 7a7a75c08fe99560 (echoed)
 ;; QUESTION SECTION:
 ;looped-cname-in-zone-2.cname.recursor.engine.xa. IN A
 
@@ -329,22 +346,16 @@ LOOPED-CNAME-IN-ZONE-2       | Undefined and tag `CNAME_LOOP_INNER`
 looped-cname-in-zone-2.cname.recursor.engine.xa. 3600 IN CNAME looped-cname-in-zone-2-a.cname.recursor.engine.xa.
 looped-cname-in-zone-2-a.cname.recursor.engine.xa. 3600	IN CNAME looped-cname-in-zone-2-b.cname.recursor.engine.xa.
 looped-cname-in-zone-2-b.cname.recursor.engine.xa. 3600	IN CNAME looped-cname-in-zone-2-a.cname.recursor.engine.xa.
-looped-cname-in-zone-2-a.cname.recursor.engine.xa. 3600	IN CNAME looped-cname-in-zone-2-b.cname.recursor.engine.xa.
-looped-cname-in-zone-2-b.cname.recursor.engine.xa. 3600	IN CNAME looped-cname-in-zone-2-a.cname.recursor.engine.xa.
-looped-cname-in-zone-2-a.cname.recursor.engine.xa. 3600	IN CNAME looped-cname-in-zone-2-b.cname.recursor.engine.xa.
-looped-cname-in-zone-2-b.cname.recursor.engine.xa. 3600	IN CNAME looped-cname-in-zone-2-a.cname.recursor.engine.xa.
-looped-cname-in-zone-2-a.cname.recursor.engine.xa. 3600	IN CNAME looped-cname-in-zone-2-b.cname.recursor.engine.xa.
-looped-cname-in-zone-2-b.cname.recursor.engine.xa. 3600	IN CNAME looped-cname-in-zone-2-a.cname.recursor.engine.xa.
-looped-cname-in-zone-2-a.cname.recursor.engine.xa. 3600	IN CNAME looped-cname-in-zone-2-b.cname.recursor.engine.xa.
 
 ;; AUTHORITY SECTION:
 cname.recursor.engine.xa. 3600	IN	NS	ns1.cname.recursor.engine.xa.
 
 ;; Query time: 0 msec
 ;; SERVER: 127.30.1.31#53(127.30.1.31) (UDP)
-;; WHEN: Wed Nov 22 21:42:52 UTC 2023
-;; MSG SIZE  rcvd: 296
+;; WHEN: Wed Nov 29 13:07:05 UTC 2023
+;; MSG SIZE  rcvd: 488
 ```
+--> OK
 
 
 Scenario name                | Expected output
@@ -459,6 +470,7 @@ sub3.cname.recursor.engine.xa. 3600 IN	NS	ns1.sub3.cname.recursor.engine.xa.
 ;; WHEN: Wed Nov 22 21:47:03 UTC 2023
 ;; MSG SIZE  rcvd: 293
 ```
+--> OK
 
 
 [CNAME.md]:                            ../../../docs/public/specifications/test-zones/Engine/Recursor-PM/CNAME.md

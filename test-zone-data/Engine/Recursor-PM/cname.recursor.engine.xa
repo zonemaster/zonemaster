@@ -53,9 +53,10 @@ mult-cname-target-2           A     127.0.0.2
 looped-cname-in-zone-1        CNAME looped-cname-in-zone-1
 
 ; For scenario LOOPED-CNAME-IN-ZONE-2
-looped-cname-in-zone-2        CNAME looped-cname-in-zone-2-a
-looped-cname-in-zone-2-a      CNAME looped-cname-in-zone-2-b
-looped-cname-in-zone-2-b      CNAME looped-cname-in-zone-2-a
+; Defined in the cfg file
+; looped-cname-in-zone-2        CNAME looped-cname-in-zone-2-a
+; looped-cname-in-zone-2-a      CNAME looped-cname-in-zone-2-b
+; looped-cname-in-zone-2-b      CNAME looped-cname-in-zone-2-a
 
 ; For scenario LOOPED-CNAME-OUT-OF-ZONE
 sub2                          NS    ns1.sub2
