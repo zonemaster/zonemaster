@@ -42,6 +42,10 @@ MULT-CNAME                   | Undefined and tag `CNAME_MULTIPLE_FOR_NAME`
 LOOPED-CNAME-IN-ZONE-1       | Undefined and tag `CNAME_LOOP_INNER`
 LOOPED-CNAME-IN-ZONE-2       | Undefined and tag `CNAME_LOOP_INNER`
 LOOPED-CNAME-OUT-OF-ZONE     | Undefined and tag `CNAME_LOOP_OUTER`
+TOO-LONG-CNAME-CHAIN         | ??
+TARGET-NO-MATCH-CNAME        | ??
+BROKEN-CNAME-CHAIN           | ??
+
 
 ## Zone setup for test scenarios
 
@@ -229,6 +233,47 @@ and the target name of the second CNAME record will point at the first.
   * To be found in the answer section:
 ```
    looped-cname-out-of-zone.sub3   CNAME   looped-cname-out-of-zone.sub2
+```
+
+### TOO-LONG-CNAME-CHAIN
+The query name will resolve to one `A` record via ten CNAME records which is
+above the limit.
+
+* Query name: "too-long-cname-chain.cname.recursor.engine.xa"
+  * To be found in the answer section:
+```
+   too-long-cname-chain              CNAME too-long-cname-chain-two
+   too-long-cname-chain-two          CNAME too-long-cname-chain-three
+   too-long-cname-chain-three        CNAME too-long-cname-chain-four
+   too-long-cname-chain-four         CNAME too-long-cname-chain-five
+   too-long-cname-chain-five         CNAME too-long-cname-chain-six
+   too-long-cname-chain-six          CNAME too-long-cname-chain-seven
+   too-long-cname-chain-seven        CNAME too-long-cname-chain-eight
+   too-long-cname-chain-eight        CNAME too-long-cname-chain-nine
+   too-long-cname-chain-nine         CNAME too-long-cname-chain-ten
+   too-long-cname-chain-ten          CNAME too-long-cname-chain-target
+   too-long-cname-chain-target       A     127.0.0.1
+```
+
+### TARGET-NO-MATCH-CNAME
+The CNAME target name does not match the owner name of the `A` record.
+
+* Query name: "target-no-match-cname.cname.recursor.engine.xa"
+  * To be found in the answer section:
+```
+   target-no-match-cname         CNAME  target-no-match-cname-two
+   target-no-match-cname-target  A      127.0.0.1
+```
+
+### BROKEN-CNAME-CHAIN
+The CNAME chain is broken between first and second CNAME records.
+
+* Query name: "broken-cname-chain.cname.recursor.engine.xa"
+  * To be found in the answer section:
+```
+   broken-cname-chain            CNAME broken-cname-chain-two
+   broken-cname-chain-three      CNAME broken-cname-chain-target
+   broken-cname-chain-target     A     127.0.0.1
 ```
 
 

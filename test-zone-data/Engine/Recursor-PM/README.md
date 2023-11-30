@@ -14,6 +14,9 @@ CNAME function in [Recursor.pm].
 * LOOPED-CNAME-IN-ZONE-1
 * LOOPED-CNAME-IN-ZONE-2
 * LOOPED-CNAME-OUT-OF-ZONE
+* TOO-LONG-CNAME-CHAIN
+* TARGET-NO-MATCH-CNAME
+* BROKEN-CNAME-CHAIN
 
 See [CNAME.md] for specification of the scenarios.
 
@@ -471,6 +474,113 @@ sub3.cname.recursor.engine.xa. 3600 IN	NS	ns1.sub3.cname.recursor.engine.xa.
 ;; MSG SIZE  rcvd: 293
 ```
 --> OK
+
+
+
+Scenario name                | Expected output
+:----------------------------|:---------------------------------------------------------------------------------------------
+TOO-LONG-CNAME-CHAIN         | ??
+```
+; <<>> DiG 9.18.18-0ubuntu0.22.04.1-Ubuntu <<>> @127.30.1.31 too-long-cname-chain.cname.recursor.engine.xa
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 44121
+;; flags: qr aa rd; QUERY: 1, ANSWER: 11, AUTHORITY: 1, ADDITIONAL: 1
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 5b12662406062bc6 (echoed)
+;; QUESTION SECTION:
+;too-long-cname-chain.cname.recursor.engine.xa. IN A
+
+;; ANSWER SECTION:
+too-long-cname-chain.cname.recursor.engine.xa. 3600 IN CNAME too-long-cname-chain-two.cname.recursor.engine.xa.
+too-long-cname-chain-two.cname.recursor.engine.xa. 3600	IN CNAME too-long-cname-chain-three.cname.recursor.engine.xa.
+too-long-cname-chain-three.cname.recursor.engine.xa. 3600 IN CNAME too-long-cname-chain-four.cname.recursor.engine.xa.
+too-long-cname-chain-four.cname.recursor.engine.xa. 3600 IN CNAME too-long-cname-chain-five.cname.recursor.engine.xa.
+too-long-cname-chain-five.cname.recursor.engine.xa. 3600 IN CNAME too-long-cname-chain-six.cname.recursor.engine.xa.
+too-long-cname-chain-six.cname.recursor.engine.xa. 3600	IN CNAME too-long-cname-chain-seven.cname.recursor.engine.xa.
+too-long-cname-chain-seven.cname.recursor.engine.xa. 3600 IN CNAME too-long-cname-chain-eight.cname.recursor.engine.xa.
+too-long-cname-chain-eight.cname.recursor.engine.xa. 3600 IN CNAME too-long-cname-chain-nine.cname.recursor.engine.xa.
+too-long-cname-chain-nine.cname.recursor.engine.xa. 3600 IN CNAME too-long-cname-chain-ten.cname.recursor.engine.xa.
+too-long-cname-chain-ten.cname.recursor.engine.xa. 3600	IN CNAME too-long-cname-chain-target.cname.recursor.engine.xa.
+too-long-cname-chain-target.cname.recursor.engine.xa. 3600 IN A	127.0.0.1
+
+;; AUTHORITY SECTION:
+cname.recursor.engine.xa. 3600	IN	NS	ns1.cname.recursor.engine.xa.
+
+;; Query time: 0 msec
+;; SERVER: 127.30.1.31#53(127.30.1.31) (UDP)
+;; WHEN: Thu Nov 30 16:37:16 UTC 2023
+;; MSG SIZE  rcvd: 522
+
+```
+--> OK
+
+Scenario name                | Expected output
+:----------------------------|:---------------------------------------------------------------------------------------------
+TARGET-NO-MATCH-CNAME        | ??
+```
+; <<>> DiG 9.18.18-0ubuntu0.22.04.1-Ubuntu <<>> @127.30.1.31 target-no-match-cname.cname.recursor.engine.xa
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 51040
+;; flags: qr aa rd; QUERY: 1, ANSWER: 2, AUTHORITY: 1, ADDITIONAL: 1
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 51f0cfb680ea5015 (echoed)
+;; QUESTION SECTION:
+;target-no-match-cname.cname.recursor.engine.xa.	IN A
+
+;; ANSWER SECTION:
+target-no-match-cname.cname.recursor.engine.xa.	3600 IN	CNAME target-no-match-cname-two.cname.recursor.engine.xa.
+target-no-match-cname-target.cname.recursor.engine.xa. 3600 IN A 127.0.0.1
+
+;; AUTHORITY SECTION:
+cname.recursor.engine.xa. 3600	IN	NS	ns1.cname.recursor.engine.xa.
+
+;; Query time: 0 msec
+;; SERVER: 127.30.1.31#53(127.30.1.31) (UDP)
+;; WHEN: Thu Nov 30 16:40:31 UTC 2023
+;; MSG SIZE  rcvd: 332
+```
+--> OK
+
+Scenario name                | Expected output
+:----------------------------|:---------------------------------------------------------------------------------------------
+BROKEN-CNAME-CHAIN           | ??
+```
+; <<>> DiG 9.18.18-0ubuntu0.22.04.1-Ubuntu <<>> @127.30.1.31 target-no-match-cname.cname.recursor.engine.xa
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 51040
+;; flags: qr aa rd; QUERY: 1, ANSWER: 2, AUTHORITY: 1, ADDITIONAL: 1
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 51f0cfb680ea5015 (echoed)
+;; QUESTION SECTION:
+;target-no-match-cname.cname.recursor.engine.xa.	IN A
+
+;; ANSWER SECTION:
+target-no-match-cname.cname.recursor.engine.xa.	3600 IN	CNAME target-no-match-cname-two.cname.recursor.engine.xa.
+target-no-match-cname-target.cname.recursor.engine.xa. 3600 IN A 127.0.0.1
+
+;; AUTHORITY SECTION:
+cname.recursor.engine.xa. 3600	IN	NS	ns1.cname.recursor.engine.xa.
+
+;; Query time: 0 msec
+;; SERVER: 127.30.1.31#53(127.30.1.31) (UDP)
+;; WHEN: Thu Nov 30 16:40:31 UTC 2023
+;; MSG SIZE  rcvd: 332
+```
 
 
 [CNAME.md]:                            ../../../docs/public/specifications/test-zones/Engine/Recursor-PM/CNAME.md

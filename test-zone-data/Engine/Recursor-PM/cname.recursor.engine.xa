@@ -4,7 +4,7 @@ $ORIGIN cname.recursor.engine.xa.
 @                       SOA  (
                                    ns1
                                    root
-                                   2023111502
+                                   2023113001
                                    86400
                                    14400
                                    3600000
@@ -67,4 +67,27 @@ sub3                          NS    ns1.sub3
 ns1.sub3                      A     127.30.1.33
 ns1.sub3                      AAAA  fda1:b2:c3:0:127:30:1:33
 
+; For scenario TOO-LONG-CNAME-CHAIN
+; Defined in the cfg file
+; too-long-cname-chain              CNAME too-long-cname-chain-two
+; too-long-cname-chain-two          CNAME too-long-cname-chain-three
+; too-long-cname-chain-three        CNAME too-long-cname-chain-four
+; too-long-cname-chain-four         CNAME too-long-cname-chain-five
+; too-long-cname-chain-five         CNAME too-long-cname-chain-six
+; too-long-cname-chain-six          CNAME too-long-cname-chain-seven
+; too-long-cname-chain-seven        CNAME too-long-cname-chain-eight
+; too-long-cname-chain-eight        CNAME too-long-cname-chain-nine
+; too-long-cname-chain-nine         CNAME too-long-cname-chain-ten
+; too-long-cname-chain-ten          CNAME too-long-cname-chain-target
+; too-long-cname-chain-target       A     127.0.0.1
+
+
+; For scenario TARGET-NO-MATCH-CNAME
+target-no-match-cname         CNAME  target-no-match-cname-two
+target-no-match-cname-target  A      127.0.0.1
+
+; For scenario BROKEN-CNAME-CHAIN
+broken-cname-chain            CNAME broken-cname-chain-two
+broken-cname-chain-three      CNAME broken-cname-chain-target
+broken-cname-chain-target     A     127.0.0.1
 
