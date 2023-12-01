@@ -8,6 +8,7 @@
   * [Installation on FreeBSD](#installation-on-freebsd)
 * [Post-installation sanity check](#post-installation-sanity-check)
 * [Troubleshooting installation](#troubleshooting-installation)
+* [Global cache (experimental feature)](#global-cache-experimental-feature)
 * [What to do next](#what-to-do-next)
 
 
@@ -156,7 +157,8 @@ Make sure Zonemaster::Engine is properly installed.
 time perl -MZonemaster::Engine -E 'say join "\n", Zonemaster::Engine->test_module("BASIC", "zonemaster.net")'
 ```
 
-The command is expected to take a few seconds and print some results about the delegation of zonemaster.net.
+The command is expected to take a few seconds and print some results about the
+delegation of zonemaster.net.
 
 
 ## Troubleshooting installation
@@ -164,6 +166,13 @@ The command is expected to take a few seconds and print some results about the d
 If you have any issue with installation, and installed with `cpanm`, redo the
 installation above but without the `--notest` and with the `--verbose` option.
 Installation will take longer time.
+
+
+## Global cache (experimental feature)
+
+Global cache is an experimental feature that can be enabled in Zonemaster-Engine
+and that can increase the performance when many tests are run within a short time
+frame. See [global cache configuration].
 
 
 ## What to do next
@@ -175,8 +184,8 @@ Installation will take longer time.
 
 
 [EPEL]:                                              https://docs.fedoraproject.org/en-US/epel/
+[Global cache configuration]:                        ../configuration/global-cache.md
 [JSON-RPC API]:                                      ../using/backend/rpcapi-reference.md
-[Mailing list zonemaster-users]:                     ../../contact-and-mailing-lists.md#zonemaster-users
 [Zonemaster::Backend installation]:                  zonemaster-backend.md
 [Zonemaster::CLI installation]:                      zonemaster-cli.md
 [Zonemaster::Engine API]:                            https://metacpan.org/pod/Zonemaster::Engine
