@@ -13,10 +13,13 @@ CNAME function in [Recursor.pm].
 * MULT-CNAME
 * LOOPED-CNAME-IN-ZONE-1
 * LOOPED-CNAME-IN-ZONE-2
+* LOOPED-CNAME-IN-ZONE-3
 * LOOPED-CNAME-OUT-OF-ZONE
 * TOO-LONG-CNAME-CHAIN
 * TARGET-NO-MATCH-CNAME
 * BROKEN-CNAME-CHAIN
+* WRONG-CNAME-OWNER-NAME
+* EXTRA-CNAME-IN-ANSWER
 
 See [CNAME.md] for specification of the scenarios.
 
@@ -363,6 +366,47 @@ cname.recursor.engine.xa. 3600	IN	NS	ns1.cname.recursor.engine.xa.
 
 Scenario name                | Expected output
 :----------------------------|:---------------------------------------------------------------------------------------------
+LOOPED-CNAME-IN-ZONE-3       | Undefined and tag `CNAME_LOOP_INNER`
+```
+; <<>> DiG 9.18.18-0ubuntu0.22.04.1-Ubuntu <<>> @127.30.1.31 looped-cname-in-zone-3.cname.recursor.engine.xa
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 5018
+;; flags: qr aa rd; QUERY: 1, ANSWER: 10, AUTHORITY: 1, ADDITIONAL: 1
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 33425f18a6e9e7d4 (echoed)
+;; QUESTION SECTION:
+;looped-cname-in-zone-3.cname.recursor.engine.xa. IN A
+
+;; ANSWER SECTION:
+looped-cname-in-zone-3.cname.recursor.engine.xa. 3600 IN CNAME looped-cname-in-zone-3-next.cname.recursor.engine.xa.
+looped-cname-in-zone-3-next.cname.recursor.engine.xa. 3600 IN CNAME looped-cname-in-zone-3.cname.recursor.engine.xa.
+looped-cname-in-zone-3.cname.recursor.engine.xa. 3600 IN CNAME looped-cname-in-zone-3-next.cname.recursor.engine.xa.
+looped-cname-in-zone-3-next.cname.recursor.engine.xa. 3600 IN CNAME looped-cname-in-zone-3.cname.recursor.engine.xa.
+looped-cname-in-zone-3.cname.recursor.engine.xa. 3600 IN CNAME looped-cname-in-zone-3-next.cname.recursor.engine.xa.
+looped-cname-in-zone-3-next.cname.recursor.engine.xa. 3600 IN CNAME looped-cname-in-zone-3.cname.recursor.engine.xa.
+looped-cname-in-zone-3.cname.recursor.engine.xa. 3600 IN CNAME looped-cname-in-zone-3-next.cname.recursor.engine.xa.
+looped-cname-in-zone-3-next.cname.recursor.engine.xa. 3600 IN CNAME looped-cname-in-zone-3.cname.recursor.engine.xa.
+looped-cname-in-zone-3.cname.recursor.engine.xa. 3600 IN CNAME looped-cname-in-zone-3-next.cname.recursor.engine.xa.
+looped-cname-in-zone-3-next.cname.recursor.engine.xa. 3600 IN CNAME looped-cname-in-zone-3.cname.recursor.engine.xa.
+
+;; AUTHORITY SECTION:
+cname.recursor.engine.xa. 3600	IN	NS	ns1.cname.recursor.engine.xa.
+
+;; Query time: 0 msec
+;; SERVER: 127.30.1.31#53(127.30.1.31) (UDP)
+;; WHEN: Fri Dec 01 11:02:56 UTC 2023
+;; MSG SIZE  rcvd: 274
+```
+--> Not fully OK. See comment on scenario LOOPED-CNAME-IN-ZONE-1 above.
+
+
+Scenario name                | Expected output
+:----------------------------|:---------------------------------------------------------------------------------------------
 LOOPED-CNAME-OUT-OF-ZONE     | Undefined and tag `CNAME_LOOP_OUTER`
 ```
 ; <<>> DiG 9.18.18-0ubuntu0.22.04.1-Ubuntu <<>> @127.30.1.31 looped-cname-out-of-zone.sub2.cname.recursor.engine.xa
@@ -581,6 +625,71 @@ cname.recursor.engine.xa. 3600	IN	NS	ns1.cname.recursor.engine.xa.
 ;; WHEN: Thu Nov 30 16:40:31 UTC 2023
 ;; MSG SIZE  rcvd: 332
 ```
+
+Scenario name                | Expected output
+:----------------------------|:---------------------------------------------------------------------------------------------
+WRONG-CNAME-OWNER-NAME       | ??
+```
+; <<>> DiG 9.18.18-0ubuntu0.22.04.1-Ubuntu <<>> @127.30.1.31 wrong-cname-owner-name.cname.recursor.engine.xa
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18339
+;; flags: qr aa rd; QUERY: 1, ANSWER: 2, AUTHORITY: 1, ADDITIONAL: 1
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: f300bad89af70d8b (echoed)
+;; QUESTION SECTION:
+;wrong-cname-owner-name.cname.recursor.engine.xa. IN A
+
+;; ANSWER SECTION:
+wrong-cname-owner-name-1.cname.recursor.engine.xa. 3600	IN CNAME wrong-cname-owner-name-target.cname.recursor.engine.xa.
+wrong-cname-owner-name-target.cname.recursor.engine.xa.	3600 IN	A 127.0.0.1
+
+;; AUTHORITY SECTION:
+cname.recursor.engine.xa. 3600	IN	NS	ns1.cname.recursor.engine.xa.
+
+;; Query time: 0 msec
+;; SERVER: 127.30.1.31#53(127.30.1.31) (UDP)
+;; WHEN: Fri Dec 01 11:07:20 UTC 2023
+;; MSG SIZE  rcvd: 341
+```
+--> OK
+
+Scenario name                | Expected output
+:----------------------------|:---------------------------------------------------------------------------------------------
+EXTRA-CNAME-IN-ANSWER        | ??
+```
+; <<>> DiG 9.18.18-0ubuntu0.22.04.1-Ubuntu <<>> @127.30.1.31 wrong-cname-owner-name.cname.recursor.engine.xa
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18339
+;; flags: qr aa rd; QUERY: 1, ANSWER: 2, AUTHORITY: 1, ADDITIONAL: 1
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: f300bad89af70d8b (echoed)
+;; QUESTION SECTION:
+;wrong-cname-owner-name.cname.recursor.engine.xa. IN A
+
+;; ANSWER SECTION:
+wrong-cname-owner-name-1.cname.recursor.engine.xa. 3600	IN CNAME wrong-cname-owner-name-target.cname.recursor.engine.xa.
+wrong-cname-owner-name-target.cname.recursor.engine.xa.	3600 IN	A 127.0.0.1
+
+;; AUTHORITY SECTION:
+cname.recursor.engine.xa. 3600	IN	NS	ns1.cname.recursor.engine.xa.
+
+;; Query time: 0 msec
+;; SERVER: 127.30.1.31#53(127.30.1.31) (UDP)
+;; WHEN: Fri Dec 01 11:07:20 UTC 2023
+;; MSG SIZE  rcvd: 341
+```
+
+
 
 
 [CNAME.md]:                            ../../../docs/public/specifications/test-zones/Engine/Recursor-PM/CNAME.md

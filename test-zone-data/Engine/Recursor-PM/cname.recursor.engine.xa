@@ -58,6 +58,10 @@ looped-cname-in-zone-1        CNAME looped-cname-in-zone-1
 ; looped-cname-in-zone-2-a      CNAME looped-cname-in-zone-2-b
 ; looped-cname-in-zone-2-b      CNAME looped-cname-in-zone-2-a
 
+; For scenario LOOPED-CNAME-IN-ZONE-3
+looped-cname-in-zone-3        CNAME looped-cname-in-zone-3-next
+looped-cname-in-zone-3-next   CNAME looped-cname-in-zone-3
+
 ; For scenario LOOPED-CNAME-OUT-OF-ZONE
 sub2                          NS    ns1.sub2
 ns1.sub2                      A     127.30.1.32
@@ -83,11 +87,25 @@ ns1.sub3                      AAAA  fda1:b2:c3:0:127:30:1:33
 
 
 ; For scenario TARGET-NO-MATCH-CNAME
+; Also defined in the cfg file
 target-no-match-cname         CNAME  target-no-match-cname-two
 target-no-match-cname-target  A      127.0.0.1
 
+
 ; For scenario BROKEN-CNAME-CHAIN
+; Also defined in the cfg file
 broken-cname-chain            CNAME broken-cname-chain-two
 broken-cname-chain-three      CNAME broken-cname-chain-target
 broken-cname-chain-target     A     127.0.0.1
 
+
+; For scenario WRONG-CNAME-OWNER-NAME
+; Also defined in the cfg file
+wrong-cname-owner-name-1       CNAME wrong-cname-owner-name-target
+wrong-cname-owner-name-target  A     127.0.0.1
+
+
+; For scenario EXTRA-CNAME-IN-ANSWER
+; Also defined in the cfg file
+extra-cname-in-answer         A     127.0.0.1
+extra-cname-in-answer-1       CNAME extra-cname-in-answer-2

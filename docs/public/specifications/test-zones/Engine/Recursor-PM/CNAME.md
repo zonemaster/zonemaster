@@ -41,11 +41,13 @@ NODATA-VIA-CNAME             | Undefined
 MULT-CNAME                   | Undefined and tag `CNAME_MULTIPLE_FOR_NAME`
 LOOPED-CNAME-IN-ZONE-1       | Undefined and tag `CNAME_LOOP_INNER`
 LOOPED-CNAME-IN-ZONE-2       | Undefined and tag `CNAME_LOOP_INNER`
+LOOPED-CNAME-IN-ZONE-3       | Undefined and tag `CNAME_LOOP_INNER`
 LOOPED-CNAME-OUT-OF-ZONE     | Undefined and tag `CNAME_LOOP_OUTER`
 TOO-LONG-CNAME-CHAIN         | ??
 TARGET-NO-MATCH-CNAME        | ??
 BROKEN-CNAME-CHAIN           | ??
-
+WRONG-CNAME-OWNER-NAME       | ??
+EXTRA-CNAME-IN-ANSWER        | ??
 
 ## Zone setup for test scenarios
 
@@ -186,6 +188,17 @@ owner name of the second CNAME.
    looped-cname-in-zone-2-b  CNAME looped-cname-in-zone-2-a
 ```
 
+## LOOPED-CNAME-IN-ZONE-3
+The query name will point at a CNAME, which points at a second CNAME whose target
+name is the same as the owner name of the first CNAME.
+
+* Query name: "looped-cname-in-zone-3.cname.recursor.engine.xa"
+  * To be found in the answer section:
+```
+   looped-cname-in-zone-3       CNAME looped-cname-in-zone-3-next
+   looped-cname-in-zone-3-next  CNAME looped-cname-in-zone-3
+```
+
 ## LOOPED-CNAME-OUT-OF-ZONE
 The query name will point at a CNAME record, but in a sub zone, and the target
 name of the CNAME record will point at another CNAME record in another sub zone,
@@ -275,6 +288,30 @@ The CNAME chain is broken between first and second CNAME records.
    broken-cname-chain-three      CNAME broken-cname-chain-target
    broken-cname-chain-target     A     127.0.0.1
 ```
+
+
+### WRONG-CNAME-OWNER-NAME
+The owner name of the CNAME in the response does not match queryy name.
+
+* Query name: "wrong-cname-owner-name.cname.recursor.engine.xa"
+  * To be found in the answer section:
+```
+   wrong-cname-owner-name-1       CNAME wrong-cname-owner-name-target
+   wrong-cname-owner-name-target  A     127.0.0.1
+```
+
+
+### EXTRA-CNAME-IN-ANSWER
+There is an extra CNAME record with an owner name not matching the query name
+besides the `A` record matching query name.
+
+* Query name: "extra-cname-in-answer.cname.recursor.engine.xa"
+  * To be found in the answer section:
+```
+   extra-cname-in-answer         A     127.0.0.1
+   extra-cname-in-answer-1       CNAME extra-cname-in-answer-2
+```
+
 
 
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
