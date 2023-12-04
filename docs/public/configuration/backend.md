@@ -23,6 +23,12 @@
   * [user](#user-1)
   * [password](#password-1)
   * [database](#database-1)
+* [CLICKHOUSE section (experimental)](#clickhouse-section-experimental)
+  * [host](#host-2)
+  * [port](#port-2)
+  * [user](#user-2)
+  * [password](#password-2)
+  * [database](#database-2)
 * [SQLITE section](#sqlite-section)
   * [database_file](#database_file)
 * [LANGUAGE section](#language-section)
@@ -104,7 +110,10 @@ Database Engine   | Value
 MariaDB           | `MySQL`
 MySQL             | `MySQL`
 PostgreSQL        | `PostgreSQL`
+Clickhouse†       | `Clickhouse`
 SQLite            | `SQLite`
+
+† _experimental feature_
 
 ### polling_interval
 
@@ -189,6 +198,43 @@ The password of the configured user.
 ### database
 
 A US ASCII-only [PostgreSQL identifier]. Max length 63 characters.
+
+The name of the database to use.
+
+
+## CLICKHOUSE section (experimental)
+
+Available keys : `host`, `port`, `user`, `password`, `database`.
+
+### host
+
+An [LDH domain name] or IP address.
+
+The host name of the machine on which the Clickhouse server is running.
+
+### port
+
+The [MySQL interface][Clickhouse MySQL interface]'s port the Clickhouse server
+is listening on.
+Default value: `9004`.
+
+### user
+
+A US ASCII-only identifier. Max length 63 characters.
+
+The name of the user with sufficient permission to access the database.
+
+### password
+
+A string of [US ASCII printable characters].
+The first character must be neither space nor `<`.
+Max length 100 characters.
+
+The password of the configured user.
+
+### database
+
+A US ASCII-only identifier. Max length 63 characters.
 
 The name of the database to use.
 
@@ -381,6 +427,7 @@ Otherwise a new test request is enqueued.
 
 
 [API documentation]:                  ../using/backend/api.md
+[Clickhouse MySQL interface]:         https://clickhouse.com/docs/en/interfaces/mysql
 [DBD::mysql documentation]:           https://metacpan.org/pod/DBD::mysql#host
 [Default JSON profile file]:          https://github.com/zonemaster/zonemaster-engine/blob/master/share/profile.json
 [Environement Variables]:             backend-environment-variables.md
