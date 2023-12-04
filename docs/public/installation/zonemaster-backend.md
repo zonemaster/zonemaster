@@ -40,6 +40,7 @@
   * [9.3. SQLite](#93-sqlite)
 * [10. Optional features](#10-optional-features)
   * [10.1. Metrics](#101-metrics)
+  * [10.2 Installation with Clickhouse](#102-installation-with-clickhouse)
 
 ## 1. Overview
 
@@ -781,6 +782,53 @@ sudo apt install libnet-statsd-perl
 ```sh
 cpanm --notest Net::Statsd
 ```
+
+## 10.2 Installation with Clickhouse
+
+> This is an experimental feature.
+
+First follow the installation instructions for the OS in question, and then go
+to this section to install Clickhouse.
+
+To install Clickhouse, follow the instruction in the [official
+documentation](https://clickhouse.com/docs/en/install#available-installation-options).
+
+Configure Zonemaster::Backend to use the correct database engine:
+
+```sh
+sudo sed -i '/\bengine\b/ s/=.*/= Clickhouse/' /etc/zonemaster/backend_config.ini
+```
+
+Install the Perl bindings (Clickhouse relies on the MySQL DBI).
+
+```sh
+sudo apt install libdbd-mysql-perl
+```
+
+> **Note:** See the [backend configuration] documentation for details.
+
+To create the database and the database user (unless you keep an old database).
+Edit the command first if you want a non-default database name, user name or
+password.
+
+> The Clickhouse MySQL interface requires a [double SHA1
+> password](https://clickhouse.com/docs/en/operations/settings/settings-users#password_double_sha1_hex)
+> ```
+> PASSWORD=$(base64 < /dev/urandom | head -c8); echo "$PASSWORD"; echo -n "$PASSWORD" | sha1sum | tr -d '-' | xxd -r -p | sha1sum | tr -d '-'
+> ```
+
+```sh
+clickhouse-client --ask-password -q "CREATE USER zonemaster IDENTIFIED WITH DOUBLE_SHA1 BY '<DOUBLE_SHA1>';"
+clickhouse-client --ask-password -q "CREATE DATABASE zonemaster;"
+clickhouse-client --ask-password -q "GRANT CREATE TABLE, DROP TABLE, SELECT, INSERT, ALTER UPDATE ON zonemaster.* TO zonemaster;"
+```
+
+Update the `/etc/zonemaster/backend_config.ini` file with database name, username
+and password if non-default values are used.
+
+Now go back to "[Database configuration](#43-database-configuration-debianubuntu)"
+to create the database tables and then continue with the steps after that.
+
 
 -------
 
