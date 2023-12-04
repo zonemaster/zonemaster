@@ -78,7 +78,7 @@ cp -v $(perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Engine")')/p
 
 ## Enable global cache
 
-Update `profile.json` in `/etc/zonemaster` (or `/usr/local//etc/zonemaster`) by
+Update `profile.json` in `/etc/zonemaster` (or `/usr/local/etc/zonemaster`) by
 adding the following section,
 ```
     "cache": {
