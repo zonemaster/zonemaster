@@ -22,7 +22,7 @@ cache service running in a separate daemon.
 To enable global caching, additional software has to be installed and custom
 profile has to be created, where global caching is enabled.
 
-Since it is an experimental featuer, its interface might change in upcoming
+Since it is an experimental feature, its interface might change in upcoming
 release.
 
 
@@ -79,7 +79,7 @@ cp -v $(perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Engine")')/p
 ## Enable global cache
 
 Update `profile.json` in `/etc/zonemaster` (or `/usr/local//etc/zonemaster`) by
-addin the following section,
+adding the following section,
 ```
     "cache": {
         "redis": {
