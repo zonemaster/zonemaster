@@ -14,36 +14,37 @@ If [RFC 8624] and [IANA registry] disagree on the same algorithm, the
 RFC takes precedence until the registry has a been updated with a
 reference to the RFC.
 
-The table of algorithms below is for reference only and is copied from [IANA
-registry]. It is here to make it easier to read the steps when symbolic
-names are given. This is only an excerpt from the table. The full table is
-available at [IANA registry].
+The table of algorithms below is copied from [IANA registry]. Only the first
+three columns are copied. The complete table is available at [IANA registry].
+In the table below, however, mnemonic is defined when undefined in the IANA table.
 
-Algorithm number | Algorithm (or description)
-:----------------|:-----------------------------------
-0                | (Delete DS)
-1                | RSA/MD5
-2                | Diffie-Hellman
-3                | DSA/SHA1
-4                | (Reserved)
-5                | RSA/SHA-1
-6                | DSA-NSEC3-SHA1
-7                | RSASHA1-NSEC3-SHA1
-8                | RSA/SHA-256
-9                | (Reserved)
-10               | RSA/SHA-512
-11               | (Reserved)
-12               | GOST R 34.10-2001
-13               | ECDSA Curve P-256 with SHA-256
-14               | ECDSA Curve P-384 with SHA-384
-15               | Ed25519
-16               | Ed448
-17-122           | (Unassigned)
-123-251          | (Reserved)
-252              | (Indirect Keys)
-253              | (Private algorithm)
-254              | (Private algorithm OID)
-255              | (Reserved)
+Algorithm no | Algorithm (or description)    | Mnemonic          | Note
+:------------|:------------------------------|:------------------|:----
+0            | Delete DS                     | DELETE            |
+1            | RSA/MD5                       | RSAMD5            |
+2            | Diffie-Hellman                | DH                |
+3            | DSA/SHA1                      | DSA               |
+4            | Reserved                      | RESERVED          | (1)
+5            | RSA/SHA-1                     | RSASHA1           |
+6            | DSA-NSEC3-SHA1                | DSA-NSEC3-SHA1    |
+7            | RSASHA1-NSEC3-SHA1            | RSASHA1-NSEC3-SHA1|
+8            | RSA/SHA-256                   | RSASHA256         |
+9            | Reserved                      | RESERVED          | (1)
+10           | RSA/SHA-512                   | RSASHA512         |
+11           | Reserved                      | RESERVED          | (1)
+12           | GOST R 34.10-2001             | ECC-GOST          |
+13           | ECDSA Curve P-256 with SHA-256| ECDSAP256SHA256   |
+14           | ECDSA Curve P-384 with SHA-384| ECDSAP384SHA384   |
+15           | Ed25519                       | ED25519           |
+16           | Ed448                         | ED448             |
+17-122       | Unassigned                    | UNASSIGNED        | (1)
+123-251      | Reserved                      | RESERVED          | (1)
+252          | Reserved for Indirect Keys    | INDIRECT          |
+253          | private algorithm             | PRIVATEDNS        |
+254          | private algorithm OID         | PRIVATEOID        |
+255          | Reserved                      | RESERVED          | (1)
+
+(1) Mnemonic defined for Zonemaster usage when undefined in the IANA table.
 
 
 ## Scope
