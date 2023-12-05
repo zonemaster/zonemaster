@@ -2,7 +2,7 @@ $ORIGIN xa.
 $TTL 3600
 
 @       SOA     ns1.xa. admin.mail.xa. (
-                2022112300      ; serial
+                2023092100      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -39,13 +39,29 @@ ns1.dnssec16    AAAA  fda1:b2:c3::127:15:16:21
 ns2.dnssec16    A     127.15.16.22
 ns2.dnssec16    AAAA  fda1:b2:c3::127:15:16:22
 
+$ORIGIN consistency05.xa.
+@               NS    ns1
+@               NS    ns2
+ns1             A     127.14.5.21
+ns1             AAAA  fda1:b2:c3::127:14:5:21
+ns1             A     127.14.5.22
+ns1             AAAA  fda1:b2:c3::127:14:5:22
+
+$ORIGIN consistency06.xa.
+@               NS    ns1
+@               NS    ns2
+ns1             A     127.14.6.21
+ns1             AAAA  fda1:b2:c3::127:14:6:21
+ns1             A     127.14.6.22
+ns1             AAAA  fda1:b2:c3::127:14:6:22
+
 $ORIGIN nameserver15.xa.
-@       NS      ns1
-@       NS      ns2
-ns1     A       127.17.15.21
-ns1     AAAA    fda1:b2:c3:0:127:17:15:21
-ns2     A       127.17.15.22
-ns2     AAAA    fda1:b2:c3:0:127:17:15:22
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.17.15.21
+ns1             AAAA    fda1:b2:c3:0:127:17:15:21
+ns2             A       127.17.15.22
+ns2             AAAA    fda1:b2:c3:0:127:17:15:22
 
 
 $ORIGIN recursor.engine.xa.

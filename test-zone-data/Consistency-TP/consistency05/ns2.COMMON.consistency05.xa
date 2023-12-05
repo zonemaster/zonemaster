@@ -1,0 +1,21 @@
+; This zone file is common for several sub-zones to consistency05.xa. Note that
+;
+; * $ORIGIN must not be set here,
+; * All names must be relative
+; * Only ns2 in this zone file
+
+$TTL 3600
+
+@       SOA     ns2 admin.mail.xa. (
+                2023092000      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+        NS      ns2
+
+ns2     A       127.14.5.32
+ns2     AAAA    fda1:b2:c3::127:14:5:32
+
+;EOF

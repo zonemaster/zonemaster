@@ -1,0 +1,114 @@
+$ORIGIN consistency05.xa.
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2023092100      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+        NS    ns1
+        NS    ns2
+
+ns1     A     127.14.5.21
+ns1     AAAA  fda1:b2:c3:0:127:14:5:21
+ns2     A     127.14.5.22
+ns2     AAAA  fda1:b2:c3:0:127:14:5:22
+
+addresses-match-1	NS	ns1.addresses-match-1
+addresses-match-1       NS      ns2.addresses-match-1
+ns1.addresses-match-1	A	127.14.5.31
+ns1.addresses-match-1	AAAA	fda1:b2:c3:0:127:14:5:31
+ns2.addresses-match-1   A       127.14.5.32
+ns2.addresses-match-1   AAAA    fda1:b2:c3:0:127:14:5:32
+
+addresses-match-2       NS      ns1.addresses-match-2.consistency05.xb.
+addresses-match-2       NS      ns2.addresses-match-2.consistency05.xb.
+
+addresses-match-3       NS      ns1.addresses-match-3
+addresses-match-3       NS      ns2.addresses-match-3
+ns1.addresses-match-3   A       127.14.5.31
+ns1.addresses-match-3   AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.addresses-match-3   A       127.14.5.32
+ns2.addresses-match-3   AAAA    fda1:b2:c3:0:127:14:5:32
+
+addresses-match-4       NS      ns1.addresses-match-4
+addresses-match-4       NS      ns2.addresses-match-4
+ns1.addresses-match-4   A       127.14.5.31
+ns1.addresses-match-4   AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.addresses-match-4   A       127.14.5.32
+ns2.addresses-match-4   AAAA    fda1:b2:c3:0:127:14:5:32
+
+addresses-match-5       NS      ns1.addresses-match-5
+addresses-match-5       NS      ns2.addresses-match-5
+ns1.addresses-match-5   A       127.14.5.31
+ns1.addresses-match-5   AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.addresses-match-5   A       127.14.5.32
+ns2.addresses-match-5   AAAA    fda1:b2:c3:0:127:14:5:32
+
+addresses-match-6       NS      ns1.addresses-match-6
+addresses-match-6       NS      ns2.addresses-match-6
+ns1.addresses-match-6   A       127.14.5.31
+ns1.addresses-match-6   AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.addresses-match-6   A       127.14.5.32
+ns2.addresses-match-6   AAAA    fda1:b2:c3:0:127:14:5:32
+
+addresses-match-7       NS      ns1.addresses-match-7
+addresses-match-7       NS      ns2.addresses-match-7
+ns1.addresses-match-7   A       127.14.5.31
+ns1.addresses-match-7   AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.addresses-match-7   A       127.14.5.32
+ns2.addresses-match-7   AAAA    fda1:b2:c3:0:127:14:5:32
+
+child-zone-lame-1	NS	ns1.child-zone-lame-1
+child-zone-lame-1	NS	ns2.child-zone-lame-1
+ns1.child-zone-lame-1	A	127.14.5.31
+ns1.child-zone-lame-1	AAAA	fda1:b2:c3:0:127:14:5:31
+ns2.child-zone-lame-1   A       127.14.5.32
+ns2.child-zone-lame-1   AAAA    fda1:b2:c3:0:127:14:5:32
+
+child-zone-lame-2       NS      ns1.child-zone-lame-2
+child-zone-lame-2       NS      ns2.child-zone-lame-2
+ns1.child-zone-lame-2   A       127.14.5.31
+ns1.child-zone-lame-2   AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.child-zone-lame-2   A       127.14.5.32
+ns2.child-zone-lame-2   AAAA    fda1:b2:c3:0:127:14:5:32
+
+ib-addr-mismatch-1	NS	ns1.ib-addr-mismatch-1
+ib-addr-mismatch-1      NS      ns2.ib-addr-mismatch-1
+ns1.ib-addr-mismatch-1	A	127.14.5.39
+ns1.ib-addr-mismatch-1	AAAA	fda1:b2:c3:0:127:14:5:39
+ns2.ib-addr-mismatch-1  A       127.14.5.32
+ns2.ib-addr-mismatch-1  AAAA    fda1:b2:c3:0:127:14:5:32
+
+ib-addr-mismatch-2      NS      ns1.ib-addr-mismatch-2
+ib-addr-mismatch-2      NS      ns2.ib-addr-mismatch-2
+ns1.ib-addr-mismatch-2  A       127.14.5.31
+ns1.ib-addr-mismatch-2  AAAA    fda1:b2:c3:0:127:14:5:31
+ns2.ib-addr-mismatch-2  A       127.14.5.32
+ns2.ib-addr-mismatch-2  AAAA    fda1:b2:c3:0:127:14:5:32
+
+$ORIGIN ib-addr-mismatch-3.consistency05.xa.
+@                       NS      ns1
+@                       NS      ns2
+ns1                     A       127.14.5.31
+ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2                     A       127.14.5.32
+ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
+
+$ORIGIN extra-address-child.consistency05.xa.
+@                       NS      ns1
+@                       NS      ns2
+ns1                     A       127.14.5.31
+ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2                     A       127.14.5.32
+ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
+
+$ORIGIN oob-addr-mismatch.consistency05.xa.
+@                       NS      ns1
+@                       NS      ns2
+ns1                     A       127.14.5.31
+ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2                     A       127.14.5.32
+ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
