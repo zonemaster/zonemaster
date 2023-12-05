@@ -34,13 +34,18 @@
   * [8.1. PostgreSQL (Rocky Linux)][PostgreSQL instructions Rocky Linux]
   * [8.2. PostgreSQL (Debian/Ubuntu)][PostgreSQL instructions Debian]
   * [8.3. PostgreSQL (FreeBSD)][PostgreSQL instructions FreeBSD]
-* [9. Cleaning up the database][Removing database]
-  * [9.1. MariaDB and MySQL](#91-mariadb-and-mysql)
-  * [9.2. PostgreSQL](#92-postgresql)
-  * [9.3. SQLite](#93-sqlite)
-* [10. Optional features](#10-optional-features)
-  * [10.1. Metrics](#101-metrics)
-  * [10.2 Installation with Clickhouse](#102-installation-with-clickhouse)
+* [9. Installation with Clickhouse (experimental)](#9-Installation-with-clickhouse-experimental)
+  * [9.1. Clickhouse (Rocky Linux)](#91-clickhouse-rocky-linux)
+  * [9.2. Clickhouse (Debian/Ubuntu)][Clickhouse instructions Debian]
+  * [9.3. Clickhouse (FreeBSD)](#93-clickhouse-freebsd)
+* [10. Cleaning up the database][Cleaning up the database]
+  * [10.1. MariaDB and MySQL](#101-mariadb-and-mysql)
+  * [10.2. PostgreSQL](#102-postgresql)
+  * [10.3. SQLite](#103-sqlite)
+  * [10.4 Clickhouse](#104-clickhouse)
+* [11. Optional features](#11-optional-features)
+  * [11.1. Metrics](#111-metrics)
+
 
 ## 1. Overview
 
@@ -49,7 +54,7 @@ Zonemaster product, please see the [main Zonemaster Repository].
 
 If you upgrade your Zonemaster installation with a newer version of
 Zonemaster::Backend instead, and want to keep the database, then see the
-[Upgrade document]. Otherwise [remove the database][Removing database] and
+[Upgrade document]. Otherwise [remove the database][Cleaning up the database] and
 continue with this installation document.
 
 
@@ -273,8 +278,9 @@ sudo install -v -m 755 -o zonemaster -g zonemaster -d /var/lib/zonemaster
 
 #### 4.2.2 Instructions for other engines (Debian/Ubuntu)
 
-See sections for [MariaDB][MariaDB instructions Debian] and
-[PostgreSQL][PostgreSQL instructions Debian].
+See sections for [MariaDB][MariaDB instructions Debian],
+[PostgreSQL][PostgreSQL instructions Debian] and
+[Clickhouse][Clickhouse instructions Debian].
 
 
 ### 4.3 Database configuration (Debian/Ubuntu)
@@ -712,78 +718,19 @@ Now go back to "[Database configuration](#53-database-configuration-freebsd)"
 to create the database tables and then continue with the steps after that.
 
 
-## 9. Cleaning up the database
+## 9. Installation with Clickhouse (experimental)
 
-If, at some point, you want to delete all traces of Zonemaster in the database,
-you can run the file `cleanup-mysql.sql` or file `cleanup-postgres.sql`
-as a database administrator. Commands
-for locating and running the file are below. It removes the user and drops the
-database (obviously taking all data with it).
-
-> Each script uses default values, you may need to adapt them to your setup.
-
-### 9.1. MariaDB and MySQL
-
-Rocky Linux, Debian and Ubuntu:
-
-```sh
-sudo mysql --user=root < `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")'`/cleanup-mysql.sql
-```
-
-FreeBSD (you will get prompted for MySQL password):
-
-```sh
-mysql --user=root -p < `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")'`/cleanup-mysql.sql
-```
-
-### 9.2. PostgreSQL
-
-Rocky Linux, Debian and Ubuntu:
-
-```sh
-sudo -u postgres psql -f $(perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Backend")')/cleanup-postgres.sql
-```
-
-FreeBSD (as root):
-
-```sh
-psql -U postgres -f `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")'`/cleanup-postgres.sql
-```
-
-### 9.3. SQLite
-
-Remove the database file and recreate it following the installation instructions above.
-
-## 10. Optional features
-
-### 10.1 Metrics
-
-Statsd metrics are available, to enable the feature install the additional
-`Net::Statsd` module. See the [configuration][Backend configuration] to
-configure the receiver.
-
-The list of metrics is available in the [Telemetry document][metrics].
-
-### 10.1.1 Installation on Rocky Linux
-
-```sh
-sudo cpanm --notest Net::Statsd
-```
-
-### 10.1.2 Installation on Debian / Ubuntu
+First follow the installation instructions for the OS in question, and then go
+to this section to install Clickhouse.
 
 
-```sh
-sudo apt install libnet-statsd-perl
-```
+### 9.1. Clickhouse (Rocky Linux)
 
-### 10.1.3 Installation on Freebsd
+There is not yet any specific installation instructions for Rocky Linux. In most
+parts the instructions for Debian/Ubuntu can be followed. 
 
-```sh
-cpanm --notest Net::Statsd
-```
 
-## 10.2 Installation with Clickhouse
+### 9.2. Clickhouse (Debian/Ubuntu)
 
 > This is an experimental feature.
 
@@ -830,9 +777,94 @@ Now go back to "[Database configuration](#43-database-configuration-debianubuntu
 to create the database tables and then continue with the steps after that.
 
 
+### 9.3. Clickhouse (FreeBSD)
+
+There is not yet any specific installation instructions for FreeBSD. In most
+parts the instructions for Debian/Ubuntu can be followed. 
+
+
+## 10. Cleaning up the database
+
+If, at some point, you want to delete all traces of Zonemaster in the database,
+you can run the file `cleanup-mysql.sql` or file `cleanup-postgres.sql`
+as a database administrator. Commands
+for locating and running the file are below. It removes the user and drops the
+database (obviously taking all data with it).
+
+> Each script uses default values, you may need to adapt them to your setup.
+
+### 10.1. MariaDB and MySQL
+
+Rocky Linux, Debian and Ubuntu:
+
+```sh
+sudo mysql --user=root < `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")'`/cleanup-mysql.sql
+```
+
+FreeBSD (you will get prompted for MySQL password):
+
+```sh
+mysql --user=root -p < `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")'`/cleanup-mysql.sql
+```
+
+### 10.2. PostgreSQL
+
+Rocky Linux, Debian and Ubuntu:
+
+```sh
+sudo -u postgres psql -f $(perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Backend")')/cleanup-postgres.sql
+```
+
+FreeBSD (as root):
+
+```sh
+psql -U postgres -f `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")'`/cleanup-postgres.sql
+```
+
+### 10.3. SQLite
+
+Remove the database file and recreate it following the installation instructions above.
+
+
+### 10.4 Clickhouse
+
+Currently there are no instructions for cleaning up a Clickhose database.
+
+
+## 11. Optional features
+
+### 11.1 Metrics
+
+Statsd metrics are available, to enable the feature install the additional
+`Net::Statsd` module. See the [configuration][Backend configuration] to
+configure the receiver.
+
+The list of metrics is available in the [Telemetry document][metrics].
+
+### 11.1.1 Installation on Rocky Linux
+
+```sh
+sudo cpanm --notest Net::Statsd
+```
+
+### 11.1.2 Installation on Debian / Ubuntu
+
+
+```sh
+sudo apt install libnet-statsd-perl
+```
+
+### 11.1.3 Installation on Freebsd
+
+```sh
+cpanm --notest Net::Statsd
+```
+
+
 -------
 
 [Backend configuration]:              ../configuration/backend.md
+[Clickhouse instructions Debian]:     #92-clickhouse-debianubuntu
 [Declaration of prerequisites]:       prerequisites.md
 [JSON-RPC API]:                       ../using/backend/rpcapi-reference.md
 [Main Zonemaster repository]:         https://github.com/zonemaster/zonemaster/blob/master/README.md
@@ -845,10 +877,13 @@ to create the database tables and then continue with the steps after that.
 [PostgreSQL instructions Debian]:     #82-postgresql-debianubuntu
 [PostgreSQL instructions FreeBSD]:    #83-postgresql-freebsd
 [Prerequisites section]:              #2-prerequisites
-[Removing database]:                  #9-cleaning-up-the-database
+[Cleaning up the database]:           #10-cleaning-up-the-database
 [Upgrade document]:                   ../upgrading/backend.md
 [Zonemaster::CLI installation]:       zonemaster-cli.md
 [Zonemaster::Engine installation]:    zonemaster-engine.md
 [Zonemaster::Engine]:                 https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
 [Zonemaster::GUI installation]:       zonemaster-gui.md
 [Zonemaster::LDNS]:                   https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
+
+
+Cleaning up the database]
