@@ -726,8 +726,8 @@ to this section to install Clickhouse.
 
 ### 9.1. Clickhouse (Rocky Linux)
 
-There is not yet any specific installation instructions for Rocky Linux. In most
-parts the instructions for Debian/Ubuntu can be followed. 
+There is no specific installation instructions for Rocky Linux yet. In most
+parts the instructions for Debian/Ubuntu can be followed.
 
 
 ### 9.2. Clickhouse (Debian/Ubuntu)
@@ -779,8 +779,8 @@ to create the database tables and then continue with the steps after that.
 
 ### 9.3. Clickhouse (FreeBSD)
 
-There is not yet any specific installation instructions for FreeBSD. In most
-parts the instructions for Debian/Ubuntu can be followed. 
+There is no specific installation instructions for FreeBSD yet. In most parts
+the instructions for Debian/Ubuntu can be followed.
 
 
 ## 10. Cleaning up the database
@@ -828,7 +828,9 @@ Remove the database file and recreate it following the installation instructions
 
 ### 10.4 Clickhouse
 
-Currently there are no instructions for cleaning up a Clickhose database.
+Currently there are no instructions for cleaning up a Clickhouse database.
+The scripts used for MariaDB/MySQL and PostgreSQL could be a source of
+inspiration.
 
 
 ## 11. Optional features
@@ -884,6 +886,3 @@ cpanm --notest Net::Statsd
 [Zonemaster::Engine]:                 https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
 [Zonemaster::GUI installation]:       zonemaster-gui.md
 [Zonemaster::LDNS]:                   https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
-
-
-Cleaning up the database]
