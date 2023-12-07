@@ -291,7 +291,7 @@ The CNAME chain is broken between first and second CNAME records.
 
 
 ### WRONG-CNAME-OWNER-NAME
-The owner name of the CNAME in the response does not match queryy name.
+The owner name of the CNAME in the response does not match query name.
 
 * Query name: "wrong-cname-owner-name.cname.recursor.engine.xa"
   * To be found in the answer section:
