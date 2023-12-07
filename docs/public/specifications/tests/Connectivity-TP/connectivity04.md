@@ -131,7 +131,7 @@ the appropriate section below.
 
 The Cymru prefix lookup is described on the Team Cymru [IP to ASN Mapping]
 using DNS lookup, but the default data comes from [bgp.tools] (Port 179 Ltd
-in England and Wales) and is continuesly being mapped into
+in England and Wales) and is continuously being mapped into
 `asnlookup.zonemaster.net` by the Zonemaster project. Data is fetched from
 <https://bgp.tools/table.txt>. The Cymru source can also be used, if
 requested.
