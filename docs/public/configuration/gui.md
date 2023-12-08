@@ -25,7 +25,7 @@ The supported configuration items are the following.
 * `"enabledLanguages"`: An array of the languages enabled in the GUI, default
   `[ "da", "en", "es", "fi", "fr", "nb", "sv" ]`.
 * `"contactAddress"`: The contact email address displayed in the footer, default
-  `"contact@zonemaster.net"`.
+  `"zonemaster@zonemaster.net"`.
 * `"logoUrl`": The URL to the image displayed in the navigation bar, default
   `"assets/images/zonemaster_logo_2021_color.png"`.
 * `"msgBanner"`: A message to display to the user, if empty or undefined no
