@@ -729,7 +729,7 @@ Install the Perl bindings (Clickhouse relies on the MySQL DBI):
 
 * Rocky Linux: `sudo dnf install -y perl-DBD-MySQL`
 * Debian/Ubuntu: `sudo apt install libdbd-mysql-perl`
-* FreeBSD: `pkg install mysql57-server p5-DBD-mysql`
+* FreeBSD: `pkg install p5-DBD-mysql`
 
 To create the database and the database user (unless you keep an old database).
 Edit the command first if you want a non-default database name, user name or
@@ -757,8 +757,11 @@ differs based on the used OS:
 
 > **Note:** See the [backend configuration] documentation for details.
 
-Now go back to "[Database configuration](#43-database-configuration-debianubuntu)"
-to create the database tables and then continue with the steps after that.
+Now go back to "Database configuration" to create the database tables and then
+continue with the steps after that. Select your OS:
+* [Debian/Ubuntu](#43-database-configuration-debianubuntu)
+* [FreeBSD](#53-database-configuration-freebsd)
+* [Rocky Linux](#33-database-configuration-rocky-linux)
 
 
 ## 10. Cleaning up the database
