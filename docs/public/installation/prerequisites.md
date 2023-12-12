@@ -9,11 +9,11 @@ and processor architecture listed below.
 
 ## Supported operating system versions
 
-* [Debian] 11
+* [Debian] 12
 * [Docker]
-* [FreeBSD] 13.2
-* [Rocky Linux] 8.8
-* [Rocky Linux] 9.2
+* [FreeBSD] 14.0
+* [Rocky Linux] 8.9
+* [Rocky Linux] 9.3
 * [Ubuntu] 20.04
 * [Ubuntu] 22.04
 
@@ -35,13 +35,13 @@ at large cloud providers.
 
 Operating System | MariaDB | PostgreSQL
 ---------------- | --------| ---------------
-Debian 11        | 10.5    | 13.10
+Debian 12        | 10.11   | 15.5
 Docker           | n/a     | n/a
-FreeBSD 13.2     | 8.0 (*) | 13.11
-Rocky Linux 8.8  | 10.3    | 10.23
-Rocky Linux 9.2  | 10.5    | 13.10
-Ubuntu 20.04     | 10.3   | 12.15
-Ubuntu 22.04     | 10.6   | 14.8
+FreeBSD 14.0     | 8.0 (*) | 15
+Rocky Linux 8.9  | ?       | ?
+Rocky Linux 9.3  | 10.5    | 13.11
+Ubuntu 20.04     | 10.3    | 12.17
+Ubuntu 22.04     | 10.6    | 14.10
 
 * (*) FreeBSD uses MySQL, not MariaDB.
 * SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
@@ -56,11 +56,11 @@ Ubuntu 22.04     | 10.6   | 14.8
 
 Operating System | Perl
 ---------------- | ----
-Debian 11        | 5.32
+Debian 12        | 5.36
 Docker           | (*)
-FreeBSD 13.1     | 5.32
-Rocky Linux 8.8  | 5.26
-Rocky Linux 9.2  | 5.32
+FreeBSD 14.0     | 5.38
+Rocky Linux 8.9  | 5.32
+Rocky Linux 9.3  | 5.32
 Ubuntu 20.04     | 5.30
 Ubuntu 22.04     | 5.34
 
@@ -76,6 +76,7 @@ The latest version of the browser at the time of testing is used.
 
 Operating System | Browser
 ---------------- | -------
+Debian 12        | Firefox
 MacOS 13         | Firefox
 MacOS 13         | Chrome
 Windows 10       | Firefox
