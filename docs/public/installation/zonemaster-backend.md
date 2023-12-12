@@ -34,10 +34,7 @@
   * [8.1. PostgreSQL (Rocky Linux)][PostgreSQL instructions Rocky Linux]
   * [8.2. PostgreSQL (Debian/Ubuntu)][PostgreSQL instructions Debian]
   * [8.3. PostgreSQL (FreeBSD)][PostgreSQL instructions FreeBSD]
-* [9. Installation with Clickhouse (experimental)](#9-Installation-with-clickhouse-experimental)
-  * [9.1. Clickhouse (Rocky Linux)](#91-clickhouse-rocky-linux)
-  * [9.2. Clickhouse (Debian/Ubuntu)][Clickhouse instructions Debian]
-  * [9.3. Clickhouse (FreeBSD)](#93-clickhouse-freebsd)
+* [9. Installation with Clickhouse (experimental)][Clickhouse instructions]
 * [10. Cleaning up the database][Cleaning up the database]
   * [10.1. MariaDB and MySQL](#101-mariadb-and-mysql)
   * [10.2. PostgreSQL](#102-postgresql)
@@ -280,7 +277,7 @@ sudo install -v -m 755 -o zonemaster -g zonemaster -d /var/lib/zonemaster
 
 See sections for [MariaDB][MariaDB instructions Debian],
 [PostgreSQL][PostgreSQL instructions Debian] and
-[Clickhouse][Clickhouse instructions Debian].
+[Clickhouse][Clickhouse instructions].
 
 
 ### 4.3 Database configuration (Debian/Ubuntu)
@@ -720,36 +717,19 @@ to create the database tables and then continue with the steps after that.
 
 ## 9. Installation with Clickhouse (experimental)
 
+> This is an experimental feature.
+
 First follow the installation instructions for the OS in question, and then go
 to this section to install Clickhouse.
-
-
-### 9.1. Clickhouse (Rocky Linux)
-
-There is no specific installation instructions for Rocky Linux yet. In most
-parts the instructions for Debian/Ubuntu can be followed.
-
-
-### 9.2. Clickhouse (Debian/Ubuntu)
-
-> This is an experimental feature.
 
 To install Clickhouse, follow the instructions from the [official
 documentation](https://clickhouse.com/docs/en/install#available-installation-options).
 
-Configure Zonemaster::Backend to use the correct database engine:
+Install the Perl bindings (Clickhouse relies on the MySQL DBI):
 
-```sh
-sudo sed -i '/\bengine\b/ s/=.*/= Clickhouse/' /etc/zonemaster/backend_config.ini
-```
-
-> **Note:** See the [backend configuration] documentation for details.
-
-Install the Perl bindings (Clickhouse relies on the MySQL DBI).
-
-```sh
-sudo apt install libdbd-mysql-perl
-```
+* Rocky Linux: `sudo dnf install -y perl-DBD-MySQL`
+* Debian/Ubuntu: `sudo apt install libdbd-mysql-perl`
+* FreeBSD: `pkg install mysql57-server p5-DBD-mysql`
 
 To create the database and the database user (unless you keep an old database).
 Edit the command first if you want a non-default database name, user name or
@@ -767,17 +747,18 @@ clickhouse-client --ask-password -q "CREATE DATABASE zonemaster;"
 clickhouse-client --ask-password -q "GRANT CREATE TABLE, DROP TABLE, SELECT, INSERT, ALTER UPDATE ON zonemaster.* TO zonemaster;"
 ```
 
-Update the `/etc/zonemaster/backend_config.ini` file with database name, username
-and password if non-default values are used.
+Update the `backend_config.ini` file with the correct databse engine, database
+name, username and password if non-default values are used. The file location
+differs based on the used OS:
+
+* Rocky Linux: `/etc/zonemaster/backend_config.ini`
+* Debian/Ubuntu: `/etc/zonemaster/backend_config.ini`
+* FreeBSD: `/usr/local/etc/zonemaster/backend_config.ini`
+
+> **Note:** See the [backend configuration] documentation for details.
 
 Now go back to "[Database configuration](#43-database-configuration-debianubuntu)"
 to create the database tables and then continue with the steps after that.
-
-
-### 9.3. Clickhouse (FreeBSD)
-
-There is no specific installation instructions for FreeBSD yet. In most parts
-the instructions for Debian/Ubuntu can be followed.
 
 
 ## 10. Cleaning up the database
@@ -863,7 +844,7 @@ cpanm --notest Net::Statsd
 -------
 
 [Backend configuration]:              ../configuration/backend.md
-[Clickhouse instructions Debian]:     #92-clickhouse-debianubuntu
+[Clickhouse instructions]:            #9-Installation-with-clickhouse-experimental
 [Declaration of prerequisites]:       prerequisites.md
 [JSON-RPC API]:                       ../using/backend/rpcapi-reference.md
 [Main Zonemaster repository]:         https://github.com/zonemaster/zonemaster/blob/master/README.md

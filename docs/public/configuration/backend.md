@@ -214,8 +214,8 @@ The host name of the machine on which the Clickhouse server is running.
 
 ### port
 
-The [MySQL interface][Clickhouse MySQL interface]'s port the Clickhouse server
-is listening on.
+The port the Clickhouse server is listening on, for connections using the
+[MySQL-compatible protocol][Clickhouse MySQL interface].
 Default value: `9004`.
 
 ### user
