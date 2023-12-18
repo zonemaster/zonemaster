@@ -12,7 +12,6 @@
 * [Translation](#translation)
 * [Zonemaster and its components](#zonemaster-and-its-components)
 * [Installation](#installation)
-* [Docker](#docker)
 * [Versions](#versions)
 * [Participation](#participation)
 * [Bug reporting](#bug-reporting)
