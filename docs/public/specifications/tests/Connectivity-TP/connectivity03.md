@@ -91,7 +91,11 @@ ASN lookup, RIPE or Cymru. The service must be available over the network.
 ### Cymru ASN lookup
 
 The Cymru lookup method is described on the Team Cymru [IP to ASN Mapping]
-using DNS lookup.
+using DNS lookup, but the default data comes from [bgp.tools] (Port 179 Ltd
+in England and Wales) and is continuously being mapped into
+`asnlookup.zonemaster.net` by the Zonemaster project. Data is fetched from
+<https://bgp.tools/table.txt>. The Cymru source can also be used, if
+requested.
 
 1. Prepend the *Cymru Base Name* with the label "origin" (IPv4) or 
    "origin6" (IPv6). Example of expanded basenames 
@@ -180,6 +184,7 @@ whois -h riswhois.ripe.net " -F -M 192.0.2.10"
 None
 
 
+[Bgp.tools]:            https://bgp.tools/
 [Cymru database]:       #cymru-asn-lookup
 [EMPTY_ASN_SET]:        #outcomes 
 [ERROR_ASN_DATABASE]:   #outcomes 

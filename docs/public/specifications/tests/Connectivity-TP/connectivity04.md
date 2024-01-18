@@ -130,7 +130,12 @@ the appropriate section below.
 ### Cymru prefix lookup
 
 The Cymru prefix lookup is described on the Team Cymru [IP to ASN Mapping]
-using DNS lookup.
+using DNS lookup, but the default data comes from [bgp.tools] (Port 179 Ltd
+in England and Wales) and is continuously being mapped into
+`asnlookup.zonemaster.net` by the Zonemaster project. Data is fetched from
+<https://bgp.tools/table.txt>. The Cymru source can also be used, if
+requested.
+
 
 1. Prepend the *Cymru Base Name* with the label "origin" (IPv4) or 
    "origin6" (IPv6) ("Expanded Base Name"). Example of expanded basenames :
@@ -216,6 +221,7 @@ None
   a specific server (server IP address).
 
 [Argument List]:                                                ../ArgumentsForTestCaseMessages.md
+[Bgp.tools]:                                                    https://bgp.tools/
 [CN04_EMPTY_PREFIX_SET]:                                        #outcomes
 [CN04_ERROR_PREFIX_DATABASE]:                                   #outcomes
 [CN04_IPV4_DIFFERENT_PREFIX]:                                   #outcomes
