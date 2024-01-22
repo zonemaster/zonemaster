@@ -34,12 +34,15 @@
   * [8.1. PostgreSQL (Rocky Linux)][PostgreSQL instructions Rocky Linux]
   * [8.2. PostgreSQL (Debian/Ubuntu)][PostgreSQL instructions Debian]
   * [8.3. PostgreSQL (FreeBSD)][PostgreSQL instructions FreeBSD]
-* [9. Cleaning up the database][Removing database]
-  * [9.1. MariaDB and MySQL](#91-mariadb-and-mysql)
-  * [9.2. PostgreSQL](#92-postgresql)
-  * [9.3. SQLite](#93-sqlite)
-* [10. Optional features](#10-optional-features)
-  * [10.1. Metrics](#101-metrics)
+* [9. Installation with Clickhouse (experimental)][Clickhouse instructions]
+* [10. Cleaning up the database][Cleaning up the database]
+  * [10.1. MariaDB and MySQL](#101-mariadb-and-mysql)
+  * [10.2. PostgreSQL](#102-postgresql)
+  * [10.3. SQLite](#103-sqlite)
+  * [10.4 Clickhouse](#104-clickhouse)
+* [11. Optional features](#11-optional-features)
+  * [11.1. Metrics](#111-metrics)
+
 
 ## 1. Overview
 
@@ -48,7 +51,7 @@ Zonemaster product, please see the [main Zonemaster Repository].
 
 If you upgrade your Zonemaster installation with a newer version of
 Zonemaster::Backend instead, and want to keep the database, then see the
-[Upgrade document]. Otherwise [remove the database][Removing database] and
+[Upgrade document]. Otherwise [remove the database][Cleaning up the database] and
 continue with this installation document.
 
 
@@ -272,8 +275,9 @@ sudo install -v -m 755 -o zonemaster -g zonemaster -d /var/lib/zonemaster
 
 #### 4.2.2 Instructions for other engines (Debian/Ubuntu)
 
-See sections for [MariaDB][MariaDB instructions Debian] and
-[PostgreSQL][PostgreSQL instructions Debian].
+See sections for [MariaDB][MariaDB instructions Debian],
+[PostgreSQL][PostgreSQL instructions Debian] and
+[Clickhouse][Clickhouse instructions].
 
 
 ### 4.3 Database configuration (Debian/Ubuntu)
@@ -711,7 +715,56 @@ Now go back to "[Database configuration](#53-database-configuration-freebsd)"
 to create the database tables and then continue with the steps after that.
 
 
-## 9. Cleaning up the database
+## 9. Installation with Clickhouse (experimental)
+
+> This is an experimental feature.
+
+First follow the installation instructions for the OS in question, and then go
+to this section to install Clickhouse.
+
+To install Clickhouse, follow the instructions from the [official
+documentation](https://clickhouse.com/docs/en/install#available-installation-options).
+
+Install the Perl bindings (Clickhouse relies on the MySQL DBI):
+
+* Rocky Linux: `sudo dnf install -y perl-DBD-MySQL`
+* Debian/Ubuntu: `sudo apt install libdbd-mysql-perl`
+* FreeBSD: `pkg install p5-DBD-mysql`
+
+To create the database and the database user (unless you keep an old database).
+Edit the command first if you want a non-default database name, user name or
+password.
+
+> **Note**: The Clickhouse MySQL interface requires a [double SHA1
+> password](https://clickhouse.com/docs/en/operations/settings/settings-users#password_double_sha1_hex)
+> ```
+> PASSWORD=$(base64 < /dev/urandom | head -c8); echo "$PASSWORD"; echo -n "$PASSWORD" | sha1sum | tr -d '-' | xxd -r -p | sha1sum | tr -d '-'
+> ```
+
+```sh
+clickhouse-client --ask-password -q "CREATE USER zonemaster IDENTIFIED WITH DOUBLE_SHA1_HASH BY '<DOUBLE_SHA1_PASSWORD>';"
+clickhouse-client --ask-password -q "CREATE DATABASE zonemaster;"
+clickhouse-client --ask-password -q "GRANT CREATE TABLE, DROP TABLE, SELECT, INSERT, ALTER UPDATE ON zonemaster.* TO zonemaster;"
+```
+
+Update the `backend_config.ini` file with the correct databse engine, database
+name, username and password if non-default values are used. The file location
+differs based on the used OS:
+
+* Rocky Linux: `/etc/zonemaster/backend_config.ini`
+* Debian/Ubuntu: `/etc/zonemaster/backend_config.ini`
+* FreeBSD: `/usr/local/etc/zonemaster/backend_config.ini`
+
+> **Note:** See the [backend configuration] documentation for details.
+
+Now go back to "Database configuration" to create the database tables and then
+continue with the steps after that. Select your OS:
+* [Debian/Ubuntu](#43-database-configuration-debianubuntu)
+* [FreeBSD](#53-database-configuration-freebsd)
+* [Rocky Linux](#33-database-configuration-rocky-linux)
+
+
+## 10. Cleaning up the database
 
 If, at some point, you want to delete all traces of Zonemaster in the database,
 you can run the file `cleanup-mysql.sql` or file `cleanup-postgres.sql`
@@ -721,7 +774,7 @@ database (obviously taking all data with it).
 
 > Each script uses default values, you may need to adapt them to your setup.
 
-### 9.1. MariaDB and MySQL
+### 10.1. MariaDB and MySQL
 
 Rocky Linux, Debian and Ubuntu:
 
@@ -735,7 +788,7 @@ FreeBSD (you will get prompted for MySQL password):
 mysql --user=root -p < `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")'`/cleanup-mysql.sql
 ```
 
-### 9.2. PostgreSQL
+### 10.2. PostgreSQL
 
 Rocky Linux, Debian and Ubuntu:
 
@@ -749,13 +802,21 @@ FreeBSD (as root):
 psql -U postgres -f `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")'`/cleanup-postgres.sql
 ```
 
-### 9.3. SQLite
+### 10.3. SQLite
 
 Remove the database file and recreate it following the installation instructions above.
 
-## 10. Optional features
 
-### 10.1 Metrics
+### 10.4 Clickhouse
+
+Currently there are no instructions for cleaning up a Clickhouse database.
+The scripts used for MariaDB/MySQL and PostgreSQL could be a source of
+inspiration.
+
+
+## 11. Optional features
+
+### 11.1 Metrics
 
 Statsd metrics are available, to enable the feature install the additional
 `Net::Statsd` module. See the [configuration][Backend configuration] to
@@ -763,28 +824,30 @@ configure the receiver.
 
 The list of metrics is available in the [Telemetry document][metrics].
 
-### 10.1.1 Installation on Rocky Linux
+### 11.1.1 Installation on Rocky Linux
 
 ```sh
 sudo cpanm --notest Net::Statsd
 ```
 
-### 10.1.2 Installation on Debian / Ubuntu
+### 11.1.2 Installation on Debian / Ubuntu
 
 
 ```sh
 sudo apt install libnet-statsd-perl
 ```
 
-### 10.1.3 Installation on Freebsd
+### 11.1.3 Installation on Freebsd
 
 ```sh
 cpanm --notest Net::Statsd
 ```
 
+
 -------
 
 [Backend configuration]:              ../configuration/backend.md
+[Clickhouse instructions]:            #9-Installation-with-clickhouse-experimental
 [Declaration of prerequisites]:       prerequisites.md
 [JSON-RPC API]:                       ../using/backend/rpcapi-reference.md
 [Main Zonemaster repository]:         https://github.com/zonemaster/zonemaster/blob/master/README.md
@@ -797,7 +860,7 @@ cpanm --notest Net::Statsd
 [PostgreSQL instructions Debian]:     #82-postgresql-debianubuntu
 [PostgreSQL instructions FreeBSD]:    #83-postgresql-freebsd
 [Prerequisites section]:              #2-prerequisites
-[Removing database]:                  #9-cleaning-up-the-database
+[Cleaning up the database]:           #10-cleaning-up-the-database
 [Upgrade document]:                   ../upgrading/backend.md
 [Zonemaster::CLI installation]:       zonemaster-cli.md
 [Zonemaster::Engine installation]:    zonemaster-engine.md
