@@ -29,7 +29,7 @@
 * [7. Installation with MariaDB](#7-installation-with-mariadb)
   * [7.1 MariaDB (Rocky Linux)][MariaDB instructions Rocky Linux]
   * [7.2. MariaDB (Debian/Ubuntu)][MariaDB instructions Debian]
-  * [7.3. MySQL (FreeBSD)][MariaDB instructions FreeBSD]
+  * [7.3. MySQL (FreeBSD)][MySQL instructions FreeBSD]
 * [8. Installation with PostgreSQL](#8-installation-with-postgresql)
   * [8.1. PostgreSQL (Rocky Linux)][PostgreSQL instructions Rocky Linux]
   * [8.2. PostgreSQL (Debian/Ubuntu)][PostgreSQL instructions Debian]
@@ -386,7 +386,7 @@ install -v -m 755 -o zonemaster -g zonemaster -d /var/db/zonemaster
 
 #### 5.2.2 Instructions for other engines (FreeBSD)
 
-See sections for [MariaDB][MariaDB instructions FreeBSD] and
+See sections for [MySQL][MySQL instructions FreeBSD] and
 [PostgreSQL][PostgreSQL instructions FreeBSD].
 
 
@@ -540,7 +540,7 @@ sed -i '' '/[[:<:]]engine[[:>:]]/ s/=.*/= MySQL/' /usr/local/etc/zonemaster/back
 Install, configure and start database engine (and Perl bindings):
 
 ```sh
-pkg install mysql57-server p5-DBD-mysql
+pkg install mysql80-server p5-DBD-mysql
 ```
 
 ```sh
@@ -548,24 +548,12 @@ sysrc mysql_enable="YES"
 service mysql-server start
 ```
 
-Read the current root password for MySQL (unless it has been changed
-already).
-
-```sh
-cat /root/.mysql_secret
-```
-
-Set password for MySQL root (required by MySQL). Use the password from
-`/root/.mysql_secret` when prompted for password, and then the new password
-when prompted for that.
-
-```sh
-/usr/local/bin/mysqladmin -u root -p password '<selected root password>'
-```
+By default the MySQL root password is empty. Just press ENTER if prompted for 
+password. The advice is to set a password.
 
 To create the database and the database user (unless you keep an old database).
 Edit the command first if you want a non-default database name, user name or
-password. Run the command on one line.  Use the MySQL root password when
+password. Run the command on one line. Use the MySQL root password when
 prompted.
 
 ```sh
@@ -679,12 +667,12 @@ of `postgresql-client`. Determine what version was installed:
 ```sh
 pkg info | grep postgresql | grep client
 ```
-If the installed client is not version `13` then adjust the following command to
-install `postgresql-server` with the same version as `postgresql-client`
-installed.
+If the installed client is not version `15` (major version) then adjust the
+following command to install `postgresql-server` with the same major version as
+`postgresql-client` installed.
 
 ```sh
-pkg install postgresql13-server
+pkg install postgresql15-server
 ```
 
 Enable daemon, initiate and start:
@@ -790,7 +778,7 @@ cpanm --notest Net::Statsd
 [Main Zonemaster repository]:         https://github.com/zonemaster/zonemaster/blob/master/README.md
 [MariaDB instructions Rocky Linux]:   #71-mariadb-rocky-linux
 [MariaDB instructions Debian]:        #72-mariadb-debianubuntu
-[MariaDB instructions FreeBSD]:       #73-mysql-freebsd
+[MySQL instructions FreeBSD]:         #73-mysql-freebsd
 [metrics]:                            ../using/backend/telemetry.md#metrics
 [Post-installation]:                  #6-post-installation
 [PostgreSQL instructions Rocky Linux]:#81-postgresql-rocky-linux
