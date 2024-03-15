@@ -29,7 +29,7 @@
 * [7. Installation with MariaDB](#7-installation-with-mariadb)
   * [7.1 MariaDB (Rocky Linux)][MariaDB instructions Rocky Linux]
   * [7.2. MariaDB (Debian/Ubuntu)][MariaDB instructions Debian]
-  * [7.3. MySQL (FreeBSD)][MariaDB instructions FreeBSD]
+  * [7.3. MySQL (FreeBSD)][MySQL instructions FreeBSD]
 * [8. Installation with PostgreSQL](#8-installation-with-postgresql)
   * [8.1. PostgreSQL (Rocky Linux)][PostgreSQL instructions Rocky Linux]
   * [8.2. PostgreSQL (Debian/Ubuntu)][PostgreSQL instructions Debian]
@@ -386,7 +386,7 @@ install -v -m 755 -o zonemaster -g zonemaster -d /var/db/zonemaster
 
 #### 5.2.2 Instructions for other engines (FreeBSD)
 
-See sections for [MySQL][MariaDB instructions FreeBSD] and
+See sections for [MySQL][MySQL instructions FreeBSD] and
 [PostgreSQL][PostgreSQL instructions FreeBSD].
 
 
@@ -778,7 +778,7 @@ cpanm --notest Net::Statsd
 [Main Zonemaster repository]:         https://github.com/zonemaster/zonemaster/blob/master/README.md
 [MariaDB instructions Rocky Linux]:   #71-mariadb-rocky-linux
 [MariaDB instructions Debian]:        #72-mariadb-debianubuntu
-[MariaDB instructions FreeBSD]:       #73-mysql-freebsd
+[MySQL instructions FreeBSD]:         #73-mysql-freebsd
 [metrics]:                            ../using/backend/telemetry.md#metrics
 [Post-installation]:                  #6-post-installation
 [PostgreSQL instructions Rocky Linux]:#81-postgresql-rocky-linux
