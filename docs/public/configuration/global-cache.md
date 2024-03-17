@@ -32,6 +32,8 @@ Before installing or enabling global cache you must follow the
 [Zonemaster::Engine installation] first. The feature is available from version
 `v5.0.0` of Zonemaster-Engine.
 
+For installation on FreeBSD being user root is assumed.
+
 
 ## Installation for global cache
 
@@ -50,7 +52,8 @@ sudo systemctl start redis
 
 ### FreeBSD
 ```
-pkg install redis p5-Redis p5-Data-MessagePack
+pkg install -y redis p5-Redis p5-Data-MessagePack
+sysrc redis_enable="YES"
 service redis start
 ```
 
@@ -67,7 +70,7 @@ To be added.
 ### Debian and Ubuntu
 ```
 test -d /etc/zonemaster  || sudo mkdir -v /etc/zonemaster
-cp -v $(perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Engine")')/profile.json /etc/zonemaster
+sudo cp -v $(perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Engine")')/profile.json /etc/zonemaster
 ```
 
 ### FreeBSD
@@ -78,8 +81,8 @@ cp -v $(perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Engine")')/p
 
 ## Enable global cache
 
-Update `profile.json` in `/etc/zonemaster` (or `/usr/local/etc/zonemaster`) by
-adding the following section,
+Update `/etc/zonemaster/profile.json` (or `/usr/local/etc/zonemaster/profile.json`
+for FreeBSD) by adding the following section,
 ```
     "cache": {
         "redis": {
@@ -102,7 +105,7 @@ never longer than the normal DNS TTL value.
 
 If [Zonemaster-CLI][Zonemaster::CLI installation] has been installed, then
 run `zonemaster-cli` with `--profile /etc/zonemaster/profile.json`
-(or `--profile /usr/local/etc/zonemaster/profile.json` if on FreeBSD) to use the
+(or `--profile /usr/local/etc/zonemaster/profile.json` for FreeBSD) to use the
 global cache. Caching will persist between test unless it has expired.
 
 See `man zonemaster-cli` and look for `cli.args` for how to make it the custom
