@@ -16,6 +16,7 @@ v2023.2 2024-03-18 (public release version)
  [Features]
  - Adds global cache based on Redis in Zonemaster-Engine.
  - Adds implementation of SPF test case in Zonemaster-Engine.
+ - Improves GUI design in Zonemaster-GUI.
  - Improves options for "zonemaster-cli" in Zonemaster-CLI.
  - Removes test case Basic00 (#1226)
  - Adds documentation of global cache (#1227, #1240)
@@ -42,7 +43,7 @@ v2023.2 2024-03-18 (public release version)
    Zonemaster-Engine    v5.0.0  https://github.com/zonemaster/zonemaster-engine/releases/tag/v5.0.0
    Zonemaster-CLI       v6.1.0  https://github.com/zonemaster/zonemaster-cli/releases/tag/v6.1.0
    Zonemaster-Backend  v11.1.0  https://github.com/zonemaster/zonemaster-backend/releases/tag/v11.1.0
-   Zonemaster-GUI       v4.1.2  https://github.com/zonemaster/zonemaster-gui/releases/tag/v4.1.2
+   Zonemaster-GUI       v4.2.0  https://github.com/zonemaster/zonemaster-gui/releases/tag/v4.2.0
 
 
 v2023.1.4 2023-09-08 (public fix version)
