@@ -28,7 +28,7 @@ v2023.2 2024-03-18 (public release version)
  - Adds updated Arguments document (#1190)
  - Adds specification of test zones for test cases Consistency05,
    Consistency06, Nameserver15 and DNSSEC03 (#1213, #1217, #1218)
- - Updates installation instructions (#1223, #1225, #1236, #1239
+ - Updates installation instructions (#1223, #1225, #1236, #1239)
  - Updates documentation in test cases Connectivity03 and Connectivity04
    (#1230)
  - Updates the main README file (#1233, #1235)
