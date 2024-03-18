@@ -104,7 +104,6 @@ Test Case specifications:
 |[ADDRESS02](Address-TP/address02.md)|Reverse DNS entry exists for name server IP address|
 |[ADDRESS03](Address-TP/address03.md)|Reverse DNS entry matches name server name|
 |**Basic-TP**| |
-|[BASIC00](Basic-TP/basic00.md)|Domain name must be valid|
 |[BASIC01](Basic-TP/basic01.md)|Check for the parent zone and the zone itself|
 |[BASIC02](Basic-TP/basic02.md)|The domain must have at least one working name server|
 |[BASIC03](Basic-TP/basic03.md)|The _Broken but functional_ test|
@@ -123,7 +122,7 @@ Test Case specifications:
 |**DNSSEC-TP**| |
 |[DNSSEC01](DNSSEC-TP/dnssec01.md)|Legal values for the DS hash digest algorithm|
 |[DNSSEC02](DNSSEC-TP/dnssec02.md)|DS must match a valid DNSKEY in the child zone|
-|[DNSSEC03](DNSSEC-TP/dnssec03.md)|Check for too many NSEC3 iterations|
+|[DNSSEC03](DNSSEC-TP/dnssec03.md)|Verify NSEC3 parameters|
 |[DNSSEC04](DNSSEC-TP/dnssec04.md)|Check for too short or too long RRSIG lifetimes|
 |[DNSSEC05](DNSSEC-TP/dnssec05.md)|Check for invalid DNSKEY algorithms|
 |[DNSSEC06](DNSSEC-TP/dnssec06.md)|Verify DNSSEC additional processing|
