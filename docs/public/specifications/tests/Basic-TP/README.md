@@ -17,7 +17,6 @@ This document uses the terminology defined in the [Master Test Plan].
 
 |Test Case |Test Case Description|
 |:---------|:--------------------|
-|[BASIC00](basic00.md)|Domain name must be valid|
 |[BASIC01](basic01.md)|Check for the parent zone and the zone itself|
 |[BASIC02](basic02.md)|The domain must have at least one working name server|
 |[BASIC03](basic03.md)|The _Broken but functional_ test|
