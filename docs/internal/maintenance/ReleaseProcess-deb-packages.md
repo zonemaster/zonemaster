@@ -15,10 +15,10 @@ packages" are updated. In the second step packages are promoted to "stable packa
 
 Nightly packages are based on the develop branch of Zonemaster git repositories.
 The sources for nightly packages are kept in the branch `<distribution>-nightly`
-of the [Packages sources] repository. Where `<distrubtion>` correspond to the
+of the [Packages sources] repository. Where `<distribution>` corresponds to the
 name of the Debian or Ubuntu version the branch is building packages for.
 As Ubuntu packages are based on the Debian ones, this will most likely be a
-Debain version name.
+Debian version name.
 
 For each package:
 
@@ -48,9 +48,10 @@ tag.
    For instance the following commands could be used to merge
    `bullseye-nightly` into `bullseye`:
    ```
-   git checkout bullseye-nightly
-   git merge --no-commit bullseye
-   git restore .gitlab-ci.yml */pkg.sh
+   git checkout bullseye
+   git merge --no-commit bullseye-nightly
+   git reset HEAD -- .gitlab-ci.yml */pkg.sh
+   git checkout -- .gitlab-ci.yml */pkg.sh
    git commit
    ```
 
@@ -59,13 +60,12 @@ tag.
 
 3. Update the `changelog` for each package, by adding a new entry. The first line
    should contain the package version in format
-   `<project version>-<package version>+deb<debian version>`.
+   `<project version>-<package version>`.
 
-   For example:  `zonemaster-cli (3.1.0-3+deb11)` is the partial entry for
-   Zonemaster CLI version `3.1.0`, the package version is `3` and it is built
-   for Debian 11. Package version is incremented when the package sources are
-   updated but the upstream version (i.e. Zonemaster component version) remains
-   the same.
+   For example:  `zonemaster-cli (3.1.0-3)` is the partial entry for
+   Zonemaster-CLI version `3.1.0`, the package version is `3`. Package version
+   is incremented when the package sources are updated but the upstream version
+   (i.e. Zonemaster component version) remains the same.
 
 4. Push the modifications to the packages sources repository. Then the packages
    are automatically built and deployed to package.zonemaster.net.
@@ -100,7 +100,7 @@ sudo apt install zonemaster-cli
 
 Edit the `.gitlab-ci.yml` file to add three new jobs for the new OS version.
 The name of the job is in the format `{step}:{os}:{version codename}`, where
-step in one of `build`, `publish` and `test`. The jobs must extend a parent job
+step is one of `build`, `publish` and `test`. The jobs must extend a parent job
 named `.{step}`. The build and publish steps must also define the following
 variables:
 * `OS`: OS name as it is in the `/etc/os-release`;
@@ -167,7 +167,7 @@ ones in the CI file.
 
 ### Publication pipeline overview
 
-The continuous deployment pipeline perform 3 tasks:
+The continuous deployment pipeline performs 3 tasks:
 
 1. `build`: build the packages using the `build.sh` script in the packages
    sources repository.
@@ -183,8 +183,8 @@ The continuous deployment pipeline perform 3 tasks:
 * [Debian maintainer guide](https://www.debian.org/doc/manuals/maint-guide/)
 * [Third party repository in Debian](https://wiki.debian.org/DebianRepository/UseThirdParty)
 
-[aptly]: https://www.aptly.info
-[Packages sources]: https://gitlab.rd.nic.fr/zonemaster/packages/debian
-[Common Gitlab pipeline]: https://gitlab.rd.nic.fr/zonemaster/ci/-/blob/main/deb-packaging.yml
-[`package.zonemaster.net` content]: https://gitlab.rd.nic.fr/zonemaster/packages/www/
-[published on Github]: ReleaseProcess-release.md#16-tag-the-release-with-git
+[aptly]:                              https://www.aptly.info
+[Packages sources]:                   https://gitlab.rd.nic.fr/zonemaster/packages/debian
+[Common Gitlab pipeline]:             https://gitlab.rd.nic.fr/zonemaster/ci/-/blob/main/deb-packaging.yml
+[`package.zonemaster.net` content]:   https://gitlab.rd.nic.fr/zonemaster/packages/www/
+[published on Github]:                ReleaseProcess-release.md#17-tag-the-release-with-git

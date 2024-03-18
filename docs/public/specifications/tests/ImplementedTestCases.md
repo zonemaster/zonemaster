@@ -10,7 +10,6 @@ Index of Text Case specifications is also found in [README](README.md).
 
 |Test level (linked to Perl code at CPAN)|Method name in Perl code|Test Case Identifier (linked to specification)|
 |:---------------------------------------|:-----------------------|----------------------------------------------|
-| [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic00 | [BASIC00](Basic-TP/basic00.md) |
 | [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic01 | [BASIC01](Basic-TP/basic01.md) |
 | [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic02 | [BASIC02](Basic-TP/basic02.md) |
 | [Basic](https://metacpan.org/pod/Zonemaster::Engine::Test::Basic) | basic03 | [BASIC03](Basic-TP/basic03.md) |
@@ -83,5 +82,6 @@ Index of Text Case specifications is also found in [README](README.md).
 | [Zone](https://metacpan.org/pod/Zonemaster::Engine::Test::Zone) | zone08 | [ZONE08](Zone-TP/zone08.md) |
 | [Zone](https://metacpan.org/pod/Zonemaster::Engine::Test::Zone) | zone09 | [ZONE09](Zone-TP/zone09.md) |
 | [Zone](https://metacpan.org/pod/Zonemaster::Engine::Test::Zone) | zone10 | [ZONE10](Zone-TP/zone10.md) |
+| [Zone](https://metacpan.org/pod/Zonemaster::Engine::Test::Zone) | zone11 | [ZONE11](Zone-TP/zone11.md) |
 
 [Zonemaster-Engine]: https://github.com/zonemaster/zonemaster-engine

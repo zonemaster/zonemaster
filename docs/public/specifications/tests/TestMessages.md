@@ -8,11 +8,6 @@ Index of Text Cases are found in [README](README.md).
 
 | Message tag from [Zonemaster-Engine] | Module | Method (implemented test case) |
 |:-------------------------------------|:-------|:-------------------------------|
-| DOMAIN_NAME_LABEL_TOO_LONG               | [Basic](Basic-TP/README.md) | [basic00](Basic-TP/basic00.md) |
-| DOMAIN_NAME_TOO_LONG                     | [Basic](Basic-TP/README.md) | [basic00](Basic-TP/basic00.md) |
-| DOMAIN_NAME_ZERO_LENGTH_LABEL            | [Basic](Basic-TP/README.md) | [basic00](Basic-TP/basic00.md) |
-| TEST_CASE_END                            | [Basic](Basic-TP/README.md) | [basic00](Basic-TP/basic00.md) |
-| TEST_CASE_START                          | [Basic](Basic-TP/README.md) | [basic00](Basic-TP/basic00.md) |
 | B01_CHILD_FOUND                          | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
 | B01_CHILD_IS_ALIAS                       | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
 | B01_CHILD_NOT_EXIST                      | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
@@ -239,13 +234,25 @@ Index of Text Cases are found in [README](README.md).
 | DS02_NO_MATCH_DS_DNSKEY                  | [DNSSEC](DNSSEC-TP/README.md) | [dnssec02](DNSSEC-TP/dnssec02.md) |
 | DS02_NO_VALID_DNSKEY_FOR_ANY_DS          | [DNSSEC](DNSSEC-TP/README.md) | [dnssec02](DNSSEC-TP/dnssec02.md) |
 | DS02_RRSIG_NOT_VALID_BY_DNSKEY           | [DNSSEC](DNSSEC-TP/README.md) | [dnssec02](DNSSEC-TP/dnssec02.md) |
-| ITERATIONS_OK                            | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
-| MANY_ITERATIONS                          | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
-| NO_DNSKEY                                | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
-| NO_NSEC3PARAM                            | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
-| TEST_CASE_END                            | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
-| TEST_CASE_START                          | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
-| TOO_MANY_ITERATIONS                      | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_ERR_MULT_NSEC3                      | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_ILLEGAL_HASH_ALGO                   | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_ILLEGAL_ITERATION_VALUE             | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_ILLEGAL_SALT_LENGTH                 | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_INCONSISTENT_HASH_ALGO              | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_INCONSISTENT_ITERATION              | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_INCONSISTENT_NSEC3_FLAGS            | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_INCONSISTENT_SALT_LENGTH            | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_LEGAL_EMPTY_SALT                    | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_LEGAL_HASH_ALGO                     | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_LEGAL_ITERATION_VALUE               | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_NO_DNSSEC_SUPPORT                   | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_NO_NSEC3                            | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_NSEC3_OPT_OUT_DISABLED              | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_NSEC3_OPT_OUT_ENABLED_NON_TLD       | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_NSEC3_OPT_OUT_ENABLED_TLD           | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_SERVER_NO_DNSSEC_SUPPORT            | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_SERVER_NO_NSEC3                     | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
+| DS03_UNASSIGNED_FLAG_USED                | [DNSSEC](DNSSEC-TP/README.md) | [dnssec03](DNSSEC-TP/dnssec03.md) |
 | DURATION_LONG                            | [DNSSEC](DNSSEC-TP/README.md) | [dnssec04](DNSSEC-TP/dnssec04.md) |
 | DURATION_OK                              | [DNSSEC](DNSSEC-TP/README.md) | [dnssec04](DNSSEC-TP/dnssec04.md) |
 | REMAINING_LONG                           | [DNSSEC](DNSSEC-TP/README.md) | [dnssec04](DNSSEC-TP/dnssec04.md) |
@@ -440,10 +447,10 @@ Index of Text Cases are found in [README](README.md).
 | NS_ERROR                                 | [Nameserver](Nameserver-TP/README.md) | [nameserver13](Nameserver-TP/nameserver13.md) |
 | TEST_CASE_END                            | [Nameserver](Nameserver-TP/README.md) | [nameserver13](Nameserver-TP/nameserver13.md) |
 | TEST_CASE_START                          | [Nameserver](Nameserver-TP/README.md) | [nameserver13](Nameserver-TP/nameserver13.md) |
-| N15_NO_VERSION                           | [Nameserver](Nameserver-TP/README.md) | [nameserver15](Nameserver-TP/nameserver15.md) |
+| N15_ERROR_ON_VERSION_QUERY               | [Nameserver](Nameserver-TP/README.md) | [nameserver15](Nameserver-TP/nameserver15.md) |
+| N15_NO_VERSION_REVEALED                  | [Nameserver](Nameserver-TP/README.md) | [nameserver15](Nameserver-TP/nameserver15.md) |
 | N15_SOFTWARE_VERSION                     | [Nameserver](Nameserver-TP/README.md) | [nameserver15](Nameserver-TP/nameserver15.md) |
-| TEST_CASE_END                            | [Nameserver](Nameserver-TP/README.md) | [nameserver15](Nameserver-TP/nameserver15.md) |
-| TEST_CASE_START                          | [Nameserver](Nameserver-TP/README.md) | [nameserver15](Nameserver-TP/nameserver15.md) |
+| N15_WRONG_CLASS                          | [Nameserver](Nameserver-TP/README.md) | [nameserver15](Nameserver-TP/nameserver15.md) |
 | NON_ALLOWED_CHARS                        | [Syntax](Syntax-TP/README.md) | [syntax01](Syntax-TP/syntax01.md) |
 | ONLY_ALLOWED_CHARS                       | [Syntax](Syntax-TP/README.md) | [syntax01](Syntax-TP/syntax01.md) |
 | TEST_CASE_END                            | [Syntax](Syntax-TP/README.md) | [syntax01](Syntax-TP/syntax01.md) |
@@ -564,5 +571,12 @@ Index of Text Cases are found in [README](README.md).
 | TEST_CASE_END                            | [Zone](Zone-TP/README.md) | [zone10](Zone-TP/zone10.md) |
 | TEST_CASE_START                          | [Zone](Zone-TP/README.md) | [zone10](Zone-TP/zone10.md) |
 | WRONG_SOA                                | [Zone](Zone-TP/README.md) | [zone10](Zone-TP/zone10.md) |
+| Z11_DIFFERENT_SPF_POLICIES_FOUND         | [Zone](Zone-TP/README.md) | [zone11](Zone-TP/zone11.md) |
+| Z11_INCONSISTENT_SPF_POLICIES            | [Zone](Zone-TP/README.md) | [zone11](Zone-TP/zone11.md) |
+| Z11_NO_SPF_FOUND                         | [Zone](Zone-TP/README.md) | [zone11](Zone-TP/zone11.md) |
+| Z11_SPF1_MULTIPLE_RECORDS                | [Zone](Zone-TP/README.md) | [zone11](Zone-TP/zone11.md) |
+| Z11_SPF1_SYNTAX_ERROR                    | [Zone](Zone-TP/README.md) | [zone11](Zone-TP/zone11.md) |
+| Z11_SPF1_SYNTAX_OK                       | [Zone](Zone-TP/README.md) | [zone11](Zone-TP/zone11.md) |
+| Z11_UNABLE_TO_CHECK_FOR_SPF              | [Zone](Zone-TP/README.md) | [zone11](Zone-TP/zone11.md) |
 
 [Zonemaster-Engine]: https://github.com/zonemaster/zonemaster-engine

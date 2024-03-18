@@ -41,7 +41,7 @@ system, the test system should emit a notice about this.
 |:---------|:--------------------|
 |[DNSSEC01](dnssec01.md)|Legal values for the DS hash digest algorithm|
 |[DNSSEC02](dnssec02.md)|DS must match a valid DNSKEY in the child zone|
-|[DNSSEC03](dnssec03.md)|Check for too many NSEC3 iterations|
+|[DNSSEC03](dnssec03.md)|Verify NSEC3 parameters|
 |[DNSSEC04](dnssec04.md)|Check for too short or too long RRSIG lifetimes|
 |[DNSSEC05](dnssec05.md)|Check for invalid DNSKEY algorithms|
 |[DNSSEC06](dnssec06.md)|Verify DNSSEC additional processing|

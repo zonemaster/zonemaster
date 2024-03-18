@@ -43,7 +43,7 @@ commands to clean up before proceeding (see section "[Handy Docker commands]"):
 
 ## 3. Create Docker images
 
-Clone the three repositories:
+### Clone the three repositories
 
 ```sh
 git clone https://github.com/zonemaster/zonemaster-ldns
@@ -51,7 +51,7 @@ git clone https://github.com/zonemaster/zonemaster-engine
 git clone https://github.com/zonemaster/zonemaster-cli
 ```
 
-Check out right branch depending on the use case.
+### Check out right branch depending on the use case
 
 * Check out `develop` branch when creating an image for release testing:
 
@@ -70,7 +70,7 @@ git -C zonemaster-engine checkout origin/master
 git -C zonemaster-cli checkout origin/master
 ```
 
-Make sure repositories are clean and create `Makefile` in all three repositories
+### Make sure repositories are clean and create `Makefile` in all three repositories
 
 ```sh
 (cd zonemaster-ldns; git submodule update; git clean -dfx; git reset --hard; perl Makefile.PL)
@@ -81,6 +81,8 @@ Make sure repositories are clean and create `Makefile` in all three repositories
 ```sh
 (cd zonemaster-cli; git clean -dfx; git reset --hard; perl Makefile.PL)
 ```
+
+### Create images
 
 Create an image for each repository. That image will be tagged "local". The
 images must be created in order since there is a dependency on the previous
@@ -95,6 +97,46 @@ make -C zonemaster-engine all dist docker-build
 make -C zonemaster-cli all dist docker-build
 ```
 
+### Determine version of Zonemaster-CLI image
+
+> The description in this section must be followed if the image is to be uploaded
+> to Docker Hub below. If not, this section can be skipped, modified or followed
+> depending on needs.
+
+The version of Zonemaster-CLI has the format "v0.0.0" and it is the normal
+version of the Docker image too. If needed a "dash version" is used on the Docker
+images, and that has the format "v0.0.0-N" where "v0.0.0" is the same version as
+Zonemaster-CLI, and "N" is a positive integer starting with "1".
+
+First determine what the version should be. Compare the version of
+Zonemaster-Cli just built with the highest version of the image uploaded to
+Docker Hub. There are three valid possibilites:
+
+1. The version on Docker Hub has lower version than the local version. If so
+   set the tags of the image with the simple steps below ignoring "dash
+   versions".
+
+*Example: version on Docker Hub is v6.0.0 of v6.0.0-1, local version is v6.0.1,
+new image will have version v6.0.1.*
+
+2. The version on Docker Hub has the same version as the local version. Set the
+   version on the new Docker image to be "v0.0.0-1" where "v0.0.0" is equal to
+   the local version.
+
+*Example: version on Docker Hub is v6.0.1, local version is v6.0.1, new image
+will have version v6.0.1-1.*
+
+3. The version on Docker Hub is a "dash version" where the "v0.0.0" part is the
+   same as the local version. Set the version of the new Docker image to be
+   "v0.0.0-N" where "v0.0.0" is equal to the local version and "N" is the
+   integer incremented by 1 compared to the version on Docker Hub.
+
+*Example: version on Docker Hub is v6.0.1-1, local version is v6.0.1, new image
+will have version v6.0.1-2.*
+
+
+### Tag the Zonemaster-CLI image
+
 For the Zonemaster-CLI image, add a version tag and a tag "latest".
 
 * Add version tag:
@@ -105,6 +147,15 @@ make -C zonemaster-cli docker-tag-version
 * Add tag "latest":
 ```sh
 make -C zonemaster-cli docker-tag-latest
+```
+
+* If "dash version" is to be used, set tag with that version and remove tag with
+plain version where "v0.0.0" should be the local version and "v0.0.0-N" should be
+the "dash version" determined above:
+```
+cd zonemaster-cli
+docker tag zonemaster/cli:local zonemaster/cli:v0.0.0-N 
+docker rmi zonemaster/cli:v0.0.0
 ```
 
 All the created images can now be listed. Also consider doing [sanity checks] to
@@ -132,7 +183,8 @@ above that they have the same ID.
 docker push zonemaster/cli:latest
 ```
 
-* Set correct version (see listing above) and push image with version tag:
+* Set correct version (see listing above) and push image with version tag. If
+  "dash version" is used, use "v0.0.0-N" set to correct version instead.
 ```sh
 docker push zonemaster/cli:v0.0.0
 ```
