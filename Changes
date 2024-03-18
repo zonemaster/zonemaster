@@ -1,5 +1,51 @@
 Release history of Zonemaster
 
+
+v2023.2 2024-03-18
+
+ [Release information]
+ - Translations have not been fully updated in this release. They will
+   be updated in an upcoming fix release.
+ - New database schema requires migration of existing database in
+   Zonemaster-Backend.
+
+ [Breaking changes]
+ - Updated methods for NSEC3 and NSEC3PARAM in Zonemaster-LDNS.
+ - Deprecated features removed in Zonemaster-Engine.
+
+ [Features]
+ - Adds global cache based on Redis in Zonemaster-Engine.
+ - Adds implementation of SPF test case in Zonemaster-Engine.
+ - Improves GUI design in Zonemaster-GUI.
+ - Improves options for "zonemaster-cli" in Zonemaster-CLI.
+ - Removes test case Basic00 (#1226)
+ - Adds documentation of global cache (#1227, #1240)
+
+ [Fixes]
+ - Updates implementation of test cases in Zonemaster-Engine.
+ - Updates specification of test cases DNSSEC05, DNSSEC03
+   and Nameserver15 (#1183, #1189, #1199)
+ - Adds updated Arguments document (#1190)
+ - Adds specification of test zones for test cases Consistency05,
+   Consistency06, Nameserver15 and DNSSEC03 (#1213, #1217, #1218)
+ - Updates installation instructions (#1223, #1225, #1236, #1239)
+ - Updates documentation in test cases Connectivity03 and Connectivity04
+   (#1230)
+ - Updates the main README file (#1233, #1235)
+
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components. For
+   each component, see its Changes file or Github release notes for complete
+   release information.
+
+   Zonemaster-LDNS      v4.0.0  https://github.com/zonemaster/zonemaster-ldns/releases/tag/v4.0.0
+   Zonemaster-Engine    v5.0.0  https://github.com/zonemaster/zonemaster-engine/releases/tag/v5.0.0
+   Zonemaster-CLI       v6.1.0  https://github.com/zonemaster/zonemaster-cli/releases/tag/v6.1.0
+   Zonemaster-Backend  v11.1.0  https://github.com/zonemaster/zonemaster-backend/releases/tag/v11.1.0
+   Zonemaster-GUI       v4.2.0  https://github.com/zonemaster/zonemaster-gui/releases/tag/v4.2.0
+
+
 v2023.1.4 2023-09-08 (public fix version)
 
  [Fixes]
