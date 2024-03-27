@@ -3,11 +3,9 @@ Release history of Zonemaster
 
 v2023.2.1 2024-03-28
 
- [Release information]
- - Fixes errors in release v2023.2
-
  [Fixes]
- - Fixes bugs in database migration script in Zonemaster-Backend.
+ - Fixes bugs in database migration script in Zonemaster-Backend introduced
+   in release v2023.2.
  - Corrects database upgrade instructions (#1244)
 
  [Zonemaster product]
@@ -15,7 +13,7 @@ v2023.2.1 2024-03-28
    each component, see its Changes file or Github release notes for complete
    release information.
 
-   Zonemaster-LDNS      v4.0.0  https://github.com/zonemaster/zonemaster-ldns/releases/tag/v4.0.0
+   Zonemaster-LDNS      v4.0.1  https://github.com/zonemaster/zonemaster-ldns/releases/tag/v4.0.1
    Zonemaster-Engine    v5.0.0  https://github.com/zonemaster/zonemaster-engine/releases/tag/v5.0.0
    Zonemaster-CLI       v6.1.0  https://github.com/zonemaster/zonemaster-cli/releases/tag/v6.1.0
    Zonemaster-Backend  v11.1.1  https://github.com/zonemaster/zonemaster-backend/releases/tag/v11.1.1
