@@ -4,8 +4,8 @@ Release history of Zonemaster
 v2023.2.1 2024-03-28
 
  [Fixes]
- - Fixes bugs in database migration script in Zonemaster-Backend introduced
-   in release v2023.2.
+ - Corrects the database migration script introduced in release v2023.2.in
+   Zonemaster-Backend.
  - Corrects database upgrade instructions (#1244)
 
  [Zonemaster product]
