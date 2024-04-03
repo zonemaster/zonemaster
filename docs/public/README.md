@@ -5,6 +5,7 @@ documentation.*
 
 The public documentation is divided into the following main categories:
 
+* [Release information](RELEASE.md) give the release information of latest release.
 * [Installation](installation/README.md) contains documents that explain how to
   install the different components of Zonemaster.
 * [Upgrading](upgrading/README.md) contains documents that explain how to upgrade
