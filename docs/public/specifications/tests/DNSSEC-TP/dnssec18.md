@@ -82,7 +82,7 @@ DS18_NO_MATCH_CDNSKEY_RRSIG_DS | ERROR | CDNSKEY RRset is not signed with a DNSK
 
 7. Else, do (*Test Type* is "normal"):
    1. Retrieve all name server IP addresses for the parent zone of
-      *Child Zone* using [Get-Parent-Zone] ("Parent NS IP").
+      *Child Zone* using [Get-Parent-NS-IP] ("Parent NS IP").
    2. For each IP address in *Parent NS IP* do:
       1. Send the DS query over UDP to the name server IP.
       2. If no DNS response is returned, then go to next name server
@@ -216,6 +216,7 @@ None.
 [DS18_NO_MATCH_CDS_RRSIG_DS]:            #summary
 [Default level]:                         ../SeverityLevelDefinitions.md
 [ERROR]:                                 ../SeverityLevelDefinitions.md#error
+[Get-Parent-NS-IP]:                      ../MethodsV2.md#method-get-parent-ns-ip-addresses
 [INFO]:                                  ../SeverityLevelDefinitions.md#info
 [Method1]:                               ../Methods.md#method-1-obtain-the-parent-domain
 [Method4]:                               ../Methods.md#method-4-obtain-glue-address-records-from-parent
@@ -223,6 +224,6 @@ None.
 [NOTICE]:                                ../SeverityLevelDefinitions.md#notice
 [RFC 4035#2.4]:                          https://datatracker.ietf.org/doc/html/rfc4035#section-2.4
 [RFC 7344#4.1]:                          https://datatracker.ietf.org/doc/html/rfc7344#section-4.1
-[RFC 7344]:                              https://datatracker.ietf.org/doc/html/rfc7344
-[RFC 8078]:                              https://datatracker.ietf.org/doc/html/rfc8078
+[RFC 7344]: https://datatracker.ietf.org/doc/html/rfc7344
+[RFC 8078]: https://datatracker.ietf.org/doc/html/rfc8078
 [WARNING]:                               ../SeverityLevelDefinitions.md#warning

@@ -15,7 +15,7 @@
 ## Prerequisites for CPAN installation
 
 Before installing Zonemaster::CLI from CPAN, you should [install
-Zonemaster::Engine][ Zonemaster::Engine installation], unless you are
+Zonemaster::Engine][Zonemaster::Engine installation], unless you are
 to install on Debian using pre-built packages (see below).
 
 > **Note:** [Zonemaster::Engine] and [Zonemaster::LDNS] are dependencies of

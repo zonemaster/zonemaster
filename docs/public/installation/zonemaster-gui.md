@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-Before installing Zonemaster Web GUI, you should [install Zonemaster::Engine][
-Zonemaster::Engine installation] and [Zonemaster::Backend][Zonemaster::Backend
+Before installing Zonemaster Web GUI, you should [install Zonemaster::Engine
+][Zonemaster::Engine installation] and [Zonemaster::Backend][Zonemaster::Backend
 installation].
 
 Prerequisite for FreeBSD is that the package system is updated and activated,

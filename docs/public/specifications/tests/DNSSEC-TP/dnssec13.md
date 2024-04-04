@@ -23,8 +23,8 @@
 From [RFC 6840][RFC 6840#section-5.11], section 5.11:
 
 > The DS RRset and DNSKEY RRset are used to signal which algorithms are used to
-> sign a zone. [...] The zone MUST also be signed with each algorithm (though
-> not each key) present in the DNSKEY RRset. [...]
+> sign a zone. \[...] The zone MUST also be signed with each algorithm (though
+> not each key) present in the DNSKEY RRset. \[...]
 
 To verify that the whole zone is signed with all algorithms require access to the
 complete zone, which is generally not possible for public zones. This test case
