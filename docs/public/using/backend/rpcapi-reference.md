@@ -93,7 +93,7 @@ When a method expects an integer arguments, numbers encoded in strings are also 
 and numbers with fractions are rounded to the nearest integer.
 
 For details on when a *test* are performed after it's been requested,
-see the [architecture documentation](Architecture.md).
+see the [architecture documentation].
 
 
 ## Error reporting
@@ -272,7 +272,7 @@ regex `/^[a-z0-9]$|^[a-z0-9][a-z0-9_-]{0,30}[a-z0-9]$/i` which must be predefine
 in the configuration file as specified in the Configuration document
 [profile sections].
 
-The name of a [*profile*](Architecture.md#profile).
+The name of a *[profile]*.
 
 ### Progress percentage
 
@@ -1473,6 +1473,7 @@ There are also some experimental API methods documented only by name:
 [API system_versions]:                #api-method-system_versions
 [API user_create]:                    #api-method-user_create
 [API v10.0.0]:                        https://github.com/zonemaster/zonemaster-backend/blob/v10.0.0/docs/API.md
+[Architecture documentation]:         https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md
 [Batch id]:                           #batch-id
 [Client id]:                          #client-id
 [Client version]:                     #client-version
@@ -1493,6 +1494,7 @@ There are also some experimental API methods documented only by name:
 [Non-negative integer]:               #non-negative-integer
 [Priority]:                           #priority
 [Privilege levels]:                   #privilege-levels
+[Profile]:                            https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md#profile
 [Profile name]:                       #profile-name
 [Profile sections]:                   ../../configuration/backend.md#public-profiles-and-private-profiles-sections
 [Progress percentage]:                #progress-percentage
@@ -1503,7 +1505,7 @@ There are also some experimental API methods documented only by name:
 [Severity Level Definitions]:         ../../specifications/tests/SeverityLevelDefinitions.md
 [Severity level]:                     #severity-level
 [Test Cases]:                         ../../specifications/tests#list-of-defined-test-cases
-[Test Case Identifiers]:              ../../../internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
+[Test Case Identifiers]:              https://github.com/zonemaster/zonemaster/blob/master/docs/internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
 [Test id]:                            #test-id
 [Test result]:                        #test-result
 [Timestamp]:                          #timestamp

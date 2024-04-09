@@ -951,6 +951,7 @@ None.
 [Referral]:                                          #terminology
 [Requirements and normalization]:                    RequirementsAndNormalizationOfDomainNames.md
 [Send]:                                              #terminology
+[undelegated test]:                                  ../test-types/undelegated-test.md
 [Valid Domain Name]:                                 #terminology
 [Valid Name Server Name]:                            #terminology
 [Valid IP Address]:                                  #terminology

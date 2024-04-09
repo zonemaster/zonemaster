@@ -174,6 +174,7 @@ None
 [N15_ERROR_ON_VERSION_QUERY]:                                   #summary
 [N15_NO_VERSION_REVEALED]:                                      #summary
 [N15_SOFTWARE_VERSION]:                                         #summary
+[N15_WRONG_CLASS]:                                              #summary
 [NOTICE]:                                                       ../SeverityLevelDefinitions.md#notice
 [RCODE Name]:                                                   https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC2929]:                                                      https://datatracker.ietf.org/doc/html/rfc2929#section-3.2

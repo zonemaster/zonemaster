@@ -397,7 +397,7 @@ Otherwise a new test request is enqueued.
 [PostgreSQL identifier]:              https://www.postgresql.org/docs/current/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS
 [Profile JSON files]:                 profiles.md
 [Profile name section]:               ../using/backend/rpcapi-reference.md#profile-name
-[Profiles]:                           Architecture.md#profile
+[Profiles]:                           https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md#profile
 [RPCAPI.enable_add_api_user]:         #enable_add_api_user
 [RPCAPI.enable_add_batch_job]:        #enable_add_batch_job
 [RPCAPI.enable_batch_create]:         #enable_batch_create

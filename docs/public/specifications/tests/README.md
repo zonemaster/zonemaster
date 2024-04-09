@@ -90,7 +90,7 @@ Test Case specifications:
 [Requirements and normalization of domain names in input]:   RequirementsAndNormalizationOfDomainNames.md
 [Severity Level Definitions]:                                SeverityLevelDefinitions.md
 [Syntax-TP]:                                                 Syntax-TP/README.md
-[Test requirements]:                                         ../../../internal/test-requirements/TestRequirements.md
+[Test requirements]:                                         https://github.com/zonemaster/zonemaster/blob/master/docs/internal/test-requirements/TestRequirements.md
 [Zone-TP]:                                                   Zone-TP/README.md
 [Zonemaster Master Test Plan]:                               MasterTestPlan.md
 
