@@ -9,7 +9,7 @@ set -u
 
 # Make sure you can be root or run sudo
 if ! sudo echo ; then
-    echo "You must be to be root via sudo"
+    echo "You must be able to be root via sudo"
 fi
 
 
@@ -19,7 +19,7 @@ usage() { echo "Usage: $0 [-o]" 1>&2;
           exit 1; }
 
 printstdout=false
-while getopts "ov" o; do
+while getopts "o" o; do
     case "${o}" in
         o)
             printstdout=true
