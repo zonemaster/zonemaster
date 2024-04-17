@@ -1,0 +1,63 @@
+$ORIGIN methodsv2.xa.                              ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2022121300      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+		NS	ns1
+		NS	ns2
+
+ns1		A	127.40.1.21
+ns1		AAAA	fda1:b2:c3:0:127:40:1:21
+ns2		A	127.40.1.22
+ns2		AAAA	fda1:b2:c3:0:127:40:1:22
+
+$ORIGIN good-1.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.2.21
+ns1		AAAA	fda1:b2:c3:0:127:40:2:21
+ns2		A	127.40.2.22
+ns2		AAAA	fda1:b2:c3:0:127:40:2:22
+
+$ORIGIN good-2.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.2.21
+ns1		AAAA	fda1:b2:c3:0:127:40:2:21
+ns2		A	127.40.2.22
+ns2		AAAA	fda1:b2:c3:0:127:40:2:22
+
+
+$ORIGIN good-3.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.2.21
+ns1		AAAA	fda1:b2:c3:0:127:40:2:21
+ns2		A	127.40.2.22
+ns2		AAAA	fda1:b2:c3:0:127:40:2:22
+
+
+$ORIGIN good-undel-1.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.2.21
+ns1		AAAA	fda1:b2:c3:0:127:40:2:21
+ns2		A	127.40.2.22
+ns2		AAAA	fda1:b2:c3:0:127:40:2:22
+
+
+$ORIGIN good-undel-2.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.2.21
+ns1		AAAA	fda1:b2:c3:0:127:40:2:21
+ns2		A	127.40.2.22
+ns2		AAAA	fda1:b2:c3:0:127:40:2:22
+
+
+; EOF

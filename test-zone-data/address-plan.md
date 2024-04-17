@@ -56,16 +56,24 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.4.0.0/16    | (not in use)                                                |
 | (...)           |                                                             |
 | 127.10.0.0/16   | (not in use)                                                |
-| 127.11.0.0/16   | Address test level NS                                       |
-| 127.12.0.0/16   | Basic test level NS                                         |
-| 127.13.0.0/16   | Connectivity test level NS                                  |
-| 127.14.0.0/16   | Consistency test level NS                                   |
-| 127.15.0.0/16   | DNSSEC test level NS                                        |
-| 127.16.0.0/16   | Delegation test level NS                                    |
-| 127.17.0.0/16   | Nameserver test level NS                                    |
-| 127.18.0.0/16   | Syntax test level NS                                        |
-| 127.19.0.0/16   | Zone test level NS                                          |
+| 127.11.0.0/16   | Address test level                                          |
+| 127.12.0.0/16   | Basic test level                                            |
+| 127.13.0.0/16   | Connectivity test level                                     |
+| 127.14.0.0/16   | Consistency test level                                      |
+| 127.15.0.0/16   | DNSSEC test level                                           |
+| 127.16.0.0/16   | Delegation test level                                       |
+| 127.17.0.0/16   | Nameserver test level                                       |
+| 127.18.0.0/16   | Syntax test level                                           |
+| 127.19.0.0/16   | Zone test level                                             |
 | 127.20.0.0/16   | (not in use)                                                |
+| (...)           |                                                             |
+| 127.29.0.0/16   | (not in use)                                                |
+| 127.30.0.0/16   | Engine non-test case test zones                             |
+| 127.31.0.0/16   | (not in use)                                                |
+| (...)           |                                                             |
+| 127.39.0.0/16   | (not in use)                                                |
+| 127.40.0.0/16   | MethodsV2 non-test case test zones                          |
+| 127.41.0.0/16   | (not in use)                                                |
 | (...)           |                                                             |
 | 127.255.0.0/16  | (not in use)                                                |
 
@@ -444,3 +452,30 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.19.11.0/24  | (not in use)                                                |
 | (...)           |                                                             |
 | 127.19.255.0/24 | (not in use)                                                |
+
+
+
+### MethodsV2 non-test case address plan
+
+| Address (range) | Used for -- range or specific NS address                    |
+|-----------------|-------------------------------------------------------------|
+| 127.40.0.0/24   | (not in use)                                                |
+| 127.40.1.0/24   | Base level NS                                               |
+| 127.40.1.21     | ns1.methodsv2.xa                                            |
+| 127.40.1.22     | ns2.methodsv2.xa                                            |
+| 127.40.2.0/24   | Grand parent level NS                                       |
+| 127.40.2.21     | ns1.XXX.methodsv2.xa (NS for grandparent)                   |
+| 127.40.2.22     | ns2.XXX.methodsv2.xa (NS for grandparent)                   |
+| 127.40.2.25     | ns5.XXX.methodsv2.xa (NS for child)                         |
+| 127.40.2.26     | ns6.XXX.methodsv2.xa (NS for child)                         |
+| 127.40.3.0/24   | Parent level NS                                             |
+| 127.40.3.21     | ns1.parent.XXX.methodsv2.xa (NS for parent)                 |
+| 127.40.3.22     | ns2.parent.XXX.methodsv2.xa (NS for parent)                 |
+| 127.40.3.23     | ns3.parent.methodsv2.xa (NS for child)                      |
+| 127.40.3.24     | ns4.parent.methodsv2.xa (NS for child)                      |
+| 127.40.4.0/24   | Child level NS                                              |
+| 127.40.4.21     | ns1.child.parent.XXX.methodsv2.xa (NS for child)            |
+| 127.40.4.22     | ns2.child.parent.XXX.methodsv2.xa (NS for child)            |
+| (...)           |                                                             |
+| 127.40.255.0/24 | (not in use)                                                |
+
