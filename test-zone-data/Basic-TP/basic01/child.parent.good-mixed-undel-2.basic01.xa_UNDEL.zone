@@ -1,0 +1,21 @@
+; Undelegated version of the zone
+
+$ORIGIN child.parent.good-mixed-undel-2.basic01.xa.            ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024041909      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@		NS	ns3
+@		NS	ns4
+
+ns3		A	127.12.1.53
+ns3		AAAA	fda1:b2:c3:0:127:12:1:53
+ns4		A	127.12.1.54
+ns4		AAAA	fda1:b2:c3:0:127:12:1:54
+
+
