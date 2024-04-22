@@ -33,10 +33,13 @@ ns2.      AAAA   fda1:b2:c3::127:1:0:2
 ## Undelegated data for scenarios
 
 If the scenario dependends on undelegated data it is provided with the
-scenario below. The data is provided as pairs for name server name and IP
-address separated by "/". IP address can be empty and then provided with a
-placeholder ("-"). The name server name can be repeated with different IP
-addresses providing multiple addresses for the same name.
+scenario below.
+* The data is provided as unordered and unique pairs of name server name and IP
+  address.
+  * Name and address are separated by "/".
+  * IP address can be empty and then replaced by a placeholder ("-").
+* The name server name can be repeated with different IP addresses (IPv4 or
+  IPv6) providing multiple addresses for the same name.
 
 ## Data type in method output
 
@@ -56,11 +59,11 @@ below the data is provided as follows:
   "Get zone NS names and IP addresses":
   * "(empty)"
   * "(undefined)"
-  * Unordered list of unique pairs of name server name and IP address separated
-    by "/".
-    * The name server name can be repeated with different IP addresses.
-    * The IP address can be empty and then with a placeholder ("-").
-
+  * Unordered list of unique pairs of name server name and IP address.
+    * Name and address are separated by "/".
+    * The IP address can be empty and then replaced by a placeholder ("-").
+    * The name server name can be repeated with different IP addresses (IPv4 or
+      IPv6) providing multiple addresses for the same name.
 
 ## Scenarios
 
@@ -209,7 +212,7 @@ child.parent.good-undel-1.methodsv2.xa
 * Get delegation NS names
   * ns1-2.child.parent.good-undel-1.methodsv2.xa
   * ns3.parent.good-undel-1.methodsv2.xa
-  * ns6.good-undel-1.methodsv2.xa/IPv4-16
+  * ns6.good-undel-1.methodsv2.xa
 * Get delegation NS IP addresses
   * 127.40.3.22
   * fda1:b2:c3:0:127:40:3:22
@@ -227,7 +230,7 @@ child.parent.good-undel-1.methodsv2.xa
 * Get zone NS names
   * ns1-2.child.parent.good-undel-1.methodsv2.xa
   * ns3.parent.good-undel-1.methodsv2.xa
-  * ns6.good-undel-1.methodsv2.xa/IPv4-16
+  * ns6.good-undel-1.methodsv2.xa
 * Get zone NS IP addresses
   * 127.40.3.22
   * fda1:b2:c3:0:127:40:3:22
@@ -261,7 +264,7 @@ child.parent.good-undel-2.methodsv2.xa
 * Get delegation NS names
   * ns1.child.parent.good-undel-2.methodsv2.xa
   * ns3.parent.good-undel-2.methodsv2.xa
-  * ns6.good-undel-2.methodsv2.xa/IPv4-16
+  * ns6.good-undel-2.methodsv2.xa
 * Get delegation NS IP addresses
   * 127.40.4.21
   * fda1:b2:c3:0:127:40:4:21
@@ -279,7 +282,7 @@ child.parent.good-undel-2.methodsv2.xa
 * Get zone NS names
   * ns1.child.parent.good-undel-2.methodsv2.xa
   * ns3.parent.good-undel-2.methodsv2.xa
-  * ns6.good-undel-2.methodsv2.xa/IPv4-16
+  * ns6.good-undel-2.methodsv2.xa
 * Get zone NS IP addresses
   * 127.40.4.21
   * fda1:b2:c3:0:127:40:4:21
