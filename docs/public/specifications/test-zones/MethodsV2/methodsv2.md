@@ -1,4 +1,4 @@
-# Specification of test scenarios for MethodsV2
+OA# Specification of test scenarios for MethodsV2
 
 
 ## Table of contents
@@ -87,7 +87,7 @@ only.
 ## GOOD-3
 
 ### Zone specification
-A "happy path". Everything is fine. Child has boot in-bailiwick and
+A "happy path". Everything is fine. Child has both in-bailiwick and
 out-of-bailiwick name servers.
 
 * Zone: child.parent.good-3.methodsv2.xa
@@ -99,6 +99,69 @@ out-of-bailiwick name servers.
     * Adress records (A and AAAA) for
       * ns1.child.parent.good-3.methodsv2.xa
       * ns3.parent.good-3.methodsv2.xa (optional)
+
+## GOOD-4
+
+### Zone specification
+A "happy path". Everything is fine. Parent zone is hosted also on grandparent
+server.
+
+* Zone: child.parent.good-4.methodsv2.xa
+  * Parent NS:
+    * ns1.parent.good-4.methodsv2.xa
+    * ns2.parent.good-4.methodsv2.xa
+    * ns1.good-4.methodsv2.xa
+  * Glue for parent:
+    * Adress records (A and AAAA) for
+      * ns1.parent.good-4.methodsv2.xa
+      * ns2.parent.good-4.methodsv2.xa
+      * ns1.good-4.methodsv2.xa (optional)
+
+## GOOD-5
+
+### Zone specification
+A "happy path". Everything is fine. Child zone is hosted also on grandparent
+server and parent server.
+
+* Zone: child.parent.good-5.methodsv2.xa
+  * Child NS:
+    * ns1.child.parent.good-5.methodsv2.xa
+    * ns2.child.parent.good-5.methodsv2.xa
+    * ns1.good-5.methodsv2.xa
+    * ns1.parent.good-5.methodsv2.xa
+  * Glue:
+    * Adress records (A and AAAA) for
+      * ns1.child.parent.good-5.methodsv2.xa
+      * ns2.child.parent.good-5.methodsv2.xa
+      * ns1.parent.good-5.methodsv2.xa (optional)
+
+## GOOD-6
+
+### Zone specification
+A "happy path". Everything is fine. Child zone is only hosted on grandparent
+servers.
+
+* Zone: child.parent.good-6.methodsv2.xa
+  * Child NS:
+    * ns1.good-6.methodsv2.xa
+    * ns2.good-6.methodsv2.xa
+  * No glue.
+
+## GOOD-7
+
+### Zone specification
+A "happy path". Everything is fine. Child zone is only hosted on parent
+servers.
+
+* Zone: child.parent.good-7.methodsv2.xa
+  * Child NS:
+    * ns1.parent.good-7.methodsv2.xa
+    * ns2.parent.good-7.methodsv2.xa
+  * Glue:
+    * Adress records (A and AAAA) for
+      * ns1.parent.good-7.methodsv2.xa (optional)
+      * ns2.parent.good-7.methodsv2.xa (optional)
+
 
 ## GOOD-UNDEL-1
 
@@ -140,7 +203,15 @@ undelegated.
       * ns3.parent.good-undel-2.methodsv2.xa/IPv6-13
       * ns6.good-undel-2.methodsv2.xa
 
+
+
+
+
 \[Not complete. More scenarios and test zones to be defined.]
+
+
+
+
 
 
 
