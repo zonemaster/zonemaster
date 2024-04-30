@@ -306,10 +306,7 @@ Keys must not be duplicated between or within the sections, and the key
 
 There is a `default` profile that is special. It is always available even
 if not specified. If it is not explicitly mapped to a profile JSON file, it is implicitly
-mapped to the *Zonemaster Engine default profile*.
-
-The *Zonemaster Engine default profile* is created by what is specified in
-[Zonemaster::Engine::Profile] and by loading the [Default JSON profile file].
+mapped to the [Zonemaster Engine default profile].
 
 Each profile JSON file contains a (possibly empty) set of overrides to
 the *Zonemaster Engine default profile*. Specifying a profile JSON file
@@ -382,7 +379,6 @@ Otherwise a new test request is enqueued.
 
 [API documentation]:                  ../using/backend/api.md
 [DBD::mysql documentation]:           https://metacpan.org/pod/DBD::mysql#host
-[Default JSON profile file]:          https://github.com/zonemaster/zonemaster-engine/blob/master/share/profile.json
 [Environement Variables]:             backend-environment-variables.md
 [File format]:                        https://metacpan.org/pod/Config::IniFiles#FILE-FORMAT
 [ISO 3166-1 alpha-2]:                 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
@@ -406,3 +402,4 @@ Otherwise a new test request is enqueued.
 [US ASCII printable characters]:      https://en.wikipedia.org/wiki/ASCII#Printable_characters
 [Zonemaster-Engine share directory]:  https://github.com/zonemaster/zonemaster-engine/tree/master/share
 [Zonemaster::Engine::Profile]:        https://metacpan.org/pod/Zonemaster::Engine::Profile#PROFILE-PROPERTIES
+[Zonemaster Engine default profile]:  profiles.md#default-profile
