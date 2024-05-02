@@ -66,7 +66,7 @@ B01_NO_CHILD               |ERROR  | domain_child, domain_super            | "{d
 B01_PARENT_FOUND           |INFO   | domain, ns_ip_list                    | The parent zone is "{domain}" as returned from name servers "{ns_ip_list}".
 B01_PARENT_NOT_FOUND       |WARNING|                                       | The parent zone cannot be found.
 B01_PARENT_UNDETERMINED    |WARNING| ns_ip_list                            | The parent zone cannot be determined on name servers "{ns_ip_list}".
-B01_SERVER_ZONE_ERROR      |DEBUG  | query_name, rrtype, ns_ip             | Unexpected response on "dig {query_name} {rrtype} @{ns_ip}"
+B01_SERVER_ZONE_ERROR      |DEBUG  | query_name, rrtype, ns_ip             | Unexpected response on query for "{query_name}" with query type "{rrtype}" to "{ns_ip}".
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -128,7 +128,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
           * No DNS response.
           * [RCODE Name] different from NoError in response.
           * AA bit not set in response.
-          * No SOA record in answer section
+          * Not exactly one SOA record in answer section
           * Owner name of SOA record is not *Zone Name*.
    6.  [Send] *Zone Name NS Query* to *Server Address*.
    7.  Output [B01_SERVER_ZONE_ERROR] with query name *Zone Name*, [query type]
@@ -138,16 +138,17 @@ DNS queries follow, unless otherwise specified below, what is specified for
           * [RCODE Name] different from NoError in response.
           * AA bit not set in response.
           * No NS records in answer section
-          * Owner name of NS records is not *Zone Name*.
+          * Owner name of any of the NS records is not *Zone Name*.
    8.  Extract the name server names from the NS records and any address records
        in the additional section.
    9.  Do [DNS Lookup] of name server names (A and AAAA) not already listed in the
        additional section of the response.
-   10. For each IP address add the IP address and *Zone Name* to the
-       *Remaining Servers* set unless the IP address is already listed in
-       *Handled Servers* together with *Zone Name*.
-   11. Create "Intermediate Query Name" by copying *Zone name* as start value.
-   12. Run a loop processing *Server Address* (jumps back here from the steps
+       1. For each IP address add the IP address and *Zone Name* to the
+          *Remaining Servers* set unless the IP address is already listed in
+          *Handled Servers* together with *Zone Name*.
+       2. Ignore any failing lookups or lookups resulting in NODATA or NXDOMAIN.
+   10. Create "Intermediate Query Name" by copying *Zone name* as start value.
+   11. Run a loop processing *Server Address* (jumps back here from the steps
        below).
        1. Extend "Intermediate Query Name" by adding one more label to the left
           by copying the equivalent label from *Child Zone*. (See "Example 1"
@@ -180,7 +181,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
                    * [RCODE Name] different from NoError in response.
                    * AA bit not set in response.
                    * No NS records in answer section.
-                   * Owner name of NS records is not *Intermediate Query Name*.
+                   * Owner name of any of the NS records is not *Intermediate Query Name*.
              4. Extract the name server names from the NS records and any address
                 records in the additional section.
              5. Do [DNS Lookup] of name server names (A and AAAA) not already
