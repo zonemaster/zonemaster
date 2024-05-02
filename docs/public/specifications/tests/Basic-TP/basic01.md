@@ -126,16 +126,16 @@ DNS queries follow, unless otherwise specified below, what is specified for
        SOA and name server IP *Server Address* and go to next server in
        *Remaining Servers* if one or more of the following matches:
           * No DNS response.
-          * [RCODE Name] besides NoError in response.
+          * [RCODE Name] different from NoError in response.
           * AA bit not set in response.
           * No SOA record in answer section
           * Owner name of SOA record is not *Zone Name*.
    6.  [Send] *Zone Name NS Query* to *Server Address*.
    7.  Output [B01_SERVER_ZONE_ERROR] with query name *Zone Name*, [query type]
-       SOA and name server IP *Server Address* and go to next server in
+       NS and name server IP *Server Address* and go to next server in
        *Remaining Servers* if one or more of the following matches:
           * No DNS response.
-          * [RCODE Name] besides NoError in response.
+          * [RCODE Name] different from NoError in response.
           * AA bit not set in response.
           * No NS records in answer section
           * Owner name of NS records is not *Zone Name*.
@@ -160,7 +160,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
        4. Output [B01_SERVER_ZONE_ERROR] with query name *Intermediate Query Name*
           and [query type] SOA and name server IP *Server Address* and go to next
           server in *Remaining Servers* if there is no DNS response.
-       5. If the response has an SOA record with owner name
+       5. If the response has exactly one SOA record with owner name
           *Intermediate Query Name* in the answer section, with the AA bit
           set and [RCODE Name] NoError then do:
           1. If *Intermediate Query Name* is equal to *Child Zone* then
@@ -168,7 +168,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
                 and to the *AA SOA Found* set.
              2. Go to next server in *Remaining Servers*.
           2. Else do:
-             1. Create a [DNS queries][DNS Query] with query name
+             1. Create a [DNS query][DNS Query] with query name
                 *Intermediate Query Name* and [query type] NS
                 ("Intermediate NS query").
              2. [Send] *Intermediate NS Query* to *Server Address*.
@@ -177,7 +177,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
                 *Server Address* and go to next server in *Remaining Servers* if
                 one or more of the following matches:
                    * No DNS response.
-                   * [RCODE Name] besides NoError in response.
+                   * [RCODE Name] different from NoError in response.
                    * AA bit not set in response.
                    * No NS records in answer section.
                    * Owner name of NS records is not *Intermediate Query Name*.
