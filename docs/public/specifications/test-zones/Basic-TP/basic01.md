@@ -37,34 +37,64 @@ same name as the scenario. The names of those zones are given in section
 "[Zone setup for test scenarios]" below.
 
 
+## All tags
+The test case can output any of these message tags, but not necessarily in any combination.
+
+* B01_CHILD_IS_ALIAS
+* B01_CHILD_FOUND
+* B01_CHILD_NOT_EXIST
+* B01_INCONSISTENT_ALIAS
+* B01_INCONSISTENT_DELEGATION
+* B01_NO_CHILD
+* B01_PARENT_FOUND
+* B01_PARENT_NOT_FOUND
+* B01_PARENT_UNDETERMINED
+* B01_SERVER_ZONE_ERROR
+
+
 ## Test scenarios and message tags
 
 If a message tag is not listed for the scenario, its presence or non-presence is
 irrelevant to the test scenario and must be ignored.
 
-Scenario name             | Mandatory message tag                                           | Forbidden message tags
-:-------------------------|:----------------------------------------------------------------|:-------------------------------------------
-GOOD-1                    | B01_CHILD_FOUND, B01_PARENT_FOUND                               | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-GOOD-MIXED-1              | B01_CHILD_FOUND, B01_PARENT_FOUND                               | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-GOOD-MIXED-2              | B01_CHILD_FOUND, B01_PARENT_FOUND                               | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-GOOD-UNDEL-1              | B01_CHILD_FOUND, B01_PARENT_FOUND                               | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-GOOD-MIXED-UNDEL-1        | B01_CHILD_FOUND, B01_PARENT_FOUND                               | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-GOOD-MIXED-UNDEL-2        | B01_CHILD_FOUND, B01_PARENT_FOUND                               | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-NO-DEL-UNDEL-1            | B01_CHILD_NOT_EXIST, B01_PARENT_FOUND                           | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-NO-DEL-MIXED-UNDEL-1      | B01_CHILD_NOT_EXIST, B01_PARENT_FOUND                           | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-NO-DEL-MIXED-UNDEL-2      | B01_CHILD_NOT_EXIST, B01_PARENT_FOUND                           | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-CHILD-ALIAS-1             | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST                         | B01_CHILD_FOUND, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-CHILD-ALIAS-2             | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS | B01_CHILD_FOUND, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-CHILD-FOUND-1             | B01_CHILD_FOUND                                                 | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-CHILD-FOUND-2             | B01_CHILD_FOUND                                                 | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-CHILD-FOUND-3             | B01_CHILD_FOUND                                     | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-CHILD-FOUND-INCONSIST-1   | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION        | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-CHILD-FOUND-INCONSIST-2   | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION        | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-CHILD-FOUND-INCONSIST-3   | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION        | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-CHILD-FOUND-INCONSIST-4   | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION | B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-CHILD-FOUND-INCONSIST-5   | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION        | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-CHILD-NOT-EXIST-1         | B01_CHILD_NOT_EXIST                                 | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
-NO-CHILD-1                | B01_NO_CHILD                                 | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED, B01_UNEXPECTED_NS_RESPONSE
+Scenario name             | Mandatory message tag                                                             | Forbidden message tags
+:-------------------------|:----------------------------------------------------------------------------------|:----------------------
+GOOD-1                    | B01_CHILD_FOUND, B01_PARENT_FOUND                                                 | 2)
+GOOD-MIXED-1              | B01_CHILD_FOUND, B01_PARENT_FOUND                                                 | 2)
+GOOD-MIXED-2              | B01_CHILD_FOUND, B01_PARENT_FOUND                                                 | 2)
+GOOD-PARENT-HOST-1        | B01_CHILD_FOUND, B01_PARENT_FOUND                                                 | 2)
+GOOD-GRANDPARENT-HOST-1   | B01_CHILD_FOUND, B01_PARENT_FOUND                                                 | 2)
+GOOD-UNDEL-1              | B01_CHILD_FOUND, B01_PARENT_FOUND                                                 | 2)
+GOOD-MIXED-UNDEL-1        | B01_CHILD_FOUND, B01_PARENT_FOUND                                                 | 2)
+GOOD-MIXED-UNDEL-2        | B01_CHILD_FOUND, B01_PARENT_FOUND                                                 | 2)
+NO-DEL-UNDEL-1            | B01_CHILD_NOT_EXIST, B01_PARENT_FOUND                                             | 2)
+NO-DEL-MIXED-UNDEL-1      | B01_CHILD_NOT_EXIST, B01_PARENT_FOUND                                             | 2)
+NO-DEL-MIXED-UNDEL-2      | B01_CHILD_NOT_EXIST, B01_PARENT_FOUND                                             | 2)
+NO-CHILD-1                | B01_NO_CHILD, B01_PARENT_FOUND                                                    | 2)
+NO-CHILD-2                | B01_NO_CHILD, B01_PARENT_FOUND                                                    | 2)
+NO-CHLD-PAR-UNDETER-1     | B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED                           | 2)
+CHLD-FOUND-PAR-UNDET-1    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED                        | 2)
+CHLD-FOUND-INCONSIST-1    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
+CHLD-FOUND-INCONSIST-2    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
+CHLD-FOUND-INCONSIST-3    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
+CHLD-FOUND-INCONSIST-4    | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION                  | 2)
+CHLD-FOUND-INCONSIST-5    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
+CHLD-FOUND-INCONSIST-6    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
+CHLD-FOUND-INCONSIST-7    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
+CHLD-FOUND-INCONSIST-8    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
+CHLD-FOUND-INCONSIST-9    | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION                  | 2)
+CHLD-FOUND-INCONSIST-10   | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
+NO-DEL-UNDEL-NO-PAR-1     | B01_CHILD_NOT_EXIST, B01_PARENT_NOT_FOUND,B01_SERVER_ZONE_ERROR                   | 2)
+NO-DEL-UNDEL-PAR-UND-1    | B01_CHILD_NOT_EXIST, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED                    | 2)
+NO-CHLD-NO-PAR-1          | B01_NO_CHILD, B01_PARENT_NOT_FOUND, B01_SERVER_ZONE_ERROR                         | 2)
+CHILD-ALIAS-1             | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST,B01_PARENT_FOUND                          | 2)
+CHILD-ALIAS-2             | B01_CHILD_IS_ALIAS, B01_CHILD_NOT_EXIST, B01_INCONSISTENT_ALIAS, B01_PARENT_FOUND | 2)
+ZONE-ERR-GRANDPARENT-1    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)
+ZONE-ERR-GRANDPARENT-2    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)
+ZONE-ERR-GRANDPARENT-3    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)
+
+* (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
+* (2) All tags except for those specified as "Mandatory message tags"
 
 
 ## Zone setup for test scenarios
@@ -121,6 +151,20 @@ One parent server also hosts the child zone.
   * Child zone is served by `ns1`, `ns2` and
     `ns4.parent.good-mixed-2.basic01.xa`.
   * Parent zone `parent.good-mixed-2.basic01.xa` is served by `ns1` and `ns4`.
+
+### GOOD-PARENT-HOST-1
+The child is hosted on parent servers only.
+
+* Zone: child.parent.good-parent-host-1.basic01.xa
+  * Child zone is served by `ns1.parent.good-parent-host-1.basic01.xa` and
+    `ns2.parent.good-parent-host-1.basic01.xa`.
+
+### GOOD-GRANDPARENT-HOST-1
+The child is hosted on grandparent servers only.
+
+* Zone: child.parent.good-grandparent-host-1.basic01.xa
+  * Child zone is served by `ns1.good-grandparent-host-1.basic01.xa` and
+    `ns2.good-grandparent-host-1.basic01.xa`.
 
 ### GOOD-UNDEL-1
 The child zone is delegated, but there is also an undelegated version which is
@@ -228,29 +272,247 @@ nodes between the zone cuts.
     * ns2.child.w.x.parent.y.z.no-del-mixed-undel-2.basic01.xa/IPv4
     * ns2.child.w.x.parent.y.z.no-del-mixed-undel-2.basic01.xa/IPv6
 
+### NO-CHILD-1
+The child zone is not delegated. Parent zone returns NXDOMAIN.
+
+* Zone: child.parent.no-child-1.basic01.xa
+  * Child zone does not exist is not served by any NS.
+
+### NO-CHILD-2
+The child zone is not delegated. Parent zone returns NODATA.
+
+* Zone: child.parent.no-child-2.basic01.xa
+  * Child zone does not exist is not served by any NS.
+  * The name child.parent.no-child-2.basic01.xa exists as a TXT record.
+
+### NO-CHLD-PAR-UNDETER-1
+The child zone is not delegated. One grandparent NS lacks delegation of parent
+and return NXDOMAIN of child. The parent zone lacks delegation of child.
+
+* Zone: child.parent.no-chld-par-undeter-1.basic01.xa
+  * Child zone does not exist is not served by any NS.
+  * Grandparent `ns1` lacks delegation of parent.
+  * Grandparent `ns2` has delegation of parent (to both parent NS).
+  * Parent zone lacks delegation of child.
+
+### CHLD-FOUND-PAR-UNDET-1
+The child zone is delegated from one grandparent NS and from the parent zone.
+
+* Zone: child.parent.chld-found-par-undet-1.basic01.xa
+  * Grandparent `ns1` has delegation of child but lacks delegation of parent.
+  * Grandparent `ns2` has delegation of parent (to both parent NS).
+  * Parent zone has delegation of child.
+
+### CHLD-FOUND-INCONSIST-1
+The child is delegated from one parent NS. On the other there is an NXDOMAIN
+response.
+
+* Zone: child.parent.chld-found-inconsist-1.basic01.xa
+  * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
+  * Parent `ns2` lacks delegation of child (NXDOMAIN).
+
+### CHLD-FOUND-INCONSIST-2
+The child is delegated from one parent NS. On the other there is an CNAME
+response.
+
+* Zone: child.parent.chld-found-inconsist-2.basic01.xa
+  * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
+  * Parent `ns2` lacks delegation of child, and has a CNAME on that name,
+    pointing at `no-child.parent.chld-found-inconsist-2.basic01.xa`, which has
+    two address records (A and AAAA) with the IP addresses of child `ns2`.
+
+### CHLD-FOUND-INCONSIST-3
+The child is delegated from one parent NS. On the other there is a CNAME
+to another name, and that other name is delegated.
+
+* Zone: child.parent.chld-found-inconsist-3.basic01.xa
+  * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
+  * Parent `ns2` lacks delegation of child, and has a CNAME on the name,
+    pointing at `sister.parent.chld-found-inconsist-3.basic01.xa`, which is
+    delegated to `ns1.child.parent.chld-found-inconsist-3.basic01.xa` and
+    `ns2.child.parent.chld-found-inconsist-3.basic01.xa`.
+  * Zone `sister.parent.chld-found-inconsist-3.basic01.xa` exists.
+
+### CHLD-FOUND-INCONSIST-4
+The child is delegated from one parent NS. On the other there is a DNAME to
+another name.
+
+* Zone: child.parent.chld-found-inconsist-4.basic01.xa
+  * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
+  * Parent `ns2` has a DNAME on `child` pointing at
+    `sister.parent.chld-found-inconsist-4.basic01.xa` which is delegated to
+    `ns1.sister.parent.chld-found-inconsist-4.basic01.xa` and
+    `ns2.sister.parent.chld-found-inconsist-4.basic01.xa`.
+  * Zone `sister.parent.chld-found-inconsist-4.basic01.xa` exists.
+
+### CHLD-FOUND-INCONSIST-5
+The child is delegated from one parent NS. On the other there is a NODATA
+response.
+
+* Zone: child.parent.chld-found-inconsist-5.basic01.xa
+  * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
+  * Parent `ns2` lacks delegation of child, instead `child` has two address
+    records (A and AAAA) with the IP addresses of child `ns2`.
+
+### CHLD-FOUND-INCONSIST-6
+The child is delegated from one parent NS, which is also NS for the child.
+On the other there is an NXDOMAIN response.
+
+* Zone: child.parent.chld-found-inconsist-6.basic01.xa
+  * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
+  * Parent `ns2` lacks delegation of child (NXDOMAIN).
+  * Child shares `ns1.parent.chld-found-inconsist-6.basic01.xa` with parent.
+  * Child also uses `ns2`.
+
+### CHLD-FOUND-INCONSIST-7
+The child is delegated from one parent NS, which is also NS for the child. On the
+other there is an CNAME response.
+
+* Zone: child.parent.chld-found-inconsist-7.basic01.xa
+  * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
+  * Parent `ns2` lacks delegation of child, and has a CNAME on that name,
+    pointing at `no-child.parent.chld-found-inconsist-7.basic01.xa`, which has
+    two address records (A and AAAA) with the IP addresses of child `ns2`.
+  * Child shares `ns1.parent.chld-found-inconsist-7.basic01.xa` with parent.
+  * Child also uses `ns2`.
+
+### CHLD-FOUND-INCONSIST-8
+The child is delegated from one parent NS, which is also NS for the child. On
+the other there is a CNAME to another name, and that other name is delegated.
+
+* Zone: child.parent.chld-found-inconsist-8.basic01.xa
+  * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
+  * Parent `ns2` lacks delegation of child, and has a CNAME on the name,
+    pointing at `sister.parent.chld-found-inconsist-8.basic01.xa`, which is
+    delegated to `ns1.child.parent.chld-found-inconsist-8.basic01.xa` and
+    `ns2.child.parent.chld-found-inconsist-8.basic01.xa`.
+  * Zone `sister.parent.chld-found-inconsist-8.basic01.xa` exists.
+  * Child shares `ns1.parent.chld-found-inconsist-8.basic01.xa` with parent.
+  * Child also uses `ns2`.
+
+### CHLD-FOUND-INCONSIST-9
+The child is delegated from one parent NS, which is also NS for the child. On
+the other there is a DNAME to another name.
+
+* Zone: child.parent.chld-found-inconsist-9.basic01.xa
+  * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
+  * Parent `ns2` has a DNAME on `child` pointing at
+    `sister.parent.chld-found-inconsist-9.basic01.xa` which is delegated to
+    `ns1.sister.parent.chld-found-inconsist-9.basic01.xa` and
+    `ns2.sister.parent.chld-found-inconsist-9.basic01.xa`.
+  * Zone `sister.parent.chld-found-inconsist-9.basic01.xa` exists.
+  * Child shares `ns1.parent.chld-found-inconsist-9.basic01.xa` with parent.
+  * Child also uses `ns2`.
+
+### CHLD-FOUND-INCONSIST-10
+The child is delegated from one parent NS, which is also NS for the child. On the
+other there is a NODATA response.
+
+* Zone: child.parent.chld-found-inconsist-10.basic01.xa
+  * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
+  * Parent `ns2` lacks delegation of child, instead `child` has two address
+    records (A and AAAA) with the IP addresses of child `ns2`.
+  * Child shares `ns1.parent.chld-found-inconsist-10.basic01.xa` with parent.
+  * Child also uses `ns2`.
+
+### NO-DEL-UNDEL-NO-PAR-1
+The child is not delegated, but there is undelegated data to test. Both
+grandparent NS return SERVFAIL.
+
+* Zone: child.parent.no-del-undel-no-par-1.basic01.xa
+  * Grandparent `ns1` and `ns2` both return SERVFAIL.
+  * No need of parent zone.
+  * Child zone is not delegated, but there is an undelegated version which is
+    the one tested.
+  * Undelegated child zone is served by `ns1` and `ns2`.
+  * Undelgated data:
+    * ns1.child.parent.no-del-undel-no-par-1.basic01.xa/IPv4
+    * ns1.child.parent.no-del-undel-no-par-1.basic01.xa/IPv6
+    * ns2.child.parent.no-del-undel-no-par-1.basic01.xa/IPv4
+    * ns2.child.parent.no-del-undel-no-par-1.basic01.xa/IPv6
+
+### NO-DEL-UNDEL-PAR-UND-1
+The child is not delegated, but ther is undelegated data to test. One grandparent
+NS lacks delegation of parent and return NXDOMAIN of child. The parent zone lacks
+delegation of child.
+
+* Zone: child.parent.no-del-undel-par-und-1.basic01.xa
+  * Child zone does not exist is not served by any NS.
+  * Grandparent `ns1` lacks delegation of parent.
+  * Grandparent `ns2` has delegation of parent (to both parent NS).
+  * Parent zone lacks delegation of child.
+  * Child zone is not delegated, but there is an undelegated version which is
+    the one tested.
+  * Undelegated child zone is served by `ns1` and `ns2`.
+  * Undelgated data:
+    * ns1.child.parent.no-del-undel-par-und-1.basic01.xa/IPv4
+    * ns1.child.parent.no-del-undel-par-und-1.basic01.xa/IPv6
+    * ns2.child.parent.no-del-undel-par-und-1.basic01.xa/IPv4
+    * ns2.child.parent.no-del-undel-par-und-1.basic01.xa/IPv6
+
+### NO-CHLD-NO-PAR-1
+The child is not delegated. Both grandparent NS return SERVFAIL.
+
+* Zone: child.parent.no-chld-no-par-1.basic01.xa
+  * Grandparent `ns1` and `ns2` both return SERVFAIL.
+  * No need of parent zone.
+  * Child zone is not delegated, and there is no undelegated data.
+  * No need of child zone.
+
 ### CHILD-ALIAS-1
+The child zone does not exist, instead there is a DNAME in the parent zone.
+
+* Zone: child.parent.child-alias-1.basic01.xa
+  * Parent has a DNAME on `child` pointing at
+    `sister.parent.child-alias-1.basic01.xa` which is delegated to
+    `ns1.sister.parent.child-alias-1.basic01.xa` and
+    `ns2.sister.parent.child-alias-1.basic01.xa`.
+  * Zone `sister.parent.child-alias-1.basic01.xa` exists.
 
 ### CHILD-ALIAS-2
+The child zone does not exist, instead there is a DNAME in the parent zone,
+however, different DNAME targets in the two parents.
 
-### CHILD-FOUND-1
+* Zone: child.parent.child-alias-2.basic01.xa
+  * On `ns1` parent has a DNAME on `child` pointing at
+    `sister.parent.child-alias-2.basic01.xa` which is delegated to
+    `ns1.sister.parent.child-alias-2.basic01.xa` and
+    `ns2.sister.parent.child-alias-2.basic01.xa`.
+  * On `ns2` parent has a DNAME on `child` pointing at
+    `brother.parent.child-alias-2.basic01.xa` which is delegated to
+    `ns1.brother.parent.child-alias-2.basic01.xa` and
+    `ns2.brother.parent.child-alias-2.basic01.xa`.
+  * Zone `sister.parent.child-alias-2.basic01.xa` exists.
+  * Zone `brother.parent.child-alias-2.basic01.xa` exists.
 
-### CHILD-FOUND-2
+### ZONE-ERR-GRANDPARENT-1
+Grandparent `ns2` responds with AA bit unset on SOA query for granparent zone.
 
-### CHILD-FOUND-3
+* Zone: child.parent.zone-err-grandparent-1.basic01.xa
+  * Normal response on granparent `ns1`.
+  * Grandparent `ns2` responds with AA bit unset on SOA query for the
+    grandparent zone.
 
-### CHILD-FOUND-INCONSIST-1
+### ZONE-ERR-GRANDPARENT-2
+Grandparent `ns2` responds with NODATA on NS query for granparent zone.
 
-### CHILD-FOUND-INCONSIST-2
+* Zone: child.parent.zone-err-grandparent-2.basic01.xa
+  * Normal response on granparent `ns1`.
+  * Grandparent `ns2` responds with NODATA on NS query for the
+    grandparent zone.
 
-### CHILD-FOUND-INCONSIST-3
+### ZONE-ERR-GRANDPARENT-3
+Parent hosted on grandparent `ns2` that responds with wrong owner name on NS
+on query for parent zone NS.
 
-### CHILD-FOUND-INCONSIST-4
+* Zone: child.parent.zone-err-grandparent-3.basic01.xa
+  * Normal response on granparent `ns1`.
+  * Grandparent `ns2` responds with other owner name on NS query for
+    `parent.zone-err-grandparent-3.basic01.xa`:
+      * Owner name `oncle.zone-err-grandparent-3.basic01.xa` instead.
 
-### CHILD-FOUND-INCONSIST-5
 
-### CHILD-NOT-EXIST-1
 
-### NO-CHILD-1
 
 
 
