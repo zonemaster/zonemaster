@@ -2,7 +2,7 @@ $ORIGIN parent.good-undel-1.basic01.xa.            ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024041905      ; serial
+                2024050501      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -20,11 +20,5 @@ ns2		AAAA	fda1:b2:c3:0:127:12:1:42
 
 $ORIGIN child.parent.good-undel-1.basic01.xa.            ; Must end with "."
 
-@		NS	ns1
-@		NS	ns2
-
-ns1		A	127.12.1.51
-ns1		AAAA	fda1:b2:c3:0:127:12:1:51
-ns2		A	127.12.1.52
-ns2		AAAA	fda1:b2:c3:0:127:12:1:52
-
+@		NS	ns1-delegated-child.basic01.xa.  ; Dummy server
+@		NS	ns2-delegated-child.basic01.xa.  ; Dummy server

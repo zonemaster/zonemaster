@@ -1,8 +1,8 @@
-$ORIGIN parent.no-child-1.basic01.xa.            ; Must end with "."
+$ORIGIN parent.no-child-1.basic01.xa.  ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024050300      ; serial
+                2024050602      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -16,4 +16,4 @@ ns1		AAAA	fda1:b2:c3:0:127:12:1:41
 ns2		A	127.12.1.42
 ns2		AAAA	fda1:b2:c3:0:127:12:1:42
 
-; No child exists.
+; No delegation of child.
