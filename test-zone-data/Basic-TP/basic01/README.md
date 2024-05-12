@@ -95,13 +95,13 @@ GOOD-PARENT-HOST-1        | B01_CHILD_FOUND, B01_PARENT_FOUND                | 2
 * (2) All tags except for those specified as "Mandatory message tags"
 
 ```
-$ zonemaster-cli --raw  --test basic01 --hints COMMON/hintfile --level info child.parent.good-parent-host-1.basic01.xa
+$ zonemaster-cli --raw  --test basic01 --hints COMMON/hintfile --level info child.parent.good-parent-host-1.basic01.xa 
    0.00 INFO     GLOBAL_VERSION  version=v5.0.0
-   0.04 INFO     B01_PARENT_FOUND  domain=basic01.xa; ns_ip_list=ns1.basic01.xa/127.12.1.21;ns1.basic01.xa/fda1:b2:c3:0:127:12:1:21;ns2.basic01.xa/127.12.1.22;ns2.basic01.xa/fda1:b2:c3:0:127:12:1:22
-   0.04 ERROR    B01_NO_CHILD  domain_child=child.parent.good-parent-host-1.basic01.xa; domain_super="parent.good-parent-host-1.basic01.xa"
+   0.14 INFO     B01_PARENT_FOUND  domain=parent.good-parent-host-1.basic01.xa; ns_ip_list=ns1.parent.good-parent-host-1.basic01.xa/127.12.1.41;ns1.parent.good-parent-host-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.good-parent-host-1.basic01.xa/127.12.1.42;ns2.parent.good-parent-host-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.14 INFO     B01_CHILD_FOUND  domain=child.parent.good-parent-host-1.basic01.xa
 ```
 
---> Not OK
+--> OK
 
 Scenario name             | Mandatory message tag                            | Forbidden message tags
 :-------------------------|:-------------------------------------------------|:----------------------
@@ -112,11 +112,11 @@ GOOD-GRANDPARENT-HOST-1   | B01_CHILD_FOUND, B01_PARENT_FOUND                | 2
 ```
 $ zonemaster-cli --raw  --test basic01 --hints COMMON/hintfile --level info child.parent.good-grandparent-host-1.basic01.xa
    0.00 INFO     GLOBAL_VERSION  version=v5.0.0
-   0.05 INFO     B01_PARENT_FOUND  domain=basic01.xa; ns_ip_list=ns1.basic01.xa/127.12.1.21;ns1.basic01.xa/fda1:b2:c3:0:127:12:1:21;ns2.basic01.xa/127.12.1.22;ns2.basic01.xa/fda1:b2:c3:0:127:12:1:22
-   0.05 ERROR    B01_NO_CHILD  domain_child=child.parent.good-grandparent-host-1.basic01.xa; domain_super="parent.good-grandparent-host-1.basic01.xa"
+   0.08 INFO     B01_CHILD_FOUND  domain=child.parent.good-grandparent-host-1.basic01.xa
+   0.08 INFO     B01_PARENT_FOUND  domain=good-grandparent-host-1.basic01.xa; ns_ip_list=ns1.good-grandparent-host-1.basic01.xa/127.12.1.31;ns1.good-grandparent-host-1.basic01.xa/fda1:b2:c3:0:127:12:1:31;ns2.good-grandparent-host-1.basic01.xa/127.12.1.32;ns2.good-grandparent-host-1.basic01.xa/fda1:b2:c3:0:127:12:1:32
 ```
 
---> Not OK
+--> OK
 
 Scenario name             | Mandatory message tag                            | Forbidden message tags
 :-------------------------|:-------------------------------------------------|:----------------------
