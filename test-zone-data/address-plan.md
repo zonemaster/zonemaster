@@ -130,6 +130,7 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.12.1.22     | ns2.basic01.xa                                              |
 | 127.12.1.31     | ns1.SCENARIO.basic01.xa                                     |
 | 127.12.1.32     | ns2.SCENARIO.basic01.xa                                     |
+| 127.12.1.33     | ns3.SCENARIO.basic01.xa                                     |
 | 127.12.1.34     | ns4.SCENARIO.basic01.xa                                     |
 | 127.12.1.41     | ns1.parent.SCENARIO.basic01.xa                              |
 | 127.12.1.42     | ns2.parent.SCENARIO.basic01.xa                              |

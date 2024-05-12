@@ -105,13 +105,15 @@ the specific scenario:
 * The child zone is `child.parent.SCENARIO.basic01.xa`.
   * It is delegated to two name servers, `ns1-delegated-child.basic01.xa`
     and `ns2-delegated-child.basic01.xa`.
+    * The name server names have A and AAAA records to avoid non-relevant error
+      messages.
     * There is no zone file or zone data for the child zone.
-    * The name server names have no IP addresses and are not running.
   * If there is an undelegated "version" of the child zone, it is
     referred to `ns3-undelegated-child.basic01.xa` and
     `ns4-undelegated-child.basic01.xa`.
+    * The name server names have A and AAAA records to avoid non-relevant error
+      messages.
     * There is no zone file or zone data for the undelegated "version".
-    * The name servers have no IP address and are not running.
 * The parent zone is `parent.SCENARIO.basic01.xa`.
   * It is served by two IB NS (ns1 and ns2).
   * ns1 and ns2 have the same zone content.
@@ -196,6 +198,7 @@ parent zone.
     `ns4.good-mixed-undel-1.basic01.xa`.
   * Grandparent zone `good-mixed-undel-1.basic01.xa` is served on `ns1` adn `ns4`.
   * Child zone is delegated, but there is also an undelegated version.
+  * No child zone exists.
   * Undelgated data:
     * ns3-undelegated-child.basic01.xa/-
     * ns4-undelegated-child.basic01.xa/-
@@ -258,6 +261,8 @@ The child zone is not delegated. Parent zone returns NXDOMAIN.
 
 * Zone: child.parent.no-child-1.basic01.xa
   * Child zone does not exist is not served by any NS.
+
+> Below not yet implemented
 
 ### NO-CHILD-2
 The child zone is not delegated. Parent zone returns NODATA.

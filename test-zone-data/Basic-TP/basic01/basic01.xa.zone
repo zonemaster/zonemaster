@@ -2,7 +2,7 @@ $ORIGIN basic01.xa.                              ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024050500      ; serial
+                2024050800      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -16,6 +16,15 @@ ns1		AAAA	fda1:b2:c3:0:127:12:1:21
 ns2		A	127.12.1.22
 ns2		AAAA	fda1:b2:c3:0:127:12:1:22
 
+; Name server names that holds no zones. Just provids addresses.
+ns1-delegated-child      A     127.12.1.31
+ns1-delegated-child      AAAA  fda1:b2:c3:0:127:12:1:31
+ns2-delegated-child      A     127.12.1.32
+ns2-delegated-child      AAAA  fda1:b2:c3:0:127:12:1:32
+ns3-undelegated-child    A     127.12.1.33
+ns3-undelegated-child    AAAA  fda1:b2:c3:0:127:12:1:33
+ns4-undelegated-child    A     127.12.1.34
+ns4-undelegated-child    AAAA  fda1:b2:c3:0:127:12:1:34
 
 $ORIGIN good-1.basic01.xa.            ; Must end with "."
 @		NS	ns1

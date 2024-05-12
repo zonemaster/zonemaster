@@ -1,4 +1,4 @@
-$ORIGIN good-parent-host-1.basic01.xa. ; Must end with "."
+$ORIGIN good-grandparent-host-1.basic01.xa.    ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
@@ -17,7 +17,7 @@ ns2		A	127.12.1.32
 ns2		AAAA	fda1:b2:c3:0:127:12:1:32
 
 
-$ORIGIN parent.good-parent-host-1.basic01.xa. ; Must end with "."
+$ORIGIN parent.good-grandparent-host-1.basic01.xa.    ; Must end with "."
 
 @		NS	ns1
 @		NS	ns2
