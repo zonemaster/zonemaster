@@ -57,7 +57,7 @@ Input for this Test Case:
 
 Message Tag                | Level | Arguments                          | Message ID for message tag
 :--------------------------|:------|:-----------------------------------|:--------------------------
-B01_CHILD_IS_ALIAS         |NOTICE |domain_child, domain_target, ns_list| "{domain_child}" is not a zone. It is an alias for "{domain_target}". Run a test for "{domain_target}" instead. Returned from name servers "{ns_list}.
+B01_CHILD_IS_ALIAS         |NOTICE |domain_child, domain_target, ns_list| "{domain_child}" is not a zone. It is an alias for "{domain_target}". Run a test for "{domain_target}" instead. Returned from name servers "{ns_list}".
 B01_CHILD_FOUND            |INFO   | domain                             | The zone "{domain}" is found.
 B01_CHILD_NOT_EXIST        |INFO   | domain                             | "{domain}" does not exist as it is not delegated.
 B01_INCONSISTENT_ALIAS     |ERROR  | domain                             | The alias for "{domain}" is inconsistent between name servers.
