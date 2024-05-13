@@ -61,7 +61,7 @@ B01_CHILD_IS_ALIAS         |NOTICE |domain_child, domain_target, ns_ip_list| "{d
 B01_CHILD_FOUND            |INFO   | domain                                | The zone "{domain}" is found.
 B01_CHILD_NOT_EXIST        |INFO   | domain                                | "{domain}" does not exist as it is not delegated.
 B01_INCONSISTENT_ALIAS     |ERROR  | domain                                | The alias for "{domain}" is inconsistent between name servers.
-B01_INCONSISTENT_DELEGATION|ERROR  |domain_child, domain_parent, ns_ip_list| The name servers for parent zone "{domain_parent}" give inconsistent delegation of "{domain_child}". Returned from name serververs "{ns_ip_list}".
+B01_INCONSISTENT_DELEGATION|ERROR  |domain_child, domain_parent, ns_ip_list| The name servers for parent zone "{domain_parent}" give inconsistent delegation of "{domain_child}". Returned from name servers "{ns_ip_list}".
 B01_NO_CHILD               |ERROR  | domain_child, domain_super            | "{domain_child}" does not exist as a DNS zone. Try to test "{domain_super}" instead.
 B01_PARENT_FOUND           |INFO   | domain, ns_ip_list                    | The parent zone is "{domain}" as returned from name servers "{ns_ip_list}".
 B01_PARENT_NOT_FOUND       |WARNING|                                       | The parent zone cannot be found.
@@ -110,7 +110,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
 > In the loop below, the steps tries to capture the name of the parent zone of
 > **Child Zone** and the IP addresses of the name servers for that parent zone.
 > This is done using a modified version of the "QNAME minimization" technique
-> [RFC 9156]. SOA as the query type used for traversing the tree.
+> [RFC 9156]. SOA is the query type used for traversing the tree.
 
 5. While the *Remaining Servers* is non-empty pick next name server IP address
    and zone name from the set ("Server Address" and "Zone Name") and do:
