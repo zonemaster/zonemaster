@@ -10,7 +10,7 @@
 * [Scope](#scope)
 * [Inputs](#inputs)
 * [Summary](#summary)
-* [Test procedure](#test-procedure)
+* [Test procedure]
 * [Outcome(s)](#outcomes)
 * [Special procedural requirements](#special-procedural-requirements)
 * [Intercase dependencies](#intercase-dependencies)
@@ -55,18 +55,18 @@ Input for this Test Case:
 
 ## Summary
 
-Message Tag                | Level | Arguments                             | Message ID for message tag
-:--------------------------|:------|:--------------------------------------|:--------------------------
-B01_CHILD_IS_ALIAS         |NOTICE |domain_child, domain_target, ns_ip_list| "{domain_child}" is not a zone. It is an alias for "{domain_target}". Run a test for "{domain_target}" instead. Returned from name servers "{ns_ip_list}.
-B01_CHILD_FOUND            |INFO   | domain                                | The zone "{domain}" is found.
-B01_CHILD_NOT_EXIST        |INFO   | domain                                | "{domain}" does not exist as it is not delegated.
-B01_INCONSISTENT_ALIAS     |ERROR  | domain                                | The alias for "{domain}" is inconsistent between name servers.
-B01_INCONSISTENT_DELEGATION|ERROR  |domain_child, domain_parent, ns_ip_list| The name servers for parent zone "{domain_parent}" give inconsistent delegation of "{domain_child}". Returned from name servers "{ns_ip_list}".
-B01_NO_CHILD               |ERROR  | domain_child, domain_super            | "{domain_child}" does not exist as a DNS zone. Try to test "{domain_super}" instead.
-B01_PARENT_FOUND           |INFO   | domain, ns_ip_list                    | The parent zone is "{domain}" as returned from name servers "{ns_ip_list}".
-B01_PARENT_NOT_FOUND       |WARNING|                                       | The parent zone cannot be found.
-B01_PARENT_UNDETERMINED    |WARNING| ns_ip_list                            | The parent zone cannot be determined on name servers "{ns_ip_list}".
-B01_SERVER_ZONE_ERROR      |DEBUG  | query_name, rrtype, ns_ip             | Unexpected response on query for "{query_name}" with query type "{rrtype}" to "{ns_ip}".
+Message Tag                | Level | Arguments                          | Message ID for message tag
+:--------------------------|:------|:-----------------------------------|:--------------------------
+B01_CHILD_IS_ALIAS         |NOTICE |domain_child, domain_target, ns_list| "{domain_child}" is not a zone. It is an alias for "{domain_target}". Run a test for "{domain_target}" instead. Returned from name servers "{ns_list}.
+B01_CHILD_FOUND            |INFO   | domain                             | The zone "{domain}" is found.
+B01_CHILD_NOT_EXIST        |INFO   | domain                             | "{domain}" does not exist as it is not delegated.
+B01_INCONSISTENT_ALIAS     |ERROR  | domain                             | The alias for "{domain}" is inconsistent between name servers.
+B01_INCONSISTENT_DELEGATION|ERROR  |domain_child, domain_parent, ns_list| The name servers for parent zone "{domain_parent}" give inconsistent delegation of "{domain_child}". Returned from name servers "{ns_list}".
+B01_NO_CHILD               |ERROR  | domain_child, domain_super         | "{domain_child}" does not exist as a DNS zone. Try to test "{domain_super}" instead.
+B01_PARENT_FOUND           |INFO   | domain, ns_list                    | The parent zone is "{domain}" as returned from name servers "{ns_list}".
+B01_PARENT_NOT_FOUND       |WARNING|                                    | The parent zone cannot be found.
+B01_PARENT_UNDETERMINED    |WARNING| ns_list                            | The parent zone cannot be determined on name servers "{ns_list}".
+B01_SERVER_ZONE_ERROR      |DEBUG  | query_name, rrtype, ns             | Unexpected response on query for "{query_name}" with query type "{rrtype}" to "{ns}".
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -74,6 +74,11 @@ severity level can be changed in the [Zonemaster-Engine profile]. Also see the
 
 The argument names in the Arguments column lists the arguments used in the
 message. The argument names are defined in the [argument list].
+
+The name server names are assumed to be available at the time when the msgid
+is created, if the argument name is "ns" or "ns_list" even when in the
+"[Test procedure]" below it is only referred to the IP address of the name
+servers.
 
 
 ## Test procedure
@@ -367,6 +372,7 @@ a specific name server. Compare with "[DNS Lookup]".
 [RFC 9156]:                                                       https://www.rfc-editor.org/rfc/rfc9156.html
 [Send]:                                                           #terminology
 [Severity Level Definitions]:                                     ../SeverityLevelDefinitions.md
+[Test procedure]:                                                 #test-procedure
 [Undelegated test]:                                               ../../test-types/undelegated-test.md
 [WARNING]:                                                        ../SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:                                      ../../../configuration/profiles.md
