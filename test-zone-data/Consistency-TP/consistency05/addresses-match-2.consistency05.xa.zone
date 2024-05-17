@@ -1,14 +1,16 @@
 $ORIGIN addresses-match-2.consistency05.xa.
 $TTL 3600
 
-@       SOA     ns1.addresses-match-2.consistency05.xb. admin.mail.xa. (
-                2023092000      ; serial
+@       SOA     ns3.addresses-match-2.consistency05.xb. admin.mail.xa. (
+                2024051704      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
                 1d )            ; minimum
 
-@       NS      ns1.addresses-match-2.consistency05.xb.
-@       NS      ns2.addresses-match-2.consistency05.xb.
+@       NS      ns3.addresses-match-2.consistency05.xb.
+@       NS      ns4.addresses-match-2.consistency05.xb.
+
+@       TXT     "Text"
 
 ;EOF

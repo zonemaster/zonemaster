@@ -10,11 +10,16 @@ zonefiles and `coredns` configuration files for scenarios for test case CONISTEN
 * ADDRESSES-MATCH-5
 * ADDRESSES-MATCH-6
 * ADDRESSES-MATCH-7
+* ADDR-MATCH-DEL-UNDEL-1
+* ADDR-MATCH-DEL-UNDEL-2
+* ADDR-MATCH-NO-DEL-UNDEL-1
+* ADDR-MATCH-NO-DEL-UNDEL-2
 * CHILD-ZONE-LAME-1
 * CHILD-ZONE-LAME-2
 * IB-ADDR-MISMATCH-1
 * IB-ADDR-MISMATCH-2
 * IB-ADDR-MISMATCH-3
+* IB-ADDR-MISMATCH-4
 * OOB-ADDR-MISMATCH
 * EXTRA-ADDRESS-CHILD
 
@@ -152,7 +157,85 @@ Loading profile from COMMON/custom-profile.json.
 ```
 --> OK
 
+Scenario name                 | Mandatory message tags         | Forbidden message tags
+:-----------------------------|:-------------------------------|:-------------------------------------------
+ADDR-MATCH-DEL-UNDEL-1        | ADDRESSES_MATCH                | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
 
+* Undelegated data:
+  * ns3.addr-match-del-undel-1.consistency05.xa/127.14.5.33
+  * ns3.addr-match-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:33
+  * ns4.addr-match-del-undel-1.consistency05.xa/127.14.5.34
+  * ns4.addr-match-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:34
+
+```
+$ zonemaster-cli ADDR-MATCH-DEL-UNDEL-1.consistency05.xa --raw  --test consistency05 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json --ns ns3.addr-match-del-undel-1.consistency05.xa/127.14.5.33 --ns ns3.addr-match-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:33 --ns ns4.addr-match-del-undel-1.consistency05.xa/127.14.5.34 --ns ns4.addr-match-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:34
+Loading profile from COMMON/custom-profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Consistency05  TEST_CASE_START  testcase=Consistency05
+   0.15 INFO     Consistency05  ADDRESSES_MATCH
+   0.15 INFO     Consistency05  TEST_CASE_END  testcase=Consistency05
+```
+--> OK
+
+Scenario name                 | Mandatory message tags         | Forbidden message tags
+:-----------------------------|:-------------------------------|:-------------------------------------------
+ADDR-MATCH-DEL-UNDEL-2        | ADDRESSES_MATCH                | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
+
+* Undelegated data:
+  * ns3.addr-match-del-undel-2.consistency05.xb
+  * ns4.addr-match-del-undel-2.consistency05.xb
+
+```
+$ zonemaster-cli ADDR-MATCH-DEL-UNDEL-2.consistency05.xa --raw  --test consistency05 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json --ns  ns3.addr-match-del-undel-2.consistency05.xb --ns  ns4.addr-match-del-undel-2.consistency05.xb
+Loading profile from COMMON/custom-profile.json.
+   0.42 ERROR    Unspecified    FAKE_DELEGATION_NO_IP  domain=addr-match-del-undel-2.consistency05.xa; nsname=ns4.addr-match-del-undel-2.consistency05.xb
+   0.43 ERROR    Unspecified    FAKE_DELEGATION_NO_IP  domain=addr-match-del-undel-2.consistency05.xa; nsname=ns3.addr-match-del-undel-2.consistency05.xb
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Consistency05  TEST_CASE_START  testcase=Consistency05
+   0.11 INFO     Consistency05  ADDRESSES_MATCH
+   0.12 INFO     Consistency05  TEST_CASE_END  testcase=Consistency05
+```
+--> OK as specified, but FAKE_DELEGATION_NO_IP is not expected.
+
+Scenario name                 | Mandatory message tags         | Forbidden message tags
+:-----------------------------|:-------------------------------|:-------------------------------------------
+ADDR-MATCH-NO-DEL-UNDEL-1     | ADDRESSES_MATCH                | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
+
+* Undelegated data:
+  * ns1.addr-match-no-del-undel-1.consistency05.xa/127.14.5.31
+  * ns1.addr-match-no-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:31
+  * ns2.addr-match-no-del-undel-1.consistency05.xa/127.14.5.32
+  * ns2.addr-match-no-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:32
+
+```
+$ zonemaster-cli ADDR-MATCH-NO-DEL-UNDEL-1.consistency05.xa --raw  --test consistency05 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json  --ns ns1.addr-match-no-del-undel-1.consistency05.xa/127.14.5.31 --ns ns1.addr-match-no-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:31 --ns ns2.addr-match-no-del-undel-1.consistency05.xa/127.14.5.32 --ns ns2.addr-match-no-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:32
+Loading profile from COMMON/custom-profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Consistency05  TEST_CASE_START  testcase=Consistency05
+   0.16 INFO     Consistency05  ADDRESSES_MATCH
+   0.16 INFO     Consistency05  TEST_CASE_END  testcase=Consistency05
+```
+--> OK
+
+Scenario name                 | Mandatory message tags         | Forbidden message tags
+:-----------------------------|:-------------------------------|:-------------------------------------------
+ADDR-MATCH-NO-DEL-UNDEL-2     | ADDRESSES_MATCH                | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
+
+* Undelegated data:
+  * ns3.addr-match-no-del-undel-2.consistency05.xb
+  * ns4.addr-match-no-del-undel-2.consistency05.xb
+
+```
+$ zonemaster-cli ADDR-MATCH-NO-DEL-UNDEL-2.consistency05.xa --raw  --test consistency05 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json  --ns ns3.addr-match-no-del-undel-2.consistency05.xb --ns ns4.addr-match-no-del-undel-2.consistency05.xb
+Loading profile from COMMON/custom-profile.json.
+   0.39 ERROR    Unspecified    FAKE_DELEGATION_NO_IP  domain=addr-match-no-del-undel-2.consistency05.xa; nsname=ns4.addr-match-no-del-undel-2.consistency05.xb
+   0.39 ERROR    Unspecified    FAKE_DELEGATION_NO_IP  domain=addr-match-no-del-undel-2.consistency05.xa; nsname=ns3.addr-match-no-del-undel-2.consistency05.xb
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Consistency05  TEST_CASE_START  testcase=Consistency05
+   0.09 INFO     Consistency05  ADDRESSES_MATCH
+   0.09 INFO     Consistency05  TEST_CASE_END  testcase=Consistency05
+```
+--> OK as specified, but FAKE_DELEGATION_NO_IP is not expected.
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
@@ -171,7 +254,6 @@ Loading profile from COMMON/custom-profile.json.
   40.19 INFO     Consistency05  TEST_CASE_END  testcase=Consistency05
 ```
 --> missing NO_RESPONSE -- Judged to be a bug in the implementation. See issue [zonemaster-engine#1301].
-
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
@@ -224,7 +306,6 @@ Loading profile from COMMON/custom-profile.json.
 ```
 --> OK
 
-
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 IB-ADDR-MISMATCH-3    | IN_BAILIWICK_ADDR_MISMATCH, NO_RESPONSE           | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
@@ -241,6 +322,19 @@ Loading profile from COMMON/custom-profile.json.
 ```
 --> missing NO_RESPONSE -- Judged to be a bug in the implementation. See issue [zonemaster-engine#1301].
 
+Scenario name         | Mandatory message tags                            | Forbidden message tags
+:---------------------|:--------------------------------------------------|:-------------------------------------------
+IB-ADDR-MISMATCH-4    | IN_BAILIWICK_ADDR_MISMATCH                        | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
+
+```
+$ zonemaster-cli IB-ADDR-MISMATCH-4.consistency05.xa --raw  --test consistency05 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json
+Loading profile from COMMON/custom-profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Consistency05  TEST_CASE_START  testcase=Consistency05
+   0.15 ERROR    Consistency05  CHILD_ZONE_LAME
+   0.15 INFO     Consistency05  TEST_CASE_END  testcase=Consistency05
+```
+--> No OK. See issue [zonemaster-engine#1349].
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
@@ -272,7 +366,6 @@ Loading profile from COMMON/custom-profile.json.
   20.35 INFO     Consistency05  TEST_CASE_END  testcase=Consistency05
 ```
 --> OK
-
 
 
 [zonemaster-engine#1301]:                                 https://github.com/zonemaster/zonemaster-engine/issues/1301

@@ -51,11 +51,16 @@ ADDRESSES-MATCH-4         | ADDRESSES_MATCH, CHILD_NS_FAILED | IN_BAILIWICK_ADDR
 ADDRESSES-MATCH-5         | ADDRESSES_MATCH, NO_RESPONSE     | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED
 ADDRESSES-MATCH-6         | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
 ADDRESSES-MATCH-7         | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
+ADDR-MATCH-DEL-UNDEL-1    | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
+ADDR-MATCH-DEL-UNDEL-2    | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
+ADDR-MATCH-NO-DEL-UNDEL-1 | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
+ADDR-MATCH-NO-DEL-UNDEL-2 | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
 CHILD-ZONE-LAME-1         | CHILD_ZONE_LAME, NO_RESPONSE     | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_NS_FAILED, ADDRESSES_MATCH
 CHILD-ZONE-LAME-2         | CHILD_ZONE_LAME, CHILD_NS_FAILED | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, ADDRESSES_MATCH, NO_RESPONSE
 IB-ADDR-MISMATCH-1        | IN_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD | OUT_OF_BAILIWICK_ADDR_MISMATCH, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 IB-ADDR-MISMATCH-2        | IN_BAILIWICK_ADDR_MISMATCH       | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 IB-ADDR-MISMATCH-3        | IN_BAILIWICK_ADDR_MISMATCH, NO_RESPONSE | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
+IB-ADDR-MISMATCH-4        | IN_BAILIWICK_ADDR_MISMATCH       | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 EXTRA-ADDRESS-CHILD       | EXTRA_ADDRESS_CHILD              | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 OOB-ADDR-MISMATCH         | OUT_OF_BAILIWICK_ADDR_MISMATCH   | IN_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
 
@@ -77,6 +82,13 @@ the specific scenario:
 * All responses are authoritative with [RCODE Name] "NoError"
 * EDNS, version 0, is included in all responses on queries with EDNS.
 * EDNS is not included in responses on queries without EDNS.
+* In undelegated data `IPv4` and `IPv6`, repectively, are placeholders for the
+  actual IP addresses used for the scenario. They are to be found where the data
+  is specified.
+  * If no placeholder is given with the name server name, then no IP adress is
+    given and might be looked up.
+  * The format for undelegated data follow the format used for `zonemaster-cli`
+    (after `--ns`).
 
 ### ADDRESSES-MATCH-1
 The "happy path". Everything is fine.
@@ -135,6 +147,60 @@ Also "happy path". NS in subdomain.
     ns1 and ns2.
   * ns1 and ns2 are defined with address records in the "subdomain" zone.
 
+### ADDR-MATCH-DEL-UNDEL-1
+Also the "happy path". But there is an undelegated zone to be tested.
+
+* Zone: addr-match-del-undel-1.consistency05.xa
+  * Delegated zone on ns1 and ns2.
+  * Undelegated zon on ns3 and ns4.
+  * Delegated zone has neither ns1, ns2, ns3 or ns4 as address records.
+  * Undelegated zone does not have ns1 and ns2 as address records, but it
+    has ns3 and ns4.
+  * Undelgated data:
+    * ns3.addr-match-del-undel-1.consistency05.xa/IPv4
+    * ns3.addr-match-del-undel-1.consistency05.xa/IPv6
+    * ns4.addr-match-del-undel-1.consistency05.xa/IPv4
+    * ns4.addr-match-del-undel-1.consistency05.xa/IPv6
+
+### ADDR-MATCH-DEL-UNDEL-2
+Also the "happy path". But there is an undelegated zone to be tested, and its
+NS are out-of-bailiwick.
+
+* Zone: addr-match-del-undel-2.consistency05.xa
+  * Delegated zone on ns1 and ns2.
+  * Undelegated zon on "ns3.addr-match-del-undel-2.consistency05.xb" and
+    "ns4.addr-match-del-undel-2.consistency05.xb".
+  * Delegated and undelegated zone, respectively, do not have ns1 or ns2 as
+    address records.
+  * Undelegated data:
+    * ns3.addr-match-del-undel-2.consistency05.xb
+    * ns4.addr-match-del-undel-2.consistency05.xb
+
+### ADDR-MATCH-NO-DEL-UNDEL-1
+Also the "happy path". No delegation but there is an undelegated zone to be
+tested.
+
+* Zone: addr-match-no-del-undel-1.consistency05.xa
+  * No delegated zone.
+  * Undelegated zone on ns1 and ns2.
+  * Undelgated data:
+    * ns1.addr-match-no-del-undel-1.consistency05.xa/IPv4
+    * ns1.addr-match-no-del-undel-1.consistency05.xa/IPv6
+    * ns2.addr-match-no-del-undel-1.consistency05.xa/IPv4
+    * ns2.addr-match-no-del-undel-1.consistency05.xa/IPv6
+
+### ADDR-MATCH-NO-DEL-UNDEL-2
+Also the "happy path". No delegation but there is an undelegated zone to be
+tested. NS are out-of-bailiwick.
+
+* Zone: addr-match-no-del-undel-2.consistency05.xa
+  * No delegated zone.
+  * Undelegated zone on "ns3.addr-match-no-del-undel-2.consistency05.xb" and
+    "ns4.addr-match-no-del-undel-2.consistency05.xb".
+  * Undelegated data:
+    * ns3.addr-match-no-del-undel-2.consistency05.xb
+    * ns4.addr-match-no-del-undel-2.consistency05.xb
+
 ### CHILD-ZONE-LAME-1
 Lame. No NS responds.
 
@@ -158,7 +224,6 @@ authoritative data from the zone.
   * Both ns2 servers (IP address sets from glue and child, respectively) must
     give identical DNS responses.
 
-
 ### IB-ADDR-MISMATCH-2
 For one NS (in-bailiwick), address records exist in the glue, but not in the
 authoritative data for the zone.
@@ -176,6 +241,14 @@ address records in the zone. Furthermore, ns2 does not respond.
   * ns2 is not defined in the zone, i.e. there are no address records for ns2
     (IPv4 or IPv6) in the zone.
   * ns2 does not respond (but it is in the delegation)
+
+### IB-ADDR-MISMATCH-4
+Both NS are in-bailiwick and exist with correct glue in the delegation, but there
+are no address records in the zone matching the glue records.
+
+* Zone: ib-addr-mismatch-4.consistency05.xa
+  * Neither ns1 nor ns2 are defined in the zone as address records.
+  * The correct NS records are in the zone.
 
 ### EXTRA-ADDRESS-CHILD
 Child zone has one extra address record on the NS name.

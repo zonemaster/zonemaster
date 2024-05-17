@@ -2,7 +2,7 @@ $ORIGIN consistency05.xa.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024051700      ; serial
+                2024051701      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -25,8 +25,8 @@ ns2     A       127.14.5.32
 ns2     AAAA    fda1:b2:c3:0:127:14:5:32
 
 $ORIGIN addresses-match-2.consistency05.xa.
-@       NS      ns1.addresses-match-2.consistency05.xb.
-@       NS      ns2.addresses-match-2.consistency05.xb.
+@       NS      ns3.addresses-match-2.consistency05.xb.
+@       NS      ns4.addresses-match-2.consistency05.xb.
 
 $ORIGIN addresses-match-3.consistency05.xa.
 @       NS      ns1
@@ -68,6 +68,26 @@ ns1     AAAA    fda1:b2:c3:0:127:14:5:31
 ns2     A       127.14.5.32
 ns2     AAAA    fda1:b2:c3:0:127:14:5:32
 
+$ORIGIN addr-match-del-undel-1.consistency05.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.14.5.31
+ns1     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2     A       127.14.5.32
+ns2     AAAA    fda1:b2:c3:0:127:14:5:32
+
+$ORIGIN addr-match-del-undel-2.consistency05.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.14.5.31
+ns1     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2     A       127.14.5.32
+ns2     AAAA    fda1:b2:c3:0:127:14:5:32
+
+; Not delegated:
+; addr-match-no-del-undel-1.consistency05.xa
+; addr-match-no-del-undel-1.consistency05.xa
+
 $ORIGIN child-zone-lame-1.consistency05.xa.
 @	NS	ns1
 @	NS	ns2
@@ -101,6 +121,14 @@ ns2    A       127.14.5.32
 ns2    AAAA    fda1:b2:c3:0:127:14:5:32
 
 $ORIGIN ib-addr-mismatch-3.consistency05.xa.
+@                       NS      ns1
+@                       NS      ns2
+ns1                     A       127.14.5.31
+ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2                     A       127.14.5.32
+ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
+
+$ORIGIN ib-addr-mismatch-4.consistency05.xa.
 @                       NS      ns1
 @                       NS      ns2
 ns1                     A       127.14.5.31
