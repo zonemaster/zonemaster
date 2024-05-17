@@ -12,31 +12,28 @@
 
 ## zonemaster-cli commands and their output for each test scenario
 
+The level (`--level`) must be set to the lowest level of the message tags. Use
+customized profile (see examples) to raise all tags of interest to `INFO` or
+higher. The level then must be `INFO`.
+
+The commands are assumed to be run from the `test-zone-data` directory.
+
+```
+--level info --profile COMMON/custom-profile.json
+```
+
 The level (`--level`) must be set to the lowest level of the message tags. For this test case `INFO` is the lowest level.
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 ONE-SOA-MNAME-1       | ONE_SOA_MNAME                                     | NO_RESPONSE, NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
 ```
-$ zonemaster-cli ONE-SOA-MNAME-1.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR'
-   0.00 DEBUG    START_TIME   string=2023-11-08 18:31:51 +0000; time_t=1699468311
-   0.00 DEBUG    TEST_ARGS   args=Zonemaster::Engine::Zone=HASH(0x55dc52d15118); module=Consistency; testcase=consistency06
-   0.00 INFO     GLOBAL_VERSION   version=v4.7.3
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Zonemaster::LDNS; version=3.2.0
-   0.00 DEBUG    DEPENDENCY_VERSION   name=IO::Socket::INET6; version=2.73
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Moose; version=2.2200
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Module::Find; version=0.15
-   0.00 DEBUG    DEPENDENCY_VERSION   name=File::ShareDir; version=1.118
-   0.00 DEBUG    DEPENDENCY_VERSION   name=File::Slurp; version=9999.32
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Net::IP::XS; version=0.21
-   0.00 DEBUG    DEPENDENCY_VERSION   name=List::MoreUtils; version=0.430
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Clone; version=0.45
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Readonly; version=2.05
-   0.00 DEBUG    MODULE_VERSION   module=Zonemaster::Engine::Test::Consistency; version=v1.1.16
-   0.00 DEBUG    TEST_CASE_START   testcase=consistency06
-   0.17 INFO     ONE_SOA_MNAME   mname=ns1.one-soa-mname-1.consistency06.xa.
-   0.17 DEBUG    TEST_CASE_END   testcase=consistency06
-   0.17 DEBUG    MODULE_END   module=Consistency
+$ zonemaster-cli ONE-SOA-MNAME-1.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json
+Loading profile from COMMON/custom-profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Consistency06  TEST_CASE_START  testcase=Consistency06
+   0.20 INFO     Consistency06  ONE_SOA_MNAME  mname=ns1.one-soa-mname-1.consistency06.xa.
+   0.20 INFO     Consistency06  TEST_CASE_END  testcase=Consistency06
 ```
 --> OK
 
@@ -44,29 +41,18 @@ Scenario name         | Mandatory message tags                            | Forb
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 ONE-SOA-MNAME-2       | ONE_SOA_MNAME, NO_RESPONSE                         | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
 ```
-$ zonemaster-cli ONE-SOA-MNAME-2.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR'
-   0.00 DEBUG    START_TIME   string=2023-11-08 18:32:34 +0000; time_t=1699468354
-   0.00 DEBUG    TEST_ARGS   args=Zonemaster::Engine::Zone=HASH(0x55d2ba8fb400); module=Consistency; testcase=consistency06
-   0.00 INFO     GLOBAL_VERSION   version=v4.7.3
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Zonemaster::LDNS; version=3.2.0
-   0.00 DEBUG    DEPENDENCY_VERSION   name=IO::Socket::INET6; version=2.73
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Moose; version=2.2200
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Module::Find; version=0.15
-   0.00 DEBUG    DEPENDENCY_VERSION   name=File::ShareDir; version=1.118
-   0.00 DEBUG    DEPENDENCY_VERSION   name=File::Slurp; version=9999.32
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Net::IP::XS; version=0.21
-   0.00 DEBUG    DEPENDENCY_VERSION   name=List::MoreUtils; version=0.430
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Clone; version=0.45
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Readonly; version=2.05
-   0.00 DEBUG    MODULE_VERSION   module=Zonemaster::Engine::Test::Consistency; version=v1.1.16
-   0.00 DEBUG    TEST_CASE_START   testcase=consistency06
-  20.19 DEBUG    NO_RESPONSE   ns=ns1.one-soa-mname-2.consistency06.xa/127.14.6.31
-  20.19 DEBUG    NO_RESPONSE   ns=ns1.one-soa-mname-2.consistency06.xa/fda1:b2:c3:0:127:14:6:31
-  20.20 DEBUG    NO_RESPONSE   ns=ns1.one-soa-mname-2.consistency06.xa/127.14.6.31
-  20.20 DEBUG    NO_RESPONSE   ns=ns1.one-soa-mname-2.consistency06.xa/fda1:b2:c3:0:127:14:6:31
-  20.20 INFO     ONE_SOA_MNAME   mname=ns1.one-soa-mname-2.consistency06.xa.
-  20.20 DEBUG    TEST_CASE_END   testcase=consistency06
-  20.20 DEBUG    MODULE_END   module=Consistency
+$ zonemaster-cli ONE-SOA-MNAME-2.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json
+Loading profile from COMMON/custom-profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Consistency06  TEST_CASE_START  testcase=Consistency06
+  10.12 INFO     Consistency06  LOOKUP_ERROR  class=IN; domain=one-soa-mname-2.consistency06.xa; message=Could not send or receive, because of network error.; ns=ns1.one-soa-mname-2.consistency06.xa/127.14.6.31; type=NS
+  20.13 INFO     Consistency06  LOOKUP_ERROR  class=IN; domain=one-soa-mname-2.consistency06.xa; message=Could not send or receive, because of network error.; ns=ns1.one-soa-mname-2.consistency06.xa/fda1:b2:c3:0:127:14:6:31; type=NS
+  20.16 INFO     Consistency06  NO_RESPONSE  ns=ns1.one-soa-mname-2.consistency06.xa/127.14.6.31
+  20.16 INFO     Consistency06  NO_RESPONSE  ns=ns1.one-soa-mname-2.consistency06.xa/fda1:b2:c3:0:127:14:6:31
+  20.17 INFO     Consistency06  NO_RESPONSE  ns=ns1.one-soa-mname-2.consistency06.xa/127.14.6.31
+  20.17 INFO     Consistency06  NO_RESPONSE  ns=ns1.one-soa-mname-2.consistency06.xa/fda1:b2:c3:0:127:14:6:31
+  20.17 INFO     Consistency06  ONE_SOA_MNAME  mname=ns1.one-soa-mname-2.consistency06.xa.
+  20.17 INFO     Consistency06  TEST_CASE_END  testcase=Consistency06
 ```
 --> OK
 
@@ -74,29 +60,16 @@ Scenario name         | Mandatory message tags                            | Forb
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 ONE-SOA-MNAME-3       | ONE_SOA_MNAME, NO_RESPONSE_SOA_QUERY              | NO_RESPONSE, MULTIPLE_SOA_MNAMES
 ```
-$ zonemaster-cli ONE-SOA-MNAME-3.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR'
-   0.00 DEBUG    START_TIME   string=2023-11-08 18:33:24 +0000; time_t=1699468404
-   0.00 DEBUG    TEST_ARGS   args=Zonemaster::Engine::Zone=HASH(0x55a9691529a0); module=Consistency; testcase=consistency06
-   0.00 INFO     GLOBAL_VERSION   version=v4.7.3
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Zonemaster::LDNS; version=3.2.0
-   0.00 DEBUG    DEPENDENCY_VERSION   name=IO::Socket::INET6; version=2.73
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Moose; version=2.2200
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Module::Find; version=0.15
-   0.00 DEBUG    DEPENDENCY_VERSION   name=File::ShareDir; version=1.118
-   0.00 DEBUG    DEPENDENCY_VERSION   name=File::Slurp; version=9999.32
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Net::IP::XS; version=0.21
-   0.00 DEBUG    DEPENDENCY_VERSION   name=List::MoreUtils; version=0.430
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Clone; version=0.45
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Readonly; version=2.05
-   0.00 DEBUG    MODULE_VERSION   module=Zonemaster::Engine::Test::Consistency; version=v1.1.16
-   0.00 DEBUG    TEST_CASE_START   testcase=consistency06
-   0.17 DEBUG    NO_RESPONSE_SOA_QUERY   ns=ns1.one-soa-mname-3.consistency06.xa/127.14.6.31
-   0.17 DEBUG    NO_RESPONSE_SOA_QUERY   ns=ns1.one-soa-mname-3.consistency06.xa/fda1:b2:c3:0:127:14:6:31
-   0.17 DEBUG    NO_RESPONSE_SOA_QUERY   ns=ns1.one-soa-mname-3.consistency06.xa/127.14.6.31
-   0.17 DEBUG    NO_RESPONSE_SOA_QUERY   ns=ns1.one-soa-mname-3.consistency06.xa/fda1:b2:c3:0:127:14:6:31
-   0.17 INFO     ONE_SOA_MNAME   mname=ns1.one-soa-mname-3.consistency06.xa.
-   0.17 DEBUG    TEST_CASE_END   testcase=consistency06
-   0.17 DEBUG    MODULE_END   module=Consistency
+$ zonemaster-cli ONE-SOA-MNAME-3.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json
+Loading profile from COMMON/custom-profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Consistency06  TEST_CASE_START  testcase=Consistency06
+   0.14 INFO     Consistency06  NO_RESPONSE_SOA_QUERY  ns=ns1.one-soa-mname-3.consistency06.xa/127.14.6.31
+   0.14 INFO     Consistency06  NO_RESPONSE_SOA_QUERY  ns=ns1.one-soa-mname-3.consistency06.xa/fda1:b2:c3:0:127:14:6:31
+   0.15 INFO     Consistency06  NO_RESPONSE_SOA_QUERY  ns=ns1.one-soa-mname-3.consistency06.xa/127.14.6.31
+   0.15 INFO     Consistency06  NO_RESPONSE_SOA_QUERY  ns=ns1.one-soa-mname-3.consistency06.xa/fda1:b2:c3:0:127:14:6:31
+   0.15 INFO     Consistency06  ONE_SOA_MNAME  mname=ns1.one-soa-mname-3.consistency06.xa.
+   0.15 INFO     Consistency06  TEST_CASE_END  testcase=Consistency06
 ```
 --> OK
 
@@ -104,15 +77,14 @@ Scenario name         | Mandatory message tags                            | Forb
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 ONE-SOA-MNAME-4       | ONE_SOA_MNAME, NO_RESPONSE                        | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
 ```
-$ zonemaster-cli ONE-SOA-MNAME-4.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR|DEPENDENCY_VERSION'
-   0.00 DEBUG    START_TIME   string=2023-11-11 22:14:42 +0000; time_t=1699740882
-   0.00 DEBUG    TEST_ARGS   args=Zonemaster::Engine::Zone=HASH(0x55976cbce390); module=Consistency; testcase=consistency06
-   0.00 INFO     GLOBAL_VERSION   version=v4.7.3
-   0.00 DEBUG    MODULE_VERSION   module=Zonemaster::Engine::Test::Consistency; version=v1.1.16
-   0.00 DEBUG    TEST_CASE_START   testcase=consistency06
-  20.22 INFO     ONE_SOA_MNAME   mname=ns1.one-soa-mname-4.consistency06.xa.
-  20.22 DEBUG    TEST_CASE_END   testcase=consistency06
-  20.22 DEBUG    MODULE_END   module=Consistency
+$ zonemaster-cli ONE-SOA-MNAME-4.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json
+Loading profile from COMMON/custom-profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Consistency06  TEST_CASE_START  testcase=Consistency06
+  10.04 INFO     Consistency06  LOOKUP_ERROR  class=IN; domain=one-soa-mname-4.consistency06.xa; message=Could not send or receive, because of network error.; ns=ns2.one-soa-mname-4.consistency06.xa/fda1:b2:c3:0:127:14:6:32; type=SOA
+  20.04 INFO     Consistency06  LOOKUP_ERROR  class=IN; domain=one-soa-mname-4.consistency06.xa; message=Could not send or receive, because of network error.; ns=ns2.one-soa-mname-4.consistency06.xa/127.14.6.32; type=SOA
+  20.21 INFO     Consistency06  ONE_SOA_MNAME  mname=ns1.one-soa-mname-4.consistency06.xa.
+  20.21 INFO     Consistency06  TEST_CASE_END  testcase=Consistency06
 ```
 --> missing NO_RESPONSE -- Judged to be a bug in the implementation. See issue [zonemaster-engine#1300].
 
@@ -120,27 +92,12 @@ Scenario name         | Mandatory message tags                            | Forb
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 MULTIPLE-SOA-MNAMES-1 | MULTIPLE_SOA_MNAMES                               | NO_RESPONSE, NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
 ```
-$ zonemaster-cli MULTIPLE-SOA-MNAMES-1.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR'
-   0.00 DEBUG    START_TIME   string=2023-11-08 18:36:14 +0000; time_t=1699468574
-   0.00 DEBUG    TEST_ARGS   args=Zonemaster::Engine::Zone=HASH(0x563e72bfd2e8); module=Consistency; testcase=consistency06
-   0.00 INFO     GLOBAL_VERSION   version=v4.7.3
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Zonemaster::LDNS; version=3.2.0
-   0.00 DEBUG    DEPENDENCY_VERSION   name=IO::Socket::INET6; version=2.73
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Moose; version=2.2200
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Module::Find; version=0.15
-   0.00 DEBUG    DEPENDENCY_VERSION   name=File::ShareDir; version=1.118
-   0.00 DEBUG    DEPENDENCY_VERSION   name=File::Slurp; version=9999.32
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Net::IP::XS; version=0.21
-   0.00 DEBUG    DEPENDENCY_VERSION   name=List::MoreUtils; version=0.430
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Clone; version=0.45
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Readonly; version=2.05
-   0.00 DEBUG    MODULE_VERSION   module=Zonemaster::Engine::Test::Consistency; version=v1.1.16
-   0.00 DEBUG    TEST_CASE_START   testcase=consistency06
-   0.17 NOTICE   MULTIPLE_SOA_MNAMES   count=2
-   0.17 DEBUG    SOA_MNAME   mname=ns1.multiple-soa-mnames-1.consistency06.xa.; ns_list=ns1.multiple-soa-mnames-1.consistency06.xa/127.14.6.31;ns1.multiple-soa-mnames-1.consistency06.xa/fda1:b2:c3:0:127:14:6:31
-   0.17 DEBUG    SOA_MNAME   mname=ns2.multiple-soa-mnames-1.consistency06.xa.; ns_list=ns2.multiple-soa-mnames-1.consistency06.xa/127.14.6.32;ns2.multiple-soa-mnames-1.consistency06.xa/fda1:b2:c3:0:127:14:6:32
-   0.17 DEBUG    TEST_CASE_END   testcase=consistency06
-   0.17 DEBUG    MODULE_END   module=Consistency
+$ zonemaster-cli MULTIPLE-SOA-MNAMES-1.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json
+Loading profile from COMMON/custom-profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Consistency06  TEST_CASE_START  testcase=Consistency06
+   0.18 NOTICE   Consistency06  MULTIPLE_SOA_MNAMES  count=2
+   0.18 INFO     Consistency06  TEST_CASE_END  testcase=Consistency06
 ```
 --> OK
 
@@ -148,32 +105,18 @@ Scenario name         | Mandatory message tags                            | Forb
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 MULTIPLE-SOA-MNAMES-2 | MULTIPLE_SOA_MNAMES, NO_RESPONSE                  | NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
 ```
-$ zonemaster-cli MULTIPLE-SOA-MNAMES-2.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR'
- COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR'
-   0.00 DEBUG    START_TIME   string=2023-11-11 21:28:33 +0000; time_t=1699738113
-   0.00 DEBUG    TEST_ARGS   args=Zonemaster::Engine::Zone=HASH(0x55b13971e0f8); module=Consistency; testcase=consistency06
-   0.00 INFO     GLOBAL_VERSION   version=v4.7.3
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Zonemaster::LDNS; version=3.2.0
-   0.00 DEBUG    DEPENDENCY_VERSION   name=IO::Socket::INET6; version=2.73
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Moose; version=2.2200
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Module::Find; version=0.15
-   0.00 DEBUG    DEPENDENCY_VERSION   name=File::ShareDir; version=1.118
-   0.00 DEBUG    DEPENDENCY_VERSION   name=File::Slurp; version=9999.32
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Net::IP::XS; version=0.21
-   0.00 DEBUG    DEPENDENCY_VERSION   name=List::MoreUtils; version=0.430
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Clone; version=0.45
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Readonly; version=2.05
-   0.00 DEBUG    MODULE_VERSION   module=Zonemaster::Engine::Test::Consistency; version=v1.1.16
-   0.00 DEBUG    TEST_CASE_START   testcase=consistency06
-  20.31 DEBUG    NO_RESPONSE   ns=ns3.multiple-soa-mnames-2.consistency06.xa/127.14.6.33
-  20.31 DEBUG    NO_RESPONSE   ns=ns3.multiple-soa-mnames-2.consistency06.xa/fda1:b2:c3:0:127:14:6:33
-  20.31 DEBUG    NO_RESPONSE   ns=ns3.multiple-soa-mnames-2.consistency06.xa/127.14.6.33
-  20.31 DEBUG    NO_RESPONSE   ns=ns3.multiple-soa-mnames-2.consistency06.xa/fda1:b2:c3:0:127:14:6:33
-  20.31 NOTICE   MULTIPLE_SOA_MNAMES   count=2
-  20.31 DEBUG    SOA_MNAME   mname=ns2.multiple-soa-mnames-2.consistency06.xa.; ns_list=ns2.multiple-soa-mnames-2.consistency06.xa/127.14.6.32;ns2.multiple-soa-mnames-2.consistency06.xa/fda1:b2:c3:0:127:14:6:32
-  20.31 DEBUG    SOA_MNAME   mname=ns1.multiple-soa-mnames-2.consistency06.xa.; ns_list=ns1.multiple-soa-mnames-2.consistency06.xa/127.14.6.31;ns1.multiple-soa-mnames-2.consistency06.xa/fda1:b2:c3:0:127:14:6:31
-  20.31 DEBUG    TEST_CASE_END   testcase=consistency06
-  20.31 DEBUG    MODULE_END   module=Consistency
+$ zonemaster-cli MULTIPLE-SOA-MNAMES-2.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json
+Loading profile from COMMON/custom-profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Consistency06  TEST_CASE_START  testcase=Consistency06
+  10.03 INFO     Consistency06  LOOKUP_ERROR  class=IN; domain=multiple-soa-mnames-2.consistency06.xa; message=Could not send or receive, because of network error.; ns=ns3.multiple-soa-mnames-2.consistency06.xa/fda1:b2:c3:0:127:14:6:33; type=SOA
+  20.05 INFO     Consistency06  LOOKUP_ERROR  class=IN; domain=multiple-soa-mnames-2.consistency06.xa; message=Could not send or receive, because of network error.; ns=ns3.multiple-soa-mnames-2.consistency06.xa/127.14.6.33; type=SOA
+  20.24 INFO     Consistency06  NO_RESPONSE  ns=ns3.multiple-soa-mnames-2.consistency06.xa/127.14.6.33
+  20.24 INFO     Consistency06  NO_RESPONSE  ns=ns3.multiple-soa-mnames-2.consistency06.xa/fda1:b2:c3:0:127:14:6:33
+  20.24 INFO     Consistency06  NO_RESPONSE  ns=ns3.multiple-soa-mnames-2.consistency06.xa/127.14.6.33
+  20.24 INFO     Consistency06  NO_RESPONSE  ns=ns3.multiple-soa-mnames-2.consistency06.xa/fda1:b2:c3:0:127:14:6:33
+  20.24 NOTICE   Consistency06  MULTIPLE_SOA_MNAMES  count=2
+  20.24 INFO     Consistency06  TEST_CASE_END  testcase=Consistency06
 ```
 --> OK
 
@@ -181,24 +124,15 @@ Scenario name         | Mandatory message tags                            | Forb
 :---------------------|:--------------------------------------------------|:-------------------------------------------
 NO-RESPONSE           | NO-RESPONSE                                       | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES, ONE_SOA_MNAME
 ```
-$ zonemaster-cli NO-RESPONSE.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --level debug | grep -vE 'EXTERNAL_QUERY|IS_BLACKLISTED|LOOKUP_ERROR'
-   0.00 DEBUG    START_TIME   string=2023-11-08 18:44:48 +0000; time_t=1699469088
-   0.00 DEBUG    TEST_ARGS   args=Zonemaster::Engine::Zone=HASH(0x55a6a6536c00); module=Consistency; testcase=consistency06
-   0.00 INFO     GLOBAL_VERSION   version=v4.7.3
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Zonemaster::LDNS; version=3.2.0
-   0.00 DEBUG    DEPENDENCY_VERSION   name=IO::Socket::INET6; version=2.73
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Moose; version=2.2200
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Module::Find; version=0.15
-   0.00 DEBUG    DEPENDENCY_VERSION   name=File::ShareDir; version=1.118
-   0.00 DEBUG    DEPENDENCY_VERSION   name=File::Slurp; version=9999.32
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Net::IP::XS; version=0.21
-   0.00 DEBUG    DEPENDENCY_VERSION   name=List::MoreUtils; version=0.430
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Clone; version=0.45
-   0.00 DEBUG    DEPENDENCY_VERSION   name=Readonly; version=2.05
-   0.00 DEBUG    MODULE_VERSION   module=Zonemaster::Engine::Test::Consistency; version=v1.1.16
-   0.00 DEBUG    TEST_CASE_START   testcase=consistency06
-  40.19 DEBUG    TEST_CASE_END   testcase=consistency06
-  40.19 DEBUG    MODULE_END   module=Consistency
+$ zonemaster-cli NO-RESPONSE.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json
+Loading profile from COMMON/custom-profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Consistency06  TEST_CASE_START  testcase=Consistency06
+  10.06 INFO     Consistency06  LOOKUP_ERROR  class=IN; domain=no-response.consistency06.xa; message=Could not send or receive, because of network error.; ns=ns2.no-response.consistency06.xa/fda1:b2:c3:0:127:14:6:32; type=SOA
+  20.07 INFO     Consistency06  LOOKUP_ERROR  class=IN; domain=no-response.consistency06.xa; message=Could not send or receive, because of network error.; ns=ns2.no-response.consistency06.xa/127.14.6.32; type=SOA
+  30.08 INFO     Consistency06  LOOKUP_ERROR  class=IN; domain=no-response.consistency06.xa; message=Could not send or receive, because of network error.; ns=ns1.no-response.consistency06.xa/fda1:b2:c3:0:127:14:6:31; type=SOA
+  40.08 INFO     Consistency06  LOOKUP_ERROR  class=IN; domain=no-response.consistency06.xa; message=Could not send or receive, because of network error.; ns=ns1.no-response.consistency06.xa/127.14.6.31; type=SOA
+  40.25 INFO     Consistency06  TEST_CASE_END  testcase=Consistency06
 ```
 --> missing NO_RESPONSE -- Judged to be a bug in the implementation. See issue [zonemaster-engine#1300].
 
