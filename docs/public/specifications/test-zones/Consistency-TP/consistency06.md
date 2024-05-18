@@ -42,15 +42,17 @@ scenario. The names of those zones are given in section
 If a message tag is not listed for the scenario, its presence or non-presence is
 irrelevant to the test scenario and must be ignored.
 
-Scenario name             | Mandatory message tag                | Forbidden message tags
-:-------------------------|:-------------------------------------|:-------------------------------------------
-ONE-SOA-MNAME-1           | ONE_SOA_MNAME                        | NO_RESPONSE, NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
-ONE-SOA-MNAME-2           | ONE_SOA_MNAME, NO_RESPONSE           | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
-ONE-SOA-MNAME-3           | ONE_SOA_MNAME, NO_RESPONSE_SOA_QUERY | NO_RESPONSE, MULTIPLE_SOA_MNAMES
-ONE-SOA-MNAME-4           | ONE_SOA_MNAME, NO_RESPONSE           | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
-MULTIPLE-SOA-MNAMES-1     | MULTIPLE_SOA_MNAMES                  | NO_RESPONSE, NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
-MULTIPLE-SOA-MNAMES-2     | MULTIPLE_SOA_MNAMES,NO_RESPONSE      | NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
-NO-RESPONSE               | NO_RESPONSE                          | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES, ONE_SOA_MNAME
+Scenario name                  | Mandatory message tag                | Forbidden message tags
+:------------------------------|:-------------------------------------|:-------------------------------------------
+ONE-SOA-MNAME-1                | ONE_SOA_MNAME                        | NO_RESPONSE, NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
+ONE-SOA-MNAME-2                | ONE_SOA_MNAME, NO_RESPONSE           | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
+ONE-SOA-MNAME-3                | ONE_SOA_MNAME, NO_RESPONSE_SOA_QUERY | NO_RESPONSE, MULTIPLE_SOA_MNAMES
+ONE-SOA-MNAME-4                | ONE_SOA_MNAME, NO_RESPONSE           | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES
+MULTIPLE-SOA-MNAMES-1          | MULTIPLE_SOA_MNAMES                  | NO_RESPONSE, NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
+MULTIPLE-SOA-MNAMES-2          | MULTIPLE_SOA_MNAMES,NO_RESPONSE      | NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
+MULT-SOA-MNAMES-NO-DEL-UNDEL-1 | MULTIPLE_SOA_MNAMES                  | NO_RESPONSE, NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
+MULT-SOA-MNAMES-NO-DEL-UNDEL-2 | MULTIPLE_SOA_MNAMES                  | NO_RESPONSE, NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
+NO-RESPONSE                    | NO_RESPONSE                          | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES, ONE_SOA_MNAME
 
 
 ## Zone setup for test scenarios
@@ -70,6 +72,13 @@ the specific scenario:
   [RCODE Name] "NoError"
 * EDNS, version 0, is included in all responses on queries with EDNS.
 * EDNS is not included in responses on queries without EDNS.
+* In undelegated data `IPv4` and `IPv6`, repectively, are placeholders for the
+  actual IP addresses used for the scenario. They are to be found where the data
+  is specified.
+  * If no placeholder is given with the name server name, then no IP adress is
+    given and might be looked up.
+  * The format for undelegated data follow the format used for `zonemaster-cli`
+    (after `--ns`).
 
 ### ONE-SOA-MNAME-1
 The "happy path". Everything is fine.
@@ -111,6 +120,32 @@ Different SOA MNAME on two servers and a third not responding server
   * MNAME in SOA on ns1 equal to ns1
   * MNAME in SOA on ns2 equal to ns2
   * Also delegated to ns3, for which there is no response.
+
+### MULT-SOA-MNAMES-NO-DEL-UNDEL-1
+Zone not delegated, but there is an undelegated version. Different SOA MNAME on
+the servers.
+
+* Zone: mult-soa-mnames-no-del-undel-1.consistency06.xa.
+  * MNAME in SOA on ns1 equal to ns1
+  * MNAME in SOA on ns2 equal to ns2
+  * Undelegated data:
+    * ns1.mult-soa-mnames-no-del-undel-1.consistency06.xa/IPv4
+    * ns1.mult-soa-mnames-no-del-undel-1.consistency06.xa/IPv6
+    * ns2.mult-soa-mnames-no-del-undel-1.consistency06.xa/IPv4
+    * ns2.mult-soa-mnames-no-del-undel-1.consistency06.xa/IPv6
+
+### MULT-SOA-MNAMES-NO-DEL-UNDEL-2
+Zone not delegated, but there is an undelegated version. Different SOA MNAME on
+the servers. NS are out-of-bailiwing.
+
+* Zone: mult-soa-mnames-no-del-undel-2.consistency06.xa.
+  * NS är out-of-bailiwick, "ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb"
+    and "ns4.mult-soa-mnames-no-del-undel-2.consistency06.xb".
+  * MNAME in SOA on ns1 equal to ns1
+  * MNAME in SOA on ns2 equal to ns2
+  * Undelegated data:
+    * ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
+    * ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
 
 ### NO-RESPONSE
 No name server responds.

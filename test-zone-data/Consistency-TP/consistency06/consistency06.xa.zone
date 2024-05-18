@@ -2,7 +2,7 @@ $ORIGIN consistency06.xa.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024051800      ; serial
+                2024051801      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -66,6 +66,10 @@ ns2       A       127.14.6.32
 ns2       AAAA    fda1:b2:c3:0:127:14:6:32
 ns3       A       127.14.6.33
 ns3       AAAA    fda1:b2:c3:0:127:14:6:33
+
+; Not delegated:
+; * mult-soa-mnames-no-del-undel-1.consistency06.xa.
+; * mult-soa-mnames-no-del-undel-2.consistency06.xa.
 
 $ORIGIN no-response.consistency06.xa.
 @                               NS      ns1

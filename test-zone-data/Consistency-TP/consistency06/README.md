@@ -8,6 +8,8 @@
 * ONE-SOA-MNAME-4
 * MULTIPLE-SOA-MNAMES-1
 * MULTIPLE-SOA-MNAMES-2
+* MULT-SOA-MNAMES-NO-DEL-UNDEL-1
+* MULT-SOA-MNAMES-NO-DEL-UNDEL-2
 * NO-RESPONSE
 
 ## zonemaster-cli commands and their output for each test scenario
@@ -119,6 +121,42 @@ Loading profile from COMMON/custom-profile.json.
   20.24 INFO     Consistency06  TEST_CASE_END  testcase=Consistency06
 ```
 --> OK
+
+Scenario name                  | Mandatory message tag                | Forbidden message tags
+:------------------------------|:-------------------------------------|:-------------------------------------------
+MULT-SOA-MNAMES-NO-DEL-UNDEL-1 | MULTIPLE_SOA_MNAMES                  | NO_RESPONSE, NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
+
+* Undelegated data:
+  * ns1.mult-soa-mnames-no-del-undel-1.consistency06.xa/127.14.6.31
+  * ns1.mult-soa-mnames-no-del-undel-1.consistency06.xa/fda1:b2:c3:0:127:14:6:31
+  * ns2.mult-soa-mnames-no-del-undel-1.consistency06.xa/127.14.6.32
+  * ns2.mult-soa-mnames-no-del-undel-1.consistency06.xa/fda1:b2:c3:0:127:14:6:32
+```
+$ zonemaster-cli MULT-SOA-MNAMES-NO-DEL-UNDEL-1.consistency06.xa --raw  --test consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json --ns ns1.mult-soa-mnames-no-del-undel-1.consistency06.xa/127.14.6.31  --ns ns1.mult-soa-mnames-no-del-undel-1.consistency06.xa/fda1:b2:c3:0:127:14:6:31 --ns ns2.mult-soa-mnames-no-del-undel-1.consistency06.xa/127.14.6.32 --ns ns2.mult-soa-mnames-no-del-undel-1.consistency06.xa/fda1:b2:c3:0:127:14:6:32
+Loading profile from COMMON/custom-profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Consistency06  TEST_CASE_START  testcase=Consistency06
+   0.13 NOTICE   Consistency06  MULTIPLE_SOA_MNAMES  count=2
+   0.13 INFO     Consistency06  TEST_CASE_END  testcase=Consistency06
+```
+--> OK
+
+Scenario name                  | Mandatory message tag                | Forbidden message tags
+:------------------------------|:-------------------------------------|:-------------------------------------------
+MULT-SOA-MNAMES-NO-DEL-UNDEL-2 | MULTIPLE_SOA_MNAMES                  | NO_RESPONSE, NO_RESPONSE_SOA_QUERY, ONE_SOA_MNAME
+
+* Undelegated data:
+  * ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
+  * ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
+```
+$ zonemaster-cli MULT-SOA-MNAMES-NO-DEL-UNDEL-2.consistency06.xa --raw  --test consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json --ns ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb --ns ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
+Loading profile from COMMON/custom-profile.json.
+   0.43 ERROR    Unspecified    FAKE_DELEGATION_NO_IP  domain=mult-soa-mnames-no-del-undel-2.consistency06.xa; nsname=ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Consistency06  TEST_CASE_START  testcase=Consistency06
+   0.06 INFO     Consistency06  TEST_CASE_END  testcase=Consistency06
+```
+--> Not OK. FAKE_DELEGATION_NO_IP is not expected here.
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------

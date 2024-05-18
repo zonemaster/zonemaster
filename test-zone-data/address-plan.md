@@ -191,9 +191,12 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.14.6.0/24   | Consistency06 scenarios                                    |
 | 127.14.6.21     | ns1.consistency06.xa                                       |
 | 127.14.6.22     | ns2.consistency06.xa                                       |
+| 127.14.6.23     | ns1.consistency06.xb                                       |
+| 127.14.6.24     | ns2.consistency06.xb                                       |
 | 127.14.6.31     | for scenarios                                              |
 | 127.14.6.32     | for scenarios                                              |
 | 127.14.6.33     | for scenarios                                              |
+| 127.14.6.34     | for scenarios                                              |
 | 127.14.7.0/24   | (not in use)                                                |
 | (...)           |                                                             |
 | 127.14.255.0/24 | (not in use)                                                |
