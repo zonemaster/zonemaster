@@ -2,7 +2,7 @@ $ORIGIN consistency06.xa.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2023111300      ; serial
+                2024051800      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -16,50 +16,56 @@ ns1     AAAA  fda1:b2:c3:0:127:14:6:21
 ns2     A     127.14.6.22
 ns2     AAAA  fda1:b2:c3:0:127:14:6:22
 
-one-soa-mname-1			NS	ns1.one-soa-mname-1
-one-soa-mname-1			NS      ns2.one-soa-mname-1
-ns1.one-soa-mname-1		A	127.14.6.31
-ns1.one-soa-mname-1		AAAA	fda1:b2:c3:0:127:14:6:31
-ns2.one-soa-mname-1		A       127.14.6.32
-ns2.one-soa-mname-1		AAAA    fda1:b2:c3:0:127:14:6:32
+$ORIGIN one-soa-mname-1.consistency06.xa.
+@		NS	ns1
+@		NS      ns2
+ns1		A	127.14.6.31
+ns1		AAAA	fda1:b2:c3:0:127:14:6:31
+ns2		A       127.14.6.32
+ns2		AAAA    fda1:b2:c3:0:127:14:6:32
 
-one-soa-mname-2			NS      ns1.one-soa-mname-2
-one-soa-mname-2			NS      ns2.one-soa-mname-2
-ns1.one-soa-mname-2		A       127.14.6.31
-ns1.one-soa-mname-2		AAAA    fda1:b2:c3:0:127:14:6:31
-ns2.one-soa-mname-2		A       127.14.6.32
-ns2.one-soa-mname-2		AAAA    fda1:b2:c3:0:127:14:6:32
+$ORIGIN one-soa-mname-2.consistency06.xa.
+@		NS      ns1
+@		NS      ns2
+ns1		A       127.14.6.31
+ns1		AAAA    fda1:b2:c3:0:127:14:6:31
+ns2		A       127.14.6.32
+ns2		AAAA    fda1:b2:c3:0:127:14:6:32
 
-one-soa-mname-3			NS      ns1.one-soa-mname-3
-one-soa-mname-3			NS      ns2.one-soa-mname-3
-ns1.one-soa-mname-3		A       127.14.6.31
-ns1.one-soa-mname-3		AAAA    fda1:b2:c3:0:127:14:6:31
-ns2.one-soa-mname-3		A       127.14.6.32
-ns2.one-soa-mname-3		AAAA    fda1:b2:c3:0:127:14:6:32
+$ORIGIN one-soa-mname-3.consistency06.xa.
+@		NS      ns1
+@		NS      ns2
+ns1		A       127.14.6.31
+ns1		AAAA    fda1:b2:c3:0:127:14:6:31
+ns2		A       127.14.6.32
+ns2		AAAA    fda1:b2:c3:0:127:14:6:32
 
-one-soa-mname-4			NS      ns1.one-soa-mname-4
-one-soa-mname-4			NS      ns2.one-soa-mname-4
-ns1.one-soa-mname-4		A       127.14.6.31
-ns1.one-soa-mname-4		AAAA    fda1:b2:c3:0:127:14:6:31
-ns2.one-soa-mname-4		A       127.14.6.32
-ns2.one-soa-mname-4		AAAA    fda1:b2:c3:0:127:14:6:32
+$ORIGIN one-soa-mname-4.consistency06.xa.
+@		NS      ns1
+@		NS      ns2
+ns1		A       127.14.6.31
+ns1		AAAA    fda1:b2:c3:0:127:14:6:31
+ns2		A       127.14.6.32
+ns2		AAAA    fda1:b2:c3:0:127:14:6:32
 
-multiple-soa-mnames-1		NS      ns1.multiple-soa-mnames-1
-multiple-soa-mnames-1		NS      ns2.multiple-soa-mnames-1
-ns1.multiple-soa-mnames-1	A       127.14.6.31
-ns1.multiple-soa-mnames-1	AAAA    fda1:b2:c3:0:127:14:6:31
-ns2.multiple-soa-mnames-1	A       127.14.6.32
-ns2.multiple-soa-mnames-1	AAAA    fda1:b2:c3:0:127:14:6:32
+$ORIGIN multiple-soa-mnames-1.consistency06.xa.
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.14.6.31
+ns1             AAAA    fda1:b2:c3:0:127:14:6:31
+ns2             A       127.14.6.32
+ns2             AAAA    fda1:b2:c3:0:127:14:6:32
 
-multiple-soa-mnames-2           NS      ns1.multiple-soa-mnames-2
-multiple-soa-mnames-2           NS      ns2.multiple-soa-mnames-2
-multiple-soa-mnames-2           NS      ns3.multiple-soa-mnames-2
-ns1.multiple-soa-mnames-2       A       127.14.6.31
-ns1.multiple-soa-mnames-2       AAAA    fda1:b2:c3:0:127:14:6:31
-ns2.multiple-soa-mnames-2       A       127.14.6.32
-ns2.multiple-soa-mnames-2       AAAA    fda1:b2:c3:0:127:14:6:32
-ns3.multiple-soa-mnames-2       A       127.14.6.33
-ns3.multiple-soa-mnames-2       AAAA    fda1:b2:c3:0:127:14:6:33
+$ORIGIN multiple-soa-mnames-2.consistency06.xa.
+@         NS      ns1
+@         NS      ns2
+@         NS      ns3
+ns1       A       127.14.6.31
+ns1       AAAA    fda1:b2:c3:0:127:14:6:31
+ns2       A       127.14.6.32
+ns2       AAAA    fda1:b2:c3:0:127:14:6:32
+ns3       A       127.14.6.33
+ns3       AAAA    fda1:b2:c3:0:127:14:6:33
 
 $ORIGIN no-response.consistency06.xa.
 @                               NS      ns1
