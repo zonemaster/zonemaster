@@ -1,8 +1,11 @@
-$ORIGIN good-parent-host-1.basic01.xa. ; Must end with "."
+$ORIGIN parent.child-alias-2.basic01.xa.
+
+; For ns2. Different version for ns1.
+
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024050800      ; serial
+                2024052010      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -11,18 +14,15 @@ $TTL 3600
 
 @		NS	ns1
 @		NS	ns2
-ns1		A	127.12.1.31
-ns1		AAAA	fda1:b2:c3:0:127:12:1:31
-ns2		A	127.12.1.32
-ns2		AAAA	fda1:b2:c3:0:127:12:1:32
-
-
-$ORIGIN parent.good-parent-host-1.basic01.xa. ; Must end with "."
-
-@		NS	ns1
-@		NS	ns2
 ns1		A	127.12.1.41
 ns1		AAAA	fda1:b2:c3:0:127:12:1:41
 ns2		A	127.12.1.42
 ns2		AAAA	fda1:b2:c3:0:127:12:1:42
 
+child           DNAME   brother
+
+$ORIGIN brother
+@               NS      ns1-delegated-child.basic01.xa.
+@               NS      ns2-delegated-child.basic01.xa.
+
+;EOF

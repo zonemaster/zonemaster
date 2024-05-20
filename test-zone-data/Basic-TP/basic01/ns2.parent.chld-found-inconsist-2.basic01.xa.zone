@@ -1,19 +1,25 @@
-$ORIGIN parent.no-child-1.basic01.xa.            ; Must end with "."
+$ORIGIN parent.chld-found-inconsist-2.basic01.xa.
+
+; For ns2 only. ns1 has a different version of the zone.
+
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024050300      ; serial
+                2024052001      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
                 1d )            ; minimum
+                
 
 @		NS	ns1
 @		NS	ns2
-
 ns1		A	127.12.1.41
 ns1		AAAA	fda1:b2:c3:0:127:12:1:41
 ns2		A	127.12.1.42
 ns2		AAAA	fda1:b2:c3:0:127:12:1:42
 
-; No child exists.
+
+child           CNAME   no-child
+no-child        A     127.12.1.32
+                AAAA  fda1:b2:c3:0:127:12:1:32

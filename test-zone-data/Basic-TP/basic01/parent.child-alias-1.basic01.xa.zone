@@ -1,19 +1,27 @@
-$ORIGIN parent.no-child-1.basic01.xa.  ; Must end with "."
+$ORIGIN parent.child-alias-1.basic01.xa.
+
+
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024050602      ; serial
+                2024052006      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
                 1d )            ; minimum
+                
 
 @		NS	ns1
 @		NS	ns2
-
 ns1		A	127.12.1.41
 ns1		AAAA	fda1:b2:c3:0:127:12:1:41
 ns2		A	127.12.1.42
 ns2		AAAA	fda1:b2:c3:0:127:12:1:42
 
-; No delegation of child.
+child           DNAME   sister
+
+$ORIGIN sister
+@               NS      ns1-delegated-child.basic01.xa.
+@               NS      ns2-delegated-child.basic01.xa.
+
+;EOF

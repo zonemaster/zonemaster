@@ -2,7 +2,7 @@ $ORIGIN basic01.xa.                              ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024051200      ; serial
+                2024052020      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -124,4 +124,171 @@ ns1		AAAA	fda1:b2:c3:0:127:12:1:31
 ns2		A	127.12.1.32
 ns2		AAAA	fda1:b2:c3:0:127:12:1:32
 
+$ORIGIN no-child-2.basic01.xa.             ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
 
+$ORIGIN no-chld-par-undeter-1.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN chld-found-par-undet-1.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN chld-found-inconsist-1.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN chld-found-inconsist-2.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN chld-found-inconsist-3.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN chld-found-inconsist-4.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN chld-found-inconsist-5.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN chld-found-inconsist-6.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN chld-found-inconsist-7.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN chld-found-inconsist-8.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN chld-found-inconsist-9.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN chld-found-inconsist-10.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN no-del-undel-no-par-1.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN no-del-undel-par-und-1.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN no-chld-no-par-1.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN child-alias-1.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN child-alias-2.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN zone-err-grandparent-1.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN zone-err-grandparent-2.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+
+$ORIGIN zone-err-grandparent-3.basic01.xa.              ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
