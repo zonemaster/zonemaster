@@ -32,22 +32,22 @@ subzones are created. The names are given in section
 
 Scenario name                | Expected output
 :----------------------------|:---------------------------------------------------------------------------------------------
-GOOD-CNAME-1                 | True
-GOOD-CNAME-2                 | True
-GOOD-CNAME-CHAIN             | True
-GOOD-CNAME-OUT-OF-ZONE       | True
-NXDOMAIN-VIA-CNAME           | Undefined
-NODATA-VIA-CNAME             | Undefined
-MULT-CNAME                   | Undefined and tag `CNAME_MULTIPLE_FOR_NAME`
-LOOPED-CNAME-IN-ZONE-1       | Undefined and tag `CNAME_LOOP_INNER`
-LOOPED-CNAME-IN-ZONE-2       | Undefined and tag `CNAME_LOOP_INNER`
-LOOPED-CNAME-IN-ZONE-3       | Undefined and tag `CNAME_LOOP_INNER`
-LOOPED-CNAME-OUT-OF-ZONE     | Undefined and tag `CNAME_LOOP_OUTER`
-TOO-LONG-CNAME-CHAIN         | ??
-TARGET-NO-MATCH-CNAME        | ??
-BROKEN-CNAME-CHAIN           | ??
-WRONG-CNAME-OWNER-NAME       | ??
-EXTRA-CNAME-IN-ANSWER        | ??
+GOOD-CNAME-1                 | True and tags `CNAME_START`, `CNAME_FOLLOWED_IN_ZONE`
+GOOD-CNAME-2                 | True and tags `CNAME_START`, `CNAME_FOLLOWED_IN_ZONE`
+GOOD-CNAME-CHAIN             | True and tags `CNAME_START`, `CNAME_FOLLOWED_IN_ZONE`
+GOOD-CNAME-OUT-OF-ZONE       | True and tags `CNAME_START`, `CNAME_FOLLOWED_OUT_OF_ZONE`
+NXDOMAIN-VIA-CNAME           | True and tags `CNAME_START`, `CNAME_FOLLOWED_OUT_OF_ZONE`
+NODATA-VIA-CNAME             | True and tags `CNAME_START`, `CNAME_FOLLOWED_OUT_OF_ZONE`
+MULT-CNAME                   | Undefined and tags `CNAME_START`, `CNAME_MULTIPLE_FOR_NAME`
+LOOPED-CNAME-IN-ZONE-1       | Undefined and tags `CNAME_START`, `CNAME_LOOP_INNER`
+LOOPED-CNAME-IN-ZONE-2       | Undefined and tags `CNAME_START`, `CNAME_LOOP_INNER`
+LOOPED-CNAME-IN-ZONE-3       | Undefined and tags `CNAME_START`, `CNAME_LOOP_INNER`
+LOOPED-CNAME-OUT-OF-ZONE     | Undefined and tags `CNAME_START`, `CNAME_LOOP_OUTER`
+TOO-LONG-CNAME-CHAIN         | Undefined and tags `CNAME_START`, `CNAME_RECORDS_TOO_MANY`
+TARGET-NO-MATCH-CNAME        | Undefined and tags `CNAME_START`, `CNAME_NO_MATCH`
+BROKEN-CNAME-CHAIN           | Undefined and tags `CNAME_START`, `CNAME_RECORDS_CHAIN_BROKEN`
+WRONG-CNAME-OWNER-NAME       | False
+EXTRA-CNAME-IN-ANSWER        | False
 
 ## Zone setup for test scenarios
 
