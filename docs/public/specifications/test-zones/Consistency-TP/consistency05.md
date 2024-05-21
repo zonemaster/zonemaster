@@ -154,8 +154,8 @@ Also the "happy path". But there is an undelegated zone to be tested.
   * Delegated zone on ns1 and ns2.
   * Undelegated zone on ns3 and ns4.
   * Delegated zone has neither ns1, ns2, ns3 nor ns4 as address records.
-  * Undelegated zone does not have ns1 and ns2 as address records, but it
-    has ns3 and ns4.
+  * Undelegated zone has neither ns1 nor ns2 as an address record, but it
+    has both ns3 and ns4 as address records.
   * Undelgated data:
     * ns3.addr-match-del-undel-1.consistency05.xa/IPv4
     * ns3.addr-match-del-undel-1.consistency05.xa/IPv6
@@ -170,8 +170,8 @@ NS are out-of-bailiwick.
   * Delegated zone on ns1 and ns2.
   * Undelegated zone on "ns3.addr-match-del-undel-2.consistency05.xb" and
     "ns4.addr-match-del-undel-2.consistency05.xb".
-  * Delegated and undelegated zone, respectively, do not have ns1 or ns2 as
-    address records.
+  * Delegated and undelegated zone, respectively, do not have neither ns1 nor ns2
+    as an address record.
   * Undelegated data:
     * ns3.addr-match-del-undel-2.consistency05.xb
     * ns4.addr-match-del-undel-2.consistency05.xb
