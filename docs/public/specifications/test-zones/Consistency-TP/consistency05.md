@@ -82,10 +82,10 @@ the specific scenario:
 * All responses are authoritative with [RCODE Name] "NoError"
 * EDNS, version 0, is included in all responses on queries with EDNS.
 * EDNS is not included in responses on queries without EDNS.
-* In undelegated data `IPv4` and `IPv6`, repectively, are placeholders for the
+* In undelegated data, `IPv4` and `IPv6`, respectively, are placeholders for the
   actual IP addresses used for the scenario. They are to be found where the data
   is specified.
-  * If no placeholder is given with the name server name, then no IP adress is
+  * If no placeholder is given with the name server name, then no IP address is
     given and might be looked up.
   * The format for undelegated data follow the format used for `zonemaster-cli`
     (after `--ns`).
@@ -152,8 +152,8 @@ Also the "happy path". But there is an undelegated zone to be tested.
 
 * Zone: addr-match-del-undel-1.consistency05.xa
   * Delegated zone on ns1 and ns2.
-  * Undelegated zon on ns3 and ns4.
-  * Delegated zone has neither ns1, ns2, ns3 or ns4 as address records.
+  * Undelegated zone on ns3 and ns4.
+  * Delegated zone has neither ns1, ns2, ns3 nor ns4 as address records.
   * Undelegated zone does not have ns1 and ns2 as address records, but it
     has ns3 and ns4.
   * Undelgated data:
@@ -168,7 +168,7 @@ NS are out-of-bailiwick.
 
 * Zone: addr-match-del-undel-2.consistency05.xa
   * Delegated zone on ns1 and ns2.
-  * Undelegated zon on "ns3.addr-match-del-undel-2.consistency05.xb" and
+  * Undelegated zone on "ns3.addr-match-del-undel-2.consistency05.xb" and
     "ns4.addr-match-del-undel-2.consistency05.xb".
   * Delegated and undelegated zone, respectively, do not have ns1 or ns2 as
     address records.
@@ -183,7 +183,7 @@ tested.
 * Zone: addr-match-no-del-undel-1.consistency05.xa
   * No delegated zone.
   * Undelegated zone on ns1 and ns2.
-  * Undelgated data:
+  * Undelegated data:
     * ns1.addr-match-no-del-undel-1.consistency05.xa/IPv4
     * ns1.addr-match-no-del-undel-1.consistency05.xa/IPv6
     * ns2.addr-match-no-del-undel-1.consistency05.xa/IPv4

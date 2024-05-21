@@ -72,10 +72,10 @@ the specific scenario:
   [RCODE Name] "NoError"
 * EDNS, version 0, is included in all responses on queries with EDNS.
 * EDNS is not included in responses on queries without EDNS.
-* In undelegated data `IPv4` and `IPv6`, repectively, are placeholders for the
+* In undelegated data, `IPv4` and `IPv6`, respectively, are placeholders for the
   actual IP addresses used for the scenario. They are to be found where the data
   is specified.
-  * If no placeholder is given with the name server name, then no IP adress is
+  * If no placeholder is given with the name server name, then no IP address is
     given and might be looked up.
   * The format for undelegated data follow the format used for `zonemaster-cli`
     (after `--ns`).
@@ -136,10 +136,10 @@ the servers.
 
 ### MULT-SOA-MNAMES-NO-DEL-UNDEL-2
 Zone not delegated, but there is an undelegated version. Different SOA MNAME on
-the servers. NS are out-of-bailiwing.
+the servers. NS are out-of-bailiwick.
 
 * Zone: mult-soa-mnames-no-del-undel-2.consistency06.xa.
-  * NS är out-of-bailiwick, "ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb"
+  * NS are out-of-bailiwick, "ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb"
     and "ns4.mult-soa-mnames-no-del-undel-2.consistency06.xb".
   * MNAME in SOA on ns1 equal to ns1
   * MNAME in SOA on ns2 equal to ns2
