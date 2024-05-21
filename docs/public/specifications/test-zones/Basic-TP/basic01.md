@@ -184,7 +184,7 @@ the one tested.
 * Zone: child.parent.good-undel-1.basic01.xa
   * Child zone is delegated, but there is also an undelegated version.
   * There are no zone files for child (delegated or undelegated).
-  * Undelgated data:
+  * Undelegated data:
     * ns3-undelegated-child.basic01.xa
     * ns4-undelegated-child.basic01.xa
 
