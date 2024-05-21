@@ -16,7 +16,7 @@ ns1		AAAA	fda1:b2:c3:0:127:12:1:21
 ns2		A	127.12.1.22
 ns2		AAAA	fda1:b2:c3:0:127:12:1:22
 
-; Name server names that holds no zones. Just provids addresses.
+; Name server names that holds no zones. Just provides addresses.
 ns1-delegated-child      A     127.12.1.31
 ns1-delegated-child      AAAA  fda1:b2:c3:0:127:12:1:31
 ns2-delegated-child      A     127.12.1.32
