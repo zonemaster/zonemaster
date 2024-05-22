@@ -331,7 +331,7 @@ Loading profile from COMMON/custom-profile.json.
    0.11 ERROR    Basic01        B01_NO_CHILD  domain_child=child.parent.no-chld-par-undeter-1.basic01.xa; domain_super="parent.no-chld-par-undeter-1.basic01.xa"
    0.11 INFO     Basic01        TEST_CASE_END  testcase=Basic01
 ```
---> Not OK
+--> OK
 
 Scenario name             | Mandatory message tag                                                             | Forbidden message tags
 :-------------------------|:----------------------------------------------------------------------------------|:----------------------
@@ -400,7 +400,7 @@ Loading profile from COMMON/custom-profile.json.
 
 Scenario name             | Mandatory message tag                                                             | Forbidden message tags
 :-------------------------|:----------------------------------------------------------------------------------|:----------------------
-CHLD-FOUND-INCONSIST-4    | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION                  | 2)
+CHLD-FOUND-INCONSIST-4    | B01_PARENT_FOUND, B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION                  | 2)
 
 ```
 $ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.CHLD-FOUND-INCONSIST-4.basic01.xa
@@ -413,7 +413,7 @@ Loading profile from COMMON/custom-profile.json.
    0.09 NOTICE   Basic01        B01_CHILD_IS_ALIAS  domain_child=child.parent.chld-found-inconsist-4.basic01.xa; domain_target=sister.parent.chld-found-inconsist-4.basic01.xa.; ns_ip_list=ns2.parent.chld-found-inconsist-4.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-4.basic01.xa/fda1:b2:c3:0:127:12:1:42
    0.09 INFO     Basic01        TEST_CASE_END  testcase=Basic01
 ```
-`--> OK
+--> OK
 
 Scenario name             | Mandatory message tag                                                             | Forbidden message tags
 :-------------------------|:----------------------------------------------------------------------------------|:----------------------
@@ -479,9 +479,9 @@ Loading profile from COMMON/custom-profile.json.
 ```
 --> OK
 
-Scenario name             | Mandatory message tag                                                             | Forbidden message tags
-:-------------------------|:----------------------------------------------------------------------------------|:----------------------
-CHLD-FOUND-INCONSIST-9    | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION                  | 2)
+Scenario name             | Mandatory message tag                                                               | Forbidden message tags
+:-------------------------|:------------------------------------------------------------------------------------|:----------------------
+CHLD-FOUND-INCONSIST-9    | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND  | 2)
 
 ```
 $ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.CHLD-FOUND-INCONSIST-9.basic01.xa
