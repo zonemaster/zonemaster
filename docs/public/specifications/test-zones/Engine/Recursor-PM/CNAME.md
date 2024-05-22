@@ -46,8 +46,8 @@ LOOPED-CNAME-OUT-OF-ZONE     | Undefined and tags `CNAME_START`, `CNAME_LOOP_OUT
 TOO-LONG-CNAME-CHAIN         | Undefined and tags `CNAME_START`, `CNAME_RECORDS_TOO_MANY`
 TARGET-NO-MATCH-CNAME        | Undefined and tags `CNAME_START`, `CNAME_NO_MATCH`
 BROKEN-CNAME-CHAIN           | Undefined and tags `CNAME_START`, `CNAME_RECORDS_CHAIN_BROKEN`
-WRONG-CNAME-OWNER-NAME       | False
-EXTRA-CNAME-IN-ANSWER        | False
+WRONG-CNAME-OWNER-NAME       | False and no tags
+EXTRA-CNAME-IN-ANSWER        | False and no tags
 
 ## Zone setup for test scenarios
 
