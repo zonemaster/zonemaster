@@ -39,15 +39,15 @@ server.
 
 ## Summary
 
-Message Tag                      | Level   | Arguments    | Message ID for message tag
-:--------------------------------|:--------|:-------------|:--------------------------------------------
-Z11_INCONSISTENT_SPF_POLICIES    | WARNING |              | The zone publishes different SPF policies on different name servers.
-Z11_DIFFERENT_SPF_POLICIES_FOUND | NOTICE  | ns_ip_list   | The following name servers returned the same SPF policy, but other name servers returned a different policy. Name servers: {ns_ip_list}.
-Z11_NO_SPF_FOUND                 | NOTICE  |              | The zone does not publish an SPF policy.
-Z11_SPF1_MULTIPLE_RECORDS        | ERROR   | ns_ip_list   | The following name servers returned more than one SPF policy. Name servers: {ns_ip_list}.
-Z11_SPF1_SYNTAX_ERROR            | ERROR   | ns_ip_list   | The zone’s SPF policy has a syntax error. Policy retrieved from the following nameservers: {ns_ip_list}.
-Z11_SPF1_SYNTAX_OK               | INFO    |              | The zone’s SPF policy has correct syntax.
-Z11_UNABLE_TO_CHECK_FOR_SPF      | ERROR   |              | None of the zone’s name servers responded with an authoritative response to queries for SPF policies.
+Message Tag                      | Level   | Arguments          | Message ID for message tag
+:--------------------------------|:--------|:-------------------|:--------------------------------------------
+Z11_INCONSISTENT_SPF_POLICIES    | WARNING |                    | One or more name servers do not publish the same SPF policy as the others.
+Z11_DIFFERENT_SPF_POLICIES_FOUND | NOTICE  | ns_ip_list         | The following name servers returned the same SPF policy, but other name servers returned a different policy. Name servers: {ns_ip_list}.
+Z11_NO_SPF_FOUND                 | NOTICE  | domain             | No SPF policy was found for {domain}.
+Z11_SPF1_MULTIPLE_RECORDS        | ERROR   | ns_ip_list         | The following name servers returned more than one SPF policy. Name servers: {ns_ip_list}.
+Z11_SPF1_SYNTAX_ERROR            | ERROR   | domain, ns_ip_list | The SPF policy of {domain} has a syntax error. Policy retrieved from the following nameservers: {ns_ip_list}.
+Z11_SPF1_SYNTAX_OK               | INFO    | domain             | The SPF policy of {domain} has correct syntax.
+Z11_UNABLE_TO_CHECK_FOR_SPF      | ERROR   |                    | None of the zone’s name servers responded with an authoritative response to queries for SPF policies.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
