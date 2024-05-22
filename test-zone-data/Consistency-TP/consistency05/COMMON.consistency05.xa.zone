@@ -6,14 +6,16 @@
 $TTL 3600
 
 @       SOA     ns1 admin.mail.xa. (
-                2023092000      ; serial
+                2024051700      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
                 1d )            ; minimum
 
-        NS      ns1
-        NS      ns2
+@       NS      ns1
+@       NS      ns2
+
+@       TXT     "Text"
 
 ns1     A       127.14.5.31
 ns1     AAAA    fda1:b2:c3::127:14:5:31
