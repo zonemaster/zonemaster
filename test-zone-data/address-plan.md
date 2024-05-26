@@ -460,22 +460,19 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | Address (range) | Used for -- range or specific NS address                    |
 |-----------------|-------------------------------------------------------------|
 | 127.40.0.0/24   | (not in use)                                                |
-| 127.40.1.0/24   | Base level NS                                               |
+| 127.40.1.0/24   | NS for scenario zones or above                              |
 | 127.40.1.21     | ns1.methodsv2.xa                                            |
 | 127.40.1.22     | ns2.methodsv2.xa                                            |
-| 127.40.2.0/24   | Grand parent level NS                                       |
-| 127.40.2.21     | ns1.XXX.methodsv2.xa (NS for grandparent)                   |
-| 127.40.2.22     | ns2.XXX.methodsv2.xa (NS for grandparent)                   |
-| 127.40.2.25     | ns5.XXX.methodsv2.xa (NS for child)                         |
-| 127.40.2.26     | ns6.XXX.methodsv2.xa (NS for child)                         |
-| 127.40.3.0/24   | Parent level NS                                             |
-| 127.40.3.21     | ns1.parent.XXX.methodsv2.xa (NS for parent)                 |
-| 127.40.3.22     | ns2.parent.XXX.methodsv2.xa (NS for parent)                 |
-| 127.40.3.23     | ns3.parent.methodsv2.xa (NS for child)                      |
-| 127.40.3.24     | ns4.parent.methodsv2.xa (NS for child)                      |
-| 127.40.4.0/24   | Child level NS                                              |
-| 127.40.4.21     | ns1.child.parent.XXX.methodsv2.xa (NS for child)            |
-| 127.40.4.22     | ns2.child.parent.XXX.methodsv2.xa (NS for child)            |
+| 127.40.1.31     | ns1.XXX.methodsv2.xa (NS for grandparent)                   |
+| 127.40.1.32     | ns2.XXX.methodsv2.xa (NS for grandparent)                   |
+| 127.40.1.35     | ns5.XXX.methodsv2.xa (NS for child)                         |
+| 127.40.1.36     | ns6.XXX.methodsv2.xa (NS for child)                         |
+| 127.40.1.41     | ns1.parent.XXX.methodsv2.xa (NS for parent)                 |
+| 127.40.1.42     | ns2.parent.XXX.methodsv2.xa (NS for parent)                 |
+| 127.40.1.43     | ns3.parent.methodsv2.xa (NS for child)                      |
+| 127.40.1.44     | ns4.parent.methodsv2.xa (NS for child)                      |
+| 127.40.1.51     | ns1.child.parent.XXX.methodsv2.xa (NS for child)            |
+| 127.40.1.52     | ns2.child.parent.XXX.methodsv2.xa (NS for child)            |
 | (...)           |                                                             |
 | 127.40.255.0/24 | (not in use)                                                |
 

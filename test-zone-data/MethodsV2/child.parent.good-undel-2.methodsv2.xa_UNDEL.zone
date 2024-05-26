@@ -14,8 +14,8 @@ $TTL 3600
 @		NS	ns3.parent.good-undel-2.methodsv2.xa.
 @		NS	ns6.good-undel-2.methodsv2.xa.
 
-ns1		A	127.40.4.21
-ns1		AAAA	fda1:b2:c3:0:127:40:4:21
+ns1		A	127.40.1.51
+ns1		AAAA	fda1:b2:c3:0:127:40:1:51
 
 ; EOF
 
