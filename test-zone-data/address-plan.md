@@ -463,6 +463,10 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.40.1.0/24   | NS for scenario zones or above                              |
 | 127.40.1.21     | ns1.methodsv2.xa                                            |
 | 127.40.1.22     | ns2.methodsv2.xa                                            |
+| 127.40.1.26     | ns6 (no NS listening, defined i methodsv2.xa                |
+| 127.40.1.27     | ns7 (no NS listening, defined i methodsv2.xa                |
+| 127.40.1.28     | ns8 (no NS listening, defined i methodsv2.xa                |
+| 127.40.1.29     | ns9 (no NS listening, defined i methodsv2.xa                |
 | 127.40.1.31     | ns1.XXX.methodsv2.xa (NS for grandparent)                   |
 | 127.40.1.32     | ns2.XXX.methodsv2.xa (NS for grandparent)                   |
 | 127.40.1.33     | ns3.XXX.methodsv2.xa (NS for child defined in grandparent)  |
@@ -475,6 +479,9 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.40.1.44     | ns4.parent.methodsv2.xa (NS for child)                      |
 | 127.40.1.51     | ns1.child.parent.XXX.methodsv2.xa (NS for child)            |
 | 127.40.1.52     | ns2.child.parent.XXX.methodsv2.xa (NS for child)            |
+| 127.40.1.53     | ns3.child.parent.XXX.methodsv2.xa (NS for child)            |
+| 127.40.1.54     | ns4.child.parent.XXX.methodsv2.xa (NS for child)            |
+| 127.40.1.55     | ns5.child.parent.XXX.methodsv2.xa (NS for child)            |
 | (...)           |                                                             |
 | 127.40.255.0/24 | (not in use)                                                |
 

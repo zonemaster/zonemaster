@@ -116,6 +116,82 @@ child.parent.good-3.methodsv2.xa
   * ns5.good-3.methodsv2.xa/127.40.1.35
   * ns5.good-3.methodsv2.xa/fda1:b2:c3:0:127:40:1:35
 
+### GOOD-4
+
+#### Zone
+child.parent.good-4.methodsv2.xa
+
+#### Methods and expected output
+* Get parent NS IP addresses
+  * 127.40.1.41
+  * fda1:b2:c3:0:127:40:1:41
+  * 127.40.1.42
+  * fda1:b2:c3:0:127:40:1:42
+  * 127.40.1.31
+  * fda1:b2:c3:0:127:40:1:31
+* Get delegation NS names and IP addresses
+  * ns1.child.parent.good-4.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.good-4.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.good-4.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.good-4.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+* Get zone NS names and IP addresses
+  * ns1.child.parent.good-4.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.good-4.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.good-4.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.good-4.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+
+### GOOD-5
+
+#### Zone
+child.parent.good-5.methodsv2.xa
+
+#### Methods and expected output
+* Get parent NS IP addresses
+  * 127.40.1.41
+  * fda1:b2:c3:0:127:40:1:41
+  * 127.40.1.42
+  * fda1:b2:c3:0:127:40:1:42
+* Get delegation NS names and IP addresses
+  * ns1.child.parent.good-5.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.good-5.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.good-5.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.good-5.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+  * ns1.good-5.methodsv2.xa/127.40.1.31
+  * ns1.good-5.methodsv2.xa/fda1:b2:c3:0:127:40:1:31
+  * ns1.parent.good-5.methodsv2.xa/127.40.1.41
+  * ns1.parent.good-5.methodsv2.xa/fda1:b2:c3:0:127:40:1:41
+* Get zone NS names and IP addresses
+  * ns1.child.parent.good-5.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.good-5.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.good-5.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.good-5.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+  * ns1.good-5.methodsv2.xa/127.40.1.31
+  * ns1.good-5.methodsv2.xa/fda1:b2:c3:0:127:40:1:31
+  * ns1.parent.good-5.methodsv2.xa/127.40.1.41
+  * ns1.parent.good-5.methodsv2.xa/fda1:b2:c3:0:127:40:1:41
+
+### GOOD-6
+
+#### Zone
+child.parent.good-6.methodsv2.xa
+
+#### Methods and expected output
+* Get parent NS IP addresses
+  * 127.40.1.41
+  * fda1:b2:c3:0:127:40:1:41
+  * 127.40.1.42
+  * fda1:b2:c3:0:127:40:1:42
+* Get delegation NS names and IP addresses
+  * ns1.good-6.methodsv2.xa/127.40.1.31
+  * ns1.good-6.methodsv2.xa/fda1:b2:c3:0:127:40:1:31
+  * ns2.good-6.methodsv2.xa/127.40.1.32
+  * ns2.good-6.methodsv2.xa/fda1:b2:c3:0:127:40:1:32
+
+* Get zone NS names and IP addresses
+  * ns1.good-6.methodsv2.xa/127.40.1.31
+  * ns1.good-6.methodsv2.xa/fda1:b2:c3:0:127:40:1:31
+  * ns2.good-6.methodsv2.xa/127.40.1.32
+  * ns2.good-6.methodsv2.xa/fda1:b2:c3:0:127:40:1:32
 
 ### GOOD-UNDEL-1
 

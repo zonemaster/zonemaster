@@ -2,7 +2,7 @@ $ORIGIN methodsv2.xa.                              ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2022121300      ; serial
+                2024052703      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -15,6 +15,18 @@ ns1		A	127.40.1.21
 ns1		AAAA	fda1:b2:c3:0:127:40:1:21
 ns2		A	127.40.1.22
 ns2		AAAA	fda1:b2:c3:0:127:40:1:22
+
+
+; Name server names that holds no zones. Just provides addresses.
+ns6-delegated-child      A     127.40.1.26
+ns6-delegated-child      AAAA  fda1:b2:c3:0:127:40:1:26
+ns7-delegated-child      A     127.40.1.27
+ns7-delegated-child      AAAA  fda1:b2:c3:0:127:40:1:27
+ns8-undelegated-child    A     127.40.1.28
+ns8-undelegated-child    AAAA  fda1:b2:c3:0:127:40:1:28
+ns9-undelegated-child    A     127.40.1.29
+ns9-undelegated-child    AAAA  fda1:b2:c3:0:127:40:1:29
+
 
 $ORIGIN good-1.methodsv2.xa.            ; Must end with "."
 @		NS	ns1
@@ -34,6 +46,31 @@ ns2		AAAA	fda1:b2:c3:0:127:40:1:32
 
 
 $ORIGIN good-3.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+
+$ORIGIN good-4.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN good-5.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN good-6.methodsv2.xa.            ; Must end with "."
 @		NS	ns1
 @		NS	ns2
 ns1		A	127.40.1.31
