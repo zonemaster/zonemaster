@@ -465,8 +465,10 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.40.1.22     | ns2.methodsv2.xa                                            |
 | 127.40.1.31     | ns1.XXX.methodsv2.xa (NS for grandparent)                   |
 | 127.40.1.32     | ns2.XXX.methodsv2.xa (NS for grandparent)                   |
-| 127.40.1.35     | ns5.XXX.methodsv2.xa (NS for child)                         |
-| 127.40.1.36     | ns6.XXX.methodsv2.xa (NS for child)                         |
+| 127.40.1.33     | ns3.XXX.methodsv2.xa (NS for child defined in grandparent)  |
+| 127.40.1.34     | ns4.XXX.methodsv2.xa (NS for child defined in grandparent)  |
+| 127.40.1.35     | ns5.XXX.methodsv2.xa (NS for child defined in grandparent)  |
+| 127.40.1.36     | ns6.XXX.methodsv2.xa (NS for child defined in grandparent)  |
 | 127.40.1.41     | ns1.parent.XXX.methodsv2.xa (NS for parent)                 |
 | 127.40.1.42     | ns2.parent.XXX.methodsv2.xa (NS for parent)                 |
 | 127.40.1.43     | ns3.parent.methodsv2.xa (NS for child)                      |
