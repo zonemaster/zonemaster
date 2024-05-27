@@ -2,7 +2,7 @@ $ORIGIN child.parent.good-undel-1.methodsv2.xa.            ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2022121300      ; serial
+                2024052700      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -12,8 +12,8 @@ $TTL 3600
 @		NS	ns3.parent.good-undel-1.methodsv2.xa.
 @		NS	ns6.good-undel-1.methodsv2.xa.
 
-ns1-2		A	127.40.1.42
-ns1-2		AAAA	fda1:b2:c3:0:127:40:1:42
+ns1-2		A	127.40.1.52
+ns1-2		AAAA	fda1:b2:c3:0:127:40:1:52
 
 ; EOF
 
