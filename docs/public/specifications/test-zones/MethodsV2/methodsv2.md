@@ -22,6 +22,64 @@ Methods. See [Implementation of test scenarios for MethodsV2] for the
 implementation of the scenarios described in this document.
 
 
+## Public methods
+
+[MethodsV2] provides the following public methods:
+
+* For parent zone:
+  * Get parent NS IP addresses
+* For delegation:
+  * Get delegation NS names and IP addresses
+  * Get delegation NS IP addresses
+  * Get delegation NS names
+* For zone information:
+  * Get zone NS names and IP addresses
+  * Get zone NS names
+  * Get zone NS IP addresses
+
+### Data type
+
+All methods can return one of the following data types:
+  * Empty set
+  * Non-empty set
+  * Undefined set
+
+For these scenarios no distrinction is made between "empty" and "undefined". Both
+are set as an empty set.
+
+The non-empty set from the following methods consists of unique IP addresses,
+IPv4, IPv6 or both (e.g "127.40.4.21" and "fda1:b2:c3::21" are valid):
+  * Get parent NS IP addresses
+  * Get delegation NS IP addresses
+  * Get zone NS IP addresses
+  
+The non-empty set from the following methods consists of unique name server
+names (e.g. "ns1.example.xa" and "ns2.example.xb" are valid):
+  * Get delegation NS names
+  * Get zone NS names
+
+The non-empty set from the following methods consists of unique pairs of name
+server name and its IP address (IPv4 or IPv6). The IP address can be left blank
+(e.g. "ns1.example.xa/127.40.4.21", "ns1.example.xa/fda1:b2:c3::21" and
+"ns1.example.xa" are valid):
+  * Get delegation NS names and IP addresses
+  * Get zone NS names and IP addresses
+
+### Data defined for the scenarios
+
+Both *Get delegation NS IP addresses* and *Get delegation NS names* can be
+dirived from *Get delegation NS names and IP addresses*.
+
+Both *Get zone NS IP addresses* and *Get zone NS names* can be direved from
+*Get zone NS names and IP addresses*.
+
+For the scenarios defined in this document the expected data is only defined for
+the following three methods:
+  * Get parent NS IP addresses
+  * Get delegation NS names and IP addresses
+  * Get zone NS names and IP addresses
+
+
 ## Test zone name
 
 The test zone for each test scenario in this document is a subdomain delegated
@@ -181,11 +239,16 @@ undelegated.
         * ns1-2.child.parent.good-undel-1.methodsv2.xa
         * ns3.parent.good-undel-1.methodsv2.xa (optional)
   * To be tested with undelegated data (fake data):
-      * ns1-2.child.parent.good-undel-1.methodsv2.xa/IPv4-12
-      * ns1-2.child.parent.good-undel-1.methodsv2.xa/IPv6-12
-      * ns3.parent.good-undel-1.methodsv2.xa/IPv4-13
-      * ns3.parent.good-undel-1.methodsv2.xa/IPv6-13
+      * ns1-2.child.parent.good-undel-1.methodsv2.xa/IPv4
+      * ns1-2.child.parent.good-undel-1.methodsv2.xa/IPv6
+      * ns3.parent.good-undel-1.methodsv2.xa/IPv4
+      * ns3.parent.good-undel-1.methodsv2.xa/IPv6
       * ns6.good-undel-1.methodsv2.xa
+  * There is an undelegated version of the zone matching undelegated data.
+  * ns1-2 have different IP addresses for delegation and delegated zone, on one
+    hand, and undelegated data and undelegated version of the zone, on the other.
+  * ns3.parent.good-undel-1.methodsv2.xa is shared between delegated zone and
+    undelegated version of zone, but holding the data of the undelegated version.
 
 ## GOOD-UNDEL-2
 
@@ -197,26 +260,16 @@ undelegated.
 * Zone: child.parent.good-undel-2.methodsv2.xa
   * No delegation from parent.
   * To be tested with undelegated data (fake data):
-      * ns1.child.parent.good-undel-2.methodsv2.xa/IPv4-12
-      * ns1.child.parent.good-undel-2.methodsv2.xa/IPv6-12
-      * ns3.parent.good-undel-2.methodsv2.xa/IPv4-13
-      * ns3.parent.good-undel-2.methodsv2.xa/IPv6-13
+      * ns1.child.parent.good-undel-2.methodsv2.xa/IPv4
+      * ns1.child.parent.good-undel-2.methodsv2.xa/IPv6
+      * ns3.parent.good-undel-2.methodsv2.xa/IPv4
+      * ns3.parent.good-undel-2.methodsv2.xa/IPv6
       * ns6.good-undel-2.methodsv2.xa
-
-
+  * There is an undelegated version of the zone matching undelegated data.
 
 
 
 \[Not complete. More scenarios and test zones to be defined.]
-
-
-
-
-
-
-
-
-
 
 
 
@@ -226,4 +279,4 @@ undelegated.
 [Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios
 [MethodsV2]:                                                      ../../tests/MethodsV2.md 
 [Get parent NS IP addresses]:                                     ../../tests/MethodsV2.md#method-get-parent-ns-ip-addresses
-[Implementation of test scenarios for MethodsV2]:                 https://github.com/matsduf/zonemaster/blob/master/test-zone-data/MethodsV2/methodsv2.xa
+[Implementation of test scenarios for MethodsV2]:                 https://github.com/matsduf/zonemaster/blob/master/test-zone-data/MethodsV2/README.md
