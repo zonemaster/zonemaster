@@ -1,8 +1,8 @@
-$ORIGIN parent.good-1.methodsv2.xa.            ; Must end with "."
+$ORIGIN parent.good-7.methodsv2.xa.            ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2022121300      ; serial
+                2024052801      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -10,20 +10,16 @@ $TTL 3600
 
 		NS	ns1
 		NS	ns2
-
 ns1		A	127.40.1.41
 ns1		AAAA	fda1:b2:c3:0:127:40:1:41
 ns2		A	127.40.1.42
 ns2		AAAA	fda1:b2:c3:0:127:40:1:42
 
+$ORIGIN child.parent.good-7.methodsv2.xa.            ; Must end with "."
+@               NS      ns1.parent.good-7.methodsv2.xa.
+@               NS      ns2.parent.good-7.methodsv2.xa.
 
-$ORIGIN child.parent.good-1.methodsv2.xa.            ; Must end with "."
-@		NS	ns1
-@		NS	ns2
-ns1		A	127.40.1.51
-ns1		AAAA	fda1:b2:c3:0:127:40:1:51
-ns2		A	127.40.1.52
-ns2		AAAA	fda1:b2:c3:0:127:40:1:52
+
 
 ; EOF
 

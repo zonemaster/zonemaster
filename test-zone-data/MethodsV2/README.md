@@ -193,6 +193,30 @@ child.parent.good-6.methodsv2.xa
   * ns2.good-6.methodsv2.xa/127.40.1.32
   * ns2.good-6.methodsv2.xa/fda1:b2:c3:0:127:40:1:32
 
+### GOOD-7
+
+#### Zone
+child.parent.good-7.methodsv2.xa
+
+#### Methods and expected output
+* Get parent NS IP addresses
+  * 127.40.1.41
+  * fda1:b2:c3:0:127:40:1:41
+  * 127.40.1.42
+  * fda1:b2:c3:0:127:40:1:42
+* Get delegation NS names and IP addresses
+  * ns1.parent.good-7.methodsv2.xa/127.40.1.41
+  * ns1.parent.good-7.methodsv2.xa/fda1:b2:c3:0:127:40:1:41
+  * ns2.parent.good-7.methodsv2.xa/127.40.1.42
+  * ns2.parent.good-7.methodsv2.xa/fda1:b2:c3:0:127:40:1:42
+
+* Get zone NS names and IP addresses
+  * ns1.parent.good-7.methodsv2.xa/127.40.1.41
+  * ns1.parent.good-7.methodsv2.xa/fda1:b2:c3:0:127:40:1:41
+  * ns2.parent.good-7.methodsv2.xa/127.40.1.42
+  * ns2.parent.good-7.methodsv2.xa/fda1:b2:c3:0:127:40:1:42
+
+
 ### GOOD-UNDEL-1
 
 #### Zone
@@ -252,6 +276,35 @@ child.parent.good-undel-2.methodsv2.xa
   * ns3.parent.good-undel-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:43
   * ns6.good-undel-2.methodsv2.xa/127.40.1.36
   * ns6.good-undel-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:36
+
+
+### DIFF-NS-1
+
+#### Zone
+
+child.parent.diff-ns-1.methodsv2.xa
+
+#### Methods and expected output
+* Get parent NS IP addresses
+  * 127.40.1.41
+  * fda1:b2:c3:0:127:40:1:41
+  * 127.40.1.42
+  * fda1:b2:c3:0:127:40:1:42
+* Get delegation NS names and IP addresses
+  * ns1.child.parent.diff-ns-1.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.diff-ns-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.diff-ns-1.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.diff-ns-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+* Get zone NS names and IP addresses
+  * ns1-2.child.parent.diff-ns-1.methodsv2.xa/127.40.1.51
+  * ns1-2.child.parent.diff-ns-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2-2.child.parent.diff-ns-1.methodsv2.xa/127.40.1.52
+  * ns2-2.child.parent.diff-ns-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+
+
+
+
+
 
 
 [Specification of test scenarios for MethodsV2]:                  ../../docs/public/specifications/test-zones/MethodsV2/methodsv2.md

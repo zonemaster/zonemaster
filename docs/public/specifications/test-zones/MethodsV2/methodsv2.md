@@ -250,12 +250,12 @@ undelegated.
   * There is an undelegated version of the zone matching undelegated data.
 
 ## DIFF-NS-1
-No match in name server names. Same name server IP.
+No match in name server names between delegation and zone. Same name server IP.
 
 * Zone: child.parent.diff-ns-1.methodsv2.xa
-  * Delegation to ns1a and ns2a.
-  * NS in zone ns1b and ns2b.
-  * ns1b and ns2b in zone, ns1a and ns2a not in zone.
+  * Delegation to ns1 and ns2.
+  * NS in zone ns1-2 and ns2-2.
+  * ns1-2 and ns2-2 in zone, ns1 and ns2 not in zone.
   
 ## DIFF-NS-2
 No match in name server names. Same name server IP on one server. Different

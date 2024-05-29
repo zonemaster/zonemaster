@@ -2,7 +2,7 @@ $ORIGIN methodsv2.xa.                              ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024052703      ; serial
+                2024052900      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -78,6 +78,14 @@ ns1		AAAA	fda1:b2:c3:0:127:40:1:31
 ns2		A	127.40.1.32
 ns2		AAAA	fda1:b2:c3:0:127:40:1:32
 
+$ORIGIN good-7.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
 
 $ORIGIN good-undel-1.methodsv2.xa.            ; Must end with "."
 @		NS	ns1
@@ -95,6 +103,15 @@ ns1		A	127.40.1.31
 ns1		AAAA	fda1:b2:c3:0:127:40:1:31
 ns2		A	127.40.1.32
 ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN diff-ns-1.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
 
 
 ; EOF
