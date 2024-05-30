@@ -301,9 +301,49 @@ child.parent.diff-ns-1.methodsv2.xa
   * ns2-2.child.parent.diff-ns-1.methodsv2.xa/127.40.1.52
   * ns2-2.child.parent.diff-ns-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
 
+### DIFF-NS-2
 
+#### Zone
 
+child.parent.diff-ns-2.methodsv2.xa
 
+#### Methods and expected output
+* Get parent NS IP addresses
+  * 127.40.1.41
+  * fda1:b2:c3:0:127:40:1:41
+  * 127.40.1.42
+  * fda1:b2:c3:0:127:40:1:42
+* Get delegation NS names and IP addresses
+  * ns1.child.parent.diff-ns-2.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.diff-ns-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.diff-ns-2.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.diff-ns-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+* Get zone NS names and IP addresses
+  * ns1-2.child.parent.diff-ns-2.methodsv2.xa/127.40.1.51
+  * ns1-2.child.parent.diff-ns-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns3.child.parent.diff-ns-2.methodsv2.xa/127.40.1.53
+  * ns3.child.parent.diff-ns-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:53
+
+### IB-NOT-IN-ZONE-1
+
+#### Zone
+
+child.parent.ib-not-in-zone-1.methodsv2.xa
+
+#### Methods and expected output
+* Get parent NS IP addresses
+  * 127.40.1.41
+  * fda1:b2:c3:0:127:40:1:41
+  * 127.40.1.42
+  * fda1:b2:c3:0:127:40:1:42
+* Get delegation NS names and IP addresses
+  * ns1.child.parent.ib-not-in-zone-1.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.ib-not-in-zone-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.ib-not-in-zone-1.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.ib-not-in-zone-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+* Get zone NS names and IP addresses
+  * ns1.child.parent.ib-not-in-zone-1.methodsv2.xa
+  * ns2.child.parent.ib-not-in-zone-1.methodsv2.xa
 
 
 

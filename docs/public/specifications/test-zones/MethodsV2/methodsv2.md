@@ -256,20 +256,21 @@ No match in name server names between delegation and zone. Same name server IP.
   * Delegation to ns1 and ns2.
   * NS in zone ns1-2 and ns2-2.
   * ns1-2 and ns2-2 in zone, ns1 and ns2 not in zone.
-  
+
 ## DIFF-NS-2
-No match in name server names. Same name server IP on one server. Different
-on the other. No zone on all servers from delegation.
+No match in name server names between delegation and zone. Same name server IP on
+one server. Different on the other. No zone on servers from delegation except
+ns1.
 
 * Zone: child.parent.diff-ns-2.methodsv2.xa
-  * Delegation to ns1a, ns2 and ns3.
-  * NS in zone ns1b, ns4 and ns5.
-  * ns1b, ns4 and ns5 in zone, ns1a, ns2 and ns3 not in zone.
-  * No zone on ns2 and ns3.
-  * ns1a and ns1b have the same IP.
+  * Delegation to ns1 and ns2.
+  * NS in zone ns1-2, ns3.
+  * ns1-2 and ns3 in zone, ns1 and ns2 not in zone.
+  * No zone on ns2.
+  * ns1 and ns1-2 have the same IP.
 
 ## IB-NOT-IN-ZONE-1
-Delegation ti in-bailiwick NS, but the names are not defined in the zone.
+Delegation has in-bailiwick NS, but the names are not defined in the zone.
 
 * Zone: child.parent.ib-not-in-zone-1.methodsv2.xa
   * ns1 and ns2 not defined in zone.
