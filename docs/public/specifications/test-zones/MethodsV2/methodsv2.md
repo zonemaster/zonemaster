@@ -133,7 +133,7 @@ A "happy path". Everything is fine. Child has out-of-bailiwick name servers
 only.
 
 * Zone: child.parent.good-2.methodsv2.xa
-  * Child NS are out-of-bailiwick:
+  * Child NS are out-of-bailiwick but not shared with grandparent zone.
     * ns5.good-2.methodsv2.xa
     * ns6.good-2.methodsv2.xa
   * No glue
@@ -146,7 +146,7 @@ out-of-bailiwick name servers.
   * Child NS:
     * ns1.child.parent.good-3.methodsv2.xa
     * ns3.parent.good-3.methodsv2.xa
-    * ns5.good-3.methodsv2.xa
+    * ns5.good-3.methodsv2.xa (not shared with grandparent zone).
   * Glue:
     * Adress records (A and AAAA) for
       * ns1.child.parent.good-3.methodsv2.xa
@@ -160,7 +160,7 @@ server.
   * Parent NS:
     * ns1.parent.good-4.methodsv2.xa
     * ns2.parent.good-4.methodsv2.xa
-    * ns1.good-4.methodsv2.xa
+    * ns1.good-4.methodsv2.xa (shared with grandparent zone).
   * Glue for parent:
     * Adress records (A and AAAA) for
       * ns1.parent.good-4.methodsv2.xa
@@ -175,8 +175,8 @@ server and parent server.
   * Child NS:
     * ns1.child.parent.good-5.methodsv2.xa
     * ns2.child.parent.good-5.methodsv2.xa
-    * ns1.good-5.methodsv2.xa
-    * ns1.parent.good-5.methodsv2.xa
+    * ns1.good-5.methodsv2.xa (shared with grandparent zone).
+    * ns1.parent.good-5.methodsv2.xa (shared with parent zone).
   * Glue:
     * Adress records (A and AAAA) for
       * ns1.child.parent.good-5.methodsv2.xa
@@ -188,7 +188,7 @@ A "happy path". Everything is fine. Child zone is only hosted on grandparent
 servers.
 
 * Zone: child.parent.good-6.methodsv2.xa
-  * Child NS:
+  * Child NS (both shared with grandparent zone):
     * ns1.good-6.methodsv2.xa
     * ns2.good-6.methodsv2.xa
   * No glue.
@@ -198,7 +198,7 @@ A "happy path". Everything is fine. Child zone is only hosted on parent
 servers.
 
 * Zone: child.parent.good-7.methodsv2.xa
-  * Child NS:
+  * Child NS (both shared with parent zone):
     * ns1.parent.good-7.methodsv2.xa
     * ns2.parent.good-7.methodsv2.xa
   * Glue:
@@ -216,23 +216,23 @@ undelegated.
   * Delegation:
     * Child NS:
       * ns1-2.child.parent.good-undel-1.methodsv2.xa
-      * ns3.parent.good-undel-1.methodsv2.xa
-      * ns5.good-undel-1.methodsv2.xa
+      * ns3.parent.good-undel-1.methodsv2.xa (not shared with parent zone)
+      * ns5.good-undel-1.methodsv2.xa (not shared with granparent zone)
     * Glue:
       * Adress records (A and AAAA) for
         * ns1-2.child.parent.good-undel-1.methodsv2.xa
         * ns3.parent.good-undel-1.methodsv2.xa (optional)
-  * To be tested with undelegated data (fake data):
-      * ns1-2.child.parent.good-undel-1.methodsv2.xa/IPv4
-      * ns1-2.child.parent.good-undel-1.methodsv2.xa/IPv6
-      * ns3.parent.good-undel-1.methodsv2.xa/IPv4
-      * ns3.parent.good-undel-1.methodsv2.xa/IPv6
-      * ns6.good-undel-1.methodsv2.xa
   * There is an undelegated version of the zone matching undelegated data.
   * `ns1-2` have different IP addresses for delegation and delegated zone, on one
     hand, and undelegated data and undelegated version of the zone, on the other.
   * `ns3.parent.good-undel-1.methodsv2.xa`  is shared between delegated zone and
     undelegated version of zone, but holding the data of the undelegated version.
+  * Undelgated data:
+      * ns1-2.child.parent.good-undel-1.methodsv2.xa/IPv4
+      * ns1-2.child.parent.good-undel-1.methodsv2.xa/IPv6
+      * ns3.parent.good-undel-1.methodsv2.xa/IPv4
+      * ns3.parent.good-undel-1.methodsv2.xa/IPv6
+      * ns6.good-undel-1.methodsv2.xa
 
 ## GOOD-UNDEL-2
 A "happy path". Everything is fine. Child has boot in-bailiwick and
@@ -242,12 +242,13 @@ undelegated.
 * Zone: child.parent.good-undel-2.methodsv2.xa
   * No delegation from parent.
   * To be tested with undelegated data (fake data):
+  * There is an undelegated version of the zone matching undelegated data.
+  * Undelgated data:
       * ns1.child.parent.good-undel-2.methodsv2.xa/IPv4
       * ns1.child.parent.good-undel-2.methodsv2.xa/IPv6
       * ns3.parent.good-undel-2.methodsv2.xa/IPv4
       * ns3.parent.good-undel-2.methodsv2.xa/IPv6
       * ns6.good-undel-2.methodsv2.xa
-  * There is an undelegated version of the zone matching undelegated data.
 
 ## DIFF-NS-1
 No match in name server names between delegation and zone. Same name server IP.
@@ -278,12 +279,11 @@ Delegation has in-bailiwick NS, but the names are not defined in the zone.
 ## CHILD-NO-ZONE-1
 * Zone: child.parent.child-no-zone-1.methodsv2.xa
   * No child zone on ns1 and ns2.
+  * Response SERVFAIL.
 
 ## CHILD-NO-ZONE-2
-* Zone: child.parent.child-no-zone-1.methodsv2.xa
-  * Delegated to `ns6-delegated-child.methodsv2.xa` and
-    `ns7-delegated-child.methodsv2.xa` which do not respond.
-
+* Zone: child.parent.child-no-zone-2.methodsv2.xa
+  * No response from ns1 and ns2 of the child.
 
 ### GOOD-MIXED-UNDEL-1
 The child zone is delegated, but there is also an undelegated version which is
@@ -291,60 +291,70 @@ the one tested. One grandparent server, in the delegated tree, also serves
 parent zone.
 
 * Zone: child.parent.good-mixed-undel-1.methodsv2.xa
-  * Parent zone `parent.good-mixed-undel-1.methodsv2.xa` is served by `ns1`, `ns2` and on
-    `ns4.good-mixed-undel-1.methodsv2.xa`.
-  * Grandparent zone `good-mixed-undel-1.methodsv2.xa` is served on `ns1` adn `ns4`.
+  * Grandparent zone `good-mixed-undel-1.methodsv2.xa` is served on `ns1` and
+    `ns4`.
+  * Parent zone `parent.good-mixed-undel-1.methodsv2.xa` is served by `ns1`,
+    `ns2` and `ns4.good-mixed-undel-1.methodsv2.xa`.
   * Child zone is delegated, but there is also an undelegated version.
   * Undelgated data:
-    * ns3.child.parent.good-mixed-undel-1.methodsv2.xa
-    * ns4.child.parent.good-mixed-undel-1.methodsv2.xa
-
-##
+    * ns3.child.parent.good-mixed-undel-1.methodsv2.xa/IPv4
+    * ns3.child.parent.good-mixed-undel-1.methodsv2.xa/IPv6
+    * ns4.child.parent.good-mixed-undel-1.methodsv2.xa/IPv4
+    * ns4.child.parent.good-mixed-undel-1.methodsv2.xa/IPv6
 
 ### GOOD-MIXED-UNDEL-2
 The child zone is delegated, but there is also an undelegated version. One parent
 server also serves the delegated child zone.
 
 * Zone: child.parent.good-mixed-undel-2.methodsv2.xa
-  * Child zone is served by `ns1`, `ns2` and
-    `ns6.parent.good-mixed-undel-2.methodsv2.xa`.
-  * Child zone exists.
   * Parent zone `parent.good-mixed-undel-2.methodsv2.xa` is served by `ns1` and
-    `ns6`.
-  * Child zone is delegated, but there is also an undelegated version, but no
-    zone for the undelegated version.
+    `ns2`.
+  * Child zone is served by `ns1`, `ns2` and
+    `ns2.parent.good-mixed-undel-2.methodsv2.xa`.
+  * Child zone is delegated, but there is also an undelegated version which is
+    what is tested.
   * Undelgated data:
-    * ns3-undelegated-child.methodsv2.xa
-    * ns4-undelegated-child.methodsv2.xa
+    * ns3.child.parent.good-mixed-undel-2.methodsv2.xa/IPv4
+    * ns3.child.parent.good-mixed-undel-2.methodsv2.xa/IPv6
+    * ns4.child.parent.good-mixed-undel-2.methodsv2.xa/IPv4
+    * ns4.child.parent.good-mixed-undel-2.methodsv2.xa/IPv6
 
 ### NO-DEL-MIXED-UNDEL-1
 The child zone is not delegated, but there is an undelegated version that is
 tested. One grandparent server also serves the parent zone.
 
 * Zone: child.parent.no-del-mixed-undel-1.methodsv2.xa
-  * Parent zone `parent.no-del-mixed-undel-1.methodsv2.xa` is served by `ns1`, `ns2` and on
-    `ns4.no-del-mixed-undel-1.methodsv2.xa`.
-  * Grandparent zone `no-del-mixed-undel-1.methodsv2.xa` is served on `ns1` adn `ns4`.
-  * Child zone is not delegated, but there is an undelegated version, but no zone file.
+  * Parent zone `parent.no-del-mixed-undel-1.methodsv2.xa` is served by `ns1`,
+    `ns2` and on `ns2.no-del-mixed-undel-1.methodsv2.xa`.
+  * Child zone is not delegated, but there is an undelegated version.
   * Undelgated data:
-    * ns3-undelegated-child.methodsv2.xa
-    * ns4-undelegated-child.methodsv2.xa
+    * ns1.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv4
+    * ns1.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv6
+    * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv4
+    * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv6
+
+
+[Above is implemented.]
+
 
 ### NO-DEL-MIXED-UNDEL-2
 The child zone is not delegated, but there is an undelegated version that is
 tested. One grandparent server also serves the parent zone. There are extra empty
-nodes between the zone cuts.
+nodes between the zone cuts. Child zones ns2 is out-of-bailiwick.
 
 * Zone: child.w.x.parent.y.z.no-del-mixed-undel-2.methodsv2.xa
+  * Grandparent zone `no-del-mixed-undel-2.methodsv2.xa` is served on `ns1` and
+    `ns2`.
   * Parent zone `parent.y.z.no-del-mixed-undel-2.methodsv2.xa` is served by `ns1`,
-    `ns2` and on `ns4.no-del-mixed-undel-2.methodsv2.xa`.
-  * Grandparent zone `no-del-mixed-undel-2.methodsv2.xa` is served on `ns1` adn `ns4`.
+    `ns2` and on `n24.no-del-mixed-undel-2.methodsv2.xa`.
   * There are no zone cuts at `w`, `x`, `y` and `z`.
-  * Child zone is not delegated, but there is also an undelegated version, but no
-    zone file.
+  * Child zone is not delegated, but there is an undelegated version.
   * Undelgated data:
-    * ns3-undelegated-child.methodsv2.xa
-    * ns4-undelegated-child.methodsv2.xa
+    * ns1.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv4
+    * ns1.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv6
+    * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv4
+    * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv6
+
 
 ### NO-CHILD-1
 The child zone is not delegated. Parent zone returns NXDOMAIN.

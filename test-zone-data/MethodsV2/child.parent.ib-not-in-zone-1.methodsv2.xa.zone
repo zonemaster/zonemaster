@@ -2,7 +2,7 @@ $ORIGIN child.parent.ib-not-in-zone-1.methodsv2.xa.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024053001      ; serial
+                2024053002      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -12,6 +12,8 @@ $TTL 3600
 		NS	ns2
 
 ; No address records for IB NS.
+
+@               TXT    "Place holder"
 
 ; EOF
 

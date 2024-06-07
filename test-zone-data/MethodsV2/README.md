@@ -50,6 +50,10 @@ scenario below.
 
 child.parent.good-1.methodsv2.xa
 
+#### Undelegated data
+
+None.
+
 #### Methods and expected output
 * Get parent NS IP addresses
   * 127.40.1.41
@@ -73,6 +77,10 @@ child.parent.good-1.methodsv2.xa
 
 child.parent.good-2.methodsv2.xa
 
+#### Undelegated data
+
+None.
+
 #### Methods and expected output
 * Get parent NS IP addresses
   * 127.40.1.41
@@ -94,6 +102,10 @@ child.parent.good-2.methodsv2.xa
 
 #### Zone
 child.parent.good-3.methodsv2.xa
+
+#### Undelegated data
+
+None.
 
 #### Methods and expected output
 * Get parent NS IP addresses
@@ -121,6 +133,10 @@ child.parent.good-3.methodsv2.xa
 #### Zone
 child.parent.good-4.methodsv2.xa
 
+#### Undelegated data
+
+None.
+
 #### Methods and expected output
 * Get parent NS IP addresses
   * 127.40.1.41
@@ -144,6 +160,10 @@ child.parent.good-4.methodsv2.xa
 
 #### Zone
 child.parent.good-5.methodsv2.xa
+
+#### Undelegated data
+
+None.
 
 #### Methods and expected output
 * Get parent NS IP addresses
@@ -175,6 +195,10 @@ child.parent.good-5.methodsv2.xa
 #### Zone
 child.parent.good-6.methodsv2.xa
 
+#### Undelegated data
+
+None.
+
 #### Methods and expected output
 * Get parent NS IP addresses
   * 127.40.1.41
@@ -197,6 +221,10 @@ child.parent.good-6.methodsv2.xa
 
 #### Zone
 child.parent.good-7.methodsv2.xa
+
+#### Undelegated data
+
+None.
 
 #### Methods and expected output
 * Get parent NS IP addresses
@@ -284,6 +312,10 @@ child.parent.good-undel-2.methodsv2.xa
 
 child.parent.diff-ns-1.methodsv2.xa
 
+#### Undelegated data
+
+None.
+
 #### Methods and expected output
 * Get parent NS IP addresses
   * 127.40.1.41
@@ -306,6 +338,10 @@ child.parent.diff-ns-1.methodsv2.xa
 #### Zone
 
 child.parent.diff-ns-2.methodsv2.xa
+
+#### Undelegated data
+
+None.
 
 #### Methods and expected output
 * Get parent NS IP addresses
@@ -330,6 +366,10 @@ child.parent.diff-ns-2.methodsv2.xa
 
 child.parent.ib-not-in-zone-1.methodsv2.xa
 
+#### Undelegated data
+
+None.
+
 #### Methods and expected output
 * Get parent NS IP addresses
   * 127.40.1.41
@@ -344,6 +384,136 @@ child.parent.ib-not-in-zone-1.methodsv2.xa
 * Get zone NS names and IP addresses
   * ns1.child.parent.ib-not-in-zone-1.methodsv2.xa
   * ns2.child.parent.ib-not-in-zone-1.methodsv2.xa
+
+### CHILD-NO-ZONE-1
+
+#### Zone
+
+child.parent.child-no-zone-1.methodsv2.xa
+
+#### Undelegated data
+
+None.
+
+#### Methods and expected output
+* Get parent NS IP addresses
+  * 127.40.1.41
+  * fda1:b2:c3:0:127:40:1:41
+  * 127.40.1.42
+  * fda1:b2:c3:0:127:40:1:42
+* Get delegation NS names and IP addresses
+  * ns1.child.parent.child-no-zone-1.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.child-no-zone-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.child-no-zone-1.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.child-no-zone-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+* Get zone NS names and IP addresses
+  * (empty)
+  
+### CHILD-NO-ZONE-2
+
+#### Zone
+
+child.parent.child-no-zone-2.methodsv2.xa
+
+#### Undelegated data
+
+None.
+
+#### Methods and expected output
+* Get parent NS IP addresses
+  * 127.40.1.41
+  * fda1:b2:c3:0:127:40:1:41
+  * 127.40.1.42
+  * fda1:b2:c3:0:127:40:1:42
+* Get delegation NS names and IP addresses
+  * ns1.child.parent.child-no-zone-2.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.child-no-zone-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.child-no-zone-2.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.child-no-zone-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+* Get zone NS names and IP addresses
+  (empty)
+
+
+### GOOD-MIXED-UNDEL-1
+
+#### Zone
+
+child.parent.good-mixed-undel-1.methodsv2.xa
+
+#### Undelegated data
+  * ns3.child.parent.good-mixed-undel-1.methodsv2.xa/127.40.1.53
+  * ns3.child.parent.good-mixed-undel-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:53
+  * ns4.child.parent.good-mixed-undel-1.methodsv2.xa/127.40.1.54
+  * ns4.child.parent.good-mixed-undel-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:54
+
+#### Methods and expected output
+* Get parent NS IP addresses
+  * (empty)
+* Get delegation NS names and IP addresses
+  * ns3.child.parent.good-mixed-undel-1.methodsv2.xa/127.40.1.53
+  * ns3.child.parent.good-mixed-undel-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:53
+  * ns4.child.parent.good-mixed-undel-1.methodsv2.xa/127.40.1.54
+  * ns4.child.parent.good-mixed-undel-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:54
+* Get zone NS names and IP addresses
+  * ns3.child.parent.good-mixed-undel-1.methodsv2.xa/127.40.1.53
+  * ns3.child.parent.good-mixed-undel-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:53
+  * ns4.child.parent.good-mixed-undel-1.methodsv2.xa/127.40.1.54
+  * ns4.child.parent.good-mixed-undel-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:54
+
+
+### GOOD-MIXED-UNDEL-2
+
+#### Zone
+
+child.parent.good-mixed-undel-2.methodsv2.xa
+
+#### Undelegated data
+  * ns3.child.parent.good-mixed-undel-2.methodsv2.xa/127.40.1.53
+  * ns3.child.parent.good-mixed-undel-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:53
+  * ns4.child.parent.good-mixed-undel-2.methodsv2.xa/127.40.1.54
+  * ns4.child.parent.good-mixed-undel-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:54
+
+#### Methods and expected output
+* Get parent NS IP addresses
+  * (empty)
+* Get delegation NS names and IP addresses
+  * ns3.child.parent.good-mixed-undel-2.methodsv2.xa/127.40.1.53
+  * ns3.child.parent.good-mixed-undel-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:53
+  * ns4.child.parent.good-mixed-undel-2.methodsv2.xa/127.40.1.54
+  * ns4.child.parent.good-mixed-undel-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:54
+* Get zone NS names and IP addresses
+  * ns3.child.parent.good-mixed-undel-2.methodsv2.xa/127.40.1.53
+  * ns3.child.parent.good-mixed-undel-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:53
+  * ns4.child.parent.good-mixed-undel-2.methodsv2.xa/127.40.1.54
+  * ns4.child.parent.good-mixed-undel-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:54
+
+
+### NO-DEL-MIXED-UNDEL-1
+
+#### Zone
+
+child.parent.no-del-mixed-undel-1.methodsv2.xa
+
+#### Undelegated data
+  * ns1.child.parent.no-del-mixed-undel-1.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.no-del-mixed-undel-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+
+#### Methods and expected output
+* Get parent NS IP addresses
+  * (empty)
+* Get delegation NS names and IP addresses
+  * ns1.child.parent.no-del-mixed-undel-1.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.no-del-mixed-undel-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+* Get zone NS names and IP addresses
+  * ns1.child.parent.no-del-mixed-undel-1.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.no-del-mixed-undel-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+
 
 
 
