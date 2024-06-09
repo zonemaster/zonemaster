@@ -115,17 +115,17 @@ the specific scenario:
       messages.
     * There is no zone file or zone data for the undelegated "version".
 * The parent zone is `parent.SCENARIO.basic01.xa`.
-  * It is served by two IB NS (ns1 and ns2).
+  * It is served by two in-bailiwick NS (ns1 and ns2).
   * ns1 and ns2 have the same zone content.
   * ns1 and ns2 have both IPv4 and IPv6 glue.
   * The records matching glue in the zone are complete.
   * The delegation from the grand parent has the same NS with complete glue.
 * The grandparent zone is `SCENARIO.basic01.xa`.
-  * It is served by two IB NS (ns1 and ns2).
+  * It is served by two in-bailiwick NS (ns1 and ns2).
   * ns1 and ns2 have the same zone content.
   * ns1 and ns2 have both IPv4 and IPv6 glue.
   * The records matching glue in the zone are complete.
-  * The delegation from the SCENARIO zoen has the same NS with complete glue.
+  * The delegation from the SCENARIO zone has the same NS with complete glue.
 * Responds with a A record for the zone on query for A.
 * Responds with a AAAA record for the zone on query for AAAA.
 * All responses are authoritative with [RCODE Name] "NoError"
@@ -148,7 +148,7 @@ One grandparent server also serves parent zone.
 * Zone: child.parent.good-mixed-1.basic01.xa
   * Parent zone `parent.good-mixed-1.basic01.xa` is served by `ns1`, `ns2` and on
     `ns4.good-mixed-1.basic01.xa`.
-  * Grandparent zone `good-mixed-1.basic01.xa` is served on `ns1` adn `ns4`.
+  * Grandparent zone `good-mixed-1.basic01.xa` is served on `ns1` and `ns4`.
 
 ### GOOD-MIXED-2
 One parent server also hosts the child zone.
@@ -196,10 +196,10 @@ parent zone.
 * Zone: child.parent.good-mixed-undel-1.basic01.xa
   * Parent zone `parent.good-mixed-undel-1.basic01.xa` is served by `ns1`, `ns2` and on
     `ns4.good-mixed-undel-1.basic01.xa`.
-  * Grandparent zone `good-mixed-undel-1.basic01.xa` is served on `ns1` adn `ns4`.
+  * Grandparent zone `good-mixed-undel-1.basic01.xa` is served on `ns1` and `ns4`.
   * Child zone is delegated, but there is also an undelegated version.
   * No child zone exists.
-  * Undelgated data:
+  * Undelegated data:
     * ns3-undelegated-child.basic01.xa
     * ns4-undelegated-child.basic01.xa
 
@@ -215,7 +215,7 @@ server also serves the delegated child zone.
     `ns6`.
   * Child zone is delegated, but there is also an undelegated version, but no
     zone for the undelegated version.
-  * Undelgated data:
+  * Undelegated data:
     * ns3-undelegated-child.basic01.xa
     * ns4-undelegated-child.basic01.xa
 
@@ -223,7 +223,7 @@ server also serves the delegated child zone.
 The child zone is not delegated, but there is an undelegated version.
 
 * Zone: child.parent.no-del-undel-1.basic01.xa
-  * Undelgated data:
+  * Undelegated data:
     * ns3-undelegated-child.basic01.xa
     * ns4-undelegated-child.basic01.xa
 
@@ -234,9 +234,9 @@ tested. One grandparent server also serves the parent zone.
 * Zone: child.parent.no-del-mixed-undel-1.basic01.xa
   * Parent zone `parent.no-del-mixed-undel-1.basic01.xa` is served by `ns1`, `ns2` and on
     `ns4.no-del-mixed-undel-1.basic01.xa`.
-  * Grandparent zone `no-del-mixed-undel-1.basic01.xa` is served on `ns1` adn `ns4`.
+  * Grandparent zone `no-del-mixed-undel-1.basic01.xa` is served on `ns1` and `ns4`.
   * Child zone is not delegated, but there is an undelegated version, but no zone file.
-  * Undelgated data:
+  * Undelegated data:
     * ns3-undelegated-child.basic01.xa
     * ns4-undelegated-child.basic01.xa
 
@@ -248,11 +248,11 @@ nodes between the zone cuts.
 * Zone: child.w.x.parent.y.z.no-del-mixed-undel-2.basic01.xa
   * Parent zone `parent.y.z.no-del-mixed-undel-2.basic01.xa` is served by `ns1`,
     `ns2` and on `ns4.no-del-mixed-undel-2.basic01.xa`.
-  * Grandparent zone `no-del-mixed-undel-2.basic01.xa` is served on `ns1` adn `ns4`.
+  * Grandparent zone `no-del-mixed-undel-2.basic01.xa` is served on `ns1` and `ns4`.
   * There are no zone cuts at `w`, `x`, `y` and `z`.
   * Child zone is not delegated, but there is also an undelegated version, but no
     zone file.
-  * Undelgated data:
+  * Undelegated data:
     * ns3-undelegated-child.basic01.xa
     * ns4-undelegated-child.basic01.xa
 
@@ -260,13 +260,13 @@ nodes between the zone cuts.
 The child zone is not delegated. Parent zone returns NXDOMAIN.
 
 * Zone: child.parent.no-child-1.basic01.xa
-  * Child zone does not exist is not served by any NS.
+  * Child zone does not exist and is not served by any NS.
 
 ### NO-CHILD-2
 The child zone is not delegated. Parent zone returns NODATA.
 
 * Zone: child.parent.no-child-2.basic01.xa
-  * Child zone does not exist is not served by any NS.
+  * Child zone does not exist and is not served by any NS.
   * The name child.parent.no-child-2.basic01.xa exists as a TXT record.
 
 ### NO-CHLD-PAR-UNDETER-1
@@ -288,8 +288,7 @@ The child zone is delegated from one grandparent NS and from the parent zone.
   * Parent zone has delegation of child.
 
 ### CHLD-FOUND-INCONSIST-1
-The child is delegated from one parent NS. On the other there is an NXDOMAIN
-response.
+The child is delegated from one parent NS. The other responds with NXDOMAIN.
 
 * Zone: child.parent.chld-found-inconsist-1.basic01.xa
   * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
@@ -350,7 +349,7 @@ On the other there is an NXDOMAIN response.
 
 ### CHLD-FOUND-INCONSIST-7
 The child is delegated from one parent NS, which is also NS for the child. On the
-other there is an CNAME response.
+other there is a CNAME response.
 
 * Zone: child.parent.chld-found-inconsist-7.basic01.xa
   * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
@@ -424,7 +423,7 @@ parent zone lacks delegation of child.
   * Grandparent `ns2` has delegation of parent (to both parent NS).
   * Parent zone lacks delegation of child.
   * Child zone is not delegated, but there is an undelegated version.
-  * Undelgated data:
+  * Undelegated data:
     * ns3-undelegated-child.basic01.xa
     * ns4-undelegated-child.basic01.xa
 
@@ -461,18 +460,18 @@ however, different DNAME targets in the two parents.
   * Zone `brother` does not exist.
 
 ### ZONE-ERR-GRANDPARENT-1
-Grandparent `ns2` responds with AA bit unset on queries for granparent zone.
+Grandparent `ns2` responds with AA bit unset on queries for grandparent zone.
 
 * Zone: child.parent.zone-err-grandparent-1.basic01.xa
-  * Normal response on granparent `ns1`.
+  * Normal response on grandparent `ns1`.
   * Grandparent `ns2` responds with AA bit unset on queries for the
     grandparent zone.
 
 ### ZONE-ERR-GRANDPARENT-2
-Grandparent `ns2` responds with NODATA on NS query for granparent zone.
+Grandparent `ns2` responds with NODATA on NS query for grandparent zone.
 
 * Zone: child.parent.zone-err-grandparent-2.basic01.xa
-  * Normal response on granparent `ns1`.
+  * Normal response on grandparent `ns1`.
   * Grandparent `ns2` responds with NODATA on NS query for the
     grandparent zone.
 

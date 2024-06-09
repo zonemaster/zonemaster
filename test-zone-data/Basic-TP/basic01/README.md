@@ -1,4 +1,4 @@
-# Basic03
+# Basic01
 
 [This directory](.), i.e. the same directory as this README file, holds
 zone files and `coredns` configuration files for scenarios for test case Basic01.
@@ -84,7 +84,7 @@ GOOD-MIXED-1              | B01_CHILD_FOUND, B01_PARENT_FOUND                | 2
 * (2) All tags except for those specified as "Mandatory message tags"
 
 ```
-$ zonemaster-cli --raw  --test basic01 --hints COMMON/hintfile --level info child.parent.good-1.basic01.xa
+$ zonemaster-cli --raw  --test basic01 --hints COMMON/hintfile --level info child.parent.good-mixed-1.basic01.xa
    0.00 INFO     GLOBAL_VERSION  version=v5.0.0
    0.10 INFO     B01_PARENT_FOUND  domain=parent.good-mixed-1.basic01.xa; ns_ip_list=ns1.parent.good-mixed-1.basic01.xa/127.12.1.41;ns1.parent.good-mixed-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.good-mixed-1.basic01.xa/127.12.1.42;ns2.parent.good-mixed-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
    0.11 INFO     B01_PARENT_FOUND  domain=good-mixed-1.basic01.xa; ns_ip_list=ns4.good-mixed-1.basic01.xa/127.12.1.34;ns4.good-mixed-1.basic01.xa/fda1:b2:c3:0:127:12:1:34

@@ -1,5 +1,5 @@
 ; Shared zone files for granparent zones when "child"
-; is to be delegated directly from grandparent, or overwridden
+; is to be delegated directly from grandparent, or overridden
 ; in basic01.cfg file.
 ;
 ; * All names must be relative here.
