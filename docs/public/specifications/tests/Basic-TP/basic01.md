@@ -62,7 +62,7 @@ B01_CHILD_IS_ALIAS         |NOTICE |domain_child, domain_target, ns_list| "{doma
 B01_INCONSISTENT_ALIAS     |ERROR  | domain                             | The alias for "{domain}" is inconsistent between name servers.
 B01_INCONSISTENT_DELEGATION|ERROR  |domain_child, domain_parent, ns_list| The name servers for parent zone "{domain_parent}" give inconsistent delegation of "{domain_child}". Returned from name servers "{ns_list}".
 B01_NO_CHILD               |ERROR  | domain_child, domain_super         | "{domain_child}" does not exist as a DNS zone. Try to test "{domain_super}" instead.
-B01_PARENT_DISREGARDED     |INFO   |                                    | This is a test of an undelegated domain and finding the parent zone is disregarded.
+B01_PARENT_DISREGARDED     |INFO   |                                    | This is a test of an undelegated domain so finding the parent zone is disregarded.
 B01_PARENT_FOUND           |INFO   | domain, ns_list                    | The parent zone is "{domain}" as returned from name servers "{ns_list}".
 B01_PARENT_NOT_FOUND       |WARNING|                                    | The parent zone cannot be found.
 B01_PARENT_UNDETERMINED    |WARNING| ns_list                            | The parent zone cannot be determined on name servers "{ns_list}".
