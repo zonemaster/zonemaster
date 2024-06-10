@@ -258,9 +258,10 @@ DNS queries follow, unless otherwise specified below, what is specified for
 8. If one or both of the *Delegation Found* and the *AA SOA Found* sets are
     non-empty, then do:
     1. Output *[B01_CHILD_FOUND]* with *Child Zone*.
-    2. If one or more of the following five sets are also non-empty then output
-       *[B01_INCONSISTENT_DELEGATION]* with *Child Zone*, parent zone name and
-       the combined set of name server IP addresses from all five sets.
+    2. If *Test Type* is "normal test" and if one or more of the following five
+       sets are also non-empty then output *[B01_INCONSISTENT_DELEGATION]* with
+       *Child Zone*, parent zone name and the combined set of name server IP
+       addresses from all five sets.
           * *AA NXDomain Found*
           * *AA CNAME Found*
           * *CNAME with Referral Found*
