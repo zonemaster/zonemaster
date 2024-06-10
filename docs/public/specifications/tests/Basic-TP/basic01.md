@@ -163,10 +163,10 @@ DNS queries follow, unless otherwise specified below, what is specified for
    10. Create "Intermediate Query Name" by copying *Zone name* as start value.
    11. Run a loop processing *Server Address* (jumps back here from the steps
        below).
-       1. Extend "Intermediate Query Name" by adding one more label to the left
+       1. Extend *Intermediate Query Name* by adding one more label to the left
           by copying the equivalent label from *Child Zone*. (See "Example 1"
           below.)
-       2. Create a [DNS queries][DNS Query] with query name
+       2. Create a [DNS Query] with query name
           *Intermediate Query Name* and [query type] SOA
           ("Intermediate SOA query").
        3. [Send] *Intermediate SOA Query* to *Server Address*. (See "Example 2"
@@ -187,7 +187,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
                 ("Intermediate NS query").
              2. [Send] *Intermediate NS Query* to *Server Address*.
              3. Output [B01_SERVER_ZONE_ERROR] with query name
-                *Intermediate NS Query* and [query type] NS and name server IP
+                *Intermediate NS Name* and [query type] NS and name server IP
                 *Server Address* and go to next server in *Remaining Servers* if
                 one or more of the following matches:
                    * No DNS response.
@@ -251,7 +251,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
              to the *CNAME with Referral Found* set.
           2. Go to next server in *Remaining Servers*.
        10. Else, output [B01_SERVER_ZONE_ERROR] with query name
-          *Intermediate NS Query*, [query type] SOA and name server IP
+          *Intermediate NS Name*, [query type] SOA and name server IP
           *Server Address* and go to next server in *Remaining Servers*.
 
 
