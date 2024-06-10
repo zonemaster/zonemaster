@@ -25,7 +25,7 @@ This Test Case will determine if parent zone and child zones,
 respectively, exist.
 
 If the test is an [undelegated test], however, it can be tested even it is not
-delegated or even if the parent zone can not be determined.
+delegated. Parent zone for [undelegated test] is disregarded.
 
 If the zone to be tested is the root zone, it has no parent or
 delegation and will always pass this Test Case.
@@ -57,16 +57,18 @@ Input for this Test Case:
 
 Message Tag                | Level | Arguments                          | Message ID for message tag
 :--------------------------|:------|:-----------------------------------|:--------------------------
-B01_CHILD_IS_ALIAS         |NOTICE |domain_child, domain_target, ns_list| "{domain_child}" is not a zone. It is an alias for "{domain_target}". Run a test for "{domain_target}" instead. Returned from name servers "{ns_list}".
 B01_CHILD_FOUND            |INFO   | domain                             | The zone "{domain}" is found.
-B01_CHILD_NOT_EXIST        |INFO   | domain                             | "{domain}" does not exist as it is not delegated.
+B01_CHILD_IS_ALIAS         |NOTICE |domain_child, domain_target, ns_list| "{domain_child}" is not a zone. It is an alias for "{domain_target}". Run a test for "{domain_target}" instead. Returned from name servers "{ns_list}".
 B01_INCONSISTENT_ALIAS     |ERROR  | domain                             | The alias for "{domain}" is inconsistent between name servers.
 B01_INCONSISTENT_DELEGATION|ERROR  |domain_child, domain_parent, ns_list| The name servers for parent zone "{domain_parent}" give inconsistent delegation of "{domain_child}". Returned from name servers "{ns_list}".
 B01_NO_CHILD               |ERROR  | domain_child, domain_super         | "{domain_child}" does not exist as a DNS zone. Try to test "{domain_super}" instead.
+B01_PARENT_DISREGARDED     |INFO   |                                    | This is a test of an undelegated domain and finding the parent zone is disregarded.
 B01_PARENT_FOUND           |INFO   | domain, ns_list                    | The parent zone is "{domain}" as returned from name servers "{ns_list}".
 B01_PARENT_NOT_FOUND       |WARNING|                                    | The parent zone cannot be found.
 B01_PARENT_UNDETERMINED    |WARNING| ns_list                            | The parent zone cannot be determined on name servers "{ns_list}".
+B01_ROOT_HAS_NO_PARENT     |INFO   |                                    | This is a test of the root zone which has no parent zone.
 B01_SERVER_ZONE_ERROR      |DEBUG  | query_name, rrtype, ns             | Unexpected response on query for "{query_name}" with query type "{rrtype}" to "{ns}".
+
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -91,12 +93,18 @@ DNS queries follow, unless otherwise specified below, what is specified for
 
 1. If the *Child Zone* is the root zone (".") then:
    1. Output *[B01_CHILD_FOUND]* with zone name (".").
-   2. Exit the test case.
+   2. Output *[B01_ROOT_HAS_NO_PARENT]*.
+   3. Exit the test case.
 
-2. Create [DNS queries][DNS Query]:
+2. If *Test Type* is "[undelegated test]", then:
+   1. Output *[B01_CHILD_FOUND]* with zone name equal to *Child Zone*.
+   2. Output *[B01_PARENT_DISREGARDED]*.
+   3. Exit the test case.
+
+3. Create [DNS queries][DNS Query]:
    1. Query type DNAME and query name *Child Zone* ("DNAME Child Query").
 
-3. Create the following empty sets:
+4. Create the following empty sets:
    1.  Name server IP and zone name ("Remaining Servers").
    2.  Name server IP and query name ("Handled Servers").
    3.  Parent name server IP and parent zone name ("Parent Found").
@@ -109,7 +117,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
        ("AA DNAME Found").
    10. Parent name server IP and parent zone name ("AA NODATA Found").
 
-4. Insert all addresses from *Root Name Servers* and the root zone name into the
+5. Insert all addresses from *Root Name Servers* and the root zone name into the
    *Remaining Servers* set.
 
 > In the loop below, the steps tries to capture the name of the parent zone of
@@ -117,7 +125,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
 > This is done using a modified version of the "QNAME minimization" technique
 > [RFC 9156]. SOA is the query type used for traversing the tree.
 
-5. While the *Remaining Servers* is non-empty pick next name server IP address
+6. While the *Remaining Servers* is non-empty pick next name server IP address
    and zone name from the set ("Server Address" and "Zone Name") and do:
 
    1.  Extract and remove *Server Address* including its *Zone Name* from
@@ -247,37 +255,33 @@ DNS queries follow, unless otherwise specified below, what is specified for
           *Server Address* and go to next server in *Remaining Servers*.
 
 
-6. If the *Parent Found* set is non-empty, then
+7. If the *Parent Found* set is non-empty, then
    1. For each parent zone name output *[B01_PARENT_FOUND]*, parent zone name
       and the set of name server IP addresses for that name.
    2. If not all members of the set have the same parent zone then output
       *[B01_PARENT_UNDETERMINED]* and the whole set of name server IP addresses.
 
-7. If the *Parent Found* set is empty, then output *[B01_PARENT_NOT_FOUND]*.
+8. If the *Parent Found* set is empty, then output *[B01_PARENT_NOT_FOUND]*.
 
-8. If one or both of the *Delegation Found* and the *AA SOA Found* sets are
+9. If one or both of the *Delegation Found* and the *AA SOA Found* sets are
     non-empty, then do:
     1. Output *[B01_CHILD_FOUND]* with *Child Zone*.
-    2. If *Test Type* is "normal test" and if one or more of the following five
-       sets are also non-empty then output *[B01_INCONSISTENT_DELEGATION]* with
-       *Child Zone*, parent zone name and the combined set of name server IP
-       addresses from all five sets.
+    2. If one or more of the following five sets are also non-empty then output
+       *[B01_INCONSISTENT_DELEGATION]* with *Child Zone*, parent zone name and
+       the combined set of name server IP addresses from all five sets.
           * *AA NXDomain Found*
           * *AA CNAME Found*
           * *CNAME with Referral Found*
           * *AA DNAME Found*
           * *AA NODATA Found*
 
-9. If both of the *Delegation Found* and the *AA SOA Found* sets are empty, then
+10. If both of the *Delegation Found* and the *AA SOA Found* sets are empty, then
     do:
-    1. If *Test Type* is "normal test" then do:
        1. Create "Superdomain" as a copy of *Child Zone* with the first label
           removed.
        2. Output *[B01_NO_CHILD]* with *Child zone* and *Superdomain*.
-    2. If *Test Type* is "[undelegated test]", output *[B01_CHILD_NOT_EXIST]*
-       with *Child Zone*.
 
-10. If the *AA DNAME Found* set is non-empty then do:
+11. If the *AA DNAME Found* set is non-empty then do:
     1. For each DNAME target in the set output *[B01_CHILD_IS_ALIAS]* with name
        server IP list, *Child Zone* and the DNAME target.
     2. If not all members of the set have the same DNAME target, output
@@ -346,13 +350,14 @@ a specific name server. Compare with "[DNS Lookup]".
 [Argument list]:                                                  ../ArgumentsForTestCaseMessages.md
 [B01_CHILD_FOUND]:                                                #Summary
 [B01_CHILD_IS_ALIAS]:                                             #Summary
-[B01_CHILD_NOT_EXIST]:                                            #Summary
 [B01_INCONSISTENT_ALIAS]:                                         #Summary
 [B01_INCONSISTENT_DELEGATION]:                                    #Summary
 [B01_NO_CHILD]:                                                   #Summary
+[B01_PARENT_DISREGARDED]:                                         #Summary
 [B01_PARENT_FOUND]:                                               #Summary
-[B01_PARENT_UNDETERMINED]:                                        #Summary
 [B01_PARENT_NOT_FOUND]:                                           #Summary
+[B01_PARENT_UNDETERMINED]:                                        #Summary
+[B01_ROOT_HAS_NO_PARENT]:                                         #Summary
 [B01_SERVER_ZONE_ERROR]:                                          #Summary
 [Basic03]:                                                        basic03.md
 [CRITICAL]:                                                       ../SeverityLevelDefinitions.md#critical
@@ -367,6 +372,7 @@ a specific name server. Compare with "[DNS Lookup]".
 [List of Root Servers]:                                           https://www.iana.org/domains/root/servers
 [NOTICE]:                                                         ../SeverityLevelDefinitions.md#notice
 [Non-referral]:                                                   #terminology
+[Query type]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [Referral]:                                                       #terminology
 [Requirements and normalization of domain names in input]:        ../RequirementsAndNormalizationOfDomainNames.md
@@ -377,4 +383,3 @@ a specific name server. Compare with "[DNS Lookup]".
 [Undelegated test]:                                               ../../test-types/undelegated-test.md
 [WARNING]:                                                        ../SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:                                      ../../../configuration/profiles.md
-[Query type]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
