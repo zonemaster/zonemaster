@@ -5,15 +5,16 @@ zone files and `coredns` configuration files for scenarios for test case Basic01
 
 ## All message tags
 
-* B01_CHILD_IS_ALIAS
 * B01_CHILD_FOUND
-* B01_CHILD_NOT_EXIST
+* B01_CHILD_IS_ALIAS
 * B01_INCONSISTENT_ALIAS
 * B01_INCONSISTENT_DELEGATION
 * B01_NO_CHILD
+* B01_PARENT_DISREGARDED
 * B01_PARENT_FOUND
 * B01_PARENT_NOT_FOUND
 * B01_PARENT_UNDETERMINED
+* B01_ROOT_HAS_NO_PARENT
 * B01_SERVER_ZONE_ERROR
 
 ## All scenarios
@@ -143,13 +144,13 @@ $ zonemaster-cli --raw --show-testcase --test basic01 --hints COMMON/hintfile --
 
 Scenario name             | Mandatory message tag                            | Forbidden message tags
 :-------------------------|:-------------------------------------------------|:----------------------
-GOOD-UNDEL-1              | B01_CHILD_FOUND, B01_PARENT_FOUND                | 2)
+GOOD-UNDEL-1              | B01_CHILD_FOUND, B01_PARENT_DISREGARDED          | 2)
 
 * (2) All tags except for those specified as "Mandatory message tags"
 
   * Undelgated data:
-    * ns3-undelegated-child.basic01.xa/-
-    * ns4-undelegated-child.basic01.xa/-
+    * ns3-undelegated-child.basic01.xa
+    * ns4-undelegated-child.basic01.xa
 
 ```
 $ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --ns ns3-undelegated-child.basic01.xa --ns ns4-undelegated-child.basic01.xa child.parent.good-undel-1.basic01.xa
@@ -162,17 +163,17 @@ $ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile -
 
 Note that `FAKE_DELEGATION_NO_IP` is not significant for the scenario, but it is due to a bug that it appears (<https://github.com/zonemaster/zonemaster-engine/issues/1344>).
 
---> OK
+--> Not yet OK
 
 Scenario name             | Mandatory message tag                            | Forbidden message tags
 :-------------------------|:-------------------------------------------------|:----------------------
-GOOD-MIXED-UNDEL-1        | B01_CHILD_FOUND, B01_PARENT_FOUND                | 2)
+GOOD-MIXED-UNDEL-1        | B01_CHILD_FOUND, B01_PARENT_DISREGARDED          | 2)
 
 * (2) All tags except for those specified as "Mandatory message tags"
 
   * Undelgated data:
-    * ns3-undelegated-child.basic01.xa/-
-    * ns4-undelegated-child.basic01.xa/-
+    * ns3-undelegated-child.basic01.xa
+    * ns4-undelegated-child.basic01.xa
 
 ```
 $ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --ns ns3-undelegated-child.basic01.xa --ns ns4-undelegated-child.basic01.xa child.parent.good-mixed-undel-1.basic01.xa
@@ -187,17 +188,17 @@ $ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile -
 
 Note that `FAKE_DELEGATION_NO_IP` is not significant for the scenario, but it is due to a bug that it appears (<https://github.com/zonemaster/zonemaster-engine/issues/1344>).
 
---> Not OK
+--> Not yet OK
 
 Scenario name             | Mandatory message tag                            | Forbidden message tags
 :-------------------------|:-------------------------------------------------|:----------------------
-GOOD-MIXED-UNDEL-2        | B01_CHILD_FOUND, B01_PARENT_FOUND                | 2)
+GOOD-MIXED-UNDEL-2        | B01_CHILD_FOUND, B01_PARENT_DISREGARDED          | 2)
 
 * (2) All tags except for those specified as "Mandatory message tags"
 
   * Undelgated data:
-    * ns3-undelegated-child.basic01.xa/-
-    * ns4-undelegated-child.basic01.xa/-
+    * ns3-undelegated-child.basic01.xa
+    * ns4-undelegated-child.basic01.xa
 
 ```
 $ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --ns ns3-undelegated-child.basic01.xa --ns ns4-undelegated-child.basic01.xa child.parent.good-mixed-undel-2.basic01.xa
@@ -210,17 +211,17 @@ $ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile -
 
 Note that `FAKE_DELEGATION_NO_IP` is not significant for the scenario, but it is due to a bug that it appears (<https://github.com/zonemaster/zonemaster-engine/issues/1344>).
 
---> OK
+--> Not yet OK
 
 Scenario name             | Mandatory message tag                            | Forbidden message tags
 :-------------------------|:-------------------------------------------------|:----------------------
-NO-DEL-UNDEL-1            | B01_CHILD_NOT_EXIST, B01_PARENT_FOUND            | 2)
+NO-DEL-UNDEL-1            | B01_CHILD_FOUND, B01_PARENT_DISREGARDED          | 2)
 
 * (2) All tags except for those specified as "Mandatory message tags"
 
   * Undelgated data:
-    * ns3-undelegated-child.basic01.xa/-
-    * ns4-undelegated-child.basic01.xa/-
+    * ns3-undelegated-child.basic01.xa
+    * ns4-undelegated-child.basic01.xa
 
 ```
 $ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --ns ns3-undelegated-child.basic01.xa --ns ns4-undelegated-child.basic01.xa child.parent.no-del-undel-1.basic01.xa
@@ -233,17 +234,17 @@ $ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile -
 
 Note that `FAKE_DELEGATION_NO_IP` is not significant for the scenario, but it is due to a bug that it appears (<https://github.com/zonemaster/zonemaster-engine/issues/1344>).
 
---> OK
+--> Not yet OK
 
 Scenario name             | Mandatory message tag                            | Forbidden message tags
 :-------------------------|:-------------------------------------------------|:----------------------
-NO-DEL-MIXED-UNDEL-1      | B01_CHILD_NOT_EXIST, B01_PARENT_FOUND            | 2)
+NO-DEL-MIXED-UNDEL-1      | B01_CHILD_FOUND, B01_PARENT_DISREGARDED          | 2)
 
 * (2) All tags except for those specified as "Mandatory message tags"
 
   * Undelgated data:
-    * ns3-undelegated-child.basic01.xa/-
-    * ns4-undelegated-child.basic01.xa/-
+    * ns3-undelegated-child.basic01.xa
+    * ns4-undelegated-child.basic01.xa
 
 ```
 $ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json  --ns ns3-undelegated-child.basic01.xa --ns ns4-undelegated-child.basic01.xa child.parent.no-del-mixed-undel-1.basic01.xa 
@@ -259,17 +260,17 @@ Loading profile from COMMON/custom-profile.json.
 
 Note that `FAKE_DELEGATION_NO_IP` is not significant for the scenario, but it is due to a bug that it appears (<https://github.com/zonemaster/zonemaster-engine/issues/1344>).
 
---> Not OK
+--> Not yet OK
 
 Scenario name             | Mandatory message tag                            | Forbidden message tags
 :-------------------------|:-------------------------------------------------|:----------------------
-NO-DEL-MIXED-UNDEL-2      | B01_CHILD_NOT_EXIST, B01_PARENT_FOUND            | 2)
+NO-DEL-MIXED-UNDEL-2      | B01_CHILD_FOUND, B01_PARENT_DISREGARDED          | 2)
 
 * (2) All tags except for those specified as "Mandatory message tags"
 
   * Undelgated data:
-    * ns3-undelegated-child.basic01.xa/-
-    * ns4-undelegated-child.basic01.xa/-
+    * ns3-undelegated-child.basic01.xa
+    * ns4-undelegated-child.basic01.xa
 
 ```
 $ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json --ns ns3-undelegated-child.basic01.xa --ns ns4-undelegated-child.basic01.xa child.parent.no-del-mixed-undel-2.basic01.xa
@@ -285,7 +286,7 @@ Loading profile from COMMON/custom-profile.json.
 
 Note that `FAKE_DELEGATION_NO_IP` is not significant for the scenario, but it is due to a bug that it appears (<https://github.com/zonemaster/zonemaster-engine/issues/1344>).
 
---> Not OK
+--> Not yet OK
 
 Scenario name             | Mandatory message tag                            | Forbidden message tags
 :-------------------------|:-------------------------------------------------|:----------------------
@@ -516,7 +517,7 @@ Loading profile from COMMON/custom-profile.json.
 
 Scenario name             | Mandatory message tag                                                             | Forbidden message tags
 :-------------------------|:----------------------------------------------------------------------------------|:----------------------
-NO-DEL-UNDEL-NO-PAR-1     | B01_CHILD_NOT_EXIST, B01_PARENT_NOT_FOUND,B01_SERVER_ZONE_ERROR                   | 2)
+NO-DEL-UNDEL-NO-PAR-1     | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                           | 2)
 
 * Undelgated data:
   * ns3-undelegated-child.basic01.xa
@@ -533,11 +534,11 @@ Loading profile from COMMON/custom-profile.json.
    0.02 INFO     Basic01        B01_CHILD_NOT_EXIST  domain=child.parent.no-del-undel-no-par-1.basic01.xa
    0.02 INFO     Basic01        TEST_CASE_END  testcase=Basic01
 ```
---> Not OK.
+--> Not yet OK.
 
 Scenario name             | Mandatory message tag                                                             | Forbidden message tags
 :-------------------------|:----------------------------------------------------------------------------------|:----------------------
-NO-DEL-UNDEL-PAR-UND-1    | B01_CHILD_NOT_EXIST, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED                    | 2)
+NO-DEL-UNDEL-PAR-UND-1    | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                           | 2)
 
 * Undelgated data:
   * ns3-undelegated-child.basic01.xa
