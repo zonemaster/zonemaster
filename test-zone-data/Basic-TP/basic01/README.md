@@ -137,9 +137,6 @@ $ zonemaster-cli --raw --show-testcase --test basic01 --hints COMMON/hintfile --
 
 ```
 
-[#######]
-
-
 --> OK
 
 Scenario name             | Mandatory message tag                            | Forbidden message tags
@@ -308,13 +305,10 @@ Scenario name             | Mandatory message tag                               
 NO-CHILD-2                | B01_NO_CHILD, B01_PARENT_FOUND                                                    | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.no-child-2.basic01.xa 
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info child.parent.no-child-2.basic01.xa 
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
-   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.08 INFO     Basic01        B01_PARENT_FOUND  domain=parent.no-child-2.basic01.xa; ns_ip_list=ns1.parent.no-child-2.basic01.xa/127.12.1.41;ns1.parent.no-child-2.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.no-child-2.basic01.xa/127.12.1.42;ns2.parent.no-child-2.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.08 ERROR    Basic01        B01_NO_CHILD  domain_child=child.parent.no-child-2.basic01.xa; domain_super="parent.no-child-2.basic01.xa"
-   0.08 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.09 INFO     Basic01        B01_PARENT_FOUND  domain=parent.no-child-2.basic01.xa; ns_list=ns1.parent.no-child-2.basic01.xa/127.12.1.41;ns1.parent.no-child-2.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.no-child-2.basic01.xa/127.12.1.42;ns2.parent.no-child-2.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.09 ERROR    Basic01        B01_NO_CHILD  domain_child=child.parent.no-child-2.basic01.xa; domain_super="parent.no-child-2.basic01.xa"
 ```
 
 --> OK
@@ -324,15 +318,12 @@ Scenario name             | Mandatory message tag                               
 NO-CHLD-PAR-UNDETER-1     | B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED                           | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.no-chld-par-undeter-1.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info child.parent.no-chld-par-undeter-1.basic01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
-   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.11 INFO     Basic01        B01_PARENT_FOUND  domain=no-chld-par-undeter-1.basic01.xa; ns_ip_list=ns1.no-chld-par-undeter-1.basic01.xa/127.12.1.31;ns1.no-chld-par-undeter-1.basic01.xa/fda1:b2:c3:0:127:12:1:31
-   0.11 INFO     Basic01        B01_PARENT_FOUND  domain=parent.no-chld-par-undeter-1.basic01.xa; ns_ip_list=ns1.parent.no-chld-par-undeter-1.basic01.xa/127.12.1.41;ns1.parent.no-chld-par-undeter-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.no-chld-par-undeter-1.basic01.xa/127.12.1.42;ns2.parent.no-chld-par-undeter-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.11 WARNING  Basic01        B01_PARENT_UNDETERMINED  ns_ip_list=ns1.no-chld-par-undeter-1.basic01.xa/127.12.1.31;ns1.no-chld-par-undeter-1.basic01.xa/fda1:b2:c3:0:127:12:1:31;ns1.parent.no-chld-par-undeter-1.basic01.xa/127.12.1.41;ns1.parent.no-chld-par-undeter-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.no-chld-par-undeter-1.basic01.xa/127.12.1.42;ns2.parent.no-chld-par-undeter-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.11 INFO     Basic01        B01_PARENT_FOUND  domain=no-chld-par-undeter-1.basic01.xa; ns_list=ns1.no-chld-par-undeter-1.basic01.xa/127.12.1.31;ns1.no-chld-par-undeter-1.basic01.xa/fda1:b2:c3:0:127:12:1:31
+   0.11 INFO     Basic01        B01_PARENT_FOUND  domain=parent.no-chld-par-undeter-1.basic01.xa; ns_list=ns1.parent.no-chld-par-undeter-1.basic01.xa/127.12.1.41;ns1.parent.no-chld-par-undeter-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.no-chld-par-undeter-1.basic01.xa/127.12.1.42;ns2.parent.no-chld-par-undeter-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.11 WARNING  Basic01        B01_PARENT_UNDETERMINED  ns_list=ns1.no-chld-par-undeter-1.basic01.xa/127.12.1.31;ns1.no-chld-par-undeter-1.basic01.xa/fda1:b2:c3:0:127:12:1:31;ns1.parent.no-chld-par-undeter-1.basic01.xa/127.12.1.41;ns1.parent.no-chld-par-undeter-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.no-chld-par-undeter-1.basic01.xa/127.12.1.42;ns2.parent.no-chld-par-undeter-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
    0.11 ERROR    Basic01        B01_NO_CHILD  domain_child=child.parent.no-chld-par-undeter-1.basic01.xa; domain_super="parent.no-chld-par-undeter-1.basic01.xa"
-   0.11 INFO     Basic01        TEST_CASE_END  testcase=Basic01
 ```
 --> OK
 
@@ -341,15 +332,12 @@ Scenario name             | Mandatory message tag                               
 CHLD-FOUND-PAR-UNDET-1    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED                        | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.chld-found-par-undet-1.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info child.parent.chld-found-par-undet-1.basic01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
-   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.10 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-par-undet-1.basic01.xa; ns_ip_list=ns1.parent.chld-found-par-undet-1.basic01.xa/127.12.1.41;ns1.parent.chld-found-par-undet-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-par-undet-1.basic01.xa/127.12.1.42;ns2.parent.chld-found-par-undet-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.10 INFO     Basic01        B01_PARENT_FOUND  domain=chld-found-par-undet-1.basic01.xa; ns_ip_list=ns1.chld-found-par-undet-1.basic01.xa/127.12.1.31;ns1.chld-found-par-undet-1.basic01.xa/fda1:b2:c3:0:127:12:1:31
-   0.10 WARNING  Basic01        B01_PARENT_UNDETERMINED  ns_ip_list=ns1.chld-found-par-undet-1.basic01.xa/127.12.1.31;ns1.chld-found-par-undet-1.basic01.xa/fda1:b2:c3:0:127:12:1:31;ns1.parent.chld-found-par-undet-1.basic01.xa/127.12.1.41;ns1.parent.chld-found-par-undet-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-par-undet-1.basic01.xa/127.12.1.42;ns2.parent.chld-found-par-undet-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.10 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-par-undet-1.basic01.xa
-   0.10 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.15 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-par-undet-1.basic01.xa; ns_list=ns1.parent.chld-found-par-undet-1.basic01.xa/127.12.1.41;ns1.parent.chld-found-par-undet-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-par-undet-1.basic01.xa/127.12.1.42;ns2.parent.chld-found-par-undet-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.15 INFO     Basic01        B01_PARENT_FOUND  domain=chld-found-par-undet-1.basic01.xa; ns_list=ns1.chld-found-par-undet-1.basic01.xa/127.12.1.31;ns1.chld-found-par-undet-1.basic01.xa/fda1:b2:c3:0:127:12:1:31
+   0.15 WARNING  Basic01        B01_PARENT_UNDETERMINED  ns_list=ns1.chld-found-par-undet-1.basic01.xa/127.12.1.31;ns1.chld-found-par-undet-1.basic01.xa/fda1:b2:c3:0:127:12:1:31;ns1.parent.chld-found-par-undet-1.basic01.xa/127.12.1.41;ns1.parent.chld-found-par-undet-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-par-undet-1.basic01.xa/127.12.1.42;ns2.parent.chld-found-par-undet-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.15 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-par-undet-1.basic01.xa
 ```
 --> OK
 
@@ -358,14 +346,11 @@ Scenario name             | Mandatory message tag                               
 CHLD-FOUND-INCONSIST-1    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.CHLD-FOUND-INCONSIST-1.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info child.parent.CHLD-FOUND-INCONSIST-1.basic01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
-   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.12 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-1.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-1.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-1.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.12 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-1.basic01.xa
-   0.12 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-1.basic01.xa; domain_parent=parent.chld-found-inconsist-1.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-1.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-1.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.12 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.13 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-1.basic01.xa; ns_list=ns1.parent.chld-found-inconsist-1.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-1.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.13 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-1.basic01.xa
+   0.13 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-1.basic01.xa; domain_parent=parent.chld-found-inconsist-1.basic01.xa; ns_list=ns2.parent.chld-found-inconsist-1.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
 ```
 --> OK
 
@@ -374,14 +359,11 @@ Scenario name             | Mandatory message tag                               
 CHLD-FOUND-INCONSIST-2    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.CHLD-FOUND-INCONSIST-2.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info  child.parent.CHLD-FOUND-INCONSIST-2.basic01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
-   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.07 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-2.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-2.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-2.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-2.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-2.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.07 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-2.basic01.xa
-   0.08 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-2.basic01.xa; domain_parent=parent.chld-found-inconsist-2.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-2.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-2.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-2.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-2.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.08 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.14 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-2.basic01.xa; ns_list=ns1.parent.chld-found-inconsist-2.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-2.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-2.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-2.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.14 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-2.basic01.xa
+   0.15 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-2.basic01.xa; domain_parent=parent.chld-found-inconsist-2.basic01.xa; ns_list=ns2.parent.chld-found-inconsist-2.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-2.basic01.xa/fda1:b2:c3:0:127:12:1:42
 ```
 --> OK
 
@@ -390,14 +372,11 @@ Scenario name             | Mandatory message tag                               
 CHLD-FOUND-INCONSIST-3    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.CHLD-FOUND-INCONSIST-3.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info child.parent.CHLD-FOUND-INCONSIST-3.basic01.xa 
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
-   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.07 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-3.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-3.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-3.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-3.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-3.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.07 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-3.basic01.xa
-   0.07 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-3.basic01.xa; domain_parent=parent.chld-found-inconsist-3.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-3.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-3.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-3.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-3.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.07 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.15 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-3.basic01.xa; ns_list=ns1.parent.chld-found-inconsist-3.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-3.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-3.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-3.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.15 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-3.basic01.xa
+   0.15 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-3.basic01.xa; domain_parent=parent.chld-found-inconsist-3.basic01.xa; ns_list=ns2.parent.chld-found-inconsist-3.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-3.basic01.xa/fda1:b2:c3:0:127:12:1:42
 ```
 --> OK
 
@@ -406,15 +385,12 @@ Scenario name             | Mandatory message tag                               
 CHLD-FOUND-INCONSIST-4    | B01_PARENT_FOUND, B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION                  | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.CHLD-FOUND-INCONSIST-4.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info child.parent.CHLD-FOUND-INCONSIST-4.basic01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
-   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.08 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-4.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-4.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-4.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-4.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-4.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.08 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-4.basic01.xa
-   0.09 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-4.basic01.xa; domain_parent=sister.parent.chld-found-inconsist-4.basic01.xa.; ns_ip_list=ns1.parent.chld-found-inconsist-4.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-4.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-4.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-4.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.09 NOTICE   Basic01        B01_CHILD_IS_ALIAS  domain_child=child.parent.chld-found-inconsist-4.basic01.xa; domain_target=sister.parent.chld-found-inconsist-4.basic01.xa.; ns_ip_list=ns2.parent.chld-found-inconsist-4.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-4.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.09 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.16 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-4.basic01.xa; ns_list=ns1.parent.chld-found-inconsist-4.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-4.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-4.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-4.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.16 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-4.basic01.xa
+   0.16 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-4.basic01.xa; domain_parent=parent.chld-found-inconsist-4.basic01.xa; ns_list=ns2.parent.chld-found-inconsist-4.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-4.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.16 NOTICE   Basic01        B01_CHILD_IS_ALIAS  domain_child=child.parent.chld-found-inconsist-4.basic01.xa; domain_target=sister.parent.chld-found-inconsist-4.basic01.xa.; ns_list=ns2.parent.chld-found-inconsist-4.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-4.basic01.xa/fda1:b2:c3:0:127:12:1:42
 ```
 --> OK
 
@@ -423,14 +399,11 @@ Scenario name             | Mandatory message tag                               
 CHLD-FOUND-INCONSIST-5    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.CHLD-FOUND-INCONSIST-5.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info child.parent.CHLD-FOUND-INCONSIST-5.basic01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
-   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.11 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-5.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-5.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-5.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-5.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-5.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.11 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-5.basic01.xa
-   0.11 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-5.basic01.xa; domain_parent=parent.chld-found-inconsist-5.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-5.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-5.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-5.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-5.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.11 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.12 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-5.basic01.xa; ns_list=ns1.parent.chld-found-inconsist-5.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-5.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-5.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-5.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.12 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-5.basic01.xa
+   0.12 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-5.basic01.xa; domain_parent=parent.chld-found-inconsist-5.basic01.xa; ns_list=ns2.parent.chld-found-inconsist-5.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-5.basic01.xa/fda1:b2:c3:0:127:12:1:42
 ```
 --> OK
 
@@ -439,14 +412,11 @@ Scenario name             | Mandatory message tag                               
 CHLD-FOUND-INCONSIST-6    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.CHLD-FOUND-INCONSIST-6.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info child.parent.CHLD-FOUND-INCONSIST-6.basic01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
-   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.08 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-6.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-6.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-6.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-6.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-6.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.08 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-6.basic01.xa
-   0.08 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-6.basic01.xa; domain_parent=parent.chld-found-inconsist-6.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-6.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-6.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-6.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-6.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.08 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.10 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-6.basic01.xa; ns_list=ns1.parent.chld-found-inconsist-6.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-6.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-6.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-6.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.10 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-6.basic01.xa
+   0.10 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-6.basic01.xa; domain_parent=parent.chld-found-inconsist-6.basic01.xa; ns_list=ns2.parent.chld-found-inconsist-6.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-6.basic01.xa/fda1:b2:c3:0:127:12:1:42
 ```
 --> OK
 
@@ -455,14 +425,11 @@ Scenario name             | Mandatory message tag                               
 CHLD-FOUND-INCONSIST-7    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.CHLD-FOUND-INCONSIST-7.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info child.parent.CHLD-FOUND-INCONSIST-7.basic01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
-   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.11 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-7.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-7.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-7.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-7.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-7.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.11 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-7.basic01.xa
-   0.11 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-7.basic01.xa; domain_parent=parent.chld-found-inconsist-7.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-7.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-7.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-7.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-7.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.11 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.09 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-7.basic01.xa; ns_list=ns1.parent.chld-found-inconsist-7.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-7.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-7.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-7.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.10 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-7.basic01.xa
+   0.10 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-7.basic01.xa; domain_parent=parent.chld-found-inconsist-7.basic01.xa; ns_list=ns2.parent.chld-found-inconsist-7.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-7.basic01.xa/fda1:b2:c3:0:127:12:1:42
 ```
 --> OK
 
@@ -471,14 +438,11 @@ Scenario name             | Mandatory message tag                               
 CHLD-FOUND-INCONSIST-8    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.CHLD-FOUND-INCONSIST-8.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info child.parent.CHLD-FOUND-INCONSIST-8.basic01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
-   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.08 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-8.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-8.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-8.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-8.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-8.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.08 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-8.basic01.xa
-   0.08 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-8.basic01.xa; domain_parent=parent.chld-found-inconsist-8.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-8.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-8.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-8.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-8.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.08 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.10 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-8.basic01.xa; ns_list=ns1.parent.chld-found-inconsist-8.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-8.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-8.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-8.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.10 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-8.basic01.xa
+   0.10 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-8.basic01.xa; domain_parent=parent.chld-found-inconsist-8.basic01.xa; ns_list=ns2.parent.chld-found-inconsist-8.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-8.basic01.xa/fda1:b2:c3:0:127:12:1:42
 ```
 --> OK
 
@@ -487,15 +451,12 @@ Scenario name             | Mandatory message tag                               
 CHLD-FOUND-INCONSIST-9    | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND  | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.CHLD-FOUND-INCONSIST-9.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info child.parent.CHLD-FOUND-INCONSIST-9.basic01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
-   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.09 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-9.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-9.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-9.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-9.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-9.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.09 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-9.basic01.xa
-   0.09 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-9.basic01.xa; domain_parent=sister.parent.chld-found-inconsist-9.basic01.xa.; ns_ip_list=ns1.parent.chld-found-inconsist-9.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-9.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-9.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-9.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.09 NOTICE   Basic01        B01_CHILD_IS_ALIAS  domain_child=child.parent.chld-found-inconsist-9.basic01.xa; domain_target=sister.parent.chld-found-inconsist-9.basic01.xa.; ns_ip_list=ns2.parent.chld-found-inconsist-9.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-9.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.09 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.13 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-9.basic01.xa; ns_list=ns1.parent.chld-found-inconsist-9.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-9.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-9.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-9.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.13 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-9.basic01.xa
+   0.13 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-9.basic01.xa; domain_parent=parent.chld-found-inconsist-9.basic01.xa; ns_list=ns2.parent.chld-found-inconsist-9.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-9.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.13 NOTICE   Basic01        B01_CHILD_IS_ALIAS  domain_child=child.parent.chld-found-inconsist-9.basic01.xa; domain_target=sister.parent.chld-found-inconsist-9.basic01.xa.; ns_list=ns2.parent.chld-found-inconsist-9.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-9.basic01.xa/fda1:b2:c3:0:127:12:1:42
 ```
 --> OK
 
@@ -504,14 +465,11 @@ Scenario name             | Mandatory message tag                               
 CHLD-FOUND-INCONSIST-10   | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.CHLD-FOUND-INCONSIST-10.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info child.parent.CHLD-FOUND-INCONSIST-10.basic01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
-   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.08 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-10.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-10.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-10.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-10.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-10.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.08 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-10.basic01.xa
-   0.08 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-10.basic01.xa; domain_parent=parent.chld-found-inconsist-10.basic01.xa; ns_ip_list=ns1.parent.chld-found-inconsist-10.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-10.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-10.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-10.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.08 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.12 INFO     Basic01        B01_PARENT_FOUND  domain=parent.chld-found-inconsist-10.basic01.xa; ns_list=ns1.parent.chld-found-inconsist-10.basic01.xa/127.12.1.41;ns1.parent.chld-found-inconsist-10.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.chld-found-inconsist-10.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-10.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.12 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.chld-found-inconsist-10.basic01.xa
+   0.12 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.chld-found-inconsist-10.basic01.xa; domain_parent=parent.chld-found-inconsist-10.basic01.xa; ns_list=ns2.parent.chld-found-inconsist-10.basic01.xa/127.12.1.42;ns2.parent.chld-found-inconsist-10.basic01.xa/fda1:b2:c3:0:127:12:1:42
 ```
 --> OK
 
@@ -558,36 +516,40 @@ Loading profile from COMMON/custom-profile.json.
    0.08 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.parent.no-del-undel-par-und-1.basic01.xa; domain_parent=no-del-undel-par-und-1.basic01.xa; ns_ip_list=ns1.no-del-undel-par-und-1.basic01.xa/127.12.1.31;ns1.no-del-undel-par-und-1.basic01.xa/fda1:b2:c3:0:127:12:1:31;ns1.parent.no-del-undel-par-und-1.basic01.xa/127.12.1.41;ns1.parent.no-del-undel-par-und-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.no-del-undel-par-und-1.basic01.xa/127.12.1.42;ns2.parent.no-del-undel-par-und-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
    0.08 INFO     Basic01        TEST_CASE_END  testcase=Basic01
 ```
---> Not OK
+--> Not yet OK
 
 Scenario name             | Mandatory message tag                                                             | Forbidden message tags
 :-------------------------|:----------------------------------------------------------------------------------|:----------------------
 NO-CHLD-NO-PAR-1          | B01_NO_CHILD, B01_PARENT_NOT_FOUND, B01_SERVER_ZONE_ERROR                         | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.no-chld-no-par-1.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --profile Basic-TP/basic01/profile.json --level info child.parent.no-chld-no-par-1.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
    0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.04 WARNING  Basic01        B01_PARENT_UNDETERMINED  ns_ip_list=
-   0.04 ERROR    Basic01        B01_NO_CHILD  domain_child=child.parent.no-chld-no-par-1.basic01.xa; domain_super="parent.no-chld-no-par-1.basic01.xa"
-   0.04 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.07 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.no-chld-no-par-1.basic01.xa/127.12.1.32; query_name="no-chld-no-par-1.basic01.xa"; rrtype=SOA
+   0.07 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.no-chld-no-par-1.basic01.xa/fda1:b2:c3:0:127:12:1:32; query_name="no-chld-no-par-1.basic01.xa"; rrtype=SOA
+   0.07 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns1.no-chld-no-par-1.basic01.xa/127.12.1.31; query_name="no-chld-no-par-1.basic01.xa"; rrtype=SOA
+   0.07 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns1.no-chld-no-par-1.basic01.xa/fda1:b2:c3:0:127:12:1:31; query_name="no-chld-no-par-1.basic01.xa"; rrtype=SOA
+   0.07 WARNING  Basic01        B01_PARENT_NOT_FOUND  
+   0.07 ERROR    Basic01        B01_NO_CHILD  domain_child=child.parent.no-chld-no-par-1.basic01.xa; domain_super="parent.no-chld-no-par-1.basic01.xa"
+   0.07 INFO     Basic01        TEST_CASE_END  testcase=Basic01
 ```
---> Not OK
+--> OK
 
 Scenario name             | Mandatory message tag                                                             | Forbidden message tags
 :-------------------------|:----------------------------------------------------------------------------------|:----------------------
 CHILD-ALIAS-1             | B01_CHILD_IS_ALIAS, B01_NO_CHILD, B01_PARENT_FOUND                          | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.child-alias-1.basic01.xa.
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json child.parent.child-alias-1.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
    0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.08 INFO     Basic01        B01_PARENT_FOUND  domain=parent.child-alias-1.basic01.xa; ns_ip_list=ns1.parent.child-alias-1.basic01.xa/127.12.1.41;ns1.parent.child-alias-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.child-alias-1.basic01.xa/127.12.1.42;ns2.parent.child-alias-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.08 ERROR    Basic01        B01_NO_CHILD  domain_child=child.parent.child-alias-1.basic01.xa; domain_super="parent.child-alias-1.basic01.xa"
-   0.08 NOTICE   Basic01        B01_CHILD_IS_ALIAS  domain_child=child.parent.child-alias-1.basic01.xa; domain_target=sister.parent.child-alias-1.basic01.xa.; ns_ip_list=ns1.parent.child-alias-1.basic01.xa/127.12.1.41;ns1.parent.child-alias-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.child-alias-1.basic01.xa/127.12.1.42;ns2.parent.child-alias-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.08 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.19 INFO     Basic01        B01_PARENT_FOUND  domain=parent.child-alias-1.basic01.xa; ns_list=ns1.parent.child-alias-1.basic01.xa/127.12.1.41;ns1.parent.child-alias-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.child-alias-1.basic01.xa/127.12.1.42;ns2.parent.child-alias-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.19 ERROR    Basic01        B01_NO_CHILD  domain_child=child.parent.child-alias-1.basic01.xa; domain_super="parent.child-alias-1.basic01.xa"
+   0.19 NOTICE   Basic01        B01_CHILD_IS_ALIAS  domain_child=child.parent.child-alias-1.basic01.xa; domain_target=sister.parent.child-alias-1.basic01.xa.; ns_list=ns1.parent.child-alias-1.basic01.xa/127.12.1.41;ns1.parent.child-alias-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.child-alias-1.basic01.xa/127.12.1.42;ns2.parent.child-alias-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.19 INFO     Basic01        TEST_CASE_END  testcase=Basic01
 ```
 --> OK
 
@@ -596,16 +558,16 @@ Scenario name             | Mandatory message tag                               
 CHILD-ALIAS-2             | B01_CHILD_IS_ALIAS, B01_NO_CHILD, B01_INCONSISTENT_ALIAS, B01_PARENT_FOUND | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.child-alias-2.basic01.xa.
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json child.parent.child-alias-2.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
    0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.09 INFO     Basic01        B01_PARENT_FOUND  domain=parent.child-alias-2.basic01.xa; ns_ip_list=ns1.parent.child-alias-2.basic01.xa/127.12.1.41;ns1.parent.child-alias-2.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.child-alias-2.basic01.xa/127.12.1.42;ns2.parent.child-alias-2.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.09 ERROR    Basic01        B01_NO_CHILD  domain_child=child.parent.child-alias-2.basic01.xa; domain_super="parent.child-alias-2.basic01.xa"
-   0.09 NOTICE   Basic01        B01_CHILD_IS_ALIAS  domain_child=child.parent.child-alias-2.basic01.xa; domain_target=brother.parent.child-alias-2.basic01.xa.; ns_ip_list=ns2.parent.child-alias-2.basic01.xa/127.12.1.42;ns2.parent.child-alias-2.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.09 NOTICE   Basic01        B01_CHILD_IS_ALIAS  domain_child=child.parent.child-alias-2.basic01.xa; domain_target=sister.parent.child-alias-2.basic01.xa.; ns_ip_list=ns1.parent.child-alias-2.basic01.xa/127.12.1.41;ns1.parent.child-alias-2.basic01.xa/fda1:b2:c3:0:127:12:1:41
-   0.09 ERROR    Basic01        B01_INCONSISTENT_ALIAS  domain=child.parent.child-alias-2.basic01.xa
-   0.09 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.18 INFO     Basic01        B01_PARENT_FOUND  domain=parent.child-alias-2.basic01.xa; ns_list=ns1.parent.child-alias-2.basic01.xa/127.12.1.41;ns1.parent.child-alias-2.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.child-alias-2.basic01.xa/127.12.1.42;ns2.parent.child-alias-2.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.18 ERROR    Basic01        B01_NO_CHILD  domain_child=child.parent.child-alias-2.basic01.xa; domain_super="parent.child-alias-2.basic01.xa"
+   0.18 NOTICE   Basic01        B01_CHILD_IS_ALIAS  domain_child=child.parent.child-alias-2.basic01.xa; domain_target=sister.parent.child-alias-2.basic01.xa.; ns_list=ns1.parent.child-alias-2.basic01.xa/127.12.1.41;ns1.parent.child-alias-2.basic01.xa/fda1:b2:c3:0:127:12:1:41
+   0.18 NOTICE   Basic01        B01_CHILD_IS_ALIAS  domain_child=child.parent.child-alias-2.basic01.xa; domain_target=brother.parent.child-alias-2.basic01.xa.; ns_list=ns2.parent.child-alias-2.basic01.xa/127.12.1.42;ns2.parent.child-alias-2.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.18 ERROR    Basic01        B01_INCONSISTENT_ALIAS  domain=child.parent.child-alias-2.basic01.xa
+   0.18 INFO     Basic01        TEST_CASE_END  testcase=Basic01
 ```
 --> OK
 
@@ -614,30 +576,34 @@ Scenario name             | Mandatory message tag                               
 ZONE-ERR-GRANDPARENT-1    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.zone-err-grandparent-1.basic01.xa.
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json child.parent.zone-err-grandparent-1.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
    0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.07 INFO     Basic01        B01_PARENT_FOUND  domain=parent.zone-err-grandparent-1.basic01.xa; ns_ip_list=ns1.parent.zone-err-grandparent-1.basic01.xa/127.12.1.41;ns1.parent.zone-err-grandparent-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.zone-err-grandparent-1.basic01.xa/127.12.1.42;ns2.parent.zone-err-grandparent-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.07 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.zone-err-grandparent-1.basic01.xa
-   0.07 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.07 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns1.zone-err-grandparent-1.basic01.xa/127.12.1.31; query_name="zone-err-grandparent-1.basic01.xa"; rrtype=SOA
+   0.07 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns1.zone-err-grandparent-1.basic01.xa/fda1:b2:c3:0:127:12:1:31; query_name="zone-err-grandparent-1.basic01.xa"; rrtype=SOA
+   0.09 INFO     Basic01        B01_PARENT_FOUND  domain=parent.zone-err-grandparent-1.basic01.xa; ns_list=ns1.parent.zone-err-grandparent-1.basic01.xa/127.12.1.41;ns1.parent.zone-err-grandparent-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.zone-err-grandparent-1.basic01.xa/127.12.1.42;ns2.parent.zone-err-grandparent-1.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.09 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.zone-err-grandparent-1.basic01.xa
+   0.09 INFO     Basic01        TEST_CASE_END  testcase=Basic01
 ```
---> Not OK
+--> OK
 
 Scenario name             | Mandatory message tag                                                             | Forbidden message tags
 :-------------------------|:----------------------------------------------------------------------------------|:----------------------
 ZONE-ERR-GRANDPARENT-2    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.zone-err-grandparent-2.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json child.parent.zone-err-grandparent-2.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
    0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.10 INFO     Basic01        B01_PARENT_FOUND  domain=parent.zone-err-grandparent-2.basic01.xa; ns_ip_list=ns1.parent.zone-err-grandparent-2.basic01.xa/127.12.1.41;ns1.parent.zone-err-grandparent-2.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.zone-err-grandparent-2.basic01.xa/127.12.1.42;ns2.parent.zone-err-grandparent-2.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.10 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.zone-err-grandparent-2.basic01.xa
-   0.10 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.12 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.zone-err-grandparent-2.basic01.xa/127.12.1.32; query_name="zone-err-grandparent-2.basic01.xa"; rrtype=NS
+   0.12 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.zone-err-grandparent-2.basic01.xa/fda1:b2:c3:0:127:12:1:32; query_name="zone-err-grandparent-2.basic01.xa"; rrtype=NS
+   0.15 INFO     Basic01        B01_PARENT_FOUND  domain=parent.zone-err-grandparent-2.basic01.xa; ns_list=ns1.parent.zone-err-grandparent-2.basic01.xa/127.12.1.41;ns1.parent.zone-err-grandparent-2.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.zone-err-grandparent-2.basic01.xa/127.12.1.42;ns2.parent.zone-err-grandparent-2.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.15 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.zone-err-grandparent-2.basic01.xa
+   0.15 INFO     Basic01        TEST_CASE_END  testcase=Basic01
 ```
---> Not OK
+--> OK
 
 
 Scenario name             | Mandatory message tag                                                             | Forbidden message tags
@@ -645,11 +611,15 @@ Scenario name             | Mandatory message tag                               
 ZONE-ERR-GRANDPARENT-3    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)
 
 ```
-$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile COMMON/custom-profile.json child.parent.zone-err-grandparent-3.basic01.xa
-Loading profile from COMMON/custom-profile.json.
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json child.parent.zone-err-grandparent-3.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
    0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
-   0.08 INFO     Basic01        B01_PARENT_FOUND  domain=parent.zone-err-grandparent-3.basic01.xa; ns_ip_list=ns1.parent.zone-err-grandparent-3.basic01.xa/127.12.1.41;ns1.parent.zone-err-grandparent-3.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.zone-err-grandparent-3.basic01.xa/127.12.1.42;ns2.parent.zone-err-grandparent-3.basic01.xa/fda1:b2:c3:0:127:12:1:42
-   0.08 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.zone-err-grandparent-3.basic01.xa
-   0.08 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+   0.07 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.zone-err-grandparent-3.basic01.xa/127.12.1.32; query_name="zone-err-grandparent-3.basic01.xa"; rrtype=NS
+   0.07 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.zone-err-grandparent-3.basic01.xa/fda1:b2:c3:0:127:12:1:32; query_name="zone-err-grandparent-3.basic01.xa"; rrtype=NS
+   0.09 INFO     Basic01        B01_PARENT_FOUND  domain=parent.zone-err-grandparent-3.basic01.xa; ns_list=ns1.parent.zone-err-grandparent-3.basic01.xa/127.12.1.41;ns1.parent.zone-err-grandparent-3.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.zone-err-grandparent-3.basic01.xa/127.12.1.42;ns2.parent.zone-err-grandparent-3.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.09 INFO     Basic01        B01_CHILD_FOUND  domain=child.parent.zone-err-grandparent-3.basic01.xa
+   0.09 INFO     Basic01        TEST_CASE_END  testcase=Basic01
 ```
+--> OK
+
