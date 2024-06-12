@@ -95,6 +95,7 @@ CHILD-ALIAS-2             | B01_CHILD_IS_ALIAS, B01_NO_CHILD, B01_INCONSISTENT_A
 ZONE-ERR-GRANDPARENT-1    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)
 ZONE-ERR-GRANDPARENT-2    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)
 ZONE-ERR-GRANDPARENT-3    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)
+ROOT-ZONE                 | B01_CHILD_FOUND, B01_ROOT_HAS_NO_PARENT                                           | 2)
 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
 * (2) All tags except for those specified as "Mandatory message tags"
@@ -488,9 +489,11 @@ on query for grandparent zone NS.
     `zone-err-grandparent-3.basic01.xa`:
       * Owner name `oncle.zone-err-grandparent-3.basic01.xa` instead.
 
+### ROOT-ZONE
+Test on the standard root zone.
 
-
-
+* Zone: .
+  * No special zone files are to be created.
 
 
 
