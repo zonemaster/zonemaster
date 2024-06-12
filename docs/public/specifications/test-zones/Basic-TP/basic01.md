@@ -53,8 +53,6 @@ The test case can output any of these message tags, but not necessarily in any c
 * B01_SERVER_ZONE_ERROR
 
 
-B01_CHILD_FOUND, B01_PARENT_DISREGARDED
-
 ## Test scenarios and message tags
 
 If a message tag is not listed for the scenario, its presence or non-presence is
