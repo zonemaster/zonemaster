@@ -1,0 +1,15 @@
+$ORIGIN child.parent.good-6.methodsv2.xa.
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024052901      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@               NS      ns1.good-6.methodsv2.xa.
+@               NS      ns2.good-6.methodsv2.xa.
+
+; EOF
+

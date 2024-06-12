@@ -1,0 +1,45 @@
+; This zone file is shared between grandparent zones for several
+; scenarios. All names should be relative. Top-level $ORIGIN is
+; inherited when the zone is loaded.
+;
+; $ORIGIN not set here
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024052700      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+		NS	ns1
+		NS	ns2
+
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+; Used in some scenarios. Can be overridden
+; by template if needed.
+ns3		A	127.40.1.33
+ns3		AAAA	fda1:b2:c3:0:127:40:1:33
+ns4		A	127.40.1.34
+ns4		AAAA	fda1:b2:c3:0:127:40:1:34
+ns5		A	127.40.1.35
+ns5		AAAA	fda1:b2:c3:0:127:40:1:35
+ns6		A	127.40.1.36
+ns6		AAAA	fda1:b2:c3:0:127:40:1:36
+
+
+
+$ORIGIN parent            ; Must be relative
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.41
+ns1		AAAA	fda1:b2:c3:0:127:40:1:41
+ns2		A	127.40.1.42
+ns2		AAAA	fda1:b2:c3:0:127:40:1:42
+
+; EOF
+

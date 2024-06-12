@@ -74,9 +74,10 @@ Two terminal windows to the computer are needed.
    ```
    ./set-ip.sh
    ```
-4. Start `coredns`. It will be running in the foreground until terminated.
+4. Start `coredns`. It will be running in the foreground until terminated and it
+   will use main.cfg.
    ```
-   sudo coredns --conf main.cfg
+   ./start-coredns.sh
    ```
 
 ### Run zonemaster-cli in terminal 2
@@ -119,6 +120,8 @@ this README file.
 * [set-ip.sh]
   * A script to populate the loopback based on the content of
     [address-plan.md].
+* [start-coredns.sh]
+  * A script to start CoreDNS correctly.
 
 More files are found in the directories below.
 
@@ -148,7 +151,9 @@ in those directories.
 * Delegation-TP/ (*not yet available*)
   * Directory structure for scenarios for test cases in the Delegation-TP test
     module.
-* Nameserver-TP/ (*not yet available*)
+* [MethodsV2/]
+  * Direcotry structure for scenarios for the shared methods for the test cases.
+* [Nameserver-TP/]
   * Directory structure for scenarios for test cases in the Nameserver-TP test
     module.
 * Syntax-TP/ (*not yet available*)
@@ -157,13 +162,15 @@ in those directories.
 * [Zone-TP/]
   * Directory structure for scenarios for test cases in the Zone-TP test module.
 
-
 [address-plan.md]:                                     address-plan.md
 [COMMON/]:                                             COMMON/
 [Consistency-TP/]:                                     Consistency-TP/
 [DNSSEC-TP/]:                                          DNSSEC-TP/
 [main.cfg]:                                            main.cfg
+[MethodsV2/]:                                          MethodsV2/
+[Nameserver-TP/]:                                      Nameserver-TP/
 [set-ip.sh]:                                           set-ip.sh
+[start-coredns.sh]:                                    start-coredns.sh
 [t]:                                                   https://github.com/zonemaster/zonemaster-engine/tree/develop/t
 [test-zone-data]:                                      .
 [Zone-TP/]:                                            Zone-TP/
