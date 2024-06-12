@@ -11,11 +11,12 @@ and processor architecture listed below.
 
 * [Debian] 12
 * [Docker]
-* [FreeBSD] 14.0
-* [Rocky Linux] 8.9
-* [Rocky Linux] 9.3
+* [FreeBSD] 14.1
+* [Rocky Linux] 8.10
+* [Rocky Linux] 9.4
 * [Ubuntu] 20.04
 * [Ubuntu] 22.04
+* [Ubuntu] 24.04
 
 Only the latest long-term supported version of Debian and FreeBSD, respectively,
 is supported. All long-term supported versions of Rocky Linux and Ubuntu are
@@ -35,13 +36,14 @@ at large cloud providers.
 
 Operating System | MariaDB | PostgreSQL
 ---------------- | --------| ---------------
-Debian 12        | 10.11   | 15.5
+Debian 12        | 10.11   | 15.6
 Docker           | n/a     | n/a
-FreeBSD 14.0     | 8.0 (*) | 15
-Rocky Linux 8.9  | 10.3    | 10.23
-Rocky Linux 9.3  | 10.5    | 13.13
-Ubuntu 20.04     | 10.3    | 12.17
-Ubuntu 22.04     | 10.6    | 14.10
+FreeBSD 14.1     | 8.0 (*) | 16.3
+Rocky Linux 8.10 | 10.11   | 16.1
+Rocky Linux 9.4  | 10.11   | 16.1
+Ubuntu 20.04     | 10.3    | 12.2
+Ubuntu 22.04     | 10.6    | 14.2
+Ubuntu 24.04     | 10.11   | 16.2
 
 * (*) FreeBSD uses MySQL, not MariaDB.
 * SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
@@ -56,13 +58,15 @@ Ubuntu 22.04     | 10.6    | 14.10
 
 Operating System | Perl
 ---------------- | ----
-Debian 12        | 5.36
+Debian 12        | ?
 Docker           | (*)
-FreeBSD 14.0     | 5.36
-Rocky Linux 8.9  | 5.26
-Rocky Linux 9.3  | 5.32
+FreeBSD 14.1     | 5.36
+Rocky Linux 8.10 | 5.32
+Rocky Linux 9.4  | 5.32
 Ubuntu 20.04     | 5.30
 Ubuntu 22.04     | 5.34
+Ubuntu 24.04     | 5.38
+
 
 * Zonemaster requires Perl version 5.16 or higher.
 * Zonemaster has been tested with the default version of Perl in the OSs as
@@ -77,12 +81,12 @@ The latest version of the browser at the time of testing is used.
 Operating System | Browser
 ---------------- | -------
 Debian 12        | Firefox
-MacOS 13         | Firefox
-MacOS 13         | Chrome
-Windows 10       | Firefox
-Windows 10       | Chrome
-Ubuntu 22.04     | Firefox
-Ubuntu 22.04     | Chrome
+FreeBSD 14.1     | ?
+Rocky Linux 8.10 | ?
+Rocky Linux 9.4  | ?
+Ubuntu 22.04     | ?
+Ubuntu 22.04     | ?
+Ubuntu 24.04     | ?
 
 Zonemaster GUI is tested manually and with testing tools. See the
 [Zonemaster-gui repository][Zonemaster-GUI] for more details.
