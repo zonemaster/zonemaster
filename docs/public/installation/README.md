@@ -25,7 +25,7 @@ how to run Zonemaster-CLI on Docker.
 To build your own Docker image, see the [Docker Image Creation] documentation.
 
 [Docker Hub]:                          https://hub.docker.com/u/zonemaster
-[Docker Image Creation]:               ../../internal/maintenance/ReleaseProcess-create-docker-image.md
+[Docker Image Creation]:               https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
 [Docker]:                              https://www.docker.com/get-started/
 [prerequisites]:                       prerequisites.md
 [Using the CLI]:                       ../using/cli.md

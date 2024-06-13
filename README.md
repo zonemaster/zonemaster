@@ -63,8 +63,8 @@ In the internal tree you can find documentation regarding the
 [design](docs/internal/design) and [requirements](docs/internal/requirements) of
 the Zonemaster implementation.
 
-The [public](docs/public) documentation can be built using
-[`mdbook`](https://rust-lang.github.io/mdBook/) and the following commands:
+The [public](docs/public) documentation can be built using [`mdbook`][mdbook],
+its [`mdbook-linkcheck`][mdbook-linkcheck] plugin and the following commands:
 
 ```
 cd docs/public
@@ -194,6 +194,8 @@ be found in the [LICENSE](LICENSE) file included in this respository.
 [Issues in Zonemaster::GUI]:           https://github.com/zonemaster/zonemaster-gui/issues
 [Issues in Zonemaster::LDNS]:          https://github.com/zonemaster/zonemaster-ldns/issues
 [LDNS]:                                https://www.nlnetlabs.nl/projects/ldns/about/
+[mdbook]:                              https://rust-lang.github.io/mdBook/
+[mdbook-linkcheck]:                    https://github.com/Michael-F-Bryan/mdbook-linkcheck
 [OpenSSL]:                             https://www.openssl.org/
 [Prerequisites]:                       docs/public/installation/prerequisites.md
 [USING]:                               https://github.com/zonemaster/zonemaster-cli/blob/master/USING.md

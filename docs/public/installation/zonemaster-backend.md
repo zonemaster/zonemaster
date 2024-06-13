@@ -54,8 +54,8 @@ continue with this installation document.
 
 ## 2. Prerequisites
 
-Before installing Zonemaster::Backend, you should [install Zonemaster::Engine][
-Zonemaster::Engine installation].
+Before installing Zonemaster::Backend, you should [install Zonemaster::Engine
+][Zonemaster::Engine installation].
 
 > **Note:** [Zonemaster::Engine] and [Zonemaster::LDNS] are dependencies of
 > Zonemaster::Backend. Zonemaster::LDNS has a special installation requirement,

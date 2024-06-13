@@ -20,7 +20,7 @@
 ## Objective
 
 TCP is a protocol to reach a general purpose name server hosting a zone, "All
-general-purpose DNS implementations MUST support [...] TCP transport"
+general-purpose DNS implementations MUST support \[...] TCP transport"
 ([RFC 7766][RFC 7766#5], section 5).
 
 This Test Case will verify if the name servers of *Child Zone* are reachable over

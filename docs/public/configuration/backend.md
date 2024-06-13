@@ -55,7 +55,7 @@ Repeating a key name in one section is forbidden.
 Each section in `backend_config.ini` is documented below.
 
 In addition to the configuration file, some settings can configured using
-[environement variables][Environement Variables].
+[environment variables][Environment Variables].
 
 ## RPCAPI section
 
@@ -379,7 +379,8 @@ Otherwise a new test request is enqueued.
 
 [API documentation]:                  ../using/backend/api.md
 [DBD::mysql documentation]:           https://metacpan.org/pod/DBD::mysql#host
-[Environement Variables]:             backend-environment-variables.md
+[Default JSON profile file]:          https://github.com/zonemaster/zonemaster-engine/blob/master/share/profile.json
+[Environment Variables]:              backend-environment-variables.md
 [File format]:                        https://metacpan.org/pod/Config::IniFiles#FILE-FORMAT
 [ISO 3166-1 alpha-2]:                 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 [ISO 639-1]:                          https://en.wikipedia.org/wiki/ISO_639-1
@@ -393,7 +394,7 @@ Otherwise a new test request is enqueued.
 [PostgreSQL identifier]:              https://www.postgresql.org/docs/current/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS
 [Profile JSON files]:                 profiles.md
 [Profile name section]:               ../using/backend/rpcapi-reference.md#profile-name
-[Profiles]:                           Architecture.md#profile
+[Profiles]:                           https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md#profile
 [RPCAPI.enable_add_api_user]:         #enable_add_api_user
 [RPCAPI.enable_add_batch_job]:        #enable_add_batch_job
 [RPCAPI.enable_batch_create]:         #enable_batch_create
