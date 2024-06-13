@@ -1,0 +1,19 @@
+$ORIGIN addr-match-no-del-undel-2.consistency05.xa.
+
+; This zone file is for undelegated version of the zone
+
+$TTL 3600
+
+@       SOA     ns1 admin.mail.xa. (
+                2024051709      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS      ns3.addr-match-no-del-undel-2.consistency05.xb.
+@       NS      ns4.addr-match-no-del-undel-2.consistency05.xb.
+
+@       TXT     "Text"
+
+;EOF

@@ -1,0 +1,30 @@
+$ORIGIN parent.chld-found-inconsist-7.basic01.xa.
+
+; For ns1 only. ns2 has a different version of the zone.
+
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024052006      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+                
+
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.41
+ns1		AAAA	fda1:b2:c3:0:127:12:1:41
+ns2		A	127.12.1.42
+ns2		AAAA	fda1:b2:c3:0:127:12:1:42
+
+
+$ORIGIN child
+@               NS      ns1.parent.chld-found-inconsist-7.basic01.xa.
+@               NS      ns2
+ns2             A       127.12.1.52
+ns2             AAAA    fda1:b2:c3:0:127:12:1:52
+
+
+
