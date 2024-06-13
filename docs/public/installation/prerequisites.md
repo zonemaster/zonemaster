@@ -75,18 +75,14 @@ Ubuntu 24.04     | 5.38
 
 ## Supported Client Browser versions
 
-Zonemaster GUI is tested against the combination and browser in the table below.
+Zonemaster GUI is tested on the browsers in the table below.
 The latest version of the browser at the time of testing is used.
 
-Operating System | Browser
----------------- | -------
-Debian 12        | Firefox
-FreeBSD 14.1     | ?
-Rocky Linux 8.10 | ?
-Rocky Linux 9.4  | ?
-Ubuntu 22.04     | ?
-Ubuntu 22.04     | ?
-Ubuntu 24.04     | ?
+Browser |
+------- |
+Firefox |
+Chrome  |
+
 
 Zonemaster GUI is tested manually and with testing tools. See the
 [Zonemaster-gui repository][Zonemaster-GUI] for more details.
