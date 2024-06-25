@@ -132,7 +132,7 @@ two repositories.
   ```
 
 * Now it is time to connect your own fork of *Zonemaster-Engine* at Github to
-  the created clone, unless you have alreday done that, in case you can skip the
+  the created clone, unless you have already done that, in case you can skip the
   next step.
 
 * You have a user name at Github. Here we use "xxxx" as your user name and also
