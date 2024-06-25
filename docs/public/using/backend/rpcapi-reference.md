@@ -1366,7 +1366,7 @@ Trying to add a batch when the method has been disabled.
 
 ### API method: `get_batch_job_result`
 
-Return all [*test id*][Test id] objects of a *batch test*, with the number of finshed *test*.
+Return all [*test id*][Test id] objects of a *batch test*, with the number of finished *test*.
 
 Example request:
 
