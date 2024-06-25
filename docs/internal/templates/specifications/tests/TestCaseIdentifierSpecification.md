@@ -13,7 +13,7 @@ that test level’s name. The following test levels are defined and available:
 * Syntax
 * Zone
 
-The test level name is not case sensitive, but the forms defined above
+The test level name is not case-sensitive, but the forms defined above
 must be used when referring to the test levels, i.e. only the first letter
 uppercase, expect for acronyms for which all uppercase is used.
 For exemple "Address" and neither "ADDRESS" nor "address".
