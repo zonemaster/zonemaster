@@ -23,7 +23,7 @@
 When DNSSEC is enabled, NSEC or NSEC3 records provide a secure denial
 of existence for records not present in the zone. This test case
 verifies that correct NSEC or NSEC3 records with valid signatures are
-returned for a query for an non-existent name.
+returned for a query for a non-existent name.
 
 Furthermore, it is verified that the name servers for the zone are consistent
 about NSEC and NSEC3, i.e. either all servers should use NSEC or all servers

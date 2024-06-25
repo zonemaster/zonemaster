@@ -13,7 +13,7 @@ when none of the involved zones has any noticeable configuration error. Thus the
 combination of two or more correctly configured zones may also result in cyclic
 zone dependency.
 
-The objective here is to verify whether the engine idenitifes such dependency.
+The objective here is to verify whether the engine idenitifes such a dependency.
 
 
 ### Inputs
