@@ -80,9 +80,9 @@ DS10_NAME_NOT_COVERED_BY_NSEC      | ERROR   | ns_ip_list | The nonexistent name
 DS10_NAME_NOT_COVERED_BY_NSEC3     | ERROR   | ns_ip_list | The nonexistent name is not correctly covered by the NSEC3 records.
 DS10_NON_EXISTENT_RESPONSE_ERROR   | ERROR   | ns_ip_list | No or error in response of an expected nonexistent name.
 DS10_NSEC3_MISSING_SIGNATURE       | ERROR   | ns_ip_list | Missing signatures for NSEC3 record or records.
-DS10_NSEC3_RRSIG_VERIFY_ERROR      | ERROR   | ns_ip_list | The signature or signatures on the NSEC3 record or records cannot be correctly verfied.
+DS10_NSEC3_RRSIG_VERIFY_ERROR      | ERROR   | ns_ip_list | The signature or signatures on the NSEC3 record or records cannot be correctly verified.
 DS10_NSEC_MISSING_SIGNATURE        | ERROR   | ns_ip_list | Missing signatures for NSEC record or records.
-DS10_NSEC_RRSIG_VERIFY_ERROR       | ERROR   | ns_ip_list | The signature or signatures on the NSEC record or records cannot be correctly verfied.
+DS10_NSEC_RRSIG_VERIFY_ERROR       | ERROR   | ns_ip_list | The signature or signatures on the NSEC record or records cannot be correctly verified.
 DS10_UNSIGNED_ANSWER               | ERROR   | ns_ip_list, domain, rrtype | RRSIG is missing for record or records in the answer section.
 
 The value in the Level column is the default severity level of the message. The
