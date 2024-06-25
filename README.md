@@ -109,16 +109,16 @@ to `RPCAPI`.
 
 The Zonemaster product consists of the main part and five components. The main part
 consists of specifications and documentation for the Zonemaster product, and is
-stored in the main [Zonemaster][Zonemaster/Zonemaster] Github repository.
+stored in the main [Zonemaster][Zonemaster/Zonemaster] GitHub repository.
 
 All the software for the Zonemaster project belong to the five components, each
-component being stored in its own Github repository (listed below).
+component being stored in its own GitHub repository (listed below).
 
 The software has not yet been packaged for any operating systems, and you have to
 install most of it from the source code. The recommended method is to install
 from [CPAN] (except for [Zonemaster-GUI]), but it is possible to install directly
-from clones of the Github repositories. [Zonemaster-GUI] has no Perl code, and is
-installed directly from its repository at Github.
+from clones of the GitHub repositories. [Zonemaster-GUI] has no Perl code, and is
+installed directly from its repository at GitHub.
 
 The Zonemaster Product includes the following components:
 

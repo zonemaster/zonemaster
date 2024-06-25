@@ -23,7 +23,7 @@ subsection:
 ###  Bug Fixing 
 
 Any bug fixes, the team or any user discovers should be published in the
-Github issue tracker.
+GitHub issue tracker.
 
 Not all issues in the tracker are bugs, and not all reported bugs are
 software bugs, but can be protocol errors in DNS, or user or documentation
@@ -57,7 +57,7 @@ steering committee or the development team.
 
 ### Minor changes
 
-A "bug fix" or "minor change" should be added as an issue in Github. Then
+A "bug fix" or "minor change" should be added as an issue in GitHub. Then
 the person corresponding is assigned by the release manager or the person
 who has created the issue. The assigned person should then close the
 ticket within a specified time as mentioned in the "Key Performance
@@ -76,7 +76,7 @@ using the release process.
 #### Decision on discarding or including changes
 
 Whatever be the type of change request, it should go through the "Issues
-tracker" in the Github project. All requests should be promptly responded
+tracker" in the GitHub project. All requests should be promptly responded
 to, even if the decision to acknowledge the request is postponed (or)
 not taken into consideration.
 

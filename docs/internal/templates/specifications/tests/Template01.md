@@ -254,7 +254,7 @@ No special terminology for this test case.
   [Method][Methods].
 
 > > ----
-> > The links listed below are not visible when rendered by Github. In the
+> > The links listed below are not visible when rendered by GitHub. In the
 > > specification the different parts below should be combined into one link
 > > collection and sorted. Always start the link label (the left side) with an
 > > upper case letter (if it starts with a letter). The reference can from the
