@@ -20,7 +20,7 @@ The supported configuration items are the following.
   origin as the one serving the GUI or just a path, like the default value, when
   both the API and GUI are served from the same origin.
 * `"defaultLanguage"`: (*Deprecated*) This **does not** work anymore, to change
-  the default language update the Apache configuration as mentionned in the
+  the default language update the Apache configuration as mentioned in the
   [installation instructions][Default language].
 * `"enabledLanguages"`: An array of the languages enabled in the GUI, default
   `[ "da", "en", "es", "fi", "fr", "nb", "sv" ]`.
