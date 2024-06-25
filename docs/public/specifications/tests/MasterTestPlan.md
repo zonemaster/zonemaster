@@ -126,7 +126,7 @@ to ensure the stability of DNS.
 
 TODO: Briefly describe the necessary resources to run a test.
 
-#### Responsibilites
+#### Responsibilities
 
 #### Tools, techniques, methods, and metrics
 
