@@ -9,7 +9,7 @@ these changes.
 ## Input for change 
 
 Change requests can come from anywhere such as the users mailinglist, the
-steering committe or the development team. The change requests could be
+steering committee or the development team. The change requests could be
 classified into two broad categories:
 
 1. Minor change
@@ -53,7 +53,7 @@ document for documentation on version numbers for releases.
 ## Process to implement the change
 
 Change requests can come from anywhere such as the users mailinglist, the
-steering committe or the development team. 
+steering committee or the development team. 
 
 ### Minor changes
 
