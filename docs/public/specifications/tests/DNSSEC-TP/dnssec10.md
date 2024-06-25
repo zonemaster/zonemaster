@@ -23,7 +23,7 @@
 When DNSSEC is enabled, NSEC or NSEC3 records provide a secure denial
 of existence for records not present in the zone. This test case
 verifies that correct NSEC or NSEC3 records with valid signatures are
-returned for a query for a non-existent name.
+returned for a query for a nonexistent name.
 
 Furthermore, it is verified that the name servers for the zone are consistent
 about NSEC and NSEC3, i.e. either all servers should use NSEC or all servers
@@ -53,7 +53,7 @@ This test case is only relevant if the zone has been DNSSEC signed.
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
-* "[Non-Existent Query Name]" - A name constructed by prepending
+* "[Nonexistent Query Name]" - A name constructed by prepending
   *Child Zone* with a label (e.g. "xx--zpeqz4v66tckbqkyw35k--xx") created by the
   following steps, resulting in e.g. "xx--zpeqz4v66tckbqkyw35k--xx.exemple.com".
   * Use the string "xx--" as a prefix for the label.
@@ -76,9 +76,9 @@ DS10_HAS_NSEC3                     | INFO    |            | Consistent NSEC3 ret
 DS10_INCONSISTENT_NSEC_NSEC3       | ERROR   |2 ns_ip_list| Some servers return NSEC, others return NSEC3.
 DS10_MISSING_NSEC_NSEC3            | ERROR   | ns_ip_list | Missing expected NSEC or NSEC3 in a signed zone.
 DS10_MIXED_NSEC_NSEC3              | ERROR   | ns_ip_list | Both NSEC and NSEC3 are returned from the same server.
-DS10_NAME_NOT_COVERED_BY_NSEC      | ERROR   | ns_ip_list | The non-existent name is not correctly covered by the NSEC records.
-DS10_NAME_NOT_COVERED_BY_NSEC3     | ERROR   | ns_ip_list | The non-existent name is not correctly covered by the NSEC3 records.
-DS10_NON_EXISTENT_RESPONSE_ERROR   | ERROR   | ns_ip_list | No or error in response of an expected non-existent name.
+DS10_NAME_NOT_COVERED_BY_NSEC      | ERROR   | ns_ip_list | The nonexistent name is not correctly covered by the NSEC records.
+DS10_NAME_NOT_COVERED_BY_NSEC3     | ERROR   | ns_ip_list | The nonexistent name is not correctly covered by the NSEC3 records.
+DS10_NON_EXISTENT_RESPONSE_ERROR   | ERROR   | ns_ip_list | No or error in response of an expected nonexistent name.
 DS10_NSEC3_MISSING_SIGNATURE       | ERROR   | ns_ip_list | Missing signatures for NSEC3 record or records.
 DS10_NSEC3_RRSIG_VERIFY_ERROR      | ERROR   | ns_ip_list | The signature or signatures on the NSEC3 record or records cannot be correctly verfied.
 DS10_NSEC_MISSING_SIGNATURE        | ERROR   | ns_ip_list | Missing signatures for NSEC record or records.
@@ -97,8 +97,8 @@ message. The argument names are defined in the [argument list].
 
 1.  Create a DNSKEY query with DO flag set for *Child Zone* ("DNSKEY Query").
 
-2.  Create an A query with DO flag set for *[Non-Existent Query Name]*
-    ("Non-Existent Query").
+2.  Create an A query with DO flag set for *[Nonexistent Query Name]*
+    ("Nonexistent Query").
 
 3.  Retrieve all name server IP addresses for the
     *Child Zone* using [Method4] and [Method5] ("NS IP").
@@ -114,7 +114,7 @@ message. The argument names are defined in the [argument list].
     8.  Name server IP address ("Name Not Covered By NSEC3").
     9.  Name server IP address ("NSEC Missing Signature").
     10. Name server IP address ("NSEC3 Missing Signature").
-    11. Name server IP address ("Non-Existent Response Error").
+    11. Name server IP address ("Nonexistent Response Error").
     12. Name server IP address ("NSEC RRSIG Verify Error").
     13. Name server IP address ("NSEC3 RRSIG Verify Error").
     14. Name server IP address, DNSKEY record key tag and DNSKEY algorithm code
@@ -130,9 +130,9 @@ message. The argument names are defined in the [argument list].
          3. The AA flag is not set in the response.
          4. There is no DNSKEY record with matching owner name in the answer section.
     3. Retrieve the DNSKEY records from the answer section.
-    4. Send *Non-Existent Query* over UDP to the name server IP.
+    4. Send *Nonexistent Query* over UDP to the name server IP.
     5. If at least one of the following criteria is met, then add the name
-       server IP to the *Non-Existent Response Error* set and go to next name
+       server IP to the *Nonexistent Response Error* set and go to next name
        server IP:
          1. There is no DNS response.
          2. The RCODE of response is neither "NoError" nor "NXDomain"
@@ -186,7 +186,7 @@ message. The argument names are defined in the [argument list].
            set).
         2. Retrieve all NSEC (NSEC3) records from the response.
         3. Verify if the NSEC (NSEC3) records cover the
-           *[Non-Existent Query Name]*.
+           *[Nonexistent Query Name]*.
            * If not then add the name server IP to the
             *Name Not Covered By NSEC* (*Name Not Covered By NSEC3*) set.
         4. Retrieve the RRSIG records for the retrieved NSEC records
@@ -211,7 +211,7 @@ message. The argument names are defined in the [argument list].
               4. The RRSIG cannot be validated by the DNSKEY record appointed.
 
 
-6.  If the *Non-Existent Response Error* set is non-empty then output
+6.  If the *Nonexistent Response Error* set is non-empty then output
     *[DS10_NON_EXISTENT_RESPONSE_ERROR]* with the name server IP addresses from
     the set.
 
@@ -303,9 +303,9 @@ None.
 
 ## Terminology
 
-### The Non-Existent Query Name
+### The Nonexistent Query Name
 
-The term "The Non-Existent Query Name" is used for a name in the *Child Zone*,
+The term "The Nonexistent Query Name" is used for a name in the *Child Zone*,
 just below apex constructed for this test case to, with high certainty, not
 exist, as a directly defined name. The first label starts with "xx--" which
 should not be used as of [RFC 5890][RFC 5890#section-2.3.1], section 2.3.1.
@@ -337,7 +337,7 @@ should not be used as of [RFC 5890][RFC 5890#section-2.3.1], section 2.3.1.
 [Method4]:                                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NOTICE]:                                     ../SeverityLevelDefinitions.md#notice
-[Non-Existent Query Name]:                    #the-non-existent-query-name
+[Nonexistent Query Name]:                     #the-nonexistent-query-name
 [RFC 4034#section-4]:                         https://datatracker.ietf.org/doc/html/rfc4034#section-4
 [RFC 4035#section-3.1.3]:                     https://datatracker.ietf.org/doc/html/rfc4035#section-3.1.3
 [RFC 5155#section-3]:                         https://datatracker.ietf.org/doc/html/rfc5155#section-3

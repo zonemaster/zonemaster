@@ -163,7 +163,7 @@ respectively, in the same specification.
 > > of the document. E.g.:
 
 8. If the NSEC (NSEC3) records do not "cover" the
-   *Non-Existent Query Name*, then output *[T01_HAS_NSEC3]*
+   *Nonexistent Query Name*, then output *[T01_HAS_NSEC3]*
 
 > > When referring to RCODE, such as "NoError", use the term [RCODE Name]
 > > with a link to the IANA page. Also use the name forms on that page.
