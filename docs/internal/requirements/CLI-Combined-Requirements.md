@@ -42,7 +42,7 @@ parseable and this MAY be disabled or enabled with a provided parameter.
  this SHOULD be the default mode although the default MAY be configurable.
 - [3.3] The output from the CLI MUST have several levels of verbosity for
  DNS debugging purposes, for example additional messages and module 
- version reports at a low level up to raw DNS packets and dependancy
+ version reports at a low level up to raw DNS packets and dependency
  modules' versions at higher levels.
 - [3.4] The CLI MUST have a flag to list all available tests and a brief
  text on what these tests do. The CLI MAY also have more detailed

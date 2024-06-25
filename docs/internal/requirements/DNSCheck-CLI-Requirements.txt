@@ -19,5 +19,5 @@ Input:
 Output:
 [3.1] The CLI MUST be able to provide an output log that is machine parseable and this MAY be disabled or enabled with a provided parameter.
  [3.2] The CLI MUST be able to provide output that is human readable and this SHOULD be the default mode although the default MAY be configurable.
- [3.3] The output from the CLI MUST have several levels of verbosity for DNS debugging purposes, for example additional messages and module version reports at a low level up to raw DNS packets and dependancy modules' versions at higher levels.
+ [3.3] The output from the CLI MUST have several levels of verbosity for DNS debugging purposes, for example additional messages and module version reports at a low level up to raw DNS packets and dependency modules' versions at higher levels.
 
