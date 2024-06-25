@@ -13,6 +13,6 @@ order, zone of application, ...)
  * I18N and L10N support (available: French, English)
  * Multi-threaded application in order to cut down checking time
  * Extensible: new tests, new interfaces, new reports, ...
- * Exception and cache mechanisms to simplify test writting
+ * Exception and cache mechanisms to simplify test writing
  * Open source
 
