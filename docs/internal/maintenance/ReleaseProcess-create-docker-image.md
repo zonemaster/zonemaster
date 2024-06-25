@@ -4,7 +4,7 @@ Release Process - Create Docker Image
 ## Table of contents
 
 * [1. Overview](#1-overview)
-* [2. Prerequsite](#2-prerequsite)
+* [2. Prerequisite](#2-prerequisite)
 * [3. Create Docker images](#3-create-docker-images)
 * [4. Upload images to Docker Hub](#4-upload-images-to-docker-hub)
 * [5. Image sanity checks][sanity checks]
@@ -21,7 +21,7 @@ Presently only Zonemaster-CLI is published, and therefore only Zonemaster-LDNS,
 Zonemaster-Engine and Zonemaster-CLI are covered here.
 
 
-## 2. Prerequsite
+## 2. Prerequisite
 
 The steps in this documents are assumed to be executed on a computer installed
 as an [Ubuntu Build Environment] computer. It could work on another OS as long
