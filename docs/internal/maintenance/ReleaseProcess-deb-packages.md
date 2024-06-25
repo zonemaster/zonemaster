@@ -160,7 +160,7 @@ ones in the CI file.
   "Recommends" and will be installed by default alongside their corresponding
   package.
 
-* [Common Gitlab pipeline]: common ci/cd jobs for all branchs in the packages
+* [Common Gitlab pipeline]: common ci/cd jobs for all branches in the packages
   source repository.
 
 * [`package.zonemaster.net` content]: setup script and public verification key
