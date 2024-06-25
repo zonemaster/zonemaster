@@ -69,7 +69,7 @@ DS18_NO_MATCH_CDNSKEY_RRSIG_DS | ERROR | CDNSKEY RRset is not signed with a DNSK
         records ("CDS RRsets"). A name server IP can hold an empty 
         RRset or no RRSIG records.
     2.  Name server IP address and associated CDNSKEY RRset and its
-        RRSIG redords ("CDNSKEY RRsets"). A name server IP can hold an
+        RRSIG records ("CDNSKEY RRsets"). A name server IP can hold an
         empty RRset or no RRSIG records.
     3.  Name server IP address and associated DNSKEY RRset
         ("DNSKEY RRsets"). A name server IP can hold an empty RRset.

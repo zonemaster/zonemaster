@@ -52,7 +52,7 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
 
 1.  Create the following empty sets:
     1.  Name server IP address and associated CDNSKEY RRset and its
-        RRSIG redords ("CDNSKEY RRsets"). The set of RRSIG records may be empty
+        RRSIG records ("CDNSKEY RRsets"). The set of RRSIG records may be empty
     2.  Name server IP address and associated DNSKEY RRset and its
         RRSIG records ("DNSKEY RRsets"). The set of RRSIG records may be empty.
     3.  Name server IP address ("No DNSKEY RRset").
