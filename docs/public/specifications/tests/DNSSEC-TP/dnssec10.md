@@ -23,7 +23,7 @@
 When DNSSEC is enabled, NSEC or NSEC3 records provide a secure denial
 of existence for records not present in the zone. This test case
 verifies that correct NSEC or NSEC3 records with valid signatures are
-returned for a query for a non-existent name.
+returned for a query for a nonexistent name.
 
 Furthermore, it is verified that the name servers for the zone are consistent
 about NSEC and NSEC3, i.e. either all servers should use NSEC or all servers
@@ -76,9 +76,9 @@ DS10_HAS_NSEC3                     | INFO    |            | Consistent NSEC3 ret
 DS10_INCONSISTENT_NSEC_NSEC3       | ERROR   |2 ns_ip_list| Some servers return NSEC, others return NSEC3.
 DS10_MISSING_NSEC_NSEC3            | ERROR   | ns_ip_list | Missing expected NSEC or NSEC3 in a signed zone.
 DS10_MIXED_NSEC_NSEC3              | ERROR   | ns_ip_list | Both NSEC and NSEC3 are returned from the same server.
-DS10_NAME_NOT_COVERED_BY_NSEC      | ERROR   | ns_ip_list | The non-existent name is not correctly covered by the NSEC records.
-DS10_NAME_NOT_COVERED_BY_NSEC3     | ERROR   | ns_ip_list | The non-existent name is not correctly covered by the NSEC3 records.
-DS10_NON_EXISTENT_RESPONSE_ERROR   | ERROR   | ns_ip_list | No or error in response of an expected non-existent name.
+DS10_NAME_NOT_COVERED_BY_NSEC      | ERROR   | ns_ip_list | The nonexistent name is not correctly covered by the NSEC records.
+DS10_NAME_NOT_COVERED_BY_NSEC3     | ERROR   | ns_ip_list | The nonexistent name is not correctly covered by the NSEC3 records.
+DS10_NON_EXISTENT_RESPONSE_ERROR   | ERROR   | ns_ip_list | No or error in response of an expected nonexistent name.
 DS10_NSEC3_MISSING_SIGNATURE       | ERROR   | ns_ip_list | Missing signatures for NSEC3 record or records.
 DS10_NSEC3_RRSIG_VERIFY_ERROR      | ERROR   | ns_ip_list | The signature or signatures on the NSEC3 record or records cannot be correctly verfied.
 DS10_NSEC_MISSING_SIGNATURE        | ERROR   | ns_ip_list | Missing signatures for NSEC record or records.
@@ -337,7 +337,7 @@ should not be used as of [RFC 5890][RFC 5890#section-2.3.1], section 2.3.1.
 [Method4]:                                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NOTICE]:                                     ../SeverityLevelDefinitions.md#notice
-[Non-Existent Query Name]:                    #the-non-existent-query-name
+[Non-Existent Query Name]:                    #the-nonexistent-query-name
 [RFC 4034#section-4]:                         https://datatracker.ietf.org/doc/html/rfc4034#section-4
 [RFC 4035#section-3.1.3]:                     https://datatracker.ietf.org/doc/html/rfc4035#section-3.1.3
 [RFC 5155#section-3]:                         https://datatracker.ietf.org/doc/html/rfc5155#section-3
