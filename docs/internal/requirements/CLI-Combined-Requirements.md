@@ -30,7 +30,7 @@ IP-addresses as input for undelegated test purposes.
 - [2.8] The user MUST be able to specify DS-data as input to be able to 
 test DNSSEC fully even for undelegated domains.
 - [2.9] The user MUST specify no more than one domain to test.
-- [2.10] The CLI MUST be able to simply report its' version and exit with
+- [2.10] The CLI MUST be able to simply report its version and exit with
 a provided flag.
 - [2.11] The CLI MUST be able to test all available test cases within one
 group, it MAY also work per unique test case (--test=zone or --test=zone03). 
