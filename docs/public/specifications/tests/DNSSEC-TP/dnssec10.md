@@ -131,7 +131,7 @@ message. The argument names are defined in the [argument list].
          4. There is no DNSKEY record with matching owner name in the answer section.
     3. Retrieve the DNSKEY records from the answer section.
     4. Send *Non-Existent Query* over UDP to the name server IP.
-    5. If at least one of the following createria is met, then add the name
+    5. If at least one of the following criteria is met, then add the name
        server IP to the *Non-Existent Response Error* set and go to next name
        server IP:
          1. There is no DNS response.
