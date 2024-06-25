@@ -160,7 +160,7 @@ ones in the CI file.
   "Recommends" and will be installed by default alongside their corresponding
   package.
 
-* [Common Gitlab pipeline]: common ci/cd jobs for all branches in the packages
+* [Common GitLab pipeline]: common ci/cd jobs for all branches in the packages
   source repository.
 
 * [`package.zonemaster.net` content]: setup script and public verification key
@@ -185,6 +185,6 @@ The continuous deployment pipeline performs 3 tasks:
 
 [aptly]:                              https://www.aptly.info
 [Packages sources]:                   https://gitlab.rd.nic.fr/zonemaster/packages/debian
-[Common Gitlab pipeline]:             https://gitlab.rd.nic.fr/zonemaster/ci/-/blob/main/deb-packaging.yml
+[Common GitLab pipeline]:             https://gitlab.rd.nic.fr/zonemaster/ci/-/blob/main/deb-packaging.yml
 [`package.zonemaster.net` content]:   https://gitlab.rd.nic.fr/zonemaster/packages/www/
 [published on GitHub]:                ReleaseProcess-release.md#17-tag-the-release-with-git
