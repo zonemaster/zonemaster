@@ -30,7 +30,7 @@
   the IPv6 address is used, the IPv4 address is listed anyway.
   * If one of two addresses is unused, it cannot be used for something else.
 
-The choice of z, the last octess, have some logic built in when used for the
+The choice of z, the last octets, have some logic built in when used for the
 test cases:
 
 * 11-19: TLD NS, not scenario specific
