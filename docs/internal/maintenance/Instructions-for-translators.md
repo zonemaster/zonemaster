@@ -304,7 +304,7 @@ preferred way is to create an issue in the relevant repository.
 * Message *(msgid)* in Zonemaster-Backend: [issue][new issue zonemaster-backend]
 
 If the message is in Zonemaster-Engine then include the message tag found in the
-header, e.g. "BASIC:NO_PARENT", in the issue decription. Also include the *msgid*
+header, e.g. "BASIC:NO_PARENT", in the issue description. Also include the *msgid*
 as it is now and a suggestion for new wording.
 
 
