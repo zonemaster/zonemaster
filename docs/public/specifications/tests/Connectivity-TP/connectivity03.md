@@ -146,7 +146,7 @@ origin6.asnlookup.zonemaster.net
 
 The RIPE ASN lookup is described on the RIPE [RISwhois] page.
 
-1. Construct a query string by prepending the IP adress with
+1. Construct a query string by prepending the IP address with
    " -F -M ". Using "192.0.2.10" as an example, the query string will
    be the following (the leading space is intentional)
    

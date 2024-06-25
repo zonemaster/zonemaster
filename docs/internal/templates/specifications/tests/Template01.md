@@ -139,7 +139,7 @@ respectively, in the same specification.
 > >
 > > Also include statement on what other information to be accompanied
 > > with the message (included as parameter to the message tag). Example of such
-> > information is IP adresses to name servers.
+> > information is IP addresses to name servers.
 > >
 > > When refering to the data defined in **Inputs** then use the name in
 > > *italic*, e.g.:

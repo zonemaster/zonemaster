@@ -62,7 +62,7 @@ accessed.
  [4.4] The GUI MUST be designed so that it is easy to add new tests easily.
  [4.5] The GUI MUST be able to take DS record(s) as input to test DNSSEC 
 properly on undelegated domains.
- [4.6] The GUI SHOULD report to the user what IP-adress he/she is connecting 
+ [4.6] The GUI SHOULD report to the user what IP-address he/she is connecting 
 from.
  [4.7] The GUI MUST report what version of the engine was used to generate the 
 result(s) displayed.

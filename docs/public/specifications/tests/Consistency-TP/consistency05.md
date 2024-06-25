@@ -60,7 +60,7 @@ case will set DEBUG level on messages for non-responsive name servers.
          output *[NO_RESPONSE]*.
       3. Or, if the response is a delegation (referral) to a 
          sub-zone of *Child Zone*, then:
-         1. Copy the adress query (A, AAAA) that gave the referral
+         1. Copy the address query (A, AAAA) that gave the referral
             response.
          2. Set the RD flag in the copied query (from unset to set).
          3. Do a [DNS Lookup][terminology] of the the query.

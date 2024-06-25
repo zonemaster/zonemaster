@@ -26,7 +26,7 @@ provided flag (read: disable protocol at runtime).
 - [2.5] The CLI MUST be able to run with a user-provided locale (language).
 A default SHOULD be used if none is provided.
 - [2.6] The user MUST be able to specify name servers and corresponding 
-IP-adresses as input for undelegated test purposes.
+IP-addresses as input for undelegated test purposes.
 - [2.8] The user MUST be able to specify DS-data as input to be able to 
 test DNSSEC fully even for undelegated domains.
 - [2.9] The user MUST specify no more than one domain to test.

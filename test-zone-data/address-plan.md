@@ -4,7 +4,7 @@
 * [Overview](#overview)
 * [Making reservation](#making-reservation)
 * [Address block plan](#address-block-plan)
-* [Adress plans for specific addresses](#address-plans-for-specific-addresses)
+* [Address plans for specific addresses](#address-plans-for-specific-addresses)
   * [Non-scenario address plan](#non-scenario-address-plan)
   * [Address test level address plan](#address-test-level-address-plan)
   * [Basic test level address plan](#basic-test-level-address-plan)
