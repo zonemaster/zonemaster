@@ -84,7 +84,7 @@ Requirements should then be ranked in importance depending on a number of
 factors such as complexity, amount of work, risk, architectural changes,
 relevance to the product and so on.
 
-The decision to inlcude the requirement for the release during the
+The decision to include the requirement for the release during the
 maintenance period will be taken by the development team in consultation
 with the steering committee. 
 
