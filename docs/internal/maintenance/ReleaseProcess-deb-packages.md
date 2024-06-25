@@ -105,7 +105,7 @@ named `.{step}`. The build and publish steps must also define the following
 variables:
 * `OS`: OS name as it is in the `/etc/os-release`;
 * `DISTRIBUTION`: Version codename as defined by `VERSION_CODENAME` in
-   `/etc/os-release`, optionaly suffixed by `-nightly`.
+   `/etc/os-release`, optionally suffixed by `-nightly`.
 
 The container image used for building should be the same version as the targeted
 distribution.
