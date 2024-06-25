@@ -77,8 +77,8 @@ not published on [CPAN] ([Zonemaster-GUI] is never published at [CPAN]).
 
 ## Publication of releases
 
-Major, minor and patch releases of the Zonemaster Components, including the mail repository, are published in the Github
-repositories by merging the code to the "master" branch in Git and by creating a release note in Github. In the normal
+Major, minor and patch releases of the Zonemaster Components, including the mail repository, are published in the GitHub
+repositories by merging the code to the "master" branch in Git and by creating a release note in GitHub. In the normal
 case the Perl based components are also published at [CPAN]. The rest of the Zonemaster Product 
 ([Zonemaster-GUI], specifications and documentation) is only available in the "master" branch in each repository.
 

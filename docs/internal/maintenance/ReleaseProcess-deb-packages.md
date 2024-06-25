@@ -34,7 +34,7 @@ For each package:
 
 
 When a new Zonemaster release of the relevant component has been
-[published on Github], and when the nightly package is working fine (the build
+[published on GitHub], and when the nightly package is working fine (the build
 is successfull, it can be installed and is usable, all of that should have been
 already checked during the relase testing if the package specification has not
 changed since), promote it to stable. The only difference between a nightly
@@ -187,4 +187,4 @@ The continuous deployment pipeline performs 3 tasks:
 [Packages sources]:                   https://gitlab.rd.nic.fr/zonemaster/packages/debian
 [Common Gitlab pipeline]:             https://gitlab.rd.nic.fr/zonemaster/ci/-/blob/main/deb-packaging.yml
 [`package.zonemaster.net` content]:   https://gitlab.rd.nic.fr/zonemaster/packages/www/
-[published on Github]:                ReleaseProcess-release.md#17-tag-the-release-with-git
+[published on GitHub]:                ReleaseProcess-release.md#17-tag-the-release-with-git
