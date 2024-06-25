@@ -229,7 +229,7 @@ docker rm ID
 
 Remove image identified as "ID"
 ```sh
-docer rmi ID
+docker rmi ID
 ```
 
 Remove all containers
