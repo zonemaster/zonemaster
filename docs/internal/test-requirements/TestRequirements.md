@@ -101,7 +101,7 @@ R07400| A name server should not support open zone transfer for its zone or zone
 R07500| A name server should respond with the same source IP as the query was sent to.     |[RFC2181]            |[NAMESERVER04]
 R07600| A name server should handle queries for AAAA correctly.                            |[RFC4074]            |[NAMESERVER05]
 R07700| The name of the name server, as given in the NS record, must be resolvable in DNS. |[RFC1035]            |[NAMESERVER06]
-R07800| A name server should not return a referal to root on queries for zones not hosted. |                     |[NAMESERVER07]
+R07800| A name server should not return a referral to root on queries for zones not hosted. |                     |[NAMESERVER07]
 R07900| A name server should preserve case of query name when creating response.           |Ref?                 |[NAMESERVER08]
 R08000| A name server should treat query name without considering character case.          |Ref?                 |[NAMESERVER09]
 R08100| A name server should respond with BADVERS on unsupported EDNS version.             |[RFC6891]            |[NAMESERVER10]
