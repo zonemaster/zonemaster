@@ -1,6 +1,6 @@
 # ZoneCheck Features
 
- * Powerfull XML based configuration file (allowing changes in test severity,
+ * Powerful XML based configuration file (allowing changes in test severity,
 order, zone of application, ...)
  * Does not depend on policies
  * Fine grained test selection (by test, by categories, by zones)
