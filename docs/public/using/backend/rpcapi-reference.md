@@ -193,7 +193,7 @@ Basic data type: object
 DS for [Delegation Signer] references a DNSKEY record in the delegated zone.
 
 Properties:
-* `"digest"`: A string, required. Either 40, 64 or 96 hexadecimal characters (case insensitive).
+* `"digest"`: A string, required. Either 40, 64 or 96 hexadecimal characters (case-insensitive).
 * `"algorithm"`: An non negative integer, required.
 * `"digtype"`: An non negative integer, required.
 * `"keytag"`: An non negative integer, required.
