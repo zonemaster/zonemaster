@@ -33,7 +33,7 @@ is up to date with the [supported Perl versions].
 META.yml is created by Makefile.PL so if META.yml is not correct, then
 Makefile.PL must be updated.
 
-  1. Make a clean clone for each reposistory
+  1. Make a clean clone for each repository
 ```
      git clean -dfx
      git reset --hard
