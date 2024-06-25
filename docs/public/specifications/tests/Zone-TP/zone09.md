@@ -48,7 +48,7 @@ excluded by this test case from the requirement of MX in the apex.
 
 The root zone cannot be an [Email Domain] since the email domain is
 the part to the left of the trailing dot, and the root zone owner name has
-nothing left of the traling dot. The root zone is excluded by this test case from
+nothing left of the trailing dot. The root zone is excluded by this test case from
 the requirement of MX in the apex.
 
 Top-level domains ([TLDs][TLD]) can technically function as
