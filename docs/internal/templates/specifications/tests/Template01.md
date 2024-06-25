@@ -141,7 +141,7 @@ respectively, in the same specification.
 > > with the message (included as parameter to the message tag). Example of such
 > > information is IP addresses to name servers.
 > >
-> > When refering to the data defined in **Inputs** then use the name in
+> > When referring to the data defined in **Inputs** then use the name in
 > > *italic*, e.g.:
 
 2. Create a [DNSSEC Query] with query type DNSKEY and query name *Child Zone*
