@@ -124,13 +124,13 @@ to ensure the stability of DNS.
 
 #### Resources summary
 
-TODO: Briefly describe the neessary resources to run a test.
+TODO: Briefly describe the necessary resources to run a test.
 
 #### Responsibilites
 
 #### Tools, techniques, methods, and metrics
 
-TODO: Briefly described the necesessary input and any metrics in the
+TODO: Briefly described the necessary input and any metrics in the
 output.
 
 
