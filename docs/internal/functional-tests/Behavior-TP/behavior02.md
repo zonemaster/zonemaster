@@ -29,7 +29,7 @@ in expected results as you can see from the appendix.
 
 ### Appendix
 ```
-zonmaster-cli gouv.fr
+zonemaster-cli gouv.fr
 Seconds Level     Message
 ======= ========= =======
    1.16 CRITICAL  Nameservers for "fr" provided no NS records for tested zone.
