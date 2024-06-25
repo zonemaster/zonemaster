@@ -365,7 +365,7 @@ depending on the need.
 
 For other libraries, other formats may be correct. If the version of the
 library only has two levels ("X.Y") then other rules apply. Also note
-that the version in Zonemaster::Backend is speciefied as `X.Y.Z` without
+that the version in Zonemaster::Backend is specified as `X.Y.Z` without
 the "v", which may affect the version comparison.
 
 [(Top)](#table-of-contents)
