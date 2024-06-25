@@ -58,7 +58,7 @@ R03100| A zone should be hosted by at least two names servers (on IPv6).        
 R03200| A zone should be hosted on IPv4.                                                   |[RFC3901] [RFC4472]  |[DELEGATION01]
 R03300| Name servers for a zone should have distinct IP addresses.                         |                     |[DELEGATION02]
 R03400| Referral from parent name servers should fit into 512 octets.                      |[IANA]               |[DELEGATION03]
-R03500| The name server for the zone should respond authoritively for the zone.            |[RFC2181]            |[DELEGATION04]
+R03500| The name server for the zone should respond authoritatively for the zone.          |[RFC2181]            |[DELEGATION04]
 R03600| The name server name should not point at a CNAME.                                  |[RFC2181]            |[DELEGATION05]
 R03700| Signed zone must have DNSKEY.                                                      |                     |
 R03800| Only valid DS hash algorithm should be used.                                       |[RFC8624]            |[DNSSEC01]
