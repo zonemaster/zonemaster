@@ -26,7 +26,7 @@ and child.
 configuration04-1.zft-root.rd.nic.fr
 ```
 
-2. The engine should return FAIL atleast once for the configuration defined. If it
+2. The engine should return FAIL at least once for the configuration defined. If it
 returns PASS for all the tests then the engine does not capture delegation
 inconsistency in name server records.
 
