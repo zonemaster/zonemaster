@@ -222,7 +222,7 @@ List all images
 docker images
 ```
 
-Remove container indentified as "ID"
+Remove container identified as "ID"
 ```sh
 docker rm ID
 ```
