@@ -170,7 +170,7 @@ DS17_MIXED_DELETE_CDNSKEY            | ERROR   | "Delete" CDNSKEY record is mixe
     *[DS17_CDNSKEY_WITHOUT_DNSKEY]* with all name server IP addresses
     in the set.
 
-9. If the the *Mixed Delete CDNSKEY* set is
+9. If the *Mixed Delete CDNSKEY* set is
     non-empty, then output *[DS17_MIXED_DELETE_CDNSKEY]* with all
     name server IP addresses in the set.
 

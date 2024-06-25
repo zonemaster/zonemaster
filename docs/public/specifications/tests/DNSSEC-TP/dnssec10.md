@@ -139,7 +139,7 @@ message. The argument names are defined in the [argument list].
             ([IANA RCODE List]).
          3. The AA flag is not set in the response.
     6. If the following criteria are met go to next name server IP:
-       1. The The RCODE of response is "NoError" ([IANA RCODE List]).
+       1. The RCODE of response is "NoError" ([IANA RCODE List]).
        2. The answer section has an RRset of RR type "A" ([IANA RR Type List])
           and either:
           1. The "A" RRset has the same owner name as the query name, or
@@ -153,7 +153,7 @@ message. The argument names are defined in the [argument list].
              least one RRsig for each CNAME record.
           3. None of the RRsig records are for a wildcard.
     7. If the following criteria are met go to next name server IP:
-       1. The The RCODE of response is "NoError" ([IANA RCODE List]).
+       1. The RCODE of response is "NoError" ([IANA RCODE List]).
        2. The answer section has one or more record of RR type "CNAME"
           ([IANA RR Type List]) in a chain where first record has the owner name
           matching the query name.

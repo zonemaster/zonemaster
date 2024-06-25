@@ -63,7 +63,7 @@ case will set DEBUG level on messages for non-responsive name servers.
          1. Copy the address query (A, AAAA) that gave the referral
             response.
          2. Set the RD flag in the copied query (from unset to set).
-         3. Do a [DNS Lookup][terminology] of the the query.
+         3. Do a [DNS Lookup][terminology] of the query.
          4. If the lookup returns the relevant address record or records,
             A for A record query and AAAA for AAAA record query, and 
             with the same owner name as in the query (i.e. CNAME should

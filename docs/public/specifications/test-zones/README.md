@@ -90,7 +90,7 @@ it is possible.
 
 There are some exceptions to the name of the test zone that are identified here:
 1. If the test zone is the root, then the name is `.`.
-2. If the test zone is a TLD zone, then the the name is
+2. If the test zone is a TLD zone, then the name is
    `<scenario name>-<test case name>`. Note that hyphen "-" is used between the
    parts to create one label. E.g. `no-mx-tld-zone09`. In practice such a TLD
    can never be in conflict with real TLDs in the public DNS tree, especially
