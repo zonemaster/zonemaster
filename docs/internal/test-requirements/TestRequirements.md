@@ -18,7 +18,7 @@ Note that there is one defined specification that is generic enough not to be
 considered a test case: [Normalization].
 
 This is not a static document. As DNS evolves and new issues are pointed
-at requirements will be added, removed or modiefied just as the test cases.
+at requirements will be added, removed or modified just as the test cases.
 
 <!-- When updating the table, read TestRequirements-table-specification.txt -->
 <!-- START-TABLE -->
