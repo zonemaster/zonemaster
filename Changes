@@ -859,7 +859,7 @@ Changes Zonemaster repository:
 - Updated specification of test case DNSSEC05 #626
 - Updated specification of test case Delegation01 (#609, #638)
 - Updated specification of test case Delegation02 (#610)
-- Added new test case Consisteny06 (#619)
+- Added new test case Consistency06 (#619)
 - Updated specification of test case Consistency03 (#618)
 - Updated specification of test case Consistency02 (#616)
 - Updated specification of test case Consistency01 (#615)
