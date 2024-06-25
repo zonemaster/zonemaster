@@ -111,7 +111,7 @@ DS18_NO_MATCH_CDNSKEY_RRSIG_DS | ERROR | CDNSKEY RRset is not signed with a DNSK
           go to next name server IP.
        4. Else, if the DNS response contains at least one CDS record
           in the answer section, then add the name server IP and the
-          CDS RRset to the *CDS RRsets* set. Also include any assciated
+          CDS RRset to the *CDS RRsets* set. Also include any associated
           RRSIG records.
     2. Send the CDNSKEY query over UDP to the name server IP address.
        1. If no DNS response is returned, then go to next name server
@@ -123,7 +123,7 @@ DS18_NO_MATCH_CDNSKEY_RRSIG_DS | ERROR | CDNSKEY RRset is not signed with a DNSK
        4. Else, if the DNS response contains at least one CDNSKEY
           record in the answer section, then add the name server IP and
           the CDNSKEY RRset from the answer section to the 
-          *CDNSKEY RRsets* set. Also include any assciated RRSIG records.
+          *CDNSKEY RRsets* set. Also include any associated RRSIG records.
     3. Send the DNSKEY query over UDP to the name server IP address.
        1. If no DNS response is returned, then go to next name server
           IP.
