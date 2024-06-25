@@ -47,7 +47,7 @@ document.
 #### Internal
 No internal requirements.
 
-#### Document hieararchy
+#### Document hierarchy
 * Master Test Plan  
     * [Basic] Test Plan
         * Test Case x
