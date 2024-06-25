@@ -81,7 +81,7 @@ Z01_MNAME_HAS_LOCALHOST_ADDR  | WARNING | nsname, ns_ip                        |
 Z01_MNAME_IS_DOT              | NOTICE  | ns_ip_list                           | SOA MNAME is specified as "." which usually means "no server". Fetched from name servers "{ns_ip_list}".
 Z01_MNAME_IS_LOCALHOST        | WARNING | ns_ip_list                           | SOA MNAME name server is "localhost", which is invalid. Fetched from name servers "{ns_ip_list}".
 Z01_MNAME_IS_MASTER           | DEBUG   | ns_list                              | SOA MNAME name server(s) "{ns_list}" appears to be master.
-Z01_MNAME_MISSING_SOA_RECORD  | WARNING | ns                                   | SOA MNAME name server "{ns}" reponds to an SOA query with no SOA records in the answer section.
+Z01_MNAME_MISSING_SOA_RECORD  | WARNING | ns                                   | SOA MNAME name server "{ns}" responds to an SOA query with no SOA records in the answer section.
 Z01_MNAME_NO_RESPONSE         | WARNING | ns                                   | SOA MNAME name server "{ns}" does not respond to an SOA query.
 Z01_MNAME_NOT_AUTHORITATIVE   | WARNING | ns                                   | SOA MNAME name server "{ns}" is not authoritative for the zone.
 Z01_MNAME_NOT_IN_NS_LIST      | INFO    | nsname                               | SOA MNAME name server "{nsname}" is not listed as NS record for the zone.
