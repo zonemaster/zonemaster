@@ -616,7 +616,7 @@ Example response:
 
 >
 > Note: The above example response was abbreviated for brevity to only include
-> the first two elments in each list. Omitted elements are denoted by a `...`
+> the first two elements in each list. Omitted elements are denoted by a `...`
 > symbol.
 >
 
@@ -899,7 +899,7 @@ Example response:
 
 >
 > Note: The above example response was abbreviated for brevity to only include
-> the first two elments in each list. Omitted elements are denoted by a `...`
+> the first two elements in each list. Omitted elements are denoted by a `...`
 > symbol.
 >
 
@@ -1060,7 +1060,7 @@ Example response:
 
 >
 > Note: The above example response was abbreviated for brevity to only include
-> the first two elments in each list. Omitted elements are denoted by a `...`
+> the first two elements in each list. Omitted elements are denoted by a `...`
 > symbol.
 >
 
