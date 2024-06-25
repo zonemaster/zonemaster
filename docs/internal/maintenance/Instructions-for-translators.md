@@ -361,7 +361,7 @@ If you do want to generate it, the command is `make extract-pot`.
 
 The translated strings are maintained in files named "<LANG-CODE>.po". You will
 find the current PO files in the "share" directories listed in the "[Overview]"
-section. Translation and the languages are also presentated in the main [README]
+section. Translation and the languages are also presented in the main [README]
 document.
 
 The command `./update-po` will update the PO file with new message ids (*msgid*)
