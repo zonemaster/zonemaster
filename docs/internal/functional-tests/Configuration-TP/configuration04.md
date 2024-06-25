@@ -10,7 +10,7 @@ When a parent zone 'P' delegates part of its namespace to a child 'C', P stores
 the list of NS records for the authoritative servers of zone 'C'. This list of
 NS records are kept both at the parent 'P' and the child zone 'C'. 
 
-Delegation incosistency occurs when changes at the 'C' are not reflected to the NS RRs
+Delegation inconsistency occurs when changes at the 'C' are not reflected to the NS RRs
 at 'P'.
 
 ### Inputs
