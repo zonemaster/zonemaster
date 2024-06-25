@@ -21,7 +21,7 @@ scope of this document.
 Scope
 ------
 
-The test specifciation (which is part of the test engine) implemented has already
+The test specification (which is part of the test engine) implemented has already
 gone/going through the process of unit testing. Unit testing is done to
 confirm that a unitary code (such as a single test case source code)
 component provides the correct output for a given input. 
