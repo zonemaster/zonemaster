@@ -1250,7 +1250,7 @@ is disabled (enabled by default).
 A [*username*][Username] and its [*api key*][Api key] can be added with the
 [`add_api_user`][API add_api_user] method.
 
-*Tests* enqueud using this method are assigned a [*priority*][Priority] of 5.
+*Tests* enqueued using this method are assigned a [*priority*][Priority] of 5.
 
 > In previous versions of Zonemaster-Backend a new batch could not be created by
 > the same [*username*][Username] if that *username* had created a batch that was
