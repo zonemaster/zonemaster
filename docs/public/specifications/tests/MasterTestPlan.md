@@ -285,7 +285,7 @@ all of the test plans and test cases.
 |:---------------|:-----------------------------------------|
 | DNS            | Domain Name System                       |
 | DNSSEC         | DNS Security Extensions                  |
-| RFC            | Requst for Comments, IETF document       |
+| RFC            | Request for Comments, IETF document      |
 | MTP            | Master Test Plan                         |
 | MTR            | Master Test Report                       |
 | LTC            | Level Test Case                          |
