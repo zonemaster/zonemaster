@@ -110,7 +110,7 @@ Zonemaster-CLI, and "N" is a positive integer starting with "1".
 
 First determine what the version should be. Compare the version of
 Zonemaster-Cli just built with the highest version of the image uploaded to
-Docker Hub. There are three valid possibilites:
+Docker Hub. There are three valid possibilities:
 
 1. The version on Docker Hub has lower version than the local version. If so
    set the tags of the image with the simple steps below ignoring "dash
