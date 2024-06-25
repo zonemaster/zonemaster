@@ -917,7 +917,7 @@ Changes Zonemaster reposistory:
 - Clarify more record fetching in TCs Dnssec03-05, Syntax06 and Zone06 
   (#607)
 - Updated testing preparation files for Debian and CentOS (#623)
-- Update README.md in prepartion for release (#622)
+- Update README.md in preparation for release (#622)
 - Updated Changes as preparation for release (#634)
 
 High lights:
