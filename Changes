@@ -923,7 +923,7 @@ Changes Zonemaster reposistory:
 High lights:
 
 - Zonemaster-LDNS is now built on latest version of LDNS and has been
-  modulized to make it possible to use available LDNS library.
+  modularized to make it possible to use available LDNS library.
 - Zonemaster-GUI has been rewritten from ground up.
 
 This version of Zonemaster also consists of the following components. For each
