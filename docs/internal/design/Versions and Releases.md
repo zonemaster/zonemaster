@@ -10,7 +10,7 @@ and documentation for the Zonemaster Product. There is no direct code for Zonema
 components are part of the Zonemaster Product, but stored in separate repositories 
 ([Zonemaster-LDNS], [Zonemaster-Engine], [Zonemaster-CLI], [Zonemaster-Backend] and [Zonemaster-GUI]. 
 
-This document also discusses how the Zonemaster project intend to do new relases.
+This document also discusses how the Zonemaster project intend to do new releases.
 
 ## Version Number Syntax for Zonemaster product
 
