@@ -111,7 +111,7 @@ message. The argument names are defined in the [argument list].
 > > executions make different interpretations or assumptions.
 > >
 > > If the test procedure uses DNS queries (most test cases do), then add the
-> > following paragraph (types of DNS quries that do no apply for the test case
+> > following paragraph (types of DNS queries that do no apply for the test case
 > > can be removed):
 
 In this section and unless otherwise specified below, the terms "[DNS Query]",
