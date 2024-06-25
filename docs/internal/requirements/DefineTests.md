@@ -11,7 +11,7 @@ Can we Discard these existing Test Cases
    * Reasons for discarding : Not required for testing DNS
 * Can deliver email to 'postmaster'
    * Reasons for discarding : This test conforms to the requirements in RFC 1123 [Page 52] "A host that supports a receiver-SMTP MUST support the reserved mailbox "Postmaster"". The RFC is setting up the
-requirements for Internet hosts. But this test requierments is not really the responsibility of DNS. D
+requirements for Internet hosts. But this test requirements is not really the responsibility of DNS. D
 o we need this ?
 
 * Can deliver email to hostmaster
