@@ -155,7 +155,7 @@ message. The argument names are defined in the [argument list].
     7. If the following criteria are met go to next name server IP:
        1. The The RCODE of response is "NoError" ([IANA RCODE List]).
        2. The answer section has one or more record of RR type "CNAME"
-          ([IANA RR Type List]) in a chain where first record has the onwer name
+          ([IANA RR Type List]) in a chain where first record has the owner name
           matching the query name.
        3. The answer section has RRsig record or records in the answer section
           meeting the following criteria:
