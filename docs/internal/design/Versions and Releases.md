@@ -94,7 +94,7 @@ Issued as needed.
 
 The goal is that it should be easy to do patch releases, in order to encourage fixing problems quickly. All unit tests 
 must pass, and all changes must be properly documented. Besides that, enough testing should be completed before a new
-version is released. Automated tests that cover the corrected code should be inluced.
+version is released. Automated tests that cover the corrected code should be included.
 
 ### Minor Versions
 
