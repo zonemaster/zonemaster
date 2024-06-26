@@ -70,7 +70,7 @@ Any new development for Zonemaster must follow the strict process where
 there are formal requirements, specifications for implementing the
 requirements and then any design and architecture fulfilling the
 specifications, and finally the implementation and quality assurance.
-When all this is performed successully the software package is released
+When all this is performed successfully the software package is released
 using the release process.
 
 #### Decision on discarding or including changes
