@@ -7,7 +7,7 @@
 ### Objective
 
 If the list of name servers for a domain obtained from its parent are not
-found in its its child zone, then it leads to an inconsistency (section 2.3
+found in its child zone, then it leads to an inconsistency (section 2.3
 of [RIPE-114](https://www.ripe.net/publications/docs/ripe-114))
 
 ### Inputs

@@ -10,7 +10,7 @@ When a parent zone 'P' delegates part of its namespace to a child 'C', P stores
 the list of NS records for the authoritative servers of zone 'C'. This list of
 NS records are kept both at the parent 'P' and the child zone 'C'. 
 
-Delegation incosistency occurs when changes at the 'C' are not reflected to the NS RRs
+Delegation inconsistency occurs when changes at the 'C' are not reflected to the NS RRs
 at 'P'.
 
 ### Inputs
@@ -26,7 +26,7 @@ and child.
 configuration04-1.zft-root.rd.nic.fr
 ```
 
-2. The engine should return FAIL atleast once for the configuration defined. If it
+2. The engine should return FAIL at least once for the configuration defined. If it
 returns PASS for all the tests then the engine does not capture delegation
 inconsistency in name server records.
 

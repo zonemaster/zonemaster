@@ -23,7 +23,7 @@ The test level abbreviation is always as follows:
 
 Test level name  | Example Test case ID   | Abbreviation| Prefix  | Example message tag
 :----------------|:-----------------------|:------------|:--------|:-------------------
-Address          | Adress01               | A           | A01     | A01_NO_RESPONSE
+Address          | Address01              | A           | A01     | A01_NO_RESPONSE
 Basic            | Basic04                | B           | B04     | B04_NO_DATA
 Connectivity     | Connectivity03         | CN          | CN03    | CN03_HAS_DATA
 Consistency      | Consistency01          | CS          | CS01    | CS01_SAME_VALUE

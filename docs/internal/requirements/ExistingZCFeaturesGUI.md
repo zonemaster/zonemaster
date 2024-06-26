@@ -37,4 +37,4 @@ Functionality:
 ---------------
 1. Possible to add new output formats easily
 2. Possible to include different profile tests easily
-3. Possible to add extra test easilty
+3. Possible to add extra test easily

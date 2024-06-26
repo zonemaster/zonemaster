@@ -56,7 +56,7 @@ case will set DEBUG level on messages for non-responsive name servers.
 
    3. Else (the name server name is either [sibling domain]
       or [out-of-bailiwick]) then do:
-      1. Do a [DNS Lookup] of the the A query with the RD
+      1. Do a [DNS Lookup] of the A query with the RD
          flag set.
       2. If the answer section of the response includes a CNAME
          record then output *[NS_IS_CNAME]*.

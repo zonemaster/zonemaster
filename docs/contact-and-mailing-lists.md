@@ -53,7 +53,7 @@ to hear from you.
 ## Contacting the Zonemaster project
 
 The best way to contact the Zonemaster project, besides using the
-mailing list, is to create an issue in the Github issue tracker
+mailing list, is to create an issue in the GitHub issue tracker
 for the Zonemaster repositories. That could be pure questions, but also
 bug reports or suggestions for improvements.
 

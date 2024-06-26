@@ -84,7 +84,7 @@ case will set DEBUG level on messages for non-responsive name servers.
          (algorithm 253-254), output *[ALGORITHM_PRIVATE]*.
       5. If the algorithm is not meant for zone signing (algorithm
          0, 2 or 252), output *[ALGORITHM_NOT_ZONE_SIGN]*.
-      6. If the algorithm is not rekommended for zone signing (algorithm
+      6. If the algorithm is not recommended for zone signing (algorithm
          5, 7 or 10), output *[ALGORITHM_NOT_RECOMMENDED]*.
       7. If no message has been outputted for the DNSKEY (i.e. algorithm
          8, 13, 14, 15 or 16), output *[ALGORITHM_OK]*.

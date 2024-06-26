@@ -22,7 +22,7 @@ Zonemaster-Backend have direct options for loading a custom profile file.
 A custom profile file only has to contain those properties that are changed
 in comparison to the default profile file.
 
-You are adviced not to modify the default profile file in the default path on
+You are advised not to modify the default profile file in the default path on
 installed Zonemaster, since such modifications will be overwritten by updates
 of Zonemaster.
 

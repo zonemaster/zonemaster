@@ -193,7 +193,7 @@ Basic data type: object
 DS for [Delegation Signer] references a DNSKEY record in the delegated zone.
 
 Properties:
-* `"digest"`: A string, required. Either 40, 64 or 96 hexadecimal characters (case insensitive).
+* `"digest"`: A string, required. Either 40, 64 or 96 hexadecimal characters (case-insensitive).
 * `"algorithm"`: An non negative integer, required.
 * `"digtype"`: An non negative integer, required.
 * `"keytag"`: An non negative integer, required.
@@ -616,7 +616,7 @@ Example response:
 
 >
 > Note: The above example response was abbreviated for brevity to only include
-> the first two elments in each list. Omitted elements are denoted by a `...`
+> the first two elements in each list. Omitted elements are denoted by a `...`
 > symbol.
 >
 
@@ -899,7 +899,7 @@ Example response:
 
 >
 > Note: The above example response was abbreviated for brevity to only include
-> the first two elments in each list. Omitted elements are denoted by a `...`
+> the first two elements in each list. Omitted elements are denoted by a `...`
 > symbol.
 >
 
@@ -1060,7 +1060,7 @@ Example response:
 
 >
 > Note: The above example response was abbreviated for brevity to only include
-> the first two elments in each list. Omitted elements are denoted by a `...`
+> the first two elements in each list. Omitted elements are denoted by a `...`
 > symbol.
 >
 
@@ -1250,7 +1250,7 @@ is disabled (enabled by default).
 A [*username*][Username] and its [*api key*][Api key] can be added with the
 [`add_api_user`][API add_api_user] method.
 
-*Tests* enqueud using this method are assigned a [*priority*][Priority] of 5.
+*Tests* enqueued using this method are assigned a [*priority*][Priority] of 5.
 
 > In previous versions of Zonemaster-Backend a new batch could not be created by
 > the same [*username*][Username] if that *username* had created a batch that was
@@ -1366,7 +1366,7 @@ Trying to add a batch when the method has been disabled.
 
 ### API method: `get_batch_job_result`
 
-Return all [*test id*][Test id] objects of a *batch test*, with the number of finshed *test*.
+Return all [*test id*][Test id] objects of a *batch test*, with the number of finished *test*.
 
 Example request:
 

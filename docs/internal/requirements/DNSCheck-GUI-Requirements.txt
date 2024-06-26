@@ -20,13 +20,13 @@ Usability:
  [2.7] The list from [2.6] MUST contain working links to the previous tests and these MAY be the same links as created in [4.2].
    	
 Security:
-[3.1] The GUI MUST have a chroot-similar design where its' config, outside of reach of the web root itself, is read only once at startup.
+[3.1] The GUI MUST have a chroot-similar design where its config, outside of reach of the web root itself, is read only once at startup.
  [3.2] The GUI MUST have all sensitive information in the protected configuration file from [3.1] but MAY have options elsewhere if deemed necessary. 
  [3.3] The GUI SHOULD have an easy-to-read source code that is well documented and commented.
 
 Functionality:
 [4.1] The GUI MUST have the same functionality over IPv6 as is given over IPv4 and SHOULD inform the user from what address they are connecting.
- [4.2] The GUI MUST create unique links for every test generated through its' interface and these links SHOULD be easy to find for the user.
+ [4.2] The GUI MUST create unique links for every test generated through its interface and these links SHOULD be easy to find for the user.
  [4.3] The GUI SHOULD allow links to tests that were generated from other sources than the GUI itself but MAY not allow all available sources to be accessed.
 
 

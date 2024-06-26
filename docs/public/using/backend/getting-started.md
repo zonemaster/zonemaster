@@ -42,7 +42,7 @@ Once the progress value has reached `100`, you can query for the *test result*.
 curl -sS -H "Content-Type: application/json" -d '{"jsonrpc": "2.0", "id": 5, "method": "get_test_results", "params": {"id": '"$TESTID"'}}' http://localhost:5000/ | jq .
 ```
 
-If you're moderatly quick and repeatedly re-run the last command you should be able to see the progress value increase in uneven steps from `0` to `100`.
+If you're moderately quick and repeatedly re-run the last command you should be able to see the progress value increase in uneven steps from `0` to `100`.
 Never mind updating the JSON-RPC `"id"` - the server doesn't care.
 Once the progress has reached 100, lots of test results should also be showing up.
 

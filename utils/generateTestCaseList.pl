@@ -33,7 +33,7 @@ use Getopt::Long;
 use File::Basename;
 
 # command line options
-my $dirloc = '.'; # directory for serching test cases
+my $dirloc = '.'; # directory for searching test cases
 my $help;
 my $DEBUG = 0;
 

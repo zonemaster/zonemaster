@@ -70,7 +70,7 @@ system that is supported:
 
 * Rocky Linux:
   * All major versions that have not reached EOL are supported.
-    * If the the EOL of a major version is within the expected lifetime of the
+    * If the EOL of a major version is within the expected lifetime of the
       Zonemaster release then that major version is not supported.
   * Only the newest point release is tested.
   * Active releases are listed on <https://rockylinux.org/download> and

@@ -25,7 +25,7 @@ This Test Case will determine if parent zone and child zones,
 respectively, exist.
 
 If the test is an [undelegated test], however, it can be tested even it is not
-delegated or even if the parent zone can not be determined.
+delegated or even if the parent zone cannot be determined.
 
 If the zone to be tested is the root zone, it has no parent or
 delegation and will always pass this Test Case.

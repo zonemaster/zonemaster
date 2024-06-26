@@ -3,7 +3,7 @@
 *~
 .*.swp
 
-# MacOS attribute file
+# macOS attribute file
 .DS_Store
 
 # Ignore output by mdbook
