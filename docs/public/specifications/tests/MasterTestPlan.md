@@ -341,7 +341,7 @@ A change to the documents may be initiated because of several reasons:
 
 #### Implementing
 
-The document revisioning is managed by a version control system
+The document versioning is managed by a version control system
 (Git). Each change must contain a specific commit message detailing
 the change. The major revisions section of this document should also
 be updated if there is a new release of the document.
