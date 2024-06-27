@@ -89,6 +89,12 @@ Install dependencies not available from binary packages:
 sudo cpanm --notest Daemon::Control JSON::RPC JSON::Validator Log::Any Log::Any::Adapter::Dispatch Net::IP::XS Router::Simple Starman
 ```
 
+For Rocky Linux 8 only, install DBD::SQLite from CPAN as the one in the system packages repository is too old:
+
+```sh
+sudo cpanm --notest DBD::SQLite
+```
+
 Install Zonemaster::Backend:
 
 ```sh
