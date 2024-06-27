@@ -68,7 +68,7 @@ Ubuntu 22.04     | 5.34
 Ubuntu 24.04     | 5.38
 
 
-* Zonemaster requires Perl version 5.16 or higher.
+* Zonemaster technically requires Perl version 5.16 or higher, but has only been tested with the versions in the table above. 
 * Zonemaster has been tested with the default version of Perl in the OSs as
   listed in the table above.
 * (*) Perl is included in the Docker image published on [Docker Hub].
