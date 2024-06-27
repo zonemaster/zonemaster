@@ -38,12 +38,12 @@ Operating System | MariaDB | PostgreSQL
 ---------------- | --------| ---------------
 Debian 12        | 10.11   | 15.6
 Docker           | n/a     | n/a
-FreeBSD 14.1     | 8.0 (*)?| 16.3?
+FreeBSD 14.1     | 8.0 (*) | 15.7
 Rocky Linux 8.10 | 10.3    | 10.23
 Rocky Linux 9.4  | 10.5    | 13.14
 Ubuntu 20.04     | 10.3?   | 12.2?
 Ubuntu 22.04     | 10.6?   | 14.2?
-Ubuntu 24.04     | 10.11   | 16.2
+Ubuntu 24.04     | 10.11   | 16.3
 
 * (*) FreeBSD uses MySQL, not MariaDB.
 * SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
@@ -60,7 +60,7 @@ Operating System | Perl
 ---------------- | ----
 Debian 12        | 5.36
 Docker           | (*)
-FreeBSD 14.1     | 5.36?
+FreeBSD 14.1     | 5.36
 Rocky Linux 8.10 | 5.26
 Rocky Linux 9.4  | 5.32
 Ubuntu 20.04     | 5.30?
