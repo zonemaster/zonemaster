@@ -6,7 +6,7 @@
 ### [Breaking changes]
  - Removes deprecated profile property in [Zonemaster-Engine].
  - Removes deprecated command line option in [Zonemaster-CLI].
- - Requires database update in Zonemaster-Backend.
+ - Requires database update in [Zonemaster-Backend].
  - Changes how the default profile is to be extracted in [Zonemaster-Engine].
 
 ### [Features]
