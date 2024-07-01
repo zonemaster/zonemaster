@@ -17,10 +17,13 @@ v2024.1 2024-07-01
  - Updates the specification of test case Basic01. (#1257)
  - Updates implementation of test case Basic01 in Zonemaster-Engine.
  - Makes IDN names being displayed as both A-label and U-label in Zonemaster-GUI.
+ - Adds test zones specification for test case Basic01 (#1255)
 
  [Fixes]
  - Updates documentation (#1261, #1262, #1276, #1279)
  - Adds minor changes to test case Zone11's msgids (messages). (#1264)
+ - Updates test zones specifications for test cases Consistency05 and
+   Consistency06. (#1266)
 
  [Zonemaster product]
  - This version of Zonemaster also consists of the following components. For
