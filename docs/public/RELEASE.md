@@ -15,13 +15,13 @@
 ### [Zonemaster product]
 This version of Zonemaster also consists of the following components. For each component, see its Changes file or Github release notes. This fix version does not change anything in other components. See previous releases for recent changes.
 
-Component | Github release notes | Changes file | Updated in this release
-------------------------|:-----------------------:|---------------------------------|:----:
-[Zonemaster-LDNS]      | [v4.0.2][ldns-tag]        | [Changes][ldns-Changes]          | Yes
-[Zonemaster-Engine]    | [v6.0.0][engine-tag]    | [Changes][engine-Changes]       | No
-[Zonemaster-CLI]          | [v7.0.0][cli-tag]           | [Changes][cli-Changes]              | No
-[Zonemaster-Backend] | [v11.2.0][backend-tag] | [Changes][backend-Changes]   | Yes
-[Zonemaster-GUI]         | [v4.3.0][gui-tag]          | [Changes][gui-Changes]            | No
+Component            | Github release notes   | Changes file               | Updated in this release
+---------------------|:----------------------:|----------------------------|:----------------------:
+[Zonemaster-LDNS]    | [v4.0.2][ldns-tag]     | [Changes][ldns-Changes]    | Yes
+[Zonemaster-Engine]  | [v6.0.0][engine-tag]   | [Changes][engine-Changes]  | No
+[Zonemaster-CLI]     | [v7.0.0][cli-tag]      | [Changes][cli-Changes]     | No
+[Zonemaster-Backend] | [v11.2.0][backend-tag] | [Changes][backend-Changes] | Yes
+[Zonemaster-GUI]     | [v4.3.0][gui-tag]      | [Changes][gui-Changes]     | No
 
 For more information on previous versions of the Zonemaster product see the [Changes][zonemaster-Changes] file or the [releases] page. For general information ses the [README] file.
 
