@@ -10,11 +10,16 @@
  - Changes how the default profile is to be extracted in [Zonemaster-Engine].
 
 ### [Features]
+ - Updates the specification of test case Basic01. (#1257)
  - Updates implementation of test case Basic01 in [Zonemaster-Engine].
- - Makes IDN names being displayed as both A-label and U-label in Zonemaster-GUI.
+ - Makes IDN names being displayed as both A-label and U-label in [Zonemaster-GUI].
+
+### [Fixes]
+ - Updates documentation (#1261, #1262, #1276, #1279)
+ - Adds minor changes to test case Zone11's msgids (messages). (#1264)
 
 ### [Zonemaster product]
-This version of Zonemaster also consists of the following components. For each component, see its Changes file or Github release notes. See previous releases for recent changes.
+This version of Zonemaster also consists of the following components. For each component, see its Changes file or Github release notes.
 
 Component            | Github release notes   | Changes file               | Updated in this release
 ---------------------|:----------------------:|----------------------------|:----------------------:
