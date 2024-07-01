@@ -1,0 +1,13 @@
+$ORIGIN child.parent.good-parent-host-1.basic01.xa.            ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024050703      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@		NS	ns1.parent.good-parent-host-1.basic01.xa.
+@		NS	ns2.parent.good-parent-host-1.basic01.xa.
+

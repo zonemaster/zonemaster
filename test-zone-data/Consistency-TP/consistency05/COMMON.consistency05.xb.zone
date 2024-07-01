@@ -5,19 +5,19 @@
 
 $TTL 3600
 
-@       SOA     ns1 admin.mail.xb. (
-                2023092000      ; serial
+@       SOA     ns3 admin.mail.xb. (
+                2024051701      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
                 1d )            ; minimum
 
-        NS      ns1
-        NS      ns2
+        NS      ns3
+        NS      ns4
 
-ns1     A       127.14.5.33
-ns1     AAAA    fda1:b2:c3::127:14:5:33
-ns2     A       127.14.5.34
-ns2     AAAA    fda1:b2:c3::127:14:5:34
+ns3     A       127.14.5.33
+ns3     AAAA    fda1:b2:c3::127:14:5:33
+ns4     A       127.14.5.34
+ns4     AAAA    fda1:b2:c3::127:14:5:34
 
 ;EOF

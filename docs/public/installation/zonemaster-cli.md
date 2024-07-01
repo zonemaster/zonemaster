@@ -15,7 +15,7 @@
 ## Prerequisites for CPAN installation
 
 Before installing Zonemaster::CLI from CPAN, you should [install
-Zonemaster::Engine][ Zonemaster::Engine installation], unless you are
+Zonemaster::Engine][Zonemaster::Engine installation], unless you are
 to install on Debian using pre-built packages (see below).
 
 > **Note:** [Zonemaster::Engine] and [Zonemaster::LDNS] are dependencies of
@@ -41,13 +41,7 @@ Zonemaster::CLI, see the [declaration of prerequisites].
    sudo dnf install perl-JSON-XS perl-MooseX-Getopt perl-Try-Tiny
    ```
 
-2) Install dependencies from CPAN:
-
-   ```sh
-   sudo cpanm Text::Reflow
-   ```
-
-3) Install Zonemaster::CLI
+2) Install Zonemaster::CLI
 
    ```sh
    sudo cpanm Zonemaster::CLI
@@ -92,7 +86,7 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 1) Install dependencies:
 
    ```sh
-   sudo apt-get install locales libmoosex-getopt-perl libtext-reflow-perl libmodule-install-perl libtry-tiny-perl
+   sudo apt-get install locales libmoosex-getopt-perl libmodule-install-perl libtry-tiny-perl
    ```
 
 2) Install Zonemaster::CLI:
@@ -129,7 +123,7 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 2) Install dependencies available from binary packages:
 
    ```sh
-   pkg install devel/gmake p5-JSON-XS p5-Locale-libintl p5-MooseX-Getopt p5-Text-Reflow p5-Try-Tiny
+   pkg install devel/gmake p5-JSON-XS p5-Locale-libintl p5-MooseX-Getopt p5-Try-Tiny
    ```
 
 3) Install Zonemaster::CLI:

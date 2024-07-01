@@ -1,0 +1,38 @@
+$ORIGIN consistency05.xb.
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024051703      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+        NS    ns1
+        NS    ns2
+
+ns1     A     127.14.5.23
+ns1     AAAA  fda1:b2:c3:0:127:14:5:23
+ns2     A     127.14.5.24
+ns2     AAAA  fda1:b2:c3:0:127:14:5:24
+
+$ORIGIN addresses-match-2.consistency05.xb.
+; No delegation
+ns3	A	127.14.5.33
+ns3	AAAA	fda1:b2:c3:0:127:14:5:33
+ns4     A       127.14.5.34
+ns4     AAAA    fda1:b2:c3:0:127:14:5:34
+
+$ORIGIN addr-match-del-undel-2.consistency05.xb.
+; No delegation
+ns3	A	127.14.5.33
+ns3	AAAA	fda1:b2:c3:0:127:14:5:33
+ns4     A       127.14.5.34
+ns4     AAAA    fda1:b2:c3:0:127:14:5:34
+
+$ORIGIN addr-match-no-del-undel-2.consistency05.xb.
+; No delegation
+ns3	A	127.14.5.33
+ns3	AAAA	fda1:b2:c3:0:127:14:5:33
+ns4     A       127.14.5.34
+ns4     AAAA    fda1:b2:c3:0:127:14:5:34

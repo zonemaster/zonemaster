@@ -5,8 +5,11 @@
 The default profile is documented in the [profile properties] section
 of the Zonemaster::Engine::Profile module.
 
-The default profile is stored in a default profile file, [profile.json],
-always loaded by Zonemaster-Engine.
+The default profile can be extracted from Zonemaster-Engine to a file using this command.
+
+```sh
+perl -MZonemaster::Engine::Test -E 'say Zonemaster::Engine::Profile->default->to_json' | jq -S . > profile.json
+```
 
 ## Creating profiles
 
@@ -19,14 +22,9 @@ The content of the two files, as-is or modified, can be merged into a custom
 profile file that can be loaded by Zonemaster-Engine. Both Zonemaster-CLI and
 Zonemaster-Backend have direct options for loading a custom profile file.
 
-A custom profile file only has to contain those properties that are changed
-in comparison to the default profile file.
-
-You are adviced not to modify the default profile file in the default path on
-installed Zonemaster, since such modifications will be overwritten by updates
-of Zonemaster.
+A custom profile file only has to contain those [properties][profile properties]
+that it should override.
 
 
-[profile.json]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/share/profile.json
 [profile_additional_properties.json]:  https://github.com/zonemaster/zonemaster-engine/blob/master/share/profile_additional_properties.json
 [Profile properties]:                  https://metacpan.org/pod/Zonemaster::Engine::Profile#PROFILE-PROPERTIES

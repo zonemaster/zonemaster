@@ -10,13 +10,15 @@ Index of Text Cases are found in [README](README.md).
 |:-------------------------------------|:-------|:-------------------------------|
 | B01_CHILD_FOUND                          | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
 | B01_CHILD_IS_ALIAS                       | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
-| B01_CHILD_NOT_EXIST                      | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
 | B01_INCONSISTENT_ALIAS                   | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
 | B01_INCONSISTENT_DELEGATION              | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
 | B01_NO_CHILD                             | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
+| B01_PARENT_DISREGARDED                   | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
 | B01_PARENT_FOUND                         | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
+| B01_PARENT_NOT_FOUND                     | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
 | B01_PARENT_UNDETERMINED                  | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
-| B01_UNEXPECTED_NS_RESPONSE               | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
+| B01_ROOT_HAS_NO_PARENT                   | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
+| B01_SERVER_ZONE_ERROR                    | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
 | TEST_CASE_END                            | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
 | TEST_CASE_START                          | [Basic](Basic-TP/README.md) | [basic01](Basic-TP/basic01.md) |
 | B02_AUTH_RESPONSE_SOA                    | [Basic](Basic-TP/README.md) | [basic02](Basic-TP/basic02.md) |

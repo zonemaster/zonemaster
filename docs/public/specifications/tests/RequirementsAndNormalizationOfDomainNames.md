@@ -45,8 +45,7 @@ specifications.
 To be valid, *Domain Name* must be one of two:
 
 1. a valid ASCII domain name, or
-2. a valid IDN name (Internationalized Domain Name) as of
-   [IDNA2008][RFC 5890#1.1].
+2. a valid IDN name (Internationalized Domain Name) as of [IDNA2008].
 
 The process defined in this specification will normalize *Domain Name* and output
 a normalized form to be used by all Zonemaster test cases. The objectives of the
@@ -190,8 +189,7 @@ Tables 1, 2, 3 and 4 are found in the [Detailed requirements] section below.
           "[Upper case](#upper-case)" below.
        3. Normalize *Label* to NFC as specified in [Unicode TR 15]. Also see
           section "[Unicode normalization](#unicode-normalization)" below.
-       3. Convert *Label* to an A-label as specified by
-          [IDNA2008][RFC 5890#1.1].
+       3. Convert *Label* to an A-label as specified by [IDNA2008].
           1. If the conversion failed, then output *[INVALID_U_LABEL]*
              and *Label*, and terminate these test procedures.
           2. Else, replace the U-label in *Domain Labels* with the A-label from
@@ -441,7 +439,7 @@ U+0130 ([LATIN CAPITAL LETTER I WITH DOT ABOVE]).
 DNS can only handle A-labels, not U-label. In the test core suite of Zonemaster
 only A-labels are used. For normalization, all U-labels are converted to
 A-labels. Test cases will only handle an ASCII-only *Domain Name*. Conversion
-from U-label to A-label should be done as specified for [IDNA2008][RFC 5890#1.1],
+from U-label to A-label should be done as specified for [IDNA2008],
 not IDNA2003.
 
 
@@ -451,7 +449,7 @@ No special terminology for this specification.
 
 
 [AMBIGUOUS_DOWNCASING]:                  #summary
-[Argument list]:                         ../ArgumentsForTestCaseMessages.md
+[Argument list]:                         ArgumentsForTestCaseMessages.md
 [CHARACTER TABULATION]:                  https://codepoints.net/U+0009
 [DOMAIN_NAME_TOO_LONG]:                  #summary
 [Detailed requirements]:                 #detailed-requirements
@@ -469,6 +467,7 @@ No special terminology for this specification.
 [HYPHEN-MINUS]:                          https://codepoints.net/U+002D
 [IDEOGRAPHIC FULL STOP]:                 https://codepoints.net/U+3002
 [IDEOGRAPHIC SPACE]:                     https://codepoints.net/U+3000
+[IDNA2008]:                              https://datatracker.ietf.org/doc/html/rfc5890#section-1.1
 [INITIAL_DOT]:                           #summary
 [INVALID_ASCII]:                         #summary
 [INVALID_U_LABEL]:                       #summary

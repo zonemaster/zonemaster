@@ -82,7 +82,7 @@ DS18_NO_MATCH_CDNSKEY_RRSIG_DS | ERROR | CDNSKEY RRset is not signed with a DNSK
 
 7. Else, do (*Test Type* is "normal"):
    1. Retrieve all name server IP addresses for the parent zone of
-      *Child Zone* using [Get-Parent-Zone] ("Parent NS IP").
+      *Child Zone* using Get-Parent-NS-IP ("Parent NS IP").
    2. For each IP address in *Parent NS IP* do:
       1. Send the DS query over UDP to the name server IP.
       2. If no DNS response is returned, then go to next name server
