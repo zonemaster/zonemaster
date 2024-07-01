@@ -4,12 +4,13 @@
  - Translations have not been fully updated in this release. They will be updated in an upcoming release.
 
 ### [Breaking changes]
- - Removes deprecated profile property in Zonemaster-Engine.
- - Removes deprecated command line option in Zonemaster-CLI.
+ - Removes deprecated profile property in [Zonemaster-Engine].
+ - Removes deprecated command line option in [Zonemaster-CLI].
  - Requires database update in Zonemaster-Backend.
+ - Changes how the default profile is to be extracted in [Zonemaster-Engine].
 
 ### [Features]
- - Updates implementation of test case Basic01 in Zonemaster-Engine.
+ - Updates implementation of test case Basic01 in [Zonemaster-Engine].
  - Makes IDN names being displayed as both A-label and U-label in Zonemaster-GUI.
 
 ### [Zonemaster product]
