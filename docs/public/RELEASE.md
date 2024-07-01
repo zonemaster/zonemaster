@@ -34,7 +34,7 @@ For more information on previous versions of the Zonemaster product see the [Cha
 [backend-tag]: https://github.com/zonemaster/zonemaster-backend/releases/tag/v11.2.0
 [gui-tag]: https://github.com/zonemaster/zonemaster-gui/releases/tag/v4.3.0
 
-[zonemaster-Changes]: https://github.com/dotse/zonemaster/blob/master/Changes
+[zonemaster-Changes]: https://github.com/zonemaster/zonemaster/blob/master/Changes
 [ldns-Changes]: https://github.com/zonemaster/zonemaster-ldns/blob/master/Changes
 [engine-Changes]: https://github.com/zonemaster/zonemaster-engine/blob/master/Changes
 [cli-Changes]: https://github.com/zonemaster/zonemaster-cli/blob/master/Changes
