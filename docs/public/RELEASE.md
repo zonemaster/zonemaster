@@ -14,7 +14,7 @@
  - Makes IDN names being displayed as both A-label and U-label in Zonemaster-GUI.
 
 ### [Zonemaster product]
-This version of Zonemaster also consists of the following components. For each component, see its Changes file or Github release notes. This fix version does not change anything in other components. See previous releases for recent changes.
+This version of Zonemaster also consists of the following components. For each component, see its Changes file or Github release notes. See previous releases for recent changes.
 
 Component            | Github release notes   | Changes file               | Updated in this release
 ---------------------|:----------------------:|----------------------------|:----------------------:
