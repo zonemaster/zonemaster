@@ -32,7 +32,7 @@ addresses](https://www.iana.org/assignments/multicast-addresses/multicast-addres
 
 ### Scope
 
-IP addresses from authoritative name servers are matched against IANAS list of public routable address ranges.
+IP addresses from authoritative name servers are matched against IANAs list of public routable address ranges.
 
 ### Inputs
 
@@ -58,7 +58,7 @@ message. The argument names are defined in the [argument list].
 ### Test procedure 
 
 1. Obtain the IP addresses of each name server of the domain from the parent using
-   [Method4](../Methods.md) and child using [Method5](../Methods.md)
+   [Method4](../Methods.md). 
 
 2. If any IP address (IPv4 or IPv6) is *not* indicated to be "Globally Reachable" in the IANA 
    documentation linked above, the test case fails.
