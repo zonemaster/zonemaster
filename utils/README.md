@@ -2,7 +2,7 @@
 
 ## Background
 
-The utility scripts described below are used to update or generat some documents
+The utility scripts described below are used to update or generate some documents
 in the public document tree.
 
 * The scripts should be run at each Zonemaster release and the resulting update
@@ -10,8 +10,8 @@ in the public document tree.
 
 ## Pre-requisite
 
-The scripts should be run on a computer where the lastest `development` branch
-of `zonemaster/zonemaster` has been cloned, and the equivalent version of
+The scripts should be run on a computer where the latest `develop` branch of
+`zonemaster/zonemaster` has been cloned, and the equivalent version of
 `zonemaster/engine` has been **installed**.
 
 ## Scripts
@@ -22,9 +22,9 @@ of `zonemaster/zonemaster` has been cloned, and the equivalent version of
 * [updateTestPlanReadme.pl]
   * This tool extracts all Test Case specifications per Test Plan and creates
     Markdown tables. The tables are automatically added to the Test Plan
-    README.md file.
+    README.md file which is located in the directory named after the Test Plan.
 * [generateTestMessages.pl]
-  * This tools creates a map between the Zonemaster messages tags from the
+  * This tools creates a map between the Zonemaster message tags from the
     [Zonemaster-Engine] implementation of the Test Cases and the Test Case
     specifications. This is used to create the complete [TestMessages.md] file.
 * [generateImplementedTestCases.pl]
