@@ -6,13 +6,14 @@ The utility scripts described below are used to update or generate some document
 in the public document tree.
 
 * The scripts should be run at each Zonemaster release and the resulting update
-  included.
+  should be submitted to correct git branch of this git repository.
 
 ## Pre-requisite
 
-The scripts should be run on a computer where the latest `develop` branch of
+The scripts should be run on a computer where the updated git branch of
 `zonemaster/zonemaster` has been cloned, and the equivalent version of
-`zonemaster/engine` has been **installed**.
+`zonemaster/engine` has been **installed**. Usually the git branches will
+be the `develop` branches of each repository.
 
 ## Scripts
 
