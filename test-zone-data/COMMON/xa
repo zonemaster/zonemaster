@@ -72,4 +72,11 @@ ns2             A       127.17.15.22
 ns2             AAAA    fda1:b2:c3:0:127:17:15:22
 
 
+$ORIGIN recursor.engine.xa.
+@               NS    ns1
+ns1             A     127.30.1.21
+ns1             AAAA  fda1:b2:c3:0:127:30:1:21
+ns2             A     127.30.1.22
+ns2             AAAA  fda1:b2:c3:0:127:30:1:22
+
 ;EOF

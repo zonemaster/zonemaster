@@ -1,0 +1,20 @@
+$TTL 3600
+$ORIGIN sub2.cname.recursor.engine.xa.
+
+@                          SOA  (
+                                   ns1
+                                   root
+                                   2023103100
+                                   86400
+                                   14400
+                                   3600000
+                                   3600
+                                 )
+
+@                          NS    ns1
+ns1                        A     127.30.1.32
+ns1                        AAAA  fda1:b2:c3:0:127:30:1:32
+
+; For scenario LOOPED-CNAME-OUT-OF-ZONE
+looped-cname-out-of-zone   CNAME   looped-cname-out-of-zone.sub3.cname.recursor.engine.xa.
+
