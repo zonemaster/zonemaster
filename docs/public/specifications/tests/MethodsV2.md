@@ -111,8 +111,8 @@ the root zone or if the test is an undelegated test, the list is defined but
 empty. If the parent zone cannot be determined, then an undefined list is
 returned.
 
-This Method must, in general, use the similar algorithm as Test Case [BASIC01],
-but the test case extracts more information.
+This Method must, in general, use the same algorithm as Test Case [Basic01], but
+the test case extracts more information and outputs messages.
 
 ### Inputs
 
@@ -120,8 +120,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
 
 * "Child Zone" - The name of the child zone to be tested.
 * "Root Name Servers"
-* "Test Type" - "undelegated test" or "normal test".
-
+* "Test Type" - "[undelegated test]" or "normal test".
 
 ### Procedures
 
@@ -131,69 +130,135 @@ This Method uses the following input units defined in section [Methods Inputs]:
 2. If the *Test Type* is "undelegated test" then output empty set and exit
    these procedures.
 
-3. Create a [DNS Query] with query type SOA and query name *Child Zone*
-   ("SOA Child Query").
+3. Create the following empty sets:
+   1.  Name server IP and zone name ("Remaining Servers").
+   2.  Name server IP and query name ("Handled Servers").
+   3.  Parent name server IP and parent zone name ("Parent Found").
 
-4. Create the following empty set:
-   1. Parent name server IP and the parent zone name ("Parent Name Server IP").
+4. Insert all addresses from *Root Name Servers* and the root zone name into the
+   *Remaining Servers* set.
 
-5. Find the parent zone of the *Child Zone* by iteratively [sending][send]
-   *SOA Child Query* to all name servers found. Start by using the nameservers
-   from *Root Name Servers*.
-   1. Follow all paths from root and downwards by using the [Referrals][Referral].
-   2. If the [DNS Response] is a [Referral] to *Child Zone*, or the
-      [DNS response] has the AA flag set, then:
-      1. Stop the lookup up in that branch.
-      2. Save the name server IP address and zone name for which the server is
-         name server (parent zone) to the *Parent Name Server IP* set.
-   3. If the lookup reaches a name server that meets at least one of the following
-      criteria, then ignore it.
-      1. Does not respond at all.
-      2. Responds with an invalid DNS response.
-      3. Responds with an [RCODE Name] besides NoError and NXDomain.
-      4. Responds with a non-referral (see [Referral]) and the AA bit unset.
-   5. Continue until all paths are exhausted.
+> In the loop below, the steps tries to capture the name of the parent zone of
+> **Child Zone** and the IP addresses of the name servers for that parent zone.
+> This is done using a modified version of the "QNAME minimization" technique
+> [RFC 9156]. SOA is the query type used for traversing the tree.
 
-> *Note that the "parent zone name" is the name of the zone that the name server
-> in question is NS for (owner name of NS). The name of the name server is
-> irrelevant.*
+5. While the *Remaining Servers* is non-empty pick next name server IP address
+   and zone name from the set ("Server Address" and "Zone Name") and do:
 
-6. For each name server IP and parent zone ("Parent Zone") in the
-   *Parent Name Server IP* set, do the following steps, including for any name
-   servers added to the set by the steps below.
-   1. [Send] a [DNS Query] with query type NS and *Parent Zone* as query name to
-      the name server IP.
-   2. If the [DNS Response], if any, contains a list of NS records in the answer
-      section with *Parent Zone* as owner name then do:
-      1. For each NS record extract the name server name ("Name Server Name") in
-         the RDATA field and do:
-         1. Create [DNS Query] with query type A, *Name Server Name* as query
-            name and do a [DNS lookup].
-         2. If the [DNS Response], if any, contains a list of A records (follow
-            any CNAME chain) in the answer section then remember the IP
-            addresses from the A records for three steps down.
-         3. Create [DNS Query] with query type AAAA, *Name Server Name* as
-            query name and do a [DNS lookup].
-         3. If the [DNS Response], if any, contains a list of AAAA records
-            (follow any CNAME chain) in the answer section then remember the IP
-            addresses from the AAAA records for next step.
-         4. If any IP address was captured in the two lookup steps, then for each
-            IP address do if the address is not listed in *Parent Name Server IP*
-            set:
-            1. [Send] *SOA Child Query* to the IP address.
-            2. If the [DNS Response], if any, meets exactly one of the following
-               criteria then save the IP address and the parent zone name to the
-               *Parent Name Server IP* set. Criteria:
-               * The [DNS response] is a [Referral] to *Child Zone*, or
-               * The [DNS response] has the AA flag set.
+   1.  Extract and remove *Server Address* including its *Zone Name* from
+       *Remaining Servers*.
+   2.  Insert *Server Address* and *Zone Name* into *Handled Servers*.
+   3.  Create [DNS queries][DNS Query]:
+       1. Query type SOA and query name *Zone Name* ("Zone Name SOA Query").
+       2. Query type NS and query name *Zone Name* ("Zone Name NS Query").
+   4.  [Send] *Zone Name SOA Query* to *Server Address*.
+   5.  Go to next server in *Remaining Servers* if one or more of the following
+       matches:
+          * No DNS response.
+          * [RCODE Name] different from NoError in response.
+          * AA bit not set in response.
+          * Not exactly one SOA record in answer section
+          * Owner name of SOA record is not *Zone Name*.
+   6.  [Send] *Zone Name NS Query* to *Server Address*.
+   7.  Go to next server in *Remaining Servers* if one or more of the following
+       matches:
+          * No DNS response.
+          * [RCODE Name] different from NoError in response.
+          * AA bit not set in response.
+          * No NS records in answer section
+          * Owner name of any of the NS records is not *Zone Name*.
+   8.  Extract the name server names from the NS records and any address records
+       in the additional section.
 
-7. If the *Parent Name Server IP* set is non-empty then do:
+   9.  Do [DNS Lookup] of name server names (A and AAAA) not already listed in the
+       additional section of the response.
+       1. For each IP address add the IP address and *Zone Name* to the
+          *Remaining Servers* set unless the IP address is already listed in
+          *Handled Servers* together with *Zone Name*.
+       2. Ignore any failing lookups or lookups resulting in NODATA or NXDOMAIN.
+   10. Create "Intermediate Query Name" by copying *Zone name* as start value.
+   11. Run a loop processing *Server Address* (jumps back here from the steps
+       below).
+       1. Extend *Intermediate Query Name* by adding one more label to the left
+          by copying the equivalent label from *Child Zone*. (See "Example 1"
+          below.)
+       2. Create a [DNS Query] with query name
+          *Intermediate Query Name* and [query type] SOA
+          ("Intermediate SOA query").
+       3. [Send] *Intermediate SOA Query* to *Server Address*. (See "Example 2"
+          below.)
+       4. Go to next server in *Remaining Servers* if there is no DNS response.
+       5. If the response has exactly one SOA record with owner name
+          *Intermediate Query Name* in the answer section, with the AA bit
+          set and [RCODE Name] NoError then do:
+          1. If *Intermediate Query Name* is equal to *Child Zone* then
+             1. Save *Server Address* and *Zone Name* to the *Parent Found* set.
+             2. Go to next server in *Remaining Servers*.
+          2. Else do:
+             1. Create a [DNS query][DNS Query] with query name
+                *Intermediate Query Name* and [query type] NS
+                ("Intermediate NS query").
+             2. [Send] *Intermediate NS Query* to *Server Address*.
+             3. Go to next server in *Remaining Servers* if one or more of the
+                following matches:
+                   * No DNS response.
+                   * [RCODE Name] different from NoError in response.
+                   * AA bit not set in response.
+                   * No NS records in answer section.
+                   * Owner name of any of the NS records is not *Intermediate Query Name*.
+             4. Extract the name server names from the NS records and any address
+                records in the additional section.
+             5. Do [DNS Lookup] of name server names (A and AAAA) not already
+                listed in the additional section of the response.
+             6. For each IP address add the IP address and *Intermediate Query Name*
+                to the *Remaining Servers* set unless the IP address is already
+                listed in *Handled Servers* together with *Intermediate Query Name*.
+             7. Set *Zone Name* to *Intermediate Query Name*.
+             8. Go back to the start of the loop.
+       6. Else, if the [RCODE Name] is NXDomain and the AA is set then go to next
+          server in *Remaining Servers*.
+       7. Else, if the response contains a [Referral] of *Intermediate Query Name*
+          then do:
+          1. If *Intermediate Query Name* is equal to *Child Zone* then do:
+             1. Save *Server Address* and *Zone Name* to the *Parent Found* set.
+          2. Else do:
+             1. Extract the name server names from the NS records and any glue
+                records.
+             2. Do [DNS Lookup] of name server names (A and AAAA) not already
+                listed as glue record or records.
+             3. For each IP address add *Server Address* and
+                *Intermediate Query Name* to the *Remaining Servers* set unless
+                *Server Address* is already listed in *Handled Servers* together
+                with *Intermediate Query Name*.
+          3. Go to next server in *Remaining Servers*.
+       8. Else, if the [RCODE Name] is NoError and the AA is set then do:
+          1. If *Intermediate Query Name* is not equal to *Child Zone* then
+             go back to the start of the loop.
+          2. Else do:
+             1. Save *Server Address* and *Zone Name* to the *Parent Found*.
+             2. Go to next server in *Remaining Servers*.
+       9. Else, if the response is a [Referral] with a CNAME record with
+          *Child Zone* as owner name in the answer section, then
+          1. Save *Server Address* and *Zone Name* to the *Parent Found* set.
+          2. Go to next server in *Remaining Servers*.
+       10. Else, go to next server in *Remaining Servers*.
+
+> Examples referred to from the steps.
+>
+> Example 1: If *Child Zone* is "foo.bar.xa" and *Intermediate Query Name* is "."
+> (root zone) then *Intermediate Query Name* becomes "xa". If it is "xa", it
+> will become "bar.xa" instead.
+>
+> Example 2: An "bar.xa SOA" query to a name server for "xa".
+
+6. If the *Parent Found* set is non-empty then do:
    1. Extract the name server IP list.
    2. Return the following from the Method:
       1. The extracted list of name server IP addresses (parent zone name servers).
    3. Exit these procedures.
 
-8. If the *Parent Name Server IP* set is empty then do:
+7. If the *Parent Found* set is empty then do:
    1. Return the following from the Method:
       1. Undefined value. (Parent name severs cannot be determined.)
    2. Exit these procedures.
@@ -568,7 +633,7 @@ Obtain the name server names (from the NS records) and the IP addresses (from
 the parent zone. [Glue Records] are address records for [In-Bailiwick] name
 server names, if any. Extract addresses even if the resolution goes through
 CNAME. It is, however, not permitted for a NS record to point at a name
-that has a CNAME, but that test is covered by Test Case [DELEGATION05].
+that has a CNAME, but that test is covered by Test Case [Delegation05].
 
 IP addresses for [Out-Of-Bailiwick] name server names are not extracted
 with this Method. To get those use Method [Get-Del-NS-IPs] or
@@ -699,7 +764,7 @@ From the child zone, obtain the address records matching the
 Extract addresses even if the resolution goes through CNAME.
 It is, however, not permitted for a NS record
 to point at a name that has a CNAME, but that test is
-covered by Test Case [DELEGATION05].
+covered by Test Case [Delegation05].
 
 This is an [Internal Method][Internal Methods] that can be referred to by other
 Methods in this document, but not by Test Case specifications.
@@ -778,7 +843,7 @@ given zone (child zone) and a given set of name server names.
 
 Extract addresses even if the resolution goes through CNAME, here ignoring that
 it is not permitted for a NS record to point at a name that has a CNAME record.
-See Test Case [DELEGATION05] for a test of NS records pointing at names that
+See Test Case [Delegation05] for a test of NS records pointing at names that
 holds CNAME records.
 
 This is an [Internal Method][Internal Methods] that can be referred to by other
@@ -914,8 +979,8 @@ None.
 [To top]
 
 
-[BASIC01]:                                           Basic-TP/basic01.md
-[DELEGATION05]:                                      Delegation-TP/delegation05.md
+[Basic01]:                                           Basic-TP/basic01.md
+[Delegation05]:                                      Delegation-TP/delegation05.md
 [DNS Lookup]:                                        #terminology
 [DNS Query and Response Defaults]:                   DNSQueryAndResponseDefaults.md
 [DNS Query and Response Defaults#Query]:             DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
@@ -947,7 +1012,8 @@ None.
 [Methods Inputs]:                                    #methods-inputs
 [Out-Of-Bailiwick]:                                  #terminology
 [RCODE Name]:                                        https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[RFC 8499]:                                          https://datatracker.ietf.org/doc/html/rfc8499#section-7
+[RFC 8499]:                                          https://www.rfc-editor.org/rfc/rfc8499.html#section-7
+[RFC 9156]:                                          https://www.rfc-editor.org/rfc/rfc9156.html
 [Referral]:                                          #terminology
 [Requirements and normalization]:                    RequirementsAndNormalizationOfDomainNames.md
 [Send]:                                              #terminology
