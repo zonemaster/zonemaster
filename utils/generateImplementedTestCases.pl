@@ -22,7 +22,7 @@ print '|:---------------------------------------|:-----------------------|',
 
 
 # table content
-foreach my $module ( 'Basic', sort { fc $a cmp fc $b } Zonemaster::Engine::Test->modules ) {
+foreach my $module ( sort { fc $a cmp fc $b } Zonemaster::Engine::Test->modules ) {
     my $full = "Zonemaster::Engine::Test::$module";
     my $ref  = $full->metadata;
     my $modulelink = "https://metacpan.org/pod/Zonemaster::Engine::Test::$module";
