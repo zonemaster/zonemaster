@@ -216,7 +216,7 @@ same for all three repositories.
   ```
 
 * When the update of all *msgstr* is complete run the `tidy-po` command to
-  create a consistent formatation of the PO file. Do this again if you do
+  create a consistent formatting of the PO file. Do this again if you do
   further updates.
 
   ```
