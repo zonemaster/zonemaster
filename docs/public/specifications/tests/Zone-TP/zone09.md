@@ -40,7 +40,7 @@ ignores the possibility to use address records for email.
 Even if not mentioned in [RFC 2142], there are some exceptions to the
 rule to include MX and mail target for a domain.
 
-The purpose of a zone in the .ARPA tree is to hold infrastructural identifier,
+The purpose of a zone in the .ARPA tree is to hold infrastructural identifiers,
 and it is not expected that such a zone name is used as [Email Domain]
 ([RFC 3172]). This also means that the well known mailbox is not expected for
 reverse zones (zone under in-addr.arpa or ip6.arpa). Such zone are therefore
