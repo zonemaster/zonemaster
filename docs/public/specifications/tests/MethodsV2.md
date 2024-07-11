@@ -133,7 +133,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
 3. Create the following empty sets:
    1.  Name server IP and zone name ("Remaining Servers").
    2.  Name server IP and query name ("Handled Servers").
-   3.  Parent name server IP and parent zone name ("Parent Found").
+   3.  Parent name server IP addresses ("Parent NS IP").
 
 4. Insert all addresses from *Root Name Servers* and the root zone name into the
    *Remaining Servers* set.
@@ -193,7 +193,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
           *Intermediate Query Name* in the answer section, with the AA bit
           set and [RCODE Name] NoError then do:
           1. If *Intermediate Query Name* is equal to *Child Zone* then
-             1. Save *Server Address* and *Zone Name* to the *Parent Found* set.
+             1. Save *Server Address* to the *Parent NS IP* set.
              2. Go to next server in *Remaining Servers*.
           2. Else do:
              1. Create a [DNS query][DNS Query] with query name
@@ -216,12 +216,10 @@ This Method uses the following input units defined in section [Methods Inputs]:
                 listed in *Handled Servers* together with *Intermediate Query Name*.
              7. Set *Zone Name* to *Intermediate Query Name*.
              8. Go back to the start of the loop.
-       6. Else, if the [RCODE Name] is NXDomain and the AA is set then go to next
-          server in *Remaining Servers*.
-       7. Else, if the response contains a [Referral] of *Intermediate Query Name*
+       6. Else, if the response contains a [Referral] of *Intermediate Query Name*
           then do:
           1. If *Intermediate Query Name* is equal to *Child Zone* then do:
-             1. Save *Server Address* and *Zone Name* to the *Parent Found* set.
+             1. Save *Server Address* to the *Parent NS IP* set.
           2. Else do:
              1. Extract the name server names from the NS records and any glue
                 records.
@@ -232,17 +230,15 @@ This Method uses the following input units defined in section [Methods Inputs]:
                 *Server Address* is already listed in *Handled Servers* together
                 with *Intermediate Query Name*.
           3. Go to next server in *Remaining Servers*.
-       8. Else, if the [RCODE Name] is NoError and the AA is set then do:
+       7. Else, if the [RCODE Name] is NoError and the AA is set then do:
           1. If *Intermediate Query Name* is not equal to *Child Zone* then
              go back to the start of the loop.
-          2. Else do:
-             1. Save *Server Address* and *Zone Name* to the *Parent Found*.
-             2. Go to next server in *Remaining Servers*.
-       9. Else, if the response is a [Referral] with a CNAME record with
-          *Child Zone* as owner name in the answer section, then
-          1. Save *Server Address* and *Zone Name* to the *Parent Found* set.
-          2. Go to next server in *Remaining Servers*.
-       10. Else, go to next server in *Remaining Servers*.
+          2. Else go to next server in *Remaining Servers*.
+       8. Else, go to next server in *Remaining Servers*.
+
+
+
+
 
 > Examples referred to from the steps.
 >
@@ -252,13 +248,13 @@ This Method uses the following input units defined in section [Methods Inputs]:
 >
 > Example 2: An "bar.xa SOA" query to a name server for "xa".
 
-6. If the *Parent Found* set is non-empty then do:
-   1. Extract the name server IP list.
+6. If the *Parent NS IP* set is non-empty then do:
+   1. Extract the list of name server IP addresses.
    2. Return the following from the Method:
       1. The extracted list of name server IP addresses (parent zone name servers).
    3. Exit these procedures.
 
-7. If the *Parent Found* set is empty then do:
+7. If the *Parent NS IP* set is empty then do:
    1. Return the following from the Method:
       1. Undefined value. (Parent name severs cannot be determined.)
    2. Exit these procedures.
@@ -1011,6 +1007,7 @@ None.
 [Methods]:                                           Methods.md
 [Methods Inputs]:                                    #methods-inputs
 [Out-Of-Bailiwick]:                                  #terminology
+[Query type]:                                        https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 [RCODE Name]:                                        https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 8499]:                                          https://www.rfc-editor.org/rfc/rfc8499.html#section-7
 [RFC 9156]:                                          https://www.rfc-editor.org/rfc/rfc9156.html
