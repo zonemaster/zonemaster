@@ -1,0 +1,15 @@
+$ORIGIN child.parent.deleg-oob-w-error-1.methodsv2.xa.
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024070802      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@		NS	ns3.deleg-oob-w-error-1.methodsv2.xa.
+@		NS	ns4-nodata.deleg-oob-w-error-1.methodsv2.xa.
+
+; EOF
+

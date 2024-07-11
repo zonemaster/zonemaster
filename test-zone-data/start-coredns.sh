@@ -29,8 +29,11 @@ shift $((OPTIND-1))
 # Get path to this script
 path=$(dirname $0)
 
+# Go to the directory of the script
+cd $path || exit 1
+
 # main.cfg must be in the same folder as this script
-maincfg="$path/main.cfg"
+maincfg="main.cfg"
 
 # Is CoreDNS already running? One instance at a time.
 if ps --no-headers -fC coredns | grep coredns ; then

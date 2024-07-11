@@ -295,7 +295,8 @@ parent zone.
     `ns4`.
   * Parent zone `parent.good-mixed-undel-1.methodsv2.xa` is served by `ns1`,
     `ns2` and `ns4.good-mixed-undel-1.methodsv2.xa`.
-  * Child zone is delegated, but there is also an undelegated version.
+  * Child zone is delegated, but there is also an undelegated version where
+    the zone has the same data as the delegation.
   * Undelgated data:
     * ns3.child.parent.good-mixed-undel-1.methodsv2.xa/IPv4
     * ns3.child.parent.good-mixed-undel-1.methodsv2.xa/IPv6
@@ -311,8 +312,8 @@ server also serves the delegated child zone.
     `ns2`.
   * Child zone is served by `ns1`, `ns2` and
     `ns2.parent.good-mixed-undel-2.methodsv2.xa`.
-  * Child zone is delegated, but there is also an undelegated version which is
-    what is tested.
+  * Child zone is delegated, but there is also an undelegated version wher the
+    zone has the same data as the delegation.
   * Undelgated data:
     * ns3.child.parent.good-mixed-undel-2.methodsv2.xa/IPv4
     * ns3.child.parent.good-mixed-undel-2.methodsv2.xa/IPv6
@@ -333,34 +334,11 @@ tested. One grandparent server also serves the parent zone.
     * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv4
     * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv6
 
-
-[Above is implemented.]
-
-
-### NO-DEL-MIXED-UNDEL-2
-The child zone is not delegated, but there is an undelegated version that is
-tested. One grandparent server also serves the parent zone. There are extra empty
-nodes between the zone cuts. Child zones ns2 is out-of-bailiwick.
-
-* Zone: child.w.x.parent.y.z.no-del-mixed-undel-2.methodsv2.xa
-  * Grandparent zone `no-del-mixed-undel-2.methodsv2.xa` is served on `ns1` and
-    `ns2`.
-  * Parent zone `parent.y.z.no-del-mixed-undel-2.methodsv2.xa` is served by `ns1`,
-    `ns2` and on `n24.no-del-mixed-undel-2.methodsv2.xa`.
-  * There are no zone cuts at `w`, `x`, `y` and `z`.
-  * Child zone is not delegated, but there is an undelegated version.
-  * Undelgated data:
-    * ns1.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv4
-    * ns1.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv6
-    * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv4
-    * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv6
-
-
 ### NO-CHILD-1
 The child zone is not delegated. Parent zone returns NXDOMAIN.
 
 * Zone: child.parent.no-child-1.methodsv2.xa
-  * Child zone does not exist is not served by any NS.
+  * Child zone does not exist and is not served by any NS.
 
 ### NO-CHILD-2
 The child zone is not delegated. Parent zone returns NODATA.
@@ -387,7 +365,7 @@ The child zone is delegated from one grandparent NS and from the parent zone.
   * Grandparent `ns2` has delegation of parent (to both parent NS).
   * Parent zone has delegation of child.
 
-### CHLD-FOUND-INCONSIST-1
+
 The child is delegated from one parent NS. On the other there is an NXDOMAIN
 response.
 
@@ -413,8 +391,8 @@ to another name, and that other name is delegated.
   * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
   * Parent `ns2` lacks delegation of child, and has a CNAME on the name,
     pointing at `sister.parent.chld-found-inconsist-3.methodsv2.xa`, which is
-    delegated to `ns1-delegated-child.methodsv2.xa` and
-    `ns2-delegated-child.methodsv2.xa`.
+    delegated to `ns6-delegated-child.methodsv2.xa` and
+    `ns7-delegated-child.methodsv2.xa`.
   * Zone `sister` does not exist.
 
 ### CHLD-FOUND-INCONSIST-4
@@ -425,7 +403,7 @@ another name.
   * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
   * Parent `ns2` has a DNAME on `child` pointing at
     `sister.parent.chld-found-inconsist-4.methodsv2.xa` which is delegated to
-    `ns1-delegated-child.methodsv2.xa` and `ns2-delegated-child.methodsv2.xa`.
+    `ns6-delegated-child.methodsv2.xa` and `ns7-delegated-child.methodsv2.xa`.
   * Zone `sister` does not exist.
 
 ### CHLD-FOUND-INCONSIST-5
@@ -445,7 +423,7 @@ On the other there is an NXDOMAIN response.
   * Parent `ns1` has normal delegation of child to the two child NS.
   * Parent `ns2` lacks delegation of child (NXDOMAIN).
   * Child shares `ns1.parent.chld-found-inconsist-6.methodsv2.xa` with parent.
-  * Child also uses child `ns2`.
+  * Child also uses child `ns1` and `ns2`.
   * Child exists with a zone.
 
 ### CHLD-FOUND-INCONSIST-7
@@ -469,7 +447,7 @@ the other there is a CNAME to another name, and that other name is delegated.
   * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
   * Parent `ns2` lacks delegation of child, and has a CNAME on the name,
     pointing at `sister.parent.chld-found-inconsist-8.methodsv2.xa`, which is
-    `ns1-delegated-child.methodsv2.xa` and `ns2-delegated-child.methodsv2.xa`.
+    `ns6-delegated-child.methodsv2.xa` and `ns7-delegated-child.methodsv2.xa`.
   * Zone `sister` does not exist.
   * Child shares `ns1.parent.chld-found-inconsist-8.methodsv2.xa` with parent.
   * Child also uses `ns2`.
@@ -483,7 +461,7 @@ the other there is a DNAME to another name.
   * Parent `ns1` has normal delegation of child to two child NS, `ns1` and `ns2`.
   * Parent `ns2` has a DNAME on `child` pointing at
     `sister.parent.chld-found-inconsist-9.methodsv2.xa` which is delegated to
-    `ns1-delegated-child.methodsv2.xa` and `ns2-delegated-child.methodsv2.xa`.
+    `ns6-delegated-child.methodsv2.xa` and `ns7-delegated-child.methodsv2.xa`.
   * Zone `sister` does not exist.
   * Child shares `ns1.parent.chld-found-inconsist-9.methodsv2.xa` with parent.
   * Child also uses `ns2`.
@@ -510,8 +488,10 @@ grandparent NS return SERVFAIL.
   * No need of parent zone.
   * Child zone is not delegated, but there is an undelegated version.
   * Undelgated data:
-    * ns3-undelegated-child.methodsv2.xa
-    * ns4-undelegated-child.methodsv2.xa
+    * ns1.child.parent.no-del-undel-no-par-1.methodsv2.xa/IPv4
+    * ns1.child.parent.no-del-undel-no-par-1.methodsv2.xa/IPv6
+    * ns2.child.parent.no-del-undel-no-par-1.methodsv2.xa/IPv4
+    * ns2.child.parent.no-del-undel-no-par-1.methodsv2.xa/IPv6
 
 ### NO-DEL-UNDEL-PAR-UND-1
 The child is not delegated, but there is an undelegated data to test. One
@@ -520,13 +500,15 @@ parent zone lacks delegation of child.
 
 * Zone: child.parent.no-del-undel-par-und-1.methodsv2.xa
   * Child zone does not exist is not served by any NS.
-  * Grandparent `ns1` lacks delegation of parent.
-  * Grandparent `ns2` has delegation of parent (to both parent NS).
+  * Grandparent `ns1` has delegation of parent (to both parent NS).
+  * Grandparent `ns2` lacks delegation of parent.
   * Parent zone lacks delegation of child.
   * Child zone is not delegated, but there is an undelegated version.
   * Undelgated data:
-    * ns3-undelegated-child.methodsv2.xa
-    * ns4-undelegated-child.methodsv2.xa
+    * ns1.child.no-del-undel-par-und-1.methodsv2.xa/IPv4
+    * ns1.child.no-del-undel-par-und-1.methodsv2.xa/IPv6
+    * ns2.child.no-del-undel-par-und-1.methodsv2.xa/IPv4
+    * ns2.child.no-del-undel-par-und-1.methodsv2.xa/IPv6
 
 ### NO-CHLD-NO-PAR-1
 The child is not delegated. Both grandparent NS return SERVFAIL.
@@ -543,22 +525,8 @@ The child zone does not exist, instead there is a DNAME in the parent zone.
 * Zone: child.parent.child-alias-1.methodsv2.xa
   * Parent has a DNAME on `child` pointing at
     `sister.parent.child-alias-1.methodsv2.xa` which is delegated to
-    `ns1-delegated-child.methodsv2.xa` and `ns2-delegated-child.methodsv2.xa`.
+    `ns6-delegated-child.methodsv2.xa` and `ns7-delegated-child.methodsv2.xa`.
   * Zone `sister` does not exist.
-
-### CHILD-ALIAS-2
-The child zone does not exist, instead there is a DNAME in the parent zone,
-however, different DNAME targets in the two parents.
-
-* Zone: child.parent.child-alias-2.methodsv2.xa
-  * On `ns1` parent has a DNAME on `child` pointing at
-    `sister.parent.child-alias-2.methodsv2.xa` which is delegated to
-    `ns1-delegated-child.methodsv2.xa` and `ns2-delegated-child.methodsv2.xa`.
-  * Zone `sister` does not exist.
-  * On `ns2` parent has a DNAME on `child` pointing at
-    `brother.parent.child-alias-2.methodsv2.xa` which is delegated to
-    `ns1-delegated-child.methodsv2.xa` and `ns2-delegated-child.methodsv2.xa`.
-  * Zone `brother` does not exist.
 
 ### ZONE-ERR-GRANDPARENT-1
 Grandparent `ns2` responds with AA bit unset on queries for granparent zone.
@@ -586,24 +554,43 @@ on query for grandparent zone NS.
     `zone-err-grandparent-3.methodsv2.xa`:
       * Owner name `oncle.zone-err-grandparent-3.methodsv2.xa` instead.
 
+### DELEG-OOB-W-ERROR-1
+Zone is delegated to two OOB NS, of which one has no IP (NODATA).
 
+* Zone: child.parent.deleg-oob-w-error-1.methodsv2.xa
+  * Zone is delegated to `ns3.deleg-oob-w-error-1.methodsv2.xa` and
+    `ns4-nodata.deleg-oob-w-error-1.methodsv2.xa`.
+  * `ns3` is fully functional with the zone which matches the
+    delegation.
+  * `ns4-nodata` cannot be resolved (NODATA).
 
+### DELEG-OOB-W-ERROR-2
+Zone is delegated to two OOB NS, of which one has no IP (NXDOMAIN).
 
+* Zone: child.parent.deleg-oob-w-error-2.methodsv2.xa
+  * Zone is delegated to `ns3.deleg-oob-w-error-2.methodsv2.xa` and
+    `ns4-nxdomain.deleg-oob-w-error-2.methodsv2.xa`.
+  * `ns3` is fully functional with the zone which matches the
+    delegation.
+  * `ns4-nndomain` cannot be resolved (NXDOMAIN).
 
+### DELEG-OOB-W-ERROR-3
+Zone is delegated to two OOB NS, where both have no IP (NODATA).
 
+* Zone: child.parent.deleg-oob-w-error-3.methodsv2.xa
+  * Zone is delegated to `ns3.deleg-oob-w-error-3.methodsv2.xa` and
+    `ns4.deleg-oob-w-error-3.methodsv2.xa`.
+  * `ns3` and `ns4` cannot be resolved (NODATA).
+  * There is no child zone.
 
+### DELEG-OOB-W-ERROR-4
+Zone is delegated to two OOB NS, where both have no IP (NXDOMAIN).
 
-
-
-
-
-
-
-
-  
-
-\[Not complete. More scenarios and test zones to be defined.]
-
+* Zone: child.parent.deleg-oob-w-error-4.methodsv2.xa
+  * Zone is delegated to `ns3.deleg-oob-w-error-4.methodsv2.xa` and
+    `ns4.deleg-oob-w-error-4.methodsv2.xa`.
+  * `ns3` and `ns4` cannot be resolved (NXDOMAIN).
+  * There is no child zone.
 
 
 
