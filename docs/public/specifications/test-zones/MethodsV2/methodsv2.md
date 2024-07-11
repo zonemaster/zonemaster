@@ -44,9 +44,6 @@ All methods can return one of the following data types:
   * Non-empty set
   * Undefined set
 
-For these scenarios no distinction is made between "empty" and "undefined". Both
-are set as an empty set.
-
 The non-empty set from the following methods consists of unique IP addresses,
 IPv4, IPv6 or both (e.g "127.40.4.21" and "fda1:b2:c3::21" are valid):
   * Get parent NS IP addresses

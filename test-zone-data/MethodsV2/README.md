@@ -42,6 +42,12 @@ scenario below.
 * The name server name can be repeated with different IP addresses (IPv4 or
   IPv6) providing multiple addresses for the same name.
 
+## Empty or undefined data
+Both empty and undefined data means that no data is expected. In the
+specification of the methods a destinction is made between the two. For the
+scenarios this distinction is upheld. In an empty set it will say either
+`(empty)` or `(undefined)`.
+
 ## Scenarios
 
 ### GOOD-1
@@ -519,14 +525,11 @@ child.parent.no-child-1.methodsv2.xa
 
 #### Methods and expected output
 * Get parent NS IP addresses
-  * 127.40.1.41
-  * fda1:b2:c3:0:127:40:1:41
-  * 127.40.1.42
-  * fda1:b2:c3:0:127:40:1:42
+  * (undefined)
 * Get delegation NS names and IP addresses
-  * (empty)
+  * (undefined)
 * Get zone NS names and IP addresses
-  * (empty)
+  * (undefined)
 
 #### Undelegated data
   * (empty)
