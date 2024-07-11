@@ -539,10 +539,7 @@ child.parent.no-child-2.methodsv2.xa
 
 #### Methods and expected output
 * Get parent NS IP addresses
-  * 127.40.1.41
-  * fda1:b2:c3:0:127:40:1:41
-  * 127.40.1.42
-  * fda1:b2:c3:0:127:40:1:42
+  * (empty)
 * Get delegation NS names and IP addresses
   * (empty)
 * Get zone NS names and IP addresses
@@ -559,12 +556,7 @@ child.parent.no-chld-par-undeter-1.methodsv2.xa
 
 #### Methods and expected output
 * Get parent NS IP addresses
-  * 127.40.1.31
-  * fda1:b2:c3:0:127:40:1:31
-  * 127.40.1.41
-  * fda1:b2:c3:0:127:40:1:41
-  * 127.40.1.42
-  * fda1:b2:c3:0:127:40:1:42
+  * (empty)
 * Get delegation NS names and IP addresses
   * (empty)
 * Get zone NS names and IP addresses
@@ -611,8 +603,6 @@ child.parent.chld-found-inconsist-1.methodsv2.xa
 * Get parent NS IP addresses
   * 127.40.1.41
   * fda1:b2:c3:0:127:40:1:41
-  * 127.40.1.42
-  * fda1:b2:c3:0:127:40:1:42
 * Get delegation NS names and IP addresses
   * ns1.child.parent.chld-found-inconsist-1.methodsv2.xa/127.40.1.51
   * ns1.child.parent.chld-found-inconsist-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
@@ -637,8 +627,6 @@ child.parent.chld-found-inconsist-2.methodsv2.xa
 * Get parent NS IP addresses
   * 127.40.1.41
   * fda1:b2:c3:0:127:40:1:41
-  * 127.40.1.42
-  * fda1:b2:c3:0:127:40:1:42
 * Get delegation NS names and IP addresses
   * ns1.child.parent.chld-found-inconsist-2.methodsv2.xa/127.40.1.51
   * ns1.child.parent.chld-found-inconsist-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
@@ -663,8 +651,6 @@ child.parent.chld-found-inconsist-3.methodsv2.xa
 * Get parent NS IP addresses
   * 127.40.1.41
   * fda1:b2:c3:0:127:40:1:41
-  * 127.40.1.42
-  * fda1:b2:c3:0:127:40:1:42
 * Get delegation NS names and IP addresses
   * ns1.child.parent.chld-found-inconsist-3.methodsv2.xa/127.40.1.51
   * ns1.child.parent.chld-found-inconsist-3.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
@@ -689,8 +675,6 @@ child.parent.chld-found-inconsist-4.methodsv2.xa
 * Get parent NS IP addresses
   * 127.40.1.41
   * fda1:b2:c3:0:127:40:1:41
-  * 127.40.1.42
-  * fda1:b2:c3:0:127:40:1:42
 * Get delegation NS names and IP addresses
   * ns1.child.parent.chld-found-inconsist-4.methodsv2.xa/127.40.1.51
   * ns1.child.parent.chld-found-inconsist-4.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
@@ -715,8 +699,6 @@ child.parent.chld-found-inconsist-5.methodsv2.xa
 * Get parent NS IP addresses
   * 127.40.1.41
   * fda1:b2:c3:0:127:40:1:41
-  * 127.40.1.42
-  * fda1:b2:c3:0:127:40:1:42
 * Get delegation NS names and IP addresses
   * ns1.child.parent.chld-found-inconsist-5.methodsv2.xa/127.40.1.51
   * ns1.child.parent.chld-found-inconsist-5.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
@@ -741,8 +723,6 @@ child.parent.chld-found-inconsist-6.methodsv2.xa
 * Get parent NS IP addresses
   * 127.40.1.41
   * fda1:b2:c3:0:127:40:1:41
-  * 127.40.1.42
-  * fda1:b2:c3:0:127:40:1:42
 * Get delegation NS names and IP addresses
   * ns1.child.parent.chld-found-inconsist-6.methodsv2.xa/127.40.1.51
   * ns1.child.parent.chld-found-inconsist-6.methodsv2.xa/fda1:b2:c3:0:127:40:1:51

@@ -365,7 +365,7 @@ The child zone is delegated from one grandparent NS and from the parent zone.
   * Grandparent `ns2` has delegation of parent (to both parent NS).
   * Parent zone has delegation of child.
 
-
+### CHLD-FOUND-INCONSIST-1
 The child is delegated from one parent NS. On the other there is an NXDOMAIN
 response.
 
