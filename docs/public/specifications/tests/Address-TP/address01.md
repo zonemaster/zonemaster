@@ -1,4 +1,4 @@
-## ADDRESS01: Name server address must be globally routable
+## ADDRESS01: Name server address must be globally reachable
 
 ### Test case identifier
 **ADDRESS01** 
@@ -25,7 +25,6 @@ for special uses. These ranges can be categorized into three types:
 
 * [Special purpose IPv4 addresses]
 * [Special purpose IPv6 addresses]
-* [Multicast reserved addresses]
 
 ### Scope
 
@@ -37,12 +36,13 @@ IP addresses from authoritative name servers are matched against IANAs list of p
 
 ### Summary
 
-Message Tag                  | Level    | Arguments | Message ID for message tag
-:--------------------------- |:---------|:----------|:--------------------------
+Message Tag                       | Level    | Arguments | Message ID for message tag
+:-------------------------------- |:---------|:----------|:--------------------------
 A01_ADDR_GLOBALLY_REACHABLE       | INFO     | ns_list   | IP addresses in "{ns_list}" listed as globally reachable.
 A01_NO_GLOBALLY_REACHABLE_ADDR    | CRITICAL | ns_list   | None of the IP addresses in "{ns_list}" listed as globally reachable.
-A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns        | IP adress for "{ns}" not listed as globally reachable..
-A01_PRIVATE_ADDR          | ERROR    | ns        | IP adress for "{ns}" part of RFC1918 private address ranges.
+A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns        | IP adress for "{ns}" not listed as globally reachable.
+A01_DOCUMENTATION_ADDR            | ERROR    | ns        | IP adress for "{ns}" part of address range for documentation purposes.
+A01_LOCAL_USE_ADDR                | ERROR    | ns        | IP adress for "{ns}" part of address range intended for local use on network or service provider level..
 
 
 The value in the Level column is the default severity level of the message. The
@@ -55,20 +55,41 @@ message. The argument names are defined in the [Argument list].
 ### Test procedure 
 
 1. Obtain the IP addresses of each name server of the domain from the parent using
-   [Method4](../Methods.md). 
+   [Method4] and [Method5]. 
 
-2. If any IP address (IPv4 or IPv6) is *not* indicated to be "Globally Reachable" in the IANA 
-   documentation linked above, the test case fails.
+2. For each name server in *Name Server IP* do:
+   1. Match the IP the address against the IP ranges specified in [Special purpose IPv4 addresses] and [Special purpose IPv6 addresses]
+      1. If if falls within any of the address ranges reserved for *Documentation*, then output *[A01_DOCUMENTATION_ADDR]* with name and IP address of the server.
+      2. Else, if it falls within an address range belonging to any of the following categories:  
+         - *Private-Use*
+         - *Loopback*
+         - *Loopback Address*
+         - *Link Local*
+         - *Link-Local Unicast*
+         - *Unique-Local*
+         - *Shared Address Space*
+         then output *[A01_LOCAL_USE_ADD]* with name and IP address of the server.
+      3. Else, if the IP falls within a range that is **not** registered as *Globally Reachable*, output *[A01_ADDR_NOT_GLOBALLY_REACHABLE]* with name and IP address of the server.
+   2. Go to the next server.
+3. If **all** servers in *Name Server IP* are mentioned in at least one message with the severity level *[ERROR]*, then output *[A01_NO_GLOBALLY_REACHABLE_ADDR]* 
+4. If **none** of the servers are mentioned in a message with a higher severity level than *[INFO]*, then output *[A01_ADDR_GLOBALLY_REACHABLE]*
+ 
 
 ### Outcome(s)
 
-If one name server has one of its addresses matches a forbidden address
-block, the test fails. If all the name server addresses are outside these
-forbidden blocks, the test case succeeds. 
+The outcome of this Test Case is "fail" if there is at least one message
+with the severity level *[CRITICAL]*.
+
+The outcome of this Test Case is "warning" if there is at least one message
+with the severity level *[ERROR]*, but no message with severity level
+*[CRITICAL]*.
+
+In other cases, no message or only messages with severity level
+*[INFO]*  the outcome of this Test Case is "pass".
 
 ### Special procedural requirements
 
-The registries [Special purpose IPv4 addresses], [Special purpose IPv6 addresses] and [Multicast reserved addresses] has to be fetched prior to testing.
+The registries [Special purpose IPv4 addresses] and [Special purpose IPv6 addresses] and has to be fetched prior to testing.
 
 ### Intercase dependencies
 
@@ -77,7 +98,17 @@ None.
  
 [Special purpose IPv4 addresses]:   https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xml 
 [Special purpose IPv6 addresses]:   https://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xml
-[Multicast reserved addresses]:     https://www.iana.org/assignments/multicast-addresses/multicast-addresses.xml
 [Severity Level Definitions]:       ../SeverityLevelDefinitions.md
 [Zonemaster-Engine profile]:        ../../../configuration/profiles.md
 [Argument list]:                    ../ArgumentsForTestCaseMessages.md
+[Method4]:                          ../Methods.md#method-4-obtain-glue-address-records-from-parent  
+[Method5]:                          ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[A01_ADDR_GLOBALLY_REACHABLE]:      #summary 
+[A01_NO_GLOBALLY_REACHABLE_ADDR]:   #summary 
+[A01_ADDR_NOT_GLOBALLY_REACHABLE]:  #summary 
+[A01_DOCUMENTATION_ADDR]:           #summary 
+[A01_LOCAL_USE_ADDR]:               #summary 
+[INFO]:                             ../SeverityLevelDefinitions.md#info
+[WARNING]:                          ../SeverityLevelDefinitions.md#warning
+[ERROR]:                            ../SeverityLevelDefinitions.md#error
+[CRITICAL]:                         ../SeverityLevelDefinitions.md#critical
