@@ -10,7 +10,7 @@ In order to prevent name servers to be blocked or blacklisted, DNS
 administrators should publish PTR records associated to name server
 addresses.
 
-[technical reference to be found]
+TODO: Technical reference to be found
 
 ### Inputs
 

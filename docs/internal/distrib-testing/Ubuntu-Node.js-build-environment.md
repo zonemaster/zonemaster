@@ -9,7 +9,7 @@ Node.js and npm are available from the [Node.js] official website. The required
 Node.js version is 18. The process has been tested on Ubuntu 22.04, which we use
 here.
 
-1. Make a clean installation of Ubuntu 20.04.
+1. Make a clean installation of Ubuntu 22.04.
 
 2. Update the package database.
    ```sh

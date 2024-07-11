@@ -137,7 +137,7 @@ in those directories.
     for different test cases.
 * Address-TP/ (*not yet available*)
   * Directory structure for scenarios for test cases in the Address-TP test module.
-* Basic-TP/ (*not yet available*)
+* [Basic-TP/]
   * Directory structure for scenarios for test cases in the Basic-TP test module.
 * Connectivity-TP/ (*not yet available*)
   * Directory structure for scenarios for test cases in the Connectivity-TP test
@@ -163,6 +163,7 @@ in those directories.
   * Directory structure for scenarios for test cases in the Zone-TP test module.
 
 [address-plan.md]:                                     address-plan.md
+[Basic-TP/]:                                           Basic-TP/
 [COMMON/]:                                             COMMON/
 [Consistency-TP/]:                                     Consistency-TP/
 [DNSSEC-TP/]:                                          DNSSEC-TP/

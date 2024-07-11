@@ -1,0 +1,22 @@
+$ORIGIN addr-match-del-undel-1.consistency05.xa.
+
+; This file is for the delegated version of the zone.
+
+$TTL 3600
+
+@       SOA     ns1 admin.mail.xa. (
+                2024051704      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS      ns1
+@       NS      ns2
+
+@       TXT     "Delegated"
+
+; No address records for the NS
+
+
+;EOF

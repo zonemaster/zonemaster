@@ -20,7 +20,7 @@
 ## Objective
 
 UDP is the fundamental protocol to reach a general purpose name server hosting
-a zone, "DNS servers MUST be able to service UDP [...]" ([RFC 1123], section
+a zone, "DNS servers MUST be able to service UDP \[...]" ([RFC 1123], section
 6.1.3.2, page 75), also restated in [RFC 7766][RFC 7766#5], section 5.
 
 This Test Case will verify if the name servers of *Child Zone* are reachable over

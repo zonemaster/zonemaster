@@ -1,0 +1,30 @@
+; Shared zone files for granparent zones when "child"
+; is to be delegated directly from grandparent, or overridden
+; in basic01.cfg file.
+;
+; * All names must be relative here.
+; * $ORIGIN is inherited from the loading of the zone
+
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024052000      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+                
+
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+
+$ORIGIN child.parent                   ; Must not end with "."
+
+@		NS	ns1-delegated-child.basic01.xa.  ; Dummy server
+@		NS	ns2-delegated-child.basic01.xa.  ; Dummy server
+

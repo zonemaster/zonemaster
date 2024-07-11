@@ -147,4 +147,4 @@ below.
 [Test cases]:                                        ../tests/README.md
 [Test-zones]:                                        .
 [Unit tests]:                                        https://github.com/zonemaster/zonemaster-engine/tree/master/t
-[Test-zone-data]:                                    ../../../../test-zone-data
+[Test-zone-data]:                                    https://github.com/zonemaster/zonemaster/tree/master/test-zone-data

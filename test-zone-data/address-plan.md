@@ -15,6 +15,7 @@
   * [Nameserver test level address plan](#nameserver-test-level-address-plan)
   * [Syntax test level address plan](#syntax-test-level-address-plan)
   * [Zone test level address plan](#zone-test-level-address-plan)
+  * [Engine non-test case address plan](#engine-non-test-case-address-plan)
 
 ## Overview
 
@@ -136,6 +137,18 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.12.1.0/24   | Basic01 scenarios                                           |
 | 127.12.1.21     | ns1.basic01.xa                                              |
 | 127.12.1.22     | ns2.basic01.xa                                              |
+| 127.12.1.31     | ns1.SCENARIO.basic01.xa                                     |
+| 127.12.1.32     | ns2.SCENARIO.basic01.xa                                     |
+| 127.12.1.33     | ns3.SCENARIO.basic01.xa                                     |
+| 127.12.1.34     | ns4.SCENARIO.basic01.xa                                     |
+| 127.12.1.41     | ns1.parent.SCENARIO.basic01.xa                              |
+| 127.12.1.42     | ns2.parent.SCENARIO.basic01.xa                              |
+| 127.12.1.44     | ns4.parent.SCENARIO.basic01.xa                              |
+| 127.12.1.46     | ns6.parent.SCENARIO.basic01.xa                              |
+| 127.12.1.51     | ns1.child.parent.SCENARIO.basic01.xa                        |
+| 127.12.1.52     | ns2.child.parent.SCENARIO.basic01.xa                        |
+| 127.12.1.53     | ns3.child.parent.SCENARIO.basic01.xa                        |
+| 127.12.1.54     | ns4.child.parent.SCENARIO.basic01.xa                        |
 | 127.12.2.0/24   | Basic02 scenarios                                           |
 | 127.12.2.21     | ns1.basic02.xa                                              |
 | 127.12.2.22     | ns2.basic02.xa                                              |
@@ -199,9 +212,12 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.14.6.0/24   | Consistency06 scenarios                                    |
 | 127.14.6.21     | ns1.consistency06.xa                                       |
 | 127.14.6.22     | ns2.consistency06.xa                                       |
+| 127.14.6.23     | ns1.consistency06.xb                                       |
+| 127.14.6.24     | ns2.consistency06.xb                                       |
 | 127.14.6.31     | for scenarios                                              |
 | 127.14.6.32     | for scenarios                                              |
 | 127.14.6.33     | for scenarios                                              |
+| 127.14.6.34     | for scenarios                                              |
 | 127.14.7.0/24   | (not in use)                                                |
 | (...)           |                                                             |
 | 127.14.255.0/24 | (not in use)                                                |
@@ -454,6 +470,22 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.19.255.0/24 | (not in use)                                                |
 
 
+### Engine non-test case address plan
+
+| Address (range) | Used for -- range for test case or specific NS address      |
+|-----------------|-------------------------------------------------------------|
+| 127.30.0.0/24   | (not in use)                                                |
+| 127.30.1.0/24   | Recursor.pm                                                 |
+| 127.30.1.21     | ns1.recursor.engine.xa                                      |
+| 127.30.1.22     | ns2.recursor.engine.xa                                      |
+| 127.30.1.31     | ns1.cname.recursor.engine.xa                                |
+| 127.30.1.32     | ns1.sub2.cname.recursor.engine.xa                           |
+| 127.30.1.33     | ns1.sub3.cname.recursor.engine.xa                           |
+| 127.30.1.34     | ns1.goodsub.cname.recursor.engine.xa                        |
+| 127.30.2.0/24   | (not in use)                                                |
+| (...)           |                                                             |
+| 127.30.255.0/24 | (not in use)                                                |
+
 
 ### MethodsV2 non-test case address plan
 
@@ -484,4 +516,3 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.40.1.55     | ns5.child.parent.XXX.methodsv2.xa (NS for child)            |
 | (...)           |                                                             |
 | 127.40.255.0/24 | (not in use)                                                |
-

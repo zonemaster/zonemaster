@@ -152,6 +152,8 @@ TEST_WITH_NETWORK=1 make test
 
 [Docker Hub]:                                        https://hub.docker.com/u/zonemaster
 [Docker Image Creation]:                             ../../internal/maintenance/ReleaseProcess-create-docker-image.md
+[IDN]:                                               #idn
 [Installation instructions for Zonemaster::Engine]:  zonemaster-engine.md
+[Internal LDNS]:                                     #internal-ldns
 [Net::LibIDN]:                                       https://metacpan.org/pod/Net::LibIDN
 [USING]:                                             ../using/

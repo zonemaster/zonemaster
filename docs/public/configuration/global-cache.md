@@ -69,14 +69,14 @@ To be added.
 
 ### Debian and Ubuntu
 ```
-test -d /etc/zonemaster  || sudo mkdir -v /etc/zonemaster
-sudo cp -v $(perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Engine")')/profile.json /etc/zonemaster
+test -d /etc/zonemaster || sudo mkdir -v /etc/zonemaster
+perl -MZonemaster::Engine::Test -E 'say Zonemaster::Engine::Profile->default->to_json' | jq -S . | sudo tee /etc/zonemaster/profile.json > /dev/null
 ```
 
 ### FreeBSD
 ```
-test -d /usr/local/etc/zonemaster  || mkdir -v /usr/local/etc/zonemaster
-cp -v $(perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Engine")')/profile.json /usr/local//etc/zonemaster
+test -d /usr/local/etc/zonemaster || mkdir -v /usr/local/etc/zonemaster
+perl -MZonemaster::Engine::Test -E 'say Zonemaster::Engine::Profile->default->to_json' | jq -S . > /usr/local/etc/zonemaster/profile.json
 ```
 
 ## Enable global cache

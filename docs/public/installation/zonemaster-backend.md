@@ -54,8 +54,8 @@ continue with this installation document.
 
 ## 2. Prerequisites
 
-Before installing Zonemaster::Backend, you should [install Zonemaster::Engine][
-Zonemaster::Engine installation].
+Before installing Zonemaster::Backend, you should [install Zonemaster::Engine
+][Zonemaster::Engine installation].
 
 > **Note:** [Zonemaster::Engine] and [Zonemaster::LDNS] are dependencies of
 > Zonemaster::Backend. Zonemaster::LDNS has a special installation requirement,
@@ -89,6 +89,12 @@ Install dependencies not available from binary packages:
 sudo cpanm --notest Daemon::Control JSON::RPC JSON::Validator Log::Any Log::Any::Adapter::Dispatch Net::IP::XS Router::Simple Starman
 ```
 
+For Rocky Linux 8 only, install DBD::SQLite from CPAN as the one in the system packages repository is too old:
+
+```sh
+sudo cpanm --notest DBD::SQLite
+```
+
 Install Zonemaster::Backend:
 
 ```sh
@@ -111,7 +117,7 @@ cd `perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Backend")'`
 sudo install -v -m 755 -d /etc/zonemaster
 sudo install -v -m 640 -g zonemaster ./backend_config.ini /etc/zonemaster/
 sudo install -v -m 775 -g zonemaster -d /var/log/zonemaster
-sudo install -v -m 755 ./tmpfiles.conf /usr/lib/tmpfiles.d/zonemaster.conf
+sudo install -v -m 644 ./tmpfiles.conf /usr/lib/tmpfiles.d/zonemaster.conf
 sudo install -v -m 644 ./zm-rpcapi.service /etc/systemd/system/
 sudo install -v -m 644 ./zm-testagent.service /etc/systemd/system/
 ```
@@ -240,7 +246,7 @@ sudo install -v -m 775 -g zonemaster -d /var/log/zonemaster
 sudo install -v -m 640 -g zonemaster ./backend_config.ini /etc/zonemaster/
 sudo install -v -m 755 ./zm-rpcapi.lsb /etc/init.d/zm-rpcapi
 sudo install -v -m 755 ./zm-testagent.lsb /etc/init.d/zm-testagent
-sudo install -v -m 755 ./tmpfiles.conf /usr/lib/tmpfiles.d/zonemaster.conf
+sudo install -v -m 644 ./tmpfiles.conf /usr/lib/tmpfiles.d/zonemaster.conf
 ```
 
 > If this is an update of Zonemaster-Backend, you should remove any
