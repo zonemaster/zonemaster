@@ -44,7 +44,7 @@ All methods can return one of the following data types:
   * Non-empty set
   * Undefined set
 
-For these scenarios no distrinction is made between "empty" and "undefined". Both
+For these scenarios no distinction is made between "empty" and "undefined". Both
 are set as an empty set.
 
 The non-empty set from the following methods consists of unique IP addresses,

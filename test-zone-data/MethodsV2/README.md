@@ -539,11 +539,11 @@ child.parent.no-child-2.methodsv2.xa
 
 #### Methods and expected output
 * Get parent NS IP addresses
-  * (empty)
+  * (undefined)
 * Get delegation NS names and IP addresses
-  * (empty)
+  * (undefined)
 * Get zone NS names and IP addresses
-  * (empty)
+  * (undefined)
 
 #### Undelegated data
   * (empty)
@@ -556,11 +556,11 @@ child.parent.no-chld-par-undeter-1.methodsv2.xa
 
 #### Methods and expected output
 * Get parent NS IP addresses
-  * (empty)
+  * (undefined)
 * Get delegation NS names and IP addresses
-  * (empty)
+  * (undefined)
 * Get zone NS names and IP addresses
-  * (empty)
+  * (undefined)
 
 #### Undelegated data
   * (empty)
