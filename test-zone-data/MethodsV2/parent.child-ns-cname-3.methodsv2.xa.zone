@@ -1,8 +1,8 @@
-$ORIGIN parent.deleg-oob-w-error-4.methodsv2.xa.
+$ORIGIN parent.child-ns-cname-3.methodsv2.xa.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024071200      ; serial
+                2024071205      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -18,8 +18,8 @@ ns2		AAAA	fda1:b2:c3:0:127:40:1:42
 
 
 $ORIGIN child            ; Must be relative
-@		NS	ns3-nxdomain.deleg-oob-w-error-4.methodsv2.xa.
-@		NS	ns4-nxdomain.deleg-oob-w-error-4.methodsv2.xa.
+@		NS	ns3-cname.child-ns-cname-3.methodsv2.xa.
+@		NS	ns4-cname.child-ns-cname-3.methodsv2.xa.
 
 
 ; EOF

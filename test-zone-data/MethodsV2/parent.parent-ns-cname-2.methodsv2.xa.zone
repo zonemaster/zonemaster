@@ -1,0 +1,26 @@
+$ORIGIN parent.parent-ns-cname-2.methodsv2.xa.
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024071207      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+		NS	ns1-cname
+		NS	ns2-cname
+
+ns1-cname	CNAME   parent-ns1.parent-ns-cname-2.methodsv2.xa.
+ns2-cname	CNAME   parent-ns2.parent-ns-cname-2.methodsv2.xa.
+
+$ORIGIN child            ; Must be relative
+@		NS	ns1
+@		NS	ns2
+ns1	A	127.40.1.51
+ns1	AAAA	fda1:b2:c3:0:127:40:1:51
+ns2	A	127.40.1.52
+ns2	AAAA	fda1:b2:c3:0:127:40:1:52
+
+; EOF
+
