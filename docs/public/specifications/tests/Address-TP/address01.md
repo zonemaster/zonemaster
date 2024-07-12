@@ -28,7 +28,8 @@ for special uses. These ranges can be categorized into three types:
 
 ### Scope
 
-IP addresses from authoritative name servers are matched against IANAs list of public routable address ranges.
+IP addresses from authoritative name servers are matched against IANAs list of 
+public routable address ranges.
 
 ### Inputs
 
@@ -38,11 +39,11 @@ IP addresses from authoritative name servers are matched against IANAs list of p
 
 Message Tag                       | Level    | Arguments | Message ID for message tag
 :-------------------------------- |:---------|:----------|:--------------------------
-A01_ADDR_GLOBALLY_REACHABLE       | INFO     | ns_list   | IP addresses in "{ns_list}" listed as globally reachable.
-A01_NO_GLOBALLY_REACHABLE_ADDR    | CRITICAL | ns_list   | None of the IP addresses in "{ns_list}" listed as globally reachable.
-A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns        | IP adress for "{ns}" not listed as globally reachable.
-A01_DOCUMENTATION_ADDR            | ERROR    | ns        | IP adress for "{ns}" part of address range for documentation purposes.
-A01_LOCAL_USE_ADDR                | ERROR    | ns        | IP adress for "{ns}" part of address range intended for local use on network or service provider level..
+A01_ADDR_GLOBALLY_REACHABLE       | INFO     |           | IP addresses listed as globally reachable.
+A01_NO_GLOBALLY_REACHABLE_ADDR    | CRITICAL |           | None of the IP addresses listed as globally reachable.
+A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns_list   | IP adress for "{ns}" not listed as globally reachable.
+A01_DOCUMENTATION_ADDR            | ERROR    | ns_list   | IP adress for "{ns}" part of address range for documentation purposes.
+A01_LOCAL_USE_ADDR                | ERROR    | ns_list   | IP adress for "{ns}" part of address range intended for local use on network or service provider level..
 
 
 The value in the Level column is the default severity level of the message. The
@@ -57,24 +58,50 @@ message. The argument names are defined in the [Argument list].
 1. Obtain the IP addresses of each name server of the domain from the parent using
    [Method4] and [Method5]. 
 
-2. For each name server in *Name Server IP* do:
-   1. Match the IP the address against the IP ranges specified in [Special purpose IPv4 addresses] and [Special purpose IPv6 addresses]
-      1. If if falls within any of the address ranges reserved for *Documentation*, then output *[A01_DOCUMENTATION_ADDR]* with name and IP address of the server.
-      2. Else, if it falls within an address range belonging to any of the following categories:  
-         - *Private-Use*
-         - *Loopback*
-         - *Loopback Address*
-         - *Link Local*
-         - *Link-Local Unicast*
-         - *Unique-Local*
-         - *Shared Address Space*
-         then output *[A01_LOCAL_USE_ADD]* with name and IP address of the server.
-      3. Else, if the IP falls within a range that is **not** registered as *Globally Reachable*, output *[A01_ADDR_NOT_GLOBALLY_REACHABLE]* with name and IP address of the server.
-   2. Go to the next server.
-3. If **all** servers in *Name Server IP* are mentioned in at least one message with the severity level *[ERROR]*, then output *[A01_NO_GLOBALLY_REACHABLE_ADDR]* 
-4. If **none** of the servers are mentioned in a message with a higher severity level than *[INFO]*, then output *[A01_ADDR_GLOBALLY_REACHABLE]*
- 
+2. Create the following empty sets:
+   1. Name server name and IP address ("Documentetion Address").
+   2. Name server name and IP address ("Local Use Address").
+   3. Name server name and IP address ("Not Gobally Reachable").
 
+3. For each name server in *Name Server IP* do:
+   1. Match the IP the address against the IP ranges specified in 
+      [Special purpose IPv4 addresses] and [Special purpose IPv6 addresses]
+      1. If if falls within any of the address ranges reserved for 
+        *Documentation*, add the name server name and IP address to the
+        *Documentetion Address* set,
+      2. Else, if it falls within an address range belonging to any of the 
+         following categories:  
+         - *Private-Use (IPv4)*
+         - *Loopback (IPv4)*
+         - *Loopback Address (IPv6)*
+         - *Link Local (IPv4)*
+         - *Link-Local Unicast* (IPv6)
+         - *Unique-Local* (IPv6)
+         - *Shared Address Space* (IPv6)
+         add the name server name and IP address to the *Local Use Adddress* 
+         set. 
+      3. Else, if the IP falls within a range that is not registered as 
+         *Globally Reachable*, add the name server name and IP address to 
+         the *Not Gobally Reachable* set.
+   2. Go to the next server.
+4. If the sets *Documentetion Address*, *Local Use Adddress* and 
+   *Not Gobally Reachable* are all empty, then output 
+   *[A01_ADDR_GLOBALLY_REACHABLE]*
+5. Else, if the sets *Documentetion Address*, *Local Use Adddress* and 
+   *Not Gobally Reachable* when combined contains all the name servers in
+   *Name Server IP*, then output *[A01_NO_GLOBALLY_REACHABLE_ADDR]* 
+6. Else do:
+   1. If the *Documentetion Address* set is non-empty, then output 
+      *[A01_DOCUMENTATION_ADDR]* with a list of name server names and IP addresses
+      from the set.
+   2. If the *Local Use Address* set is non-empty, then output 
+      *[A01_LOCAL_USE_ADDR]]* with a list of name server names and IP addresses
+      from the set.
+   3. If the *Not Gobally Reachable* set is non-empty, then output 
+      *[A01_ADDR_NOT_GLOBALLY_REACHABLE]* with a list of name server names and 
+      IP addresses from the set.
+
+  
 ### Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
@@ -89,7 +116,8 @@ In other cases, no message or only messages with severity level
 
 ### Special procedural requirements
 
-The registries [Special purpose IPv4 addresses] and [Special purpose IPv6 addresses] and has to be fetched prior to testing.
+The registries [Special purpose IPv4 addresses] and 
+[Special purpose IPv6 addresses] and have to be fetched prior to testing.
 
 ### Intercase dependencies
 
