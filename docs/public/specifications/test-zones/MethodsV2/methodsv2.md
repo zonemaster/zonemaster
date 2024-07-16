@@ -1,4 +1,4 @@
-OA# Specification of test scenarios for MethodsV2
+# Specification of test scenarios for MethodsV2
 
 
 ## Table of contents
@@ -65,9 +65,9 @@ server name and its IP address (IPv4 or IPv6). The IP address can be left blank
 ### Data defined for the scenarios
 
 Both *Get delegation NS IP addresses* and *Get delegation NS names* can be
-dirived from *Get delegation NS names and IP addresses*.
+derived from *Get delegation NS names and IP addresses*.
 
-Both *Get zone NS IP addresses* and *Get zone NS names* can be direved from
+Both *Get zone NS IP addresses* and *Get zone NS names* can be derived from
 *Get zone NS names and IP addresses*.
 
 For the scenarios defined in this document the expected data is only defined for
@@ -101,7 +101,7 @@ the specific scenario:
   * ns1 and ns2 have the same zone content.
   * ns1 and ns2 have both IPv4 and IPv6 glue.
   * The records matching glue in the zone are complete.
-  * The delegation from the grand parent has the same NS with complete glue.
+  * The delegation from the grandparent has the same NS with complete glue.
 * The grandparent zone is `SCENARIO.methodsv2.xa`.
   * It is served by two IB NS (ns1 and ns2).
   * ns1 and ns2 have the same zone content.
@@ -150,7 +150,7 @@ out-of-bailiwick name servers.
       * ns3.parent.good-3.methodsv2.xa (optional)
 
 ## GOOD-4
-A "happy path". Everything is fine. Parent zone is hosted also on grandparent
+A "happy path". Everything is fine. Parent zone is also hosted on grandparent
 server.
 
 * Zone: child.parent.good-4.methodsv2.xa
@@ -205,7 +205,7 @@ servers.
 
 
 ## GOOD-UNDEL-1
-A "happy path". Everything is fine. Child has boot in-bailiwick and
+A "happy path". Everything is fine. Child has both in-bailiwick and
 out-of-bailiwick name servers. Child is delegated but is tested
 undelegated.
 
@@ -214,7 +214,7 @@ undelegated.
     * Child NS:
       * ns1-2.child.parent.good-undel-1.methodsv2.xa
       * ns3.parent.good-undel-1.methodsv2.xa (not shared with parent zone)
-      * ns5.good-undel-1.methodsv2.xa (not shared with granparent zone)
+      * ns5.good-undel-1.methodsv2.xa (not shared with grandparent zone)
     * Glue:
       * Adress records (A and AAAA) for
         * ns1-2.child.parent.good-undel-1.methodsv2.xa
@@ -240,7 +240,7 @@ undelegated.
   * No delegation from parent.
   * To be tested with undelegated data (fake data):
   * There is an undelegated version of the zone matching undelegated data.
-  * Undelgated data:
+  * Undelegated data:
       * ns1.child.parent.good-undel-2.methodsv2.xa/IPv4
       * ns1.child.parent.good-undel-2.methodsv2.xa/IPv6
       * ns3.parent.good-undel-2.methodsv2.xa/IPv4
@@ -294,7 +294,7 @@ parent zone.
     `ns2` and `ns4.good-mixed-undel-1.methodsv2.xa`.
   * Child zone is delegated, but there is also an undelegated version where
     the zone has the same data as the delegation.
-  * Undelgated data:
+  * Undelegated data:
     * ns3.child.parent.good-mixed-undel-1.methodsv2.xa/IPv4
     * ns3.child.parent.good-mixed-undel-1.methodsv2.xa/IPv6
     * ns4.child.parent.good-mixed-undel-1.methodsv2.xa/IPv4
@@ -309,7 +309,7 @@ server also serves the delegated child zone.
     `ns2`.
   * Child zone is served by `ns1`, `ns2` and
     `ns2.parent.good-mixed-undel-2.methodsv2.xa`.
-  * Child zone is delegated, but there is also an undelegated version wher the
+  * Child zone is delegated, but there is also an undelegated version where the
     zone has the same data as the delegation.
   * Undelgated data:
     * ns3.child.parent.good-mixed-undel-2.methodsv2.xa/IPv4
@@ -325,7 +325,7 @@ tested. One grandparent server also serves the parent zone.
   * Parent zone `parent.no-del-mixed-undel-1.methodsv2.xa` is served by `ns1`,
     `ns2` and on `ns2.no-del-mixed-undel-1.methodsv2.xa`.
   * Child zone is not delegated, but there is an undelegated version.
-  * Undelgated data:
+  * Undelegated data:
     * ns1.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv4
     * ns1.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv6
     * ns2.child.parent.no-del-mixed-undel-1.methodsv2.xa/IPv4
@@ -484,7 +484,7 @@ grandparent NS return SERVFAIL.
   * Grandparent `ns1` and `ns2` both return SERVFAIL.
   * No need of parent zone.
   * Child zone is not delegated, but there is an undelegated version.
-  * Undelgated data:
+  * Undelegated data:
     * ns1.child.parent.no-del-undel-no-par-1.methodsv2.xa/IPv4
     * ns1.child.parent.no-del-undel-no-par-1.methodsv2.xa/IPv6
     * ns2.child.parent.no-del-undel-no-par-1.methodsv2.xa/IPv4
@@ -501,7 +501,7 @@ parent zone lacks delegation of child.
   * Grandparent `ns2` lacks delegation of parent.
   * Parent zone lacks delegation of child.
   * Child zone is not delegated, but there is an undelegated version.
-  * Undelgated data:
+  * Undelegated data:
     * ns1.child.no-del-undel-par-und-1.methodsv2.xa/IPv4
     * ns1.child.no-del-undel-par-und-1.methodsv2.xa/IPv6
     * ns2.child.no-del-undel-par-und-1.methodsv2.xa/IPv4
@@ -526,18 +526,18 @@ The child zone does not exist, instead there is a DNAME in the parent zone.
   * Zone `sister` does not exist.
 
 ### ZONE-ERR-GRANDPARENT-1
-Grandparent `ns2` responds with AA bit unset on queries for granparent zone.
+Grandparent `ns2` responds with AA bit unset on queries for grandparent zone.
 
 * Zone: child.parent.zone-err-grandparent-1.methodsv2.xa
-  * Normal response on granparent `ns1`.
+  * Normal response on grandparent `ns1`.
   * Grandparent `ns2` responds with AA bit unset on queries for the
     grandparent zone.
 
 ### ZONE-ERR-GRANDPARENT-2
-Grandparent `ns2` responds with NODATA on NS query for granparent zone.
+Grandparent `ns2` responds with NODATA on NS query for grandparent zone.
 
 * Zone: child.parent.zone-err-grandparent-2.methodsv2.xa
-  * Normal response on granparent `ns1`.
+  * Normal response on grandparent `ns1`.
   * Grandparent `ns2` responds with NODATA on NS query for the
     grandparent zone.
 
@@ -614,8 +614,8 @@ to other names out of zone.
 
 * child.parent.child-ns-cname-3.methodsv2.xa
   * Zone is delegated to `ns3-cname.child-ns-cname-3.methodsv2.xa` and
-  `ns4-cname.child-ns-cname-3.methodsv2.xa` and both are aliases to `ns3`
-    and `ns3`, respectively.
+    `ns4-cname.child-ns-cname-3.methodsv2.xa` and both are aliases to `ns3`
+    and `ns4`, respectively.
   * Both names can be resolved to A and AAAA via CNAME and give correct IP.
 
 ### PARENT-NS-CNAME-1

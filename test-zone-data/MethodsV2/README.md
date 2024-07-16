@@ -44,7 +44,7 @@ scenario below.
 
 ## Empty or undefined data
 Both empty and undefined data means that no data is expected. In the
-specification of the methods a destinction is made between the two. For the
+specification of the methods a distinction is made between the two. For the
 scenarios this distinction is upheld. In an empty set it will say either
 `(empty)` or `(undefined)`.
 
