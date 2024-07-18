@@ -10,28 +10,21 @@ of the methods matches the specifications.
 
 Test zone specifications for the following methods are available:
 
-[Get parent NS IP addresses](get-parent-ns-ip-addresses.md)
-[Get delegation NS names and IP addresses]
-[Get delegation NS names]
-[Get delegation NS IP addresses]
-[Get zone NS names]
-[Get zone NS names and IP addresses]
-[Get zone NS IP addresses]
-[Get delegation]
-[Get in-bailiwick address records in zone]
-[Get out-of-bailiwick ip addresses (Internal)
+* [Get parent NS IP addresses]
+* [Get delegation NS names and IP addresses]
+* [Get zone NS names and IP addresses]
 
 Test zones for [Test Case] implementations are not found in this structure.
-They are found in the following directories (work in progress):
+They are found in the following directories:
 
-* [Address-TP](../Address-TP/README.md)
+* Address-TP (to be created)
 * [Basic-TP](../Basic-TP/README.md)
-* [Connectivity-TP](../Connectivity-TP/README.md)
+* Connectivity-TP (to be created)
 * [Consistency-TP](../Consistency-TP/README.md)
 * [DNSSEC-TP](../DNSSEC-TP/README.md)
-* [Delegation-TP](../Delegation-TP/README.md)
+* Delegation-TP (to be created)
 * [Nameserver-TP](../Nameserver-TP/README.md)
-* [Syntax-TP](../Syntax-TP/README.md)
+* Syntax-TP (to be created)
 * [Zone-TP](../Zone-TP/README.md)
 
 Test zones for Perl modules in Zonemaster-Engine are also not found in this
@@ -40,6 +33,8 @@ structure. They are found in the following directories (work in prgogress):
 * [Engine](../Engine/README.md)
 
 
-[Test Case]:                                       ../../tests/README.md 
+[Get delegation NS names and IP addresses]:        ../../tests/MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
+[Get parent NS IP addresses]:                      ../../tests/MethodsV2.md#method-get-parent-ns-ip-addresses
+[Get zone NS names and IP addresses]:              ../../tests/MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
 [MethodsV2]:                                       ../../tests/MethodsV2.md 
-
+[Test Case]:                                       ../../tests/README.md
