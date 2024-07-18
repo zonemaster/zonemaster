@@ -74,8 +74,8 @@ Two terminal windows to the computer are needed.
    ```
    ./set-ip.sh
    ```
-4. Start `coredns`. It will be running in the foreground until terminated and it
-   will use main.cfg.
+4. Start `coredns`. It will use `main.cfg` and be running in the foreground
+   until terminated.
    ```
    ./start-coredns.sh
    ```

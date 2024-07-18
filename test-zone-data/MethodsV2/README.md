@@ -33,7 +33,7 @@ ns2.      AAAA   fda1:b2:c3::127:1:0:2
 
 ## Undelegated data for scenarios
 
-If the scenario dependends on undelegated data it is provided with the
+If the scenario depends on undelegated data it is provided with the
 scenario below.
 * The data is provided as unordered and unique pairs of name server name and IP
   address.

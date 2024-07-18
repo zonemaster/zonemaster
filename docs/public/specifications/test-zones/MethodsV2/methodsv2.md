@@ -13,7 +13,8 @@
 ## Background
 
 See the [test zone README file] which is for test case base test zones. Since
-this specifies test zones for a [MethodsV2] Method it is not fully applicable.
+this document specifies test zones for a [MethodsV2] Method, it is not fully
+applicable.
 
 ## Test scenarios
 
@@ -70,8 +71,8 @@ derived from *Get delegation NS names and IP addresses*.
 Both *Get zone NS IP addresses* and *Get zone NS names* can be derived from
 *Get zone NS names and IP addresses*.
 
-For the scenarios defined in this document the expected data is only defined for
-the following three methods:
+Consequently, for the scenarios defined in this document the expected data is only
+defined for the following three methods:
   * Get parent NS IP addresses
   * Get delegation NS names and IP addresses
   * Get zone NS names and IP addresses
@@ -110,7 +111,7 @@ the specific scenario:
   * The delegation from the SCENARIO zoen has the same NS with complete glue.
 * Responds with a A record for the zone on query for A.
 * Responds with a AAAA record for the zone on query for AAAA.
-* All responses are authoritative with [RCODE Name] "NoError"
+* All responses are authoritative with [RCODE Name] "NoError".
 * EDNS, version 0, is included in all responses on queries with EDNS.
 * EDNS is not included in responses on queries without EDNS.
 * Standard root is used.
@@ -145,7 +146,7 @@ out-of-bailiwick name servers.
     * ns3.parent.good-3.methodsv2.xa
     * ns5.good-3.methodsv2.xa (not shared with grandparent zone).
   * Glue:
-    * Adress records (A and AAAA) for
+    * Address records (A and AAAA) for
       * ns1.child.parent.good-3.methodsv2.xa
       * ns3.parent.good-3.methodsv2.xa (optional)
 
@@ -159,7 +160,7 @@ server.
     * ns2.parent.good-4.methodsv2.xa
     * ns1.good-4.methodsv2.xa (shared with grandparent zone).
   * Glue for parent:
-    * Adress records (A and AAAA) for
+    * Address records (A and AAAA) for
       * ns1.parent.good-4.methodsv2.xa
       * ns2.parent.good-4.methodsv2.xa
       * ns1.good-4.methodsv2.xa (optional)
@@ -175,7 +176,7 @@ server and parent server.
     * ns1.good-5.methodsv2.xa (shared with grandparent zone).
     * ns1.parent.good-5.methodsv2.xa (shared with parent zone).
   * Glue:
-    * Adress records (A and AAAA) for
+    * Address records (A and AAAA) for
       * ns1.child.parent.good-5.methodsv2.xa
       * ns2.child.parent.good-5.methodsv2.xa
       * ns1.parent.good-5.methodsv2.xa (optional)
@@ -199,7 +200,7 @@ servers.
     * ns1.parent.good-7.methodsv2.xa
     * ns2.parent.good-7.methodsv2.xa
   * Glue:
-    * Adress records (A and AAAA) for
+    * Address records (A and AAAA) for
       * ns1.parent.good-7.methodsv2.xa (optional)
       * ns2.parent.good-7.methodsv2.xa (optional)
 
@@ -222,9 +223,9 @@ undelegated.
   * There is an undelegated version of the zone matching undelegated data.
   * `ns1-2` have different IP addresses for delegation and delegated zone, on one
     hand, and undelegated data and undelegated version of the zone, on the other.
-  * `ns3.parent.good-undel-1.methodsv2.xa`  is shared between delegated zone and
+  * `ns3.parent.good-undel-1.methodsv2.xa` is shared between delegated zone and
     undelegated version of zone, but holding the data of the undelegated version.
-  * Undelgated data:
+  * Undelegated data:
       * ns1-2.child.parent.good-undel-1.methodsv2.xa/IPv4
       * ns1-2.child.parent.good-undel-1.methodsv2.xa/IPv6
       * ns3.parent.good-undel-1.methodsv2.xa/IPv4
@@ -232,13 +233,13 @@ undelegated.
       * ns6.good-undel-1.methodsv2.xa
 
 ## GOOD-UNDEL-2
-A "happy path". Everything is fine. Child has boot in-bailiwick and
+A "happy path". Everything is fine. Child has both in-bailiwick and
 out-of-bailiwick name servers. Child is not delegated but is tested
 undelegated.
 
 * Zone: child.parent.good-undel-2.methodsv2.xa
   * No delegation from parent.
-  * To be tested with undelegated data (fake data):
+  * To be tested with undelegated data:
   * There is an undelegated version of the zone matching undelegated data.
   * Undelegated data:
       * ns1.child.parent.good-undel-2.methodsv2.xa/IPv4
@@ -311,7 +312,7 @@ server also serves the delegated child zone.
     `ns2.parent.good-mixed-undel-2.methodsv2.xa`.
   * Child zone is delegated, but there is also an undelegated version where the
     zone has the same data as the delegation.
-  * Undelgated data:
+  * Undelegated data:
     * ns3.child.parent.good-mixed-undel-2.methodsv2.xa/IPv4
     * ns3.child.parent.good-mixed-undel-2.methodsv2.xa/IPv6
     * ns4.child.parent.good-mixed-undel-2.methodsv2.xa/IPv4

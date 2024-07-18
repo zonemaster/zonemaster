@@ -1,15 +1,14 @@
 # Specification of test zones for MethodsV2
 
 This document structure contains test zone specifications for [MethodsV2], which
-is not a Test Case module. Instead it collection of Method specifications refered
-to by the test case specifications and implemented Perl methods used by the
+is not a Test Case module. Instead it is a collection of Method specifications referred
+to by the Test Case specifications and implemented by Perl methods used in the
 implementations of the Test Cases, respectively.
 
-The purpose of the test zones for [MethodsV2] is verify that the implementation
+The purpose of the test zones for [MethodsV2] is to verify that the implementation
 of the methods matches the specifications.
 
-Test zone specifications for the following methods are available (work in
-progress):
+Test zone specifications for the following methods are available:
 
 [Get parent NS IP addresses](get-parent-ns-ip-addresses.md)
 [Get delegation NS names and IP addresses]
