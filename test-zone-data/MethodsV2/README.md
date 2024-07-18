@@ -11,8 +11,51 @@
   * [GOOD-1](#good-1)
   * [GOOD-2](#good-2)
   * [GOOD-3](#good-3)
+  * [GOOD-4](#good-4)
+  * [GOOD-5](#good-5)
+  * [GOOD-6](#good-6)
+  * [GOOD-7](#good-7)
   * [GOOD-UNDEL-1](#good-undel-1)
   * [GOOD-UNDEL-2](#good-undel-2)
+  * [DIFF-NS-1](#diff-ns-1)
+  * [DIFF-NS-2](#diff-ns-2)
+  * [IB-NOT-IN-ZONE-1](#ib-not-in-zone-1)
+  * [CHILD-NO-ZONE-1](#child-no-zone-1)
+  * [CHILD-NO-ZONE-2](#child-no-zone-2)
+  * [GOOD-MIXED-UNDEL-1](#good-mixed-undel-1)
+  * [GOOD-MIXED-UNDEL-2](#good-mixed-undel-2)
+  * [NO-DEL-MIXED-UNDEL-1](#no-del-mixed-undel-1)
+  * [NO-CHILD-1](#no-child-1)
+  * [NO-CHILD-2](#no-child-2)
+  * [NO-CHLD-PAR-UNDETER-1](#no-chld-par-undeter-1)
+  * [CHLD-FOUND-PAR-UNDET-1](#chld-found-par-undet-1)
+  * [CHLD-FOUND-INCONSIST-1](#chld-found-inconsist-1)
+  * [CHLD-FOUND-INCONSIST-2](#chld-found-inconsist-2)
+  * [CHLD-FOUND-INCONSIST-3](#chld-found-inconsist-3)
+  * [CHLD-FOUND-INCONSIST-4](#chld-found-inconsist-4)
+  * [CHLD-FOUND-INCONSIST-5](#chld-found-inconsist-5)
+  * [CHLD-FOUND-INCONSIST-6](#chld-found-inconsist-6)
+  * [CHLD-FOUND-INCONSIST-7](#chld-found-inconsist-7)
+  * [CHLD-FOUND-INCONSIST-8](#chld-found-inconsist-8)
+  * [CHLD-FOUND-INCONSIST-9](#chld-found-inconsist-9)
+  * [CHLD-FOUND-INCONSIST-10](#chld-found-inconsist-10)
+  * [NO-DEL-UNDEL-NO-PAR-1](#no-del-undel-no-par-1)
+  * [NO-DEL-UNDEL-PAR-UND-1](#no-del-undel-par-und-1)
+  * [NO-CHLD-NO-PAR-1](#no-chld-no-par-1)
+  * [CHILD-ALIAS-1](#child-alias-1)
+  * [ZONE-ERR-GRANDPARENT-1](#zone-err-grandparent-1)
+  * [ZONE-ERR-GRANDPARENT-2](#zone-err-grandparent-2)
+  * [ZONE-ERR-GRANDPARENT-3](#zone-err-grandparent-3)
+  * [DELEG-OOB-W-ERROR-1](#deleg-oob-w-error-1)
+  * [DELEG-OOB-W-ERROR-2](#deleg-oob-w-error-2)
+  * [DELEG-OOB-W-ERROR-3](#deleg-oob-w-error-3)
+  * [DELEG-OOB-W-ERROR-4](#deleg-oob-w-error-4)
+  * [CHILD-NS-CNAME-1](#child-ns-cname-1)
+  * [CHILD-NS-CNAME-2](#child-ns-cname-2)
+  * [CHILD-NS-CNAME-3](#child-ns-cname-3)
+  * [PARENT-NS-CNAME-1](#parent-ns-cname-1)
+  * [PARENT-NS-CNAME-2](#parent-ns-cname-2)
+
 
 ## Background
 
@@ -1255,9 +1298,6 @@ child.parent.parent-ns-cname-2.methodsv2.xa
 
 #### Undelegated data
   * (empty)
-
-
-
 
 
 <!--
