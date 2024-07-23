@@ -72,6 +72,10 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.30.0.0/16   | Engine non-test case test zones                             |
 | 127.31.0.0/16   | (not in use)                                                |
 | (...)           |                                                             |
+| 127.39.0.0/16   | (not in use)                                                |
+| 127.40.0.0/16   | MethodsV2 non-test case test zones                          |
+| 127.41.0.0/16   | (not in use)                                                |
+| (...)           |                                                             |
 | 127.255.0.0/16  | (not in use)                                                |
 
 
@@ -481,3 +485,34 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.30.2.0/24   | (not in use)                                                |
 | (...)           |                                                             |
 | 127.30.255.0/24 | (not in use)                                                |
+
+
+### MethodsV2 non-test case address plan
+
+| Address (range) | Used for -- range or specific NS address                    |
+|-----------------|-------------------------------------------------------------|
+| 127.40.0.0/24   | (not in use)                                                |
+| 127.40.1.0/24   | NS for scenario zones or above                              |
+| 127.40.1.21     | ns1.methodsv2.xa                                            |
+| 127.40.1.22     | ns2.methodsv2.xa                                            |
+| 127.40.1.26     | ns6 (no NS listening, defined i methodsv2.xa                |
+| 127.40.1.27     | ns7 (no NS listening, defined i methodsv2.xa                |
+| 127.40.1.28     | ns8 (no NS listening, defined i methodsv2.xa                |
+| 127.40.1.29     | ns9 (no NS listening, defined i methodsv2.xa                |
+| 127.40.1.31     | ns1.XXX.methodsv2.xa (NS for grandparent)                   |
+| 127.40.1.32     | ns2.XXX.methodsv2.xa (NS for grandparent)                   |
+| 127.40.1.33     | ns3.XXX.methodsv2.xa (NS for child defined in grandparent)  |
+| 127.40.1.34     | ns4.XXX.methodsv2.xa (NS for child defined in grandparent)  |
+| 127.40.1.35     | ns5.XXX.methodsv2.xa (NS for child defined in grandparent)  |
+| 127.40.1.36     | ns6.XXX.methodsv2.xa (NS for child defined in grandparent)  |
+| 127.40.1.41     | ns1.parent.XXX.methodsv2.xa (NS for parent)                 |
+| 127.40.1.42     | ns2.parent.XXX.methodsv2.xa (NS for parent)                 |
+| 127.40.1.43     | ns3.parent.methodsv2.xa (NS for child)                      |
+| 127.40.1.44     | ns4.parent.methodsv2.xa (NS for child)                      |
+| 127.40.1.51     | ns1.child.parent.XXX.methodsv2.xa (NS for child)            |
+| 127.40.1.52     | ns2.child.parent.XXX.methodsv2.xa (NS for child)            |
+| 127.40.1.53     | ns3.child.parent.XXX.methodsv2.xa (NS for child)            |
+| 127.40.1.54     | ns4.child.parent.XXX.methodsv2.xa (NS for child)            |
+| 127.40.1.55     | ns5.child.parent.XXX.methodsv2.xa (NS for child)            |
+| (...)           |                                                             |
+| 127.40.255.0/24 | (not in use)                                                |
