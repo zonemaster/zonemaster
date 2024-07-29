@@ -21,10 +21,8 @@ name servers must have addresses in the routable public addressing space.
 
 IANA is responsible for global coordination of the IP addressing system.
 Aside its address allocation activities, it maintains reserved address ranges
-for special uses. These ranges can be categorized into three types:
-
-* [Special purpose IPv4 addresses]
-* [Special purpose IPv6 addresses]
+for special uses. These ranges can be categorized into two types: 
+[Special purpose IPv4 addresses] and [Special purpose IPv6 addresses].
 
 ### Scope
 
@@ -39,11 +37,11 @@ public routable address ranges.
 
 Message Tag                       | Level    | Arguments | Message ID for message tag
 :-------------------------------- |:---------|:----------|:--------------------------
-A01_ADDR_GLOBALLY_REACHABLE       | INFO     |           | IP addresses listed as globally reachable.
-A01_NO_GLOBALLY_REACHABLE_ADDR    | CRITICAL |           | None of the IP addresses listed as globally reachable.
-A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns_list   | IP adress for "{ns}" not listed as globally reachable.
-A01_DOCUMENTATION_ADDR            | ERROR    | ns_list   | IP adress for "{ns}" part of address range for documentation purposes.
-A01_LOCAL_USE_ADDR                | ERROR    | ns_list   | IP adress for "{ns}" part of address range intended for local use on network or service provider level..
+A01_ADDR_GLOBALLY_REACHABLE       | INFO     |           | All IP addresses of all name servers are in the globally reachable address space.
+A01_NO_GLOBALLY_REACHABLE_ADDR    | CRITICAL |           | None of the name servers IP addresses listed as globally reachable.
+A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns_list   | IP address for "{ns_list}" not listed as globally reachable.
+A01_DOCUMENTATION_ADDR            | ERROR    | ns_list   | IP address for "{ns_list}" part of address range for documentation purposes.
+A01_LOCAL_USE_ADDR                | ERROR    | ns_list   | IP address for "{ns_list}" part of address range intended for local use on network or service provider level..
 
 
 The value in the Level column is the default severity level of the message. The
@@ -59,16 +57,16 @@ message. The argument names are defined in the [Argument list].
    [Method4] and [Method5]. 
 
 2. Create the following empty sets:
-   1. Name server name and IP address ("Documentetion Address").
+   1. Name server name and IP address ("Documentation Address").
    2. Name server name and IP address ("Local Use Address").
-   3. Name server name and IP address ("Not Gobally Reachable").
+   3. Name server name and IP address ("Not Globally Reachable").
 
 3. For each name server in *Name Server IP* do:
-   1. Match the IP the address against the IP ranges specified in 
+   1. Match the IP address against the IP ranges specified in 
       [Special purpose IPv4 addresses] and [Special purpose IPv6 addresses]
       1. If if falls within any of the address ranges reserved for 
         *Documentation*, add the name server name and IP address to the
-        *Documentetion Address* set,
+        *Documentation Address* set,
       2. Else, if it falls within an address range belonging to any of the 
          following categories:  
          - *Private-Use (IPv4)*
@@ -82,22 +80,22 @@ message. The argument names are defined in the [Argument list].
          set. 
       3. Else, if the IP falls within a range that is not registered as 
          *Globally Reachable*, add the name server name and IP address to 
-         the *Not Gobally Reachable* set.
+         the *Not Globally Reachable* set.
    2. Go to the next server.
-4. If the sets *Documentetion Address*, *Local Use Adddress* and 
-   *Not Gobally Reachable* are all empty, then output 
+4. If the sets *Documentation Address*, *Local Use Adddress* and 
+   *Not Globally Reachable* are all empty, then output 
    *[A01_ADDR_GLOBALLY_REACHABLE]*
-5. Else, if the sets *Documentetion Address*, *Local Use Adddress* and 
-   *Not Gobally Reachable* when combined contains all the name servers in
-   *Name Server IP*, then output *[A01_NO_GLOBALLY_REACHABLE_ADDR]* 
+5. Else, if the union of the *Documentation Address*, *Local Use Address* and 
+   *Not Globally Reachable* sets is equal to the *Name Server IP* set,
+   then output *[A01_NO_GLOBALLY_REACHABLE_ADDR]* 
 6. Else do:
-   1. If the *Documentetion Address* set is non-empty, then output 
+   1. If the *Documentation Address* set is non-empty, then output 
       *[A01_DOCUMENTATION_ADDR]* with a list of name server names and IP addresses
       from the set.
    2. If the *Local Use Address* set is non-empty, then output 
-      *[A01_LOCAL_USE_ADDR]]* with a list of name server names and IP addresses
+      *[A01_LOCAL_USE_ADDR]* with a list of name server names and IP addresses
       from the set.
-   3. If the *Not Gobally Reachable* set is non-empty, then output 
+   3. If the *Not Globally Reachable* set is non-empty, then output 
       *[A01_ADDR_NOT_GLOBALLY_REACHABLE]* with a list of name server names and 
       IP addresses from the set.
 
@@ -117,7 +115,7 @@ In other cases, no message or only messages with severity level
 ### Special procedural requirements
 
 The registries [Special purpose IPv4 addresses] and 
-[Special purpose IPv6 addresses] and have to be fetched prior to testing.
+[Special purpose IPv6 addresses] have to be fetched prior to testing.
 
 ### Intercase dependencies
 
