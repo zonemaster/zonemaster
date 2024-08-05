@@ -54,7 +54,7 @@ message. The argument names are defined in the [Argument list].
 ### Test procedure 
 
 1. Obtain the IP addresses of each name server of the domain from the parent using
-   [Method4] and [Method5]. 
+   the methods [Get-Del-NS-Names-and-IPs] and [Get-Zone-NS-Names-and-IPs]. 
 
 2. Create the following empty sets:
    1. Name server name and IP address ("Documentation Address").
@@ -127,8 +127,8 @@ None.
 [Severity Level Definitions]:       ../SeverityLevelDefinitions.md
 [Zonemaster-Engine profile]:        ../../../configuration/profiles.md
 [Argument list]:                    ../ArgumentsForTestCaseMessages.md
-[Method4]:                          ../Methods.md#method-4-obtain-glue-address-records-from-parent  
-[Method5]:                          ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
+[Get-Del-NS-Names-and-IPs]:         ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
+[Get-Zone-NS-Names-and-IPs]:        ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
 [A01_ADDR_GLOBALLY_REACHABLE]:      #summary 
 [A01_NO_GLOBALLY_REACHABLE_ADDR]:   #summary 
 [A01_ADDR_NOT_GLOBALLY_REACHABLE]:  #summary 
