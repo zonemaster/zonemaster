@@ -1,7 +1,7 @@
 # CONSISTENCY05
 
 [This directory](.), i.e. the same directory as this README file, holds
-zonefiles and `coredns` configuration files for scenarios for test case CONISTENCY05:
+zonefiles and `coredns` configuration files for scenarios for test case CONSISTENCY05:
 
 * ADDRESSES-MATCH-1
 * ADDRESSES-MATCH-2

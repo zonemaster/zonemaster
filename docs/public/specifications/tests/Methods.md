@@ -66,7 +66,7 @@ This Method tries to obtain the IP addresses for the name servers used in
 the child zone.
 
 1. Send an A query to all name servers obtained in Method 3.
-2. Record the list of unique IPv4 addreses in the answer section.
+2. Record the list of unique IPv4 addresses in the answer section.
 3. Send an AAAA query to all name servers obtained in Method 3.
 4. Record the list of unique IPv6 addresses in the answer section.
 

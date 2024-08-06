@@ -65,8 +65,8 @@ Message Tag                         |Level  |Arguments  | Message ID for message
 :-----------------------------------|:------|:----------|:------------------------------------------------------------------------------------------
 CN01_IPV4_DISABLED                  | NOTICE| ns_list   | IPv4 is disabled. No DNS queries are sent to these name servers: "{ns_list}".
 CN01_IPV6_DISABLED                  | NOTICE| ns_list   | IPv6 is disabled. No DNS queries are sent to these name servers: "{ns_list}".
-CN01_MISSING_NS_RECORD_UDP          |WARNING| ns        | Nameserver {ns} reponds to a NS query with no NS records in the answer section over UDP.
-CN01_MISSING_SOA_RECORD_UDP         |WARNING| ns        | Nameserver {ns} reponds to a SOA query with no SOA records in the answer section over UDP.
+CN01_MISSING_NS_RECORD_UDP          |WARNING| ns        | Nameserver {ns} responds to a NS query with no NS records in the answer section over UDP.
+CN01_MISSING_SOA_RECORD_UDP         |WARNING| ns        | Nameserver {ns} responds to a SOA query with no SOA records in the answer section over UDP.
 CN01_NO_RESPONSE_NS_QUERY_UDP       |WARNING| ns        | Nameserver {ns} does not respond to NS queries over UDP.
 CN01_NO_RESPONSE_SOA_QUERY_UDP      |WARNING| ns        | Nameserver {ns} does not respond to SOA queries over UDP.
 CN01_NO_RESPONSE_UDP                |WARNING| ns        | Nameserver {ns} does not respond to any queries over UDP.

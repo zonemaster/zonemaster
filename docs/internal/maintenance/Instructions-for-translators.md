@@ -3,7 +3,7 @@
 ## Table of contents
 * [Overview]
 * [Software preparation]
-* [Github preparation]
+* [GitHub preparation]
 * [Tools]
 * [Clone preparation]
 * [Translation steps]
@@ -73,22 +73,22 @@ but you will have to find instructions elsewhere.
   apt install gettext git make liblocale-po-perl
   ```
 
-## Github preparation
+## GitHub preparation
 
-For full integration with Zonemaster translation you need a Github account
+For full integration with Zonemaster translation you need a GitHub account
 and forks of the Zonemaster repositories. If you do not have one you can easily
-[create an account at Github][Github signup]. If you are not willing to create
+[create an account at GitHub][GitHub signup]. If you are not willing to create
 one, contact the Zonemaster work group for instructions by sending an email to
 "zonemaster@zonemaster.net".
 
 To create the forks of the Zonemaster repositories
-1. Go to [Github] and log in with your account.
+1. Go to [GitHub] and log in with your account.
 2. Go to the [Zonemaster-Engine repository].
 3. Press "Fork" in the top right corner (see "[Forking a repository]").
 4. Also fork the [Zonemaster-CLI repository] and the
    [Zonemaster-Backend repository].
 
-Make sure that your public *ssh* key is uploaded to Github
+Make sure that your public *ssh* key is uploaded to GitHub
 (see "[Adding a new SSH key to your GitHub account]") and that its private key
 is available on the computer you are going to work from.
 
@@ -131,11 +131,11 @@ two repositories.
   git fetch --all
   ```
 
-* Now it is time to connect your own fork of *Zonemaster-Engine* at Github to
-  the created clone, unless you have alreday done that, in case you can skip the
+* Now it is time to connect your own fork of *Zonemaster-Engine* at GitHub to
+  the created clone, unless you have already done that, in case you can skip the
   next step.
 
-* You have a user name at Github. Here we use "xxxx" as your user name and also
+* You have a user name at GitHub. Here we use "xxxx" as your user name and also
   the name of the remote in clone on the local machine.
   ```
   git remote add xxxx git@github.com:xxxx/zonemaster-engine.git
@@ -216,7 +216,7 @@ same for all three repositories.
   ```
 
 * When the update of all *msgstr* is complete run the `tidy-po` command to
-  create a consistent formatation of the PO file. Do this again if you do
+  create a consistent formatting of the PO file. Do this again if you do
   further updates.
 
   ```
@@ -253,16 +253,16 @@ same for all three repositories.
   rm FILENAME
   ```
 
-* Now push the local branch you created to your fork at Github.
+* Now push the local branch you created to your fork at GitHub.
   "translation-update" is name of the branch you created above and
-  have committed the updates to. Use your Github user name instead of
+  have committed the updates to. Use your GitHub user name instead of
   "xxxx".
   ```
   git push -u xxxx translation-update
   ```
 
-* Go to your fork collection at Github, https://github.com/xxxx/ using your
-  Github user name instead of "xxxx". There you can select the fork for this
+* Go to your fork collection at GitHub, https://github.com/xxxx/ using your
+  GitHub user name instead of "xxxx". There you can select the fork for this
   translation.
 
 * Select to create a new pull request. Here we use Zonemaster-Engine as an
@@ -273,7 +273,7 @@ same for all three repositories.
   * The "compare" should be the same branch as you created above and pushed to
     your fork, e.g. "translation-update".
 
-* Inspect what Github says that will change by the pull request. It should
+* Inspect what GitHub says that will change by the pull request. It should
   only be the PO file that you have updated and nothing else. If additional
   files are listed, please correct or request for help.
 
@@ -289,7 +289,7 @@ same for all three repositories.
 * If you go back to your own computer and just keep the clone as it is, you
   can easily update the pull request if needed with more changes to the same
   PO file. When the pull request has been merged by the Zonemaster work group,
-  you can delete the local clone and on your Github fork you can remove the
+  you can delete the local clone and on your GitHub fork you can remove the
   branch. Or keep them for next time.
 
 
@@ -304,7 +304,7 @@ preferred way is to create an issue in the relevant repository.
 * Message *(msgid)* in Zonemaster-Backend: [issue][new issue zonemaster-backend]
 
 If the message is in Zonemaster-Engine then include the message tag found in the
-header, e.g. "BASIC:NO_PARENT", in the issue decription. Also include the *msgid*
+header, e.g. "BASIC:NO_PARENT", in the issue description. Also include the *msgid*
 as it is now and a suggestion for new wording.
 
 
@@ -361,7 +361,7 @@ If you do want to generate it, the command is `make extract-pot`.
 
 The translated strings are maintained in files named "<LANG-CODE>.po". You will
 find the current PO files in the "share" directories listed in the "[Overview]"
-section. Translation and the languages are also presentated in the main [README]
+section. Translation and the languages are also presented in the main [README]
 document.
 
 The command `./update-po` will update the PO file with new message ids (*msgid*)
@@ -393,9 +393,9 @@ make update-po MSGMERGE_OPTS=--no-fuzzy-matching
 [GNOME Translation Editor]:                    https://wiki.gnome.org/Apps/Gtranslator
 [GNU Emacs]:                                   https://www.gnu.org/software/emacs/
 [Gettext system]:                              https://www.gnu.org/software/gettext/
-[Github preparation]:                          #github-preparation
-[Github signup]:                               https://github.com/signup
-[Github]:                                      https://github.com/
+[GitHub preparation]:                          #github-preparation
+[GitHub signup]:                               https://github.com/signup
+[GitHub]:                                      https://github.com/
 [ISO 639-1]:                                   https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 [New issue zonemaster-backend]:                https://github.com/zonemaster/zonemaster-backend/issues/new
 [New issue zonemaster-cli]:                    https://github.com/zonemaster/zonemaster-cli/issues/new

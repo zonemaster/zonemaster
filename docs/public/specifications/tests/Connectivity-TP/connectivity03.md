@@ -146,7 +146,7 @@ origin6.asnlookup.zonemaster.net
 
 The RIPE ASN lookup is described on the RIPE [RISwhois] page.
 
-1. Construct a query string by prepending the IP adress with
+1. Construct a query string by prepending the IP address with
    " -F -M ". Using "192.0.2.10" as an example, the query string will
    be the following (the leading space is intentional)
    
@@ -172,7 +172,7 @@ whois -h riswhois.ripe.net " -F -M 192.0.2.10"
       *[ERROR_ASN_DATABASE]* and end these steps for RIPE look-up
       of the specific IP address.
    4. The first field has the ASN or list of ASNs. Split that into ASNs.
-   5. If it was not possible to extrac the ASN or ASNs, output 
+   5. If it was not possible to extract the ASN or ASNs, output 
       *[ERROR_ASN_DATABASE]* and end these steps (the response was 
       malformed).
 

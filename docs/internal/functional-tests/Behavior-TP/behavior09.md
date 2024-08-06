@@ -20,7 +20,7 @@ The broken domain to be tested.
 returns FAIL
 
 ### Results
-Even though exhaustive tests are not run, for the tests being run the eingine
+Even though exhaustive tests are not run, for the tests being run the engine
 seems to capture the errors.
 
 

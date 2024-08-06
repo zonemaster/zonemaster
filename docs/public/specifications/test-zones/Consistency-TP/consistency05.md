@@ -211,7 +211,7 @@ Lame. No NS responds.
 Lame. One NS non-AA and one NS SERVFAIL.
 
 * Zone: child-zone-lame-2.consistency05.xa
-  * ns1 respones with AA bit unset.
+  * ns1 responses with AA bit unset.
   * ns2 responds with [RCODE Name] "ServFail".
 
 ### IB-ADDR-MISMATCH-1

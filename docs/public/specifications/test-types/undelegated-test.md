@@ -34,7 +34,7 @@ delegation.
 records for the zone. They must not be looked up.
 
 * Name server addresses. Addresses of name server names that belong to the delegated
-zone is covered under "glue redords" above. Addresses of other name servers may be
+zone is covered under "glue records" above. Addresses of other name servers may be
 provided, of else they are looked up. If at least one address (IPv4 or IPv6) is provided
 for a name server, then no further lookup shall be done for that name during the 
 test (neither IPv4 nor IPv6).

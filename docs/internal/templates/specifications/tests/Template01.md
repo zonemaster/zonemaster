@@ -111,7 +111,7 @@ message. The argument names are defined in the [argument list].
 > > executions make different interpretations or assumptions.
 > >
 > > If the test procedure uses DNS queries (most test cases do), then add the
-> > following paragraph (types of DNS quries that do no apply for the test case
+> > following paragraph (types of DNS queries that do no apply for the test case
 > > can be removed):
 
 In this section and unless otherwise specified below, the terms "[DNS Query]",
@@ -139,9 +139,9 @@ respectively, in the same specification.
 > >
 > > Also include statement on what other information to be accompanied
 > > with the message (included as parameter to the message tag). Example of such
-> > information is IP adresses to name servers.
+> > information is IP addresses to name servers.
 > >
-> > When refering to the data defined in **Inputs** then use the name in
+> > When referring to the data defined in **Inputs** then use the name in
 > > *italic*, e.g.:
 
 2. Create a [DNSSEC Query] with query type DNSKEY and query name *Child Zone*
@@ -163,7 +163,7 @@ respectively, in the same specification.
 > > of the document. E.g.:
 
 8. If the NSEC (NSEC3) records do not "cover" the
-   *Non-Existent Query Name*, then output *[T01_HAS_NSEC3]*
+   *Nonexistent Query Name*, then output *[T01_HAS_NSEC3]*
 
 > > When referring to RCODE, such as "NoError", use the term [RCODE Name]
 > > with a link to the IANA page. Also use the name forms on that page.
@@ -254,7 +254,7 @@ No special terminology for this test case.
   [Method][Methods].
 
 > > ----
-> > The links listed below are not visible when rendered by Github. In the
+> > The links listed below are not visible when rendered by GitHub. In the
 > > specification the different parts below should be combined into one link
 > > collection and sorted. Always start the link label (the left side) with an
 > > upper case letter (if it starts with a letter). The reference can from the

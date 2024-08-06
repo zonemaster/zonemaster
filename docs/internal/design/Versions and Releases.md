@@ -10,7 +10,7 @@ and documentation for the Zonemaster Product. There is no direct code for Zonema
 components are part of the Zonemaster Product, but stored in separate repositories 
 ([Zonemaster-LDNS], [Zonemaster-Engine], [Zonemaster-CLI], [Zonemaster-Backend] and [Zonemaster-GUI]. 
 
-This document also discusses how the Zonemaster project intend to do new relases.
+This document also discusses how the Zonemaster project intend to do new releases.
 
 ## Version Number Syntax for Zonemaster product
 
@@ -77,8 +77,8 @@ not published on [CPAN] ([Zonemaster-GUI] is never published at [CPAN]).
 
 ## Publication of releases
 
-Major, minor and patch releases of the Zonemaster Components, including the mail repository, are published in the Github
-repositories by merging the code to the "master" branch in Git and by creating a release note in Github. In the normal
+Major, minor and patch releases of the Zonemaster Components, including the mail repository, are published in the GitHub
+repositories by merging the code to the "master" branch in Git and by creating a release note in GitHub. In the normal
 case the Perl based components are also published at [CPAN]. The rest of the Zonemaster Product 
 ([Zonemaster-GUI], specifications and documentation) is only available in the "master" branch in each repository.
 
@@ -94,7 +94,7 @@ Issued as needed.
 
 The goal is that it should be easy to do patch releases, in order to encourage fixing problems quickly. All unit tests 
 must pass, and all changes must be properly documented. Besides that, enough testing should be completed before a new
-version is released. Automated tests that cover the corrected code should be inluced.
+version is released. Automated tests that cover the corrected code should be included.
 
 ### Minor Versions
 

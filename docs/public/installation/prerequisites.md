@@ -25,7 +25,7 @@ release of Zonemaster.
 
 Only the Docker images provided by the Zonemaster project on [Docker Hub] are
 supported. Currently only Zonemaster-CLI is supported on Docker. Docker itself
-can run on any of the [Docker] supported OSs (Linux, MacOS and Windows).
+can run on any of the [Docker] supported OSs (Linux, macOS and Windows).
 
 [Rocky Linux] has replaced CentOS in Zonemaster version v2021.2 since CentOS 8
 is not supported anymore and CentOS 7 is old and does not support modern OpenSSL

@@ -18,7 +18,7 @@ Note that there is one defined specification that is generic enough not to be
 considered a test case: [Normalization].
 
 This is not a static document. As DNS evolves and new issues are pointed
-at requirements will be added, removed or modiefied just as the test cases.
+at requirements will be added, removed or modified just as the test cases.
 
 <!-- When updating the table, read TestRequirements-table-specification.txt -->
 <!-- START-TABLE -->
@@ -58,7 +58,7 @@ R03100| A zone should be hosted by at least two names servers (on IPv6).        
 R03200| A zone should be hosted on IPv4.                                                   |[RFC3901] [RFC4472]  |[DELEGATION01]
 R03300| Name servers for a zone should have distinct IP addresses.                         |                     |[DELEGATION02]
 R03400| Referral from parent name servers should fit into 512 octets.                      |[IANA]               |[DELEGATION03]
-R03500| The name server for the zone should respond authoritively for the zone.            |[RFC2181]            |[DELEGATION04]
+R03500| The name server for the zone should respond authoritatively for the zone.          |[RFC2181]            |[DELEGATION04]
 R03600| The name server name should not point at a CNAME.                                  |[RFC2181]            |[DELEGATION05]
 R03700| Signed zone must have DNSKEY.                                                      |                     |
 R03800| Only valid DS hash algorithm should be used.                                       |[RFC8624]            |[DNSSEC01]
@@ -101,7 +101,7 @@ R07400| A name server should not support open zone transfer for its zone or zone
 R07500| A name server should respond with the same source IP as the query was sent to.     |[RFC2181]            |[NAMESERVER04]
 R07600| A name server should handle queries for AAAA correctly.                            |[RFC4074]            |[NAMESERVER05]
 R07700| The name of the name server, as given in the NS record, must be resolvable in DNS. |[RFC1035]            |[NAMESERVER06]
-R07800| A name server should not return a referal to root on queries for zones not hosted. |                     |[NAMESERVER07]
+R07800| A name server should not return a referral to root on queries for zones not hosted. |                     |[NAMESERVER07]
 R07900| A name server should preserve case of query name when creating response.           |Ref?                 |[NAMESERVER08]
 R08000| A name server should treat query name without considering character case.          |Ref?                 |[NAMESERVER09]
 R08100| A name server should respond with BADVERS on unsupported EDNS version.             |[RFC6891]            |[NAMESERVER10]

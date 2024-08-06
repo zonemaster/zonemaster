@@ -45,7 +45,7 @@ currently running.
 given the GUI input to do so.
  	
 Security:
-[3.1] The GUI MUST have a chroot-similar design where its' config, outside of 
+[3.1] The GUI MUST have a chroot-similar design where its config, outside of 
 reach of the web root itself, is read only once at startup.
  [3.2] The GUI MUST have all sensitive information in the protected 
 configuration file from [3.1] but MAY have options elsewhere if deemed 
@@ -54,7 +54,7 @@ documented and commented.
 
 Functionality:
 [4.1] The GUI MUST have the same functionality over IPv6 as is given over IPv4.
- [4.2] The GUI MUST create unique links for every test generated through its' 
+ [4.2] The GUI MUST create unique links for every test generated through its 
 interface and these links SHOULD be easy to find for the user.
  [4.3] The GUI SHOULD allow links to tests that were generated from other 
 sources than the GUI itself but MAY not allow all available sources to be 
@@ -62,7 +62,7 @@ accessed.
  [4.4] The GUI MUST be designed so that it is easy to add new tests easily.
  [4.5] The GUI MUST be able to take DS record(s) as input to test DNSSEC 
 properly on undelegated domains.
- [4.6] The GUI SHOULD report to the user what IP-adress he/she is connecting 
+ [4.6] The GUI SHOULD report to the user what IP-address he/she is connecting 
 from.
  [4.7] The GUI MUST report what version of the engine was used to generate the 
 result(s) displayed.

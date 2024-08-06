@@ -72,7 +72,7 @@ specific Method.
   names and IP addresses of the root name servers, but that can optionally be
   replaced by equivalent information to a private root zone. It must contain at
   least one [valid name server name] with at least one [valid IP address].
-* "Undelegated Data" - Optonal data. If included it must consist of a set of
+* "Undelegated Data" - Optional data. If included it must consist of a set of
   at least one [valid name server name] and for each name server name an optional
   set of at least one [valid IP address]. The name servers and IP addresses
   represent a possible delegation of *Child Zone* from its parent zone (may be

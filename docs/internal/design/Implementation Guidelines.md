@@ -34,7 +34,7 @@ By forcing all communication to pass through a single chokepoint, we serve all o
 
 The less code there is, the easier it is to determine if it actually does what it should. When writing DNS tests, there are certain actions that come up often. In order to reduce the amount of code implementing the tests themselves, we extract such actions into helper methods in the objects representing DNS packets and (possibly in the future) resource records.
 
-The intention is that as often occuring patterns are found, they will be extracted out into surrounding objects. As a rule of thumb, I'd suggest that once a certain structure has been needed in three or more places, extracting it out should be considered.
+The intention is that as often occurring patterns are found, they will be extracted out into surrounding objects. As a rule of thumb, I'd suggest that once a certain structure has been needed in three or more places, extracting it out should be considered.
 
 ## Implementation guidelines
 

@@ -45,7 +45,7 @@ case will set DEBUG level on messages for non-responsive name servers.
       3. Else, if the RCODE of the response is not NOERROR, then output
          *[AAAA_UNEXPECTED_RCODE]*.
       4. Else, if the answer section contains an AAAA record with incorrect
-         RDATA lenght (e.g. 4 instead of 16 octets), then output
+         RDATA length (e.g. 4 instead of 16 octets), then output
          *[AAAA_BAD_RDATA]*.
       5. Else, add the name server IP to *AAAA OK*.
 
