@@ -1,7 +1,18 @@
-## ADDRESS01: Name server address must be globally routable
+## ADDRESS01: Name server address must be globally reachable
 
 ### Test case identifier
-**ADDRESS01** Name server address must be globally routable
+**ADDRESS01** 
+
+## Table of contents
+
+* [Objective](#Objective)
+* [Scope](#Scope)
+* [Inputs](#Inputs)
+* [Summary](#Summary)
+* [Test procedure](#Test-procedure)
+* [Outcome(s)](#Outcomes)
+* [Intercase dependencies](#Intercase-dependencies)
+
 
 ### Objective
 
@@ -10,38 +21,127 @@ name servers must have addresses in the routable public addressing space.
 
 IANA is responsible for global coordination of the IP addressing system.
 Aside its address allocation activities, it maintains reserved address ranges
-for special uses. These ranges can be categorized into three types : 
-[Special purpose IPv4
-addresses](https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xml),
-[Special purpose IPv6
-addresses](https://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xml)
-and [Multicast reserved
-addresses](https://www.iana.org/assignments/multicast-addresses/multicast-addresses.xml).
+for special uses. These ranges can be categorized into two types: 
+[Special purpose IPv4 addresses] and [Special purpose IPv6 addresses].
+
+### Scope
+
+IP addresses from authoritative name servers are matched against IANAs list of 
+public routable address ranges.
 
 ### Inputs
 
-The domain name to be tested.
+* The domain name to be tested.
 
-### Ordered description of steps to be taken to execute the test case
+### Summary
 
-1. Obtain the IP addresses of each name server of the domain from the parent using
-   [Method4](../Methods.md) and child using [Method5](../Methods.md)
+Message Tag                       | Level    | Arguments | Message ID for message tag
+:-------------------------------- |:---------|:----------|:--------------------------
+A01_ADDR_GLOBALLY_REACHABLE       | INFO     |           | All IP addresses of all name servers are in the globally reachable address space.
+A01_NO_GLOBALLY_REACHABLE_ADDR    | CRITICAL |           | None of the name servers IP addresses listed as globally reachable.
+A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns_list   | IP address not in range listed as globally reachable "{ns_list}".
+A01_DOCUMENTATION_ADDR            | ERROR    | ns_list   | IP address part of range intended for documentation purposes "{ns_list}".
+A01_LOCAL_USE_ADDR                | ERROR    | ns_list   | IP address part of range intended for local use on network or service provider level "{ns_list}". 
 
-2. If any IP address (IPv4 or IPv6) falls within any of the blocks in the below
-   mentioned IANA links, the test case fails:
-   * <https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml>
-   * <https://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xhtml>
 
+The value in the Level column is the default severity level of the message. The
+severity level can be changed in the [Zonemaster-Engine profile]. Also see the
+[Severity Level Definitions] document.
+
+The argument names in the Arguments column lists the arguments used in the
+message. The argument names are defined in the [Argument list].
+
+### Test procedure 
+
+1. Create the empty set: Name server name and IP address ("Name Server IP").
+
+2. Obtain the glue address records of each name server for the domain from the
+   parent using the method [Get-Del-NS-Names-and-IPs] and add them to the 
+   *Name Server IP* set. 
+
+3. Obtain the IP addresses of each name server for the domain using the method 
+   [Get-Zone-NS-Names-and-IPs] and add any non-duplicate results to 
+   *Name Server IP* set. 
+
+4. Create the following empty sets:
+   1. Name server name and IP address ("Documentation Address").
+   2. Name server name and IP address ("Local Use Address").
+   3. Name server name and IP address ("Not Globally Reachable").
+
+5. For each name server in *Name Server IP* do:
+   1. Match the IP address against the IP ranges specified in 
+      [Special purpose IPv4 addresses] and [Special purpose IPv6 addresses]
+      1. If if falls within any of the address ranges reserved for 
+        *Documentation*, add the name server name and IP address to the
+        *Documentation Address* set,
+      2. Else, if it falls within an address range belonging to any of the 
+         following categories:  
+         - *Private-Use (IPv4)*
+         - *Loopback (IPv4)*
+         - *Loopback Address (IPv6)*
+         - *Link Local (IPv4)*
+         - *Link-Local Unicast* (IPv6)
+         - *Unique-Local* (IPv6)
+         - *Shared Address Space* (IPv6)
+         add the name server name and IP address to the *Local Use Adddress* 
+         set. 
+      3. Else, if the IP falls within a range that is not registered as 
+         *Globally Reachable*, add the name server name and IP address to 
+         the *Not Globally Reachable* set.
+   2. Go to the next server.
+6. If the sets *Documentation Address*, *Local Use Adddress* and 
+   *Not Globally Reachable* are all empty, then output 
+   *[A01_ADDR_GLOBALLY_REACHABLE]*
+7. Else, if the union of the *Documentation Address*, *Local Use Address* and 
+   *Not Globally Reachable* sets is equal to the *Name Server IP* set,
+   then output *[A01_NO_GLOBALLY_REACHABLE_ADDR]* 
+8. Else do:
+   1. If the *Documentation Address* set is non-empty, then output 
+      *[A01_DOCUMENTATION_ADDR]* with a list of name server names and IP addresses
+      from the set.
+   2. If the *Local Use Address* set is non-empty, then output 
+      *[A01_LOCAL_USE_ADDR]* with a list of name server names and IP addresses
+      from the set.
+   3. If the *Not Globally Reachable* set is non-empty, then output 
+      *[A01_ADDR_NOT_GLOBALLY_REACHABLE]* with a list of name server names and 
+      IP addresses from the set.
+
+  
 ### Outcome(s)
 
-If one name server has one of its addresses matches a forbidden address
-block, the test fails. If all the name server addresses are outside these
-forbidden blocks, the test case succeeds. 
+The outcome of this Test Case is "fail" if there is at least one message
+with the severity level *[CRITICAL]*.
+
+The outcome of this Test Case is "warning" if there is at least one message
+with the severity level *[ERROR]*, but no message with severity level
+*[CRITICAL]*.
+
+In other cases, no message or only messages with severity level
+*[INFO]*  the outcome of this Test Case is "pass".
 
 ### Special procedural requirements
 
-The registries listed in bullet 2 above must be fetched prior to testing 
+The registries [Special purpose IPv4 addresses] and 
+[Special purpose IPv6 addresses] have to be fetched prior to testing.
 
 ### Intercase dependencies
 
 None.
+
+ 
+[Special purpose IPv4 addresses]:   https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xml 
+[Special purpose IPv6 addresses]:   https://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xml
+[Severity Level Definitions]:       ../SeverityLevelDefinitions.md
+[Zonemaster-Engine profile]:        ../../../configuration/profiles.md
+[Argument list]:                    ../ArgumentsForTestCaseMessages.md
+[Get-Del-NS-Names-and-IPs]:         ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
+[Get-Zone-NS-Names-and-IPs]:        ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
+[A01_ADDR_GLOBALLY_REACHABLE]:      #summary 
+[A01_NO_GLOBALLY_REACHABLE_ADDR]:   #summary 
+[A01_ADDR_NOT_GLOBALLY_REACHABLE]:  #summary 
+[A01_DOCUMENTATION_ADDR]:           #summary 
+[A01_LOCAL_USE_ADDR]:               #summary 
+[INFO]:                             ../SeverityLevelDefinitions.md#info
+[WARNING]:                          ../SeverityLevelDefinitions.md#warning
+[ERROR]:                            ../SeverityLevelDefinitions.md#error
+[CRITICAL]:                         ../SeverityLevelDefinitions.md#critical
