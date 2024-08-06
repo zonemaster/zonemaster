@@ -39,9 +39,9 @@ Message Tag                       | Level    | Arguments | Message ID for messag
 :-------------------------------- |:---------|:----------|:--------------------------
 A01_ADDR_GLOBALLY_REACHABLE       | INFO     |           | All IP addresses of all name servers are in the globally reachable address space.
 A01_NO_GLOBALLY_REACHABLE_ADDR    | CRITICAL |           | None of the name servers IP addresses listed as globally reachable.
-A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns_list   | IP address for "{ns_list}" not listed as globally reachable.
-A01_DOCUMENTATION_ADDR            | ERROR    | ns_list   | IP address for "{ns_list}" part of address range for documentation purposes.
-A01_LOCAL_USE_ADDR                | ERROR    | ns_list   | IP address for "{ns_list}" part of address range intended for local use on network or service provider level..
+A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns_list   | IP address not in range listed as globally reachable "{ns_list}".
+A01_DOCUMENTATION_ADDR            | ERROR    | ns_list   | IP address part of range intended for documentation purposes "{ns_list}".
+A01_LOCAL_USE_ADDR                | ERROR    | ns_list   | IP address part of range intended for local use on network or service provider level "{ns_list}". 
 
 
 The value in the Level column is the default severity level of the message. The
@@ -53,15 +53,22 @@ message. The argument names are defined in the [Argument list].
 
 ### Test procedure 
 
-1. Obtain the IP addresses of each name server of the domain from the parent using
-   the methods [Get-Del-NS-Names-and-IPs] and [Get-Zone-NS-Names-and-IPs]. 
+1. Create the empty set: Name server name and IP address ("Name Server IP").
 
-2. Create the following empty sets:
+2. Obtain the glue address records of each name server for the domain from the
+   parent using the method [Get-Del-NS-Names-and-IPs] and add them to the 
+   *Name Server IP* set. 
+
+3. Obtain the IP addresses of each name server for the domain using the method 
+   [Get-Zone-NS-Names-and-IPs] and add any non-duplicate results to 
+   *Name Server IP* set. 
+
+4. Create the following empty sets:
    1. Name server name and IP address ("Documentation Address").
    2. Name server name and IP address ("Local Use Address").
    3. Name server name and IP address ("Not Globally Reachable").
 
-3. For each name server in *Name Server IP* do:
+5. For each name server in *Name Server IP* do:
    1. Match the IP address against the IP ranges specified in 
       [Special purpose IPv4 addresses] and [Special purpose IPv6 addresses]
       1. If if falls within any of the address ranges reserved for 
@@ -82,13 +89,13 @@ message. The argument names are defined in the [Argument list].
          *Globally Reachable*, add the name server name and IP address to 
          the *Not Globally Reachable* set.
    2. Go to the next server.
-4. If the sets *Documentation Address*, *Local Use Adddress* and 
+6. If the sets *Documentation Address*, *Local Use Adddress* and 
    *Not Globally Reachable* are all empty, then output 
    *[A01_ADDR_GLOBALLY_REACHABLE]*
-5. Else, if the union of the *Documentation Address*, *Local Use Address* and 
+7. Else, if the union of the *Documentation Address*, *Local Use Address* and 
    *Not Globally Reachable* sets is equal to the *Name Server IP* set,
    then output *[A01_NO_GLOBALLY_REACHABLE_ADDR]* 
-6. Else do:
+8. Else do:
    1. If the *Documentation Address* set is non-empty, then output 
       *[A01_DOCUMENTATION_ADDR]* with a list of name server names and IP addresses
       from the set.
