@@ -39,6 +39,16 @@ Message Tag                       | Level    | Arguments | Message ID for messag
 A02_PTR_RECORDS_PRESENT           | INFO     |           | All name servers have PTR records
 A02_PTR_RECORD_MISSING            | WARNING  | ns_list   | IP address is missing PTR "{ns_list}"
 
+
+The value in the Level column is the default severity level of the message. The
+severity level can be changed in the [Zonemaster-Engine profile]. Also see the
+[Severity Level Definitions] document.
+
+
+The argument names in the Arguments column lists the arguments used in the
+message. The argument names are defined in the [argument list].
+
+
 ### Test procedure 
 
 1. Create the empty set: Name server name and IP address ("Name Server IP").
