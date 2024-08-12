@@ -1,6 +1,6 @@
 ## ADDRESS01: Name server address must be globally reachable
 
-### Test case identifier
+## Test case identifier
 **ADDRESS01** 
 
 ## Table of contents
@@ -14,7 +14,7 @@
 * [Intercase dependencies](#Intercase-dependencies)
 
 
-### Objective
+## Objective
 
 In order for the domain and its resources to be accessible, authoritative 
 name servers must have addresses in the routable public addressing space.
@@ -24,16 +24,16 @@ Aside its address allocation activities, it maintains reserved address ranges
 for special uses. These ranges can be categorized into two types: 
 [Special purpose IPv4 addresses] and [Special purpose IPv6 addresses].
 
-### Scope
+## Scope
 
 IP addresses from authoritative name servers are matched against IANAs list of 
 public routable address ranges.
 
-### Inputs
+## Inputs
 
 * The domain name to be tested.
 
-### Summary
+## Summary
 
 Message Tag                       | Level    | Arguments | Message ID for message tag
 :-------------------------------- |:---------|:----------|:--------------------------
@@ -51,7 +51,7 @@ severity level can be changed in the [Zonemaster-Engine profile]. Also see the
 The argument names in the Arguments column lists the arguments used in the
 message. The argument names are defined in the [Argument list].
 
-### Test procedure 
+## Test procedure 
 
 1. Create the empty set: Name server name and IP address ("Name Server IP").
 
@@ -107,7 +107,7 @@ message. The argument names are defined in the [Argument list].
       IP addresses from the set.
 
   
-### Outcome(s)
+## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
 with the severity level *[CRITICAL]*.
@@ -119,12 +119,12 @@ with the severity level *[ERROR]*, but no message with severity level
 In other cases, no message or only messages with severity level
 *[INFO]*  the outcome of this Test Case is "pass".
 
-### Special procedural requirements
+## Special procedural requirements
 
 The registries [Special purpose IPv4 addresses] and 
 [Special purpose IPv6 addresses] have to be fetched prior to testing.
 
-### Intercase dependencies
+## Intercase dependencies
 
 None.
 
