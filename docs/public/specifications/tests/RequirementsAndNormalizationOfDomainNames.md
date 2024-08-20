@@ -117,7 +117,7 @@ can be returned to the user.
 
 Message Tag                    | Level    | Arguments    | Message ID for message tag
 :------------------------------|:---------|:-------------|:----------------------------------------------------------
-AMBIGUOUS_DOWNCASING           | CRITICAL | unicode_name | Ambiguous downcaseing of character "{unicode_name}" in the domain name. Use all lower case instead.
+AMBIGUOUS_DOWNCASING           | CRITICAL | unicode_name | Ambiguous downcasing of character "{unicode_name}" in the domain name. Use all lower case instead.
 DOMAIN_NAME_TOO_LONG           | CRITICAL |              | Domain name is too long (more than 253 characters with no final dot).
 EMPTY_DOMAIN_NAME              | CRITICAL |              | Domain name is empty.
 INITIAL_DOT                    | CRITICAL |              | Domain name starts with dot.

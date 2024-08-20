@@ -70,13 +70,13 @@ an ordinary action performed as expected or that a value was inside its normal r
 Results at level DEBUG2 are produced by the testing framework itself, and are intended
 to only be displayed when trying to identify and diagnose unusual and hard to understand
 problems in a zone. This level includes at least one line of information for every DNS
-query sent and response recieved.
+query sent and response received.
 
 
 ## DEBUG3
 
 Results at level DEBUG3 have all the same attributes as those for DEBUG2, and are
-even more voluminous. At this level, full string representations of all recieved
+even more voluminous. At this level, full string representations of all received
 DNS packets will be included. At the time of writing, a test run for the same domain
 produces about fifty times as much output on level DEBUG3 as it does on level DEBUG
 and a thousand times as much as on the default NOTICE level.

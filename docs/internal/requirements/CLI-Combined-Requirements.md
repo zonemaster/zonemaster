@@ -26,11 +26,11 @@ provided flag (read: disable protocol at runtime).
 - [2.5] The CLI MUST be able to run with a user-provided locale (language).
 A default SHOULD be used if none is provided.
 - [2.6] The user MUST be able to specify name servers and corresponding 
-IP-adresses as input for undelegated test purposes.
+IP-addresses as input for undelegated test purposes.
 - [2.8] The user MUST be able to specify DS-data as input to be able to 
 test DNSSEC fully even for undelegated domains.
 - [2.9] The user MUST specify no more than one domain to test.
-- [2.10] The CLI MUST be able to simply report its' version and exit with
+- [2.10] The CLI MUST be able to simply report its version and exit with
 a provided flag.
 - [2.11] The CLI MUST be able to test all available test cases within one
 group, it MAY also work per unique test case (--test=zone or --test=zone03). 
@@ -42,7 +42,7 @@ parseable and this MAY be disabled or enabled with a provided parameter.
  this SHOULD be the default mode although the default MAY be configurable.
 - [3.3] The output from the CLI MUST have several levels of verbosity for
  DNS debugging purposes, for example additional messages and module 
- version reports at a low level up to raw DNS packets and dependancy
+ version reports at a low level up to raw DNS packets and dependency
  modules' versions at higher levels.
 - [3.4] The CLI MUST have a flag to list all available tests and a brief
  text on what these tests do. The CLI MAY also have more detailed

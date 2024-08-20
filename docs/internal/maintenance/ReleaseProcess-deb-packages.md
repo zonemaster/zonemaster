@@ -34,9 +34,9 @@ For each package:
 
 
 When a new Zonemaster release of the relevant component has been
-[published on Github], and when the nightly package is working fine (the build
-is successfull, it can be installed and is usable, all of that should have been
-already checked during the relase testing if the package specification has not
+[published on GitHub], and when the nightly package is working fine (the build
+is successful, it can be installed and is usable, all of that should have been
+already checked during the release testing if the package specification has not
 changed since), promote it to stable. The only difference between a nightly
 packages and its promoted version is the upstream tarball. While the nightly
 packages use the develop branch as upstream, the stable ones use a specific
@@ -105,7 +105,7 @@ named `.{step}`. The build and publish steps must also define the following
 variables:
 * `OS`: OS name as it is in the `/etc/os-release`;
 * `DISTRIBUTION`: Version codename as defined by `VERSION_CODENAME` in
-   `/etc/os-release`, optionaly suffixed by `-nightly`.
+   `/etc/os-release`, optionally suffixed by `-nightly`.
 
 The container image used for building should be the same version as the targeted
 distribution.
@@ -160,7 +160,7 @@ ones in the CI file.
   "Recommends" and will be installed by default alongside their corresponding
   package.
 
-* [Common Gitlab pipeline]: common ci/cd jobs for all branchs in the packages
+* [Common GitLab pipeline]: common ci/cd jobs for all branches in the packages
   source repository.
 
 * [`package.zonemaster.net` content]: setup script and public verification key
@@ -185,6 +185,6 @@ The continuous deployment pipeline performs 3 tasks:
 
 [aptly]:                              https://www.aptly.info
 [Packages sources]:                   https://gitlab.rd.nic.fr/zonemaster/packages/debian
-[Common Gitlab pipeline]:             https://gitlab.rd.nic.fr/zonemaster/ci/-/blob/main/deb-packaging.yml
+[Common GitLab pipeline]:             https://gitlab.rd.nic.fr/zonemaster/ci/-/blob/main/deb-packaging.yml
 [`package.zonemaster.net` content]:   https://gitlab.rd.nic.fr/zonemaster/packages/www/
-[published on Github]:                ReleaseProcess-release.md#17-tag-the-release-with-git
+[published on GitHub]:                ReleaseProcess-release.md#17-tag-the-release-with-git

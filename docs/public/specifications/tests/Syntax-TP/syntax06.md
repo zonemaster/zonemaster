@@ -87,7 +87,7 @@ case will set DEBUG level on messages for non-responsive name servers.
              name.
        2. If any A or AAAA record points at 127.0.0.1 or ::1 (localhost),
           respectively, then output *[RNAME_MAIL_DOMAIN_LOCALHOST]*.
-       3. If no A or AAAA are are extracted or any records points at
+       3. If no A or AAAA are extracted or any records points at
           127.0.0.1 or ::1, then output *[RNAME_MAIL_DOMAIN_INVALID]*.
 
 4. If at least one name server IP has neither outputted *[NO_RESPONSE]*

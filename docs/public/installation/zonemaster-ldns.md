@@ -20,7 +20,7 @@ make test
 make install
 ```
 
-> **Note:** The source ZIP files downloaded from Github are broken with
+> **Note:** The source ZIP files downloaded from GitHub are broken with
 > respect to this instruction.
 
 

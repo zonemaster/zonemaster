@@ -33,7 +33,7 @@ is up to date with the [supported Perl versions].
 META.yml is created by Makefile.PL so if META.yml is not correct, then
 Makefile.PL must be updated.
 
-  1. Make a clean clone for each reposistory
+  1. Make a clean clone for each repository
 ```
      git clean -dfx
      git reset --hard
@@ -55,7 +55,7 @@ Makefile.PL must be updated.
 
 ## 4. Verify that MANIFEST and MANIFEST.SKIP are up to date
 
-> This section is not relevant for Zonemaster-GUI or Zonemeaster/Zonemaster.
+> This section is not relevant for Zonemaster-GUI or Zonemaster/Zonemaster.
 
 MANIFEST must, directly or indirectly, list all files that should be installed.
 MANIFEST.SKIP must list all file that should not be installed, and what is

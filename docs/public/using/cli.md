@@ -177,7 +177,7 @@ command will export `LC_ALL` with the that value to the docker container.
 docker run -e LC_ALL -t --rm zonemaster/cli zonemaster.net
 ```
 
-Environment vaiables `LANG` and `LC_MESSAGES` can be used in the same way as
+Environment variables `LANG` and `LC_MESSAGES` can be used in the same way as
 `LC_ALL`.
 
 

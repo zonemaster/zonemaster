@@ -74,7 +74,7 @@ of the other components.
 ## 5. Update the Changes file
 
 Any changes since the last release must be documented in the Changes files.
-Refer to any Github issues or pull requests related to the change by the
+Refer to any GitHub issues or pull requests related to the change by the
 issue number or pull request number or both.
 
 The updates to the *Changes* file are done to the *develop branch*.
@@ -306,13 +306,13 @@ update.
 
 ## 17. Tag the release with git
 
-For each repository, go to "releases" in Github and select "draft a new release".
+For each repository, go to "releases" in GitHub and select "draft a new release".
 Use the version number as tag and create a new release description. Use the
 section of Changes file for the relevant release and make links of everything 
 that can have meaningful links, especially make links to issues and PRs.
 
 For Zonemaster-GUI, add the *distribution zip file* as attached file to the
-release description in Github.
+release description in GitHub.
 
 Always release the Zonemaster Product (Zonemaster/Zonemaster) as the last step.
 
@@ -365,7 +365,7 @@ depending on the need.
 
 For other libraries, other formats may be correct. If the version of the
 library only has two levels ("X.Y") then other rules apply. Also note
-that the version in Zonemaster::Backend is speciefied as `X.Y.Z` without
+that the version in Zonemaster::Backend is specified as `X.Y.Z` without
 the "v", which may affect the version comparison.
 
 [(Top)](#table-of-contents)

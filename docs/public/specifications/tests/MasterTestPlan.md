@@ -47,7 +47,7 @@ document.
 #### Internal
 No internal requirements.
 
-#### Document hieararchy
+#### Document hierarchy
 * Master Test Plan  
     * [Basic] Test Plan
         * Test Case x
@@ -124,13 +124,13 @@ to ensure the stability of DNS.
 
 #### Resources summary
 
-TODO: Briefly describe the neessary resources to run a test.
+TODO: Briefly describe the necessary resources to run a test.
 
-#### Responsibilites
+#### Responsibilities
 
 #### Tools, techniques, methods, and metrics
 
-TODO: Briefly described the necesessary input and any metrics in the
+TODO: Briefly described the necessary input and any metrics in the
 output.
 
 
@@ -285,7 +285,7 @@ all of the test plans and test cases.
 |:---------------|:-----------------------------------------|
 | DNS            | Domain Name System                       |
 | DNSSEC         | DNS Security Extensions                  |
-| RFC            | Requst for Comments, IETF document       |
+| RFC            | Request for Comments, IETF document      |
 | MTP            | Master Test Plan                         |
 | MTR            | Master Test Report                       |
 | LTC            | Level Test Case                          |
@@ -341,7 +341,7 @@ A change to the documents may be initiated because of several reasons:
 
 #### Implementing
 
-The document revisioning is managed by a version control system
+The document versioning is managed by a version control system
 (Git). Each change must contain a specific commit message detailing
 the change. The major revisions section of this document should also
 be updated if there is a new release of the document.
