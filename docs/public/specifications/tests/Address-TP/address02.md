@@ -36,8 +36,8 @@ The domain name to be tested.
 
 Message Tag                       | Level    | Arguments | Message ID for message tag
 :-------------------------------- |:---------|:----------|:--------------------------
-A02_PTR_RECORDS_PRESENT           | INFO     |           | All name servers have PTR records
-A02_PTR_RECORD_MISSING            | WARNING  | ns_list   | IP address is missing PTR "{ns_list}"
+A02_PTR_PRESENT                   | INFO     |           | PTR present for all nameservers
+A02_PTR_NOT_CONFIGURED            | NOTICE   | ns_list   | PTR missing for "{ns_list}"
 
 
 The value in the Level column is the default severity level of the message. The
@@ -70,7 +70,7 @@ message. The argument names are defined in the [argument list].
    2. If the response RCODE is NOERROR, add the IP address and RDATA to the *PTR Records* set.
    3. Else, add the IP address to the *PTR Missing* set.
 
-6. If the set *PTR Missing* is empty, then putput *[A02_PTR_RECORDS_PRESENT]™
+6. If the set *PTR Missing* is empty, then putput *[A02_PTR_RECORDS_PRESENT]*
 
 7. Else, output *[A02_PTR_RECORD_MISSING]*
 
