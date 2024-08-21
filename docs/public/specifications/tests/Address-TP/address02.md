@@ -87,7 +87,7 @@ None.
 None.
 
 [RFC1912]:                          https://www.rfc-editor.org/rfc/rfc1912
-[RFC1033]:                          https://www.rfc-editor.org/rfc/rfc103                          https://www.rfc-editor.org/rfc/rfc10333  
+[RFC1033]:                          https://www.rfc-editor.org/rfc/rfc1033
 [Argument list]:                    ../ArgumentsForTestCaseMessages.md
 [Severity Level Definitions]:       ../SeverityLevelDefinitions.md
 [Zonemaster-Engine profile]:        ../../../configuration/profiles.md
