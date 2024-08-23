@@ -24,24 +24,28 @@ Aside its address allocation activities, it maintains reserved address ranges
 for special uses. These ranges can be categorized into two types: 
 [Special purpose IPv4 addresses] and [Special purpose IPv6 addresses].
 
+This test checks the name server IP addresses, both those derived from delegation and those 
+derived from the name servers listed in the zone (NS records). Each address is compared against
+the IANA databases. If an address is not globally routable, a message is outputted.
+
 ## Scope
 
-IP addresses from authoritative name servers are matched against IANAs list of 
-public routable address ranges.
+This test case does not do any  actual connectivity test, which is done by other test cases.
 
 ## Inputs
 
-* The domain name to be tested.
+* "Child Zone" -- the domain name to be tested.
 
 ## Summary
 
 Message Tag                       | Level    | Arguments | Message ID for message tag
 :-------------------------------- |:---------|:----------|:--------------------------
-A01_ADDR_GLOBALLY_REACHABLE       | INFO     |           | All IP addresses of all name servers are in the globally reachable address space.
-A01_NO_GLOBALLY_REACHABLE_ADDR    | CRITICAL |           | None of the name servers IP addresses listed as globally reachable.
-A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns_list   | IP address not in range listed as globally reachable "{ns_list}".
-A01_DOCUMENTATION_ADDR            | ERROR    | ns_list   | IP address part of range intended for documentation purposes "{ns_list}".
-A01_LOCAL_USE_ADDR                | ERROR    | ns_list   | IP address part of range intended for local use on network or service provider level "{ns_list}". 
+A01_ADDR_GLOBALLY_REACHABLE       | INFO     |           | All IP addresses of all name servers are listed as in the globally reachable address space.
+A01_NO_NAME_SERVERS_FOUND         | CRITICAL |           | No name servers found.
+A01_NO_GLOBALLY_REACHABLE_ADDR    | CRITICAL |           | None of the name servers IP addresses are listed as globally reachable.
+A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns_list   | IP address not listed as globally reachable "{ns_list}".
+A01_DOCUMENTATION_ADDR            | ERROR    | ns_list   | IP address intended for documentation purposes "{ns_list}".
+A01_LOCAL_USE_ADDR                | ERROR    | ns_list   | IP address intended for local use on network or service provider level "{ns_list}". 
 
 
 The value in the Level column is the default severity level of the message. The
@@ -53,7 +57,11 @@ message. The argument names are defined in the [Argument list].
 
 ## Test procedure 
 
-1. Create the empty set: Name server name and IP address ("Name Server IP").
+1. Create the following empty sets:
+   1. Name server name and IP address ("Name Server IP").
+   2. Name server name and IP address ("Documentation Address").
+   3. Name server name and IP address ("Local Use Address").
+   4. Name server name and IP address ("Not Globally Reachable").
 
 2. Obtain the glue address records of each name server for the domain from the
    parent using the method [Get-Del-NS-Names-and-IPs] and add them to the 
@@ -63,10 +71,8 @@ message. The argument names are defined in the [Argument list].
    [Get-Zone-NS-Names-and-IPs] and add any non-duplicate results to 
    *Name Server IP* set. 
 
-4. Create the following empty sets:
-   1. Name server name and IP address ("Documentation Address").
-   2. Name server name and IP address ("Local Use Address").
-   3. Name server name and IP address ("Not Globally Reachable").
+4. If the *Name Server IP* set is empty, output *[A01_NO_NAME_SERVERS_FOUND]*
+   and exit the test.
 
 5. For each name server in *Name Server IP* do:
    1. Match the IP address against the IP ranges specified in 
@@ -85,7 +91,7 @@ message. The argument names are defined in the [Argument list].
          - *Shared Address Space* (IPv6)
          add the name server name and IP address to the *Local Use Adddress* 
          set. 
-      3. Else, if the IP falls within a range that is not registered as 
+      3. Else, if the IP falls within any other range that is not registered as 
          *Globally Reachable*, add the name server name and IP address to 
          the *Not Globally Reachable* set.
    2. Go to the next server.
@@ -110,14 +116,14 @@ message. The argument names are defined in the [Argument list].
 ## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
-with the severity level *[CRITICAL]*.
+with the severity level *[ERROR]* or *[CRITICAL]*.
 
 The outcome of this Test Case is "warning" if there is at least one message
-with the severity level *[ERROR]*, but no message with severity level
-*[CRITICAL]*.
+with the severity level *[WARNING]*, but no message with severity level 
+*[ERROR]* or *[CRITICAL]*.
 
 In other cases, no message or only messages with severity level
-*[INFO]*  the outcome of this Test Case is "pass".
+*[INFO]* or *[NOTICE]* the outcome of this Test Case is "pass".
 
 ## Special procedural requirements
 
@@ -129,19 +135,20 @@ The registries [Special purpose IPv4 addresses] and
 None.
 
  
-[Special purpose IPv4 addresses]:   https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xml 
-[Special purpose IPv6 addresses]:   https://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xml
-[Severity Level Definitions]:       ../SeverityLevelDefinitions.md
-[Zonemaster-Engine profile]:        ../../../configuration/profiles.md
-[Argument list]:                    ../ArgumentsForTestCaseMessages.md
-[Get-Del-NS-Names-and-IPs]:         ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
-[Get-Zone-NS-Names-and-IPs]:        ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
 [A01_ADDR_GLOBALLY_REACHABLE]:      #summary 
 [A01_NO_GLOBALLY_REACHABLE_ADDR]:   #summary 
 [A01_ADDR_NOT_GLOBALLY_REACHABLE]:  #summary 
 [A01_DOCUMENTATION_ADDR]:           #summary 
 [A01_LOCAL_USE_ADDR]:               #summary 
-[INFO]:                             ../SeverityLevelDefinitions.md#info
-[WARNING]:                          ../SeverityLevelDefinitions.md#warning
-[ERROR]:                            ../SeverityLevelDefinitions.md#error
+[Argument list]:                    ../ArgumentsForTestCaseMessages.md
 [CRITICAL]:                         ../SeverityLevelDefinitions.md#critical
+[ERROR]:                            ../SeverityLevelDefinitions.md#error
+[Get-Del-NS-Names-and-IPs]:         ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
+[Get-Zone-NS-Names-and-IPs]:        ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
+[INFO]:                             ../SeverityLevelDefinitions.md#info
+[NOTICE]:                             ../SeverityLevelDefinitions.md#notice
+[Special purpose IPv4 addresses]:   https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xml 
+[Special purpose IPv6 addresses]:   https://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xml
+[Severity Level Definitions]:       ../SeverityLevelDefinitions.md
+[WARNING]:                          ../SeverityLevelDefinitions.md#warning
+[Zonemaster-Engine profile]:        ../../../configuration/profiles.md
