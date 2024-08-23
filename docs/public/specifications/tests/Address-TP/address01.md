@@ -63,7 +63,7 @@ message. The argument names are defined in the [Argument list].
    3. Name server name and IP address ("Local Use Address").
    4. Name server name and IP address ("Not Globally Reachable").
 
-2. Obtain the glue address records of each name server for the domain from the
+2. Obtain the glue address records of each name server for the *Child Zone* from the
    parent using the method [Get-Del-NS-Names-and-IPs] and add them to the 
    *Name Server IP* set. 
 
