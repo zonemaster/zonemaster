@@ -172,7 +172,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
        in the additional section.
 
    9.  Do [DNS Lookup] of name server names (A and AAAA) not already listed in the
-       additional section of the response.
+       additional section of the response. Follow CNAME if provided.
        1. For each IP address add the IP address and *Zone Name* to the
           *Remaining Servers* set unless the IP address is already listed in
           *Handled Servers* together with *Zone Name*.
@@ -210,7 +210,8 @@ This Method uses the following input units defined in section [Methods Inputs]:
              4. Extract the name server names from the NS records and any address
                 records in the additional section.
              5. Do [DNS Lookup] of name server names (A and AAAA) not already
-                listed in the additional section of the response.
+                listed in the additional section of the response. Follow CNAME if
+                provided.
              6. For each IP address add the IP address and *Intermediate Query Name*
                 to the *Remaining Servers* set unless the IP address is already
                 listed in *Handled Servers* together with *Intermediate Query Name*.
@@ -224,7 +225,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
              1. Extract the name server names from the NS records and any glue
                 records.
              2. Do [DNS Lookup] of name server names (A and AAAA) not already
-                listed as glue record or records.
+                listed as glue record or records. Follow CNAME if provided.
              3. For each IP address add *Server Address* and
                 *Intermediate Query Name* to the *Remaining Servers* set unless
                 *Server Address* is already listed in *Handled Servers* together
