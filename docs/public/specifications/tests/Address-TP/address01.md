@@ -42,7 +42,7 @@ Message Tag                       | Level    | Arguments | Message ID for messag
 :-------------------------------- |:---------|:----------|:--------------------------
 A01_ADDR_GLOBALLY_REACHABLE       | INFO     |           | All IP addresses of all name servers are listed as in the globally reachable address space.
 A01_NO_NAME_SERVERS_FOUND         | CRITICAL |           | No name servers found.
-A01_NO_GLOBALLY_REACHABLE_ADDR    | CRITICAL |           | None of the name servers IP addresses are listed as globally reachable.
+A01_NO_GLOBALLY_REACHABLE_ADDR    | ERROR    |           | None of the name servers IP addresses are listed as globally reachable.
 A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns_list   | IP address not listed as globally reachable "{ns_list}".
 A01_DOCUMENTATION_ADDR            | ERROR    | ns_list   | IP address intended for documentation purposes "{ns_list}".
 A01_LOCAL_USE_ADDR                | ERROR    | ns_list   | IP address intended for local use on network or service provider level "{ns_list}". 
@@ -63,7 +63,7 @@ message. The argument names are defined in the [Argument list].
    3. Name server name and IP address ("Local Use Address").
    4. Name server name and IP address ("Not Globally Reachable").
 
-2. Obtain the glue address records of each name server for the *Child Zone* from the
+2. Obtain the address records of each name server for the *Child Zone* from the
    parent using the method [Get-Del-NS-Names-and-IPs] and add them to the 
    *Name Server IP* set. 
 
@@ -98,10 +98,7 @@ message. The argument names are defined in the [Argument list].
 6. If the sets *Documentation Address*, *Local Use Adddress* and 
    *Not Globally Reachable* are all empty, then output 
    *[A01_ADDR_GLOBALLY_REACHABLE]*
-7. Else, if the union of the *Documentation Address*, *Local Use Address* and 
-   *Not Globally Reachable* sets is equal to the *Name Server IP* set,
-   then output *[A01_NO_GLOBALLY_REACHABLE_ADDR]* 
-8. Else do:
+7. Else do:
    1. If the *Documentation Address* set is non-empty, then output 
       *[A01_DOCUMENTATION_ADDR]* with a list of name server names and IP addresses
       from the set.
@@ -111,6 +108,9 @@ message. The argument names are defined in the [Argument list].
    3. If the *Not Globally Reachable* set is non-empty, then output 
       *[A01_ADDR_NOT_GLOBALLY_REACHABLE]* with a list of name server names and 
       IP addresses from the set.
+8. If the union of the *Documentation Address*, *Local Use Address* and 
+   *Not Globally Reachable* sets is equal to the *Name Server IP* set,
+   then output *[A01_NO_GLOBALLY_REACHABLE_ADDR]* 
 
   
 ## Outcome(s)
@@ -140,6 +140,7 @@ None.
 [A01_ADDR_NOT_GLOBALLY_REACHABLE]:  #summary 
 [A01_DOCUMENTATION_ADDR]:           #summary 
 [A01_LOCAL_USE_ADDR]:               #summary 
+[A01_NO_NAME_SERVERS_FOUND]:        #summary
 [Argument list]:                    ../ArgumentsForTestCaseMessages.md
 [CRITICAL]:                         ../SeverityLevelDefinitions.md#critical
 [ERROR]:                            ../SeverityLevelDefinitions.md#error
