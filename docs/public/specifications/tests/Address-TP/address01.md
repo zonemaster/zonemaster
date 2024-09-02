@@ -98,19 +98,18 @@ message. The argument names are defined in the [Argument list].
 6. If the sets *Documentation Address*, *Local Use Adddress* and 
    *Not Globally Reachable* are all empty, then output 
    *[A01_ADDR_GLOBALLY_REACHABLE]*
-7. Else do:
-   1. If the *Documentation Address* set is non-empty, then output 
-      *[A01_DOCUMENTATION_ADDR]* with a list of name server names and IP addresses
-      from the set.
-   2. If the *Local Use Address* set is non-empty, then output 
-      *[A01_LOCAL_USE_ADDR]* with a list of name server names and IP addresses
-      from the set.
-   3. If the *Not Globally Reachable* set is non-empty, then output 
-      *[A01_ADDR_NOT_GLOBALLY_REACHABLE]* with a list of name server names and 
-      IP addresses from the set.
-8. If the union of the *Documentation Address*, *Local Use Address* and 
-   *Not Globally Reachable* sets is equal to the *Name Server IP* set,
-   then output *[A01_NO_GLOBALLY_REACHABLE_ADDR]* 
+7. If the *Documentation Address* set is non-empty, then output 
+   *[A01_DOCUMENTATION_ADDR]* with a list of name server names and IP addresses
+   from the set.
+9. If the *Local Use Address* set is non-empty, then output 
+   *[A01_LOCAL_USE_ADDR]* with a list of name server names and IP addresses
+   from the set.
+10. If the *Not Globally Reachable* set is non-empty, then output 
+    *[A01_ADDR_NOT_GLOBALLY_REACHABLE]* with a list of name server names and 
+    IP addresses from the set.
+11. If the union of the *Documentation Address*, *Local Use Address* and 
+    *Not Globally Reachable* sets is equal to the *Name Server IP* set,
+    then output *[A01_NO_GLOBALLY_REACHABLE_ADDR]* 
 
   
 ## Outcome(s)
