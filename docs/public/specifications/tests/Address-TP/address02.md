@@ -1,6 +1,6 @@
 ## ADDRESS02: Reverse DNS entry exists for name server IP address
 
-### Test case identifier
+## Test case identifier
 **ADDRESS02** Reverse DNS entry should exist for name server IP address
 
 ## Table of contents
@@ -14,23 +14,23 @@
 * [Special procedural requirements](#special-procedural-requirements)
 * [Intercase dependencies](#intercase-dependencies)
 
-### Objective
+## Objective
 
 Best curent practices dictates that imternet reachable hosts should have a
 reverse DNS entry, as various services on the Internet, for instance spam 
 filters, may consider this when determining the trustworthiness of the host.
 Se [RFC1912] section 2.1 and [RFC1033] page 11 for additional information.
 
-### Scope
+## Scope
 
 This test checks for the existence of PTR records for the corresponding reverse
 domains of the name servers IP address 
 
-### Inputs
+## Inputs
 
 The domain name to be tested.
 
-### Summary
+## Summary
 
 Message Tag                   | Level    | Arguments | Message ID for message tag
 :---------------------------- |:---------|:----------|:--------------------------
@@ -47,7 +47,7 @@ The argument names in the Arguments column lists the arguments used in the
 message. The argument names are defined in the [argument list].
 
 
-### Test procedure 
+## Test procedure 
 
 1. Create the empty set: Name server name and IP address ("Name Server IP").
 
@@ -73,16 +73,16 @@ message. The argument names are defined in the [argument list].
 7. Else, output *[A02_PTR_MISSING]*
 
 
-### Outcome(s)
+## Outcome(s)
 
 The outcome of the test is "pass" if the set *PTR missing* is empty. If not,
 the outcome is "notice"
 
-### Special procedural requirements
+## Special procedural requirements
 
 None.
 
-### Intercase dependencies
+## Intercase dependencies
 
 None.
 
