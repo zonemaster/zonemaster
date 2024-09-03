@@ -1,4 +1,4 @@
-## ADDRESS01: Name server address must be globally reachable
+# ADDRESS01: Name server address must be globally reachable
 
 ## Test case identifier
 **ADDRESS01** 
