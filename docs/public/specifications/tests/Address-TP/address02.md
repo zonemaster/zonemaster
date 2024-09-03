@@ -70,13 +70,17 @@ message. The argument names are defined in the [argument list].
   
 6. If the set *PTR Missing* is empty, then putput *[A02_PTR_PRESENT]*
 
-7. Else, output *[A02_PTR_MISSING]*
+7. Else, output *[A02_PTR_MISSING]* with a list of the IP addresses in the set.
 
 
 ## Outcome(s)
 
-The outcome of the test is "pass" if the set *PTR missing* is empty. If not,
-the outcome is "notice"
+The outcome of the Test Case is "notice" if there is at least one message with
+the message with the severity level *[NOTICE]*.
+
+If there are no message or only a message with the severity level *[INFO]*, the
+outcome of the Test Case is "pass".
+
 
 ## Special procedural requirements
 
