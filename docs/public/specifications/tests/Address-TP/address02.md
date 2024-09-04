@@ -1,7 +1,7 @@
 # ADDRESS02: Reverse DNS entry exists for name server IP address
 
 ## Test case identifier
-**ADDRESS02** Reverse DNS entry should exist for name server IP address
+**ADDRESS02** 
 
 ## Table of contents
 
@@ -24,9 +24,9 @@ Se [RFC1912] section 2.1 and [RFC1033] page 11 for additional information.
 ## Scope
 
 This test checks for the existence of PTR records for the corresponding reverse
-domains of the name servers IP address 
+domains of the name servers IP address.
 
-## Inputs
+## Inputs*
 
 The domain name to be tested.
 
@@ -70,7 +70,8 @@ message. The argument names are defined in the [argument list].
   
 6. If the set *PTR Missing* is empty, then putput *[A02_PTR_PRESENT]*
 
-7. Else, output *[A02_PTR_MISSING]* with a list of the IP addresses in the set.
+7. Else, output *[A02_PTR_MISSING]* with a list of the IP addresses in the 
+   *PTR Missing* set.
 
 
 ## Outcome(s)
@@ -90,12 +91,12 @@ None.
 
 None.
 
-[RFC1912]:                          https://www.rfc-editor.org/rfc/rfc1912
-[RFC1033]:                          https://www.rfc-editor.org/rfc/rfc1033
-[Argument list]:                    ../ArgumentsForTestCaseMessages.md
-[Severity Level Definitions]:       ../SeverityLevelDefinitions.md
-[Zonemaster-Engine profile]:        ../../../configuration/profiles.md
-[Get-Del-NS-Names-and-IPs]:         ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
-[Get-Zone-NS-Names-and-IPs]:        ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
 [A02_PTR_PRESENT]:                  #Summary
 [A02_PTR_MISSING]:                  #Summary
+[Argument list]:                    ../ArgumentsForTestCaseMessages.md
+[Get-Del-NS-Names-and-IPs]:         ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
+[Get-Zone-NS-Names-and-IPs]:        ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
+[RFC1912]:                          https://www.rfc-editor.org/rfc/rfc1912
+[RFC1033]:                          https://www.rfc-editor.org/rfc/rfc1033
+[Severity Level Definitions]:       ../SeverityLevelDefinitions.md
+[Zonemaster-Engine profile]:        ../../../configuration/profiles.md
