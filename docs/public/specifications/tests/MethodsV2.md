@@ -111,6 +111,12 @@ the root zone or if the test is an undelegated test, the list is defined but
 empty. If the parent zone cannot be determined, then an undefined list is
 returned.
 
+Addresses for name servers (RDATA of NS records) are extracted even if the
+resolution goes through CNAME. It is, however, not permitted for a NS record
+to point at a name that has a CNAME, but that test is covered by Test Case
+[Delegation05]. This method should extract as much as possible to find all
+possible paths.
+
 This Method must, in general, use the same algorithm as Test Case [Basic01], but
 the test case extracts more information and outputs messages.
 
