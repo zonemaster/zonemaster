@@ -1,4 +1,4 @@
-# ADDRESS02: Reverse DNS entry exists for name server IP address
+# ADDRESS02: PTR exists for name server IP
 
 ## Test case identifier
 **ADDRESS02** 
@@ -34,8 +34,8 @@ The domain name to be tested.
 
 Message Tag                   | Level    | Arguments | Message ID for message tag
 :---------------------------- |:---------|:----------|:--------------------------
-A02_PTR_PRESENT               | INFO     |           | PTR present for all nameservers
-A02_PTR_MISSING               | NOTICE   | ns_list   | PTR missing for "{ns_list}"
+A02_PTR_PRESENT               | INFO     |           | PTR record present for each nameserver IP address
+A02_PTR_MISSING               | NOTICE   | ns_list   | PTR missing for the following name server IP addresses: "{ns_list}"
 
 
 The value in the Level column is the default severity level of the message. The
@@ -51,7 +51,7 @@ message. The argument names are defined in the [argument list].
 
 1. Create the empty set: Name server name and IP address ("Name Server IP").
 
-2. Obtain the glue address records of each name server for the domain from the
+2. Obtain the address records of each name server for the *Child Zone* from the
    parent using the method [Get-Del-NS-Names-and-IPs] and add them to the 
    *Name Server IP* set. 
 
@@ -76,12 +76,15 @@ message. The argument names are defined in the [argument list].
 
 ## Outcome(s)
 
-The outcome of the Test Case is "notice" if there is at least one message with
-the message with the severity level *[NOTICE]*.
+The outcome of this Test Case is "fail" if there is at least one message
+with the severity level *[ERROR]* or *[CRITICAL]*.
 
-If there are no message or only a message with the severity level *[INFO]*, the
-outcome of the Test Case is "pass".
+The outcome of this Test Case is "warning" if there is at least one message
+with the severity level *[WARNING]*, but no message with severity level 
+*[ERROR]* or *[CRITICAL]*.
 
+In other cases, no message or only messages with severity level
+*[INFO]* or *[NOTICE]* the outcome of this Test Case is "pass".
 
 ## Special procedural requirements
 
@@ -94,9 +97,13 @@ None.
 [A02_PTR_PRESENT]:                  #Summary
 [A02_PTR_MISSING]:                  #Summary
 [Argument list]:                    ../ArgumentsForTestCaseMessages.md
+[CRITICAL]:                         ../SeverityLevelDefinitions.md#critical
 [Get-Del-NS-Names-and-IPs]:         ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
 [Get-Zone-NS-Names-and-IPs]:        ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
+[INFO]:                             ../SeverityLevelDefinitions.md#info
+[NOTICE]:                             ../SeverityLevelDefinitions.md#notice
 [RFC1912]:                          https://www.rfc-editor.org/rfc/rfc1912
 [RFC1033]:                          https://www.rfc-editor.org/rfc/rfc1033
 [Severity Level Definitions]:       ../SeverityLevelDefinitions.md
+[WARNING]:                          ../SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:        ../../../configuration/profiles.md
