@@ -75,9 +75,7 @@ DS10_HAS_NSEC3                     | INFO    | ns_list | The zone has NSEC3 reco
 DS10_INCONSISTENT_NSEC             | ERROR   | ns_list | Inconsistent responses from zone with NSEC. Fetched from name servers "{ns_list}".
 DS10_INCONSISTENT_NSEC3            | ERROR   | ns_list | Inconsistent responses from zone with NSEC3. Fetched from name servers "{ns_list}".
 DS10_INCONSISTENT_NSEC_NSEC3       | ERROR   |ns_list_nsec, ns_list_nsec3| The zone is inconsistent on NSEC and NSEC3. NSEC is fetched from name servers "{ns_list_nsec}". NSEC3 is fetched from name servers "{ns_list_nsec3}".
-DS10_MISSING_NSEC_NSEC3            | ERROR   | ns_list | NSEC or NSEC3 is expected but both are missing. Fetched from name servers "{ns_list}".
 DS10_MIXED_NSEC_NSEC3              | ERROR   | ns_list | The zone responds with both NSEC and NSEC3, where only one of them is expected. Fetched from name servers "{ns_list}".
-DS10_NO_DNSSEC_SUPPORT             | NOTICE  | ns_list | The zone is not DNSSEC signed or not properly DNSSEC signed. Testing for NSEC and NSEC3 has been skipped. Fetched from name servers "{ns_list}".
 DS10_NSEC3PARAM_GIVES_ERR_ANSWER   | ERROR   | ns_list | Unexpected DNS record in the answer section on an NSEC3PARAM query. Fetched from name servers "{ns_list}".
 DS10_NSEC3PARAM_QUERY_RESPONSE_ERR | ERROR   | ns_list | No response or error in response on query for NSEC3PARAM. Fetched from name servers "{ns_list}".
 DS10_NSEC3_ERR_TYPE_LIST           | ERROR   | ns_list | NSEC3 record for the zone apex with incorrect type list. Fetched from name servers "{ns_list}".
@@ -85,7 +83,7 @@ DS10_NSEC3_MISMATCHES_APEX         | ERROR   | ns_list | The returned NSEC3 reco
 DS10_NSEC3_MISSING_SIGNATURE       | ERROR   | ns_list | Missing RRSIG (signature) for the NSEC3 record or records. Fetched from name servers "{ns_list}".
 DS10_NSEC3_NODATA_MISSING_SOA      | ERROR   | ns_list | Missing SOA record in NODATA response with NSEC3. Fetched from name servers "{ns_list}".
 DS10_NSEC3_NODATA_WRONG_SOA        | ERROR   | ns_list, domain | Wrong owner name ("{domain}") on SOA record in NODATA response with NSEC3. Fetched from name servers "{ns_list}".
-DS10_NSEC3_NO_VERIFIED_SIGNATURE   | ERROR   | ns_list | There is no RRSIG (signature) for the NSEC3 record that can be verified. Fetched from name servers "{ns_list}".
+DS10_NSEC3_NO_VERIFIED_SIGNATURE   | ERROR   | ns_list | The RRSIG (signature) for the NSEC3 record cannot be verified. Fetched from name servers "{ns_list}".
 DS10_NSEC3_RRSIG_EXPIRED           | ERROR   | ns_list, keytag | The RRSIG (signature) with tag {keytag} for the NSEC3 record has expired. Fetched from name servers "{ns_list}".
 DS10_NSEC3_RRSIG_NOT_YET_VALID     | ERROR   | ns_list, keytag | The RRSIG (signature) with tag {keytag} for the NSEC3 record it not yet valid. Fetched from name servers "{ns_list}".
 DS10_NSEC3_RRSIG_NO_DNSKEY         | WARNING | ns_list, keytag | There is no DNSKEY record matching the RRSIG (signature) with tag {keytag} for the NSEC3 record. Fetched from name servers "{ns_list}".
@@ -97,12 +95,13 @@ DS10_NSEC_MISSING_SIGNATURE        | ERROR   | ns_list | Missing RRSIG (signatur
 DS10_NSEC_NODATA_MISSING_SOA       | ERROR   | ns_list | Missing SOA record in NODATA response with NSEC. Fetched from name servers "{ns_list}".
 DS10_NSEC_NODATA_WRONG_SOA         | ERROR   | ns_list, domain | Wrong owner name ("{domain}") on SOA record in NODATA response with NSEC. Fetched from name servers "{ns_list}".
 DS10_NSEC_NO_VERIFIED_SIGNATURE    | ERROR   | ns_list | There is no RRSIG (signature) for the NSEC record that can be verified. Fetched from name servers "{ns_list}".
-DS10_NSEC_QUERY_RESPONSE_ERROR     | ERROR   | ns_list | No response or error in response on query for NSEC. Fetched from name servers "{ns_list}".
+DS10_NSEC_QUERY_RESPONSE_ERR       | ERROR   | ns_list | No response or error in response on query for NSEC. Fetched from name servers "{ns_list}".
 DS10_NSEC_RRSIG_EXPIRED            | ERROR   | ns_list, keytag | The RRSIG (signature) with tag {keytag} for the NSEC record has expired. Fetched from name servers "{ns_list}".
 DS10_NSEC_RRSIG_NOT_YET_VALID      | ERROR   | ns_list, keytag | The RRSIG (signature) with tag {keytag} for the NSEC record it not yet valid. Fetched from name servers "{ns_list}".
 DS10_NSEC_RRSIG_NO_DNSKEY          | WARNING | ns_list, keytag | There is no DNSKEY record matching the RRSIG (signature) with tag {keytag} for the NSEC record. Fetched from name servers "{ns_list}".
 DS10_NSEC_RRSIG_VERIFY_ERROR       | ERROR   | ns_list, keytag | The RRSIG (signature) with tag {keytag} for the NSEC record cannot be verified. Fetched from name servers "{ns_list}".
-DS10_SERVER_NO_DNSSEC_SUPPORT      | ERROR   | ns_list | The following name servers do not support DNSSEC or have not been properly configured. Testing for NSEC and NSEC3 has been skipped on these servers. Fetched from name servers "{ns_list}".
+DS10_SERVER_NO_DNSSEC              | ERROR   | ns_list | The following name servers do not support DNSSEC or have not been properly configured. Testing for NSEC and NSEC3 has been skipped on these servers. Fetched from name servers "{ns_list}".
+DS10_ZONE_NO_DNSSEC                | NOTICE  | ns_list | The zone is not DNSSEC signed or not properly DNSSEC signed. Testing for NSEC and NSEC3 has been skipped. Fetched from name servers "{ns_list}".
 
 
 The value in the Level column is the default severity level of the message. The
@@ -166,40 +165,38 @@ A complete list of all DNS Resource Record types can be found in the
         ("Algo Not Supported By ZM").
     2.  Name server IP address ("Erroneous Multiple NSEC").
     3.  Name server IP address ("Erroneous Multiple NSEC3").
-    4.  Name server IP address ("Expected NSEC3 Missing").
-    5.  Name server IP address ("Expected NSEC Missing").
-    6.  Name server IP address ("NSEC In Answer").
-    7.  Name server IP address ("NSEC Incorrect Type List").
-    8.  Name server IP address ("NSEC Mismatches Apex").
-    9.  Name server IP address ("NSEC Missing Signature").
-    10. Name server IP address and owner name (domain name data)
+    4.  Name server IP address ("NSEC In Answer").
+    5.  Name server IP address ("NSEC Incorrect Type List").
+    6.  Name server IP address ("NSEC Mismatches Apex").
+    7.  Name server IP address ("NSEC Missing Signature").
+    8.  Name server IP address and owner name (domain name data)
         ("NSEC NODATA Wrong SOA").
-    11. Name server IP address ("NSEC NODATA Missing SOA").
-    12. Name server IP address ("NSEC Query Gives Erroneous Answer").
-    13. Name server IP address ("NSEC Query Gives NSEC3 NODATA").
-    14. Name server IP address and key tag ("NSEC RRSIG Verify Error").
-    15. Name server IP address and key tag ("NSEC RRSIG Expired").
-    16. Name server IP address and key tag ("NSEC RRSIG Not Yet Valid").
-    17. Name server IP address and key tag ("NSEC RRSIG No DNSKEY").
-    18. Name server IP address ("NSEC RRSIG Verified").
-    19. Name server IP address ("NSEC Query Response Error").
-    20. Name server IP address ("NSEC3 Incorrect Type List").
-    21. Name server IP address ("NSEC3 Mismatches Apex").
-    22. Name server IP address ("NSEC3 Missing Signature").
-    23. Name server IP address and owner name (domain name data)
+    9.  Name server IP address ("NSEC NODATA Missing SOA").
+    10. Name server IP address ("NSEC Query Gives Erroneous Answer").
+    11. Name server IP address ("NSEC Query Gives NSEC3 NODATA").
+    12. Name server IP address and key tag ("NSEC RRSIG Verify Error").
+    13. Name server IP address and key tag ("NSEC RRSIG Expired").
+    14. Name server IP address and key tag ("NSEC RRSIG Not Yet Valid").
+    15. Name server IP address and key tag ("NSEC RRSIG No DNSKEY").
+    16. Name server IP address ("NSEC RRSIG Verified").
+    17. Name server IP address ("NSEC Query Response Error").
+    18. Name server IP address ("NSEC3 Incorrect Type List").
+    19. Name server IP address ("NSEC3 Mismatches Apex").
+    20. Name server IP address ("NSEC3 Missing Signature").
+    21. Name server IP address and owner name (domain name data)
         ("NSEC3 NODATA Wrong SOA").
-    24. Name server IP address ("NSEC3 NODATA Missing SOA").
-    25. Name server IP address and key tag ("NSEC3 RRSIG Verify Error").
-    26. Name server IP address and key tag ("NSEC3 RRSIG Expired").
-    27. Name server IP address and key tag ("NSEC3 RRSIG Not Yet Valid").
-    28. Name server IP address and key tag ("NSEC3 RRSIG No DNSKEY").
-    29. Name server IP address ("NSEC3 RRSIG Verified").
-    30. Name server IP address ("NSEC3PARAM In Answer").
-    31. Name server IP address ("NSEC3PARAM Query Gives Erroneous Answer").
-    32. Name server IP address ("NSEC3PARAM Query Gives NSEC NODATA").
-    33. Name server IP address ("NSEC3PARAM Query Response Error").
-    34. Name server IP address ("Responds without DNSKEY").
-    35. Name server IP address ("Responds with DNSKEY").
+    22. Name server IP address ("NSEC3 NODATA Missing SOA").
+    23. Name server IP address and key tag ("NSEC3 RRSIG Verify Error").
+    24. Name server IP address and key tag ("NSEC3 RRSIG Expired").
+    25. Name server IP address and key tag ("NSEC3 RRSIG Not Yet Valid").
+    26. Name server IP address and key tag ("NSEC3 RRSIG No DNSKEY").
+    27. Name server IP address ("NSEC3 RRSIG Verified").
+    28. Name server IP address ("NSEC3PARAM In Answer").
+    29. Name server IP address ("NSEC3PARAM Query Gives Erroneous Answer").
+    30. Name server IP address ("NSEC3PARAM Query Gives NSEC NODATA").
+    31. Name server IP address ("NSEC3PARAM Query Response Error").
+    32. Name server IP address ("Responds without DNSKEY").
+    33. Name server IP address ("Responds with DNSKEY").
 
 6.  For each name server IP address in *NS IP* do:
 
@@ -221,13 +218,15 @@ A complete list of all DNS Resource Record types can be found in the
           2. The [RCODE Name] in the response is not "NoError".
           3. The AA flag is not set in the response.
        2. Else if the answer section is non-empty, then do:
-          1. If the answer section has a NSEC RR then add the name server IP to
-             the *NSEC In Answer* set.
+          1. If the answer section has a NSEC RR then do:
+             1. Add the name server IP to the *NSEC In Answer* set.
+             2. If the owner name of the NSEC record is not *Child Zone* then
+                add name server IP to the *NSEC Mismatches Apex* set.
           2. Else then add the name server IP to the
              *NSEC Query Gives Erroneous Answer* set.
        3. Else if the answer section is empty, then do:
-          1. If the authority section contains no NSEC3 record then add the name
-             server IP to the *Expected NSEC3 Missing* set.
+          1. If the authority section contains no NSEC3 record then go to next
+             name server IP.
           2. Else do:
              1. Add the name server IP to the *NSEC Query Gives NSEC3 NODATA*
                 set.
@@ -282,18 +281,19 @@ A complete list of all DNS Resource Record types can be found in the
 
     6. Send *NSEC3PARAM Query* to the name server IP and do:
        1. If at least one of the following criteria is met, then add the name
-          server IP to the *NSEC3PARAM Query Response Error* set:
+          server IP to the *NSEC3PARAM Query Response Errors* set:
           1. There is no DNS response.
           2. The [RCODE Name] in the response is not "NoError".
           3. The AA flag is not set in the response.
        2. Else if the answer section is non-empty, then do:
-          1. If the answer section has a NSEC3PARAM RR then add the name
-             server IP to the *NSEC3PARAM In Answer* set.
+          1. If the answer section has a NSEC3PARAM RR with owner name
+             *Child Zone* then add the name server IP to the
+             *NSEC3PARAM In Answer* set.
           2. Else, then add the name server IP to the
              *NSEC3PARAM Query Gives Erroneous Answer* set.
        3. Else if the answer section is empty, then do:
-          1. If the authority section contains no NSEC record then add the name
-             server IP to the *Expected NSEC Missing* set.
+          1. If the authority section contains no NSEC record then go to the next
+             name server IP.
           2. Else do:
              1. Add the name server IP to the *NSEC3PARAM Query Gives NSEC NODATA* set.
              2. If the SOA record is missing the authority section then add the
@@ -387,77 +387,72 @@ A complete list of all DNS Resource Record types can be found in the
     *NSEC3PARAM Query Gives NSEC NODATA* set (or both). If both lists are
     non-empty then output *[DS10_INCONSISTENT_NSEC_NSEC3]* with both the lists.
 
-15. If the *NSEC3PARAM In Answer* set, the *NSEC Query Gives NSEC3 NODATA* set,
-    the *NSEC In Answer* set and the *NSEC3PARAM Query Gives NSEC NODATA* set are
-    all empty, then output *[DS10_MISSING_NSEC_NSEC3]*.
-
-16. If the *NSEC Incorrect Type List* set is non-empty, then output
+15. If the *NSEC Incorrect Type List* set is non-empty, then output
     *[DS10_NSEC_ERR_TYPE_LIST] with the list of name server IP in the set.
 
-17. If the *NSEC Mismatches Apex* set is non-empty, then output
+16. If the *NSEC Mismatches Apex* set is non-empty, then output
     *[DS10_NSEC_MISMATCHES_APEX] with the list of name server IP in the set.
 
-18. If the *NSEC NODATA Wrong SOA* set is non-empty, then for each owner name
+17. If the *NSEC NODATA Wrong SOA* set is non-empty, then for each owner name
     in the set output *[DS10_NSEC_NODATA_WRONG_SOA]* with the owner name and the
     list of name server IP in the set for that owner name.
 
-19. If the *NSEC NODATA Missing SOA* set is non-empty, then output
+18. If the *NSEC NODATA Missing SOA* set is non-empty, then output
     *[DS10_NSEC_NODATA_MISSING_SOA]* with the list of name server IP in the set.
 
-20. If the *NSEC Query Gives Erroneous Answer* set is non-empty, then output
+19. If the *NSEC Query Gives Erroneous Answer* set is non-empty, then output
     *[DS10_NSEC_QUERY_GIVES_ERR_ANSWER]* with the list of name server IP in the
     set.
 
-21. If the *NSEC Query Response Error* set is non-empty, then output
-    *[DS10_NSEC_QUERY_RESPONSE_ERROR]* with the list of name server IP in the
-    set.
+20. If the *NSEC Query Response Error* set is non-empty, then output
+    *[DS10_NSEC_QUERY_RESPONSE_ERR]* with the list of name server IP in the set.
 
-22. If the *NSEC3 Incorrect Type List* set is non-empty, then output
+21. If the *NSEC3 Incorrect Type List* set is non-empty, then output
     *[DS10_NSEC3_ERR_TYPE_LIST] with the list of name server IP in the set.
 
-23. If the *NSEC3 Mismatches Apex* set is non-empty, then output
+22. If the *NSEC3 Mismatches Apex* set is non-empty, then output
     *[DS10_NSEC3_MISMATCHES_APEX] with the list of name server IP in the set.
 
-24. If the *NSEC3 NODATA Wrong SOA* set is non-empty, then for each owner name
+23. If the *NSEC3 NODATA Wrong SOA* set is non-empty, then for each owner name
     in the set output *[DS10_NSEC3_NODATA_WRONG_SOA]* with the owner name and the
     list of name server IP in the set for that owner name.
 
-25. If the *NSEC3 NODATA Missing SOA* set is non-empty, then output
+24. If the *NSEC3 NODATA Missing SOA* set is non-empty, then output
     *[DS10_NSEC3_NODATA_MISSING_SOA]* with the list of name server IP in the set.
 
-26. If the *NSEC3PARAM Query Gives Erroneous Answer* set is non-empty, then
+25. If the *NSEC3PARAM Query Gives Erroneous Answer* set is non-empty, then
     output *[DS10_NSEC3PARAM_GIVES_ERR_ANSWER]* with the list of name server IP
     in the set.
 
-27. If the *NSEC3PARAM Query Response Error* set is non-empty, then output
+26. If the *NSEC3PARAM Query Response Error* set is non-empty, then output
     *[DS10_NSEC3PARAM_QUERY_RESPONSE_ERR]* with the list of name server IP in the
     set.
 
-28. If the *NSEC Missing Signature* set is non-empty then output
+27. If the *NSEC Missing Signature* set is non-empty then output
     *[DS10_NSEC_MISSING_SIGNATURE]* with the name server IP addresses from the
     set.
 
-29. If the *NSEC3 Missing Signature* set is non-empty then output
+28. If the *NSEC3 Missing Signature* set is non-empty then output
     *[DS10_NSEC3_MISSING_SIGNATURE]* with the name server IP addresses from the
     set.
 
-30. If the *NSEC RRSIG No DNSKEY* set is non-empty, then for each key ID
+29. If the *NSEC RRSIG No DNSKEY* set is non-empty, then for each key ID
     output *[DS10_NSEC_RRSIG_NO_DNSKEY]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-31. If the *NSEC RRSIG Expired* set is non-empty, then for each key ID
+30. If the *NSEC RRSIG Expired* set is non-empty, then for each key ID
     output *[DS10_NSEC_RRSIG_EXPIRED]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-32. If the *NSEC RRSIG Not Yet Valid* set is non-empty, then for each key ID
+31. If the *NSEC RRSIG Not Yet Valid* set is non-empty, then for each key ID
     output *[DS10_NSEC_RRSIG_NOT_YET_VALID]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-33. If the *NSEC RRSIG Verify Error* set is non-empty, then for each key ID
+32. If the *NSEC RRSIG Verify Error* set is non-empty, then for each key ID
     output *[DS10_NSEC_RRSIG_VERIFY_ERROR]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-34. If the combined set of the unique name server IP addresses of the
+33. If the combined set of the unique name server IP addresses of the
     *NSEC RRSIG No DNSKEY*, *NSEC RRSIG Expired*, *NSEC RRSIG Not Yet Valid* and
     *NSEC RRSIG Verify Error* sets is non-empty, then do:
     1. For each name server IP address in the combined set store the IP address
@@ -467,49 +462,50 @@ A complete list of all DNS Resource Record types can be found in the
        *[DS10_NSEC_NO_VERIFIED_SIGNATURE]* with the name server IP addresses from
        the set.
 
-35. If the *NSEC3 RRSIG No DNSKEY* set is non-empty, then for each key ID
+34. If the *NSEC3 RRSIG No DNSKEY* set is non-empty, then for each key ID
     output *[DS10_NSEC3_RRSIG_NO_DNSKEY]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-36. If the *NSEC3 RRSIG Expired* set is non-empty, then for each key ID
+35. If the *NSEC3 RRSIG Expired* set is non-empty, then for each key ID
     output *[DS10_NSEC3_RRSIG_EXPIRED]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-37. If the *NSEC3 RRSIG Not Yet Valid* set is non-empty, then for each key ID
+36. If the *NSEC3 RRSIG Not Yet Valid* set is non-empty, then for each key ID
     output *[DS10_NSEC3_RRSIG_NOT_YET_VALID]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-38. If the *NSEC3 RRSIG Verify Error* set is non-empty, then for each key ID
+37. If the *NSEC3 RRSIG Verify Error* set is non-empty, then for each key ID
     output *[DS10_NSEC3_RRSIG_VERIFY_ERROR]* with the key ID and the name server
     IP addresses from the set for the key ID.
 
-39. If the combined set of the unique name server IP addresses of the
-    *NSEC3 RRSIG No DNSKEY*, *NSEC3 RRSIG Expired*, *NSEC3 RRSIG Not Yet Valid*
-    and *NSEC3 RRSIG Verify Error* sets is non-empty, then do:
-    1. For each name server IP address in the combined set store the IP address
-       in a temporary set for the next step if the IP address is not a member of
-       the *NSEC3 RRSIG Verified*.
-    2. If the temporary set is non-empty then output
-       *[DS10_NSEC3_NO_VERIFIED_SIGNATURE]* with the name server IP addresses
-       from the set.
+38. If the combined set of the *NSEC3 RRSIG No DNSKEY*, *NSEC3 RRSIG Expired*,
+    *NSEC3 RRSIG Not Yet Valid* and *NSEC3 RRSIG Verify Error* sets is non-empty,
+    then do:
+    1. Extract all unique name server IP address in the combined set that are
+       not members the *NSEC3 RRSIG Verified* set.
+    2. If the extracted name server IP addresses is a non-empty set then output
+       *[DS10_NSEC3_NO_VERIFIED_SIGNATURE]* with the extracted name server IP
+       addresses.
 
-40. If the *Algo Not Supported By ZM* set is non-empty, then output
+39. If the *Algo Not Supported By ZM* set is non-empty, then output
     *[DS10_ALGO_NOT_SUPPORTED_BY_ZM]* for each DNSKEY key tag with the name
     server IP addresses, the key tag and the algorithm name and code from the
     set.
 
-41. If the *Responds with DNSKEY* set is empty and the *Responds without DNSKEY*
-    is non-empty then output *[DS10_NO_DNSSEC_SUPPORT]* with the name server IP
+40. If the *Responds with DNSKEY* set is empty and the *Responds without DNSKEY*
+    is non-empty then output *[DS10_ZONE_NO_DNSSEC]* with the name server IP
     addresses from the *Responds without DNSKEY* set.
 
-42. If both the *Responds with DNSKEY* set and the *Responds without DNSKEY* set
-    are non-empty then output *[DS10_SERVER_NO_DNSSEC_SUPPORT]* with the name
-    server IP addresses from the *Responds without DNSKEY* set.
+41. If both the *Responds with DNSKEY* set and the *Responds without DNSKEY* set
+    are non-empty then output *[DS10_SERVER_NO_DNSSEC]* with the name server IP
+    addresses from the *Responds without DNSKEY* set.
 
-43. If the *Expected NSEC3 Missing* set or the *Expected NSEC Missing* set (or
-    both) is non-empty then output *[DS10_EXPECTED_NSEC_NSEC3_MISSING]* with the
-    name server IP addresses from the sets.
-
+42. Extract all members of the *NS IP* set that is not also a member of
+    the *Responds without DNSKEY* set, the *NSEC In Answer* set, the
+    *NSEC3PARAM Query Gives NSEC NODATA* set, the *NSEC3PARAM In Answer* set or
+    the *NSEC Query Gives NSEC3 NODATA* set. If the extracted set is non-empty,
+    then output *[DS10_EXPECTED_NSEC_NSEC3_MISSING]* with the extracted list of
+    name server IP addresses.
 
 ## Outcome(s)
 
@@ -560,9 +556,7 @@ No special terminology for this Test Case.
 [DS10_INCONSISTENT_NSEC3]:                    #summary
 [DS10_INCONSISTENT_NSEC]:                     #summary
 [DS10_INCONSISTENT_NSEC_NSEC3]:               #summary
-[DS10_MISSING_NSEC_NSEC3]:                    #summary
 [DS10_MIXED_NSEC_NSEC3]:                      #summary
-[DS10_NO_DNSSEC_SUPPORT]:                     #summary
 [DS10_NSEC3PARAM_GIVES_ERR_ANSWER]:           #summary
 [DS10_NSEC3PARAM_QUERY_RESPONSE_ERR]:         #summary
 [DS10_NSEC3_ERR_TYPE_LIST]:                   #summary
@@ -582,12 +576,13 @@ No special terminology for this Test Case.
 [DS10_NSEC_NODATA_WRONG_SOA]:                 #summary
 [DS10_NSEC_NO_VERIFIED_SIGNATURE]:            #summary
 [DS10_NSEC_QUERY_GIVES_ERR_ANSWER]:           #summary
-[DS10_NSEC_QUERY_RESPONSE_ERROR]:             #summary
+[DS10_NSEC_QUERY_RESPONSE_ERR]:               #summary
 [DS10_NSEC_RRSIG_EXPIRED]:                    #summary
 [DS10_NSEC_RRSIG_NOT_YET_VALID]:              #summary
 [DS10_NSEC_RRSIG_NO_DNSKEY]:                  #summary
 [DS10_NSEC_RRSIG_VERIFY_ERROR]:               #summary
-[DS10_SERVER_NO_DNSSEC_SUPPORT]:              #summary
+[DS10_SERVER_NO_DNSSEC]:                      #summary
+[DS10_ZONE_NO_DNSSEC]:                        #summary
 [ERROR]:                                      ../SeverityLevelDefinitions.md#error
 [IANA RR Type List]:                          https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 [INFO]:                                       ../SeverityLevelDefinitions.md#info
