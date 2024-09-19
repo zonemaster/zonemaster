@@ -156,8 +156,8 @@ A complete list of all DNS Resource Record types can be found in the
 3. Create a [DNSSEC Query] with query type NSEC3PARAM and query name *Child Zone*
    ("NSEC3PARAM Query").
 
-4.  Retrieve all name server names and IP addresses for the
-    *Child Zone* using [Method4] and [Method5] ("NS IP").
+4.  Retrieve all name server names and IP addresses for *Child Zone* using
+    methods [Get-Del-NS-Names-and-IPs] and [Get-Zone-NS-Names-and-IPs] ("NS IP").
 
 5.  Create the following empty sets:
 
@@ -584,10 +584,10 @@ No special terminology for this Test Case.
 [DS10_SERVER_NO_DNSSEC]:                      #summary
 [DS10_ZONE_NO_DNSSEC]:                        #summary
 [ERROR]:                                      ../SeverityLevelDefinitions.md#error
+[Get-Del-NS-Names-and-IPs]:                   ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
+[Get-Zone-NS-Names-and-IPs]:                  ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
 [IANA RR Type List]:                          https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 [INFO]:                                       ../SeverityLevelDefinitions.md#info
-[Method4]:                                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]:                                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NOTICE]:                                     ../SeverityLevelDefinitions.md#notice
 [RCODE Name]:                                 https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 4034#section-4]:                         https://datatracker.ietf.org/doc/html/rfc4034#section-4
