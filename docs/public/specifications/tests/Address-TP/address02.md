@@ -16,17 +16,19 @@
 
 ## Objective
 
-Best curent practices dictates that imternet reachable hosts should have a
+Best curent practices dictates that internet reachable hosts should have a
 reverse DNS entry, as various services on the Internet, for instance spam 
 filters, may consider this when determining the trustworthiness of the host.
-Se [RFC1912] section 2.1 and [RFC1033] page 11 for additional information.
-
-## Scope
+See [RFC1912] section 2.1 and [RFC1033] page 11 for additional information.
 
 This test checks for the existence of PTR records for the corresponding reverse
 domains of the name servers IP address.
 
-## Inputs*
+## Scope
+Only the existence of a PTR record, or a record that resolves to a PTR record, 
+is checked. Not the validity of said record. That is handeled by other tests.
+
+## Inputs
 
 The domain name to be tested.
 
@@ -98,6 +100,7 @@ None.
 [A02_PTR_MISSING]:                  #Summary
 [Argument list]:                    ../ArgumentsForTestCaseMessages.md
 [CRITICAL]:                         ../SeverityLevelDefinitions.md#critical
+[ERROR]:                             ../SeverityLevelDefinitions.md#error
 [Get-Del-NS-Names-and-IPs]:         ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
 [Get-Zone-NS-Names-and-IPs]:        ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
 [INFO]:                             ../SeverityLevelDefinitions.md#info
