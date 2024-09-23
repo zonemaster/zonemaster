@@ -30,7 +30,7 @@ is checked. Not the validity of said record. That is handeled by other tests.
 
 ## Inputs
 
-The domain name to be tested.
+* "Child zone" -- the domain name to be tested.
 
 ## Summary
 
