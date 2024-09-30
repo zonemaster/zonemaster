@@ -32,7 +32,7 @@ The test scenarios are structured as stated in the [test zone README file].
 ## Test zone names
 
 The test zone for each test scenario in this document is a subdomain delegated
-from the base name (`addresso1.xa`) and that subdomain having the same name as the
+from the base name (`address01.xa`) and that subdomain having the same name as the
 scenario. The names of those zones are given in section
 "[Zone setup for test scenarios]" below.
 
@@ -45,7 +45,7 @@ irrelevant to the test scenario and must be ignored.
 Scenario name        | Mandatory message tag                                                        | Forbidden message tags
 :--------------------|:-----------------------------------------------------------------------------|:-------
 GOOD-1               | A01_ADDR_GLOBALLY_REACHABLE                                                  | 2) 
-ALL-NON-REACHABLE           | A01_NO_GLOBALLY_REACHABLE_ADDR                                               | 2) 
+ALL-NON-REACHABLE    | A01_NO_GLOBALLY_REACHABLE_ADDR                                               | 2) 
 MIXED-LOCAL-DOC-1    | A01_LOCAL_USE_ADDR, A01_DOCUMENTATION_ADDR                                   | 2) 
 MIXED-LOCAL-DOC-2    | A01_LOCAL_USE_ADDR, A01_DOCUMENTATION_ADDR                                   | 2) 
 MIXED-LOCAL-OTHER-1  | A01_LOCAL_USE_ADDR, A01_ADDR_NOT_GLOBALLY_REACHABLE                          | 2) 
@@ -87,7 +87,6 @@ The "happy path". Everything is fine.
 
 * Zone mixed-local-doc-1.address01.xa
 
-
 * ns1 
   * IPv4 address LOCAL_USE_ADDR 
   * IPv6 address OK
@@ -97,7 +96,7 @@ The "happy path". Everything is fine.
 
 ### MIXED-LOCAL-DOC-2
 
-* Zone MIXed-local-doc-2.address01.xa
+* Zone mixed-local-doc-2.address01.xa
 
 * ns1 
   * IPv4 address DOCUMENTATION_ADDR
@@ -108,8 +107,7 @@ The "happy path". Everything is fine.
 
 ### MIXED-DOC-OTHER-1
 
-* Zone MIXEd-doc-other-1.address01.xa
-
+* Zone mixed-doc-other-1.address01.xa
 
 * ns1 
   * IPv4 address DOCUMENTATION_ADDR
