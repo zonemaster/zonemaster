@@ -76,7 +76,12 @@ the specific scenario:
 * EDNS, version 0, is included in all responses on queries with EDNS.
 * EDNS is not included in responses on queries without EDNS.
 
-
+Address designation      | Meaning                                                        
+:------------------------|:------------------------------------------------------------------------------------------------
+OK                       | Globally routable, public address
+LOCAL_USE_ADDR           | Address part of range used for private networks (loopback, RFC1918, Provider shared, etc.)
+DOCUMENTATION_ADDR       | Address part of range used for documentation purposes.
+NOT_GLOBALLY_REACHABLE   | Address part of any other range listed as not globally reachable
 
 ### GOOD-1 
 The "happy path". Everything is fine.
@@ -88,7 +93,7 @@ The "happy path". Everything is fine.
 * Zone mixed-local-doc-1.address01.xa
 
 * ns1 
-  * IPv4 address LOCAL_USE_ADDR 
+  * IPv4 address LOCAL_USE_ADDR
   * IPv6 address OK
 * ns2
   * IPv4 address OK

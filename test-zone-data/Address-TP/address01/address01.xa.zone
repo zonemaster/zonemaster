@@ -19,64 +19,64 @@ ns2		AAAA	fda1:b2:c3:0:127:11:1:22
 $ORIGIN good-1.address01.xa.
 @		NS	ns1
 @		NS	ns2
-ns1		A	127.11.1.31
-ns1		AAAA	fda1:b2:c3:0:127:11:1:31
-ns2		A	127.11.1.32
-ns2		AAAA	fda1:b2:c3:0:127:11:1:32
+ns1		A	192.36.148.17              ; i.root-servers.net.
+ns1		AAAA	2001:7fe::53               ; i.root-servers.net.
+ns2		A	192.58.128.30              ; j.root-servers.net.
+ns2		AAAA	2001:503:c27::2:30         ; j.root-servers.net.
 
 $ORIGIN mixed-local-doc-1.address01.xa.            
 @		NS	ns1
 @		NS	ns2
 ns1		A	192.168.11.31              ; Private-Use [RFC1918]
-ns1		AAAA	fda1:b2:c3:0:127:11:1:31
-ns2		A	127.11.1.31
+ns1		AAAA	2001:7fe::53               ; i.root-servers.net.
+ns2		A	192.36.148.17              ; i.root-servers.net.
 ns2		AAAA	2001:db8::127:11:1:32      ; Documentation [RFC3849]
 
 $ORIGIN mixed-local-doc-2.address01.xa.            
 @		NS	ns1
 @		NS	ns2
 ns1		A	192.0.2.31                 ; Documentation (TEST-NET-1)	[RFC5737]
-ns1		AAAA	fda1:b2:c3:0:127:11:1:31    
-ns2		A	127.11.1.32
+ns1		AAAA	2001:7fe::53               ; i.root-servers.net.    
+ns2		A	192.58.128.30              ; j.root-servers.net.
 ns2		AAAA	fc00::127:11:1:32          ; Unique-Local [RFC4193] [RFC8190]
 
 $ORIGIN mixed-doc-other-1.address01.xa.            
 @		NS	ns1
 @		NS	ns2
 ns1		A	198.51.100.31              ; Documentation (TEST-NET-2) [RFC5737]
-ns1		AAAA	fda1:b2:c3:0:127:11:1:31
-ns2		A	127.11.1.32
+ns1		AAAA	2001:7fe::53               ; i.root-servers.net.
+ns2		A	192.58.128.30              ; j.root-servers.net.
 ns2		AAAA	64:ff9b:1::127:11:1:32	   ; IPv4-IPv6 Translat. [RFC8215]
 
 $ORIGIN mixed-doc-other-2.address01.xa.            
 @		NS	ns1
 @		NS	ns2
 ns1		A	240.0.0.31	           ; Reserved [RFC1112] 
-ns1		AAAA	fda1:b2:c3:0:127:11:1:31
-ns2		A	127.11.1.32
+ns1		AAAA	2001:7fe::53               ; i.root-servers.net.
+ns2		A	192.58.128.30              ; j.root-servers.net.
 ns2		AAAA	3fff::127:11:1:32	   ; Documentation [RFC9637]
 
 $ORIGIN mixed-local-other-1.address01.xa.            
 @		NS	ns1
 @		NS	ns2
 ns1		A	169.254.0.31	           ; Link Local [RFC3927]
-ns1		AAAA	fda1:b2:c3:0:127:11:1:31
-ns2		A	127.11.1.32
+ns1		AAAA	2001:7fe::53               ; i.root-servers.net.
+ns2		A	192.58.128.30              ; j.root-servers.net.
 ns2		AAAA	2001:2::127:11:1:32	   ; Benchmarking [RFC5180][RFC Errata 1752]
 
 $ORIGIN mixed-local-other-2.address01.xa. 
 @		NS	ns1
 @		NS	ns2
 ns1		A	198.18.0.31	           ; Benchmarking [RFC2544]
-ns1		AAAA	fda1:b2:c3:0:127:11:1:31
-ns2		A	127.11.1.32
+ns1		AAAA	2001:7fe::53               ; i.root-servers.net.
+ns2		A	192.58.128.30              ; j.root-servers.net.
 ns2		AAAA	fc00::127:11:1:32	   ; Unique-Local [RFC4193] [RFC8190]
 
 $ORIGIN mixed-all-1.address01.xa.
 @		NS	ns1
 @		NS	ns2
 ns1		A	172.16.0.31	           ; Private-Use [RFC1918]
-ns1		AAAA	fda1:b2:c3:0:127:11:1:31
+ns1		AAAA	2001:7fe::53               ; i.root-servers.net.
 ns2		A	203.0.113.32	           ; Documentation (TEST-NET-3)	[RFC5737]
 ns2		AAAA    2002::127:11:1:32	   ; 6to4 [RFC3056]	
 
@@ -85,7 +85,7 @@ $ORIGIN mixed-all-2.address01.xa.
 @		NS	ns2
 ns1		A	198.18.0.31	           ; Benchmarking [RFC2544] (RE-USED)
 ns1		AAAA	fe80::127:11:1:31	   ; Link-Local Unicast [RFC4291]
-ns2		A	127.11.1.32
+ns2		A	192.58.128.30              ; j.root-servers.net.
 ns2		AAAA	2001:db8::127:11:1:32      ; Documentation [RFC3849] (RE-USED)
 
 $ORIGIN all-non-reachable.address01.xa.
