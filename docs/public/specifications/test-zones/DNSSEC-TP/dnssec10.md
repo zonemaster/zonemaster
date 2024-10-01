@@ -99,13 +99,14 @@ INCONSISTENT-NSEC3-1           | DS10_INCONSISTENT_NSEC3, DS10_HAS_NSEC3        
 INCONSIST-NSEC-NSEC3-1         | DS10_INCONSISTENT_NSEC_NSEC3                                                 | 2)
 INCONSIST-NSEC-NSEC3-2         | DS10_INCONSISTENT_NSEC_NSEC3, DS10_INCONSISTENT_NSEC, DS10_INCONSISTENT_NSEC3| 2)
 MIXED-NSEC-NSEC3-1             | DS10_MIXED_NSEC_NSEC3                                                        | 2)
+MIXED-NSEC-NSEC3-1             | DS10_MIXED_NSEC_NSEC3                                                        | 2)
 NSEC3PARAM-GIVES-ERR-ANSWER-1  | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_HAS_NSEC3                             | 2)
 NSEC3PARAM-GIVES-ERR-ANSWER-2  | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_EXPECTED_NSEC_NSEC3_MISSING           | 2)
 NSEC3PARAM-GIVES-ERR-ANSWER-3  | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_HAS_NSEC3                             | 2)
 NSEC3PARAM-Q-RESPONSE-ERR-1    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_HAS_NSEC3                           | 2)
 NSEC3PARAM-Q-RESPONSE-ERR-2    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_HAS_NSEC3                           | 2)
 NSEC3PARAM-Q-RESPONSE-ERR-3    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_EXPECTED_NSEC_NSEC3_MISSING         | 2)
-NSEC3-ERR-TYPE-LIST-1          | DS10_NSEC3_ERR_TYPE_LIST, DS10_HAS_NSEC3                                     | 2)
+NSEC3-ERR-TYPE-LIST-1          | DS10_NSEC3_ERR_TYPE_LIST, DS10_HAS_NSEC3, DS10_NSEC3_NO_VERIFIED_SIGNATURE, DS10_NSEC3_RRSIG_VERIFY_ERROR | 2)
 NSEC3-ERR-TYPE-LIST-2          | DS10_NSEC3_ERR_TYPE_LIST, DS10_HAS_NSEC3                                     | 2)
 NSEC3-MISMATCHES-APEX-1        | DS10_NSEC3_MISMATCHES_APEX, DS10_HAS_NSEC3                                   | 2)
 NSEC3-MISSING-SIGNATURE-1      | DS10_NSEC3_MISSING_SIGNATURE, DS10_HAS_NSEC3                                 | 2)
@@ -186,10 +187,12 @@ An NSEC zone. Unknown algorithm of a DNSKEY.
 * Zone: algo-not-supp-by-zm-1.dnssec10.xa
   * There is an extra RRSIG for the NSEC record (as the response to the
     NSEC3PARAM query).
-    * That RRSIG has been created by [algorithm 253][IANA registry], which is
+    * That RRSIG has been created by [algorithm 255][IANA registry], which is
       private algorithm never supported.
-    * A matching DNSKEY ([algorithm 253][IANA registry]) is available.
-  * For this test scenario a fake signature and a fake public key can be used.
+    * A matching DNSKEY ([algorithm 255][IANA registry]) is available.
+    * For this test scenario a fake signature and a fake public key are used.
+  * The extra DNSKEY is in the DNSKEY RRset which is resigned by the valid
+    KSK.
 
 ### ALGO-NOT-SUPP-BY-ZM-2
 An NSEC3 zone. Unknown algorithm of a DNSKEY.
@@ -197,10 +200,12 @@ An NSEC3 zone. Unknown algorithm of a DNSKEY.
 * Zone: algo-not-supp-by-zm-2.dnssec10.xa
   * There is an extra RRSIG for the NSEC3 record (as the response to the
     NSEC query).
-    * That RRSIG has been created by [algorithm 253][IANA registry], which is
+    * That RRSIG has been created by [algorithm 255][IANA registry], which is
       private algorithm never supported.
-    * A matching DNSKEY ([algorithm 253][IANA registry]) is available.
-  * For this test scenario a fake signature and a fake public key can be used.
+    * A matching DNSKEY ([algorithm 255][IANA registry]) is available.
+  * For this test scenario a fake signature and a fake public key are used.
+  * The extra DNSKEY is in the DNSKEY RRset which is resigned by the valid
+    KSK.
 
 ### ERR-MULT-NSEC-1
 An NSEC zone. An extra NSEC record is returned.
@@ -209,6 +214,7 @@ An NSEC zone. An extra NSEC record is returned.
   * An extra NSEC record is returned in the response to the NSEC3PARAM query.
     * The extra NSEC record has the same owner name, but different value in
       "Next Domain Name" field.
+  * RRSIG is recalculated.
 
 ### ERR-MULT-NSEC3-1
 An NSEC3 zone. An extra NSEC3 record is returned.
@@ -217,9 +223,10 @@ An NSEC3 zone. An extra NSEC3 record is returned.
   * An extra NSEC3 record is returned in the response to the NSEC query.
     * The extra NSEC3 record has the same hashowner name, but different value in
       "Next Hashed Owner Name" field.
+  * For this test scenario a fake signature can be used.
 
 ### EXP-NSEC-NSEC3-MISS-1
-A zone without NSEC and NSEC3. There is NSEC or NSEC3 function.
+A zone without NSEC and NSEC3. There is no NSEC or NSEC3 function.
 
 * Zone: exp-nsec-nsec3-miss-1.dnssec10.xa
   * The NSEC query gives a NODATA response with no NSEC or NSEC3 record.
@@ -229,15 +236,16 @@ A zone without NSEC and NSEC3. There is NSEC or NSEC3 function.
 An NSEC zone. Some errors in NSEC handling.
 
 * Zone: inconsistent-nsec-1.dnssec10.xa
-  * ns1 includes no NSEC record in the response on the NSEC3PARAM query.
-  * ns2 includes no NSEC record in the response on the NSEC query.
+  * ns1 includes no NSEC record in the nodata response on the NSEC3PARAM query.
+  * ns2 includes no NSEC record in the nodata response on the NSEC query.
 
 ### INCONSISTENT-NSEC3-1
 An NSEC3 zone. Some errors in NSEC3 handling.
 
 * Zone: inconsistent-nsec3-1.dnssec10.xa
-  * ns1 includes no NSEC3 record in the response on the NSEC query.
-  * ns2 includes no NSEC3PARAM record in the response on the NSEC3PARAM query.
+  * ns1 includes no NSEC3 record in the NODATA response on the NSEC query.
+  * ns2 includes no NSEC3PARAM or NSEC3 record in the NODATA response on the
+    NSEC3PARAM query.
 
 ### INCONSIST-NSEC-NSEC3-1
 Mixing beteen NSEC and NSEC3.
@@ -262,8 +270,17 @@ NSEC on one server and NSEC3 on the other plus errors in NSEC and NSEC3 handling
 Servers gives both NSEC and NSEC3
 
 * Zone: mixed-nsec-nsec3-1.dnssec10.xa
-  * The zone gives an NSEC3PARAM record in response to the NSEC3PARAM query.
   * The zone gives an NSEC record in response to NSEC query.
+  * The zone gives an NSEC3PARAM record in response to the NSEC3PARAM query.
+
+### MIXED-NSEC-NSEC3-2
+Servers gives both NSEC and NSEC3
+
+* Zone: mixed-nsec-nsec3-2.dnssec10.xa
+  * The zone gives a NODATA response with NSEC3 record in response to NSEC
+    query.
+  * The zone gives a NODATA response with NSEC record in response to the
+    NSEC3PARAM query.
 
 ### NSEC3PARAM-GIVES-ERR-ANSWER-1
 An NSEC3 zone. Error in response to NSEC3PARAM query.
@@ -288,8 +305,8 @@ An NSEC3 zone. Error in response to NSEC3PARAM query.
 * Zone: nsec3param-gives-err-answer-3.dnssec10.xa
   * The owner name of the NSEC3PARAM record in response to the NSEC3PARAM query
     is errouneous and does not match apex.
-    * The owner name is `dnssec10.xa` instead of expected
-      `nsec3param-gives-err-answer-3.dnssec10.xa`.
+    * The owner name is `sub.nsec3param-gives-err-answer-3.dnssec10.xa` instead
+      of expected `nsec3param-gives-err-answer-3.dnssec10.xa`.
 
 ## NSEC3PARAM-Q-RESPONSE-ERR-1
 An NSEC3 zone. Error in response to NSEC3PARAM query.
@@ -317,6 +334,7 @@ An NSEC3 zone. The type list of the NSEC3 record is erroneous.
 
 * Zone: nsec3-err-type-list-1.dnssec10.xa
   * The type list of the NSEC3 record includes NSEC.
+  * The RRSIG does not match the NSEC3 RRset.
 
 ### NSEC3-ERR-TYPE-LIST-2
 An NSEC3 zone. The type list of the NSEC3 record is erroneous.
