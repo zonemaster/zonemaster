@@ -106,7 +106,7 @@ NSEC3PARAM-GIVES-ERR-ANSWER-3  | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_HAS_NSEC
 NSEC3PARAM-Q-RESPONSE-ERR-1    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_HAS_NSEC3                           | 2)
 NSEC3PARAM-Q-RESPONSE-ERR-2    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_HAS_NSEC3                           | 2)
 NSEC3PARAM-Q-RESPONSE-ERR-3    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_EXPECTED_NSEC_NSEC3_MISSING         | 2)
-NSEC3-ERR-TYPE-LIST-1          | DS10_NSEC3_ERR_TYPE_LIST, DS10_HAS_NSEC3, DS10_NSEC3_NO_VERIFIED_SIGNATURE, DS10_NSEC3_RRSIG_VERIFY_ERROR | 2)
+NSEC3-ERR-TYPE-LIST-1          | DS10_NSEC3_ERR_TYPE_LIST, DS10_HAS_NSEC3                                     | 2)
 NSEC3-ERR-TYPE-LIST-2          | DS10_NSEC3_ERR_TYPE_LIST, DS10_HAS_NSEC3                                     | 2)
 NSEC3-MISMATCHES-APEX-1        | DS10_NSEC3_MISMATCHES_APEX, DS10_HAS_NSEC3                                   | 2)
 NSEC3-MISSING-SIGNATURE-1      | DS10_NSEC3_MISSING_SIGNATURE, DS10_HAS_NSEC3                                 | 2)
@@ -334,7 +334,6 @@ An NSEC3 zone. The type list of the NSEC3 record is erroneous.
 
 * Zone: nsec3-err-type-list-1.dnssec10.xa
   * The type list of the NSEC3 record includes NSEC.
-  * The RRSIG does not match the NSEC3 RRset.
 
 ### NSEC3-ERR-TYPE-LIST-2
 An NSEC3 zone. The type list of the NSEC3 record is erroneous.
