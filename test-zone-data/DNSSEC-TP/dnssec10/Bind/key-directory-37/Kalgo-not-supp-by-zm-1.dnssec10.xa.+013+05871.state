@@ -1,0 +1,14 @@
+; This is the state of key 5871, for algo-not-supp-by-zm-1.dnssec10.xa.
+Algorithm: 13
+Length: 256
+Lifetime: 0
+KSK: no
+ZSK: yes
+Generated: 20240925122409 (Wed Sep 25 12:24:09 2024)
+Published: 20240925122409 (Wed Sep 25 12:24:09 2024)
+Active: 20240925122409 (Wed Sep 25 12:24:09 2024)
+DNSKEYChange: 20240926132909 (Thu Sep 26 13:29:09 2024)
+ZRRSIGChange: 20240926132909 (Thu Sep 26 13:29:09 2024)
+DNSKEYState: omnipresent
+ZRRSIGState: omnipresent
+GoalState: omnipresent

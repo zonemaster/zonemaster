@@ -1,0 +1,17 @@
+; This is the state of key 18903, for nsec3param-q-response-err-2.dnssec10.xa.
+Algorithm: 13
+Length: 256
+Lifetime: 0
+KSK: yes
+ZSK: no
+Generated: 20240927141740 (Fri Sep 27 14:17:40 2024)
+Published: 20240927141740 (Fri Sep 27 14:17:40 2024)
+Active: 20240927141740 (Fri Sep 27 14:17:40 2024)
+PublishCDS: 20241115152240 (Fri Nov 15 15:22:40 2024)
+DNSKEYChange: 20240928152240 (Sat Sep 28 15:22:40 2024)
+KRRSIGChange: 20240928152240 (Sat Sep 28 15:22:40 2024)
+DSChange: 20240927141740 (Fri Sep 27 14:17:40 2024)
+DNSKEYState: omnipresent
+KRRSIGState: omnipresent
+DSState: hidden
+GoalState: omnipresent

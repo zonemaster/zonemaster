@@ -1,0 +1,17 @@
+; This is the state of key 36426, for err-mult-nsec3-1.dnssec10.xa.
+Algorithm: 13
+Length: 256
+Lifetime: 0
+KSK: yes
+ZSK: no
+Generated: 20240925152328 (Wed Sep 25 15:23:28 2024)
+Published: 20240925152328 (Wed Sep 25 15:23:28 2024)
+Active: 20240925152328 (Wed Sep 25 15:23:28 2024)
+PublishCDS: 20241113162828 (Wed Nov 13 16:28:28 2024)
+DNSKEYChange: 20240926162828 (Thu Sep 26 16:28:28 2024)
+KRRSIGChange: 20240926162828 (Thu Sep 26 16:28:28 2024)
+DSChange: 20240925152328 (Wed Sep 25 15:23:28 2024)
+DNSKEYState: omnipresent
+KRRSIGState: omnipresent
+DSState: hidden
+GoalState: omnipresent

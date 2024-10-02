@@ -1,0 +1,17 @@
+; This is the state of key 30880, for inconsist-nsec-nsec3-2.dnssec10.xa.
+Algorithm: 13
+Length: 256
+Lifetime: 0
+KSK: yes
+ZSK: no
+Generated: 20240926135349 (Thu Sep 26 13:53:49 2024)
+Published: 20240926135349 (Thu Sep 26 13:53:49 2024)
+Active: 20240926135349 (Thu Sep 26 13:53:49 2024)
+PublishCDS: 20240927145849 (Fri Sep 27 14:58:49 2024)
+DNSKEYChange: 20240927145849 (Fri Sep 27 14:58:49 2024)
+KRRSIGChange: 20240927145849 (Fri Sep 27 14:58:49 2024)
+DSChange: 20240926135349 (Thu Sep 26 13:53:49 2024)
+DNSKEYState: omnipresent
+KRRSIGState: omnipresent
+DSState: hidden
+GoalState: omnipresent
