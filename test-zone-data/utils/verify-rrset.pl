@@ -14,34 +14,32 @@ cat data-file | verify-rrset.pl
 
 verify-rrset.pl --help
 
-
 =head1 DATA FILE
 
 Create a file with the entire RRset, the RRSIG record
-and the matching DNSKEY record.
+and the matching DNSKEY record. The records must be
+in that specific order.
 
 =over 3
 
 =item *
-Create a line with just "%RRSET%".
+All records in an RRset must have the same type and the same
+owner name.
 
 =item *
-List all DNS records in the RRset after the "%RRSET%" line.
+There must be at least one record in the RRset, but there may
+be multiple records. Some records such as NSEC must normally
+not be more than one of in a RRset, but here that is permitted.
 
 =item *
-Create a line with just "%SIG%".
+There must be exactly one RRSIG, and its owner name must be
+the same as the RRset.
 
 =item *
-Add one RRSIG record after the "%SIG%" line.
+There must be exactly one DNSKEY.
 
 =item *
-Create a line with just "%KEY%".
-
-=item *
-Add one DNSKEY record after the "KEY%" line.
-
-=item *
-You can freely add comment lines starting with "#" anywhere.
+Comment lines starting with "#" are permitted.
 
 =back
 
@@ -49,12 +47,9 @@ You can freely add comment lines starting with "#" anywhere.
 
 =begin text
 
-%RRSET%
 err-mult-nsec-1.dnssec10.xa. 86400 IN	NSEC	ns1.err-mult-nsec-1.dnssec10.xa. NS SOA RRSIG NSEC DNSKEY TYPE65534
 err-mult-nsec-1.dnssec10.xa. 86400 IN	NSEC	www.err-mult-nsec-1.dnssec10.xa. NS SOA RRSIG NSEC DNSKEY TYPE65534
-%SIG%
 err-mult-nsec-1.dnssec10.xa. 86400 IN RRSIG NSEC 13 3 86400 20320923032719 20240925135938 58097 err-mult-nsec-1.dnssec10.xa. loXyRdLZF9LWOOMLBl9Y8O4lRjoCiZVnnczuvlPxblX34Jy3tM+6IFmtHAUyU/6hLuoZ1H2BwYjN MSx2n95/lg==
-%KEY%
 err-mult-nsec-1.dnssec10.xa. 86400 IN	DNSKEY	256 3 13 5H2z0t6sesAGCzY5ayLWpN5s2y7HUq/TWFeZ4tAEvAPhmX6rtM5AkEAm G3QnVSfQN3u5wirEC9/JDqm2G3wJkA==
 
 =end text
@@ -80,43 +75,59 @@ if ( $help ) {
 }
 
 my ( $section ) = 'RRSET';
-my ( $sigrr );
+my ( $rrsig );
 my ( @rrsetref );
 my ( $keyrr );
+my ( $rrsettype ) = '';
+my ( $ownername ) = '';
 
+my ( $rrsetfound ) = 0;
+my ( $rrsigfound ) = 0;
+my ( $keyrrfound ) = 0;
 while( my $line = <> ) {
     chomp ( $line );
     next if $line =~ /^\s*$/;
     next if $line =~ /^#/;
-    if ($line =~ /^%SIG%/) {
-        $section = 'SIG';
-        next;
-    }
-    if ($line =~ /^%KEY%/) {
-        $section = 'KEY';
-        next;
-    }
-    if ($line =~ /^%RRSET%/) {
-        $section = 'RRSET';
-        next;
-    }
-    if ($section eq 'SIG') {
-        die 'An RRSIG when $sigrr is already defined' if $sigrr;
-        $sigrr = Net::DNS::RR->new( $line );
-    }
-    if ($section eq 'KEY') {
-        die 'A DNSKEY when $keyrr is already defined' if $keyrr;
-        $keyrr = Net::DNS::RR->new( $line );
-    }
-    if ($section eq 'RRSET') {
-        my $rrref = Net::DNS::RR->new( $line );
-        push ( @rrsetref, $rrref );
+    my $rr = Net::DNS::RR->new( $line );
+    # say "DEBUG: " . $rr->type;
+    if ( $rr->type eq 'RRSIG' ) {
+        die "ERROR: The RRset must be listed before the RRSIG.\n" unless $rrsetfound;
+        die "ERROR: Only one RRSIG may be included.\n" if $rrsigfound;
+        if ($rr->owner ne $ownername ) {
+            die "ERROR: RRSIG must have the same owner name as the RRset.\n";
+        }
+        $rrsig = $rr;
+        $rrsigfound = 1;
+    } elsif ( $rr->type eq 'DNSKEY' and $rrsigfound ) {
+        die "ERROR: Only one DNSKEY may be included.\n" if $keyrrfound;
+        $keyrr = $rr;
+        $keyrrfound = 1;
+    } elsif ($keyrrfound) {
+        die "ERROR: DNSKEY must be the last record.\n" if $keyrrfound;        
+    } else {
+        if ( $rrsettype) {
+            if ($rr->type ne $rrsettype ) {
+                die "ERROR: All records in the RRset must have the same type.\n";
+            }
+            if ($rr->owner ne $ownername ) {
+                die "ERROR: All records in the RRset must have the same owner name.\n";
+            }
+        } else {
+            $rrsettype = $rr->type;
+            $ownername = $rr->owner;
+            $rrsetfound = 1;
+        };
+        push ( @rrsetref, $rr );
     }
 }
-my $verify = $sigrr->verify( \@rrsetref, $keyrr );
+die "ERROR: Missing RRset\n" unless $rrsetfound;
+die "ERROR: Missing RRSIG\n" unless $rrsigfound;
+die "ERROR: Missing DNSKEY\n" unless $keyrrfound;
+
+my $verify = $rrsig->verify( \@rrsetref, $keyrr );
 
 if ($verify) {
     say 'Verified.';
 } else {
-    say 'Verify error: ' . $sigrr->vrfyerrstr;
+    say 'Verify ERROR: ' . $rrsig->vrfyerrstr;
 }

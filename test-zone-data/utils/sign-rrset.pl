@@ -1,21 +1,5 @@
 #!/usr/bin/env perl
 
-
-#
-# A file with the private key must be provided with "--key". Date-time
-# values must be given with "--exp" and "--inc", repectively.
-#
-# A RRSIG record is printed out on STDOUT.
-#
-# Example (on one line):
-#
-# echo "mixed-nsec-nsec3-1.dnssec10.xa. 86400 IN SOA localhost. root.localhost. 21 3600 1200 2419200 604800" \ 
-#     | ~/git/zonemaster/test-zone-data/utils/sign-rrset.pl \
-#     --key key-directory-38/Kmixed-nsec-nsec3-1.dnssec10.xa.+013+55355.private \
-#     --exp 20320923122409 --inc 20240925112409
-
-
-
 =pod
 
 =head1 SUMMARY
@@ -25,9 +9,9 @@ by the provided private key
 
 =head1 SYNOPSIS
 
-cat data-file | sign-rrset --key KEY --exp DATETIME --inc DATETIME
+cat data-file | sign-rrset.pl --key KEY --exp DATETIME --inc DATETIME
 
-sign-rrset --help
+sign-rrset.pl --help
 
 =over 3
 
@@ -55,10 +39,6 @@ err-mult-nsec-1.dnssec10.xa. 86400 IN	NSEC	www.err-mult-nsec-1.dnssec10.xa. NS S
 =end text
 
 =cut
-
-
-
-
 
 
 use 5.16.0;
