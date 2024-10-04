@@ -436,8 +436,8 @@ An NSEC zone. The owner name of the NSEC record is errouneous.
 * Zone: nsec-mismatches-apex-1.dnssec10.xa
   * The owner name of the NSEC record in response to the NSEC3PARAM query is
     errouneous and does not match apex.
-    * The owner name is `dnssec10.xa` instead of expected
-      `nsec-mismatches-apex-1.dnssec10.xa`.
+    * The owner name is `sub.nsec-mismatches-apex-1.dnssec10.xa` instead of
+      expected `nsec-mismatches-apex-1.dnssec10.xa`.
 
 ### NSEC-MISMATCHES-APEX-2
 An NSEC zone. The owner name of the NSEC record is errouneous.
@@ -445,8 +445,8 @@ An NSEC zone. The owner name of the NSEC record is errouneous.
 * Zone: nsec-mismatches-apex-2.dnssec10.xa
   * The owner name of the NSEC record in response to the NSEC query is
     errouneous and does not match apex.
-    * The owner name is `dnssec10.xa` instead of expected
-      `nsec-mismatches-apex-2.dnssec10.xa`.
+    * The owner name is `sub.nsec-mismatches-apex-2.dnssec10.xa` instead of
+      expected `nsec-mismatches-apex-2.dnssec10.xa`.
 
 ### NSEC-MISSING-SIGNATURE-1
 An NSEC zone. The RRSIG is missing.
@@ -466,7 +466,7 @@ An NSEC zone. In the NODATA response the SOA record has the wrong owner name.
 
 * Zone: nsec-nodata-wrong-soa-1.dnssec10.xa
   * The owner name of the SOA record in the NODATA response to the NSEC3PARAM
-    query is `dnssec10.xa` instead of expected
+    query is `sub.nsec-nodata-wrong-soa-1.dnssec10.xa` instead of expected
     `nsec-nodata-wrong-soa-1.dnssec10.xa`.
 
 ### NSEC-NO-VERIFIED-SIGNATURE-1
