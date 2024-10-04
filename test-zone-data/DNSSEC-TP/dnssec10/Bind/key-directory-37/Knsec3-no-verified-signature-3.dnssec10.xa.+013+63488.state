@@ -1,0 +1,14 @@
+; This is the state of key 63488, for nsec3-no-verified-signature-3.dnssec10.xa.
+Algorithm: 13
+Length: 256
+Lifetime: 0
+KSK: no
+ZSK: yes
+Generated: 20241004095212 (Fri Oct  4 09:52:12 2024)
+Published: 20241004095212 (Fri Oct  4 09:52:12 2024)
+Active: 20241004095212 (Fri Oct  4 09:52:12 2024)
+DNSKEYChange: 20241004095212 (Fri Oct  4 09:52:12 2024)
+ZRRSIGChange: 20241004095212 (Fri Oct  4 09:52:12 2024)
+DNSKEYState: rumoured
+ZRRSIGState: rumoured
+GoalState: omnipresent
