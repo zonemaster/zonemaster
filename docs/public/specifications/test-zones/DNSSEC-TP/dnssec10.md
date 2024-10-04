@@ -365,7 +365,8 @@ An NSEC3 zone. In the NODATA response the SOA record has the wrong owner name.
 
 * Zone: nsec3-nodata-wrong-soa-1.dnssec10.xa
   * The owner name of the SOA record in the NODATA response to the NSEC query
-    is `dnssec10.xa` instead of expected `nsec3-nodata-wrong-soa-1.dnssec10.xa`.
+    is `sub.nsec3-nodata-wrong-soa-1.dnssec10.xa` instead of expected
+    `nsec3-nodata-wrong-soa-1.dnssec10.xa`.
 
 ### NSEC3-NO-VERIFIED-SIGNATURE-1
 An NSEC3 zone. The RRSIG for the NSEC3 record cannot be verified.
