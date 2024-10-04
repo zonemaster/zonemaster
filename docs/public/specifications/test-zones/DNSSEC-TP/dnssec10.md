@@ -400,7 +400,7 @@ An NSEC3 zone. The RRSIG for the NSEC3 record cannot be verified.
 * Zone: nsec3-no-verified-signature-4.dnssec10.xa
   * The RRSIG record for the NSEC3 record in the NODATA response to the NSEC
     query cannot be verified.
-    * The RRSIG signature does not match the RRSIG record and appointed DNSKEY.
+    * The RRSIG signature does not match the NSEC record and appointed DNSKEY.
 
 ### NSEC-ERR-TYPE-LIST-1
 An NSEC zone. The type list of the NSEC record is erroneous.
