@@ -1,0 +1,17 @@
+; This is the state of key 53870, for nsec-err-type-list-2.dnssec10.xa.
+Algorithm: 13
+Length: 256
+Lifetime: 0
+KSK: yes
+ZSK: no
+Generated: 20241004133942 (Fri Oct  4 13:39:42 2024)
+Published: 20241004133942 (Fri Oct  4 13:39:42 2024)
+Active: 20241004133942 (Fri Oct  4 13:39:42 2024)
+PublishCDS: 20241005144442 (Sat Oct  5 14:44:42 2024)
+DNSKEYChange: 20241004133942 (Fri Oct  4 13:39:42 2024)
+KRRSIGChange: 20241004133942 (Fri Oct  4 13:39:42 2024)
+DSChange: 20241004133942 (Fri Oct  4 13:39:42 2024)
+DNSKEYState: rumoured
+KRRSIGState: rumoured
+DSState: hidden
+GoalState: omnipresent

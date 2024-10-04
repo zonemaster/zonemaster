@@ -1,0 +1,17 @@
+; This is the state of key 21048, for nsec-gives-err-answer-1.dnssec10.xa.
+Algorithm: 13
+Length: 256
+Lifetime: 0
+KSK: yes
+ZSK: no
+Generated: 20241004141642 (Fri Oct  4 14:16:42 2024)
+Published: 20241004141642 (Fri Oct  4 14:16:42 2024)
+Active: 20241004141642 (Fri Oct  4 14:16:42 2024)
+PublishCDS: 20241005152142 (Sat Oct  5 15:21:42 2024)
+DNSKEYChange: 20241004141642 (Fri Oct  4 14:16:42 2024)
+KRRSIGChange: 20241004141642 (Fri Oct  4 14:16:42 2024)
+DSChange: 20241004141642 (Fri Oct  4 14:16:42 2024)
+DNSKEYState: rumoured
+KRRSIGState: rumoured
+DSState: hidden
+GoalState: omnipresent
