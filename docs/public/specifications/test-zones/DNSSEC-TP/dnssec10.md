@@ -475,7 +475,7 @@ An NSEC zone. The RRSIG for the NSEC record cannot be verified.
 * Zone: nsec-no-verified-signature-1.dnssec10.xa
   * The RRSIG record for the NSEC record in the NODATA response to the NSEC3PARAM
     query cannot be verified.
-    * There is no matching DNSKEY for the RRSIG for the NSEC record.
+    * There is no matching DNSKEY for the RRSIG for that NSEC record.
 
 ### NSEC-NO-VERIFIED-SIGNATURE-2
 An NSEC zone. The RRSIG for the NSEC record cannot be verified.
