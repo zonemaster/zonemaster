@@ -528,19 +528,28 @@ responsess from ns2.
 An NSEC zone. No DNSKEY in response from ns1. Normal response from ns2.
 
 * Zone: server-no-dnssec-1.dnssec10.xa
-  * The answer section in response from ns1 on the DNSKEY query is empty.
+  * The answer section in response from ns1 on the DNSKEY query is empty. Unsigned
+    NODATA response without NSEC or NSEC3.
+  * The NSEC and NSEC3PARAM queries are irrelevant, but they also give a Unsigned
+    NODATA response without NSEC or NSEC3 on ns1.
 
 ### SERVER-NO-DNSSEC-2
 An NSEC3 zone. No DNSKEY in response from ns1. Normal response from ns2.
 
 * Zone: server-no-dnssec-2.dnssec10.xa
-  * The answer section in response from ns1 on the DNSKEY query is empty.
+  * The answer section in response from ns1 on the DNSKEY query is empty. Unsigned
+    NODATA response without NSEC or NSEC3.
+  * The NSEC and NSEC3PARAM queries are irrelevant, but they also give a Unsigned
+    NODATA response without NSEC or NSEC3 on ns1.
 
 ### ZONE-NO-DNSSEC-1
-No DNSKEY in response.
+No DNSKEY in response. 
 
 * Zone: zone-no-dnssec-1.dnssec10.xa
-  * The answer section in response on the DNSKEY query is empty.
+  * The answer section in response on the DNSKEY query is empty. Unsigned NODATA
+    response without NSEC or NSEC3.
+  * The NSEC and NSEC3PARAM queries are irrelevant, but they also give a Unsigned
+    NODATA response without NSEC or NSEC3.
 
 
 [DNSSEC10]:                                                        ../../tests/DNSSEC-TP/dnssec10.md
