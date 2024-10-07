@@ -15,10 +15,8 @@
 
 See the [test zone README file].
 
-
 ## Test Case
 This document specifies defined test zones for test case [ADDRESS01].
-
 
 ## Test scenarios
 
@@ -35,7 +33,6 @@ The test zone for each test scenario in this document is a subdomain delegated
 from the base name (`address01.xa`) and that subdomain having the same name as the
 scenario. The names of those zones are given in section
 "[Zone setup for test scenarios]" below.
-
 
 ## Test scenarios and message tags
 
@@ -58,16 +55,13 @@ MIXED-ALL-2          | A01_ADDR_NOT_GLOBALLY_REACHABLE, A01_DOCUMENTATION_ADDR, 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
 * (2) All tags except for those specified as "Mandatory message tags"
 
-
-
 ## Zone setup for test scenarios
-
 
 Assumptions for the scenario specifications unless otherwise specified for
 the specific scenario:
 * The child zone is `SCENARIO.address01.xa`.
 * There is no zone file or zone data for the child zone.
-* For each scenario zone there are three NS records (ns[1-3]).
+* For each scenario zone there are two NS records (ns[1-2]).
   * All NS are in-bailiwick
   * All NS have both IPv4 and IPv6 addresses
   * All required glue are present in the delegation.
@@ -83,6 +77,9 @@ LOCAL_USE_ADDR           | Address part of range used for private networks (loop
 DOCUMENTATION_ADDR       | Address part of range used for documentation purposes.
 NOT_GLOBALLY_REACHABLE   | Address part of any other range listed as not globally reachable
 
+Designations are based on the address block ranges from the 
+[Special purpose IPv4 addresses] and [Special purpose IPv6 addresses] registries. 
+
 ### GOOD-1 
 The "happy path". Everything is fine.
 
@@ -97,7 +94,7 @@ The "happy path". Everything is fine.
   * IPv6 address OK
 * ns2
   * IPv4 address OK
-  * IPv6 address  DOCUMENTATION_ADDR
+  * IPv6 address DOCUMENTATION_ADDR
 
 ### MIXED-LOCAL-DOC-2
 
@@ -108,7 +105,7 @@ The "happy path". Everything is fine.
   * IPv6 address OK
 * ns2
   * IPv4 address OK
-  * IPv6 address  LOCAL_USE_ADDR
+  * IPv6 address LOCAL_USE_ADDR
 
 ### MIXED-DOC-OTHER-1
 
@@ -119,7 +116,7 @@ The "happy path". Everything is fine.
   * IPv6 address OK
 * ns2
   * IPv4 address OK
-  * IPv6 address  NOT_GLOBALLY_REACHABLE
+  * IPv6 address NOT_GLOBALLY_REACHABLE
 
 ### MIXED-DOC-OTHER-2
 
@@ -135,7 +132,6 @@ The "happy path". Everything is fine.
 ### MIXED-LOCAL-OTHER-1
 
 * Zone mixed-local-other-1.address01.xa
-
 
 * ns1 
   * IPv4 address LOCAL_USE_ADDR
@@ -155,7 +151,6 @@ The "happy path". Everything is fine.
   * IPv4 address OK
   * IPv6 address LOCAL_USE_ADDR  
 
-
 ### MIXED-ALL-1
 
 * Zone mixed-all-1.address01.xa
@@ -167,7 +162,6 @@ The "happy path". Everything is fine.
   * IPv4 address DOCUMENTATION_ADDR
   * IPv6 address NOT_GLOBALLY_REACHABLE 
 
-
 ### MIXED-ALL-2
 
 * Zone mixed-all-2.address01.xa
@@ -177,11 +171,12 @@ The "happy path". Everything is fine.
   * IPv6 address LOCAL_USE_ADDR
 * ns2
   * IPv4 address OK
-  * IPv6 address  DOCUMENTATION_ADDR
+  * IPv6 address DOCUMENTATION_ADDR
 
 ### ALL-NON-REACHABLE
 All addresses of all nameservers falls within one of the address blocks listed 
-as not globally reachable.
+as not globally reachable. Delegation contatins three name servers to cover all
+combinations of defined address block types.
 
 * Zone all-non-reachable.address01.xa
 
@@ -196,11 +191,9 @@ as not globally reachable.
   * IPv6 address DOCUMENTATION_ADDR
 
 
-
-
-
-[ADDRESS01]:                              ../../tests/Address-TP/address01.md
-[RCODE Name]:                             https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[Test zone README file]:                  ../README.md
-[Zone setup for test scenarios]:          #zone-setup-for-test-scenarios
-
+[ADDRESS01]:                        ../../tests/Address-TP/address01.md
+[RCODE Name]:                       https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[Special purpose IPv4 addresses]:   https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xml 
+[Special purpose IPv6 addresses]:   https://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xml
+[Test zone README file]:            ../README.md
+[Zone setup for test scenarios]:    #zone-setup-for-test-scenarios
