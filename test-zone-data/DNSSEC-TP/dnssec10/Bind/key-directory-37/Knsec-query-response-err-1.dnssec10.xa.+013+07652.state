@@ -1,0 +1,14 @@
+; This is the state of key 7652, for nsec-query-response-err-1.dnssec10.xa.
+Algorithm: 13
+Length: 256
+Lifetime: 0
+KSK: no
+ZSK: yes
+Generated: 20241007142459 (Mon Oct  7 14:24:59 2024)
+Published: 20241007142459 (Mon Oct  7 14:24:59 2024)
+Active: 20241007142459 (Mon Oct  7 14:24:59 2024)
+DNSKEYChange: 20241007142459 (Mon Oct  7 14:24:59 2024)
+ZRRSIGChange: 20241007142459 (Mon Oct  7 14:24:59 2024)
+DNSKEYState: rumoured
+ZRRSIGState: rumoured
+GoalState: omnipresent

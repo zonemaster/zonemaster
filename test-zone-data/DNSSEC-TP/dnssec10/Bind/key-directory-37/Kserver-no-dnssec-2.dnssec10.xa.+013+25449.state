@@ -1,0 +1,17 @@
+; This is the state of key 25449, for server-no-dnssec-2.dnssec10.xa.
+Algorithm: 13
+Length: 256
+Lifetime: 0
+KSK: yes
+ZSK: no
+Generated: 20241007155513 (Mon Oct  7 15:55:13 2024)
+Published: 20241007155513 (Mon Oct  7 15:55:13 2024)
+Active: 20241007155513 (Mon Oct  7 15:55:13 2024)
+PublishCDS: 20241125170013 (Mon Nov 25 17:00:13 2024)
+DNSKEYChange: 20241007155513 (Mon Oct  7 15:55:13 2024)
+KRRSIGChange: 20241007155513 (Mon Oct  7 15:55:13 2024)
+DSChange: 20241007155513 (Mon Oct  7 15:55:13 2024)
+DNSKEYState: rumoured
+KRRSIGState: rumoured
+DSState: hidden
+GoalState: omnipresent
