@@ -7,8 +7,8 @@ ZSK: yes
 Generated: 20241004093336 (Fri Oct  4 09:33:36 2024)
 Published: 20241004093336 (Fri Oct  4 09:33:36 2024)
 Active: 20241004093336 (Fri Oct  4 09:33:36 2024)
-DNSKEYChange: 20241004093336 (Fri Oct  4 09:33:36 2024)
+DNSKEYChange: 20241005103836 (Sat Oct  5 10:38:36 2024)
 ZRRSIGChange: 20241004093336 (Fri Oct  4 09:33:36 2024)
-DNSKEYState: rumoured
+DNSKEYState: omnipresent
 ZRRSIGState: rumoured
 GoalState: omnipresent

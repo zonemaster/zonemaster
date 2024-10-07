@@ -1,0 +1,17 @@
+; This is the state of key 35580, for nsec-mismatches-apex-2.dnssec10.xa.
+Algorithm: 13
+Length: 256
+Lifetime: 0
+KSK: yes
+ZSK: no
+Generated: 20241005162812 (Sat Oct  5 16:28:12 2024)
+Published: 20241005162812 (Sat Oct  5 16:28:12 2024)
+Active: 20241005162812 (Sat Oct  5 16:28:12 2024)
+PublishCDS: 20241006173312 (Sun Oct  6 17:33:12 2024)
+DNSKEYChange: 20241006173312 (Sun Oct  6 17:33:12 2024)
+KRRSIGChange: 20241006173312 (Sun Oct  6 17:33:12 2024)
+DSChange: 20241006173312 (Sun Oct  6 17:33:12 2024)
+DNSKEYState: omnipresent
+KRRSIGState: omnipresent
+DSState: rumoured
+GoalState: omnipresent

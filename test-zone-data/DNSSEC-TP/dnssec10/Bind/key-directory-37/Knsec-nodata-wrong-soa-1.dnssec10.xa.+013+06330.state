@@ -1,0 +1,17 @@
+; This is the state of key 6330, for nsec-nodata-wrong-soa-1.dnssec10.xa.
+Algorithm: 13
+Length: 256
+Lifetime: 0
+KSK: yes
+ZSK: no
+Generated: 20241007100025 (Mon Oct  7 10:00:25 2024)
+Published: 20241007100025 (Mon Oct  7 10:00:25 2024)
+Active: 20241007100025 (Mon Oct  7 10:00:25 2024)
+PublishCDS: 20241008110525 (Tue Oct  8 11:05:25 2024)
+DNSKEYChange: 20241007100025 (Mon Oct  7 10:00:25 2024)
+KRRSIGChange: 20241007100025 (Mon Oct  7 10:00:25 2024)
+DSChange: 20241007100025 (Mon Oct  7 10:00:25 2024)
+DNSKEYState: rumoured
+KRRSIGState: rumoured
+DSState: hidden
+GoalState: omnipresent

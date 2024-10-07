@@ -1,0 +1,14 @@
+; This is the state of key 6539, for nsec-mismatches-apex-2.dnssec10.xa.
+Algorithm: 13
+Length: 256
+Lifetime: 0
+KSK: no
+ZSK: yes
+Generated: 20241005162812 (Sat Oct  5 16:28:12 2024)
+Published: 20241005162812 (Sat Oct  5 16:28:12 2024)
+Active: 20241005162812 (Sat Oct  5 16:28:12 2024)
+DNSKEYChange: 20241006173312 (Sun Oct  6 17:33:12 2024)
+ZRRSIGChange: 20241006173312 (Sun Oct  6 17:33:12 2024)
+DNSKEYState: omnipresent
+ZRRSIGState: omnipresent
+GoalState: omnipresent

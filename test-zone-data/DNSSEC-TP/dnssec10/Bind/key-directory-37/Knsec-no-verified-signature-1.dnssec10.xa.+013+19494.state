@@ -1,0 +1,17 @@
+; This is the state of key 19494, for nsec-no-verified-signature-1.dnssec10.xa.
+Algorithm: 13
+Length: 256
+Lifetime: 0
+KSK: yes
+ZSK: no
+Generated: 20241007114805 (Mon Oct  7 11:48:05 2024)
+Published: 20241007114805 (Mon Oct  7 11:48:05 2024)
+Active: 20241007114805 (Mon Oct  7 11:48:05 2024)
+PublishCDS: 20241008125305 (Tue Oct  8 12:53:05 2024)
+DNSKEYChange: 20241007114805 (Mon Oct  7 11:48:05 2024)
+KRRSIGChange: 20241007114805 (Mon Oct  7 11:48:05 2024)
+DSChange: 20241007114805 (Mon Oct  7 11:48:05 2024)
+DNSKEYState: rumoured
+KRRSIGState: rumoured
+DSState: hidden
+GoalState: omnipresent

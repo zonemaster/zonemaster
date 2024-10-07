@@ -8,10 +8,10 @@ Generated: 20241004131815 (Fri Oct  4 13:18:15 2024)
 Published: 20241004131815 (Fri Oct  4 13:18:15 2024)
 Active: 20241004131815 (Fri Oct  4 13:18:15 2024)
 PublishCDS: 20241005142315 (Sat Oct  5 14:23:15 2024)
-DNSKEYChange: 20241004131815 (Fri Oct  4 13:18:15 2024)
-KRRSIGChange: 20241004131815 (Fri Oct  4 13:18:15 2024)
-DSChange: 20241004131815 (Fri Oct  4 13:18:15 2024)
-DNSKEYState: rumoured
-KRRSIGState: rumoured
-DSState: hidden
+DNSKEYChange: 20241005142315 (Sat Oct  5 14:23:15 2024)
+KRRSIGChange: 20241005142315 (Sat Oct  5 14:23:15 2024)
+DSChange: 20241005142315 (Sat Oct  5 14:23:15 2024)
+DNSKEYState: omnipresent
+KRRSIGState: omnipresent
+DSState: rumoured
 GoalState: omnipresent
