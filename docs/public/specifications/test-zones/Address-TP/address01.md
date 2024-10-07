@@ -65,8 +65,6 @@ the specific scenario:
   * All NS are in-bailiwick
   * All NS have both IPv4 and IPv6 addresses
   * All required glue are present in the delegation.
-  * None of the glue records have an IPv4 or IPv6 address that falls under an
-    address span listed as not globally reachable.
 * EDNS, version 0, is included in all responses on queries with EDNS.
 * EDNS is not included in responses on queries without EDNS.
 

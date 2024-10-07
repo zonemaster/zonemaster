@@ -91,9 +91,10 @@ ns2		AAAA	2001:db8::127:11:1:32      ; Documentation [RFC3849] (RE-USED)
 $ORIGIN all-non-reachable.address01.xa.
 @		NS	ns1
 @		NS	ns2
+@		NS	ns3
 ns1		A	10.0.0.31                  ; Private-Use [RFC1918]
 ns1		AAAA	2001:2::127:11:1:31	   ; Benchmarking [RFC5180][RFC Errata 1752]
 ns2		A	203.0.113.32	           ; Documentation (TEST-NET-3)	[RFC5737]
 ns2		AAAA	fc00::127:11:1:32	   ; Unique-Local [RFC4193][RFC8190] (RE-USED)
 ns3             A       192.0.0.33	           ; IETF Protocol Assignments [RFC6890]
-ns2		AAAA	3fff::127:11:1:33	   ; Documentation [RFC9637]
+ns3		AAAA	3fff::127:11:1:33	   ; Documentation [RFC9637]
