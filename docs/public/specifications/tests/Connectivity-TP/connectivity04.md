@@ -20,10 +20,8 @@
 
 ## Objective
 
-The objective in this Test Case is to verify that all IP addresses of the domain's
-authoritative name servers are announced from different IP prefixes.
-
-This Test is done separately on IPv4 and IPv6, and both must match the criterion.
+The objective in this Test Case is to verify that all IP addresses of the
+domain's authoritative name servers are not announced from the same IP prefix.
 
 [RFC 2182, section 3.1][RFC 2182#3.1], clearly specifies that distinct authoritative
 name servers for a child domain should be placed in different topological and 
@@ -50,12 +48,14 @@ giving a correct DNS response for an authoritative name server.
 
 Message Tag                 | Level   | Arguments                   | Message ID for message tag
 :---------------------------|:--------|:----------------------------|:------------------------------------------------------------------------------------------------
-CN04_EMPTY_PREFIX_SET       | ERROR   | ns_ip                       | Prefix database returned no information for IP address {ns_ip}.
-CN04_ERROR_PREFIX_DATABASE  | ERROR   | ns_ip                       | Prefix database error. No data to analyze for IP address {ns_ip}.
-CN04_IPV4_SAME_PREFIX       | WARNING | ns_list, ip_prefix          | The following name server(s) are announced in the same IPv4 prefix ({ip_prefix}): "{ns_list}"
+CN04_EMPTY_PREFIX_SET       | NOTICE  | ns_ip                       | Prefix database returned no information for IP address {ns_ip}.
+CN04_ERROR_PREFIX_DATABASE  | NOTICE  | ns_ip                       | Prefix database error. No data to analyze for IP address {ns_ip}.
 CN04_IPV4_DIFFERENT_PREFIX  | INFO    | ns_list                     | The following name server(s) are announced in unique IPv4 prefix(es): "{ns_list}"
-CN04_IPV6_SAME_PREFIX       | WARNING | ns_list, ip_prefix          | The following name server(s) are announced in the same IPv6 prefix ({ip_prefix}): "{ns_list}"
+CN04_IPV4_SAME_PREFIX       | NOTICE  | ns_list, ip_prefix          | The following name server(s) are announced in the same IPv4 prefix ({ip_prefix}): "{ns_list}"
+CN04_IPV4_SINGLE_PREFIX     | WARNING |                             | All name server(s) (IPv4) are announced in the same IPv4 prefix.
 CN04_IPV6_DIFFERENT_PREFIX  | INFO    | ns_list                     | The following name server(s) are announced in unique IPv6 prefix(es): "{ns_list}"
+CN04_IPV6_SAME_PREFIX       | NOTICE  | ns_list, ip_prefix          | The following name server(s) are announced in the same IPv6 prefix ({ip_prefix}): "{ns_list}"
+CN04_IPV6_SINGLE_PREFIX     | WARNING |                             | All name server(s) (IPv6) are announced in the same IPv6 prefix.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine Profile]. Also see the
@@ -67,40 +67,39 @@ message. The argument names are defined in the [Argument List].
 ## Test procedure
 
 1. Create the following empty sets:
-   1. Name server name and IP address ("NS IPv4")
-   2. Name server name and IP address ("NS IPv6")
-   3. IP prefix, name server name and IP address ("IPv4 Prefix")
-   4. IP prefix, name server name and IP address ("IPv6 Prefix")
+   1. IP prefix, name server name and IP address ("IPv4 Prefix")
+   2. IP prefix, name server name and IP address ("IPv6 Prefix")
 
-2. Obtain the set of name server names and IP addresses using [Method4]
-   and [Method5] ("Name Servers").
+2. Obtain the set of name server names and IP addresses using
+   [Get-Del-NS-Names-and-IPs] and [Get-Zone-NS-Names-and-IPs] in [MethodsV2] and
+   split those into IPv4 and IPv6 ("NS IPv4" and "NS IPv6", respectively).
 
-3. For each name server IP address in *Name Servers* do:
-   1. Add IPv4 addresses with name server name to the *NS IPv4* set.
-   2. Add IPv6 addresses with name server name to the *NS IPv6* set.
-
-4. For each IP address in *NS IPv4* and *NS IPv6* ("NS IP Address"),
+3. For each IP address in *NS IPv4* and *NS IPv6* ("NS IP Address"),
    respectively, do:
    1. Determine the IP prefix in which *NS IP Address* is announced
       using *Prefix Database*. See [Prefix Lookup Methods] section below.
    2. Add found IP prefix, if any, with *NS IP Address* and name server name
       to the *IPv4 Prefix* and *IPv6 Prefix* sets, respectively.
 
-5. If the *IPv4 Prefix* set is non-empty, then do:
+4. If the *IPv4 Prefix* set is non-empty, then do:
    1. For each IP prefix in the set that has two or more members, output
-      *[CN04_IPV4_SAME_PREFIX]* with the prefix and list of all members
-      (name server names and IP addresses) for that prefix.
-   2. For all IP prefixes in the set that have exactly one member, output
+      *[CN04_IPV4_SAME_PREFIX]* with the prefix and list of all members (name
+      server names and IP addresses) for that prefix.
+   2. For each IP prefix in the set that have exactly one member, output
       *[CN04_IPV4_DIFFERENT_PREFIX]* with the combined set of their associated
       members (name server names and IP addresses).
+   3. If all members of *NS IPv4* are members of the same IP prefix in
+      *IPv4 Prefix* then output *[CN04_IPV4_SINGLE_PREFIX]*.
 
-6. If the *IPv6 Prefix* set is non-empty, then do:
+5. If the *IPv6 Prefix* set is non-empty, then do:
    1. For each IP prefix in the set that has two or more members, output
-      *[CN04_IPV6_SAME_PREFIX]* with the prefix and list of all members
-      (name server names and IP addresses) for that prefix.
-   2. For all IP prefixes in the set that have exactly one member, output
+      *[CN04_IPV6_SAME_PREFIX]* with the prefix and list of all members (name
+      server names and IP addresses) for that prefix.
+   2. For each IP prefix in the set that have exactly one member, output
       *[CN04_IPV6_DIFFERENT_PREFIX]* with the combined set of their associated
       members (name server names and IP addresses).
+   3. If all members of *NS Ipv6* are members of the same IP prefix in
+      *Ipv6 Prefix* then output *[CN04_IPV6_SINGLE_PREFIX]*.
 
 ## Outcome(s)
 
@@ -226,8 +225,10 @@ None
 [CN04_ERROR_PREFIX_DATABASE]:                                   #outcomes
 [CN04_IPV4_DIFFERENT_PREFIX]:                                   #outcomes
 [CN04_IPV4_SAME_PREFIX]:                                        #outcomes
+[CN04_IPV4_SINGLE_PREFIX]:                                      #outcomes
 [CN04_IPV6_DIFFERENT_PREFIX]:                                   #outcomes
 [CN04_IPV6_SAME_PREFIX]:                                        #outcomes
+[CN04_IPV6_SINGLE_PREFIX]:                                      #outcomes
 [Concatenate]:                                                  #terminology
 [Connectivity01]:                                               connectivity01.md
 [CRITICAL]:                                                     ../SeverityLevelDefinitions.md#critical
@@ -237,11 +238,11 @@ None
 [DNS Query]:                                                    ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
 [DNS Response]:                                                 ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
 [ERROR]:                                                        ../SeverityLevelDefinitions.md#error
+[Get-Del-NS-Names-and-IPs]:                                     ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
+[Get-Zone-NS-Names-and-IPs]:                                    ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
 [INFO]:                                                         ../SeverityLevelDefinitions.md#info
 [IP to ASN Mapping]:                                            https://www.team-cymru.com/ip-asn-mapping
-[Method4]:                                                      ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]:                                                      ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[Methods]:                                                      ../Methods.md
+[MethodsV2]:                                                    ../MethodsV2.md
 [NOTICE]:                                                       ../SeverityLevelDefinitions.md#notice
 [Prefix Lookup Methods]:                                        #prefix-lookup-methods
 [RCODE Name]:                                                   https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
