@@ -1,0 +1,41 @@
+$ORIGIN .
+$TTL 3600
+
+@       SOA     ns1. admin.xb. (
+                2024100900      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+          NS     root-ns1.xa.
+          NS     root-ns2.xa.
+
+
+root-ns1.xa.     A      127.13.4.23
+root-ns1.xa.     AAAA   fda1:b2:c3::127:13:4:23
+
+root-ns2.xa.     A      127.13.4.23
+root-ns2.xa.     AAAA   fda1:b2:c3::127:13:4:23
+
+$ORIGIN asnlookup.zonemaster.net.
+@                NS     ns1
+@                NS     ns2
+
+ns1              A      127.13.4.25
+ns1              AAAA   fda1:b2:c3::127:13:4:25
+ns2              A      127.13.4.26
+ns1              AAAA   fda1:b2:c3::127:13:4:26
+
+$ORIGIN connectivity04.xa.
+@                NS     ns1
+@                NS     ns2
+
+ns1              A      127.13.4.21
+ns1              AAAA   fda1:b2:c3::127:13:4:21
+ns2              A      127.13.4.22
+ns1              AAAA   fda1:b2:c3::127:13:4:22
+
+
+
+;EOF

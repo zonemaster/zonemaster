@@ -1,0 +1,110 @@
+$ORIGIN asnlookup.zonemaster.net.                       ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024101102      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@             NS    ns1
+@             NS    ns2
+
+ns1           A     127.13.4.21
+ns1           AAAA  fda1:b2:c3:0:127:13:4:25
+ns2           A     127.13.4.22
+ns2           AAAA  fda1:b2:c3:0:127:13:4:26
+
+1.origin      TXT   "Test string"
+
+
+$ORIGIN 100.127.origin.asnlookup.zonemaster.net.
+
+; 1.100.100.127.origin.asnlookup.zonemaster.net.
+
+*.100         TXT "64512 | 127.100.100.0/24 | NA | NA | NA"
+*.101         TXT "64512 | 127.100.101.0/24 | NA | NA | NA"
+*.102         TXT "64512 | 127.100.102.0/24 | NA | NA | NA"
+*.103         TXT "64512 | 127.100.103.0/24 | NA | NA | NA"
+*.104         TXT "64512 | 127.100.104.0/24 | NA | NA | NA"
+*.105         TXT "64512 | 127.100.105.0/24 | NA | NA | NA"
+;
+*.106         TXT "64512 | 127.100.106.0/24 | NA | NA | NA"
+*.106         TXT "This is not ASN data"
+;
+;*.107        ; Gives NXDOMAIN
+*.108         HINFO "VPS OS" ; Gives NODATA
+*.109         TXT "This is not ASN data"
+;*.110        ; SERVFAIL by cfg
+;*.111        ; REFUSED by cfg
+;*.112        ; No response (drop) by cfg
+*.113         TXT "64512 | 127.100.113.0/24 | NA | NA | NA"
+*.114         TXT "64512 | 127.100.114.0/24 | NA | NA | NA"
+*.115         TXT "64512 | 127.100.115.0/24 | NA | NA | NA"
+*.116         TXT "64512 | 127.100.116.0/24 | NA | NA | NA"
+*.117         TXT "64512 | 127.100.117.0/24 | NA | NA | NA"
+*.118         TXT "64512 | 127.100.118.0/24 | NA | NA | NA"
+*.119         TXT "64512 | 127.100.119.0/24 | NA | NA | NA"
+*.120         TXT "64512 | 127.100.120.0/24 | NA | NA | NA"
+;
+; Double prefix:
+*.121         TXT "64512 | 127.100.121.0/24 | NA | NA | NA"
+*.121         TXT "64512 | 127.100.0.0/16 | NA | NA | NA"
+;
+; Double prefix:
+*.122         TXT "64512 | 127.100.122.0/24 | NA | NA | NA"
+*.122         TXT "64512 | 127.100.0.0/16 | NA | NA | NA"
+;
+; Double prefix:
+*.123         TXT "64512 | 127.100.123.0/24 | NA | NA | NA"
+*.123         TXT "64512 | 127.100.0.0/16 | NA | NA | NA"
+;
+; Overlaps with previous::
+*.124         TXT "64512 | 127.100.0.0/16 | NA | NA | NA"
+
+$ORIGIN 0.0.1.0.7.2.1.0.0.0.0.0.3.c.0.0.2.b.0.0.1.a.d.f.origin6.asnlookup.zonemaster.net.
+
+*.0.0.1.0     TXT "64513 | fda1:b2:c3:0:127:100:100::/112 | NA | NA | NA"
+*.1.0.1.0     TXT "64513 | fda1:b2:c3:0:127:100:101::/112 | NA | NA | NA"
+*.2.0.1.0     TXT "64513 | fda1:b2:c3:0:127:100:102::/112 | NA | NA | NA"
+*.3.0.1.0     TXT "64513 | fda1:b2:c3:0:127:100:103::/112 | NA | NA | NA"
+*.4.0.1.0     TXT "64513 | fda1:b2:c3:0:127:100:104::/112 | NA | NA | NA"
+*.5.0.1.0     TXT "64513 | fda1:b2:c3:0:127:100:105::/112 | NA | NA | NA"
+;
+*.6.0.1.0     TXT "64513 | fda1:b2:c3:0:127:100:106::/112 | NA | NA | NA"
+*.6.0.1.0     TXT "This is not ASN data"
+;
+;*.7.0.1.0  ; Gives NXDOMAIN
+*.8.0.1.0     HINFO "VPS OS" ; Gives NODATA
+*.9.0.1.0     TXT "This is not ASN data"
+;*.0.1.1.0    ; SERVFAIL by cfg
+;*.1.1.1.0    ; REFUSED by cfg
+;*.2.1.1.0    ; No response (drop) by cfg
+*.3.1.1.0     TXT "64513 | fda1:b2:c3:0:127:100:113::/112 | NA | NA | NA"
+*.4.1.1.0     TXT "64513 | fda1:b2:c3:0:127:100:114::/112 | NA | NA | NA"
+*.5.1.1.0     TXT "64513 | fda1:b2:c3:0:127:100:115::/112 | NA | NA | NA"
+*.6.1.1.0     TXT "64513 | fda1:b2:c3:0:127:100:116::/112 | NA | NA | NA"
+*.7.1.1.0     TXT "64513 | fda1:b2:c3:0:127:100:117::/112 | NA | NA | NA"
+*.8.1.1.0     TXT "64513 | fda1:b2:c3:0:127:100:118::/112 | NA | NA | NA"
+*.9.1.1.0     TXT "64513 | fda1:b2:c3:0:127:100:119::/112 | NA | NA | NA"
+
+*.0.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100:120::/112 | NA | NA | NA"
+;
+; Double prefix:
+*.1.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100:121::/112 | NA | NA | NA"
+*.1.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100::/96 | NA | NA | NA"
+;
+; Double prefix:
+*.2.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100:122::/112 | NA | NA | NA"
+*.2.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100::/96 | NA | NA | NA"
+;
+; Double prefix:
+*.3.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100:123::/112 | NA | NA | NA"
+*.3.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100::/96 | NA | NA | NA"
+;
+; Overlaps with previous::
+*.4.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100::/96 | NA | NA | NA"
+
+
+

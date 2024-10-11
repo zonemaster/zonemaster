@@ -47,6 +47,8 @@ ns1		AAAA	fda1:b2:c3:0:127:12:1:21
 ns2		A	127.12.1.22
 ns2		AAAA	fda1:b2:c3:0:127:12:1:22
 
+; connectivity04.xa has its own root.
+
 $ORIGIN consistency05.xa.
 @               NS    ns1
 @               NS    ns2

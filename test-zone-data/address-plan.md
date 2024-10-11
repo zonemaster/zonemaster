@@ -76,6 +76,10 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.40.0.0/16   | MethodsV2 non-test case test zones                          |
 | 127.41.0.0/16   | (not in use)                                                |
 | (...)           |                                                             |
+| 127.99.0.0/16   | (not in use)                                                |
+| 127.100.0.0/16  | Special assignment for Connectivity03 and -04               |
+| 127.101.0.0/16  | (not in use)                                                |
+| (...)           |                                                             |
 | 127.255.0.0/16  | (not in use)                                                |
 
 
@@ -177,9 +181,48 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.13.4.0/24   | Connectivity04 scenarios                                    |
 | 127.13.4.21     | ns1.connectivity04.xa                                       |
 | 127.13.4.22     | ns2.connectivity04.xa                                       |
+| 127.13.4.23     | root-ns1.xa (test case local root zone)                     |
+| 127.13.4.24     | root-ns2.xa (test case local root zone)                     |
+| 127.13.4.25     | ns1.asnlookup.zonemaster.net (test case local)              |
+| 127.13.4.26     | ns2.asnlookup.zonemaster.net (test case local)              |
+| (...)           |                                                             |
+| 127.13.4.53     | resolver with test case local root as hind                  |
 | 127.13.5.0/24   | (not in use)                                                |
 | (...)           |                                                             |
 | 127.13.255.0/24 | (not in use)                                                |
+| 127.100.0.0/24  | (not in use)                                                |
+| (...)           |                                                             |
+| 127.100.99.0/24 | (not in use)                                                |
+| 127.100.100.0/24| for connectivity04
+| 127.100.100.1   | dns0
+| 127.100.101.1   | dns1
+| 127.100.102.1   | dns2
+| 127.100.103.1   | dns3
+| 127.100.104.1   | dns4
+| 127.100.105.1   | dns5
+| 127.100.106.1   | dns6
+| 127.100.107.1   | dns7
+| 127.100.108.1   | dns8
+| 127.100.109.1   | dns9
+| 127.100.110.1   | dns10
+| 127.100.111.1   | dns11
+| 127.100.112.1   | dns12
+| 127.100.113.1   | dns13-1
+| 127.100.113.2   | dns13-2
+| 127.100.114.1   | dns14-1
+| 127.100.114.2   | dns14-2
+| 127.100.115.1   | dns15
+| 127.100.116.1   | dns16-1
+| 127.100.116.2   | dns16-2
+| 127.100.117.1   | dns17-1
+| 127.100.117.2   | dns17-2
+| 127.100.118.1   | dns18
+| 127.100.119.1   | dns19
+| 127.100.120.1   | dns20
+| 127.100.121.1   | dns21
+| 127.100.122.1   | dns22
+| 127.100.123.1   | dns23
+| 127.100.124.1   | dns24
 
 
 ### Consistency test level address plan
