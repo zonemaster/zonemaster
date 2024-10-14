@@ -39,9 +39,8 @@ DOUBBLE-PREFIX-2          | doubble-prefix-2.connectivity04.xa
 
 ## zonemaster-cli commands and their output for each test scenario
 
-The level (`--level`) must be set to the lowest level of the message tags. For
-this test case `INFO` is the lowest level. It is only meaningful to test the test
-zones with `--test connetivity04`.
+For this test case it is only meaningful to test the test zones with `--level=info
+--test=connetivity04`.
 
 The test zones for these scenarios have a dedicated root zone, which means that
 the hint files in the commands below must be used.
@@ -51,12 +50,11 @@ All commands are run from the same directory as this file is in.
 **The commands below were run before the necessary update of the implementation
 of the test case.**
 
-In all outputs below the following command was run with `$SCENARIO` was set to
-the scenario name, and the command was run from the same directory as this file
-resides in.
+In all outputs below the following command was run with `$SCENARIO` set to
+the scenario name.
 
 ```
-zonemaster-cli --hint hintfile.zone $SCENARIO.connectivity04.xa --test connectivity04 --show-testcase --level info --raw
+zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw $SCENARIO.connectivity04.xa
 ```
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
