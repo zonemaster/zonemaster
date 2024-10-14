@@ -34,6 +34,16 @@ from the base name (`address01.xa`) and that subdomain having the same name as t
 scenario. The names of those zones are given in section
 "[Zone setup for test scenarios]" below.
 
+## All tags
+
+The test case can output any of these message tags, but not necessarily in any combination.
+
+- A01_ADDR_GLOBALLY_REACHABLE    
+- A01_NO_GLOBALLY_REACHABLE_ADDR 
+- A01_LOCAL_USE_ADDR
+- A01_DOCUMENTATION_ADDR
+- A01_ADDR_NOT_GLOBALLY_REACHABLE
+
 ## Test scenarios and message tags
 
 If a message tag is not listed for the scenario, its presence or non-presence is
@@ -85,108 +95,99 @@ The "happy path". Everything is fine.
 
 ### MIXED-LOCAL-DOC-1
 
-* Zone mixed-local-doc-1.address01.xa
-
-* ns1 
-  * IPv4 address LOCAL_USE_ADDR
-  * IPv6 address OK
-* ns2
-  * IPv4 address OK
-  * IPv6 address DOCUMENTATION_ADDR
+* Zone: mixed-local-doc-1.address01.xa
+  * ns1 
+    * IPv4 address LOCAL_USE_ADDR
+    * IPv6 address OK
+  * ns2
+    * IPv4 address OK
+    * IPv6 address DOCUMENTATION_ADDR
 
 ### MIXED-LOCAL-DOC-2
 
-* Zone mixed-local-doc-2.address01.xa
-
-* ns1 
-  * IPv4 address DOCUMENTATION_ADDR
-  * IPv6 address OK
-* ns2
-  * IPv4 address OK
-  * IPv6 address LOCAL_USE_ADDR
+* Zone: mixed-local-doc-2.address01.xa
+  * ns1 
+    * IPv4 address DOCUMENTATION_ADDR
+    * IPv6 address OK
+  * ns2
+    * IPv4 address OK
+    * IPv6 address LOCAL_USE_ADDR
 
 ### MIXED-DOC-OTHER-1
 
-* Zone mixed-doc-other-1.address01.xa
-
-* ns1 
-  * IPv4 address DOCUMENTATION_ADDR
-  * IPv6 address OK
-* ns2
-  * IPv4 address OK
-  * IPv6 address NOT_GLOBALLY_REACHABLE
+* Zone: mixed-doc-other-1.address01.xa
+  * ns1 
+    * IPv4 address DOCUMENTATION_ADDR
+    * IPv6 address OK
+  * ns2
+    * IPv4 address OK
+    * IPv6 address NOT_GLOBALLY_REACHABLE
 
 ### MIXED-DOC-OTHER-2
 
-* Zone mixed-doc-other-2.address01.xa
-
-* ns1 
-  * IPv4 address NOT_GLOBALLY_REACHABLE
-  * IPv6 address OK
-* ns2
-  * IPv4 address OK
-  * IPv6 address DOCUMENTATION_ADDR 
+* Zone . mixed-doc-other-2.address01.xa
+  * ns1 
+    * IPv4 address NOT_GLOBALLY_REACHABLE
+    * IPv6 address OK
+  * ns2
+    * IPv4 address OK
+    * IPv6 address DOCUMENTATION_ADDR 
 
 ### MIXED-LOCAL-OTHER-1
 
-* Zone mixed-local-other-1.address01.xa
-
-* ns1 
-  * IPv4 address LOCAL_USE_ADDR
-  * IPv6 address OK
-* ns2
-  * IPv4 address OK
-  * IPv6 address NOT_GLOBALLY_REACHABLE 
+* Zone: mixed-local-other-1.address01.xa
+  * ns1 
+    * IPv4 address LOCAL_USE_ADDR
+    * IPv6 address OK
+  * ns2
+    * IPv4 address OK
+    * IPv6 address NOT_GLOBALLY_REACHABLE 
 
 ### MIXED-LOCAL-OTHER-2
 
-* Zone mixed-local-other-2.address01.xa
-
-* ns1 
-  * IPv4 address NOT_GLOBALLY_REACHABLE
-  * IPv6 address OK
-* ns2
-  * IPv4 address OK
-  * IPv6 address LOCAL_USE_ADDR  
+* Zone: mixed-local-other-2.address01.xa
+  * ns1 
+    * IPv4 address NOT_GLOBALLY_REACHABLE
+    * IPv6 address OK
+  * ns2
+    * IPv4 address OK
+    * IPv6 address LOCAL_USE_ADDR  
 
 ### MIXED-ALL-1
 
-* Zone mixed-all-1.address01.xa
-
-* ns1 
-  * IPv4 address LOCAL_USE_ADDR 
-  * IPv6 address OK
-* ns2
-  * IPv4 address DOCUMENTATION_ADDR
-  * IPv6 address NOT_GLOBALLY_REACHABLE 
+* Zone: mixed-all-1.address01.xa
+  * ns1 
+    * IPv4 address LOCAL_USE_ADDR 
+    * IPv6 address OK
+  * ns2
+    * IPv4 address DOCUMENTATION_ADDR
+    * IPv6 address NOT_GLOBALLY_REACHABLE 
 
 ### MIXED-ALL-2
 
-* Zone mixed-all-2.address01.xa
-
-* ns1 
-  * IPv4 address NOT_GLOBALLY_REACHABLE
-  * IPv6 address LOCAL_USE_ADDR
-* ns2
-  * IPv4 address OK
-  * IPv6 address DOCUMENTATION_ADDR
+* Zone: mixed-all-2.address01.xa
+  * ns1 
+    * IPv4 address NOT_GLOBALLY_REACHABLE
+    * IPv6 address LOCAL_USE_ADDR
+  * ns2
+    * IPv4 address OK
+    * IPv6 address DOCUMENTATION_ADDR
 
 ### ALL-NON-REACHABLE
 All addresses of all nameservers falls within one of the address blocks listed 
 as not globally reachable. Delegation contatins three name servers to cover all
 combinations of defined address block types.
 
-* Zone all-non-reachable.address01.xa
-
-* ns1 
-  * IPv4 address LOCAL_USE_ADDR
-  * IPv6 address NOT_GLOBALLY_REACHABLE
-* ns2
-  * IPv4 address DOCUMENTATION_ADDR
-  * IPv6 address LOCAL_USE_ADDR
-+ ns3
-  * IPv4 address NOT_GLOBALLY_REACHABLE 
-  * IPv6 address DOCUMENTATION_ADDR
+* Zone: all-non-reachable.address01.xa
+  * ns1 
+    * IPv4 address LOCAL_USE_ADDR
+    * IPv6 address NOT_GLOBALLY_REACHABLE
+  * ns2
+    * IPv4 address DOCUMENTATION_ADDR
+    * IPv6 address LOCAL_USE_ADDR
+  + ns3
+    * IPv4 address NOT_GLOBALLY_REACHABLE 
+    * IPv6 address DOCUMENTATION_ADDR
 
 
 [ADDRESS01]:                        ../../tests/Address-TP/address01.md
