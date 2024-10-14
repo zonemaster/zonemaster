@@ -49,7 +49,7 @@ giving a correct DNS response for an authoritative name server.
 Message Tag                 | Level   | Arguments                   | Message ID for message tag
 :---------------------------|:--------|:----------------------------|:------------------------------------------------------------------------------------------------
 CN04_EMPTY_PREFIX_SET       | NOTICE  | ns_ip                       | Prefix database returned no information for IP address {ns_ip}.
-CN04_ERROR_PREFIX_DATABASE  | NOTICE  | ns_ip                       | Prefix database error. No data to analyze for IP address {ns_ip}.
+CN04_ERROR_PREFIX_DATABASE  | NOTICE  | ns_ip                       | Prefix database error for IP address {ns_ip}.
 CN04_IPV4_DIFFERENT_PREFIX  | INFO    | ns_list                     | The following name server(s) are announced in unique IPv4 prefix(es): "{ns_list}"
 CN04_IPV4_SAME_PREFIX       | NOTICE  | ns_list, ip_prefix          | The following name server(s) are announced in the same IPv4 prefix ({ip_prefix}): "{ns_list}"
 CN04_IPV4_SINGLE_PREFIX     | WARNING |                             | All name server(s) (IPv4) are announced in the same IPv4 prefix.
@@ -77,7 +77,8 @@ message. The argument names are defined in the [Argument List].
 3. For each IP address in *NS IPv4* and *NS IPv6* ("NS IP Address"),
    respectively, do:
    1. Determine the IP prefix in which *NS IP Address* is announced
-      using *Prefix Database*. See [Prefix Lookup Methods] section below.
+      using *Prefix Database*. Go to [Prefix Lookup Methods] section below
+      with the IP address as input.
    2. Add found IP prefix, if any, with *NS IP Address* and name server name
       to the *IPv4 Prefix* and *IPv6 Prefix* sets, respectively.
 
@@ -123,8 +124,9 @@ The *Child Zone* must be a valid name meeting
 
 ## Prefix lookup methods
 
-Use the prefix method set in *Prefix Database* in "Inputs" and refer to
-the appropriate section below.
+Use the prefix method set in *Prefix Database* in "Inputs" and the IP address
+in the call to this section. Refer to the appropriate section below with the
+IP address as input.
 
 ### Cymru prefix lookup
 
@@ -135,8 +137,9 @@ in England and Wales) and is continuously being mapped into
 <https://bgp.tools/table.txt>. The Cymru source can also be used, if
 requested.
 
+1. Input is the IP address in the call to this section.
 
-1. Prepend the *Cymru Base Name* with the label "origin" (IPv4) or 
+2. Prepend the *Cymru Base Name* with the label "origin" (IPv4) or
    "origin6" (IPv6) ("Expanded Base Name"). Example of expanded basenames :
    
 ```
@@ -144,37 +147,46 @@ origin.asnlookup.zonemaster.net
 origin6.asnlookup.zonemaster.net
 ```
 
-2. Reverse the IP address with the same method as is used for
+3. Reverse the IP address in the input with the same method as is used for
    reverse lookup ("Reverse IP"). For description see [RFC 1035][RFC 1035#3.5],
    section 3.5, for IPv4 and [RFC 3596][RFC 3596#2.5], section 2.5, for IPv6.
  
-3. Prepend the *Expanded Base Name* with *Reverse IP* ("Query Name").
+4. Prepend the *Expanded Base Name* with *Reverse IP* ("Query Name").
    See [IP to ASN Mapping] for details.
 
-4. Create a [DNS Query] with query type TXT and query name *Query Name*.
+5. Create a [DNS Query] with query type TXT and query name *Query Name*.
    ("TXT Query").
 
-5. [Send] *TXT Query* to the *Cymru Base Name*.
+6. Do [DNS Lookup] of *TXT Query*.
 
-6. If at least one of the following criteria is met, output
+7. If at least one of the following criteria is met, output
    *[CN04_EMPTY_PREFIX_SET]* and exit this lookup:
    1. The [DNS Response] has the [RCODE Name] NXDomain.
    2. The [DNS Response] has the [RCODE Name] NoError and an empty answer section.
 
-7. If at least one of the following criteria is met, output
+8. If at least one of the following criteria is met, output
    *[CN04_ERROR_PREFIX_DATABASE]* and exit this lookup:
    1. There is no DNS response.
-   2. The [DNS Response] does not have the [RCODE Name] NoError or NXDomain.
+   2. The [DNS Response] does not have the [RCODE Name] NoError.
+   3. The answer section has no TXT record.
 
-8. Extract the TXT record(s) from the response (see [IP to ASN Mapping]
-   for examples), and do:
-   1. If there are multiple strings (i.e., TXT records), ignore all strings
-      except for the string with the most specific subnet.
-   2. Extract and [concatenate] the IP prefix from the string.
-   3. If it was not possible to extract the IP prefix (i.e., malformed response),
-      output *[CN04_ERROR_PREFIX_DATABASE]* and exit this lookup.
+9. Extract the TXT record(s) from the answer section (see [IP to ASN Mapping]
+   for examples). Do for each TXT record:
+   1. If the TXT record consists of multiple strings in RDATA, then [concatenate]
+      the strings into one string.
+   2. Using the format of such string parse the string into its parts and
+      extract the subnet specification.
+      1. If it was not possible to parse the string, output
+         *[CN04_ERROR_PREFIX_DATABASE]* and go to next TXT record.
+   4. If the IP address in the input does not match the subnet output
+      *[CN04_ERROR_PREFIX_DATABASE]* and go to next TXT record.
+   5. Store the extracted prefix.
 
-9. Return the IP prefix.
+10. If more than one IP prefix was stored from the loop above, keep the most
+    specific and discard the rest.
+
+11. Return the IP prefix, or an empty string if no IP prefix was extracted.
+
 
 ### RIPE prefix lookup
 
@@ -216,8 +228,14 @@ None
   resource record’s data to a single contiguous string, as specified in [RFC
   7208, section 3.3][RFC7208#3.3].
 
-* "Send" - The term is used when a query is sent to
-  a specific server (server IP address).
+* "DNS Lookup" - The term is used when a recursive lookup is used, though
+any changes to the DNS tree introduced by an [undelegated test] must be
+respected. Compare with "[Send]".
+
+* "Send" - The term "send" (to an IP address) is used when a DNS query is sent to
+a specific name server IP address. Compare with "[DNS Lookup]".
+
+
 
 [Argument List]:                                                ../ArgumentsForTestCaseMessages.md
 [Bgp.tools]:                                                    https://bgp.tools/
@@ -234,6 +252,7 @@ None
 [CRITICAL]:                                                     ../SeverityLevelDefinitions.md#critical
 [Cymru Database]:                                               #cymru-prefix-lookup
 [DEBUG]:                                                        ../SeverityLevelDefinitions.md#notice
+[DNS Lookup]:                                                   #terminology
 [DNS Query and Response Defaults]:                              ../DNSQueryAndResponseDefaults.md
 [DNS Query]:                                                    ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
 [DNS Response]:                                                 ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
