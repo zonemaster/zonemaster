@@ -34,8 +34,8 @@ IPV6-ONE-PREFIX-1         | ipv6-one-prefix-1.connectivity04.xa
 IPV6-TWO-PREFIXES-1       | ipv6-two-prefixes-1.connectivity04.xa
 IPV4-SINGLE-NS-1          | ipv4-single-ns-1.connectivity04.xa
 IPV6-SINGLE-NS-1          | ipv6-single-ns-1.connectivity04.xa
-DOUBBLE-PREFIX-1          | doubble-prefix-1.connectivity04.xa
-DOUBBLE-PREFIX-2          | doubble-prefix-2.connectivity04.xa
+DOUBLE-PREFIX-1           | double-prefix-1.connectivity04.xa
+DOUBLE-PREFIX-2           | double-prefix-2.connectivity04.xa
 
 ## zonemaster-cli commands and their output for each test scenario
 
