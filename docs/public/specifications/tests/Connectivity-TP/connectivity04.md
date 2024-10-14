@@ -99,8 +99,8 @@ message. The argument names are defined in the [Argument List].
    2. For each IP prefix in the set that have exactly one member, output
       *[CN04_IPV6_DIFFERENT_PREFIX]* with the combined set of their associated
       members (name server names and IP addresses).
-   3. If all members of *NS Ipv6* are members of the same IP prefix in
-      *Ipv6 Prefix* then output *[CN04_IPV6_SINGLE_PREFIX]*.
+   3. If all members of *NS IPv6* are members of the same IP prefix in
+      *IPv6 Prefix* then output *[CN04_IPV6_SINGLE_PREFIX]*.
 
 ## Outcome(s)
 
@@ -124,9 +124,9 @@ The *Child Zone* must be a valid name meeting
 
 ## Prefix lookup methods
 
-Use the prefix method set in *Prefix Database* in "Inputs" and the IP address
-in the call to this section. Refer to the appropriate section below with the
-IP address as input.
+Use the prefix method set in *Prefix Database* and the IP address in the call to
+this section. Refer to the appropriate section below with the IP address as
+input.
 
 ### Cymru prefix lookup
 
@@ -137,7 +137,7 @@ in England and Wales) and is continuously being mapped into
 <https://bgp.tools/table.txt>. The Cymru source can also be used, if
 requested.
 
-1. Input is the IP address in the call to this section.
+1. Input is the IP address in the call to this section ("Input IP").
 
 2. Prepend the *Cymru Base Name* with the label "origin" (IPv4) or
    "origin6" (IPv6) ("Expanded Base Name"). Example of expanded basenames :
@@ -147,9 +147,9 @@ origin.asnlookup.zonemaster.net
 origin6.asnlookup.zonemaster.net
 ```
 
-3. Reverse the IP address in the input with the same method as is used for
-   reverse lookup ("Reverse IP"). For description see [RFC 1035][RFC 1035#3.5],
-   section 3.5, for IPv4 and [RFC 3596][RFC 3596#2.5], section 2.5, for IPv6.
+3. Reverse *Input IP* with the same method as is used for reverse lookup
+   ("Reverse IP"). For description see [RFC 1035][RFC 1035#3.5], section 3.5, for
+   IPv4 and [RFC 3596][RFC 3596#2.5], section 2.5, for IPv6.
  
 4. Prepend the *Expanded Base Name* with *Reverse IP* ("Query Name").
    See [IP to ASN Mapping] for details.
@@ -178,7 +178,7 @@ origin6.asnlookup.zonemaster.net
       extract the subnet specification.
       1. If it was not possible to parse the string, output
          *[CN04_ERROR_PREFIX_DATABASE]* and go to next TXT record.
-   4. If the IP address in the input does not match the subnet output
+   4. If *Input IP* does not match the subnet output
       *[CN04_ERROR_PREFIX_DATABASE]* and go to next TXT record.
    5. Store the extracted prefix.
 
@@ -229,11 +229,11 @@ None
   7208, section 3.3][RFC7208#3.3].
 
 * "DNS Lookup" - The term is used when a recursive lookup is used, though
-any changes to the DNS tree introduced by an [undelegated test] must be
-respected. Compare with "[Send]".
+  any changes to the DNS tree introduced by an [undelegated test] must be
+  respected. Compare with "[Send]".
 
 * "Send" - The term "send" (to an IP address) is used when a DNS query is sent to
-a specific name server IP address. Compare with "[DNS Lookup]".
+  a specific name server IP address. Compare with "[DNS Lookup]".
 
 
 
