@@ -2,7 +2,7 @@ $ORIGIN connectivity04.xa.                              ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024101101      ; serial
+                2024101404      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -40,12 +40,7 @@ dns5    AAAA    fda1:b2:c3:0:127:100:105:1
 good-3  NS      dns4
 good-3  NS      dns5
 
-; ### GOOD-4
-dns6    A       127.100.106.1               ; extra TXT
-dns6    AAAA    fda1:b2:c3:0:127:100:106:1  ; extra TXT
-
-good-4  NS      dns6
-good-4  NS      dns1 ; shared with good-1
+; dns6 used below
 
 ; ### EMPTY-PREFIX-SET-1
 dns7                 A     127.100.107.1               ; NXDOMAIN
@@ -59,11 +54,7 @@ dns8                 AAAA  fda1:b2:c3:0:127:100:108:1  ; NODATA
 
 empty-prefix-set-2   NS    dns8
 
-; ### EMPTY-PREFIX-SET-3
-dns9                 A     127.100.109.1               ; Other TXT
-dns9                 AAAA  fda1:b2:c3:0:127:100:109:1  ; Other TXT
-
-empty-prefix-set-3   NS    dns9
+; dns9 used below
 
 ; ### ERROR-PREFIX-DATABASE-1
 dns10                    A     127.100.110.1               ; SERVFAIL
@@ -82,6 +73,38 @@ dns12    A     127.100.112.1               ; No response
 dns12    AAAA  fda1:b2:c3:0:127:100:112:1  ; No response
 
 error-prefix-database-3  NS   dns12
+
+; ### ERROR-PREFIX-DATABASE-4
+dns6    A       127.100.106.1               ; extra TXT
+dns6    AAAA    fda1:b2:c3:0:127:100:106:1  ; extra TXT
+
+error-prefix-database-4  NS      dns6
+error-prefix-database-4  NS      dns1 ; shared with good-1 and others
+
+; ### ERROR-PREFIX-DATABASE-5
+dns9                 A     127.100.109.1               ; Other TXT
+dns9                 AAAA  fda1:b2:c3:0:127:100:109:1  ; Other TXT
+
+error-prefix-database-5   NS    dns9
+
+; ### ERROR-PREFIX-DATABASE-6
+dns25                 A     127.100.125.1               ; Extra TXT with missmathing prefix
+dns25                 AAAA  fda1:b2:c3:0:127:100:125:1  ; Extra TXT with missmathing prefix
+
+error-prefix-database-6   NS    dns25
+error-prefix-database-6   NS    dns1 ; shared with good-1 and others
+
+; ### ERROR-PREFIX-DATABASE-7
+dns26                 A     127.100.126.1               ; TXT with missmathing prefix (only)
+dns26                 AAAA  fda1:b2:c3:0:127:100:126:1  ; TXT with missmathing prefix (only)
+
+error-prefix-database-7   NS    dns26
+
+; ### ERROR-PREFIX-DATABASE-8
+dns27                 A     127.100.127.1               ; No TXT but a CNAME in response
+dns27                 AAAA  fda1:b2:c3:0:127:100:127:1  ; No TXT but a CNAME in response
+
+error-prefix-database-8   NS    dns27
 
 ; ### IPV4-ONE-PREFIX-1
 dns13-1                  A     127.100.113.1               
@@ -125,21 +148,21 @@ dns20                    AAAA  fda1:b2:c3:0:127:100:120:1
 
 ipv6-single-ns-1         NS    dns20
 
-; ### DOUBBLE-PREFIX-1
-dns21                   A       127.100.121.1               ; Doubble prefix
-dns21                   AAAA    fda1:b2:c3:0:127:100:121:1  ; Doubble prefix
-dns22                   A       127.100.122.1               ; Doubble prefix
-dns22                   AAAA    fda1:b2:c3:0:127:100:122:1  ; Doubble prefix
+; ### DOUBLE-PREFIX-1
+dns21                   A       127.100.121.1               ; Double prefix
+dns21                   AAAA    fda1:b2:c3:0:127:100:121:1  ; Double prefix
+dns22                   A       127.100.122.1               ; Double prefix
+dns22                   AAAA    fda1:b2:c3:0:127:100:122:1  ; Double prefix
 
-doubble-prefix-1        NS      dns21
-doubble-prefix-1        NS      dns22
+double-prefix-1        NS      dns21
+double-prefix-1        NS      dns22
 
-; ### DOUBBLE-PREFIX-2
-dns23                   A       127.100.123.1               ; Doubble prefix
-dns23                   AAAA    fda1:b2:c3:0:127:100:123:1  ; Doubble prefix
+; ### DOUBLE-PREFIX-2
+dns23                   A       127.100.123.1               ; Double prefix
+dns23                   AAAA    fda1:b2:c3:0:127:100:123:1  ; Double prefix
 dns24                   A       127.100.124.1               ; Overlapping prefix
 dns24                   AAAA    fda1:b2:c3:0:127:100:124:1  ; Overlapping prefix
 
-doubble-prefix-2        NS      dns23
-doubble-prefix-2        NS      dns24
+double-prefix-2        NS      dns23
+double-prefix-2        NS      dns24
 

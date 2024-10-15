@@ -2,7 +2,7 @@ $ORIGIN asnlookup.zonemaster.net.                       ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024101102      ; serial
+                2024101501      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -31,14 +31,14 @@ $ORIGIN 100.127.origin.asnlookup.zonemaster.net.
 *.105         TXT "64512 | 127.100.105.0/24 | NA | NA | NA"
 ;
 *.106         TXT "64512 | 127.100.106.0/24 | NA | NA | NA"
-*.106         TXT "This is not ASN data"
+*.106         TXT "This is not ASN data"                    ; Gives ERROR_PREFIX_DATABASE
 ;
-;*.107        ; Gives NXDOMAIN
-*.108         HINFO "VPS OS" ; Gives NODATA
-*.109         TXT "This is not ASN data"
-;*.110        ; SERVFAIL by cfg
-;*.111        ; REFUSED by cfg
-;*.112        ; No response (drop) by cfg
+;*.107                                                      ; Gives NXDOMAIN (EMPTY_PREFIX_SET)
+*.108         HINFO "VPS OS"                                ; Gives NODATA (EMPTY_PREFIX_SET)
+*.109         TXT "This is not ASN data"                    ; Gives ERROR_PREFIX_DATABASE
+;*.110        ; SERVFAIL by cfg                             ; Gives ERROR_PREFIX_DATABASE
+;*.111        ; REFUSED by cfg                              ; Gives ERROR_PREFIX_DATABASE
+;*.112        ; No response (drop) by cfg                   ; Gives ERROR_PREFIX_DATABASE
 *.113         TXT "64512 | 127.100.113.0/24 | NA | NA | NA"
 *.114         TXT "64512 | 127.100.114.0/24 | NA | NA | NA"
 *.115         TXT "64512 | 127.100.115.0/24 | NA | NA | NA"
@@ -62,6 +62,15 @@ $ORIGIN 100.127.origin.asnlookup.zonemaster.net.
 ;
 ; Overlaps with previous::
 *.124         TXT "64512 | 127.100.0.0/16 | NA | NA | NA"
+;
+; Extra TXTX with prefix does not match address in lookup
+*.125         TXT "64512 | 127.100.125.0/24 | NA | NA | NA"
+*.125         TXT "64512 | 127.100.255.0/24 | NA | NA | NA"
+;
+; Prefix does not match address in lookup
+*.126         TXT "64512 | 127.100.255.0/24 | NA | NA | NA"
+;
+*.127         CNAME not-a-valid-name
 
 $ORIGIN 0.0.1.0.7.2.1.0.0.0.0.0.3.c.0.0.2.b.0.0.1.a.d.f.origin6.asnlookup.zonemaster.net.
 
@@ -105,6 +114,14 @@ $ORIGIN 0.0.1.0.7.2.1.0.0.0.0.0.3.c.0.0.2.b.0.0.1.a.d.f.origin6.asnlookup.zonema
 ;
 ; Overlaps with previous::
 *.4.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100::/96 | NA | NA | NA"
-
+;
+; Extra TXTX with prefix does not match address in lookup
+*.5.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100:125::/112 | NA | NA | NA"
+*.5.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100:255::/112 | NA | NA | NA"
+;
+; Prefix does not match address in lookup
+*.6.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100:255::/112 | NA | NA | NA"
+;
+*.7.2.1.0     CNAME not-a-valid-name
 
 

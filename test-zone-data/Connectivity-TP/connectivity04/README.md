@@ -1,7 +1,8 @@
 # Connectivity04
 
 [This directory](.), i.e. the same directory as this README file, holds
-zone files and `coredns` configuration files for scenarios for test case Connectivity04.
+zone files and `coredns` configuration files for scenarios for test case
+Connectivity04.
 
 ## All message tags
 
@@ -21,13 +22,16 @@ Scenario name             | Zone name
 GOOD-1                    | good-1.connectivity04.xa
 GOOD-2                    | good-2.connectivity04.xa
 GOOD-3                    | good-3.connectivity04.xa
-GOOD-4                    | good-4.connectivity04.xa
 EMPTY-PREFIX-SET-1        | empty-prefix-set-1.connectivity04.xa
 EMPTY-PREFIX-SET-2        | empty-prefix-set-2.connectivity04.xa
-EMPTY-PREFIX-SET-3        | empty-prefix-set-3.connectivity04.xa
 ERROR-PREFIX-DATABASE-1   | error-prefix-database-1.connectivity04.xa
 ERROR-PREFIX-DATABASE-2   | error-prefix-database-2.connectivity04.xa
 ERROR-PREFIX-DATABASE-3   | error-prefix-database-3.connectivity04.xa
+ERROR-PREFIX-DATABASE-4   | error-prefix-database-4.connectivity04.xa
+ERROR-PREFIX-DATABASE-5   | error-prefix-database-5.connectivity04.xa
+ERROR-PREFIX-DATABASE-6   | error-prefix-database-6.connectivity04.xa
+ERROR-PREFIX-DATABASE-7   | error-prefix-database-7.connectivity04.xa
+ERROR-PREFIX-DATABASE-8   | error-prefix-database-8.connectivity04.xa
 IPV4-ONE-PREFIX-1         | ipv4-one-prefix-1.connectivity04.xa
 IPV4-TWO-PREFIXES-1       | ipv4-two-prefixes-1.connectivity04.xa
 IPV6-ONE-PREFIX-1         | ipv6-one-prefix-1.connectivity04.xa
@@ -223,7 +227,7 @@ IPV6-SINGLE-NS-1         | CN04_IPV6_SINGLE_PREFIX, CN04_IPV6_DIFFERENT_PREFIX  
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
-DOUBBLE-PREFIX-1         | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX   | 2)
+DOUBLE-PREFIX-1          | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX   | 2)
 
 ```
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
@@ -233,7 +237,7 @@ DOUBBLE-PREFIX-1         | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFI
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
-DOUBBLE-PREFIX-2         | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX   | 2)
+DOUBLE-PREFIX-2          | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX   | 2)
 
 ```
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0

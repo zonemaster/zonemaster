@@ -186,7 +186,7 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.13.4.25     | ns1.asnlookup.zonemaster.net (test case local)              |
 | 127.13.4.26     | ns2.asnlookup.zonemaster.net (test case local)              |
 | (...)           |                                                             |
-| 127.13.4.53     | resolver with test case local root as hind                  |
+| 127.13.4.53     | resolver with test case local hint file                     |
 | 127.13.5.0/24   | (not in use)                                                |
 | (...)           |                                                             |
 | 127.13.255.0/24 | (not in use)                                                |
@@ -223,6 +223,9 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.100.122.1   | dns22
 | 127.100.123.1   | dns23
 | 127.100.124.1   | dns24
+| 127.100.125.1   | dns25
+| 127.100.126.1   | dns26
+| 127.100.127.1   | dns27
 
 
 ### Consistency test level address plan
