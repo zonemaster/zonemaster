@@ -108,7 +108,7 @@ R08100| A name server should respond with BADVERS on unsupported EDNS version.  
 R08200| A name server should completely ignore unsupported EDNS OPTION-CODE.               |[RFC6891]            |[NAMESERVER11]
 R08300| A name server should completely ignore unsupported EDNS flag bit (Z flag bits).    |[RFC6891]            |[NAMESERVER12]
 R08400| A name server with EDNS support should include OPT record in truncated response.   |[RFC6891]            |[NAMESERVER13]
-R08500| A name server should respond with BADVERS and ignore OPTION-CODE on query with unsupported EDNS version and unsupported OPTION-CODE.|[RFC6891]   |[NAMESERVER14]
+R08500| A name server should respond with BADVERS and ignore OPTION-CODE on query with unsupported EDNS version and unsupported OPTION-CODE.|[RFC6891]   |[NAMESERVER10] [NAMESERVER11]
 R08600| The zone (domain) name should only contain legal characters.                       |[RFC1035] [RFC1123] [RFC2182] [RFC3696]   |[SYNTAX01]
 R08700| No label of the zone name should start or end with hyphen ("-").                   |[RFC1035] [RFC1123] [RFC2182] [RFC3696]   |[SYNTAX02]
 R08800| No label of the zone name should have "--" in positions 3 and 4 unless it starts with "xn--". |[RFC3696]|[SYNTAX03]

@@ -366,9 +366,6 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.17.13.0/24  | Nameserver13 scenarios                                      |
 | 127.17.13.21    | ns1.nameserver13.xa                                         |
 | 127.17.13.22    | ns2.nameserver13.xa                                         |
-| 127.17.14.0/24  | Nameserver14 scenarios                                      |
-| 127.17.14.21    | ns1.nameserver14.xa                                         |
-| 127.17.14.22    | ns2.nameserver14.xa                                         |
 | 127.17.15.0/24  | Nameserver15 scenarios                                      |
 | 127.17.15.21    | ns1.nameserver15.xa                                         |
 | 127.17.15.22    | ns2.nameserver15.xa                                         |
