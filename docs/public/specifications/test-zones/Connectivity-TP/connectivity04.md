@@ -56,26 +56,29 @@ combination. See [Connectivity04] for the specification of the tags.
 If a message tag is not listed for the scenario, its presence or non-presence is
 irrelevant to the test scenario and must be ignored.
 
-Scenario name            | Mandatory message tag                                    | Forbidden message tags
-:------------------------|:---------------------------------------------------------|:--------------------
-GOOD-1                   | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX   | 2)
-GOOD-2                   | CN04_IPV4_DIFFERENT_PREFIX                               | 2)
-GOOD-3                   | CN04_IPV6_DIFFERENT_PREFIX                               | 2)
-GOOD-4                   | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX   | 2)
-EMPTY-PREFIX-SET-1       | CN04_EMPTY_PREFIX_SET                                    | 2)
-EMPTY-PREFIX-SET-2       | CN04_EMPTY_PREFIX_SET                                    | 2)
-EMPTY-PREFIX-SET-3       | CN04_EMPTY_PREFIX_SET                                    | 2)
-ERROR-PREFIX-DATABASE-1  | CN04_ERROR_PREFIX_DATABASE                               | 2)
-ERROR-PREFIX-DATABASE-2  | CN04_ERROR_PREFIX_DATABASE                               | 2)
-ERROR-PREFIX-DATABASE-3  | CN04_ERROR_PREFIX_DATABASE                               | 2)
-IPV4-ONE-PREFIX-1        | CN04_IPV4_SAME_PREFIX, CN04_IPV4_SINGLE_PREFIX           | 2)
-IPV4-TWO-PREFIXES-1      | CN04_IPV4_SAME_PREFIX, CN04_IPV4_DIFFERENT_PREFIX        | 2)
-IPV6-ONE-PREFIX-1        | CN04_IPV6_SAME_PREFIX, CN04_IPV6_SINGLE_PREFIX           | 2)
-IPV6-TWO-PREFIXES-1      | CN04_IPV6_SAME_PREFIX, CN04_IPV6_SINGLE_PREFIX           | 2)
-IPV4-SINGLE-NS-1         | CN04_IPV4_SINGLE_PREFIX, CN04_IPV4_DIFFERENT_PREFIX      | 2)
-IPV6-SINGLE-NS-1         | CN04_IPV6_SINGLE_PREFIX, CN04_IPV6_DIFFERENT_PREFIX      | 2)
-DOUBBLE-PREFIX-1         | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX   | 2)
-DOUBBLE-PREFIX-2         | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX   | 2)
+Scenario name            | Mandatory message tag                                                             | Forbidden message tags
+:------------------------|:----------------------------------------------------------------------------------|:--------------------
+GOOD-1                   | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX                            | 2)
+GOOD-2                   | CN04_IPV4_DIFFERENT_PREFIX                                                        | 2)
+GOOD-3                   | CN04_IPV6_DIFFERENT_PREFIX                                                        | 2)
+EMPTY-PREFIX-SET-1       | CN04_EMPTY_PREFIX_SET                                                             | 2)
+EMPTY-PREFIX-SET-2       | CN04_EMPTY_PREFIX_SET                                                             | 2)
+ERROR-PREFIX-DATABASE-1  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
+ERROR-PREFIX-DATABASE-2  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
+ERROR-PREFIX-DATABASE-3  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
+ERROR-PREFIX-DATABASE-4  | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX, CN04_ERROR_PREFIX_DATABASE| 2)
+ERROR-PREFIX-DATABASE-5  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
+ERROR-PREFIX-DATABASE-6  | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX, CN04_ERROR_PREFIX_DATABASE| 2)
+ERROR-PREFIX-DATABASE-7  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
+ERROR-PREFIX-DATABASE-8  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
+IPV4-ONE-PREFIX-1        | CN04_IPV4_SAME_PREFIX, CN04_IPV4_SINGLE_PREFIX                                    | 2)
+IPV4-TWO-PREFIXES-1      | CN04_IPV4_SAME_PREFIX, CN04_IPV4_DIFFERENT_PREFIX                                 | 2)
+IPV6-ONE-PREFIX-1        | CN04_IPV6_SAME_PREFIX, CN04_IPV6_SINGLE_PREFIX                                    | 2)
+IPV6-TWO-PREFIXES-1      | CN04_IPV6_SAME_PREFIX, CN04_IPV6_SINGLE_PREFIX                                    | 2)
+IPV4-SINGLE-NS-1         | CN04_IPV4_SINGLE_PREFIX, CN04_IPV4_DIFFERENT_PREFIX                               | 2)
+IPV6-SINGLE-NS-1         | CN04_IPV6_SINGLE_PREFIX, CN04_IPV6_DIFFERENT_PREFIX                               | 2)
+DOUBLE-PREFIX-1          | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX                            | 2)
+DOUBLE-PREFIX-2          | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX                            | 2)
 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
 * (2) All tags except for those specified as "Mandatory message tags"
@@ -124,16 +127,6 @@ Everything is fine. IPv6 only.
     * IPv4 only.
     * Each NS IP in different prefixes.
 
-### GOOD-4
-Everything is fine. IPv4 and IPv6. Extra ASN lookup TXT record. 
-
-* Zone: good-4.connectivity04.xa
-  * 2 NS.
-    * Both with IPv4 and IPv6.
-    * Each NS IP in different prefixes.
-      * For one NS (both IP) the ASN lookup returns an extra TXT record with the
-        text "This is not ASN data".
-
 ### EMPTY-PREFIX-SET-1
 No ASN data (NXDOMAIN).
 
@@ -150,15 +143,6 @@ No ASN data (NODATA).
     * IPv4 and IPv6 on NS.
     * The ASN-lookup returns no TXT record (NODATA).
 
-### EMPTY-PREFIX-SET-3
-No ASN data, some other TXT record.
-
-* Zone: empty-prefix-set-3.connectivity04.xa
-  * 1 NS.
-    * IPv4 and IPv6 on NS.
-    * The ASN-lookup returns one TXT record for both IP with the string
-      "This is not ASN data".
-
 ### ERROR-PREFIX-DATABASE-1
 No ASN data, SERVFAIL.
 
@@ -173,7 +157,7 @@ No ASN data, REFUSED.
 * Zone: error-prefix-database-2.connectivity04.xa
   * 1 NS.
     * IPv4 and IPv6 on NS.
-    * The ASN-lookup returns SERVFAIL.
+    * The ASN-lookup returns REFUSED.
 
 ### ERROR-PREFIX-DATABASE-3
 No ASN data, no DNS response at all.
@@ -182,6 +166,52 @@ No ASN data, no DNS response at all.
   * 1 NS.
     * IPv4 and IPv6 on NS.
     * The ASN-lookup returns no DNS response (no response at all).
+
+### ERROR-PREFIX-DATABASE-4
+IPv4 and IPv6. Extra non-ASN lookup TXT record.
+
+* Zone: error-prefix-database-4.connectivity04.xa
+  * 2 NS.
+    * Both with IPv4 and IPv6.
+    * Each NS IP in different prefixes.
+      * For one NS (both IP) the ASN lookup returns an extra TXT record with the
+        text "This is not ASN data".
+
+### ERROR-PREFIX-DATABASE-5
+No ASN data, some other TXT record.
+
+* Zone: error-prefix-database-5.connectivity04.xa
+  * 1 NS.
+    * IPv4 and IPv6 on NS.
+    * The ASN-lookup returns one TXT record for both IP with the string
+      "This is not ASN data".
+
+### ERROR-PREFIX-DATABASE-6
+IPv4 and IPv6. Extra ASN lookup TXT record with wrong IP prefix.
+
+* Zone: error-prefix-database-6.connectivity04.xa
+  * 2 NS.
+    * Both with IPv4 and IPv6.
+    * Each NS IP in different prefixes.
+      * For one NS (both IP) the ASN lookup returns an extra TXT with an IP prefix
+        that does not match the IP address.
+
+### ERROR-PREFIX-DATABASE-7
+IPv4 and IPv6. ASN lookup TXT record with wrong IP prefix.
+
+* Zone: error-prefix-database-7.connectivity04.xa
+  * 1 NS.
+    * IPv4 and IPv6 on NS.
+    * The ASN-lookup returns one TXT record for both IP with an IP prefix that
+      does not match the IP address.
+
+### ERROR-PREFIX-DATABASE-8
+IPv4 and IPv6. ASN lookup gives no TXT-record but a CNAME.
+
+* Zone: error-prefix-database-7.connectivity04.xa
+  * 1 NS.
+    * IPv4 and IPv6 on NS.
+    * The ASN-lookup returns no TXT record for both IP but a CNAME record.
 
 ### IPV4-ONE-PREFIX-1
 All NS IP in the same prefix. IPv4 only.
@@ -231,30 +261,31 @@ One NS, IPv6 only.
   * 1 NS.
     * IPv4 only.
 
-### DOUBBLE-PREFIX-1
-The IP addresses of the NS are announced from both a larger prefix that include
-both NS IP and a more specific that only include one NS IP.
+### DOUBLE-PREFIX-1
+The IP addresses of the NS are announced from both a larger prefix and a more
+specific one.
 
-* Zone: doubble-prefix-1.connectivity04.xa
+* Zone: double-prefix-1.connectivity04.xa
   * 2 NS
   * IPv4 and IPv6.
   * The two IPv4 addresses are announced from one large prefix that include
     both IP addresses.
-  * They are also annouced from specific prefixes that only include one of the
-    addresses.
+  * They are also each annouced from a more specific prefix only including
+    that address.
   * Same with IPv6.
 
 
-### DOUBBLE-PREFIX-2
+### DOUBLE-PREFIX-2
 The IP addresses of the NS are announced from both a larger prefix that include
-both NS IP. The addresses of one NS are also annouced from specific prefix.
+both NS IP. The addresses of one NS are also announced from more specific
+prefixes.
 
-* Zone: doubble-prefix-2.connectivity04.xa
+* Zone: double-prefix-2.connectivity04.xa
   * 2 NS
   * IPv4 and IPv6.
-  * The two IPv4 addresses are announced from one large prefix that include
+  * The two IPv4 addresses are announced from one large prefix that includes
     both IP addresses.
-  * The address of one of the NS is also announced from a more specific preifx.
+  * The address of one of the NS is also announced from a more specific prefix.
   * Same with IPv6.
 
 [Connectivity04]:                                                 ../../tests/Connectivity-TP/connectivity04.md
