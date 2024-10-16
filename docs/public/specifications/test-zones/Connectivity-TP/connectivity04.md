@@ -268,7 +268,7 @@ specific one.
 * Zone: double-prefix-1.connectivity04.xa
   * 2 NS
   * IPv4 and IPv6.
-  * The two IPv4 addresses are announced from one large prefix that include
+  * The two IPv4 addresses are announced from one large prefix that includes
     both IP addresses.
   * They are also each annouced from a more specific prefix only including
     that address.
@@ -276,7 +276,7 @@ specific one.
 
 
 ### DOUBLE-PREFIX-2
-The IP addresses of the NS are announced from both a larger prefix that include
+The IP addresses of the NS are announced from both a larger prefix that includes
 both NS IP. The addresses of one NS are also announced from more specific
 prefixes.
 
