@@ -52,10 +52,10 @@ CN04_EMPTY_PREFIX_SET       | NOTICE  | ns_ip                       | Prefix dat
 CN04_ERROR_PREFIX_DATABASE  | NOTICE  | ns_ip                       | Prefix database error for IP address {ns_ip}.
 CN04_IPV4_DIFFERENT_PREFIX  | INFO    | ns_list                     | The following name server(s) are announced in unique IPv4 prefix(es): "{ns_list}"
 CN04_IPV4_SAME_PREFIX       | NOTICE  | ns_list, ip_prefix          | The following name server(s) are announced in the same IPv4 prefix ({ip_prefix}): "{ns_list}"
-CN04_IPV4_SINGLE_PREFIX     | WARNING |                             | All name server(s) (IPv4) are announced in the same IPv4 prefix.
+CN04_IPV4_SINGLE_PREFIX     | WARNING |                             | All name server(s) IPv4 address(es) are announced in the same IPv4 prefix.
 CN04_IPV6_DIFFERENT_PREFIX  | INFO    | ns_list                     | The following name server(s) are announced in unique IPv6 prefix(es): "{ns_list}"
 CN04_IPV6_SAME_PREFIX       | NOTICE  | ns_list, ip_prefix          | The following name server(s) are announced in the same IPv6 prefix ({ip_prefix}): "{ns_list}"
-CN04_IPV6_SINGLE_PREFIX     | WARNING |                             | All name server(s) (IPv6) are announced in the same IPv6 prefix.
+CN04_IPV6_SINGLE_PREFIX     | WARNING |                             | All name server(s) IPv6 address(es) are announced in the same IPv6 prefix.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine Profile]. Also see the
