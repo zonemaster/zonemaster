@@ -86,7 +86,7 @@ message. The argument names are defined in the [Argument List].
    1. For each IP prefix in the set that has two or more members, output
       *[CN04_IPV4_SAME_PREFIX]* with the prefix and list of all members (name
       server names and IP addresses) for that prefix.
-   2. For each IP prefix in the set that have exactly one member, output
+   2. For all IP prefixes in the set that have exactly one member, output
       *[CN04_IPV4_DIFFERENT_PREFIX]* with the combined set of their associated
       members (name server names and IP addresses).
    3. If all members of *NS IPv4* are members of the same IP prefix in
@@ -96,7 +96,7 @@ message. The argument names are defined in the [Argument List].
    1. For each IP prefix in the set that has two or more members, output
       *[CN04_IPV6_SAME_PREFIX]* with the prefix and list of all members (name
       server names and IP addresses) for that prefix.
-   2. For each IP prefix in the set that have exactly one member, output
+   2. For all IP prefixes in the set that have exactly one member, output
       *[CN04_IPV6_DIFFERENT_PREFIX]* with the combined set of their associated
       members (name server names and IP addresses).
    3. If all members of *NS IPv6* are members of the same IP prefix in
