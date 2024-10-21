@@ -172,10 +172,10 @@ IPv4 and IPv6. Extra non-ASN lookup TXT record.
 
 * Zone: error-prefix-database-4.connectivity04.xa
   * 2 NS.
-    * Both with IPv4 and IPv6.
-    * Each NS IP in different prefixes.
-      * For one NS (both IP) the ASN lookup returns an extra TXT record with the
-        text "This is not ASN data".
+  * Both NS with IPv4 and IPv6.
+  * Each NS IP in different prefixes.
+  * For one NS (both IP) the ASN lookup returns an extra TXT record with the
+    text "This is not ASN data".
 
 ### ERROR-PREFIX-DATABASE-5
 No ASN data, some other TXT record.
