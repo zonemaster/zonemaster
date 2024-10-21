@@ -13,6 +13,10 @@ found. This file is created during the development of the test zones and should
 be updated as the implementation of the test case or the test scenarios or test
 zones are updated or corrected.
 
+During development and any update this document serves as tracking and log tool.
+It also serves as a template for future development of test zones for
+scenarios for other test cases.
+
 ## All message tags
 
 * CN04_EMPTY_PREFIX_SET
