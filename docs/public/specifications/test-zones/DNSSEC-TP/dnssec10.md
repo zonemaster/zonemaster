@@ -342,11 +342,11 @@ An NSEC3 zone. The type list of the NSEC3 record is erroneous.
   * The type list of the NSEC3 record misses RRSIG.
 
 ### NSEC3-MISMATCHES-APEX-1
-An NSEC3 zone. The hash owner name of the NSEC3 record is errouneous.
+An NSEC3 zone. The hash owner name of the NSEC3 record is erroneous.
 
 * Zone: nsec3-mismatches-apex-1.dnssec10.xa
   * The hash owner name of the NSEC3 record in response to the NSEC query is
-    errouneous and does not match apex.
+    erroneous and does not match apex.
 
 ### NSEC3-MISSING-SIGNATURE-1
 An NSEC3 zone. The RRSIG is missing
