@@ -125,9 +125,9 @@ In section "[Test procedure]" below, if the server returns an NSEC record (eithe
 in the answer section when querying for NSEC or on the authority section when
 querying for NSEC3PARAM) it is considered to be "NSEC type" for the zone.
 
-If the server returns NSEC3PARAM record in the answer section when querying for
-it or an NSEC3 record in the authority section when querying for NSEC it is
-considered the server to "NSEC3 type" for the zone.
+If the server returns an NSEC3PARAM record in the answer section when querying for
+it or an NSEC3 record in the authority section when querying for NSEC, it is
+considered to be "NSEC3 type" for the zone.
 
 *[DS10_MIXED_NSEC_NSEC3]* means that one or several servers have been
 identified as both NSEC type and NSEC3 type.
@@ -232,7 +232,7 @@ A complete list of all DNS Resource Record types can be found in the
                 set.
              2. If the SOA record is missing from the authority section then add name
                 server IP to the *NSEC3 NODATA Missing SOA* set.
-             3. Else if the owner name of SOA record is is not *Child Zone* then
+             3. Else if the owner name of SOA record is not *Child Zone* then
                 add name server IP and owner name to the *NSEC3 NODATA Wrong SOA*
                 set.
              4. If the authority section contains more than one NSEC3 record then
