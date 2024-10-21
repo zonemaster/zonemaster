@@ -264,7 +264,6 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.15.10.32    | ns2 server for various scenarios for DNSSEC10               |
 | 127.15.10.37    | For Bind server to create DNSKEY, NSEC3 and RRSIG           |
 | 127.15.10.38    | For Bind server to create DNSKEY, NSEC3 and RRSIG           |
-| 127.15.10.39    | For Bind server to create DNSKEY, NSEC3 and RRSIG           |
 | 127.15.11.0/24  | DNSSEC11 scenarios                                          |
 | 127.15.11.21    | ns1.dnssec11.xa                                             |
 | 127.15.11.22    | ns2.dnssec11.xa                                             |
