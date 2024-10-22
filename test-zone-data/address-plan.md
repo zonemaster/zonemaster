@@ -193,7 +193,7 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.100.0.0/24  | (not in use)                                                |
 | (...)           |                                                             |
 | 127.100.99.0/24 | (not in use)                                                |
-| 127.100.100.0/24| for connectivity04
+| 127.100.100.0/24| Connectivity04
 | 127.100.100.1   | dns0
 | 127.100.101.1   | dns1
 | 127.100.102.1   | dns2

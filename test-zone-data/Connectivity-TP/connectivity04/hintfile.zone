@@ -4,5 +4,5 @@
 .             3600   NS     root-ns2.xa.
 root-ns1.xa.  3600   A      127.13.4.23
 root-ns1.xa.  3600   AAAA   fda1:b2:c3::127:13:4:23
-root-ns2.xa.  3600   A      127.13.4.23
-root-ns2.xa.  3600   AAAA   fda1:b2:c3::127:13:4:23
+root-ns2.xa.  3600   A      127.13.4.24
+root-ns2.xa.  3600   AAAA   fda1:b2:c3::127:13:4:24

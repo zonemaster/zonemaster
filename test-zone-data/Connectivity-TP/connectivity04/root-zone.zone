@@ -1,7 +1,7 @@
 $ORIGIN .
 $TTL 3600
 
-@       SOA     ns1. admin.xb. (
+@       SOA     ns1. admin.xa. (
                 2024100900      ; serial
                 6h              ; refresh
                 1h              ; retry
@@ -15,8 +15,8 @@ $TTL 3600
 root-ns1.xa.     A      127.13.4.23
 root-ns1.xa.     AAAA   fda1:b2:c3::127:13:4:23
 
-root-ns2.xa.     A      127.13.4.23
-root-ns2.xa.     AAAA   fda1:b2:c3::127:13:4:23
+root-ns2.xa.     A      127.13.4.24
+root-ns2.xa.     AAAA   fda1:b2:c3::127:13:4:24
 
 $ORIGIN asnlookup.zonemaster.net.
 @                NS     ns1
