@@ -144,7 +144,7 @@ No ASN data (NODATA).
     * The ASN-lookup returns no TXT record (NODATA).
 
 ### ERROR-PREFIX-DATABASE-1
-No ASN data, SERVFAIL.
+No ASN data due to SERVFAIL.
 
 * Zone: error-prefix-database-1.connectivity04.xa
   * 1 NS.
@@ -152,7 +152,7 @@ No ASN data, SERVFAIL.
     * The ASN-lookup returns SERVFAIL.
 
 ### ERROR-PREFIX-DATABASE-2
-No ASN data, REFUSED.
+No ASN data due to REFUSED.
 
 * Zone: error-prefix-database-2.connectivity04.xa
   * 1 NS.

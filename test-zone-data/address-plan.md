@@ -77,7 +77,7 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.41.0.0/16   | (not in use)                                                |
 | (...)           |                                                             |
 | 127.99.0.0/16   | (not in use)                                                |
-| 127.100.0.0/16  | Special assignment for Connectivity03 and -04               |
+| 127.100.0.0/16  | Special assignment for Connectivity03 and 04                |
 | 127.101.0.0/16  | (not in use)                                                |
 | (...)           |                                                             |
 | 127.255.0.0/16  | (not in use)                                                |
