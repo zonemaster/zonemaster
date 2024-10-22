@@ -1,5 +1,5 @@
 [This directory](.), i.e. the same directory as this README file, holds zone
-files and configuration files to implement the test zones for the for scenarios
+files and configuration files to implement the test zones for the scenarios
 defined in [Connectivity04 test scenario specification].
 
 For these test zones the following files are found in [This directory](.):

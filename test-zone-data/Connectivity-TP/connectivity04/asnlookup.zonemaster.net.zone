@@ -11,9 +11,9 @@ $TTL 3600
 @             NS    ns1
 @             NS    ns2
 
-ns1           A     127.13.4.21
+ns1           A     127.13.4.25
 ns1           AAAA  fda1:b2:c3:0:127:13:4:25
-ns2           A     127.13.4.22
+ns2           A     127.13.4.26
 ns2           AAAA  fda1:b2:c3:0:127:13:4:26
 
 1.origin      TXT   "Test string"
@@ -60,10 +60,10 @@ $ORIGIN 100.127.origin.asnlookup.zonemaster.net.
 *.123         TXT "64512 | 127.100.123.0/24 | NA | NA | NA"
 *.123         TXT "64512 | 127.100.0.0/16 | NA | NA | NA"
 ;
-; Overlaps with previous::
+; Overlaps with previous:
 *.124         TXT "64512 | 127.100.0.0/16 | NA | NA | NA"
 ;
-; Extra TXTX with prefix does not match address in lookup
+; Extra TXT with prefix does not match address in lookup
 *.125         TXT "64512 | 127.100.125.0/24 | NA | NA | NA"
 *.125         TXT "64512 | 127.100.255.0/24 | NA | NA | NA"
 ;
@@ -112,10 +112,10 @@ $ORIGIN 0.0.1.0.7.2.1.0.0.0.0.0.3.c.0.0.2.b.0.0.1.a.d.f.origin6.asnlookup.zonema
 *.3.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100:123::/112 | NA | NA | NA"
 *.3.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100::/96 | NA | NA | NA"
 ;
-; Overlaps with previous::
+; Overlaps with previous:
 *.4.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100::/96 | NA | NA | NA"
 ;
-; Extra TXTX with prefix does not match address in lookup
+; Extra TXT with prefix does not match address in lookup
 *.5.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100:125::/112 | NA | NA | NA"
 *.5.2.1.0     TXT "64513 | fda1:b2:c3:0:127:100:255::/112 | NA | NA | NA"
 ;

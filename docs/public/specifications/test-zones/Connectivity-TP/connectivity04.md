@@ -172,10 +172,10 @@ IPv4 and IPv6. Extra non-ASN lookup TXT record.
 
 * Zone: error-prefix-database-4.connectivity04.xa
   * 2 NS.
-  * Both NS with IPv4 and IPv6.
-  * Each NS IP in different prefixes.
-  * For one NS (both IP) the ASN lookup returns an extra TXT record with the
-    text "This is not ASN data".
+    * Both NS with IPv4 and IPv6.
+    * Each NS IP in different prefixes.
+    * For one NS (both IPs) the ASN lookup returns an extra TXT record with the
+      text "This is not ASN data".
 
 ### ERROR-PREFIX-DATABASE-5
 No ASN data, some other TXT record.
@@ -187,17 +187,17 @@ No ASN data, some other TXT record.
       "This is not ASN data".
 
 ### ERROR-PREFIX-DATABASE-6
-IPv4 and IPv6. Extra ASN lookup TXT record with wrong IP prefix.
+Extra ASN lookup TXT record with wrong IP prefix.
 
 * Zone: error-prefix-database-6.connectivity04.xa
   * 2 NS.
     * Both with IPv4 and IPv6.
     * Each NS IP in different prefixes.
-      * For one NS (both IP) the ASN lookup returns an extra TXT with an IP prefix
+      * For one NS (both IPs) the ASN lookup returns an extra TXT with an IP prefix
         that does not match the IP address.
 
 ### ERROR-PREFIX-DATABASE-7
-IPv4 and IPv6. ASN lookup TXT record with wrong IP prefix.
+ASN lookup TXT record with wrong IP prefix.
 
 * Zone: error-prefix-database-7.connectivity04.xa
   * 1 NS.
@@ -206,7 +206,7 @@ IPv4 and IPv6. ASN lookup TXT record with wrong IP prefix.
       does not match the IP address.
 
 ### ERROR-PREFIX-DATABASE-8
-IPv4 and IPv6. ASN lookup gives no TXT-record but a CNAME.
+ASN lookup gives no TXT-record but a CNAME.
 
 * Zone: error-prefix-database-7.connectivity04.xa
   * 1 NS.
@@ -214,7 +214,7 @@ IPv4 and IPv6. ASN lookup gives no TXT-record but a CNAME.
     * The ASN-lookup returns no TXT record for both IP but a CNAME record.
 
 ### IPV4-ONE-PREFIX-1
-All NS IP in the same prefix. IPv4 only.
+All NS IPs in the same prefix. IPv4 only.
 
 * Zone: ipv4-one-prefix-1.connectivity04.xa
   * 2 NS.
@@ -231,7 +231,7 @@ Two NS in the same prefix. One NS in its own prefix. IPv4 only.
     * One NS in its own prefix.
 
 ### IPV6-ONE-PREFIX-1
-All NS IP in the same prefix. Ipv6 only.
+All NS IPs in the same prefix. IPv6 only.
 
 * Zone: ipv6-one-prefix-1.connectivity04.xa
   * 2 NS.
@@ -239,11 +239,11 @@ All NS IP in the same prefix. Ipv6 only.
     * Both NS in the same prefix.
 
 ### IPV6-TWO-PREFIXES-1
-Two NS in the same prefix. One NS in its own prefix. Ipv6 only.
+Two NS in the same prefix. One NS in its own prefix. IPv6 only.
 
 * Zone: ipv6-two-prefixes-1.connectivity04.xa
   * 3 NS.
-    * Ipv6 only.
+    * IPv6 only.
     * Two NS in the same prefix.
     * One NS in its own prefix.
 
@@ -259,7 +259,7 @@ One NS, IPv6 only.
 
 * Zone: ipv6-single-ns-1.connectivity04.xa
   * 1 NS.
-    * IPv4 only.
+    * IPv6 only.
 
 ### DOUBLE-PREFIX-1
 The IP addresses of the NS are announced from both a larger prefix and a more
@@ -267,26 +267,26 @@ specific one.
 
 * Zone: double-prefix-1.connectivity04.xa
   * 2 NS
-  * IPv4 and IPv6.
-  * The two IPv4 addresses are announced from one large prefix that includes
-    both IP addresses.
-  * They are also each annouced from a more specific prefix only including
-    that address.
-  * Same with IPv6.
+    * IPv4 and IPv6.
+    * The two IPv4 addresses are announced in one large (less specific) prefix that includes
+      both NS IP addresses.
+    * Each NS IP address is also announced in a more specific prefix only including
+      that IP address.
+    * Same with IPv6.
 
 
 ### DOUBLE-PREFIX-2
-The IP addresses of the NS are announced from both a larger prefix that includes
-both NS IP. The addresses of one NS are also announced from more specific
-prefixes.
+The IP addresses of the NS are announced in a larger (less specific) prefix that 
+includes both NS IP. The addresses of one NS are also announced in more
+specific prefixes.
 
 * Zone: double-prefix-2.connectivity04.xa
   * 2 NS
-  * IPv4 and IPv6.
-  * The two IPv4 addresses are announced from one large prefix that includes
-    both IP addresses.
-  * The address of one of the NS is also announced from a more specific prefix.
-  * Same with IPv6.
+    * IPv4 and IPv6.
+    * The two IPv4 addresses are announced in one large (less specific) prefix that 
+      includes both IP addresses.
+    * The address of one of the NS is also announced in a more specific prefix.
+    * Same with IPv6.
 
 [Connectivity04]:                                                 ../../tests/Connectivity-TP/connectivity04.md
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6

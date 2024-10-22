@@ -88,15 +88,15 @@ dns9                 AAAA  fda1:b2:c3:0:127:100:109:1  ; Other TXT
 error-prefix-database-5   NS    dns9
 
 ; ### ERROR-PREFIX-DATABASE-6
-dns25                 A     127.100.125.1               ; Extra TXT with missmathing prefix
-dns25                 AAAA  fda1:b2:c3:0:127:100:125:1  ; Extra TXT with missmathing prefix
+dns25                 A     127.100.125.1               ; Extra TXT with mismatching prefix
+dns25                 AAAA  fda1:b2:c3:0:127:100:125:1  ; Extra TXT with mismatching prefix
 
 error-prefix-database-6   NS    dns25
 error-prefix-database-6   NS    dns1 ; shared with good-1 and others
 
 ; ### ERROR-PREFIX-DATABASE-7
-dns26                 A     127.100.126.1               ; TXT with missmathing prefix (only)
-dns26                 AAAA  fda1:b2:c3:0:127:100:126:1  ; TXT with missmathing prefix (only)
+dns26                 A     127.100.126.1               ; TXT with mismatching prefix (only)
+dns26                 AAAA  fda1:b2:c3:0:127:100:126:1  ; TXT with mismatching prefix (only)
 
 error-prefix-database-7   NS    dns26
 
