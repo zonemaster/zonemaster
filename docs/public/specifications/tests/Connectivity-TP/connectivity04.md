@@ -176,16 +176,19 @@ origin6.asnlookup.zonemaster.net
       the strings into one string.
    2. Using the format of such string parse the string into its parts and
       extract the subnet specification.
-      1. If it was not possible to parse the string, output
-         *[CN04_ERROR_PREFIX_DATABASE]* and go to next TXT record.
-   4. If *Input IP* does not match the subnet output
-      *[CN04_ERROR_PREFIX_DATABASE]* and go to next TXT record.
+      1. If it was not possible to parse the string, ignore it and go to next TXT
+         record.
+   4. If *Input IP* does not match the extracted subnet, output
+      *[CN04_ERROR_PREFIX_DATABASE]*, break the processing of TXT records and
+      exit this loop without returning any prefix.
    5. Store the extracted prefix.
 
 10. If more than one IP prefix was stored from the loop above, keep the most
     specific and discard the rest.
 
-11. Return the IP prefix, or an empty string if no IP prefix was extracted.
+11. If no IP prefix was stored, output *[CN04_EMPTY_PREFIX_SET]*.
+
+12. Return the IP prefix, or an empty string if no IP prefix was stored.
 
 
 ### RIPE prefix lookup
