@@ -40,11 +40,11 @@ EMPTY-PREFIX-SET-2        | empty-prefix-set-2.connectivity04.xa
 ERROR-PREFIX-DATABASE-1   | error-prefix-database-1.connectivity04.xa
 ERROR-PREFIX-DATABASE-2   | error-prefix-database-2.connectivity04.xa
 ERROR-PREFIX-DATABASE-3   | error-prefix-database-3.connectivity04.xa
-ERROR-PREFIX-DATABASE-4   | error-prefix-database-4.connectivity04.xa
-ERROR-PREFIX-DATABASE-5   | error-prefix-database-5.connectivity04.xa
 ERROR-PREFIX-DATABASE-6   | error-prefix-database-6.connectivity04.xa
 ERROR-PREFIX-DATABASE-7   | error-prefix-database-7.connectivity04.xa
 ERROR-PREFIX-DATABASE-8   | error-prefix-database-8.connectivity04.xa
+HAS-NON-ASN-TXT-1         | has-non-asn-txt-1.connectivity04.xa
+HAS-NON-ASN-TXT-2         | has-non-asn-txt-2.connectivity04.xa
 IPV4-ONE-PREFIX-1         | ipv4-one-prefix-1.connectivity04.xa
 IPV4-TWO-PREFIXES-1       | ipv4-two-prefixes-1.connectivity04.xa
 IPV6-ONE-PREFIX-1         | ipv6-one-prefix-1.connectivity04.xa
@@ -53,6 +53,7 @@ IPV4-SINGLE-NS-1          | ipv4-single-ns-1.connectivity04.xa
 IPV6-SINGLE-NS-1          | ipv6-single-ns-1.connectivity04.xa
 DOUBLE-PREFIX-1           | double-prefix-1.connectivity04.xa
 DOUBLE-PREFIX-2           | double-prefix-2.connectivity04.xa
+
 
 ## zonemaster-cli commands and their output for each test scenario
 
@@ -156,34 +157,6 @@ ERROR-PREFIX-DATABASE-3  | CN04_ERROR_PREFIX_DATABASE                           
 
 Scenario name            | Mandatory message tag                                                             | Forbidden message tags
 :------------------------|:----------------------------------------------------------------------------------|:--------------------
-ERROR-PREFIX-DATABASE-4  | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX, CN04_ERROR_PREFIX_DATABASE| 2)
-
-```
-   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-Use of uninitialized value $_fields[1] in pattern match (m//) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 93.
-Use of uninitialized value $_prefix_length in numeric gt (>) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 94.
-Use of uninitialized value $_fields[1] in pattern match (m//) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 93.
-Use of uninitialized value $_prefix_length in numeric gt (>) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 94.
-   0.07 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/127.100.101.1;dns6.connectivity04.xa/127.100.106.1
-   0.07 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/fda1:b2:c3:0:127:100:101:1;dns6.connectivity04.xa/fda1:b2:c3:0:127:100:106:1
-```
-
-Scenario name            | Mandatory message tag                                                             | Forbidden message tags
-:------------------------|:----------------------------------------------------------------------------------|:--------------------
-ERROR-PREFIX-DATABASE-5  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
-
-```
-   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-Use of uninitialized value $_fields[1] in pattern match (m//) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 93.
-Use of uninitialized value $_prefix_length in numeric gt (>) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 94.
-Use of uninitialized value in subroutine entry at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 102.
-Use of uninitialized value $_fields[1] in pattern match (m//) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 93.
-Use of uninitialized value $_prefix_length in numeric gt (>) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 94.
-Use of uninitialized value in subroutine entry at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 102.
-```
-
-Scenario name            | Mandatory message tag                                                             | Forbidden message tags
-:------------------------|:----------------------------------------------------------------------------------|:--------------------
 ERROR-PREFIX-DATABASE-6  | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX, CN04_ERROR_PREFIX_DATABASE| 2)
 
 ```
@@ -210,6 +183,34 @@ ERROR-PREFIX-DATABASE-8  | CN04_ERROR_PREFIX_DATABASE                           
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
    0.05 ERROR    Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=127.100.127.1
    0.07 ERROR    Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=fda1:b2:c3:0:127:100:127:1
+```
+
+Scenario name            | Mandatory message tag                                                             | Forbidden message tags
+:------------------------|:----------------------------------------------------------------------------------|:--------------------
+HAS-NON-ASN-TXT-1        | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX | 2)
+
+```
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
+Use of uninitialized value $_fields[1] in pattern match (m//) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 93.
+Use of uninitialized value $_prefix_length in numeric gt (>) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 94.
+Use of uninitialized value $_fields[1] in pattern match (m//) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 93.
+Use of uninitialized value $_prefix_length in numeric gt (>) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 94.
+   0.15 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/127.100.101.1;dns6.connectivity04.xa/127.100.106.1
+   0.15 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/fda1:b2:c3:0:127:100:101:1;dns6.connectivity04.xa/fda1:b2:c3:0:127:100:106:1
+```
+
+Scenario name            | Mandatory message tag                                                             | Forbidden message tags
+:------------------------|:----------------------------------------------------------------------------------|:--------------------
+HAS-NON-ASN-TXT-2        | CN04_EMPTY_PREFIX_SET                                                       | 2)
+
+```
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
+Use of uninitialized value $_fields[1] in pattern match (m//) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 93.
+Use of uninitialized value $_prefix_length in numeric gt (>) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 94.
+Use of uninitialized value in subroutine entry at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 102.
+Use of uninitialized value $_fields[1] in pattern match (m//) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 93.
+Use of uninitialized value $_prefix_length in numeric gt (>) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 94.
+Use of uninitialized value in subroutine entry at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 102.
 ```
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags

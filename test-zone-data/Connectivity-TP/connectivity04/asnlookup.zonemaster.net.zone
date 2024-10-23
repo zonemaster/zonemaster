@@ -2,7 +2,7 @@ $ORIGIN asnlookup.zonemaster.net.                       ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024101501      ; serial
+                2024102301      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -31,11 +31,11 @@ $ORIGIN 100.127.origin.asnlookup.zonemaster.net.
 *.105         TXT "64512 | 127.100.105.0/24 | NA | NA | NA"
 ;
 *.106         TXT "64512 | 127.100.106.0/24 | NA | NA | NA"
-*.106         TXT "This is not ASN data"                    ; Gives ERROR_PREFIX_DATABASE
+*.106         TXT "This is not ASN data"                    ; Ignored
 ;
 ;*.107                                                      ; Gives NXDOMAIN (EMPTY_PREFIX_SET)
 *.108         HINFO "VPS OS"                                ; Gives NODATA (EMPTY_PREFIX_SET)
-*.109         TXT "This is not ASN data"                    ; Gives ERROR_PREFIX_DATABASE
+*.109         TXT "This is not ASN data"                    ; Ignored (EMPTY_PREFIX_SET)
 ;*.110        ; SERVFAIL by cfg                             ; Gives ERROR_PREFIX_DATABASE
 ;*.111        ; REFUSED by cfg                              ; Gives ERROR_PREFIX_DATABASE
 ;*.112        ; No response (drop) by cfg                   ; Gives ERROR_PREFIX_DATABASE

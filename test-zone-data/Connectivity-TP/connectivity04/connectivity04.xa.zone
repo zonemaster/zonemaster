@@ -2,7 +2,7 @@ $ORIGIN connectivity04.xa.                              ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024101404      ; serial
+                2024102301      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -74,19 +74,6 @@ dns12    AAAA  fda1:b2:c3:0:127:100:112:1  ; No response
 
 error-prefix-database-3  NS   dns12
 
-; ### ERROR-PREFIX-DATABASE-4
-dns6    A       127.100.106.1               ; extra TXT
-dns6    AAAA    fda1:b2:c3:0:127:100:106:1  ; extra TXT
-
-error-prefix-database-4  NS      dns6
-error-prefix-database-4  NS      dns1 ; shared with good-1 and others
-
-; ### ERROR-PREFIX-DATABASE-5
-dns9                 A     127.100.109.1               ; Other TXT
-dns9                 AAAA  fda1:b2:c3:0:127:100:109:1  ; Other TXT
-
-error-prefix-database-5   NS    dns9
-
 ; ### ERROR-PREFIX-DATABASE-6
 dns25                 A     127.100.125.1               ; Extra TXT with mismatching prefix
 dns25                 AAAA  fda1:b2:c3:0:127:100:125:1  ; Extra TXT with mismatching prefix
@@ -105,6 +92,19 @@ dns27                 A     127.100.127.1               ; No TXT but a CNAME in 
 dns27                 AAAA  fda1:b2:c3:0:127:100:127:1  ; No TXT but a CNAME in response
 
 error-prefix-database-8   NS    dns27
+
+; ### HAS-NON-ASN-TXT-1
+dns6    A       127.100.106.1               ; extra TXT
+dns6    AAAA    fda1:b2:c3:0:127:100:106:1  ; extra TXT
+
+has-non-asn-txt-1  NS      dns6
+has-non-asn-txt-1  NS      dns1 ; shared with good-1 and others
+
+; ### HAS-NON-ASN-TXT-2
+dns9                 A     127.100.109.1               ; Other TXT
+dns9                 AAAA  fda1:b2:c3:0:127:100:109:1  ; Other TXT
+
+has-non-asn-txt-2   NS    dns9
 
 ; ### IPV4-ONE-PREFIX-1
 dns13-1                  A     127.100.113.1               

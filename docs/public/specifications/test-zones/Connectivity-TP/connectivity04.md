@@ -66,11 +66,11 @@ EMPTY-PREFIX-SET-2       | CN04_EMPTY_PREFIX_SET                                
 ERROR-PREFIX-DATABASE-1  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
 ERROR-PREFIX-DATABASE-2  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
 ERROR-PREFIX-DATABASE-3  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
-ERROR-PREFIX-DATABASE-4  | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX, CN04_ERROR_PREFIX_DATABASE| 2)
-ERROR-PREFIX-DATABASE-5  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
 ERROR-PREFIX-DATABASE-6  | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX, CN04_ERROR_PREFIX_DATABASE| 2)
 ERROR-PREFIX-DATABASE-7  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
 ERROR-PREFIX-DATABASE-8  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
+HAS-NON-ASN-TXT-1        | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX                            | 2)
+HAS-NON-ASN-TXT-2        | CN04_EMPTY_PREFIX_SET                                                             | 2)
 IPV4-ONE-PREFIX-1        | CN04_IPV4_SAME_PREFIX, CN04_IPV4_SINGLE_PREFIX                                    | 2)
 IPV4-TWO-PREFIXES-1      | CN04_IPV4_SAME_PREFIX, CN04_IPV4_DIFFERENT_PREFIX                                 | 2)
 IPV6-ONE-PREFIX-1        | CN04_IPV6_SAME_PREFIX, CN04_IPV6_SINGLE_PREFIX                                    | 2)
@@ -167,25 +167,6 @@ No ASN data, no DNS response at all.
     * IPv4 and IPv6 on NS.
     * The ASN-lookup returns no DNS response (no response at all).
 
-### ERROR-PREFIX-DATABASE-4
-IPv4 and IPv6. Extra non-ASN lookup TXT record.
-
-* Zone: error-prefix-database-4.connectivity04.xa
-  * 2 NS.
-    * Both NS with IPv4 and IPv6.
-    * Each NS IP in different prefixes.
-    * For one NS (both IPs) the ASN lookup returns an extra TXT record with the
-      text "This is not ASN data".
-
-### ERROR-PREFIX-DATABASE-5
-No ASN data, some other TXT record.
-
-* Zone: error-prefix-database-5.connectivity04.xa
-  * 1 NS.
-    * IPv4 and IPv6 on NS.
-    * The ASN-lookup returns one TXT record for both IP with the string
-      "This is not ASN data".
-
 ### ERROR-PREFIX-DATABASE-6
 Extra ASN lookup TXT record with wrong IP prefix.
 
@@ -208,10 +189,29 @@ ASN lookup TXT record with wrong IP prefix.
 ### ERROR-PREFIX-DATABASE-8
 ASN lookup gives no TXT-record but a CNAME.
 
-* Zone: error-prefix-database-7.connectivity04.xa
+* Zone: error-prefix-database-8.connectivity04.xa
   * 1 NS.
     * IPv4 and IPv6 on NS.
     * The ASN-lookup returns no TXT record for both IP but a CNAME record.
+
+### HAS-NON-ASN-TXT-1
+IPv4 and IPv6. Extra non-ASN lookup TXT record.
+
+* Zone: error-prefix-database-4.connectivity04.xa
+  * 2 NS.
+    * Both NS with IPv4 and IPv6.
+    * Each NS IP in different prefixes.
+    * For one NS (both IPs) the ASN lookup returns an extra TXT record with the
+      text "This is not ASN data".
+
+### HAS-NON-ASN-TXT-2
+No ASN data, some other TXT record.
+
+* Zone: error-prefix-database-5.connectivity04.xa
+  * 1 NS.
+    * IPv4 and IPv6 on NS.
+    * The ASN-lookup returns one TXT record for both IP with the string
+      "This is not ASN data".
 
 ### IPV4-ONE-PREFIX-1
 All NS IPs in the same prefix. IPv4 only.
