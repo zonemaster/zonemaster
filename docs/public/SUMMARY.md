@@ -123,7 +123,6 @@
             - [Nameserver11](specifications/tests/Nameserver-TP/nameserver11.md)
             - [Nameserver12](specifications/tests/Nameserver-TP/nameserver12.md)
             - [Nameserver13](specifications/tests/Nameserver-TP/nameserver13.md)
-            - [Nameserver14](specifications/tests/Nameserver-TP/nameserver14.md)
             - [Nameserver15](specifications/tests/Nameserver-TP/nameserver15.md)
         - [Syntax-TP](specifications/tests/Syntax-TP/README.md)
             - [Syntax01](specifications/tests/Syntax-TP/syntax01.md)
