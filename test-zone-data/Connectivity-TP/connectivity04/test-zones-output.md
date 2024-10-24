@@ -65,16 +65,6 @@ the hint files in the commands below must be used.
 
 All commands are run from the same directory as this file is in.
 
-**The commands below were run before the necessary update of the implementation
-of the test case.**
-
-In all outputs below the following command was run with `$SCENARIO` set to
-the scenario name.
-
-```
-zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw $SCENARIO.connectivity04.xa
-```
-
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 GOOD-1                   | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX   | 2)

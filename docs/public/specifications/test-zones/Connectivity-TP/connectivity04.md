@@ -167,6 +167,12 @@ No ASN data, no DNS response at all.
     * IPv4 and IPv6 on NS.
     * The ASN-lookup returns no DNS response (no response at all).
 
+### ERROR-PREFIX-DATABASE-4
+(Renamed)
+
+### ERROR-PREFIX-DATABASE-5
+(Renamed)
+
 ### ERROR-PREFIX-DATABASE-6
 Extra ASN lookup TXT record with wrong IP prefix.
 

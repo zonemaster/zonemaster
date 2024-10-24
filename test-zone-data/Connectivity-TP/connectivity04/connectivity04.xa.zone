@@ -2,7 +2,7 @@ $ORIGIN connectivity04.xa.                              ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024102301      ; serial
+                2024102400      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -73,6 +73,8 @@ dns12    A     127.100.112.1               ; No response
 dns12    AAAA  fda1:b2:c3:0:127:100:112:1  ; No response
 
 error-prefix-database-3  NS   dns12
+
+; ### ERROR-PREFIX-DATABASE-4 and -5: renamed
 
 ; ### ERROR-PREFIX-DATABASE-6
 dns25                 A     127.100.125.1               ; Extra TXT with mismatching prefix
