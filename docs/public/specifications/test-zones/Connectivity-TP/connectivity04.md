@@ -197,7 +197,7 @@ ASN lookup gives no TXT-record but a CNAME.
 ### HAS-NON-ASN-TXT-1
 IPv4 and IPv6. Extra non-ASN lookup TXT record.
 
-* Zone: error-prefix-database-4.connectivity04.xa
+* Zone: has-non-asn-txt-1.connectivity04.xa
   * 2 NS.
     * Both NS with IPv4 and IPv6.
     * Each NS IP in different prefixes.
@@ -207,7 +207,7 @@ IPv4 and IPv6. Extra non-ASN lookup TXT record.
 ### HAS-NON-ASN-TXT-2
 No ASN data, some other TXT record.
 
-* Zone: error-prefix-database-5.connectivity04.xa
+* Zone: has-non-asn-txt-2.connectivity04.xa
   * 1 NS.
     * IPv4 and IPv6 on NS.
     * The ASN-lookup returns one TXT record for both IP with the string
