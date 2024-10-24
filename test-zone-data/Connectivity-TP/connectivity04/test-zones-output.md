@@ -82,209 +82,247 @@ GOOD-1                   | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFI
 * (2) All tags except for those specified as "Mandatory message tags"
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw GOOD-1.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.12 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns0.connectivity04.xa/127.100.100.1;dns1.connectivity04.xa/127.100.101.1
-   0.13 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns0.connectivity04.xa/fda1:b2:c3:0:127:100:100:1;dns1.connectivity04.xa/fda1:b2:c3:0:127:100:101:1
+   0.23 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns0.connectivity04.xa/127.100.100.1;dns1.connectivity04.xa/127.100.101.1
+   0.23 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns0.connectivity04.xa/fda1:b2:c3:0:127:100:100:1;dns1.connectivity04.xa/fda1:b2:c3:0:127:100:101:1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 GOOD-2                   | CN04_IPV4_DIFFERENT_PREFIX                               | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw GOOD-2.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.07 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns2.connectivity04.xa/127.100.102.1;dns3.connectivity04.xa/127.100.103.1
+   0.11 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns2.connectivity04.xa/127.100.102.1;dns3.connectivity04.xa/127.100.103.1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 GOOD-3                   | CN04_IPV6_DIFFERENT_PREFIX                               | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw GOOD-3.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.08 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns4.connectivity04.xa/fda1:b2:c3:0:127:100:104:1;dns5.connectivity04.xa/fda1:b2:c3:0:127:100:105:1
+   0.12 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns4.connectivity04.xa/fda1:b2:c3:0:127:100:104:1;dns5.connectivity04.xa/fda1:b2:c3:0:127:100:105:1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 EMPTY-PREFIX-SET-1       | CN04_EMPTY_PREFIX_SET                                    | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw EMPTY-PREFIX-SET-1.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.06 ERROR    Connectivity04 CN04_EMPTY_PREFIX_SET  ns_ip=127.100.107.1
-   0.07 ERROR    Connectivity04 CN04_EMPTY_PREFIX_SET  ns_ip=fda1:b2:c3:0:127:100:107:1
+   0.12 NOTICE   Connectivity04 CN04_EMPTY_PREFIX_SET  ns_ip=127.100.107.1
+   0.13 NOTICE   Connectivity04 CN04_EMPTY_PREFIX_SET  ns_ip=fda1:b2:c3:0:127:100:107:1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 EMPTY-PREFIX-SET-2       | CN04_EMPTY_PREFIX_SET                                    | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw EMPTY-PREFIX-SET-2.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.05 ERROR    Connectivity04 CN04_EMPTY_PREFIX_SET  ns_ip=127.100.108.1
-   0.06 ERROR    Connectivity04 CN04_EMPTY_PREFIX_SET  ns_ip=fda1:b2:c3:0:127:100:108:1
+   0.12 NOTICE   Connectivity04 CN04_EMPTY_PREFIX_SET  ns_ip=127.100.108.1
+   0.12 NOTICE   Connectivity04 CN04_EMPTY_PREFIX_SET  ns_ip=fda1:b2:c3:0:127:100:108:1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 ERROR-PREFIX-DATABASE-1  | CN04_ERROR_PREFIX_DATABASE                               | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw ERROR-PREFIX-DATABASE-1.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.05 ERROR    Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=127.100.110.1
-   0.07 ERROR    Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=fda1:b2:c3:0:127:100:110:1
+   0.11 NOTICE   Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=127.100.110.1
+   0.13 NOTICE   Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=fda1:b2:c3:0:127:100:110:1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 ERROR-PREFIX-DATABASE-2  | CN04_ERROR_PREFIX_DATABASE                               | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw ERROR-PREFIX-DATABASE-2.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.08 ERROR    Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=127.100.111.1
-   0.11 ERROR    Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=fda1:b2:c3:0:127:100:111:1
+   0.10 NOTICE   Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=127.100.111.1
+   0.12 NOTICE   Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=fda1:b2:c3:0:127:100:111:1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 ERROR-PREFIX-DATABASE-3  | CN04_ERROR_PREFIX_DATABASE                               | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw ERROR-PREFIX-DATABASE-3.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-  40.17 ERROR    Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=127.100.112.1
-  40.19 ERROR    Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=fda1:b2:c3:0:127:100:112:1
+  40.14 NOTICE   Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=127.100.112.1
+  40.17 NOTICE   Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=fda1:b2:c3:0:127:100:112:1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                                             | Forbidden message tags
 :------------------------|:----------------------------------------------------------------------------------|:--------------------
 ERROR-PREFIX-DATABASE-6  | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX, CN04_ERROR_PREFIX_DATABASE| 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw ERROR-PREFIX-DATABASE-6.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.07 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/127.100.101.1;dns25.connectivity04.xa/127.100.125.1
-   0.07 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/fda1:b2:c3:0:127:100:101:1;dns25.connectivity04.xa/fda1:b2:c3:0:127:100:125:1
+   0.15 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/127.100.101.1;dns25.connectivity04.xa/127.100.125.1
+   0.15 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/fda1:b2:c3:0:127:100:101:1;dns25.connectivity04.xa/fda1:b2:c3:0:127:100:125:1
 ```
+--> Unexpected
 
 Scenario name            | Mandatory message tag                                                             | Forbidden message tags
 :------------------------|:----------------------------------------------------------------------------------|:--------------------
 ERROR-PREFIX-DATABASE-7  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw ERROR-PREFIX-DATABASE-7.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.06 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns26.connectivity04.xa/127.100.126.1
-   0.06 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns26.connectivity04.xa/fda1:b2:c3:0:127:100:126:1
+   0.15 NOTICE   Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=127.100.126.1
+   0.16 NOTICE   Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=fda1:b2:c3:0:127:100:126:1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                                             | Forbidden message tags
 :------------------------|:----------------------------------------------------------------------------------|:--------------------
 ERROR-PREFIX-DATABASE-8  | CN04_ERROR_PREFIX_DATABASE                                                        | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw ERROR-PREFIX-DATABASE-8.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.05 ERROR    Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=127.100.127.1
-   0.07 ERROR    Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=fda1:b2:c3:0:127:100:127:1
+   0.11 NOTICE   Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=127.100.127.1
+   0.12 NOTICE   Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=fda1:b2:c3:0:127:100:127:1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                                             | Forbidden message tags
 :------------------------|:----------------------------------------------------------------------------------|:--------------------
 HAS-NON-ASN-TXT-1        | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw HAS-NON-ASN-TXT-1.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-Use of uninitialized value $_fields[1] in pattern match (m//) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 93.
-Use of uninitialized value $_prefix_length in numeric gt (>) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 94.
-Use of uninitialized value $_fields[1] in pattern match (m//) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 93.
-Use of uninitialized value $_prefix_length in numeric gt (>) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 94.
-   0.15 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/127.100.101.1;dns6.connectivity04.xa/127.100.106.1
-   0.15 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/fda1:b2:c3:0:127:100:101:1;dns6.connectivity04.xa/fda1:b2:c3:0:127:100:106:1
+   0.17 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/127.100.101.1;dns6.connectivity04.xa/127.100.106.1
+   0.18 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/fda1:b2:c3:0:127:100:101:1;dns6.connectivity04.xa/fda1:b2:c3:0:127:100:106:1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                                             | Forbidden message tags
 :------------------------|:----------------------------------------------------------------------------------|:--------------------
 HAS-NON-ASN-TXT-2        | CN04_EMPTY_PREFIX_SET                                                       | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw HAS-NON-ASN-TXT-2.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-Use of uninitialized value $_fields[1] in pattern match (m//) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 93.
-Use of uninitialized value $_prefix_length in numeric gt (>) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 94.
-Use of uninitialized value in subroutine entry at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 102.
-Use of uninitialized value $_fields[1] in pattern match (m//) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 93.
-Use of uninitialized value $_prefix_length in numeric gt (>) at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 94.
-Use of uninitialized value in subroutine entry at /usr/local/share/perl/5.34.0/Zonemaster/Engine/ASNLookup.pm line 102.
+   0.09 NOTICE   Connectivity04 CN04_EMPTY_PREFIX_SET  ns_ip=127.100.109.1
+   0.10 NOTICE   Connectivity04 CN04_EMPTY_PREFIX_SET  ns_ip=fda1:b2:c3:0:127:100:109:1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 IPV4-ONE-PREFIX-1        | CN04_IPV4_SAME_PREFIX, CN04_IPV4_SINGLE_PREFIX           | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw IPV4-ONE-PREFIX-1.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.05 WARNING  Connectivity04 CN04_IPV4_SAME_PREFIX  ip_prefix=127.100.113.0/24; ns_list=dns13-1.connectivity04.xa/127.100.113.1;dns13-2.connectivity04.xa/127.100.113.2
+   0.20 NOTICE   Connectivity04 CN04_IPV4_SAME_PREFIX  ip_prefix=127.100.113.0/24; ns_list=dns13-1.connectivity04.xa/127.100.113.1;dns13-2.connectivity04.xa/127.100.113.2
+   0.20 WARNING  Connectivity04 CN04_IPV4_SINGLE_PREFIX  
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 IPV4-TWO-PREFIXES-1      | CN04_IPV4_SAME_PREFIX, CN04_IPV4_DIFFERENT_PREFIX        | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw IPV4-TWO-PREFIXES-1.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.06 WARNING  Connectivity04 CN04_IPV4_SAME_PREFIX  ip_prefix=127.100.114.0/24; ns_list=dns14-1.connectivity04.xa/127.100.114.1;dns14-2.connectivity04.xa/127.100.114.2
-   0.06 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns15.connectivity04.xa/127.100.115.1
+   0.13 NOTICE   Connectivity04 CN04_IPV4_SAME_PREFIX  ip_prefix=127.100.114.0/24; ns_list=dns14-1.connectivity04.xa/127.100.114.1;dns14-2.connectivity04.xa/127.100.114.2
+   0.13 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns15.connectivity04.xa/127.100.115.1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 IPV6-ONE-PREFIX-1        | CN04_IPV6_SAME_PREFIX, CN04_IPV6_SINGLE_PREFIX           | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw IPV6-ONE-PREFIX-1.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.06 WARNING  Connectivity04 CN04_IPV6_SAME_PREFIX  ip_prefix=fda1:b2:c3:0:127:100:116:0/112; ns_list=dns16-1.connectivity04.xa/fda1:b2:c3:0:127:100:116:1;dns16-2.connectivity04.xa/fda1:b2:c3:0:127:100:116:2
+   0.13 NOTICE   Connectivity04 CN04_IPV6_SAME_PREFIX  ip_prefix=fda1:b2:c3:0:127:100:116:0/112; ns_list=dns16-1.connectivity04.xa/fda1:b2:c3:0:127:100:116:1;dns16-2.connectivity04.xa/fda1:b2:c3:0:127:100:116:2
+   0.13 WARNING  Connectivity04 CN04_IPV6_SINGLE_PREFIX  
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 IPV6-TWO-PREFIXES-1      | CN04_IPV6_SAME_PREFIX, CN04_IPV6_SINGLE_PREFIX           | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw IPV6-TWO-PREFIXES-1.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.08 WARNING  Connectivity04 CN04_IPV6_SAME_PREFIX  ip_prefix=fda1:b2:c3:0:127:100:117:0/112; ns_list=dns17-1.connectivity04.xa/fda1:b2:c3:0:127:100:117:1;dns17-2.connectivity04.xa/fda1:b2:c3:0:127:100:117:2
-   0.08 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns18.connectivity04.xa/fda1:b2:c3:0:127:100:118:1
+   0.13 NOTICE   Connectivity04 CN04_IPV6_SAME_PREFIX  ip_prefix=fda1:b2:c3:0:127:100:117:0/112; ns_list=dns17-1.connectivity04.xa/fda1:b2:c3:0:127:100:117:1;dns17-2.connectivity04.xa/fda1:b2:c3:0:127:100:117:2
+   0.13 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns18.connectivity04.xa/fda1:b2:c3:0:127:100:118:1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 IPV4-SINGLE-NS-1         | CN04_IPV4_SINGLE_PREFIX, CN04_IPV4_DIFFERENT_PREFIX      | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw IPV4-SINGLE-NS-1.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.04 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns19.connectivity04.xa/127.100.119.1
+   0.15 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns19.connectivity04.xa/127.100.119.1
+   0.15 WARNING  Connectivity04 CN04_IPV4_SINGLE_PREFIX  
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 IPV6-SINGLE-NS-1         | CN04_IPV6_SINGLE_PREFIX, CN04_IPV6_DIFFERENT_PREFIX      | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw IPV6-SINGLE-NS-1.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.05 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns20.connectivity04.xa/fda1:b2:c3:0:127:100:120:1
+   0.11 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns20.connectivity04.xa/fda1:b2:c3:0:127:100:120:1
+   0.11 WARNING  Connectivity04 CN04_IPV6_SINGLE_PREFIX  
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 DOUBLE-PREFIX-1          | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX   | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw DOUBLE-PREFIX-1.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.10 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns21.connectivity04.xa/127.100.121.1;dns22.connectivity04.xa/127.100.122.1
-   0.10 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns21.connectivity04.xa/fda1:b2:c3:0:127:100:121:1;dns22.connectivity04.xa/fda1:b2:c3:0:127:100:122:1
+   0.15 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns21.connectivity04.xa/127.100.121.1;dns22.connectivity04.xa/127.100.122.1
+   0.15 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns21.connectivity04.xa/fda1:b2:c3:0:127:100:121:1;dns22.connectivity04.xa/fda1:b2:c3:0:127:100:122:1
 ```
+--> OK
 
 Scenario name            | Mandatory message tag                                    | Forbidden message tags
 :------------------------|:---------------------------------------------------------|:--------------------
 DOUBLE-PREFIX-2          | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFIX   | 2)
 
 ```
+$ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw DOUBLE-PREFIX-2.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.13 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns23.connectivity04.xa/127.100.123.1;dns24.connectivity04.xa/127.100.124.1
-   0.13 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns23.connectivity04.xa/fda1:b2:c3:0:127:100:123:1;dns24.connectivity04.xa/fda1:b2:c3:0:127:100:124:1
+   0.15 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns23.connectivity04.xa/127.100.123.1;dns24.connectivity04.xa/127.100.124.1
+   0.15 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns23.connectivity04.xa/fda1:b2:c3:0:127:100:123:1;dns24.connectivity04.xa/fda1:b2:c3:0:127:100:124:1
 ```
+--> OK
