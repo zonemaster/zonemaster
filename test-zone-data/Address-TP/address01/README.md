@@ -11,4 +11,3 @@ zone files and `coredns` configuration files for scenarios for test case Basic01
 - A01_LOCAL_USE_ADDR
 - A01_DOCUMENTATION_ADDR
 - A01_ADDR_NOT_GLOBALLY_REACHABLE
-
