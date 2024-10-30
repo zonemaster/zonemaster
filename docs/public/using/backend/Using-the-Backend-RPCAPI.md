@@ -265,7 +265,9 @@ Now you can get the results of any of the listed tests by running
 
 There are a few other APIs that can be used throught `zmb`, and can be found by
 `zmb -h` and in [Zonemaster RPCAPI reference][RPCAPI]. The APIs for batch testing
-are covered in a separate document.
+are covered in [Using Zonemaster Backend for batch testing].
 
-[installation guide]: ../../installation/zonemaster-backend.md
-[RPCAPI]:             rpcapi-reference.md
+
+[installation guide]:                                 ../../installation/zonemaster-backend.md
+[RPCAPI]:                                             rpcapi-reference.md
+[Using Zonemaster Backend for batch testing]:         Using-Zonemaster-Backend-for-batch-testing.md
