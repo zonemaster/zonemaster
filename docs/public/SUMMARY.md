@@ -31,6 +31,7 @@
     - [CLI](using/cli.md)
     - [Backend](using/backend/README.md)
         - [Using the Backend RPCAPI](using/backend/Using-the-Backend-RPCAPI.md)
+        - [Using Zonemaster Backend for batch testing](using/backend/Using-Zonemaster-Backend-for-batch-testing.md)
         - [RPCAPI Reference](using/backend/rpcapi-reference.md)
         - [Telemetry](using/backend/telemetry.md)
     - [GUI](using/gui/README.md)
