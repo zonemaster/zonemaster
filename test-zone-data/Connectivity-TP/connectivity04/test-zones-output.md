@@ -168,10 +168,12 @@ ERROR-PREFIX-DATABASE-6  | CN04_IPV4_DIFFERENT_PREFIX, CN04_IPV6_DIFFERENT_PREFI
 ```
 $ zonemaster-cli --hint=hintfile.zone --test=connectivity04 --level=info --show-testcase --raw ERROR-PREFIX-DATABASE-6.connectivity04.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.15 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/127.100.101.1;dns25.connectivity04.xa/127.100.125.1
-   0.15 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/fda1:b2:c3:0:127:100:101:1;dns25.connectivity04.xa/fda1:b2:c3:0:127:100:125:1
+   0.27 NOTICE   Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=127.100.125.1
+   0.28 NOTICE   Connectivity04 CN04_ERROR_PREFIX_DATABASE  ns_ip=fda1:b2:c3:0:127:100:125:1
+   0.28 INFO     Connectivity04 CN04_IPV4_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/127.100.101.1
+   0.28 INFO     Connectivity04 CN04_IPV6_DIFFERENT_PREFIX  ns_list=dns1.connectivity04.xa/fda1:b2:c3:0:127:100:101:1
 ```
---> Unexpected
+--> Ok
 
 Scenario name            | Mandatory message tag                                                             | Forbidden message tags
 :------------------------|:----------------------------------------------------------------------------------|:--------------------
