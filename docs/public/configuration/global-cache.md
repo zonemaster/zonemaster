@@ -2,7 +2,7 @@
 
 ## Table of contents
 
-* [Experimental feature](#experimental-feature)
+* [Introduction](#introduction)
 * [Prerequisites](#prerequisites)
 * [Installation for global cache](#installation-for-global-cache)
 * [Create directory for custom profile](#create-directory-for-custom-profile)
@@ -10,10 +10,13 @@
 * [Using global cache](#using-global-cache)
 
 
-## Experimental feature
-Global cache is an *experimental feature* that can increase performance when many
-tests are run within a short time frame, especially when they share some data
-such as using the same name server names.
+## Introduction
+Global cache is an feature that can increase performance when many tests are run
+within a short time frame, especially when they share some data such as using the
+same name server names. The global cache is meant for batch testing rather than
+single tests through the GUI. In the latter case it is desirable that Zonemaster
+checks again since the zone can have been corrected due to the report in a very
+recent test.
 
 The global cache improves the caching function by  making the DNS lookups from
 one test to be available for further tests. The cache is stored in `Redis`, a
@@ -21,9 +24,6 @@ cache service running in a separate daemon.
 
 To enable global caching, additional software has to be installed and custom
 profile has to be created, where global caching is enabled.
-
-Since it is an experimental feature, its interface might change in upcoming
-release.
 
 
 ## Prerequisites
@@ -82,18 +82,15 @@ perl -MZonemaster::Engine::Test -E 'say Zonemaster::Engine::Profile->default->to
 ## Enable global cache
 
 Update `/etc/zonemaster/profile.json` (or `/usr/local/etc/zonemaster/profile.json`
-for FreeBSD) by adding the following section,
+for FreeBSD) by adding a cache section. If the profile already has an empty cache
+section (`"cache": {}`) it must be removed. Add the following section,
 ```
     "cache": {
         "redis": {
             "server": "127.0.0.1:6379",
-            "expire": 300
+            "expire": 7200
         }
     },
-```
-You can also copy the section from the file listed by the following command,
-```
-ls $(perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Engine")')/profile_additional_properties.json
 ```
 
 The `expire` value can be increased or decreased to increase or decrease the time
@@ -122,7 +119,3 @@ For more documentation on profiles, see [profile documentation].
 [Zonemaster::Backend configuration]:                 backend.md
 [Zonemaster::CLI installation]:                      ../installation/zonemaster-cli.md
 [Zonemaster::Engine installation]:                   ../installation/zonemaster-engine.md
-
-
-
-
