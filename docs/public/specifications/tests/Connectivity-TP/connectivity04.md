@@ -178,10 +178,10 @@ origin6.asnlookup.zonemaster.net
       extract the subnet specification.
       1. If it was not possible to parse the string, ignore it and go to next TXT
          record.
-   4. If *Input IP* does not match the extracted subnet, output
+   3. If *Input IP* does not match the extracted subnet, output
       *[CN04_ERROR_PREFIX_DATABASE]*, break the processing of TXT records and
       exit this loop without returning any prefix.
-   5. Store the extracted prefix.
+   4. Store the extracted prefix.
 
 10. If more than one IP prefix was stored from the loop above, keep the most
     specific and discard the rest.
