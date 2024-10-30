@@ -30,7 +30,7 @@
 - [Using](using/README.md)
     - [CLI](using/cli.md)
     - [Backend](using/backend/README.md)
-        - [Getting Started](using/backend/getting-started.md)
+        - [Using the Backend RPCAPI](using/backend/Using-the-Backend-RPCAPI.md)
         - [RPCAPI Reference](using/backend/rpcapi-reference.md)
         - [Telemetry](using/backend/telemetry.md)
     - [GUI](using/gui/README.md)

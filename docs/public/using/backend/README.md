@@ -1,9 +1,8 @@
 # Using the Backend
 
-* [Getting started with the RPCAPI][RPCAPI]
+* [Using the Backend RPCAPI](Using-the-Backend-RPCAPI.md)
 * [RPCAPI reference]
 * [Collecting metrics][Telemetry]
 
-[RPCAPI]:           getting-started.md
 [RPCAPI reference]: rpcapi-reference.md
 [Telemetry]:        telemetry.md
