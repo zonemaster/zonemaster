@@ -38,14 +38,14 @@
   * [API method: start_domain_test](#api-method-start_domain_test)
   * [API method: test_progress](#api-method-test_progress)
   * [API method: get_test_results](#api-method-get_test_results)
+  * [API method: get_test_params](#api-method-get_test_params)
   * [API method: get_test_history](#api-method-get_test_history)
     * [Undelegated and delegated](#undelegated-and-delegated)
   * [API method: add_api_user](#api-method-add_api_user)
   * [API method: add_batch_job](#api-method-add_batch_job)
   * [API method: get_batch_job_result](#api-method-get_batch_job_result)
-  * [API method: get_test_params](#api-method-get_test_params)
+  * [API method: batch_status](#api-method-batch_status)
 * [Experimental API methods](#experimental-api-methods)
-
 
 ## Purpose
 
@@ -1366,6 +1366,9 @@ Trying to add a batch when the method has been disabled.
 
 ### API method: `get_batch_job_result`
 
+*Deprecated. To be removed with release v2025.2* Replaced by
+[API method: batch_status](#api-method-batch_status).
+
 Return all [*test id*][Test id] objects of a *batch test*, with the number of finished *test*.
 
 Example request:
@@ -1375,7 +1378,7 @@ Example request:
 {
     "jsonrpc": "2.0",
     "id": 147559211994909,
-    "method": "batch_status",
+    "method": "get_batch_job_result",
     "params": {
         "batch_id": "8"
     }
@@ -1436,6 +1439,206 @@ If the `batch_id` is undefined the following error is returned:
 }
 ```
 
+
+### API method: `batch_status`
+
+This method replaces deprecated method
+[API method: get_batch_job_result](#api-method-get_batch_job_result).
+
+Returns the number of finished and remaining *tests*. Optionally it also returns
+[*test id*][Test id] objects (finished or remaining) of a *batch test*.
+
+Example request:
+
+*Valid syntax:*
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 147559211994909,
+    "method": "batch_status",
+    "params": {
+        "batch_id": "8"
+    }
+}
+```
+
+Also asks for the finished [*test id*][Test id] objects:
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 147559211994909,
+    "method": "batch_status",
+    "params": {
+        "batch_id": "8",
+        "list_finished": true
+    }
+}
+```
+
+Also asks for the remaining [*test id*][Test id] objects:
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 147559211994909,
+    "method": "batch_status",
+    "params": {
+        "batch_id": "8",
+        "list_remaining": true
+    }
+}
+```
+
+Also asks for both the finished and the remaining [*test id*][Test id] objects:
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 147559211994909,
+    "method": "batch_status",
+    "params": {
+        "batch_id": "8",
+        "list_finished": true,
+        "list_remaining": true
+    }
+}
+```
+
+Example responses:
+```json
+{
+   "jsonrpc": "2.0",
+   "id": 147559211994909,
+   "result": {
+      "finished": 5,
+      "remaining": 195
+   }
+}
+```
+
+Finished [*test id*][Test id] objects were requested (no finished objects
+existing):
+
+```json
+{
+   "jsonrpc": "2.0",
+   "id": 147559211994909,
+   "result": {
+      "finished": 0,
+      "finished_test_ids": [
+      ],
+      "remaining": 195
+   }
+}
+```
+
+Finished [*test id*][Test id] objects were requested:
+
+```json
+{
+   "jsonrpc": "2.0",
+   "id": 147559211994909,
+   "result": {
+      "finished": 5,
+      "finished_test_ids": [
+         "43b408794155324b",
+         "be9cbb44fff0b2a8",
+         "62f487731116fd87",
+         "692f8ffc32d647ca",
+         "6441a83fcee8d28d"
+      ],
+      "remaining": 195
+   }
+}
+```
+
+
+Remaining [*test id*][Test id] objects were requested:
+
+```json
+{
+   "jsonrpc": "2.0",
+   "id": 147559211994909,
+   "result": {
+      "finished": 10,
+      "remaining_test_ids": [
+         "43b408794155324b",
+         "be9cbb44fff0b2a8",
+         "62f487731116fd87",
+         "692f8ffc32d647ca",
+         "6441a83fcee8d28d"
+      ],
+      "remaining": 5
+   }
+}
+```
+
+Finished and emaining [*test id*][Test id] objects were requested:
+
+```json
+{
+   "jsonrpc": "2.0",
+   "id": 147559211994909,
+   "result": {
+      "finished": 3,
+      "finished_test_ids": [
+         "62f487731116fd87",
+         "692f8ffc32d647ca",
+         "6441a83fcee8d28d"
+      ],
+      "remaining_test_ids": [
+         "43b408794155324b",
+         "be9cbb44fff0b2a8",
+      ],
+      "remaining": 2
+   }
+}
+```
+
+#### `"params"`
+
+An object with the property:
+
+* `"batch_id"`: A [*batch id*][Batch id], required.
+* `"list_finished"`: a boolean, optional. Default false. If true requesting for
+  a list of the finished [*test ids*][Test id].
+* `"list_remaining"`: a boolean, optional. Default false. If true requesting for
+  a list of the remaining [*test ids*][Test id].
+
+
+#### `"result"`
+
+An object with the following properties:
+
+* `"finished"`: a [*non-negative integer*][Non-negative integer]. The number of
+  finished tests.
+* `"remaining"`: a [*non-negative integer*][Non-negative integer]. The number of
+  remaining tests.
+* `"finished_test_ids"`: a list of [*test ids*][Test id] (only if requested).
+  The set of finished *tests* in this *batch*.
+* `"remaining_test_ids"`: a list of [*test ids*][Test id] (only if requested).
+  The set of remaining *tests* in this *batch*.
+
+
+#### `"error"`
+
+If the `batch_id` is undefined the following error is returned:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "error": {
+    "data": {
+      "batch_id": "10"
+    },
+    "message": "Unknown batch",
+    "code": -32603
+  }
+}
+```
+
+
+
+
 ## Experimental API methods
 
 There are also some experimental API methods documented only by name:
@@ -1452,7 +1655,6 @@ There are also some experimental API methods documented only by name:
 * domain_history
 * user_create
 * batch_create
-* batch_status
 
 
 [API add_api_user]:                   #api-method-add_api_user
