@@ -1,4 +1,4 @@
-# Specification of test zones for DELEGATION02
+# Specification of test Scenarios for Delegation02
 
 
 ## Table of contents
@@ -7,27 +7,28 @@
 * [Test Case](#test-case)
 * [Test scenarios](#test-scenarios)
 * [Test zone names](#test-zone-names)
+* [All message tags](#all-message-tags)
 * [Test scenarios and message tags](#test-scenarios-and-message-tags)
 * [Zone setup for test scenarios]
 
 
 ## Background
 
-See the [test zone README file].
+See the [test scenario README file].
 
 
 ## Test Case
-This document specifies defined test zones for test case [DELEGATION02].
+This document specifies defined test zones for test case [Delegation02].
 
 
 ## Test scenarios
 
 The purpose of the test scenarios is to cover all reasonable contexts where
-different message tags are outputted when [DELEGATION02] is run on a test zone.
-The message tags are defined in the test case ([DELEGATION02]) and the scenarios
+different message tags are outputted when [Delegation02] is run on a test zone.
+The message tags are defined in the test case ([Delegation02]) and the scenarios
 are defined below.
 
-The test scenarios are structured as stated in the [test zone README file].
+The test scenarios are structured as stated in the [test scenario README file].
 
 ## Test zone names
 
@@ -36,20 +37,30 @@ from the base name (`delegation02.xa`) and that subdomain having the same name a
 scenario. The names of those zones are given in section
 "[Zone setup for test scenarios]" below.
 
+## All message tags
+
+The test case can output any of these message tags, but not necessarily in any
+combination. See [Delegation02] for the specification of the tags.
+
+* DEL_DISTINCT_NS_IP
+* CHILD_DISTINCT_NS_IP
+* DEL_NS_SAME_IP
+* CHILD_NS_SAME_IP
+
 
 ## Test scenarios and message tags
 
 If a message tag is not listed for the scenario, its presence or non-presence is
 irrelevant to the test scenario and must be ignored.
 
-
 Scenario name                 | Mandatory message tag                    | Forbidden message tags
 :-----------------------------|:-----------------------------------------|:-------------------------------------------
-ALL-DISTINCT-1                | DEL_DISTINCT_NS_IP, CHILD_DISTINCT_NS_IP | DEL_NS_SAME_IP, CHILD_NS_SAME_IP
-ALL-DISTINCT-2                | DEL_DISTINCT_NS_IP, CHILD_DISTINCT_NS_IP | DEL_NS_SAME_IP, CHILD_NS_SAME_IP
-ALL-DISTINCT-3                | DEL_DISTINCT_NS_IP, CHILD_DISTINCT_NS_IP | DEL_NS_SAME_IP, CHILD_NS_SAME_IP
-DEL-NON-DISTINCT              | DEL_NS_SAME_IP, CHILD_DISTINCT_NS_IP     | DEL_DISTINCT_NS_IP, CHILD_NS_SAME_IP
-CHILD-NON-DISTINCT            | DEL_DISTINCT_NS_IP, CHILD_NS_SAME_IP     | DEL_NS_SAME_IP, CHILD_DISTINCT_NS_IP
+ALL-DISTINCT-1                | DEL_DISTINCT_NS_IP, CHILD_DISTINCT_NS_IP | 2)
+ALL-DISTINCT-2                | DEL_DISTINCT_NS_IP, CHILD_DISTINCT_NS_IP | 2)
+ALL-DISTINCT-3                | DEL_DISTINCT_NS_IP, CHILD_DISTINCT_NS_IP | 2)
+DEL-NON-DISTINCT              | DEL_NS_SAME_IP, CHILD_DISTINCT_NS_IP     | 2)
+CHILD-NON-DISTINCT            | DEL_DISTINCT_NS_IP, CHILD_NS_SAME_IP     | 2)
+
 
 ## Zone setup for test scenarios
 
@@ -68,12 +79,12 @@ specific scenario:
 ### ALL-DISTINCT-1
 This is the happy path.
 
-* Zone: "all-distinct-1.delegation02.xa."
+* Zone: all-distinct-1.delegation02.xa
 
 ### ALL-DISTINCT-2
 This is also a happy path. Out-of-bailiwick.
 
-* Zone: "all-distinct-2.delegation02.xa"
+* Zone: all-distinct-2.delegation02.xa
   * Both ns1 and ns2 are out-of-bailiwick under the xb tree.
   * ns1 is "ns1.all-distinct-2.delegation02.xb"
   * ns2 is "ns2.all-distinct-2.delegation02.xb"
@@ -84,7 +95,7 @@ This is also a happy path. Out-of-bailiwick.
 ### ALL-DISTINCT-3
 This is also a happy path. Also out-of-bailiwick, but with sibbling glue.
 
-* Zone: "child.all-distinct-3.delegation02.xa"
+* Zone: child.all-distinct-3.delegation02.xa
   * Both ns1 and ns2 are out-of-bailiwick
   * ns1 is "ns1.sibbling.all-distinct-3.delegation02.xa"
   * ns2 is "ns2.sibbling.all-distinct-3.delegation02.xa"
@@ -95,7 +106,7 @@ This is also a happy path. Also out-of-bailiwick, but with sibbling glue.
 ### DEL-NON-DISTINCT
 The glue records use the same IP addresses
 
-* Zone: "del-non-distinct.delegation02.xa"
+* Zone: del-non-distinct.delegation02.xa
   * ns1 and ns2 in the glue have the ns1 IPv4 address
   * ns1 and ns2 in the glue have the ns2 IPv6 address
   * ns1 and ns2 are distinct in the zone
@@ -103,14 +114,14 @@ The glue records use the same IP addresses
 ### CHILD-NON-DISTINCT
 The address records in the zone use the same IP addresses
 
-* Zone: "child-non-distinct.delegation02.xa"
+* Zone: child-non-distinct.delegation02.xa
   * ns1 and ns2 in the zone have the ns1 IPv4 address
   * ns1 and ns2 in the zone have the ns2 IPv6 address
   * ns1 and ns2 are distinct in glue
 
 
-[DELEGATION02]:                                                   ../../tests/Delegation-TP/delegation02.md
+[Delegation02]:                                                   ../../tests/Delegation-TP/delegation02.md
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[Test zone README file]:                                          ../README.md
+[test scenario README file]:                                          ../README.md
 [Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios
 

@@ -1,8 +1,8 @@
-# Specification of test zones for Delegation-TP
+# Specification of test scenarios for Delegation-TP
 
 
-Test zone specifications are available for:
+Test scenario specifications are available for:
 
-* [DELEGATION01](delegation01.md)
-* [DELEGATION02](delegation02.md)
-* [DELEGATION03](delegation03.md)
+* [Delegation01](delegation01.md)
+* [Delegation02](delegation02.md)
+* [Delegation03](delegation03.md)
