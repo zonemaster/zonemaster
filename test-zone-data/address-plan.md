@@ -293,33 +293,42 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 
 ### Delegation test level address plan
 
-| Address (range) | Used for -- range for test case or specific NS address      |
-|-----------------|-------------------------------------------------------------|
-| 127.16.0.0/24   | (not in use)                                                |
-| 127.16.1.0/24   | Delegation01 scenarios                                      |
-| 127.16.1.21     | ns1.delegation01.xa                                         |
-| 127.16.1.22     | ns2.delegation01.xa                                         |
-| 127.16.2.0/24   | Delegation02 scenarios                                      |
-| 127.16.2.21     | ns1.delegation02.xa                                         |
-| 127.16.2.22     | ns2.delegation02.xa                                         |
-| 127.16.3.0/24   | Delegation03 scenarios                                      |
-| 127.16.3.21     | ns1.delegation03.xa                                         |
-| 127.16.3.22     | ns2.delegation03.xa                                         |
-| 127.16.4.0/24   | Delegation04 scenarios                                      |
-| 127.16.4.21     | ns1.delegation04.xa                                         |
-| 127.16.4.22     | ns2.delegation04.xa                                         |
-| 127.16.5.0/24   | Delegation05 scenarios                                      |
-| 127.16.5.21     | ns1.delegation05.xa                                         |
-| 127.16.5.22     | ns2.delegation05.xa                                         |
-| 127.16.6.0/24   | Delegation06 scenarios                                      |
-| 127.16.6.21     | ns1.delegation06.xa                                         |
-| 127.16.6.22     | ns2.delegation06.xa                                         |
-| 127.16.7.0/24   | Delegation07 scenarios                                      |
-| 127.16.7.21     | ns1.delegation07.xa                                         |
-| 127.16.7.22     | ns2.delegation07.xa                                         |
-| 127.16.8.0/24   | (not in use)                                                |
-| (...)           |                                                             |
-| 127.16.255.0/24 | (not in use)                                                |
+| Address (range) | Used for -- range for test case or specific NS address |
+|-----------------|--------------------------------------------------------|
+| 127.16.0.0/24   | (not in use)                                           |
+| 127.16.1.0/24   | Delegation01 scenarios                                 |
+| 127.16.1.21     | ns1.delegation01.xa                                    |
+| 127.16.1.22     | ns2.delegation01.xa                                    |
+| 127.16.1.25     | ns1.delegation01.xb                                    |
+| 127.16.1.26     | ns2.delegation01.xb                                    |
+| 127.16.1.27     | root-ns1.xa                                            |
+| 127.16.1.28     | root-ns1.xa                                            |
+| 127.16.1.31     | ns1 child zone                                         |
+| 127.16.1.32     | ns2 child zone                                         |
+| 127.16.1.33     | ns1 in xb for child zone                               |
+| 127.16.1.34     | ns2 in xb for child zone                               |
+| 127.16.1.53     | resolver with test case local hint                     |
+| 127.16.2.0/24   | Delegation02 scenarios                                 |
+| 127.16.2.21     | ns1.delegation02.xa                                    |
+| 127.16.2.22     | ns2.delegation02.xa                                    |
+| 127.16.3.0/24   | Delegation03 scenarios                                 |
+| 127.16.3.21     | ns1.delegation03.xa                                    |
+| 127.16.3.22     | ns2.delegation03.xa                                    |
+| 127.16.4.0/24   | Delegation04 scenarios                                 |
+| 127.16.4.21     | ns1.delegation04.xa                                    |
+| 127.16.4.22     | ns2.delegation04.xa                                    |
+| 127.16.5.0/24   | Delegation05 scenarios                                 |
+| 127.16.5.21     | ns1.delegation05.xa                                    |
+| 127.16.5.22     | ns2.delegation05.xa                                    |
+| 127.16.6.0/24   | Delegation06 scenarios                                 |
+| 127.16.6.21     | ns1.delegation06.xa                                    |
+| 127.16.6.22     | ns2.delegation06.xa                                    |
+| 127.16.7.0/24   | Delegation07 scenarios                                 |
+| 127.16.7.21     | ns1.delegation07.xa                                    |
+| 127.16.7.22     | ns2.delegation07.xa                                    |
+| 127.16.8.0/24   | (not in use)                                           |
+| (...)           |                                                        |
+| 127.16.255.0/24 | (not in use)                                           |
 
 
 ### Nameserver test level address plan

@@ -63,6 +63,10 @@ ns1             AAAA  fda1:b2:c3::127:14:6:21
 ns1             A     127.14.6.22
 ns1             AAAA  fda1:b2:c3::127:14:6:22
 
+; delegation01 has its own root
+; delegation02 has its own root
+; delegation03 has its own root
+
 $ORIGIN nameserver15.xa.
 @               NS      ns1
 @               NS      ns2
