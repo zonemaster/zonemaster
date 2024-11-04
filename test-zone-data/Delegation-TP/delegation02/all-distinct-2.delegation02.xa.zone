@@ -1,0 +1,15 @@
+$ORIGIN all-distinct-2.delegation02.xa.                             ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024110402      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS    ns1.all-distinct-2.delegation02.xb.
+@       NS    ns2.all-distinct-2.delegation02.xb.
+
+
+; EOF
