@@ -1445,11 +1445,11 @@ If the `batch_id` is undefined the following error is returned:
 This method replaces deprecated method
 [API method: get_batch_job_result](#api-method-get_batch_job_result).
 
-Returns the number of created, running and finished *tests*. Optionally it also
-returns [*test id*][Test id] objects (created, running or finished) of a
-*batch test*.
+Returns the number of waiting, running and finished *tests*. Optionally it also
+returns the [*test ids*][Test id] of the *batch test*.
 
-Example valid request:
+Example valid request and response, respectively, where no [*test ids*][Test id]
+were requested:
 
 ```json
 {
@@ -1462,20 +1462,21 @@ Example valid request:
 }
 ```
 
-Also asks for the created [*test id*][Test id] objects:
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 147559211994909,
-    "method": "batch_status",
-    "params": {
-        "batch_id": "8",
-        "list_created": true
-    }
+   "jsonrpc": "2.0",
+   "id": 147559211994909,
+   "result": {
+      "finished": 5,
+      "running": 5,
+      "waiting": 195
+   }
 }
 ```
 
-Also asks for both the running and finished [*test id*][Test id] objects:
+Example valid request and response, respectively, where [*test ids*][Test id]
+were requested for all three status values:
+
 ```json
 {
     "jsonrpc": "2.0",
@@ -1484,21 +1485,9 @@ Also asks for both the running and finished [*test id*][Test id] objects:
     "params": {
         "batch_id": "8",
         "list_running": true,
-        "list_finished": true
+        "list_finished": true,
+        "list_waiting": true
     }
-}
-```
-
-Example responses:
-```json
-{
-   "jsonrpc": "2.0",
-   "id": 147559211994909,
-   "result": {
-      "finished": 5,
-      "running": 5,
-      "created": 195
-   }
 }
 ```
 
@@ -1514,7 +1503,7 @@ existing):
       "finished_test_ids": [
       ],
       "runninng": 5,
-      "created": 195
+      "waiting": 195
    }
 }
 ```
@@ -1526,60 +1515,19 @@ Finished [*test id*][Test id] objects were requested:
    "jsonrpc": "2.0",
    "id": 147559211994909,
    "result": {
-      "finished": 5,
+      "finished": 1,
       "finished_test_ids": [
          "43b408794155324b",
+      ],
+      "waiting_test_ids": [
          "be9cbb44fff0b2a8",
          "62f487731116fd87",
-         "692f8ffc32d647ca",
-         "6441a83fcee8d28d"
-      ],
-      "created": 195,
-      "running": 5
-   }
-}
-```
-
-
-created [*test id*][Test id] objects were requested:
-
-```json
-{
-   "jsonrpc": "2.0",
-   "id": 147559211994909,
-   "result": {
-      "finished": 10,
-      "running": 10,
-      "created_test_ids": [
-         "43b408794155324b",
-         "be9cbb44fff0b2a8",
-         "62f487731116fd87",
-         "692f8ffc32d647ca",
-         "6441a83fcee8d28d"
-      ],
-      "created": 5
-   }
-}
-```
-
-Finished and running [*test id*][Test id] objects were requested:
-
-```json
-{
-   "jsonrpc": "2.0",
-   "id": 147559211994909,
-   "result": {
-      "finished": 3,
-      "created": 0,
-      "finished_test_ids": [
-         "62f487731116fd87",
-         "692f8ffc32d647ca",
-         "6441a83fcee8d28d"
       ],
       "running_test_ids": [
-         "43b408794155324b",
-         "be9cbb44fff0b2a8",
+         "692f8ffc32d647ca",
+         "6441a83fcee8d28d"
       ],
+      "waiting": 2,
       "running": 2
    }
 }
@@ -1590,29 +1538,26 @@ Finished and running [*test id*][Test id] objects were requested:
 An object with the property:
 
 * `"batch_id"`: A [*batch id*][Batch id], required.
-* `"list_created"`: a boolean, optional. Default false. If true requesting for
-  a list of [*test ids*][Test id] for which [*progress*][Progress percentage]
-  is equal to 0.
-* `"list_running"`: a boolean, optional. Default false. If true requesting for
-  a list of [*test ids*][Test id] for which [*progress*][Progress percentage]
-  is in the interval 1 to 99 (inclusive).
-* `"list_finished"`: a boolean, optional. Default false. If true requesting for
-  a list of [*test ids*][Test id] for which [*progress*][Progress percentage]
-  is equal to 100.
+* `"list_waiting"`: a boolean, optional (default false). If true include the
+  `"waiting_test_ids"` property in the result object.
+* `"list_running"`: a boolean, optional (default false). If true include the
+  `"running_test_ids"` property in the result object.
+* `"list_finished"`: a boolean, optional (default false). If true include the
+  `"finished_test_ids"` property in the result object.
 
 #### `"result"`
 
 An object with the following properties:
 
-* `"created"`: a [*non-negative integer*][Non-negative integer]. The number of
-  *created* tests ([*progress*][Progress percentage] is equal to 0).
+* `"waiting"`: a [*non-negative integer*][Non-negative integer]. The number of
+  *waiting* tests ([*progress*][Progress percentage] is equal to 0).
 * `"running"`: a [*non-negative integer*][Non-negative integer]. The number of
   *running* tests ([*progress*][Progress percentage] is in the interval 1 to 99,
   inclusive).
 * `"finished"`: a [*non-negative integer*][Non-negative integer]. The number of
   *finished* tests ([*progress*][Progress percentage] is equal to 100).
-* `"created_test_ids"`: a list of [*test ids*][Test id] (only if requested).
-  The set of *created* tests in this *batch*.
+* `"waiting_test_ids"`: a list of [*test ids*][Test id] (only if requested).
+  The set of *waiting* tests in this *batch*.
 * `"running_test_ids"`: a list of [*test ids*][Test id] (only if requested).
   The set of *running* tests in this *batch*.
 * `"finished_test_ids"`: a list of [*test ids*][Test id] (only if requested).
