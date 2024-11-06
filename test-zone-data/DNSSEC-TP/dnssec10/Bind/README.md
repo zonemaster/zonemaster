@@ -124,10 +124,11 @@ To start or stop Bind go to the directory where `named.conf` is found,
 ```sh
 cd test-zone-data/DNSSEC-TP/dnssec10/Bind
 ```
-Start Bind with the following command where `ubuntu` is the owner of the git
-tree, i.e. owner of the `Bind` directory and all file in that directory.
+Start Bind with the following command where `$USER` has the owner of the git
+tree, i.e. owner of the `Bind` directory and all file in that directory. In a
+default installation of Ubuntu that user name is `ubuntu`.
 ```sh
-sudo named -c $(pwd)/named.conf -u ubuntu
+sudo named -c $(pwd)/named.conf -u $USER
 ```
 From the directory where Bind was started the following command stops Bind:
 ```sh
