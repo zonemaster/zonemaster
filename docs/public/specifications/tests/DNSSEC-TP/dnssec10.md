@@ -129,11 +129,11 @@ If the server returns an NSEC3PARAM record in the answer section when querying f
 it or an NSEC3 record in the authority section when querying for NSEC, it is
 considered to be "NSEC3 type" for the zone.
 
-*[DS10_MIXED_NSEC_NSEC3]* means that one or several servers have been
-identified as both NSEC type and NSEC3 type.
+*[DS10_MIXED_NSEC_NSEC3]* means that one or several name servers have been
+identified as both "NSEC type" and "NSEC3 type".
 
-*[DS10_INCONSISTENT_NSEC_NSEC3]* means that some servers are non-mixed
-"NSEC type" and others are non-mixed NSEC3 type for the same zone.
+*[DS10_INCONSISTENT_NSEC_NSEC3]* means that some name servers are non-mixed
+"NSEC type" and others are non-mixed "NSEC3 type" for the same zone.
 
 
 ## Test procedure
@@ -222,7 +222,7 @@ A complete list of all DNS Resource Record types can be found in the
              1. Add the name server IP to the *NSEC In Answer* set.
              2. If the owner name of the NSEC record is not *Child Zone* then
                 add name server IP to the *NSEC Mismatches Apex* set.
-          2. Else then add the name server IP to the
+          2. Else add the name server IP to the
              *NSEC Query Gives Erroneous Answer* set.
        3. Else if the answer section is empty, then do:
           1. If the authority section contains no NSEC3 record then go to next
@@ -249,7 +249,7 @@ A complete list of all DNS Resource Record types can be found in the
                    2. At least one of NSEC or NSEC3 is included.
                 3. Retrieve the NSEC3 record from the response.
                 4. Retrieve the RRSIG records for the retrieved NSEC3 record.
-                5. If the NSEC3 records do not have a matching RRSIG
+                5. If the NSEC3 record do not have a matching RRSIG
                    record, then add the name server IP to the
                    *NSEC3 Missing Signature* set.
                 6. Else do:
@@ -457,7 +457,7 @@ A complete list of all DNS Resource Record types can be found in the
     *NSEC RRSIG Verify Error* sets is non-empty, then do:
     1. For each name server IP address in the combined set store the IP address
        in a temporary set for the next step if the IP address is not a member of
-       the *NSEC RRSIG Verified*.
+       the *NSEC RRSIG Verified* set.
     2. If the temporary set is non-empty then output
        *[DS10_NSEC_NO_VERIFIED_SIGNATURE]* with the name server IP addresses from
        the set.
