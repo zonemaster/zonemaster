@@ -218,10 +218,12 @@ A complete list of all DNS Resource Record types can be found in the
           2. The [RCODE Name] in the response is not "NoError".
           3. The AA flag is not set in the response.
        2. Else if the answer section is non-empty, then do:
-          1. If the answer section has a NSEC RR then do:
+          1. If the answer section has at least one NSEC RR then do:
              1. Add the name server IP to the *NSEC In Answer* set.
-             2. If the owner name of the NSEC record is not *Child Zone* then
-                add name server IP to the *NSEC Mismatches Apex* set.
+             2. If the number of NSEC records is greater than one then add name
+                server IP to the *Erroneous Multiple NSEC* set.
+             3. Else, if the owner name of the NSEC record is not *Child Zone*
+                then add name server IP to the *NSEC Mismatches Apex* set.
           2. Else add the name server IP to the
              *NSEC Query Gives Erroneous Answer* set.
        3. Else if the answer section is empty, then do:
