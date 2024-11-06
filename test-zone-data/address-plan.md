@@ -312,7 +312,7 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.16.2.21     | ns1.delegation02.xa                                    |
 | 127.16.2.22     | ns2.delegation02.xa                                    |
 | 127.16.2.25     | ns1.delegation02.xb                                    |
-| 127.16.2.26     | ns2.delegation03.xb                                    |
+| 127.16.2.26     | ns2.delegation02.xb                                    |
 | 127.16.2.27     | root-ns1.xa                                            |
 | 127.16.2.28     | root-ns1.xa                                            |
 | 127.16.2.31     | ns1 (ns1a, ns1b) child zone                            |
@@ -324,6 +324,15 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.16.3.0/24   | Delegation03 scenarios                                 |
 | 127.16.3.21     | ns1.delegation03.xa                                    |
 | 127.16.3.22     | ns2.delegation03.xa                                    |
+| 127.16.3.27     | root-ns1.xa                                            |
+| 127.16.3.28     | root-ns1.xa                                            |
+| 127.16.3.31     | ns1 child zone                                         |
+| 127.16.3.32     | ns2 child zone                                         |
+| 127.16.3.33     | ns3 child zone                                         |
+| 127.16.3.34     | ns4 child zone                                         |
+| 127.16.3.35     | ns5 child zone                                         |
+| 127.16.3.36     | ns6 child zone                                         |
+| 127.16.3.53     | resolver with test case local hint                     |
 | 127.16.4.0/24   | Delegation04 scenarios                                 |
 | 127.16.4.21     | ns1.delegation04.xa                                    |
 | 127.16.4.22     | ns2.delegation04.xa                                    |
