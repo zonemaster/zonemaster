@@ -92,6 +92,7 @@ GOOD-NSEC3-1                   | DS10_HAS_NSEC3                                 
 ALGO-NOT-SUPP-BY-ZM-1          | DS10_ALGO_NOT_SUPPORTED_BY_ZM, DS10_HAS_NSEC                                 | 2)
 ALGO-NOT-SUPP-BY-ZM-2          | DS10_ALGO_NOT_SUPPORTED_BY_ZM, DS10_HAS_NSEC3                                | 2)
 ERR-MULT-NSEC-1                | DS10_ERR_MULT_NSEC, DS10_HAS_NSEC                                            | 2)
+ERR-MULT-NSEC-2                | DS10_ERR_MULT_NSEC, DS10_HAS_NSEC                                            | 2)
 ERR-MULT-NSEC3-1               | DS10_ERR_MULT_NSEC3, DS10_HAS_NSEC3                                          | 2)
 EXP-NSEC-NSEC3-MISS-1          | DS10_EXPECTED_NSEC_NSEC3_MISSING                                             | 2)
 INCONSISTENT-NSEC-1            | DS10_INCONSISTENT_NSEC, DS10_HAS_NSEC                                        | 2)
@@ -208,12 +209,21 @@ An NSEC3 zone. Unknown algorithm of a DNSKEY.
     KSK.
 
 ### ERR-MULT-NSEC-1
-An NSEC zone. An extra NSEC record is returned.
+An NSEC zone. An extra NSEC record is returned on the NSEC3PARAM query.
 
 * Zone: err-mult-nsec-1.dnssec10.xa
   * An extra NSEC record is returned in the response to the NSEC3PARAM query.
     * The extra NSEC record has the same owner name, but different value in
       "Next Domain Name" field.
+  * RRSIG is recalculated.
+
+### ERR-MULT-NSEC-2
+An NSEC zone. An extra NSEC record is returned on the NSEC query.
+
+* Zone: err-mult-nsec-2.dnssec10.xa
+  * An extra NSEC record is returned in the response to the NSEC query.
+    * The extra NSEC record has the same owner name, but different value in
+      "Type List" field.
   * RRSIG is recalculated.
 
 ### ERR-MULT-NSEC3-1
