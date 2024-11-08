@@ -1,4 +1,4 @@
-# Using the Backend RPCAPI
+# Using Zonemaster-Backend RPCAPI
 
 ## Table of contents
 
@@ -12,12 +12,13 @@
 * [Find available languages](#find-available-languages)
 * [Find previous tests](#find-previous-tests)
 * [Other APIs](#other-apis)
+* [Using curl instead](#Using-curl-instead)
 
 ## Introduction
 
 This is a guide for getting started with the Zonemaster [RPCAPI] daemon.
 
-Note that this guide makes a number of assumptions about you setup:
+Note that this guide makes a number of assumptions about your setup:
 
 * That it is a Unix-like environment.
 * That you have Zonemaster-Backend installed according to the
@@ -63,7 +64,7 @@ To just run a test `zmtest` is the simple tool to use:
 zmtest zonemaster.net
 ```
 
-The tool will also display the result, which will a long JSON structure (here
+The tool will also display the result, which will be a long JSON structure (here
 truncated).
 
 ```
@@ -113,7 +114,8 @@ testid: 879d13569db70fde
 (...)
 ```
 
-You will find the meaning of all fields in the outputs in [Zonemaster RPCAPI reference][RPCAPI].
+You will find the meaning of all fields in the outputs in
+[Zonemaster-Backend RPCAPI reference][RPCAPI].
 
 ## Run a test of the zonemaster.net zone using zmb
 
@@ -264,10 +266,42 @@ Now you can get the results of any of the listed tests by running
 ## Other APIs
 
 There are a few other APIs that can be used throught `zmb`, and can be found by
-`zmb -h` and in [Zonemaster RPCAPI reference][RPCAPI]. The APIs for batch testing
-are covered in [Using Zonemaster Backend for batch testing].
+`zmb -h` and in [Zonemaster-Backend RPCAPI reference][RPCAPI]. The APIs for batch
+testing are covered in [Using Zonemaster Backend for batch testing].
+
+## IDN domain names
+
+When enqueuing a test of an IDN domain name with `zmb start_domain_test` it is
+possible to provide the domain name as either A-label or U-label. E.g. both
+"räksmörgås.se" or "xn--rksmrgs-5wao1o.se" (the same domain name) work as well.
+
+The same is also true if using Curl instead (see below).
+
+## Using Curl instead
+
+Instead of using `zmb` it is possible to run the commands by `curl`, which
+requires that the JSON structure is created, but can give greater flexibility.
+The method can also be copied into different programming languages when
+scripting.
+
+The same enqueuing of the zonemaster.net zone as above will then be:
+
+```sh
+curl -sS -H "Content-Type: application/json" -d '{"jsonrpc": "2.0", "id": 2, "method": "start_domain_test", "params": {"domain": "zonemaster.net"}}' http://localhost:5000/ | jq .
+```
+
+And fetching the result, when completed, will be:
+
+```sh
+curl -sS -H "Content-Type: application/json" -d '{"jsonrpc": "2.0", "id": 5, "method": "get_test_results", "params": {"id": "879d13569db70fde", "language": "en"}}' http://localhost:5000/ | jq .
+```
+
+The format of the JSON structure for every method is found in the 
+[Zonemaster-Backend RPCAPI reference][RPCAPI].
+
 
 
 [installation guide]:                                 ../../installation/zonemaster-backend.md
 [RPCAPI]:                                             rpcapi-reference.md
 [Using Zonemaster Backend for batch testing]:         Using-Zonemaster-Backend-for-batch-testing.md
+B

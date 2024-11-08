@@ -70,7 +70,7 @@ used by untrusted users, e.g. via GUI. If the installation for the batch jobs
 is a dedicated installation, then it is not an issue. If it is used by a public
 GUI that could be closed while the batch user or users are created, then that
 could be an option. Creating the user only takes as long time as it takes to
-type the command in, i.e. seconds
+type the command in, i.e. seconds.
 
 Another option is to create new RPCAPI to the same Backend (the same database).
 A Backend can have several parallel RPCAPI running with different configuration,
@@ -121,6 +121,35 @@ optional. For all options see `zmb man`.
 
 The batch ID is found in "result", which is "2" in this case.
 
+Listing the domain names one by one is however cumbersome unless it is a very
+small batch as above. A better alternative for a larger batch is to create text
+file of the domain names to test, one domain name per line. Comments starting
+on `#` is permitted, which makes it possible to add meta information to the
+file.
+
+```
+cat batchfile.txt
+# Example batch
+zonemaster.net
+zonemaster.se
+zonemaster.fr
+```
+
+Now we can run the same batch as above, but from the file:
+
+```
+$ zmb add_batch_job --username myuser --api-key mykey --file batchfile | jq
+{
+  "jsonrpc": "2.0",
+  "result": 3,
+  "id": 1
+}
+```
+
+Starting the batch with the domain names one by one or in the file gives exactly
+the same result. Also in this case, IDN domain names can be entered both with
+A-label and U-label (UTF-8 is assumed).
+
 ### Status of a batch job
 
 To check the status of a batch job the batch ID is required ("2" in the
@@ -167,7 +196,7 @@ to increase the performance by:
 
 * Enabling global cache
 * Increasing `number_of_processes_for_batch_testing`
-* Adding one or more test agent daemons
+* Adding one or more parent test agent daemons
 * Adding one or more test servers
 
 ### Enable global cache
@@ -202,13 +231,13 @@ batch=/usr/local/etc/zonemaster/profile-batch.json
 ```
 
 After restarting both RPCAPI daemon and Test Agent daemon (all daemons if there
-are more than one of each) a batch can be started with:
+are more than one of each) a batch can be started with (using a batch file):
 
 ```
-$ zmb add_batch_job --profile batch --username myuser --api-key mykey --domain zonemaster.net --domain zonemaster.se --domain zonemaster.fr | jq
+$ zmb add_batch_job --profile batch --username myuser --api-key mykey --file batchfile | jq
 {
   "jsonrpc": "2.0",
-  "result": 3,
+  "result": 4,
   "id": 1
 }
 ```
@@ -218,21 +247,18 @@ directly (or indirectly) share data with other domain names.
 
 ### Increase number of sub processes
 
-If there are too few test agent sub processes then increasing setting
-`number_of_processes_for_batch_testing` in the
-[configuration file][Backend_config.ini] can help to some level. There are,
-however, a limit when increase does not help. Then more test agent daemons can
-help.
+By default one parent test agent daemon is run in a Backend installation. That
+parent daemon will fork into child processes. The number of test agent child
+processes can be increased by setting `number_of_processes_for_batch_testing` in
+the [configuration file][Backend_config.ini], and in that way increase
+performance. There is, however, a limit when increase does not help. Then adding
+more parent test agent daemons can help.
 
-### Add more test agent daemons
+### Add more parent test agent daemons
 
 If the increase of `number_of_processes_for_batch_testing` does not help anymore
 and the server has free resources (IO, CPU and RAM) then adding one or more test
-agent daemons can help.
-
-By default one parent test agent daemon is run in a Backend installation. That
-parent daemon will fork into child processes, but to increase performance a
-second parent test agent daemon can be created.
+parent agent daemons can help.
 
 The parent test agent is started by the start script
 `/etc/systemd/system/zm-testagent.service` (Rocky Linux),
