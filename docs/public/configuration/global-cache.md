@@ -83,7 +83,7 @@ perl -MZonemaster::Engine::Test -E 'say Zonemaster::Engine::Profile->default->to
 
 Update `/etc/zonemaster/profile.json` (or `/usr/local/etc/zonemaster/profile.json`
 for FreeBSD) by adding a cache section. If the profile already has an empty cache
-section (`"cache": {}`) it must be removed. Add the following section,
+section (i.e. `"cache": {}`) then it must be removed. Add the following section,
 ```
     "cache": {
         "redis": {
