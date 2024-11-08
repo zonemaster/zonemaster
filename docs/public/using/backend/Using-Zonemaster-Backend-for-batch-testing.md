@@ -40,7 +40,7 @@ Both GUI and batch uses Zonemaster-Backend that stores the data in the database.
 If the same database is used, then all tests run, regardless if they are
 started via GUI or a batch, will be available in the GUI interface
 using the `get_test_history` (see relevant section in
-[Using the Backend RPCAPI][Using#find-previous-tests]. Depending on the
+[Using the Backend RPCAPI][Using#find-previous-tests]). Depending on the
 situation, running batches on the same Backend as GUI may be desirable or not
 recommended. If the results are expected to be available through GUI then the batches must be
 run on the same Backend. If the batches are run with a reduced set of test cases
@@ -78,9 +78,12 @@ see [Create an additional RPCAPI].
 ## Create batch user
 
 The [using the Backend RPCAPI] guide shows how `zmb` can be used for several
-RPCAPI tasks. It can also be used for the creation of the batch user. It is now
-assumed that `enable_add_api_user` is enabled or else 
-`"message": "Procedure 'add_api_user' not found"` will be outputted.
+RPCAPI tasks. It can also be used for the creation of the batch user. It is here
+assumed that `enable_add_api_user` is enabled or else the following will be
+included  in the response to the `zmb add_api_user` command:
+```
+"message": "Procedure 'add_api_user' not found"
+```
 
 Run `zmb add_api_user --username myuser --api-key mykey | jq` where `myuser` is
 a user name of your choice and `mykey` the password, which should probably be
@@ -336,7 +339,7 @@ Update the second daemon to use the updated configuration file.
 [Global-cache]:                                 ../../configuration/global-cache.md
 [MariaDB/MySQL]:                                ../../installation/zonemaster-backend.md#7-installation-with-mariadb
 [PostgreSQL]:                                   ../../installation/zonemaster-backend.md#8-installation-with-postgresql
-[Using the Backend RPCAPI]:                     Using-the-Backend-RPCAPI.md
-[Using#find-previous-tests]:                    Using-the-Backend-RPCAPI.md#find-previous-tests
+[Using the Backend RPCAPI]:                     Using-Zonemaster-Backend-RPCAPI.md
+[Using#find-previous-tests]:                    Using-Zonemaster-Backend-RPCAPI.md#find-previous-tests
 [RPCAPI#queue]:                                 rpcapi-reference.md#queue
 [Config#lock_on_queue]:                         ../../configuration/backend.md#lock_on_queue
