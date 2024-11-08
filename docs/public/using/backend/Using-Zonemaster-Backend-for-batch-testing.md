@@ -20,19 +20,19 @@
 ## Introduction
 
 In [Using the Backend RPCAPI] it is shown how a test of a single domain name
-(zone) can be started using the RPC-API interface to Zonemaster-Backend. It also
-possible to start a batch of domain names at the same time. Such a batch is
-principle the same thing as running the `start_domain_test` individually for each
+(zone) can be started using the RPC-API interface to Zonemaster-Backend. It is also
+possible to start a batch of domain names at the same time. In principle such
+a batch is the same thing as running the `start_domain_test` individually for each
 domain name in the batch.
 
 This document will describe how batches of domain name tests can be run and what
 to think about when running batches, especially large ones.
 
-Zonemaster-Backend uses a databse to store information on enqueued tests and
+Zonemaster-Backend uses a database to store information on enqueued tests and
 results from tests. It is possible to use SQLite as the database backend for
 small installations and test installations, but that is not useful for running
-real batches on. In this document it is assumed that Backend has been installed
-with [MariaDB/MySQL] or [PostgreSQL].
+real batches on. Therefore in this document it is assumed that Backend has been
+installed with [MariaDB/MySQL] or [PostgreSQL].
 
 ## Combining GUI and batch
 
@@ -42,9 +42,9 @@ started via GUI or a batch, will be available in the GUI interface indirectly
 using the `get_test_history` (see relevant section in
 [Using the Backend RPCAPI][Using#find-previous-tests]. Depending on the
 situation, running batches on the same Backend as GUI may be desirable or not
-recommended. If the results should be available through GUI the batches must be
+recommended. If the results are expected to be available through GUI then the batches must be
 run on the same Backend. If the batches are run with a reduced set of test cases
-(tests) then it can be confusing since the results are not fully comparable with
+then it can be confusing since the results are not fully comparable with
 those from tests started from GUI. If the results from batch tests should not be
 mixed with tests from normal GUI tests, a separate installation of Backend is
 required, and that might not need any GUI at all.
@@ -58,16 +58,15 @@ batch to complete. A large batch might run for days.
 ## Configuration to run batches
 
 To start a batch job, setting `enable_add_batch_job` in [backend_config.ini] must
-be enabled (enabled by default). To start the batch job, a special user must also
-be available. To create that user setting `enable_add_api_user` must be enabled
-(disabled by default). (See below for how to create the user.) That setting only
-needs to be enabled while creating the user or users, not when starting a batch
-job.
+be enabled (*enabled* by default). Moreover a special user must also be available.
+To create that user setting `enable_add_api_user` must be enabled
+(*disabled* by default). (See below for how to create the user.) Note that this setting
+only needs to be enabled while creating the user(s), not when starting a batch job.
 
-After changing the setting, RPCAPI daemon must be restarted.
+After changing these settings, the RPCAPI daemon must be restarted.
 
 It is not recommended to enable `enable_add_api_user` for an RPCAPI that can be
-used by untrusted users, e.g. via GUI. If a the installation for the batch jobs
+used by untrusted users, e.g. via GUI. If the installation for the batch jobs
 is a dedicated installation, then it is not an issue. If it is used by a public
 GUI that could be closed while the batch user or users are created, then that
 could be an option. Creating the user only takes as long time as it takes to
@@ -79,7 +78,7 @@ see [Create an additional RPCAPI].
 
 ## Create batch user
 
-In [Using the Backend RPCAPI] it was shown how `zmb` can be used for several
+In [Using the Backend RPCAPI] it is shown how `zmb` can be used for several
 RPCAPI tasks. It can also be used for the creation of the batch user. It is now
 assumed that `enable_add_api_user` is enabled or else 
 `"message": "Procedure 'add_api_user' not found"` will be outputted.
@@ -100,12 +99,12 @@ Now `enable_add_api_user` can be disabled.
 
 ## Run a batch job
 
-A batch job can be just a few domain names or a list of millions of domain
-names. 
+The `zmb` script is used for that purpose. A batch job can be started with just a few
+domain names or a list of millions of domain names.
 
 ### Start a batch job
 
-Here a small batch will be created:
+Creating a batch is done using `add_batch_job`:
 
 ```
 $ zmb add_batch_job --username myuser --api-key mykey --domain zonemaster.net --domain zonemaster.se --domain zonemaster.fr | jq
@@ -116,16 +115,16 @@ $ zmb add_batch_job --username myuser --api-key mykey --domain zonemaster.net --
 }
 ```
 
-Options that are manatory are `--username`, `--api-key` and `--domain`. Option
+Options that are mandatory are `--username`, `--api-key` and `--domain`. Option
 `--domain` is repeated for every domain name in the batch. The other options are
 optional. For all options see `zmb man`.
 
-The batch ID is found in "result", `"result": 2` in this case.
+The batch ID is found in "result", which is "2" in this case.
 
 ### Status of a batch job
 
-To check the status of the batch job started above we need the batch ID (2 in the
-case above), and then we ask för the status:
+To check the status of a batch job the batch ID is required ("2" in the
+case above), using `get_batch_job_result`:
 
 ```
 $ zmb get_batch_job_result --batch-id 2 | jq
@@ -139,8 +138,8 @@ $ zmb get_batch_job_result --batch-id 2 | jq
 }
 ```
 
-Three tests are running, none has been completed. After some time we run the
-command again and get:
+Three tests are running, none has been completed yet. After some time running the
+command again gives:
 
 ```json
 {
@@ -164,28 +163,28 @@ can be used to get the results with `get_test_results`.
 ## Scale out
 
 Running a batch can take a long time and if that is a problem then it is possible
-to increase the performance:
+to increase the performance by:
 
-* Enable global cache
-* Increase `number_of_processes_for_batch_testing`
-* Add one or more test agent daemons
-* Add one or more test servers
+* Enabling global cache
+* Increasing `number_of_processes_for_batch_testing`
+* Adding one or more test agent daemons
+* Adding one or more test servers
 
 ### Enable global cache
 
 When a test is executed Zonemaster caches DNS responses for the same test (same
 domain name) to increase performance (no need to query for the same thing again).
 In the normal case the cache is not shared between different tests (different
-domain names). Such global cache can be enabled to get increase performance.
+domain names). Such global cache can be enabled to get increased performance.
 
-For interactive tests via GUI the global cache is probably not desired. If user
-does some change to resolve an issue and retests she does not want results based
-on old data.
+For interactive tests via GUI the global cache is probably not desired. If a user
+changes the DNS configuration of a domain then the following tests results should
+not be based on old data.
 
 To enable global cache a custom profile must be used. See the instructions in
 [Configuration: Global cache in Zonemaster-Engine][Global-cache].
 
-We assume that the custom profile is `/etc/zonemaster/profile-batch.json`
+The custom profile is assumed to be `/etc/zonemaster/profile-batch.json`
 (Linux) or `/etc/local/zonemaster/profile-batch.json` (FreeBSD).
 
 The custom profile must be added to the Backend configuration to be made
@@ -202,8 +201,8 @@ For FreeBSD add:
 batch=/usr/local/etc/zonemaster/profile-batch.json
 ```
 
-After restart of both RPCAPI daemon and Test Agent daemon (all daemons if there
-are more than one of each) a batch can be started with
+After restarting both RPCAPI daemon and Test Agent daemon (all daemons if there
+are more than one of each) a batch can be started with:
 
 ```
 $ zmb add_batch_job --profile batch --username myuser --api-key mykey --domain zonemaster.net --domain zonemaster.se --domain zonemaster.fr | jq
@@ -214,8 +213,8 @@ $ zmb add_batch_job --profile batch --username myuser --api-key mykey --domain z
 }
 ```
 
-This will give an increase performance on large batches where the domain name
-directly or indirectly share data.
+This will give an increased performance on large batches where the domain name
+directly (or indirectly) share data with other domain names.
 
 ### Increase number of sub processes
 
@@ -242,7 +241,7 @@ The parent test agent is started by the start script
 file and new log file. Also see the [Backend installation instructions].
 
 Start the new daemon and now a second parent test agent daemon is running.
-Additiona parent test agent daemons can be added.
+Additional parent test agent daemons can be added.
 
 Unless the different parent test agent daemons should process different
 [queues](#queues) the same configuration file can be used.
@@ -260,15 +259,15 @@ Adding more servers is a generalization of adding more test agent daemons.
   The Redis server can also be moved to a dedicated server.
 * Consider moving RPCAPI to a dedicated server. If so, update the configuration
   to use the external database server.
-* If applicable, configure all parts to use externa database server and external
+* If applicable, configure all parts to use external database server and external
   Redis server.
 
 ## Queues
 
 Every enqueued test has a [queue tag][RPCAPI#queue]. In the
-[configuration][Config#lock_on_queue] file it is set what queue that should be
+[configuration][Config#lock_on_queue] file it is set which queue should be
 processed by the test agent. Only tests with matching queue value (default 0)
-will be processed. Queue tag is set APIs `start_domain_test` and `add_batch_job`,
+will be processed. Queue tag is set by API methods `start_domain_test` and `add_batch_job`,
 respectively (default 0 in both cases).
 
 If desirable it is possible to create a batch with another queue value and then
@@ -276,7 +275,7 @@ let a dedicated tast agent, possibly on a dedicated server, process the tests in
 the batch, while another test agent processes tests from the GUI.
 
 It is important to note that if a test is tagged with a queue value that no
-test agent processes it will never be processed.
+test agent uses it will never be processed.
 
 In the end, all completed tests will end up in the same database and will be
 mixed when looking for completed tests for the same domain name
