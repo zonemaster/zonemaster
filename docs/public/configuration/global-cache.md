@@ -41,8 +41,11 @@ Install the `Redis` daemon and needed Perl library. And then start the `Redis`
 daemon. It will listen to localhost and default port.
 
 ### Rocky Linux
-
-To be added.
+```
+sudo dnf --assumeyes install redis perl-Redis perl-Data-MessagePack
+sudo systemctl enable redis
+sudo systemctl start redis
+```
 
 ### Debian and Ubuntu
 ```
