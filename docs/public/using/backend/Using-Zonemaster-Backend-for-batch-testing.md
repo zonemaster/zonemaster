@@ -11,7 +11,7 @@
   * [Status of a batch job](#status-of-a-batch-job)
 * [Scale out](#scale-out)
   * [Enable global cache](#enable-global-cache)
-  * [Increase number of sub processes](#increase-number-of-sub-processes)
+  * [Increase number of sub-processes](#increase-number-of-sub-processes)
   * [Add more test agent daemons](#add-more-test-agent-daemons)
   * [Add more test servers](#add-more-test-servers)
 * [Queues](#queues)
@@ -25,20 +25,20 @@ possible to start a batch of domain names at the same time. In principle such
 a batch is the same thing as running the `start_domain_test` individually for each
 domain name in the batch.
 
-This document will describe how batches of domain name tests can be run and what
+This document describes how batches of domain name tests can be run and what
 to think about when running batches, especially large ones.
 
-Zonemaster-Backend uses a database to store information on enqueued tests and
+Zonemaster-Backend uses a database to store enqueued tests and
 results from tests. It is possible to use SQLite as the database backend for
-small installations and test installations, but that is not useful for running
+small installations and test installations, but that is not appropriate for running
 real batches on. Therefore in this document it is assumed that Backend has been
 installed with [MariaDB/MySQL] or [PostgreSQL].
 
 ## Combining GUI and batch
 
 Both GUI and batch uses Zonemaster-Backend that stores the data in the database.
-If the same database is used, then all tests run, independently if they are
-started via GUI or a batch, will be available in the GUI interface indirectly
+If the same database is used, then all tests run, regardless if they are
+started via GUI or a batch, will be available in the GUI interface
 using the `get_test_history` (see relevant section in
 [Using the Backend RPCAPI][Using#find-previous-tests]. Depending on the
 situation, running batches on the same Backend as GUI may be desirable or not
@@ -49,10 +49,9 @@ those from tests started from GUI. If the results from batch tests should not be
 mixed with tests from normal GUI tests, a separate installation of Backend is
 required, and that might not need any GUI at all.
 
-Another aspect of running tests created from batches on the same Backend as tests
-created from GUI is prioritization of the tests. By default Backend will run
+Test prioritization is another aspect of mixing tests from batches and GUI on the same Backend. By default Backend will run
 tests from GUI (or rather by `start_domain_test`) before test from a batch. In
-this way GUI users that interactively runs a test does not have to wait for a
+this way interactive GUI users run tests do not have to wait for a
 batch to complete. A large batch might run for days.
 
 ## Configuration to run batches
@@ -72,19 +71,19 @@ GUI that could be closed while the batch user or users are created, then that
 could be an option. Creating the user only takes as long time as it takes to
 type the command in, i.e. seconds.
 
-Another option is to create new RPCAPI to the same Backend (the same database).
+Another option is to set up an additional RPCAPI daemon using the same database.
 A Backend can have several parallel RPCAPI running with different configuration,
 see [Create an additional RPCAPI].
 
 ## Create batch user
 
-In [Using the Backend RPCAPI] it is shown how `zmb` can be used for several
+The [using the Backend RPCAPI] guide shows how `zmb` can be used for several
 RPCAPI tasks. It can also be used for the creation of the batch user. It is now
 assumed that `enable_add_api_user` is enabled or else 
 `"message": "Procedure 'add_api_user' not found"` will be outputted.
 
 Run `zmb add_api_user --username myuser --api-key mykey | jq` where `myuser` is
-the user name of your choice and `mykey` the password, which should probably be
+a user name of your choice and `mykey` the password, which should probably be
 longer and more complex. The output is simply
 
 ```json
@@ -99,12 +98,12 @@ Now `enable_add_api_user` can be disabled.
 
 ## Run a batch job
 
-The `zmb` script is used for that purpose. A batch job can be started with just a few
+The `zmb` tool is used for that purpose. A batch job can be started with just a few
 domain names or a list of millions of domain names.
 
 ### Start a batch job
 
-Creating a batch is done using `add_batch_job`:
+Batches are created using `add_batch_job`:
 
 ```
 $ zmb add_batch_job --username myuser --api-key mykey --domain zonemaster.net --domain zonemaster.se --domain zonemaster.fr | jq
@@ -124,7 +123,7 @@ The batch ID is found in "result", which is "2" in this case.
 Listing the domain names one by one is however cumbersome unless it is a very
 small batch as above. A better alternative for a larger batch is to create text
 file of the domain names to test, one domain name per line. Comments starting
-on `#` is permitted, which makes it possible to add meta information to the
+with `#` is permitted, which makes it possible to add meta information to the
 file.
 
 ```
