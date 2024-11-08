@@ -12,6 +12,7 @@
 * [Find available languages](#find-available-languages)
 * [Find previous tests](#find-previous-tests)
 * [Other APIs](#other-apis)
+* [IDN domain names](#idn-domain-names)
 * [Using curl instead](#Using-curl-instead)
 
 ## Introduction
