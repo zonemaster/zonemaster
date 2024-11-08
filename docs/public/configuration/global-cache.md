@@ -11,11 +11,11 @@
 
 
 ## Introduction
-Global cache is an feature that can increase performance when many tests are run
+Global cache is a feature that can increase performance when many tests are run
 within a short time frame, especially when they share some data such as using the
 same name server names. The global cache is meant for batch testing rather than
 single tests through the GUI. In the latter case it is desirable that Zonemaster
-checks again since the zone can have been corrected due to the report in a very
+checks again since the zone may have been corrected due to the report in a very
 recent test.
 
 The global cache improves the caching function by  making the DNS lookups from
