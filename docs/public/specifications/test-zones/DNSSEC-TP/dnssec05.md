@@ -1,4 +1,4 @@
-# Specification of test zones for DNSSEC05
+# Specification of test Scenarios for DNSSEC05
 
 
 ## Table of contents
@@ -9,12 +9,11 @@
 * [Test zone names](#test-zone-names)
 * [Test scenarios and message tags](#test-scenarios-and-message-tags)
 * [Zone setup for test scenarios]
-* [Terminology](#terminology)
 
 
 ## Background
 
-See the [test zone README file].
+See the [test scenario README file].
 
 
 ## Test Case
@@ -29,7 +28,7 @@ different message tags are outputted when [DNSSEC05] is run on a test zone. The
 message tags are defined in the test case ([DNSSEC05]) and the scenarios are
 defined below.
 
-The test scenarios are structured as stated in the [test zone README file].
+The test scenarios are structured as stated in the [test scenario README file].
 
 
 ## Test zone names
@@ -39,6 +38,21 @@ from the base name (`dnssec05.xa`) and that subdomain having the same name as th
 scenario. The names of those zones are given in section
 "[Zone setup for test scenarios]" below.
 
+
+## All message tags
+
+The test case can output any of these message tags, but not necessarily in any
+combination. See [DNSSEC05] for the specification of the tags.
+
+* NO_RESPONSE
+* NO_RESPONSE_DNSKEY
+* ALGORITHM_DEPRECATED
+* ALGORITHM_RESERVED
+* ALGORITHM_UNASSIGNED
+* ALGORITHM_NOT_RECOMMENDED
+* ALGORITHM_PRIVATE
+* ALGORITHM_NOT_ZONE_SIGN
+* ALGORITHM_OK
 
 ## Test scenarios and message tags
 
@@ -75,11 +89,6 @@ ALGORITHM-OK-13              | ALGORITHM_OK              | NO_RESPONSE, NO_RESPO
 ALGORITHM-OK-14              | ALGORITHM_OK              | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN
 ALGORITHM-OK-15              | ALGORITHM_OK              | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN
 ALGORITHM-OK-16              | ALGORITHM_OK              | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN
-
-
-
-
-
 
 
 ## Zone setup for test scenarios
@@ -258,19 +267,12 @@ The DNSKEY algo is 16
   * The algorithm of the DNSKEY in the response is 16.
 
 
-## Terminology
-
-No special terminology for this specification.
-
-
 
 [DNSSEC01]:                                                       ../../tests/DNSSEC-TP/dnssec01.md
 [DNSSEC05]:                                                       ../../tests/DNSSEC-TP/dnssec05.md
 [DNSSEC14]:                                                       ../../tests/DNSSEC-TP/dnssec14.md
 [DNSSEC05]:                                                       ../../tests/DNSSEC-TP/dnssec05.md
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[Test zone README file]:                                          ../README.md
-[Well Formed CDS Record]:                                         #terminology
-[Well Formed DNSKEY Record]:                                      #terminology
+[Test scenario README file]:                                      ../README.md
 [Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios
 
