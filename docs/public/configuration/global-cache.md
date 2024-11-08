@@ -47,6 +47,7 @@ To be added.
 ### Debian and Ubuntu
 ```
 sudo apt install redis libredis-perl libdata-messagepack-perl
+sudo systemctl enable redis
 sudo systemctl start redis
 ```
 
@@ -114,7 +115,6 @@ used for Zonemaster-Backend and Zonemaster-GUI.
 For more documentation on profiles, see [profile documentation].
 
 
-[EPEL]:                                              https://docs.fedoraproject.org/en-US/epel/
 [profile documentation]:                             profiles.md
 [Zonemaster::Backend configuration]:                 backend.md
 [Zonemaster::CLI installation]:                      ../installation/zonemaster-cli.md
