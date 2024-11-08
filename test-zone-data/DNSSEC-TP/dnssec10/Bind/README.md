@@ -13,7 +13,7 @@
 
 ## Variable below
 
-Below `%ZONE-NAME%` means the name of the zone in question, without the traling
+Below `%ZONE-NAME%` means the name of the zone in question, without the trailing
 dot, e.g. `inconsist-nsec-nsec3-1.dnssec10.xa`.
 
 ## Configuring Bind
