@@ -66,6 +66,10 @@ NON-DISTINCT-1                | DEL_NS_SAME_IP, CHILD_NS_SAME_IP         | 2)
 NON-DISTINCT-2                | DEL_NS_SAME_IP, CHILD_NS_SAME_IP         | 2)
 NON-DISTINCT-3                | DEL_NS_SAME_IP, CHILD_NS_SAME_IP         | 2)
 
+* (1) All tags except for those specified as "Forbidden message tags" (no
+  instances for these test scenarios)
+* (2) All tags except for those specified as "Mandatory message tags"
+
 ## Zone setup for test scenarios
 
 Assumptions for the scenario specifications unless otherwise specified for the

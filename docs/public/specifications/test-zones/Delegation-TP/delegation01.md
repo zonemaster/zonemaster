@@ -84,6 +84,10 @@ NO-IPV6-3                     | ENOUGH_IPV4_NS_CHILD, ENOUGH_IPV4_NS_DEL, ENOUGH
 MISMATCH-DELEGATION-CHILD-1   | ENOUGH_IPV4_NS_CHILD, NOT_ENOUGH_IPV4_NS_DEL, ENOUGH_IPV6_NS_CHILD, NOT_ENOUGH_IPV6_NS_DEL, ENOUGH_NS_CHILD, ENOUGH_NS_DEL | 2)
 MISMATCH-DELEGATION-CHILD-2   | NOT_ENOUGH_IPV4_NS_CHILD, ENOUGH_IPV4_NS_DEL, NOT_ENOUGH_IPV6_NS_CHILD, ENOUGH_IPV6_NS_DEL, ENOUGH_NS_CHILD, ENOUGH_NS_DEL | 2)
 
+* (1) All tags except for those specified as "Forbidden message tags" (no
+  instances for these test scenarios)
+* (2) All tags except for those specified as "Mandatory message tags"
+
 ## Zone setup for test scenarios
 
 Assumptions for the scenario specifications unless otherwise specified for the

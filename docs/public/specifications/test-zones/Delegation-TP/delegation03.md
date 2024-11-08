@@ -58,7 +58,10 @@ REFERRAL-SIZE-OK-2            | REFERRAL_SIZE_OK                         | 2)
 REFERRAL-SIZE-TOO-LARGE-1     | REFERRAL_SIZE_TOO_LARGE                  | 2)
 REFERRAL-SIZE-TOO-LARGE-2     | REFERRAL_SIZE_TOO_LARGE                  | 2)
 
+* (1) All tags except for those specified as "Forbidden message tags" (no
+  instances for these test scenarios)
 * (2) All tags except for those specified as "Mandatory message tags"
+
 
 ## Zone setup for test scenarios
 
