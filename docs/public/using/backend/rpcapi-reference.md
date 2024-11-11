@@ -1467,9 +1467,9 @@ were requested:
    "jsonrpc": "2.0",
    "id": 147559211994909,
    "result": {
-      "finished": 5,
-      "running": 5,
-      "waiting": 195
+      "finished_count": 5,
+      "running_count": 5,
+      "waiting_count": 195
    }
 }
 ```
@@ -1484,9 +1484,9 @@ were requested for all three status values:
     "method": "batch_status",
     "params": {
         "batch_id": "8",
-        "list_running": true,
-        "list_finished": true,
-        "list_waiting": true
+        "list_running_tests": true,
+        "list_finished_tests": true,
+        "list_waiting_tests": true
     }
 }
 ```
@@ -1499,11 +1499,11 @@ existing):
    "jsonrpc": "2.0",
    "id": 147559211994909,
    "result": {
-      "finished": 0,
-      "finished_test_ids": [
+      "finished_count": 0,
+      "finished_tests": [
       ],
-      "runninng": 5,
-      "waiting": 195
+      "running_count": 5,
+      "waiting_count": 195
    }
 }
 ```
@@ -1515,20 +1515,20 @@ Finished [*test id*][Test id] objects were requested:
    "jsonrpc": "2.0",
    "id": 147559211994909,
    "result": {
-      "finished": 1,
-      "finished_test_ids": [
+      "finished_count": 1,
+      "finished_tests": [
          "43b408794155324b",
       ],
-      "waiting_test_ids": [
+      "waiting_tests": [
          "be9cbb44fff0b2a8",
          "62f487731116fd87",
       ],
-      "running_test_ids": [
+      "running_tests": [
          "692f8ffc32d647ca",
          "6441a83fcee8d28d"
       ],
-      "waiting": 2,
-      "running": 2
+      "waiting_count": 2,
+      "running_count": 2
    }
 }
 ```
@@ -1538,29 +1538,29 @@ Finished [*test id*][Test id] objects were requested:
 An object with the property:
 
 * `"batch_id"`: A [*batch id*][Batch id], required.
-* `"list_waiting"`: a boolean, optional (default false). If true include the
-  `"waiting_test_ids"` property in the result object.
-* `"list_running"`: a boolean, optional (default false). If true include the
-  `"running_test_ids"` property in the result object.
-* `"list_finished"`: a boolean, optional (default false). If true include the
-  `"finished_test_ids"` property in the result object.
+* `"list_waiting_tests"`: a boolean, optional (default false). If true include
+  the `"waiting_tests"` property in the result object.
+* `"list_running_tests"`: a boolean, optional (default false). If true include
+  the `"running_tests"` property in the result object.
+* `"list_finished_tests"`: a boolean, optional (default false). If true include
+  the `"finished_tests"` property in the result object.
 
 #### `"result"`
 
 An object with the following properties:
 
-* `"waiting"`: a [*non-negative integer*][Non-negative integer]. The number of
-  *waiting* tests ([*progress*][Progress percentage] is equal to 0).
-* `"running"`: a [*non-negative integer*][Non-negative integer]. The number of
-  *running* tests ([*progress*][Progress percentage] is in the interval 1 to 99,
-  inclusive).
-* `"finished"`: a [*non-negative integer*][Non-negative integer]. The number of
-  *finished* tests ([*progress*][Progress percentage] is equal to 100).
-* `"waiting_test_ids"`: a list of [*test ids*][Test id] (only if requested).
+* `"waiting_count"`: a [*non-negative integer*][Non-negative integer]. The number
+  of *waiting* tests ([*progress*][Progress percentage] is equal to 0).
+* `"running_count"`: a [*non-negative integer*][Non-negative integer]. The number
+  of *running* tests ([*progress*][Progress percentage] is in the interval 1 to
+  99, inclusive).
+* `"finished_count"`: a [*non-negative integer*][Non-negative integer]. The
+  number of *finished* tests ([*progress*][Progress percentage] is equal to 100).
+* `"waiting_tests"`: a list of [*test ids*][Test id] (only if requested).
   The set of *waiting* tests in this *batch*.
-* `"running_test_ids"`: a list of [*test ids*][Test id] (only if requested).
+* `"running_tests"`: a list of [*test ids*][Test id] (only if requested).
   The set of *running* tests in this *batch*.
-* `"finished_test_ids"`: a list of [*test ids*][Test id] (only if requested).
+* `"finished_tests"`: a list of [*test ids*][Test id] (only if requested).
   The set of *finished* tests in this *batch*.
 
 #### `"error"`
