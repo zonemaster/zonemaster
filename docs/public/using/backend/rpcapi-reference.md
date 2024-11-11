@@ -1565,7 +1565,7 @@ An object with the following properties:
 
 #### `"error"`
 
-If the `batch_id` is undefined the following error is returned:
+If the `batch_id` is unrecognized the following error is returned:
 
 ```json
 {
