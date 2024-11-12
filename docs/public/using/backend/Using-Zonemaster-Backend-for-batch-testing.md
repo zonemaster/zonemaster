@@ -203,10 +203,13 @@ to increase the performance by:
 
 ### Enable global cache
 
-When a test is executed Zonemaster caches DNS responses for the same test (same
-domain name) to increase performance (no need to query for the same thing again).
-In the normal case the cache is not shared between different tests (different
-domain names). Such global cache can be enabled to get increased performance.
+For each domain name in a batch job, a test run is executed.
+Each test run keeps its own cache to avoid sending the same query twice.
+However these caches are never shared between test runs.
+This may result in large numbers of redundant queries for large batches where
+the domain name directly (or indirectly) share data with other domain names.
+To share responses between test runs, you can enable the global cache feature
+which works like a second level cache.
 
 For interactive tests via GUI the global cache is probably not desired. If a user
 changes the DNS configuration of a domain then the following tests results should
@@ -232,8 +235,9 @@ For FreeBSD add:
 batch=/usr/local/etc/zonemaster/profile-batch.json
 ```
 
-After restarting both RPCAPI daemon and Test Agent daemon (all daemons if there
-are more than one of each) a batch can be started with (using a batch file):
+After updating the Backend configuration, restart both RPCAPI daemon and Test Agent daemon (all daemons if there are more than one of each).
+
+Now you can start a batch with:
 
 ```
 $ zmb add_batch_job --profile batch --username myuser --api-key mykey --file batchfile | jq
@@ -244,17 +248,19 @@ $ zmb add_batch_job --profile batch --username myuser --api-key mykey --file bat
 }
 ```
 
-This will give an increased performance on large batches where the domain name
-directly (or indirectly) share data with other domain names.
+### Increase the worker pool size
 
-### Increase number of sub processes
+A standard Backend installation has a single test agent service.
+Each test agent service maintains a pool of workers.
+Test agents monitor the Backend database for tests and assigns them to workers.
 
-By default one parent test agent daemon is run in a Backend installation. That
-parent daemon will fork into child processes. The number of test agent child
-processes can be increased by setting `number_of_processes_for_batch_testing` in
-the [configuration file][Backend_config.ini], and in that way increase
-performance. There is, however, a limit when increase does not help. Then adding
-more parent test agent daemons can help.
+Increasing the size of the worker pool can improve the testing performance.
+The improvement is limited by CPU, I/O, memory and the ability of the test
+agent service to keep its workers busy, so monitor these factors to find the
+best configuration.
+
+To adjust the worker pool size, set `number_of_processes_for_batch_testing` in
+the [backend_config.ini] configuration file.
 
 ### Add more parent test agent daemons
 
@@ -309,7 +315,7 @@ In the end, all completed tests will end up in the same database and will be
 mixed when looking for completed tests for the same domain name
 (`get_test_history`).
 
-## Appendix: Create an additional RPCAPI
+## Appendix: Add more RPCAPI services
 
 RPCAPI listens by default on 127.0.0.1 on port 5000. That is governed by the
 start script for RPCAPI which is `/etc/systemd/system/zm-rpcapi.service` (Rocky
