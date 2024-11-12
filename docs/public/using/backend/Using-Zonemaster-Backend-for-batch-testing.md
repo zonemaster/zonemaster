@@ -241,7 +241,7 @@ After updating the Backend configuration, restart both JSON-RPC API service and
 Test Agent service (all daemons of both services if there are more than one of
 each).
 
-Now you can start a batch with:
+Now you can start a batch -- using the same batch file as above -- with:
 
 ```
 $ zmb add_batch_job --profile batch --username myuser --api-key mykey --file batchfile | jq
