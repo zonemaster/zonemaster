@@ -269,8 +269,8 @@ the [backend_config.ini] configuration file.
 ### Add more Test Agent services
 
 If the increase of `number_of_processes_for_batch_testing` does not help anymore
-and the server has free resources (IO, CPU and RAM) then adding another test
-agent services (with its pool of workers) can help.
+and the server has free resources (IO, CPU and RAM) then adding another Test
+Agent services (with its pool of workers) can help.
 
 The default Test Agent service is started by the start script
 `/etc/systemd/system/zm-testagent.service` (Rocky Linux),
