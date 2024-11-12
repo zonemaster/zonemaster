@@ -13,7 +13,7 @@
 * [Find previous tests](#find-previous-tests)
 * [Other APIs](#other-apis)
 * [IDN domain names](#idn-domain-names)
-* [Using curl instead](#Using-curl-instead)
+* [Using curl instead](#using-curl-instead)
 
 ## Introduction
 
@@ -69,7 +69,7 @@ To just run a test `zmtest` is the simple tool to use:
 zmtest zonemaster.net
 ```
 
-The tool will also display the result, which will be a long JSON structure (here
+The tool will also display the result, which will be a large JSON object (here
 truncated).
 
 ```
@@ -133,7 +133,7 @@ behind the scen when using `zmtest`):
 
 ### Enqueue a test
 
-To enqueue the test of zonemaster.net we run 
+To enqueue a test of zonemaster.net we run
 `zmb start_domain_test --domain zonemaster.net | jq` and immediately get the
 response
 
@@ -179,7 +179,7 @@ response
 ### Fetch the results
 
 When the test has completed the test results can be fetched. The test ID is found
-above and then the language has to be choosen. Here `en` is used. More about
+above and then the language has to be chosen. Here `en` is used. More about
 languages below. Run 
 `zmb get_test_results --test-id 879d13569db70fde --lang en | jq` and get a JSON
 structure with data (as with `zmtest`). Again, the JSON structure is long and is
