@@ -351,7 +351,7 @@ Restart the JSON-RPC API services to use the updated configuration files.
 [Global-cache]:                                 ../../configuration/global-cache.md
 [MariaDB/MySQL]:                                ../../installation/zonemaster-backend.md#7-installation-with-mariadb
 [PostgreSQL]:                                   ../../installation/zonemaster-backend.md#8-installation-with-postgresql
-[Using the Backend JSON-RPC API]:               Using-Zonemaster-Backend-RPCAPI.md
-[Using#find-previous-tests]:                    Using-Zonemaster-Backend-RPCAPI.md#find-previous-tests
+[Using the Backend JSON-RPC API]:               Using-Zonemaster-Backend-JSON-RPC-API.md
+[Using#find-previous-tests]:                    Using-Zonemaster-Backend-JSON-RPC-API.md#find-previous-tests
 [JSON-RPC API#queue]:                           rpcapi-reference.md#queue
 [Config#lock_on_queue]:                         ../../configuration/backend.md#lock_on_queue
