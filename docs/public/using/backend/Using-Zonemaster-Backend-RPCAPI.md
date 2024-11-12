@@ -1,9 +1,9 @@
-# Using Zonemaster-Backend RPCAPI
+# Using Zonemaster-Backend JSON-RPC API
 
 ## Table of contents
 
 * [Introduction](#introduction)
-* [Check that the RPC API daemon is running and answering properly](#check-that-the-rpc-api-daemon-is-running-and-answering-properly)
+* [Check that the RPC API daemon is running and answering properly](#check-that-the-json-rpc-api-service-is-running-and-answering-properly)
 * [Run a test of the zonemaster.net zone using zmtest](#run-a-test-of-the-zonemasternet-zone-using-zmtest)
 * [Run a test of the zonemaster.net zone using zmb](#run-a-test-of-the-zonemasternet-zone-using-zmb)
   * [Enqueue a test](#enqueue-a-test)
@@ -17,7 +17,8 @@
 
 ## Introduction
 
-This is a guide for getting started with the Zonemaster [RPCAPI] daemon.
+This is a guide for getting started with the Zonemaster [JSON-RPC API] service
+(running as a daemon).
 
 Note that this guide makes a number of assumptions about your setup:
 
@@ -37,11 +38,11 @@ With `zmtest` you can start a domain test and get the result directly. With `zmb
 you can also do that, but in several steps, but on the other hand, `zmb` offers
 many more possibilities. Actually, `zmtest` uses `zmb` behind the scen.
 
-The `zmb` tool uses the RPC-API interface to interact with Zonemaster-Backend.
-Zonemaster-GUI also uses the same RPC-API interface to start tests and fetch the
+The `zmb` tool uses the JSON-RPC API to interact with Zonemaster-Backend.
+Zonemaster-GUI also uses the same JSON-RPC API to start tests and fetch the
 test results.
 
-## Check that the RPC API daemon is running and answering properly
+## Check that the JSON-RPC API service is running and answering properly
 
 ```sh
 zmb version_info
@@ -52,6 +53,9 @@ To get a more readable output, pipe the command through `jq`:
 ```sh
 zmb version_info | jq
 ```
+
+If there is no response from the JSON-RPC API service, go to the
+[installation guide] for how to start or restart it.
 
 Below most commands will be piped through `jq`, but for processing you might want
 to have the JSON on one line, or you might want to look at the options for `jq`
@@ -116,7 +120,7 @@ testid: 879d13569db70fde
 ```
 
 You will find the meaning of all fields in the outputs in
-[Zonemaster-Backend RPCAPI reference][RPCAPI].
+[Zonemaster-Backend JSON-RPC API reference][JSON-RPC API].
 
 ## Run a test of the zonemaster.net zone using zmb
 
@@ -267,7 +271,7 @@ Now you can get the results of any of the listed tests by running
 ## Other APIs
 
 There are a few other APIs that can be used throught `zmb`, and can be found by
-`zmb -h` and in [Zonemaster-Backend RPCAPI reference][RPCAPI]. The APIs for batch
+`zmb -h` and in [Zonemaster-Backend JSON-RPC API reference][JSON-RPC API]. The APIs for batch
 testing are covered in [Using Zonemaster Backend for batch testing].
 
 ## IDN domain names
@@ -298,11 +302,9 @@ curl -sS -H "Content-Type: application/json" -d '{"jsonrpc": "2.0", "id": 5, "me
 ```
 
 The format of the JSON structure for every method is found in the 
-[Zonemaster-Backend RPCAPI reference][RPCAPI].
-
+[Zonemaster-Backend JSON-RPC API reference][JSON-RPC API].
 
 
 [installation guide]:                                 ../../installation/zonemaster-backend.md
-[RPCAPI]:                                             rpcapi-reference.md
+[JSON-RPC API]:                                       rpcapi-reference.md
 [Using Zonemaster Backend for batch testing]:         Using-Zonemaster-Backend-for-batch-testing.md
-B
