@@ -120,7 +120,7 @@ zonemaster-cli --help
 ```
 
 For complete reference documentation, see the manual page.
-This includes an exhaustive list of options and in-depth documentation each one,
+This includes an exhaustive list of options and in-depth documentation for each one,
 as well as examples and additional context.
 
 ```sh
