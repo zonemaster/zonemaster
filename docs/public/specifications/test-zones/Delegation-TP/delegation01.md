@@ -25,7 +25,7 @@ This document specifies test zones for test case [Delegation01].
 ## Test scenarios
 
 The purpose of the test scenarios is to cover all reasonable contexts where
-different message tags are outputted when [Delegation01] is run on a test zone.
+different message tags are output when [Delegation01] is run on a test zone.
 The message tags are defined in the test case ([Delegation01]) and the scenarios
 are defined below.
 
@@ -34,9 +34,9 @@ The test scenarios are structured as stated in the [test scenario README file].
 ## Test zone names
 
 The test zone for each test scenario in this document is a subdomain delegated
-from the base name (`delegation01.xa`) and that subdomain having the same name as the
-scenario. The names of those zones are given in section
-"[Zone setup for test scenarios]" below.
+from the base name (`delegation01.xa`) and that subdomain having the same name as
+the scenario. The names of those zones are given in section
+"[Test zone setup]" below.
 
 ## All message tags
 
@@ -85,22 +85,23 @@ NO-IPV6-3                     | ENOUGH_IPV4_NS_CHILD, ENOUGH_IPV4_NS_DEL, ENOUGH
 MISMATCH-DELEGATION-CHILD-1   | ENOUGH_IPV4_NS_CHILD, NOT_ENOUGH_IPV4_NS_DEL, ENOUGH_IPV6_NS_CHILD, NOT_ENOUGH_IPV6_NS_DEL, ENOUGH_NS_CHILD, ENOUGH_NS_DEL | 2)
 MISMATCH-DELEGATION-CHILD-2   | NOT_ENOUGH_IPV4_NS_CHILD, ENOUGH_IPV4_NS_DEL, NOT_ENOUGH_IPV6_NS_CHILD, ENOUGH_IPV6_NS_DEL, ENOUGH_NS_CHILD, ENOUGH_NS_DEL | 2)
 
-* (1) All tags except for those specified as "Forbidden message tags" (no
+1\) All tags except for those specified as "Forbidden message tags" (no
   instances for these test scenarios)
-* (2) All tags except for those specified as "Mandatory message tags"
+
+2\) All tags except for those specified as "Mandatory message tags"
 
 ## Zone setup for test scenarios
 
 Assumptions for the scenario specifications unless otherwise specified for the
 specific scenario:
 * For each scenario zone there are two name servers configured.
-  * Both NS (ns1 and ns2) are equal in delegation and in zone.
-  * Both NS are in-bailiwick
-  * Both NS have both IPv4 and IPv6 addresses
+  * Both name servers (ns1 and ns2) are equal in delegation and in zone.
+  * Both name servers are in-bailiwick
+  * Both name servers have both IPv4 and IPv6 addresses
   * All required glue records are present in the delegation.
   * All glue exactly matches the authoritative address records in correct zone
     (not more and not less records).
-  * All NS IP addresses respond with identical zone content.
+  * All name server IP addresses respond with identical zone content.
 
 ### ENOUGH-1
 This is the main happy path.
@@ -115,7 +116,7 @@ This is also a happy path. Out-of-bailiwick.
   * ns1 is "ns1.enough-2.delegation01.xb"
   * ns2 is "ns2.enough-2.delegation01.xb"
   * Delegation is without glue.
-  * The test zone ("child") has no address records for the NS names.
+  * The test zone ("child") has no address records for the name server names.
   * The "delegation01.xb" zone has the full set of address records.
 
 ### ENOUGH-3
@@ -123,26 +124,26 @@ This is also a happy path. Also out-of-bailiwick, but with sibling glue.
 
 * Zone: enough-3.delegation01.xa
   * Both ns1 and ns2 are out-of-bailiwick
-  * ns1 is "ns1.enough-3.sibbling.delegation01.xa"
-  * ns2 is "ns2.enough-3.sibbling.delegation01.xa"
+    * ns1 is "ns1.enough-3.sibling.delegation01.xa"
+    * ns2 is "ns2.enough-3.sibling.delegation01.xa"
   * Delegation is with glue.
-  * The child zone has no address records for the NS names.
-  * The two NS are defined directly in the parent zone with full set of
+  * The child zone has no address records for the name server names.
+  * The two name servers are defined directly in the parent zone with full set of
     address records.
 
 ### ENOUGH-DEL-NOT-CHILD
-Only one NS in child zone.
+Only one name server in child zone.
 
 * Zone: enough-del-not-child.delegation01.xa
-  * The child zone defines only one NS, ns1."
+  * The child zone defines only one name server, ns1."
   * Delegation is complete.
 
 ### ENOUGH-CHILD-NOT-DEL
-Only one NS in delegation.
+Only one name server in delegation.
 
 * Zone: enough-child-not-del.delegation01.xa
-  * The delegation has only one NS, for ns1.
-  * The child has two NS with full set of address records.
+  * The delegation has only one name server, for ns1.
+  * The child has two name servers with full set of address records.
 
 ### IPV6-AND-DEL-OK-NO-IPV4-CHILD
 No IPv4 in zone
@@ -166,26 +167,27 @@ No IPv4 in delegation or zone.
   * No A records in zone for ns1 and ns2.
 
 ### NO-IPV4-2
-No IPv4 in delegation or zone. Out-of-bailiwick NS and no glue.
+No IPv4 in delegation or zone. Out-of-bailiwick name servers and no glue.
 
 * Zone: no-ipv4-2.delegation01.xa
   * Both ns1 and ns2 are out-of-bailiwick under the xb tree.
   * ns1 is "ns1.no-ipv4-2.delegation01.xb"
   * ns2 is "ns2.no-ipv4-2.delegation01.xb"
   * Delegation is without glue.
-  * The test zone ("child") has no address records for the NS names
+  * The test zone ("child") has no address records for the name server names
   * The "delegation01.xb" zone has full set of address records for this.
     * AAAA only, not A
 
 ### NO-IPV4-3
-No IPv4 in delegation or zone. Out-of-bailiwick NS, but with sibbling glue.
+No IPv4 in delegation or zone. Out-of-bailiwick name servers, but with sibling
+glue.
 
 * Zone: child.no-ipv4-3.delegation01.xa
   * Both ns1 and ns2 are out-of-bailiwick
-  * ns1 is "ns1.sibbling.no-ipv4-3.delegation01.xa"
-  * ns2 is "ns2.sibbling.no-ipv4-3.delegation01.xa"
+  * ns1 is "ns1.sibling.no-ipv4-3.delegation01.xa"
+  * ns2 is "ns2.sibling.no-ipv4-3.delegation01.xa"
   * Delegation is with glue.
-  * The child zone has no address records for the NS names
+  * The child zone has no address records for the name server names
   * The sibling names have full sets of address records.
     * AAAA only, not A.
 
@@ -197,27 +199,28 @@ No IPv6 in delegation or zone.
   * No AAAA records in zone for ns1 and ns2.
 
 ### NO-IPV6-2
-No Ipv6 in delegation or zone. Out-of-bailiwick NS and no glue.
+No Ipv6 in delegation or zone. Out-of-bailiwick name servers and no glue.
 
 * Zone: no-ipv6-2.delegation01.xa
   * Both ns1 and ns2 are out-of-bailiwick under the xb tree.
   * ns1 is "ns1.no-ipv6-2.delegation01.xb"
   * ns2 is "ns2.no-ipv6-2.delegation01.xb"
   * Delegation is without glue.
-  * The test zone ("child") has no address records for the NS names
+  * The test zone ("child") has no address records for the name servers names
   * The "delegation01.xb" zone has full set of address records for this.
     * A only, not AAAA
 
 ### NO-IPV6-3
-No Ipv6 in delegation or zone. Out-of-bailiwick NS, but with sibbling glue.
+No Ipv6 in delegation or zone. Out-of-bailiwick name servers, but with sibling
+glue.
 
 * Zone: no-ipv6-3.delegation01.xa
   * Both ns1 and ns2 are out-of-bailiwick
-  * ns1 is "ns1.no-ipv6-3.sibbling.delegation01.xa"
-  * ns2 is "ns2.no-ipv6-3.sibbling.delegation01.xa"
+  * ns1 is "ns1.no-ipv6-3.sibling.delegation01.xa"
+  * ns2 is "ns2.no-ipv6-3.sibling.delegation01.xa"
   * Delegation is with glue.
-  * The child zone has no address records for the NS names
-  * The sibbling names has full set of address records.
+  * The child zone has no address records for the name server names
+  * The sibling names has full set of address records.
     * A only, not AAAA.
 
 ### MISMATCH-DELEGATION-CHILD-1
@@ -241,5 +244,4 @@ The zone has only IPv4 on ns1 and only IPv6 on ns2.
 [Delegation01]:                                                   ../../tests/Delegation-TP/delegation01.md
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [Test scenario README file]:                                      ../README.md
-[Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios
-
+[Test zone setup]:                                                #test-zone-setup

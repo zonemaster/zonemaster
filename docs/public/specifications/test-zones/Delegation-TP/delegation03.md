@@ -9,7 +9,7 @@
 * [Test zone names](#test-zone-names)
 * [All message tags](#all-message-tags)
 * [Test scenarios and message tags](#test-scenarios-and-message-tags)
-* [Zone setup for test scenarios]
+* [Test zone setup]
 
 
 ## Background
@@ -24,7 +24,7 @@ This document specifies defined test zones for test case [Delegation03].
 ## Test scenarios
 
 The purpose of the test scenarios is to cover all reasonable contexts where
-different message tags are outputted when [Delegation03] is run on a test zone.
+different message tags are output when [Delegation03] is run on a test zone.
 The message tags are defined in the test case ([Delegation03]) and the scenarios
 are defined below.
 
@@ -35,7 +35,7 @@ The test scenarios are structured as stated in the [test scenario README file].
 The test zone for each test scenario in this document is a subdomain delegated
 from the base name (`delegation03.xa`) and that subdomain having the same name as the
 scenario. The names of those zones are given in section
-"[Zone setup for test scenarios]" below.
+"[Test zone setup]" below.
 
 ## All message tags
 
@@ -58,9 +58,10 @@ REFERRAL-SIZE-OK-2            | REFERRAL_SIZE_OK                         | 2)
 REFERRAL-SIZE-TOO-LARGE-1     | REFERRAL_SIZE_TOO_LARGE                  | 2)
 REFERRAL-SIZE-TOO-LARGE-2     | REFERRAL_SIZE_TOO_LARGE                  | 2)
 
-* (1) All tags except for those specified as "Forbidden message tags" (no
+1\) All tags except for those specified as "Forbidden message tags" (no
   instances for these test scenarios)
-* (2) All tags except for those specified as "Mandatory message tags"
+
+2\) All tags except for those specified as "Mandatory message tags"
 
 
 ## Zone setup for test scenarios
@@ -68,11 +69,12 @@ REFERRAL-SIZE-TOO-LARGE-2     | REFERRAL_SIZE_TOO_LARGE                  | 2)
 Assumptions for the scenario specifications unless otherwise specified for the
 specific scenario:
 * For each scenario zone there are two name server configured.
-  * Both NS are in-bailiwick
-  * Both NS have both IPv4 and IPv6 addresses
+  * Both name servers are in-bailiwick
+  * Both name servers have both IPv4 and IPv6 addresses
   * All addresses are distinct
   * All required glue are present in the delegation.
-  * There is no zone.
+  * There is no actual zone or zone file, only a delegation.
+    * For this test, that the zone is missing is disregarded.
 
 ### REFERRAL-SIZE-OK-1
 This is the happy path.
@@ -80,7 +82,7 @@ This is the happy path.
 * Zone: referral-size-ok-1.delegation03.xa.
 
 ### REFERRAL-SIZE-OK-2
-Referral is large, but not too large. NS are in-bailiwick.
+Referral is large, but not too large. name servers are in-bailiwick.
 
 * Zone: referral-size-ok-2.delegation03.xa.
   * ns1 is "ns1.ipv4-large-but-not-too-large.referral-size-ok-2.delegation03.xa".
@@ -89,10 +91,10 @@ Referral is large, but not too large. NS are in-bailiwick.
   * ns2 is "ns2.ipv6-large-but-not-too-large.referral-size-ok-2.delegation03.xa".
 
 ### REFERRAL-SIZE-TOO-LARGE-1
-Referal is too large and NS are in-bailiwick
+Referal is too large and name servers are in-bailiwick
 
 * Zone: referral-size-too-large-1.delegation03.xa
-  * NS names are relative the zone name:
+  * name server names are relative the zone name:
     * ns1 is "ns1.1abcdefghijklmnopqrstuv.1defghijkl"
     * ns2 is "ns2.2abcdefghijklmnopqrstuv.2defghijkl"
     * ns3 is "ns3.2abcdefghijklmnopqrstuv.3defghijkl"
@@ -101,7 +103,7 @@ Referal is too large and NS are in-bailiwick
 
 
 ### REFERRAL-SIZE-TOO-LARGE-2
-Referal is too large and NS are out-of-bailiwick with no glue.
+Referal is too large and name servers are out-of-bailiwick with no glue.
 
 * Zone: referral-size-too-large-2.delegation03.xa
   * The zone is delegated to ns1, ns2, ns3 and ns4.
@@ -110,11 +112,11 @@ Referal is too large and NS are out-of-bailiwick with no glue.
   * ns3 is "ns3.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"
   * ns4 is "ns4.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"
   * Delegation is without glue.
-  * The test zone has no address records for the NS names.
+  * The test zone has no address records for the name server names.
   * The "delegation03.xb" zone has full set of address records (IPv4 and IPv6).
 
 [Delegation03]:                                                   ../../tests/Delegation-TP/delegation03.md
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [test scenario README file]:                                      ../README.md
-[Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios
+[Test zone setup]:                                                #test-zone-setup
 
