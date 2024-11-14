@@ -1,8 +1,6 @@
-[This directory](.), i.e. the same directory as this README file, holds zone
-files and configuration files to implement the test zones for the scenarios
-defined in [Delegation01 test scenario specification].
-
-For these test zones the following files are found in [This directory](.):
+[This directory](.), which contains this README file, also contains the
+following files required for implementing the test zones specified in the
+[Delegation01 test scenario specification]:
 * Zone files for `delegation01.xa` and other related zones.
 * CoreDNS configuration file
 * Zone file and hint file for local root zone.

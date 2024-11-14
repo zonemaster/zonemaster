@@ -79,20 +79,20 @@ This is the happy path.
 
 * Zone: referral-size-ok-1.delegation03.xa.
 
-### REFERRAL-SIZE-OK-1
-Referal is large, but not too large. NS are in-bailiwick.
+### REFERRAL-SIZE-OK-2
+Referral is large, but not too large. NS are in-bailiwick.
 
 * Zone: referral-size-ok-2.delegation03.xa.
-  * ns1 is "ns1.ipv4-large-but-not-too-large.referral-size-ok-2.delegation03.xa.
-  * ns1 is "ns1.ipv6-large-but-not-too-large.referral-size-ok-2.delegation03.xa.
-  * ns2 is "ns2.ipv4-large-but-not-too-large.referral-size-ok-2.delegation03.xa.
-  * ns2 is "ns2.ipv6-large-but-not-too-large.referral-size-ok-2.delegation03.xa.
+  * ns1 is "ns1.ipv4-large-but-not-too-large.referral-size-ok-2.delegation03.xa".
+  * ns1 is "ns1.ipv6-large-but-not-too-large.referral-size-ok-2.delegation03.xa".
+  * ns2 is "ns2.ipv4-large-but-not-too-large.referral-size-ok-2.delegation03.xa".
+  * ns2 is "ns2.ipv6-large-but-not-too-large.referral-size-ok-2.delegation03.xa".
 
 ### REFERRAL-SIZE-TOO-LARGE-1
 Referal is too large and NS are in-bailiwick
 
 * Zone: referral-size-too-large-1.delegation03.xa
-  * NS names are relativt the zone name:
+  * NS names are relative the zone name:
     * ns1 is "ns1.1abcdefghijklmnopqrstuv.1defghijkl"
     * ns2 is "ns2.2abcdefghijklmnopqrstuv.2defghijkl"
     * ns3 is "ns3.2abcdefghijklmnopqrstuv.3defghijkl"

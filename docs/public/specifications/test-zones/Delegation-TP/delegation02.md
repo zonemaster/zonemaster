@@ -189,7 +189,7 @@ names are out-of-bailiwick.
   * The test zone has no address records for the NS names.
   * The "delegation02.xb" zone has full set of address records for this scenario.
 
-### NON-DISTINCT-2
+### NON-DISTINCT-3
 The NS in both delegation and zone refer to the same IP addresses. The
 names are out-of-bailiwick, but with sibbling glue.
 
