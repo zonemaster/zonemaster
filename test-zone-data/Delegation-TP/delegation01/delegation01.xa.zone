@@ -2,7 +2,7 @@ $ORIGIN delegation01.xa.                              ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024110122      ; serial
+                2024111400      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -17,16 +17,16 @@ ns2     A     127.16.1.22
 ns2     AAAA  fda1:b2:c3:0:127:16:1:22
 
 ; Also in template in .cfg file
-ns1.enough-3.sibbling  A         127.16.1.31
-ns1.enough-3.sibbling  AAAA      fda1:b2:c3:0:127:16:1:31
-ns2.enough-3.sibbling  A         127.16.1.32
-ns2.enough-3.sibbling  AAAA      fda1:b2:c3:0:127:16:1:32
+ns1.enough-3.sibling  A         127.16.1.31
+ns1.enough-3.sibling  AAAA      fda1:b2:c3:0:127:16:1:31
+ns2.enough-3.sibling  A         127.16.1.32
+ns2.enough-3.sibling  AAAA      fda1:b2:c3:0:127:16:1:32
 
-ns1.no-ipv4-3.sibbling  AAAA      fda1:b2:c3:0:127:16:1:31
-ns2.no-ipv4-3.sibbling  AAAA      fda1:b2:c3:0:127:16:1:32
+ns1.no-ipv4-3.sibling  AAAA      fda1:b2:c3:0:127:16:1:31
+ns2.no-ipv4-3.sibling  AAAA      fda1:b2:c3:0:127:16:1:32
 
-ns1.no-ipv6-3.sibbling A          127.16.1.31
-ns2.no-ipv6-3.sibbling A          127.16.1.32
+ns1.no-ipv6-3.sibling A          127.16.1.31
+ns2.no-ipv6-3.sibling A          127.16.1.32
 
 
 $ORIGIN enough-1.delegation01.xa.
@@ -43,8 +43,8 @@ $ORIGIN enough-2.delegation01.xa.
 
 ; Also in template in .cfg file
 $ORIGIN enough-3.delegation01.xa.
-@       NS      ns1.enough-3.sibbling.delegation01.xa.
-@       NS      ns2.enough-3.sibbling.delegation01.xa.
+@       NS      ns1.enough-3.sibling.delegation01.xa.
+@       NS      ns2.enough-3.sibling.delegation01.xa.
 
 $ORIGIN enough-del-not-child.delegation01.xa.
 @       NS      ns1
@@ -86,8 +86,8 @@ $ORIGIN no-ipv4-2.delegation01.xa.
 @       NS      ns2.no-ipv4-2.delegation01.xb.
 
 $ORIGIN no-ipv4-3.delegation01.xa.
-@       NS      ns1.no-ipv4-3.sibbling.delegation01.xa.
-@       NS      ns2.no-ipv4-3.sibbling.delegation01.xa.
+@       NS      ns1.no-ipv4-3.sibling.delegation01.xa.
+@       NS      ns2.no-ipv4-3.sibling.delegation01.xa.
 
 $ORIGIN no-ipv6-1.delegation01.xa.
 @       NS      ns1
@@ -100,8 +100,8 @@ $ORIGIN no-ipv6-2.delegation01.xa.
 @       NS      ns2.no-ipv6-2.delegation01.xb.
 
 $ORIGIN no-ipv6-3.delegation01.xa.
-@       NS      ns1.no-ipv6-3.sibbling.delegation01.xa.
-@       NS      ns2.no-ipv6-3.sibbling.delegation01.xa.
+@       NS      ns1.no-ipv6-3.sibling.delegation01.xa.
+@       NS      ns2.no-ipv6-3.sibling.delegation01.xa.
 
 $ORIGIN mismatch-delegation-child-1.delegation01.xa.
 @       NS      ns1

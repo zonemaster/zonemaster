@@ -111,12 +111,12 @@ ENOUGH-3                      | ENOUGH_IPV4_NS_CHILD, ENOUGH_IPV4_NS_DEL, ENOUGH
 ```
 $ zonemaster-cli --hint=hintfile.zone --test=delegation01 --level=info --show-testcase --raw ENOUGH-3.delegation01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.04 INFO     Delegation01   ENOUGH_NS_DEL  count=2; minimum=2; nsname_list=ns1.enough-3.sibbling.delegation01.xa;ns2.enough-3.sibbling.delegation01.xa
-   0.07 INFO     Delegation01   ENOUGH_NS_CHILD  count=2; minimum=2; nsname_list=ns1.enough-3.sibbling.delegation01.xa;ns2.enough-3.sibbling.delegation01.xa
-   0.07 INFO     Delegation01   ENOUGH_IPV4_NS_CHILD  count=2; minimum=2; ns_list=ns1.enough-3.sibbling.delegation01.xa/127.16.1.31;ns2.enough-3.sibbling.delegation01.xa/127.16.1.32
-   0.07 INFO     Delegation01   ENOUGH_IPV6_NS_CHILD  count=2; minimum=2; ns_list=ns1.enough-3.sibbling.delegation01.xa/fda1:b2:c3:0:127:16:1:31;ns2.enough-3.sibbling.delegation01.xa/fda1:b2:c3:0:127:16:1:32
-   0.07 INFO     Delegation01   ENOUGH_IPV4_NS_DEL  count=2; minimum=2; ns_list=ns1.enough-3.sibbling.delegation01.xa/127.16.1.31;ns2.enough-3.sibbling.delegation01.xa/127.16.1.32
-   0.07 INFO     Delegation01   ENOUGH_IPV6_NS_DEL  count=2; minimum=2; ns_list=ns1.enough-3.sibbling.delegation01.xa/fda1:b2:c3:0:127:16:1:31;ns2.enough-3.sibbling.delegation01.xa/fda1:b2:c3:0:127:16:1:32
+   0.04 INFO     Delegation01   ENOUGH_NS_DEL  count=2; minimum=2; nsname_list=ns1.enough-3.sibling.delegation01.xa;ns2.enough-3.sibling.delegation01.xa
+   0.07 INFO     Delegation01   ENOUGH_NS_CHILD  count=2; minimum=2; nsname_list=ns1.enough-3.sibling.delegation01.xa;ns2.enough-3.sibling.delegation01.xa
+   0.07 INFO     Delegation01   ENOUGH_IPV4_NS_CHILD  count=2; minimum=2; ns_list=ns1.enough-3.sibling.delegation01.xa/127.16.1.31;ns2.enough-3.sibling.delegation01.xa/127.16.1.32
+   0.07 INFO     Delegation01   ENOUGH_IPV6_NS_CHILD  count=2; minimum=2; ns_list=ns1.enough-3.sibling.delegation01.xa/fda1:b2:c3:0:127:16:1:31;ns2.enough-3.sibling.delegation01.xa/fda1:b2:c3:0:127:16:1:32
+   0.07 INFO     Delegation01   ENOUGH_IPV4_NS_DEL  count=2; minimum=2; ns_list=ns1.enough-3.sibling.delegation01.xa/127.16.1.31;ns2.enough-3.sibling.delegation01.xa/127.16.1.32
+   0.07 INFO     Delegation01   ENOUGH_IPV6_NS_DEL  count=2; minimum=2; ns_list=ns1.enough-3.sibling.delegation01.xa/fda1:b2:c3:0:127:16:1:31;ns2.enough-3.sibling.delegation01.xa/fda1:b2:c3:0:127:16:1:32
 ```
 
 --> OK
@@ -230,12 +230,12 @@ NO-IPV4-3                     | ENOUGH_IPV6_NS_CHILD, ENOUGH_IPV6_NS_DEL, ENOUGH
 ```
 $ zonemaster-cli --hint=hintfile.zone --test=delegation01 --level=info --show-testcase --raw NO-IPV4-3.delegation01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.03 INFO     Delegation01   ENOUGH_NS_DEL  count=2; minimum=2; nsname_list=ns1.no-ipv4-3.sibbling.delegation01.xa;ns2.no-ipv4-3.sibbling.delegation01.xa
-   0.05 INFO     Delegation01   ENOUGH_NS_CHILD  count=2; minimum=2; nsname_list=ns1.no-ipv4-3.sibbling.delegation01.xa;ns2.no-ipv4-3.sibbling.delegation01.xa
+   0.03 INFO     Delegation01   ENOUGH_NS_DEL  count=2; minimum=2; nsname_list=ns1.no-ipv4-3.sibling.delegation01.xa;ns2.no-ipv4-3.sibling.delegation01.xa
+   0.05 INFO     Delegation01   ENOUGH_NS_CHILD  count=2; minimum=2; nsname_list=ns1.no-ipv4-3.sibling.delegation01.xa;ns2.no-ipv4-3.sibling.delegation01.xa
    0.05 WARNING  Delegation01   NO_IPV4_NS_CHILD  count=0; minimum=2; ns_list=
-   0.05 INFO     Delegation01   ENOUGH_IPV6_NS_CHILD  count=2; minimum=2; ns_list=ns1.no-ipv4-3.sibbling.delegation01.xa/fda1:b2:c3:0:127:16:1:31;ns2.no-ipv4-3.sibbling.delegation01.xa/fda1:b2:c3:0:127:16:1:32
+   0.05 INFO     Delegation01   ENOUGH_IPV6_NS_CHILD  count=2; minimum=2; ns_list=ns1.no-ipv4-3.sibling.delegation01.xa/fda1:b2:c3:0:127:16:1:31;ns2.no-ipv4-3.sibling.delegation01.xa/fda1:b2:c3:0:127:16:1:32
    0.05 WARNING  Delegation01   NO_IPV4_NS_DEL  count=0; minimum=2; ns_list=
-   0.05 INFO     Delegation01   ENOUGH_IPV6_NS_DEL  count=2; minimum=2; ns_list=ns1.no-ipv4-3.sibbling.delegation01.xa/fda1:b2:c3:0:127:16:1:31;ns2.no-ipv4-3.sibbling.delegation01.xa/fda1:b2:c3:0:127:16:1:32
+   0.05 INFO     Delegation01   ENOUGH_IPV6_NS_DEL  count=2; minimum=2; ns_list=ns1.no-ipv4-3.sibling.delegation01.xa/fda1:b2:c3:0:127:16:1:31;ns2.no-ipv4-3.sibling.delegation01.xa/fda1:b2:c3:0:127:16:1:32
 ```
 
 --> OK
@@ -281,11 +281,11 @@ NO-IPV6-3                     | ENOUGH_IPV4_NS_CHILD, ENOUGH_IPV4_NS_DEL, ENOUGH
 ```
 $ zonemaster-cli --hint=hintfile.zone --test=delegation01 --level=info --show-testcase --raw NO-IPV6-3.delegation01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.04 INFO     Delegation01   ENOUGH_NS_DEL  count=2; minimum=2; nsname_list=ns1.no-ipv6-3.sibbling.delegation01.xa;ns2.no-ipv6-3.sibbling.delegation01.xa
-   0.05 INFO     Delegation01   ENOUGH_NS_CHILD  count=2; minimum=2; nsname_list=ns1.no-ipv6-3.sibbling.delegation01.xa;ns2.no-ipv6-3.sibbling.delegation01.xa
-   0.05 INFO     Delegation01   ENOUGH_IPV4_NS_CHILD  count=2; minimum=2; ns_list=ns1.no-ipv6-3.sibbling.delegation01.xa/127.16.1.31;ns2.no-ipv6-3.sibbling.delegation01.xa/127.16.1.32
+   0.04 INFO     Delegation01   ENOUGH_NS_DEL  count=2; minimum=2; nsname_list=ns1.no-ipv6-3.sibling.delegation01.xa;ns2.no-ipv6-3.sibling.delegation01.xa
+   0.05 INFO     Delegation01   ENOUGH_NS_CHILD  count=2; minimum=2; nsname_list=ns1.no-ipv6-3.sibling.delegation01.xa;ns2.no-ipv6-3.sibling.delegation01.xa
+   0.05 INFO     Delegation01   ENOUGH_IPV4_NS_CHILD  count=2; minimum=2; ns_list=ns1.no-ipv6-3.sibling.delegation01.xa/127.16.1.31;ns2.no-ipv6-3.sibling.delegation01.xa/127.16.1.32
    0.05 NOTICE   Delegation01   NO_IPV6_NS_CHILD  count=0; minimum=2; ns_list=
-   0.05 INFO     Delegation01   ENOUGH_IPV4_NS_DEL  count=2; minimum=2; ns_list=ns1.no-ipv6-3.sibbling.delegation01.xa/127.16.1.31;ns2.no-ipv6-3.sibbling.delegation01.xa/127.16.1.32
+   0.05 INFO     Delegation01   ENOUGH_IPV4_NS_DEL  count=2; minimum=2; ns_list=ns1.no-ipv6-3.sibling.delegation01.xa/127.16.1.31;ns2.no-ipv6-3.sibling.delegation01.xa/127.16.1.32
    0.05 NOTICE   Delegation01   NO_IPV6_NS_DEL  count=0; minimum=2; ns_list=
 ```
 

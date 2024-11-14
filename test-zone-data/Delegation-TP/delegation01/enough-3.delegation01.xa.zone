@@ -8,7 +8,7 @@ $TTL 3600
                 1w              ; expire
                 1d )            ; minimum
 
-@       NS      ns1.enough-3.sibbling.delegation01.xa.
-@       NS      ns2.enough-3.sibbling.delegation01.xa.
+@       NS      ns1.enough-3.sibling.delegation01.xa.
+@       NS      ns2.enough-3.sibling.delegation01.xa.
 
 ; EOF
