@@ -189,7 +189,7 @@ An NSEC zone. Unknown algorithm of a DNSKEY.
   * There is an extra RRSIG for the NSEC record (as the response to the
     NSEC3PARAM query).
     * That RRSIG has been created by [algorithm 255][IANA registry], which is
-      private algorithm never supported.
+      an unsupported private algorithm.
     * A matching DNSKEY ([algorithm 255][IANA registry]) is available.
     * For this test scenario a fake signature and a fake public key are used.
   * The extra DNSKEY is in the DNSKEY RRset which is resigned by the valid
@@ -202,7 +202,7 @@ An NSEC3 zone. Unknown algorithm of a DNSKEY.
   * There is an extra RRSIG for the NSEC3 record (as the response to the
     NSEC query).
     * That RRSIG has been created by [algorithm 255][IANA registry], which is
-      private algorithm never supported.
+      an unsupported private algorithm.
     * A matching DNSKEY ([algorithm 255][IANA registry]) is available.
   * For this test scenario a fake signature and a fake public key are used.
   * The extra DNSKEY is in the DNSKEY RRset which is resigned by the valid
@@ -231,7 +231,7 @@ An NSEC3 zone. An extra NSEC3 record is returned.
 
 * Zone: err-mult-nsec3-1.dnssec10.xa
   * An extra NSEC3 record is returned in the response to the NSEC query.
-    * The extra NSEC3 record has the same hashowner name, but different value in
+    * The extra NSEC3 record has the same hash owner name, but different value in
       "Next Hashed Owner Name" field.
   * For this test scenario a fake signature can be used.
 
@@ -246,8 +246,8 @@ A zone without NSEC and NSEC3. There is no NSEC or NSEC3 function.
 An NSEC zone. Some errors in NSEC handling.
 
 * Zone: inconsistent-nsec-1.dnssec10.xa
-  * ns1 includes no NSEC record in the nodata response on the NSEC3PARAM query.
-  * ns2 includes no NSEC record in the nodata response on the NSEC query.
+  * ns1 includes no NSEC record in the NODATA response on the NSEC3PARAM query.
+  * ns2 includes no NSEC record in the NODATA response on the NSEC query.
 
 ### INCONSISTENT-NSEC3-1
 An NSEC3 zone. Some errors in NSEC3 handling.
