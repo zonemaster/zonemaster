@@ -36,7 +36,7 @@ The test scenarios are structured as stated in the [test scenario README file].
 The test zone for each test scenario in this document is a subdomain delegated
 from the base name (`delegation01.xa`) and that subdomain having the same name as
 the scenario. The names of those zones are given in section
-"[Test zone setup]" below.
+[Test zone setup] below.
 
 ## All message tags
 
@@ -113,8 +113,8 @@ This is also a happy path. Out-of-bailiwick.
 
 * Zone: enough-2.delegation01.xa
   * Both ns1 and ns2 are out-of-bailiwick.
-  * ns1 is "ns1.enough-2.delegation01.xb"
-  * ns2 is "ns2.enough-2.delegation01.xb"
+    * ns1 is "ns1.enough-2.delegation01.xb"
+    * ns2 is "ns2.enough-2.delegation01.xb"
   * Delegation is without glue.
   * The test zone ("child") has no address records for the name server names.
   * The "delegation01.xb" zone has the full set of address records.
@@ -199,7 +199,7 @@ No IPv6 in delegation or zone.
   * No AAAA records in zone for ns1 and ns2.
 
 ### NO-IPV6-2
-No Ipv6 in delegation or zone. Out-of-bailiwick name servers and no glue.
+No IPv6 in delegation or zone. Out-of-bailiwick name servers and no glue.
 
 * Zone: no-ipv6-2.delegation01.xa
   * Both ns1 and ns2 are out-of-bailiwick under the xb tree.

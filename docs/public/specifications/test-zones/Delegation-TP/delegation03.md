@@ -82,7 +82,7 @@ This is the happy path.
 * Zone: referral-size-ok-1.delegation03.xa.
 
 ### REFERRAL-SIZE-OK-2
-Referral is large, but not too large. name servers are in-bailiwick.
+Referral is large, but not too large. The name servers are in-bailiwick.
 
 * Zone: referral-size-ok-2.delegation03.xa.
   * ns1 is "ns1.ipv4-large-but-not-too-large.referral-size-ok-2.delegation03.xa".

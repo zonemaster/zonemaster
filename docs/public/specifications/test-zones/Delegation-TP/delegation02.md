@@ -18,7 +18,7 @@ See the [test scenario README file].
 
 
 ## Test Case
-This document specifies defined test zones for test case [Delegation02].
+This document specifies test zones for test case [Delegation02].
 
 
 ## Test scenarios
@@ -102,7 +102,7 @@ This is also a happy path. Out-of-bailiwick.
   * The "delegation02.xb" zone has full set of address records for this scenario.
 
 ### ALL-DISTINCT-3
-This is also a happy path. Also out-of-bailiwick, but with sibbling glue.
+This is also a happy path. Also out-of-bailiwick, but with sibling glue.
 
 * Zone: all-distinct-3.delegation02.xa
   * Both ns1 and ns2 are out-of-bailiwick
@@ -116,7 +116,7 @@ This is also a happy path. Also out-of-bailiwick, but with sibbling glue.
 The glue records use the same IP addresses.
 
 * Zone: del-non-distinct.delegation02.xa
-  * name servers are ns1a and ns1b
+  * The name servers are ns1a and ns1b
     * ns1a and ns1b in the delegation (glue) have the same IPv4 and IPv6
       addresses, respectively.
     * ns1a and ns1b have distinct addresses in the zone (IPv4 and IPv6,
