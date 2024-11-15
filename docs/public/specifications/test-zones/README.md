@@ -1,4 +1,4 @@
-# Test zones for verification of test case implementation
+# Test scenarios for verification of test case implementation
 
 ## Table of contents
 
@@ -8,6 +8,7 @@
 * [Naming conventions](#naming-conventions)
   * [Test zone names](#test-zone-names)
   * [Data outside the test zones](#data-outside-the-test-zones)
+* [Undelegated data](#undelegated-data)
 * [Terminology](#terminology)
 
 
@@ -126,6 +127,34 @@ owner names of such data must follow the reverse data standards. There is no
 requirements for creating separate zones for `in-addr.arpa` or `ip6.arpa` or
 below.
 
+### Undelegated data
+
+Some test scenarios require that the test zones is resolved as
+[undelegated test]. In that case, the scenario specification will contain a small
+"undelegated data" structure with one line per name server. The format is one of
+the following
+* NAME-SERVER-NAME
+* NAME-SERVER-NAME/IPv4
+* NAME-SERVER-NAME/IPv6
+where "NAME-SERVER-NAME" is the actual name of the name server, e.g.
+`ns1a.del-non-distinct-und.delegation02.xa`, and "IPv4" and "IPv6",
+respectively, are literal strings indicating that in the test zone configuration
+an IP address of that type should be used. If there is no "/IPv4" or "/IPv6"
+then the name server is given without IP address.
+
+In the undelegated structure for a specific scenario the name server name can be
+repeated multiple times with different IP addresses. If it appears without
+IP address specification it should only appear once.
+
+Here is an example of a undelegated data section from a scenario specification:
+```
+  * Undelegated data:
+    * ns1a.del-non-distinct-und.delegation02.xa/IPv4
+    * ns1a.del-non-distinct-und.delegation02.xa/IPv6
+    * ns1b.del-non-distinct-und.delegation02.xa/IPv4
+    * ns1b.del-non-distinct-und.delegation02.xa/IPv6
+```
+
 
 ## Terminology
 
@@ -146,5 +175,6 @@ below.
 [RFC 8499]:                                          https://datatracker.ietf.org/doc/html/rfc8499#section-7
 [Test cases]:                                        ../tests/README.md
 [Test-zones]:                                        .
+[undelegated test]:                                  ../test-types/undelegated-test.md
 [Unit tests]:                                        https://github.com/zonemaster/zonemaster-engine/tree/master/t
 [Test-zone-data]:                                    https://github.com/zonemaster/zonemaster/tree/master/test-zone-data
