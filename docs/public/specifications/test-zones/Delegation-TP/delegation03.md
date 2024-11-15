@@ -18,7 +18,7 @@ See the [test scenario README file].
 
 
 ## Test Case
-This document specifies defined test zones for test case [Delegation03].
+This document specifies test scenarios for test case [Delegation03].
 
 
 ## Test scenarios
@@ -35,7 +35,7 @@ The test scenarios are structured as stated in the [test scenario README file].
 The test zone for each test scenario in this document is a subdomain delegated
 from the base name (`delegation03.xa`) and that subdomain having the same name as the
 scenario. The names of those zones are given in section
-"[Test zone setup]" below.
+[Test zone setup] below.
 
 ## All message tags
 
@@ -64,7 +64,7 @@ REFERRAL-SIZE-TOO-LARGE-2     | REFERRAL_SIZE_TOO_LARGE                  | 2)
 2\) All tags except for those specified as "Mandatory message tags"
 
 
-## Zone setup for test scenarios
+## Test zone setup
 
 Assumptions for the scenario specifications unless otherwise specified for the
 specific scenario:
@@ -107,10 +107,10 @@ Referal is too large and name servers are out-of-bailiwick with no glue.
 
 * Zone: referral-size-too-large-2.delegation03.xa
   * The zone is delegated to ns1, ns2, ns3 and ns4.
-  * ns1 is "ns1.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"
-  * ns2 is "ns2.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"
-  * ns3 is "ns3.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"
-  * ns4 is "ns4.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"
+    * ns1 is "ns1.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"
+    * ns2 is "ns2.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"
+    * ns3 is "ns3.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"
+    * ns4 is "ns4.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"
   * Delegation is without glue.
   * The test zone has no address records for the name server names.
   * The "delegation03.xb" zone has full set of address records (IPv4 and IPv6).

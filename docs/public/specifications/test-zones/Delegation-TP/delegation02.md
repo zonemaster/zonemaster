@@ -18,7 +18,7 @@ See the [test scenario README file].
 
 
 ## Test Case
-This document specifies test zones for test case [Delegation02].
+This document specifies test scenarios for test case [Delegation02].
 
 
 ## Test scenarios
@@ -34,7 +34,7 @@ The test scenarios are structured as stated in the [test scenario README file].
 
 The test zone for each test scenario in this document is a subdomain delegated
 from the base name (`delegation02.xa`) and that subdomain having the same name as
-the scenario. The names of those zones are given in section "[Test zone setup]"
+the scenario. The names of those zones are given in section [Test zone setup]
 below.
 
 ## All message tags
@@ -71,7 +71,7 @@ NON-DISTINCT-3                | DEL_NS_SAME_IP, CHILD_NS_SAME_IP         | 2)
 
 2\) All tags except for those specified as "Mandatory message tags"
 
-## Zone setup for test scenarios
+## Test zone setup
 
 Assumptions for the scenario specifications unless otherwise specified for the
 specific scenario:
@@ -106,8 +106,8 @@ This is also a happy path. Also out-of-bailiwick, but with sibling glue.
 
 * Zone: all-distinct-3.delegation02.xa
   * Both ns1 and ns2 are out-of-bailiwick
-    * ns1 is "ns1.all-distinct-3.sibbling.delegation02.xa"
-    * ns2 is "ns2.all-distinct-3.sibbling.delegation02.xa"
+    * ns1 is "ns1.all-distinct-3.sibling.delegation02.xa"
+    * ns2 is "ns2.all-distinct-3.sibling.delegation02.xa"
   * Delegation is with glue.
   * The test zone ("child") has no address records for the name server names.
   * The "delegation02.xa" zone has full set of address records for this scenario.
@@ -193,14 +193,14 @@ names are out-of-bailiwick.
 
 ### NON-DISTINCT-3
 The name servers in both delegation and zone refer to the same IP addresses. The
-names are out-of-bailiwick, but with sibbling glue.
+names are out-of-bailiwick, but with sibling glue.
 
 * Zone: non-distinct-3.delegation02.xa
   * name servers are ns1a, ns1b and ns2, and are out-of-bailiwick.
-    * ns1a is "ns1a.non-distinct-3.sibbling.delegation02.xa"
-    * ns1b is "ns1a.non-distinct-3.sibbling.delegation02.xa"
-    * ns2 is "ns2.non-distinct-3.sibbling.delegation02.xa"
-  * Delegation has sibbling glue.
+    * ns1a is "ns1a.non-distinct-3.sibling.delegation02.xa"
+    * ns1b is "ns1a.non-distinct-3.sibling.delegation02.xa"
+    * ns2 is "ns2.non-distinct-3.sibling.delegation02.xa"
+  * Delegation has sibling glue.
   * ns1a and ns1b have the same addresses, IPv4 and IPv6, respectively.
   * ns2 has distinct addresses (IPv4 and IPv6).
   * The test zone has no address records for the name server names.
