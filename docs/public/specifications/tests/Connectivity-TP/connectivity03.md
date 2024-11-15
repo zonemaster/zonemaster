@@ -72,8 +72,8 @@ In other cases the outcome of this Test Case is "pass".
 
 Message            |Default severity level
 :------------------|:------------
-EMPTY_ASN_SET      |ERROR
-ERROR_ASN_DATABASE |ERROR
+EMPTY_ASN_SET      |NOTICE
+ERROR_ASN_DATABASE |NOTICE
 IPV4_ONE_ASN       |WARNING
 IPV4_SAME_ASN      |NOTICE
 IPV4_DIFFERENT_ASN |INFO

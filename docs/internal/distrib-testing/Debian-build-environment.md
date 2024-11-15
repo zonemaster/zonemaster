@@ -17,7 +17,7 @@ This instruction is for creating it on Debian. See other files for other OSs.
 3. Install prerequisites
 
    ```sh
-   sudo apt-get install git cpanminus gettext autoconf automake build-essential libdevel-checklib-perl libmime-base32-perl libmodule-install-xsutil-perl libtest-differences-perl libssl-dev libidn2-dev libtool
+   sudo apt-get install git cpanminus gettext autoconf automake build-essential libdevel-checklib-perl libextutils-pkgconfig-perl libmime-base32-perl libmodule-install-xsutil-perl libtest-differences-perl libssl-dev libidn2-dev libtool
    ```
 
 4. Clone 'develop' branch from all Zonemaster repositories

@@ -31,7 +31,7 @@ needs for testing and releasing Zonemaster:
 3. Install prerequisites (binaries)
 
    ```sh
-   sudo apt-get install cpanminus gettext autoconf automake build-essential libdevel-checklib-perl libmime-base32-perl libmodule-install-xsutil-perl libssl-dev libidn2-dev libtool
+   sudo apt-get install cpanminus gettext autoconf automake build-essential libdevel-checklib-perl libextutils-pkgconfig-perl libmime-base32-perl libmodule-install-xsutil-perl libssl-dev libidn2-dev libtool
    ```
 
 4. Install Docker - *only needed if Docker images are to be built*

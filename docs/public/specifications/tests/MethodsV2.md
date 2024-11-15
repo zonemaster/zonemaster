@@ -111,6 +111,12 @@ the root zone or if the test is an undelegated test, the list is defined but
 empty. If the parent zone cannot be determined, then an undefined list is
 returned.
 
+Addresses for name servers (RDATA of NS records) are extracted even if the
+resolution goes through CNAME. It is, however, not permitted for a NS record
+to point at a name that has a CNAME, but that test is covered by Test Case
+[Delegation05]. This method should extract as much as possible to find all
+possible paths.
+
 This Method must, in general, use the same algorithm as Test Case [Basic01], but
 the test case extracts more information and outputs messages.
 
@@ -172,7 +178,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
        in the additional section.
 
    9.  Do [DNS Lookup] of name server names (A and AAAA) not already listed in the
-       additional section of the response.
+       additional section of the response. Follow CNAME if provided.
        1. For each IP address add the IP address and *Zone Name* to the
           *Remaining Servers* set unless the IP address is already listed in
           *Handled Servers* together with *Zone Name*.
@@ -210,7 +216,8 @@ This Method uses the following input units defined in section [Methods Inputs]:
              4. Extract the name server names from the NS records and any address
                 records in the additional section.
              5. Do [DNS Lookup] of name server names (A and AAAA) not already
-                listed in the additional section of the response.
+                listed in the additional section of the response. Follow CNAME if
+                provided.
              6. For each IP address add the IP address and *Intermediate Query Name*
                 to the *Remaining Servers* set unless the IP address is already
                 listed in *Handled Servers* together with *Intermediate Query Name*.
@@ -224,7 +231,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
              1. Extract the name server names from the NS records and any glue
                 records.
              2. Do [DNS Lookup] of name server names (A and AAAA) not already
-                listed as glue record or records.
+                listed as glue record or records. Follow CNAME if provided.
              3. For each IP address add *Server Address* and
                 *Intermediate Query Name* to the *Remaining Servers* set unless
                 *Server Address* is already listed in *Handled Servers* together
