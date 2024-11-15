@@ -226,60 +226,58 @@ A complete list of all DNS Resource Record types can be found in the
                 then add name server IP to the *NSEC Mismatches Apex* set.
           2. Else add the name server IP to the
              *NSEC Query Gives Erroneous Answer* set.
-       3. Else if the answer section is empty, then do:
-          1. If the authority section contains no NSEC3 record then go to next
-             name server IP.
-          2. Else do:
-             1. Add the name server IP to the *NSEC Query Gives NSEC3 NODATA*
-                set.
-             2. If the SOA record is missing from the authority section then add name
-                server IP to the *NSEC3 NODATA Missing SOA* set.
-             3. Else if the owner name of SOA record is not *Child Zone* then
-                add name server IP and owner name to the *NSEC3 NODATA Wrong SOA*
-                set.
-             4. If the authority section contains more than one NSEC3 record then
-                add name server IP to the *Erroneous Multiple NSEC3* set.
-             5. Else do:
-                1. If the hash owner name of the NSEC3 record does not match apex
-                   of *Child Zone* then add name server IP to the
-                   *NSEC3 Mismatches Apex* set.
-                2. Else if the type list in the NSEC3 record matches at least one
-                   of the following criteria then add name server IP to the
-                   *NSEC3 Incorrect Type List* set:
-                   1. At least one of SOA, NS, DNSKEY, NSEC3PARAM or RRSIG is
-                      missing.
-                   2. At least one of NSEC or NSEC3 is included.
-                3. Retrieve the NSEC3 record from the response.
-                4. Retrieve the RRSIG records for the retrieved NSEC3 record.
-                5. If the NSEC3 record do not have a matching RRSIG
-                   record, then add the name server IP to the
-                   *NSEC3 Missing Signature* set.
-                6. Else do:
-                   1. Use the DNSKEY records retrieved above.
-                   2. For each NSEC3 RRSIG do:
-                      1. Verify the RRSIG record by the DNSKEY records.
-                      2. If there is no DNSKEY that matches RRSIG by key tag,
-                         then add the name server IP and RRSIG key ID to the
-                         *NSEC3 RRSIG No DNSKEY* set.
-                      3. If the RRSIG record has a validity period that ends
-                         before the time of test execution, then add the name
-                         server IP and RRSIG key ID to the
-                         *NSEC3 RRSIG Expired* set.
-                      4. If the RRSIG record has a validity period that starts
-                         after the time of test execution, then add the name
-                         server IP and RRSIG key ID to the
-                         *NSEC3 RRSIG Not Yet Valid* set.
-                      5. If the Zonemaster installation does not have support for
-                         the DNSKEY algorithm that created the RRSIG, then add
-                         name server IP, DNSKEY algorithm and DNSKEY key tag to
-                         the *Algo Not Supported By ZM* set.
-                      6. If the RRSIG cannot be validated by the DNSKEY record
-                         appointed, then add
-                         name server IP, DNSKEY algorithm and DNSKEY key tag to
-                         the *NSEC3 RRSIG Verify Error* set.
-                      7. Else, add the name server IP to the
-                         *NSEC3 RRSIG Verified* set (unless it is already a member
-                         of the set).
+       3. Else if the answer section is empty and the authority section contains
+          an NSEC3 record then do:
+          1. Add the name server IP to the *NSEC Query Gives NSEC3 NODATA*
+             set.
+          2. If the SOA record is missing from the authority section then add name
+             server IP to the *NSEC3 NODATA Missing SOA* set.
+          3. Else if the owner name of SOA record is not *Child Zone* then
+             add name server IP and owner name to the *NSEC3 NODATA Wrong SOA*
+             set.
+          4. If the authority section contains more than one NSEC3 record then
+             add name server IP to the *Erroneous Multiple NSEC3* set.
+          5. Else do:
+             1. If the hash owner name of the NSEC3 record does not match apex
+                of *Child Zone* then add name server IP to the
+                *NSEC3 Mismatches Apex* set.
+             2. Else if the type list in the NSEC3 record matches at least one
+                of the following criteria then add name server IP to the
+                *NSEC3 Incorrect Type List* set:
+                1. At least one of SOA, NS, DNSKEY, NSEC3PARAM or RRSIG is
+                   missing.
+                2. At least one of NSEC or NSEC3 is included.
+             3. Retrieve the NSEC3 record from the response.
+             4. Retrieve the RRSIG records for the retrieved NSEC3 record.
+             5. If the NSEC3 record do not have a matching RRSIG
+                record, then add the name server IP to the
+                *NSEC3 Missing Signature* set.
+             6. Else do:
+                1. Use the DNSKEY records retrieved above.
+                2. For each NSEC3 RRSIG do:
+                   1. Verify the RRSIG record by the DNSKEY records.
+                   2. If there is no DNSKEY that matches RRSIG by key tag,
+                      then add the name server IP and RRSIG key ID to the
+                      *NSEC3 RRSIG No DNSKEY* set.
+                   3. If the RRSIG record has a validity period that ends
+                      before the time of test execution, then add the name
+                      server IP and RRSIG key ID to the
+                      *NSEC3 RRSIG Expired* set.
+                   4. If the RRSIG record has a validity period that starts
+                      after the time of test execution, then add the name
+                      server IP and RRSIG key ID to the
+                      *NSEC3 RRSIG Not Yet Valid* set.
+                   5. If the Zonemaster installation does not have support for
+                      the DNSKEY algorithm that created the RRSIG, then add
+                      name server IP, DNSKEY algorithm and DNSKEY key tag to
+                      the *Algo Not Supported By ZM* set.
+                   6. If the RRSIG cannot be validated by the DNSKEY record
+                      appointed, then add
+                      name server IP, DNSKEY algorithm and DNSKEY key tag to
+                      the *NSEC3 RRSIG Verify Error* set.
+                   7. Else, add the name server IP to the
+                      *NSEC3 RRSIG Verified* set (unless it is already a member
+                      of the set).
 
     6. Send *NSEC3PARAM Query* to the name server IP and do:
        1. If at least one of the following criteria is met, then add the name
@@ -293,57 +291,55 @@ A complete list of all DNS Resource Record types can be found in the
              *NSEC3PARAM In Answer* set.
           2. Else, then add the name server IP to the
              *NSEC3PARAM Query Gives Erroneous Answer* set.
-       3. Else if the answer section is empty, then do:
-          1. If the authority section contains no NSEC record then go to the next
-             name server IP.
-          2. Else do:
-             1. Add the name server IP to the *NSEC3PARAM Query Gives NSEC NODATA* set.
-             2. If the SOA record is missing the authority section then add the
-                name server IP to the *NSEC NODATA Missing SOA* set.
-             3. Else if the owner name of the SOA record is not *Child Zone* then
-                add name server IP and the owner name to the
-                *NSEC NODATA Wrong SOA* set.
-             4. If the authority section contains more than one NSEC record then
-                add name server IP to the *Erroneous Multiple NSEC* set.
-             5. Else do:
-                1. If the owner name of the NSEC record is not *Child Zone* then
-                   add name server IP to the *NSEC Mismatches Apex* set.
-                2. Else if the type list in the NSEC record matches at least one
-                   of the following criteria then add name server IP to the
-                   *NSEC Incorrect Type List* set:
-                   1. At least one of SOA, NS, DNSKEY, NSEC or RRSIG is missing.
-                   2. At least one of NSEC3PARAM or NSEC3 is included.
-                3. Retrieve the NSEC record from the response.
-                4. Retrieve the RRSIG records for the retrieved NSEC record.
-                5. If the NSEC record does not have a matching RRSIG
-                   record, then add the name server IP to the
-                   *NSEC Missing Signature* set.
-                6. Else do:
-                   1. Use the DNSKEY records retrieved above.
-                   2. For each NSEC RRSIG do:
-                      1. Verify the RRSIG record by the DNSKEY records.
-                      2. If there is no DNSKEY that matches RRSIG by key tag,
-                         then add the name server IP and RRSIG key ID to the
-                         *NSEC RRSIG No DNSKEY* set.
-                      3. If the RRSIG record has a validity period that ends
-                         before the time of test execution, then add the name
-                         server IP and RRSIG key ID to the
-                         *NSEC RRSIG Expired* set.
-                      4. If the RRSIG record has a validity period that starts
-                         after the time of test execution, then add the name
-                         server IP and RRSIG key ID to the
-                         *NSEC RRSIG Not Yet Valid* set.
-                      5. If the Zonemaster installation does not have support for
-                         the DNSKEY algorithm that created the RRSIG, then add
-                         name server IP, DNSKEY algorithm and DNSKEY key tag to
-                         the *Algo Not Supported By ZM* set.
-                      6. If the RRSIG cannot be validated by the DNSKEY record
-                         appointed, then add
-                         name server IP, DNSKEY algorithm and DNSKEY key tag to
-                         the *NSEC RRSIG Verify Error* set.
-                      7. Else, add the name server IP to the
-                         *NSEC RRSIG Verified* set (unless it is already a member
-                         of the set).
+       3. Else if the answer section is empty and the authority section contains
+          an NSEC record then do:
+          1. Add the name server IP to the *NSEC3PARAM Query Gives NSEC NODATA* set.
+          2. If the SOA record is missing the authority section then add the
+             name server IP to the *NSEC NODATA Missing SOA* set.
+          3. Else if the owner name of the SOA record is not *Child Zone* then
+             add name server IP and the owner name to the
+             *NSEC NODATA Wrong SOA* set.
+          4. If the authority section contains more than one NSEC record then
+             add name server IP to the *Erroneous Multiple NSEC* set.
+          5. Else do:
+             1. If the owner name of the NSEC record is not *Child Zone* then
+                add name server IP to the *NSEC Mismatches Apex* set.
+             2. Else if the type list in the NSEC record matches at least one
+                of the following criteria then add name server IP to the
+                *NSEC Incorrect Type List* set:
+                1. At least one of SOA, NS, DNSKEY, NSEC or RRSIG is missing.
+                2. At least one of NSEC3PARAM or NSEC3 is included.
+             3. Retrieve the NSEC record from the response.
+             4. Retrieve the RRSIG records for the retrieved NSEC record.
+             5. If the NSEC record does not have a matching RRSIG
+                record, then add the name server IP to the
+                *NSEC Missing Signature* set.
+             6. Else do:
+                1. Use the DNSKEY records retrieved above.
+                2. For each NSEC RRSIG do:
+                   1. Verify the RRSIG record by the DNSKEY records.
+                   2. If there is no DNSKEY that matches RRSIG by key tag,
+                      then add the name server IP and RRSIG key ID to the
+                      *NSEC RRSIG No DNSKEY* set.
+                   3. If the RRSIG record has a validity period that ends
+                      before the time of test execution, then add the name
+                      server IP and RRSIG key ID to the
+                      *NSEC RRSIG Expired* set.
+                   4. If the RRSIG record has a validity period that starts
+                      after the time of test execution, then add the name
+                      server IP and RRSIG key ID to the
+                      *NSEC RRSIG Not Yet Valid* set.
+                   5. If the Zonemaster installation does not have support for
+                      the DNSKEY algorithm that created the RRSIG, then add
+                      name server IP, DNSKEY algorithm and DNSKEY key tag to
+                      the *Algo Not Supported By ZM* set.
+                   6. If the RRSIG cannot be validated by the DNSKEY record
+                      appointed, then add
+                      name server IP, DNSKEY algorithm and DNSKEY key tag to
+                      the *NSEC RRSIG Verify Error* set.
+                   7. Else, add the name server IP to the
+                      *NSEC RRSIG Verified* set (unless it is already a member
+                      of the set).
 
 7.  If the *Erroneous Multiple NSEC* set is non-empty then output
     *[DS10_ERR_MULT_NSEC]* with the name server IP addresses from the
