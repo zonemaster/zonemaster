@@ -206,12 +206,12 @@ NON-DISTINCT-3                | DEL_NS_SAME_IP, CHILD_NS_SAME_IP         | 2)
 ```
 $ zonemaster-cli --hint=hintfile.zone --test=delegation02 --level=info --show-testcase --raw NON-DISTINCT-3.delegation02.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
-   0.06 ERROR    Delegation02   DEL_NS_SAME_IP  ns_ip=127.16.2.31; nsname_list=ns1a.non-distinct-3.sibbling.delegation02.xa;ns1b.non-distinct-3.sibbling.delegation02.xa
-   0.06 ERROR    Delegation02   DEL_NS_SAME_IP  ns_ip=fda1:b2:c3:0:127:16:2:31; nsname_list=ns1a.non-distinct-3.sibbling.delegation02.xa;ns1b.non-distinct-3.sibbling.delegation02.xa
-   0.06 ERROR    Delegation02   CHILD_NS_SAME_IP  ns_ip=127.16.2.31; nsname_list=ns1a.non-distinct-3.sibbling.delegation02.xa;ns1b.non-distinct-3.sibbling.delegation02.xa
-   0.06 ERROR    Delegation02   CHILD_NS_SAME_IP  ns_ip=fda1:b2:c3:0:127:16:2:31; nsname_list=ns1a.non-distinct-3.sibbling.delegation02.xa;ns1b.non-distinct-3.sibbling.delegation02.xa
-   0.06 ERROR    Delegation02   SAME_IP_ADDRESS  ns_ip=127.16.2.31; nsname_list=ns1a.non-distinct-3.sibbling.delegation02.xa;ns1b.non-distinct-3.sibbling.delegation02.xa
-   0.06 ERROR    Delegation02   SAME_IP_ADDRESS  ns_ip=fda1:b2:c3:0:127:16:2:31; nsname_list=ns1a.non-distinct-3.sibbling.delegation02.xa;ns1b.non-distinct-3.sibbling.delegation02.xa
+   0.06 ERROR    Delegation02   DEL_NS_SAME_IP  ns_ip=127.16.2.31; nsname_list=ns1a.non-distinct-3.sibling.delegation02.xa;ns1b.non-distinct-3.sibling.delegation02.xa
+   0.06 ERROR    Delegation02   DEL_NS_SAME_IP  ns_ip=fda1:b2:c3:0:127:16:2:31; nsname_list=ns1a.non-distinct-3.sibling.delegation02.xa;ns1b.non-distinct-3.sibling.delegation02.xa
+   0.06 ERROR    Delegation02   CHILD_NS_SAME_IP  ns_ip=127.16.2.31; nsname_list=ns1a.non-distinct-3.sibling.delegation02.xa;ns1b.non-distinct-3.sibling.delegation02.xa
+   0.06 ERROR    Delegation02   CHILD_NS_SAME_IP  ns_ip=fda1:b2:c3:0:127:16:2:31; nsname_list=ns1a.non-distinct-3.sibling.delegation02.xa;ns1b.non-distinct-3.sibling.delegation02.xa
+   0.06 ERROR    Delegation02   SAME_IP_ADDRESS  ns_ip=127.16.2.31; nsname_list=ns1a.non-distinct-3.sibling.delegation02.xa;ns1b.non-distinct-3.sibling.delegation02.xa
+   0.06 ERROR    Delegation02   SAME_IP_ADDRESS  ns_ip=fda1:b2:c3:0:127:16:2:31; nsname_list=ns1a.non-distinct-3.sibling.delegation02.xa;ns1b.non-distinct-3.sibling.delegation02.xa
 ```
 
 --OK

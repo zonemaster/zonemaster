@@ -2,7 +2,7 @@ $ORIGIN delegation02.xa.                              ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024110408      ; serial
+                2024111500      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -17,17 +17,17 @@ ns2     A     127.16.2.22
 ns2     AAAA  fda1:b2:c3:0:127:16:2:22
 
 ; Also in template in .cfg file
-ns1.all-distinct-3.sibbling  A         127.16.2.31
-ns1.all-distinct-3.sibbling  AAAA      fda1:b2:c3:0:127:16:2:31
-ns2.all-distinct-3.sibbling  A         127.16.2.32
-ns2.all-distinct-3.sibbling  AAAA      fda1:b2:c3:0:127:16:2:32
+ns1.all-distinct-3.sibling  A         127.16.2.31
+ns1.all-distinct-3.sibling  AAAA      fda1:b2:c3:0:127:16:2:31
+ns2.all-distinct-3.sibling  A         127.16.2.32
+ns2.all-distinct-3.sibling  AAAA      fda1:b2:c3:0:127:16:2:32
 
-ns1a.non-distinct-3.sibbling A         127.16.2.31
-ns1a.non-distinct-3.sibbling AAAA      fda1:b2:c3:0:127:16:2:31
-ns1b.non-distinct-3.sibbling A         127.16.2.31
-ns1b.non-distinct-3.sibbling AAAA      fda1:b2:c3:0:127:16:2:31
-ns2.non-distinct-3.sibbling  A         127.16.2.32
-ns2.non-distinct-3.sibbling  AAAA      fda1:b2:c3:0:127:16:2:32
+ns1a.non-distinct-3.sibling A         127.16.2.31
+ns1a.non-distinct-3.sibling AAAA      fda1:b2:c3:0:127:16:2:31
+ns1b.non-distinct-3.sibling A         127.16.2.31
+ns1b.non-distinct-3.sibling AAAA      fda1:b2:c3:0:127:16:2:31
+ns2.non-distinct-3.sibling  A         127.16.2.32
+ns2.non-distinct-3.sibling  AAAA      fda1:b2:c3:0:127:16:2:32
 
 
 $ORIGIN all-distinct-1.delegation02.xa.
@@ -43,8 +43,8 @@ $ORIGIN all-distinct-2.delegation02.xa.
 @       NS      ns2.all-distinct-2.delegation02.xb.
 
 $ORIGIN all-distinct-3.delegation02.xa.
-@       NS      ns1.all-distinct-3.sibbling.delegation02.xa.
-@       NS      ns2.all-distinct-3.sibbling.delegation02.xa.
+@       NS      ns1.all-distinct-3.sibling.delegation02.xa.
+@       NS      ns2.all-distinct-3.sibling.delegation02.xa.
 
 $ORIGIN del-non-distinct.delegation02.xa.
 @       NS      ns1a
@@ -80,7 +80,7 @@ $ORIGIN non-distinct-2.delegation02.xa.
 @       NS      ns2.non-distinct-2.delegation02.xb.
 
 $ORIGIN non-distinct-3.delegation02.xa.
-@       NS      ns1a.non-distinct-3.sibbling.delegation02.xa.
-@       NS      ns1b.non-distinct-3.sibbling.delegation02.xa.
-@       NS      ns2.non-distinct-3.sibbling.delegation02.xa.
+@       NS      ns1a.non-distinct-3.sibling.delegation02.xa.
+@       NS      ns1b.non-distinct-3.sibling.delegation02.xa.
+@       NS      ns2.non-distinct-3.sibling.delegation02.xa.
 
