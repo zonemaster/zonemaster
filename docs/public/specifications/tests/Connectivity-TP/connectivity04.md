@@ -277,5 +277,6 @@ None
 [RISwhois]:                                                     https://www.ripe.net/analyse/archived-projects/ris-tools-web-interfaces/riswhois
 [Send]:                                                         #terminology
 [Severity Level Definitions]:                                   ../SeverityLevelDefinitions.md
+[Undelegated test]:                                             ../../test-types/undelegated-test.md
 [WARNING]:                                                      ../SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine Profile]:                                    ../../../configuration/profiles.md
