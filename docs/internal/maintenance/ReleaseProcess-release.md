@@ -16,6 +16,7 @@ Release process - Release
 * [11. Produce distribution zip file](#11-produce-distribution-zip-file)
 * [12. Update Zonemaster repository main _README.md_](#12-update-zonemaster-repository-main-readmemd)
 * [13. Generate documents](#13-generate-documents)
+* [13. Generate documents and check public documents](#13-generate-documents-and-check-public-documents)
 * [14. Upload to CPAN](#14-upload-to-cpan)
 * [15. Merge develop branch into master](#15-merge-develop-branch-into-master)
 * [16. Create Docker images and upload image to Docker Hub](#16-create-docker-images-and-upload-image-to-docker-hub)
@@ -237,9 +238,11 @@ If needed, update the following section of the Zonemaster repository main
 
 [(Top)](#table-of-contents)
 
-## 13. Generate documents
+## 13. Generate documents and check public documents
 
-> This section is relevant for Zonemaster/Zonemaster only.
+> The two sub-sections here are relevant for Zonemaster/Zonemaster only.
+
+### 13.1. Generate documents
 
 If no files in neither Zonemaster/Zonemaster nor Zonemaster-Engine have been
 updated this section can be skipped.
@@ -254,6 +257,25 @@ updated this section can be skipped.
 4. If any of the created files has been updated (`git status`) then it
    should be added to the *develop branch* via a pull request.
 5. No reviewer or approval is required for this change.
+
+### 13.2 Check public documents
+
+> The step above, 13.1, should be completed (merged to develop branch) before
+> this step is run to avoid double errors.
+
+Prior to this step `mdbook-linkcheck` must be installed (see
+[Build environment preparation]). Run from the Zonemaster/Zonemaster
+repository (develop branch checked out):
+
+```
+mdbook-linkcheck -s docs/public/
+```
+
+1. If any error is reported, correct the file or files.
+2. Add changes to the *develop branch* via a pull request.
+3. No reviewer or approval is required for this change.
+4. Repeat the command after merging the changes to verify that the found errors
+   have been resolved.
 
 [(Top)](#table-of-contents)
 
@@ -420,7 +442,7 @@ parent number is `1`.
 [Appendix A]:                                    #appendix-a-on-version-number-in-makefilepl
 [Appendix B]:                                    #appendix-b-on-reverting-commits
 [Backend.pm]:                                    https://github.com/zonemaster/zonemaster-backend/blob/develop/lib/Zonemaster/Backend.pm
-[Build Environment Preparation]:                 ../distrib-testing/BuildEnvironmentPreparation.md
+[Build environment preparation]:                 ../distrib-testing/README.md
 [Build environment for Node.js]:                 ../distrib-testing/Ubuntu-Node.js-build-environment.md
 [CI]:                                            https://github.com/travis-ci/travis-ci
 [CLI.pm]:                                        https://github.com/zonemaster/zonemaster-cli/blob/develop/lib/Zonemaster/CLI.pm
@@ -456,3 +478,5 @@ parent number is `1`.
 [Zonemaster-Engine Releases]:                    https://github.com/zonemaster/zonemaster-engine/releases
 [Zonemaster-GUI Releases]:                       https://github.com/zonemaster/zonemaster-gui/releases
 [Zonemaster-LDNS Releases]:                      https://github.com/zonemaster/zonemaster-ldns/releases
+
+
