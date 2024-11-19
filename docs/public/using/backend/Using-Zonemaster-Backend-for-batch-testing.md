@@ -15,7 +15,7 @@
   * [Add more Test Agent services](#add-more-test-agent-services)
   * [Add more test servers](#add-more-test-servers)
 * [Queues](#queues)
-* [Appendix: Add more JSON-RPC API services](#appendix-add-more-json-rpc-api-services)
+* [Appendix: Add more JSON-RPC API services]
 
 ## Introduction
 
@@ -74,7 +74,7 @@ type the command in, i.e. seconds.
 
 Another option is to set up an additional JSON-RPC API service using the same
 database. Zonemaster-Backend can have several parallel JSON-RPC API services with
-different configuration, see [Create an additional JSON-RPC API service].
+different configuration, see [Appendix: Add more JSON-RPC API services].
 
 ## Create batch user
 
@@ -346,6 +346,7 @@ the two JSON-RPC API services are:
 Restart the JSON-RPC API services to use the updated configuration files.
 
 
+[Appendix: Add more JSON-RPC API services]:     #appendix-add-more-json-rpc-api-services
 [Backend installation instructions]:            ../../installation/zonemaster-backend.md
 [Backend_config.ini]:                           ../../configuration/backend.md
 [Global-cache]:                                 ../../configuration/global-cache.md
