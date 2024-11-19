@@ -143,6 +143,12 @@ zonemaster-cli --test basic zonemaster.net
 The command is expected to take a few seconds and print some results about the
 delegation of zonemaster.net.
 
+Also, verify that the manual page is properly installed:
+
+```sh
+man zonemaster-cli
+```
+
 
 ## Using zonemaster-cli
 

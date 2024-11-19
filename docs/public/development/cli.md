@@ -13,6 +13,5 @@ Zonemaster-CLI.
 To generate and view a development version of the a man page:
 
 ```sh
-make manifypods
-man blib/man1/zonemaster-cli.1p
+perldoc -oman script/zonemaster-cli
 ```
