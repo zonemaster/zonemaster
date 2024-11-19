@@ -272,9 +272,8 @@ A complete list of all DNS Resource Record types can be found in the
                       name server IP, DNSKEY algorithm and DNSKEY key tag to
                       the *Algo Not Supported By ZM* set.
                    6. If the RRSIG cannot be validated by the DNSKEY record
-                      appointed, then add
-                      name server IP, DNSKEY algorithm and DNSKEY key tag to
-                      the *NSEC3 RRSIG Verify Error* set.
+                      appointed, then add name server IP and DNSKEY key tag 
+                      to the *NSEC3 RRSIG Verify Error* set.
                    7. Else, add the name server IP to the
                       *NSEC3 RRSIG Verified* set (unless it is already a member
                       of the set).
@@ -334,9 +333,8 @@ A complete list of all DNS Resource Record types can be found in the
                       name server IP, DNSKEY algorithm and DNSKEY key tag to
                       the *Algo Not Supported By ZM* set.
                    6. If the RRSIG cannot be validated by the DNSKEY record
-                      appointed, then add
-                      name server IP, DNSKEY algorithm and DNSKEY key tag to
-                      the *NSEC RRSIG Verify Error* set.
+                      appointed, then add name server IP and DNSKEY key tag 
+                      to the *NSEC RRSIG Verify Error* set.
                    7. Else, add the name server IP to the
                       *NSEC RRSIG Verified* set (unless it is already a member
                       of the set).
@@ -399,7 +397,7 @@ A complete list of all DNS Resource Record types can be found in the
     *[DS10_NSEC_NODATA_MISSING_SOA]* with the list of name server IP in the set.
 
 19. If the *NSEC Query Gives Erroneous Answer* set is non-empty, then output
-    *[DS10_NSEC_QUERY_GIVES_ERR_ANSWER]* with the list of name server IP in the
+    *[DS10_NSEC_GIVES_ERR_ANSWER]* with the list of name server IP in the
     set.
 
 20. If the *NSEC Query Response Error* set is non-empty, then output
@@ -573,7 +571,7 @@ No special terminology for this Test Case.
 [DS10_NSEC_NODATA_MISSING_SOA]:               #summary
 [DS10_NSEC_NODATA_WRONG_SOA]:                 #summary
 [DS10_NSEC_NO_VERIFIED_SIGNATURE]:            #summary
-[DS10_NSEC_QUERY_GIVES_ERR_ANSWER]:           #summary
+[DS10_NSEC_GIVES_ERR_ANSWER]:                #summary
 [DS10_NSEC_QUERY_RESPONSE_ERR]:               #summary
 [DS10_NSEC_RRSIG_EXPIRED]:                    #summary
 [DS10_NSEC_RRSIG_NOT_YET_VALID]:              #summary
