@@ -112,8 +112,8 @@ docker run -t --rm zonemaster/cli zonemaster.net --no-ipv6 --show-testcase --loc
 zonemaster-cli zonemaster.net --no-ipv6 --show-testcase --locale=da_DK.UTF-8
 ```
 
-Run `zonemaster-cli --help` to get brief descriptions of a selection of the most
-important command line options.
+To get brief descriptions of a selection of the most important command line
+options run:
 
 ```sh
 zonemaster-cli --help
