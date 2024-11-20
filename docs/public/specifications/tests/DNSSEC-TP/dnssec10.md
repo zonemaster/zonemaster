@@ -263,24 +263,23 @@ A complete list of all DNS Resource Record types can be found in the
                    2. If there is no DNSKEY that matches RRSIG by key tag,
                       then add the name server IP and RRSIG key ID to the
                       *NSEC3 RRSIG No DNSKEY* set.
-                   3. If the RRSIG record has a validity period that ends
+                   3. Else, if the RRSIG record has a validity period that ends
                       before the time of test execution, then add the name
                       server IP and RRSIG key ID to the
                       *NSEC3 RRSIG Expired* set.
-                   4. If the RRSIG record has a validity period that starts
+                   4. Else, if the RRSIG record has a validity period that starts
                       after the time of test execution, then add the name
                       server IP and RRSIG key ID to the
                       *NSEC3 RRSIG Not Yet Valid* set.
-                   5. If the Zonemaster installation does not have support for
-                      the DNSKEY algorithm that created the RRSIG, then add
+                   5. Else, if the Zonemaster installation does not have support
+                      for the DNSKEY algorithm that created the RRSIG, then add
                       name server IP, DNSKEY algorithm and DNSKEY key tag to
                       the *Algo Not Supported By ZM* set.
-                   6. If the RRSIG cannot be validated by the DNSKEY record
+                   6. Else, if the RRSIG cannot be validated by the DNSKEY record
                       appointed, then add name server IP and DNSKEY key tag
                       to the *NSEC3 RRSIG Verify Error* set.
                    7. Else, add the name server IP to the
-                      *NSEC3 RRSIG Verified* set (unless it is already a member
-                      of the set).
+                      *NSEC3 RRSIG Verified* set.
 
     6. Send *NSEC3PARAM Query* to the name server IP and do:
        1. If at least one of the following criteria is met, then add the name
@@ -328,19 +327,19 @@ A complete list of all DNS Resource Record types can be found in the
                    2. If there is no DNSKEY that matches RRSIG by key tag,
                       then add the name server IP and RRSIG key ID to the
                       *NSEC RRSIG No DNSKEY* set.
-                   3. If the RRSIG record has a validity period that ends
+                   3. Else, if the RRSIG record has a validity period that ends
                       before the time of test execution, then add the name
                       server IP and RRSIG key ID to the
                       *NSEC RRSIG Expired* set.
-                   4. If the RRSIG record has a validity period that starts
+                   4. Else, if the RRSIG record has a validity period that starts
                       after the time of test execution, then add the name
                       server IP and RRSIG key ID to the
                       *NSEC RRSIG Not Yet Valid* set.
-                   5. If the Zonemaster installation does not have support for
-                      the DNSKEY algorithm that created the RRSIG, then add
+                   5. Else, if the Zonemaster installation does not have support
+                      for the DNSKEY algorithm that created the RRSIG, then add
                       name server IP, DNSKEY algorithm and DNSKEY key tag to
                       the *Algo Not Supported By ZM* set.
-                   6. If the RRSIG cannot be validated by the DNSKEY record
+                   6. Else, if the RRSIG cannot be validated by the DNSKEY record
                       appointed, then add name server IP and DNSKEY key tag
                       to the *NSEC RRSIG Verify Error* set.
                    7. Else, add the name server IP to the
@@ -390,10 +389,13 @@ A complete list of all DNS Resource Record types can be found in the
     *[DS10_HAS_NSEC3]* with the name server IP addresses from the sets.
 
 15. Create a list of the name server IP in the *NSEC3PARAM In Answer* set or in
-    the *NSEC Query Gives NSEC3 NODATA* set (or both). Create a second list of
-    the name server IP in the *NSEC In Answer* set or in the
-    *NSEC3PARAM Query Gives NSEC NODATA* set (or both). If both lists are
-    non-empty then output *[DS10_INCONSISTENT_NSEC_NSEC3]* with both the lists.
+    the *NSEC Query Gives NSEC3 NODATA* set (or both), but neither in
+    the *NSEC In Answer* set or the *NSEC3PARAM Query Gives NSEC NODATA* set.
+    Create a second list of the name server IP in the *NSEC In Answer* set or in
+    the *NSEC3PARAM Query Gives NSEC NODATA* set (or both), but neither in the
+    *NSEC3PARAM In Answer* set or the *NSEC Query Gives NSEC3 NODATA* set.
+    If both lists are non-empty then output *[DS10_INCONSISTENT_NSEC_NSEC3]* with
+    both the lists.
 
 16. If the *NSEC Incorrect Type List* set is non-empty, then output
     *[DS10_NSEC_ERR_TYPE_LIST] with the list of name server IP in the set.
