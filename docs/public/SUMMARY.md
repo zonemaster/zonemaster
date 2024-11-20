@@ -146,3 +146,5 @@
             - [Zone09](specifications/tests/Zone-TP/zone09.md)
             - [Zone10](specifications/tests/Zone-TP/zone10.md)
             - [Zone11](specifications/tests/Zone-TP/zone11.md)
+- [Development](development/README.md)
+    - [CLI](development/cli.md)
