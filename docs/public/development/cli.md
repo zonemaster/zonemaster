@@ -10,7 +10,7 @@ Zonemaster-CLI.
 
 ### Generate man page
 
-To generate and view a development version of the a man page:
+To generate and view a development version of the man page:
 
 ```sh
 perldoc -oman script/zonemaster-cli
