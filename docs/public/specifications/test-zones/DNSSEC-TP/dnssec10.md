@@ -101,11 +101,11 @@ INCONSIST-NSEC-NSEC3-1         | DS10_INCONSISTENT_NSEC_NSEC3                   
 INCONSIST-NSEC-NSEC3-2         | DS10_INCONSISTENT_NSEC_NSEC3, DS10_INCONSISTENT_NSEC, DS10_INCONSISTENT_NSEC3| 2)
 MIXED-NSEC-NSEC3-1             | DS10_MIXED_NSEC_NSEC3                                                        | 2)
 MIXED-NSEC-NSEC3-1             | DS10_MIXED_NSEC_NSEC3                                                        | 2)
-NSEC3PARAM-GIVES-ERR-ANSWER-1  | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_HAS_NSEC3                             | 2)
+NSEC3PARAM-GIVES-ERR-ANSWER-1  | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_HAS_NSEC3, DS10_INCONSISTENT_NSEC3                             | 2)
 NSEC3PARAM-GIVES-ERR-ANSWER-2  | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_EXPECTED_NSEC_NSEC3_MISSING           | 2)
 NSEC3PARAM-GIVES-ERR-ANSWER-3  | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_HAS_NSEC3                             | 2)
-NSEC3PARAM-Q-RESPONSE-ERR-1    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_HAS_NSEC3                           | 2)
-NSEC3PARAM-Q-RESPONSE-ERR-2    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_HAS_NSEC3                           | 2)
+NSEC3PARAM-Q-RESPONSE-ERR-1    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_HAS_NSEC3, DS10_INCONSISTENT_NSEC3                           | 2)
+NSEC3PARAM-Q-RESPONSE-ERR-2    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_HAS_NSEC3, DS10_INCONSISTENT_NSEC3                           | 2)
 NSEC3PARAM-Q-RESPONSE-ERR-3    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_EXPECTED_NSEC_NSEC3_MISSING         | 2)
 NSEC3-ERR-TYPE-LIST-1          | DS10_NSEC3_ERR_TYPE_LIST, DS10_HAS_NSEC3                                     | 2)
 NSEC3-ERR-TYPE-LIST-2          | DS10_NSEC3_ERR_TYPE_LIST, DS10_HAS_NSEC3                                     | 2)
@@ -119,7 +119,7 @@ NSEC3-NO-VERIFIED-SIGNATURE-3  | DS10_NSEC3_NO_VERIFIED_SIGNATURE, DS10_HAS_NSEC
 NSEC3-NO-VERIFIED-SIGNATURE-4  | DS10_NSEC3_NO_VERIFIED_SIGNATURE, DS10_HAS_NSEC3, DS10_NSEC3_RRSIG_VERIFY_ERROR  | 2)
 NSEC-ERR-TYPE-LIST-1           | DS10_NSEC_ERR_TYPE_LIST, DS10_HAS_NSEC                                       | 2)
 NSEC-ERR-TYPE-LIST-2           | DS10_NSEC_ERR_TYPE_LIST, DS10_HAS_NSEC                                       | 2)
-NSEC-GIVES-ERR-ANSWER-1        | DS10_NSEC_GIVES_ERR_ANSWER, DS10_HAS_NSEC                                    | 2)
+NSEC-GIVES-ERR-ANSWER-1        | DS10_NSEC_GIVES_ERR_ANSWER, DS10_HAS_NSEC, DS10_INCONSISTENT_NSEC                                    | 2)
 NSEC-GIVES-ERR-ANSWER-2        | DS10_NSEC_GIVES_ERR_ANSWER, DS10_EXPECTED_NSEC_NSEC3_MISSING                 | 2)
 NSEC-MISMATCHES-APEX-1         | DS10_NSEC_MISMATCHES_APEX, DS10_HAS_NSEC                                     | 2)
 NSEC-MISMATCHES-APEX-2         | DS10_NSEC_MISMATCHES_APEX, DS10_HAS_NSEC                                     | 2)
@@ -314,7 +314,7 @@ An NSEC3 zone. Error in response to NSEC3PARAM query.
 
 * Zone: nsec3param-gives-err-answer-3.dnssec10.xa
   * The owner name of the NSEC3PARAM record in response to the NSEC3PARAM query
-    is errouneous and does not match apex.
+    is erroneous and does not match apex.
     * The owner name is `sub.nsec3param-gives-err-answer-3.dnssec10.xa` instead
       of expected `nsec3param-gives-err-answer-3.dnssec10.xa`.
 
