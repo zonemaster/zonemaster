@@ -26,6 +26,7 @@ scenarios for other test cases.
 * DS10_ALGO_NOT_SUPPORTED_BY_ZM
 * DS10_ERR_MULT_NSEC
 * DS10_ERR_MULT_NSEC3
+* DS10_ERR_MULT_NSEC3PARAM
 * DS10_EXPECTED_NSEC_NSEC3_MISSING
 * DS10_HAS_NSEC
 * DS10_HAS_NSEC3
@@ -34,6 +35,7 @@ scenarios for other test cases.
 * DS10_INCONSISTENT_NSEC_NSEC3
 * DS10_MIXED_NSEC_NSEC3
 * DS10_NSEC3PARAM_GIVES_ERR_ANSWER
+* DS10_NSEC3PARAM_MISMATCHES_APEX
 * DS10_NSEC3PARAM_QUERY_RESPONSE_ERR
 * DS10_NSEC3_ERR_TYPE_LIST
 * DS10_NSEC3_MISMATCHES_APEX
@@ -72,6 +74,7 @@ ALGO-NOT-SUPP-BY-ZM-2          | algo-not-supp-by-zm-2.dnssec10.xa
 ERR-MULT-NSEC-1                | err-mult-nsec-1.dnssec10.xa
 ERR-MULT-NSEC-2                | err-mult-nsec-2.dnssec10.xa
 ERR-MULT-NSEC3-1               | err-mult-nsec3-1.dnssec10.xa
+ERR-MULT-NSEC3PARAM-1          | err-mult-nsec3param-1.dnssec10.xa
 EXP-NSEC-NSEC3-MISS-1          | exp-nsec-nsec3-miss-1.dnssec10.xa
 INCONSISTENT-NSEC-1            | inconsistent-nsec-1.dnssec10.xa
 INCONSISTENT-NSEC3-1           | inconsistent-nsec3-1.dnssec10.xa
@@ -81,7 +84,7 @@ MIXED-NSEC-NSEC3-1             | mixed-nsec-nsec3-1.dnssec10.xa
 MIXED-NSEC-NSEC3-1             | mixed-nsec-nsec3-2.dnssec10.xa
 NSEC3PARAM-GIVES-ERR-ANSWER-1  | nsec3param-gives-err-answer-1.dnssec10.xa
 NSEC3PARAM-GIVES-ERR-ANSWER-2  | nsec3param-gives-err-answer-1.dnssec10.xa
-NSEC3PARAM-GIVES-ERR-ANSWER-3  | nsec3param-gives-err-answer-3.dnssec10.xa
+NSEC3PARAM-MISMATCHES-APEX-1   | nsec3param-mismatches-apex-1.dnssec10.xa
 NSEC3PARAM-Q-RESPONSE-ERR-1    | nsec3param-q-response-err-1.dnssec10.xa
 NSEC3PARAM-Q-RESPONSE-ERR-2    | nsec3param-q-response-err-2.dnssec10.xa
 NSEC3PARAM-Q-RESPONSE-ERR-3    | nsec3param-q-response-err-3.dnssec10.xa
@@ -139,28 +142,29 @@ Seconds Level    Testcase       Message
    0.00 INFO     Unspecified    Using version v6.0.0 of the Zonemaster engine.
 ```
 
-
 Scenario name                  | Mandatory message tag                                                        | Forbidden message tags
 :------------------------------|:-----------------------------------------------------------------------------|:--------------------
+GOOD-NSEC-1                    | DS10_HAS_NSEC                                                                | 2)
 GOOD-NSEC3-1                   | DS10_HAS_NSEC3                                                               | 2)
 ALGO-NOT-SUPP-BY-ZM-1          | DS10_ALGO_NOT_SUPPORTED_BY_ZM, DS10_HAS_NSEC                                 | 2)
 ALGO-NOT-SUPP-BY-ZM-2          | DS10_ALGO_NOT_SUPPORTED_BY_ZM, DS10_HAS_NSEC3                                | 2)
 ERR-MULT-NSEC-1                | DS10_ERR_MULT_NSEC, DS10_HAS_NSEC                                            | 2)
 ERR-MULT-NSEC-2                | DS10_ERR_MULT_NSEC, DS10_HAS_NSEC                                            | 2)
 ERR-MULT-NSEC3-1               | DS10_ERR_MULT_NSEC3, DS10_HAS_NSEC3                                          | 2)
+ERR-MULT-NSEC3PARAM-1          | DS10_ERR_MULT_NSEC3PARAM, DS10_HAS_NSEC3                                     | 2)
 EXP-NSEC-NSEC3-MISS-1          | DS10_EXPECTED_NSEC_NSEC3_MISSING                                             | 2)
 INCONSISTENT-NSEC-1            | DS10_INCONSISTENT_NSEC, DS10_HAS_NSEC                                        | 2)
 INCONSISTENT-NSEC3-1           | DS10_INCONSISTENT_NSEC3, DS10_HAS_NSEC3                                      | 2)
 INCONSIST-NSEC-NSEC3-1         | DS10_INCONSISTENT_NSEC_NSEC3                                                 | 2)
 INCONSIST-NSEC-NSEC3-2         | DS10_INCONSISTENT_NSEC_NSEC3, DS10_INCONSISTENT_NSEC, DS10_INCONSISTENT_NSEC3| 2)
 MIXED-NSEC-NSEC3-1             | DS10_MIXED_NSEC_NSEC3                                                        | 2)
-MIXED-NSEC-NSEC3-1             | DS10_MIXED_NSEC_NSEC3                                                        | 2)
-NSEC3PARAM-GIVES-ERR-ANSWER-1  | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_HAS_NSEC3                             | 2)
-NSEC3PARAM-GIVES-ERR-ANSWER-2  | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_EXPECTED_NSEC_NSEC3_MISSING           | 2)
-NSEC3PARAM-GIVES-ERR-ANSWER-3  | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_HAS_NSEC3                             | 2)
-NSEC3PARAM-Q-RESPONSE-ERR-1    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_HAS_NSEC3                           | 2)
-NSEC3PARAM-Q-RESPONSE-ERR-2    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_HAS_NSEC3                           | 2)
-NSEC3PARAM-Q-RESPONSE-ERR-3    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_EXPECTED_NSEC_NSEC3_MISSING         | 2)
+MIXED-NSEC-NSEC3-2             | DS10_MIXED_NSEC_NSEC3                                                        | 2)
+NSEC3PARAM-GIVES-ERR-ANSWER-1  | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_HAS_NSEC3, DS10_INCONSISTENT_NSEC3    | 2)
+NSEC3PARAM-GIVES-ERR-ANSWER-2  | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_EXPECTED_NSEC_NSEC3_MISSING, DS10_INCONSISTENT_NSEC3 and DS10_HAS_NSEC3 | 2)
+NSEC3PARAM-MISMATCHES-APEX-1   | DS10_NSEC3PARAM_MISMATCHES_APEX, DS10_HAS_NSEC3                              | 2)
+NSEC3PARAM-Q-RESPONSE-ERR-1    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_HAS_NSEC3, DS10_INCONSISTENT_NSEC3  | 2)
+NSEC3PARAM-Q-RESPONSE-ERR-2    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_HAS_NSEC3, DS10_INCONSISTENT_NSEC3  | 2)
+NSEC3PARAM-Q-RESPONSE-ERR-3    | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR, DS10_EXPECTED_NSEC_NSEC3_MISSING, DS10_INCONSISTENT_NSEC3 | 2)
 NSEC3-ERR-TYPE-LIST-1          | DS10_NSEC3_ERR_TYPE_LIST, DS10_HAS_NSEC3                                     | 2)
 NSEC3-ERR-TYPE-LIST-2          | DS10_NSEC3_ERR_TYPE_LIST, DS10_HAS_NSEC3                                     | 2)
 NSEC3-MISMATCHES-APEX-1        | DS10_NSEC3_MISMATCHES_APEX, DS10_HAS_NSEC3                                   | 2)
@@ -173,8 +177,8 @@ NSEC3-NO-VERIFIED-SIGNATURE-3  | DS10_NSEC3_NO_VERIFIED_SIGNATURE, DS10_HAS_NSEC
 NSEC3-NO-VERIFIED-SIGNATURE-4  | DS10_NSEC3_NO_VERIFIED_SIGNATURE, DS10_HAS_NSEC3, DS10_NSEC3_RRSIG_VERIFY_ERROR  | 2)
 NSEC-ERR-TYPE-LIST-1           | DS10_NSEC_ERR_TYPE_LIST, DS10_HAS_NSEC                                       | 2)
 NSEC-ERR-TYPE-LIST-2           | DS10_NSEC_ERR_TYPE_LIST, DS10_HAS_NSEC                                       | 2)
-NSEC-GIVES-ERR-ANSWER-1        | DS10_NSEC_GIVES_ERR_ANSWER, DS10_HAS_NSEC                                    | 2)
-NSEC-GIVES-ERR-ANSWER-2        | DS10_NSEC_GIVES_ERR_ANSWER, DS10_EXPECTED_NSEC_NSEC3_MISSING                 | 2)
+NSEC-GIVES-ERR-ANSWER-1        | DS10_NSEC_GIVES_ERR_ANSWER, DS10_HAS_NSEC, DS10_INCONSISTENT_NSEC            | 2)
+NSEC-GIVES-ERR-ANSWER-2        | DS10_NSEC_GIVES_ERR_ANSWER, DS10_EXPECTED_NSEC_NSEC3_MISSING, DS10_INCONSISTENT_NSEC, DS10_HAS_NSEC | 2)
 NSEC-MISMATCHES-APEX-1         | DS10_NSEC_MISMATCHES_APEX, DS10_HAS_NSEC                                     | 2)
 NSEC-MISMATCHES-APEX-2         | DS10_NSEC_MISMATCHES_APEX, DS10_HAS_NSEC                                     | 2)
 NSEC-MISSING-SIGNATURE-1       | DS10_NSEC_MISSING_SIGNATURE, DS10_HAS_NSEC                                   | 2)
@@ -191,4 +195,6 @@ SERVER-NO-DNSSEC-1             | DS10_SERVER_NO_DNSSEC, DS10_HAS_NSEC           
 SERVER-NO-DNSSEC-2             | DS10_SERVER_NO_DNSSEC, DS10_HAS_NSEC3                                        | 2)
 ZONE-NO-DNSSEC-1               | DS10_ZONE_NO_DNSSEC                                                          | 2)
 
+* (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
+* (2) All tags except for those specified as "Mandatory message tags"
 

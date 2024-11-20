@@ -1,9 +1,8 @@
-$ORIGIN nsec3param-gives-err-answer-3.dnssec10.xa.
-; NSEC3 zone
+$ORIGIN err-mult-nsec3param-1.dnssec10.xa.
 ;
 $TTL   86400
 @   IN   SOA   localhost. root.localhost. (
-               22          ; Serial
+               14          ; Serial
                3600       ; Refresh
                1200       ; Retry
                2419200    ; Expire
