@@ -179,14 +179,14 @@ in the response are handled using the default handling.
 ## Appendix A: UDP Message size setting in EDNS
 
 In non-DNSSEC messages the Zonemaster choice is to set the EDNS UDP Message size
-to 512 to prevent any firewalls to block a response to Zonemaster. This
+to 512 to prevent any firewalls from blocking a response to Zonemaster. This
 guarantees that the response is never larger than the non-EDNS limit, given that
 the remote server respects the setting.
 
 In DNSSEC messages the Zonemaster choice is to set the EDNS UDP Message size to
 a value that makes fragmentation unlikely, even though fragmentation of UDP
 messages is supported. 1280 is the smallest MTU supported by IPv6. When 48 bytes
-for IPv6 and UDP header are removed the value is 1232 bytes, which is the
+for IPv6 and UDP headers are removed the value is 1232 bytes, which is the
 Zonemaster choice and also the recommendation in [DNS flag day 2020].
 
 At the time of writing there is an active IETF draft, not yet an RFC, that
@@ -194,7 +194,7 @@ recommends 1400 bytes as the EDNS UDP Message size. See
 [IP Fragmentation Avoidance in DNS over UDP].
 
 Choosing a small value is permitted. It might result in more truncated responses
-and requering over TCP.
+and requerying over TCP.
 
 
 [Appendix A]:                                     #appendix-a-udp-message-size-setting-in-edns
