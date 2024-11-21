@@ -129,8 +129,8 @@ below.
 
 ### Undelegated data
 
-Some test scenarios require that the test zones is resolved as
-[undelegated test]. In that case, the scenario specification will contain a small
+Some test scenarios require that an [undelegated test] be carried out on it.
+In that case, the scenario specification will contain a small
 "undelegated data" structure with one line per name server. The format is one of
 the following
 * NAME-SERVER-NAME

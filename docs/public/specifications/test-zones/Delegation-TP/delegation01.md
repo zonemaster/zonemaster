@@ -135,7 +135,7 @@ This is also a happy path. Also out-of-bailiwick, but with sibling glue.
 Only one name server in child zone.
 
 * Zone: enough-del-not-child.delegation01.xa
-  * The child zone defines only one name server, ns1."
+  * The child zone defines only one name server, ns1.
   * Delegation is complete.
 
 ### ENOUGH-CHILD-NOT-DEL
