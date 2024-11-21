@@ -179,8 +179,8 @@ in the response are handled using the default handling.
 ## Appendix A: UDP Message size setting in EDNS
 
 In non-DNSSEC messages the Zonemaster choice is to set the EDNS UDP Message size
-to 512 to prevent any firewalls from blocking a response to Zonemaster. This
-guarantees that the response is never larger than the non-EDNS limit, given that
+to 512 to prevent any firewalls from blocking a response. This guarantees
+that the response is never larger than the non-EDNS limit, assuming that
 the remote server respects the setting.
 
 In DNSSEC messages the Zonemaster choice is to set the EDNS UDP Message size to
