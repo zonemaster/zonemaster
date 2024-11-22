@@ -107,10 +107,10 @@ Referal is too large and name servers are out-of-bailiwick with no glue.
 
 * Zone: referral-size-too-large-2.delegation03.xa
   * The zone is delegated to ns1, ns2, ns3 and ns4.
-    * ns1 is "ns1.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"
-    * ns2 is "ns2.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"
-    * ns3 is "ns3.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"
-    * ns4 is "ns4.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxyz.abcdefghijklmnopqrstuvwxy.referral-size-too-large-2.delegation03.xb"
+    * ns1 is "ns1.1abcdefghijklmnopqrstuvwxyz.1abcdefghijklmnopqrstuvwxy.1abcdefghijklmnopqrstuvw.referral-size-too-large-2.delegation03.xb"
+    * ns2 is "ns2.2abcdefghijklmnopqrstuvwxyz.2abcdefghijklmnopqrstuvwxy.2abcdefghijklmnopqrstuvw.referral-size-too-large-2.delegation03.xb"
+    * ns3 is "ns3.3abcdefghijklmnopqrstuvwxyz.3abcdefghijklmnopqrstuvwxy.3abcdefghijklmnopqrstuvw.referral-size-too-large-2.delegation03.xb"
+    * ns4 is "ns4.4abcdefghijklmnopqrstuvwxyz.4abcdefghijklmnopqrstuvwxy.4abcdefghijklmnopqrstuvw.referral-size-too-large-2.delegation03.xb"
   * Delegation is without glue.
   * The test zone has no address records for the name server names.
   * The "delegation03.xb" zone has full set of address records (IPv4 and IPv6).
@@ -119,4 +119,6 @@ Referal is too large and name servers are out-of-bailiwick with no glue.
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [test scenario README file]:                                      ../README.md
 [Test zone setup]:                                                #test-zone-setup
+
+
 
