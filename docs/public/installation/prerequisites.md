@@ -9,14 +9,14 @@ and processor architecture listed below.
 
 ## Supported operating system versions
 
-* [Debian] 12.8
+* [Debian] 12
 * [Docker]
-* [FreeBSD] 14.1
-* [Rocky Linux] 8.10
-* [Rocky Linux] 9.5
-* [Ubuntu] 20.04.6
-* [Ubuntu] 22.04.5
-* [Ubuntu] 24.04.1
+* [FreeBSD] 14
+* [Rocky Linux] 8
+* [Rocky Linux] 9
+* [Ubuntu] 20.04
+* [Ubuntu] 22.04
+* [Ubuntu] 24.04
 
 Only the latest long-term supported version of Debian and FreeBSD, respectively,
 is supported. All long-term supported versions of Rocky Linux and Ubuntu are
@@ -36,14 +36,14 @@ at large cloud providers.
 
 Operating System | MariaDB | PostgreSQL
 ---------------- | --------| ---------------
-Debian 12.8      | 10.11   | 15.6??
+Debian 12        | 10.11   | 15.6??
 Docker           | n/a     | n/a
-FreeBSD 14.1     | 8.0 (*) | 16
-Rocky Linux 8.10 | 10.3??    | 10.23??
-Rocky Linux 9.5  | 10.5    | 13.16
-Ubuntu 20.04.6   | 10.3??    | 12.18??
-Ubuntu 22.04.5   | 10.6??    | 14.12??
-Ubuntu 24.04.1   | 10.11??   | 16.3??
+FreeBSD 14       | 8.0 (*) | 16
+Rocky Linux 8    | 10.3??  | 10.23??
+Rocky Linux 9    | 10.5    | 13.16
+Ubuntu 20.04     | 10.3??  | 12.18??
+Ubuntu 22.04     | 10.6??  | 14.12??
+Ubuntu 24.04     | 10.11?? | 16.3??
 
 * (*) FreeBSD uses MySQL, not MariaDB.
 * SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
@@ -58,14 +58,14 @@ Ubuntu 24.04.1   | 10.11??   | 16.3??
 
 Operating System | Perl
 ---------------- | ----
-Debian 12.8      | 5.36
+Debian 12        | 5.36
 Docker           | (*)
-FreeBSD 14.1     | 5.36
-Rocky Linux 8.10 | 5.26
-Rocky Linux 9.5  | 5.32
-Ubuntu 20.04.6   | 5.30
-Ubuntu 22.04.5   | 5.34
-Ubuntu 24.04.1   | 5.38
+FreeBSD 14       | 5.36
+Rocky Linux 8    | 5.26
+Rocky Linux 9    | 5.32
+Ubuntu 20.04     | 5.30
+Ubuntu 22.04     | 5.34
+Ubuntu 24.04     | 5.38
 
 
 * Zonemaster technically requires Perl version 5.16 or higher, but has only been tested with the versions in the table above. 
