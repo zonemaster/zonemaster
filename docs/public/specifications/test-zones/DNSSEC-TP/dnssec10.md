@@ -322,7 +322,7 @@ ns2.
     the NSEC3PARAM query and the NSEC query.
 
 ### NSEC3PARAM-MISMATCHES-APEX-1
-An NSEC3 zone. The owner name of the NSEC3PARAM record is errouneous.
+An NSEC3 zone. The owner name of the NSEC3PARAM record is erroneous.
 
 * Zone: nsec3param-mismatches-apex-1.dnssec10.xa
   * The owner name of the NSEC3PARAM record in response to the NSEC3PARAM query is
