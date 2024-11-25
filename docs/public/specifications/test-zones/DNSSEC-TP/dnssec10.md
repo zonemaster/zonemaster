@@ -326,7 +326,7 @@ An NSEC3 zone. The owner name of the NSEC3PARAM record is erroneous.
 
 * Zone: nsec3param-mismatches-apex-1.dnssec10.xa
   * The owner name of the NSEC3PARAM record in response to the NSEC3PARAM query is
-    errouneous and does not match apex.
+    erroneous and does not match apex.
     * The owner name is `sub.nsec3param-mismatches-apex-1.dnssec10.xa` instead of
       expected `nsec3param-mismatches-apex-1.dnssec10.xa`.
 
