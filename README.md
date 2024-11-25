@@ -50,7 +50,7 @@ the future.
 ## Documentation
 
 Public documentation for the latest release can be found on the [document site].
-There you can find
+There you can find:
 * Installation instructions
 * User guides
 * Configuration instructions
