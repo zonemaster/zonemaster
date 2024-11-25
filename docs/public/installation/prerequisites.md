@@ -62,7 +62,7 @@ Debian 12.8      | 5.36
 Docker           | (*)
 FreeBSD 14.1     | 5.36
 Rocky Linux 8.10 | 5.26
-Rocky Linux 9.5  | 5.32??
+Rocky Linux 9.5  | 5.32
 Ubuntu 20.04.6   | 5.30
 Ubuntu 22.04.5   | 5.34
 Ubuntu 24.04.1   | 5.38
