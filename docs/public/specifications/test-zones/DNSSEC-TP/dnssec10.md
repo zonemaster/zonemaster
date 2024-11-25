@@ -133,9 +133,9 @@ NSEC-NO-VERIFIED-SIGNATURE-1   | DS10_NSEC_NO_VERIFIED_SIGNATURE, DS10_HAS_NSEC,
 NSEC-NO-VERIFIED-SIGNATURE-2   | DS10_NSEC_NO_VERIFIED_SIGNATURE, DS10_HAS_NSEC, DS10_NSEC_RRSIG_EXPIRED      | 2)
 NSEC-NO-VERIFIED-SIGNATURE-3   | DS10_NSEC_NO_VERIFIED_SIGNATURE, DS10_HAS_NSEC, DS10_NSEC_RRSIG_NOT_YET_VALID| 2)
 NSEC-NO-VERIFIED-SIGNATURE-4   | DS10_NSEC_NO_VERIFIED_SIGNATURE, DS10_HAS_NSEC, DS10_NSEC_RRSIG_VERIFY_ERROR | 2)
-NSEC-QUERY-RESPONSE-ERR-1      | DS10_NSEC_QUERY_RESPONSE_ERR, DS10_HAS_NSEC, DS10_INCONSISTENT_NSEC                                  | 2)
-NSEC-QUERY-RESPONSE-ERR-2      | DS10_NSEC_QUERY_RESPONSE_ERR, DS10_HAS_NSEC, DS10_INCONSISTENT_NSEC                                  | 2)
-NSEC-QUERY-RESPONSE-ERR-3      | DS10_NSEC_QUERY_RESPONSE_ERR, DS10_EXPECTED_NSEC_NSEC3_MISSING               | 2)
+NSEC-QUERY-RESPONSE-ERR-1      | DS10_NSEC_QUERY_RESPONSE_ERR, DS10_HAS_NSEC, DS10_INCONSISTENT_NSEC          | 2)
+NSEC-QUERY-RESPONSE-ERR-2      | DS10_NSEC_QUERY_RESPONSE_ERR, DS10_HAS_NSEC, DS10_INCONSISTENT_NSEC          | 2)
+NSEC-QUERY-RESPONSE-ERR-3      | DS10_NSEC_QUERY_RESPONSE_ERR, DS10_EXPECTED_NSEC_NSEC3_MISSING, DS10_INCONSISTENT_NSEC | 2)
 SERVER-NO-DNSSEC-1             | DS10_SERVER_NO_DNSSEC, DS10_HAS_NSEC                                         | 2)
 SERVER-NO-DNSSEC-2             | DS10_SERVER_NO_DNSSEC, DS10_HAS_NSEC3                                        | 2)
 ZONE-NO-DNSSEC-1               | DS10_ZONE_NO_DNSSEC                                                          | 2)
@@ -236,7 +236,7 @@ An NSEC3 zone. An extra NSEC3 record is returned.
   * An extra NSEC3 record is returned in the response to the NSEC query.
     * The extra NSEC3 record has the same hash owner name, but different value in
       "Next Hashed Owner Name" field.
-  * The NSEC3 RRset has been signed with the normal DNSKEY.
+  * The NSEC3 RRset has been signed with a valid RRSIG.
 
 ### ERR-MULT-NSEC3PARAM-1
 An NSEC3 zone. An extra NSEC3PARAM record is returned.
@@ -245,7 +245,7 @@ An NSEC3 zone. An extra NSEC3PARAM record is returned.
   * An extra NSEC3PARAM record is returned in the response to the NSEC query.
     * The extra NSEC3PARAM record has the same owner name, but different number
       of iterations.
-  * The NSEC3PARAM RRset has been signed with the normal DNSKEY.
+  * The NSEC3PARAM RRset has been signed with a valid RRSIG.
 
 ### EXP-NSEC-NSEC3-MISS-1
 A zone without NSEC and NSEC3. There is no NSEC or NSEC3 function.
@@ -539,7 +539,7 @@ An NSEC zone. Error in response to NSEC query.
 
 ### NSEC-QUERY-RESPONSE-ERR-3
 An NSEC zone. Error in response to NSEC query on ns1. No NSEC or NSEC3 in
-responsess from ns2.
+responses from ns2.
 
 * Zone: nsec-query-response-err-3.dnssec10.xa
   * The response from ns1 on the NSEC query has the AA flag unset.
