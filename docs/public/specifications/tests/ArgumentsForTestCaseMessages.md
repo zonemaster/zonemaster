@@ -5,12 +5,12 @@
 
 This document defines *arguments*. An *argument* is defined with its name, its
 type of value and its usage and formatting. The *arguments* are primarily used in
-a Zonemaster-Engine message, but can also be used in messges output by
+a Zonemaster-Engine message, but can also be used in messages output by
 Zonemaster-CLI and Zonemaster-Backend. The messages, in the form of *msgid*
 strings, are primarily defined in the Perl modules for the test cases, e.g.
 [Basic.pm]. The *arguments* are also used in the translated messages, in the form
 of *msgstr* strings, in the PO files, e.g. [fr.po] and [sv.po]. When an
-*arguments* is used in a message (*msgid* or *msgstr*) it is represented by its
+*argument* is used in a message (*msgid* or *msgstr*) it is represented by its
 name which is put within curly brackets, e.g. as `{ns}`.
 
 When a message is created or updated only *arguments* defined in this document
