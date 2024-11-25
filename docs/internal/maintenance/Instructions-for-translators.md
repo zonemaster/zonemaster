@@ -121,7 +121,7 @@ Zonemaster-GUI see [Zonemaster GUI translation guide].)
 Here it is assumed that the three repositories are cloned from the same
 directory, i.e. all three clones are sub-directories to the same directory.
 
-* If you use "old" clones, instead of creating them afreash, then you must do the
+* If you use "old" clones, instead of creating them afresh, then you must do the
   following (if there is no `develop` branch, checkout `origin/develop` and skip
   `pull`).
 
