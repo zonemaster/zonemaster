@@ -41,6 +41,13 @@ Zonemaster::CLI, see the [declaration of prerequisites].
    sudo dnf install perl-JSON-XS perl-Try-Tiny
    ```
 
+   ```sh
+   sudo cpanm -n JSON::Validator
+   ```
+
+> Is binary packet available for Rocky Linux (JSON::Validator)?
+
+
 2) Install Zonemaster::CLI
 
    ```sh
@@ -86,13 +93,13 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 1) Install dependencies:
 
    ```sh
-   sudo apt-get install locales libmodule-install-perl libtry-tiny-perl
+   sudo apt-get install locales libmodule-install-perl libtry-tiny-perl libjson-validator-perl
    ```
 
 2) Install Zonemaster::CLI:
 
    ```sh
-   sudo cpanm Zonemaster::CLI
+   sudo cpanm -n Zonemaster::CLI
    ```
 3) Update configuration of "locale"
 
@@ -123,13 +130,13 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 2) Install dependencies available from binary packages:
 
    ```sh
-   pkg install devel/gmake p5-JSON-XS p5-Locale-libintl p5-Try-Tiny
+   pkg install gmake p5-JSON-XS p5-Locale-libintl p5-Try-Tiny p5-JSON-Validator
    ```
 
 3) Install Zonemaster::CLI:
 
    ```sh
-   cpanm Zonemaster::CLI
+   cpanm -n Zonemaster::CLI
    ```
 
 ## Post-installation sanity check
