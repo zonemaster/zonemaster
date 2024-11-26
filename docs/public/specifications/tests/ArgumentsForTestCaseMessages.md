@@ -4,13 +4,14 @@
 ## Introduction
 
 This document defines *arguments*. An *argument* is defined with its name, its
-type of value and its usage and formatting. The *arguments* are used in a
-Zonemaster-Engine message. The messages, in the form of *msgid* strings, are
-primarily defined in the Perl modules for the test cases, e.g. [Basic.pm]. The
-*arguments* are also used in the translated messages, in the form of *msgstr*
-strings, in the PO files, e.g. [fr.po] and [sv.po]. When an *arguments* is used
-in a message (*msgid* or *msgstr*) it is represented by its name which is put
-within curly brackets, e.g. as `{ns}`.
+type of value and its usage and formatting. The *arguments* are primarily used in
+a Zonemaster-Engine message, but can also be used in messages output by
+Zonemaster-CLI and Zonemaster-Backend. The messages, in the form of *msgid*
+strings, are primarily defined in the Perl modules for the test cases, e.g.
+[Basic.pm]. The *arguments* are also used in the translated messages, in the form
+of *msgstr* strings, in the PO files, e.g. [fr.po] and [sv.po]. When an
+*argument* is used in a message (*msgid* or *msgstr*) it is represented by its
+name which is put within curly brackets, e.g. as `{ns}`.
 
 When a message is created or updated only *arguments* defined in this document
 should be used. If there is not a defined *argument* that can be used for the
@@ -47,37 +48,39 @@ The following is a message (*msgid* in this case) where this is in use:
 When a suitable *argument* is found in this list, it should also be used in new
 and updated messages (*msgids* and *msgstr*).
 
-| Argument name  | Type of value                            | Description and formatting                                              |
-|--------------- |------------------------------------------|-------------------------------------------------------------------------|
-| algo_descr     | Text                                     | The human readable description of a DNSSEC algorithm as in table in [DNSSEC05][DNSSEC05#objective].|
-| algo_mnemo     | Text                                     | The mnemonic of a DNSSEC algorithm as in table in [DNSSEC05][DNSSEC05#objective].|
-| algo_num       | Non-negative integer                     | The numeric value for a DNSSEC algorithm as in table in [DNSSEC05][DNSSEC05#objective].|
-| domain         | Domain name                              | A domain name. If "nsname", "mailtarget" or "query_name" is also applicable, use that one instead.      |
-| ds_algo_descr  | Text                                     | The human readable description of a [DS Digest algorithm].              |
-| ds_algo_mnemo  | Text                                     | The mnemonic of a [DS Digest algorithm].                                |
-| ds_algo_num    | Non-negative integer                     | The numeric value for a [DS Digest algorithm].                          |
-| int            | integer                                  | An integer. If "algo_num", "ds_also_num", "keytag", "soaserial" or some other specific name is applicable, use that instead. |
-| ip_prefix      | IP prefix                                | An IP prefix (i.e., an IP address with a network mask in CIDR notation).|
-| keytag         | Non-negative integer                     | A keytag for a DNSKEY record or a keytag used in a DS or RRSIG record.  |
-| label          | Domain name label                        | A single label, i.e. the string between the dots, from a domain name.   |
-| mailtarget     | Domain name                              | The domain name of the mailserver in an MX RDATA.                       |
-| mailtarget_list| List of domain names                     | A list of name servers, as specified by "mailtarget", separated by ";". |
-| module         | A Zonemaster test module, or `all`       | The name of a Zonemaster test module.                                   |
-| module_list    | List of Zonemaster test modules          | A list of Zonemaster test modules, separated by ":".                    |
-| ns             | Domain name and IP address pair          | The name and IP address of a name server, separated by "/".             |
-| ns_ip          | IP address                               | The IP address of a name server.                                        |
-| ns_ip_list     | List of IP addresses                     | A list of name servers, as specified by "ns_ip", separated by ";".      |
-| ns_list        | List of domain name and IP address pairs | A list of name servers, as specified by "ns", separated by ";".         |
-| nsname         | Domain name                              | The domain name of a name server.                                       |
-| nsname_list    | List of domain names                     | A list of name servers, as specified by "nsname", separated by ";".     |
-| query_name     | Domain name                              | A query domain name (QNAME), as defined in [RFC1035, section 4.1.2].    |
-| rcode          | An RCODE Name                            | An RCODE Name (not numeric code) from [DNS RCODEs].                     |
-| rrtype         | A Resource Record TYPE Name              | A Resource Record TYPE Name (not numeric code) from [DNS RR TYPEs].     |
-| soaserial      | Non-negative integer                     | The numeric value for the SERIAL field in an SOA record. Integer in range 0-4,294,967,295 |
-| soaserial_list | List of non-negative integers            | A list of non-negative integers, as specified by "soaserial", separated by ";". |
-| string         | Text                                     | The content of the RDATA of a TXT resource record.                      |
-| testcase       | A Zonemaster test case, or `all`         | A test case identifier.                                                 |
-| unicode_name   | Unicode name of a code point             | The name is a string in ASCII only and in upper case, e.g. "LATIN SMALL LETTER A"|
+| Argument name   | Type of value                            | Description and formatting                                                                                                   |
+|-----------------|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| algo_descr      | Text                                     | The human readable description of a DNSSEC algorithm as in table in [DNSSEC05][DNSSEC05#objective].                          |
+| algo_mnemo      | Text                                     | The mnemonic of a DNSSEC algorithm as in table in [DNSSEC05][DNSSEC05#objective].                                            |
+| algo_num        | Non-negative integer                     | The numeric value for a DNSSEC algorithm as in table in [DNSSEC05][DNSSEC05#objective].                                      |
+| cli_arg         | Text                                     | Command line (CLI) argument to an option, valid or invalid                                                                   |
+| domain          | Domain name                              | A domain name. If "nsname", "mailtarget" or "query_name" is also applicable, use that one instead.                           |
+| ds_algo_descr   | Text                                     | The human readable description of a [DS Digest algorithm].                                                                   |
+| ds_algo_mnemo   | Text                                     | The mnemonic of a [DS Digest algorithm].                                                                                     |
+| ds_algo_num     | Non-negative integer                     | The numeric value for a [DS Digest algorithm].                                                                               |
+| int             | integer                                  | An integer. If "algo_num", "ds_also_num", "keytag", "soaserial" or some other specific name is applicable, use that instead. |
+| ip_prefix       | IP prefix                                | An IP prefix (i.e., an IP address with a network mask in CIDR notation).                                                     |
+| keytag          | Non-negative integer                     | A keytag for a DNSKEY record or a keytag used in a DS or RRSIG record.                                                       |
+| label           | Domain name label                        | A single label, i.e. the string between the dots, from a domain name.                                                        |
+| locale          | Locale label                             | A locale label, user provided or taken from the environment                                                                  |
+| mailtarget      | Domain name                              | The domain name of the mailserver in an MX RDATA.                                                                            |
+| mailtarget_list | List of domain names                     | A list of name servers, as specified by "mailtarget", separated by ";".                                                      |
+| module          | A Zonemaster test module, or `all`       | The name of a Zonemaster test module.                                                                                        |
+| module_list     | List of Zonemaster test modules          | A list of Zonemaster test modules, separated by ":".                                                                         |
+| ns              | Domain name and IP address pair          | The name and IP address of a name server, separated by "/".                                                                  |
+| ns_ip           | IP address                               | The IP address of a name server.                                                                                             |
+| ns_ip_list      | List of IP addresses                     | A list of name servers, as specified by "ns_ip", separated by ";".                                                           |
+| ns_list         | List of domain name and IP address pairs | A list of name servers, as specified by "ns", separated by ";".                                                              |
+| nsname          | Domain name                              | The domain name of a name server.                                                                                            |
+| nsname_list     | List of domain names                     | A list of name servers, as specified by "nsname", separated by ";".                                                          |
+| query_name      | Domain name                              | A query domain name (QNAME), as defined in [RFC1035, section 4.1.2].                                                         |
+| rcode           | An RCODE Name                            | An RCODE Name (not numeric code) from [DNS RCODEs].                                                                          |
+| rrtype          | A Resource Record TYPE Name              | A Resource Record TYPE Name (not numeric code) from [DNS RR TYPEs].                                                          |
+| soaserial       | Non-negative integer                     | The numeric value for the SERIAL field in an SOA record. Integer in range 0-4,294,967,295                                    |
+| soaserial_list  | List of non-negative integers            | A list of non-negative integers, as specified by "soaserial", separated by ";".                                              |
+| string          | Text                                     | The content of the RDATA of a TXT resource record.                                                                           |
+| testcase        | A Zonemaster test case, or `all`         | A test case identifier.                                                                                                      |
+| unicode_name    | Unicode name of a code point             | The name is a string in ASCII only and in upper case, e.g. "LATIN SMALL LETTER A"                                            |
 
 ## Preliminary or proposed arguments
 
