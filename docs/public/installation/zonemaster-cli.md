@@ -35,18 +35,18 @@ Zonemaster::CLI, see the [declaration of prerequisites].
 
 ### Installation on Rocky Linux
 
-1) Install binary dependencies:
+1) Install dependencies:
 
    ```sh
-   sudo dnf install perl-JSON-XS perl-Try-Tiny
+   sudo dnf install perl-JSON-XS perl-Try-Tiny perl-Test-Deep perl-Mojolicious
    ```
 
    ```sh
    sudo cpanm -n JSON::Validator
    ```
 
-> Is binary packet available for Rocky Linux (JSON::Validator)?
-
+> Note: Test::Deep Mojolicious are indirect dependencies. They are dependecies
+> of JSON::Validator
 
 2) Install Zonemaster::CLI
 
