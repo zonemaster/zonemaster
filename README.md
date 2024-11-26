@@ -49,10 +49,10 @@ the future.
 
 ## Documentation
 
-Public documentation for the latest release can be found on the [document site].
-There you can find:
-* Installation instructions
+The public documentation for latest and past releases can be found on the [document site].
+There you can find, e.g:
 * User guides
+* Installation instructions
 * Configuration instructions
 * Upgrading instructions
 * Test case specifications
