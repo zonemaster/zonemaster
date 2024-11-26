@@ -47,6 +47,7 @@
           - [CONSISTENCY06](specifications/test-zones/Consistency-TP/consistency06.md)
         - [DNSSEC-TP](specifications/test-zones/DNSSEC-TP/README.md)
           - [DNSSEC03](specifications/test-zones/DNSSEC-TP/dnssec03.md)
+          - [DNSSEC10](specifications/test-zones/DNSSEC-TP/dnssec10.md)
           - [DNSSEC16](specifications/test-zones/DNSSEC-TP/dnssec16.md)
         - [Nameserver-TP](specifications/test-zones/Nameserver-TP/README.md)
           - [NAMESERVER11](specifications/test-zones/Nameserver-TP/nameserver11.md)
