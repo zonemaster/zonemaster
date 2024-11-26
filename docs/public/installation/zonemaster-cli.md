@@ -42,11 +42,11 @@ Zonemaster::CLI, see the [declaration of prerequisites].
    ```
 
    ```sh
-   sudo cpanm -n JSON::Validator
+   sudo cpanm --notest JSON::Validator
    ```
 
-> Note: Test::Deep and Mojolicious are indirect dependencies. They are dependecies
-> of JSON::Validator
+> Note: Test::Deep and Mojolicious are indirect dependencies. They are dependencies
+> of JSON::Validator.
 
 2) Install Zonemaster::CLI
 
@@ -99,7 +99,7 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 2) Install Zonemaster::CLI:
 
    ```sh
-   sudo cpanm -n Zonemaster::CLI
+   sudo cpanm --notest Zonemaster::CLI
    ```
 3) Update configuration of "locale"
 
@@ -136,7 +136,7 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 3) Install Zonemaster::CLI:
 
    ```sh
-   cpanm -n Zonemaster::CLI
+   cpanm --notest Zonemaster::CLI
    ```
 
 ## Post-installation sanity check
