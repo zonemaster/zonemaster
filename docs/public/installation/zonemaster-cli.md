@@ -38,7 +38,7 @@ Zonemaster::CLI, see the [declaration of prerequisites].
 1) Install binary dependencies:
 
    ```sh
-   sudo dnf install perl-JSON-XS perl-MooseX-Getopt perl-Try-Tiny
+   sudo dnf install perl-JSON-XS perl-Try-Tiny
    ```
 
 2) Install Zonemaster::CLI
@@ -86,7 +86,7 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 1) Install dependencies:
 
    ```sh
-   sudo apt-get install locales libmoosex-getopt-perl libmodule-install-perl libtry-tiny-perl
+   sudo apt-get install locales libmodule-install-perl libtry-tiny-perl
    ```
 
 2) Install Zonemaster::CLI:
@@ -123,7 +123,7 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 2) Install dependencies available from binary packages:
 
    ```sh
-   pkg install devel/gmake p5-JSON-XS p5-Locale-libintl p5-MooseX-Getopt p5-Try-Tiny
+   pkg install devel/gmake p5-JSON-XS p5-Locale-libintl p5-Try-Tiny
    ```
 
 3) Install Zonemaster::CLI:
