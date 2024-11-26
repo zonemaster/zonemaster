@@ -45,7 +45,7 @@ Zonemaster::CLI, see the [declaration of prerequisites].
    sudo cpanm -n JSON::Validator
    ```
 
-> Note: Test::Deep Mojolicious are indirect dependencies. They are dependecies
+> Note: Test::Deep and Mojolicious are indirect dependencies. They are dependecies
 > of JSON::Validator
 
 2) Install Zonemaster::CLI
