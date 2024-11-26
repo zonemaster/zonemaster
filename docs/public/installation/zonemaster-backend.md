@@ -177,8 +177,21 @@ sudo systemctl start zm-rpcapi
 sudo systemctl start zm-testagent
 ```
 
+If you have changed database daemon, restart the services:
+
+```sh
+sudo systemctl restart zm-rpcapi
+sudo systemctl restart zm-testagent
+```
 
 ### 3.5 Post-installation (Rocky Linux)
+
+To check that the running daemons run:
+
+```sh
+sudo systemctl status zm-rpcapi
+sudo systemctl status zm-testagent
+```
 
 See the [post-installation] section for post-installation matters.
 
@@ -308,8 +321,21 @@ sudo systemctl start zm-rpcapi
 sudo systemctl start zm-testagent
 ```
 
+If you have changed database daemon, restart the services:
+
+```sh
+sudo systemctl restart zm-rpcapi
+sudo systemctl restart zm-testagent
+```
 
 ### 4.5 Post-installation (Debian/Ubuntu)
+
+To check that the running daemons run:
+
+```sh
+sudo systemctl status zm-rpcapi
+sudo systemctl status zm-testagent
+```
 
 See the [post-installation] section for post-installation matters.
 
@@ -414,6 +440,13 @@ sysrc zm_rpcapi_enable="YES"
 sysrc zm_testagent_enable="YES"
 service zm_rpcapi start
 service zm_testagent start
+```
+
+If you have changed database daemon, restart the services:
+
+```sh
+service zm_rpcapi restart
+service zm_testagent restart
 ```
 
 ### 5.5 Post-installation (FreeBSD)
