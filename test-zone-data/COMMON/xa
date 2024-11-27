@@ -17,27 +17,9 @@ ns1     AAAA  fda1:b2:c3::127:2:0:11
 ns2     A     127.2.0.12
 ns2     AAAA  fda1:b2:c3::127:2:0:12
 
+;;;; Test case based
 
-zone09          NS    ns1.zone09
-zone09          NS    ns2.zone09
-ns1.zone09      A     127.19.9.21
-ns1.zone09      AAAA  fda1:b2:c3::127:19:9:21
-ns2.zone09      A     127.19.9.22
-ns2.zone09      AAAA  fda1:b2:c3::127:19:9:22
-
-dnssec03        NS    ns1.dnssec03
-dnssec03        NS    ns2.dnssec03
-ns1.dnssec03    A     127.15.3.21
-ns1.dnssec03    AAAA  fda1:b2:c3::127:15:3:21
-ns2.dnssec03    A     127.15.3.22
-ns2.dnssec03    AAAA  fda1:b2:c3::127:15:3:22
-
-dnssec16        NS    ns1.dnssec16
-dnssec16        NS    ns2.dnssec16
-ns1.dnssec16    A     127.15.16.21
-ns1.dnssec16    AAAA  fda1:b2:c3::127:15:16:21
-ns2.dnssec16    A     127.15.16.22
-ns2.dnssec16    AAAA  fda1:b2:c3::127:15:16:22
+;; Basic-TP
 
 $ORIGIN basic01.xa.      ; Must be FQDN
 @		NS	ns1
@@ -47,6 +29,9 @@ ns1		AAAA	fda1:b2:c3:0:127:12:1:21
 ns2		A	127.12.1.22
 ns2		AAAA	fda1:b2:c3:0:127:12:1:22
 
+; connectivity04.xa has its own root.
+
+;; Consistency-TP
 $ORIGIN consistency05.xa.
 @               NS    ns1
 @               NS    ns2
@@ -55,7 +40,7 @@ ns1             AAAA  fda1:b2:c3::127:14:5:21
 ns1             A     127.14.5.22
 ns1             AAAA  fda1:b2:c3::127:14:5:22
 
-$ORIGIN consistency06.xa.
+$ORIGIN consistency06.xa.                              ; Must end with "."
 @               NS    ns1
 @               NS    ns2
 ns1             A     127.14.6.21
@@ -63,17 +48,59 @@ ns1             AAAA  fda1:b2:c3::127:14:6:21
 ns1             A     127.14.6.22
 ns1             AAAA  fda1:b2:c3::127:14:6:22
 
+;; Delegation-TP
+
 ; delegation01 has its own root
 ; delegation02 has its own root
 ; delegation03 has its own root
 
-$ORIGIN nameserver15.xa.
+;; DNSSEC-TP
+
+$ORIGIN dnssec03.xa.      ; Must be FQDN
+@               NS    ns1
+@               NS    ns2
+ns1             A     127.15.3.21
+ns1             AAAA  fda1:b2:c3::127:15:3:21
+ns2             A     127.15.3.22
+ns2             AAAA  fda1:b2:c3::127:15:3:22
+
+$ORIGIN dnssec10.xa.      ; Must be FQDN
+@               NS    ns1
+@               NS    ns2
+ns1             A     127.15.10.21
+ns1             AAAA  fda1:b2:c3::127:15:10:21
+ns2             A     127.15.10.22
+ns2             AAAA  fda1:b2:c3::127:15:10:22
+
+$ORIGIN dnssec16.xa.      ; Must be FQDN
+@               NS    ns1
+@               NS    ns2
+ns1             A     127.15.16.21
+ns1             AAAA  fda1:b2:c3::127:15:16:21
+ns2             A     127.15.16.22
+ns2             AAAA  fda1:b2:c3::127:15:16:22
+
+;; Nameserver-TP
+
+$ORIGIN nameserver15.xa.                              ; Must end with "."
 @               NS      ns1
 @               NS      ns2
 ns1             A       127.17.15.21
 ns1             AAAA    fda1:b2:c3:0:127:17:15:21
 ns2             A       127.17.15.22
 ns2             AAAA    fda1:b2:c3:0:127:17:15:22
+
+;; Zone-TP
+
+$ORIGIN zone09.xa.                              ; Must end with "."
+@               NS    ns1
+@               NS    ns2
+ns1             A     127.19.9.21
+ns1             AAAA  fda1:b2:c3::127:19:9:21
+ns2             A     127.19.9.22
+ns2             AAAA  fda1:b2:c3::127:19:9:22
+
+;;;; MethodsV2
 
 $ORIGIN methodsv2.xa.                              ; Must end with "."
 @		NS	ns1
@@ -83,9 +110,11 @@ ns1		AAAA	fda1:b2:c3:0:127:40:1:21
 ns2		A	127.40.1.22
 ns2		AAAA	fda1:b2:c3:0:127:40:1:22
 
+;;;; Engine
 
-$ORIGIN recursor.engine.xa.
+$ORIGIN recursor.engine.xa.                              ; Must end with "."
 @               NS    ns1
+@               NS    ns2
 ns1             A     127.30.1.21
 ns1             AAAA  fda1:b2:c3:0:127:30:1:21
 ns2             A     127.30.1.22

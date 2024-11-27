@@ -1,0 +1,170 @@
+$ORIGIN connectivity04.xa.                              ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024102400      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS    ns1
+@       NS    ns2
+
+ns1     A     127.13.4.21
+ns1     AAAA  fda1:b2:c3:0:127:13:4:21
+ns2     A     127.13.4.22
+ns2     AAAA  fda1:b2:c3:0:127:13:4:22
+
+
+; ### GOOD-1
+dns0    A       127.100.100.1
+dns0    AAAA    fda1:b2:c3:0:127:100:100:1
+dns1    A       127.100.101.1
+dns1    AAAA    fda1:b2:c3:0:127:100:101:1
+
+good-1  NS      dns0
+good-1  NS      dns1
+
+; ### GOOD-2
+dns2    A       127.100.102.1
+dns3    A       127.100.103.1
+
+good-2  NS      dns2
+good-2  NS      dns3
+
+; ### GOOD-3
+dns4    AAAA    fda1:b2:c3:0:127:100:104:1
+dns5    AAAA    fda1:b2:c3:0:127:100:105:1
+
+good-3  NS      dns4
+good-3  NS      dns5
+
+; dns6 used below
+
+; ### EMPTY-PREFIX-SET-1
+dns7                 A     127.100.107.1               ; NXDOMAIN
+dns7                 AAAA  fda1:b2:c3:0:127:100:107:1  ; NXDOMAIN
+
+empty-prefix-set-1   NS    dns7
+
+; ### EMPTY-PREFIX-SET-2
+dns8                 A     127.100.108.1               ; NODATA
+dns8                 AAAA  fda1:b2:c3:0:127:100:108:1  ; NODATA
+
+empty-prefix-set-2   NS    dns8
+
+; dns9 used below
+
+; ### ERROR-PREFIX-DATABASE-1
+dns10                    A     127.100.110.1               ; SERVFAIL
+dns10                    AAAA  fda1:b2:c3:0:127:100:110:1  ; SERVFAIL
+
+error-prefix-database-1  NS   dns10
+
+; ### ERROR-PREFIX-DATABASE-2
+dns11                    A     127.100.111.1               ; REFUSED
+dns11                    AAAA  fda1:b2:c3:0:127:100:111:1  ; REFUSED
+
+error-prefix-database-2  NS   dns11
+
+; ### ERROR-PREFIX-DATABASE-3
+dns12    A     127.100.112.1               ; No response
+dns12    AAAA  fda1:b2:c3:0:127:100:112:1  ; No response
+
+error-prefix-database-3  NS   dns12
+
+; ### ERROR-PREFIX-DATABASE-4 and -5: renamed
+
+; ### ERROR-PREFIX-DATABASE-6
+dns25                 A     127.100.125.1               ; Extra TXT with mismatching prefix
+dns25                 AAAA  fda1:b2:c3:0:127:100:125:1  ; Extra TXT with mismatching prefix
+
+error-prefix-database-6   NS    dns25
+error-prefix-database-6   NS    dns1 ; shared with good-1 and others
+
+; ### ERROR-PREFIX-DATABASE-7
+dns26                 A     127.100.126.1               ; TXT with mismatching prefix (only)
+dns26                 AAAA  fda1:b2:c3:0:127:100:126:1  ; TXT with mismatching prefix (only)
+
+error-prefix-database-7   NS    dns26
+
+; ### ERROR-PREFIX-DATABASE-8
+dns27                 A     127.100.127.1               ; No TXT but a CNAME in response
+dns27                 AAAA  fda1:b2:c3:0:127:100:127:1  ; No TXT but a CNAME in response
+
+error-prefix-database-8   NS    dns27
+
+; ### HAS-NON-ASN-TXT-1
+dns6    A       127.100.106.1               ; extra TXT
+dns6    AAAA    fda1:b2:c3:0:127:100:106:1  ; extra TXT
+
+has-non-asn-txt-1  NS      dns6
+has-non-asn-txt-1  NS      dns1 ; shared with good-1 and others
+
+; ### HAS-NON-ASN-TXT-2
+dns9                 A     127.100.109.1               ; Other TXT
+dns9                 AAAA  fda1:b2:c3:0:127:100:109:1  ; Other TXT
+
+has-non-asn-txt-2   NS    dns9
+
+; ### IPV4-ONE-PREFIX-1
+dns13-1                  A     127.100.113.1               
+dns13-2                  A     127.100.113.2               
+
+ipv4-one-prefix-1        NS    dns13-1
+ipv4-one-prefix-1        NS    dns13-2
+
+; ### IPV4-TWO-PREFIXES-1
+dns14-1                  A     127.100.114.1               
+dns14-2                  A     127.100.114.2               
+dns15                    A     127.100.115.1             
+
+ipv4-two-prefixes-1      NS    dns14-1
+ipv4-two-prefixes-1      NS    dns14-2
+ipv4-two-prefixes-1      NS    dns15
+
+; ### IPV6-ONE-PREFIX-1
+dns16-1                  AAAA  fda1:b2:c3:0:127:100:116:1
+dns16-2                  AAAA  fda1:b2:c3:0:127:100:116:2
+
+ipv6-one-prefix-1        NS    dns16-1
+ipv6-one-prefix-1        NS    dns16-2
+
+; ### IPV6-TWO-PREFIXES-1
+dns17-1                  AAAA  fda1:b2:c3:0:127:100:117:1
+dns17-2                  AAAA  fda1:b2:c3:0:127:100:117:2
+dns18                    AAAA  fda1:b2:c3:0:127:100:118:1
+
+ipv6-two-prefixes-1      NS    dns17-1
+ipv6-two-prefixes-1      NS    dns17-2
+ipv6-two-prefixes-1      NS    dns18
+
+; ### IPV4-SINGLE-NS-1
+dns19                    A     127.100.119.1             
+
+ipv4-single-ns-1         NS    dns19
+
+; ### IPV6-SINGLE-NS-1
+dns20                    AAAA  fda1:b2:c3:0:127:100:120:1
+
+ipv6-single-ns-1         NS    dns20
+
+; ### DOUBLE-PREFIX-1
+dns21                   A       127.100.121.1               ; Double prefix
+dns21                   AAAA    fda1:b2:c3:0:127:100:121:1  ; Double prefix
+dns22                   A       127.100.122.1               ; Double prefix
+dns22                   AAAA    fda1:b2:c3:0:127:100:122:1  ; Double prefix
+
+double-prefix-1        NS      dns21
+double-prefix-1        NS      dns22
+
+; ### DOUBLE-PREFIX-2
+dns23                   A       127.100.123.1               ; Double prefix
+dns23                   AAAA    fda1:b2:c3:0:127:100:123:1  ; Double prefix
+dns24                   A       127.100.124.1               ; Overlapping prefix
+dns24                   AAAA    fda1:b2:c3:0:127:100:124:1  ; Overlapping prefix
+
+double-prefix-2        NS      dns23
+double-prefix-2        NS      dns24
+

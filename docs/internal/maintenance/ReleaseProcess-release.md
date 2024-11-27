@@ -7,7 +7,7 @@ Release process - Release
 * [2. Applicable components](#2-applicable-components)
 * [3. Updates to repositories](#3-updates-to-repositories)
 * [4. Determine the new version number](#4-determine-the-new-version-number)
-* [5. Update the Changes file](#5-update-the-changes-file)
+* [5. Update the Changes files]
 * [6. Set version number for Perl modules](#6-set-version-number-for-perl-modules)
 * [7. Set version number for GUI](#7-set-version-number-for-gui)
 * [8. Update Makefile.PL with required version](#8-update-makefilepl-with-required-version)
@@ -71,7 +71,7 @@ of the other components.
 
 [(Top)](#table-of-contents)
 
-## 5. Update the Changes file
+## 5. Update the Changes files
 
 Any changes since the last release must be documented in the Changes files.
 Refer to any GitHub issues or pull requests related to the change by the
@@ -84,7 +84,10 @@ The updates to the *Changes* file are done to the *develop branch*.
  * zonemaster-cli - [Changes CLI]
  * zonemaster-backend - [Changes Backend]
  * zonemaster-gui - [Changes GUI]
- * Zonemaster/Zonemaster - [Changes Zonemaster]
+ * Zonemaster/Zonemaster
+   - First update [Changes Zonemaster]
+   - Then update the [RELEASE.md] page (use content of *Changes* file, only
+     latest release) to match the upcoming [Github release page].
  
 [(Top)](#table-of-contents)
 
@@ -323,7 +326,8 @@ The releases pages:
 * [Zonemaster-CLI Releases]
 * [Zonemaster-Backend Releases]
 * [Zonemaster-GUI Releases]
-* [Zonemaster Product Releases]
+* [Zonemaster Product Releases] - use the [RELEASE.md] created in
+  [step 5][5. Update the Changes files].
 
 [(Top)](#table-of-contents)
 
@@ -412,6 +416,7 @@ parent number is `1`.
 [(Top)](#table-of-contents)
 
 <!-- Zonemaster links point on purpose on the develop branch. -->
+[5. Update the Changes files]:                   #5-update-the-changes-files
 [Appendix A]:                                    #appendix-a-on-version-number-in-makefilepl
 [Appendix B]:                                    #appendix-b-on-reverting-commits
 [Backend.pm]:                                    https://github.com/zonemaster/zonemaster-backend/blob/develop/lib/Zonemaster/Backend.pm
@@ -429,10 +434,12 @@ parent number is `1`.
 [Create Docker Image]:                           ReleaseProcess-create-docker-image.md
 [Docker Hub]:                                    https://hub.docker.com/u/zonemaster
 [Engine.pm]:                                     https://github.com/zonemaster/zonemaster-engine/blob/develop/lib/Zonemaster/Engine.pm
+[Github release page]:                           https://github.com/zonemaster/zonemaster/releases/latest
 [Installation.md GUI]:                           ../../public/installation/zonemaster-gui.md
 [LDNS.pm]:                                       https://github.com/zonemaster/zonemaster-ldns/blob/develop/lib/Zonemaster/LDNS.pm
 [PAUSE]:                                         https://pause.perl.org/pause/query
 [Package.json GUI]:                              https://github.com/zonemaster/zonemaster-gui/blob/develop/package.json
+[RELEASE.md]:                                    ../../public/RELEASE.md
 [Release process - Create Test Distribution]:    ReleaseProcess-create-test-distribution.md
 [Utils Zonemaster]:                              ../../../utils/
 [Version.ts GUI]:                                https://github.com/zonemaster/zonemaster-gui/blob/develop/src/environments/version.ts
