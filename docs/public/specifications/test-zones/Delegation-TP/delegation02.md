@@ -77,9 +77,9 @@ Assumptions for the scenario specifications unless otherwise specified for the
 specific scenario:
 * For each scenario zone there are two name servers configured.
   * Both name servers (ns1 and ns2) are equal in delegation and in zone.
-  * Both name servers are in-bailiwick
-  * Both name servers have both IPv4 and IPv6 addresses
-  * All addresses are distinct
+  * Both name servers are in-bailiwick.
+  * Both name servers have both IPv4 and IPv6 addresses.
+  * All addresses are distinct.
   * All required glue are present in the delegation.
   * All glue exactly matches the authoritative address records in correct zone
     (not more and not less records).

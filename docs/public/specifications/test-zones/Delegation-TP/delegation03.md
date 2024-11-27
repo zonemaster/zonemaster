@@ -69,9 +69,9 @@ REFERRAL-SIZE-TOO-LARGE-2     | REFERRAL_SIZE_TOO_LARGE                  | 2)
 Assumptions for the scenario specifications unless otherwise specified for the
 specific scenario:
 * For each scenario zone there are two name server configured.
-  * Both name servers are in-bailiwick
-  * Both name servers have both IPv4 and IPv6 addresses
-  * All addresses are distinct
+  * Both name servers are in-bailiwick.
+  * Both name servers have both IPv4 and IPv6 addresses.
+  * All addresses are distinct.
   * All required glue are present in the delegation.
   * There is no actual zone or zone file, only a delegation.
     * For this test, that the zone is missing is disregarded.
@@ -91,10 +91,10 @@ Referral is large, but not too large. The name servers are in-bailiwick.
   * ns2 is "ns2.ipv6-large-but-not-too-large.referral-size-ok-2.delegation03.xa".
 
 ### REFERRAL-SIZE-TOO-LARGE-1
-Referal is too large and name servers are in-bailiwick
+Referral is too large and name servers are in-bailiwick.
 
 * Zone: referral-size-too-large-1.delegation03.xa
-  * name server names are relative the zone name:
+  * Name server names are relative to the zone name:
     * ns1 is "ns1.1abcdefghijklmnopqrstuv.1defghijkl"
     * ns2 is "ns2.2abcdefghijklmnopqrstuv.2defghijkl"
     * ns3 is "ns3.2abcdefghijklmnopqrstuv.3defghijkl"
@@ -103,7 +103,7 @@ Referal is too large and name servers are in-bailiwick
 
 
 ### REFERRAL-SIZE-TOO-LARGE-2
-Referal is too large and name servers are out-of-bailiwick with no glue.
+Referral is too large and name servers are out-of-bailiwick with no glue.
 
 * Zone: referral-size-too-large-2.delegation03.xa
   * The zone is delegated to ns1, ns2, ns3 and ns4.

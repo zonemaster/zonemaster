@@ -146,7 +146,7 @@ In the undelegated structure for a specific scenario the name server name can be
 repeated multiple times with different IP addresses. If it appears without
 IP address specification it should only appear once.
 
-Here is an example of a undelegated data section from a scenario specification:
+Here is an example of an undelegated data section from a scenario specification:
 ```
   * Undelegated data:
     * ns1a.del-non-distinct-und.delegation02.xa/IPv4

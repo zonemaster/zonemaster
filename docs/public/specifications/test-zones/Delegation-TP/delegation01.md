@@ -96,10 +96,10 @@ Assumptions for the scenario specifications unless otherwise specified for the
 specific scenario:
 * For each scenario zone there are two name servers configured.
   * Both name servers (ns1 and ns2) are equal in delegation and in zone.
-  * Both name servers are in-bailiwick
-  * Both name servers have both IPv4 and IPv6 addresses
+  * Both name servers are in-bailiwick.
+  * Both name servers have both IPv4 and IPv6 addresses.
   * All required glue records are present in the delegation.
-  * All glue exactly matches the authoritative address records in correct zone
+  * All glue exactly match the authoritative address records in correct zone
     (not more and not less records).
   * All name server IP addresses respond with identical zone content.
 
@@ -146,14 +146,14 @@ Only one name server in delegation.
   * The child has two name servers with full set of address records.
 
 ### IPV6-AND-DEL-OK-NO-IPV4-CHILD
-No IPv4 in zone
+No IPv4 in zone.
 
 * Zone: ipv6-and-del-ok-no-ipv4-child.delegation01.xa
   * No A records for ns1 and ns2 in zone.
   * Delegation is complete.
 
 ### IPV4-AND-DEL-OK-NO-IPV6-CHILD
-No IPv6 in zone
+No IPv6 in zone.
 
 * Zone: ipv4-and-del-ok-no-ipv6-child.delegation01.xa
   * No AAAA records for ns1 and ns2 in zone.
@@ -182,10 +182,10 @@ No IPv4 in delegation or zone. Out-of-bailiwick name servers and no glue.
 No IPv4 in delegation or zone. Out-of-bailiwick name servers, but with sibling
 glue.
 
-* Zone: child.no-ipv4-3.delegation01.xa
+* Zone: no-ipv4-3.delegation01.xa
   * Both ns1 and ns2 are out-of-bailiwick
-    * ns1 is "ns1.sibling.no-ipv4-3.delegation01.xa"
-    * ns2 is "ns2.sibling.no-ipv4-3.delegation01.xa"
+    * ns1 is "ns1.no-ipv4-3.sibling.delegation01.xa"
+    * ns2 is "ns2.no-ipv4-3.sibling.delegation01.xa"
   * Delegation is with glue.
   * The child zone has no address records for the name server names
   * The sibling names have full sets of address records.
