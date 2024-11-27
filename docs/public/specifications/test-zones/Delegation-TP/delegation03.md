@@ -74,7 +74,7 @@ specific scenario:
   * All addresses are distinct.
   * All required glue are present in the delegation.
   * There is no actual zone or zone file, only a delegation.
-    * For this test, that the zone is missing is disregarded.
+    * For these scenarios only the delegation is needed.
 
 ### REFERRAL-SIZE-OK-1
 This is the happy path.
