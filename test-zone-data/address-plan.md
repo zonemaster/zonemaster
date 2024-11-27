@@ -306,6 +306,10 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.15.10.0/24  | DNSSEC10 scenarios                                          |
 | 127.15.10.21    | ns1.dnssec10.xa                                             |
 | 127.15.10.22    | ns2.dnssec10.xa                                             |
+| 127.15.10.31    | ns1 server for various scenarios for DNSSEC10               |
+| 127.15.10.32    | ns2 server for various scenarios for DNSSEC10               |
+| 127.15.10.37    | For Bind server to create DNSKEY, NSEC3 and RRSIG           |
+| 127.15.10.38    | For Bind server to create DNSKEY, NSEC3 and RRSIG           |
 | 127.15.11.0/24  | DNSSEC11 scenarios                                          |
 | 127.15.11.21    | ns1.dnssec11.xa                                             |
 | 127.15.11.22    | ns2.dnssec11.xa                                             |
@@ -335,7 +339,6 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.15.19.0/24  | (not in use)                                                |
 | (...)           |                                                             |
 | 127.15.255.0/24 | (not in use)                                                |
-
 
 ### Delegation test level address plan
 

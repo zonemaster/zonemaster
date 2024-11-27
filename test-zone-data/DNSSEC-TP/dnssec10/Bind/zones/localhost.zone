@@ -1,0 +1,15 @@
+; For the dnssec10-37 view.
+;
+$TTL 604800
+@       SOA  localhost. root.localhost. (
+                   4    ; Serial
+              604800    ; Refresh
+               86400    ; Retry
+             2419200    ; Expire
+              604800 )  ; Negative Cache TTL
+;
+@       NS   localhost.
+@       A    127.0.0.1
+@       AAAA ::1
+@       TXT  "127.15.10.37 fda1:b2:c3:0:127:15:10:37"
+

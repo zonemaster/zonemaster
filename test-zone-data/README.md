@@ -2,22 +2,31 @@
 
 ## Table of contents
 
-
-* [Installation instructions](#installation-instructions)
+* [Introduction](#introduction)
+* [Installing mandatory parts](#installing-mandatory-parts)
+* [Installing Bind](#installing-bind)
+* [Updating and installing Perl DNS libraries](#updating-and-installing-perl-dns-libraries)
 * [Running instructions](#running-instructions)
   * [Start coredns in terminal 1](#start-coredns-in-terminal-1)
   * [Run zonemaster-cli in terminal 2](#run-zonemaster-cli-in-terminal-2)
   * [Run unit tests in terminal 2](#run-unit-tests-in-terminal-2)
+  * [Running Bind](#running-bind)
 * [Files](#files)
 * [Directories](#directories)
-* [Notes](#notes)
+* [Resources](#resources)
+* [Test case based test zones](#test-case-based-test-zones)
+* [Other test zones](#other-test-zones)
+
+
+## Introduction
 
 When loading `coredns` configuration the [test-zone-data] directory should be
 the working directory, else it will not find all included data files. That
 directory structure holds directories with zone files and `coredns` configurations
 for the test zone scenarios.
 
-## Installation instructions
+
+## Installing mandatory parts
 
 1. Only Ubuntu 22.04 is supported.
 2. Install Zonemaster-CLI on the computer. Install current develop branch or the
@@ -59,6 +68,38 @@ for the test zone scenarios.
    ```
    sudo cp coredns  /usr/local/bin/
    ```
+
+## Installing Bind
+
+   This step can be skipped unless you will create or update DNS record with
+   the help of Bind, e.g. for test zones for scenarios for DNSSEC10.
+   ```
+   sudo apt install bind9
+   ```
+   Make sure Bind is off and will not automatically start after restart.
+   ```
+   sudo systemctl stop named
+   sudo systemctl disable named
+   ```
+   We will need to start named with configuration files in different locations
+   so `apparmor` must be disabled for named. The change is permanent.
+   ```
+   sudo ln -s /etc/apparmor.d/usr.sbin.named /etc/apparmor.d/disable/
+   sudo apparmor_parser -R /etc/apparmor.d/disable/usr.sbin.named
+   ```
+
+## Updating and installing Perl DNS libraries
+
+   Utilities for DNSSEC handling at test zone creation for some test
+   cases, e.g. DNSSEC10, require updated Net::DNS and installed
+   Net::DNS::SEC. This update and installation, respectively, is not
+   needed unless the scripts are to be run. See [utils/] for the scripts
+   requiring these libraries.
+   ```
+   sudo cpanm -i Net::DNS
+   sudo cpanm -i Net::DNS::SEC
+   ```
+
 ## Running instructions
 
 Two terminal windows to the computer are needed.
@@ -105,18 +146,23 @@ Unit tests based on these test zones for [Zonemaster-Engine] can now be run
 in terminal 2 and the data can be recorded and saved as data files. See the
 [t] directory in [Zonemaster-Engine] for more details.
 
+### Running Bind
+For the test zones for some scenarios DNS records are created by Bind, e.g.
+DNSSEC10. For more information see the [Bind README][README-Bind.md].
 
 ## Files
 
 The following files are found in [this directory](.), i.e. the same directory as
 this README file.
 
-* [main.cfg]
-  * The default main `coredns` configuration file that includes all
-    other data files.
 * [address-plan.md]
   * A document that explains the IP plan and that also contains the
     IP plan in a markdown table.
+* [main.cfg]
+  * The default main `coredns` configuration file that includes all
+    other data files.
+* [REAME-Bind.md]
+  * Instructions for running `Bind`.
 * [set-ip.sh]
   * A script to populate the loopback based on the content of
     [address-plan.md].
@@ -132,9 +178,20 @@ The following directories are found in [this directory][test-zone-data], i.e.
 the same directory as this README file. More files and sub-directories are found
 in those directories.
 
+### Resources
+
+Directories not holding direct test zone data, but resources for the test zone
+data.
+
 * [COMMON/]
   * Holds zone files and configuration that are shared between several scenarios
     for different test cases.
+
+* [utils/]
+  * Holds utility scripts for test zone construction, e.g. DNSSEC10 test zones.
+
+### Test case based test zones
+
 * Address-TP/ (*not yet available*)
   * Directory structure for scenarios for test cases in the Address-TP test module.
 * [Basic-TP/]
@@ -151,8 +208,6 @@ in those directories.
 * Delegation-TP/ (*not yet available*)
   * Directory structure for scenarios for test cases in the Delegation-TP test
     module.
-* [MethodsV2/]
-  * Direcotry structure for scenarios for the shared methods for the test cases.
 * [Nameserver-TP/]
   * Directory structure for scenarios for test cases in the Nameserver-TP test
     module.
@@ -162,18 +217,29 @@ in those directories.
 * [Zone-TP/]
   * Directory structure for scenarios for test cases in the Zone-TP test module.
 
+### Other test zones
+
+* [Engine/]
+  * Directory structure for test zones for Perl modules in Zonemaster-Engine.
+* [MethodsV2/]
+  * Direcotry structure for scenarios for the shared methods for the test cases.
+
+
+
 [address-plan.md]:                                     address-plan.md
 [Basic-TP/]:                                           Basic-TP/
 [COMMON/]:                                             COMMON/
 [Consistency-TP/]:                                     Consistency-TP/
 [DNSSEC-TP/]:                                          DNSSEC-TP/
+[Engine/]:                                             Engine/
 [main.cfg]:                                            main.cfg
 [MethodsV2/]:                                          MethodsV2/
 [Nameserver-TP/]:                                      Nameserver-TP/
+[README-Bind]:                                         README-Bind.md
 [set-ip.sh]:                                           set-ip.sh
 [start-coredns.sh]:                                    start-coredns.sh
 [t]:                                                   https://github.com/zonemaster/zonemaster-engine/tree/develop/t
 [test-zone-data]:                                      .
+[utils/]:                                              utils/
 [Zone-TP/]:                                            Zone-TP/
 [Zonemaster-Engine]:                                   https://github.com/zonemaster/zonemaster-engine/
-
