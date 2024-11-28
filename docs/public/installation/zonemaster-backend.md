@@ -706,12 +706,10 @@ of `postgresql-client`. Determine what version was installed:
 ```sh
 pkg info | grep postgresql | grep client
 ```
-If the installed client is not version `15` (major version) then adjust the
-following command to install `postgresql-server` with the same major version as
-`postgresql-client` installed.
-
+Replace `XX` in the command to install `postgresql-server` with the same major
+version as the installed `postgresql-client`, e.g. `16`.
 ```sh
-pkg install postgresql15-server
+pkg install postgresqlXX-server
 ```
 
 Enable daemon, initiate and start:
