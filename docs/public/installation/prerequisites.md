@@ -36,14 +36,14 @@ at large cloud providers.
 
 Operating System | MariaDB | PostgreSQL
 ---------------- | --------| ---------------
-Debian 12        | 10.11   | 15.6??
+Debian 12        | 10.11   | 15 ??
 Docker           | n/a     | n/a
 FreeBSD 14       | 8.0 (*) | 16
-Rocky Linux 8    | 10.3??  | 10.23??
-Rocky Linux 9    | 10.5    | 13.16
-Ubuntu 20.04     | 10.3??  | 12.18??
-Ubuntu 22.04     | 10.6??  | 14.12??
-Ubuntu 24.04     | 10.11?? | 16.3??
+Rocky Linux 8    | 10.3??  | 10 ??
+Rocky Linux 9    | 10.5    | 13
+Ubuntu 20.04     | 10.3??  | 12 ??
+Ubuntu 22.04     | 10.6??  | 14 ??
+Ubuntu 24.04     | 10.11?? | 16 ??
 
 * (*) FreeBSD uses MySQL, not MariaDB.
 * SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
