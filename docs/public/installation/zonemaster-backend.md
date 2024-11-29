@@ -40,6 +40,8 @@
   * [9.3. SQLite](#93-sqlite)
 * [10. Optional features](#10-optional-features)
   * [10.1. Metrics](#101-metrics)
+  * [10.2 Global cache](#102-global-cache)
+
 
 ## 1. Overview
 
@@ -484,10 +486,15 @@ Installation will take longer time.
 
 ### 6.3. What to do next?
 
+* For the Zonemaster-Backend functions see the following documents:
+  * [Using Zonemaster-Backend JSON-RPC API]
+  * Backend [JSON-RPC API] documentation
+  * [Using Zonemaster-Backend for batch testing]
+  * [Backend configuration]
+  * Zonemaster [Profiles]
+  * [Backend Environment variables]
 * For a web interface, follow the [Zonemaster::GUI installation] instructions.
 * For a command line interface, follow the [Zonemaster::CLI installation] instruction.
-* For a JSON-RPC API, see the Zonemaster::Backend [JSON-RPC API] documentation.
-
 
 ## 7. Installation with MariaDB
 
@@ -807,25 +814,34 @@ sudo apt install libnet-statsd-perl
 cpanm --notest Net::Statsd
 ```
 
--------
+### 10.2 Global cache
 
-[Backend configuration]:              ../configuration/backend.md
-[Declaration of prerequisites]:       prerequisites.md
-[JSON-RPC API]:                       ../using/backend/rpcapi-reference.md
-[Main Zonemaster repository]:         https://github.com/zonemaster/zonemaster/blob/master/README.md
-[MariaDB instructions Rocky Linux]:   #71-mariadb-rocky-linux
-[MariaDB instructions Debian]:        #72-mariadb-debianubuntu
-[MySQL instructions FreeBSD]:         #73-mysql-freebsd
-[metrics]:                            ../using/backend/telemetry.md#metrics
-[Post-installation]:                  #6-post-installation
-[PostgreSQL instructions Rocky Linux]:#81-postgresql-rocky-linux
-[PostgreSQL instructions Debian]:     #82-postgresql-debianubuntu
-[PostgreSQL instructions FreeBSD]:    #83-postgresql-freebsd
-[Prerequisites section]:              #2-prerequisites
-[Removing database]:                  #9-cleaning-up-the-database
-[Upgrade document]:                   ../upgrading/backend.md
-[Zonemaster::CLI installation]:       zonemaster-cli.md
-[Zonemaster::Engine installation]:    zonemaster-engine.md
-[Zonemaster::Engine]:                 https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
-[Zonemaster::GUI installation]:       zonemaster-gui.md
-[Zonemaster::LDNS]:                   https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
+If Zonemaster-Backend is to be used for large batches, global cache can improve
+performans. See [Global cache in Zonemaster-Engine].
+
+
+[Backend Environment variables]:                ../configuration/backend-environment-variables.md
+[Backend configuration]:                        ../configuration/backend.md
+[Declaration of prerequisites]:                 prerequisites.md
+[Global cache in Zonemaster-Engine]:            ../configuration/global-cache.md
+[JSON-RPC API]:                                 ../using/backend/rpcapi-reference.md
+[Main Zonemaster repository]:                   https://github.com/zonemaster/zonemaster/blob/master/README.md
+[MariaDB instructions Debian]:                  #72-mariadb-debianubuntu
+[MariaDB instructions Rocky Linux]:             #71-mariadb-rocky-linux
+[Metrics]:                                      ../using/backend/telemetry.md#metrics
+[MySQL instructions FreeBSD]:                   #73-mysql-freebsd
+[Post-installation]:                            #6-post-installation
+[PostgreSQL instructions Debian]:               #82-postgresql-debianubuntu
+[PostgreSQL instructions FreeBSD]:              #83-postgresql-freebsd
+[PostgreSQL instructions Rocky Linux]:          #81-postgresql-rocky-linux
+[Prerequisites section]:                        #2-prerequisites
+[Profiles]:                                     ../configuration/profiles.md
+[Removing database]:                            #9-cleaning-up-the-database
+[Upgrade document]:                             ../upgrading/backend.md
+[Using Zonemaster-Backend for batch testing]:   ../using/backend/Using-Zonemaster-Backend-for-batch-testing.md
+[Using Zonemaster-Backend JSON-RPC API]:        ../using/backend/Using-Zonemaster-Backend-JSON-RPC-API.md
+[Zonemaster::CLI installation]:                 zonemaster-cli.md
+[Zonemaster::Engine installation]:              zonemaster-engine.md
+[Zonemaster::Engine]:                           https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
+[Zonemaster::GUI installation]:                 zonemaster-gui.md
+[Zonemaster::LDNS]:                             https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
