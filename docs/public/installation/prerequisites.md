@@ -36,7 +36,7 @@ at large cloud providers.
 
 Operating System | MariaDB | PostgreSQL
 ---------------- | --------| ---------------
-Debian 12        | 10.11   | 15 ??
+Debian 12        | 10.11   | 15
 Docker           | n/a     | n/a
 FreeBSD 14       | 8.0 (*) | 16
 Rocky Linux 8    | 10.3??  | 10 ??
