@@ -15,7 +15,6 @@ Release process - Release
 * [10. Produce distribution tarballs](#10-produce-distribution-tarballs)
 * [11. Produce distribution zip file](#11-produce-distribution-zip-file)
 * [12. Update Zonemaster repository main _README.md_](#12-update-zonemaster-repository-main-readmemd)
-* [13. Generate documents](#13-generate-documents)
 * [13. Generate documents and check public documents](#13-generate-documents-and-check-public-documents)
 * [14. Upload to CPAN](#14-upload-to-cpan)
 * [15. Merge develop branch into master](#15-merge-develop-branch-into-master)
