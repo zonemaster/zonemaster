@@ -33,7 +33,10 @@
 3) Install locales:
 
    ```sh
+   # For Rocky Linux 9
    sudo dnf install --assumeyes glibc-all-langpacks
+   # For Rocky Linux 8
+   sudo dnf --assumeyes install langpacks-da.noarch langpacks-en.noarch langpacks-es.noarch langpacks-fi.noarch langpacks-fr.noarch langpacks-nb.noarch  langpacks-sv.noarch
    ```
 
 4) Install binary packages:
