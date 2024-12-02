@@ -67,11 +67,7 @@ Create a directory to be used for a custom profile, which is here the same
 directory as used by Zonemaster-Backend. And then copy the default profile
 to this directory.
 
-### Rocky Linux
-
-To be added.
-
-### Debian and Ubuntu
+### Rocky Linux, Debian and Ubuntu
 ```
 test -d /etc/zonemaster || sudo mkdir -v /etc/zonemaster
 perl -MZonemaster::Engine::Test -E 'say Zonemaster::Engine::Profile->default->to_json' | jq -S . | sudo tee /etc/zonemaster/profile.json > /dev/null
