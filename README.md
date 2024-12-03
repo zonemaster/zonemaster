@@ -57,7 +57,7 @@ There you can find, e.g:
 * Upgrading instructions
 * Test case specifications
 
-If you look for the documentation related to the ongoing development work or
+If you are looking for the documentation related to the ongoing development work or
 documentation related to the release work of Zonemaster you will find that
 in the [documentation tree].
 
