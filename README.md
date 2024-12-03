@@ -20,6 +20,9 @@
 
 ## Introduction
 
+<!-- A copy of this section is found in docs/README-for-doc.zonemaster.net.md
+and if any update is done here, make sure to update there too. -->
+
 Zonemaster is a software package that validates the quality of a DNS delegation.
 The ambition of the Zonemaster project is to develop and maintain an open source
 DNS validation tool, offering improved performance over existing tools and providing
