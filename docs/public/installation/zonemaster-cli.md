@@ -2,14 +2,23 @@
 
 ## Table of contents
 
+* [Overview](#overview)
 * [Prerequisites for CPAN installation](#prerequisites-for-cpan-installation)
 * [Local installation](#local-installation)
   * [Installation on Rocky Linux](#installation-on-rocky-linux)
   * [Installation on Debian and Ubuntu](#installation-on-debian-and-ubuntu)
   * [Installation on FreeBSD](#installation-on-freebsd)
 * [Post-installation sanity check](#post-installation-sanity-check)
-* [Using zonemaster-cli](#using-zonemaster-cli)
+* [Using Zonemaster-CLI](#using-zonemaster-cli)
+* [Global cache](#global-cache)
 * [What to do next?](#what-to-do-next)
+
+
+## Overview
+
+Zonemaster-CLI provides a CLI (command line interface) to Zonemaster. To install
+follow the instructions below. An alternative to installing Zonemaster-CLI is to
+run it under [Docker]. See [Using the CLI] for run it under Docker.
 
 
 ## Prerequisites for CPAN installation
@@ -157,10 +166,16 @@ man zonemaster-cli
 ```
 
 
-## Using zonemaster-cli
+## Using Zonemaster-CLI
 
-See the [USING] Zonemaster-CLI document for an overview on how to use
-`zonemaster-cli` after installation.
+See [Using the CLI] for an overview on how to use `zonemaster-cli` after
+installation.
+
+
+## Global cache
+
+If Zonemaster-CLI is to be used for large batches, global cache can improve
+performance. See [Global cache in Zonemaster-Engine].
 
 
 ## What to do next?
@@ -172,8 +187,10 @@ See the [USING] Zonemaster-CLI document for an overview on how to use
 
 
 [Declaration of prerequisites]:                   prerequisites.md
+[Docker]:                                         https://en.wikipedia.org/wiki/Docker_(software)
+[Global cache in Zonemaster-Engine]:              ../configuration/global-cache.md
 [JSON-RPC API]:                                   ../using/backend/rpcapi-reference.md
-[USING]:                                          ../using/cli.md
+[Using the CLI]:                                  ../using/cli.md
 [Zonemaster::Backend installation]:               zonemaster-backend.md
 [Zonemaster::Engine installation]:                zonemaster-engine.md
 [Zonemaster::Engine]:                             https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
