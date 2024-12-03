@@ -18,8 +18,8 @@ Zonemaster on that.
 
 ## Use cases
 
-1. Creating Perl tar balls for testing 1).
-2. Creating Perl tar balls for uploading to CPAN as part of a Zonemaster
+1. Creating Perl tarballs for testing 1).
+2. Creating Perl tarballs for uploading to CPAN as part of a Zonemaster
    release 1).
 3. Creating Zonemaster-GUI zip distribution for testing.
 4. Creating Zonemaster-GUI zip distribution for release.
@@ -36,7 +36,7 @@ There could be more use cases.
 
 ### Building Perl CPAN packages
 
-To create a Perl tar ball (use cases 1 and 2) you need a specific environment.
+To create a Perl tarball (use cases 1 and 2) you need a specific environment.
 Once you have set up your build environment follow the building instructions as
 described in [create test distribution] document of the release process.
 

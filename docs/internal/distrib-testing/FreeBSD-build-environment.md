@@ -77,7 +77,7 @@ This instruction is for creating it on FreeBSD. See other files for other OSs.
 1. Install dependencies and tools:
 
     ```sh
-    pkg install gmake gettext-tools git-lite p5-Locale-PO p5-App-cpanminus p5-ExtUtils-PkgConfig p5-MIME-Base32 p5-Module-Install libtool autoconf automake p5-Devel-CheckLib p5-Module-Install-XSUtil libidn libidn2
+    pkg install gmake gettext-tools git-lite p5-Locale-PO p5-App-cpanminus p5-ExtUtils-PkgConfig p5-MIME-Base32 p5-Module-Install libtool autoconf automake p5-Devel-CheckLib p5-Module-Install-XSUtil p5-Test-Exception libidn libidn2
     ```
 
 2. Clone 'develop' branch from all Zonemaster repositories except GUI:
