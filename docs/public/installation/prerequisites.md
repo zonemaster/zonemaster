@@ -42,7 +42,7 @@ FreeBSD 14       | 8.0 (*) | 16
 Rocky Linux 8    | 10.3    | 10
 Rocky Linux 9    | 10.5    | 13
 Ubuntu 20.04     | 10.3    | 12
-Ubuntu 22.04     | 10.6??  | 14 ??
+Ubuntu 22.04     | 10.6    | 14
 Ubuntu 24.04     | 10.11?? | 16 ??
 
 * (*) FreeBSD uses MySQL, not MariaDB.
