@@ -16,3 +16,5 @@ The public documentation is divided into the following main categories:
   Zonemaster.
 * [Specifications](specifications/README.md) contains specifications of the
   Zonemaster test cases, test types and test zones.
+* [Development](development/README.md) contains information for developers both
+  in and outside the Zonemaster project.

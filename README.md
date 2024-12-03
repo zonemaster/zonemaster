@@ -1,4 +1,3 @@
-
 # ![Zonemaster](assets/images/zonemaster_logo_2021_color.png)
 
 ## Table of contents
@@ -40,7 +39,7 @@ major rewrite of Zonecheck and DNSCheck, and aims to implement the best parts of
 ## Purpose
 
 The components developed as part of the Zonemaster project will help different
-types of [users](USING.md) to check domain servers for configuration errors and
+types of users to check domain servers for configuration errors and
 generate a report that will assist in fixing the errors.
 
 The ambition of the Zonemaster project is to develop and maintain an open source
@@ -50,31 +49,22 @@ the future.
 
 ## Documentation
 
-This is the main project repository. In this repository, most documentation of
-Zonemaster is found.
+The public documentation for latest and past releases can be found on the [document site].
+There you can find, e.g:
+* User guides
+* Installation instructions
+* Configuration instructions
+* Upgrading instructions
+* Test case specifications
 
-In the [public documentation](docs/public/README.md) you will find e.g.
-[specifications](docs/public/specifications/tests/README.md) of all Test Cases
-for the Zonemaster implementation, as well as
-[installation instructions](docs/public/installation/README.md) and
-[user guides](docs/public/using/README.md) for each Zonemaster component.
-
-In the internal tree you can find documentation regarding the
-[design](docs/internal/design) and [requirements](docs/internal/requirements) of
-the Zonemaster implementation.
-
-The [public](docs/public) documentation can be built using [`mdbook`][mdbook],
-its [`mdbook-linkcheck`][mdbook-linkcheck] plugin and the following commands:
-
-```
-cd docs/public
-mdbook build
-open book/index.html
-```
+If you are looking for the documentation related to the ongoing development work or
+documentation related to the release work of Zonemaster you will find that
+in the [documentation tree].
 
 ## Prerequisites
 
-See [Prerequisites] document.
+The prerequisites of the latest release are found in the [Prerequisites]
+document. The document can also be found in the [Documentation tree].
 
 ## Support of DNSKEY algorithms 15 and 16
 
@@ -130,9 +120,9 @@ The Zonemaster Product includes the following components:
 
 ## Installation
 
-Zonemaster itself can be installed manually. It can also be run using
-[Docker]. For detailed instructions on both options, see the [Installation]
-document.
+Zonemaster itself can be installed manually (see detailed [Installation]
+instructions). It can also be run using [Docker] (see [usage] description). Both
+those documents can also be found in the [Documentation tree].
 
 ## Versions
 
@@ -180,13 +170,15 @@ information on mailing lists.
 ## License
 
 This is free software under a 2-clause BSD license. The full text of the license can
-be found in the [LICENSE](LICENSE) file included in this repository.
+be found in the [LICENSE] specification included in this repository.
 
 
 [CPAN]:                                https://www.cpan.org/
-[Contact and mailing lists]:           docs/contact-and-mailing-lists.md
+[Contact and mailing lists]:           ./docs/contact-and-mailing-lists.md
 [Docker]:                              https://www.docker.com/get-started
-[Installation]:                        docs/public/installation/README.md
+[Document site]:                       https://doc.zonemaster.net/latest
+[Documentation tree]:                  ./docs/README.md
+[Installation]:                        https://doc.zonemaster.net/latest/installation/index.html
 [Issues in Zonemaster/Zonemaster]:     https://github.com/zonemaster/zonemaster/issues
 [Issues in Zonemaster::Backend]:       https://github.com/zonemaster/zonemaster-backend/issues
 [Issues in Zonemaster::CLI]:           https://github.com/zonemaster/zonemaster-cli/issues
@@ -194,11 +186,10 @@ be found in the [LICENSE](LICENSE) file included in this repository.
 [Issues in Zonemaster::GUI]:           https://github.com/zonemaster/zonemaster-gui/issues
 [Issues in Zonemaster::LDNS]:          https://github.com/zonemaster/zonemaster-ldns/issues
 [LDNS]:                                https://www.nlnetlabs.nl/projects/ldns/about/
-[mdbook]:                              https://rust-lang.github.io/mdBook/
-[mdbook-linkcheck]:                    https://github.com/Michael-F-Bryan/mdbook-linkcheck
+[LICENSE]:                             ./LICENSE
 [OpenSSL]:                             https://www.openssl.org/
-[Prerequisites]:                       docs/public/installation/prerequisites.md
-[USING]:                               https://github.com/zonemaster/zonemaster-cli/blob/master/USING.md
+[Prerequisites]:                       https://doc.zonemaster.net/latest/installation/prerequisites.html
+[usage]:                               https://doc.zonemaster.net/latest/using/cli.html
 [Zonemaster latest version]:           https://github.com/zonemaster/zonemaster/releases/latest
 [Zonemaster release list]:             https://github.com/zonemaster/zonemaster/releases
 [Zonemaster-Backend]:                  https://github.com/zonemaster/zonemaster-backend
@@ -208,4 +199,3 @@ be found in the [LICENSE](LICENSE) file included in this repository.
 [Zonemaster-LDNS-README]:              https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
 [Zonemaster-LDNS]:                     https://github.com/zonemaster/zonemaster-ldns
 [Zonemaster/Zonemaster]:               https://github.com/zonemaster/zonemaster
-[Zonemaster/zonemaster-engine#833]:    https://github.com/zonemaster/zonemaster-engine/issues/833
