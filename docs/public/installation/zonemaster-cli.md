@@ -168,7 +168,7 @@ installation.
 ## Global cache
 
 If Zonemaster-CLI is to be used for large batches, global cache can improve
-performans. See [Global cache in Zonemaster-Engine].
+performance. See [Global cache in Zonemaster-Engine].
 
 
 ## What to do next?

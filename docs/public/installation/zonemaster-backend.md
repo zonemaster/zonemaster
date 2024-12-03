@@ -188,7 +188,7 @@ sudo systemctl restart zm-testagent
 
 ### 3.5 Post-installation (Rocky Linux)
 
-To check that the running daemons run:
+To check if the daemons are running, do:
 
 ```sh
 sudo systemctl status zm-rpcapi
@@ -332,7 +332,7 @@ sudo systemctl restart zm-testagent
 
 ### 4.5 Post-installation (Debian/Ubuntu)
 
-To check that the running daemons run:
+To check if the daemons are running, do:
 
 ```sh
 sudo systemctl status zm-rpcapi
@@ -713,8 +713,9 @@ of `postgresql-client`. Determine what version was installed:
 ```sh
 pkg info | grep postgresql | grep client
 ```
-Replace `XX` in the command to install `postgresql-server` with the same major
-version as the installed `postgresql-client`, e.g. `16`.
+Replace `XX` in the command below to install `postgresql-server` with the same
+major version as the installed `postgresql-client`, e.g. `16`.
+
 ```sh
 pkg install postgresqlXX-server
 ```
@@ -817,7 +818,7 @@ cpanm --notest Net::Statsd
 ### 10.2 Global cache
 
 If Zonemaster-Backend is to be used for large batches, global cache can improve
-performans. See [Global cache in Zonemaster-Engine].
+performance. See [Global cache in Zonemaster-Engine].
 
 
 [Backend Environment variables]:                ../configuration/backend-environment-variables.md
