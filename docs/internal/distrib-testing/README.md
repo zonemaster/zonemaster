@@ -18,28 +18,33 @@ Zonemaster on that.
 
 ## Use cases
 
-1. Creating Perl tar balls for testing (Zonemaster-LDNS,
-   Zonemaster-Engine, Zonemaster-CLI and Zonemaster-Backend).
-2. Creating Perl tar balls for uploading to CPAN (Zonemaster-LDNS,
-   Zonemaster-Engine, Zonemaster-CLI and Zonemaster-Backend) as part
-   of a Zonemaster release.
+1. Creating Perl tarballs for testing 1).
+2. Creating Perl tarballs for uploading to CPAN as part of a Zonemaster
+   release 1).
 3. Creating Zonemaster-GUI zip distribution for testing.
 4. Creating Zonemaster-GUI zip distribution for release.
 5. Translation work (PO file updates).
 6. Updating documents in Zonemaster/Zonemaster by scripts in
    [utils README] as part of release.
-7. Development work.
+7. Check for broken, internal links in mdBook as part of release.
+8. Development work.
 
 There could be more use cases.
 
+1\) Zonemaster-LDNS, Zonemaster-Engine, Zonemaster-CLI and Zonemaster-Backend.
+
+
 ### Building Perl CPAN packages
 
-To create a Perl tar ball (use cases 1 and 2) you need a specific
-environment. Once you have set up your [CentOS build environment],
-[Debian build environment], [FreeBSD build environment] or
-[Ubuntu build environment], follow the building instructions as
-described in [create test distribution] document of the
-release process.
+To create a Perl tarball (use cases 1 and 2) you need a specific environment.
+Once you have set up your build environment follow the building instructions as
+described in [create test distribution] document of the release process.
+
+Build environments:
+* [CentOS build environment]
+* [Debian build environment]
+* [FreeBSD build environment]
+* [Ubuntu build environment]
 
 ### GUI zip distribution
 
@@ -59,14 +64,19 @@ for use cases 1 and 2, and then follow the
 [installation instructions] for Zonemaster-Engine. Make sure
 that you install from develop branch.
 
+### Check for broken, internal links in mdBook
+
+For use case 7, install according to the build environment
+instructions (see above).
+
 ### Development work
 
-For use case 7, install an environment as for use cases
+For use case 8, install an environment as for use cases
 1 or 3. Additional installation might be needed.
 
 
 <!-- Zonemaster links point on purpose on the develop branch. -->
-[BuildEnvironmentPreparation]:        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal/distrib-testing/BuildEnvironmentPreparation.md
+[BuildEnvironmentPreparation]:        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal/distrib-testing/README.md
 [CentOS build environment]:           CentOS-build-environment.md
 [Debian build environment]:           Debian-build-environment.md
 [FreeBSD build environment]:          FreeBSD-build-environment.md
