@@ -47,7 +47,7 @@ Zonemaster::CLI, see the [declaration of prerequisites].
 1) Install dependencies:
 
    ```sh
-   sudo dnf install perl-JSON-XS perl-Try-Tiny perl-Test-Deep perl-Mojolicious
+   sudo dnf install --assumeyes perl-JSON-XS perl-Try-Tiny perl-Test-Deep perl-Mojolicious
    ```
 
    ```sh
@@ -60,7 +60,7 @@ Zonemaster::CLI, see the [declaration of prerequisites].
 2) Install Zonemaster::CLI
 
    ```sh
-   sudo cpanm Zonemaster::CLI
+   sudo cpanm --notest Zonemaster::CLI
    ```
 
 
