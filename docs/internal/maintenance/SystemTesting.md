@@ -58,29 +58,20 @@ The set of configurations must include at least:
    1. Prepare a machine
       1. Allocate a machine with the architecture specified by the configuration.
       2. Follow the preparation document for the operating system specified by the configuration.
-         * [CentOS-Preparation]
          * [Debian-Preparation]
          * [FreeBSD-Preparation]
          * [Ubuntu-Preparation]
          * Rocky-Linux-Preparation (TBD)
 
    2. Install Zonemaster LDNS
-      1. Make sure the [requirements for IDN support] are satisfied.
-      2. Make sure that OpenSSL is installed.
-      3. Install the preliminary distribution tarball for zonemaster-ldns.
+      1. Install dependencies according to the [LDNS installation] instructions.
+      2. Install the preliminary distribution tarball for zonemaster-ldns.
 
          ```sh
          sudo cpanm Zonemaster-LDNS-${LDNS_VERSION}.tar.gz
          ```
 
-      4. Make sure Zonemaster LDNS was properly installed.
-
-         ```sh
-         perl -MZonemaster::LDNS -le 'print Zonemaster::LDNS::has_idn()'
-         ```
-
-         The output from command should be "1".
-      5. Follow the [post-installation sanity check][LDNS sanity check] section of the installation guide to the letter.
+      3. Follow the [post-installation sanity check][LDNS sanity check] section of the installation guide to the letter.
 
    3. Install Zonemaster Engine
       1. Install dependencies according to the [Engine installation] instructions.
@@ -192,7 +183,6 @@ This test level validates that each change since last release:
 [Backend installation]:         ../../public/installation/zonemaster-backend.md
 [CLI installation]:             ../../public/installation/zonemaster-cli.md
 [CLI sanity check]:             ../../public/installation/zonemaster-cli.md#post-installation-sanity-check
-[CentOS-Preparation]:           ../distrib-testing/CentOS-build-environment.md
 [Create Test Distribution]:     ../maintenance/ReleaseProcess-create-test-distribution.md
 [Debian-Preparation]:           ../distrib-testing/Debian-build-environment.md
 [Engine installation]:          ../../public/installation/zonemaster-engine.md
@@ -200,6 +190,7 @@ This test level validates that each change since last release:
 [FreeBSD-Preparation]:          ../distrib-testing/FreeBSD-build-environment.md
 [GUI installation]:             ../../public/installation/zonemaster-gui.md
 [GUI sanity check]:             ../../public/installation/zonemaster-gui.md#post-installation-sanity-check
+[LDNS installation]:            ../../public/installation/zonemaster-ldns.md#recommended-installation
 [LDNS sanity check]:            ../../public/installation/zonemaster-ldns.md#post-installation-sanity-check
 [Requirements for IDN support]: https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md#idn
 [Smoke test]:                   ../../public/installation/zonemaster-backend.md#61-smoke-test

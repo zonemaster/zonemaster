@@ -38,13 +38,13 @@ There could be more use cases.
 
 To create a Perl tarball (use cases 1 and 2) you need a specific environment.
 Once you have set up your build environment follow the building instructions as
-described in [create test distribution] document of the release process.
+described in [Create Test Distribution] document of the release process.
 
 Build environments:
-* [CentOS build environment]
 * [Debian build environment]
 * [FreeBSD build environment]
 * [Ubuntu build environment]
+* Rocky-Linux environment (TBD)
 
 ### GUI zip distribution
 
@@ -77,12 +77,11 @@ For use case 8, install an environment as for use cases
 
 <!-- Zonemaster links point on purpose on the develop branch. -->
 [BuildEnvironmentPreparation]:        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal/distrib-testing/README.md
-[CentOS build environment]:           CentOS-build-environment.md
 [Debian build environment]:           Debian-build-environment.md
 [FreeBSD build environment]:          FreeBSD-build-environment.md
 [Ubuntu build environment]:           Ubuntu-build-environment.md
 [Ubuntu Node.js environment]:         Ubuntu-Node.js-build-environment.md
-[create test distribution]:           ../maintenance/ReleaseProcess-create-test-distribution.md
+[Create Test Distribution]:           ../maintenance/ReleaseProcess-create-test-distribution.md
 [Installation instructions]:          https://github.com/zonemaster/zonemaster/blob/develop/docs/public/installation/zonemaster-engine.md
 [instructions for translators]:       https://github.com/zonemaster/zonemaster/blob/develop/docs/internal/maintenance/Instructions-for-translators.md
 [utils README]:                       ../../../utils/README.md
