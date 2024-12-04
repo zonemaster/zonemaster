@@ -24,9 +24,15 @@ for system locale) are declared in the README.md of the top-level zonemaster
 repository.
 
 The set of possible values for the system locale configuration parameter is:
+
 * C
 * en_US.UTF-8
 
+Regarding minimum hardware requirements, the following defaults should be chosen:
+
+* CPU:     2 cores
+* RAM:     2GB
+* Storage: 20GB
 
 ## 2. Installation testing
 
