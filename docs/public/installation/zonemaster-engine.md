@@ -39,7 +39,7 @@
 4) Install binary packages:
 
    ```sh
-   sudo dnf --assumeyes install cpanminus gcc libidn2-devel openssl-devel perl-Class-Accessor perl-Clone perl-core perl-Devel-CheckLib perl-Email-Valid perl-ExtUtils-PkgConfig perl-File-ShareDir perl-File-Slurp perl-libintl perl-IO-Socket-INET6 perl-List-Compare perl-List-MoreUtils perl-Mail-SPF perl-Module-Find perl-Module-Install perl-Net-DNS perl-Pod-Coverage perl-Readonly perl-Sub-Override perl-Test-Differences perl-Test-Exception perl-Test-Fatal perl-Test-NoWarnings perl-Test-Pod perl-Text-CSV perl-Test-Simple
+   sudo dnf install --assumeyes cpanminus gcc libidn2-devel openssl-devel perl-Class-Accessor perl-Clone perl-core perl-Devel-CheckLib perl-Email-Valid perl-ExtUtils-PkgConfig perl-File-ShareDir perl-File-Slurp perl-libintl perl-IO-Socket-INET6 perl-List-Compare perl-List-MoreUtils perl-Mail-SPF perl-Module-Find perl-Module-Install perl-Net-DNS perl-Pod-Coverage perl-Readonly perl-Sub-Override perl-Test-Differences perl-Test-Exception perl-Test-Fatal perl-Test-NoWarnings perl-Test-Pod perl-Text-CSV perl-Test-Simple
    ```
 
 5) Install packages from CPAN:
