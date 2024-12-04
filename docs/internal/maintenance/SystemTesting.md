@@ -67,13 +67,14 @@ The set of configurations must include at least:
          sudo cpanm Zonemaster-LDNS-${LDNS_VERSION}.tar.gz
          ```
 
-      3. Make sure Zonemaster LDNS was properly installed.
+      4. Make sure Zonemaster LDNS was properly installed.
 
          ```sh
          perl -MZonemaster::LDNS -le 'print Zonemaster::LDNS::has_idn()'
          ```
 
          The output from command should be "1".
+      5. Follow the [post-installation sanity check][LDNS sanity check] section of the installation guide to the letter.
 
    3. Install Zonemaster Engine
       1. Install dependencies according to the [Engine installation] instructions.
@@ -94,22 +95,15 @@ The set of configurations must include at least:
          ```
 
       3. Follow the configuration section of the [Backend installation] instructions to the letter.
-      4. Follow the startup section of the installation guide to the letter.
-      5. Follow the [smoke test] section of the [Backend installation] instructions to the letter.
+      4. Follow the startup section of the [Backend installation] instructions to the letter.
+      5. Follow the [smoke test] section of the installation guide to the letter.
 
    5. Install Zonemaster GUI
       1. Follow the prerequisites section of the [GUI installation] instructions to the letter.
-      3. Follow the installation section of the [GUI installation] instructions to the letter. 
-      2. Follow the configuration, startup and sanity check sections of the [GUI installation] instructions to the letter.
-
-         *The following should be put into a sanity check section of the [GUI installation] instructions.*
-
-         > ```
-         > http://localhost/
-         > ```
-         >
-         > You should be presented with a page showing, among other things the
-         > Zonemaster logotype.
+      2. Follow the installation section of the [GUI installation] instructions to the letter.
+      3. Follow the configuration section of the [GUI installation] instructions to the letter.
+      4. Follow the startup section of the [GUI installation] instructions to the letter.
+      5. Follow the [post-installation sanity check][GUI sanity check] section of the installation guide to the letter.
 
    6. Install Zonemaster CLI
       1. Follow the prerequisites section of the [CLI installation] installation to the letter.
@@ -119,15 +113,7 @@ The set of configurations must include at least:
          sudo cpanm Zonemaster-CLI-${CLI_VERSION}.tar.gz
          ```
 
-      3. Follow the configuration and sanity check sections of the [CLI installation] instructions to the letter.
-
-         *The following should be put into a sanity check section of the [CLI installation] instructions.*
-
-         > ```
-         > zonemaster-cli --version
-         > ```
-         >
-         > The command is expected to list various version number information.
+      3. Follow the [post-installation sanity check][CLI sanity check] section of the installation guide to the letter.
 
 
 ## 3. Smoke testing
@@ -199,6 +185,7 @@ This test level validates that each change since last release:
 
 [Backend installation]:         ../../public/installation/zonemaster-backend.md
 [CLI installation]:             ../../public/installation/zonemaster-cli.md
+[CLI sanity check]:             ../../public/installation/zonemaster-cli.md#post-installation-sanity-check
 [CentOS-Preparation]:           ../distrib-testing/CentOS-build-environment.md
 [Create Test Distribution]:     ../maintenance/ReleaseProcess-create-test-distribution.md
 [Debian-Preparation]:           ../distrib-testing/Debian-build-environment.md
@@ -206,6 +193,8 @@ This test level validates that each change since last release:
 [Engine sanity check]:          ../../public/installation/zonemaster-engine.md#post-installation-sanity-check
 [FreeBSD-Preparation]:          ../distrib-testing/FreeBSD-build-environment.md
 [GUI installation]:             ../../public/installation/zonemaster-gui.md
+[GUI sanity check]:             ../../public/installation/zonemaster-gui.md#post-installation-sanity-check
+[LDNS sanity check]:            ../../public/installation/zonemaster-ldns.md#post-installation-sanity-check
 [Requirements for IDN support]: https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md#idn
 [Smoke test]:                   ../../public/installation/zonemaster-backend.md#61-smoke-test
 [Ubuntu-Preparation]:           ../distrib-testing/Ubuntu-build-environment.md
