@@ -153,3 +153,4 @@
             - [Zone11](specifications/tests/Zone-TP/zone11.md)
 - [Development](development/README.md)
     - [CLI](development/cli.md)
+- [License](LICENSE.md)
