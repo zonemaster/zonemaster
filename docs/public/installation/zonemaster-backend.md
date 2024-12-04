@@ -82,7 +82,7 @@ for Zonemaster::Backend, see the [declaration of prerequisites].
 Install dependencies available from binary packages:
 
 ```sh
-sudo dnf -y install jq perl-Class-Method-Modifiers perl-Config-IniFiles perl-DBD-SQLite perl-DBI perl-File-ShareDir perl-File-Slurp perl-HTML-Parser perl-JSON-PP perl-libwww-perl perl-Log-Dispatch perl-Mojolicious perl-Moose perl-Parallel-ForkManager perl-Plack perl-Plack-Middleware-ReverseProxy perl-Plack-Test perl-Role-Tiny perl-Test-Differences perl-Test-Exception perl-Test-Mojo perl-Test-NoWarnings perl-Try-Tiny perl-libintl
+sudo dnf install --assumeyes jq perl-Class-Method-Modifiers perl-Config-IniFiles perl-DBD-SQLite perl-DBI perl-File-ShareDir perl-File-Slurp perl-HTML-Parser perl-JSON-PP perl-libwww-perl perl-Log-Dispatch perl-Mojolicious perl-Moose perl-Parallel-ForkManager perl-Plack perl-Plack-Middleware-ReverseProxy perl-Plack-Test perl-Role-Tiny perl-Test-Differences perl-Test-Exception perl-Test-Mojo perl-Test-NoWarnings perl-Try-Tiny perl-libintl perl-LWP-Protocol-https
 ```
 
 Install dependencies not available from binary packages:
