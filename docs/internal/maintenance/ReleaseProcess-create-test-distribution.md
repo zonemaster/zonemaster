@@ -154,7 +154,7 @@ tarballs, zip file or Docker image:
  3. Resume this document from step 9 above.
 
 
-[Build Environment Preparation]:              ../distrib-testing/BuildEnvironmentPreparation.md
+[Build Environment Preparation]:              ../distrib-testing/README.md
 [Build environment for Node.js]:              ../distrib-testing/Ubuntu-Node.js-build-environment.md
 [Create Docker Image]:                        ReleaseProcess-create-docker-image.md
 [NVM]:                                        https://github.com/nvm-sh/nvm
