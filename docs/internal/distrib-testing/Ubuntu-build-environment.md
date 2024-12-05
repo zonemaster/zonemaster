@@ -44,7 +44,7 @@ needs for testing and releasing Zonemaster:
 1. Install dependencies and tools:
 
    ```sh
-   sudo apt-get install cpanminus gettext autoconf automake build-essential libdevel-checklib-perl libextutils-pkgconfig-perl libmime-base32-perl libmodule-install-xsutil-perl libssl-dev libtest-exception-perl libidn2-dev libtool
+   sudo apt-get install git cpanminus gettext autoconf automake build-essential libdevel-checklib-perl libextutils-pkgconfig-perl libmime-base32-perl libmodule-install-xsutil-perl libssl-dev libtest-exception-perl libidn2-dev libtool
    ```
 
 2. Clone 'develop' branch from all Zonemaster repositories except GUI:

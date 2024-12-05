@@ -8,7 +8,7 @@
   * [Installation on FreeBSD](#installation-on-freebsd)
 * [Post-installation sanity check](#post-installation-sanity-check)
 * [Troubleshooting installation](#troubleshooting-installation)
-* [Global cache (experimental feature)](#global-cache-experimental-feature)
+* [Global cache](#global-cache)
 * [What to do next](#what-to-do-next)
 
 
@@ -168,11 +168,11 @@ installation above but without the `--notest` and with the `--verbose` option.
 Installation will take longer time.
 
 
-## Global cache (experimental feature)
+## Global cache
 
-Global cache is an experimental feature that can be enabled in Zonemaster-Engine
-and that can increase the performance when many tests are run within a short time
-frame. See [global cache configuration].
+Global cache is a feature that can be enabled in Zonemaster-Engine and consists
+in a shared, persistent cache. It can increase the performance when many tests
+are run within a short time frame. See [global cache configuration].
 
 
 ## What to do next
