@@ -11,9 +11,9 @@ and processor architecture listed below.
 
 * [Debian] 12
 * [Docker]
-* [FreeBSD] 14.1
-* [Rocky Linux] 8.10
-* [Rocky Linux] 9.4
+* [FreeBSD] 14
+* [Rocky Linux] 8
+* [Rocky Linux] 9
 * [Ubuntu] 20.04
 * [Ubuntu] 22.04
 * [Ubuntu] 24.04
@@ -36,14 +36,14 @@ at large cloud providers.
 
 Operating System | MariaDB | PostgreSQL
 ---------------- | --------| ---------------
-Debian 12        | 10.11   | 15.6
+Debian 12        | 10.11   | 15
 Docker           | n/a     | n/a
-FreeBSD 14.1     | 8.0 (*) | 15.7
-Rocky Linux 8.10 | 10.3    | 10.23
-Rocky Linux 9.4  | 10.5    | 13.14
-Ubuntu 20.04     | 10.3    | 12.18
-Ubuntu 22.04     | 10.6    | 14.12
-Ubuntu 24.04     | 10.11   | 16.3
+FreeBSD 14       | 8.0 (*) | 16
+Rocky Linux 8    | 10.3    | 10
+Rocky Linux 9    | 10.5    | 13
+Ubuntu 20.04     | 10.3    | 12
+Ubuntu 22.04     | 10.6    | 14
+Ubuntu 24.04     | 10.11   | 16
 
 * (*) FreeBSD uses MySQL, not MariaDB.
 * SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
@@ -60,9 +60,9 @@ Operating System | Perl
 ---------------- | ----
 Debian 12        | 5.36
 Docker           | (*)
-FreeBSD 14.1     | 5.36
-Rocky Linux 8.10 | 5.26
-Rocky Linux 9.4  | 5.32
+FreeBSD 14       | 5.36
+Rocky Linux 8    | 5.26
+Rocky Linux 9    | 5.32
 Ubuntu 20.04     | 5.30
 Ubuntu 22.04     | 5.34
 Ubuntu 24.04     | 5.38
