@@ -1,6 +1,61 @@
 Release history of Zonemaster
 
 
+v2024.2 2024-12-09
+
+ [Release information]
+ - Translations have not been fully updated in this release. They will
+   be updated in an upcoming extra release.
+
+ [Breaking changes]
+ - Refactors ASNLookup code in Zonemaster-Engine
+
+ [Features]
+ - Updates global cache documentationand makes the feature being supported
+   and not experimental (#1327, #1303). Also see Zonemaster-Engine
+ - Updates or adds specification of test cases or test scenarios for test
+   cases Connectivity04 (#1311, #1299, #1298). Also see Zonemaster-Engine
+   for updates implementation
+ - Updates specification of test case Connectivity03 (#1297). Also see
+   Zonemaster-Engine for updated implementation
+ - Updates or adds specification of test cases or test scenarios for test
+   cases DNSSEC10 (#1294, #1179). Also see Zonemaster-Engine for updated
+   implementation
+ - Corrects display when running 'zonemaster-cli'. See Zonemaster-CLI
+ - Makes utilities zmb() and zmtest supported. See Zonemaster-Backend
+ - Rebuild Zonemaster-GUI distribution package to remove potential
+   vulnerabilities. See Zonemaster-GUI
+
+ [Fixes]
+ - Updates installation instructions (#1334, #1332, #1330, #1322, #1321,
+   #1314, #1307)
+ - Updates translations instructions (#1320)
+ - Updates general documents (#1319, #1318, #1317, #1316)
+ - Updates usage document for CLI (#1309)
+ - Adds specification of test scenarios for test cases Delegation01,
+   Delegation02 and Delegation03 (#1305)
+ - Removes unimplemented test case Nameserver14 (#1300)
+ - Updates and adds usage document for Backend and batch testing (#1310, #1303)
+ - Updates or adds specification of MethodsV2 (shared between test cases)
+   or test scenarios for MethodsV2 (#1290, #1287, #1254)
+ - Corrects spelling i various documents (external controbution from @jsoref)
+   (#1278)
+ - Adds specification of test scenarios for the CNAME function in Recursor.pm
+   in Engine (#1220)
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components. For
+   each component, see its Changes file or Github release notes for complete
+   release information.
+
+   Zonemaster-LDNS      v4.1.0  https://github.com/zonemaster/zonemaster-ldns/releases/tag/v4.1.0
+   Zonemaster-Engine    v7.0.0  https://github.com/zonemaster/zonemaster-engine/releases/tag/v7.0.0
+   Zonemaster-CLI       v7.1.0  https://github.com/zonemaster/zonemaster-cli/releases/tag/v7.1.0
+   Zonemaster-Backend  v11.3.0  https://github.com/zonemaster/zonemaster-backend/releases/tag/v11.3.0
+   Zonemaster-GUI       v4.3.1  https://github.com/zonemaster/zonemaster-gui/releases/tag/v4.3.1
+
+
+
 v2024.1 2024-07-01
 
  [Release information]
