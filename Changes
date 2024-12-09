@@ -11,15 +11,15 @@ v2024.2 2024-12-09
  - Refactors ASNLookup code in Zonemaster-Engine
 
  [Features]
- - Updates global cache documentationand makes the feature being supported
+ - Updates global cache documentation and makes the feature being supported
    and not experimental (#1327, #1303). Also see Zonemaster-Engine
  - Updates or adds specification of test cases or test scenarios for test
-   cases Connectivity04 (#1311, #1299, #1298). Also see Zonemaster-Engine
-   for updates implementation
+   case Connectivity04 (#1311, #1299, #1298). Also see Zonemaster-Engine
+   for updated implementation
  - Updates specification of test case Connectivity03 (#1297). Also see
    Zonemaster-Engine for updated implementation
  - Updates or adds specification of test cases or test scenarios for test
-   cases DNSSEC10 (#1294, #1179). Also see Zonemaster-Engine for updated
+   case DNSSEC10 (#1294, #1179). Also see Zonemaster-Engine for updated
    implementation
  - Corrects display when running 'zonemaster-cli'. See Zonemaster-CLI
  - Makes utilities zmb() and zmtest supported. See Zonemaster-Backend
@@ -40,7 +40,7 @@ v2024.2 2024-12-09
    or test scenarios for MethodsV2 (#1290, #1287, #1254)
  - Corrects spelling in various documents (external contribution from @jsoref)
    (#1278)
- - Adds specification of test scenarios for the CNAME function in Recursor.pm
+ - Adds specification of test scenarios for the CNAME function in recursive lookups
    in Engine (#1220)
 
  [Zonemaster product]
