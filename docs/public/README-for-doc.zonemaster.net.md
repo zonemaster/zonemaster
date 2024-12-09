@@ -50,4 +50,4 @@ The public documentation is divided into the following main categories:
 [Zonemaster.net]:                                   https://zonemaster.net
 
 <!-- Location on doc.zonemaster.net: --> 
-[Zonemaster-logo]:                                  ../zonemaster_logo_2021_color.png)
+[Zonemaster-logo]:                                  ../zonemaster_logo_2021_color.png
