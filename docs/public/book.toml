@@ -14,4 +14,4 @@ level = 1
 [preprocessor.index]
 
 [output.linkcheck]
-follow-web-links = true
+follow-web-links = false

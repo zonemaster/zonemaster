@@ -9,7 +9,7 @@
 * [Default handling of a *DNS Response*](#default-handling-of-a-dns-response)
 * [Default handling of an *EDNS Response*](#default-handling-of-an-edns-response)
 * [Default handling of a *DNSSEC response*](#default-handling-of-a-dnssec-response)
-
+* [Appendix A: UDP Message size setting in EDNS][Appendix A]
 
 ## Overview
 
@@ -59,15 +59,15 @@ parameters specified below. If a *Parameter* is specified as "fixed" (with an
 A test case specification can refer to an *EDNS Query* with one or several
 changes to the *Parameters*.
 
-|Parameter             |Default value        |Fixed |Comment |
-|:---------------------|:--------------------|:-----|:-------|
-|EDNS                  | OPT record included | X    |        |
-|EDNS UDP Message size | 512                 |      |        |
-|EDNS Extended RCODE   | no                  |      |        |
-|EDNS Version          | 0                   |      |        |
-|EDNS DO flag          | unset               |      |        |
-|EDNS Z flag           | unset               |      |        |
-|EDNS0 Option          | none                |      |        |
+| Parameter             | Default value       | Fixed | Comment          |
+|:----------------------|:--------------------|:------|:-----------------|
+| EDNS                  | OPT record included | X     |                  |
+| EDNS UDP Message size | 512                 |       | See [Appendix A] |
+| EDNS Extended RCODE   | no                  |       |                  |
+| EDNS Version          | 0                   |       |                  |
+| EDNS DO flag          | unset               |       |                  |
+| EDNS Z flag           | unset               |       |                  |
+| EDNS0 Option          | none                |       |                  |
 
 
 ## Default setting in *DNSSEC Query*
@@ -79,10 +79,11 @@ parameter specified below. If a *Parameter* is specified as "fixed" (with an
 A test case specification can refer to a *DNSSEC Query* with one or several
 changes to the Parameters.
 
-|Parameter             |Default value |Fixed |Comment |
-|:---------------------|:-------------|:-----|:-------|
-|EDNS DO flag          | set          | X    |        |
-|EDNS UDP Message size | 1280         |      |        |
+| Parameter             | Default value | Fixed | Comment          |
+|:----------------------|:--------------|:------|:-----------------|
+| EDNS DO flag          | set           | X     |                  |
+| EDNS UDP Message size | 1232          |       | See [Appendix A] |
+|                       |               |       |                  |
 
 
 ## Default handling of a *DNS Response*
@@ -175,8 +176,29 @@ in the response are handled using the default handling.
 | EDNS DO flag | Take note if DO flag is missing | Further actions to be specified in the test case specification |
 
 
+## Appendix A: UDP Message size setting in EDNS
 
-[Test Cases]:                  README.md#list-of-defined-test-cases
+In non-DNSSEC messages the Zonemaster choice is to set the EDNS UDP Message size
+to 512 to prevent any firewalls from blocking a response. This guarantees
+that the response is never larger than the non-EDNS limit, assuming that
+the remote server respects the setting.
+
+In DNSSEC messages the Zonemaster choice is to set the EDNS UDP Message size to
+a value that makes fragmentation unlikely, even though fragmentation of UDP
+messages is supported. 1280 is the smallest MTU supported by IPv6. When 48 bytes
+for IPv6 and UDP headers are removed the value is 1232 bytes, which is the
+Zonemaster choice and also the recommendation in [DNS flag day 2020].
+
+At the time of writing there is an active IETF draft, not yet an RFC, that
+recommends 1400 bytes as the EDNS UDP Message size. See
+[IP Fragmentation Avoidance in DNS over UDP].
+
+Choosing a small value is permitted. It might result in more truncated responses
+and requerying over TCP.
 
 
+[Appendix A]:                                     #appendix-a-udp-message-size-setting-in-edns
+[DNS flag day 2020]:                              https://www.dnsflagday.net/2020/
+[IP Fragmentation Avoidance in DNS over UDP]:     https://datatracker.ietf.org/doc/draft-ietf-dnsop-avoid-fragmentation/
+[Test Cases]:                                     README.md#list-of-defined-test-cases
 

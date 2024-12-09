@@ -9,7 +9,7 @@ these changes.
 ## Input for change 
 
 Change requests can come from anywhere such as the users mailinglist, the
-steering committe or the development team. The change requests could be
+steering committee or the development team. The change requests could be
 classified into two broad categories:
 
 1. Minor change
@@ -23,7 +23,7 @@ subsection:
 ###  Bug Fixing 
 
 Any bug fixes, the team or any user discovers should be published in the
-Github issue tracker.
+GitHub issue tracker.
 
 Not all issues in the tracker are bugs, and not all reported bugs are
 software bugs, but can be protocol errors in DNS, or user or documentation
@@ -53,11 +53,11 @@ document for documentation on version numbers for releases.
 ## Process to implement the change
 
 Change requests can come from anywhere such as the users mailinglist, the
-steering committe or the development team. 
+steering committee or the development team. 
 
 ### Minor changes
 
-A "bug fix" or "minor change" should be added as an issue in Github. Then
+A "bug fix" or "minor change" should be added as an issue in GitHub. Then
 the person corresponding is assigned by the release manager or the person
 who has created the issue. The assigned person should then close the
 ticket within a specified time as mentioned in the "Key Performance
@@ -70,13 +70,13 @@ Any new development for Zonemaster must follow the strict process where
 there are formal requirements, specifications for implementing the
 requirements and then any design and architecture fulfilling the
 specifications, and finally the implementation and quality assurance.
-When all this is performed successully the software package is relased
+When all this is performed successfully the software package is released
 using the release process.
 
 #### Decision on discarding or including changes
 
 Whatever be the type of change request, it should go through the "Issues
-tracker" in the Github project. All requests should be promptly responded
+tracker" in the GitHub project. All requests should be promptly responded
 to, even if the decision to acknowledge the request is postponed (or)
 not taken into consideration.
 
@@ -84,7 +84,7 @@ Requirements should then be ranked in importance depending on a number of
 factors such as complexity, amount of work, risk, architectural changes,
 relevance to the product and so on.
 
-The decision to inlcude the requirement for the release during the
+The decision to include the requirement for the release during the
 maintenance period will be taken by the development team in consultation
 with the steering committee. 
 

@@ -32,7 +32,7 @@ sudo dnf -y install httpd unzip
 #### Install Zonemaster Web GUI
 
 ```sh
-curl -L -O https://github.com/zonemaster/zonemaster-gui/releases/download/v4.3.0/zonemaster_web_gui.zip
+curl -L -O https://github.com/zonemaster/zonemaster-gui/releases/download/v4.3.1/zonemaster_web_gui.zip
 sudo install -vd /var/www/html/zonemaster-web-gui
 sudo install -vd /var/log/zonemaster
 sudo unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui.zip
@@ -87,7 +87,7 @@ sudo systemctl restart apache2
 #### Install Zonemaster Web GUI
 
 ```sh
-wget https://github.com/zonemaster/zonemaster-gui/releases/download/v4.3.0/zonemaster_web_gui.zip -O zonemaster_web_gui.zip
+wget https://github.com/zonemaster/zonemaster-gui/releases/download/v4.3.1/zonemaster_web_gui.zip -O zonemaster_web_gui.zip
 sudo unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui.zip
 sudo install -vd /var/log/zonemaster
 sudo install -v /var/www/html/zonemaster-web-gui/zonemaster.conf-example /etc/apache2/sites-available/zonemaster.conf
@@ -177,7 +177,7 @@ restart Apache.
 #### Install Zonemaster Web GUI
 
 ```sh
-fetch https://github.com/zonemaster/zonemaster-gui/releases/download/v4.3.0/zonemaster_web_gui.zip
+fetch https://github.com/zonemaster/zonemaster-gui/releases/download/v4.3.1/zonemaster_web_gui.zip
 mkdir -p /var/www/html/zonemaster-web-gui
 mkdir -p /var/log/zonemaster
 unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui.zip
@@ -263,7 +263,7 @@ from wich the GUI is served.
 
 
 **NOTE:** Don't forget to apply the changes to the `index.html` and Web
-server configuration after each updates as thoses files will be overwritten.
+server configuration after each update as those files will be overwritten.
 
 
 ## Change default language

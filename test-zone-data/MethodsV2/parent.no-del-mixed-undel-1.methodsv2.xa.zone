@@ -1,0 +1,23 @@
+$ORIGIN parent.no-del-mixed-undel-1.methodsv2.xa.
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024060304      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+		NS	ns1
+		NS	ns2
+                NS      ns2.no-del-mixed-undel-1.methodsv2.xa.
+
+ns1		A	127.40.1.41
+ns1		AAAA	fda1:b2:c3:0:127:40:1:41
+ns2		A	127.40.1.42
+ns2		AAAA	fda1:b2:c3:0:127:40:1:42
+
+; No child
+
+; EOF
+

@@ -40,7 +40,7 @@ that algorithm for the three selected RRsets.
 It is assumed that *Child Zone* is also tested by [Connectivity01], [DNSSEC08] and
 [DNSSEC09]. Issues covered by [Connectivity01] (basic name server issues), [DNSSEC08]
 (signing of DNSKEY RRset) and [DNSSEC09] (signing of SOA RRset) will not result
-in messagess from this test case.
+in messages from this test case.
 
 
 ## Inputs

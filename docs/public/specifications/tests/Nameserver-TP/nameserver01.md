@@ -70,7 +70,7 @@ result of any test using this transport protocol. Log a message reporting
 on the ignored result.
 
 The domain names used in the queries are selected to be almost certainly 
-non-existent name since the names are chosen to violate the 
+nonexistent name since the names are chosen to violate the 
 [IDNA 2008 specification] under SLDs (second-level domains) expected to 
 respect that specification. The SLDs are selected so that the chance that 
 they are all hosted on the same servers is low.

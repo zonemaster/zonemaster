@@ -1,5 +1,8 @@
 # Contact and Mailing lists
 
+An [open discussion forum] can be found at Github. You are welcome to ask your
+question there or join the mailing list and ask it there.
+
 ## Mailing lists
 
 The Zonemaster project offer two public mailing lists with
@@ -53,19 +56,27 @@ to hear from you.
 ## Contacting the Zonemaster project
 
 The best way to contact the Zonemaster project, besides using the
-mailing list, is to create an issue in the Github issue tracker
+mailing list, is to create an issue in the GitHub issue tracker
 for the Zonemaster repositories. That could be pure questions, but also
 bug reports or suggestions for improvements.
 
-* [Issues in Zonemaster::LDNS](https://github.com/zonemaster/zonemaster-ldns/issues)
-* [Issues in Zonemaster::Engine](https://github.com/zonemaster/zonemaster-engine/issues)
-* [Issues in Zonemaster::CLI](https://github.com/zonemaster/zonemaster-cli/issues)
-* [Issues in Zonemaster::Backend](https://github.com/zonemaster/zonemaster-backend/issues)
-* [Issues in zonemaster::GUI](https://github.com/zonemaster/zonemaster-gui/issues)
+* [Issues in Zonemaster::LDNS]
+* [Issues in Zonemaster::Engine]
+* [Issues in Zonemaster::CLI]
+* [Issues in Zonemaster::Backend]
+* [Issues in zonemaster::GUI]
 
 If you cannot determine which repository to create the issue in, please
 select the main Zonemaster repository (i.e.
-[general issues in Zonemaster](https://github.com/zonemaster/zonemaster/issues)).
+[general issues in Zonemaster][Issues in Zonemaster]).
 
 If you cannot use any of the methods above, due to the subject matter, please
 send an e-mail to zonemaster@zonemaster.net.
+
+[Issues in Zonemaster::Backend]:     https://github.com/zonemaster/zonemaster-backend/issues
+[Issues in Zonemaster::CLI]:         https://github.com/zonemaster/zonemaster-cli/issues
+[Issues in Zonemaster::Engine]:      https://github.com/zonemaster/zonemaster-engine/issues
+[Issues in Zonemaster::LDNS]:        https://github.com/zonemaster/zonemaster-ldns/issues
+[Issues in Zonemaster]:              https://github.com/zonemaster/zonemaster/issues
+[Issues in zonemaster::GUI]:         https://github.com/zonemaster/zonemaster-gui/issues
+[Open discussion forum]:             https://github.com/orgs/zonemaster/discussions

@@ -3,7 +3,7 @@
 ## Table of contents
 * [Overview]
 * [Software preparation]
-* [Github preparation]
+* [GitHub preparation]
 * [Tools]
 * [Clone preparation]
 * [Translation steps]
@@ -32,11 +32,10 @@ third part is the *msgstr* which is the translated text. The task of the
 translator is to create and update *msgstr*.
 
 In many *msgid* there is one or several arguments within `{...}`, e.g.
-`{ns_ip_list}`. Currently these arguments are only found in messages in
-Zonemaster-Engine. The same arguments must be found in *msgid* and *msgstr*. The
+`{ns_ip_list}`. The same arguments must be found in *msgid* and *msgstr*. The
 value of the argument will be inserted at run time. The format of that value
-depends on the argument name, and a specification for arguments used in
-Zonemaster-Engine can be found in "[Arguments for test case messages]".
+depends on the argument name, and a specification for arguments used, mainly in
+Zonemaster-Engine, can be found in [Arguments for test case messages].
 
 ## Software preparation
 
@@ -73,22 +72,23 @@ but you will have to find instructions elsewhere.
   apt install gettext git make liblocale-po-perl
   ```
 
-## Github preparation
+## GitHub preparation
 
-For full integration with Zonemaster translation you need a Github account
+For full integration with Zonemaster translation you need a GitHub account
 and forks of the Zonemaster repositories. If you do not have one you can easily
-[create an account at Github][Github signup]. If you are not willing to create
+[create an account at GitHub][GitHub signup]. If you are not willing to create
 one, contact the Zonemaster work group for instructions by sending an email to
 "zonemaster@zonemaster.net".
 
 To create the forks of the Zonemaster repositories
-1. Go to [Github] and log in with your account.
+1. Go to [GitHub] and log in with your account.
 2. Go to the [Zonemaster-Engine repository].
 3. Press "Fork" in the top right corner (see "[Forking a repository]").
-4. Also fork the [Zonemaster-CLI repository] and the
-   [Zonemaster-Backend repository].
+4. Repeat steps 2 and 3 for the the following repositories:
+   * [Zonemaster-CLI repository]
+   * [Zonemaster-Backend repository]
 
-Make sure that your public *ssh* key is uploaded to Github
+Make sure that your public *ssh* key is uploaded to GitHub
 (see "[Adding a new SSH key to your GitHub account]") and that its private key
 is available on the computer you are going to work from.
 
@@ -114,29 +114,53 @@ handled as a database instead of as a plain file.
 ## Clone preparation
 
 You need a local clone of the repository to work in (see
-"[Cloning a repository]"). You need that for all three repositories
-(Zonemaster-Engine, Zonemaster-CLI and Zonemaster-Backend). Here we use
-Zonemaster-Engine as an example. You do the exact same steps for the other
-two repositories.
+"[Cloning a repository]"). You need that for all repositories with messages to
+translate -- Zonemaster-Engine, Zonemaster-CLI and Zonemaster-Backend. (For
+Zonemaster-GUI see [Zonemaster GUI translation guide].)
 
-* Clone the Zonemaster-Engine repository, unless you already have a clone that
-  you could reuse:
+Here it is assumed that the three repositories are cloned from the same
+directory, i.e. all three clones are sub-directories to the same directory.
+
+* If you use "old" clones, instead of creating them afresh, then you must do the
+  following (if there is no `develop` branch, checkout `origin/develop` and skip
+  `pull`).
+
   ```
-  git clone https://github.com/zonemaster/zonemaster-engine.git
+  git fetch --all
+  git checkout develop
+  git pull
   ```
 
-* Enter the directory of the clone and make sure it is fully updated.
+* Clone the three repositories:
+  ```sh
+  git clone https://github.com/zonemaster/zonemaster-engine
+  git clone https://github.com/zonemaster/zonemaster-cli
+  git clone https://github.com/zonemaster/zonemaster-backend
+  ```
+
+* Check out `origin/develop` branch in the three repositories:
+  ```sh
+  git -C zonemaster-engine checkout origin/develop
+  git -C zonemaster-cli checkout origin/develop
+  git -C zonemaster-backend checkout origin/develop
+  ```
+
+You must always start from `develop` branch (or `origin/develop` branch) and any
+`develop` branch must be even with `origin/develop`.
+
+Now it is time to connect your own forks created in [GitHub preparation] above
+to the created clones. We take *Zonemaster-Engine* as an example, but should be
+repeated for all clones.
+
+* You have a user name at GitHub. Here we use "xxxx" as your user name and also
+  the name of the remote in clone on the local machine.
+* Enter the clone:
   ```
   cd zonemaster-engine
-  git fetch --all
   ```
 
-* Now it is time to connect your own fork of *Zonemaster-Engine* at Github to
-  the created clone, unless you have alreday done that, in case you can skip the
-  next step.
-
-* You have a user name at Github. Here we use "xxxx" as your user name and also
-  the name of the remote in clone on the local machine.
+* Create the connection to your fork by making it "remote" and synchronize to
+  it:
   ```
   git remote add xxxx git@github.com:xxxx/zonemaster-engine.git
   git fetch --all
@@ -150,6 +174,18 @@ Now you should have updated local clones of all three repositories.
 The steps in this section will cover most translation work. The steps are the
 same for all three repositories.
 
+* Make sure that the working tree is clean. Remove all other files and updates.
+  If you have edited your PO file, then make a copy of it outside the repository.
+  ```
+  git clean -dfx
+  git reset --hard
+  ```
+
+* The following command should report that the working tree is clean.
+  ```
+  git status --ignored
+  ```
+
 * Check-out the *develop* branch and create a new branch to work in. You can call
   the new branch whatever you want, but here we use the name
   "translation-update". If that name is already taken, you have to give it a new
@@ -158,26 +194,24 @@ same for all three repositories.
   git checkout origin/develop
   git checkout -b translation-update
   ```
-* Make sure that the working tree is clean. Remove all other files and updates.
-  ```
-  git clean -dfx
-  git reset --hard
-  ```
-* The following command should report that the working tree is clean.
-  ```
-  git status --ignored
-  ```
+
 * Go to the *share* directory. Stay in the *share* directory for the remaining
   translation steps.
   ```
   cd share
   ```
+
+* If you have a partly edited PO file that you want to continue on, then it is
+  time to copy it back into the `share` directory before the next step. Or use
+  the PO file already in the `share` directory.
+
 * Run the update command for the PO file for the language you are going to work
   with. Replace "xx" with the language code in question. This will synchronize
   the PO file with the *msgids* in the Perl code.
   ```
   ./update-po xx.po
   ```
+
 * The PO file is updated with new *msgids*, if any, and now you can start
   working with it. Unless this is the first translation you only have to work
   with updated or untranslated items.
@@ -195,6 +229,12 @@ same for all three repositories.
   * If you find a *msgid* that needs an update please see section
     [Updates to msgids] for how to report it.
 
+* If there is a `{...}` in the *msgid* then [Arguments for test case messages]
+  will help with the type of data if not obvious.
+
+* Try to translate as close to the original as possible, but still make sure
+  that the language is sound and valid.
+
 * Inspect every *fuzzy entry* (tagged with "fuzzy"). Update *msgstr*
   if needed and remove the "fuzzy" tag. The "fuzzy" tag must always be removed.
 
@@ -208,15 +248,14 @@ same for all three repositories.
 * Any remaining *obsolete entries* (lines at the end of the file starting
   with "#~") could be removed. They serve no purpose anymore.
 
-* *This step is for Zonemaster-Engine only and will only work there.* With the
-  following command, check that the messages arguments (`{...}`) in all *msgstr*
-  strings match up with those in the *msgid* strings.
+* With the following command, check that the messages arguments (`{...}`) in all
+  *msgstr* strings match up with those in the *msgid* strings.
   ```
-  ../util/check-msg-args xx.po
+  ../../zonemaster-engine/util/check-msg-args xx.po
   ```
 
 * When the update of all *msgstr* is complete run the `tidy-po` command to
-  create a consistent formatation of the PO file. Do this again if you do
+  create a consistent formatting of the PO file. Do this again if you do
   further updates.
 
   ```
@@ -253,16 +292,16 @@ same for all three repositories.
   rm FILENAME
   ```
 
-* Now push the local branch you created to your fork at Github.
+* Now push the local branch you created to your fork at GitHub.
   "translation-update" is name of the branch you created above and
-  have committed the updates to. Use your Github user name instead of
+  have committed the updates to. Use your GitHub user name instead of
   "xxxx".
   ```
   git push -u xxxx translation-update
   ```
 
-* Go to your fork collection at Github, https://github.com/xxxx/ using your
-  Github user name instead of "xxxx". There you can select the fork for this
+* Go to your fork collection at GitHub, https://github.com/xxxx/ using your
+  GitHub user name instead of "xxxx". There you can select the fork for this
   translation.
 
 * Select to create a new pull request. Here we use Zonemaster-Engine as an
@@ -273,7 +312,7 @@ same for all three repositories.
   * The "compare" should be the same branch as you created above and pushed to
     your fork, e.g. "translation-update".
 
-* Inspect what Github says that will change by the pull request. It should
+* Inspect what GitHub says that will change by the pull request. It should
   only be the PO file that you have updated and nothing else. If additional
   files are listed, please correct or request for help.
 
@@ -289,7 +328,7 @@ same for all three repositories.
 * If you go back to your own computer and just keep the clone as it is, you
   can easily update the pull request if needed with more changes to the same
   PO file. When the pull request has been merged by the Zonemaster work group,
-  you can delete the local clone and on your Github fork you can remove the
+  you can delete the local clone and on your GitHub fork you can remove the
   branch. Or keep them for next time.
 
 
@@ -304,7 +343,7 @@ preferred way is to create an issue in the relevant repository.
 * Message *(msgid)* in Zonemaster-Backend: [issue][new issue zonemaster-backend]
 
 If the message is in Zonemaster-Engine then include the message tag found in the
-header, e.g. "BASIC:NO_PARENT", in the issue decription. Also include the *msgid*
+header, e.g. "BASIC:NO_PARENT", in the issue description. Also include the *msgid*
 as it is now and a suggestion for new wording.
 
 
@@ -361,7 +400,7 @@ If you do want to generate it, the command is `make extract-pot`.
 
 The translated strings are maintained in files named "<LANG-CODE>.po". You will
 find the current PO files in the "share" directories listed in the "[Overview]"
-section. Translation and the languages are also presentated in the main [README]
+section. Translation and the languages are also presented in the main [README]
 document.
 
 The command `./update-po` will update the PO file with new message ids (*msgid*)
@@ -393,9 +432,9 @@ make update-po MSGMERGE_OPTS=--no-fuzzy-matching
 [GNOME Translation Editor]:                    https://wiki.gnome.org/Apps/Gtranslator
 [GNU Emacs]:                                   https://www.gnu.org/software/emacs/
 [Gettext system]:                              https://www.gnu.org/software/gettext/
-[Github preparation]:                          #github-preparation
-[Github signup]:                               https://github.com/signup
-[Github]:                                      https://github.com/
+[GitHub preparation]:                          #github-preparation
+[GitHub signup]:                               https://github.com/signup
+[GitHub]:                                      https://github.com/
 [ISO 639-1]:                                   https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 [New issue zonemaster-backend]:                https://github.com/zonemaster/zonemaster-backend/issues/new
 [New issue zonemaster-cli]:                    https://github.com/zonemaster/zonemaster-cli/issues/new
