@@ -38,7 +38,7 @@ v2024.2 2024-12-09
  - Updates and adds usage document for Backend and batch testing (#1310, #1303)
  - Updates or adds specification of MethodsV2 (shared between test cases)
    or test scenarios for MethodsV2 (#1290, #1287, #1254)
- - Corrects spelling i various documents (external controbution from @jsoref)
+ - Corrects spelling in various documents (external contribution from @jsoref)
    (#1278)
  - Adds specification of test scenarios for the CNAME function in Recursor.pm
    in Engine (#1220)
