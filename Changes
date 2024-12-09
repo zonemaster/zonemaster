@@ -27,8 +27,8 @@ v2024.2 2024-12-09
    vulnerabilities. See Zonemaster-GUI
 
  [Fixes]
- - Updates installation instructions (#1334, #1332, #1330, #1322, #1321,
-   #1314, #1307)
+ - Updates installation instructions (#1334, #1332, #1330, #1331, #1322,
+   #1321, #1314, #1307)
  - Updates translations instructions (#1320)
  - Updates general documents (#1319, #1318, #1317, #1316)
  - Updates usage document for CLI (#1309)

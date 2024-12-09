@@ -16,7 +16,7 @@
  - Rebuild [Zonemaster-GUI] distribution package to remove potential vulnerabilities. See [Zonemaster-GUI release notes][gui-tag]
 
 ### \[Fixes\]
- - Updates installation instructions ([#1334], [#1332], [#1330], [#1322], [#1321], [#1314], [#1307])
+ - Updates installation instructions ([#1334], [#1332], [#1330], [#1331], [#1322], [#1321], [#1314], [#1307])
  - Updates translations instructions ([#1320])
  - Updates general documents ([#1319], [#1318], [#1317], [#1316])
  - Updates usage document for CLI ([#1309])
@@ -90,5 +90,6 @@ For more information on previous versions of the Zonemaster product see the [Cha
 [#1322]:    https://github.com/zonemaster/zonemaster/pull/1322
 [#1327]:    https://github.com/zonemaster/zonemaster/pull/1327
 [#1330]:    https://github.com/zonemaster/zonemaster/pull/1330
+[#1331]:    https://github.com/zonemaster/zonemaster/pull/1331
 [#1332]:    https://github.com/zonemaster/zonemaster/pull/1332
 [#1334]:    https://github.com/zonemaster/zonemaster/pull/1334
