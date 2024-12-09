@@ -2,6 +2,7 @@
  https://rust-lang.github.io/mdBook/format/summary.html -->
 # Documents in public document tree
 
+- [Zonemaster documentation](README-for-doc.zonemaster.net.md)
 - [Release information](RELEASE.md)
 - [Installation](installation/README.md)
     - [Prerequisites](installation/prerequisites.md)
