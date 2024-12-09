@@ -233,6 +233,7 @@ find out what languages that are available, run `zmb get_language_tags | jq`.
     "fi",
     "fr",
     "nb",
+    "sl",
     "sv"
   ]
 }

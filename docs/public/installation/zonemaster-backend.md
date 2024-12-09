@@ -208,7 +208,7 @@ See the [post-installation] section for post-installation matters.
 Install required locales:
 
 ```sh
-sudo perl -pi -e 's/^# (da_DK\.UTF-8.*|en_US\.UTF-8.*|es_ES\.UTF-8.*|fi_FI\.UTF-8.*|fr_FR\.UTF-8.*|nb_NO\.UTF-8.*|sv_SE\.UTF-8.*)/$1/' /etc/locale.gen
+sudo perl -pi -e 's/^# (da_DK\.UTF-8.*|en_US\.UTF-8.*|es_ES\.UTF-8.*|fi_FI\.UTF-8.*|fr_FR\.UTF-8.*|nb_NO\.UTF-8.*|sl_SI\.UTF-8.*|sv_SE\.UTF-8.*)/$1/' /etc/locale.gen
 sudo locale-gen
 ```
 
@@ -220,6 +220,7 @@ es_ES.utf8
 fi_FI.utf8
 fr_FR.utf8
 nb_NO.utf8
+sl_SI.utf8
 sv_SE.utf8
 ```
 

@@ -235,6 +235,7 @@ Spanish  | es
 Finnish  | fi
 French   | fr
 Norwegian| nb
+Slovenian| sl
 Swedish  | sv
 
 
@@ -467,6 +468,7 @@ Example response:
     "fi",
     "fr",
     "nb",
+    "sl",
     "sv"
   ]
 }

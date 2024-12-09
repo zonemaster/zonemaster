@@ -247,12 +247,13 @@ Spanish  | es_ES            | es            | es_ES.UTF-8
 Finnish  | fi_FI            | fi            | fi_FI.UTF-8
 French   | fr_FR            | fr            | fr_FR.UTF-8
 Norwegian| nb_NO            | nb            | nb_NO.UTF-8
+Slovenian| sl_SI            | sl            | sl_SI.UTF-8
 Swedish  | sv_SE            | sv            | sv_SE.UTF-8
 
 Setting in the default configuration file:
 
 ```
-locale = da_DK en_US es_ES fi_FI fr_FR nb_NO sv_SE
+locale = da_DK en_US es_ES fi_FI fr_FR nb_NO sl_SI sv_SE
 ```
 
 #### Installation considerations
