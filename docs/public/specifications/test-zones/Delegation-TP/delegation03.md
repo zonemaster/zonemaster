@@ -40,7 +40,7 @@ scenario. The names of those zones are given in section
 ## All message tags
 
 The test case can output any of these message tags, but not necessarily in any
-combination. See [Delegation01] for the specification of the tags.
+combination. See [Delegation03] for the specification of the tags.
 
 * REFERRAL_SIZE_OK
 * REFERRAL_SIZE_TOO_LARGE
