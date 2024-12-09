@@ -2,6 +2,7 @@
 
 ### \[Release information\]
  - Translations have not been fully updated in this release. They will be updated in an upcoming extra release.
+ - By this release the user documentation is also published on <https://doc.zonemaster.net/>.
 
 ### \[Breaking changes\]
  - Refactors ASNLookup code in [Zonemaster-Engine][engine-tag]
