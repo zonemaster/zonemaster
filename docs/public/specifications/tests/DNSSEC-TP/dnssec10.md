@@ -168,45 +168,46 @@ A complete list of all DNS Resource Record types can be found in the
     2.  Name server IP address ("Erroneous Multiple NSEC").
     3.  Name server IP address ("Erroneous Multiple NSEC3").
     4.  Name server IP address ("Erroneous Multiple NSEC3PARAM").
-    5.  Name server IP address ("NSEC In Answer").
-    6.  Name server IP address ("NSEC Incorrect Type List").
-    7.  Name server IP address ("NSEC Mismatches Apex").
-    8.  Name server IP address ("NSEC Missing Signature").
-    9.  Name server IP address and owner name (domain name data)
+    5.  Name server IP address ("Ignored NS IP").
+    6.  Name server IP address ("NSEC In Answer").
+    7.  Name server IP address ("NSEC Incorrect Type List").
+    8.  Name server IP address ("NSEC Mismatches Apex").
+    9.  Name server IP address ("NSEC Missing Signature").
+    10. Name server IP address and owner name (domain name data)
         ("NSEC NODATA Wrong SOA").
-    10. Name server IP address ("NSEC NODATA Missing SOA").
-    11. Name server IP address ("NSEC Query Gives Erroneous Answer").
-    12. Name server IP address ("NSEC Query Gives NSEC3 NODATA").
-    13. Name server IP address and key tag ("NSEC RRSIG Verify Error").
-    14. Name server IP address and key tag ("NSEC RRSIG Expired").
-    15. Name server IP address and key tag ("NSEC RRSIG Not Yet Valid").
-    16. Name server IP address and key tag ("NSEC RRSIG No DNSKEY").
-    17. Name server IP address ("NSEC RRSIG Verified").
-    18. Name server IP address ("NSEC Query Response Error").
-    19. Name server IP address ("NSEC3 Incorrect Type List").
-    20. Name server IP address ("NSEC3 Mismatches Apex").
-    21. Name server IP address ("NSEC3 Missing Signature").
-    22. Name server IP address and owner name (domain name data)
+    11. Name server IP address ("NSEC NODATA Missing SOA").
+    12. Name server IP address ("NSEC Query Gives Erroneous Answer").
+    13. Name server IP address ("NSEC Query Gives NSEC3 NODATA").
+    14. Name server IP address and key tag ("NSEC RRSIG Verify Error").
+    15. Name server IP address and key tag ("NSEC RRSIG Expired").
+    16. Name server IP address and key tag ("NSEC RRSIG Not Yet Valid").
+    17. Name server IP address and key tag ("NSEC RRSIG No DNSKEY").
+    18. Name server IP address ("NSEC RRSIG Verified").
+    19. Name server IP address ("NSEC Query Response Error").
+    20. Name server IP address ("NSEC3 Incorrect Type List").
+    21. Name server IP address ("NSEC3 Mismatches Apex").
+    22. Name server IP address ("NSEC3 Missing Signature").
+    23. Name server IP address and owner name (domain name data)
         ("NSEC3 NODATA Wrong SOA").
-    23. Name server IP address ("NSEC3 NODATA Missing SOA").
-    24. Name server IP address and key tag ("NSEC3 RRSIG Verify Error").
-    25. Name server IP address and key tag ("NSEC3 RRSIG Expired").
-    26. Name server IP address and key tag ("NSEC3 RRSIG Not Yet Valid").
-    27. Name server IP address and key tag ("NSEC3 RRSIG No DNSKEY").
-    28. Name server IP address ("NSEC3 RRSIG Verified").
-    29. Name server IP address ("NSEC3PARAM In Answer").
-    30. Name server IP address ("NSEC3PARAM Mismatches Apex").
-    31. Name server IP address ("NSEC3PARAM Query Gives Erroneous Answer").
-    32. Name server IP address ("NSEC3PARAM Query Gives NSEC NODATA").
-    33. Name server IP address ("NSEC3PARAM Query Response Error").
-    34. Name server IP address ("Responds without DNSKEY").
-    35. Name server IP address ("Responds with DNSKEY").
+    24. Name server IP address ("NSEC3 NODATA Missing SOA").
+    25. Name server IP address and key tag ("NSEC3 RRSIG Verify Error").
+    26. Name server IP address and key tag ("NSEC3 RRSIG Expired").
+    27. Name server IP address and key tag ("NSEC3 RRSIG Not Yet Valid").
+    28. Name server IP address and key tag ("NSEC3 RRSIG No DNSKEY").
+    29. Name server IP address ("NSEC3 RRSIG Verified").
+    30. Name server IP address ("NSEC3PARAM In Answer").
+    31. Name server IP address ("NSEC3PARAM Mismatches Apex").
+    32. Name server IP address ("NSEC3PARAM Query Gives Erroneous Answer").
+    33. Name server IP address ("NSEC3PARAM Query Gives NSEC NODATA").
+    34. Name server IP address ("NSEC3PARAM Query Response Error").
+    35. Name server IP address ("Responds without DNSKEY").
+    36. Name server IP address ("Responds with DNSKEY").
 
 6.  For each name server IP address in *NS IP* do:
 
     1. Send *DNSKEY Query* to the name server IP.
-    2. If at least one of the following criteria is met, then go to next name
-       server IP:
+    2. Add the name server IP to the *Ignored NS IP* set and go to next name
+       server IP if at least one of the following criteria is met:
          1. There is no DNS response.
          2. The [RCODE Name] in the response is not "NoError".
          3. The AA flag is not set in the response.
@@ -514,11 +515,11 @@ A complete list of all DNS Resource Record types can be found in the
     addresses from the *Responds without DNSKEY* set.
 
 44. Extract all members of the *NS IP* set that is not also a member of
-    the *Responds without DNSKEY* set, the *NSEC In Answer* set, the
-    *NSEC3PARAM Query Gives NSEC NODATA* set, the *NSEC3PARAM In Answer* set or
-    the *NSEC Query Gives NSEC3 NODATA* set. If the extracted set is non-empty,
-    then output *[DS10_EXPECTED_NSEC_NSEC3_MISSING]* with the extracted list of
-    name server IP addresses.
+    the *Ignored NS IP* set, the *Responds without DNSKEY* set, the
+    *NSEC In Answer* set, the *NSEC3PARAM Query Gives NSEC NODATA* set, the
+    *NSEC3PARAM In Answer* set or the *NSEC Query Gives NSEC3 NODATA* set. If the
+    extracted set is non-empty, then output *[DS10_EXPECTED_NSEC_NSEC3_MISSING]*
+    with the extracted list of name server IP addresses.
 
 ## Outcome(s)
 
