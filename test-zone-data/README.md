@@ -125,7 +125,7 @@ Two terminal windows to the computer are needed.
 
 1. Change directory to where this README file is.
 2. Use `zonemaster-cli` with `--hint` and the appropriate name.root hint file.
-   Example
+   Example:
    ```
    zonemaster-cli UNEXPECTED-RCODE-MX.zone09.xa --raw  --test Zone/zone09 --hints COMMON/hintfile --level info
    ```
