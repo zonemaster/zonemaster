@@ -161,7 +161,7 @@ this README file.
 * [main.cfg]
   * The default main `coredns` configuration file that includes all
     other data files.
-* [REAME-Bind.md]
+* [README-Bind.md]
   * Instructions for running `Bind`.
 * [set-ip.sh]
   * A script to populate the loopback based on the content of
