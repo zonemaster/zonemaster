@@ -619,6 +619,17 @@ to other names out of zone.
     and `ns4`, respectively.
   * Both names can be resolved to A and AAAA via CNAME and give correct IP.
 
+### CHILD-NS-CNAME-4
+Zone is delegated to two IB NS, where both NS names are aliases (CNAME)
+to other names in zone.
+
+* child.parent.child-ns-cname-4.methodsv2.xa
+  * Zone is delegated to `ns1-cname` and `ns2-cname` and both are aliases to
+    `ns1` and `ns2`, respectively.
+  * Both names can be resolved to A via CNAME and give correct IP.
+  * Neither name can be resolved to AAAA via CNAME.
+  * The parent zone has glue records for `ns1-cname`, but not for `ns2-cname`.
+
 ### PARENT-NS-CNAME-1
 Parent is delegated to two IB NS, where both NS names are aliases (CNAME)
 to other names in parent zone.
