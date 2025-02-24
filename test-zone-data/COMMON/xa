@@ -19,6 +19,16 @@ ns2     AAAA  fda1:b2:c3::127:2:0:12
 
 ;;;; Test case based
 
+;; Address-TP
+
+$ORIGIN address03.xa.    ; Must be FQDN
+@               NS      ns1
+@               NS      ns2
+ns1             A       127.11.3.21
+ns1             AAAA    fda1:b2:c3:0:127:11:3:21
+ns2             A       127.11.3.22
+ns2             AAAA    fda1:b2:c3:0:127:11:3:22
+
 ;; Basic-TP
 
 $ORIGIN basic01.xa.      ; Must be FQDN

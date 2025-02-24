@@ -1,0 +1,15 @@
+$ORIGIN reverse-aliases.address03.xa.            ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1.child.address03.xa. admin. (
+                2025022400      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+		NS	ns1.child.address03.xa.
+		NS	ns2.child.address03.xa.
+
+1-4-0-0         PTR     ns11.child.address03.xa.
+41              PTR     ns11.child.address03.xa.

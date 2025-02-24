@@ -192,7 +192,7 @@ data.
 
 ### Test case based test zones
 
-* Address-TP/ (*not yet available*)
+* [Address-TP/]
   * Directory structure for scenarios for test cases in the Address-TP test module.
 * [Basic-TP/]
   * Directory structure for scenarios for test cases in the Basic-TP test module.
@@ -227,6 +227,7 @@ data.
 
 
 [address-plan.md]:                                     address-plan.md
+[Address-TP/]:                                         Address-TP/
 [Basic-TP/]:                                           Basic-TP/
 [COMMON/]:                                             COMMON/
 [Consistency-TP/]:                                     Consistency-TP/
