@@ -29,6 +29,13 @@ $ORIGIN 12.0.2.127.in-addr.arpa.
 $ORIGIN 2.1.0.0.0.0.0.0.2.0.0.0.7.2.1.0.0.0.0.0.3.c.0.0.2.b.0.0.1.a.d.f.ip6.arpa.
 @                       PTR  ns2.xa.
 
+$ORIGIN 3.11.127.in-addr.arpa.
+@                       NS   ns1.address03.xa.
+@                       NS   ns2.address03.xa.
+$ORIGIN 3.0.0.0.1.1.0.0.7.2.1.0.0.0.0.0.3.c.0.0.2.b.0.0.1.a.d.f.ip6.arpa.
+@                       NS   ns1.address03.xa.
+@                       NS   ns2.address03.xa.
+
 $ORIGIN 21.9.19.127.in-addr.arpa.
 @                       PTR  ns1.zone09.xa.
 $ORIGIN 1.2.0.0.9.0.0.0.9.1.0.0.7.2.1.0.0.0.0.0.3.c.0.0.2.b.0.0.1.a.d.f.ip6.arpa.
