@@ -19,8 +19,8 @@ applicable.
 ## Test scenarios
 
 The purpose of the test scenarios is to cover all reasonable contexts for the
-Methods. See [Implementation of test scenarios for MethodsV2] for the
-implementation of the scenarios described in this document.
+Methods. See [the implementation of the scenarios] for the latest version of the
+implementation of the MethodsV2 scenarios.
 
 
 ## Public methods
@@ -650,9 +650,12 @@ to other names out of zone.
   * Both names can be resolved to A and AAAA via CNAME and give correct IP.
 
 
+<!-- Links to documents in this repository but outside the public tree must be
+absolute -->
+
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [Test zone README file]:                                          ../../README.md
 [Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios
 [MethodsV2]:                                                      ../../tests/MethodsV2.md 
 [Get parent NS IP addresses]:                                     ../../tests/MethodsV2.md#method-get-parent-ns-ip-addresses
-[Implementation of test scenarios for MethodsV2]:                 https://github.com/matsduf/zonemaster/blob/master/test-zone-data/MethodsV2/README.md
+[the implementation of the scenarios]:                            https://github.com/zonemaster/zonemaster/blob/master/test-zone-data/MethodsV2/README.md
