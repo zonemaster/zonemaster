@@ -2,7 +2,7 @@
  https://rust-lang.github.io/mdBook/format/summary.html -->
 # Documents in public document tree
 
-- [Introduction](README.md)
+- [Overview](README.md)
 - [Release information](RELEASE.md)
 - [Installation](installation/README.md)
     - [Prerequisites](installation/prerequisites.md)
