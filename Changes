@@ -1,6 +1,36 @@
 Release history of Zonemaster
 
 
+v2024.2.1 2025-03-04
+
+ [Release information]
+ - Translations have not been fully updated in this release. They will
+   be updated in an upcoming extra release.
+
+ [Features]
+- Adds Slovenian translation (#1333). Also see Zonemaster-Engine, Zonemaster-CLI,
+  Zonemaster-Backend and Zonemaster-GUI.
+
+ [Fixes]
+- Fixes typo in documentation (#1347)
+- Adjusts test case DNSSEC10 specification (#1341)
+- Updates translations, see Zonemaster-Engine, Zonemaster-CLI, Zonemaster-Backend
+  and Zonemaster-GUI.
+- Corrects bugs, see Zonemaster-Engine.
+
+
+ [Zonemaster product]
+ - This version of Zonemaster also consists of the following components. For
+   each component, see its Changes file or Github release notes for complete
+   release information.
+
+   Zonemaster-LDNS      v4.1.0  https://github.com/zonemaster/zonemaster-ldns/releases/tag/v4.1.0
+   Zonemaster-Engine    v7.1.0  https://github.com/zonemaster/zonemaster-engine/releases/tag/v7.1.0
+   Zonemaster-CLI       v7.2.0  https://github.com/zonemaster/zonemaster-cli/releases/tag/v7.2.0
+   Zonemaster-Backend  v11.4.0  https://github.com/zonemaster/zonemaster-backend/releases/tag/v11.4.0
+   Zonemaster-GUI       v4.4.0  https://github.com/zonemaster/zonemaster-gui/releases/tag/v4.4.0
+
+
 v2024.2 2024-12-09
 
  [Release information]
@@ -55,7 +85,6 @@ v2024.2 2024-12-09
    Zonemaster-CLI       v7.1.0  https://github.com/zonemaster/zonemaster-cli/releases/tag/v7.1.0
    Zonemaster-Backend  v11.3.0  https://github.com/zonemaster/zonemaster-backend/releases/tag/v11.3.0
    Zonemaster-GUI       v4.3.1  https://github.com/zonemaster/zonemaster-gui/releases/tag/v4.3.1
-
 
 
 v2024.1 2024-07-01
