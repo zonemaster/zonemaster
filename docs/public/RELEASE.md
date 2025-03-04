@@ -9,7 +9,7 @@
 ### \[Fixes\]
 - Fixes typo in documentation ([#1347])
 - Adjusts test case DNSSEC10 specification ([#1341])
-- Updates translations of Swedish, French, Spanish and Danish, see [Zonemaster-Engine], [Zonemaster-CLI], [Zonemaster-Backend] and [Zonemaster-GUI].
+- Updates translations of Swedish, French, Spanish and Danish. See [Zonemaster-Engine], [Zonemaster-CLI], [Zonemaster-Backend] and [Zonemaster-GUI].
 - Corrects bugs, see [Zonemaster-Engine].
 
 ### \[Zonemaster product\]
