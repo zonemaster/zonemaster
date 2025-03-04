@@ -12,7 +12,7 @@ v2024.2.1 2025-03-04
   Zonemaster-Backend and Zonemaster-GUI.
 
  [Fixes]
-- Fixes typo in documentation (#1347)
+- Documentation fixes (#1338, #1347)
 - Adjusts test case DNSSEC10 specification (#1341)
 - Updates translations of Swedish, French, Spanish and Danish see Zonemaster-Engine,
   Zonemaster-CLI, Zonemaster-Backend and Zonemaster-GUI.
