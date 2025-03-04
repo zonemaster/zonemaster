@@ -14,7 +14,7 @@ v2024.2.1 2025-03-04
  [Fixes]
 - Documentation fixes (#1338, #1347)
 - Adjusts test case DNSSEC10 specification (#1341)
-- Updates translations of Swedish, French, Spanish and Danish see Zonemaster-Engine,
+- Updates translations of Swedish, French, Spanish and Danish. See Zonemaster-Engine,
   Zonemaster-CLI, Zonemaster-Backend and Zonemaster-GUI.
 - Corrects bugs, see Zonemaster-Engine.
 
