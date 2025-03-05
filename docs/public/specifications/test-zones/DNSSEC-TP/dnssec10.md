@@ -93,6 +93,7 @@ GOOD-NSEC-1                    | DS10_HAS_NSEC                                  
 GOOD-NSEC3-1                   | DS10_HAS_NSEC3                                                               | 2)
 ALGO-NOT-SUPP-BY-ZM-1          | DS10_ALGO_NOT_SUPPORTED_BY_ZM, DS10_HAS_NSEC                                 | 2)
 ALGO-NOT-SUPP-BY-ZM-2          | DS10_ALGO_NOT_SUPPORTED_BY_ZM, DS10_HAS_NSEC3                                | 2)
+BAD-SERVERS-BUT-GOOD-NSEC-1    | DS10_HAS_NSEC                                                                | 2)
 ERR-MULT-NSEC-1                | DS10_ERR_MULT_NSEC, DS10_HAS_NSEC                                            | 2)
 ERR-MULT-NSEC-2                | DS10_ERR_MULT_NSEC, DS10_HAS_NSEC                                            | 2)
 ERR-MULT-NSEC3-1               | DS10_ERR_MULT_NSEC3, DS10_HAS_NSEC3                                          | 2)
@@ -210,6 +211,17 @@ An NSEC3 zone. Unknown algorithm of a DNSKEY.
   * For this test scenario a fake signature and a fake public key are used.
   * The extra DNSKEY is in the DNSKEY RRset which is resigned by the valid
     KSK.
+
+### BAD-SERVERS-BUT-GOOD-NSEC-1
+An NSEC zone. Everything is fine except some non-responsive servers.
+
+* Zone: bad-servers-but-good-nsec-1.dnssec10.xa
+  * The child zone is delegated to ns1, ns2, ns3, ns4 and ns5, all
+    in-bailiwick with correct glue.
+  * ns1 and ns2 are correct and work as they should.
+  * ns3 does not respond on DNSKEY query.
+  * ns4 responds with REFUSED on DNSKEY query.
+  * ns5 responds with AA unset on DNSKEY query.
 
 ### ERR-MULT-NSEC-1
 An NSEC zone. An extra NSEC record is returned on the NSEC3PARAM query.

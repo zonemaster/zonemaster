@@ -165,6 +165,7 @@ fi   | Finnish
 fr   | French
 nb   | Norwegian
 es   | Spanish
+sl   | Slovenian
 sv   | Swedish
 
 E.g.:
@@ -206,6 +207,7 @@ fr_FR.UTF-8 | French
 nb_NO.UTF-8 | Norwegian
 es_ES.UTF-8 | Spanish
 sv_SE.UTF-8 | Swedish
+sl_SI.UTF-8 | Slovenian
 
 E.g.:
 ```sh

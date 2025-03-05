@@ -53,6 +53,7 @@
   * [CHILD-NS-CNAME-1](#child-ns-cname-1)
   * [CHILD-NS-CNAME-2](#child-ns-cname-2)
   * [CHILD-NS-CNAME-3](#child-ns-cname-3)
+  * [CHILD-NS-CNAME-4](#child-ns-cname-4)
   * [PARENT-NS-CNAME-1](#parent-ns-cname-1)
   * [PARENT-NS-CNAME-2](#parent-ns-cname-2)
 
@@ -1245,6 +1246,26 @@ child.parent.child-ns-cname-3.methodsv2.xa
 #### Undelegated data
   * (empty)
 
+### CHILD-NS-CNAME-4
+
+#### Zone
+
+child.parent.child-ns-cname-4.methodsv2.xa
+
+#### Methods and expected output
+* Get parent NS IP addresses
+  * 127.40.1.41
+  * fda1:b2:c3:0:127:40:1:41
+  * 127.40.1.42
+  * fda1:b2:c3:0:127:40:1:42
+* Get delegation NS names and IP addresses
+  * ns1-cname.child.parent.child-ns-cname-4.methodsv2.xa/127.40.1.51
+* Get zone NS names and IP addresses
+  * ns1-cname.child.parent.child-ns-cname-4.methodsv2.xa/127.40.1.51
+  * ns2-cname.child.parent.child-ns-cname-4.methodsv2.xa/127.40.1.52
+
+#### Undelegated data
+  * (empty)
 
 ### PARENT-NS-CNAME-1
 

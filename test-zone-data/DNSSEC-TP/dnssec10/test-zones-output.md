@@ -5,6 +5,7 @@
 * [All message tags](#all-message-tags)
 * [All scenarios](#all-scenarios)
 * [zonemaster-cli commands and their output for each test scenario](#zonemaster-cli-commands-and-their-output-for-each-test-scenario)
+* [zonemaster-cli commands and special run of some test scenarios](#zonemaster-cli-commands-and-special-run-of-some-test-scenarios)
 
 ## Introduction
 
@@ -67,6 +68,7 @@ GOOD-NSEC-1                    | good-nsec-1.dnssec10.xa
 GOOD-NSEC3-1                   | good-nsec3-1.dnssec10.xa
 ALGO-NOT-SUPP-BY-ZM-1          | algo-not-supp-by-zm-1.dnssec10.xa
 ALGO-NOT-SUPP-BY-ZM-2          | algo-not-supp-by-zm-2.dnssec10.xa
+BAD-SERVERS-BUT-GOOD-NSEC-1    | bad-servers-but-good-nsec-1.dnssec10.xa
 ERR-MULT-NSEC-1                | err-mult-nsec-1.dnssec10.xa
 ERR-MULT-NSEC-2                | err-mult-nsec-2.dnssec10.xa
 ERR-MULT-NSEC3-1               | err-mult-nsec3-1.dnssec10.xa
@@ -155,6 +157,17 @@ $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMM
    0.20 NOTICE   DNSSEC10       DS10_ALGO_NOT_SUPPORTED_BY_ZM  algo_mnemo=; algo_num=255; keytag=4848; ns_ip_list=ns1.algo-not-supp-by-zm-1.dnssec10.xa/127.15.10.31;ns1.algo-not-supp-by-zm-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.algo-not-supp-by-zm-1.dnssec10.xa/127.15.10.32;ns2.algo-not-supp-by-zm-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
 ```
 --> OK
+
+Scenario name                  | Mandatory message tag                                                        | Forbidden message tags
+:------------------------------|:-----------------------------------------------------------------------------|:--------------------
+BAD-SERVERS-BUT-GOOD-NSEC-1    | DS10_HAS_NSEC                                                                | 2)
+```
+$ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw BAD-SERVERS-BUT-GOOD-NSEC-1.dnssec10.xa
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
+  20.19 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.bad-servers-but-good-nsec-1.dnssec10.xa/127.15.10.31;ns1.bad-servers-but-good-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.bad-servers-but-good-nsec-1.dnssec10.xa/127.15.10.32;ns2.bad-servers-but-good-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+  20.20 ERROR    DNSSEC10       DS10_EXPECTED_NSEC_NSEC3_MISSING  ns_list=ns3.bad-servers-but-good-nsec-1.dnssec10.xa/127.15.10.33;ns3.bad-servers-but-good-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:33;ns4.bad-servers-but-good-nsec-1.dnssec10.xa/127.15.10.34;ns4.bad-servers-but-good-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:34;ns5.bad-servers-but-good-nsec-1.dnssec10.xa/127.15.10.35;ns5.bad-servers-but-good-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:35
+```
+--> Not OK
 
 Scenario name                  | Mandatory message tag                                                        | Forbidden message tags
 :------------------------------|:-----------------------------------------------------------------------------|:--------------------
@@ -687,3 +700,27 @@ $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMM
    0.14 NOTICE   DNSSEC10       DS10_ZONE_NO_DNSSEC  ns_list=ns1.zone-no-dnssec-1.dnssec10.xa/127.15.10.31;ns1.zone-no-dnssec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.zone-no-dnssec-1.dnssec10.xa/127.15.10.32;ns2.zone-no-dnssec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
 ```
 --> OK
+
+## zonemaster-cli commands and special run of some test scenarios
+
+Scenario name                  | Mandatory message tag                                                        | Forbidden message tags
+:------------------------------|:-----------------------------------------------------------------------------|:--------------------
+GOOD-NSEC-1                    | DS10_HAS_NSEC, IPV6_DISABLED                                                 | 2)
+
+* (2) All tags except for those specified as "Mandatory message tags"
+
+Here we run the same scenario GOOD-NSEC-1 as above, but with IPv6 disabled.
+
+```
+$ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw GOOD-NSEC-1.dnssec10.xa --profile profile-no-ipv6.json 
+Loading profile from profile-no-ipv6.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
+   0.07 INFO     DNSSEC10       IPV6_DISABLED  ns=ns1.good-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31; rrtype=DNSKEY
+   0.07 INFO     DNSSEC10       IPV6_DISABLED  ns=ns1.good-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31; rrtype=NSEC
+   0.07 INFO     DNSSEC10       IPV6_DISABLED  ns=ns1.good-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31; rrtype=NSEC3PARAM
+   0.07 INFO     DNSSEC10       IPV6_DISABLED  ns=ns2.good-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32; rrtype=DNSKEY
+   0.07 INFO     DNSSEC10       IPV6_DISABLED  ns=ns2.good-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32; rrtype=NSEC
+   0.08 INFO     DNSSEC10       IPV6_DISABLED  ns=ns2.good-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32; rrtype=NSEC3PARAM
+   0.08 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.good-nsec-1.dnssec10.xa/127.15.10.31;ns2.good-nsec-1.dnssec10.xa/127.15.10.32
+   0.08 ERROR    DNSSEC10       DS10_EXPECTED_NSEC_NSEC3_MISSING  ns_list=ns1.good-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.good-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+```

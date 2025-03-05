@@ -23,7 +23,7 @@ The supported configuration items are the following.
   the default language update the Apache configuration as mentioned in the
   [installation instructions][Default language].
 * `"enabledLanguages"`: An array of the languages enabled in the GUI, default
-  `[ "da", "en", "es", "fi", "fr", "nb", "sv" ]`.
+  `[ "da", "en", "es", "fi", "fr", "nb", "sl", "sv" ]`.
 * `"contactAddress"`: The contact email address displayed in the footer, default
   `"contact@zonemaster.net"`.
 * `"logoUrl`": The URL to the image displayed in the navigation bar, default
