@@ -1,0 +1,16 @@
+$ORIGIN good-undel-4.basic02.xa.
+
+$TTL 3600
+@       SOA     ns1 admin. (
+                2025040706      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS    ns3.good-undel-4.basic02.xb.
+@       NS    ns4.good-undel-4.basic02.xb.
+
+
+
+; EOF
