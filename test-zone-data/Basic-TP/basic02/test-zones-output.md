@@ -200,18 +200,18 @@ Scenario name                  | Mandatory message tag                      | Fo
 GOOD-UNDEL-7                   | B02_AUTH_RESPONSE_SOA                      | 2)
 
 * Undelegated data:
-  * ns3.good-undel-7.basic02.xa/127.12.2.33
-  * ns3.good-undel-7.basic02.xa/fda1:b2:c3:0:127:12:2:33
-  * ns4.good-undel-7.basic02.xa/127.12.2.34
-  * ns5.good-undel-7.basic02.xa/fda1:b2:c3:0:127:12:2:34
+  * ns3.good-undel-7.basic02.xb/127.12.2.33
+  * ns3.good-undel-7.basic02.xb/fda1:b2:c3:0:127:12:2:33
+  * ns4.good-undel-7.basic02.xb/127.12.2.34
+  * ns5.good-undel-7.basic02.xb/fda1:b2:c3:0:127:12:2:34
 
 ```
-$ zonemaster-cli --hints=hintfile.zone --test=basic02 --level=info --show-testcase --raw good-undel-7.basic02.xa --ns ns3.good-undel-7.basic02.xa/127.12.2.33 --ns ns3.good-undel-7.basic02.xa/fda1:b2:c3:0:127:12:2:33 --ns ns4.good-undel-7.basic02.xa/127.12.2.34 --ns ns5.good-undel-7.basic02.xa/fda1:b2:c3:0:127:12:2:34
+$ zonemaster-cli --hints=hintfile.zone --test=basic02 --level=info --show-testcase --raw good-undel-7.basic02.xa --ns ns3.good-undel-7.basic02.xb/127.12.2.33 --ns ns3.good-undel-7.basic02.xb/fda1:b2:c3:0:127:12:2:33 --ns ns4.good-undel-7.basic02.xb/127.12.2.34 --ns ns5.good-undel-7.basic02.xb/fda1:b2:c3:0:127:12:2:34
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v7.1.0
-   0.02 INFO     Basic02        B02_AUTH_RESPONSE_SOA  domain="good-undel-7.basic02.xa"; ns_list=ns3.good-undel-7.basic02.xa/127.12.2.33;ns3.good-undel-7.basic02.xa/fda1:b2:c3:0:127:12:2:33;ns4.good-undel-7.basic02.xa/127.12.2.34;ns5.good-undel-7.basic02.xa/fda1:b2:c3:0:127:12:2:34
+   0.02 INFO     Basic02        B02_AUTH_RESPONSE_SOA  domain="good-undel-7.basic02.xa"; ns_list=ns3.good-undel-7.basic02.xb/127.12.2.33;ns3.good-undel-7.basic02.xb/fda1:b2:c3:0:127:12:2:33;ns4.good-undel-7.basic02.xb/127.12.2.34;ns5.good-undel-7.basic02.xb/fda1:b2:c3:0:127:12:2:34
 ```
 
---> OK
+--> PENDING
 
 Scenario name                  | Mandatory message tag                      | Forbidden message tags
 :------------------------------|:-------------------------------------------|:----------------------

@@ -94,7 +94,7 @@ Unless otherwise specified in the specific scenario specification, the test zone
 or zones for the scenario will follow the default setup as stated below. The
 `child zone` is the zone to be tested for the scenario.
 
-`ns.basic02.xa` is a sub zone for out-of-bailiwick name servers for applicable
+`basic02.xb` is a zone for out-of-bailiwick name servers for applicable
 scenario.
 
 * The child zone is `SCENARIO.basic02.xa`.
@@ -107,6 +107,7 @@ scenario.
   * All child zone servers give the same response.
 * All responses will have the AA bit set.
 * All responses will have the [RCODE Name] "NoError".
+* NS and any glue matches NS and authoritative address records in zone.
 * If NS are out of bailiwick, the names are defined in another zone with correct
   A and AAAA records.
 
@@ -234,10 +235,10 @@ working zone from undelegated data, also out-of-bailiwick.
   * The NS in undelegated data use names that are not defined.
   * The zone from undelegated data is set up as default.
   * Undelegated data:
-    * ns3.good-undel-7.basic02.xa/IPv4
-    * ns3.good-undel-7.basic02.xa/IPv6
-    * ns4.good-undel-7.basic02.xa/IPv4
-    * ns5.good-undel-7.basic02.xa/IPv6
+    * ns3.good-undel-7.basic02.xb/IPv4
+    * ns3.good-undel-7.basic02.xb/IPv6
+    * ns4.good-undel-7.basic02.xb/IPv4
+    * ns5.good-undel-7.basic02.xb/IPv6
 
 ### GOOD-UNDEL-8
 Zone is delegated, but no response from the NS of delegation. There is a working
