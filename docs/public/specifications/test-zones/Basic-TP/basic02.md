@@ -117,7 +117,7 @@ A "happy path". Everything is fine.
   * Zone is set up as default.
 
 ### GOOD-2
-Like GOOD-1 but name servers are out-out-bailiwick.
+Like GOOD-1 but name servers are out-of-bailiwick.
 
 * Zone: good-1.basic02.xa
   * ns1 is ns1.good-2.basic02.xb.
@@ -135,8 +135,8 @@ GOOD-UNDEL-4   | IB, no glue                   | OOB without glue, NS names are 
 GOOD-UNDEL-5   | IB, no glue                   | IB with glue
 GOOD-UNDEL-6   | OOB, no response              | IB with glue
 GOOD-UNDEL-7   | OOB, no address records       | OOB with glue, NS names are undefined
-GOOD-UNDEL-8   | IB, no response               | IB, IP redifined
-GOOD-UNDEL-9   | OOB, no response              | OOB, IP redifined
+GOOD-UNDEL-8   | IB, no response               | IB, IP redefined
+GOOD-UNDEL-9   | OOB, no response              | OOB, IP redefined
 GOOD-UNDEL-10  | OOB, SERVFAIL/REFUSED         | OOB
 GOOD-UNDEL-11  | OOB, cannot look addr up      | OOB, IP through lookup
 
@@ -167,11 +167,11 @@ out-of-bailiwick.
 
 ### GOOD-UNDEL-3
 Delegated zone does not respond. There is a working zone from undelegated data.
-Those NS are out-of-bailiwick
+Those NS are out-of-bailiwick.
 
 * Zone: good-undel-3.basic02.xa
   * The name servers in delegation are ns1 and ns2.
-  * Name server from delegation do not respond.
+  * Name servers from delegation do not respond.
   * The undelegated data has out-of-bailiwick name servers without glue.
   * Normal lookup provides IP addresses for the name server names.
   * Else, the zone from undelegated data is set up as default.
@@ -181,7 +181,7 @@ Those NS are out-of-bailiwick
 
 ### GOOD-UNDEL-4
 Delegation of zone lacks glue. There is a working zone from undelegated data.
-Those NS are out-of-bailiwick
+Those NS are out-of-bailiwick.
 
 * Zone: good-undel-4.basic02.xa
   * The name servers in delegation ns1 and ns2.
@@ -246,7 +246,7 @@ zone from undelegated data.
 * Zone: good-undel-8.basic02.xa
   * The name servers in delegation are dns1 and dns2.
   * There is no response from dns1 and dns2.
-  * The undelegated data has the same NS names with other IP.
+  * The NS in undelegated data use the same NS names with other IP addresses.
   * Else, the zone from undelegated data is set up as default.
   * Undelegated data:
     * dns1.good-undel-8.basic02.xa/IPv4
@@ -299,7 +299,7 @@ undelegated data, also out-of-bailiwick.
   * Normal lookup fails to provides IP addresses for the name server names
     since zone delegated.good-undel-11.basic02.xb cannot be reached.
     * delegated.good-undel-11.basic02.xb is delegated to dns1 and dns2 relative
-      that domain.
+      to that domain.
   * There is no actual zone for the delegated data (not needed).
   * The zone from undelegated data is set up as default.
   * The addresses for the NS for the undelegated zone are found via lookup.
@@ -311,7 +311,7 @@ undelegated data, also out-of-bailiwick.
 The zone is delegated to four NS, of which ns1 responds correctly, ns2 does
 not respond, ns3 resturns SERVFAIL and ns4 is not authoritative.
 
-* Zone; mixed-1.basic02.xa
+* Zone: mixed-1.basic02.xa
   * The zone is set-up as default, but with four NS (ns1-4).
   * ns1 gives correct response.
   * ns2 does not respond.
@@ -334,7 +334,7 @@ The servers for the zone do not respond with SOA record on SOA query.
   * RCODE is NOERROR and AA bit is set.
 
 ### NS-NOT-AUTH-1
-The servers for the zone do not give authoritative response.
+The servers for the zone do not give authoritative responses.
 
 * Zone: ns-not-auth-1.basic02.xa
   * AA bit is unset in responses from ns1 and ns2.
@@ -367,7 +367,7 @@ The name server are out-of-bailiwick but the names are not defined.
   * No zone is set up.
 
 ### NS-NO-IP-UNDEL-1
-The delgated zone works correctly. The undelegated data has in-bailiwick NS
+The delegated zone works correctly. The undelegated data has in-bailiwick NS
 without glue.
 
 * Zone: ns-no-ip-undel-1.basic02.xa
@@ -379,7 +379,7 @@ without glue.
     * ns2.ns-no-ip-undel-1.basic02.xa
 
 ### NS-NO-IP-UNDEL-2
-The delgated zone works correctly. The undelegated data has out-of-bailiwick NS
+The delegated zone works correctly. The undelegated data has out-of-bailiwick NS
 without glue. The NS names have no address records.
 
 * Zone: ns-no-ip-undel-2.basic02.xa
