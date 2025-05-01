@@ -9,7 +9,7 @@
 * [Test zone names](#test-zone-names)
 * [All message tags](#all-message-tags)
 * [Test scenarios and message tags](#test-scenarios-and-message-tags)
-* [Test scenarios and setup of test zones]
+* [Test scenarios and setup of test zones](#test-scenarios-and-setup-of-test-zones)
 
 
 ## Background
@@ -185,7 +185,7 @@ Delegation of zone lacks glue. There is a working zone from undelegated data.
 Those NS are out-of-bailiwick.
 
 * Zone: good-undel-4.basic02.xa
-  * The name servers in delegation ns1 and ns2.
+  * The name servers in delegation are ns1 and ns2.
   * There is no glue for ns1 and ns2.
   * The undelegated data has out-of-bailiwick name servers without glue.
   * Normal lookup provides IP addresses for the name server names.
@@ -310,14 +310,14 @@ undelegated data, also out-of-bailiwick.
 
 ### MIXED-1
 The zone is delegated to four NS, of which ns1 responds correctly, ns2 does
-not respond, ns3 resturns SERVFAIL and ns4 is not authoritative.
+not respond, ns3 returns SERVFAIL and ns4 is not authoritative.
 
 * Zone: mixed-1.basic02.xa
   * The zone is set-up as default, but with four NS (ns1-4).
   * ns1 gives correct response.
   * ns2 does not respond.
-  * ns3 return SERVFAIL on all queries.
-  * ns4 return all responses with AA flag unset.
+  * ns3 returns SERVFAIL on all queries.
+  * ns4 returns all responses with AA flag unset.
 
 ### NO-DELEGATION
 There is no delegation for the zone.
@@ -331,7 +331,7 @@ There is no delegation for the zone.
 The servers for the zone do not respond with SOA record on SOA query.
 
 * Zone: ns-broken-1.basic02.xa
-  * No SOA record in response from ns1 and ns2
+  * No SOA record in response from ns1 and ns2.
   * RCODE is NOERROR and AA bit is set.
 
 ### NS-NOT-AUTH-1
@@ -401,7 +401,7 @@ The name servers do not respond on the queries.
   * No zone is set up.
 
 ### UNEXPECTED-RCODE-1
-The name servers responds with NXDOMAIN, REFUSED or SERVFAIL on SOA query.
+The name servers respond with NXDOMAIN, REFUSED or SERVFAIL on SOA query.
 
 * Zone: unexpected-rcode-1.basic02.xa
   * ns1 responds with NXDOMAIN.
