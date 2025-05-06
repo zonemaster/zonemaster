@@ -43,6 +43,7 @@
     - [Test Zones](specifications/test-zones/README.md)
         - [Basic-TP](specifications/test-zones/Basic-TP/README.md)
           - [BASIC01](specifications/test-zones/Basic-TP/basic01.md)
+          - [BASIC02](specifications/test-zones/Basic-TP/basic02.md)
         - [Consistency-TP](specifications/test-zones/Consistency-TP/README.md)
           - [CONSISTENCY05](specifications/test-zones/Consistency-TP/consistency05.md)
           - [CONSISTENCY06](specifications/test-zones/Consistency-TP/consistency06.md)
