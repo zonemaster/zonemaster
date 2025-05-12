@@ -1446,7 +1446,8 @@ This method replaces deprecated method
 [API method: get_batch_job_result](#api-method-get_batch_job_result).
 
 Returns the number of waiting, running and finished *tests*. Optionally it also
-returns the [*test ids*][Test id] of the *batch test*.
+returns the [*test ids*][Test id] of the *batch test*, in three different lists
+(waiting, running, finished). Only non-empty lists are included.
 
 Example valid request and response, respectively, where no [*test ids*][Test id]
 were requested:
@@ -1474,8 +1475,8 @@ were requested:
 }
 ```
 
-Example valid request and response, respectively, where [*test ids*][Test id]
-were requested for all three status values:
+Example valid request  where [*test ids*][Test id] were requested for
+all three status values:
 
 ```json
 {
@@ -1491,8 +1492,8 @@ were requested for all three status values:
 }
 ```
 
-Finished [*test id*][Test id] objects were requested (no finished objects
-existing):
+Example valid response where finished [*test id*][Test id] objects were
+requested but none existed:
 
 ```json
 {
@@ -1500,15 +1501,14 @@ existing):
    "id": 147559211994909,
    "result": {
       "finished_count": 0,
-      "finished_tests": [
-      ],
       "running_count": 5,
       "waiting_count": 195
    }
 }
 ```
 
-Finished [*test id*][Test id] objects were requested:
+Example valid response were [*test id*][Test id] objects were requested
+for all three status values and none was nil:
 
 ```json
 {
@@ -1556,12 +1556,12 @@ An object with the following properties:
   99, inclusive).
 * `"finished_count"`: a [*non-negative integer*][Non-negative integer]. The
   number of *finished* tests ([*progress*][Progress percentage] is equal to 100).
-* `"waiting_tests"`: a list of [*test ids*][Test id] (only if requested).
-  The set of *waiting* tests in this *batch*.
-* `"running_tests"`: a list of [*test ids*][Test id] (only if requested).
-  The set of *running* tests in this *batch*.
-* `"finished_tests"`: a list of [*test ids*][Test id] (only if requested).
-  The set of *finished* tests in this *batch*.
+* `"waiting_tests"`: a list of [*test ids*][Test id] (only if requested and only
+  if non-empty). The set of *waiting* tests in this *batch*.
+* `"running_tests"`: a list of [*test ids*][Test id] (only if requested and only
+  if non-empty). The set of *running* tests in this *batch*.
+* `"finished_tests"`: a list of [*test ids*][Test id] (only if requested and only
+  if none-empty). The set of *finished* tests in this *batch*.
 
 #### `"error"`
 
@@ -1580,8 +1580,6 @@ If the `batch_id` is unrecognized the following error is returned:
   }
 }
 ```
-
-
 
 
 ## Experimental API methods
