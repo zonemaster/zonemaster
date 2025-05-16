@@ -90,7 +90,9 @@ irrelevant to the test scenario and must be ignored.
 Scenario name                  | Mandatory message tag                                                        | Forbidden message tags
 :------------------------------|:-----------------------------------------------------------------------------|:--------------------
 GOOD-NSEC-1                    | DS10_HAS_NSEC                                                                | 2)
+GOOD-NSEC-2                    | DS10_HAS_NSEC                                                                | 2)
 GOOD-NSEC3-1                   | DS10_HAS_NSEC3                                                               | 2)
+GOOD-NSEC3-2                   | DS10_HAS_NSEC3                                                               | 2)
 ALGO-NOT-SUPP-BY-ZM-1          | DS10_ALGO_NOT_SUPPORTED_BY_ZM, DS10_HAS_NSEC                                 | 2)
 ALGO-NOT-SUPP-BY-ZM-2          | DS10_ALGO_NOT_SUPPORTED_BY_ZM, DS10_HAS_NSEC3                                | 2)
 BAD-SERVERS-BUT-GOOD-NSEC-1    | DS10_HAS_NSEC                                                                | 2)
@@ -181,10 +183,28 @@ An NSEC zone and a "happy path". Everything is fine.
 
 * Zone: good-nsec-1.dnssec10.xa
 
+### GOOD-NSEC-2
+An NSEC zone and a "happy path". Everything is fine besides that the zone
+is served on NS names with the same IP addresses which is fine for this test
+case.
+
+* Zone: good-nsec-2.dnssec10.xa
+  * The zone is delegated to ns1a, ns1b and ns1c.
+    * All three share the same IPv4 address and IPv6 address.
+
 ### GOOD-NSEC3-1
 An NSEC3 zone and a "happy path". Everything is fine.
 
 * Zone: good-nsec3-1.dnssec10.xa
+
+### GOOD-NSEC3-2
+An NSEC3 zone and a "happy path". Everything is fine besides that the zone
+is served on NS names with the same IP addresses which is fine for this test
+case.
+
+* Zone: good-nsec3-2.dnssec10.xa
+  * The zone is delegated to ns1a, ns1b and ns1c.
+    * All three share the same IPv4 address and IPv6 address.
 
 ### ALGO-NOT-SUPP-BY-ZM-1
 An NSEC zone. Unknown algorithm of a DNSKEY.

@@ -2,7 +2,7 @@ $ORIGIN dnssec10.xa.                              ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024121700      ; serial
+                2025051602      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -25,6 +25,17 @@ ns1     AAAA    fda1:b2:c3:0:127:15:10:31
 ns2     A       127.15.10.32
 ns2     AAAA    fda1:b2:c3:0:127:15:10:32
 
+$ORIGIN good-nsec-2.dnssec10.xa.
+@       NS      ns1a
+@       NS      ns1b
+@       NS      ns1c
+ns1a    A       127.15.10.31
+ns1a    AAAA    fda1:b2:c3:0:127:15:10:31
+ns1b    A       127.15.10.31
+ns1b    AAAA    fda1:b2:c3:0:127:15:10:31
+ns1c    A       127.15.10.31
+ns1c    AAAA    fda1:b2:c3:0:127:15:10:31
+
 $ORIGIN good-nsec3-1.dnssec10.xa.
 @       NS      ns1
 @       NS      ns2
@@ -32,6 +43,17 @@ ns1     A       127.15.10.31
 ns1     AAAA    fda1:b2:c3:0:127:15:10:31
 ns2     A       127.15.10.32
 ns2     AAAA    fda1:b2:c3:0:127:15:10:32
+
+$ORIGIN good-nsec3-2.dnssec10.xa.
+@       NS      ns1a
+@       NS      ns1b
+@       NS      ns1c
+ns1a    A       127.15.10.31
+ns1a    AAAA    fda1:b2:c3:0:127:15:10:31
+ns1b    A       127.15.10.31
+ns1b    AAAA    fda1:b2:c3:0:127:15:10:31
+ns1c    A       127.15.10.31
+ns1c    AAAA    fda1:b2:c3:0:127:15:10:31
 
 $ORIGIN algo-not-supp-by-zm-1.dnssec10.xa.
 @       NS      ns1
