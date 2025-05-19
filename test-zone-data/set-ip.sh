@@ -45,9 +45,7 @@ path=$(dirname $0)
 datafile="$path/address-plan.md"
 
 
-# Function to add IPv4 address (kept in case this script
-# will add IPv4 addresses in the future, but currently
-# not used).
+# Function to add IPv4 address
 add_ipv4_address() {
   local ip=$1
   cmd="ip addr add $ip/32 dev lo"
@@ -70,9 +68,11 @@ add_ipv6_address() {
 while IFS= read -r line; do
   # Get IP addresses without prefix (e.g. /24)
   if [[ $line =~ ^\|\ ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\ +\| ]]; then
-    ip_address=${BASH_REMATCH[1]}
-    # Add address for IPv6
-    add_ipv6_address $ip_address
+      ip_address=${BASH_REMATCH[1]}
+      # Add address for IPv4
+      add_ipv4_address $ip_address
+      # Add address for IPv6
+      add_ipv6_address $ip_address
   fi
 done < $datafile
 
