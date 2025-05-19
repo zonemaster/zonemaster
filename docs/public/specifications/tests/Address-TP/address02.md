@@ -26,7 +26,7 @@ domains of the name servers IP address.
 
 ## Scope
 Only the existence of a PTR record, or a record that resolves to a PTR record, 
-is checked. Not the validity of said record. That is handeled by other tests.
+is checked. Not the validity of said record. That is handled by other tests.
 
 ## Inputs
 
@@ -36,8 +36,8 @@ is checked. Not the validity of said record. That is handeled by other tests.
 
 Message Tag                   | Level    | Arguments | Message ID for message tag
 :---------------------------- |:---------|:----------|:--------------------------
-A02_PTR_PRESENT               | INFO     |           | PTR record present for each nameserver IP address
-A02_PTR_MISSING               | NOTICE   | ns_list   | PTR missing for the following name server IP addresses: "{ns_list}"
+A02_PTR_PRESENT               | INFO     |            | PTR record present for each nameserver IP address
+A02_PTR_MISSING               | NOTICE   | ns_ip_list | PTR missing for the following name server IP addresses: "{ns_ip_list}"
 
 
 The value in the Level column is the default severity level of the message. The
@@ -70,7 +70,7 @@ message. The argument names are defined in the [argument list].
         - RCODE must be NOERROR
         - answer section must contain at least one PTR record
   
-6. If the set *PTR Missing* is empty, then putput *[A02_PTR_PRESENT]*
+6. If the set *PTR Missing* is empty, then output *[A02_PTR_PRESENT]*
 
 7. Else, output *[A02_PTR_MISSING]* with a list of the IP addresses in the 
    *PTR Missing* set.
