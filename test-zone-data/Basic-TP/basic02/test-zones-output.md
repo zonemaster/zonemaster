@@ -211,7 +211,7 @@ $ zonemaster-cli --hints=hintfile.zone --test=basic02 --level=info --show-testca
    0.02 INFO     Basic02        B02_AUTH_RESPONSE_SOA  domain="good-undel-7.basic02.xa"; ns_list=ns3.good-undel-7.basic02.xb/127.12.2.33;ns3.good-undel-7.basic02.xb/fda1:b2:c3:0:127:12:2:33;ns4.good-undel-7.basic02.xb/127.12.2.34;ns5.good-undel-7.basic02.xb/fda1:b2:c3:0:127:12:2:34
 ```
 
---> PENDING
+--> OK
 
 Scenario name                  | Mandatory message tag                      | Forbidden message tags
 :------------------------------|:-------------------------------------------|:----------------------
