@@ -40,12 +40,12 @@ This test case does not do any  actual connectivity test, which is done by other
 
 Message Tag                       | Level    | Arguments | Message ID for message tag
 :-------------------------------- |:---------|:----------|:--------------------------
-A01_ADDR_GLOBALLY_REACHABLE       | INFO     |           | All IP addresses of all name servers are listed as in the globally reachable address space.
+A01_GLOBALLY_REACHABLE_ADDR       | INFO     |           | All IP addresses of all name servers are listed as in the globally reachable address space.
 A01_NO_NAME_SERVERS_FOUND         | CRITICAL |           | No name servers found.
 A01_NO_GLOBALLY_REACHABLE_ADDR    | ERROR    |           | None of the name servers IP addresses are listed as globally reachable.
-A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns_list   | IP address not listed as globally reachable "{ns_list}".
-A01_DOCUMENTATION_ADDR            | ERROR    | ns_list   | IP address intended for documentation purposes "{ns_list}".
-A01_LOCAL_USE_ADDR                | ERROR    | ns_list   | IP address intended for local use on network or service provider level "{ns_list}". 
+A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns_list   | IP address not listed as globally reachable: "{ns_list}".
+A01_DOCUMENTATION_ADDR            | ERROR    | ns_list   | IP address intended for documentation purposes: "{ns_list}".
+A01_LOCAL_USE_ADDR                | ERROR    | ns_list   | IP address intended for local use on network or service provider level: "{ns_list}". 
 
 
 The value in the Level column is the default severity level of the message. The
@@ -62,6 +62,9 @@ message. The argument names are defined in the [Argument list].
    2. Name server name and IP address ("Documentation Address").
    3. Name server name and IP address ("Local Use Address").
    4. Name server name and IP address ("Not Globally Reachable").
+
+2. Retrieve all name server names and IP addresses for *Child Zone* using 
+   methods [Get-Del-NS-Names-and-IPs] and [Get-Zone-NS-Names-and-IPs].
 
 2. Obtain the address records of each name server for the *Child Zone* from the
    parent using the method [Get-Del-NS-Names-and-IPs] and add them to the 
@@ -81,7 +84,8 @@ message. The argument names are defined in the [Argument list].
         *Documentation*, add the name server name and IP address to the
         *Documentation Address* set,
       2. Else, if it falls within an address range belonging to any of the 
-         following categories:  
+         following categories, add the name server name and IP address to the 
+         *Local Use Adddress* set: 
          - *Private-Use (IPv4)*
          - *Loopback (IPv4)*
          - *Loopback Address (IPv6)*
@@ -89,8 +93,6 @@ message. The argument names are defined in the [Argument list].
          - *Link-Local Unicast* (IPv6)
          - *Unique-Local* (IPv6)
          - *Shared Address Space* (IPv6)
-         add the name server name and IP address to the *Local Use Adddress* 
-         set. 
       3. Else, if the IP falls within any other range that is not registered as 
          *Globally Reachable*, add the name server name and IP address to 
          the *Not Globally Reachable* set.
