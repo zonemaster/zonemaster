@@ -1,0 +1,26 @@
+; $ORIGIN not set.
+; This zone file is used by several zones, delegated or undelegated, where
+; ns3 and ns4 in-bailiwick name servers are used with default IP addresses.
+
+$TTL 3600
+
+; All names must be relative
+
+@       SOA     ns1 admin. (
+                2025040703      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS    ns3
+@       NS    ns4
+
+ns3     A     127.12.2.33
+ns3     AAAA  fda1:b2:c3:0:127:12:2:33
+ns4     A     127.12.2.34
+ns5     AAAA  fda1:b2:c3:0:127:12:2:34
+
+
+
+; EOF

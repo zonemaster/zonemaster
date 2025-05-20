@@ -171,6 +171,15 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.12.2.0/24   | Basic02 scenarios                                           |
 | 127.12.2.21     | ns1.basic02.xa                                              |
 | 127.12.2.22     | ns2.basic02.xa                                              |
+| 127.12.2.23     | root-ns1.xa                                                 |
+| 127.12.2.24     | root-ns1.xa                                                 |
+| 127.12.2.25     | ns1.basic02.xb                                              |
+| 127.12.2.26     | ns2.basic02.xb                                              |
+| 127.12.2.31     | ns1 child zone                                              |
+| 127.12.2.32     | ns2 child zone                                              |
+| 127.12.2.33     | ns3 child zone                                              |
+| 127.12.2.34     | ns4 child zone                                              |
+| 127.12.2.53     | resolver with test case local hint                          |
 | 127.12.3.0/24   | Basic03 scenarios                                           |
 | 127.12.3.21     | ns1.basic03.xa                                              |
 | 127.12.3.22     | ns2.basic03.xa                                              |

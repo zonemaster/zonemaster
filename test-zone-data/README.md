@@ -113,12 +113,12 @@ Two terminal windows to the computer are needed.
    or again if additional interfaces have been added. (Reboot the computer to
    remove the interfaces, if needed.)
    ```
-   ./set-ip.sh
+   sudo ./set-ip.sh
    ```
 4. Start `coredns`. It will use `main.cfg` and be running in the foreground
-   until terminated.
+   until terminated. Only one instance can run at a time.
    ```
-   ./start-coredns.sh
+   sudo ./start-coredns.sh
    ```
 
 ### Run zonemaster-cli in terminal 2

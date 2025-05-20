@@ -1,0 +1,159 @@
+$ORIGIN basic02.xa.                              ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2025041102      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS    ns1
+@       NS    ns2
+
+ns1     A     127.12.2.21
+ns1     AAAA  fda1:b2:c3:0:127:12:2:21
+ns2     A     127.12.2.22
+ns2     AAAA  fda1:b2:c3:0:127:12:2:22
+
+$ORIGIN good-1.basic02.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.12.2.31
+ns1     AAAA    fda1:b2:c3:0:127:12:2:31
+ns2     A       127.12.2.32
+ns2     AAAA    fda1:b2:c3:0:127:12:2:32
+
+$ORIGIN good-2.basic02.xa.
+@       NS      ns1.good-2.basic02.xb.
+@       NS      ns2.good-2.basic02.xb.
+
+; good-undel-1.basic02.xa, not delegated
+
+; good-undel-2.basic02.xa, not delegated
+
+$ORIGIN good-undel-3.basic02.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.12.2.31
+ns1     AAAA    fda1:b2:c3:0:127:12:2:31
+ns2     A       127.12.2.32
+ns2     AAAA    fda1:b2:c3:0:127:12:2:32
+
+$ORIGIN good-undel-4.basic02.xa.
+@       NS      ns1
+@       NS      ns2
+
+$ORIGIN good-undel-5.basic02.xa.
+@       NS      ns1
+@       NS      ns2
+
+$ORIGIN good-undel-6.basic02.xa.
+@       NS      ns1.good-undel-6.basic02.xb.
+@       NS      ns2.good-undel-6.basic02.xb.
+
+$ORIGIN good-undel-7.basic02.xa.
+@       NS      ns1.good-undel-7.basic02.xb.
+@       NS      ns2.good-undel-7.basic02.xb.
+
+$ORIGIN good-undel-8.basic02.xa.
+@       NS      dns1
+@       NS      dns2
+dns1    A       127.12.2.31
+dns1    AAAA    fda1:b2:c3:0:127:12:2:31
+dns2    A       127.12.2.32
+dns2    AAAA    fda1:b2:c3:0:127:12:2:32
+
+$ORIGIN good-undel-9.basic02.xa.
+@       NS      dns1.good-undel-9.basic02.xb.
+@       NS      dns2.good-undel-9.basic02.xb.
+
+$ORIGIN good-undel-10.basic02.xa.
+@       NS      ns1.good-undel-10.basic02.xb.
+@       NS      ns2.good-undel-10.basic02.xb.
+
+$ORIGIN good-undel-11.basic02.xa.
+@       NS      ns1.delegated.good-undel-11.basic02.xb.
+@       NS      ns2.delegated.good-undel-11.basic02.xb.
+
+; no-delegation.basic02.xa, not delegated
+
+$ORIGIN mixed-1.basic02.xa.
+@       NS      ns1
+@       NS      ns2
+@       NS      ns3
+@       NS      ns4
+ns1     A       127.12.2.31
+ns1     AAAA    fda1:b2:c3:0:127:12:2:31
+ns2     A       127.12.2.32
+ns2     AAAA    fda1:b2:c3:0:127:12:2:32
+ns3     A       127.12.2.33
+ns3     AAAA    fda1:b2:c3:0:127:12:2:33
+ns4     A       127.12.2.34
+ns4     AAAA    fda1:b2:c3:0:127:12:2:34
+
+$ORIGIN ns-broken-1.basic02.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.12.2.31
+ns1     AAAA    fda1:b2:c3:0:127:12:2:31
+ns2     A       127.12.2.32
+ns2     AAAA    fda1:b2:c3:0:127:12:2:32
+
+$ORIGIN ns-not-auth-1.basic02.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.12.2.31
+ns1     AAAA    fda1:b2:c3:0:127:12:2:31
+ns2     A       127.12.2.32
+ns2     AAAA    fda1:b2:c3:0:127:12:2:32
+
+$ORIGIN ns-no-ip-1.basic02.xa.
+@       NS      ns1
+@       NS      ns2
+
+$ORIGIN ns-no-ip-2.basic02.xa.
+@       NS      ns1.ns-no-ip-2.basic02.xb.
+@       NS      ns2.ns-no-ip-2.basic02.xb.
+
+$ORIGIN ns-no-ip-3.basic02.xa.
+@       NS      ns1.ns-no-ip-3.basic02.xb.
+@       NS      ns2.ns-no-ip-3.basic02.xb.
+
+$ORIGIN ns-no-ip-undel-1.basic02.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.12.2.31
+ns1     AAAA    fda1:b2:c3:0:127:12:2:31
+ns2     A       127.12.2.32
+ns2     AAAA    fda1:b2:c3:0:127:12:2:32
+
+$ORIGIN ns-no-ip-undel-2.basic02.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.12.2.31
+ns1     AAAA    fda1:b2:c3:0:127:12:2:31
+ns2     A       127.12.2.32
+ns2     AAAA    fda1:b2:c3:0:127:12:2:32
+
+$ORIGIN ns-no-response-1.basic02.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.12.2.31
+ns1     AAAA    fda1:b2:c3:0:127:12:2:31
+ns2     A       127.12.2.32
+ns2     AAAA    fda1:b2:c3:0:127:12:2:32
+
+
+
+$ORIGIN unexpected-rcode-1.basic02.xa.
+@       NS      ns1
+@       NS      ns2
+@       NS      ns3
+ns1     A       127.12.2.31
+ns1     AAAA    fda1:b2:c3:0:127:12:2:31
+ns2     A       127.12.2.32
+ns2     AAAA    fda1:b2:c3:0:127:12:2:32
+ns3     A       127.12.2.33
+ns3     AAAA    fda1:b2:c3:0:127:12:2:33
+
