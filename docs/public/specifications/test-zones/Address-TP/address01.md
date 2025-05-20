@@ -16,7 +16,7 @@
 See the [test zone README file].
 
 ## Test Case
-This document specifies defined test zones for test case [ADDRESS01].
+This document specifies defined test scenarios for test case [ADDRESS01].
 
 ## Test scenarios
 
@@ -82,7 +82,7 @@ Address designation      | Meaning
 :------------------------|:------------------------------------------------------------------------------------------------
 OK                       | Globally routable, public address
 LOCAL_USE_ADDR           | Address part of range used for private networks (loopback, RFC1918, Provider shared, etc.)
-DOCUMENTATION_ADDR       | Address part of range used for documentation purposes.
+DOCUMENTATION_ADDR       | Address part of range used for documentation purposes
 NOT_GLOBALLY_REACHABLE   | Address part of any other range listed as not globally reachable
 
 Designations are based on the address block ranges from the 
@@ -175,7 +175,7 @@ The "happy path". Everything is fine.
 
 ### ALL-NON-REACHABLE
 All addresses of all nameservers falls within one of the address blocks listed 
-as not globally reachable. Delegation contatins three name servers to cover all
+as not globally reachable. Delegation contains three name servers to cover all
 combinations of defined address block types.
 
 * Zone: all-non-reachable.address01.xa
