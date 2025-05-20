@@ -128,6 +128,21 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.11.3.0/24   | Address03 scenarios                                         |
 | 127.11.3.21     | ns1.address03.xa                                            |
 | 127.11.3.22     | ns2.address03.xa                                            |
+| 127.11.3.31     | ns1.child.address03.xa                                      |
+| 127.11.3.32     | ns2.child.address03.xa                                      |
+| 127.11.3.33     | ns3.child.address03.xa                                      |
+| 127.11.3.34     | ns4.child.address03.xa                                      |
+| 127.11.3.35     | ns5.child.address03.xa                                      |
+| 127.11.3.36     | ns6.child.address03.xa                                      |
+| 127.11.3.37     | ns7.child.address03.xa                                      |
+| 127.11.3.38     | ns8.child.address03.xa                                      |
+| 127.11.3.39     | ns9.child.address03.xa                                      |
+| 127.11.3.40     | ns10.child.address03.xa                                     |
+| 127.11.3.41     | ns11.child.address03.xa                                     |
+| 127.11.3.42     | ns12.child.address03.xa                                     |
+| 127.11.3.43     | ns13.child.address03.xa                                     |
+| 127.11.3.44     | ns14.child.address03.xa                                     |
+| 127.11.3.45     | ns15.child.address03.xa                                     |
 | 127.11.4.0/24   | (not in use)                                                |
 | (...)           |                                                             |
 | 127.11.255.0/24 | (not in use)                                                |

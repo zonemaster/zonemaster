@@ -1,0 +1,99 @@
+$ORIGIN address03.xa.                            ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2025022400      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+                        NS	ns1
+                        NS	ns2
+
+ns1		        A	127.11.3.21
+ns1		        AAAA	fda1:b2:c3::127:11:3:21
+ns2		        A	127.11.3.22
+ns2		        AAAA	fda1:b2:c3::127:11:3:22
+
+;;;
+;;; Name servers for child (scenario) zones
+;;;
+
+ns1.child               A       127.11.3.31
+ns1.child               AAAA    fda1:b2:c3::127:11:3:31
+ns2.child               A       127.11.3.32
+ns2.child               AAAA    fda1:b2:c3::127:11:3:32
+ns3.child               A       127.11.3.33
+ns3.child               AAAA    fda1:b2:c3::127:11:3:33
+ns4.child               A       127.11.3.34
+ns4.child               AAAA    fda1:b2:c3::127:11:3:34
+ns5.child               A       127.11.3.35
+ns5.child               AAAA    fda1:b2:c3::127:11:3:35
+ns6.child               A       127.11.3.36
+ns6.child               AAAA    fda1:b2:c3::127:11:3:36
+ns7.child               A       127.11.3.37
+ns7.child               AAAA    fda1:b2:c3::127:11:3:37
+ns8.child               A       127.11.3.38
+ns8.child               AAAA    fda1:b2:c3::127:11:3:38
+ns9.child               A       127.11.3.39
+ns9.child               AAAA    fda1:b2:c3::127:11:3:39
+ns10.child              A       127.11.3.40
+ns10.child              AAAA    fda1:b2:c3::127:11:3:40
+ns11.child              A       127.11.3.41
+ns11.child              AAAA    fda1:b2:c3::127:11:3:41
+ns12.child              A       127.11.3.42
+ns12.child              AAAA    fda1:b2:c3::127:11:3:42
+ns13.child              A       127.11.3.43
+ns13.child              AAAA    fda1:b2:c3::127:11:3:43
+ns14.child              A       127.11.3.44
+ns14.child              AAAA    fda1:b2:c3::127:11:3:44
+ns15.child              A       127.11.3.45
+ns15.child              AAAA    fda1:b2:c3::127:11:3:45
+
+;;;
+;;; Some targets of aliases (CNAMEs) need to be in another zone
+;;;
+
+reverse-aliases         NS      ns1.child
+reverse-aliases         NS      ns2.child
+
+;;;
+;;; Scenario definitions
+;;;
+
+all-ns-have-ptr-1           NS  ns1.child
+all-ns-have-ptr-1           NS  ns2.child
+
+all-ns-have-ptr-2           NS  ns1.child
+all-ns-have-ptr-2           NS  ns3.child
+
+no-ns-have-ptr              NS  ns4.child
+no-ns-have-ptr              NS  ns5.child
+
+incomplete-ptr-1            NS  ns1.child
+incomplete-ptr-1            NS  ns6.child
+
+incomplete-ptr-2            NS  ns1.child
+incomplete-ptr-2            NS  ns7.child
+
+non-matching-names          NS  ns8.child
+non-matching-names          NS  ns9.child
+
+ptr-is-good-cname-1         NS  ns1.child
+ptr-is-good-cname-1         NS  ns10.child
+
+ptr-is-good-cname-2         NS  ns1.child
+ptr-is-good-cname-2         NS  ns11.child
+
+ptr-is-dangling-cname       NS  ns5.child
+ptr-is-dangling-cname       NS  ns12.child
+
+ptr-is-illegal-cname        NS  ns4.child
+ptr-is-illegal-cname        NS  ns13.child
+
+ptr-resolution-no-response  NS  ns1.child
+ptr-resolution-no-response  NS  ns14.child
+
+ptr-resolution-servfail     NS  ns1.child
+ptr-resolution-servfail     NS  ns15.child
