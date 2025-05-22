@@ -143,12 +143,11 @@ Scenario name                  | Mandatory message tag                          
 GOOD-NSEC-2                    | DS10_HAS_NSEC                                                                | 2)
 
 ```
-$ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw GOOD-NSEC-2.dnssec10.xa 
+$ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw GOOD-NSEC-2.dnssec10.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v7.1.0
-   0.08 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1a.good-nsec-2.dnssec10.xa/127.15.10.31;ns1a.good-nsec-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31
-   0.08 ERROR    DNSSEC10       DS10_EXPECTED_NSEC_NSEC3_MISSING  ns_list=ns1b.good-nsec-2.dnssec10.xa/127.15.10.31;ns1b.good-nsec-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns1c.good-nsec-2.dnssec10.xa/127.15.10.31;ns1c.good-nsec-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31
+   0.07 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1a.good-nsec-2.dnssec10.xa/127.15.10.31;ns1a.good-nsec-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31
 ```
---> Not OK. See zonemaster/zonemaster-engine#1454
+--> OK
 
 Scenario name                  | Mandatory message tag                                                        | Forbidden message tags
 :------------------------------|:-----------------------------------------------------------------------------|:--------------------
@@ -166,12 +165,11 @@ Scenario name                  | Mandatory message tag                          
 GOOD-NSEC3-2                   | DS10_HAS_NSEC3                                                               | 2)
 
 ```
-$ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw GOOD-NSEC3-2.dnssec10.xa 
+$ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw GOOD-NSEC3-2.dnssec10.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v7.1.0
-   0.08 INFO     DNSSEC10       DS10_HAS_NSEC3  ns_list=ns1a.good-nsec3-2.dnssec10.xa/127.15.10.31;ns1a.good-nsec3-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31
-   0.08 ERROR    DNSSEC10       DS10_EXPECTED_NSEC_NSEC3_MISSING  ns_list=ns1b.good-nsec3-2.dnssec10.xa/127.15.10.31;ns1b.good-nsec3-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns1c.good-nsec3-2.dnssec10.xa/127.15.10.31;ns1c.good-nsec3-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31
+   0.07 INFO     DNSSEC10       DS10_HAS_NSEC3  ns_list=ns1a.good-nsec3-2.dnssec10.xa/127.15.10.31;ns1a.good-nsec3-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31
 ```
---> Not OK. See zonemaster/zonemaster-engine#1454
+--> OK
 
 Scenario name                  | Mandatory message tag                                                        | Forbidden message tags
 :------------------------------|:-----------------------------------------------------------------------------|:--------------------
@@ -738,7 +736,7 @@ GOOD-NSEC-1                    | DS10_HAS_NSEC, IPV6_DISABLED                   
 Here we run the same scenario GOOD-NSEC-1 as above, but with IPv6 disabled.
 
 ```
-$ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw GOOD-NSEC-1.dnssec10.xa --profile profile-no-ipv6.json 
+$ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw GOOD-NSEC-1.dnssec10.xa --profile profile-no-ipv6.json
 Loading profile from profile-no-ipv6.json.
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v6.0.0
    0.07 INFO     DNSSEC10       IPV6_DISABLED  ns=ns1.good-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31; rrtype=DNSKEY
