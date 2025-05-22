@@ -48,7 +48,7 @@ the purpose is most definitely to follow that practice. Instead, a special
 message will be outputted.
  
 The operational consequences of errors on SOA MNAME are, however, limited. It is
-never used for finding authoritative name server for the zone, and is not part
+never used for finding authoritative name servers for the zone, and is not part
 of normal lookup. Therefore, the level set by this test case on SOA MNAME errors 
 is not higher than NOTICE.
 
