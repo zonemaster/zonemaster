@@ -190,7 +190,7 @@ case.
 
 * Zone: good-nsec-2.dnssec10.xa
   * The zone is delegated to ns1a, ns1b and ns1c.
-    * All three share the same IPv4 address and IPv6 address.
+    * All three share the same IPv4 and IPv6 address.
 
 ### GOOD-NSEC3-1
 An NSEC3 zone and a "happy path". Everything is fine.
@@ -204,7 +204,7 @@ case.
 
 * Zone: good-nsec3-2.dnssec10.xa
   * The zone is delegated to ns1a, ns1b and ns1c.
-    * All three share the same IPv4 address and IPv6 address.
+    * All three share the same IPv4 and IPv6 address.
 
 ### ALGO-NOT-SUPP-BY-ZM-1
 An NSEC zone. Unknown algorithm of a DNSKEY.
