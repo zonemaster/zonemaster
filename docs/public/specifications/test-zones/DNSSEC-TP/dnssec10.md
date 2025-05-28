@@ -91,8 +91,10 @@ Scenario name                  | Mandatory message tag                          
 :------------------------------|:-----------------------------------------------------------------------------|:--------------------
 GOOD-NSEC-1                    | DS10_HAS_NSEC                                                                | 2)
 GOOD-NSEC-2                    | DS10_HAS_NSEC                                                                | 2)
+GOOD-NSEC-3                    | DS10_HAS_NSEC                                                                | 2)
 GOOD-NSEC3-1                   | DS10_HAS_NSEC3                                                               | 2)
 GOOD-NSEC3-2                   | DS10_HAS_NSEC3                                                               | 2)
+GOOD-NSEC3-3                   | DS10_HAS_NSEC3                                                               | 2)
 ALGO-NOT-SUPP-BY-ZM-1          | DS10_ALGO_NOT_SUPPORTED_BY_ZM, DS10_HAS_NSEC                                 | 2)
 ALGO-NOT-SUPP-BY-ZM-2          | DS10_ALGO_NOT_SUPPORTED_BY_ZM, DS10_HAS_NSEC3                                | 2)
 BAD-SERVERS-BUT-GOOD-NSEC-1    | DS10_HAS_NSEC                                                                | 2)
@@ -192,6 +194,15 @@ case.
   * The zone is delegated to ns1a, ns1b and ns1c.
     * All three share the same IPv4 and IPv6 address, respectively.
 
+### GOOD-NSEC-3
+An NSEC zone and a "happy path". Everything is fine besides that the NS names
+in delegation and zone are different. Fine for this test case.
+
+* Zone: good-nsec-3.dnssec10.xa
+  * Zone NS are to dns1 and dns2.
+    * dns1 has the same IP addresses as ns1
+    * dns2 has the same IP addresses as ns2
+
 ### GOOD-NSEC3-1
 An NSEC3 zone and a "happy path". Everything is fine.
 
@@ -205,6 +216,15 @@ case.
 * Zone: good-nsec3-2.dnssec10.xa
   * The zone is delegated to ns1a, ns1b and ns1c.
     * All three share the same IPv4 and IPv6 address, respectively.
+
+### GOOD-NSEC3-3
+An NSEC3 zone and a "happy path". Everything is fine besides that the NS names
+in delegation and zone are different. Fine for this test case.
+
+* Zone: good-nsec3-3.dnssec10.xa
+  * Zone NS are to dns1 and dns2.
+    * dns1 has the same IP addresses as ns1
+    * dns2 has the same IP addresses as ns2
 
 ### ALGO-NOT-SUPP-BY-ZM-1
 An NSEC zone. Unknown algorithm of a DNSKEY.
