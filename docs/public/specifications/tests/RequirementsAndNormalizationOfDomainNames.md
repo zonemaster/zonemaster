@@ -53,9 +53,9 @@ a normalized form to be used by all Zonemaster test cases. The objectives of the
 normalization are
 
 1. Optionally remove leading and trailing white space characters. This is done as
-   a pre-process in the client if appropriate, e.g. in fields in an HTLM form in
+   a pre-process in the client if appropriate, e.g. in fields in an HTML form in
    a web form.
-   * If the proprocess is not applied, then any leading or trailing space will be
+   * If the preprocessing is not applied, then any leading or trailing space will be
      caught as an illegal ASCII character.
 2. Convert other dot characters to regular dot (or "FULL STOP").
 3. Create legal IDNA 2008 U-labels from convenient alternative forms.
@@ -148,7 +148,7 @@ Tables 1, 2, 3 and 4 are found in the [Detailed requirements] section below.
     3. Set of Unicode full stops (dot characters) in Table 4 below
        ("Unicode Full Stops").
 
-2.  This step only applies if removal of leading and traling spaces has been
+2.  This step only applies if removal of leading and trailing spaces has been
     found to be appropriate for the client and context.
     1. If *Domain Name* starts with one or more of *White Space* then those are
        removed from *Domain Name* before further processing.
