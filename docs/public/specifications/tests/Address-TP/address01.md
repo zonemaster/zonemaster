@@ -17,7 +17,7 @@
 ## Objective
 
 In order for the domain and its resources to be accessible, authoritative 
-name servers must have addresses in the routable public addressing space.
+name servers must have addresses in the reachable public addressing space.
 
 IANA is responsible for global coordination of the IP addressing system.
 Aside its address allocation activities, it maintains reserved address ranges
@@ -26,11 +26,11 @@ for special uses. These ranges can be categorized into two types:
 
 This test checks the name server IP addresses, both those derived from delegation and those 
 derived from the name servers listed in the zone (NS records). Each address is compared against
-the IANA databases. If an address is not globally routable, a message is outputted.
+the IANA databases. If an address is not globally reachable, a message is outputted.
 
 ## Scope
 
-This test case does not do any  actual connectivity test, which is done by other test cases.
+This test case does not do any actual connectivity test, which is done by other test cases.
 
 ## Inputs
 
@@ -66,11 +66,8 @@ message. The argument names are defined in the [Argument list].
 2. Retrieve all name server names and IP addresses for *Child Zone* using 
    methods [Get-Del-NS-Names-and-IPs] and [Get-Zone-NS-Names-and-IPs].
 
-2. Obtain the address records of each name server for the *Child Zone* from the
-   parent using the method [Get-Del-NS-Names-and-IPs] and add them to the 
-   *Name Server IP* set. 
 
-3. Obtain the IP addresses of each name server for the domain using the method 
+3. Obtain the IP addresses of each name server for *Child Zone* using the method 
    [Get-Zone-NS-Names-and-IPs] and add any non-duplicate results to 
    *Name Server IP* set. 
 
@@ -80,7 +77,7 @@ message. The argument names are defined in the [Argument list].
 5. For each name server in *Name Server IP* do:
    1. Match the IP address against the IP ranges specified in 
       [Special purpose IPv4 addresses] and [Special purpose IPv6 addresses]
-      1. If if falls within any of the address ranges reserved for 
+      1. If the IP address falls within any of the address ranges reserved for 
         *Documentation*, add the name server name and IP address to the
         *Documentation Address* set,
       2. Else, if it falls within an address range belonging to any of the 
@@ -93,7 +90,7 @@ message. The argument names are defined in the [Argument list].
          - *Link-Local Unicast* (IPv6)
          - *Unique-Local* (IPv6)
          - *Shared Address Space* (IPv6)
-      3. Else, if the IP falls within any other range that is not registered as 
+      3. Else, if it falls within any other range that is not registered as 
          *Globally Reachable*, add the name server name and IP address to 
          the *Not Globally Reachable* set.
    2. Go to the next server.
