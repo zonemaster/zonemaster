@@ -30,13 +30,13 @@ can run on any of the [Docker] supported OSs (Linux, macOS and Windows).
 
 Operating System | MariaDB | PostgreSQL
 ---------------- | --------| ---------------
-Debian 12        | 10.11?  | 15?
+Debian 12        | 10.11   | 15
 Docker           | n/a     | n/a
 FreeBSD 14       | 8.0 (*) | 17
 Rocky Linux 8    | 10.3    | 10
 Rocky Linux 9    | 10.5    | 13
 Ubuntu 22.04     | 10.6?   | 14?
-Ubuntu 24.04     | 10.11?  | 16?
+Ubuntu 24.04     | 10.11   | 16
 
 * (*) FreeBSD uses MySQL, not MariaDB.
 * SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
@@ -51,13 +51,13 @@ Ubuntu 24.04     | 10.11?  | 16?
 
 Operating System | Perl
 ---------------- | ----
-Debian 12        | 5.36?
+Debian 12        | 5.36
 Docker           | (*)
 FreeBSD 14       | 5.40
 Rocky Linux 8    | 5.26
 Rocky Linux 9    | 5.32
 Ubuntu 22.04     | 5.34?
-Ubuntu 24.04     | 5.38?
+Ubuntu 24.04     | 5.38
 
 
 * Zonemaster technically requires Perl version 5.26 or higher, but has only been tested with the versions in the table above.
