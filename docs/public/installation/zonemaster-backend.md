@@ -369,11 +369,7 @@ Install Zonemaster::Backend:
 cpanm --notest Zonemaster::Backend
 ```
 
-> The command above might try to install "DBD::Pg" and "DBD::mysql".
-> You can ignore if it fails. The relevant libraries are installed further down in these instructions.
-
-Unless they already exist, add `zonemaster` user and `zonemaster` group
-(the group is created automatically):
+Unless they already exist, add `zonemaster` user and `zonemaster` group:
 
 ```sh
 cd `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")'`
