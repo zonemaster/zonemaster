@@ -156,40 +156,84 @@ A-label and U-label (UTF-8 is assumed).
 ### Status of a batch job
 
 To check the status of a batch job the batch ID is required ("2" in the
-case above), using `get_batch_job_result`:
+case above), using `batch_status`:
 
 ```
-$ zmb get_batch_job_result --batch-id 2 | jq
+$ zmb batch_status --batch-id 2 | jq
 {
   "id": 1,
   "result": {
-    "nb_running": 3,
-    "nb_finished": 0
+    "finished_count": 0,
+    "running_count": 2,
+    "waiting_count": 1
   },
   "jsonrpc": "2.0"
 }
 ```
 
-Three tests are running, none has been completed yet. After some time running the
-command again gives:
+Two tests are running, one is waiting to be started and none has been completed
+yet.
 
-```json
+To get the test IDs of the the tests in each of the categories, add one or more
+of the "--lw" (list waiting), "--lr" (list running) or "--lf" (list finished)
+option to the previous call:
+
+```
+$ zmb batch_status --batch-id 2 --lw --lr --lf| jq
 {
-  "jsonrpc": "2.0",
+  "id": 1,
   "result": {
-    "nb_running": 0,
-    "finished_test_ids": [
-      "b26b874493ed4b57",
+    "finished_count": 0,
+    "running_count": 2,
+    "waiting_count": 1,
+    "waiting_tests": [
+      "b26b874493ed4b57"
+    ],
+    "running_tests": [
       "9af528070fa2551a",
       "708f82b5176261dc"
-    ],
-    "nb_finished": 3
+    ]
   },
-  "id": 1
+  "jsonrpc": "2.0"
 }
 ```
 
-Now all tests in the batch are completed. The test IDs in `finished_test_ids`
+There is no "finished_tests" since that category is empty.
+
+After some time running the command again (with "--lf") gives:
+
+```json
+{
+  "id": 1,
+  "result": {
+    "finished_count": 3,
+    "running_count": 0,
+    "waiting_count": 0,
+    "finished_tests": [
+      "9af528070fa2551a",
+      "708f82b5176261dc",
+      "b26b874493ed4b57"
+    ]
+  },
+  "jsonrpc": "2.0"
+}
+```
+
+Or without "--lf":
+
+```json
+{
+  "id": 1,
+  "result": {
+    "finished_count": 3,
+    "running_count": 0,
+    "waiting_count": 0
+  },
+  "jsonrpc": "2.0"
+}
+```
+
+Now all tests in the batch are completed. The test IDs in `finished_tests`
 can be used to get the results with `get_test_results`.
 
 ## Scale out
