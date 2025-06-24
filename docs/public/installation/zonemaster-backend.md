@@ -103,9 +103,6 @@ Install Zonemaster::Backend:
 sudo cpanm --notest Zonemaster::Backend
 ```
 
-> The command above might try to install "DBD::Pg" and "DBD::mysql".
-> You can ignore if it fails. The relevant libraries are installed further down in these instructions.
-
 Add Zonemaster user (unless it already exists):
 
 ```sh
@@ -243,9 +240,6 @@ Install Zonemaster::Backend:
 ```sh
 sudo cpanm --notest Zonemaster::Backend
 ```
-
-> The command above might try to install "DBD::Pg" and "DBD::mysql".
-> You can ignore if it fails. The relevant libraries are installed further down in these instructions.
 
 Add Zonemaster user (unless it already exists):
 
