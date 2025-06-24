@@ -80,6 +80,9 @@ perl -MZonemaster::Engine::Test -E 'say Zonemaster::Engine::Profile->default->to
 ```
 
 ## Enable global cache
+If there is no `profile.json` in `/etc/zonemaster/` (or `/usr/local/etc/zonemaster/`
+for FreeBSD), create it by extracting the default profile using the command in the
+[profile documentation].
 
 Update `/etc/zonemaster/profile.json` (or `/usr/local/etc/zonemaster/profile.json`
 for FreeBSD) by adding a cache section. If the profile already has an empty cache
