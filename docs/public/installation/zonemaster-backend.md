@@ -711,7 +711,7 @@ of `postgresql-client`. Determine what version was installed:
 pkg info | grep postgresql | grep client
 ```
 Replace `XX` in the command below to install `postgresql-server` with the same
-major version as the installed `postgresql-client`, e.g. `16`.
+major version as the installed `postgresql-client`, e.g. `17`.
 
 ```sh
 pkg install postgresqlXX-server
