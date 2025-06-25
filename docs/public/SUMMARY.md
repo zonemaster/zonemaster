@@ -47,7 +47,7 @@
           - [BASIC01](specifications/test-zones/Basic-TP/basic01.md)
           - [BASIC02](specifications/test-zones/Basic-TP/basic02.md)
         - [Connectivity-TP](specifications/test-zones/Connectivity-TP/README.md)
-          -[Connectivity04](specifications/test-zones/Connectivity-TP/connectivity04.md)
+          - [Connectivity04](specifications/test-zones/Connectivity-TP/connectivity04.md)
         - [Consistency-TP](specifications/test-zones/Consistency-TP/README.md)
           - [CONSISTENCY05](specifications/test-zones/Consistency-TP/consistency05.md)
           - [CONSISTENCY06](specifications/test-zones/Consistency-TP/consistency06.md)
