@@ -7,7 +7,6 @@
 * [Purpose](#purpose)
 * [Documentation](#documentation)
 * [Prerequisites](#prerequisites)
-* [Support of DNSKEY algorithms 15 and 16](#support-of-dnskey-algorithms-15-and-16)
 * [Translation](#translation)
 * [Zonemaster and its components](#zonemaster-and-its-components)
 * [Installation](#installation)
