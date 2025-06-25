@@ -35,7 +35,7 @@ Docker           | n/a     | n/a
 FreeBSD 14       | 8.0 (*) | 17
 Rocky Linux 8    | 10.3    | 10
 Rocky Linux 9    | 10.5    | 13
-Ubuntu 22.04     | 10.6?   | 14?
+Ubuntu 22.04     | 10.6    | 14
 Ubuntu 24.04     | 10.11   | 16
 
 * (*) FreeBSD uses MySQL, not MariaDB.
@@ -56,7 +56,7 @@ Docker           | (*)
 FreeBSD 14       | 5.40
 Rocky Linux 8    | 5.26
 Rocky Linux 9    | 5.32
-Ubuntu 22.04     | 5.34?
+Ubuntu 22.04     | 5.34
 Ubuntu 24.04     | 5.38
 
 
