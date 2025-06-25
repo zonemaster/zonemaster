@@ -63,7 +63,7 @@
           - [Recursor-PM](specifications/test-zones/Engine/Recursor-PM/README.md)
             - [CNAME](specifications/test-zones/Engine/Recursor-PM/CNAME.md)
         - [MethodsV2](specifications/test-zones/MethodsV2/README.md)
-          -[MethodsV2 test scenario specification](specifications/test-zones/MethodsV2/methodsv2.md)
+          - [MethodsV2 test scenario specification](specifications/test-zones/MethodsV2/methodsv2.md)
         - [Nameserver-TP](specifications/test-zones/Nameserver-TP/README.md)
           - [NAMESERVER11](specifications/test-zones/Nameserver-TP/nameserver11.md)
           - [NAMESERVER15](specifications/test-zones/Nameserver-TP/nameserver15.md)
