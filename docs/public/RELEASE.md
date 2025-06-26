@@ -40,7 +40,9 @@ Component            | Github release notes   | Changes file               | Upd
 [Zonemaster-Backend] | [v11.5.0][backend-tag] | [Changes][backend-Changes] | Yes
 [Zonemaster-GUI]     | [v4.4.0][gui-tag]      | [Changes][gui-Changes]     | No
 
-For more information on previous versions of the Zonemaster product see the [Changes][zonemaster-Changes] file or the [releases] page on Github. For general information ses the [README] file. The public documentation is found in nice format on the [documentation site]. Zonemaster can be used and tested on the [reference installation].
+For more information on previous versions of the Zonemaster product see the [Changes][zonemaster-Changes] file or the [releases] page on Github. For general information see the [README] file.
+
+The public documentation is also found in a nicer format on the [documentation site]. Zonemaster can be used and tested on the [reference installation].
 
 [README]:                 https://github.com/zonemaster/zonemaster/blob/master/README.md
 [releases]:               https://github.com/zonemaster/zonemaster/releases
