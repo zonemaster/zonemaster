@@ -14,9 +14,9 @@ v2025.1 2025-06-26
    name. See Zonemaster-Engine.
  - Changes the CLI "--test" option. See Zonemaster-CLI.
 
-[Deprecations]
-- API method "get_batch_job_result" is deprecated to be removed in v2025.2.
-  Use method "batch_status" instead. See #1304 and Zonemaster-Backend
+ [Deprecations]
+ - API method "get_batch_job_result" is deprecated to be removed in v2025.2.
+   Use method "batch_status" instead. See #1304 and Zonemaster-Backend
 
  [Features]
  - Lowers all WARNING to NOTICE in test case Zone01. Lowers ERROR to WARNING in
