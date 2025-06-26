@@ -14,7 +14,7 @@
 
 
 ### \[Features\]
-- Lowers all WARNING to NOTICE in test case Zone01. Lowers ERROR to WARNING in test case DNSSEC03. See [Zonemaster-Engine], [#1384] and [#1352].
+- Lowers all WARNING to NOTICE in test case Zone01. Lowers ERROR to WARNING in test case DNSSEC03. See [#1384], [#1352] and [Zonemaster-Engine].
 - Updates "Requirements and normalization of domain names in input" to make removal of leading and trailing space optional ([#1260]).
 - Defines Backend API "batch\_status" to replace "get\_batch\_job\_result" ([#1304]). For implementation see [Zonemaster-Backend].
 
