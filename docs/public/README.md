@@ -26,16 +26,34 @@ The public documentation is divided into the following main categories:
 ## Rendering
 
 Renderings of the public documentation are published to [doc.zonemaster.net] for
-every release version since v2023.1.
+every release version since v2023.1. It can be built locally using [mdbook], its
+[mdbook-linkcheck] plugin.
 
-To render and view the public documentation locally you need to get a copy of
-the source tree (e.g., by cloning the [repository] or downloading an archive of
-one of the [releases]).
-Then change to the `docs/public` directory and run `mdbook serve` and open
-[localhost:3000] in your browser.
+1. Get a copy of the source tree by cloning the [repository] or downloading an
+archive of one of the [releases]).
+2. Change to the `docs/public` directory and build the book.
+```
+cd docs/public
+mdbook build
+```
+3. To view the content there are a few options:
+
+* Open the index file if your OS has support for it:
+```
+open book/index.html
+```
+* Let mdbook serve it on local computer. Run the following command and open
+  [localhost:3000] in your browser.
+```
+mdbook serve
+```
+* Copy the `book` directory with all files to your laptop and go directly to
+  that directory and open `book/index.html`.
 
 
 [doc.zonemaster.net]: https://doc.zonemaster.net
 [localhost:3000]: http://localhost:3000
 [releases]: https://github.com/zonemaster/zonemaster/releases
 [repository]: https://github.com/zonemaster/zonemaster
+[mdbook]:                              https://rust-lang.github.io/mdBook/
+[mdbook-linkcheck]:                    https://github.com/Michael-F-Bryan/mdbook-linkcheck
