@@ -21,7 +21,7 @@
 
 ### \[Fixes\]
 - Updates language translations. See [Zonemaster-Engine], [Zonemaster-CLI] and [Zonemaster-Backend].
-- Fixes issue in test case DNSSC10 when name servers share IP addresses. See [Zonemaster-Engine].
+- Fixes issue in test case DNSSEC10 when name servers share IP addresses. See [Zonemaster-Engine].
 - Updates installation instructions ([#1391]).
 - Updates global cache instructions ([#1392]).
 - Updates Backend batch instructions ([#1386]).
