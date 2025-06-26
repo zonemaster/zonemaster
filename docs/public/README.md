@@ -30,7 +30,7 @@ every release version since v2023.1. It can be built locally using [mdbook], its
 [mdbook-linkcheck] plugin.
 
 1. Get a copy of the source tree by cloning the [repository] or downloading an
-archive of one of the [releases]).
+archive of one of the [releases].
 2. Change to the `docs/public` directory and build the book.
 ```
 cd docs/public
@@ -47,7 +47,7 @@ open book/index.html
 ```
 mdbook serve
 ```
-* Copy the `book` directory with all files to your laptop and go directly to
+* Copy the `book` directory with all files to your computer, go directly to
   that directory and open `book/index.html`.
 
 
