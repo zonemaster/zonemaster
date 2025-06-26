@@ -10,8 +10,7 @@
 * [Test zone names](#test-zone-names)
 * [All message tags](#all-message-tags)
 * [Test scenarios and message tags](#test-scenarios-and-message-tags)
-* [Zone setup for test scenarios]
-
+* [Test scenarios and setup of test zones]
 
 ## Background
 
@@ -244,7 +243,7 @@ whose [RCODE Name] is neither "NoError" nor "NXDomain".
 Whether or not NAMESERVER_IP_WITHOUT_REVERSE is allowed to be outputted is
 intentionally left unspecified.
 
-[ADDRESS03]:                     ../../tests/Address-TP/address03.md
-[RCODE Name]:                    https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[test scenario README file]:     ../README.md
-[Zone setup for test scenarios]: #zone-setup-for-test-scenarios
+[ADDRESS03]:                                ../../tests/Address-TP/address03.md
+[RCODE Name]:                               https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[test scenario README file]:                ../README.md
+[Test scenarios and setup of test zones]:   #test-scenarios-and-setup-of-test-zones
