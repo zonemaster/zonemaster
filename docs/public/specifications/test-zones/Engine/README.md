@@ -2,7 +2,7 @@
 
 This document structure contains test scenario specifications for
 Zonemaster-Engine Perl Modules, except for test scenarios for [Test Case]
-implementations and implementation of [MethodV2], which are found in sibling
+implementations and implementation of [MethodsV2], which are found in sibling
 structures.
 
 The test scenarios found here are for various Perl modules. The specifications
