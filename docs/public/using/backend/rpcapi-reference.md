@@ -38,14 +38,14 @@
   * [API method: start_domain_test](#api-method-start_domain_test)
   * [API method: test_progress](#api-method-test_progress)
   * [API method: get_test_results](#api-method-get_test_results)
+  * [API method: get_test_params](#api-method-get_test_params)
   * [API method: get_test_history](#api-method-get_test_history)
     * [Undelegated and delegated](#undelegated-and-delegated)
   * [API method: add_api_user](#api-method-add_api_user)
   * [API method: add_batch_job](#api-method-add_batch_job)
   * [API method: get_batch_job_result](#api-method-get_batch_job_result)
-  * [API method: get_test_params](#api-method-get_test_params)
+  * [API method: batch_status](#api-method-batch_status)
 * [Experimental API methods](#experimental-api-methods)
-
 
 ## Purpose
 
@@ -1368,6 +1368,9 @@ Trying to add a batch when the method has been disabled.
 
 ### API method: `get_batch_job_result`
 
+*Deprecated. To be removed with release v2025.2* Replaced by
+[API method: batch_status](#api-method-batch_status).
+
 Return all [*test id*][Test id] objects of a *batch test*, with the number of finished *test*.
 
 Example request:
@@ -1377,7 +1380,7 @@ Example request:
 {
     "jsonrpc": "2.0",
     "id": 147559211994909,
-    "method": "batch_status",
+    "method": "get_batch_job_result",
     "params": {
         "batch_id": "8"
     }
@@ -1438,6 +1441,149 @@ If the `batch_id` is undefined the following error is returned:
 }
 ```
 
+
+### API method: `batch_status`
+
+This method replaces deprecated method
+[API method: get_batch_job_result](#api-method-get_batch_job_result).
+
+Returns the number of waiting, running and finished *tests*. Optionally it also
+returns the [*test ids*][Test id] of the *batch test*, in three different lists
+(waiting, running, finished). Only non-empty lists are included.
+
+Example valid request and response, respectively, where no [*test ids*][Test id]
+were requested:
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 147559211994909,
+    "method": "batch_status",
+    "params": {
+        "batch_id": "8"
+    }
+}
+```
+
+```json
+{
+   "jsonrpc": "2.0",
+   "id": 147559211994909,
+   "result": {
+      "finished_count": 5,
+      "running_count": 5,
+      "waiting_count": 195
+   }
+}
+```
+
+Example valid request  where [*test ids*][Test id] were requested for
+all three status values:
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 147559211994909,
+    "method": "batch_status",
+    "params": {
+        "batch_id": "8",
+        "list_running_tests": true,
+        "list_finished_tests": true,
+        "list_waiting_tests": true
+    }
+}
+```
+
+Example valid response where finished [*test id*][Test id] objects were
+requested but none existed:
+
+```json
+{
+   "jsonrpc": "2.0",
+   "id": 147559211994909,
+   "result": {
+      "finished_count": 0,
+      "running_count": 5,
+      "waiting_count": 195
+   }
+}
+```
+
+Example valid response were [*test id*][Test id] objects were requested
+for all three status values and none was nil:
+
+```json
+{
+   "jsonrpc": "2.0",
+   "id": 147559211994909,
+   "result": {
+      "finished_count": 1,
+      "finished_tests": [
+         "43b408794155324b",
+      ],
+      "waiting_tests": [
+         "be9cbb44fff0b2a8",
+         "62f487731116fd87",
+      ],
+      "running_tests": [
+         "692f8ffc32d647ca",
+         "6441a83fcee8d28d"
+      ],
+      "waiting_count": 2,
+      "running_count": 2
+   }
+}
+```
+
+#### `"params"`
+
+An object with the property:
+
+* `"batch_id"`: A [*batch id*][Batch id], required.
+* `"list_waiting_tests"`: a boolean, optional (default false). If true include
+  the `"waiting_tests"` property in the result object.
+* `"list_running_tests"`: a boolean, optional (default false). If true include
+  the `"running_tests"` property in the result object.
+* `"list_finished_tests"`: a boolean, optional (default false). If true include
+  the `"finished_tests"` property in the result object.
+
+#### `"result"`
+
+An object with the following properties:
+
+* `"waiting_count"`: a [*non-negative integer*][Non-negative integer]. The number
+  of *waiting* tests ([*progress*][Progress percentage] is equal to 0).
+* `"running_count"`: a [*non-negative integer*][Non-negative integer]. The number
+  of *running* tests ([*progress*][Progress percentage] is in the interval 1 to
+  99, inclusive).
+* `"finished_count"`: a [*non-negative integer*][Non-negative integer]. The
+  number of *finished* tests ([*progress*][Progress percentage] is equal to 100).
+* `"waiting_tests"`: a list of [*test ids*][Test id] (only if requested and only
+  if non-empty). The set of *waiting* tests in this *batch*.
+* `"running_tests"`: a list of [*test ids*][Test id] (only if requested and only
+  if non-empty). The set of *running* tests in this *batch*.
+* `"finished_tests"`: a list of [*test ids*][Test id] (only if requested and only
+  if none-empty). The set of *finished* tests in this *batch*.
+
+#### `"error"`
+
+If the `batch_id` is unrecognized the following error is returned:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "error": {
+    "data": {
+      "batch_id": "10"
+    },
+    "message": "Unknown batch",
+    "code": -32603
+  }
+}
+```
+
+
 ## Experimental API methods
 
 There are also some experimental API methods documented only by name:
@@ -1454,7 +1600,6 @@ There are also some experimental API methods documented only by name:
 * domain_history
 * user_create
 * batch_create
-* batch_status
 
 
 [API add_api_user]:                   #api-method-add_api_user

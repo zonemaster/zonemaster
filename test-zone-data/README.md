@@ -113,12 +113,12 @@ Two terminal windows to the computer are needed.
    or again if additional interfaces have been added. (Reboot the computer to
    remove the interfaces, if needed.)
    ```
-   ./set-ip.sh
+   sudo ./set-ip.sh
    ```
 4. Start `coredns`. It will use `main.cfg` and be running in the foreground
-   until terminated.
+   until terminated. Only one instance can run at a time.
    ```
-   ./start-coredns.sh
+   sudo ./start-coredns.sh
    ```
 
 ### Run zonemaster-cli in terminal 2
@@ -192,7 +192,7 @@ data.
 
 ### Test case based test zones
 
-* Address-TP/ (*not yet available*)
+* [Address-TP/]
   * Directory structure for scenarios for test cases in the Address-TP test module.
 * [Basic-TP/]
   * Directory structure for scenarios for test cases in the Basic-TP test module.
@@ -227,6 +227,7 @@ data.
 
 
 [address-plan.md]:                                     address-plan.md
+[Address-TP/]:                                         Address-TP/
 [Basic-TP/]:                                           Basic-TP/
 [COMMON/]:                                             COMMON/
 [Consistency-TP/]:                                     Consistency-TP/

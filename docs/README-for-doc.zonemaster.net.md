@@ -49,5 +49,5 @@ The public documentation is divided into the following main categories:
 [The Swedish Internet Foundation]:                  https://internetstiftelsen.se/en/
 [Zonemaster.net]:                                   https://zonemaster.net
 
-<!-- Location on doc.zonemaster.net: --> 
+<!-- Location on doc.zonemaster.net: -->
 [Zonemaster-logo]:                                  ../zonemaster_logo_2021_color.png

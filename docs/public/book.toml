@@ -4,6 +4,10 @@ description = "Zonemaster documentation"
 language = "en"
 src = "./"
 
+[build]
+create-missing = false
+use-default-preprocessors = false
+
 [output.html]
 no-section-label = true
 
@@ -11,7 +15,9 @@ no-section-label = true
 enable = true
 level = 1
 
-[preprocessor.index]
-
 [output.linkcheck]
+optional = true
+warning-policy= "warn"
 follow-web-links = false
+traverse-parent-directories = false
+exclude = [ 'SUMMARY.md', 'LICENSE.md', 'zonemaster_logo_2021_color.png', 'localhost' ]

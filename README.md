@@ -7,7 +7,6 @@
 * [Purpose](#purpose)
 * [Documentation](#documentation)
 * [Prerequisites](#prerequisites)
-* [Support of DNSKEY algorithms 15 and 16](#support-of-dnskey-algorithms-15-and-16)
 * [Translation](#translation)
 * [Zonemaster and its components](#zonemaster-and-its-components)
 * [Installation](#installation)
@@ -69,19 +68,6 @@ in the [documentation tree].
 The prerequisites of the latest release are found in the [Prerequisites]
 document. The document can also be found in the [Documentation tree].
 
-## Support of DNSKEY algorithms 15 and 16
-
-To be able to support and process DNSKEY algorithms 15 (Ed25519) and 16 (Ed448)
-for DNSSEC the underlying OS must
-have a recent version of [OpenSSL] installed, and [LDNS] being linked against that
-OpenSSL (see [Zonemaster-LDNS-README][Zonemaster-LDNS] for more details). Then
-information below on support of the algorithms assumes that the
-installation instructions given for Zonemaster have been followed. A test of the
-domains `ed25519.nl` and `superdns.nl` will reveal if the Zonemaster
-installation has the support or not for algorithms 15 and 16, respectively.
-
-All supported OSs support algorithms 15 and 16 out of the box.
-
 ## Translation
 
 Zonemaster comes with translation to the following languages. Translation is
@@ -95,6 +81,7 @@ to `RPCAPI`.
 * Finnish (fi, fi_FI.UTF-8)
 * French (fr, fr_FR.UTF-8)
 * Norwegian (nb, nb_NO.UTF-8)
+* Slovenian (sl, sl_SI.UTF-8)
 * Spanish (es, es_ES.UTF-8)
 * Swedish (sv, sv_SE.UTF-8)
 

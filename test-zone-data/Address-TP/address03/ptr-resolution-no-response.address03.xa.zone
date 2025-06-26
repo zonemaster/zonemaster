@@ -1,0 +1,12 @@
+$ORIGIN ptr-resolution-no-response.address03.xa. ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1.child.address03.xa. admin. (
+                2025022400      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+                NS	ns1.child.address03.xa.
+                NS	ns14.child.address03.xa.

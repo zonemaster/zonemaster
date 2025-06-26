@@ -1,0 +1,83 @@
+$ORIGIN 3.11.127.in-addr.arpa. ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2025022400      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+                NS	ns1.address03.xa.
+                NS	ns2.address03.xa.
+;;;
+;;; Name servers for parent zone
+;;;
+21              PTR     ns1.address03.xa.
+22              PTR     ns2.address03.xa.
+
+;;;
+;;; Name servers for child (scenario) zones
+;;;
+
+;; For the “happy path”.
+31              PTR     ns1.child.address03.xa.
+
+;; One more for the “happy path”.
+32              PTR     ns2.child.address03.xa.
+
+;; Multiple PTR records, among which one matches the actual name server name.
+;; For the curious: the languages used are English, French, Swedish, German,
+;; Dutch and Esperanto.
+33              PTR     ns3.child.address03.xa.
+                PTR     name-server-three.child.address03.xa.
+                PTR     serveur-de-noms-trois.child.address03.xa.
+                PTR     namnsevrar-tre.child.address03.xa.
+                PTR     nameserver-drei.child.address03.xa.
+                PTR     naamserver-drie.child.address03.xa.
+                PTR     nomservilo-tri.child.address03.xa.
+
+;; Empty non-terminal.
+_.34            TXT     "To make the parent node an empty non-terminal"
+
+
+;; Nonexistent node. This name server has no reverse DNS at all.
+; 35            PTR     nothing-here.invalid.
+
+;; Nonexistent node. This name server has reverse DNS for IPv6 only, none for IPv4.
+; 36            PTR     ns6.child.address03.xa.
+
+;; This name server has reverse DNS for IPv4 only, none for IPv6.
+37              PTR     ns7.child.address03.xa.
+
+;; Non-matching name.
+38              PTR     a-naughty-nameserver.child.address03.xa.
+
+;; Multiple non-matching names.
+39              PTR     non-matching-set-1.child.address03.xa.
+                PTR     non-matching-set-2.child.address03.xa.
+
+;; An alias to a node with a good PTR record set (which is legal, and can
+;; happen with classless IN-ADDR.ARPA delegation, as in RFC 2317).
+40              CNAME   40.alias
+40.alias        PTR     ns10.child.address03.xa.
+
+;; Another good alias, but the target is another zone.
+41              CNAME   41.reverse-aliases.address03.xa.
+
+;; A dangling alias (pointing to a nonexistent node).
+42              CNAME   dangling.alias
+
+;; An illegal alias (with more than one CNAME RR).
+;; NOTE: The resolver MUST NOT attempt to follow any of the CNAME resource records!
+43              CNAME   illegal1.alias
+                CNAME   illegal2.alias
+
+;; Queries for the following name must be dropped.
+; 44              PTR     ns14.child.address03.xa.
+
+;; Queries for the following name must fail with RCODE SERVFAIL.
+; 45              PTR     ns15.child.address03.xa.
+
+illegal1.alias  PTR     ns13.child.address03.xa.
+illegal2.alias  PTR     ns13.child.address03.xa.
