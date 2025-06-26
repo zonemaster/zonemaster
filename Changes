@@ -27,7 +27,7 @@ v2025.1 2025-06-26
    For implementation see Zonemaster-Backend.
 
  [Fixes]
- - Language updates. See Zonemaster-Engine, Zonemaster-CLI and
+ - Updates language translations. See Zonemaster-Engine, Zonemaster-CLI and
    Zonemaster-Backend.
  - Fixes issue in test case DNSSC10 when name servers share IP addresses. See
    Zonemaster-Engine.
