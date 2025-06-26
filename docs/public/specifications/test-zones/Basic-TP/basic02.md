@@ -410,5 +410,7 @@ The name servers respond with NXDOMAIN, REFUSED or SERVFAIL on SOA query.
   * No actual zone exists.
   
 
-
-
+[Basic02]:                                                        ../../tests/Basic-TP/basic02.md
+[test scenario README file]:                                      ../README.md
+[RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[Test scenarios and setup of test zones]:                         #test-scenarios-and-setup-of-test-zones
