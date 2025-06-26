@@ -20,7 +20,7 @@ v2025.1 2025-06-26
 
  [Features]
  - Lowers all WARNING to NOTICE in test case Zone01. Lowers ERROR to WARNING in
-   test case DNSSEC03. See Zonemaster-Engine, #1384 and #1352
+   test case DNSSEC03. See #1384, #1352 and Zonemaster-Engine.
  - Updates "Requirements and normalization of domain names in input" to make
    removal of leading and trailing space optional #1260
  - Defines Backend API "batch_status" to replace "get_batch_job_result" (#1304).
