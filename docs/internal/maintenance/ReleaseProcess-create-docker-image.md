@@ -23,6 +23,8 @@ Zonemaster-Engine and Zonemaster-CLI are covered here.
 
 ## 2. Prerequisite
 
+### Environment
+
 The steps in this documents are assumed to be executed on a computer installed
 as an [Ubuntu Build Environment] computer. It could work on another OS as long
 as the same support is available.
@@ -40,6 +42,26 @@ commands to clean up before proceeding (see section "[Handy Docker commands]"):
 [ "$(docker image ls -q)" != '' ] && docker image prune -a
 ```
 
+### Enable IPv6 support
+
+Docker has no IPv6 support. On Linux it can be enabled. Do that unless already
+done, or else zonemaster-cli will report errors when trying to access servers
+on IPv6.
+
+Create or update `/etc/docker/daemon.json`. This is a minimal file that enables
+IPv6 support:
+
+```json
+{
+    "ipv6": true,
+    "fixed-cidr-v6": "2001:db8:1::/64"
+}
+```
+
+Restart the docker daemon:
+```sh
+sudo systemctl restart docker
+```
 
 ## 3. Create Docker images
 
