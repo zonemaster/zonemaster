@@ -34,14 +34,14 @@ Category         | Label              | Color   | Used in repository | Scope |De
 Area             | A-Documentation    | green   | all                | Both  | Area: Documentation only.
 Area             | A-TestCase         | green   | "main" or Engine   | Both  | Area: Test case specification or implementation of test case.
 Area             | A-Translation      | green   | all                | Both  | Area: Documentation of, implementation of or actual translation of text.
-Priority         | P-High             | red     | all                | Both  | Priority: Issue to be solved before other.
-Release category | RC-BreakingChanges | magenta | all                | PR    | Release category: Breaking changes
-Release category | RC-Deprecations    | magenta | all                | PR    | Release category: Deprecations
-Release category | RC-Features        | magenta | all                | PR    | Release category: Feature
-Release category | RC-Fixes           | magenta | all                | PR    | Release category: Fixes
-Release category | RC-None            | magenta | all                | PR    | Release category: Not to be included in Changes file
-Status           | S-ReleaseTested    | yellow  | all                | PR    | Status: The PR has been successfully tested in release testing
-Status           | S-PRforIssue       | yellow  | all                | Issue | Status: There is a PR that is meant to resolve the issue
+Priority         | P-High             | red     | all                | Both  | Priority: Issue to be solved before others.
+Release category | RC-BreakingChanges | magenta | all                | PR    | Release category: Breaking changes.
+Release category | RC-Deprecations    | magenta | all                | PR    | Release category: Deprecations.
+Release category | RC-Features        | magenta | all                | PR    | Release category: Features.
+Release category | RC-Fixes           | magenta | all                | PR    | Release category: Fixes.
+Release category | RC-None            | magenta | all                | PR    | Release category: Not to be included in Changes file.
+Status           | S-ReleaseTested    | yellow  | all                | PR    | Status: The PR has been successfully tested in release testing.
+Status           | S-PRforIssue       | yellow  | all                | Issue | Status: There is a PR that is meant to resolve the issue.
 Type             | T-Bug              | red     | all                | Both  | Type: Bug in software or error in test case specification.
 Type             | T-Feature          | blue    | all                | Issue | Type: New feature in software or test case specification.
 Type             | T-Question         | blue    | all                | Issue | Type: External question.
