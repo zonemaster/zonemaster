@@ -44,9 +44,9 @@ commands to clean up before proceeding (see section "[Handy Docker commands]"):
 
 ### Enable IPv6 support
 
-Docker has no IPv6 support. On Linux it can be enabled. Do that unless already
-done, or else zonemaster-cli will report errors when trying to access servers
-on IPv6.
+Docker has no IPv6 support by default. On Linux it can be enabled. Do that unless
+already done, or else zonemaster-cli will report errors when trying to access
+servers on IPv6.
 
 Create or update `/etc/docker/daemon.json`. This is a minimal file that enables
 IPv6 support:
