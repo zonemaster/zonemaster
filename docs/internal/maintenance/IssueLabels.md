@@ -7,10 +7,10 @@ Each label is assigned to one of these categories:
 
 * Area
 * Priority
+* Release category
 * Status
 * Type
 * Versioning
-* Release category
 
 # Usage
 
@@ -23,16 +23,18 @@ request.
 
 A label from *Status* can be used if applicable.
 
-A PR should always have exactly one label from *Versioning* and one or more
-labels from *Release category*. `RC-None` must not be combined with any other
-*Release category* label.
+A PR should always have exactly one label from *Versioning* except in the
+[Zonemaster/Zonemaster] repository where they do not apply.
+
+A PR should have one or more labels from *Release category*. `RC-None` must not
+be combined with any other *Release category* label.
 
 ## Labels
 
 Category         | Label              | Color   | Used in repository | Scope |Description
 -----------------|--------------------|---------|--------------------|-------|---------------------------------------------------------
 Area             | A-Documentation    | green   | all                | Both  | Area: Documentation only.
-Area             | A-TestCase         | green   | "main" or Engine   | Both  | Area: Test case specification or implementation of test case.
+Area             | A-TestCase         | green   | main or Engine     | Both  | Area: Test case specification or implementation of test case.
 Area             | A-Translation      | green   | all                | Both  | Area: Documentation of, implementation of or actual translation of text.
 Priority         | P-High             | red     | all                | Both  | Priority: Issue to be solved before others.
 Release category | RC-BreakingChanges | magenta | all                | PR    | Release category: Breaking changes.
@@ -46,9 +48,9 @@ Type             | T-Bug              | red     | all                | Both  | T
 Type             | T-Feature          | blue    | all                | Issue | Type: New feature in software or test case specification.
 Type             | T-Question         | blue    | all                | Issue | Type: External question.
 Type             | T-TrackingIssue    | blue    | all                | Issue | Type: Tracks other issues, PRs or other changes.
-Versioning       | V-Major            | pink    | all                | Both  | Versioning: The change gives an update of major in version.
-Versioning       | V-Minor            | pink    | all                | Both  | Versioning: The change gives an update of minor in version.
-Versioning       | V-Patch            | pink    | all                | Both  | Versioning: The change gives an update of patch in version.
+Versioning       | V-Major            | pink    | all but main       | Both  | Versioning: The change gives an update of major in version.
+Versioning       | V-Minor            | pink    | all but main       | Both  | Versioning: The change gives an update of minor in version.
+Versioning       | V-Patch            | pink    | all but main       | Both  | Versioning: The change gives an update of patch in version.
 
 ## Color
 
@@ -66,9 +68,7 @@ magenta  | #D4C5F9
 Term     | Definition or meaning
 ---------|---------------------------------------------
 main     | In the table above, "main" stands for the [Zonemaster/Zonemaster] repository
-Backend  | In the table above, "Backend" stands for the [Zonemaster-Backend] repository
 Engine   | In the table above, "Engine" stands for the [Zonemaster-Engine] repository
-GUI      | In the table above, "GUI" stands for the [Zonemaster-GUI] repository
 
 ## Scope
 
@@ -79,6 +79,4 @@ Issue | The label is meant for Issue only
 Both  | The label is meant for both Pull Request and Issue
 
 [Zonemaster/Zonemaster]:    https://github.com/zonemaster/zonemaster
-[Zonemaster-Backend]:       https://github.com/zonemaster/zonemaster-backend
 [Zonemaster-Engine]:        https://github.com/zonemaster/zonemaster-engine
-[Zonemaster-GUI]:           https://github.com/zonemaster/zonemaster-gui
