@@ -4,10 +4,11 @@
 
 * [Introduction](#introduction)
 * [RPCAPI section](#rpcapi-section)
+  * [enable_add_batch_job](#enable_add_batch_job)  *(deprecated)*
+  * [enable_add_api_user](#enable_add_api_user)  *(deprecated)*
   * [enable_batch_create](#enable_batch_create)
-  * [enable_user_create](#enable_user_create)
-  * [enable_add_batch_job](#enable_add_batch_job)
-  * [enable_add_api_user](#enable_add_api_user)
+  * [batch_create_token](#batch_create_token)
+  * [batch_create_max_size_non_auth](#batch_create_max_size_non_auth)
 * [DB section](#db-section)
   * [engine](#engine)
   * [polling_interval](#polling_interval)
@@ -59,31 +60,54 @@ In addition to the configuration file, some settings can configured using
 
 ## RPCAPI section
 
-Available keys: `enable_batch_create`, `enable_user_create`,
-`enable_add_batch_job`, `enable_add_api_user`.
+Available keys: `enable_add_batch_job`, `enable_add_api_user`,
+`enable_batch_create`, `batch_create_token`, `batch_create_max_size_non_auth`.
 
 ### enable_add_batch_job
 
-Boolean value to enable the `add_batch_job` and `batch_create` methods of the API.
+*Deprecated. To be removed by Zonemaster version v2026.2. Use
+`enable_batch_create` instead.*
+
+Boolean value to enable the `add_batch_job` and `batch_create` methods of the
+API. May not co-exist with [RPCAPI.enable_batch_create].
 
 Accepted values: `yes` (or `true`) or `no` (or `false`),
 default to `yes` (enabled).
 
 ### enable_add_api_user
 
-Boolean value to enable the `add_api_user` and `user_create` method of the API.
+*Deprecated. To be removed by Zonemaster version v2026.2.*
+
+Boolean value to enable the `add_api_user` method of the API.
 
 Accepted values: `yes` (or `true`) or `no` (or `false`),
 default to `no` (disabled).
 
 ### enable_batch_create
 
-An experimental alias for [enable_add_batch_job][RPCAPI.enable_add_batch_job].
+*Replaces deprecated `enable_add_batch_job`.*
 
-### enable_user_create
+Boolean value to enable the `add_batch_job` and `batch_create` methods of the
+API. May not co-exist with [RPCAPI.enable_add_batch_job].
 
-An experimental alias for [enable_add_api_user][RPCAPI.enable_add_api_user].
+Accepted values: `yes` (or `true`) or `no` (or `false`),
+default to `yes` (enabled).
 
+### batch_create_token
+
+String to use in `batch_create` method call to authorize the creation of a
+batch.
+
+A string of alphanumerics of at least 1 and at most 80 characters. I.e. a string
+matching `/^[a-zA-Z0-9]{1,80}$/`.
+
+### batch_create_max_size_non_auth
+
+Maximal number of domain names in a batch created by `batch_create` without
+token. If set to 0, only `batch_create` with token is permitted.
+
+* Acceptable value: Non-negative decimal integer
+* Default value: 5
 
 ## DB section
 
@@ -378,30 +402,28 @@ shelf life of a previous test result, that test result is reused.
 Otherwise a new test request is enqueued.
 
 
-[API documentation]:                  ../using/backend/api.md
-[DBD::mysql documentation]:           https://metacpan.org/pod/DBD::mysql#host
-[Default JSON profile file]:          https://github.com/zonemaster/zonemaster-engine/blob/master/share/profile.json
-[Environment Variables]:              backend-environment-variables.md
-[File format]:                        https://metacpan.org/pod/Config::IniFiles#FILE-FORMAT
-[ISO 3166-1 alpha-2]:                 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-[ISO 639-1]:                          https://en.wikipedia.org/wiki/ISO_639-1
-[Installation instructions]:          ../installation/zonemaster-backend.md
-[Language tag]:                       ../using/backend/api.md#language-tag
-[LDH domain name]:                    https://datatracker.ietf.org/doc/html/rfc3696#section-2
-[MariaDB identifier max lengths]:     https://mariadb.com/kb/en/identifier-names/#maximum-length
-[MariaDB unquoted identifier]:        https://mariadb.com/kb/en/identifier-names/#unquoted
-[MYSQL.host]:                         #host
-[MYSQL.port]:                         #port
-[PostgreSQL identifier]:              https://www.postgresql.org/docs/current/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS
-[Profile JSON files]:                 profiles.md
-[Profile name section]:               ../using/backend/rpcapi-reference.md#profile-name
-[Profiles]:                           https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md#profile
-[RPCAPI.enable_add_api_user]:         #enable_add_api_user
-[RPCAPI.enable_add_batch_job]:        #enable_add_batch_job
-[RPCAPI.enable_batch_create]:         #enable_batch_create
-[RPCAPI.enable_user_create]:          #enable_user_create
-[SQLITE.database_file]:               #database_file
-[US ASCII printable characters]:      https://en.wikipedia.org/wiki/ASCII#Printable_characters
-[Zonemaster-Engine share directory]:  https://github.com/zonemaster/zonemaster-engine/tree/master/share
-[Zonemaster::Engine::Profile]:        https://metacpan.org/pod/Zonemaster::Engine::Profile#PROFILE-PROPERTIES
-[Zonemaster Engine default profile]:  profiles.md#default-profile
+[API documentation]:                                ../using/backend/api.md
+[DBD::mysql documentation]:                         https://metacpan.org/pod/DBD::mysql#host
+[Default JSON profile file]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/share/profile.json
+[Environment Variables]:                            backend-environment-variables.md
+[File format]:                                      https://metacpan.org/pod/Config::IniFiles#FILE-FORMAT
+[ISO 3166-1 alpha-2]:                               https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+[ISO 639-1]:                                        https://en.wikipedia.org/wiki/ISO_639-1
+[Installation instructions]:                        ../installation/zonemaster-backend.md
+[Language tag]:                                     ../using/backend/api.md#language-tag
+[LDH domain name]:                                  https://datatracker.ietf.org/doc/html/rfc3696#section-2
+[MariaDB identifier max lengths]:                   https://mariadb.com/kb/en/identifier-names/#maximum-length
+[MariaDB unquoted identifier]:                      https://mariadb.com/kb/en/identifier-names/#unquoted
+[MYSQL.host]:                                       #host
+[MYSQL.port]:                                       #port
+[PostgreSQL identifier]:                            https://www.postgresql.org/docs/current/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS
+[Profile JSON files]:                               profiles.md
+[Profile name section]:                             ../using/backend/rpcapi-reference.md#profile-name
+[Profiles]:                                         https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md#profile
+[RPCAPI.batch_create_token]:                        #batch_create_token
+[RPCAPI.enable_add_batch_job]:                      #enable_add_batch_job
+[RPCAPI.enable_batch_create]:                       #enable_batch_create
+[US ASCII printable characters]:                    https://en.wikipedia.org/wiki/ASCII#Printable_characters
+[Zonemaster-Engine share directory]:                https://github.com/zonemaster/zonemaster-engine/tree/master/share
+[Zonemaster::Engine::Profile]:                      https://metacpan.org/pod/Zonemaster::Engine::Profile#PROFILE-PROPERTIES
+[Zonemaster Engine default profile]:                profiles.md#default-profile

@@ -14,6 +14,7 @@
   * [Batch id](#batch-id)
   * [Client id](#client-id)
   * [Client version](#client-version)
+  * [Configuration file](#configuration-file)
   * [Domain name](#domain-name)
   * [DS info](#ds-info)
   * [IP address](#ip-address)
@@ -28,9 +29,11 @@
   * [Test id](#test-id)
   * [Test result](#test-result)
   * [Timestamp](#timestamp)
+  * [Token](#token)
   * [Username](#username)
 * [API methods](#api-methods)
   * [API method: version_info](#api-method-version_info)
+  * [API method: conf_batch_create_max_size_non_auth](#api-method-conf_batch_create_max_size_non_auth)
   * [API method: profile_names](#api-method-profile_names)
   * [API method: get_language_tags](#api-method-get_language_tags)
   * [API method: get_host_by_name](#api-method-get_host_by_name)
@@ -41,9 +44,10 @@
   * [API method: get_test_params](#api-method-get_test_params)
   * [API method: get_test_history](#api-method-get_test_history)
     * [Undelegated and delegated](#undelegated-and-delegated)
-  * [API method: add_api_user](#api-method-add_api_user)
-  * [API method: add_batch_job](#api-method-add_batch_job)
-  * [API method: get_batch_job_result](#api-method-get_batch_job_result)
+  * [API method: add_api_user](#api-method-add_api_user) *(deprecated)*
+  * [API method: add_batch_job](#api-method-add_batch_job) *(deprecated)*
+  * [API method: batch_create](#api-method-batch_create)
+  * [API method: get_batch_job_result](#api-method-get_batch_job_result) *(deprecated)*
   * [API method: batch_status](#api-method-batch_status)
 * [Experimental API methods](#experimental-api-methods)
 
@@ -61,8 +65,10 @@ This API is implemented using [JSON-RPC 2.0].
 JSON-RPC request objects are accepted in the body of HTTP POST requests to any path.
 The HTTP request must contain the header `Content-Type: application/json`.
 
-All JSON-RPC request and response objects have the keys `"jsonrpc"`, `"id"` and `"method"`.
-For details on these, refer to the [JSON-RPC 2.0] specification.
+All JSON-RPC request objects have the keys `"jsonrpc"`, `"id"` and `"method"`.
+The response object have the same keys `"jsonrpc"` and `"id"`. For details on
+these, refer to the [JSON-RPC 2.0] specification. The `"jsonrpc"` and `"id"` keys
+are assumed in the specification of the methods below.
 
 
 ### Deviations from JSON-RPC 2.0
@@ -98,16 +104,12 @@ see the [architecture documentation].
 
 ## Error reporting
 
-If the request object is invalid JSON, an error with code `-32700` is reported.
-
-If no method is specified or an invalid method is specified, an error with code `-32601` is reported.
-
-If no `params` object is specified when it is required, or the `params` object
-for the specified method is invalid, an error with code `-32602` is reported.
-For more information on the validation error data format see
-[Validation error data].
-
-All error states that occur after the RPC method has been identified are reported as internal errors with code `-32603`.
+Error code | Description
+:----------|:-------------------------------------------------------------------
+-32700     | The request object is invalid JSON.
+-32601     | No method is specified or an invalid method is specified.
+-32602     | No `params` object is specified when required, or the `params` object is invalid. For more information on the validation error data format see [Validation error data].
+-32603     | All error states that occur after the RPC method has been identified are reported as internal errors.
 
 
 ## Privilege levels
@@ -115,8 +117,9 @@ All error states that occur after the RPC method has been identified are reporte
 This API provides three classes of methods:
 
 * *Unrestricted* methods are available to anyone with access to the API.
-* *Authenticated* methods have parameters for [*username*][Username] and [*api key*][API key]
-  credentials.
+* *Authenticated* methods have either
+  * Parameters for [*username*][Username] and [*api key*][API key] credentials, or
+  * Parameter for [*token*][Token] credential.
 * *Administrative* methods require that the connection to the API is opened from
   localhost (`127.0.0.1` or `::1`).
 
@@ -170,6 +173,12 @@ I.e. a string matching `/^[a-zA-Z0-9-+~_.: ]{1,50}$/`.
 
 Represents the version of the client.
 Used for monitoring which client (GUI) uses the API.
+
+
+### Configuration file
+
+The configuration of the Zonemaster Backend *RPC API daemon* is done as
+specified in the [Configuration] document.
 
 
 ### Domain name
@@ -253,7 +262,8 @@ Properties:
 
 Basic data type: number (integer)
 
-A non-negative integer is either zero or strictly positive.
+A non-negative integer is either zero or strictly positive. In this specification
+the integer is decimal, unless specified otherwise.
 
 
 ### Priority
@@ -270,8 +280,8 @@ Basic data type: string
 
 This parameter is a case-insensitive string validated with the case-insensitive
 regex `/^[a-z0-9]$|^[a-z0-9][a-z0-9_-]{0,30}[a-z0-9]$/i` which must be predefined
-in the configuration file as specified in the Configuration document
-[profile sections].
+in the [profile sections] in the [configuration file].
+
 
 The name of a *[profile]*.
 
@@ -345,6 +355,16 @@ A string representing a date and time using the following ISO 8601 format:
 "YYYY-MM-DDThh:mm:ssZ".
 Example: "2017-12-18T07:56:17Z"
 
+### Token
+
+Basic data type: string
+
+A string of alphanumerics of at least 1 and at most 80 characters. I.e. a string
+matching `/^[a-zA-Z0-9]{1,80}$/`.
+
+
+Used for authenticated access (see *[Privilege levels]*).
+
 ### Username
 
 Basic data type: string
@@ -353,7 +373,7 @@ A string of alphanumerics, dashes, full stops and at-signs, of at least 1 and at
 most 50 characters.
 I.e. a string matching `/^[a-zA-Z0-9-.@]{1,50}$/`.
 
-Represents the name of an authenticated account (see *[Privilege levels]*)
+Represents the name of an authenticated account (see *[Privilege levels]*).
 
 ### Validation error data
 
@@ -409,6 +429,42 @@ An object with the following properties:
 >
 > TODO: List all possible error codes and describe what they mean enough for clients to know how react to them.
 >
+
+### API method: `conf_batch_create_max_size_non_auth`
+
+Returns the maximum number of elements that the `"domains"` key may containt when
+method `batch_create` is requested without `token`.
+
+Key `"result"` in the response is set to a *[non-negative integer]*.
+
+Key `"result"` is set to zero (0) in the response if any of the following is
+true:
+* [RPCAPI.enable_add_batch_job] is set to false,
+* [RPCAPI.enable_batch_create] is set to false,
+* [RPCAPI.batch_create_max_size_non_auth] is set to 0.
+
+Else, `"result"` is set to the value of
+[RPCAPI.batch_create_max_size_non_auth], if that is set.
+
+Else, `"result"` is set to 5.
+
+Example request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "conf_batch_create_max_size_non_auth"
+}
+```
+
+Example response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": 5
+}
+```
 
 
 ### API method: `profile_names`
@@ -484,9 +540,7 @@ An array of [*language tags*][Language tag]. It is never empty.
 
 >
 > TODO: List all possible error codes and describe what they mean enough for
-> clients to know how react to them. Or prevent RPCAPI from starting with
-> errors in the configuration file and make it not to reread the configuration
-> file while running.
+> clients to know how react to them.
 >
 
 
@@ -733,7 +787,7 @@ than "reuse time" ago, then a new request will not trigger a new test. Instead
 the `test id` of the previous test will be returned. The default value of
 "reuse time" is 600 seconds, and can be set by the
 [`ZONEMASTER.age_reuse_previous_test`][ZONEMASTER.age_reuse_previous_test] key
-in the configuration file.
+in the [configuration file].
 
 The parameters that are compared when to determine if two requests are to be
 considered to be the same are `domain`, `ipv6`, `ipv4`, `nameservers`, `ds_info`
@@ -885,11 +939,11 @@ Example response:
     "results": [
       {
         "module": "SYSTEM",
-        "message": "Using version v1.0.14 of the Zonemaster engine.\n",
+        "message": "Using version v1.0.14 of the Zonemaster engine.",
         "level": "INFO"
       },
       {
-        "message": "Configuration was read from DEFAULT CONFIGURATION\n",
+        "message": "Configuration was read from DEFAULT CONFIGURATION",
         "level": "INFO",
         "module": "SYSTEM"
       },
@@ -1077,8 +1131,8 @@ be `"undelegated"`.
 
 An object with the following properties:
 
-* `"offset"`: A [*non-negative integer*][Non-negative integer], optional. (default: 0). Position of the first returned element from the database returned list.
-* `"limit"`: A [*non-negative integer*][Non-negative integer], optional. (default: 200). Number of element returned from the *offset* element.
+* `"offset"`: A *[non-negative integer]*, optional. (default: 0). Position of the first returned element from the database returned list.
+* `"limit"`: A *[non-negative integer]*, optional. (default: 200). Number of element returned from the *offset* element.
 * `"filter"`: A string, one of `"all"`, `"delegated"` and `"undelegated"`, optional. (default: `"all"`)
 * `"frontend_params"`: An object, required.
 
@@ -1114,6 +1168,8 @@ An object with the following properties:
 
 
 ### API method: `add_api_user`
+
+*Deprecated. To be removed with release v2026.2*.
 
 In order to use the [`add_batch_job`][API add_batch_job] method a
 [*username*][Username] and its [*api key*][Api key] must be added by this method.
@@ -1243,11 +1299,16 @@ Trying to add a user when the method is disabled:
 
 ### API method: `add_batch_job`
 
+*Deprecated. To be removed with release v2026.2* Replaced by
+[API method: batch_create](#api-method-batch_create).
+
 Add a new *batch test* composed by a set of [*domain name*][Domain name] and a *params* object.
 All the domains will be tested using identical parameters.
 
-This method is not available if [`RPCAPI.enable_add_batch_job`][RPCAPI.enable_add_batch_job]
-is disabled (enabled by default).
+This method is not available if either
+[`RPCAPI.enable_add_batch_job`][RPCAPI.enable_add_batch_job] or
+[`RPCAPI.enable_batch_create`][RPCAPI.enable_batch_create] is disabled (enabled
+by default).
 
 A [*username*][Username] and its [*api key*][Api key] can be added with the
 [`add_api_user`][API add_api_user] method.
@@ -1366,6 +1427,180 @@ Trying to add a batch when the method has been disabled.
 ```
 
 
+
+### API method: `batch_create`
+
+This method replaces deprecated method
+[API method: add_batch_job](#api-method-add_batch_job)
+
+Add a new *batch test* composed by a set of [*domain name*][Domain name] and a *params* object.
+All the domains will be tested using identical parameters.
+
+This method is not available if either
+[`RPCAPI.enable_add_batch_job`][RPCAPI.enable_add_batch_job] or
+[`RPCAPI.enable_batch_create`][RPCAPI.enable_batch_create] is disabled (enabled
+by default).
+
+A *token* can be added to the [configuration file] as
+[RPCAPI.batch_create_token].
+
+*Tests* enqueued using this method are assigned a [*priority*][Priority] of 5.
+
+> In previous versions of Zonemaster-Backend a new batch could not be created by
+> the same [*username*][Username] if that *username* had created a batch that was
+> not yet finished. That restriction has been removed in version 2023.2.
+
+
+Example request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 147559211348450,
+  "method": "add_batch_job",
+  "params" : {
+    "token": "123abcABC",
+    "test_params": {},
+    "domains": [
+      "zonemaster.net",
+      "domain1.se",
+      "domain2.fr"
+    ]
+  }
+}
+```
+
+Example response:
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 147559211348450,
+    "result": 8
+}
+```
+
+
+#### `"params"`
+
+An object with the following properties:
+
+* `"token"`: A [*token*][token], see details on `"token"` below.
+* `"domains"`: A list of [*domain names*][Domain name], required. The domains to be tested.
+* `"test_params"`: As described below, optional, (default: `{}`). The `"test_params"` key
+  must be absent or empty (`{}`) unless `"token"` is included.
+
+A `"token"` is required if the number of domain names in `"domains"` is greater
+than the value for [RPCAPI.batch_create_max_size_non_auth] as specified in
+the [configuration file], else it is optional. If included, `"token"` must be
+a valid [token] equal to the token in the [configuration file].
+
+The value of `"test_params"` is an object with the following properties:
+
+* `"client_id"`: A [*client id*][Client id], optional. (default: unset)
+* `"profile"`: A [*profile name*][profile name], optional (default:
+  `"default"`). Run the tests using the given profile.
+* `"client_version"`: A [*client version*][Client version], optional. (default: unset)
+* `"nameservers"`: A list of [*name server*][Name server] objects, optional. (default: `[]`)
+* `"ds_info"`: A list of [*DS info*][DS info] objects, optional. (default: `[]`)
+* `"ipv4"`: A boolean, optional. (default: [`net.ipv4`][net.ipv4] profile value).
+* `"ipv6"`: A boolean, optional. (default: [`net.ipv6`][net.ipv6] profile value).
+* `"priority"`: A [*priority*][Priority], optional. (default: `5`)
+* `"queue"`: A [*queue*][Queue], optional. (default: `0`).
+
+
+#### `"result"`
+
+A [*batch id*][Batch id].
+
+
+#### `"error"`
+
+If the given `profile` is not among the [available profiles][Profile sections], a
+user error is returned, see the [profile name section][profile name].
+
+Trying to add a batch with wrong [*token*][token]:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "error": {
+    "message": "Invalid token for batch_create",
+    "code": -32603,
+    "data": {
+        "message": "Invalid token",
+        "path": "/token"
+    }
+  }
+}
+```
+
+Trying to add a batch with absent [*token*][token] when the number of elements
+in "`domains`" is greater than [RPCAPI.batch_create_max_size_non_auth]:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "error": {
+    "message": "Too many domains in batch_create in non-authorized mode",
+    "code": -32603,
+    "data": {
+        "message": "Too many items: 20.",
+        "path": "/domains"
+    }
+  }
+}
+```
+
+Trying to add a batch with absent [*token*][token] with a non-empty
+`"test_params"` object.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "error": {
+    "message": "Key test_params not allowed in batch_create in non-authorized mode",
+    "code": -32603,
+    "data": {
+        "message": "Not permitted in non-authorized mode",
+        "path": "/test_params"
+    }
+  }
+}
+```
+
+Trying to add a batch with an empty list of domains:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "error": {
+    "data": [
+      {
+        "message": "Not enough items: 0/1.",
+        "path": "/domains"
+      }
+    ],
+    "message": "Invalid method parameter(s).",
+    "code": "-32602"
+  }
+}
+```
+
+Trying to add a batch when the method has been disabled.
+```
+{
+  "error": {
+    "message": "Procedure 'batch_create' not found",
+    "code": -32601
+  }
+}
+```
+
+
+
+
 ### API method: `get_batch_job_result`
 
 *Deprecated. To be removed with release v2025.2* Replaced by
@@ -1418,8 +1653,8 @@ An object with the property:
 
 An object with the following properties:
 
-* `"nb_finished"`: a [*non-negative integer*][Non-negative integer]. The number of finished tests.
-* `"nb_running"`: a [*non-negative integer*][Non-negative integer]. The number of running tests.
+* `"nb_finished"`: a *[non-negative integer]*. The number of finished tests.
+* `"nb_running"`: a *[non-negative integer]*. The number of running tests.
 * `"finished_test_ids"`: a list of [*test ids*][Test id]. The set of finished *tests* in this *batch*.
 
 
@@ -1551,12 +1786,12 @@ An object with the property:
 
 An object with the following properties:
 
-* `"waiting_count"`: a [*non-negative integer*][Non-negative integer]. The number
+* `"waiting_count"`: a *[non-negative integer]*. The number
   of *waiting* tests ([*progress*][Progress percentage] is equal to 0).
-* `"running_count"`: a [*non-negative integer*][Non-negative integer]. The number
+* `"running_count"`: a *[non-negative integer]*. The number
   of *running* tests ([*progress*][Progress percentage] is in the interval 1 to
   99, inclusive).
-* `"finished_count"`: a [*non-negative integer*][Non-negative integer]. The
+* `"finished_count"`: a *[non-negative integer]*. The
   number of *finished* tests ([*progress*][Progress percentage] is equal to 100).
 * `"waiting_tests"`: a list of [*test ids*][Test id] (only if requested and only
   if non-empty). The set of *waiting* tests in this *batch*.
@@ -1598,65 +1833,68 @@ There are also some experimental API methods documented only by name:
 * job_results
 * job_params
 * domain_history
-* user_create
-* batch_create
 
 
-[API add_api_user]:                   #api-method-add_api_user
-[API add_batch_job]:                  #api-method-add_batch_job
-[API batch_create]:                   #api-method-batch_create
-[API batch_status]:                   #api-method-batch_status
-[API conf_languages]:                 #api-method-conf_languages
-[API conf_profiles]:                  #api-method-conf_profiles
-[API domain_history]:                 #api-method-domain_history
-[API job_create]:                     #api-method-job_create
-[API job_params]:                     #api-method-job_params
-[API job_results]:                    #api-method-job_results
-[API job_status]:                     #api-method-job_status
-[API key]:                            #api-key
-[API lookup_address_records]:         #api-method-lookup_address_records
-[API lookup_delegation_data]:         #api-method-lookup_delegation_data
-[API start_domain_test]:              #api-method-start_domain_test
-[API system_versions]:                #api-method-system_versions
-[API user_create]:                    #api-method-user_create
-[API v10.0.0]:                        https://github.com/zonemaster/zonemaster-backend/blob/v10.0.0/docs/API.md
-[Architecture documentation]:         https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md
-[Batch id]:                           #batch-id
-[Client id]:                          #client-id
-[Client version]:                     #client-version
-[Delegation Signer]:                  https://datatracker.ietf.org/doc/html/rfc4034#section-5
-[Domain name]:                        #domain-name
-[Dot-decimal notation]:               https://en.wikipedia.org/wiki/Dot-decimal_notation
-[DS info]:                            #ds-info
-[IP address]:                         #ip-address
-[ISO 3166-1 alpha-2]:                 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-[ISO 639-1]:                          https://en.wikipedia.org/wiki/ISO_639-1
-[JSON Pointer]:                       https://datatracker.ietf.org/doc/html/rfc6901
-[JSON-RPC 2.0]:                       https://www.jsonrpc.org/specification
-[Language tag]:                       #language-tag
-[LANGUAGE.locale]:                    ../../configuration/backend.md#locale
-[Name server]:                        #name-server
-[net.ipv4]:                           https://metacpan.org/pod/Zonemaster::Engine::Profile#net.ipv4
-[net.ipv6]:                           https://metacpan.org/pod/Zonemaster::Engine::Profile#net.ipv6
-[Non-negative integer]:               #non-negative-integer
-[Priority]:                           #priority
-[Privilege levels]:                   #privilege-levels
-[Profile]:                            https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md#profile
-[Profile name]:                       #profile-name
-[Profile sections]:                   ../../configuration/backend.md#public-profiles-and-private-profiles-sections
-[Progress percentage]:                #progress-percentage
-[Queue]:                              #queue
-[RFC 5952]:                           https://datatracker.ietf.org/doc/html/rfc5952
-[RPCAPI.enable_add_api_user]:         ../../configuration/backend.md#enable_add_api_user
-[RPCAPI.enable_add_batch_job]:        ../../configuration/backend.md#enable_add_batch_job
-[Severity Level Definitions]:         ../../specifications/tests/SeverityLevelDefinitions.md
-[Severity level]:                     #severity-level
-[Test Cases]:                         ../../specifications/tests#list-of-defined-test-cases
-[Test Case Identifiers]:              https://github.com/zonemaster/zonemaster/blob/master/docs/internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
-[Test id]:                            #test-id
-[Test result]:                        #test-result
-[Timestamp]:                          #timestamp
-[Username]:                           #username
-[Validation error data]:              #validation-error-data
-[ZONEMASTER.age_reuse_previous_test]: ../../configuration/backend.md#age_reuse_previous_test
-[ZONEMASTER.lock_on_queue]:           ../../configuration/backend.md#lock_on_queue
+[API add_api_user]:                           #api-method-add_api_user
+[API add_batch_job]:                          #api-method-add_batch_job
+[API batch_create]:                           #api-method-batch_create
+[API batch_status]:                           #api-method-batch_status
+[API conf_languages]:                         #api-method-conf_languages
+[API conf_profiles]:                          #api-method-conf_profiles
+[API domain_history]:                         #api-method-domain_history
+[API job_create]:                             #api-method-job_create
+[API job_params]:                             #api-method-job_params
+[API job_results]:                            #api-method-job_results
+[API job_status]:                             #api-method-job_status
+[API key]:                                    #api-key
+[API lookup_address_records]:                 #api-method-lookup_address_records
+[API lookup_delegation_data]:                 #api-method-lookup_delegation_data
+[API start_domain_test]:                      #api-method-start_domain_test
+[API system_versions]:                        #api-method-system_versions
+[API v10.0.0]:                                https://github.com/zonemaster/zonemaster-backend/blob/v10.0.0/docs/API.md
+[Architecture documentation]:                 https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md
+[Batch id]:                                   #batch-id
+[Client id]:                                  #client-id
+[Client version]:                             #client-version
+[Configuration]:                              ../../configuration/backend.md
+[Configuration file]:                         #configuration-file
+[Delegation Signer]:                          https://datatracker.ietf.org/doc/html/rfc4034#section-5
+[Domain name]:                                #domain-name
+[Dot-decimal notation]:                       https://en.wikipedia.org/wiki/Dot-decimal_notation
+[DS info]:                                    #ds-info
+[IP address]:                                 #ip-address
+[ISO 3166-1 alpha-2]:                         https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+[ISO 639-1]:                                  https://en.wikipedia.org/wiki/ISO_639-1
+[JSON Pointer]:                               https://datatracker.ietf.org/doc/html/rfc6901
+[JSON-RPC 2.0]:                               https://www.jsonrpc.org/specification
+[Language tag]:                               #language-tag
+[LANGUAGE.locale]:                            ../../configuration/backend.md#locale
+[Name server]:                                #name-server
+[net.ipv4]:                                   https://metacpan.org/pod/Zonemaster::Engine::Profile#net.ipv4
+[net.ipv6]:                                   https://metacpan.org/pod/Zonemaster::Engine::Profile#net.ipv6
+[Non-negative integer]:                       #non-negative-integer
+[Priority]:                                   #priority
+[Privilege levels]:                           #privilege-levels
+[Profile]:                                    https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md#profile
+[Profile name]:                               #profile-name
+[Profile sections]:                           ../../configuration/backend.md#public-profiles-and-private-profiles-sections
+[Progress percentage]:                        #progress-percentage
+[Queue]:                                      #queue
+[RFC 5952]:                                   https://datatracker.ietf.org/doc/html/rfc5952
+[RPCAPI.batch_create_max_size_non_auth]:      ../../configuration/backend.md#batch_create_max_size_non_auth
+[RPCAPI.batch_create_token]:                  ../../configuration/backend.md#batch_create_token
+[RPCAPI.enable_add_api_user]:                 ../../configuration/backend.md#enable_add_api_user
+[RPCAPI.enable_add_batch_job]:                ../../configuration/backend.md#enable_add_batch_job
+[RPCAPI.enable_batch_create]:                 ../../configuration/backend.md#enable_batch_create
+[Severity Level Definitions]:                 ../../specifications/tests/SeverityLevelDefinitions.md
+[Severity level]:                             #severity-level
+[Test Cases]:                                 ../../specifications/tests#list-of-defined-test-cases
+[Test Case Identifiers]:                      https://github.com/zonemaster/zonemaster/blob/master/docs/internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
+[Test id]:                                    #test-id
+[Test result]:                                #test-result
+[Timestamp]:                                  #timestamp
+[Token]:                                      #token
+[Username]:                                   #username
+[Validation error data]:                      #validation-error-data
+[ZONEMASTER.age_reuse_previous_test]:         ../../configuration/backend.md#age_reuse_previous_test
+[ZONEMASTER.lock_on_queue]:                   ../../configuration/backend.md#lock_on_queue
