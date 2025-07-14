@@ -144,7 +144,7 @@ Represents the password of an authenticated account (see *[Privilege levels]*)
 
 ### Batch id
 
-*Deprecated. To be removed with release v2026.2. To be replaced by
+*Deprecated. To be removed with release v2026.1. To be replaced by
 [batch id type 2].*
 
 Basic data type: number
@@ -1185,7 +1185,7 @@ An object with the following properties:
 
 ### API method: `add_api_user`
 
-*Deprecated. To be removed with release v2026.2*.
+*Deprecated. To be removed with release v2026.1*.
 
 In order to use the [`add_batch_job`][API add_batch_job] method a
 [*username*][Username] and its [*api key*][Api key] must be added by this method.
@@ -1315,7 +1315,7 @@ Trying to add a user when the method is disabled:
 
 ### API method: `add_batch_job`
 
-*Deprecated. To be removed with release v2026.2* Replaced by
+*Deprecated. To be removed with release v2026.1* Replaced by
 [API method: batch_create](#api-method-batch_create).
 
 Add a new *batch test* composed by a set of [*domain name*][Domain name] and a *params* object.
@@ -1799,7 +1799,7 @@ An object with the property:
 * `"list_finished_tests"`: a boolean, optional (default false). If true include
   the `"finished_tests"` property in the result object.
 
-The use of *[batch id]* is deprecated from v2026.2. Use *[batch id type 2]*
+The use of *[batch id]* is deprecated from v2026.1. Use *[batch id type 2]*
 instead.
 
 #### `"result"`
