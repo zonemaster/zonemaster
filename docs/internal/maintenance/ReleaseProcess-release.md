@@ -22,6 +22,8 @@ Release process - Release
 * [17. Tag the release with git](#17-tag-the-release-with-git)
 * [18. Announce the release](#18-announce-the-release)
 * [19. Merge master into develop](#19-merge-master-into-develop)
+* [20. Clean-up on discussion forum](#20-clean-up-on-discussion-forum)
+* [21. Clean-up on Github related to the release](#21-clean-up-on-Github-related-to-the-release)
 * [Appendix A on version number in Makefile.PL](#appendix-a-on-version-number-in-makefilepl)
 * [Appendix B on reverting commits](#appendix-b-on-reverting-commits)
 
@@ -354,7 +356,16 @@ The releases pages:
 
 ## 18. Announce the release
 
-Send emails to the mailing lists `zonemaster-users` and `zonemaster-announce`.
+1. Send emails to the mailing lists `zonemaster-users` and `zonemaster-announce`
+   (the same email content will usually work fine). Always refer to the
+   [Github release page], but the URL with the version.
+2. Forward the `zonemaster-users` email to the mailing list `zonemaster-group`.
+3. Create an announcement on the [Zonemaster discussion forum] on Github.
+   1. Choose "New discussion"
+   2. Select "Announcements"
+   3. Use Zonemaster version as title
+   4. Use the body of the [Github release page] for the version as the body of
+      the announcement.
 
 [(Top)](#table-of-contents)
 
@@ -364,6 +375,39 @@ Create a pull request from `master` on github back into `develop` and merge
 it. No review or approval is required for this update.
 
 [(Top)](#table-of-contents)
+
+## 20. Clean-up on discussion forum
+
+On the [Zonemaster discussion forum] on Github, close the announcement of the
+previous version. Also close discussions that are not relevant to keep open,
+i.e. resolved issues and other questions that have been answered and some time
+has passed with no further follow-up questions.
+
+[(Top)](#table-of-contents)
+
+## 21. Clean-up on Github related to the release
+
+For each each repository:
+ * Zonemaster/Zonemaster
+ * zonemaster-ldns
+ * zonemaster-engine
+ * zonemaster-cli
+ * zonemaster-backend
+ * zonemaster-gui
+
+Do the following steps related to the release:
+1. Check the issues with the release as milestone.
+   1. Close if completed or irrelevant.
+   2. Else move to a new milestone.
+2. Verify that the milestone of the release is 100% complete, and if so close it.
+   * Else make it complete.
+3. Verify that there are milestones for at lease the two upcoming releases.
+   * If no due date set YYYY-06-15 for the .1 release and YYYY-12-15 for the .2
+     release.
+
+[(Top)](#table-of-contents)
+
+
 
 ## Appendix A on version number in Makefile.PL
 
@@ -473,6 +517,7 @@ parent number is `1`.
 [Zonemaster-Backend Releases]:                   https://github.com/zonemaster/zonemaster-backend/releases
 [Zonemaster-CLI Makefile.PL]:                    https://github.com/zonemaster/zonemaster-cli/blob/develop/Makefile.PL
 [Zonemaster-CLI Releases]:                       https://github.com/zonemaster/zonemaster-cli/releases
+[Zonemaster discussion forum]:                   https://github.com/orgs/zonemaster/discussions
 [Zonemaster-Engine Makefile.PL]:                 https://github.com/zonemaster/zonemaster-engine/blob/develop/Makefile.PL
 [Zonemaster-Engine Releases]:                    https://github.com/zonemaster/zonemaster-engine/releases
 [Zonemaster-GUI Releases]:                       https://github.com/zonemaster/zonemaster-gui/releases
