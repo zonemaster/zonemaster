@@ -95,9 +95,8 @@ The "Zonemaster classification" is based on the "Use for DNSSEC signing" in the
 | DS05_ALGO_PRIVATE         | ERROR   | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses private algorithm number {algo_num} ("{algo_descr}", {algomnemo}), on name servers "{ns_list}".                                           |
 | DS05_ALGO_RESERVED        | ERROR   | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses reserved algorithm number {algo_num} ("{algo_descr}", {algomnemo}), on name servers "{ns_list}".                                          |
 | DS05_ALGO_UNASSIGNED      | ERROR   | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses unassigned algorithm number {algo_num} ("{algo_descr}", {algomnemo}), on name servers "{ns_list}".                                        |
-| DS05_INVALID_DNSKEY       | WARNING | ns_list                                           | Invalid DNSKEY fetched from name servers "{ns_list}".                                                                                                                       |
 | DS05_NO_RESPONSE          | WARNING |                                                   | No response or error in response from all name servers on the DNSKEY query.                                                                                                 |
-| DS05_SERVER_NO_DNSSEC     | ERROR   | ns_list                                           | The following name servers do not support DNSSEC or have not been properly configured. DNSKEY cannot be tested. Fetched from name servers "{ns_list}".                      |
+| DS05_SERVER_NO_DNSSEC     | ERROR   | ns_list                                           | The following name servers do not support DNSSEC or have not been properly configured. DNSKEY cannot be tested on those servers. Fetched from name servers "{ns_list}".                      |
 | DS05_ZONE_NO_DNSSEC       | NOTICE  | ns_list                                           | The zone is not DNSSEC signed or not properly DNSSEC signed. DNSKEY cannot be tested. Fetched from name servers "{ns_list}".                                                |
 
 The value in the Level column is the default severity level of the message. The
@@ -133,16 +132,15 @@ A complete list of all DNS Resource Record types can be found in the
 3.  Create the following empty sets:
 
     1.  Name server IP address ("Ignored NS IP")
-    2.  Name server IP address ("Responds without DNSKEY")
+    2.  Name server IP address ("Responds without valid DNSKEY")
     3.  Name server IP address ("Responds with DNSKEY")
-    4.  Name server IP address ("Responds with invalid DNSKEY")
-    5.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_DEPRECATED")
-    6.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_RESERVED")
-    7.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_UNASSIGNED")
-    8.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_RECOMMENDED")
-    9.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_PRIVATE")
-    10. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_ZONE_SIGN")
-    11. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_OK")
+    4.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_DEPRECATED")
+    5.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_RESERVED")
+    6.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_UNASSIGNED")
+    7.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_RECOMMENDED")
+    8.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_PRIVATE")
+    9. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_ZONE_SIGN")
+    10. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_OK")
 
 4.  For each name server IP address in *NS IP* do:
 
@@ -152,17 +150,12 @@ A complete list of all DNS Resource Record types can be found in the
        1. There is no DNS response.
        2. The [RCODE Name] in the response is not "NoError".
        3. The AA flag is not set in the response.
-    3. If the response does not contain any DNSKEY record with owner name
+    3. If the response does not contain any valid DNSKEY record with owner name
        matching *Child Zone* in the answer section, add name server IP to the
-       *Responds without DNSKEY* set and go to next server.
-    4. If any of the DNSKEY records in the answer section is invalid then do:
-       1. Add name server IP to the *Responds with invalid DNSKEY* set.
-       2. Remove the invalid DNSKEY record or records from the answer section.
-       3. If there are no remaining DNSKEY records in the answer section, then
-          go to next server.
-    5. Else, add name server IP to the *Responds with DNSKEY* set and retrieve
-       the DNSKEY records from the answer section.
-    6. For each DNSKEY record retrieved do:
+       *Responds without valid DNSKEY* set and go to next server.
+    4. Else, add name server IP to the *Responds with DNSKEY* set and retrieve
+       valid DNSKEY records from the answer section.
+    5. For each DNSKEY record retrieved do:
        1. Extract algorithm number from the DNSKEY record.
        2. From section "[Classification of algorithms]" retrieve the table and
           extract the row matching the algorithm number.
@@ -192,17 +185,14 @@ A complete list of all DNS Resource Record types can be found in the
      * *[DS05_ALGO_NOT_ZONE_SIGN]*
      * *[DS05_ALGO_OK]*
 
-7. If the *Responds without DNSKEY* and *Responds with DNSKEY* sets are empty
+7. If the *Responds without valid DNSKEY* and *Responds with DNSKEY* sets are empty
    then output *[DS05_NO_RESPONSE]*.
 
-8. If the *Responds with invalid DNSKEY* set is empty, then output
-   *[DS05_INVALID_DNSKEY]* with the nameserver IP from the set.
-
-9. If the *Responds without DNSKEY* is non-empty then do:
+8. If the *Responds without valid DNSKEY* is non-empty then do:
    1. If *Responds with DNSKEY* sets is empty then output *[DS05_ZONE_NO_DNSSEC]*
-      with name server IP from the *Responds without DNSKEY* set.
+      with name server IP from the *Responds without valid DNSKEY* set.
    2. Else, output *[DS05_SERVER_NO_DNSSEC]* with name server IP from the
-      *Responds without DNSKEY* set.
+      *Responds without valid DNSKEY* set.
 
 
 ## Outcome(s)
@@ -251,7 +241,6 @@ No special terminology for this Test Case.
 [DS05_ALGO_PRIVATE]:                              #outcomes
 [DS05_ALGO_RESERVED]:                             #outcomes
 [DS05_ALGO_UNASSIGNED]:                           #outcomes
-[DS05_INVALID_DNSKEY]:                            #outcomes
 [DS05_NO_RESPONSE]:                               #outcomes
 [DS05_SERVER_NO_DNSSEC]:                          #outcomes
 [DS05_ZONE_NO_DNSSEC]:                            #outcomes
