@@ -7,8 +7,9 @@
 * [Test Case](#test-case)
 * [Test scenarios](#test-scenarios)
 * [Test zone names](#test-zone-names)
+* [All message tags](#all-message-tags)
 * [Test scenarios and message tags](#test-scenarios-and-message-tags)
-* [Zone setup for test scenarios]
+* [Test scenarios and setup of test zones]
 
 
 ## Background
@@ -18,7 +19,7 @@ See the [test scenario README file].
 
 ## Test Case
 
-This document specifies defined test zones for test case [DNSSEC05].
+This document specifies defined test scenarios for test case [DNSSEC05].
 
 
 ## Test scenarios
@@ -33,10 +34,10 @@ The test scenarios are structured as stated in the [test scenario README file].
 
 ## Test zone names
 
-The test zone for each test scenario in this document is a subdomain delegated
-from the base name (`dnssec05.xa`) and that subdomain having the same name as the
-scenario. The names of those zones are given in section
-"[Zone setup for test scenarios]" below.
+The test zone or zones for each test scenario in this document is a subdomain
+(or lower zone) delegated from the base name (`dnssec05.xa`) and that subdomain
+having the same name as the scenario. The names of those zones are given in
+section "[Test scenarios and setup of test zones]" below.
 
 
 ## All message tags
@@ -44,235 +45,284 @@ scenario. The names of those zones are given in section
 The test case can output any of these message tags, but not necessarily in any
 combination. See [DNSSEC05] for the specification of the tags.
 
-* NO_RESPONSE
-* NO_RESPONSE_DNSKEY
-* ALGORITHM_DEPRECATED
-* ALGORITHM_RESERVED
-* ALGORITHM_UNASSIGNED
-* ALGORITHM_NOT_RECOMMENDED
-* ALGORITHM_PRIVATE
-* ALGORITHM_NOT_ZONE_SIGN
-* ALGORITHM_OK
+* DS05_ALGO_DEPRECATED
+* DS05_ALGO_NOT_RECOMMENDED
+* DS05_ALGO_NOT_ZONE_SIGN
+* DS05_ALGO_OK
+* DS05_ALGO_PRIVATE
+* DS05_ALGO_RESERVED
+* DS05_ALGO_UNASSIGNED
+* DS05_NO_RESPONSE
+* DS05_SERVER_NO_DNSSEC
+* DS05_ZONE_NO_DNSSEC
+
 
 ## Test scenarios and message tags
 
 If a message tag is not listed for the scenario, its presence or non-presence is
 irrelevant to the test scenario and must be ignored.
 
+| Scenario name           | Mandatory message tags    | Forbidden message tags |
+|:------------------------|:--------------------------|:-----------------------|
+| ALGO-DEPRECATED-1       | DS05_ALGO_DEPRECATED      | 2)                     |
+| ALGO-DEPRECATED-12      | DS05_ALGO_DEPRECATED      | 2)                     |
+| ALGO-DEPRECATED-3       | DS05_ALGO_DEPRECATED      | 2)                     |
+| ALGO-DEPRECATED-5       | DS05_ALGO_DEPRECATED      | 2)                     |
+| ALGO-DEPRECATED-6       | DS05_ALGO_DEPRECATED      | 2)                     |
+| ALGO-DEPRECATED-7       | DS05_ALGO_DEPRECATED      | 2)                     |
+| ALGO-NOT-RECOMMENDED-10 | DS05_ALGO_NOT_RECOMMENDED | 2)                     |
+| ALGO-NOT-ZONE-SIGN-0    | DS05_ALGO_NOT_ZONE_SIGN   | 2)                     |
+| ALGO-NOT-ZONE-SIGN-2    | DS05_ALGO_NOT_ZONE_SIGN   | 2)                     |
+| ALGO-NOT-ZONE-SIGN-252  | DS05_ALGO_NOT_ZONE_SIGN   | 2)                     |
+| ALGO-OK-13              | DS05_ALGO_OK              | 2)                     |
+| ALGO-OK-14              | DS05_ALGO_OK              | 2)                     |
+| ALGO-OK-15              | DS05_ALGO_OK              | 2)                     |
+| ALGO-OK-16              | DS05_ALGO_OK              | 2)                     |
+| ALGO-OK-17              | DS05_ALGO_OK              | 2)                     |
+| ALGO-OK-23              | DS05_ALGO_OK              | 2)                     |
+| ALGO-OK-8               | DS05_ALGO_OK              | 2)                     |
+| ALGO-PRIVATE-253        | DS05_ALGO_PRIVATE         | 2)                     |
+| ALGO-PRIVATE-254        | DS05_ALGO_PRIVATE         | 2)                     |
+| ALGO-RESERVED-11        | DS05_ALGO_RESERVED        | 2)                     |
+| ALGO-RESERVED-123       | DS05_ALGO_RESERVED        | 2)                     |
+| ALGO-RESERVED-251       | DS05_ALGO_RESERVED        | 2)                     |
+| ALGO-RESERVED-255       | DS05_ALGO_RESERVED        | 2)                     |
+| ALGO-RESERVED-4         | DS05_ALGO_RESERVED        | 2)                     |
+| ALGO-RESERVED-9         | DS05_ALGO_RESERVED        | 2)                     |
+| ALGO-UNASSIGNED-122     | DS05_ALGO_UNASSIGNED      | 2)                     |
+| ALGO-UNASSIGNED-20      | DS05_ALGO_UNASSIGNED      | 2)                     |
+| NO-RESPONSE-1           | DS05_NO_RESPONSE          | 2)                     |
+| NO-RESPONSE-2           | DS05_NO_RESPONSE          | 2)                     |
+| SERVER_NO_DNSSEC-1      | DS05_SERVER_NO_DNSSEC     | 2)                     |
+| ZONE_NO_DNSSEC-1        | DS05_ZONE_NO_DNSSEC       | 2)                     |
 
-Scenario name                | Mandatory message tags    | Forbidden message tags
-:----------------------------|:--------------------------|:-------------------------------------------
-NO-RESPONSE                  | NO_RESPONSE               | NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-NO-RESPONSE-DNSKEY           | NO_RESPONSE_DNSKEY        | NO_RESPONSE, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-DEPRECATED-1       | ALGORITHM_DEPRECATED      | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-DEPRECATED-3       | ALGORITHM_DEPRECATED      | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-DEPRECATED-6       | ALGORITHM_DEPRECATED      | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-DEPRECATED-12      | ALGORITHM_DEPRECATED      | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-RESERVED-4         | ALGORITHM_RESERVED        | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-RESERVED-9         | ALGORITHM_RESERVED        | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-RESERVED-11        | ALGORITHM_RESERVED        | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-RESERVED-123       | ALGORITHM_RESERVED        | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-RESERVED-251       | ALGORITHM_RESERVED        | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-RESERVED-255       | ALGORITHM_RESERVED        | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-UNASSIGNED-17      | ALGORITHM_UNASSIGNED      | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-UNASSIGNED-122     | ALGORITHM_UNASSIGNED      | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-PRIVATE-253        | ALGORITHM_PRIVATE         | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-PRIVATE-254        | ALGORITHM_PRIVATE         | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-NOT-ZONE-SIGN-0    | ALGORITHM_NOT_ZONE_SIGN   | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_OK
-ALGORITHM-NOT-ZONE-SIGN-2    | ALGORITHM_NOT_ZONE_SIGN   | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_OK
-ALGORITHM-NOT-ZONE-SIGN-252  | ALGORITHM_NOT_ZONE_SIGN   | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_OK
-ALGORITHM-NOT-RECOMMENDED-5  | ALGORITHM_NOT_RECOMMENDED | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-NOT-RECOMMENDED-7  | ALGORITHM_NOT_RECOMMENDED | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-NOT-RECOMMENDED-10 | ALGORITHM_NOT_RECOMMENDED | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN, ALGORITHM_OK
-ALGORITHM-OK-8               | ALGORITHM_OK              | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN
-ALGORITHM-OK-13              | ALGORITHM_OK              | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN
-ALGORITHM-OK-14              | ALGORITHM_OK              | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN
-ALGORITHM-OK-15              | ALGORITHM_OK              | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN
-ALGORITHM-OK-16              | ALGORITHM_OK              | NO_RESPONSE, NO_RESPONSE_DNSKEY, ALGORITHM_DEPRECATED, ALGORITHM_RESERVED, ALGORITHM_UNASSIGNED, ALGORITHM_NOT_RECOMMENDED, ALGORITHM_PRIVATE, ALGORITHM_NOT_ZONE_SIGN
+* (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
+* (2) All tags except for those specified as "Mandatory message tags"
 
 
-## Zone setup for test scenarios
+## Test scenarios and setup of test zones
 
-Assumptions for the scenario specifications unless otherwise specified for the
-specific scenario:
-* The zone is served by one nameserver, ns1
-* All nameservers are in-bailiwick
-* All nameservers are served by both IPv4 and IPv6
-* The delegation has full glue for the nameservers
-* Only DNSKEY records in apex are considered.
-* All name servers respond authoritatively with [RCODE Name] "NoError" and with
-  a single DNSKEY record in "answer section" on DNSKEY queries.
-* The algorithm of the DNSKEY record is specified for each scenario.
+### Default zone configuration
+Unless otherwise specified in the specific scenario specification, the test zone
+or zones for the scenario will follow the default setup as stated below. The
+`child zone` is the zone to be tested for the scenario.
 
-### NO-RESPONSE
-The NS does not respond.
+* The child zone is `SCENARIO.dnssec05.xa`.
+  * It is delegated to two name servers, `ns1.SCENARIO.dnssec05.xa`
+    and `ns2.SCENARIO.dnssec05.xa`.
+    * The name server names have A and AAAA records to avoid non-relevant error
+      messages.
+    * The delegation of the child zone is complete with glue records.
+  * There is a zone file for the child zone.
+  * All child zone servers give the same response.
+  * The only responses that can be assumed are responses on DNSKEY queries.
+  * The zone will respond with one DNSKEY record.
+* The parent zone is `dnssec05.xa`.
+  * It is served by two in-bailiwick NS (ns1 and ns2).
+  * ns1 and ns2 have the same zone content.
+  * ns1 and ns2 have both IPv4 and IPv6 glue.
+  * The records matching glue in the zone are complete.
+* All responses will have the AA bit set.
+* All responses will have the [RCODE Name] "NoError".
+* The DNSKEY algorithm is 13 unless specified for the scenario.
+* The DNSKEY RRset is not signed.
 
-* Zone: "no-response.dnssec05.xa."
-  * No response at all from ns1.
-
-### NO-RESPONSE-DNSKEY
-The NS does not respond with DNSKEY
-
-* Zone: "no-response-dnskey.dnssec05.xa."
-  * ns1 does not include any DNSKEY in the response. The response is NODATA.
-
-### ALGORITHM-DEPRECATED-1
+### ALGO-DEPRECATED-1
 The DNSKEY algo is 1
 
-* Zone: "algorithm-deprecated-1.dnssec05.xa."
+* Zone: "algo-deprecated-1.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 1.
 
-### ALGORITHM-DEPRECATED-3
+### ALGO-DEPRECATED-3
 The DNSKEY algo is 3
 
-* Zone: "algorithm-deprecated-3.dnssec05.xa."
+* Zone: "algo-deprecated-3.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 3.
 
-### ALGORITHM-DEPRECATED-6
-The DNSKEY algo is 6
-
-* Zone: "algorithm-deprecated-6.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 6.
-
-### ALGORITHM-DEPRECATED-12
-The DNSKEY algo is 12
-
-* Zone: "algorithm-deprecated-12.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 12.
-
-### ALGORITHM-RESERVED-4
-The DNSKEY algo is 4
-
-* Zone: "algorithm-reserved-4.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 4.
-
-### ALGORITHM-RESERVED-9
-The DNSKEY algo is 9
-
-* Zone: "algorithm-reserved-9.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 9.
-
-### ALGORITHM-RESERVED-11
-The DNSKEY algo is 11
-
-* Zone: "algorithm-reserved-11.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 11.
-
-### ALGORITHM-RESERVED-123
-The DNSKEY algo is 123
-
-* Zone: "algorithm-reserved-123.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 123.
-
-### ALGORITHM-RESERVED-251
-The DNSKEY algo is 251
-
-* Zone: "algorithm-reserved-251.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 251.
-
-### ALGORITHM-RESERVED-255
-The DNSKEY algo is 255
-
-* Zone: "algorithm-reserved-255.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 255.
-
-### ALGORITHM-UNASSIGNED-17
-The DNSKEY algo is 17
-
-* Zone: "algorithm-unassigned-17.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 17.
-
-### ALGORITHM-UNASSIGNED-122
-The DNSKEY algo is 122
-
-* Zone: "algorithm-unassigned-122.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 122.
-
-### ALGORITHM-PRIVATE-253
-The DNSKEY algo is 253
-
-* Zone: "algorithm-private-253.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 253.
-
-### ALGORITHM-PRIVATE-254
-The DNSKEY algo is 254
-
-* Zone: "algorithm-private-254.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 254.
-
-### ALGORITHM-NOT-ZONE-SIGN-0
-The DNSKEY algo is 0
-
-* Zone: "algorithm-not-zone-sign-0.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 0.
-
-### ALGORITHM-NOT-ZONE-SIGN-2
-The DNSKEY algo is 2
-
-* Zone: "algorithm-not-zone-sign-2.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 2.
-
-### ALGORITHM-NOT-ZONE-SIGN-252
-The DNSKEY algo is 252
-
-* Zone: "algorithm-not-zone-sign-252.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 252.
-
-### ALGORITHM-NOT-RECOMMENDED-5
+### ALGO-DEPRECATED-5
 The DNSKEY algo is 5
 
-* Zone: "algorithm-not-recommended-5.dnssec05.xa."
+* Zone: "algo-deprecated-5.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 5.
 
-### ALGORITHM-NOT-RECOMMENDED-7
+### ALGO-DEPRECATED-6
+The DNSKEY algo is 6
+
+* Zone: "algo-deprecated-6.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 6.
+
+### ALGO-DEPRECATED-7
 The DNSKEY algo is 7
 
-* Zone: "algorithm-not-recommended-7.dnssec05.xa."
+* Zone: "algo-deprecated-7.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 7.
 
-### ALGORITHM-NOT-RECOMMENDED-10
+### ALGO-DEPRECATED-12
+The DNSKEY algo is 12
+
+* Zone: "algo-deprecated-12.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 12.
+
+### ALGO-RESERVED-4
+The DNSKEY algo is 4
+
+* Zone: "algo-reserved-4.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 4.
+
+### ALGO-RESERVED-9
+The DNSKEY algo is 9
+
+* Zone: "algo-reserved-9.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 9.
+
+### ALGO-RESERVED-11
+The DNSKEY algo is 11
+
+* Zone: "algo-reserved-11.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 11.
+
+### ALGO-RESERVED-123
+The DNSKEY algo is 123
+
+* Zone: "algo-reserved-123.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 123.
+
+### ALGO-RESERVED-251
+The DNSKEY algo is 251
+
+* Zone: "algo-reserved-251.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 251.
+
+### ALGO-RESERVED-255
+The DNSKEY algo is 255
+
+* Zone: "algo-reserved-255.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 255.
+
+### ALGO-UNASSIGNED-20
+The DNSKEY algo is 20
+
+* Zone: "algo-unassigned-17.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 17.
+
+### ALGO-UNASSIGNED-122
+The DNSKEY algo is 122
+
+* Zone: "algo-unassigned-122.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 122.
+
+### ALGO-PRIVATE-253
+The DNSKEY algo is 253
+
+* Zone: "algo-private-253.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 253.
+
+### ALGO-PRIVATE-254
+The DNSKEY algo is 254
+
+* Zone: "algo-private-254.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 254.
+
+### ALGO-NOT-ZONE-SIGN-0
+The DNSKEY algo is 0
+
+* Zone: "algo-not-zone-sign-0.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 0.
+
+### ALGO-NOT-ZONE-SIGN-2
+The DNSKEY algo is 2
+
+* Zone: "algo-not-zone-sign-2.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 2.
+
+### ALGO-NOT-ZONE-SIGN-252
+The DNSKEY algo is 252
+
+* Zone: "algo-not-zone-sign-252.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 252.
+
+### ALGO-NOT-RECOMMENDED-10
 The DNSKEY algo is 10
 
-* Zone: "algorithm-not-recommended-10.dnssec05.xa."
+* Zone: "algo-not-recommended-10.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 10.
 
-### ALGORITHM-OK-8
+### ALGO-OK-8
 The DNSKEY algo is 8
 
-* Zone: "algorithm-ok-8.dnssec05.xa."
+* Zone: "algo-ok-8.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 8.
 
-### ALGORITHM-OK-13
+### ALGO-OK-13
 The DNSKEY algo is 13
 
-* Zone: "algorithm-ok-13.dnssec05.xa."
+* Zone: "algo-ok-13.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 13.
 
-### ALGORITHM-OK-14
+### ALGO-OK-14
 The DNSKEY algo is 14
 
-* Zone: "algorithm-ok-14.dnssec05.xa."
+* Zone: "algo-ok-14.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 14.
 
-### ALGORITHM-OK-15
+### ALGO-OK-15
 The DNSKEY algo is 15
 
-* Zone: "algorithm-ok-15.dnssec05.xa."
+* Zone: "algo-ok-15.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 15.
 
-### ALGORITHM-OK-16
+### ALGO-OK-16
 The DNSKEY algo is 16
 
-* Zone: "algorithm-ok-16.dnssec05.xa."
+* Zone: "algo-ok-16.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 16.
 
+### ALGO-OK-17
+The DNSKEY algo is 17
+
+* Zone: "algorithm-ok-17.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 17.
+
+### ALGO-OK-23
+The DNSKEY algo is 23
+
+* Zone: "algorithm-ok-23.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 23.
+
+### NO-RESPONSE-1
+No valid response from any of the servers.
+
+* Zone: "no-response-1.dnssec05.xa."
+  * No response at all from ns1.
+  * Response from ns2 does not hav the AA bit set.
+
+### NO-RESPONSE-2
+No valid response from any of the servers.
+
+* Zone: "no-response-2.dnssec05.xa."
+  * Response from ns1 has RCODE SERVFAIL.
+  * Response from ns2 has RCODE REFUSED.
+
+### SERVER_NO_DNSSEC-1
+No DNSKEY from ns1.
+
+* Zone: "server_no_dnssec-1.dnssec05.xa."
+  * Response from ns1 is NODATA (no DNSKEY).
+  * Response from ns2 is normal.
+
+### ZONE_NO_DNSSEC-1
+No DNSKEY from neither ns1 nor ns2.
+
+* Zone: "zone_no_dnssec-1.dnssec05.xa."
+  * Responses from ns1 and ns2 are NODATA (no DNSKEY).
 
 
 [DNSSEC01]:                                                       ../../tests/DNSSEC-TP/dnssec01.md
 [DNSSEC05]:                                                       ../../tests/DNSSEC-TP/dnssec05.md
-[DNSSEC14]:                                                       ../../tests/DNSSEC-TP/dnssec14.md
 [DNSSEC05]:                                                       ../../tests/DNSSEC-TP/dnssec05.md
+[DNSSEC14]:                                                       ../../tests/DNSSEC-TP/dnssec14.md
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [Test scenario README file]:                                      ../README.md
+[Test scenarios and setup of test zones]:                         #test-scenarios-and-setup-of-test-zones
 [Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios
 
