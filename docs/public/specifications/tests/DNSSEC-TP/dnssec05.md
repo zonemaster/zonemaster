@@ -33,6 +33,11 @@ It is assumed that *Child Zone* is also tested by [Connectivity01]. This test
 case will just ignore non-responsive name servers or name servers not giving a
 correct DNS response for an authoritative name server.
 
+The RDATA of a DNSKEY record consists of four fields. The third field specifies
+the algorithm number of public key in the fourth field. This test case will only
+check what the algorithm is used by checking the third field. It will not verify
+that the key is matching the algorithm.
+
 
 ## Classification of algorithms
 
@@ -156,7 +161,8 @@ A complete list of all DNS Resource Record types can be found in the
     4. Else, add name server IP to the *Responds with DNSKEY* set and retrieve
        valid DNSKEY records from the answer section.
     5. For each DNSKEY record retrieved do:
-       1. Extract algorithm number from the DNSKEY record.
+       1. Extract algorithm number from the third field of RDATA of the DNSKEY
+          record.
        2. From section "[Classification of algorithms]" retrieve the table and
           extract the row matching the algorithm number.
        3. From the row extract the message tag from column "Zonemaster
