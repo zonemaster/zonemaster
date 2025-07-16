@@ -1,0 +1,8 @@
+; Hint file for Delegation03 local root
+
+.             3600   NS     root-ns1.xa.
+.             3600   NS     root-ns2.xa.
+root-ns1.xa.  3600   A      127.15.5.27
+root-ns1.xa.  3600   AAAA   fda1:b2:c3::127:15:5:27
+root-ns2.xa.  3600   A      127.15.5.28
+root-ns2.xa.  3600   AAAA   fda1:b2:c3::127:15:5:28
