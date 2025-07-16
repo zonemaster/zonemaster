@@ -112,10 +112,14 @@ or zones for the scenario will follow the default setup as stated below. The
     and `ns2.SCENARIO.dnssec05.xa`.
     * The name server names have A and AAAA records to avoid non-relevant error
       messages.
-    * The delegation of the child zone is complete with glue records.
+    * The delegation of the child zone is to an OOB NS.
+      * NS can be resolved through the `dnssec05.xa` zone.
   * There is a zone file for the child zone.
   * All child zone servers give the same response.
-  * The only responses that can be assumed are responses on DNSKEY queries.
+  * The only responses that can be assumed are queries for
+    * DNSKEY
+    * NS
+    * SOA
   * The zone will respond with one DNSKEY record.
 * The parent zone is `dnssec05.xa`.
   * It is served by two in-bailiwick NS (ns1 and ns2).
@@ -125,7 +129,9 @@ or zones for the scenario will follow the default setup as stated below. The
 * All responses will have the AA bit set.
 * All responses will have the [RCODE Name] "NoError".
 * The DNSKEY algorithm is 13 unless specified for the scenario.
-* The DNSKEY RRset is not signed.
+  * The DNSKEY record can be technically invalid. Only the format is valid and
+    only the algorithm value is checked.
+* The zone is not signed.
 
 ### ALGO-DEPRECATED-1
 The DNSKEY algo is 1
