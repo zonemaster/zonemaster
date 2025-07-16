@@ -1,4 +1,4 @@
-# Delegation01 Test Zones Output
+# DNSSEC10 Test Zones Output
 
 # Table of contents
 * [Introduction](#introduction)
