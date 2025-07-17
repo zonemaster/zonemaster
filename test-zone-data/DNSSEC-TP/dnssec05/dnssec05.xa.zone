@@ -2,7 +2,7 @@ $ORIGIN dnssec05.xa.                              ; Must end with "."
 $TTL 3600
 
 @           SOA     ns1 admin. (
-                    2025071607      ; serial
+                    2025071701      ; serial
                     6h              ; refresh
                     1h              ; retry
                     1w              ; expire
@@ -124,6 +124,10 @@ $ORIGIN algo-ok-17.dnssec05.xa.
 @       NS       ns2.child.dnssec05.xa.
 
 $ORIGIN algo-ok-23.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
+
+$ORIGIN mixed-algo-1.dnssec05.xa.
 @       NS       ns1.child.dnssec05.xa.
 @       NS       ns2.child.dnssec05.xa.
 
