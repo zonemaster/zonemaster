@@ -62,39 +62,40 @@ combination. See [DNSSEC05] for the specification of the tags.
 If a message tag is not listed for the scenario, its presence or non-presence is
 irrelevant to the test scenario and must be ignored.
 
-| Scenario name           | Mandatory message tags    | Forbidden message tags |
-|:------------------------|:--------------------------|:-----------------------|
-| ALGO-DEPRECATED-1       | DS05_ALGO_DEPRECATED      | 2)                     |
-| ALGO-DEPRECATED-12      | DS05_ALGO_DEPRECATED      | 2)                     |
-| ALGO-DEPRECATED-3       | DS05_ALGO_DEPRECATED      | 2)                     |
-| ALGO-DEPRECATED-5       | DS05_ALGO_DEPRECATED      | 2)                     |
-| ALGO-DEPRECATED-6       | DS05_ALGO_DEPRECATED      | 2)                     |
-| ALGO-DEPRECATED-7       | DS05_ALGO_DEPRECATED      | 2)                     |
-| ALGO-NOT-RECOMMENDED-10 | DS05_ALGO_NOT_RECOMMENDED | 2)                     |
-| ALGO-NOT-ZONE-SIGN-0    | DS05_ALGO_NOT_ZONE_SIGN   | 2)                     |
-| ALGO-NOT-ZONE-SIGN-2    | DS05_ALGO_NOT_ZONE_SIGN   | 2)                     |
-| ALGO-NOT-ZONE-SIGN-252  | DS05_ALGO_NOT_ZONE_SIGN   | 2)                     |
-| ALGO-OK-13              | DS05_ALGO_OK              | 2)                     |
-| ALGO-OK-14              | DS05_ALGO_OK              | 2)                     |
-| ALGO-OK-15              | DS05_ALGO_OK              | 2)                     |
-| ALGO-OK-16              | DS05_ALGO_OK              | 2)                     |
-| ALGO-OK-17              | DS05_ALGO_OK              | 2)                     |
-| ALGO-OK-23              | DS05_ALGO_OK              | 2)                     |
-| ALGO-OK-8               | DS05_ALGO_OK              | 2)                     |
-| ALGO-PRIVATE-253        | DS05_ALGO_PRIVATE         | 2)                     |
-| ALGO-PRIVATE-254        | DS05_ALGO_PRIVATE         | 2)                     |
-| ALGO-RESERVED-11        | DS05_ALGO_RESERVED        | 2)                     |
-| ALGO-RESERVED-123       | DS05_ALGO_RESERVED        | 2)                     |
-| ALGO-RESERVED-251       | DS05_ALGO_RESERVED        | 2)                     |
-| ALGO-RESERVED-255       | DS05_ALGO_RESERVED        | 2)                     |
-| ALGO-RESERVED-4         | DS05_ALGO_RESERVED        | 2)                     |
-| ALGO-RESERVED-9         | DS05_ALGO_RESERVED        | 2)                     |
-| ALGO-UNASSIGNED-122     | DS05_ALGO_UNASSIGNED      | 2)                     |
-| ALGO-UNASSIGNED-20      | DS05_ALGO_UNASSIGNED      | 2)                     |
-| NO-RESPONSE-1           | DS05_NO_RESPONSE          | 2)                     |
-| NO-RESPONSE-2           | DS05_NO_RESPONSE          | 2)                     |
-| SERVER_NO_DNSSEC-1      | DS05_SERVER_NO_DNSSEC     | 2)                     |
-| ZONE_NO_DNSSEC-1        | DS05_ZONE_NO_DNSSEC       | 2)                     |
+| Scenario name           | Mandatory message tags                                        | Forbidden message tags |
+|:------------------------|:--------------------------------------------------------------|:-----------------------|
+| ALGO-DEPRECATED-1       | DS05_ALGO_DEPRECATED                                          | 2)                     |
+| ALGO-DEPRECATED-12      | DS05_ALGO_DEPRECATED                                          | 2)                     |
+| ALGO-DEPRECATED-3       | DS05_ALGO_DEPRECATED                                          | 2)                     |
+| ALGO-DEPRECATED-5       | DS05_ALGO_DEPRECATED                                          | 2)                     |
+| ALGO-DEPRECATED-6       | DS05_ALGO_DEPRECATED                                          | 2)                     |
+| ALGO-DEPRECATED-7       | DS05_ALGO_DEPRECATED                                          | 2)                     |
+| ALGO-NOT-RECOMMENDED-10 | DS05_ALGO_NOT_RECOMMENDED                                     | 2)                     |
+| ALGO-NOT-ZONE-SIGN-0    | DS05_ALGO_NOT_ZONE_SIGN                                       | 2)                     |
+| ALGO-NOT-ZONE-SIGN-2    | DS05_ALGO_NOT_ZONE_SIGN                                       | 2)                     |
+| ALGO-NOT-ZONE-SIGN-252  | DS05_ALGO_NOT_ZONE_SIGN                                       | 2)                     |
+| ALGO-OK-13              | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-OK-14              | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-OK-15              | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-OK-16              | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-OK-17              | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-OK-23              | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-OK-8               | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-PRIVATE-253        | DS05_ALGO_PRIVATE                                             | 2)                     |
+| ALGO-PRIVATE-254        | DS05_ALGO_PRIVATE                                             | 2)                     |
+| ALGO-RESERVED-11        | DS05_ALGO_RESERVED                                            | 2)                     |
+| ALGO-RESERVED-123       | DS05_ALGO_RESERVED                                            | 2)                     |
+| ALGO-RESERVED-251       | DS05_ALGO_RESERVED                                            | 2)                     |
+| ALGO-RESERVED-255       | DS05_ALGO_RESERVED                                            | 2)                     |
+| ALGO-RESERVED-4         | DS05_ALGO_RESERVED                                            | 2)                     |
+| ALGO-RESERVED-9         | DS05_ALGO_RESERVED                                            | 2)                     |
+| ALGO-UNASSIGNED-122     | DS05_ALGO_UNASSIGNED                                          | 2)                     |
+| ALGO-UNASSIGNED-20      | DS05_ALGO_UNASSIGNED                                          | 2)                     |
+| MIXED-ALGO-1            | DS05_ALGO_DEPRECATED, DS05_ALGO_NOT_RECOMMENDED, DS05_ALGO_OK | 2)                     |
+| NO-RESPONSE-1           | DS05_NO_RESPONSE                                              | 2)                     |
+| NO-RESPONSE-2           | DS05_NO_RESPONSE                                              | 2)                     |
+| SERVER_NO_DNSSEC-1      | DS05_SERVER_NO_DNSSEC                                         | 2)                     |
+| ZONE_NO_DNSSEC-1        | DS05_ZONE_NO_DNSSEC                                           | 2)                     |
 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
 * (2) All tags except for those specified as "Mandatory message tags"
@@ -294,6 +295,15 @@ The DNSKEY algo is 23
 
 * Zone: "algorithm-ok-23.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 23.
+
+## MIXED-ALGO-1
+Three DNSKEY with different algorithms.
+
+* Zone: "mixed-algo-1.dnssec05.xa."
+  * The response has three DNSKEY with different algorithms:
+    * 7
+    * 10
+    * 13
 
 ### NO-RESPONSE-1
 No valid response from any of the servers.
