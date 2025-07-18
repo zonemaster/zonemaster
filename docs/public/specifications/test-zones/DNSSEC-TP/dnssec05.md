@@ -95,6 +95,7 @@ irrelevant to the test scenario and must be ignored.
 | NO-RESPONSE-1           | DS05_NO_RESPONSE                                              | 2)                     |
 | NO-RESPONSE-2           | DS05_NO_RESPONSE                                              | 2)                     |
 | SERVER_NO_DNSSEC-1      | DS05_SERVER_NO_DNSSEC                                         | 2)                     |
+| SHARED-IP-1             | DS05_ALGO_OK                                                  | 2)                     |
 | ZONE_NO_DNSSEC-1        | DS05_ZONE_NO_DNSSEC                                           | 2)                     |
 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
@@ -325,6 +326,14 @@ No DNSKEY from ns1.
 * Zone: "server_no_dnssec-1.dnssec05.xa."
   * Response from ns1 is NODATA (no DNSKEY).
   * Response from ns2 is normal.
+
+### SHARED-IP-1
+Two NS names, but only one IP. IPv4 only.
+
+* Zone: "shared-ip-1.dnssec05.xa."
+  * ns1a and ns1b are in bailiwick, but use the same IP.
+    * IPv4 only.
+  * The message should list both name server names, both with the same IP.
 
 ### ZONE_NO_DNSSEC-1
 No DNSKEY from neither ns1 nor ns2.
