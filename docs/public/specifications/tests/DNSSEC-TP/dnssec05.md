@@ -31,7 +31,8 @@ A domain name (zone) should only use DNSKEY algorithms that are specified by
 
 It is assumed that *Child Zone* is also tested by [Connectivity01]. This test
 case will just ignore non-responsive name servers or name servers not giving a
-correct DNS response for an authoritative name server.
+correct DNS response for an authoritative name server unless all such name
+servers fail, in which case a message is outputted.
 
 The RDATA of a DNSKEY record consists of four fields. The third field specifies
 the algorithm number of public key in the fourth field. This test case will only
@@ -100,7 +101,7 @@ The "Zonemaster classification" is based on the "Use for DNSSEC signing" in the
 | DS05_ALGO_PRIVATE         | ERROR   | ns_list, keytag, algo_num                         | The DNSKEY with tag {keytag} uses algorithm number {algo_num} for private use on name servers "{ns_list}".                                                                  |
 | DS05_ALGO_RESERVED        | ERROR   | ns_list, keytag, algo_num                         | The DNSKEY with tag {keytag} uses reserved algorithm number {algo_num} on name servers "{ns_list}".                                                                         |
 | DS05_ALGO_UNASSIGNED      | ERROR   | ns_list, keytag, algo_num                         | The DNSKEY with tag {keytag} uses unassigned algorithm number {algo_num} on name servers "{ns_list}".                                                                       |
-| DS05_NO_RESPONSE          | WARNING |                                                   | No response or error in response from all name servers on the DNSKEY query.                                                                                                 |
+| DS05_NO_RESPONSE          | WARNING | ns_list                                           | No response or error in response from all name servers on the DNSKEY query. Name servers "{ns_list}".                                                                       |
 | DS05_SERVER_NO_DNSSEC     | ERROR   | ns_list                                           | The following name servers do not support DNSSEC or have not been properly configured. DNSKEY cannot be tested on those servers. Fetched from name servers "{ns_list}".     |
 | DS05_ZONE_NO_DNSSEC       | NOTICE  | ns_list                                           | The zone is not DNSSEC signed or not properly DNSSEC signed. DNSKEY cannot be tested. Fetched from name servers "{ns_list}".                                                |
 
@@ -163,12 +164,13 @@ A complete list of all DNS Resource Record types can be found in the
     5. For each DNSKEY record retrieved do:
        1. Extract algorithm number from the third field of RDATA of the DNSKEY
           record.
-       2. From section "[Classification of algorithms]" retrieve the table and
+       2. Calculate the key tag for the DNSKEY record.
+       3. From section "[Classification of algorithms]" retrieve the table and
           extract the row matching the algorithm number.
-       3. From the row extract the message tag from column "Zonemaster
+       4. From the row extract the message tag from column "Zonemaster
           classification"
-       4. Add name server IP to the set with the same name as the extracted
-          message tag.
+       5. Add name server IP, key tag and the algorithm code to the set with the
+          same name as the extracted message tag.
 
 5. For all messages outputted below, if an IP address in *NS IP* is connected to
    more than one name server name, then all names should be included with the
