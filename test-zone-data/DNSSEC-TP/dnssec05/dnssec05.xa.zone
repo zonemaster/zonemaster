@@ -2,7 +2,7 @@ $ORIGIN dnssec05.xa.                              ; Must end with "."
 $TTL 3600
 
 @           SOA     ns1 admin. (
-                    2025071701      ; serial
+                    2025071800      ; serial
                     6h              ; refresh
                     1h              ; retry
                     1w              ; expire
@@ -142,6 +142,12 @@ $ORIGIN no-response-2.dnssec05.xa.
 $ORIGIN server_no_dnssec-1.dnssec05.xa.
 @       NS       ns1.child.dnssec05.xa.
 @       NS       ns2.child.dnssec05.xa.
+
+$ORIGIN shared-ip-1.dnssec05.xa.
+@       NS      ns1a
+@       NS      ns1b
+ns1a    A       127.15.5.31
+ns1b    A       127.15.5.31
 
 $ORIGIN zone_no_dnssec-1.dnssec05.xa.
 @       NS       ns1.child.dnssec05.xa.
