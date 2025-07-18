@@ -97,11 +97,11 @@ The "Zonemaster classification" is based on the "Use for DNSSEC signing" in the
 | DS05_ALGO_NOT_RECOMMENDED | WARNING | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses an algorithm number {algo_num} ("{algo_descr}", {algomnemo}), which is not recommended to be used. Fetched from name servers "{ns_list}". |
 | DS05_ALGO_NOT_ZONE_SIGN   | ERROR   | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses algorithm number not meant for zone signing, algorithm number {algo_num} ("{algo_descr}", {algomnemo}), on name servers "{ns_list}".      |
 | DS05_ALGO_OK              | INFO    | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses algorithm number {algo_num} ("{algo_descr}", {algomnemo}), which is OK. Fetched from name servers "{ns_list}".                            |
-| DS05_ALGO_PRIVATE         | ERROR   | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses private algorithm number {algo_num} ("{algo_descr}", {algomnemo}), on name servers "{ns_list}".                                           |
-| DS05_ALGO_RESERVED        | ERROR   | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses reserved algorithm number {algo_num} ("{algo_descr}", {algomnemo}), on name servers "{ns_list}".                                          |
-| DS05_ALGO_UNASSIGNED      | ERROR   | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses unassigned algorithm number {algo_num} ("{algo_descr}", {algomnemo}), on name servers "{ns_list}".                                        |
+| DS05_ALGO_PRIVATE         | ERROR   | ns_list, keytag, algo_num                         | The DNSKEY with tag {keytag} uses algorithm number {algo_num} for private use on name servers "{ns_list}".                                                                  |
+| DS05_ALGO_RESERVED        | ERROR   | ns_list, keytag, algo_num                         | The DNSKEY with tag {keytag} uses reserved algorithm number {algo_num} on name servers "{ns_list}".                                                                         |
+| DS05_ALGO_UNASSIGNED      | ERROR   | ns_list, keytag, algo_num                         | The DNSKEY with tag {keytag} uses unassigned algorithm number {algo_num} on name servers "{ns_list}".                                                                       |
 | DS05_NO_RESPONSE          | WARNING |                                                   | No response or error in response from all name servers on the DNSKEY query.                                                                                                 |
-| DS05_SERVER_NO_DNSSEC     | ERROR   | ns_list                                           | The following name servers do not support DNSSEC or have not been properly configured. DNSKEY cannot be tested on those servers. Fetched from name servers "{ns_list}".                      |
+| DS05_SERVER_NO_DNSSEC     | ERROR   | ns_list                                           | The following name servers do not support DNSSEC or have not been properly configured. DNSKEY cannot be tested on those servers. Fetched from name servers "{ns_list}".     |
 | DS05_ZONE_NO_DNSSEC       | NOTICE  | ns_list                                           | The zone is not DNSSEC signed or not properly DNSSEC signed. DNSKEY cannot be tested. Fetched from name servers "{ns_list}".                                                |
 
 The value in the Level column is the default severity level of the message. The
@@ -181,7 +181,9 @@ A complete list of all DNS Resource Record types can be found in the
      * Output the message tag matching the set name with the list of name server
        name and IP pair from the subset (key tag and code) plus the key tag, the
        algorithm number, algorithm description and algorithm mnemonic from the
-       table in section "[Classification of algorithms]".
+       table in section "[Classification of algorithms]". Exclude algorithm
+       description and algorithm mnemonic if not listed for the tag in
+       [Summary].
    * Sets:
      * *[DS05_ALGO_DEPRECATED]*
      * *[DS05_ALGO_RESERVED]*
