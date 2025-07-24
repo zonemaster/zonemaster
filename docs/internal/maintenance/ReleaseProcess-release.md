@@ -387,7 +387,7 @@ has passed with no further follow-up questions.
 
 ## 21. Clean-up on Github related to the release
 
-For each each repository:
+For each repository:
  * Zonemaster/Zonemaster
  * zonemaster-ldns
  * zonemaster-engine
@@ -399,11 +399,13 @@ Do the following steps related to the release:
 1. Check the issues with the release as milestone.
    1. Close if completed or irrelevant.
    2. Else move to a new milestone.
-2. Verify that the milestone of the release is 100% complete, and if so close it.
-   * Else make it complete.
-3. Verify that there are milestones for at lease the two upcoming releases.
-   * If no due date set YYYY-06-15 for the .1 release and YYYY-12-15 for the .2
-     release.
+2. Verify that the milestone of the release is 100% complete.
+   1. Close if completed.
+   2. Else make it complete and then close it.
+3. Verify that there are milestones for at least two of the next standard releases.
+   1. If not, create the appropriate vYYYY.x milestones (e.g v2025.1)
+   2. Also, if no due date has been chosen, set YYYY-06-15 for the .1 release and 
+      YYYY-12-15 for the .2 release.
 
 [(Top)](#table-of-contents)
 
