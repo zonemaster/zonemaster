@@ -35,17 +35,17 @@ correct DNS response for an authoritative name server unless all such name
 servers fail, in which case a message is outputted.
 
 The RDATA of a DNSKEY record consists of four fields. The third field specifies
-the algorithm number of public key in the fourth field. This test case will only
-check what the algorithm is used by checking the third field. It will not verify
+the algorithm number of the public key in the fourth field. This test case will only
+check which algorithm is used by checking the third field. It will not verify
 that the key is matching the algorithm.
 
 
 ## Classification of algorithms
 
 In the table below, the first three columns are copied from the
-[IANA registry][IANA DNSSEC algo num]. The forth column is for Zonemaster
-classification and it holds the the relevant message tags listed in the
-"[Summary]" section below. In the table below mnemonic is defined by Zonemaster
+[IANA registry][IANA DNSSEC algo num]. The fourth column is for Zonemaster
+classification and it holds the relevant message tags listed in the
+"[Summary]" section below. In the table below "mnemonic" is defined by Zonemaster
 when undefined in the IANA table, which is available at
 [IANA registry][IANA DNSSEC algo num].
 
@@ -145,7 +145,7 @@ A complete list of all DNS Resource Record types can be found in the
     6.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_UNASSIGNED")
     7.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_RECOMMENDED")
     8.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_PRIVATE")
-    9. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_ZONE_SIGN")
+    9.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_ZONE_SIGN")
     10. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_OK")
 
 4.  For each name server IP address in *NS IP* do:
@@ -168,7 +168,7 @@ A complete list of all DNS Resource Record types can be found in the
        3. From section "[Classification of algorithms]" retrieve the table and
           extract the row matching the algorithm number.
        4. From the row extract the message tag from column "Zonemaster
-          classification"
+          classification".
        5. Add name server IP, key tag and the algorithm code to the set with the
           same name as the extracted message tag.
 
