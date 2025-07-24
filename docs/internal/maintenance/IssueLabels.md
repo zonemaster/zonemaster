@@ -31,7 +31,7 @@ be combined with any other *Release category* label.
 
 ## Labels
 
-Category         | Label              | Color   | Used in repository | Scope |Description
+Category         | Label              | Color   | Used in repository | Scope | Description
 -----------------|--------------------|---------|--------------------|-------|---------------------------------------------------------
 Area             | A-Documentation    | green   | all                | Both  | Area: Documentation only.
 Area             | A-TestCase         | green   | main or Engine     | Both  | Area: Test case specification or implementation of test case.
@@ -52,7 +52,9 @@ Versioning       | V-Major            | pink    | all but main       | Both  | V
 Versioning       | V-Minor            | pink    | all but main       | Both  | Versioning: The change gives an update of minor in version.
 Versioning       | V-Patch            | pink    | all but main       | Both  | Versioning: The change gives an update of patch in version.
 
-## Color
+### Color
+
+In the table above, the following terms for "Color" are defined:
 
 Term     | Color code
 ---------|---------------------------------------------
@@ -63,14 +65,19 @@ red      | #EE0701
 yellow   | #FFCE2E
 magenta  | #D4C5F9
 
-## Used in repository
+### Used in repository
+
+In the table above, the following terms for "Used in repository" are defined:
 
 Term     | Definition or meaning
 ---------|---------------------------------------------
-main     | In the table above, "main" stands for the [Zonemaster/Zonemaster] repository
-Engine   | In the table above, "Engine" stands for the [Zonemaster-Engine] repository
+all      | Stands for the [Zonemaster/Zonemaster], [Zonemaster-LDNS], [Zonemaster-Engine], [Zonemaster-CLI], [Zonemaster-Backend] and [Zonemaster-GUI] repositories
+main     | Stands for the [Zonemaster/Zonemaster] repository
+Engine   | Stands for the [Zonemaster-Engine] repository
 
-## Scope
+### Scope
+
+In the table above, the following terms for "Scope" are defined:
 
 Term  | Definition or meaning
 ------|---------------------------------------------------
@@ -79,4 +86,8 @@ Issue | The label is meant for Issue only
 Both  | The label is meant for both Pull Request and Issue
 
 [Zonemaster/Zonemaster]:    https://github.com/zonemaster/zonemaster
+[Zonemaster-LDNS]:          https://github.com/zonemaster/zonemaster-ldns
 [Zonemaster-Engine]:        https://github.com/zonemaster/zonemaster-engine
+[Zonemaster-CLI]:           https://github.com/zonemaster/zonemaster-cli
+[Zonemaster-Backend]:       https://github.com/zonemaster/zonemaster-backend
+[Zonemaster-GUI]:           https://github.com/zonemaster/zonemaster-gui
