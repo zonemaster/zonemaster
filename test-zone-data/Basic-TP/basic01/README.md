@@ -246,7 +246,6 @@ NO-DEL-MIXED-UNDEL-2      | B01_CHILD_FOUND, B01_PARENT_DISREGARDED          | 2
     * ns3-undelegated-child.basic01.xa
     * ns4-undelegated-child.basic01.xa
 
-child.w.x.parent.y.z.no-del-mixed-undel-2.basic01.xa
 
 ```
 $ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json  --ns ns3-undelegated-child.basic01.xa --ns ns4-undelegated-child.basic01.xa child.w.x.parent.y.z.no-del-mixed-undel-2.basic01.xa
