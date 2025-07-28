@@ -147,16 +147,17 @@ MULT-SOA-MNAMES-NO-DEL-UNDEL-2 | MULTIPLE_SOA_MNAMES                  | NO_RESPO
 
 * Undelegated data:
   * ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
-  * ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
+  * ns4.mult-soa-mnames-no-del-undel-2.consistency06.xb
 ```
-$ zonemaster-cli MULT-SOA-MNAMES-NO-DEL-UNDEL-2.consistency06.xa --raw  --test consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json --ns ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb --ns ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
+$ zonemaster-cli MULT-SOA-MNAMES-NO-DEL-UNDEL-2.consistency06.xa --raw  --test consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json --ns ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb --ns ns4.mult-soa-mnames-no-del-undel-2.consistency06.xb
 Loading profile from COMMON/custom-profile.json.
-   0.43 ERROR    Unspecified    FAKE_DELEGATION_NO_IP  domain=mult-soa-mnames-no-del-undel-2.consistency06.xa; nsname=ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
-   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.17 ERROR    Unspecified    FAKE_DELEGATION_NO_IP  domain=mult-soa-mnames-no-del-undel-2.consistency06.xa; nsname=ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
+   0.17 ERROR    Unspecified    FAKE_DELEGATION_NO_IP  domain=mult-soa-mnames-no-del-undel-2.consistency06.xa; nsname=ns4.mult-soa-mnames-no-del-undel-2.consistency06.xb
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
    0.00 INFO     Consistency06  TEST_CASE_START  testcase=Consistency06
-   0.06 INFO     Consistency06  TEST_CASE_END  testcase=Consistency06
+   0.03 INFO     Consistency06  TEST_CASE_END  testcase=Consistency06
 ```
---> Not OK. FAKE_DELEGATION_NO_IP is not expected here.
+--> Not OK. MULTIPLE_SOA_MNAMES is not outputted and FAKE_DELEGATION_NO_IP is not expected here.
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
