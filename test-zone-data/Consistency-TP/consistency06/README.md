@@ -160,7 +160,7 @@ Loading profile from COMMON/custom-profile.json.
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
-NO-RESPONSE           | NO-RESPONSE                                       | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES, ONE_SOA_MNAME
+NO-RESPONSE           | NO_RESPONSE                                       | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES, ONE_SOA_MNAME
 ```
 $ zonemaster-cli NO-RESPONSE.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json
 Loading profile from COMMON/custom-profile.json.
