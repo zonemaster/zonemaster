@@ -26,6 +26,30 @@ This test case looks up SPF records in the apex of *Child Zone*. It checks
 that there is at most one published SPF policy and, if present, also checks
 its syntax.
 
+The root zone ("."), [TLD] zones and zones under .ARPA are treated
+differently. These zones are not expected to be used as [Email Domains][Email
+Domain]. For these zones, this test case generates a message if an [non-null
+SPF][Null SPF] policy is found.
+
+The root zone cannot be an [Email Domain] because according to the syntax
+rules in [RFC 5321, section 4.1.2][RFC 5321#4.1.2], it is not possible to
+construct an email address having the root name (".") as domain part.
+
+Although top-level domains ([TLDs][TLD]) can technically function as [Email
+Domains][Email Domain] ([RFC 5321, section 2.3.5][RFC 5321#2.3.5]), they
+usually do not have this purpose. The [Internet Architecture Board] concludes
+in a report named "[Dotless Domains Considered Harmful]" that domain names
+that only consists of one label, e.g. "se", "fr" or "com", should not be used
+for various Internet services. This means [TLD] names should not be used as
+[Email Domains][Email Domain].
+
+As for .ARPA, [RFC 3172] states that "This domain is termed an 'infrastructure
+domain', as its role is to support the operating infrastructure of the
+Internet. In particular, the 'arpa' domain is not to be used in the same
+manner (e.g., for naming hosts) as other generic Top Level Domains are
+commonly used". This means any name under .ARPA should not be used as [Email
+Domains][Email Domain].
+
 ## Scope
 
 It is assumed that *Child Zone* has been tested and reported by
@@ -44,6 +68,9 @@ Message Tag                      | Level   | Arguments          | Message ID for
 Z11_DIFFERENT_SPF_POLICIES_FOUND | NOTICE  | ns_ip_list         | The following name servers returned the same SPF policy. Name servers: {ns_ip_list}.
 Z11_INCONSISTENT_SPF_POLICIES    | WARNING |                    | One or more name servers do not publish the same SPF policy as the others.
 Z11_NO_SPF_FOUND                 | NOTICE  | domain             | No SPF policy was found for {domain}.
+Z11_NO_SPF_NON_MAIL_DOMAIN       | INFO    | domain             | No SPF policy was found for {domain}, which is a type of domain (root, TLD or under .ARPA) not expected to be used for email.
+Z11_NON_NULL_SPF_NON_MAIL_DOMAIN | NOTICE  | domain             | A non-null SPF policy was found on {domain}, although this type of domain (root, TLD or under .ARPA) is not expected to be used for email.
+Z11_NULL_SPF_NON_MAIL_DOMAIN     | INFO    | domain             | A null SPF policy was found on {domain}, which is a type of domain (root, TLD or under .ARPA) not expected to be used for email.
 Z11_SPF_MULTIPLE_RECORDS         | ERROR   | ns_ip_list         | The following name servers returned more than one SPF policy. Name servers: {ns_ip_list}.
 Z11_SPF_SYNTAX_ERROR             | ERROR   | domain, ns_ip_list | The SPF policy of {domain} has a syntax error. Policy retrieved from the following nameservers: {ns_ip_list}.
 Z11_SPF_SYNTAX_OK                | INFO    | domain             | The SPF policy of {domain} has correct syntax.
@@ -104,8 +131,13 @@ same specification.
 5. If the *SPF-Policies* set is empty, then output
    *[Z11_UNABLE_TO_CHECK_FOR_SPF]* and terminate the test.
 
-6. If all the pairs in the *SPF-Policies* set contain empty strings, then
-   output *[Z11_NO_SPF_FOUND]* and terminate the test.
+6. If all the pairs in the *SPF-Policies* set contain empty strings, then:
+
+   1. If the *Child Zone* is the root zone ("."), a [TLD] or a zone under
+      .ARPA, then output *[Z11_NO_SPF_NON_MAIL_DOMAIN]* and terminate the
+      test.
+
+   2. Else, output *[Z11_NO_SPF_FOUND]* and terminate the test.
 
 7. Compare the set of *SPF-Policies* retrieved from all name servers. If at
    least two different name servers have returned different sets of SPF
@@ -129,7 +161,16 @@ same specification.
     check] for SPF records, then output *[Z11_SPF_SYNTAX_ERROR]* and terminate
     the test.
 
-11. If no other message was outputted by this test case, then output
+11. If the *Child Zone* is the root zone ("."), a [TLD] or a zone under
+    .ARPA, then:
+
+   1. If the *SPF Policy* is a [Null SPF] policy, then output
+      *[Z11_NULL_SPF_NON_MAIL_DOMAIN]* and terminate the test.
+
+   2. If the *SPF Policy* is not a [Null SPF] policy, then output
+      *[Z11_NON_NULL_SPF_NON_MAIL_DOMAIN]* and terminate the test.
+
+12. If no other message was outputted by this test case, then output
     *[Z11_SPF_SYNTAX_OK]*.
 
 ## Outcome(s)
@@ -156,20 +197,31 @@ None.
 
 ## Terminology
 
-* "SPF TXT record" - The term is used to refer to a TXT resource record which,
-  after [concatenating][concatenate] all strings within that resource record
-  into one string, yields a string either equal to `v=spf1` or starting with
-  `v=spf1` followed by a space, irrespective of character case.
-
 * "concatenate" - The term is used to refer to the conversion of a TXT
   resource record’s data to a single contiguous string, as specified in [RFC
   7208, section 3.3][RFC 7208#3.3].
+
+* "Email Domain" - the domain name at the right of the at-sign ("@") in an
+  email address.
 
 * "passing the syntax check" - The term is used in this document to refer to
   text that is valid according to the ABNF grammar published in [RFC 7208]
   starting from [section 4.5][RFC 7208#4.5]. Alternatively, the reader may use
   an [online SPF syntax validator]; however, such online validators should not
   be used as normative references.
+
+* "Null SPF" - The term is used to refer to a SPF policy record which contains
+  a single term, `-all`. It designates no server as permitted sender and
+  evaluation of such an SPF policy is therefore guaranteed to return a failure.
+
+* "SPF TXT record" - The term is used to refer to a TXT resource record which,
+  after [concatenating][concatenate] all strings within that resource record
+  into one string, yields a string either equal to `v=spf1` or starting with
+  `v=spf1` followed by a space, irrespective of character case.
+
+* "TLD" - The term is used to refer to a "Top Level Domain", i.e. a zone whose
+  name consists of a single label (ignoring the empty label after the final
+  dot).
 
 * "using Method" - The term is used when data is fetched using the defined
   [Method][Methods].
@@ -182,29 +234,41 @@ None.
 [DNS Query and Response Defaults]:      ../DNSQueryAndResponseDefaults.md
 [DNS Query]:                            ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
 [DNS Response]:                         ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
+[Dotless Domains Considered Harmful]:   https://www.iab.org/documents/correspondence-reports-documents/2013-2/iab-statement-dotless-domains-considered-harmful/
+[Email Domain]:                         #terminology
 [ERROR]:                                ../SeverityLevelDefinitions.md#error
 [INFO]:                                 ../SeverityLevelDefinitions.md#info
+[Internet Architecture Board]:          https://www.iab.org/
 [Message Tag Specification]:            MessageTagSpecification.md
 [Method4]:                              ../Methods.md#method-4-obtain-glue-address-records-from-parent
 [Method5]:                              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [Methods]:                              ../Methods.md
+[Null SPF]:                             #terminology
 [NOTICE]:                               ../SeverityLevelDefinitions.md#notice
 [online SPF syntax validator]:          https://vamsoft.com/support/tools/spf-syntax-validator
 [passing the syntax check]:             #terminology
 [RCODE Name]:                           https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[RFC 3172]:                             https://datatracker.ietf.org/doc/html/rfc3172
+[RFC 5321#2.3.5]:                       https://datatracker.ietf.org/doc/html/rfc5321#section-2.3.5
+[RFC 5321#4.1.2]:                       https://datatracker.ietf.org/doc/html/rfc5321#section-4.1.2
 [RFC 7208#3.3]:                         https://www.rfc-editor.org/rfc/rfc7208#section-3.3
 [RFC 7208#4.5]:                         https://www.rfc-editor.org/rfc/rfc7208#section-4.5
 [RFC 7208]:                             https://www.rfc-editor.org/rfc/rfc7208
 [Severity Level Definitions]:           ../SeverityLevelDefinitions.md
 [SPF TXT record]:                       #terminology
 [Test Case Identifier Specification]:   TestCaseIdentifierSpecification.md
+[TLD]:                                  #terminology
 [Undelegated test]:                     ../../test-types/undelegated-test.md
 [WARNING]:                              ../SeverityLevelDefinitions.md#warning
 [Z11_DIFFERENT_SPF_POLICIES_FOUND]:     #summary
 [Z11_INCONSISTENT_SPF_POLICIES]:        #summary
 [Z11_NO_SPF_FOUND]:                     #summary
-[Z11_SPF1_MULTIPLE_RECORDS]:            #summary
-[Z11_SPF1_SYNTAX_ERROR]:                #summary
-[Z11_SPF1_SYNTAX_OK]:                   #summary
+[Z11_NO_SPF_NON_MAIL_DOMAIN]:           #summary
+[Z11_NON_NULL_SPF_NON_MAIL_DOMAIN]:     #summary
+[Z11_NULL_SPF_NON_MAIL_DOMAIN]:         #summary
+[Z11_SPF_MULTIPLE_RECORDS]:             #summary
+[Z11_SPF_SYNTAX_ERROR]:                 #summary
+[Z11_SPF_SYNTAX_OK]:                    #summary
 [Z11_UNABLE_TO_CHECK_FOR_SPF]:          #summary
+[Zone09 test specification]:            zone09.md
 [Zonemaster-Engine profile]:            ../../../configuration/profiles.md
