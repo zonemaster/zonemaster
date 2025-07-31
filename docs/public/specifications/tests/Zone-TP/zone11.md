@@ -96,8 +96,8 @@ same specification.
 
 2. Create an empty set of pairs of IP addresses and strings, "SPF-Policies".
 
-3. Obtain the set of name server IP addresses using [Method4] and [Method5]
-   ("Name Server IP").
+3. Retrieve all name server IP addresses for *Child Zone* using methods
+   [Get-Del-NS-IPs] and [Get-Zone-NS-IPs] ("Name Server IP").
 
 4. For each name server in *Name Server IP* do:
 
@@ -223,9 +223,6 @@ None.
   name consists of a single label (ignoring the empty label after the final
   dot).
 
-* "using Method" - The term is used when data is fetched using the defined
-  [Method][Methods].
-
 [Argument list]:                        ../ArgumentsForTestCaseMessages.md
 [argument]:                             #terminology
 [concatenate]:                          #terminology
@@ -237,12 +234,11 @@ None.
 [Dotless Domains Considered Harmful]:   https://www.iab.org/documents/correspondence-reports-documents/2013-2/iab-statement-dotless-domains-considered-harmful/
 [Email Domain]:                         #terminology
 [ERROR]:                                ../SeverityLevelDefinitions.md#error
+[Get-Del-NS-IPs]:                       ../MethodsV2.md#method-get-delegation-ns-ip-addresses
+[Get-Zone-NS-IPs]:                      ../MethodsV2.md#method-get-zone-ns-ip-addresses
 [INFO]:                                 ../SeverityLevelDefinitions.md#info
 [Internet Architecture Board]:          https://www.iab.org/
 [Message Tag Specification]:            MessageTagSpecification.md
-[Method4]:                              ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]:                              ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[Methods]:                              ../Methods.md
 [Null SPF]:                             #terminology
 [NOTICE]:                               ../SeverityLevelDefinitions.md#notice
 [online SPF syntax validator]:          https://vamsoft.com/support/tools/spf-syntax-validator
