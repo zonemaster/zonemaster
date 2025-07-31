@@ -28,9 +28,9 @@ ns2     AAAA  fda1:b2:c3::127:14:5:24
 $ORIGIN consistency06.xb.
 @       NS    ns1
 @       NS    ns2
-ns1	A     127.14.5.23
-ns1     AAAA  fda1:b2:c3::127:14:5:23
-ns2     A     127.14.5.24
-ns2     AAAA  fda1:b2:c3::127:14:5:24
+ns1     A     127.14.6.23
+ns1     AAAA  fda1:b2:c3::127:14:6:23
+ns2     A     127.14.6.24
+ns2     AAAA  fda1:b2:c3::127:14:6:24
 
 ;EOF
