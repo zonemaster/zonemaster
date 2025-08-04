@@ -63,18 +63,18 @@ server.
 
 ## Summary
 
-Message Tag                      | Level   | Arguments          | Message ID for message tag
-:--------------------------------|:--------|:-------------------|:--------------------------------------------
-Z11_DIFFERENT_SPF_POLICIES_FOUND | NOTICE  | ns_ip_list         | The following name servers returned the same SPF policy. Name servers: {ns_ip_list}.
-Z11_INCONSISTENT_SPF_POLICIES    | WARNING |                    | One or more name servers do not publish the same SPF policy as the others.
-Z11_NO_SPF_FOUND                 | NOTICE  | domain             | No SPF policy was found for {domain}.
-Z11_NO_SPF_NON_MAIL_DOMAIN       | INFO    | domain             | No SPF policy was found for {domain}, which is a type of domain (root, TLD or under .ARPA) not expected to be used for email.
-Z11_NON_NULL_SPF_NON_MAIL_DOMAIN | NOTICE  | domain             | A non-null SPF policy was found on {domain}, although this type of domain (root, TLD or under .ARPA) is not expected to be used for email.
-Z11_NULL_SPF_NON_MAIL_DOMAIN     | INFO    | domain             | A null SPF policy was found on {domain}, which is a type of domain (root, TLD or under .ARPA) not expected to be used for email.
-Z11_SPF_MULTIPLE_RECORDS         | ERROR   | ns_ip_list         | The following name servers returned more than one SPF policy. Name servers: {ns_ip_list}.
-Z11_SPF_SYNTAX_ERROR             | ERROR   | domain, ns_ip_list | The SPF policy of {domain} has a syntax error. Policy retrieved from the following nameservers: {ns_ip_list}.
-Z11_SPF_SYNTAX_OK                | INFO    | domain             | The SPF policy of {domain} has correct syntax.
-Z11_UNABLE_TO_CHECK_FOR_SPF      | ERROR   |                    | None of the zone’s name servers responded with an authoritative response to queries for SPF policies.
+Message Tag                      | Level   | Arguments       | Message ID for message tag
+:--------------------------------|:--------|:----------------|:--------------------------------------------
+Z11_DIFFERENT_SPF_POLICIES_FOUND | NOTICE  | ns_list         | The following name servers returned the same SPF policy. Name servers: {ns_list}.
+Z11_INCONSISTENT_SPF_POLICIES    | WARNING |                 | One or more name servers do not publish the same SPF policy as the others.
+Z11_NO_SPF_FOUND                 | NOTICE  | domain          | No SPF policy was found for {domain}.
+Z11_NO_SPF_NON_MAIL_DOMAIN       | INFO    | domain          | No SPF policy was found for {domain}, which is a type of domain (root, TLD or under .ARPA) not expected to be used for email.
+Z11_NON_NULL_SPF_NON_MAIL_DOMAIN | NOTICE  | domain          | A non-null SPF policy was found on {domain}, although this type of domain (root, TLD or under .ARPA) is not expected to be used for email.
+Z11_NULL_SPF_NON_MAIL_DOMAIN     | INFO    | domain          | A null SPF policy was found on {domain}, which is a type of domain (root, TLD or under .ARPA) not expected to be used for email.
+Z11_SPF_MULTIPLE_RECORDS         | ERROR   | ns_list         | The following name servers returned more than one SPF policy. Name servers: {ns_list}.
+Z11_SPF_SYNTAX_ERROR             | ERROR   | domain, ns_list | The SPF policy of {domain} has a syntax error. Policy retrieved from the following nameservers: {ns_list}.
+Z11_SPF_SYNTAX_OK                | INFO    | domain          | The SPF policy of {domain} has correct syntax.
+Z11_UNABLE_TO_CHECK_FOR_SPF      | ERROR   |                 | None of the zone’s name servers responded with an authoritative response to queries for SPF policies.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -82,6 +82,10 @@ severity level can be changed in the [Zonemaster-Engine profile]. Also see the
 
 The argument names in the Arguments column lists the arguments used in the
 message. The argument names are defined in the [argument list].
+
+The name server names are assumed to be available at the time when the msgid
+is created, if the argument name is "ns_list" even when in the "[Test
+procedure]" below it is only referred to the IP address of the name servers.
 
 ## Test procedure
 
@@ -94,28 +98,30 @@ same specification.
 1. Create a [DNS Query] with query type TXT and query name *Child Zone* ("TXT
    query").
 
-2. Create an empty set of pairs of IP addresses and strings, "SPF-Policies".
+2. Create an empty set of pairs of (names and IP address) pairs and strings,
+   "SPF-Policies".
 
-3. Retrieve all name server IP addresses for *Child Zone* using methods
-   [Get-Del-NS-IPs] and [Get-Zone-NS-IPs] ("Name Server IP").
+3. Retrieve all name server names and IP addresses for *Child Zone* using
+   methods [Get-Del-NS-Names-and-IPs] and [Get-Zone-NS-Names-and-IPs] ("Name
+   Servers").
 
-4. For each name server in *Name Server IP* do:
+4. For each distinct name server IP address in *Name Servers* do:
 
    1. Send *TXT Query* to the name server and collect the [DNS Response].
 
-   2. Go to the next name server IP address if at least one of the following
-      criteria is met:
+   2. Go to the next name server if at least one of the following criteria is
+      met:
 
       1. There is no DNS response.
       2. [RCODE Name] of the response is not "NoError".
       3. The AA flag is not set in the response.
 
    3. If the name server responds with no TXT record, then add the pair
-      consisting of the *Name Server IP* and the empty string to the
+      consisting of the *Name Servers* and the empty string to the
       *SPF-Policies* set.
 
    4. If the name server responds with at least one TXT record and none is an
-      [SPF TXT record], then add the pair consisting of the *Name Server IP*
+      [SPF TXT record], then add the pair consisting of the *Name Servers*
       and the empty string to the *SPF-Policies* set.
 
    5. If the name server responds with at least one TXT record that is an [SPF
@@ -123,7 +129,7 @@ same specification.
 
        1. [Concatenate] all strings in the RDATA field.
        2. Lowercase the resulting string.
-       3. Add a pair consisting of the *Name Server IP* and the lowercase
+       3. Add a pair consisting of the *Name Servers* and the lowercase
           string thus derived from the RDATA field to the *SPF-Policies* set.
 
    6. Go to the next name server.
@@ -139,29 +145,33 @@ same specification.
 
    2. Else, output *[Z11_NO_SPF_FOUND]* and terminate the test.
 
-7. Compare the set of *SPF-Policies* retrieved from all name servers. If at
+7. For all messages outputted below, if an IP address in *Name Servers* is
+   connected to more than one name server name, then all names should be
+   included with the message tag.
+
+8. Compare the set of *SPF-Policies* retrieved from all name servers. If at
    least two different name servers have returned different sets of SPF
    policies, then:
 
    1. Output *[Z11_INCONSISTENT_SPF_POLICIES]*.
    2. Group *SPF-Policies* by equal sets of SPF policies, such that a set of
-      SPF policies is mapped to the list of *Name Server IPs* that returned it.
+      SPF policies is mapped to the list of *Name Servers* that returned it.
    3. For each such group of name servers, output
       *[Z11_DIFFERENT_SPF_POLICIES_FOUND]*.
    4. Terminate the test.
 
-8. If the *SPF-Policies* set contains at least two entries with the same IP
+9. If the *SPF-Policies* set contains at least two entries with the same IP
    address, then output *[Z11_SPF_MULTIPLE_RECORDS]* with the list of
    nameservers that returned more than one SPF policy and terminate the test.
 
-9. The following steps assume that all pairs in the *SPF-Policies* set have
-   the same string ("SPF policy").
+10. The following steps assume that all pairs in the *SPF-Policies* set have
+    the same string ("SPF policy").
 
-10. If the *SPF Policy* does not [pass the syntax check][passing the syntax
+11. If the *SPF Policy* does not [pass the syntax check][passing the syntax
     check] for SPF records, then output *[Z11_SPF_SYNTAX_ERROR]* and terminate
     the test.
 
-11. If the *Child Zone* is the root zone ("."), a [TLD] or a zone under
+12. If the *Child Zone* is the root zone ("."), a [TLD] or a zone under
     .ARPA, then:
 
    1. If the *SPF Policy* is a [Null SPF] policy, then output
@@ -170,7 +180,7 @@ same specification.
    2. If the *SPF Policy* is not a [Null SPF] policy, then output
       *[Z11_NON_NULL_SPF_NON_MAIL_DOMAIN]* and terminate the test.
 
-12. If no other message was outputted by this test case, then output
+13. If no other message was outputted by this test case, then output
     *[Z11_SPF_SYNTAX_OK]*.
 
 ## Outcome(s)
@@ -234,8 +244,8 @@ None.
 [Dotless Domains Considered Harmful]:   https://www.iab.org/documents/correspondence-reports-documents/2013-2/iab-statement-dotless-domains-considered-harmful/
 [Email Domain]:                         #terminology
 [ERROR]:                                ../SeverityLevelDefinitions.md#error
-[Get-Del-NS-IPs]:                       ../MethodsV2.md#method-get-delegation-ns-ip-addresses
-[Get-Zone-NS-IPs]:                      ../MethodsV2.md#method-get-zone-ns-ip-addresses
+[Get-Del-NS-Names-and-IPs]:             ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
+[Get-Zone-NS-Names-and-IPs]:            ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
 [INFO]:                                 ../SeverityLevelDefinitions.md#info
 [Internet Architecture Board]:          https://www.iab.org/
 [Message Tag Specification]:            MessageTagSpecification.md
