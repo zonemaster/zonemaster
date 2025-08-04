@@ -17,14 +17,14 @@
 
 ## Objective
 
-Sender Policy Framework (SPF), described in [RFC 7208], is a mechanism
+Sender Policy Framework (SPF) version 1, defined in [RFC 7208], is a mechanism
 allowing domain name owners to specify which hosts are allowed to send mail
-claiming to be from that domain. It is implemented by means of TXT records in a
-structured format.
+claiming to be from that domain. It is implemented by means of TXT records in
+a structured format.
 
 This test case looks up SPF records in the apex of *Child Zone*. It checks
-that there is at most one published SPF version 1 policy and, if present, also
-checks its syntax.
+that there is at most one published SPF policy and, if present, also checks
+its syntax.
 
 ## Scope
 
@@ -41,12 +41,12 @@ server.
 
 Message Tag                      | Level   | Arguments          | Message ID for message tag
 :--------------------------------|:--------|:-------------------|:--------------------------------------------
+Z11_DIFFERENT_SPF_POLICIES_FOUND | NOTICE  | ns_ip_list         | The following name servers returned the same SPF policy. Name servers: {ns_ip_list}.
 Z11_INCONSISTENT_SPF_POLICIES    | WARNING |                    | One or more name servers do not publish the same SPF policy as the others.
-Z11_DIFFERENT_SPF_POLICIES_FOUND | NOTICE  | ns_ip_list         | The following name servers returned the same SPF policy, but other name servers returned a different policy. Name servers: {ns_ip_list}.
 Z11_NO_SPF_FOUND                 | NOTICE  | domain             | No SPF policy was found for {domain}.
-Z11_SPF1_MULTIPLE_RECORDS        | ERROR   | ns_ip_list         | The following name servers returned more than one SPF policy. Name servers: {ns_ip_list}.
-Z11_SPF1_SYNTAX_ERROR            | ERROR   | domain, ns_ip_list | The SPF policy of {domain} has a syntax error. Policy retrieved from the following nameservers: {ns_ip_list}.
-Z11_SPF1_SYNTAX_OK               | INFO    | domain             | The SPF policy of {domain} has correct syntax.
+Z11_SPF_MULTIPLE_RECORDS         | ERROR   | ns_ip_list         | The following name servers returned more than one SPF policy. Name servers: {ns_ip_list}.
+Z11_SPF_SYNTAX_ERROR             | ERROR   | domain, ns_ip_list | The SPF policy of {domain} has a syntax error. Policy retrieved from the following nameservers: {ns_ip_list}.
+Z11_SPF_SYNTAX_OK                | INFO    | domain             | The SPF policy of {domain} has correct syntax.
 Z11_UNABLE_TO_CHECK_FOR_SPF      | ERROR   |                    | None of the zone’s name servers responded with an authoritative response to queries for SPF policies.
 
 The value in the Level column is the default severity level of the message. The
@@ -119,18 +119,18 @@ same specification.
    4. Terminate the test.
 
 8. If the *SPF-Policies* set contains at least two entries with the same IP
-   address, then output *[Z11_SPF1_MULTIPLE_RECORDS]* with the list of
+   address, then output *[Z11_SPF_MULTIPLE_RECORDS]* with the list of
    nameservers that returned more than one SPF policy and terminate the test.
 
 9. The following steps assume that all pairs in the *SPF-Policies* set have
    the same string ("SPF policy").
 
 10. If the *SPF Policy* does not [pass the syntax check][passing the syntax
-    check] for SPF version 1 records, then output *[Z11_SPF1_SYNTAX_ERROR]* and
-    terminate the test.
+    check] for SPF records, then output *[Z11_SPF_SYNTAX_ERROR]* and terminate
+    the test.
 
 11. If no other message was outputted by this test case, then output
-    *[Z11_SPF1_SYNTAX_OK]*.
+    *[Z11_SPF_SYNTAX_OK]*.
 
 ## Outcome(s)
 
