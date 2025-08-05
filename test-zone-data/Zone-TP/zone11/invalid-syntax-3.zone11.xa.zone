@@ -1,0 +1,6 @@
+$ORIGIN invalid-syntax-3.zone11.xa.
+$TTL 3600
+
+$INCLUDE COMMON-SCENARIO-INCLUDE
+
+@               IN  TXT  "v=spf1 include\0117\245\215\187\250;\135"

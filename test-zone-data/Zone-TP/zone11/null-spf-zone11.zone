@@ -1,0 +1,5 @@
+$ORIGIN null-spf-zone11.
+
+$INCLUDE COMMON-TLD-INCLUDE
+
+@               IN  TXT  "v=spf1 -all"
