@@ -82,7 +82,7 @@ Algorithms*.
 | 7-127            | Unassigned                 | DS01_DS_ALGO_UNASSIGNED   |
 | 128-252          | Reserved                   | DS01_DS_ALGO_RESERVED     |
 | 253-254          | Reserved for Private Use   | DS01_DS_ALGO_PRIVATE      |
-| 5-255            | Unassigned                 | DS01_DS_ALGO_UNASSIGNED   |
+| 255              | Unassigned                 | DS01_DS_ALGO_UNASSIGNED   |
 
 
 ## Inputs
