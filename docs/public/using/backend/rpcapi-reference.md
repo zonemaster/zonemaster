@@ -1799,8 +1799,8 @@ An object with the property:
 * `"list_finished_tests"`: a boolean, optional (default false). If true include
   the `"finished_tests"` property in the result object.
 
-The use of *[batch id]* is deprecated from v2026.1. Use *[batch id type 2]*
-instead.
+The use of *[batch id]* is deprecated and will be removed by release v2026.1.
+Use *[batch id type 2]* instead.
 
 #### `"result"`
 
