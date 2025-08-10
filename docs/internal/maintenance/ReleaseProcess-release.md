@@ -23,7 +23,7 @@ Release process - Release
 * [18. Announce the release](#18-announce-the-release)
 * [19. Merge master into develop](#19-merge-master-into-develop)
 * [20. Clean-up on discussion forum](#20-clean-up-on-discussion-forum)
-* [21. Clean-up on Github related to the release](#21-clean-up-on-Github-related-to-the-release)
+* [21. Clean-up on GitHub related to the release](#21-clean-up-on-github-related-to-the-release)
 * [Appendix A on version number in Makefile.PL](#appendix-a-on-version-number-in-makefilepl)
 * [Appendix B on reverting commits](#appendix-b-on-reverting-commits)
 
@@ -360,7 +360,7 @@ The releases pages:
    (the same email content will usually work fine). Always refer to the
    [Github release page], but the URL with the version.
 2. Forward the `zonemaster-users` email to the mailing list `zonemaster-group`.
-3. Create an announcement on the [Zonemaster discussion forum] on Github.
+3. Create an announcement on the [Zonemaster discussion forum] on GitHub.
    1. Choose "New discussion"
    2. Select "Announcements"
    3. Use Zonemaster version as title
@@ -378,7 +378,7 @@ it. No review or approval is required for this update.
 
 ## 20. Clean-up on discussion forum
 
-On the [Zonemaster discussion forum] on Github, close the announcement of the
+On the [Zonemaster discussion forum] on GitHub, close the announcement of the
 previous version. Also close discussions that are not relevant to keep open,
 i.e. resolved issues and other questions that have been answered and some time
 has passed with no further follow-up questions.
