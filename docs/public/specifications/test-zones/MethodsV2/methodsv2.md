@@ -5,9 +5,9 @@
 
 * [Background](#background)
 * [Test scenarios](#test-scenarios)
+* [Public methods](#public-methods)
 * [Test zone names](#test-zone-names)
-* [Test scenarios and expected output](#test-scenarios-and-expected)
-* [Zone setup for test scenarios]
+* [Test scenarios and setup of test zones]
 
 
 ## Background
@@ -51,7 +51,7 @@ IPv4, IPv6 or both (e.g "127.40.4.21" and "fda1:b2:c3::21" are valid):
   * Get parent NS IP addresses
   * Get delegation NS IP addresses
   * Get zone NS IP addresses
-  
+
 The non-empty set from the following methods consists of unique name server
 names (e.g. "ns1.example.xa" and "ns2.example.xb" are valid):
   * Get delegation NS names
@@ -88,15 +88,17 @@ defined for the following three methods:
   * Get zone NS names and IP addresses
 
 
-## Test zone name
+## Test zone names
 
 The test zone for each test scenario in this document is a subdomain delegated
 from the base name (`methodsv2.xa`) and that subdomain having the same name as
 the specific scenario. The names of those zones are given in section
-"[Zone setup for test scenarios]" below.
+"[Test scenarios and setup of test zones]" below.
 
 
-## Zone setup for test scenarios
+## Test scenarios and setup of test zones
+
+### Default zone configuration
 
 Assumptions for the scenario specifications unless otherwise specified for
 the specific scenario:
@@ -130,13 +132,13 @@ the specific scenario:
   * Any required glue matches address records in zone. No extra address
     records.
 
-## GOOD-1
+### GOOD-1
 A "happy path". Everything is fine.
 
 * Zone: child.parent.good-1.methodsv2.xa
   * Just defaults
 
-## GOOD-2
+### GOOD-2
 A "happy path". Everything is fine. Child has out-of-bailiwick name servers
 only.
 
@@ -146,7 +148,7 @@ only.
     * ns6.good-2.methodsv2.xa
   * No glue
 
-## GOOD-3
+### GOOD-3
 A "happy path". Everything is fine. Child has both in-bailiwick and
 out-of-bailiwick name servers.
 
@@ -160,7 +162,7 @@ out-of-bailiwick name servers.
       * ns1.child.parent.good-3.methodsv2.xa
       * ns3.parent.good-3.methodsv2.xa (optional)
 
-## GOOD-4
+### GOOD-4
 A "happy path". Everything is fine. Parent zone is also hosted on grandparent
 server.
 
@@ -175,7 +177,7 @@ server.
       * ns2.parent.good-4.methodsv2.xa
       * ns1.good-4.methodsv2.xa (optional)
 
-## GOOD-5
+### GOOD-5
 A "happy path". Everything is fine. Child zone is hosted also on grandparent
 server and parent server.
 
@@ -191,7 +193,7 @@ server and parent server.
       * ns2.child.parent.good-5.methodsv2.xa
       * ns1.parent.good-5.methodsv2.xa (optional)
 
-## GOOD-6
+### GOOD-6
 A "happy path". Everything is fine. Child zone is only hosted on grandparent
 servers.
 
@@ -201,7 +203,7 @@ servers.
     * ns2.good-6.methodsv2.xa
   * No glue.
 
-## GOOD-7
+### GOOD-7
 A "happy path". Everything is fine. Child zone is only hosted on parent
 servers.
 
@@ -215,7 +217,7 @@ servers.
       * ns2.parent.good-7.methodsv2.xa (optional)
 
 
-## GOOD-UNDEL-1
+### GOOD-UNDEL-1
 A "happy path". Everything is fine. Child has both in-bailiwick and
 out-of-bailiwick name servers. Child is delegated but is tested
 undelegated.
@@ -242,7 +244,7 @@ undelegated.
       * ns3.parent.good-undel-1.methodsv2.xa/IPv6
       * ns6.good-undel-1.methodsv2.xa
 
-## GOOD-UNDEL-2
+### GOOD-UNDEL-2
 A "happy path". Everything is fine. Child has both in-bailiwick and
 out-of-bailiwick name servers. Child is not delegated but is tested
 undelegated.
@@ -258,7 +260,7 @@ undelegated.
       * ns3.parent.good-undel-2.methodsv2.xa/IPv6
       * ns6.good-undel-2.methodsv2.xa
 
-## DIFF-NS-1
+### DIFF-NS-1
 No match in name server names between delegation and zone. Same name server IP.
 
 * Zone: child.parent.diff-ns-1.methodsv2.xa
@@ -266,7 +268,7 @@ No match in name server names between delegation and zone. Same name server IP.
   * NS in zone ns1-2 and ns2-2.
   * ns1-2 and ns2-2 in zone, ns1 and ns2 not in zone.
 
-## DIFF-NS-2
+### DIFF-NS-2
 No match in name server names between delegation and zone. Same name server IP on
 one server. Different on the other. No zone on servers from delegation except
 ns1.
@@ -278,18 +280,18 @@ ns1.
   * No zone on ns2.
   * ns1 and ns1-2 have the same IP.
 
-## IB-NOT-IN-ZONE-1
+### IB-NOT-IN-ZONE-1
 Delegation has in-bailiwick NS, but the names are not defined in the zone.
 
 * Zone: child.parent.ib-not-in-zone-1.methodsv2.xa
   * ns1 and ns2 not defined in zone.
-  
-## CHILD-NO-ZONE-1
+
+### CHILD-NO-ZONE-1
 * Zone: child.parent.child-no-zone-1.methodsv2.xa
   * No child zone on ns1 and ns2.
   * Response SERVFAIL.
 
-## CHILD-NO-ZONE-2
+### CHILD-NO-ZONE-2
 * Zone: child.parent.child-no-zone-2.methodsv2.xa
   * No response from ns1 and ns2 of the child.
 
@@ -614,7 +616,7 @@ Zone is delegated to two IB NS, where both NS names are aliases (CNAME)
 to other names out of zone.
 
 * child.parent.child-ns-cname-2.methodsv2.xa
-  * Zone is delegated to `ns1-cname` and `ns2-cname` and both are aliases to 
+  * Zone is delegated to `ns1-cname` and `ns2-cname` and both are aliases to
     `child-ns1.child-ns-cname-2.methodsv2.xa` and
     `child-ns2.child-ns-cname-2.methodsv2.xa`
   * Both names can be resolved to A and AAAA via CNAME and give correct IP.
@@ -654,7 +656,7 @@ Parent is delegated to two IB NS, where both NS names are aliases (CNAME)
 to other names out of zone.
 
 * child.parent.parent-ns-cname-2.methodsv2.xa
-  * Parent is delegated to `ns1-cname` and `ns2-cname` and both are aliases to 
+  * Parent is delegated to `ns1-cname` and `ns2-cname` and both are aliases to
     `parent-ns1.parent-ns-cname-2.methodsv2.xa` and
     `parent-ns2.parent-ns-cname-2.methodsv2.xa`
   * Both names can be resolved to A and AAAA via CNAME and give correct IP.
@@ -665,7 +667,7 @@ absolute -->
 
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [Test zone README file]:                                          ../../README.md
-[Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios
-[MethodsV2]:                                                      ../../tests/MethodsV2.md 
+[Test scenarios and setup of test zones]:                         #test-scenarios-and-setup-of-test-zones
+[MethodsV2]:                                                      ../../tests/MethodsV2.md
 [Get parent NS IP addresses]:                                     ../../tests/MethodsV2.md#method-get-parent-ns-ip-addresses
 [the implementation of the scenarios]:                            https://github.com/zonemaster/zonemaster/blob/master/test-zone-data/MethodsV2/README.md
