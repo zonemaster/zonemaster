@@ -7,7 +7,7 @@
 * [Internal Methods](#internal-methods)
 * [Methods Inputs]
 * [Method: Get parent NS names and IP addresses][Get-Parent-NS-Names-and-IPs]
-* [Method: Get parent NS IP addresses][Get-Parent-NS-IP]
+* [Method: Get parent NS IP addresses][Get-Parent-NS-IPs]
 * [Method: Get delegation NS names and IP addresses][Get-Del-NS-Names-and-IPs]
 * [Method: Get delegation NS names][Get-Del-NS-Names]
 * [Method: Get delegation NS IP addresses][Get-Del-NS-IPs]
@@ -301,7 +301,7 @@ None.
 ## Method: Get parent NS IP addresses
 
 ### Method identifier
-**Get-Parent-NS-IP**
+**Get-Parent-NS-IPs**
 
 ### Objective
 
@@ -744,7 +744,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
 2. If *Child Zone* is the root zone ".", then output the set of name server names
    and IP addresses from *Root Name Servers* and exit these procedures.
 
-3. Using Method [Get-Parent-NS-IP] extract the name server IP addresses for
+3. Using Method [Get-Parent-NS-IPs] extract the name server IP addresses for
    the parent zone ("Parent NS").
 
 4. If *Parent NS* is empty, then output the undefined set and exit these test
@@ -813,12 +813,12 @@ This Method uses the following input units defined in section [Methods Inputs]:
   links to a possibly empty set of its IP addresses:
   * Non-empty set: The normal case.
   * Empty set: No delegation was found.
-  * Undefined set: [Get-Parent-NS-IP] returned undefined set of parent
+  * Undefined set: [Get-Parent-NS-IPs] returned undefined set of parent
     name server IPs.
 
 ### Dependencies
 
-This Method depends on the output from [Get-Parent-NS-IP] if test type is a
+This Method depends on the output from [Get-Parent-NS-IPs] if test type is a
 "normal test".
 
 [To top]
@@ -986,9 +986,9 @@ None.
 | Method                        | Level | Dependent on Method           | Level |
 |-------------------------------|-------|-------------------------------|-------|
 | [Get-Parent-NS-Names-and-IPs] | 1     | -                             |       |
-| [Get-Parent-NS-IP]            | 2     | [Get-Parent-NS-Names-and-IPs] | 1     |
+| [Get-Parent-NS-IPs]           | 2     | [Get-Parent-NS-Names-and-IPs] | 1     |
 | [Get-OOB-IPs]                 | 1     | -                             |       |
-| [Get-Delegation]              | 3     | [Get-Parent-NS-IP]            | 2     |
+| [Get-Delegation]              | 3     | [Get-Parent-NS-IPs]           | 2     |
 | [Get-Del-NS-Names-and-IPs]    | 4     | [Get-Delegation]              | 3     |
 |                               |       | [Get-OOB-IPs]                 | 1     |
 | [Get-Del-NS-Names]            | 5     | [Get-Del-NS-Names-and-IPs]    | 4     |
@@ -1066,7 +1066,7 @@ None.
 [Get-Delegation]:                                    #method-get-delegation-internal
 [Get-IB-Addr-in-Zone]:                               #method-get-in-bailiwick-address-records-in-zone-internal
 [Get-OOB-IPs]:                                       #method-get-out-of-bailiwick-ip-addresses-internal
-[Get-Parent-NS-IP]:                                  #method-get-parent-ns-ip-addresses
+[Get-Parent-NS-IPs]:                                 #method-get-parent-ns-ip-addresses
 [Get-Parent-NS-Names-and-IPs]:                       #method-get-parent-ns-names-and-ip-addresses
 [Get-Zone-NS-IPs]:                                   #method-get-zone-ns-ip-addresses
 [Get-Zone-NS-Names-and-IPs]:                         #method-get-zone-ns-names-and-ip-addresses
