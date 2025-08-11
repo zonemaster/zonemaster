@@ -28,6 +28,7 @@ implementation of the MethodsV2 scenarios.
 [MethodsV2] provides the following public methods:
 
 * For parent zone:
+  * Get parent NS names and IP addresses
   * Get parent NS IP addresses
 * For delegation:
   * Get delegation NS names and IP addresses
@@ -55,6 +56,12 @@ The non-empty set from the following methods consists of unique name server
 names (e.g. "ns1.example.xa" and "ns2.example.xb" are valid):
   * Get delegation NS names
   * Get zone NS names
+
+The non-empty set from the following methods consists of unique pairs of name
+server name and its IP address (IPv4 or IPv6). The IP address cannot be blank
+(e.g. "ns1.example.xa/127.40.4.21" and "ns1.example.xa/fda1:b2:c3::21" are
+valid but "ns1.example.xa" is not):
+  * Get parent NS names and IP addresses
 
 The non-empty set from the following methods consists of unique pairs of name
 server name and its IP address (IPv4 or IPv6). The IP address can be left blank
