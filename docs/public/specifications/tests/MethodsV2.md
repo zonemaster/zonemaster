@@ -881,7 +881,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
       *A Query* and *AAAA Query*.
    4. If a CNAME is returned, follow that, possibly in several
       steps, to resolve the name to IP addresses, if possible.
-   5. Ignore non-referral responses [see [Referral] unless AA flag is set (cached
+   5. Ignore non-referral responses (see [Referral]) unless AA flag is set (cached
       data is not accepted) and ignore response with any other [RCODE Name] than
       NoError.
    6. Add found IP addresses for the name server names in *Name Servers*.

@@ -13,7 +13,7 @@ CDNSKEY RRsets ([RFC 7344][RFC 7344#4.1], section 4.1).
 As stated in [RFC 4035][RFC 4035#2.4], section 2.4:
 > A DS RR SHOULD point to a DNSKEY RR that is present in the child's
 > apex DNSKEY RRset, and the child's apex DNSKEY RRset SHOULD be
-> signed by the corresponding private key."
+> signed by the corresponding private key.
 
 This Test case is only relevant if 
 * The *Child Zone* has either CDS or CDNSKEY record or both, and
@@ -77,7 +77,7 @@ DS18_NO_MATCH_CDNSKEY_RRSIG_DS | ERROR | CDNSKEY RRset is not signed with a DNSK
     5.  Name server IP ("DS No Match CDS RRSIG").
     6.  Name server IP ("DS No Match CDNSKEY RRSIG").
 
-6. If the *Test Type* is "undelegated, then:
+6. If the *Test Type* is "undelegated", then:
    1. Add *Undelegated DS* set to *DS Records*.
 
 7. Else, do (*Test Type* is "normal"):
