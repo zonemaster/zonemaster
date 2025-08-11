@@ -78,9 +78,12 @@ derived from *Get delegation NS names and IP addresses*.
 Both *Get zone NS IP addresses* and *Get zone NS names* can be derived from
 *Get zone NS names and IP addresses*.
 
+*Get parent NS IP addresses* can be derived from *Get parent NS names and IP
+addresses*.
+
 Consequently, for the scenarios defined in this document the expected data is only
 defined for the following three methods:
-  * Get parent NS IP addresses
+  * Get parent NS names and IP addresses
   * Get delegation NS names and IP addresses
   * Get zone NS names and IP addresses
 
