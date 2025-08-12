@@ -661,6 +661,28 @@ to other names out of zone.
     `parent-ns2.parent-ns-cname-2.methodsv2.xa`
   * Both names can be resolved to A and AAAA via CNAME and give correct IP.
 
+### PARENT-NS-SAME-IP-1
+Parent is delegated to three IB NS. The delegation lists two name server names
+resolving to the same IP.
+
+* Zone: child.parent.parent-ns-same-ip-1.methodsv2.xa
+  * Parent zone (parent.parent-ns-name-ip-1.methodsv2.xa) is delegated to
+    `ns1a`, `ns1b` and `ns2`.
+  * Both `ns1a` and `ns1b` have A and AAAA records pointing to the same IPv4
+    and IPv6 address respectively.
+
+### PARENT-NS-SAME-IP-2
+Parent is delegated to two IB NS. Two of the in-zone NS records resolve to the
+same IP. The grandparent zone’s delegation lists name server names that are
+different from the in-zone NS record’s, but the sets of IP addresses are equal.
+
+* Zone: child.parent.parent-ns-same-ip-2.methodsv2.xa
+  * Grandparent zone (parent-ns-name-ip-2.methodsv2.xa) delegates the parent
+    zone (parent.parent-ns-name-ip-2.methodsv2.xa) to `ns1` and `ns2`.
+  * Parent zone’s NS records list `ns1a`, `ns1b` and `ns2` instead of `ns1` and
+    `ns2`.
+  * Both `ns1a` and `ns1b` have A and AAAA records pointing to the same IPv4
+    and IPv6 address respectively.
 
 <!-- Links to documents in this repository but outside the public tree must be
 absolute -->

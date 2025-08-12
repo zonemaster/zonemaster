@@ -1321,6 +1321,67 @@ child.parent.parent-ns-cname-2.methodsv2.xa
   * (empty)
 
 
+### PARENT-NS-SAME-IP-1
+
+#### Zone
+
+child.parent.parent-ns-same-ip-1.methodsv2.xa
+
+#### Methods and expected output
+* Get parent NS names and IP addresses
+  * ns1a.parent.parent-ns-same-ip-1.methodsv2.xa/127.40.1.41
+  * ns1a.parent.parent-ns-same-ip-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:41
+  * ns1b.parent.parent-ns-same-ip-1.methodsv2.xa/127.40.1.41
+  * ns1b.parent.parent-ns-same-ip-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:41
+  * ns2.parent.parent-ns-same-ip-1.methodsv2.xa/127.40.1.42
+  * ns2.parent.parent-ns-same-ip-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:42
+* Get delegation NS names and IP addresses
+  * ns1.child.parent.parent-ns-same-ip-1.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.parent-ns-same-ip-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.parent-ns-same-ip-1.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.parent-ns-same-ip-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+* Get zone NS names and IP addresses
+  * ns1.child.parent.parent-ns-same-ip-1.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.parent-ns-same-ip-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.parent-ns-same-ip-1.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.parent-ns-same-ip-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+
+#### Undelegated data
+  * (empty)
+
+
+### PARENT-NS-SAME-IP-2
+
+#### Zone
+
+child.parent.parent-ns-same-ip-2.methodsv2.xa
+
+#### Methods and expected output
+* Get parent NS names and IP addresses
+  * ns1.parent.parent-ns-same-ip-2.methodsv2.xa/127.40.1.41
+  * ns1.parent.parent-ns-same-ip-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:41
+  * ns1a.parent.parent-ns-same-ip-2.methodsv2.xa/127.40.1.41
+  * ns1a.parent.parent-ns-same-ip-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:41
+  * ns1b.parent.parent-ns-same-ip-2.methodsv2.xa/127.40.1.41
+  * ns1b.parent.parent-ns-same-ip-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:41
+  * ns2.parent.parent-ns-same-ip-1.methodsv2.xa/127.40.1.42
+  * ns2.parent.parent-ns-same-ip-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:42
+* Get delegation NS names and IP addresses
+  * ns1.child.parent.parent-ns-same-ip-2.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.parent-ns-same-ip-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.parent-ns-same-ip-2.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.parent-ns-same-ip-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+* Get zone NS names and IP addresses
+  * ns1.child.parent.parent-ns-same-ip-2.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.parent-ns-same-ip-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.parent-ns-same-ip-2.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.parent-ns-same-ip-2.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+
+#### Undelegated data
+  * (empty)
+
+
+
 <!--
 ### TEMPLATE
 
