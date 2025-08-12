@@ -387,12 +387,12 @@ This Method uses the following input units defined in section [Methods Inputs]:
 4. Extract the set of [Out-Of-Bailiwick] name server names from *Name Servers*
    ("OOB Names").
 
-3. Get the IP addresses for name server names in *OOB Names* by using Method
+5. Get the IP addresses for name server names in *OOB Names* by using Method
    [Get-OOB-IPs] with *OOB Names* as input.
 
-4. Merge the set returned from [Get-OOB-IPs] with *Name Servers*.
+6. Merge the set returned from [Get-OOB-IPs] with *Name Servers*.
 
-5. Output the *Name Servers* set.
+7. Output the *Name Servers* set.
 
 ### Outputs
 
@@ -440,12 +440,12 @@ This Method uses the following input units defined in section [Methods Inputs]:
 3. If the *Name Servers* set is empty, then output an empty set and exit these
    procedures.
 
-3. If the set is empty, then output an empty set and exit these test
+4. If the set is empty, then output an empty set and exit these test
    procedures.
 
-4. Extract the set of name server names from *Name Servers*.
+5. Extract the set of name server names from *Name Servers*.
 
-5. Output the set of name server names.
+6. Output the set of name server names.
 
 ### Outputs
 
@@ -756,7 +756,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
 6. Create empty sets:
    1. Unique name server names where each name can be linked to a possibly empty
       set of IP addresses ("Delegation Name Servers").
-   1. Unique name server names where each name can be linked to a possibly empty
+   2. Unique name server names where each name can be linked to a possibly empty
       set of IP addresses ("AA Name Servers").
 
 7. For each parent name server in *Parent NS* do:
@@ -860,16 +860,16 @@ This Method uses the following input units defined in section [Methods Inputs]:
    empty or undefined, then output an undefined set and exit these test
    procedures.
 
-3. If no name in *Child Zone Name Server Names* is an [In-Bailiwick]
+4. If no name in *Child Zone Name Server Names* is an [In-Bailiwick]
    name server name:
    1. Output an empty set.
    2. Exit these procedures.
 
-4. Create an empty set the [In-Bailiwick] name server names from the
+5. Create an empty set the [In-Bailiwick] name server names from the
    *Child Zone Name Server Names* set, where each name is linked to an empty set
    of IP addresses ("Name Servers").
 
-5. For name in *Name Servers* do:
+6. For name in *Name Servers* do:
    1. Create the following two [DNS queries][DNS Query]:
       1. Query type A and the [In-Bailiwick] name as the query name ("A Query").
       2. Query type AAAA and the [In-Bailiwick] name as the query name
@@ -886,7 +886,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
       NoError.
    6. Add found IP addresses for the name server names in *Name Servers*.
 
-6. Output the possibly empty *Name Servers* set.
+7. Output the possibly empty *Name Servers* set.
 
 ### Outputs
 
@@ -965,7 +965,7 @@ This Method also used the following input unit from the calling Method:
    5. Collect all IP addresses for the *Name* and add the address or addresses to
       *Name Servers* for that *Name* and go to next *Name*.
 
-5. Output the *Name Servers* set.
+4. Output the *Name Servers* set.
 
 ### Outputs
 
