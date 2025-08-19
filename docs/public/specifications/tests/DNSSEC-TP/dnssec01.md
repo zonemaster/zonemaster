@@ -90,6 +90,7 @@ Algorithms*.
 * "Child Zone" - The domain name to be tested.
 * The table in section "[Classification of algorithms]" above.
 * "Undelegated DS" - The DS record or records submitted. Empty unless submitted.
+* "Undelegated Test" - TRUE if undelegated NS has been provided for the test.
 
 ## Summary
 
@@ -105,7 +106,8 @@ Algorithms*.
 | DS01_NO_RESPONSE         | WARNING | ip_list                                     | No response or error in response from all parent name servers on the DS query. Name servers are "{ip_list}".                                                 |
 | DS01_PARENT_SERVER_NO_DS | ERROR   | ip_list                                     | The following name servers do not provide DS record or have not been properly configured. Fetched from parent name servers (IP) "{ip_list}".                 |
 | DS01_PARENT_ZONE_NO_DS   | NOTICE  | ip_list                                     | The parent zone provides no DS records for the child zone. Fetched from parent name servers (IP) "{ip_list}".                                                |
-| DS01_UNDEL_OR_ROOT_NO_DS | INFO    |                                             | For root zone or undelegated zone undelegated DS must be provided to be tested.                                                                              |
+| DS01_UNDEL_N_NO_UNDEL_DS | INFO    |                                             | Tested zone is undelegated, but no undelegated DS has been provided. DS is not tested.                                                                       |
+| DS01_ROOT_N_NO_UNDEL_DS  | INFO    |                                             | Tested zone is the root zone, but no undelegated DS has been provided. DS is not tested.                                                                     |
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -132,9 +134,9 @@ queries follow, unless otherwise specified below, what is specified for
 3.  Create the following empty sets:
 
     1.  Name server IP address ("Ignored Parent NS IP")
-    2.  Name server IP address ("Responds without valid DS")
-    3.  Name server IP address ("Responds with DS")
-    4.  Name server IP address and key tag ("Non-algo 2 DS")
+    2.  Name server IP address ("Responds Without Valid DS")
+    3.  Name server IP address ("Responds With DS")
+    4.  Name server IP address and key tag ("Non-Algo 2 DS")
     5.  Name server IP address and key tag ("Algo 2 DS")
     6.  Name server IP address, key tag and digest algorithm code ("DS01_DS_ALGO_DEPRECATED")
     7.  Name server IP address, key tag and digest algorithm code ("DS01_DS_ALGO_RESERVED")
@@ -155,12 +157,12 @@ queries follow, unless otherwise specified below, what is specified for
           with the same name as the extracted message tag.
        5. If the digest algorithm code is 2 add IP address as "-" and the key
           tag to the *Algo 2 DS* set.
-       6. Else, add IP address as "-" and the key tag to the *Non-algo 2 DS*
+       6. Else, add IP address as "-" and the key tag to the *Non-Algo 2 DS*
           set.
-    2. Add name server IP as "-" to the *Responds with DS* set.
+    2. Add name server IP as "-" to the *Responds With DS* set.
     3. Make *Parent NS IP* an empty set.
 
-5.  Note: *Parent NS IP* will be empty if it is an *Undelegated test*, if
+5.  Note: *Parent NS IP* will be empty if *Undelegated test* is TRUE, if
     *Undelegated DS* is non-empty or if *Child Zone* is ".", i.e. root zone.
 
 6. For each name server IP in *Parent NS IP* do:
@@ -175,9 +177,9 @@ queries follow, unless otherwise specified below, what is specified for
       5. The AA flag is not set in the [DNSSEC Response].
    3. If there is no valid DS record with matching owner name in the answer
       section of the [DNSSEC Response], then do:
-      1. Add name server IP to "Responds without valid DS".
+      1. Add name server IP to "Responds Without Valid DS".
       2. Go to next parent name server.
-   4. Add name server IP to the *Responds with DS* set.
+   4. Add name server IP to the *Responds With DS* set.
    5. For each DS record in the answer section of the [DNSSEC Response] do:
        1. Extract the digest algorithm code and key tag from the DS record.
        2. From section "[Classification of algorithms]" retrieve the table and
@@ -188,7 +190,7 @@ queries follow, unless otherwise specified below, what is specified for
           with the same name as the extracted message tag.
        5. If the digest algorithm code is 2 add IP address and the key tag to
           the *Algo 2 DS* set.
-       6. Else, add IP address and the key tag to the *Non-algo 2 DS* set.
+       6. Else, add IP address and the key tag to the *Non-Algo 2 DS* set.
 
 6. For each of the sets matching each of the following message tags do if the set
    is non-empty:
@@ -206,26 +208,29 @@ queries follow, unless otherwise specified below, what is specified for
      * *[DS01_DS_ALGO_NOT_DS]*
      * *[DS01_DS_ALGO_OK]*
 
-7. If the *Non-algo 2 DS* set is non-empty do:
+7. If the *Non-Algo 2 DS* set is non-empty do:
 
    1. For each pair of IP address and key tag in the *Algo 2 DS* set remove the
-      same pair from the *Non-algo 2 DS* set.
-   2. For each key tag from the *Non-algo 2 DS* set extract all IP addresses for
+      same pair from the *Non-Algo 2 DS* set.
+   2. For each key tag from the *Non-Algo 2 DS* set extract all IP addresses for
       the key tag and output DS01_DS_ALGO_2_MISSING with key tag and the
       extracted list of IP addresses.
 
-7. If the *Responds without valid DS* and *Responds with DS* sets are empty
+7. If the *Responds Without Valid DS* and *Responds With DS* sets are empty
    then output *[DS01_NO_RESPONSE]*.
 
-8. If the *Responds without valid DS* is non-empty then do:
-   1. If the *Responds with DS* set is empty then output
+8. If the *Responds Without Valid DS* is non-empty then do:
+   1. If the *Responds With DS* set is empty then output
       *[DS01_PARENT_ZONE_NO_DS]* with name server IP from the *Responds without
       valid DS* set.
    2. Else, output *[DS01_PARENT_SERVER_NO_DS]* with name server IP from the
-      *Responds without valid DS* set.
+      *Responds Without Valid DS* set.
 
-9. If both the *Responds without valid DS* and the *Responds with DS* sets are empty then
-   output *[DS01_UNDEL_OR_ROOT_NO_DS]*.
+9. If *Child Zone* is ".", i.e. root zone, *Undelegated DS* is empty then output
+   *[DS01_ROOT_N_NO_UNDEL_DS]*.
+
+10. If *Undelegated Test* is TRUE and *Undelegated DS* is empty then output
+    *[DS01_UNDEL_N_NO_UNDEL_DS]*.
 
 
 ## Outcome(s)
@@ -277,7 +282,8 @@ No special terminology for this test case.
 [DS01_DS_ALGO_UNASSIGNED]:                            #summary
 [DS01_PARENT_SERVER_NO_DS]:                           #summary
 [DS01_PARENT_ZONE_NO_DS]:                             #summary
-[DS01_UNDEL_OR_ROOT_NO_DS]:                           #summary
+[DS01_ROOT_N_NO_UNDEL_DS]:                            #summary
+[DS01_UNDEL_N_NO_UNDEL_DS]:                           #summary
 [ERROR]:                                              ../SeverityLevelDefinitions.md#error
 [Get-Parent-NS-IP]:                                   ../MethodsV2.md#method-get-parent-ns-ip-addresses
 [IANA RCODE List]:                                    https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
