@@ -162,25 +162,25 @@ queries follow, unless otherwise specified below, what is specified for
     2. Add name server IP as "-" to the *Responds With DS* set.
     3. Make *Parent NS IP* an empty set.
 
-5.  Note: *Parent NS IP* will be empty if *Undelegated test* is TRUE, if
-    *Undelegated DS* is non-empty or if *Child Zone* is ".", i.e. root zone.
+>   Note: *Parent NS IP* will be empty if *Undelegated test* is TRUE, if
+>   *Undelegated DS* is non-empty or if *Child Zone* is ".", i.e. root zone.
 
-6. For each name server IP in *Parent NS IP* do:
-   1. Send *DS Query* to the name server IP.
-   2. If at least one of the following criteria is met, then add name server IP
-      to "Ignored Parent NS IP" and go to next parent name server:
-      1. There is no [DNSSEC Response].
-      2. The RCODE in the [DNSSEC Response] is not "NoError"
-         ([IANA RCODE List]).
-      3. The OPT record is absent in the [DNSSEC Response].
-      4. The DO flag is unset in the [DNSSEC Response].
-      5. The AA flag is not set in the [DNSSEC Response].
-   3. If there is no valid DS record with matching owner name in the answer
-      section of the [DNSSEC Response], then do:
-      1. Add name server IP to "Responds Without Valid DS".
-      2. Go to next parent name server.
-   4. Add name server IP to the *Responds With DS* set.
-   5. For each DS record in the answer section of the [DNSSEC Response] do:
+5.  For each name server IP in *Parent NS IP* do:
+    1. Send *DS Query* to the name server IP.
+    2. If at least one of the following criteria is met, then add name server IP
+       to "Ignored Parent NS IP" and go to next parent name server:
+       1. There is no [DNSSEC Response].
+       2. The RCODE in the [DNSSEC Response] is not "NoError"
+          ([IANA RCODE List]).
+       3. The OPT record is absent in the [DNSSEC Response].
+       4. The DO flag is unset in the [DNSSEC Response].
+       5. The AA flag is not set in the [DNSSEC Response].
+    3. If there is no valid DS record with matching owner name in the answer
+       section of the [DNSSEC Response], then do:
+       1. Add name server IP to "Responds Without Valid DS".
+       2. Go to next parent name server.
+    4. Add name server IP to the *Responds With DS* set.
+    5. For each DS record in the answer section of the [DNSSEC Response] do:
        1. Extract the digest algorithm code and key tag from the DS record.
        2. From section "[Classification of algorithms]" retrieve the table and
           extract the row matching the algorithm number.
@@ -192,44 +192,44 @@ queries follow, unless otherwise specified below, what is specified for
           the *Algo 2 DS* set.
        6. Else, add IP address and the key tag to the *Non-Algo 2 DS* set.
 
-6. For each of the sets matching each of the following message tags do if the set
-   is non-empty:
-   * For each combination of key tag and digest algorithm code do:
-     * Output the message tag matching the set name with the list of name server
-       name and IP pair from the subset (key tag and code) plus the key tag, the
-       algorithm number and algorithm description from the table in section
-       "[Classification of algorithms]". Exclude algorithm description if not
-       listed for the tag in [Summary].
-   * Sets:
-     * *[DS01_DS_ALGO_DEPRECATED]*
-     * *[DS01_DS_ALGO_RESERVED]*
-     * *[DS01_DS_ALGO_UNASSIGNED]*
-     * *[DS01_DS_ALGO_PRIVATE]*
-     * *[DS01_DS_ALGO_NOT_DS]*
-     * *[DS01_DS_ALGO_OK]*
+6.  For each of the sets matching each of the following message tags do if the set
+    is non-empty:
+    * For each combination of key tag and digest algorithm code do:
+      * Output the message tag matching the set name with the list of name server
+        name and IP pair from the subset (key tag and code) plus the key tag, the
+        algorithm number and algorithm description from the table in section
+        "[Classification of algorithms]". Exclude algorithm description if not
+        listed for the tag in [Summary].
+    * Sets:
+      * *[DS01_DS_ALGO_DEPRECATED]*
+      * *[DS01_DS_ALGO_RESERVED]*
+      * *[DS01_DS_ALGO_UNASSIGNED]*
+      * *[DS01_DS_ALGO_PRIVATE]*
+      * *[DS01_DS_ALGO_NOT_DS]*
+      * *[DS01_DS_ALGO_OK]*
 
-7. If the *Non-Algo 2 DS* set is non-empty do:
+7.  If the *Non-Algo 2 DS* set is non-empty do:
 
-   1. For each pair of IP address and key tag in the *Algo 2 DS* set remove the
-      same pair from the *Non-Algo 2 DS* set.
-   2. For each key tag from the *Non-Algo 2 DS* set extract all IP addresses for
-      the key tag and output DS01_DS_ALGO_2_MISSING with key tag and the
-      extracted list of IP addresses.
+    1. For each pair of IP address and key tag in the *Algo 2 DS* set remove the
+       same pair from the *Non-Algo 2 DS* set.
+    2. For each key tag from the *Non-Algo 2 DS* set extract all IP addresses for
+       the key tag and output DS01_DS_ALGO_2_MISSING with key tag and the
+       extracted list of IP addresses.
 
-7. If the *Responds Without Valid DS* and *Responds With DS* sets are empty
-   then output *[DS01_NO_RESPONSE]*.
+8.  If the *Responds Without Valid DS* and *Responds With DS* sets are empty
+    then output *[DS01_NO_RESPONSE]*.
 
-8. If the *Responds Without Valid DS* is non-empty then do:
-   1. If the *Responds With DS* set is empty then output
-      *[DS01_PARENT_ZONE_NO_DS]* with name server IP from the *Responds without
-      valid DS* set.
-   2. Else, output *[DS01_PARENT_SERVER_NO_DS]* with name server IP from the
-      *Responds Without Valid DS* set.
+9.  If the *Responds Without Valid DS* is non-empty then do:
+    1. If the *Responds With DS* set is empty then output
+       *[DS01_PARENT_ZONE_NO_DS]* with name server IP from the *Responds without
+       valid DS* set.
+    2. Else, output *[DS01_PARENT_SERVER_NO_DS]* with name server IP from the
+       *Responds Without Valid DS* set.
 
-9. If *Child Zone* is ".", i.e. root zone, *Undelegated DS* is empty then output
-   *[DS01_ROOT_N_NO_UNDEL_DS]*.
+10. If *Child Zone* is "." (i.e. root zone) and *Undelegated DS* is empty then
+    output *[DS01_ROOT_N_NO_UNDEL_DS]*.
 
-10. If *Undelegated Test* is TRUE and *Undelegated DS* is empty then output
+11. If *Undelegated Test* is TRUE and *Undelegated DS* is empty then output
     *[DS01_UNDEL_N_NO_UNDEL_DS]*.
 
 
