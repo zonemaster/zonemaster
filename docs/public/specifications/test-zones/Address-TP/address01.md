@@ -1,4 +1,4 @@
-# Specification of test zones for ADDRESS01
+# Specification of test scenarios for ADDRESS01
 
 
 ## Table of contents
