@@ -51,7 +51,11 @@ The process defined in this specification will normalize *Domain Name* and outpu
 a normalized form to be used by all Zonemaster test cases. The objectives of the
 normalization are
 
-1. Remove leading and trailing white space characters.
+1. Optionally remove leading and trailing white space characters. This is done as
+   a pre-process in the client if appropriate, e.g. in fields in an HTML form in
+   a web form.
+   * If the preprocessing is not applied, then any leading or trailing space will be
+     caught as an illegal ASCII character.
 2. Convert other dot characters to regular dot (or "FULL STOP").
 3. Create legal IDNA 2008 U-labels from convenient alternative forms.
 4. Create consistent representation of the same zone name.
@@ -143,41 +147,43 @@ Tables 1, 2, 3 and 4 are found in the [Detailed requirements] section below.
     3. Set of Unicode full stops (dot characters) in Table 4 below
        ("Unicode Full Stops").
 
-2.  If *Domain Name* starts with one or more of *White Space* then those are
-    removed from *Domain Name* before further processing.
+2.  This step only applies if removal of leading and trailing spaces has been
+    found to be appropriate for the client and context.
+    1. If *Domain Name* starts with one or more of *White Space* then those are
+       removed from *Domain Name* before further processing.
 
-3.  If *Domain Name* ends with one or more of *White Space* then those are
-    removed from *Domain Name* before further processing.
+    2. If *Domain Name* ends with one or more of *White Space* then those are
+       removed from *Domain Name* before further processing.
 
-4.  If *Domain Name* is an empty string then output *[EMPTY_DOMAIN_NAME]* and
+3.  If *Domain Name* is an empty string then output *[EMPTY_DOMAIN_NAME]* and
     terminate these test procedures.
 
-5.  If *Domain Name* contains [LATIN CAPITAL LETTER I WITH DOT ABOVE] then:
+4.  If *Domain Name* contains [LATIN CAPITAL LETTER I WITH DOT ABOVE] then:
     1. Output *[AMBIGUOUS_DOWNCASING]* and the Unicode name of the code point in
        question.
     2. Terminate these test procedures.
 
-6.  Create an empty, ordered list of labels ("Domain Labels").
+5.  Create an empty, ordered list of labels ("Domain Labels").
 
-7.  Replace all instances of character from *Unicode Full Stops* in *Domain Name*
+6.  Replace all instances of character from *Unicode Full Stops* in *Domain Name*
     with the label separating, regular dot U+002E (see Table 2).
 
-8.  If *Domain Name* is the root zone, i.e. the exact string "." (U+002E), then
+7.  If *Domain Name* is the root zone, i.e. the exact string "." (U+002E), then
     terminate these test procedures with no message tags.
 
-9.  If *Domain Name* starts with dot (".", U+002E) then output
+8.  If *Domain Name* starts with dot (".", U+002E) then output
     *[INITIAL_DOT]* and terminate these test procedures.
 
-10. If *Domain Name* has any instance of two or more consecutive dots (".",
+9.  If *Domain Name* has any instance of two or more consecutive dots (".",
     U+002E) then output *[REPEATED_DOTS]* and terminate these test
     procedures.
 
-11. Remove trailing dot (".", U+002E) from *Domain Name*.
+10. Remove trailing dot (".", U+002E) from *Domain Name*.
 
-12. Split *Domain Name* into labels by dot "." (U+002E) and put them in the same
+11. Split *Domain Name* into labels by dot "." (U+002E) and put them in the same
     order in *Domain Labels*.
 
-13. For each "Label" in *Domain Labels* do:
+12. For each "Label" in *Domain Labels* do:
     1. If all characters in *Label* are ASCII characters, then do:
        1. If any character in *Label* is not listed in *Valid ASCII*, then output
           *[INVALID_ASCII]* and *Label*, and terminate these test procedures.
@@ -196,15 +202,15 @@ Tables 1, 2, 3 and 4 are found in the [Detailed requirements] section below.
              the conversion above.
     3. Go to next label.
 
-14. For each "Label" in *Domain Labels* do:
+13. For each "Label" in *Domain Labels* do:
     1. If the length (number of characters) in *Label* is greater than 63 then
        output *[LABEL_TOO_LONG]* and *Label*, and terminate these test
        procedures.
 
-15. Map the labels in *Domain Labels* back into *Domain Name* with one dot (".",
+14. Map the labels in *Domain Labels* back into *Domain Name* with one dot (".",
     U+002E), between the labels (no dots if the there is only one label).
 
-16. If the length of *Domain Name* is longer than 253 characters including the
+15. If the length of *Domain Name* is longer than 253 characters including the
     dots, then output *[DOMAIN_NAME_TOO_LONG]* and terminate these test
     procedures.
 
@@ -362,12 +368,12 @@ U-label is in NFC format.
 
 #### White space
 
-In the user interface there is a risk that leading or trailing white space
+In the user interface there may be a risk that leading or trailing white space
 characters are added to the domain name by mistake. The domain name will in this
-specification be normalized by removing such characters. In Table 3 it is
-specified what counts as white space characters. It should be pointed out that
-white space characters within the domain name are not removed, and in the end
-count as invalid characters.
+specification be normalized by removing such characters if appropriate for the
+client and context. In Table 3 it is specified what counts as white space
+characters. It should be pointed out that white space characters within the
+domain name are not removed, and in the end count as invalid characters.
 
 *Table 3: White space characters**
 

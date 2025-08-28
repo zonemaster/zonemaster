@@ -1,0 +1,29 @@
+$ORIGIN mixed-1.basic02.xa.
+$TTL 3600
+
+; All names must be relative
+
+@       SOA     ns1 admin. (
+                2025041101      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS    ns1
+@       NS    ns2
+@       NS    ns3
+@       NS    ns4
+
+ns1     A     127.12.2.31
+ns1     AAAA  fda1:b2:c3:0:127:12:2:31
+ns2     A     127.12.2.32
+ns2     AAAA  fda1:b2:c3:0:127:12:2:32
+ns3     A     127.12.2.33
+ns3     AAAA  fda1:b2:c3:0:127:12:2:33
+ns4     A     127.12.2.34
+ns5     AAAA  fda1:b2:c3:0:127:12:2:34
+
+
+
+; EOF

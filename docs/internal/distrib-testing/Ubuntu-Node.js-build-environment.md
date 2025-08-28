@@ -11,9 +11,9 @@ here.
 
 1. Make a clean installation of Ubuntu 22.04.
 
-2. Update the package database.
+2. Update the package database and install curl
    ```sh
-   sudo apt-get update
+   sudo apt-get update && sudo apt-get install curl
    ```
 
 3. Install Node.js by using [NVM], a node version manager.

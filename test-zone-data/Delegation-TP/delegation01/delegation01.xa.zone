@@ -1,0 +1,119 @@
+$ORIGIN delegation01.xa.                              ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024111400      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS    ns1
+@       NS    ns2
+
+ns1     A     127.16.1.21
+ns1     AAAA  fda1:b2:c3:0:127:16:1:21
+ns2     A     127.16.1.22
+ns2     AAAA  fda1:b2:c3:0:127:16:1:22
+
+; Also in template in .cfg file
+ns1.enough-3.sibling  A         127.16.1.31
+ns1.enough-3.sibling  AAAA      fda1:b2:c3:0:127:16:1:31
+ns2.enough-3.sibling  A         127.16.1.32
+ns2.enough-3.sibling  AAAA      fda1:b2:c3:0:127:16:1:32
+
+ns1.no-ipv4-3.sibling  AAAA      fda1:b2:c3:0:127:16:1:31
+ns2.no-ipv4-3.sibling  AAAA      fda1:b2:c3:0:127:16:1:32
+
+ns1.no-ipv6-3.sibling A          127.16.1.31
+ns2.no-ipv6-3.sibling A          127.16.1.32
+
+
+$ORIGIN enough-1.delegation01.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.16.1.31
+ns1     AAAA    fda1:b2:c3:0:127:16:1:31
+ns2     A       127.16.1.32
+ns1     AAAA    fda1:b2:c3:0:127:16:1:32
+
+$ORIGIN enough-2.delegation01.xa.
+@       NS      ns1.enough-2.delegation01.xb.
+@       NS      ns2.enough-2.delegation01.xb.
+
+; Also in template in .cfg file
+$ORIGIN enough-3.delegation01.xa.
+@       NS      ns1.enough-3.sibling.delegation01.xa.
+@       NS      ns2.enough-3.sibling.delegation01.xa.
+
+$ORIGIN enough-del-not-child.delegation01.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.16.1.31
+ns1     AAAA    fda1:b2:c3:0:127:16:1:31
+ns2     A       127.16.1.32
+ns2     AAAA    fda1:b2:c3:0:127:16:1:32
+
+$ORIGIN enough-child-not-del.delegation01.xa.
+@       NS      ns1
+ns1     A       127.16.1.31
+ns1     AAAA    fda1:b2:c3:0:127:16:1:31
+
+$ORIGIN ipv6-and-del-ok-no-ipv4-child.delegation01.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.16.1.31
+ns1     AAAA    fda1:b2:c3:0:127:16:1:31
+ns2     A       127.16.1.32
+ns2     AAAA    fda1:b2:c3:0:127:16:1:32
+
+$ORIGIN ipv4-and-del-ok-no-ipv6-child.delegation01.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.16.1.31
+ns1     AAAA    fda1:b2:c3:0:127:16:1:31
+ns2     A       127.16.1.32
+ns2     AAAA    fda1:b2:c3:0:127:16:1:32
+
+$ORIGIN no-ipv4-1.delegation01.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     AAAA    fda1:b2:c3:0:127:16:1:31
+ns2     AAAA    fda1:b2:c3:0:127:16:1:32
+
+$ORIGIN no-ipv4-2.delegation01.xa.
+@       NS      ns1.no-ipv4-2.delegation01.xb.
+@       NS      ns2.no-ipv4-2.delegation01.xb.
+
+$ORIGIN no-ipv4-3.delegation01.xa.
+@       NS      ns1.no-ipv4-3.sibling.delegation01.xa.
+@       NS      ns2.no-ipv4-3.sibling.delegation01.xa.
+
+$ORIGIN no-ipv6-1.delegation01.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.16.1.31
+ns2     A       127.16.1.32
+
+$ORIGIN no-ipv6-2.delegation01.xa.
+@       NS      ns1.no-ipv6-2.delegation01.xb.
+@       NS      ns2.no-ipv6-2.delegation01.xb.
+
+$ORIGIN no-ipv6-3.delegation01.xa.
+@       NS      ns1.no-ipv6-3.sibling.delegation01.xa.
+@       NS      ns2.no-ipv6-3.sibling.delegation01.xa.
+
+$ORIGIN mismatch-delegation-child-1.delegation01.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.16.1.31
+ns2     AAAA    fda1:b2:c3:0:127:16:1:32
+
+$ORIGIN mismatch-delegation-child-2.delegation01.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.16.1.31
+ns1     AAAA    fda1:b2:c3:0:127:16:1:31
+ns2     A       127.16.1.32
+ns2     AAAA    fda1:b2:c3:0:127:16:1:32
+

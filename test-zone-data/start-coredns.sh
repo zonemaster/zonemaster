@@ -2,12 +2,7 @@
 
 set -u
 
-# Make sure you can be root or run sudo
-if ! sudo echo ; then
-    echo "You must be able to be root via sudo"
-fi
-
-usage() { (echo "Usage: $0" 1>&2;
+usage() { (echo "Usage: sudo $0" 1>&2;
            echo
            echo "Start CoreDNS for Zonemaster test zone environment" 
            echo )1>&2;
@@ -26,6 +21,13 @@ while getopts "h" o; do
 done
 shift $((OPTIND-1))
 
+# Make sure the script is run by  root
+if [ $(id -u) -ne 0 ] ; then
+    echo "You must be root." 1>&2
+    echo "Run 'sudo $0'" 1>&2
+    exit 1
+fi
+
 # Get path to this script
 path=$(dirname $0)
 
@@ -40,14 +42,14 @@ if ps --no-headers -fC coredns | grep coredns ; then
     echo "Only one instance of CoreDNS must be run at a time."
     echo "Kill old instances or break with CTRL-C."
     echo
-    sudo killall -s 9 -i coredns
+    killall -s 9 -i coredns
     sleep 2
 fi
 
 if ps --no-headers -fC coredns | grep coredns ; then
     echo "Cannot start CoreDNS since it is already running. Exit."
 else
-    sudo coredns --conf ${maincfg}
+    coredns --conf ${maincfg}
 fi
 
 

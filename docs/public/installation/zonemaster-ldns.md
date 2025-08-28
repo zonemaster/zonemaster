@@ -69,16 +69,6 @@ When enabled, an included version of ldns is statically linked into
 Zonemaster::LDNS.
 When disabled, libldns is dynamically linked just like other dependencies.
 
-#### Randomized capitalization
-
-Disabled by default.
-Enable with `--randomize`.
-
-> **Note:** This feature is experimental.
-
-Randomizes the capitalization of returned domain names.
-
-
 #### Custom OpenSSL
 
 Disabled by default.

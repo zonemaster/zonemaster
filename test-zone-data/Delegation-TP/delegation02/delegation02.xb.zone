@@ -1,0 +1,33 @@
+$ORIGIN delegation02.xb.                              ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024110402      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS    ns1
+@       NS    ns2
+
+ns1     A     127.16.2.25
+ns1     AAAA  fda1:b2:c3:0:127:16:2:25
+ns2     A     127.16.2.26
+ns2     AAAA  fda1:b2:c3:0:127:16:2:26
+
+; No delegations, just definitions of address records (out-of-bailiwick)
+
+$ORIGIN all-distinct-2.delegation02.xb.
+ns1     A       127.16.2.37
+ns1     AAAA    fda1:b2:c3:0:127:16:2:37
+ns2     A       127.16.2.38
+ns2     AAAA    fda1:b2:c3:0:127:16:2:38
+
+$ORIGIN non-distinct-2.delegation02.xb.
+ns1a    A       127.16.2.37
+ns1a    AAAA    fda1:b2:c3:0:127:16:2:37
+ns1b    A       127.16.2.37
+ns1b    AAAA    fda1:b2:c3:0:127:16:2:37
+ns2     A       127.16.2.38
+ns2     AAAA    fda1:b2:c3:0:127:16:2:38

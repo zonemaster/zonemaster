@@ -1,0 +1,25 @@
+$ORIGIN good-undel-8.basic02.xa.
+$TTL 3600
+
+; All names must be relative
+
+@       SOA     ns1 admin. (
+                2025040800      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS    dns1
+@       NS    dns2
+
+; Using ns3 and ns4 addresses for dns1 and dns2
+
+dns1     A     127.12.2.33
+dns1     AAAA  fda1:b2:c3:0:127:12:2:33
+dns2     A     127.12.2.34
+dns2     AAAA  fda1:b2:c3:0:127:12:2:34
+
+
+
+; EOF

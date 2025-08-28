@@ -1,7 +1,8 @@
-# Specification of test zones for DNSSEC-TP
+# Specification of test scenarios for DNSSEC-TP
 
 
-Test zone specifications are available for:
+Test scenario specifications are available for:
 
 * [DNSSEC03](dnssec03.md)
+* [DNSSEC10](dnssec10.md)
 * [DNSSEC16](dnssec16.md)

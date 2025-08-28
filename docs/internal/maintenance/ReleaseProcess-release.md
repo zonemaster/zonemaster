@@ -7,7 +7,7 @@ Release process - Release
 * [2. Applicable components](#2-applicable-components)
 * [3. Updates to repositories](#3-updates-to-repositories)
 * [4. Determine the new version number](#4-determine-the-new-version-number)
-* [5. Update the Changes file](#5-update-the-changes-file)
+* [5. Update the Changes files]
 * [6. Set version number for Perl modules](#6-set-version-number-for-perl-modules)
 * [7. Set version number for GUI](#7-set-version-number-for-gui)
 * [8. Update Makefile.PL with required version](#8-update-makefilepl-with-required-version)
@@ -15,13 +15,15 @@ Release process - Release
 * [10. Produce distribution tarballs](#10-produce-distribution-tarballs)
 * [11. Produce distribution zip file](#11-produce-distribution-zip-file)
 * [12. Update Zonemaster repository main _README.md_](#12-update-zonemaster-repository-main-readmemd)
-* [13. Generate documents](#13-generate-documents)
+* [13. Generate documents and check public documents](#13-generate-documents-and-check-public-documents)
 * [14. Upload to CPAN](#14-upload-to-cpan)
 * [15. Merge develop branch into master](#15-merge-develop-branch-into-master)
 * [16. Create Docker images and upload image to Docker Hub](#16-create-docker-images-and-upload-image-to-docker-hub)
 * [17. Tag the release with git](#17-tag-the-release-with-git)
 * [18. Announce the release](#18-announce-the-release)
 * [19. Merge master into develop](#19-merge-master-into-develop)
+* [20. Clean-up on discussion forum](#20-clean-up-on-discussion-forum)
+* [21. Clean-up on GitHub related to the release](#21-clean-up-on-github-related-to-the-release)
 * [Appendix A on version number in Makefile.PL](#appendix-a-on-version-number-in-makefilepl)
 * [Appendix B on reverting commits](#appendix-b-on-reverting-commits)
 
@@ -71,7 +73,7 @@ of the other components.
 
 [(Top)](#table-of-contents)
 
-## 5. Update the Changes file
+## 5. Update the Changes files
 
 Any changes since the last release must be documented in the Changes files.
 Refer to any GitHub issues or pull requests related to the change by the
@@ -84,7 +86,10 @@ The updates to the *Changes* file are done to the *develop branch*.
  * zonemaster-cli - [Changes CLI]
  * zonemaster-backend - [Changes Backend]
  * zonemaster-gui - [Changes GUI]
- * Zonemaster/Zonemaster - [Changes Zonemaster]
+ * Zonemaster/Zonemaster
+   - First update [Changes Zonemaster]
+   - Then update the [RELEASE.md] page (use content of *Changes* file, only
+     latest release) to match the upcoming [Github release page].
  
 [(Top)](#table-of-contents)
 
@@ -234,9 +239,11 @@ If needed, update the following section of the Zonemaster repository main
 
 [(Top)](#table-of-contents)
 
-## 13. Generate documents
+## 13. Generate documents and check public documents
 
-> This section is relevant for Zonemaster/Zonemaster only.
+> The two sub-sections here are relevant for Zonemaster/Zonemaster only.
+
+### 13.1. Generate documents
 
 If no files in neither Zonemaster/Zonemaster nor Zonemaster-Engine have been
 updated this section can be skipped.
@@ -251,6 +258,25 @@ updated this section can be skipped.
 4. If any of the created files has been updated (`git status`) then it
    should be added to the *develop branch* via a pull request.
 5. No reviewer or approval is required for this change.
+
+### 13.2 Check public documents
+
+> The step above, 13.1, should be completed (merged to develop branch) before
+> this step is run to avoid double errors.
+
+Prior to this step `mdbook-linkcheck` must be installed (see
+[Build environment preparation]). Run from the Zonemaster/Zonemaster
+repository (develop branch checked out):
+
+```
+mdbook-linkcheck -s docs/public/
+```
+
+1. If any error is reported, correct the file or files.
+2. Add changes to the *develop branch* via a pull request.
+3. No reviewer or approval is required for this change.
+4. Repeat the command after merging the changes to verify that the found errors
+   have been resolved.
 
 [(Top)](#table-of-contents)
 
@@ -323,13 +349,23 @@ The releases pages:
 * [Zonemaster-CLI Releases]
 * [Zonemaster-Backend Releases]
 * [Zonemaster-GUI Releases]
-* [Zonemaster Product Releases]
+* [Zonemaster Product Releases] - use the [RELEASE.md] created in
+  [step 5][5. Update the Changes files].
 
 [(Top)](#table-of-contents)
 
 ## 18. Announce the release
 
-Send emails to the mailing lists `zonemaster-users` and `zonemaster-announce`.
+1. Send emails to the mailing lists `zonemaster-users` and `zonemaster-announce`
+   (the same email content will usually work fine). Always refer to the
+   [Github release page], but the URL with the version.
+2. Forward the `zonemaster-users` email to the mailing list `zonemaster-group`.
+3. Create an announcement on the [Zonemaster discussion forum] on GitHub.
+   1. Choose "New discussion"
+   2. Select "Announcements"
+   3. Use Zonemaster version as title
+   4. Use the body of the [Github release page] for the version as the body of
+      the announcement.
 
 [(Top)](#table-of-contents)
 
@@ -339,6 +375,41 @@ Create a pull request from `master` on github back into `develop` and merge
 it. No review or approval is required for this update.
 
 [(Top)](#table-of-contents)
+
+## 20. Clean-up on discussion forum
+
+On the [Zonemaster discussion forum] on GitHub, close the announcement of the
+previous version. Also close discussions that are not relevant to keep open,
+i.e. resolved issues and other questions that have been answered and some time
+has passed with no further follow-up questions.
+
+[(Top)](#table-of-contents)
+
+## 21. Clean-up on Github related to the release
+
+For each repository:
+ * Zonemaster/Zonemaster
+ * zonemaster-ldns
+ * zonemaster-engine
+ * zonemaster-cli
+ * zonemaster-backend
+ * zonemaster-gui
+
+Do the following steps related to the release:
+1. Check the issues with the release as milestone.
+   1. Close if completed or irrelevant.
+   2. Else move to a new milestone.
+2. Verify that the milestone of the release is 100% complete.
+   1. Close if completed.
+   2. Else make it complete and then close it.
+3. Verify that there are milestones for at least two of the next standard releases.
+   1. If not, create the appropriate vYYYY.x milestones (e.g v2025.1)
+   2. Also, if no due date has been chosen, set YYYY-06-15 for the .1 release and 
+      YYYY-12-15 for the .2 release.
+
+[(Top)](#table-of-contents)
+
+
 
 ## Appendix A on version number in Makefile.PL
 
@@ -412,10 +483,11 @@ parent number is `1`.
 [(Top)](#table-of-contents)
 
 <!-- Zonemaster links point on purpose on the develop branch. -->
+[5. Update the Changes files]:                   #5-update-the-changes-files
 [Appendix A]:                                    #appendix-a-on-version-number-in-makefilepl
 [Appendix B]:                                    #appendix-b-on-reverting-commits
 [Backend.pm]:                                    https://github.com/zonemaster/zonemaster-backend/blob/develop/lib/Zonemaster/Backend.pm
-[Build Environment Preparation]:                 ../distrib-testing/BuildEnvironmentPreparation.md
+[Build environment preparation]:                 ../distrib-testing/README.md
 [Build environment for Node.js]:                 ../distrib-testing/Ubuntu-Node.js-build-environment.md
 [CI]:                                            https://github.com/travis-ci/travis-ci
 [CLI.pm]:                                        https://github.com/zonemaster/zonemaster-cli/blob/develop/lib/Zonemaster/CLI.pm
@@ -429,10 +501,12 @@ parent number is `1`.
 [Create Docker Image]:                           ReleaseProcess-create-docker-image.md
 [Docker Hub]:                                    https://hub.docker.com/u/zonemaster
 [Engine.pm]:                                     https://github.com/zonemaster/zonemaster-engine/blob/develop/lib/Zonemaster/Engine.pm
+[Github release page]:                           https://github.com/zonemaster/zonemaster/releases/latest
 [Installation.md GUI]:                           ../../public/installation/zonemaster-gui.md
 [LDNS.pm]:                                       https://github.com/zonemaster/zonemaster-ldns/blob/develop/lib/Zonemaster/LDNS.pm
 [PAUSE]:                                         https://pause.perl.org/pause/query
 [Package.json GUI]:                              https://github.com/zonemaster/zonemaster-gui/blob/develop/package.json
+[RELEASE.md]:                                    ../../public/RELEASE.md
 [Release process - Create Test Distribution]:    ReleaseProcess-create-test-distribution.md
 [Utils Zonemaster]:                              ../../../utils/
 [Version.ts GUI]:                                https://github.com/zonemaster/zonemaster-gui/blob/develop/src/environments/version.ts
@@ -445,7 +519,10 @@ parent number is `1`.
 [Zonemaster-Backend Releases]:                   https://github.com/zonemaster/zonemaster-backend/releases
 [Zonemaster-CLI Makefile.PL]:                    https://github.com/zonemaster/zonemaster-cli/blob/develop/Makefile.PL
 [Zonemaster-CLI Releases]:                       https://github.com/zonemaster/zonemaster-cli/releases
+[Zonemaster discussion forum]:                   https://github.com/orgs/zonemaster/discussions
 [Zonemaster-Engine Makefile.PL]:                 https://github.com/zonemaster/zonemaster-engine/blob/develop/Makefile.PL
 [Zonemaster-Engine Releases]:                    https://github.com/zonemaster/zonemaster-engine/releases
 [Zonemaster-GUI Releases]:                       https://github.com/zonemaster/zonemaster-gui/releases
 [Zonemaster-LDNS Releases]:                      https://github.com/zonemaster/zonemaster-ldns/releases
+
+

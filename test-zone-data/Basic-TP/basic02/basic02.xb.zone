@@ -1,0 +1,84 @@
+$ORIGIN basic02.xb.                              ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2025041103      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@                    NS      ns1
+@                    NS      ns2
+
+ns1                  A       127.12.2.25
+ns1                  AAAA    fda1:b2:c3:0:127:12:2:25
+ns2                  A       127.12.2.26
+ns2                  AAAA    fda1:b2:c3:0:127:12:2:26
+
+; Name servers for basic02.xa child zones.
+
+ns1.good-2           A       127.12.2.31
+ns1.good-2           AAAA    fda1:b2:c3:0:127:12:2:31
+ns2.good-2           A       127.12.2.32
+ns2.good-2           AAAA    fda1:b2:c3:0:127:12:2:32
+
+ns1.good-undel-2     A       127.12.2.31
+ns1.good-undel-2     AAAA    fda1:b2:c3:0:127:12:2:31
+ns2.good-undel-2     A       127.12.2.32
+ns2.good-undel-2     AAAA    fda1:b2:c3:0:127:12:2:32
+
+ns3.good-undel-3     A       127.12.2.33
+ns3.good-undel-3     AAAA    fda1:b2:c3:0:127:12:2:33
+ns4.good-undel-3     A       127.12.2.34
+ns4.good-undel-3     AAAA    fda1:b2:c3:0:127:12:2:34
+
+ns1.good-undel-4     A       127.12.2.31
+ns1.good-undel-4     AAAA    fda1:b2:c3:0:127:12:2:31
+ns2.good-undel-4     A       127.12.2.32
+ns2.good-undel-4     AAAA    fda1:b2:c3:0:127:12:2:32
+
+ns1.good-undel-6     A       127.12.2.31
+ns1.good-undel-6     AAAA    fda1:b2:c3:0:127:12:2:31
+ns2.good-undel-6     A       127.12.2.32
+ns2.good-undel-6     AAAA    fda1:b2:c3:0:127:12:2:32
+
+ns1.good-undel-7     TXT     "No address records"
+ns2.good-undel-7     TXT     "No address records"
+
+dns1.good-undel-9    A       127.12.2.31
+dns1.good-undel-9    AAAA    fda1:b2:c3:0:127:12:2:31
+dns2.good-undel-9    A       127.12.2.32
+dns2.good-undel-9    AAAA    fda1:b2:c3:0:127:12:2:32
+
+ns1.good-undel-10    A       127.12.2.31
+ns1.good-undel-10    AAAA    fda1:b2:c3:0:127:12:2:31
+ns2.good-undel-10    A       127.12.2.32
+ns2.good-undel-10    AAAA    fda1:b2:c3:0:127:12:2:32
+
+ns3.good-undel-10    A       127.12.2.33
+ns3.good-undel-10    AAAA    fda1:b2:c3:0:127:12:2:33
+ns4.good-undel-10    A       127.12.2.34
+ns4.good-undel-10    AAAA    fda1:b2:c3:0:127:12:2:34
+
+ns3.good-undel-11    A       127.12.2.33
+ns3.good-undel-11    AAAA    fda1:b2:c3:0:127:12:2:33
+ns4.good-undel-11    A       127.12.2.34
+ns4.good-undel-11    AAAA    fda1:b2:c3:0:127:12:2:34
+; good-undel-11, also see below
+
+ns1.ns-no-ip-2       TXT     "No address records"
+ns2.ns-no-ip-2       TXT     "No address records"
+
+ns1.ns-no-ip-undel-2 TXT     "No address records"
+ns2.ns-no-ip-undel-2 TXT     "No address records"
+
+
+$ORIGIN delegated.good-undel-11.basic02.xb.
+@                    NS      dns1
+@                    NS      dns2
+dns1                 A       127.12.2.31
+dns1                 AAAA    fda1:b2:c3:0:127:12:2:31
+dns2                 A       127.12.2.32
+dns2                 AAAA    fda1:b2:c3:0:127:12:2:32
+
