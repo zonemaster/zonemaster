@@ -606,7 +606,7 @@ Zone is delegated to two OOB NS, where both have no IP (NXDOMAIN).
 Zone is delegated to two IB NS, where both NS names are aliases (CNAME)
 to other names in zone.
 
-* child.parent.child-ns-cname-1.methodsv2.xa
+* Zone: child.parent.child-ns-cname-1.methodsv2.xa
   * Zone is delegated to `ns1-cname` and `ns2-cname` and both are aliases to
     `ns1` and `ns2`, respectively.
   * Both names can be resolved to A and AAAA via CNAME and give correct IP.
@@ -615,7 +615,7 @@ to other names in zone.
 Zone is delegated to two IB NS, where both NS names are aliases (CNAME)
 to other names out of zone.
 
-* child.parent.child-ns-cname-2.methodsv2.xa
+* Zone: child.parent.child-ns-cname-2.methodsv2.xa
   * Zone is delegated to `ns1-cname` and `ns2-cname` and both are aliases to
     `child-ns1.child-ns-cname-2.methodsv2.xa` and
     `child-ns2.child-ns-cname-2.methodsv2.xa`
@@ -625,7 +625,7 @@ to other names out of zone.
 Zone is delegated to two OOB NS, where both NS names are aliases (CNAME)
 to other names out of zone.
 
-* child.parent.child-ns-cname-3.methodsv2.xa
+* Zone: child.parent.child-ns-cname-3.methodsv2.xa
   * Zone is delegated to `ns3-cname.child-ns-cname-3.methodsv2.xa` and
     `ns4-cname.child-ns-cname-3.methodsv2.xa` and both are aliases to `ns3`
     and `ns4`, respectively.
@@ -635,7 +635,7 @@ to other names out of zone.
 Zone is delegated to two IB NS, where both NS names are aliases (CNAME)
 to other names in zone.
 
-* child.parent.child-ns-cname-4.methodsv2.xa
+* Zone: child.parent.child-ns-cname-4.methodsv2.xa
   * Zone is delegated to `ns1-cname` and `ns2-cname` and both are aliases to
     `ns1` and `ns2`, respectively.
   * Both names can be resolved to A via CNAME and give correct IP.
@@ -646,7 +646,7 @@ to other names in zone.
 Parent is delegated to two IB NS, where both NS names are aliases (CNAME)
 to other names in parent zone.
 
-* child.parent.parent-ns-cname-1.methodsv2.xa
+* Zone: child.parent.parent-ns-cname-1.methodsv2.xa
   * Parent is delegated to `ns1-cname` and `ns2-cname` and both are aliases to
     `ns1` and `ns2`, respectively.
   * Both names can be resolved to A and AAAA via CNAME and give correct IP.
@@ -655,7 +655,7 @@ to other names in parent zone.
 Parent is delegated to two IB NS, where both NS names are aliases (CNAME)
 to other names out of zone.
 
-* child.parent.parent-ns-cname-2.methodsv2.xa
+* Zone: child.parent.parent-ns-cname-2.methodsv2.xa
   * Parent is delegated to `ns1-cname` and `ns2-cname` and both are aliases to
     `parent-ns1.parent-ns-cname-2.methodsv2.xa` and
     `parent-ns2.parent-ns-cname-2.methodsv2.xa`
