@@ -1,0 +1,235 @@
+$ORIGIN dnssec01.xa.                              ; Must end with "."
+$TTL 3600
+
+@           SOA     ns1 admin. (
+                    2025090302      ; serial
+                    6h              ; refresh
+                    1h              ; retry
+                    1w              ; expire
+                    1d )            ; minimum
+
+@           NS    ns1
+@           NS    ns2
+
+ns1         A     127.15.1.21
+ns1         AAAA  fda1:b2:c3:0:127:15:1:21
+ns2         A     127.15.1.22
+ns2         AAAA  fda1:b2:c3:0:127:15:1:22
+
+$ORIGIN algo-deprecated-1.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 8 1 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 1
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN algo-deprecated-3.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 3 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 3
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN algo-reserved-128.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 128 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 128
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN algo-reserved-188.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 188 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 188
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN algo-reserved-252.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 252 1 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 252
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN algo-unassigned-7.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 7 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 7
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN algo-unassigned-67.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 67 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 67
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN algo-unassigned-127.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 127 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 127
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN algo-private-253.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 253 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 253
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN algo-private-254.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 254 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 254
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN algo-not-ds-0.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 0 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 0
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN algo-ok-2.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 2 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 2
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN algo-ok-4.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 4 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 4
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN algo-ok-5.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 5 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 5
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN algo-ok-6.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 6 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 6
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN mixed-algo-1.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 1   F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 1
+@           DS       42581 13 2   F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 2
+@           DS       42581 13 253 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 253
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+$ORIGIN shared-ip-1.dnssec01.xa. ; Parent of test zone child.shared-ip-1.dnssec01.xa.
+@           NS       ns1a
+@           NS       ns1b
+ns1a        A        127.15.1.31
+ns1a        AAAA     fda1:b2:c3:0:127:15:1:31
+ns1b        A        127.15.1.31
+ns1b        AAAA     fda1:b2:c3:0:127:15:1:31
+
+
+$ORIGIN shared-ip-2.dnssec01.xa. ; Parent of test zone child.shared-ip-2.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+ns1         A        127.15.1.31
+ns1         AAAA     fda1:b2:c3:0:127:15:1:31
+ns2         A        127.15.1.32
+ns2         AAAA     fda1:b2:c3:0:127:15:1:32
+
+
+$ORIGIN no-response-1.dnssec01.xa. ; Parent of test zone child.no-response-1.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+ns1         A        127.15.1.31
+ns1         AAAA     fda1:b2:c3:0:127:15:1:31
+ns2         A        127.15.1.32
+ns2         AAAA     fda1:b2:c3:0:127:15:1:32
+
+
+$ORIGIN no-valid-response-1.dnssec01.xa. ; Parent of test zone child.no-response-response-1.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+ns1         A        127.15.1.31
+ns1         AAAA     fda1:b2:c3:0:127:15:1:31
+ns2         A        127.15.1.32
+ns2         AAAA     fda1:b2:c3:0:127:15:1:32
+
+
+$ORIGIN parent-server-no-ds-1.dnssec01.xa. ; Parent of test zone child.parent-server-no-ds-1.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+ns1         A        127.15.1.31
+ns1         AAAA     fda1:b2:c3:0:127:15:1:31
+ns2         A        127.15.1.32
+ns2         AAAA     fda1:b2:c3:0:127:15:1:32
+
+
+$ORIGIN parent-zone-no-ds-1.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+

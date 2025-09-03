@@ -55,8 +55,8 @@ combination. See [DNSSEC01] for the specification of the tags.
 * DS01_NO_RESPONSE
 * DS01_PARENT_SERVER_NO_DS
 * DS01_PARENT_ZONE_NO_DS
-* DS01_UNDEL_N_NO_UNDEL_DS
 * DS01_ROOT_N_NO_UNDEL_DS
+* DS01_UNDEL_N_NO_UNDEL_DS
 
 
 ## Test scenarios and message tags
@@ -64,38 +64,37 @@ combination. See [DNSSEC01] for the specification of the tags.
 If a message tag is not listed for the scenario, its presence or non-presence is
 irrelevant to the test scenario and must be ignored.
 
-| Scenario name         | Mandatory message tags                                         | Forbidden message tags |
-|:----------------------|:---------------------------------------------------------------|:-----------------------|
-| ALGO-DEPRECATED-1     | DS01_DS_ALGO_DEPRECATED                                        | 2)                     |
-| ALGO-DEPRECATED-3     | DS01_DS_ALGO_DEPRECATED                                        | 2)                     |
-| ALGO-NOT-DS-0         | DS01_DS_ALGO_NOT_DS                                            | 2)                     |
-| ALGO-OK-2             | DS01_DS_ALGO_OK                                                | 2)                     |
-| ALGO-OK-4             | DS01_DS_ALGO_OK                                                | 2)                     |
-| ALGO-OK-5             | DS01_DS_ALGO_OK                                                | 2)                     |
-| ALGO-OK-6             | DS01_DS_ALGO_OK                                                | 2)                     |
-| ALGO-PRIVATE-253      | DS01_DS_ALGO_PRIVATE                                           | 2)                     |
-| ALGO-PRIVATE-254      | DS01_DS_ALGO_PRIVATE                                           | 2)                     |
-| ALGO-RESERVED-128     | DS01_DS_ALGO_RESERVED                                          | 2)                     |
-| ALGO-RESERVED-188     | DS01_DS_ALGO_RESERVED                                          | 2)                     |
-| ALGO-RESERVED-252     | DS01_DS_ALGO_RESERVED                                          | 2)                     |
-| ALGO-UNASSIGNED-7     | DS01_DS_ALGO_UNASSIGNED                                        | 2)                     |
-| ALGO-UNASSIGNED-67    | DS01_DS_ALGO_UNASSIGNED                                        | 2)                     |
-| ALGO-UNASSIGNED-127   | DS01_DS_ALGO_UNASSIGNED                                        | 2)                     |
-| MIXED-ALGO-1          | DS01_DS_ALGO_DEPRECATED, DS01_DS_ALGO_PRIVATE, DS01_DS_ALGO_OK | 2)                     |
-| MULTI-NAME-SAME-IP-1  | DS01_DS_ALGO_OK                                                | 2)                     |
-| MULTI-NAME-SAME-IP-2  | DS01_DS_ALGO_OK                                                | 2)                     |
-| NO-RESPONSE-1         | DS01_NO_RESPONSE                                               | 2)                     |
-| NO-RESPONSE-2         | DS01_NO_RESPONSE                                               | 2)                     |
-| PARENT-SERVER-NO-DS-1 | DS01_PARENT_SERVER_NO_DS, DS01_DS_ALGO_OK                      | 2)                     |
-| PARENT-ZONE-NO-DS-1   | DS01_PARENT_ZONE_NO_DS                                         | 2)                     |
-| UNDEL-NO-UNDEL-DS-1   | DS01_UNDEL_N_NO_UNDEL_DS                                       | 2)                     |
-| UNDEL-WITH-UNDEL-DS-1 | DS01_DS_ALGO_OK                                                | 2)                     |
-| ROOT-NO-UNDEL-DS-1    | DS01_ROOT_N_NO_UNDEL_DS                                        | 2)                     |
-| ROOT-WITH-UNDEL-DS-1  | DS01_DS_ALGO_OK                                                | 2)                     |
+| Scenario name         | Mandatory tags                                                 | Forbidden tags |
+|:----------------------|:---------------------------------------------------------------|:---------------|
+| ALGO-DEPRECATED-1     | DS01_DS_ALGO_DEPRECATED, DS01_DS_ALGO_2_MISSING                | 2)             |
+| ALGO-DEPRECATED-3     | DS01_DS_ALGO_DEPRECATED, DS01_DS_ALGO_2_MISSING                | 2)             |
+| ALGO-NOT-DS-0         | DS01_DS_ALGO_NOT_DS                                            | 2)             |
+| ALGO-OK-2             | DS01_DS_ALGO_OK                                                | 2)             |
+| ALGO-OK-4             | DS01_DS_ALGO_OK, DS01_DS_ALGO_2_MISSING                        | 2)             |
+| ALGO-OK-5             | DS01_DS_ALGO_OK, DS01_DS_ALGO_2_MISSING                        | 2)             |
+| ALGO-OK-6             | DS01_DS_ALGO_OK, DS01_DS_ALGO_2_MISSING                        | 2)             |
+| ALGO-PRIVATE-253      | DS01_DS_ALGO_PRIVATE, DS01_DS_ALGO_2_MISSING                   | 2)             |
+| ALGO-PRIVATE-254      | DS01_DS_ALGO_PRIVATE, DS01_DS_ALGO_2_MISSING                   | 2)             |
+| ALGO-RESERVED-128     | DS01_DS_ALGO_RESERVED, DS01_DS_ALGO_2_MISSING                  | 2)             |
+| ALGO-RESERVED-188     | DS01_DS_ALGO_RESERVED, DS01_DS_ALGO_2_MISSING                  | 2)             |
+| ALGO-RESERVED-252     | DS01_DS_ALGO_RESERVED, DS01_DS_ALGO_2_MISSING                  | 2)             |
+| ALGO-UNASSIGNED-7     | DS01_DS_ALGO_UNASSIGNED, DS01_DS_ALGO_2_MISSING                | 2)             |
+| ALGO-UNASSIGNED-67    | DS01_DS_ALGO_UNASSIGNED, DS01_DS_ALGO_2_MISSING                | 2)             |
+| ALGO-UNASSIGNED-127   | DS01_DS_ALGO_UNASSIGNED, DS01_DS_ALGO_2_MISSING                | 2)             |
+| MIXED-ALGO-1          | DS01_DS_ALGO_DEPRECATED, DS01_DS_ALGO_PRIVATE, DS01_DS_ALGO_OK | 2)             |
+| SHARED-IP-1           | DS01_DS_ALGO_OK                                                | 2)             |
+| SHARED-IP-2           | DS01_DS_ALGO_OK                                                | 2)             |
+| NO-RESPONSE-1         | DS01_NO_RESPONSE                                               | 2)             |
+| NO-VALID-RESPONSE-1   | DS01_NO_RESPONSE                                               | 2)             |
+| PARENT-SERVER-NO-DS-1 | DS01_PARENT_SERVER_NO_DS, DS01_DS_ALGO_OK                      | 2)             |
+| PARENT-ZONE-NO-DS-1   | DS01_PARENT_ZONE_NO_DS                                         | 2)             |
+| UNDEL-NO-UNDEL-DS-1   | DS01_UNDEL_N_NO_UNDEL_DS                                       | 2)             |
+| UNDEL-WITH-UNDEL-DS-1 | DS01_DS_ALGO_OK                                                | 2)             |
+| ROOT-NO-UNDEL-DS-1    | DS01_ROOT_N_NO_UNDEL_DS                                        | 2)             |
+| ROOT-WITH-UNDEL-DS-1  | DS01_DS_ALGO_OK                                                | 2)             |
 
-* (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
-* (2) All tags except for those specified as "Mandatory message tags"
-
+* (1) All tags except for those specified as "Forbidden tags" (no instances for these test scenarios)
+* (2) All tags except for those specified as "Mandatory tags"
 
 ## Test scenarios and setup of test zones
 
@@ -219,7 +218,7 @@ The DS digest algorithm number is 6
 * Zone: algo-ok-6.dnssec01.xa.
   * The algorithm of the DS digest in the response is 6.
 
-## MIXED-ALGO-1
+### MIXED-ALGO-1
 Three DS with different algorithms.
 
 * Zone: mixed-algo-1.dnssec01.xa.
@@ -228,37 +227,36 @@ Three DS with different algorithms.
     * 2
     * 253
 
-## MULTI-NAME-SAME-IP-1
-Two parent name servers resolv to the same name.
+### SHARED-IP-1
+Two parent name servers resolv to the same IP address.
 
-* Zone: child.multi-name-same-ip-1.dnssec01.xa.
-  * The parent zone is "multi-name-same-ip-1.dnssec01.xa" and the
-    grandparent zone is "dnssec01.xa".
-  * The parent is delegated to IB ns1a and ns1b with the same
-    IPv4 and IPv6 addresses.
+* Zone: child.shared-ip-1.dnssec01.xa.
+  * The parent zone is "shared-ip-1.dnssec01.xa" and the grandparent zone is
+    "dnssec01.xa".
+  * The parent is delegated to IB ns1a and ns1b with the same IPv4 and IPv6
+    addresses.
 
-## MULTI-NAME-SAME-IP-2
+### SHARED-IP-2
 Delegation of parent does not use the same name server name as parent zone.
 
-* Zone: child.multi-name-same-ip-2.dnssec01.xa.
-  * The parent zone is "multi-name-same-ip-2.dnssec01.xa" and the
-    grandparent zone is "dnssec01.xa".
+* Zone: child.shared-ip-2.dnssec01.xa.
+  * The parent zone is "shared-ip-2.dnssec01.xa" and the grandparent zone is
+    "dnssec01.xa".
   * The parent is delegated to IB ns1 and ns2, but in the parent zone the names
     are dns1 and dns2.
     * ns1 and dns1 resolve to the same IP addresses.
     * ns2 and dns2 resolve to the same IP addresses.
 
 ### NO-RESPONSE-1
-No valid response from any of the servers.
+No response from any of the servers on the DS query.
 
 * Zone: child.no-response-1.dnssec01.xa.
-  * No response at all from parent ns1.
-  * Response from parent ns2 does not have the AA bit set.
+  * No response at all from parent ns1 and ns2.
 
-### NO-RESPONSE-2
-No valid response from any of the servers.
+### NO-VALID-RESPONSE-1
+No valid response from any of the servers on the DS query.
 
-* Zone: child.no-response-2.dnssec01.xa.
+* Zone: child.no-valid-response-1.dnssec01.xa.
   * Response from parent ns1 has RCODE SERVFAIL.
   * Response from parent ns2 has RCODE REFUSED.
   * Child zone does not exist
@@ -267,14 +265,14 @@ No valid response from any of the servers.
 No DS from parent ns1.
 
 * Zone: child.parent-server-no-ds-1.dnssec01.xa.
-  * Response from parent ns1 is NODATA (no DNSKEY).
+  * Response from parent ns1 is NODATA (no DS).
   * Response from parent ns2 is normal.
 
 ### PARENT-ZONE-NO-DS-1
 No DS from neither parent ns1 nor parent ns2.
 
 * Zone: parent-zone-no-ds-1.dnssec01.xa.
-  * Responses from parent ns1 and parent ns2 are NODATA (no DNSKEY).
+  * Responses from parent ns1 and parent ns2 are NODATA (no DS).
 
 ### UNDEL-NO-UNDEL-DS-1
 Zone is not delegated, but undelegated data is provided. No DS.
