@@ -11,6 +11,7 @@
 * [Privilege levels](#privilege-levels)
 * [Data types](#data-types)
   * [API key](#api-key)
+  * [Batch API Key]
   * [Batch id](#batch-id) *(deprecated)*
   * [Batch id type 2](#batch-id-type-2)
   * [Client id](#client-id)
@@ -30,7 +31,6 @@
   * [Test id](#test-id)
   * [Test result](#test-result)
   * [Timestamp](#timestamp)
-  * [Token](#token)
   * [Username](#username)
 * [API methods](#api-methods)
   * [API method: version_info](#api-method-version_info)
@@ -120,7 +120,7 @@ This API provides three classes of methods:
 * *Unrestricted* methods are available to anyone with access to the API.
 * *Authenticated* methods have either
   * Parameters for [*username*][Username] and [*api key*][API key] credentials, or
-  * Parameter for [*token*][Token] credential.
+  * Parameter for [*batch api key*][Batch API Key] credential.
 * *Administrative* methods require that the connection to the API is opened from
   localhost (`127.0.0.1` or `::1`).
 
@@ -140,6 +140,20 @@ and at most 512 characters.
 I.e. a string matching `/^[a-zA-Z0-9-_]{1,512}$/`.
 
 Represents the password of an authenticated account (see *[Privilege levels]*)
+
+Note that [*Batch API key*][Batch API Key] is another data type.
+
+
+### Batch Api Key
+
+Basic data type: string
+
+A string of alphanumerics of at least 1 and at most 80 characters. I.e. a string
+matching `/^[a-zA-Z0-9]{1,80}$/`.
+
+Used for authenticated access (see *[Privilege levels]*).
+
+Note that [*API key*](#api-key) is another data type.
 
 
 ### Batch id
@@ -371,16 +385,6 @@ A string representing a date and time using the following ISO 8601 format:
 "YYYY-MM-DDThh:mm:ssZ".
 Example: "2017-12-18T07:56:17Z"
 
-### Token
-
-Basic data type: string
-
-A string of alphanumerics of at least 1 and at most 80 characters. I.e. a string
-matching `/^[a-zA-Z0-9]{1,80}$/`.
-
-
-Used for authenticated access (see *[Privilege levels]*).
-
 ### Username
 
 Basic data type: string
@@ -448,8 +452,8 @@ An object with the following properties:
 
 ### API method: `conf_batch_create_max_size_non_auth`
 
-Returns the maximum number of elements that the `"domains"` key may containt when
-method `batch_create` is requested without `token`.
+Returns the maximum number of elements that the `"domains"` key may contain when
+method `batch_create` is requested without `batch_api_key`.
 
 Key `"result"` in the response is set to a *[non-negative integer]*.
 
@@ -1457,8 +1461,8 @@ This method is not available if either
 [`RPCAPI.enable_batch_create`][RPCAPI.enable_batch_create] is disabled (enabled
 by default).
 
-A *token* can be added to the [configuration file] as
-[RPCAPI.batch_create_token].
+A *batch_api_key* can be added to the [configuration file] as
+[RPCAPI.batch_api_key].
 
 *Tests* enqueued using this method are assigned a [*priority*][Priority] of 5.
 
@@ -1474,7 +1478,7 @@ Example request:
   "id": 147559211348450,
   "method": "add_batch_job",
   "params" : {
-    "token": "123abcABC",
+    "batch_api_key": "123abcABC",
     "test_params": {},
     "domains": [
       "zonemaster.net",
@@ -1499,15 +1503,15 @@ Example response:
 
 An object with the following properties:
 
-* `"token"`: A [*token*][token], see details on `"token"` below.
+* `"batch_api_key"`: A [*batch api key*][batch api key], see details on `"batch_api_key"` below.
 * `"domains"`: A list of [*domain names*][Domain name], required. The domains to be tested.
 * `"test_params"`: As described below, optional, (default: `{}`). The `"test_params"` key
-  must be absent or empty (`{}`) unless `"token"` is included.
+  must be absent or empty (`{}`) unless `"batch_api_key"` is included.
 
-A `"token"` is required if the number of domain names in `"domains"` is greater
+A `"batch_api_key"` is required if the number of domain names in `"domains"` is greater
 than the value for [RPCAPI.batch_create_max_size_non_auth] as specified in
-the [configuration file], else it is optional. If included, `"token"` must be
-a valid [token] equal to the token in the [configuration file].
+the [configuration file], else it is optional. If included, `"batch_api_key"` must be
+a valid [Batch API key] equal to the batch api key in the [configuration file].
 
 The value of `"test_params"` is an object with the following properties:
 
@@ -1534,23 +1538,23 @@ string.
 If the given `profile` is not among the [available profiles][Profile sections], a
 user error is returned, see the [profile name section][profile name].
 
-Trying to add a batch with wrong [*token*][token]:
+Trying to add a batch with wrong [*batch api key*][Batch API key]:
 ```json
 {
   "jsonrpc": "2.0",
   "id": 1,
   "error": {
-    "message": "Invalid token for batch_create",
+    "message": "Invalid batch_api_key for batch_create",
     "code": -32603,
     "data": {
-        "message": "Invalid token",
-        "path": "/token"
+        "message": "Invalid batch api key",
+        "path": "/batch api key"
     }
   }
 }
 ```
 
-Trying to add a batch with absent [*token*][token] when the number of elements
+Trying to add a batch with absent [*batch_api_key*][Batch API key] when the number of elements
 in "`domains`" is greater than [RPCAPI.batch_create_max_size_non_auth]:
 
 ```json
@@ -1568,7 +1572,7 @@ in "`domains`" is greater than [RPCAPI.batch_create_max_size_non_auth]:
 }
 ```
 
-Trying to add a batch with absent [*token*][token] with a non-empty
+Trying to add a batch with absent [*batch_api_key*][Batch API key] with a non-empty
 `"test_params"` object.
 
 ```json
@@ -1903,7 +1907,7 @@ There are also some experimental API methods documented only by name:
 [Queue]:                                      #queue
 [RFC 5952]:                                   https://datatracker.ietf.org/doc/html/rfc5952
 [RPCAPI.batch_create_max_size_non_auth]:      ../../configuration/backend.md#batch_create_max_size_non_auth
-[RPCAPI.batch_create_token]:                  ../../configuration/backend.md#batch_create_token
+[RPCAPI.batch_api_key]:                       ../../configuration/backend.md#batch_api_key
 [RPCAPI.enable_add_api_user]:                 ../../configuration/backend.md#enable_add_api_user
 [RPCAPI.enable_add_batch_job]:                ../../configuration/backend.md#enable_add_batch_job
 [RPCAPI.enable_batch_create]:                 ../../configuration/backend.md#enable_batch_create
@@ -1914,7 +1918,7 @@ There are also some experimental API methods documented only by name:
 [Test id]:                                    #test-id
 [Test result]:                                #test-result
 [Timestamp]:                                  #timestamp
-[Token]:                                      #token
+[Batch Api Key]:                              #batch-api-key
 [Username]:                                   #username
 [Validation error data]:                      #validation-error-data
 [ZONEMASTER.age_reuse_previous_test]:         ../../configuration/backend.md#age_reuse_previous_test

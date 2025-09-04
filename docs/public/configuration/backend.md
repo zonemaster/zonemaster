@@ -7,7 +7,7 @@
   * [enable_add_batch_job](#enable_add_batch_job)  *(deprecated)*
   * [enable_add_api_user](#enable_add_api_user)  *(deprecated)*
   * [enable_batch_create](#enable_batch_create)
-  * [batch_create_token](#batch_create_token)
+  * [batch_api_key](#batch_api_key)
   * [batch_create_max_size_non_auth](#batch_create_max_size_non_auth)
 * [DB section](#db-section)
   * [engine](#engine)
@@ -61,7 +61,7 @@ In addition to the configuration file, some settings can configured using
 ## RPCAPI section
 
 Available keys: `enable_add_batch_job`, `enable_add_api_user`,
-`enable_batch_create`, `batch_create_token`, `batch_create_max_size_non_auth`.
+`enable_batch_create`, `batch_api_key`, `batch_create_max_size_non_auth`.
 
 ### enable_add_batch_job
 
@@ -93,7 +93,7 @@ API. May not co-exist with [RPCAPI.enable_add_batch_job].
 Accepted values: `yes` (or `true`) or `no` (or `false`),
 default to `yes` (enabled).
 
-### batch_create_token
+### batch_api_key
 
 String to use in `batch_create` method call to authorize the creation of a
 batch.
@@ -420,7 +420,7 @@ Otherwise a new test request is enqueued.
 [Profile JSON files]:                               profiles.md
 [Profile name section]:                             ../using/backend/rpcapi-reference.md#profile-name
 [Profiles]:                                         https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md#profile
-[RPCAPI.batch_create_token]:                        #batch_create_token
+[RPCAPI.batch_api_key]:                             #batch_api_key
 [RPCAPI.enable_add_batch_job]:                      #enable_add_batch_job
 [RPCAPI.enable_batch_create]:                       #enable_batch_create
 [US ASCII printable characters]:                    https://en.wikipedia.org/wiki/ASCII#Printable_characters
