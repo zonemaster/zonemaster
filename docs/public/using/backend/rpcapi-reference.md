@@ -34,7 +34,7 @@
   * [Username](#username)
 * [API methods](#api-methods)
   * [API method: version_info](#api-method-version_info)
-  * [API method: conf_batch_create_max_size_non_auth](#api-method-conf_batch_create_max_size_non_auth)
+  * [API method: conf_max_batch_size_non_auth](#api-method-conf_max_batch_size_non_auth)
   * [API method: profile_names](#api-method-profile_names)
   * [API method: get_language_tags](#api-method-get_language_tags)
   * [API method: get_host_by_name](#api-method-get_host_by_name)
@@ -450,7 +450,7 @@ An object with the following properties:
 > TODO: List all possible error codes and describe what they mean enough for clients to know how react to them.
 >
 
-### API method: `conf_batch_create_max_size_non_auth`
+### API method: `conf_max_batch_size_non_auth`
 
 Returns the maximum number of elements that the `"domains"` key may contain when
 method `batch_create` is requested without `batch_api_key`.
@@ -461,10 +461,10 @@ Key `"result"` is set to zero (0) in the response if any of the following is
 true:
 * [RPCAPI.enable_add_batch_job] is set to false,
 * [RPCAPI.enable_batch_create] is set to false,
-* [RPCAPI.batch_create_max_size_non_auth] is set to 0.
+* [RPCAPI.max_batch_size_non_auth] is set to 0.
 
 Else, `"result"` is set to the value of
-[RPCAPI.batch_create_max_size_non_auth], if that is set.
+[RPCAPI.max_batch_size_non_auth], if that is set.
 
 Else, `"result"` is set to 5.
 
@@ -473,7 +473,7 @@ Example request:
 {
   "jsonrpc": "2.0",
   "id": 1,
-  "method": "conf_batch_create_max_size_non_auth"
+  "method": "conf_max_batch_size_non_auth"
 }
 ```
 
@@ -1509,7 +1509,7 @@ An object with the following properties:
   must be absent or empty (`{}`) unless `"batch_api_key"` is included.
 
 A `"batch_api_key"` is required if the number of domain names in `"domains"` is greater
-than the value for [RPCAPI.batch_create_max_size_non_auth] as specified in
+than the value for [RPCAPI.max_batch_size_non_auth] as specified in
 the [configuration file], else it is optional. If included, `"batch_api_key"` must be
 a valid [Batch API key] equal to the batch api key in the [configuration file].
 
@@ -1554,7 +1554,7 @@ Trying to add a batch with wrong [*batch api key*][Batch API key]:
 ```
 
 Trying to add a batch with absent [*batch_api_key*][Batch API key] when the number of elements
-in "`domains`" is greater than [RPCAPI.batch_create_max_size_non_auth]:
+in "`domains`" is greater than [RPCAPI.max_batch_size_non_auth]:
 
 ```json
 {
@@ -1905,7 +1905,7 @@ There are also some experimental API methods documented only by name:
 [Progress percentage]:                        #progress-percentage
 [Queue]:                                      #queue
 [RFC 5952]:                                   https://datatracker.ietf.org/doc/html/rfc5952
-[RPCAPI.batch_create_max_size_non_auth]:      ../../configuration/backend.md#batch_create_max_size_non_auth
+[RPCAPI.max_batch_size_non_auth]:             ../../configuration/backend.md#max_batch_size_non_auth
 [RPCAPI.batch_api_key]:                       ../../configuration/backend.md#batch_api_key
 [RPCAPI.enable_add_api_user]:                 ../../configuration/backend.md#enable_add_api_user
 [RPCAPI.enable_add_batch_job]:                ../../configuration/backend.md#enable_add_batch_job
