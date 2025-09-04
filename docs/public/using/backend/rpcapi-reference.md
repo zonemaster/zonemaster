@@ -13,7 +13,7 @@
   * [API key](#api-key)
   * [Batch API Key]
   * [Batch id](#batch-id) *(deprecated)*
-  * [Batch id type 2](#batch-id-type-2)
+  * [Hash batch id]
   * [Client id](#client-id)
   * [Client version](#client-version)
   * [Configuration file](#configuration-file)
@@ -159,7 +159,7 @@ Note that [*API key*](#api-key) is another data type.
 ### Batch id
 
 *Deprecated. To be removed with release v2026.1. To be replaced by
-[batch id type 2].*
+[Hash batch id].*
 
 Basic data type: number
 
@@ -168,7 +168,7 @@ A strictly positive integer that the client can treat as a string.
 The unique id of a *batch*.
 
 
-### Batch id type 2
+### Hash batch id
 
 To replace *[batch id]*.
 
@@ -177,7 +177,7 @@ Basic data type: string
 The literal string "B-" appended with a string of exactly 16 lower-case
 hex-digits matching `/^[0-9a-f]{16}$/`.
 
-Each *batch* has a unique *Batch id type 2*.
+Each *batch* has a unique *Hash batch id*.
 
 
 ### Client id
@@ -1529,8 +1529,7 @@ The value of `"test_params"` is an object with the following properties:
 
 #### `"result"`
 
-A [*batch id*][Batch id] or a *[batch id type 2]*, either could be treated as a
-string.
+*id* holds a [*hash batch id*][Hash batch id].
 
 
 #### `"error"`
@@ -1638,7 +1637,7 @@ Example request:
     "id": 147559211994909,
     "method": "get_batch_job_result",
     "params": {
-        "batch_id": "8"
+        "batch_id: "8"
     }
 }
 ```
@@ -1795,7 +1794,7 @@ for all three status values and none was nil:
 
 An object with the property:
 
-* `"batch_id"`: A [*batch id*][Batch id] or a *[batch id type 2]*, required.
+* `"batch_id"`: A [*batch id*][Batch id] or a *[hash batch id]*, required.
 * `"list_waiting_tests"`: a boolean, optional (default false). If true include
   the `"waiting_tests"` property in the result object.
 * `"list_running_tests"`: a boolean, optional (default false). If true include
@@ -1804,7 +1803,7 @@ An object with the property:
   the `"finished_tests"` property in the result object.
 
 The use of *[batch id]* is deprecated and will be removed by release v2026.1.
-Use *[batch id type 2]* instead.
+Use *[hash batch]* instead.
 
 #### `"result"`
 
@@ -1878,7 +1877,7 @@ There are also some experimental API methods documented only by name:
 [API v10.0.0]:                                https://github.com/zonemaster/zonemaster-backend/blob/v10.0.0/docs/API.md
 [Architecture documentation]:                 https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md
 [Batch id]:                                   #batch-id
-[Batch id type 2]:                            #batch-id-type-2
+[Hash batch id]:                              #hash-batch-id
 [Client id]:                                  #client-id
 [Client version]:                             #client-version
 [Configuration]:                              ../../configuration/backend.md
