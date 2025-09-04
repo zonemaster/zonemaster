@@ -4,11 +4,11 @@
 
 * [Introduction](#introduction)
 * [RPCAPI section](#rpcapi-section)
+  * [batch_api_key](#batch_api_key)
+  * [batch_create_max_size_non_auth](#batch_create_max_size_non_auth)
   * [enable_add_batch_job](#enable_add_batch_job)  *(deprecated)*
   * [enable_add_api_user](#enable_add_api_user)  *(deprecated)*
   * [enable_batch_create](#enable_batch_create)
-  * [batch_api_key](#batch_api_key)
-  * [batch_create_max_size_non_auth](#batch_create_max_size_non_auth)
 * [DB section](#db-section)
   * [engine](#engine)
   * [polling_interval](#polling_interval)
@@ -60,8 +60,24 @@ In addition to the configuration file, some settings can configured using
 
 ## RPCAPI section
 
-Available keys: `enable_add_batch_job`, `enable_add_api_user`,
-`enable_batch_create`, `batch_api_key`, `batch_create_max_size_non_auth`.
+Available keys: `batch_api_key`, `batch_create_max_size_non_auth`,
+`enable_add_batch_job`, `enable_add_api_user`, `enable_batch_create`.
+
+### batch_api_key
+
+String to use in `batch_create` method call to authorize the creation of a
+batch.
+
+A string of alphanumerics of at least 1 and at most 80 characters. I.e. a string
+matching `/^[a-zA-Z0-9]{1,80}$/`.
+
+### batch_create_max_size_non_auth
+
+Maximal number of domain names in a batch created by `batch_create` without
+token. If set to 0, only `batch_create` with token is permitted.
+
+* Acceptable value: Non-negative decimal integer
+* Default value: 5
 
 ### enable_add_batch_job
 
@@ -92,22 +108,6 @@ API. May not co-exist with [RPCAPI.enable_add_batch_job].
 
 Accepted values: `yes` (or `true`) or `no` (or `false`),
 default to `yes` (enabled).
-
-### batch_api_key
-
-String to use in `batch_create` method call to authorize the creation of a
-batch.
-
-A string of alphanumerics of at least 1 and at most 80 characters. I.e. a string
-matching `/^[a-zA-Z0-9]{1,80}$/`.
-
-### batch_create_max_size_non_auth
-
-Maximal number of domain names in a batch created by `batch_create` without
-token. If set to 0, only `batch_create` with token is permitted.
-
-* Acceptable value: Non-negative decimal integer
-* Default value: 5
 
 ## DB section
 
