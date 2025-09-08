@@ -65,8 +65,7 @@ Available keys: `batch_api_key`, `enable_add_batch_job`, `enable_add_api_user`,
 
 ### batch_api_key
 
-String to use in `batch_create` method call to authorize the creation of a
-batch.
+API key to use in requests to be granted `trusted` privilege level. E.g., to allow creation of larger batches using the `batch_create` method.
 
 A string of alphanumerics of at least 1 and at most 80 characters. I.e. a string
 matching `/^[a-zA-Z0-9]{1,80}$/`.
@@ -77,7 +76,7 @@ matching `/^[a-zA-Z0-9]{1,80}$/`.
 `enable_batch_create` instead.*
 
 Boolean value to enable the `add_batch_job` and `batch_create` methods of the
-API. May not co-exist with [RPCAPI.enable_batch_create].
+API. Must not co-exist with [RPCAPI.enable_batch_create].
 
 Accepted values: `yes` (or `true`) or `no` (or `false`),
 default to `yes` (enabled).

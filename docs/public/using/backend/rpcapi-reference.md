@@ -1506,7 +1506,7 @@ An object with the following properties:
 * `"batch_api_key"`: A [*batch api key*][batch api key], see details on `"batch_api_key"` below.
 * `"domains"`: A list of [*domain names*][Domain name], required. The domains to be tested.
 * `"test_params"`: As described below, optional, (default: `{}`). The `"test_params"` key
-  must be absent or empty (`{}`) unless `"batch_api_key"` is included.
+  must be absent or empty (`{}`) unless `"batch_api_key"` is present.
 
 A `"batch_api_key"` is required if the number of domain names in `"domains"` is greater
 than the value for [RPCAPI.max_batch_size_non_auth] as specified in
@@ -1529,7 +1529,9 @@ The value of `"test_params"` is an object with the following properties:
 
 #### `"result"`
 
-*id* holds a [*hash batch id*][Hash batch id].
+An object with the following properties:
+
+* `"batch_id"`: A [*hash batch id*][Hash batch id].
 
 
 #### `"error"`
@@ -1637,7 +1639,7 @@ Example request:
     "id": 147559211994909,
     "method": "get_batch_job_result",
     "params": {
-        "batch_id: "8"
+        "batch_id": "8"
     }
 }
 ```
