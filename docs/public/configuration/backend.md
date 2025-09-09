@@ -65,10 +65,15 @@ Available keys: `batch_api_key`, `enable_add_batch_job`, `enable_add_api_user`,
 
 ### batch_api_key
 
-API key to use in requests to be granted `trusted` privilege level. E.g., to allow creation of larger batches using the `batch_create` method.
+API key to use in requests to be granted `trusted` privilege level. E.g., to
+allow creation of larger batches using the `batch_create` method.
 
-A string of alphanumerics of at least 1 and at most 80 characters. I.e. a string
-matching `/^[a-zA-Z0-9]{1,80}$/`.
+A string of alphanumerics of at least 10 and at most 64 characters. I.e. a string
+matching `/^[a-zA-Z0-9]{10,64}$/`. It is recommended to use an `batch_api_key` of
+at least 22 characters.
+
+Multiple `batch_api_key` is supported. All configured keys will be equal in
+authorization.
 
 ### enable_add_batch_job
 
@@ -97,15 +102,14 @@ default to `no` (disabled).
 Boolean value to enable the `add_batch_job` and `batch_create` methods of the
 API. May not co-exist with [RPCAPI.enable_add_batch_job].
 
-Accepted values: `yes` (or `true`) or `no` (or `false`),
-default to `yes` (enabled).
+Accepted values: `yes` or `no`, default to `yes` (enabled).
 
-### max_batch_size_non_auth
+### max_batch_size_anonymous_mode
 
 Maximal number of domain names in a batch created without batch_api_key. If set
 to 0, batches can only be created with valid batch_api_key included.
 
-* Acceptable value: Non-negative decimal integer
+* Acceptable value: Non-negative integer
 * Default value: 5
 
 ## DB section
@@ -131,7 +135,7 @@ SQLite            | `SQLite`
 
 ### polling_interval
 
-A strictly positive decimal number. Max 5 and 3 digits in the integer and fraction
+A strictly positive integer. Max 5 and 3 digits in the integer and fraction
 components respectively.
 
 Time in seconds between database lookups by Test Agent.

@@ -9,6 +9,7 @@
 * [Request handling](#request-handling)
 * [Error reporting](#error-reporting)
 * [Privilege levels](#privilege-levels)
+* [Configuration file](#configuration-file)
 * [Data types](#data-types)
   * [API key](#api-key)
   * [Batch API Key]
@@ -16,7 +17,6 @@
   * [Hash batch id]
   * [Client id](#client-id)
   * [Client version](#client-version)
-  * [Configuration file](#configuration-file)
   * [Domain name](#domain-name)
   * [DS info](#ds-info)
   * [IP address](#ip-address)
@@ -34,7 +34,7 @@
   * [Username](#username)
 * [API methods](#api-methods)
   * [API method: version_info](#api-method-version_info)
-  * [API method: conf_max_batch_size_non_auth](#api-method-conf_max_batch_size_non_auth)
+  * [API method: conf_max_batch_size_anonymous_mode](#api-method-conf_max_batch_size_anonymous_mode)
   * [API method: profile_names](#api-method-profile_names)
   * [API method: get_language_tags](#api-method-get_language_tags)
   * [API method: get_host_by_name](#api-method-get_host_by_name)
@@ -125,6 +125,12 @@ This API provides three classes of methods:
   localhost (`127.0.0.1` or `::1`).
 
 
+## Configuration file
+
+The configuration of the Zonemaster Backend *RPC API daemon* is done as
+specified in the [Configuration] document.
+
+
 ## Data types
 
 This sections describes a number of data types used in this API. Each data type
@@ -163,7 +169,7 @@ Note that [*API key*](#api-key) is another data type.
 
 Basic data type: number
 
-A strictly positive integer that the client can treat as a string.
+A strictly positive integer.
 
 The unique id of a *batch*.
 
@@ -203,13 +209,6 @@ I.e. a string matching `/^[a-zA-Z0-9-+~_.: ]{1,50}$/`.
 
 Represents the version of the client.
 Used for monitoring which client (GUI) uses the API.
-
-
-### Configuration file
-
-The configuration of the Zonemaster Backend *RPC API daemon* is done as
-specified in the [Configuration] document.
-
 
 ### Domain name
 
@@ -292,8 +291,7 @@ Properties:
 
 Basic data type: number (integer)
 
-A non-negative integer is either zero or strictly positive. In this specification
-the integer is decimal, unless specified otherwise.
+A non-negative integer is either zero or strictly positive.
 
 
 ### Priority
@@ -450,30 +448,31 @@ An object with the following properties:
 > TODO: List all possible error codes and describe what they mean enough for clients to know how react to them.
 >
 
-### API method: `conf_max_batch_size_non_auth`
+### API method: `conf_max_batch_size_anonymous_mode`
 
 Returns the maximum number of elements that the `"domains"` key may contain when
 method `batch_create` is requested without `batch_api_key`.
 
-Key `"result"` in the response is set to a *[non-negative integer]*.
+Key `"value"` in `"result"` in the response is set to a *[non-negative integer]*.
 
-Key `"result"` is set to zero (0) in the response if any of the following is
+Key `"value"` is set to zero (0) in the response if any of the following is
 true:
 * [RPCAPI.enable_add_batch_job] is set to false,
 * [RPCAPI.enable_batch_create] is set to false,
-* [RPCAPI.max_batch_size_non_auth] is set to 0.
+* [RPCAPI.max_batch_size_anonymous_mode] is set to 0.
 
-Else, `"result"` is set to the value of
-[RPCAPI.max_batch_size_non_auth], if that is set.
+Else, `"value"` is set to the value of
+[RPCAPI.max_batch_size_anonymous_mode], if that is set.
 
-Else, `"result"` is set to 5.
+Else, `"result"` is set to the default value, see
+[RPCAPI.max_batch_size_anonymous_mode].
 
 Example request:
 ```json
 {
   "jsonrpc": "2.0",
   "id": 1,
-  "method": "conf_max_batch_size_non_auth"
+  "method": "conf_max_batch_size_anonymous_mode"
 }
 ```
 
@@ -482,7 +481,10 @@ Example response:
 {
   "jsonrpc": "2.0",
   "id": 1,
-  "result": 5
+  "result": 
+  {
+    "value": 5
+  }
 }
 ```
 
@@ -1335,11 +1337,6 @@ A [*username*][Username] and its [*api key*][Api key] can be added with the
 
 *Tests* enqueued using this method are assigned a [*priority*][Priority] of 5.
 
-> In previous versions of Zonemaster-Backend a new batch could not be created by
-> the same [*username*][Username] if that *username* had created a batch that was
-> not yet finished. That restriction has been removed in version 2023.2.
-
-
 Example request:
 ```json
 {
@@ -1509,7 +1506,7 @@ An object with the following properties:
   must be absent or empty (`{}`) unless `"batch_api_key"` is present.
 
 A `"batch_api_key"` is required if the number of domain names in `"domains"` is greater
-than the value for [RPCAPI.max_batch_size_non_auth] as specified in
+than the value for [RPCAPI.max_batch_size_anonymous_mode] as specified in
 the [configuration file], else it is optional. If included, `"batch_api_key"` must be
 a valid [Batch API key] equal to the batch api key in the [configuration file].
 
@@ -1556,14 +1553,14 @@ Trying to add a batch with wrong [*batch api key*][Batch API key]:
 ```
 
 Trying to add a batch with absent [*batch_api_key*][Batch API key] when the number of elements
-in "`domains`" is greater than [RPCAPI.max_batch_size_non_auth]:
+in "`domains`" is greater than [RPCAPI.max_batch_size_anonymous_mode]:
 
 ```json
 {
   "jsonrpc": "2.0",
   "id": 1,
   "error": {
-    "message": "Too many domains in batch_create in non-authorized mode",
+    "message": "Too many domains in batch_create in anonymous mode",
     "code": -32603,
     "data": {
         "message": "Too many items: 20.",
@@ -1581,10 +1578,10 @@ Trying to add a batch with absent [*batch_api_key*][Batch API key] with a non-em
   "jsonrpc": "2.0",
   "id": 1,
   "error": {
-    "message": "Key test_params not allowed in batch_create in non-authorized mode",
+    "message": "Key test_params not allowed in batch_create in anonymous mode",
     "code": -32603,
     "data": {
-        "message": "Not permitted in non-authorized mode",
+        "message": "Not permitted in anonymous mode",
         "path": "/test_params"
     }
   }
@@ -1907,7 +1904,7 @@ There are also some experimental API methods documented only by name:
 [Progress percentage]:                        #progress-percentage
 [Queue]:                                      #queue
 [RFC 5952]:                                   https://datatracker.ietf.org/doc/html/rfc5952
-[RPCAPI.max_batch_size_non_auth]:             ../../configuration/backend.md#max_batch_size_non_auth
+[RPCAPI.max_batch_size_anonymous_mode]:       ../../configuration/backend.md#max_batch_size_anonymous_mode
 [RPCAPI.batch_api_key]:                       ../../configuration/backend.md#batch_api_key
 [RPCAPI.enable_add_api_user]:                 ../../configuration/backend.md#enable_add_api_user
 [RPCAPI.enable_add_batch_job]:                ../../configuration/backend.md#enable_add_batch_job
