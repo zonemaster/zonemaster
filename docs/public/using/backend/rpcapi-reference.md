@@ -1463,11 +1463,6 @@ A *batch_api_key* can be added to the [configuration file] as
 
 *Tests* enqueued using this method are assigned a [*priority*][Priority] of 5.
 
-> In previous versions of Zonemaster-Backend a new batch could not be created by
-> the same [*username*][Username] if that *username* had created a batch that was
-> not yet finished. That restriction has been removed in version 2023.2.
-
-
 Example request:
 ```json
 {
