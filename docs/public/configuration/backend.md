@@ -71,7 +71,8 @@ matching `/^[a-zA-Z0-9]{10,64}$/`. It is recommended to use an `batch_api_key` o
 at least 22 characters.
 
 Multiple `batch_api_key` is supported. All configured keys will be equal in
-authorization.
+authorization. For each key `batch_api_key` is repeated on a new line in the
+configuration file with the "Batch API Key" as value.
 
 ### enable_add_batch_job
 
