@@ -1805,7 +1805,7 @@ An object with the property:
   the `"finished_tests"` property in the result object.
 
 The use of *[batch id]* is deprecated and will be removed by release v2026.1.
-Use *[hash batch]* instead.
+Use *[hash batch id]* instead.
 
 #### `"result"`
 
