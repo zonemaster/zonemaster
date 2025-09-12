@@ -2,7 +2,7 @@
 
 Zonemaster-CLI is available on [Docker Hub], and can be conveniently downloaded
 and run without any installation. Through Docker Zonemaster-CLI can be run on
-Linux, MacOS and Windows. See [USING] Zonemaster-CLI for how to run
+Linux, macOS and Windows. See [USING] Zonemaster-CLI for how to run
 Zonemaster-CLI on [Docker].
 
 To build your own Docker image, see the [Docker Image Creation] documentation.

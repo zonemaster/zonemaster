@@ -40,6 +40,8 @@
   * [9.3. SQLite](#93-sqlite)
 * [10. Optional features](#10-optional-features)
   * [10.1. Metrics](#101-metrics)
+  * [10.2 Global cache](#102-global-cache)
+
 
 ## 1. Overview
 
@@ -80,7 +82,7 @@ for Zonemaster::Backend, see the [declaration of prerequisites].
 Install dependencies available from binary packages:
 
 ```sh
-sudo dnf -y install jq perl-Class-Method-Modifiers perl-Config-IniFiles perl-DBD-SQLite perl-DBI perl-File-ShareDir perl-File-Slurp perl-HTML-Parser perl-JSON-PP perl-libwww-perl perl-Log-Dispatch perl-Mojolicious perl-Moose perl-Parallel-ForkManager perl-Plack perl-Plack-Middleware-ReverseProxy perl-Plack-Test perl-Role-Tiny perl-Test-Differences perl-Test-Exception perl-Test-Mojo perl-Test-NoWarnings perl-Try-Tiny perl-libintl
+sudo dnf install --assumeyes jq perl-Class-Method-Modifiers perl-Config-IniFiles perl-DBD-SQLite perl-DBI perl-File-ShareDir perl-File-Slurp perl-HTML-Parser perl-JSON-PP perl-libwww-perl perl-Log-Dispatch perl-Mojolicious perl-Moose perl-Parallel-ForkManager perl-Plack perl-Plack-Middleware-ReverseProxy perl-Plack-Test perl-Role-Tiny perl-Test-Differences perl-Test-Exception perl-Test-Mojo perl-Test-NoWarnings perl-Try-Tiny perl-libintl perl-LWP-Protocol-https
 ```
 
 Install dependencies not available from binary packages:
@@ -100,9 +102,6 @@ Install Zonemaster::Backend:
 ```sh
 sudo cpanm --notest Zonemaster::Backend
 ```
-
-> The command above might try to install "DBD::Pg" and "DBD::mysql".
-> You can ignore if it fails. The relevant libraries are installed further down in these instructions.
 
 Add Zonemaster user (unless it already exists):
 
@@ -177,8 +176,21 @@ sudo systemctl start zm-rpcapi
 sudo systemctl start zm-testagent
 ```
 
+If you have changed database daemon, restart the services:
+
+```sh
+sudo systemctl restart zm-rpcapi
+sudo systemctl restart zm-testagent
+```
 
 ### 3.5 Post-installation (Rocky Linux)
+
+To check if the daemons are running, do:
+
+```sh
+sudo systemctl status zm-rpcapi
+sudo systemctl status zm-testagent
+```
 
 See the [post-installation] section for post-installation matters.
 
@@ -193,7 +205,7 @@ See the [post-installation] section for post-installation matters.
 Install required locales:
 
 ```sh
-sudo perl -pi -e 's/^# (da_DK\.UTF-8.*|en_US\.UTF-8.*|es_ES\.UTF-8.*|fi_FI\.UTF-8.*|fr_FR\.UTF-8.*|nb_NO\.UTF-8.*|sv_SE\.UTF-8.*)/$1/' /etc/locale.gen
+sudo perl -pi -e 's/^# (da_DK\.UTF-8.*|en_US\.UTF-8.*|es_ES\.UTF-8.*|fi_FI\.UTF-8.*|fr_FR\.UTF-8.*|nb_NO\.UTF-8.*|sl_SI\.UTF-8.*|sv_SE\.UTF-8.*)/$1/' /etc/locale.gen
 sudo locale-gen
 ```
 
@@ -205,6 +217,7 @@ es_ES.utf8
 fi_FI.utf8
 fr_FR.utf8
 nb_NO.utf8
+sl_SI.utf8
 sv_SE.utf8
 ```
 
@@ -227,9 +240,6 @@ Install Zonemaster::Backend:
 ```sh
 sudo cpanm --notest Zonemaster::Backend
 ```
-
-> The command above might try to install "DBD::Pg" and "DBD::mysql".
-> You can ignore if it fails. The relevant libraries are installed further down in these instructions.
 
 Add Zonemaster user (unless it already exists):
 
@@ -308,8 +318,21 @@ sudo systemctl start zm-rpcapi
 sudo systemctl start zm-testagent
 ```
 
+If you have changed database daemon, restart the services:
+
+```sh
+sudo systemctl restart zm-rpcapi
+sudo systemctl restart zm-testagent
+```
 
 ### 4.5 Post-installation (Debian/Ubuntu)
+
+To check if the daemons are running, do:
+
+```sh
+sudo systemctl status zm-rpcapi
+sudo systemctl status zm-testagent
+```
 
 See the [post-installation] section for post-installation matters.
 
@@ -340,11 +363,7 @@ Install Zonemaster::Backend:
 cpanm --notest Zonemaster::Backend
 ```
 
-> The command above might try to install "DBD::Pg" and "DBD::mysql".
-> You can ignore if it fails. The relevant libraries are installed further down in these instructions.
-
-Unless they already exist, add `zonemaster` user and `zonemaster` group
-(the group is created automatically):
+Unless they already exist, add `zonemaster` user and `zonemaster` group:
 
 ```sh
 cd `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")'`
@@ -416,6 +435,13 @@ service zm_rpcapi start
 service zm_testagent start
 ```
 
+If you have changed database daemon, restart the services:
+
+```sh
+service zm_rpcapi restart
+service zm_testagent restart
+```
+
 ### 5.5 Post-installation (FreeBSD)
 
 To check that the running daemons run:
@@ -451,10 +477,15 @@ Installation will take longer time.
 
 ### 6.3. What to do next?
 
+* For the Zonemaster-Backend functions see the following documents:
+  * [Using Zonemaster-Backend JSON-RPC API]
+  * Backend [JSON-RPC API] documentation
+  * [Using Zonemaster-Backend for batch testing]
+  * [Backend configuration]
+  * Zonemaster [Profiles]
+  * [Backend Environment variables]
 * For a web interface, follow the [Zonemaster::GUI installation] instructions.
 * For a command line interface, follow the [Zonemaster::CLI installation] instruction.
-* For a JSON-RPC API, see the Zonemaster::Backend [JSON-RPC API] documentation.
-
 
 ## 7. Installation with MariaDB
 
@@ -673,12 +704,11 @@ of `postgresql-client`. Determine what version was installed:
 ```sh
 pkg info | grep postgresql | grep client
 ```
-If the installed client is not version `15` (major version) then adjust the
-following command to install `postgresql-server` with the same major version as
-`postgresql-client` installed.
+Replace `XX` in the command below to install `postgresql-server` with the same
+major version as the installed `postgresql-client`, e.g. `17`.
 
 ```sh
-pkg install postgresql15-server
+pkg install postgresqlXX-server
 ```
 
 Enable daemon, initiate and start:
@@ -776,25 +806,34 @@ sudo apt install libnet-statsd-perl
 cpanm --notest Net::Statsd
 ```
 
--------
+### 10.2 Global cache
 
-[Backend configuration]:              ../configuration/backend.md
-[Declaration of prerequisites]:       prerequisites.md
-[JSON-RPC API]:                       ../using/backend/rpcapi-reference.md
-[Main Zonemaster repository]:         https://github.com/zonemaster/zonemaster/blob/master/README.md
-[MariaDB instructions Rocky Linux]:   #71-mariadb-rocky-linux
-[MariaDB instructions Debian]:        #72-mariadb-debianubuntu
-[MySQL instructions FreeBSD]:         #73-mysql-freebsd
-[metrics]:                            ../using/backend/telemetry.md#metrics
-[Post-installation]:                  #6-post-installation
-[PostgreSQL instructions Rocky Linux]:#81-postgresql-rocky-linux
-[PostgreSQL instructions Debian]:     #82-postgresql-debianubuntu
-[PostgreSQL instructions FreeBSD]:    #83-postgresql-freebsd
-[Prerequisites section]:              #2-prerequisites
-[Removing database]:                  #9-cleaning-up-the-database
-[Upgrade document]:                   ../upgrading/backend.md
-[Zonemaster::CLI installation]:       zonemaster-cli.md
-[Zonemaster::Engine installation]:    zonemaster-engine.md
-[Zonemaster::Engine]:                 https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
-[Zonemaster::GUI installation]:       zonemaster-gui.md
-[Zonemaster::LDNS]:                   https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
+If Zonemaster-Backend is to be used for large batches, global cache can improve
+performance. See [Global cache in Zonemaster-Engine].
+
+
+[Backend Environment variables]:                ../configuration/backend-environment-variables.md
+[Backend configuration]:                        ../configuration/backend.md
+[Declaration of prerequisites]:                 prerequisites.md
+[Global cache in Zonemaster-Engine]:            ../configuration/global-cache.md
+[JSON-RPC API]:                                 ../using/backend/rpcapi-reference.md
+[Main Zonemaster repository]:                   https://github.com/zonemaster/zonemaster/blob/master/README.md
+[MariaDB instructions Debian]:                  #72-mariadb-debianubuntu
+[MariaDB instructions Rocky Linux]:             #71-mariadb-rocky-linux
+[Metrics]:                                      ../using/backend/telemetry.md#metrics
+[MySQL instructions FreeBSD]:                   #73-mysql-freebsd
+[Post-installation]:                            #6-post-installation
+[PostgreSQL instructions Debian]:               #82-postgresql-debianubuntu
+[PostgreSQL instructions FreeBSD]:              #83-postgresql-freebsd
+[PostgreSQL instructions Rocky Linux]:          #81-postgresql-rocky-linux
+[Prerequisites section]:                        #2-prerequisites
+[Profiles]:                                     ../configuration/profiles.md
+[Removing database]:                            #9-cleaning-up-the-database
+[Upgrade document]:                             ../upgrading/backend.md
+[Using Zonemaster-Backend for batch testing]:   ../using/backend/Using-Zonemaster-Backend-for-batch-testing.md
+[Using Zonemaster-Backend JSON-RPC API]:        ../using/backend/Using-Zonemaster-Backend-JSON-RPC-API.md
+[Zonemaster::CLI installation]:                 zonemaster-cli.md
+[Zonemaster::Engine installation]:              zonemaster-engine.md
+[Zonemaster::Engine]:                           https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
+[Zonemaster::GUI installation]:                 zonemaster-gui.md
+[Zonemaster::LDNS]:                             https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md

@@ -19,7 +19,7 @@ At this point, tests can be run from the command-line on the local machine. To i
 
 Alternatively, Zonemaster-CLI is available on [Docker Hub], and can be
 conveniently downloaded and run without any installation. Through [Docker]
-Zonemaster-CLI can be run on Linux, MacOS and Windows. See [Using the CLI] for
+Zonemaster-CLI can be run on Linux, macOS and Windows. See [Using the CLI] for
 how to run Zonemaster-CLI on Docker.
 
 To build your own Docker image, see the [Docker Image Creation] documentation.

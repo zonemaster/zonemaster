@@ -1,0 +1,21 @@
+$ORIGIN child.parent.good-mixed-undel-2.methodsv2.xa.
+$TTL 3600
+; Undelegated
+
+@       SOA     ns1 admin. (
+                2024060301      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+		NS	ns3
+		NS	ns4
+
+ns3		A	127.40.1.53
+ns3		AAAA	fda1:b2:c3:0:127:40:1:53
+ns4		A	127.40.1.54
+ns4		AAAA	fda1:b2:c3:0:127:40:1:54
+
+; EOF
+

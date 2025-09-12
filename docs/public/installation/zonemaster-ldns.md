@@ -20,7 +20,7 @@ make test
 make install
 ```
 
-> **Note:** The source ZIP files downloaded from Github are broken with
+> **Note:** The source ZIP files downloaded from GitHub are broken with
 > respect to this instruction.
 
 
@@ -68,16 +68,6 @@ Disable with `--no-internal-ldns`.
 When enabled, an included version of ldns is statically linked into
 Zonemaster::LDNS.
 When disabled, libldns is dynamically linked just like other dependencies.
-
-#### Randomized capitalization
-
-Disabled by default.
-Enable with `--randomize`.
-
-> **Note:** This feature is experimental.
-
-Randomizes the capitalization of returned domain names.
-
 
 #### Custom OpenSSL
 

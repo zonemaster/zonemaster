@@ -1,0 +1,416 @@
+$ORIGIN methodsv2.xa.                              ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024071201      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+		NS	ns1
+		NS	ns2
+
+ns1		A	127.40.1.21
+ns1		AAAA	fda1:b2:c3:0:127:40:1:21
+ns2		A	127.40.1.22
+ns2		AAAA	fda1:b2:c3:0:127:40:1:22
+
+
+; Name server names that holds no zones. Just provides addresses.
+ns6-delegated-child      A     127.40.1.26
+ns6-delegated-child      AAAA  fda1:b2:c3:0:127:40:1:26
+ns7-delegated-child      A     127.40.1.27
+ns7-delegated-child      AAAA  fda1:b2:c3:0:127:40:1:27
+ns8-undelegated-child    A     127.40.1.28
+ns8-undelegated-child    AAAA  fda1:b2:c3:0:127:40:1:28
+ns9-undelegated-child    A     127.40.1.29
+ns9-undelegated-child    AAAA  fda1:b2:c3:0:127:40:1:29
+
+
+$ORIGIN good-1.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN good-2.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+
+$ORIGIN good-3.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+
+$ORIGIN good-4.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN good-5.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN good-6.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN good-7.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+
+$ORIGIN good-undel-1.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+
+$ORIGIN good-undel-2.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN diff-ns-1.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN diff-ns-2.methodsv2.xa.            ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN ib-not-in-zone-1.methodsv2.xa.          ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN child-no-zone-1.methodsv2.xa.          ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN child-no-zone-2.methodsv2.xa.          ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN good-mixed-undel-1.methodsv2.xa.           ; Must end with "."
+@		NS	ns1
+@		NS	ns4
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns4		A	127.40.1.34
+ns4		AAAA	fda1:b2:c3:0:127:40:1:34
+
+$ORIGIN good-mixed-undel-2.methodsv2.xa.           ; Must end with "."
+@		NS	ns1
+@		NS	ns4
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns4		A	127.40.1.34
+ns4		AAAA	fda1:b2:c3:0:127:40:1:34
+
+$ORIGIN no-del-mixed-undel-1.methodsv2.xa.          ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN no-child-1.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN no-child-2.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN no-chld-par-undeter-1.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN chld-found-par-undet-1.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN chld-found-inconsist-1.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN chld-found-inconsist-2.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN chld-found-inconsist-3.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN chld-found-inconsist-4.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN chld-found-inconsist-5.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN chld-found-inconsist-6.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN chld-found-inconsist-7.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN chld-found-inconsist-8.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN chld-found-inconsist-9.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN chld-found-inconsist-10.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN no-del-undel-no-par-1.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN no-del-undel-par-und-1.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN child-alias-1.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+
+$ORIGIN zone-err-grandparent-1.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN zone-err-grandparent-2.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN zone-err-grandparent-3.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN deleg-oob-w-error-1.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN deleg-oob-w-error-2.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN deleg-oob-w-error-3.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN deleg-oob-w-error-4.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN child-ns-cname-1.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN child-ns-cname-2.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN child-ns-cname-3.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN child-ns-cname-4.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN parent-ns-cname-1.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+$ORIGIN parent-ns-cname-2.methodsv2.xa.                    ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.40.1.31
+ns1		AAAA	fda1:b2:c3:0:127:40:1:31
+ns2		A	127.40.1.32
+ns2		AAAA	fda1:b2:c3:0:127:40:1:32
+
+
+
+
+
+; EOF

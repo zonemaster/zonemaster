@@ -47,6 +47,11 @@ to a server behind it since there will never be a server behind that name, as
 the purpose is most definitely to follow that practice. Instead, a special
 message will be outputted.
  
+The operational consequences of errors on SOA MNAME are, however, limited. It is
+never used for finding authoritative name servers for the zone, and is not part
+of normal lookup. Therefore, the level set by this test case on SOA MNAME errors 
+is not higher than NOTICE.
+
 This Test Case will check that:
  - the SOA MNAME contains the master name server of *Child Zone*,
    as best as it can be determined.
@@ -77,17 +82,17 @@ is not tested by this Test Case, see [CONSISTENCY06].
 
 Message Tag                   | Level   | Arguments                            | Message ID for message tag
 :---------------------------- |:--------|:-------------------------------------|:---------------------------------------------------------------------------------------
-Z01_MNAME_HAS_LOCALHOST_ADDR  | WARNING | nsname, ns_ip                        | SOA MNAME name server "{nsname}" resolves to a localhost IP address ({ns_ip}).
+Z01_MNAME_HAS_LOCALHOST_ADDR  | NOTICE  | nsname, ns_ip                        | SOA MNAME name server "{nsname}" resolves to a localhost IP address ({ns_ip}).
 Z01_MNAME_IS_DOT              | NOTICE  | ns_ip_list                           | SOA MNAME is specified as "." which usually means "no server". Fetched from name servers "{ns_ip_list}".
-Z01_MNAME_IS_LOCALHOST        | WARNING | ns_ip_list                           | SOA MNAME name server is "localhost", which is invalid. Fetched from name servers "{ns_ip_list}".
+Z01_MNAME_IS_LOCALHOST        | NOTICE  | ns_ip_list                           | SOA MNAME name server is "localhost", which is invalid. Fetched from name servers "{ns_ip_list}".
 Z01_MNAME_IS_MASTER           | DEBUG   | ns_list                              | SOA MNAME name server(s) "{ns_list}" appears to be master.
-Z01_MNAME_MISSING_SOA_RECORD  | WARNING | ns                                   | SOA MNAME name server "{ns}" reponds to an SOA query with no SOA records in the answer section.
-Z01_MNAME_NO_RESPONSE         | WARNING | ns                                   | SOA MNAME name server "{ns}" does not respond to an SOA query.
-Z01_MNAME_NOT_AUTHORITATIVE   | WARNING | ns                                   | SOA MNAME name server "{ns}" is not authoritative for the zone.
+Z01_MNAME_MISSING_SOA_RECORD  | NOTICE  | ns                                   | SOA MNAME name server "{ns}" responds to an SOA query with no SOA records in the answer section.
+Z01_MNAME_NO_RESPONSE         | NOTICE  | ns                                   | SOA MNAME name server "{ns}" does not respond to an SOA query.
+Z01_MNAME_NOT_AUTHORITATIVE   | NOTICE  | ns                                   | SOA MNAME name server "{ns}" is not authoritative for the zone.
 Z01_MNAME_NOT_IN_NS_LIST      | INFO    | nsname                               | SOA MNAME name server "{nsname}" is not listed as NS record for the zone.
-Z01_MNAME_NOT_MASTER          | WARNING | ns_list, soaserial, soaserial_list   | SOA MNAME name server(s) "{ns_list}" do(es) not have the highest SOA SERIAL (expected "{soaserial}" but got "{soaserial_list}")
-Z01_MNAME_NOT_RESOLVE         | WARNING | nsname                               | SOA MNAME name server "{nsname}" cannot be resolved into an IP address.
-Z01_MNAME_UNEXPECTED_RCODE    | WARNING | ns, rcode                            | SOA MNAME name server "{ns}" gives unexpected RCODE name ("{rcode}") in response to an SOA query.
+Z01_MNAME_NOT_MASTER          | NOTICE  | ns_list, soaserial, soaserial_list   | SOA MNAME name server(s) "{ns_list}" do(es) not have the highest SOA SERIAL (expected "{soaserial}" but got "{soaserial_list}")
+Z01_MNAME_NOT_RESOLVE         | NOTICE  | nsname                               | SOA MNAME name server "{nsname}" cannot be resolved into an IP address.
+Z01_MNAME_UNEXPECTED_RCODE    | NOTICE  | ns, rcode                            | SOA MNAME name server "{ns}" gives unexpected RCODE name ("{rcode}") in response to an SOA query.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the

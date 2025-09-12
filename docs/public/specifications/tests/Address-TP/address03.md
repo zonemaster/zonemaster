@@ -28,7 +28,7 @@ The domain name to be tested.
 
 2. Obtain the reverse DNS entries associated to name servers names as described
    in test case [ADDRESS02](address02.md). Let's call its outcome HASH2 which
-   consists of IP adresses as keys and hostnames as values. As multiple PTR
+   consists of IP addresses as keys and hostnames as values. As multiple PTR
    records are allowed, an IP address can have several corresponding hostnames.
 
 3. Compare HASH2 to HASH1. 

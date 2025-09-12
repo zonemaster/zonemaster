@@ -1,0 +1,21 @@
+$ORIGIN good-nsec3-2.dnssec10.xa.
+;
+$TTL   86400
+@   IN   SOA   localhost. root.localhost. (
+               11          ; Serial
+               3600       ; Refresh
+               1200       ; Retry
+               2419200    ; Expire
+               604800 )   ; Negative Cache TTL
+;
+@       NS    ns1a
+@       NS    ns1b
+@       NS    ns1c
+
+
+ns1a     A     127.15.10.31
+ns1a     AAAA  fda1:b2:c3:0:127:15:10:31
+ns1b     A     127.15.10.31
+ns1b     AAAA  fda1:b2:c3:0:127:15:10:31
+ns1c     A     127.15.10.31
+ns1c     AAAA  fda1:b2:c3:0:127:15:10:31

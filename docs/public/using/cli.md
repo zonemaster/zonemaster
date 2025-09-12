@@ -112,10 +112,19 @@ docker run -t --rm zonemaster/cli zonemaster.net --no-ipv6 --show-testcase --loc
 zonemaster-cli zonemaster.net --no-ipv6 --show-testcase --locale=da_DK.UTF-8
 ```
 
-To see all available command line options, use the `--help` command.
+To get brief descriptions of a selection of the most important command line
+options run:
 
-```
+```sh
 zonemaster-cli --help
+```
+
+For complete reference documentation, see the manual page.
+This includes an exhaustive list of options and in-depth documentation for each one,
+as well as examples and additional context.
+
+```sh
+man zonemaster-cli
 ```
 
 ### Using Docker or local installation
@@ -156,6 +165,7 @@ fi   | Finnish
 fr   | French
 nb   | Norwegian
 es   | Spanish
+sl   | Slovenian
 sv   | Swedish
 
 E.g.:
@@ -177,7 +187,7 @@ command will export `LC_ALL` with the that value to the docker container.
 docker run -e LC_ALL -t --rm zonemaster/cli zonemaster.net
 ```
 
-Environment vaiables `LANG` and `LC_MESSAGES` can be used in the same way as
+Environment variables `LANG` and `LC_MESSAGES` can be used in the same way as
 `LC_ALL`.
 
 
@@ -197,6 +207,7 @@ fr_FR.UTF-8 | French
 nb_NO.UTF-8 | Norwegian
 es_ES.UTF-8 | Spanish
 sv_SE.UTF-8 | Swedish
+sl_SI.UTF-8 | Slovenian
 
 E.g.:
 ```sh

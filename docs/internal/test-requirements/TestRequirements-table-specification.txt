@@ -15,7 +15,7 @@ containing "END-TABLE".
 The table must have four fields. There must be no "|" at the start
 or end of the lines in the table.
 
-Field one is the requirement ID which must have the formt
+Field one is the requirement ID which must have the form
 "Rxxxxx" where x is a digit 0-9. The ID should sorted and must be
 unique.
 

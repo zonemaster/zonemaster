@@ -1,0 +1,69 @@
+$ORIGIN delegation03.xa.                              ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024112200      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS    ns1
+@       NS    ns2
+
+ns1     A     127.16.3.21
+ns1     AAAA  fda1:b2:c3:0:127:16:3:21
+ns2     A     127.16.3.22
+ns2     AAAA  fda1:b2:c3:0:127:16:3:22
+
+
+$ORIGIN referral-size-ok-1.delegation03.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.16.3.31
+ns1     AAAA    fda1:b2:c3:0:127:16:3:31
+ns2     A       127.16.3.32
+ns2     AAAA    fda1:b2:c3:0:127:16:3:32
+
+$ORIGIN referral-size-ok-2.delegation03.xa.
+@       NS      ns1.ipv4
+@       NS      ns1.ipv6
+@       NS      ns2.ipv4
+@       NS      ns2.ipv6
+
+ns1.ipv4        A       127.16.3.31
+ns1.ipv6        AAAA    fda1:b2:c3:0:127:16:3:32
+ns2.ipv4        A       127.16.3.32
+ns2.ipv6        AAAA    fda1:b2:c3:0:127:16:3:33
+
+$ORIGIN referral-size-too-large-1.delegation03.xa.
+@       NS      ns1.1abcdefghijklmnopqrstuv.1defghijkl
+@       NS      ns2.2abcdefghijklmnopqrstuv.2defghijkl
+@       NS      ns3.3abcdefghijklmnopqrstuv.3defghijkl
+@       NS      ns4.4abcdefghijklmnopqrstuv.4defghijkl
+@       NS      ns5.4abcdefghijklmnopqrstuv.5defghijkl
+ns1.1abcdefghijklmnopqrstuv.1defghijkl     A       127.16.3.31
+ns1.1abcdefghijklmnopqrstuv.1defghijkl     AAAA    fda1:b2:c3:0:127:16:3:31
+ns2.2abcdefghijklmnopqrstuv.2defghijkl     A       127.16.3.32
+ns2.2abcdefghijklmnopqrstuv.2defghijkl     AAAA    fda1:b2:c3:0:127:16:3:32
+ns3.2abcdefghijklmnopqrstuv.3defghijkl     A       127.16.3.32
+ns3.2abcdefghijklmnopqrstuv.3defghijkl     AAAA    fda1:b2:c3:0:127:16:3:32
+ns4.2abcdefghijklmnopqrstuv.4defghijkl     A       127.16.3.32
+ns4.2abcdefghijklmnopqrstuv.4defghijkl     AAAA    fda1:b2:c3:0:127:16:3:32
+ns5.2abcdefghijklmnopqrstuv.5defghijkl     A       127.16.3.32
+ns5.2abcdefghijklmnopqrstuv.5defghijkl     AAAA    fda1:b2:c3:0:127:16:3:32
+
+$ORIGIN referral-size-too-large-2.delegation03.xa.
+@       NS      ns1.1abcdefghijklmnopqrstuvwxyz.1abcdefghijklmnopqrstuvwxy.1abcdefghijklmnopqrstuvw
+@       NS      ns2.2abcdefghijklmnopqrstuvwxyz.2abcdefghijklmnopqrstuvwxy.2abcdefghijklmnopqrstuvw
+@       NS      ns3.3abcdefghijklmnopqrstuvwxyz.3abcdefghijklmnopqrstuvwxy.3abcdefghijklmnopqrstuvw
+@       NS      ns4.4abcdefghijklmnopqrstuvwxyz.4abcdefghijklmnopqrstuvwxy.4abcdefghijklmnopqrstuvw
+ns1.1abcdefghijklmnopqrstuvwxyz.1abcdefghijklmnopqrstuvwxy.1abcdefghijklmnopqrstuvw     A       127.16.3.31
+ns1.1abcdefghijklmnopqrstuvwxyz.1abcdefghijklmnopqrstuvwxy.1abcdefghijklmnopqrstuvw     AAAA    fda1:b2:c3:0:127:16:3:31
+ns2.2abcdefghijklmnopqrstuvwxyz.2abcdefghijklmnopqrstuvwxy.2abcdefghijklmnopqrstuvw     A       127.16.3.32
+ns2.2abcdefghijklmnopqrstuvwxyz.2abcdefghijklmnopqrstuvwxy.2abcdefghijklmnopqrstuvw     AAAA    fda1:b2:c3:0:127:16:3:31
+ns3.3abcdefghijklmnopqrstuvwxyz.3abcdefghijklmnopqrstuvwxy.3abcdefghijklmnopqrstuvw     A       127.16.3.33
+ns3.3abcdefghijklmnopqrstuvwxyz.3abcdefghijklmnopqrstuvwxy.3abcdefghijklmnopqrstuvw     AAAA    fda1:b2:c3:0:127:16:3:31
+ns4.4abcdefghijklmnopqrstuvwxyz.4abcdefghijklmnopqrstuvwxy.4abcdefghijklmnopqrstuvw     A       127.16.3.34
+ns4.4abcdefghijklmnopqrstuvwxyz.4abcdefghijklmnopqrstuvwxy.4abcdefghijklmnopqrstuvw     AAAA    fda1:b2:c3:0:127:16:3:31
+

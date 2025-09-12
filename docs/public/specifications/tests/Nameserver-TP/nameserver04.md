@@ -29,7 +29,7 @@ this test case fails.
 
 ### Special procedural requirements
 
-If there are many authoritative DNS nodes behind the IP adress the query
+If there are many authoritative DNS nodes behind the IP address the query
 is sent to, there could be multiple answers with possibly different source
 addresses for the query. This special case is currently ignored.
 

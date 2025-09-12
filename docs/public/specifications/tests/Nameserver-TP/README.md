@@ -27,5 +27,4 @@ This document uses the terminology defined in the [Master Test Plan].
 |[NAMESERVER11](nameserver11.md)|Test for unknown EDNS OPTION-CODE|
 |[NAMESERVER12](nameserver12.md)|Test for unknown EDNS flags|
 |[NAMESERVER13](nameserver13.md)|Test for truncated response on EDNS query|
-|[NAMESERVER14](nameserver14.md)|Test for unknown version with unknown OPTION-CODE|
 |[NAMESERVER15](nameserver15.md)|Checking for revealed software version|

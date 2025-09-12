@@ -11,10 +11,9 @@ and processor architecture listed below.
 
 * [Debian] 12
 * [Docker]
-* [FreeBSD] 14.1
-* [Rocky Linux] 8.10
-* [Rocky Linux] 9.4
-* [Ubuntu] 20.04
+* [FreeBSD] 14
+* [Rocky Linux] 8
+* [Rocky Linux] 9
 * [Ubuntu] 22.04
 * [Ubuntu] 24.04
 
@@ -25,25 +24,19 @@ release of Zonemaster.
 
 Only the Docker images provided by the Zonemaster project on [Docker Hub] are
 supported. Currently only Zonemaster-CLI is supported on Docker. Docker itself
-can run on any of the [Docker] supported OSs (Linux, MacOS and Windows).
-
-[Rocky Linux] has replaced CentOS in Zonemaster version v2021.2 since CentOS 8
-is not supported anymore and CentOS 7 is old and does not support modern OpenSSL
-required by Zonemaster. Rocky Linux is also a Red Hat derivative and is available
-at large cloud providers.
+can run on any of the [Docker] supported OSs (Linux, macOS and Windows).
 
 ## Supported database engine versions
 
 Operating System | MariaDB | PostgreSQL
 ---------------- | --------| ---------------
-Debian 12        | 10.11   | 15.6
+Debian 12        | 10.11   | 15
 Docker           | n/a     | n/a
-FreeBSD 14.1     | 8.0 (*) | 15.7
-Rocky Linux 8.10 | 10.3    | 10.23
-Rocky Linux 9.4  | 10.5    | 13.14
-Ubuntu 20.04     | 10.3    | 12.18
-Ubuntu 22.04     | 10.6    | 14.12
-Ubuntu 24.04     | 10.11   | 16.3
+FreeBSD 14       | 8.0 (*) | 17
+Rocky Linux 8    | 10.3    | 10
+Rocky Linux 9    | 10.5    | 13
+Ubuntu 22.04     | 10.6    | 14
+Ubuntu 24.04     | 10.11   | 16
 
 * (*) FreeBSD uses MySQL, not MariaDB.
 * SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
@@ -60,15 +53,14 @@ Operating System | Perl
 ---------------- | ----
 Debian 12        | 5.36
 Docker           | (*)
-FreeBSD 14.1     | 5.36
-Rocky Linux 8.10 | 5.26
-Rocky Linux 9.4  | 5.32
-Ubuntu 20.04     | 5.30
+FreeBSD 14       | 5.40
+Rocky Linux 8    | 5.26
+Rocky Linux 9    | 5.32
 Ubuntu 22.04     | 5.34
 Ubuntu 24.04     | 5.38
 
 
-* Zonemaster technically requires Perl version 5.16 or higher, but has only been tested with the versions in the table above. 
+* Zonemaster technically requires Perl version 5.26 or higher, but has only been tested with the versions in the table above.
 * Zonemaster has been tested with the default version of Perl in the OSs as
   listed in the table above.
 * (*) Perl is included in the Docker image published on [Docker Hub].

@@ -160,7 +160,6 @@ Test Case specifications:
 |[NAMESERVER11](Nameserver-TP/nameserver11.md)|Test for unknown EDNS OPTION-CODE|
 |[NAMESERVER12](Nameserver-TP/nameserver12.md)|Test for unknown EDNS flags|
 |[NAMESERVER13](Nameserver-TP/nameserver13.md)|Test for truncated response on EDNS query|
-|[NAMESERVER14](Nameserver-TP/nameserver14.md)|Test for unknown version with unknown OPTION-CODE|
 |[NAMESERVER15](Nameserver-TP/nameserver15.md)|Checking for revealed software version|
 |**Syntax-TP**| |
 |[SYNTAX01](Syntax-TP/syntax01.md)|No illegal characters in the domain name|

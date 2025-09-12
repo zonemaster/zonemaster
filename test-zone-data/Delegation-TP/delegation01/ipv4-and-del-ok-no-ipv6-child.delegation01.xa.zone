@@ -1,0 +1,17 @@
+$ORIGIN ipv4-and-del-ok-no-ipv6-child.delegation01.xa.             ; Must end with "."
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024110106      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS    ns1
+@       NS    ns2
+
+ns1     A     127.16.1.31
+ns1     A     127.16.1.32
+
+; EOF

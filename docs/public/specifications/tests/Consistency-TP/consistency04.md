@@ -43,7 +43,7 @@ case will set DEBUG level on messages for non-responsive name servers.
    NS RR set for the *Child Zone* with the AA flag set, emit 
    *[NO_RESPONSE_NS_QUERY]*.
 
-6. If all retreived NS RR sets are equal, emit *[ONE_NS_SET]*. Otherwise, 
+6. If all retrieved NS RR sets are equal, emit *[ONE_NS_SET]*. Otherwise, 
    emit *[MULTIPLE_NS_SET]*.
 
 

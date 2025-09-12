@@ -58,8 +58,8 @@ UDP connectivity is tested by Test Case [Connectivity01].
 
 Message Tag                         |Level  |Arguments  | Message ID for message tag
 :-----------------------------------|:------|:----------|:---------------------------------------------------------------------------------------
-CN02_MISSING_NS_RECORD_TCP          |WARNING| ns        | Nameserver {ns} reponds to a NS query with no NS records in the answer section over TCP.
-CN02_MISSING_SOA_RECORD_TCP         |WARNING| ns        | Nameserver {ns} reponds to a SOA query with no SOA records in the answer section over TCP.
+CN02_MISSING_NS_RECORD_TCP          |WARNING| ns        | Nameserver {ns} responds to a NS query with no NS records in the answer section over TCP.
+CN02_MISSING_SOA_RECORD_TCP         |WARNING| ns        | Nameserver {ns} responds to a SOA query with no SOA records in the answer section over TCP.
 CN02_NO_RESPONSE_NS_QUERY_TCP       |WARNING| ns        | Nameserver {ns} does not respond to NS queries over TCP.
 CN02_NO_RESPONSE_SOA_QUERY_TCP      |WARNING| ns        | Nameserver {ns} does not respond to SOA queries over TCP.
 CN02_NO_RESPONSE_TCP                |WARNING| ns        | Nameserver {ns} does not respond to any queries over TCP.

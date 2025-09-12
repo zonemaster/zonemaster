@@ -6,7 +6,7 @@
 ### Objective
 
 The objectives for this Test Case has yet to be defined. This is a
-placeholder for a complete defintion of the Test Case. The Test Case
+placeholder for a complete definition of the Test Case. The Test Case
 is not yet implemented.
 
 Test for DNSSEC Algorithm Completeness (DS->DNSKEY->RRSIG)

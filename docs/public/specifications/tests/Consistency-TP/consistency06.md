@@ -41,7 +41,7 @@ case will set DEBUG level on messages for non-responsive name servers.
        and save that to compare it with the MNAME from the other name
        servers.
 
- 4. Compare the MNAME fields retreived from all name servers.
+ 4. Compare the MNAME fields retrieved from all name servers.
 
  5. If at least one name server has responded with a SOA record and the 
     MNAME is identical in all SOA records retrieved, emit *[ONE_SOA_MNAME]*.

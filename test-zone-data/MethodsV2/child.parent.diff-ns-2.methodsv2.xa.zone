@@ -1,0 +1,20 @@
+$ORIGIN child.parent.diff-ns-2.methodsv2.xa.
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                2024052902      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+		NS	ns1-2
+		NS	ns3
+
+ns1-2		A	127.40.1.51
+ns1-2		AAAA	fda1:b2:c3:0:127:40:1:51
+ns3		A	127.40.1.53
+ns3		AAAA	fda1:b2:c3:0:127:40:1:53
+
+; EOF
+

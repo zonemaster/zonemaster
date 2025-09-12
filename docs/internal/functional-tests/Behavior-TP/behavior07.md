@@ -6,7 +6,7 @@
 
 ### Objective 
 
-The objective of this test is to verify the engine verfies IDN domains
+The objective of this test is to verify the engine verifies IDN domains
 
 ### Inputs
 
