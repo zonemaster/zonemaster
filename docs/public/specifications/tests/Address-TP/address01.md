@@ -64,7 +64,8 @@ message. The argument names are defined in the [Argument list].
    4. Name server name and IP address ("Not Globally Reachable").
 
 2. Retrieve all name server names and IP addresses for *Child Zone* using
-   methods [Get-Del-NS-Names-and-IPs] and [Get-Zone-NS-Names-and-IPs].
+   methods [Get-Del-NS-Names-and-IPs] and [Get-Zone-NS-Names-and-IPs],
+   and add them to the *Name Server IP* set.
 
 
 3. Obtain the IP addresses of each name server for *Child Zone* using the method
