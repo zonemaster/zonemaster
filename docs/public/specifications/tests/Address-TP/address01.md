@@ -68,9 +68,6 @@ message. The argument names are defined in the [Argument list].
    and add them to the *Name Server IP* set.
 
 
-3. Obtain the IP addresses of each name server for *Child Zone* using the method
-   [Get-Zone-NS-Names-and-IPs] and add any non-duplicate results to
-   *Name Server IP* set.
 
 4. If the *Name Server IP* set is empty, output *[A01_NO_NAME_SERVERS_FOUND]*
    and exit the test.
