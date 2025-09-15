@@ -18,7 +18,7 @@ here.
 
 3. Install Node.js by using [NVM], a node version manager.
    ```sh
-   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
    ```
 
 4. After installation, log out and log in again to handle [known issue], or just:
@@ -29,12 +29,12 @@ here.
 
 5. Install the supported Node.js version
    ```sh
-   nvm install 18
+   nvm install 24
    ```
 
 6. Switch to the previously installed version
    ```sh
-   nvm use 18
+   nvm use 24
    ```
 
 [known issue]:                          https://github.com/nvm-sh/nvm#troubleshooting-on-linux
