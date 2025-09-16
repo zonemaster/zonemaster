@@ -268,6 +268,11 @@ If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol. Log a message reporting
 on the ignored result.
 
+This test case should always be the first test case to be run in the
+DNSSEC Module. The second test case to be run is [DNSSEC11]. If this test case
+outputs *[DS07_NOT_SIGNED]* for a test, then no other
+[test case of the DNSSEC module][DNSSEC#test-case-list] should be run.
+
 
 ## Intercase dependencies
 
@@ -287,7 +292,9 @@ No special terminology for this test case.
 [DNS Response]:                               ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
 [DNSSEC Query]:                               ../DNSQueryAndResponseDefaults.md#default-setting-in-dnssec-query
 [DNSSEC README]:                              README.md
+[DNSSEC#test-case-list]:                      README.md#test-case-list
 [DNSSEC Response]:                            ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
+[DNSSEC11]:                                   dnssec11.md
 [DS07_DS_FOR_SIGNED_ZONE]:                    #summary
 [DS07_DS_ON_PARENT_SERVER]:                   #summary
 [DS07_INCONSISTENT_DS]:                       #summary
