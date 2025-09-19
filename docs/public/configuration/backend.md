@@ -1,4 +1,4 @@
-# Configuration
+# Backend configuration
 
 ## Table of contents
 
@@ -31,6 +31,9 @@
   * [statsd_host](#statsd_host)
   * [statsd_port](#statsd_port)
 * [PUBLIC PROFILES and PRIVATE PROFILES sections](#public-profiles-and-private-profiles-sections)
+* [TLD URL section](#tld-url-section)
+  * [extract_url](#extract_url)
+  * [tld_\<TLD\>](#tld_tld)
 * [ZONEMASTER section](#zonemaster-section)
   * [max_zonemaster_execution_time](#max_zonemaster_execution_time)
   * [number_of_processes_for_frontend_testing](#number_of_processes_for_frontend_testing)
@@ -319,6 +322,45 @@ Specifying a profile JSON file that contains no profile data is equivalent
 to specifying a profile JSON file containing the entire
 *Zonemaster Engine default profile*.
 
+
+## TLD URL section
+
+For the context of this section, see [Finding TLD URL for use in GUI].
+
+The TLD URL section has several keys:
+* extract_url
+* tld_\<TLD\> where `<TLD>` can be any string matching one of the following
+  patterns:
+  * `[a-z][a-z]+`
+  * `xn--[a-z0-9-][a-z0-9-]+`
+
+### extract_url
+
+Boolean value to enable the function described in document
+[Finding TLD URL for use in GUI]. Disabling the function is the same as setting
+a global policy to block the function as described in the document.
+
+Accepted values: `yes` or `no`, default to `yes` (enabled).
+
+### tld_\<TLD\>
+
+It is optional to include such keys, but if included each key is for a single
+TLD.
+
+The value is a string that must match one of the following patterns:
+  * `-` (a single hyphen-minus)
+  * An URL string as defined in section "TXT record" in
+    [TLD URL for GUI][TLD URL for GUI#txt-record]
+
+Example of possible configuration where `xa` is blocked, `xb` and `example` are given
+URL strings:
+
+```
+tld_xa   = -
+tld_xb   = http://nic.xb/domain
+tld_example   = https://whoisweb.noc.example/domain/<DOM>
+```
+
 ## ZONEMASTER section
 
 The ZONEMASTER section has several keys :
@@ -401,6 +443,8 @@ Otherwise a new test request is enqueued.
 [RPCAPI.enable_batch_create]:         #enable_batch_create
 [RPCAPI.enable_user_create]:          #enable_user_create
 [SQLITE.database_file]:               #database_file
+[TLD URL for GUI]:                    tld-url-for-gui.md
+[TLD URL for GUI#txt-record]:         tld-url-for-gui.md#txt-record
 [US ASCII printable characters]:      https://en.wikipedia.org/wiki/ASCII#Printable_characters
 [Zonemaster-Engine share directory]:  https://github.com/zonemaster/zonemaster-engine/tree/master/share
 [Zonemaster::Engine::Profile]:        https://metacpan.org/pod/Zonemaster::Engine::Profile#PROFILE-PROPERTIES
