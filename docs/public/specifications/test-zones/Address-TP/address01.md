@@ -39,10 +39,11 @@ scenario. The names of those zones are given in section
 The test case can output any of these message tags, but not necessarily in any combination.
 
 - A01_ADDR_GLOBALLY_REACHABLE    
-- A01_NO_GLOBALLY_REACHABLE_ADDR 
-- A01_LOCAL_USE_ADDR
-- A01_DOCUMENTATION_ADDR
 - A01_ADDR_NOT_GLOBALLY_REACHABLE
+- A01_DOCUMENTATION_ADDR
+- A01_LOCAL_USE_ADDR
+- A01_NO_GLOBALLY_REACHABLE_ADDR 
+- A01_NO_NAME_SERVERS_FOUND
 
 ## Test scenarios and message tags
 
@@ -61,6 +62,7 @@ MIXED-DOC-OTHER-1    | A01_DOCUMENTATION_ADDR, A01_ADDR_NOT_GLOBALLY_REACHABLE  
 MIXED-DOC-OTHER-2    | A01_DOCUMENTATION_ADDR, A01_ADDR_NOT_GLOBALLY_REACHABLE                      | 2) 
 MIXED-ALL-1          | A01_ADDR_NOT_GLOBALLY_REACHABLE, A01_DOCUMENTATION_ADDR, A01_LOCAL_USE_ADDR  | 2) 
 MIXED-ALL-2          | A01_ADDR_NOT_GLOBALLY_REACHABLE, A01_DOCUMENTATION_ADDR, A01_LOCAL_USE_ADDR  | 2) 
+NO-NAME-SERVERS      | A01_NO_NAME_SERVERS_FOUND                                                    | 2)
 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
 * (2) All tags except for those specified as "Mandatory message tags"
@@ -189,6 +191,12 @@ combinations of defined address block types.
     * IPv4 address NOT_GLOBALLY_REACHABLE 
     * IPv6 address DOCUMENTATION_ADDR
 
+### NO_NAME_SERVERS
+No delegation for the zone and the zone does not exist.
+
+* Zone: no-name-servers.address01.xa
+  * No delegation
+  * No zone
 
 [ADDRESS01]:                        ../../tests/Address-TP/address01.md
 [RCODE Name]:                       https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
