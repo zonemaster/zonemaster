@@ -33,6 +33,7 @@
   * [API method: version_info](#api-method-version_info)
   * [API method: profile_names](#api-method-profile_names)
   * [API method: get_language_tags](#api-method-get_language_tags)
+  * [API method: get_tld_url](#api-method-get_tld_url)
   * [API method: get_host_by_name](#api-method-get_host_by_name)
   * [API method: get_data_from_parent_zone](#api-method-get_data_from_parent_zone)
   * [API method: start_domain_test](#api-method-start_domain_test)
@@ -488,6 +489,97 @@ An array of [*language tags*][Language tag]. It is never empty.
 > errors in the configuration file and make it not to reread the configuration
 > file while running.
 >
+
+
+### API method: `get_tld_url`
+
+Returns a URL for the closest TLD to the domain name in the request, or return
+empty. For context see [TLD URL for GUI].
+
+Example request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "zonemaster.net"}
+}
+```
+
+Example response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "url": "http://www.verisigninc.com"
+  }
+}
+```
+
+Example request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "zonemaster.xa"}
+}
+```
+
+Example response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1
+  "result": {
+  }
+}
+```
+
+#### `"result"`
+
+An empty object or an object with the following properties:
+
+"`url`": A http or https URL.
+
+
+#### `"error"`
+
+* If the domain parameter is missing an error code of -32602 is returned. The
+`data` property contains an array of all errors, see [Validation error data].
+
+Example of a request that triggers an error response:
+
+Example request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": { "something": "nothing" }
+}
+```
+
+
+  Example of error response:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1624630143271,
+  "error": {
+    "data": [
+      {
+        "message": "The domain name is missing",
+        "path": "/domain"
+      }
+    ],
+    "code": "-32602",
+    "message": "Invalid method parameter(s)."
+  }
+}
+```
 
 
 ### API method: `get_host_by_name`
@@ -1656,6 +1748,7 @@ There are also some experimental API methods documented only by name:
 [Test id]:                            #test-id
 [Test result]:                        #test-result
 [Timestamp]:                          #timestamp
+[TLD URL for GUI]:                    ../../configuration/tld-url-for-gui.md
 [Username]:                           #username
 [Validation error data]:              #validation-error-data
 [ZONEMASTER.age_reuse_previous_test]: ../../configuration/backend.md#age_reuse_previous_test
