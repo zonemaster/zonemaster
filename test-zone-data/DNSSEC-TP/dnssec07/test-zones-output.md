@@ -53,6 +53,14 @@ scenarios for other test cases.
 
 ## zonemaster-cli commands and their output for each test scenario
 
+> **PLEASE NOTE:**
+>
+> The `zonemaster-cli` output in this section is from before the implementation
+> of test DNSSEC07 has been updated. All message tags and the logic for utputting
+> them are to be updated. This file has to updated when the implementation
+> update is available.
+
+
 All commands are run from the same directory as this file is in. To be meaningful
 the `zonemaster-cli` command should be run with the following options:
 ```
