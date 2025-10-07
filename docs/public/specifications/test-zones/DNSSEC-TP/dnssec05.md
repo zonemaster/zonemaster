@@ -94,7 +94,7 @@ irrelevant to the test scenario and must be ignored.
 | MIXED-ALGO-1            | DS05_ALGO_DEPRECATED, DS05_ALGO_NOT_RECOMMENDED, DS05_ALGO_OK | 2)                     |
 | NO-RESPONSE-1           | DS05_NO_RESPONSE                                              | 2)                     |
 | NO-RESPONSE-2           | DS05_NO_RESPONSE                                              | 2)                     |
-| SERVER_NO_DNSSEC-1      | DS05_SERVER_NO_DNSSEC                                         | 2)                     |
+| SERVER_NO_DNSSEC-1      | DS05_SERVER_NO_DNSSEC, DS05_ALGO_OK                           | 2)                     |
 | SHARED-IP-1             | DS05_ALGO_OK                                                  | 2)                     |
 | ZONE_NO_DNSSEC-1        | DS05_ZONE_NO_DNSSEC                                           | 2)                     |
 
@@ -311,7 +311,7 @@ No valid response from any of the servers.
 
 * Zone: "no-response-1.dnssec05.xa."
   * No response at all from ns1.
-  * Response from ns2 does not hav the AA bit set.
+  * Response from ns2 does not have the AA bit set.
 
 ### NO-RESPONSE-2
 No valid response from any of the servers.
