@@ -2,7 +2,7 @@ $ORIGIN dnssec05.xa.                              ; Must end with "."
 $TTL 3600
 
 @           SOA     ns1 admin. (
-                    2025071800      ; serial
+                    2025100600      ; serial
                     6h              ; refresh
                     1h              ; retry
                     1w              ; expire
@@ -22,6 +22,10 @@ ns1.child   AAAA  fda1:b2:c3:0:127:15:5:23
 ns2.child   A     127.15.5.24
 ns2.child   AAAA  fda1:b2:c3:0:127:15:5:24
 
+
+$ORIGIN algo-deprecated-1.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
 
 $ORIGIN algo-deprecated-3.dnssec05.xa.
 @       NS       ns1.child.dnssec05.xa.
