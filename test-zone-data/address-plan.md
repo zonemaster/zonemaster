@@ -307,6 +307,7 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.15.1.32     | scenario specific parent (if any)                      |
 | 127.15.1.41     | ns1 for scenario child                                 |
 | 127.15.1.42     | ns2 for chenario child                                 |
+| 127.15.1.53     | scenario specific resolver                             |
 | 127.15.2.0/24   | DNSSEC02 scenarios                                     |
 | 127.15.2.21     | ns1.dnssec02.xa                                        |
 | 127.15.2.22     | ns2.dnssec02.xa                                        |

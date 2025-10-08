@@ -68,7 +68,7 @@ irrelevant to the test scenario and must be ignored.
 |:----------------------|:---------------------------------------------------------------|:---------------|
 | ALGO-DEPRECATED-1     | DS01_DS_ALGO_DEPRECATED, DS01_DS_ALGO_2_MISSING                | 2)             |
 | ALGO-DEPRECATED-3     | DS01_DS_ALGO_DEPRECATED, DS01_DS_ALGO_2_MISSING                | 2)             |
-| ALGO-NOT-DS-0         | DS01_DS_ALGO_NOT_DS                                            | 2)             |
+| ALGO-NOT-DS-0         | DS01_DS_ALGO_NOT_DS, DS01_DS_ALGO_2_MISSING                    | 2)             |
 | ALGO-OK-2             | DS01_DS_ALGO_OK                                                | 2)             |
 | ALGO-OK-4             | DS01_DS_ALGO_OK, DS01_DS_ALGO_2_MISSING                        | 2)             |
 | ALGO-OK-5             | DS01_DS_ALGO_OK, DS01_DS_ALGO_2_MISSING                        | 2)             |
