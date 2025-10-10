@@ -325,7 +325,7 @@ to specifying a profile JSON file containing the entire
 
 ## TLD URL section
 
-For the context of this section, see [Finding TLD URL for use in GUI].
+For the context of this section, see [TLD URL for GUI].
 
 The TLD URL section has several keys:
 * extract_url
@@ -337,10 +337,10 @@ The TLD URL section has several keys:
 ### extract_url
 
 Boolean value to enable the function described in document
-[Finding TLD URL for use in GUI]. Disabling the function is the same as setting
+[TLD URL for GUI]. Disabling the function is the same as setting
 a global policy to block the function as described in the document.
 
-Accepted values: `yes` or `no`, default to `yes` (enabled).
+Accepted values: `yes` or `no`. Default to `yes` (enabled).
 
 ### tld_\<TLD\>
 
