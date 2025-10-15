@@ -71,10 +71,10 @@ Z11_NO_SPF_FOUND                 | NOTICE  | domain          | No SPF policy was
 Z11_NO_SPF_NON_MAIL_DOMAIN       | INFO    | domain          | No SPF policy was found for {domain}, which is a type of domain (root, TLD or under .ARPA) not expected to be used for email.
 Z11_NON_NULL_SPF_NON_MAIL_DOMAIN | NOTICE  | domain          | A non-null SPF policy was found on {domain}, although this type of domain (root, TLD or under .ARPA) is not expected to be used for email.
 Z11_NULL_SPF_NON_MAIL_DOMAIN     | INFO    | domain          | A null SPF policy was found on {domain}, which is a type of domain (root, TLD or under .ARPA) not expected to be used for email.
-Z11_SPF_MULTIPLE_RECORDS         | ERROR   | ns_list         | The following name servers returned more than one SPF policy. Name servers: {ns_list}.
-Z11_SPF_SYNTAX_ERROR             | ERROR   | domain, ns_list | The SPF policy of {domain} has a syntax error. Policy retrieved from the following nameservers: {ns_list}.
+Z11_SPF_MULTIPLE_RECORDS         | WARNING | ns_list         | The following name servers returned more than one SPF policy. Name servers: {ns_list}.
+Z11_SPF_SYNTAX_ERROR             | WARNING | domain, ns_list | The SPF policy of {domain} has a syntax error. Policy retrieved from the following nameservers: {ns_list}.
 Z11_SPF_SYNTAX_OK                | INFO    | domain          | The SPF policy of {domain} has correct syntax.
-Z11_UNABLE_TO_CHECK_FOR_SPF      | ERROR   |                 | None of the zone’s name servers responded with an authoritative response to queries for SPF policies.
+Z11_UNABLE_TO_CHECK_FOR_SPF      | WARNING |                 | None of the zone’s name servers responded with an authoritative response to queries for SPF policies.
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
