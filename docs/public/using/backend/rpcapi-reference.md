@@ -606,9 +606,12 @@ errors found or found blocking policy. May be absent by backend configuration.
 ##### `"log"`
 
 "`log`" is for troubleshooting needs and should be ignored by all applications
-calling this method. The free text strings are human-readabl strings and must
-not be automatically parsed since they may be sligtly varied. The following
-tables gives the defined log messages for different situations.
+calling this method. If
+[`TLD URL section.suppress_log_messages`][TLD URL section.suppress_log_messages]
+is set to `yes` (default `no`) no log messages are included. The free text
+strings are human-readable strings and must not be automatically parsed since
+they may be sligtly varied. The following tables gives the defined log messages
+for different situations.
 
 | log message                                             | Description                                                       |
 |---------------------------------------------------------|-------------------------------------------------------------------|
@@ -1804,62 +1807,63 @@ There are also some experimental API methods documented only by name:
 * batch_create
 
 
-[API add_api_user]:                   #api-method-add_api_user
-[API add_batch_job]:                  #api-method-add_batch_job
-[API batch_create]:                   #api-method-batch_create
-[API batch_status]:                   #api-method-batch_status
-[API conf_languages]:                 #api-method-conf_languages
-[API conf_profiles]:                  #api-method-conf_profiles
-[API domain_history]:                 #api-method-domain_history
-[API job_create]:                     #api-method-job_create
-[API job_params]:                     #api-method-job_params
-[API job_results]:                    #api-method-job_results
-[API job_status]:                     #api-method-job_status
-[API key]:                            #api-key
-[API lookup_address_records]:         #api-method-lookup_address_records
-[API lookup_delegation_data]:         #api-method-lookup_delegation_data
-[API start_domain_test]:              #api-method-start_domain_test
-[API system_versions]:                #api-method-system_versions
-[API user_create]:                    #api-method-user_create
-[API v10.0.0]:                        https://github.com/zonemaster/zonemaster-backend/blob/v10.0.0/docs/API.md
-[Architecture documentation]:         https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md
-[Batch id]:                           #batch-id
-[Client id]:                          #client-id
-[Client version]:                     #client-version
-[Delegation Signer]:                  https://datatracker.ietf.org/doc/html/rfc4034#section-5
-[Domain name]:                        #domain-name
-[Dot-decimal notation]:               https://en.wikipedia.org/wiki/Dot-decimal_notation
-[DS info]:                            #ds-info
-[IP address]:                         #ip-address
-[ISO 3166-1 alpha-2]:                 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-[ISO 639-1]:                          https://en.wikipedia.org/wiki/ISO_639-1
-[JSON Pointer]:                       https://datatracker.ietf.org/doc/html/rfc6901
-[JSON-RPC 2.0]:                       https://www.jsonrpc.org/specification
-[Language tag]:                       #language-tag
-[LANGUAGE.locale]:                    ../../configuration/backend.md#locale
-[Name server]:                        #name-server
-[net.ipv4]:                           https://metacpan.org/pod/Zonemaster::Engine::Profile#net.ipv4
-[net.ipv6]:                           https://metacpan.org/pod/Zonemaster::Engine::Profile#net.ipv6
-[Non-negative integer]:               #non-negative-integer
-[Priority]:                           #priority
-[Privilege levels]:                   #privilege-levels
-[Profile]:                            https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md#profile
-[Profile name]:                       #profile-name
-[Profile sections]:                   ../../configuration/backend.md#public-profiles-and-private-profiles-sections
-[Progress percentage]:                #progress-percentage
-[Queue]:                              #queue
-[RFC 5952]:                           https://datatracker.ietf.org/doc/html/rfc5952
-[RPCAPI.enable_add_api_user]:         ../../configuration/backend.md#enable_add_api_user
-[RPCAPI.enable_add_batch_job]:        ../../configuration/backend.md#enable_add_batch_job
-[Severity Level Definitions]:         ../../specifications/tests/SeverityLevelDefinitions.md
-[Severity level]:                     #severity-level
-[Test Cases]:                         ../../specifications/tests#list-of-defined-test-cases
-[Test Case Identifiers]:              https://github.com/zonemaster/zonemaster/blob/master/docs/internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
-[Test id]:                            #test-id
-[Test result]:                        #test-result
-[Timestamp]:                          #timestamp
-[TLD URL for GUI]:                    ../../configuration/tld-url-for-gui.md
-[Username]:                           #username
-[Validation error data]:              #validation-error-data
-[ZONEMASTER.age_reuse_previous_test]: ../../configuration/backend.md#age_reuse_previous_test
-[ZONEMASTER.lock_on_queue]:           ../../configuration/backend.md#lock_on_queue
+[API add_api_user]:                        #api-method-add_api_user
+[API add_batch_job]:                       #api-method-add_batch_job
+[API batch_create]:                        #api-method-batch_create
+[API batch_status]:                        #api-method-batch_status
+[API conf_languages]:                      #api-method-conf_languages
+[API conf_profiles]:                       #api-method-conf_profiles
+[API domain_history]:                      #api-method-domain_history
+[API job_create]:                          #api-method-job_create
+[API job_params]:                          #api-method-job_params
+[API job_results]:                         #api-method-job_results
+[API job_status]:                          #api-method-job_status
+[API key]:                                 #api-key
+[API lookup_address_records]:              #api-method-lookup_address_records
+[API lookup_delegation_data]:              #api-method-lookup_delegation_data
+[API start_domain_test]:                   #api-method-start_domain_test
+[API system_versions]:                     #api-method-system_versions
+[API user_create]:                         #api-method-user_create
+[API v10.0.0]:                             https://github.com/zonemaster/zonemaster-backend/blob/v10.0.0/docs/API.md
+[Architecture documentation]:              https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md
+[Batch id]:                                #batch-id
+[Client id]:                               #client-id
+[Client version]:                          #client-version
+[Delegation Signer]:                       https://datatracker.ietf.org/doc/html/rfc4034#section-5
+[Domain name]:                             #domain-name
+[Dot-decimal notation]:                    https://en.wikipedia.org/wiki/Dot-decimal_notation
+[DS info]:                                 #ds-info
+[IP address]:                              #ip-address
+[ISO 3166-1 alpha-2]:                      https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+[ISO 639-1]:                               https://en.wikipedia.org/wiki/ISO_639-1
+[JSON Pointer]:                            https://datatracker.ietf.org/doc/html/rfc6901
+[JSON-RPC 2.0]:                            https://www.jsonrpc.org/specification
+[Language tag]:                            #language-tag
+[LANGUAGE.locale]:                         ../../configuration/backend.md#locale
+[Name server]:                             #name-server
+[net.ipv4]:                                https://metacpan.org/pod/Zonemaster::Engine::Profile#net.ipv4
+[net.ipv6]:                                https://metacpan.org/pod/Zonemaster::Engine::Profile#net.ipv6
+[Non-negative integer]:                    #non-negative-integer
+[Priority]:                                #priority
+[Privilege levels]:                        #privilege-levels
+[Profile]:                                 https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md#profile
+[Profile name]:                            #profile-name
+[Profile sections]:                        ../../configuration/backend.md#public-profiles-and-private-profiles-sections
+[Progress percentage]:                     #progress-percentage
+[Queue]:                                   #queue
+[RFC 5952]:                                https://datatracker.ietf.org/doc/html/rfc5952
+[RPCAPI.enable_add_api_user]:              ../../configuration/backend.md#enable_add_api_user
+[RPCAPI.enable_add_batch_job]:             ../../configuration/backend.md#enable_add_batch_job
+[Severity Level Definitions]:              ../../specifications/tests/SeverityLevelDefinitions.md
+[Severity level]:                          #severity-level
+[Test Cases]:                              ../../specifications/tests#list-of-defined-test-cases
+[Test Case Identifiers]:                   https://github.com/zonemaster/zonemaster/blob/master/docs/internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
+[Test id]:                                 #test-id
+[Test result]:                             #test-result
+[Timestamp]:                               #timestamp
+[TLD URL for GUI]:                         ../../configuration/tld-url-for-gui.md
+[TLD URL section.suppress_log_messages]:   ../../configuration/backend.md#suppress_log_messages)
+[Username]:                                #username
+[Validation error data]:                   #validation-error-data
+[ZONEMASTER.age_reuse_previous_test]:      ../../configuration/backend.md#age_reuse_previous_test
+[ZONEMASTER.lock_on_queue]:                ../../configuration/backend.md#lock_on_queue

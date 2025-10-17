@@ -33,6 +33,8 @@
 * [PUBLIC PROFILES and PRIVATE PROFILES sections](#public-profiles-and-private-profiles-sections)
 * [TLD URL section](#tld-url-section)
   * [extract_url](#extract_url)
+  * [maximum_lookup_time](#maximum_lookup_time)
+  * [suppress_log_messages](#suppress_log_messages)
   * [tld_\<TLD\>](#tld_tld)
 * [ZONEMASTER section](#zonemaster-section)
   * [max_zonemaster_execution_time](#max_zonemaster_execution_time)
@@ -329,6 +331,7 @@ For the context of this section, see [TLD URL for GUI].
 
 The TLD URL section has several keys:
 * extract_url
+* maximum_lookup_time
 * suppress_log_messages
 * tld_\<TLD\> where `<TLD>` can be any string matching one of the following
   patterns:
@@ -342,6 +345,14 @@ Boolean value to enable the function described in document
 a global policy to block the function as described in the document.
 
 Accepted values: `yes` or `no`. Default to `yes` (enabled).
+
+### maximum_lookup_time
+
+The number of seconds each of the two lookups, DNS and RDAP, respectively, may
+maximally take. If the maximum time is reached, a timeout is executed. The
+total maximum time will be double that value.
+
+Accepted values: a positive integer. Default to 3.
 
 ### suppress_log_messages
 
