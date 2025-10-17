@@ -329,6 +329,7 @@ For the context of this section, see [TLD URL for GUI].
 
 The TLD URL section has several keys:
 * extract_url
+* suppress_log_messages
 * tld_\<TLD\> where `<TLD>` can be any string matching one of the following
   patterns:
   * `[a-z][a-z]+`
@@ -342,23 +343,31 @@ a global policy to block the function as described in the document.
 
 Accepted values: `yes` or `no`. Default to `yes` (enabled).
 
+### suppress_log_messages
+
+Boolean value to suppress log messages in the API response to a
+[`get_tld_url` method query][API method get_tld_url].
+
+Accepted values: `yes` or `no`. Default to `no` (do not suppress).
+
 ### tld_\<TLD\>
 
 It is optional to include such keys, but if included each key is for a single
-TLD.
+TLD. An IDN TLD must be as an A-label. Note that only lower case can be used.
 
 The value is a string that must match one of the following patterns:
-  * `-` (a single hyphen-minus)
+  * `[BLOCK]` (that literal string) to block URL for that TLD
   * An URL string as defined in section "TXT record" in
     [TLD URL for GUI][TLD URL for GUI#txt-record]
 
-Example of possible configuration where `xa` is blocked, `xb` and `example` are given
-URL strings:
+Example of possible configuration where `xa` and `åäö` (`xn--4cab6c`) are
+blocked, and `xb` and `example` are given URL strings:
 
 ```
-tld_xa   = -
-tld_xb   = http://nic.xb/domain
-tld_example   = https://whoisweb.noc.example/domain/<DOM>
+tld_xa         = [BLOCK]
+tld_xn--4cab6c = [BLOCK]
+tld_xb         = http://nic.xb/domain
+tld_example    = https://whoisweb.noc.example/domain/[DOMAIN]
 ```
 
 ## ZONEMASTER section
@@ -421,6 +430,7 @@ Otherwise a new test request is enqueued.
 
 
 [API documentation]:                  ../using/backend/api.md
+[API method get_tld_url]:             ../using/backend/rpcapi-reference.md#api-method-get_tld_url
 [DBD::mysql documentation]:           https://metacpan.org/pod/DBD::mysql#host
 [Default JSON profile file]:          https://github.com/zonemaster/zonemaster-engine/blob/master/share/profile.json
 [Environment Variables]:              backend-environment-variables.md

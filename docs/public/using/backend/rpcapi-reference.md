@@ -496,7 +496,7 @@ An array of [*language tags*][Language tag]. It is never empty.
 Returns a URL for the closest TLD to the domain name in the request, or return
 empty. For context see [TLD URL for GUI].
 
-Example request:
+Example 1 request:
 ```json
 {
   "jsonrpc": "2.0",
@@ -505,19 +505,24 @@ Example request:
   "params": {"domain": "zonemaster.net"}
 }
 ```
-
-Example response:
+Example 1 response:
 ```json
 {
   "jsonrpc": "2.0",
   "id": 1,
   "result": {
-    "url": "http://www.verisigninc.com"
+    "url": "http://www.verisigninc.com",
+    "log":
+        [
+            "Info: no URL override in backend configuration",
+            "Info: no TLD TXT record found",
+            "Source: URL from IANA RDAP"
+        ]
   }
 }
 ```
 
-Example request:
+Example 2 request:
 ```json
 {
   "jsonrpc": "2.0",
@@ -526,13 +531,66 @@ Example request:
   "params": {"domain": "zonemaster.xa"}
 }
 ```
-
-Example response:
+Example 2 response:
 ```json
 {
   "jsonrpc": "2.0",
   "id": 1
   "result": {
+    "log":
+        [
+            "Info: no URL override in backend configuration",
+            "Info: no TLD TXT record found",
+            "Info: no URL in the IANA RDAP",
+            "Info: no URL found for the TLD"
+        ]
+  }
+}
+```
+
+Example 3 request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "zonemaster.se"}
+}
+```
+Example 3 response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1
+  "result": {
+    "log":
+        [
+            "Block: global block policy in backend configuration"
+        ]
+  }
+}
+```
+
+Example 4 request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "zonemaster.nu"}
+}
+```
+Example 4 response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1
+  "result": {
+    "log":
+        [
+            "Info: no URL override in backend configuration",
+            "Block: policy block in TLD TXT record"
+        ]
   }
 }
 ```
@@ -541,17 +599,44 @@ Example response:
 
 An empty object or an object with the following properties:
 
-"`url`": A http or https URL.
+"`url`": A http or https URL. May be absent.
+"`log`": An array of free text string describing the source of the URL,
+errors found or found blocking policy. May be absent by backend configuration.
+
+##### `"log"`
+
+"`log`" is for troubleshooting needs and should be ignored by all applications
+calling this method. The free text strings are human-readabl strings and must
+not be automatically parsed since they may be sligtly varied. The following
+tables gives the defined log messages for different situations.
+
+| log message                                             | Description                                                       |
+|---------------------------------------------------------|-------------------------------------------------------------------|
+| "Info: URL is not provided for the root zone"           | Root zone is the tested domain                                    |
+| "Info: URL is not provided for a TLD.                   | The tested domain is a TLD                                        |
+| "Block: global block policy in backend configuration"   |                                                                   |
+| "Source: URL override in backend configuration"         |                                                                   |
+| "Info: no URL override in backend configuration"        |                                                                   |
+| "Error: error in URL override in backend configuration" | The URL in backend configuration not correct                      |
+| "Info: no TLD TXT record found"                         |                                                                   |
+| "Error: multiple TLD TXT records found"                 | There are more than one dedicated DNS TXT records in the TLD zone |
+| "Error: error in URL in TLD TXT record"                 | The format of the dedicated DNS TXT record is incorrect           |
+| "Error: lookup error for TLD TXT record"                | Failing lookup of the dedicated DNS TXT record in the TLD zone    |
+| "Source: DNS TXT record in TLD zone"                    |                                                                   |
+| "Block: policy block in TLD TXT record"                 | The dedicated DNS TXT record contains a block string              |
+| "Error: lookup error for IANA RDAP"                     | Failing getting data from IANA RDAP data                          |
+| "Source: URL from IANA RDAP"                            |                                                                   |
+| "Info: no URL in the IANA RDAP"                         |                                                                   |
+| "Info: no URL found for the TLD"                        | No valid URL was for the TLD                                      |
 
 
 #### `"error"`
 
-* If the domain parameter is missing an error code of -32602 is returned. The
-`data` property contains an array of all errors, see [Validation error data].
+* If the domain parameter is missing or there are validation errors, an error
+code of -32602 is returned. The `data` property contains an array of all errors,
+see [Validation error data].
 
-Example of a request that triggers an error response:
-
-Example request:
+Example 1 request with error:
 ```json
 {
   "jsonrpc": "2.0",
@@ -560,9 +645,7 @@ Example request:
   "params": { "something": "nothing" }
 }
 ```
-
-
-  Example of error response:
+Example 1 of response:
 
 ```json
 {
@@ -581,6 +664,33 @@ Example request:
 }
 ```
 
+Example 2 request with error:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "-%zonemaster.se"}
+}
+```
+Example 2 of response:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1624630143271,
+  "error": {
+    "data": [
+      {
+        "path": "/domain",
+        "message": "The domain name character(s) are not supported"
+      }
+    ],
+    "code": "-32602",
+    "message": "Invalid method parameter(s)."
+  }
+}
+```
 
 ### API method: `get_host_by_name`
 

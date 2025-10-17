@@ -98,7 +98,7 @@ The following priority applies for blocking policies:
 
 The term `URL string` in used in this section for a string from which a URL can
 be derived using the steps in [TXT record]. Specifically an `URL string` may
-contain the literal string `<DOM>` which is replaced by the tested domain name
+contain the literal string `[DOMAIN]` which is replaced by the tested domain name
 when the URL is derived. A `URL` derived from a `URL string` is also a valid
 `URL string`.
 
@@ -120,8 +120,8 @@ all TXT records are ignored.
 If RDATA of the TXT record consists of several strings they are concatenated into
 one text string.
 The following procedure is defined for parsing the TXT record:
-* If the text string is identical to the literal `-` it means a blocking policy
-  resulting in no URL from the IANA RDAP database being used.
+* If the text string is identical to the literal `[BLOCK]` it means a blocking
+  policy resulting in no URL from the IANA RDAP database being used.
 * If the text string consists of the following parts then a URL is created and
   that URL is used for the TLD:
   * The URL string must consist of the following parts in that order:
@@ -135,14 +135,14 @@ The following procedure is defined for parsing the TXT record:
     * IDN labels must be represented in the A-label form.
   * The path string may be empty or must start with a solidus (slash) `/` and
       may contain characters `a-zA-Z0-9/=?%_.&-`.
-      * The path string may also contain the literal string `<DOM>` somewhere
+      * The path string may also contain the literal string `[DOMAIN]` somewhere
         after the first solidus `/`.
-      * If the literal string `<DOM>` is found in the path string it will be
+      * If the literal string `[DOMAIN]` is found in the path string it will be
         replaced by the tested domain name. If the tested domain name contains
         solidus (slash) `/` then that will be encoded as `%2F`.
       * An empty path string will be replaced by the string `/`.
-* If the text string is neither a blocking policy (literal string `-`) or a valid
-  URL string, then the DNS TXT record is ignored.
+* If the text string is neither a blocking policy (literal string `[BLOCK]`) or a
+  valid URL string, then the DNS TXT record is ignored.
 
 ### Examples
 
@@ -156,7 +156,7 @@ Invalid domain names:
 Invalid path strings:
 
 * `/domän` (invalid character `ä`, use ASCII only)
-* `/domain=<domain>` (`<domain>` is invalid, use `<DOM>` instead)
+* `/domain=<domain>` (`<domain>` is invalid, use `[DOMAIN]` instead)
 * `/domain/search=$` (`$` is invalid)
 
 Valid domain name strings:
@@ -168,15 +168,15 @@ Valid domain name strings:
 Valid path strings:
 
 * `/domain\&search=true`
-* `/domain/<DOM>`
-* `/registry\&domain=<DOM>`
+* `/domain/[DOMAIN]`
+* `/registry\&domain=[DOMAIN]`
 
 URL from URL string in a TXT record:
 
 ```
 Tested domain: green.xa
 TLD: xa
-URL string: https://domain.nic.xa/search/<DOM>
+URL string: https://domain.nic.xa/search/[DOMAIN]
 URL: https://domain.nic.xa/search/green.xa
 ```
 
