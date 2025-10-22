@@ -301,7 +301,7 @@ Zone is the root zone, and no undelegated DS is provided.
 Zone is the root zone, and undelegated DS is provided.
 
 * Zone: "."
-  * ns1 and ns2 are IB
+  * ns1 and ns2 are IB.
   * The zone exists.
 
 
