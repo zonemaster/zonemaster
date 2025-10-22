@@ -1,4 +1,4 @@
-# Specification of test Scenarios for DNSSEC01
+# Specification of Test Scenarios for DNSSEC01
 
 
 ## Table of contents
