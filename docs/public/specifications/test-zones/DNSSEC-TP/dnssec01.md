@@ -294,7 +294,7 @@ Zone is not delegated, but undelegated data is provided with DS.
 Zone is the root zone, and no undelegated DS is provided.
 
 * Zone: "."
-  * ns1 and ns2 are IB
+  * ns1 and ns2 are IB.
   * The zone exists.
 
 ### ROOT-WITH-UNDEL-DS-1
