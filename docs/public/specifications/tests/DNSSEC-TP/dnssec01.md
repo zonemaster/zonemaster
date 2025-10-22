@@ -220,8 +220,8 @@ queries follow, unless otherwise specified below, what is specified for
 
 9.  If the *Responds Without Valid DS* is non-empty then do:
     1. If the *Responds With DS* set is empty then output
-       *[DS01_PARENT_ZONE_NO_DS]* with name server IP from the *Responds without
-       valid DS* set.
+       *[DS01_PARENT_ZONE_NO_DS]* with name server IP from the *Responds Without
+       Valid DS* set.
     2. Else, output *[DS01_PARENT_SERVER_NO_DS]* with name server IP from the
        *Responds Without Valid DS* set.
 
