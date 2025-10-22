@@ -286,7 +286,7 @@ Zone is not delegated, but undelegated data is provided. No DS.
 Zone is not delegated, but undelegated data is provided with DS.
 
 * Zone: undel-with-undel-ds-1.dnssec01.xa.
-  * The zone is not delegated, but there undelegated data.
+  * The zone is not delegated, but there is undelegated data.
   * ns1 and ns2 are OOB.
   * Undelegated DS is provided.
 
