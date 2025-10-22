@@ -278,6 +278,7 @@ No special terminology for this test case.
 [DS01_DS_ALGO_PRIVATE]:                               #summary
 [DS01_DS_ALGO_RESERVED]:                              #summary
 [DS01_DS_ALGO_UNASSIGNED]:                            #summary
+[DS01_NO_RESPONSE]:                                   #summary
 [DS01_PARENT_SERVER_NO_DS]:                           #summary
 [DS01_PARENT_ZONE_NO_DS]:                             #summary
 [DS01_ROOT_N_NO_UNDEL_DS]:                            #summary
