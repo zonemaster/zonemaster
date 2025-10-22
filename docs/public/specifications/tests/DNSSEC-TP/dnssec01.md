@@ -208,7 +208,6 @@ queries follow, unless otherwise specified below, what is specified for
       * *[DS01_DS_ALGO_OK]*
 
 7.  If the *Non-Algo 2 DS* set is non-empty do:
-
     1. For each pair of IP address and key tag in the *Algo 2 DS* set remove the
        same pair from the *Non-Algo 2 DS* set.
     2. For each key tag from the *Non-Algo 2 DS* set extract all IP addresses for
