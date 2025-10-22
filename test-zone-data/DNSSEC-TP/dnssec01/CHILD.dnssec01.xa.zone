@@ -2,15 +2,15 @@
 
 $TTL 3600
 
-@       SOA     ns1.child.dnssec05.xa. admin. (
-                2025071603      ; serial
+@       SOA     ns1 admin. (
+                2025102200      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
                 1d )            ; minimum
 
-@       NS    ns1.child.dnssec05.xa.
-@       NS    ns2.child.dnssec05.xa.
+@       NS    ns1
+@       NS    ns2
 
 @       TXT   "Placeholder"
 
