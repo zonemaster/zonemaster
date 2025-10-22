@@ -215,7 +215,8 @@ queries follow, unless otherwise specified below, what is specified for
        extracted list of IP addresses.
 
 8.  If the *Responds Without Valid DS* and *Responds With DS* sets are empty
-    then output *[DS01_NO_RESPONSE]*.
+    then output *[DS01_NO_RESPONSE]* with the name server IP from
+    the *Ignored Parent NS IP* set.
 
 9.  If the *Responds Without Valid DS* is non-empty then do:
     1. If the *Responds With DS* set is empty then output
