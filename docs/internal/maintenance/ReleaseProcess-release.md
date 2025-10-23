@@ -171,9 +171,9 @@ up-to-date.
 git fetch --all
 git branch
 ```
-Check out the right commit of the submodule (LDNS). Zonemaster-LDNS only.
+Empty the submodule area (LDNS). Zonemaster-LDNS only.
 ```
-git submodule update
+git submodule deinit -f ldns
 ```
 Make sure your working directory is clean.
 ```
