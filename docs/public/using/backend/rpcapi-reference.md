@@ -1495,7 +1495,7 @@ Example response:
 
 An object with the following properties:
 
-* `"batch_api_key"`: A [*batch api key*][batch api key], see details on `"batch_api_key"` below.
+* `"batch_api_key"`: A [*batch API key*][Batch API key], see details on `"batch_api_key"` below.
 * `"domains"`: A list of [*domain names*][Domain name], required. The domains to be tested.
 * `"test_params"`: As described below, optional, (default: `{}`). The `"test_params"` key
   must be absent or empty (`{}`) unless `"batch_api_key"` is present.
