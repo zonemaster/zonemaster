@@ -1531,7 +1531,7 @@ An object with the following properties:
 If the given `profile` is not among the [available profiles][Profile sections], a
 user error is returned, see the [profile name section][profile name].
 
-Trying to add a batch with wrong [*batch api key*][Batch API key]:
+Trying to add a batch with wrong [*batch API key*][Batch API key]:
 ```json
 {
   "jsonrpc": "2.0",
