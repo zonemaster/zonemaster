@@ -1540,8 +1540,8 @@ Trying to add a batch with wrong [*batch API key*][Batch API key]:
     "message": "Invalid batch_api_key for batch_create",
     "code": -32603,
     "data": {
-        "message": "Invalid batch api key",
-        "path": "/batch api key"
+        "message": "Invalid batch API key",
+        "path": "/batch_api_key"
     }
   }
 }
