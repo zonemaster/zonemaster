@@ -150,7 +150,7 @@ Represents the password of an authenticated account (see *[Privilege levels]*)
 Note that [*Batch API key*][Batch API Key] is another data type.
 
 
-### Batch Api Key
+### Batch API Key
 
 Basic data type: string
 
