@@ -1911,7 +1911,7 @@ There are also some experimental API methods documented only by name:
 [Test id]:                                    #test-id
 [Test result]:                                #test-result
 [Timestamp]:                                  #timestamp
-[Batch Api Key]:                              #batch-api-key
+[Batch API key]:                              #batch-api-key
 [Username]:                                   #username
 [Validation error data]:                      #validation-error-data
 [ZONEMASTER.age_reuse_previous_test]:         ../../configuration/backend.md#age_reuse_previous_test
