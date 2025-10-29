@@ -343,8 +343,6 @@ No DNSKEY from neither ns1 nor ns2.
 
 
 [DNSSEC05]:                                                       ../../tests/DNSSEC-TP/dnssec05.md
-[DNSSEC05]:                                                       ../../tests/DNSSEC-TP/dnssec05.md
-[DNSSEC14]:                                                       ../../tests/DNSSEC-TP/dnssec14.md
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [Test scenario README file]:                                      ../README.md
 [Test scenarios and setup of test zones]:                         #test-scenarios-and-setup-of-test-zones
