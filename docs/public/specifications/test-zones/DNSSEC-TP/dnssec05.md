@@ -320,10 +320,10 @@ No valid response from any of the servers.
   * Response from ns1 has RCODE SERVFAIL.
   * Response from ns2 has RCODE REFUSED.
 
-### SERVER_NO_DNSSEC-1
+### SERVER-NO-DNSSEC-1
 No DNSKEY from ns1.
 
-* Zone: "server_no_dnssec-1.dnssec05.xa."
+* Zone: "server-no-dnssec-1.dnssec05.xa."
   * Response from ns1 is NODATA (no DNSKEY).
   * Response from ns2 is normal.
 
