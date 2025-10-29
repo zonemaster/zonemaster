@@ -342,7 +342,6 @@ No DNSKEY from neither ns1 nor ns2.
   * Responses from ns1 and ns2 are NODATA (no DNSKEY).
 
 
-[DNSSEC01]:                                                       ../../tests/DNSSEC-TP/dnssec01.md
 [DNSSEC05]:                                                       ../../tests/DNSSEC-TP/dnssec05.md
 [DNSSEC05]:                                                       ../../tests/DNSSEC-TP/dnssec05.md
 [DNSSEC14]:                                                       ../../tests/DNSSEC-TP/dnssec14.md
