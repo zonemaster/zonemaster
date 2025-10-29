@@ -196,7 +196,8 @@ A complete list of all DNS Resource Record types can be found in the
      * *[DS05_ALGO_OK]*
 
 7. If the *Responds without valid DNSKEY* and *Responds with DNSKEY* sets are empty
-   then output *[DS05_NO_RESPONSE]*.
+   then output *[DS05_NO_RESPONSE]* with the list of name server names and
+   IP addresses from the *Ignored NS IP* set.
 
 8. If the *Responds without valid DNSKEY* is non-empty then do:
    1. If *Responds with DNSKEY* sets is empty then output *[DS05_ZONE_NO_DNSSEC]*
