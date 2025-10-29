@@ -1862,7 +1862,7 @@ There are also some experimental API methods documented only by name:
 [Test result]:                             #test-result
 [Timestamp]:                               #timestamp
 [TLD URL for GUI]:                         ../../configuration/tld-url-for-gui.md
-[TLD URL section.suppress_log_messages]:   ../../configuration/backend.md#suppress_log_messages)
+[TLD URL section.suppress_log_messages]:   ../../configuration/backend.md#suppress_log_messages
 [Username]:                                #username
 [Validation error data]:                   #validation-error-data
 [ZONEMASTER.age_reuse_previous_test]:      ../../configuration/backend.md#age_reuse_previous_test
