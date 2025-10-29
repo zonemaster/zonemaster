@@ -65,9 +65,9 @@ scenarios for other test cases.
 | ALGO-OK-23              | algorithm-ok-23.dnssec05.xa."mixed-algo-1.dnssec05.xa. |
 | NO-RESPONSE-1           | no-response-1.dnssec05.xa.                             |
 | NO-RESPONSE-2           | no-response-2.dnssec05.xa.                             |
-| SERVER_NO_DNSSEC-1      | server_no_dnssec-1.dnssec05.xa.                        |
+| SERVER-NO-DNSSEC-1      | server-no-dnssec-1.dnssec05.xa.                        |
 | SHARED-IP-1             | shared-ip-1.dnssec05.xa.                               |
-| ZONE_NO_DNSSEC-1        | zone_no_dnssec-1.dnssec05.xa.                          |
+| ZONE-NO-DNSSEC-1        | zone-no-dnssec-1.dnssec05.xa.                          |
 
 
 ## zonemaster-cli commands and their output for each test scenario
@@ -573,7 +573,7 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testc
 
 | Scenario name      | Mandatory message tags              | Forbidden message tags |
 |:-------------------|:------------------------------------|:-----------------------|
-| SERVER_NO_DNSSEC-1 | DS05_SERVER_NO_DNSSEC, DS05_ALGO_OK | 2)                     |
+| SERVER-NO-DNSSEC-1 | DS05_SERVER_NO_DNSSEC, DS05_ALGO_OK | 2)                     |
 
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw SERVER-NO-DNSSEC-1.dnssec05.xa
@@ -603,7 +603,7 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testc
 
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
-| ZONE_NO_DNSSEC-1        | DS05_ZONE_NO_DNSSEC                                           | 2)                     |
+| ZONE-NO-DNSSEC-1        | DS05_ZONE_NO_DNSSEC                                           | 2)                     |
 
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ZONE_NO_DNSSEC-1.dnssec05.xa
