@@ -133,9 +133,17 @@ A complete list of all DNS Resource Record types can be found in the
    ("DNSKEY Query").
 
 2.  Retrieve all name server names and IP addresses for *Child Zone* using
-    methods [Get-Del-NS-Names-and-IPs] and [Get-Zone-NS-Names-and-IPs] ("NS IP").
+    methods [Get-Del-NS-Names-and-IPs] and [Get-Zone-NS-Names-and-IPs]
+    ("NS Name and IP").
 
-3.  Create the following empty sets:
+3. The name server names are assumed to be available at the time when a `msgid`
+   listed above in [Summary] is created. If the argument name is "ns" or
+   "ns_list" the name server name is extracted from *NS Name and IP* even
+   though it is only referred to the IP address of the name servers in the steps
+   below. Furthermore, if there are more than one name server names for the same
+   IP address, one entry is created for each name.
+
+4.  Create the following empty sets:
 
     1.  Name server IP address ("Ignored NS IP")
     2.  Name server IP address ("Responds without valid DNSKEY")
@@ -148,7 +156,7 @@ A complete list of all DNS Resource Record types can be found in the
     9.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_ZONE_SIGN")
     10. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_OK")
 
-4.  For each name server IP address in *NS IP* do:
+5.  For each unique name server IP address in *NS Name and IP* do:
 
     1. Send *DNSKEY Query* to the name server IP.
     2. Add the name server IP to the *Ignored NS IP* set and go to next name
@@ -172,20 +180,14 @@ A complete list of all DNS Resource Record types can be found in the
        5. Add name server IP, key tag and the algorithm code to the set with the
           same name as the extracted message tag.
 
-5. For all messages outputted below, if an IP address in *NS IP* is connected to
-   more than one name server name, then all names should be included with the
-   message tag if it is specified that name server name and IP address should
-   be outputted with the message tag.
-
 6. For each of the sets matching each of the following message tags do if the set
    is non-empty:
    * For each combination of key tag and algorithm code do:
      * Output the message tag matching the set name with the list of name server
-       name and IP pair from the subset (key tag and code) plus the key tag, the
-       algorithm number, algorithm description and algorithm mnemonic from the
-       table in section "[Classification of algorithms]". Exclude algorithm
-       description and algorithm mnemonic if not listed for the tag in
-       [Summary].
+       IP from the subset (key tag and code) plus the key tag, the algorithm
+       number, algorithm description and algorithm mnemonic from the table in
+       section "[Classification of algorithms]". Exclude algorithm description
+       and algorithm mnemonic if not listed for the tag in [Summary].
    * Sets:
      * *[DS05_ALGO_DEPRECATED]*
      * *[DS05_ALGO_RESERVED]*
@@ -196,8 +198,8 @@ A complete list of all DNS Resource Record types can be found in the
      * *[DS05_ALGO_OK]*
 
 7. If the *Responds without valid DNSKEY* and *Responds with DNSKEY* sets are empty
-   then output *[DS05_NO_RESPONSE]* with the list of name server names and
-   IP addresses from the *Ignored NS IP* set.
+   then output *[DS05_NO_RESPONSE]* with the list of name server IP addresses from
+   the *Ignored NS IP* set.
 
 8. If the *Responds without valid DNSKEY* is non-empty then do:
    1. If *Responds with DNSKEY* sets is empty then output *[DS05_ZONE_NO_DNSSEC]*
