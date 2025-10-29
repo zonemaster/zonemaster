@@ -83,9 +83,10 @@ severity level can be changed in the [Zonemaster-Engine profile]. Also see the
 The argument names in the Arguments column lists the arguments used in the
 message. The argument names are defined in the [argument list].
 
-The name server names are assumed to be available at the time when the msgid
-is created, if the argument name is "ns_list" even when in the "[Test
-procedure]" below it is only referred to the IP address of the name servers.
+Name servers may have multiple IP addresses bound to the same name, and the
+same IP address may be used by multiple name server names. Message tags whose
+argument lists include "ns_list" shall contain all such name and IP address
+pairs.
 
 ## Test procedure
 
@@ -137,51 +138,57 @@ same specification.
 5. If the *SPF-Policies* set is empty, then output
    *[Z11_UNABLE_TO_CHECK_FOR_SPF]* and terminate the test.
 
-6. If all the pairs in the *SPF-Policies* set contain empty strings, then:
+6. If all the name server IPs in the *SPF-Policies* set contain empty strings
+   (no "SPF policy"), then:
 
    1. If the *Child Zone* is the root zone ("."), a [TLD] or a zone under
-      .ARPA, then output *[Z11_NO_SPF_NON_MAIL_DOMAIN]* and terminate the
-      test.
+      .ARPA, then output *[Z11_NO_SPF_NON_MAIL_DOMAIN]* for *Child Zone* and
+      terminate the test.
 
-   2. Else, output *[Z11_NO_SPF_FOUND]* and terminate the test.
+   2. Else, output *[Z11_NO_SPF_FOUND]* for *Child Zone* and terminate the
+      test.
 
 7. For all messages outputted below, if an IP address in *Name Servers* is
    connected to more than one name server name, then all names should be
    included with the message tag.
 
-8. Compare the set of *SPF-Policies* retrieved from all name servers. If at
-   least two different name servers have returned different sets of SPF
-   policies, then:
+8. Compare the set of *SPF-Policies* retrieved from all name servers (in the
+   *SPF-Policies* set). If at least two different name servers have returned
+   different sets of SPF policies, then:
 
    1. Output *[Z11_INCONSISTENT_SPF_POLICIES]*.
    2. Group *SPF-Policies* by equal sets of SPF policies, such that a set of
       SPF policies is mapped to the list of *Name Servers* that returned it.
    3. For each such group of name servers, output
-      *[Z11_DIFFERENT_SPF_POLICIES_FOUND]*.
+      *[Z11_DIFFERENT_SPF_POLICIES_FOUND]* with the set of name servers
+      ("ns_list") in the group.
    4. Terminate the test.
 
 9. If the *SPF-Policies* set contains at least two entries with the same IP
    address, then output *[Z11_SPF_MULTIPLE_RECORDS]* with the list of
-   nameservers that returned more than one SPF policy and terminate the test.
+   name servers that returned more than one SPF policy and terminate the test.
 
-10. The following steps assume that all pairs in the *SPF-Policies* set have
-    the same string ("SPF policy").
+10. The following steps assume that all name server IPs in the *SPF-Policies*
+    set have the same string ("SPF policy").
 
 11. If the *SPF Policy* does not [pass the syntax check][passing the syntax
-    check] for SPF records, then output *[Z11_SPF_SYNTAX_ERROR]* and terminate
-    the test.
+    check] for SPF records, then output *[Z11_SPF_SYNTAX_ERROR]* for *Child
+    Zone* and the set of name servers from which the *SPF Policy* was
+    retrieved, and terminate the test.
 
 12. If the *Child Zone* is the root zone ("."), a [TLD] or a zone under
     .ARPA, then:
 
-   1. If the *SPF Policy* is a [Null SPF] policy, then output
-      *[Z11_NULL_SPF_NON_MAIL_DOMAIN]* and terminate the test.
+    1. If the *SPF Policy* is a [Null SPF] policy, then output
+       *[Z11_NULL_SPF_NON_MAIL_DOMAIN]* for *Child Zone* and terminate the
+       test.
 
-   2. If the *SPF Policy* is not a [Null SPF] policy, then output
-      *[Z11_NON_NULL_SPF_NON_MAIL_DOMAIN]* and terminate the test.
+    2. If the *SPF Policy* is not a [Null SPF] policy, then output
+       *[Z11_NON_NULL_SPF_NON_MAIL_DOMAIN]* for *Child Zone* and terminate the
+       test.
 
 13. If no other message was outputted by this test case, then output
-    *[Z11_SPF_SYNTAX_OK]*.
+    *[Z11_SPF_SYNTAX_OK]* for *Child Zone*.
 
 ## Outcome(s)
 
