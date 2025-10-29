@@ -96,7 +96,7 @@ irrelevant to the test scenario and must be ignored.
 | NO-RESPONSE-2           | DS05_NO_RESPONSE                                              | 2)                     |
 | SERVER-NO-DNSSEC-1      | DS05_SERVER_NO_DNSSEC, DS05_ALGO_OK                           | 2)                     |
 | SHARED-IP-1             | DS05_ALGO_OK                                                  | 2)                     |
-| ZONE_NO_DNSSEC-1        | DS05_ZONE_NO_DNSSEC                                           | 2)                     |
+| ZONE-NO-DNSSEC-1        | DS05_ZONE_NO_DNSSEC                                           | 2)                     |
 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
 * (2) All tags except for those specified as "Mandatory message tags"
