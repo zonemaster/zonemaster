@@ -130,9 +130,22 @@ queries follow, unless otherwise specified below, what is specified for
 
 2.  Retrieve all name server names and IP addresses for the parent zone of
     *Child Zone* using method [Get-Parent-NS-Names-and-IPs]
-    ("Parent Name and IP").
+    ("Parent Name and IP"). If the method returns an empty list, then create
+    *Parent Name and IP* as an empty set.
 
-3.  Create the following empty sets:
+3. The name server names are assumed to be available at the time when a `msgid`
+   listed above in [Summary] is created. If the argument name is "ns" or
+   "ns_list" the name server name is extracted from *Parent Name and IP* even
+   though it is only referred to the IP address of the name servers in the steps
+   below. Furthermore, if there are more than one name server names for the same
+   IP address, one entry is created for each name.
+
+4. If the IP address below is represented as "-" it means that there is no IP
+   address for that instance, and when a `msgid` listed above in [Summary] is
+   created with an argument name "ns" or "ns_list" then that name server is
+   entried as just "-".
+
+5.  Create the following empty sets:
 
     1.  Name server IP address ("Ignored Parent NS IP")
     2.  Name server IP address ("Responds Without Valid DS")
@@ -146,7 +159,7 @@ queries follow, unless otherwise specified below, what is specified for
     10. Name server IP address, key tag and digest algorithm code ("DS01_DS_ALGO_NOT_DS")
     11. Name server IP address, key tag and digest algorithm code ("DS01_DS_ALGO_OK")
 
-4.  If *Undelegated DS* is non-empty then do:
+6.  If *Undelegated DS* is non-empty then do:
 
     1. For each DS record in *Undelegated DS* do:
        1. Extract the digest algorithm code and key tag from the DS record.
@@ -166,7 +179,7 @@ queries follow, unless otherwise specified below, what is specified for
 >   TRUE, if *Undelegated DS* is non-empty or if *Child Zone* is ".", i.e. root
 >   zone.
 
-5.  For each unique name server IP in the *Parent Name and IP* set do:
+7.  For each unique name server IP in the *Parent Name and IP* set do:
     1. Send *DS Query* to the name server IP.
     2. If at least one of the following criteria is met, then add name server IP
        to "Ignored Parent NS IP" and go to next parent name server:
@@ -193,26 +206,14 @@ queries follow, unless otherwise specified below, what is specified for
           the *Algo 2 DS* set.
        6. Else, add IP address and the key tag to the *Non-Algo 2 DS* set.
 
-6.  To be considered in the steps below:
-    * If when outputting a message tag a list of name servers ("ns_list" in the
-      [message tag specification][Summary]) is included, the name or names of the
-      name server should be looked up from the IP address in the
-      *Parent Name and IP* set (if multiple names, it results from multiple name
-      server names resolving into the same IP address).
-    * For message tags with "ns_list", name and IP address pairs should be
-      included, possibly multiple pairs for the same IP address.
-    * In the special case that the IP address field has the value "-" no name
-      lookup will be done. The name and IP pair should be replaced by a single
-      "-".
-
-7.  For each of the sets matching each of the following message tags do if the set
+8.  For each of the sets matching each of the following message tags do if the set
     is non-empty:
     * For each combination of key tag and digest algorithm code do:
       * Output the message tag matching the set name with the list of name
-        servers (name/IP pairs) from the subset (key tag and code) plus the key
-        tag, the algorithm number and algorithm description from the table in
-        section "[Classification of algorithms]". Exclude algorithm description
-        if not listed for the tag in [Summary].
+        servers IP from the subset (key tag and code) plus the key tag, the
+        algorithm number and algorithm description from the table in section
+        "[Classification of algorithms]". Exclude the algorithm description if
+        not listed for the tag in [Summary].
     * Sets:
       * *[DS01_DS_ALGO_DEPRECATED]*
       * *[DS01_DS_ALGO_RESERVED]*
@@ -221,32 +222,29 @@ queries follow, unless otherwise specified below, what is specified for
       * *[DS01_DS_ALGO_NOT_DS]*
       * *[DS01_DS_ALGO_OK]*
 
-8.  If the *Non-Algo 2 DS* set is non-empty do:
+9.  If the *Non-Algo 2 DS* set is non-empty do:
     1. For each pair of IP address and key tag in the *Algo 2 DS* set remove the
        same pair from the *Non-Algo 2 DS* set.
     2. For each key tag from the *Non-Algo 2 DS* set extract all IP addresses for
        the key tag and output DS01_DS_ALGO_2_MISSING with key tag and the
-       extracted list of IP addresses (complemented with the name server name or
-       names).
+       extracted list of IP addresses.
 
-9.  If the *Responds Without Valid DS* and *Responds With DS* sets are empty
-    then output *[DS01_NO_RESPONSE]* with the name server IP from
-    the *Ignored Parent NS IP* set (complemented with the name server name or
-    names).
+10. If the *Responds Without Valid DS* and *Responds With DS* sets are empty, then
+    do:
+    1. If the *Ignored Parent NS IP* set is non-empty, then output
+       *[DS01_NO_RESPONSE]* with the name server IP from the
+       *Ignored Parent NS IP* set.
+    2. Else, if *Child Zone* is "." (i.e. root zone) do:
+       * If *Undelegated DS* is empty then output *[DS01_ROOT_N_NO_UNDEL_DS]*.
+    3. Else, if *Undelegated Test* is TRUE do:
+       * If *Undelegated DS* is empty then output *[DS01_UNDEL_N_NO_UNDEL_DS]*.
 
-10. If the *Responds Without Valid DS* is non-empty then do:
+11. If the *Responds Without Valid DS* is non-empty then do:
     1. If the *Responds With DS* set is empty then output
        *[DS01_PARENT_ZONE_NO_DS]* with name server IP from the *Responds Without
-       Valid DS* set (complemented with the name server name or names).
+       Valid DS* set.
     2. Else, output *[DS01_PARENT_SERVER_NO_DS]* with name server IP from the
-       *Responds Without Valid DS* set (complemented with the name server name or
-       names).
-
-11. If *Child Zone* is "." (i.e. root zone) and *Undelegated DS* is empty then
-    output *[DS01_ROOT_N_NO_UNDEL_DS]*.
-
-12. If *Undelegated Test* is TRUE and *Undelegated DS* is empty then output
-    *[DS01_UNDEL_N_NO_UNDEL_DS]*.
+       *Responds Without Valid DS* set.
 
 
 ## Outcome(s)
