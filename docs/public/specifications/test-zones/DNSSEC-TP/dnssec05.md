@@ -83,12 +83,12 @@ irrelevant to the test scenario and must be ignored.
 | ALGO-OK-23              | DS05_ALGO_OK                                                  | 2)                     |
 | ALGO-PRIVATE-253        | DS05_ALGO_PRIVATE                                             | 2)                     |
 | ALGO-PRIVATE-254        | DS05_ALGO_PRIVATE                                             | 2)                     |
+| ALGO-RESERVED-4         | DS05_ALGO_RESERVED                                            | 2)                     |
+| ALGO-RESERVED-9         | DS05_ALGO_RESERVED                                            | 2)                     |
 | ALGO-RESERVED-11        | DS05_ALGO_RESERVED                                            | 2)                     |
 | ALGO-RESERVED-123       | DS05_ALGO_RESERVED                                            | 2)                     |
 | ALGO-RESERVED-251       | DS05_ALGO_RESERVED                                            | 2)                     |
 | ALGO-RESERVED-255       | DS05_ALGO_RESERVED                                            | 2)                     |
-| ALGO-RESERVED-4         | DS05_ALGO_RESERVED                                            | 2)                     |
-| ALGO-RESERVED-9         | DS05_ALGO_RESERVED                                            | 2)                     |
 | ALGO-UNASSIGNED-122     | DS05_ALGO_UNASSIGNED                                          | 2)                     |
 | ALGO-UNASSIGNED-20      | DS05_ALGO_UNASSIGNED                                          | 2)                     |
 | MIXED-ALGO-1            | DS05_ALGO_DEPRECATED, DS05_ALGO_NOT_RECOMMENDED, DS05_ALGO_OK | 2)                     |
