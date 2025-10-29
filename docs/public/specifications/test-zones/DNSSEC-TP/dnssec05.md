@@ -89,8 +89,8 @@ irrelevant to the test scenario and must be ignored.
 | ALGO-RESERVED-123       | DS05_ALGO_RESERVED                                            | 2)                     |
 | ALGO-RESERVED-251       | DS05_ALGO_RESERVED                                            | 2)                     |
 | ALGO-RESERVED-255       | DS05_ALGO_RESERVED                                            | 2)                     |
-| ALGO-UNASSIGNED-122     | DS05_ALGO_UNASSIGNED                                          | 2)                     |
 | ALGO-UNASSIGNED-20      | DS05_ALGO_UNASSIGNED                                          | 2)                     |
+| ALGO-UNASSIGNED-122     | DS05_ALGO_UNASSIGNED                                          | 2)                     |
 | MIXED-ALGO-1            | DS05_ALGO_DEPRECATED, DS05_ALGO_NOT_RECOMMENDED, DS05_ALGO_OK | 2)                     |
 | NO-RESPONSE-1           | DS05_NO_RESPONSE                                              | 2)                     |
 | NO-RESPONSE-2           | DS05_NO_RESPONSE                                              | 2)                     |
