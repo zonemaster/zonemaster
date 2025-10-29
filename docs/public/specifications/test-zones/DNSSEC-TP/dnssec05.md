@@ -65,11 +65,11 @@ irrelevant to the test scenario and must be ignored.
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
 | ALGO-DEPRECATED-1       | DS05_ALGO_DEPRECATED                                          | 2)                     |
-| ALGO-DEPRECATED-12      | DS05_ALGO_DEPRECATED                                          | 2)                     |
 | ALGO-DEPRECATED-3       | DS05_ALGO_DEPRECATED                                          | 2)                     |
 | ALGO-DEPRECATED-5       | DS05_ALGO_DEPRECATED                                          | 2)                     |
 | ALGO-DEPRECATED-6       | DS05_ALGO_DEPRECATED                                          | 2)                     |
 | ALGO-DEPRECATED-7       | DS05_ALGO_DEPRECATED                                          | 2)                     |
+| ALGO-DEPRECATED-12      | DS05_ALGO_DEPRECATED                                          | 2)                     |
 | ALGO-NOT-RECOMMENDED-10 | DS05_ALGO_NOT_RECOMMENDED                                     | 2)                     |
 | ALGO-NOT-ZONE-SIGN-0    | DS05_ALGO_NOT_ZONE_SIGN                                       | 2)                     |
 | ALGO-NOT-ZONE-SIGN-2    | DS05_ALGO_NOT_ZONE_SIGN                                       | 2)                     |
