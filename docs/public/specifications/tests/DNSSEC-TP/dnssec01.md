@@ -182,7 +182,7 @@ queries follow, unless otherwise specified below, what is specified for
 7.  For each unique name server IP in the *Parent Name and IP* set do:
     1. Send *DS Query* to the name server IP.
     2. If at least one of the following criteria is met, then add name server IP
-       to "Ignored Parent NS IP" and go to next parent name server:
+       to *Ignored Parent NS IP* and go to next parent name server:
        1. There is no [DNSSEC Response].
        2. The RCODE in the [DNSSEC Response] is not "NoError"
           ([IANA RCODE List]).
@@ -191,7 +191,7 @@ queries follow, unless otherwise specified below, what is specified for
        5. The AA flag is not set in the [DNSSEC Response].
     3. If there is no valid DS record with matching owner name in the answer
        section of the [DNSSEC Response], then do:
-       1. Add name server IP to "Responds Without Valid DS".
+       1. Add name server IP to *Responds Without Valid DS*.
        2. Go to next parent name server.
     4. Add name server IP to the *Responds With DS* set.
     5. For each DS record in the answer section of the [DNSSEC Response] do:
@@ -226,20 +226,21 @@ queries follow, unless otherwise specified below, what is specified for
     1. For each pair of IP address and key tag in the *Algo 2 DS* set remove the
        same pair from the *Non-Algo 2 DS* set.
     2. For each key tag from the *Non-Algo 2 DS* set extract all IP addresses for
-       the key tag and output DS01_DS_ALGO_2_MISSING with key tag and the
+       the key tag and output [DS01_DS_ALGO_2_MISSING] with key tag and the
        extracted list of IP addresses.
 
-10. If the *Responds Without Valid DS* and *Responds With DS* sets are empty, then
-    do:
-    1. If the *Ignored Parent NS IP* set is non-empty, then output
-       *[DS01_NO_RESPONSE]* with the name server IP from the
-       *Ignored Parent NS IP* set.
-    2. Else, if *Child Zone* is "." (i.e. root zone) do:
-       * If *Undelegated DS* is empty then output *[DS01_ROOT_N_NO_UNDEL_DS]*.
-    3. Else, if *Undelegated Test* is TRUE do:
-       * If *Undelegated DS* is empty then output *[DS01_UNDEL_N_NO_UNDEL_DS]*.
+10. If the *Responds Without Valid DS* is empty, the *Responds With DS* sets is
+    empty and the *Ignored Parent NS IP* set is non-empty, then output
+    *[DS01_NO_RESPONSE]* with the name server IP from the *Ignored Parent NS IP*
+    set.
 
-11. If the *Responds Without Valid DS* is non-empty then do:
+11. If *Child Zone* is "." (i.e. root zone) and *Undelegated DS* is empty then
+    output *[DS01_ROOT_N_NO_UNDEL_DS]*.
+
+12. If *Child Zone* is not ".", *Undelegated Test* is TRUE and *Undelegated DS*
+    is empty then output *[DS01_UNDEL_N_NO_UNDEL_DS]*.
+
+13. If the *Responds Without Valid DS* is non-empty then do:
     1. If the *Responds With DS* set is empty then output
        *[DS01_PARENT_ZONE_NO_DS]* with name server IP from the *Responds Without
        Valid DS* set.
