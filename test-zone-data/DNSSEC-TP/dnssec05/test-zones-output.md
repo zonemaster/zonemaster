@@ -576,7 +576,7 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testc
 | SERVER_NO_DNSSEC-1 | DS05_SERVER_NO_DNSSEC, DS05_ALGO_OK | 2)                     |
 
 ```
-$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw SERVER_NO_DNSSEC-1.dnssec05.xa
+$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw SERVER-NO-DNSSEC-1.dnssec05.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
    0.03 ERROR    DNSSEC05       NO_RESPONSE_DNSKEY  ns=ns1.child.dnssec05.xa/127.15.5.23
    0.03 ERROR    DNSSEC05       NO_RESPONSE_DNSKEY  ns=ns1.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:23
