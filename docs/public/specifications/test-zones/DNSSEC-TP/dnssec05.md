@@ -335,10 +335,10 @@ Two NS names, but only one IP. IPv4 only.
     * IPv4 only.
   * The message should list both name server names, both with the same IP.
 
-### ZONE_NO_DNSSEC-1
+### ZONE-NO-DNSSEC-1
 No DNSKEY from neither ns1 nor ns2.
 
-* Zone: "zone_no_dnssec-1.dnssec05.xa."
+* Zone: "zone-no-dnssec-1.dnssec05.xa."
   * Responses from ns1 and ns2 are NODATA (no DNSKEY).
 
 
