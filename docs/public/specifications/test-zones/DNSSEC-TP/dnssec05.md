@@ -74,13 +74,13 @@ irrelevant to the test scenario and must be ignored.
 | ALGO-NOT-ZONE-SIGN-0    | DS05_ALGO_NOT_ZONE_SIGN                                       | 2)                     |
 | ALGO-NOT-ZONE-SIGN-2    | DS05_ALGO_NOT_ZONE_SIGN                                       | 2)                     |
 | ALGO-NOT-ZONE-SIGN-252  | DS05_ALGO_NOT_ZONE_SIGN                                       | 2)                     |
+| ALGO-OK-8               | DS05_ALGO_OK                                                  | 2)                     |
 | ALGO-OK-13              | DS05_ALGO_OK                                                  | 2)                     |
 | ALGO-OK-14              | DS05_ALGO_OK                                                  | 2)                     |
 | ALGO-OK-15              | DS05_ALGO_OK                                                  | 2)                     |
 | ALGO-OK-16              | DS05_ALGO_OK                                                  | 2)                     |
 | ALGO-OK-17              | DS05_ALGO_OK                                                  | 2)                     |
 | ALGO-OK-23              | DS05_ALGO_OK                                                  | 2)                     |
-| ALGO-OK-8               | DS05_ALGO_OK                                                  | 2)                     |
 | ALGO-PRIVATE-253        | DS05_ALGO_PRIVATE                                             | 2)                     |
 | ALGO-PRIVATE-254        | DS05_ALGO_PRIVATE                                             | 2)                     |
 | ALGO-RESERVED-11        | DS05_ALGO_RESERVED                                            | 2)                     |
