@@ -24,7 +24,7 @@ DNSSEC is the security upgrade of DNS, just as TLS is the security upgrade of
 HTTP (but done in very different ways). If a zone is upgraded to DNSSEC it means
 that it is signed by DNSSEC keys. This test case will verify if the zone has been
 DNSSEC signed, and if so, also verify that there is at least one DS record in the
-parent zone for the zone tested.
+parent zone for the tested zone.
 
 The public half of the DNSSEC keys are stored in the zone. For a zone to be
 correctly signed it is not enough to have DNSKEY records, but this test case
