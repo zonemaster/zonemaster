@@ -43,7 +43,7 @@ The method for authentication a DNS response is described in section 5 of
 
 Signing the zone and providing DS records for a signed zone is not required by
 the protocol, but it is a deviation from best practices that should trigger an
-an alert. A WARNING is therefore raised if the zone is not signed, or if DS
+alert. A WARNING is therefore raised if the zone is not signed, or if DS
 records are absent for a signed zone.
 
 
