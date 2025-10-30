@@ -93,7 +93,7 @@ servers.
 Below are some restrictions on how some of the message tags, defined above, can
 be combined.
 
-* For each test exact one of *DS07_INCONSISTENT_SIGNED*, *DS07_SIGNED* and
+* For each test exactly one of either *DS07_INCONSISTENT_SIGNED*, *DS07_SIGNED* and
   *DS07_NOT_SIGNED* is outputted.
 * For each test only one of *DS07_INCONSISTENT_DS*, *DS07_DS_FOR_SIGNED_ZONE* and
   *DS07_NO_DS_FOR_SIGNED_ZONE* can be outputted.
