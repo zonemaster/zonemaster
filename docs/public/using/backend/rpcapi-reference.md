@@ -630,7 +630,7 @@ for different situations.
 | "Error: lookup error for IANA RDAP"                     | Failing getting data from IANA RDAP data                          |
 | "Source: URL from IANA RDAP"                            |                                                                   |
 | "Info: no URL in the IANA RDAP"                         |                                                                   |
-| "Info: no URL found for the TLD"                        | No valid URL was for the TLD                                      |
+| "Info: no URL found for the TLD"                        | No valid URL was found for the TLD                                |
 
 
 #### `"error"`
