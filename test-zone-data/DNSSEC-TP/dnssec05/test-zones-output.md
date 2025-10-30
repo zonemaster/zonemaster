@@ -402,9 +402,9 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testc
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw SHARED-IP-1.dnssec05.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-   0.05 INFO     DNSSEC05       DS05_ALGO_OK  algo_descr=ECDSA Curve P-256 with SHA-256; algo_mnemo=ECDSAP256SHA256; algo_num=13; keytag=51298; ns_list=ns1a.shared-ip-1.dnssec05.xa/127.15.5.31
+   0.05 INFO     DNSSEC05       DS05_ALGO_OK  algo_descr=ECDSA Curve P-256 with SHA-256; algo_mnemo=ECDSAP256SHA256; algo_num=13; keytag=51298; ns_list=ns1a.shared-ip-1.dnssec05.xa/127.15.5.31;ns1b.shared-ip-1.dnssec05.xa/127.15.5.31
 ```
---> Not OK, should be two servers, `ns_list=ns1a.shared-ip-1.dnssec05.xa/127.15.5.31;ns1b.shared-ip-1.dnssec05.xa/127.15.5.31`
+--> OK
 
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
