@@ -68,7 +68,7 @@ records are absent for a signed zone.
 | DS07_NON_AUTH_RESPONSE_DNSKEY | WARNING | ns_list        | The following name servers give a non authoritative response on DNSKEY query with DO bit set. Name servers: {ns_list}                      |
 | DS07_NOT_SIGNED               | WARNING |                | The zone is not signed.                                                                                                                    |
 | DS07_NOT_SIGNED_ON_SERVER     | WARNING | ns_list        | The following name servers responds with no DNSKEY (unsigned child zone). Name servers: {ns_list}.                                         |
-| DS07_NO_DS_ON_PARENT_SERVER   | WARNING | ns_list        | The following parent name servers responds without DS record for the child zone. Servers: {ns_list}.                                        |
+| DS07_NO_DS_ON_PARENT_SERVER   | WARNING | ns_list        | The following parent name servers responds without DS record for the child zone. Name servers: {ns_list}.                                   |
 | DS07_NO_DS_FOR_SIGNED_ZONE    | WARNING |                | The parent zone has no DS record for the signed child zone.                                                                                |
 | DS07_NO_RESPONSE_DNSKEY       | WARNING | ns_list        | The following name servers dig not respond on DNSKEY query with DO bit set. Servers: {ns_list}                                             |
 | DS07_SIGNED                   | INFO    |                | The child zone is signed.                                                                                                                  |
