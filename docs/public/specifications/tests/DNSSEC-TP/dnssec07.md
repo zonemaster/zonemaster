@@ -72,7 +72,7 @@ records are absent for a signed zone.
 | DS07_NO_DS_FOR_SIGNED_ZONE    | WARNING |                | The parent zone has no DS record for the signed child zone.                                                                                |
 | DS07_NO_RESPONSE_DNSKEY       | WARNING | ns_list        | The following name servers dig not respond on DNSKEY query with DO bit set. Servers: {ns_list}                                             |
 | DS07_SIGNED                   | INFO    |                | The zone is signed.                                                                                                                        |
-| DS07_SIGNED_ON_SERVER         | INFO    | ns_list        | The following name servers responds with DNSKEY (signed child zone). Servers: {ns_list}.                                                   |
+| DS07_SIGNED_ON_SERVER         | INFO    | ns_list        | The following name servers responds with DNSKEY (signed child zone). Name servers: {ns_list}.                                              |
 | DS07_UNEXP_RCODE_RESP_DNSKEY  | WARNING | ns_list, rcode | The following name servers responed with RCODE "{rcode}" instead of expected "NOERROR" on DNSKEY query with DO bit set. Servers: {ns_list} |
 
 The value in the Level column is the default severity level of the message. The
