@@ -31,7 +31,7 @@ correctly signed it is not enough to have DNSKEY records, but this test case
 assumes that the existence of at least one DNSKEY record with at least one RRSIG
 record covering the DNSKEY RRset means that the zone is signed.
 
-It is not enough to have a signed zone. The parent zone must have DS record to
+It is not enough to have a signed zone. The parent zone must have a DS record to
 create a chain of trust from root. If the zone is signed (has at least one
 DNSKEY record) this test case will check if the parent zone has any DS records
 for the zone.
