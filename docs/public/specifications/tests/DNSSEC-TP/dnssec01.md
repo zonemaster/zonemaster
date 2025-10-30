@@ -229,7 +229,7 @@ queries follow, unless otherwise specified below, what is specified for
        the key tag and output [DS01_DS_ALGO_2_MISSING] with key tag and the
        extracted list of IP addresses.
 
-10. If the *Responds Without Valid DS* is empty, the *Responds With DS* sets is
+10. If the *Responds Without Valid DS* is empty, the *Responds With DS* set is
     empty and the *Ignored Parent NS IP* set is non-empty, then output
     *[DS01_NO_RESPONSE]* with the name server IP from the *Ignored Parent NS IP*
     set.
