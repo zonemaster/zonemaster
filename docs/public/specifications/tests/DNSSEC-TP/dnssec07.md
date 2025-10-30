@@ -21,7 +21,7 @@
 ## Objective
 
 DNSSEC is the security upgrade of DNS, just as TLS is the security upgrade of
-HTTP (but done in very different ways). If a zone is upgrades to DNSSEC it means
+HTTP (but done in very different ways). If a zone is upgraded to DNSSEC it means
 that it is signed by DNSSEC keys. This test case will verify if the zone has been
 DNSSEC signed, and if so, also verify that there is at least one DS record in the
 parent zone for the zone tested.
