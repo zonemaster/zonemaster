@@ -620,7 +620,7 @@ for different situations.
 | "Block: global block policy in backend configuration"   |                                                                   |
 | "Source: URL override in backend configuration"         |                                                                   |
 | "Info: no URL override in backend configuration"        |                                                                   |
-| "Error: error in URL override in backend configuration" | The URL in backend configuration not correct                      |
+| "Error: error in URL override in backend configuration" | The URL in backend configuration is incorrect                     |
 | "Info: no TLD TXT record found"                         |                                                                   |
 | "Error: multiple TLD TXT records found"                 | There are more than one dedicated DNS TXT records in the TLD zone |
 | "Error: error in URL in TLD TXT record"                 | The format of the dedicated DNS TXT record is incorrect           |
