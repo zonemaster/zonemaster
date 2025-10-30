@@ -33,8 +33,8 @@ How Backend can override public values is defined in [Backend configuration].
 
 In this document the only types of [URLs][URL] that are considered are `http`
 and `https`, i.e. URLs where the scheme is `http` or `https`. There are also
-restrictions on allowed characters in that URL. In section
-[URL string or blocking policy] are defined. In the same section the term
+restrictions on allowed characters in that URL in section
+[URL string or blocking policy]. In the same section the term
 `URL string` is used, and it is defined at the start of that section.
 
 
