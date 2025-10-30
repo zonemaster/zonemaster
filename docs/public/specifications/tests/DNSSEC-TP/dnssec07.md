@@ -166,8 +166,7 @@ A complete list of all DNS Resource Record types can be found in the
 8.  If *Undelegated DS* is non-empty then do:
 
     1. Add name server IP as "-" to the *DS in Response* set.
-    2. Make *Parent NS IP* an empty set. I.e. skip querying the parent name
-       servers if *Undelegated DS* has been provided.
+    2. Make *Parent NS IP* an empty set.
 
 9.  If the *Signed Response* set is empty, make *Parent NS IP* and
     *DS in Response* empty sets. I.e. skip looking for DS if *Child Zone* is not
