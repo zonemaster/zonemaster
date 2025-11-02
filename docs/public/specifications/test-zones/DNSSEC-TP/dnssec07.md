@@ -155,7 +155,7 @@ Parent provides DS on one server, but not the other.
 * Zone: child.signed-and-inconsist-ds-1.dnssec07.xa.
   * Grandparent zone is dnssec07.xa.
   * Parent zone is signed-and-inconsist-ds-1.dnssec07.xa.
-    * ns1 provids DS, ns2 does not.
+    * ns1 provides DS, ns2 does not.
   * Child zone is child.signed-and-inconsist-ds-1.dnssec07.xa.
     * Child zone is signed.
 
