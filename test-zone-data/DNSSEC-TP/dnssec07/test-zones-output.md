@@ -75,8 +75,12 @@ the `zonemaster-cli` command should be run with the following options:
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testcase --raw SIGNED-AND-DS-1.dnssec07.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
+   0.09 INFO     DNSSEC07       DS07_SIGNED_ON_SERVER  ns_list=ns1.signed-and-ds-1.dnssec07.xa/127.15.7.41;ns1.signed-and-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:41;ns2.signed-and-ds-1.dnssec07.xa/127.15.7.42;ns2.signed-and-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:42
+   0.09 INFO     DNSSEC07       DS07_SIGNED
+   0.09 INFO     DNSSEC07       DS07_DS_ON_PARENT_SERVER  ns_list=ns1.dnssec07.xa/127.15.7.21;ns1.dnssec07.xa/fda1:b2:c3:0:127:15:7:21;ns1.dnssec07.xa/fda1:b2:c3:0:127:15:7:22;ns2.dnssec07.xa/127.15.7.22
+   0.09 INFO     DNSSEC07       DS07_DS_FOR_SIGNED_ZONE
 ```
---> ??
+--> OK
 
 | Scenario name  | Mandatory tags                                                                              | Forbidden tags |
 |:---------------|:--------------------------------------------------------------------------------------------|:---------------|
@@ -84,10 +88,12 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testc
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testcase --raw SIGNED-NO-DS-1.dnssec07.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-   0.03 WARNING  DNSSEC07       DNSKEY_BUT_NOT_DS  child=127.15.7.41; parent=127.15.7.21
+   0.07 INFO     DNSSEC07       DS07_SIGNED_ON_SERVER  ns_list=ns1.signed-no-ds-1.dnssec07.xa/127.15.7.41;ns1.signed-no-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:41;ns2.signed-no-ds-1.dnssec07.xa/127.15.7.42;ns2.signed-no-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:42
+   0.07 INFO     DNSSEC07       DS07_SIGNED
+   0.07 WARNING  DNSSEC07       DS07_NO_DS_ON_PARENT_SERVER  ns_list=ns1.dnssec07.xa/127.15.7.21;ns1.dnssec07.xa/fda1:b2:c3:0:127:15:7:21;ns1.dnssec07.xa/fda1:b2:c3:0:127:15:7:22;ns2.dnssec07.xa/127.15.7.22
+   0.07 WARNING  DNSSEC07       DS07_NO_DS_FOR_SIGNED_ZONE
 ```
---> ??
-
+--> OK
 
 | Scenario name             | Mandatory tags                                                                                       | Forbidden tags |
 |:--------------------------|:-----------------------------------------------------------------------------------------------------|:---------------|
@@ -95,9 +101,12 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testc
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testcase --raw INCONSIST-SIGNED-AND-DS-1.dnssec07.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
+   0.08 INFO     DNSSEC07       DS07_SIGNED_ON_SERVER  ns_list=ns1.inconsist-signed-and-ds-1.dnssec07.xa/127.15.7.41;ns1.inconsist-signed-and-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:41
+   0.08 WARNING  DNSSEC07       DS07_NOT_SIGNED_ON_SERVER  ns_list=ns2.inconsist-signed-and-ds-1.dnssec07.xa/127.15.7.42;ns2.inconsist-signed-and-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:42
+   0.08 ERROR    DNSSEC07       DS07_INCONSISTENT_SIGNED
+   0.08 INFO     DNSSEC07       DS07_DS_ON_PARENT_SERVER  ns_list=ns1.dnssec07.xa/127.15.7.21;ns1.dnssec07.xa/fda1:b2:c3:0:127:15:7:21;ns1.dnssec07.xa/fda1:b2:c3:0:127:15:7:22;ns2.dnssec07.xa/127.15.7.22
 ```
---> ??
-
+--> OK
 
 | Scenario name            | Mandatory tags                                                                                          | Forbidden tags |
 |:-------------------------|:--------------------------------------------------------------------------------------------------------|:---------------|
@@ -105,20 +114,26 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testc
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testcase --raw INCONSIST-SIGNED-NO-DS-1.dnssec07.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-   0.03 WARNING  DNSSEC07       DNSKEY_BUT_NOT_DS  child=127.15.7.41; parent=127.15.7.21
+   0.07 INFO     DNSSEC07       DS07_SIGNED_ON_SERVER  ns_list=ns1.inconsist-signed-no-ds-1.dnssec07.xa/127.15.7.41;ns1.inconsist-signed-no-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:41
+   0.07 WARNING  DNSSEC07       DS07_NOT_SIGNED_ON_SERVER  ns_list=ns2.inconsist-signed-no-ds-1.dnssec07.xa/127.15.7.42;ns2.inconsist-signed-no-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:42
+   0.07 ERROR    DNSSEC07       DS07_INCONSISTENT_SIGNED
+   0.07 WARNING  DNSSEC07       DS07_NO_DS_ON_PARENT_SERVER  ns_list=ns1.dnssec07.xa/127.15.7.21;ns1.dnssec07.xa/fda1:b2:c3:0:127:15:7:21;ns1.dnssec07.xa/fda1:b2:c3:0:127:15:7:22;ns2.dnssec07.xa/127.15.7.22
 ```
---> ??
-
+--> OK
 
 | Scenario name             | Mandatory tags                                                                                                  | Forbidden tags |
 |:--------------------------|:----------------------------------------------------------------------------------------------------------------|:---------------|
 | SIGNED-AND-INCONSIST-DS-1 | DS07_DS_ON_PARENT_SERVER, DS07_INCONSISTENT_DS, DS07_NO_DS_ON_PARENT_SERVER, DS07_SIGNED, DS07_SIGNED_ON_SERVER | 2)             |
 ```
-$ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testcase --raw SIGNED-AND-DS-1.dnssec07.xa
+$ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testcase --raw child.signed-and-inconsist-ds-1.dnssec07.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
+   0.11 INFO     DNSSEC07       DS07_SIGNED_ON_SERVER  ns_list=ns1.child.signed-and-inconsist-ds-1.dnssec07.xa/127.15.7.41;ns1.child.signed-and-inconsist-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:41;ns2.child.signed-and-inconsist-ds-1.dnssec07.xa/127.15.7.42;ns2.child.signed-and-inconsist-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:42
+   0.11 INFO     DNSSEC07       DS07_SIGNED
+   0.11 WARNING  DNSSEC07       DS07_NO_DS_ON_PARENT_SERVER  ns_list=ns2.signed-and-inconsist-ds-1.dnssec07.xa/127.15.7.32;ns2.signed-and-inconsist-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:32
+   0.11 INFO     DNSSEC07       DS07_DS_ON_PARENT_SERVER  ns_list=ns1.signed-and-inconsist-ds-1.dnssec07.xa/127.15.7.31;ns1.signed-and-inconsist-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:31
+   0.11 ERROR    DNSSEC07       DS07_INCONSISTENT_DS
 ```
---> ??
-
+--> OK
 
 | Scenario name     | Mandatory tags                             | Forbidden tags |
 |:------------------|:-------------------------------------------|:---------------|
@@ -126,10 +141,10 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testc
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testcase --raw UNSIGNED-AND-DS-1.dnssec07.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-   0.03 ERROR    DNSSEC07       DS_BUT_NOT_DNSKEY  child=127.15.7.41; parent=127.15.7.21
+   0.08 WARNING  DNSSEC07       DS07_NOT_SIGNED_ON_SERVER  ns_list=ns1.unsigned-and-ds-1.dnssec07.xa/127.15.7.41;ns1.unsigned-and-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:41;ns2.unsigned-and-ds-1.dnssec07.xa/127.15.7.42;ns2.unsigned-and-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:42
+   0.08 WARNING  DNSSEC07       DS07_NOT_SIGNED
 ```
---> ??
-
+--> OK
 
 | Scenario name    | Mandatory tags                             | Forbidden tags |
 |:-----------------|:-------------------------------------------|:---------------|
@@ -140,8 +155,7 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testc
    0.03 NOTICE   DNSSEC07       NEITHER_DNSKEY_NOR_DS  child=127.15.7.41; parent=127.15.7.21
    0.03 NOTICE   Unspecified    NOT_SIGNED  zone=unsigned-no-ds-1.dnssec07.xa
 ```
---> ??
-
+--> OK
 
 | Scenario name              | Mandatory tags                                                                                                       | Forbidden tags |
 |:---------------------------|:---------------------------------------------------------------------------------------------------------------------|:---------------|
@@ -149,9 +163,13 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testc
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testcase --raw NON-AUTH-RESPONSE-DNSKEY-1.dnssec07.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
+   0.08 WARNING  DNSSEC07       DS07_NON_AUTH_RESPONSE_DNSKEY  ns_list=ns1.non-auth-response-dnskey-1.dnssec07.xa/127.15.7.41;ns1.non-auth-response-dnskey-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:41
+   0.08 INFO     DNSSEC07       DS07_SIGNED_ON_SERVER  ns_list=ns2.non-auth-response-dnskey-1.dnssec07.xa/127.15.7.42;ns2.non-auth-response-dnskey-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:42
+   0.08 INFO     DNSSEC07       DS07_SIGNED
+   0.08 INFO     DNSSEC07       DS07_DS_ON_PARENT_SERVER  ns_list=ns1.dnssec07.xa/127.15.7.21;ns1.dnssec07.xa/fda1:b2:c3:0:127:15:7:21;ns1.dnssec07.xa/fda1:b2:c3:0:127:15:7:22;ns2.dnssec07.xa/127.15.7.22
+   0.08 INFO     DNSSEC07       DS07_DS_FOR_SIGNED_ZONE
 ```
---> ??
-
+--> OK
 
 | Scenario name        | Mandatory tags                                                                                                 | Forbidden tags |
 |:---------------------|:---------------------------------------------------------------------------------------------------------------|:---------------|
@@ -159,9 +177,13 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testc
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testcase --raw NO-RESPONSE-DNSKEY-1.dnssec07.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
+  20.09 WARNING  DNSSEC07       DS07_NO_RESPONSE_DNSKEY  ns_list=ns1.no-response-dnskey-1.dnssec07.xa/127.15.7.41;ns1.no-response-dnskey-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:41
+  20.09 INFO     DNSSEC07       DS07_SIGNED_ON_SERVER  ns_list=ns2.no-response-dnskey-1.dnssec07.xa/127.15.7.42;ns2.no-response-dnskey-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:42
+  20.09 INFO     DNSSEC07       DS07_SIGNED
+  20.09 INFO     DNSSEC07       DS07_DS_ON_PARENT_SERVER  ns_list=ns1.dnssec07.xa/127.15.7.21;ns1.dnssec07.xa/fda1:b2:c3:0:127:15:7:21;ns1.dnssec07.xa/fda1:b2:c3:0:127:15:7:22;ns2.dnssec07.xa/127.15.7.22
+  20.09 INFO     DNSSEC07       DS07_DS_FOR_SIGNED_ZONE
 ```
---> ??
-
+--> OK
 
 | Scenario name             | Mandatory tags                                                                                                      | Forbidden tags |
 |:--------------------------|:--------------------------------------------------------------------------------------------------------------------|:---------------|
@@ -169,8 +191,10 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testc
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testcase --raw UNEXP-RCODE-RESP-DNSKEY-1.dnssec07.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-   0.04 ERROR    DNSSEC07       DS_BUT_NOT_DNSKEY  child=127.15.7.41; parent=127.15.7.21
+   0.07 WARNING  DNSSEC07       DS07_UNEXP_RCODE_RESP_DNSKEY  ns_list=ns1.unexp-rcode-resp-dnskey-1.dnssec07.xa/127.15.7.41;ns1.unexp-rcode-resp-dnskey-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:41; rcode=REFUSED
+   0.07 INFO     DNSSEC07       DS07_SIGNED_ON_SERVER  ns_list=ns2.unexp-rcode-resp-dnskey-1.dnssec07.xa/127.15.7.42;ns2.unexp-rcode-resp-dnskey-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:42
+   0.08 INFO     DNSSEC07       DS07_SIGNED
+   0.08 INFO     DNSSEC07       DS07_DS_ON_PARENT_SERVER  ns_list=ns1.dnssec07.xa/127.15.7.21;ns1.dnssec07.xa/fda1:b2:c3:0:127:15:7:21;ns1.dnssec07.xa/fda1:b2:c3:0:127:15:7:22;ns2.dnssec07.xa/127.15.7.22
+   0.08 INFO     DNSSEC07       DS07_DS_FOR_SIGNED_ZONE
 ```
---> ??
-
-
+--> OK
