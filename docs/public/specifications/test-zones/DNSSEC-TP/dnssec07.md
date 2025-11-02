@@ -139,7 +139,7 @@ The child is signed on ns1 but not on ns2.
 
 * Zone: inconsist-signed-and-ds-1.dnssec07.xa.
   * Response from ns1 with DNSKEY.
-  * Response from ns2 without DNSKEY
+  * Response from ns2 without DNSKEY.
 
 ### INCONSIST-SIGNED-NO-DS-1
 The child is signed on ns1 but not on ns2.
