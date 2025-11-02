@@ -153,10 +153,11 @@ A complete list of all DNS Resource Record types can be found in the
     6.  Add the name server IP and the [RCODE Name] to the
         *Error RCODE DNSKEY Response* set and go to next name server IP if the
         [RCODE Name] is not NOERROR.
-    7.  Add the name server IP to the "Signed Response" set and go to next name
+    7.  Add the name server IP to the *Signed Response* set and go to next name
         server IP if the answer section contains the following DNS records:
         * At least one DNSKEY record.
-        * At least one RRSIG record covering the DNSKEY RRset.
+        * At least one RRSIG record covering the DNSKEY RRset (verification not
+          done in this test case).
     8.  Else add the name server IP to the *No DNSKEY* set and go to
         next name server IP.
 
@@ -191,12 +192,13 @@ A complete list of all DNS Resource Record types can be found in the
        next parent name server IP if the answer section contains the following
        DNS records:
        * At least one DS record with *Child Zone* as owner name.
-       * At least one RRSIG covering the DS RRset.
+       * At least one RRSIG covering the DS RRset (verification not done in this
+         test case).
     4. Else add the parent name server IP to the *No DS* set and go
        to next parent name server IP.
 
-11. If the following sets combined is identical to the *Child NS IP* set, output
-    *[DS07_NOT_SIGNED]*.
+11. If the following sets combined (i.e. the union of the sets) is identical to
+    the *Child NS IP* set, output *[DS07_NOT_SIGNED]*.
     * *Ignored Child NS*
     * *No Response DNSKEY Query*
     * *No Auth DNSKEY Response*
