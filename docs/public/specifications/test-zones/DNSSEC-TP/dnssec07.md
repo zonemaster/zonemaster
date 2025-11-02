@@ -74,7 +74,7 @@ irrelevant to the test scenario and must be ignored.
 | SIGNED-AND-INCONSIST-DS-1  | DS07_DS_ON_PARENT_SERVER, DS07_INCONSISTENT_DS, DS07_NO_DS_ON_PARENT_SERVER, DS07_SIGNED, DS07_SIGNED_ON_SERVER | 2)             |
 | UNSIGNED-AND-DS-1          | DS07_NOT_SIGNED, DS07_NOT_SIGNED_ON_SERVER                                                                      | 2)             |
 | UNSIGNED-NO-DS-1           | DS07_NOT_SIGNED, DS07_NOT_SIGNED_ON_SERVER                                                                      | 2)             |
-| NON-AUTH-RESPONSE-DNSKEY-1 | DS07_NON_AUTH_RESPONSE_DNSKEY, DS07_SIGNED, DS07_SIGNED_ON_SERVER                                               | 2)             |
+| NON-AUTH-RESPONSE-DNSKEY-1 | DS07_NON_AUTH_RESPONSE_DNSKEY, DS07_SIGNED, DS07_SIGNED_ON_SERVER, DS07_DS_ON_PARENT_SERVER, DS07_DS_FOR_SIGNED_ZONE | 2)             |
 | NO-RESPONSE-DNSKEY-1       | DS07_SIGNED, DS07_SIGNED_ON_SERVER, DS07_NO_RESPONSE_DNSKEY                                                     | 2)             |
 | UNEXP-RCODE-RESP-DNSKEY-1  | DS07_SIGNED, DS07_SIGNED_ON_SERVER, DS07_UNEXP_RCODE_RESP_DNSKEY                                                | 2)             |
 
