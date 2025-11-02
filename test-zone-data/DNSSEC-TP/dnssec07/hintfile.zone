@@ -1,4 +1,4 @@
-; Hint file for Delegation03 local root
+; Hint file for DNSSEC07 local root
 
 .             3600   NS     root-ns1.xa.
 .             3600   NS     root-ns2.xa.
