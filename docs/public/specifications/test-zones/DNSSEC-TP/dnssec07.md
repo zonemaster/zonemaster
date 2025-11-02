@@ -186,7 +186,7 @@ One server does not respond on DNSKEY query.
 
 * Zone: no-response-dnskey-1.dnssec07.xa.
   * ns1 does not respond on the DNSKEY query.
-    * Other queries normal responses.
+    * Other queries have normal responses.
   * Normal responses from ns2.
 
 ### UNEXP-RCODE-RESP-DNSKEY-1
