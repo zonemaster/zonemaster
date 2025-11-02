@@ -1,4 +1,4 @@
-# Specification of test Scenarios for DNSSEC07
+# Specification of Test Scenarios for DNSSEC07
 
 
 ## Table of contents
