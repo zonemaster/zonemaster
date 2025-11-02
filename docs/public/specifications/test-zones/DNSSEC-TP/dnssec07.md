@@ -178,7 +178,7 @@ One server responds with non-authoritative DNSKEY response.
 
 * Zone: non-auth-response-dnskey-1.dnssec07.xa.
   * ns1 responds with AA bit unset on DNSKEY query.
-    * Other queries normal responses.
+    * Other queries have normal responses.
   * Normal responses from ns2.
 
 ### NO-RESPONSE-DNSKEY-1
