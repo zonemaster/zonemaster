@@ -150,7 +150,7 @@ The child is signed on ns1 but not on ns2.
   * Parent provids no DS.
 
 ### SIGNED-AND-INCONSIST-DS-1
-Parent provids DS on one server, but not the other.
+Parent provides DS on one server, but not the other.
 
 * Zone: child.signed-and-inconsist-ds-1.dnssec07.xa.
   * Grandparent zone is dnssec07.xa.
