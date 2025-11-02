@@ -194,7 +194,7 @@ One server give unexpected RCODE in response on DNSKEY query.
 
 * Zone: unexp-rcode-resp-dnskey-1.dnssec07.xa.
   * ns1 responds with RCODE REFUSED on the DNSKEY query.
-    * Other queries normal responses.
+    * Other queries have normal responses.
   * Normal responses from ns2.
 
 
