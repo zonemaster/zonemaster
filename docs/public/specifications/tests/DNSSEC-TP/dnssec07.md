@@ -183,8 +183,7 @@ A complete list of all DNS Resource Record types can be found in the
     2. If at least one of the following criteria is met, then add name server IP
        to the "Ignored Parent NS IP" set and go to next parent name server:
        1. There is no [DNSSEC Response].
-       2. The RCODE in the [DNSSEC Response] is not "NoError"
-          ([IANA RCODE List]).
+       2. The [RCODE Name] in the [DNSSEC Response] is not "NoError".
        3. The OPT record is absent in the [DNSSEC Response].
        4. The DO flag is unset in the [DNSSEC Response].
        5. The AA flag is not set in the [DNSSEC Response].
