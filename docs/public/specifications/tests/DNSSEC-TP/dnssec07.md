@@ -29,7 +29,7 @@ parent zone for the tested zone.
 The public half of the DNSSEC keys are stored in the zone. For a zone to be
 correctly signed it is not enough to have DNSKEY records, but this test case
 assumes that the existence of at least one DNSKEY record with at least one RRSIG
-record covering the DNSKEY RRset means that the zone is signed.
+record [covering] the DNSKEY RRset means that the zone is signed.
 
 It is not enough to have a signed zone. The parent zone must have a DS record to
 create a chain of trust from root. If the zone is signed (i.e. has at least one
@@ -156,8 +156,7 @@ A complete list of all DNS Resource Record types can be found in the
     7.  Add the name server IP to the *Signed Response* set and go to next name
         server IP if the answer section contains the following DNS records:
         * At least one DNSKEY record.
-        * At least one RRSIG record covering the DNSKEY RRset (verification not
-          done in this test case).
+        * At least one RRSIG record [covering] the DNSKEY RRset.
     8.  Else add the name server IP to the *No DNSKEY* set and go to
         next name server IP.
 
@@ -172,11 +171,11 @@ A complete list of all DNS Resource Record types can be found in the
 9.  If the *Signed Response* set is empty, make *Parent NS IP* and
     *DS in Response* empty sets.
 
->   Note: *Parent NS IP* will be empty if any of the followng is true:
->     * *Undelegated test* is TRUE.
->     * *Undelegated DS* is non-empty.
->     * *Child Zone* is ".", i.e. root zone.
->     * The *Signed Response* set is empty.
+> Note: *Parent NS IP* will be empty if any of the followng is true:
+> * *Undelegated test* is TRUE.
+> * *Undelegated DS* is non-empty.
+> * *Child Zone* is ".", i.e. root zone.
+> * The *Signed Response* set is empty.
 
 10. For each parent name server IP in *Parent NS IP* do:
     1. Send *DS Query* to the name server IP.
@@ -191,8 +190,7 @@ A complete list of all DNS Resource Record types can be found in the
        next parent name server IP if the answer section contains the following
        DNS records:
        * At least one DS record with *Child Zone* as owner name.
-       * At least one RRSIG covering the DS RRset (verification not done in this
-         test case).
+       * At least one RRSIG [covering] the DS RRset.
     4. Else add the parent name server IP to the *No DS* set and go
        to next parent name server IP.
 
@@ -282,11 +280,16 @@ None.
 
 ## Terminology
 
-No special terminology for this test case.
+"Covering" -- the term is used in this test case to describe the relation of an
+RRSIG to the signed RRset as described in the first four bullets in section 5.3.1
+in [RFC 4035][RFC 4035#section-5.3.1]. The verification described in the
+following four bullets and the actual verification against the DNSKEY is not
+included for this test case.
 
 
 [Argument list]:                              ../ArgumentsForTestCaseMessages.md
 [CRITICAL]:                                   ../SeverityLevelDefinitions.md#critical
+[Covering]:                                   #terminology
 [Connectivity01]:                             ../Connectivity-TP/connectivity01.md
 [DNS Query and Response Defaults]:            ../DNSQueryAndResponseDefaults.md
 [DNS Query]:                                  ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
@@ -311,6 +314,7 @@ No special terminology for this test case.
 [DS07_UNEXP_RCODE_RESP_DNSKEY]:               #summary
 [ERROR]:                                      ../SeverityLevelDefinitions.md#error
 [Get-Del-NS-Names-and-IPs]:                   ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
+[Get-Parent-NS-IP]:                           ../MethodsV2.md#method-get-parent-ns-ip-addresses
 [Get-Zone-NS-Names-and-IPs]:                  ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
 [IANA RR Type List]:                          https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 [INFO]:                                       ../SeverityLevelDefinitions.md#info
@@ -318,6 +322,7 @@ No special terminology for this test case.
 [RCODE Name]:                                 https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 4034#section-2]:                         https://datatracker.ietf.org/doc/html/rfc4034#section-2
 [RFC 4034#section-5]:                         https://datatracker.ietf.org/doc/html/rfc4034#section-5
+[RFC 4035#section-5.3.1]:                     https://datatracker.ietf.org/doc/html/rfc4035#section-5.3.1]
 [RFC 4035#section-5]:                         https://datatracker.ietf.org/doc/html/rfc4035#section-5
 [Severity Level Definitions]:                 ../SeverityLevelDefinitions.md
 [Test procedure]:                             #test-procedure
