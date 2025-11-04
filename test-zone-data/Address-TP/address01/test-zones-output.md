@@ -59,7 +59,7 @@ this file is in.
 $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COMMON/hintfile --raw good-1.address01.xa
 
 ```
---> OK
+--> ?? 
 
 | Scenario name         | Mandatory message tag                                                         | Forbidden message tags |
 |:----------------------|:------------------------------------------------------------------------------|:-----------------------|
