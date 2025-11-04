@@ -270,7 +270,8 @@ on the ignored result.
 This test case should always be the first test case to be run in the
 DNSSEC Module. The second test case to be run is [DNSSEC11]. If this test case
 outputs *[DS07_NOT_SIGNED]* for a test, then no other
-[test case of the DNSSEC module][DNSSEC#test-case-list] should be run.
+[test case of the DNSSEC module][DNSSEC#test-case-list] besides [DNSSEC11]
+should be run.
 
 
 ## Intercase dependencies
