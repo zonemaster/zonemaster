@@ -322,7 +322,7 @@ included for this test case.
 [RCODE Name]:                                 https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 4034#section-2]:                         https://datatracker.ietf.org/doc/html/rfc4034#section-2
 [RFC 4034#section-5]:                         https://datatracker.ietf.org/doc/html/rfc4034#section-5
-[RFC 4035#section-5.3.1]:                     https://datatracker.ietf.org/doc/html/rfc4035#section-5.3.1]
+[RFC 4035#section-5.3.1]:                     https://datatracker.ietf.org/doc/html/rfc4035#section-5.3.1
 [RFC 4035#section-5]:                         https://datatracker.ietf.org/doc/html/rfc4035#section-5
 [Severity Level Definitions]:                 ../SeverityLevelDefinitions.md
 [Test procedure]:                             #test-procedure
