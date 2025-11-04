@@ -494,7 +494,7 @@ An array of [*language tags*][Language tag]. It is never empty.
 ### API method: `get_tld_url`
 
 Returns a URL for the closest TLD to the domain name in the request, or return
-empty. For context see [TLD URL for GUI].
+empty. For context see [TLD URL Specification].
 
 Example 1 request:
 ```json
@@ -512,7 +512,7 @@ Example 1 response:
   "id": 1,
   "result": {
     "url": "http://www.verisigninc.com",
-    "log":
+    "source":
         [
             "Info: no URL override in backend configuration",
             "Info: no TLD TXT record found",
@@ -537,7 +537,7 @@ Example 2 response:
   "jsonrpc": "2.0",
   "id": 1
   "result": {
-    "log":
+    "source":
         [
             "Info: no URL override in backend configuration",
             "Info: no TLD TXT record found",
@@ -563,7 +563,7 @@ Example 3 response:
   "jsonrpc": "2.0",
   "id": 1
   "result": {
-    "log":
+    "source":
         [
             "Block: global block policy in backend configuration"
         ]
@@ -586,7 +586,7 @@ Example 4 response:
   "jsonrpc": "2.0",
   "id": 1
   "result": {
-    "log":
+    "source":
         [
             "Info: no URL override in backend configuration",
             "Block: policy block in TLD TXT record"
@@ -599,21 +599,21 @@ Example 4 response:
 
 An empty object or an object with the following properties:
 
-"`url`": A http or https URL. May be absent.
-"`log`": An array of free text string describing the source of the URL,
-errors found or found blocking policy. May be absent by backend configuration.
+* "`url`": A http or https URL. May be absent.
+* "`source`": An array of free text string describing the source of the URL,
+  errors found or found blocking policy. May be absent by backend configuration.
 
-##### `"log"`
+##### `"source"`
 
-"`log`" is for troubleshooting needs and should be ignored by all applications
+"`source`" is for troubleshooting needs and should be ignored by all applications
 calling this method. If
-[`TLD URL section.suppress_log_messages`][TLD URL section.suppress_log_messages]
-is set to `yes` (default `no`) no log messages are included. The free text
+[`TLD URL SETTINGS section.include_source`][TLD URL SETTINGS section.include_source]
+is set to `false` (default `true`) no source messages are included. The free text
 strings are human-readable strings and must not be automatically parsed since
-they may be sligtly varied. The following tables gives the defined log messages
+they may be sligtly varied. The following tables gives the defined source messages
 for different situations.
 
-| log message                                             | Description                                                       |
+| source message                                          | Description                                                       |
 |---------------------------------------------------------|-------------------------------------------------------------------|
 | "Info: URL is not provided for the root zone"           | Root zone is the tested domain                                    |
 | "Info: URL is not provided for a TLD.                   | The tested domain is a TLD                                        |
@@ -631,7 +631,6 @@ for different situations.
 | "Source: URL from IANA RDAP"                            |                                                                   |
 | "Info: no URL in the IANA RDAP"                         |                                                                   |
 | "Info: no URL found for the TLD"                        | No valid URL was found for the TLD                                |
-
 
 #### `"error"`
 
@@ -1861,8 +1860,8 @@ There are also some experimental API methods documented only by name:
 [Test id]:                                 #test-id
 [Test result]:                             #test-result
 [Timestamp]:                               #timestamp
-[TLD URL for GUI]:                         ../../configuration/tld-url-for-gui.md
-[TLD URL section.suppress_log_messages]:   ../../configuration/backend.md#suppress_log_messages
+[TLD URL Specification]:                   ../../configuration/tld-url-specification.md
+[TLD URL SETTINGS section.include_source]: ../../configuration/backend.md#include_source
 [Username]:                                #username
 [Validation error data]:                   #validation-error-data
 [ZONEMASTER.age_reuse_previous_test]:      ../../configuration/backend.md#age_reuse_previous_test
