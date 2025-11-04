@@ -101,7 +101,7 @@ default to `no` (disabled).
 Boolean value to enable the `add_batch_job` and `batch_create` methods of the
 API. May not co-exist with [RPCAPI.enable_add_batch_job].
 
-Accepted values: `yes` or `no`, default to `yes` (enabled).
+Accepted values: `true` or `false`, default to `true` (enabled).
 
 ### max_batch_size_anonymous_mode
 
