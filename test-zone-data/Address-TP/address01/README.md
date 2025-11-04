@@ -1,14 +1,14 @@
+[This directory](.), i.e. the same directory as this README file, holds zone 
+files and configuration files to implement the test zones for the scenarios 
+defined in [ADDRESS01 test scenario specification].
 
-# Address01
+For these test zones the following files are found in [this directory]:
+* Zone files for `address01.xa` and other related zones;
+* CoreDNS configuration file;
+* Output from `zonemaster-cli` on all test scenarios in
+  [Address01 Test Zones Output].
 
-[This directory](.), i.e. the same directory as this README file, holds
-zone files and `coredns` configuration files for scenarios for test case Basic01.
+[Address01 Test Zones Output]:                   ./test-zones-output.md
+[Address01 test scenario specification]:       ../../../docs/public/specifications/test-zones/Address-TP/address01.md
+[This directory]:                             .
 
-## All message tags
-
-- A01_ADDR_NOT_GLOBALLY_REACHABLE
-- A01_DOCUMENTATION_ADDR
-- A01_GLOBALLY_REACHABLE_ADDR
-- A01_LOCAL_USE_ADDR
-- A01_NO_GLOBALLY_REACHABLE_ADDR
-- A01_NO_NAME_SERVERS_FOUND

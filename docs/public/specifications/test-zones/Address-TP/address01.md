@@ -127,7 +127,7 @@ The "happy path". Everything is fine.
 
 ### MIXED-DOC-OTHER-2
 
-* Zone . mixed-doc-other-2.address01.xa
+* Zone: mixed-doc-other-2.address01.xa
   * ns1 
     * IPv4 address NOT_GLOBALLY_REACHABLE
     * IPv6 address OK
