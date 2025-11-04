@@ -1,4 +1,4 @@
-# TLD URL for GUI
+# TLD URL
 
 > The feature specified in this accompanying document is a work in progress.
 > It must first be implemented in Backend before it can be used in GUI. It is
