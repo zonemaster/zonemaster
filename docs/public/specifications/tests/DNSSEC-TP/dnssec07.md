@@ -161,7 +161,7 @@ A complete list of all DNS Resource Record types can be found in the
         next name server IP.
 
 7.  Retrieve all name server IP addresses for the parent of *Child Zone* using
-    method [Get-Parent-NS-IP] ("Parent NS IP").
+    method [Get-Parent-NS-Names-and-IPs] ("Parent NS Names and IPs").
 
 8.  If *Undelegated DS* is non-empty then do:
 
