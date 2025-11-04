@@ -354,7 +354,7 @@ total maximum time will be double that value.
 
 Accepted values: a positive integer. Default to 3.
 
-### suppress_log_messages
+### include_source
 
 Boolean value to suppress log messages in the API response to a
 [`get_tld_url` method query][API method get_tld_url].
