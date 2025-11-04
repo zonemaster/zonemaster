@@ -338,7 +338,7 @@ The TLD URL section has several keys:
   * `[a-z][a-z]+`
   * `xn--[a-z0-9-][a-z0-9-]+`
 
-### extract_url
+### enable_tld_url
 
 Boolean value to enable the function described in document
 [TLD URL for GUI]. Disabling the function is the same as setting
