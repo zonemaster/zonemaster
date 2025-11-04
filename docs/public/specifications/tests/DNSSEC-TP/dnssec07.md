@@ -177,7 +177,7 @@ A complete list of all DNS Resource Record types can be found in the
 > * *Child Zone* is ".", i.e. root zone.
 > * The *Signed Response* set is empty.
 
-10. For each parent name server IP in *Parent NS IP* do:
+10. For each unique parent name server IP in *Parent NS Names and IPs* do:
     1. Send *DS Query* to the name server IP.
     2. If at least one of the following criteria is met, then add name server IP
        to the "Ignored Parent NS IP" set and go to next parent name server:
