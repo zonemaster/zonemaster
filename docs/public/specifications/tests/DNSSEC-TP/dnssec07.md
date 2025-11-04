@@ -160,18 +160,19 @@ A complete list of all DNS Resource Record types can be found in the
     8.  Else add the name server IP to the *No DNSKEY* set and go to
         next name server IP.
 
-7.  Retrieve all name server IP addresses for the parent of *Child Zone* using
-    method [Get-Parent-NS-Names-and-IPs] ("Parent NS Names and IPs").
+7.  Retrieve all name server names and IP addresses for the parent zone of
+    *Child Zone* using method [Get-Parent-NS-Names-and-IPs]
+    ("Parent NS Names and IPs").
 
 8.  If *Undelegated DS* is non-empty then do:
 
     1. Add name server IP as "-" to the *DS in Response* set.
-    2. Make *Parent NS IP* an empty set.
+    2. Make *Parent NS Names and IPs* an empty set.
 
-9.  If the *Signed Response* set is empty, make *Parent NS IP* and
+9.  If the *Signed Response* set is empty, make *Parent NS Names and IPs* and
     *DS in Response* empty sets.
 
-> Note: *Parent NS IP* will be empty if any of the following is true:
+> Note: *Parent NS Names and IPs* will be empty if any of the following is true:
 > * *Undelegated test* is TRUE.
 > * *Undelegated DS* is non-empty.
 > * *Child Zone* is ".", i.e. root zone.
@@ -194,53 +195,61 @@ A complete list of all DNS Resource Record types can be found in the
     4. Else add the parent name server IP to the *No DS* set and go
        to next parent name server IP.
 
-11. If the following sets combined (i.e. the union of the sets) is identical to
+11. The name server names are assumed to be available at the time when the msgid
+    is created, if the argument name is "ns" or "ns_list" even when below it is
+    only referred to the IP address of the name servers. For child zone name
+    servers refer to the *Child NS IP* set, and for the parent name servers refer
+    to the *Parent NS Names and IPs* set. In both sets more than one name server
+    name may be connected to the same IP address. In such a case, multiple "ns"
+    or multiple entries in the "ns_list" should be created.
+
+12. If the following sets combined (i.e. the union of the sets) is identical to
     the *Child NS IP* set, output *[DS07_NOT_SIGNED]*.
     * *Ignored Child NS*
     * *No Response DNSKEY Query*
     * *No Auth DNSKEY Response*
     * *Error RCODE DNSKEY Response*
 
-12. If the *No Response DNSKEY Query* set is non-empty then output
+13. If the *No Response DNSKEY Query* set is non-empty then output
     *[DS07_NO_RESPONSE_DNSKEY]* with the list of name servers from the
     *No Response DNSKEY Query* set.
 
-13. If the *No Auth DNSKEY Response* set is non-empty then output
+14. If the *No Auth DNSKEY Response* set is non-empty then output
     *[DS07_NON_AUTH_RESPONSE_DNSKEY]* with the list of name servers from the
     *No Auth DNSKEY Response* set.
 
-14. If the *Error RCODE DNSKEY Response* set is non-empty then for each
+15. If the *Error RCODE DNSKEY Response* set is non-empty then for each
     [RCODE Name] in the set output *[DS07_UNEXP_RCODE_RESP_DNSKEY]* with the
     [RCODE Name] and list of name servers from the *Error RCODE DNSKEY Response*
     set.
 
-15. If the *Signed Response* set is non-empty then output
+16. If the *Signed Response* set is non-empty then output
     *[DS07_SIGNED_ON_SERVER]* with the list of name servers from the
     *Signed Response* set.
 
-16. If the *No DNSKEY* set is non-empty then output *[DS07_NOT_SIGNED_ON_SERVER]*
+17. If the *No DNSKEY* set is non-empty then output *[DS07_NOT_SIGNED_ON_SERVER]*
     with the list of name servers from the *No DNSKEY* set.
 
-17. If both the *Signed Response* and *No DNSKEY* sets are non-empty then output
+18. If both the *Signed Response* and *No DNSKEY* sets are non-empty then output
     *[DS07_INCONSISTENT_SIGNED]*.
 
-18. If the *Signed Response* is non-empty and the *No DNSKEY* set is empty then
+19. If the *Signed Response* is non-empty and the *No DNSKEY* set is empty then
     output *[DS07_SIGNED]*.
 
-19. If the *Signed Response* is empty and the *No DNSKEY* set is non-empty then
+20. If the *Signed Response* is empty and the *No DNSKEY* set is non-empty then
     output *[DS07_NOT_SIGNED]*.
 
-20. If the *No DS* sets is non-empty, then output *[DS07_NO_DS_ON_PARENT_SERVER]*
+21. If the *No DS* sets is non-empty, then output *[DS07_NO_DS_ON_PARENT_SERVER]*
     with the list of name servers from the *No DS* set.
 
-21. If the *DS in Response* sets non-empty, then output
+22. If the *DS in Response* sets non-empty, then output
     *[DS07_DS_ON_PARENT_SERVER]* with the list of name servers from the
     *DS in Response* set.
 
 22. If both the *No DS* and the *DS in Response* sets are non-empty, then output
     *[DS07_INCONSISTENT_DS]*.
 
-23. If the *No DNSKEY* set is empty and the *Signed Response* set is non-empty,
+24. If the *No DNSKEY* set is empty and the *Signed Response* set is non-empty,
     then do:
     1. If the *No DS* is non-empty and the *DS in Response* set is empty, then
        output *[DS07_NO_DS_FOR_SIGNED_ZONE]*.
@@ -267,9 +276,9 @@ If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol. Log a message reporting
 on the ignored result.
 
-This test case should always be the first test case to be run in the
-DNSSEC Module. The second test case to be run is [DNSSEC11]. If this test case
-outputs *[DS07_NOT_SIGNED]* for a test, then no other
+This test case should always be the first test case to be run in the DNSSEC
+Module. The second test case to be run is [DNSSEC11]. If this test case outputs
+*[DS07_NOT_SIGNED]* for a test, then no other
 [test case of the DNSSEC module][DNSSEC#test-case-list] besides [DNSSEC11]
 should be run.
 
@@ -315,7 +324,7 @@ included for this test case.
 [DS07_UNEXP_RCODE_RESP_DNSKEY]:               #summary
 [ERROR]:                                      ../SeverityLevelDefinitions.md#error
 [Get-Del-NS-Names-and-IPs]:                   ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
-[Get-Parent-NS-IP]:                           ../MethodsV2.md#method-get-parent-ns-ip-addresses
+[Get-Parent-NS-Names-and-IPs]:                ../MethodsV2.md#method-get-parent-ns-names-and-ip-addresses
 [Get-Zone-NS-Names-and-IPs]:                  ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
 [IANA RR Type List]:                          https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 [INFO]:                                       ../SeverityLevelDefinitions.md#info
