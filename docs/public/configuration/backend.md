@@ -368,7 +368,7 @@ TLD. An IDN TLD must be as an A-label. Note that only lower case can be used.
 
 The value is a string that must match one of the following patterns:
   * `[BLOCK]` (that literal string) to block URL for that TLD
-  * An URL string as defined in section "TXT record" in
+  * A URL string as defined in section "TXT record" in
     [TLD URL for GUI][TLD URL for GUI#txt-record]
 
 Example of possible configuration where `xa` and `åäö` (`xn--4cab6c`) are
