@@ -255,9 +255,9 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec01 --level=info --show-testc
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec01 --level=info --show-testcase --raw child.shared-ip-1.dnssec01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-   0.06 INFO     DNSSEC01       DS01_DS_ALGO_OK  ds_algo_descr=SHA-256; ds_algo_num=2; keytag=42581; ns_list=ns1a.shared-ip-1.dnssec01.xa/127.15.1.31;ns1a.shared-ip-1.dnssec01.xa/fda1:b2:c3:0:127:15:1:31
+   0.08 INFO     DNSSEC01       DS01_DS_ALGO_OK  ds_algo_descr=SHA-256; ds_algo_num=2; keytag=42581; ns_list=ns1a.shared-ip-1.dnssec01.xa/127.15.1.31;ns1a.shared-ip-1.dnssec01.xa/fda1:b2:c3:0:127:15:1:31;ns1b.shared-ip-1.dnssec01.xa/127.15.1.31;ns1b.shared-ip-1.dnssec01.xa/fda1:b2:c3:0:127:15:1:31
 ```
---> Not OK, expects `ns_list=ns1a.shared-ip-1.dnssec01.xa/127.15.1.31;ns1a.shared-ip-1.dnssec01.xa/fda1:b2:c3:0:127:15:1:31;ns_list=ns1b.shared-ip-1.dnssec01.xa/127.15.1.31;ns1b.shared-ip-1.dnssec01.xa/fda1:b2:c3:0:127:15:1:31`
+--> OK
 
 | Scenario name         | Mandatory tags                                                 | Forbidden tags |
 |:----------------------|:---------------------------------------------------------------|:---------------|
@@ -265,9 +265,9 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec01 --level=info --show-testc
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec01 --level=info --show-testcase --raw child.shared-ip-2.dnssec01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-   0.07 INFO     DNSSEC01       DS01_DS_ALGO_OK  ds_algo_descr=SHA-256; ds_algo_num=2; keytag=42581; ns_list=ns1.shared-ip-2.dnssec01.xa/127.15.1.31;ns1.shared-ip-2.dnssec01.xa/fda1:b2:c3:0:127:15:1:31;ns2.shared-ip-2.dnssec01.xa/127.15.1.32;ns2.shared-ip-2.dnssec01.xa/fda1:b2:c3:0:127:15:1:32
+   0.08 INFO     DNSSEC01       DS01_DS_ALGO_OK  ds_algo_descr=SHA-256; ds_algo_num=2; keytag=42581; ns_list=dns1.shared-ip-2.dnssec01.xa/127.15.1.31;dns1.shared-ip-2.dnssec01.xa/fda1:b2:c3:0:127:15:1:31;dns2.shared-ip-2.dnssec01.xa/127.15.1.32;dns2.shared-ip-2.dnssec01.xa/fda1:b2:c3:0:127:15:1:32;ns1.shared-ip-2.dnssec01.xa/127.15.1.31;ns1.shared-ip-2.dnssec01.xa/fda1:b2:c3:0:127:15:1:31;ns2.shared-ip-2.dnssec01.xa/127.15.1.32;ns2.shared-ip-2.dnssec01.xa/fda1:b2:c3:0:127:15:1:32
 ```
---> Not OK, expects `ns_list=ns1.shared-ip-2.dnssec01.xa/127.15.1.31;ns1.shared-ip-2.dnssec01.xa/fda1:b2:c3:0:127:15:1:31;ns2.shared-ip-2.dnssec01.xa/127.15.1.32;ns2.shared-ip-2.dnssec01.xa/fda1:b2:c3:0:127:15:1:32;ns_list=dns1.shared-ip-2.dnssec01.xa/127.15.1.31;dns1.shared-ip-2.dnssec01.xa/fda1:b2:c3:0:127:15:1:31;dns2.shared-ip-2.dnssec01.xa/127.15.1.32;dns2.shared-ip-2.dnssec01.xa/fda1:b2:c3:0:127:15:1:32`
+--> OK
 
 | Scenario name         | Mandatory tags                                                 | Forbidden tags |
 |:----------------------|:---------------------------------------------------------------|:---------------|
