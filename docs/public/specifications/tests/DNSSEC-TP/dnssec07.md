@@ -171,7 +171,7 @@ A complete list of all DNS Resource Record types can be found in the
 9.  If the *Signed Response* set is empty, make *Parent NS IP* and
     *DS in Response* empty sets.
 
-> Note: *Parent NS IP* will be empty if any of the followng is true:
+> Note: *Parent NS IP* will be empty if any of the following is true:
 > * *Undelegated test* is TRUE.
 > * *Undelegated DS* is non-empty.
 > * *Child Zone* is ".", i.e. root zone.
