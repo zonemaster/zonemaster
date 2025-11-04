@@ -346,7 +346,7 @@ a global policy to block the function as described in the document.
 
 Accepted values: `yes` or `no`. Default to `yes` (enabled).
 
-### maximum_lookup_time
+### lookup_timeout
 
 The number of seconds each of the two lookups, DNS and RDAP, respectively, may
 maximally take. If the maximum time is reached, a timeout is executed. The
