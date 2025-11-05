@@ -1,15 +1,15 @@
 $ORIGIN arpa.
 $TTL 3600
 
-@       SOA     a.root-servers.xb. admin.root-servers.xb. (
-                2022100300      ; serial
-                6h              ; refresh
-                1h              ; retry
-                1w              ; expire
-                1d )            ; minimum
+@                       SOA     ns1. admin.xb. (
+                                2025110500      ; serial
+                                6h              ; refresh
+                                1h              ; retry
+                                1w              ; expire
+                                1d )            ; minimum
 
-                        NS      ns1.xa.
-                        NS      ns2.xa.
+                        NS      ns1.
+                        NS      ns2.
 
 $ORIGIN 1.0.1.127.in-addr.arpa.
 @                       PTR  ns1.
