@@ -53,7 +53,7 @@ irrelevant to the test scenario and must be ignored.
 Scenario name        | Mandatory message tag                                                        | Forbidden message tags
 :--------------------|:-----------------------------------------------------------------------------|:-------
 GOOD-1               | A01_ADDR_GLOBALLY_REACHABLE                                                  | 2) 
-ALL-NON-REACHABLE    | A01_NO_GLOBALLY_REACHABLE_ADDR                                               | 2) 
+ALL-NON-REACHABLE    | A01_ADDR_NOT_GLOBALLY_REACHABLE, A01_LOCAL_USE_ADDR, A01_DOCUMENTATION_ADDR  | 2) 
 MIXED-LOCAL-DOC-1    | A01_LOCAL_USE_ADDR, A01_DOCUMENTATION_ADDR                                   | 2) 
 MIXED-LOCAL-DOC-2    | A01_LOCAL_USE_ADDR, A01_DOCUMENTATION_ADDR                                   | 2) 
 MIXED-LOCAL-OTHER-1  | A01_LOCAL_USE_ADDR, A01_ADDR_NOT_GLOBALLY_REACHABLE                          | 2) 
