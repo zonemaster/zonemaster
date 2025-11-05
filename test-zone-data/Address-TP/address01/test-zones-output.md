@@ -51,7 +51,7 @@ this file is in.
 
 | Scenario name         | Mandatory message tag                                                         | Forbidden message tags |
 |:----------------------|:------------------------------------------------------------------------------|:-----------------------|
-| GOOD-1                | A01_ADDR_GLOBALLY_REACHABLE                                                   | 2)                     |
+| GOOD-1                | A01_GLOBALLY_REACHABLE_ADDR                                                   | 2)                     |
 
 * (2) All tags except for those specified as “Mandatory message tags”
 
