@@ -38,9 +38,9 @@ scenario. The names of those zones are given in section
 
 The test case can output any of these message tags, but not necessarily in any combination.
 
-- A01_ADDR_GLOBALLY_REACHABLE    
 - A01_ADDR_NOT_GLOBALLY_REACHABLE
 - A01_DOCUMENTATION_ADDR
+- A01_GLOBALLY_REACHABLE_ADDR
 - A01_LOCAL_USE_ADDR
 - A01_NO_GLOBALLY_REACHABLE_ADDR 
 - A01_NO_NAME_SERVERS_FOUND
