@@ -35,7 +35,7 @@
   * [enable_tld_url](#enable_tld_url)
   * [lookup_timeout](#lookup_timeout)
   * [include_source](#include_source)
-* [TLD URL OVERRIDE section](#tld-url-overwrite-section)
+* [TLD URL OVERRIDE section](#tld-url-override-section)
 * [ZONEMASTER section](#zonemaster-section)
   * [max_zonemaster_execution_time](#max_zonemaster_execution_time)
   * [number_of_processes_for_frontend_testing](#number_of_processes_for_frontend_testing)
@@ -359,10 +359,10 @@ in the API response to a [`get_tld_url` method query][API method get_tld_url].
 Accepted values: `true` or `false`. Default to `true` (include the source
 information).
 
-## TLD URL OVERWRITE section
+## TLD URL OVERRIDE section
 
-If `enable_tld_url` is `true` an overwrite value for one or more TLDs may be set
-in this section. If `enable_tld_url` is `false` any overwrite in this section
+If `enable_tld_url` is `true` an override value for one or more TLDs may be set
+in this section. If `enable_tld_url` is `false` any override in this section
 is irrelevant.
 
 This section can contain zero, one or several keys, where a key has the form

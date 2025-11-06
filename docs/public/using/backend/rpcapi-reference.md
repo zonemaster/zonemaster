@@ -610,8 +610,8 @@ calling this method. If
 [`TLD URL SETTINGS section.include_source`][TLD URL SETTINGS section.include_source]
 is set to `false` (default `true`) no source messages are included. The free text
 strings are human-readable strings and must not be automatically parsed since
-they may be sligtly varied. The following tables gives the defined source messages
-for different situations.
+they may be sligtly varied. The following tables gives source messages for
+different situations.
 
 | source message                                          | Description                                                       |
 |---------------------------------------------------------|-------------------------------------------------------------------|
