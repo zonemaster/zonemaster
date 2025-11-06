@@ -35,7 +35,7 @@
   * [enable_tld_url](#enable_tld_url)
   * [lookup_timeout](#lookup_timeout)
   * [include_source](#include_source)
-* [TLD URL OVERWRITE section](#tld-url-overwrite-section)
+* [TLD URL OVERRIDE section](#tld-url-overwrite-section)
 * [ZONEMASTER section](#zonemaster-section)
   * [max_zonemaster_execution_time](#max_zonemaster_execution_time)
   * [number_of_processes_for_frontend_testing](#number_of_processes_for_frontend_testing)
