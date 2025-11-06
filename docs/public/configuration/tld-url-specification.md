@@ -92,7 +92,7 @@ The following priority applies for blocking policies:
 ### Terminology
 
 The term `URL string` in used in this section for a string from which a URL can
-be derived using the steps in [TXT record]. Specifically an `URL string` may
+be derived using the steps in [TXT record]. Specifically a `URL string` may
 contain the literal string `[DOMAIN]` which is replaced by the tested domain name
 when the URL is derived. A `URL` derived from a `URL string` is also a valid
 `URL string`.
