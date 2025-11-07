@@ -76,7 +76,7 @@ configuration file with the "Batch API Key" as value.
 
 ### enable_add_batch_job
 
-*Deprecated. To be removed by Zonemaster version v2026.1. Use
+*Deprecated. To be removed by Zonemaster version v2026.2. Use
 `enable_batch_create` instead.*
 
 Boolean value to enable the `add_batch_job` and `batch_create` methods of the
@@ -87,7 +87,7 @@ default to `yes` (enabled).
 
 ### enable_add_api_user
 
-*Deprecated. To be removed by Zonemaster version v2026.1.*
+*Deprecated. To be removed by Zonemaster version v2026.2.*
 
 Boolean value to enable the `add_api_user` method of the API.
 
