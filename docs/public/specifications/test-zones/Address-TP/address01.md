@@ -50,19 +50,22 @@ The test case can output any of these message tags, but not necessarily in any c
 If a message tag is not listed for the scenario, its presence or non-presence is
 irrelevant to the test scenario and must be ignored.
 
-Scenario name        | Mandatory message tag                                                        | Forbidden message tags
-:--------------------|:-----------------------------------------------------------------------------|:-------
-GOOD-1               | A01_GLOBALLY_REACHABLE_ADDR                                                  | 2) 
-ALL-NON-REACHABLE    | A01_ADDR_NOT_GLOBALLY_REACHABLE, A01_LOCAL_USE_ADDR, A01_DOCUMENTATION_ADDR  | 2) 
-MIXED-LOCAL-DOC-1    | A01_LOCAL_USE_ADDR, A01_DOCUMENTATION_ADDR                                   | 2) 
-MIXED-LOCAL-DOC-2    | A01_LOCAL_USE_ADDR, A01_DOCUMENTATION_ADDR                                   | 2) 
-MIXED-LOCAL-OTHER-1  | A01_LOCAL_USE_ADDR, A01_ADDR_NOT_GLOBALLY_REACHABLE                          | 2) 
-MIXED-LOCAL-OTHER-2  | A01_LOCAL_USE_ADDR, A01_ADDR_NOT_GLOBALLY_REACHABLE                          | 2) 
-MIXED-DOC-OTHER-1    | A01_DOCUMENTATION_ADDR, A01_ADDR_NOT_GLOBALLY_REACHABLE                      | 2) 
-MIXED-DOC-OTHER-2    | A01_DOCUMENTATION_ADDR, A01_ADDR_NOT_GLOBALLY_REACHABLE                      | 2) 
-MIXED-ALL-1          | A01_ADDR_NOT_GLOBALLY_REACHABLE, A01_DOCUMENTATION_ADDR, A01_LOCAL_USE_ADDR  | 2) 
-MIXED-ALL-2          | A01_ADDR_NOT_GLOBALLY_REACHABLE, A01_DOCUMENTATION_ADDR, A01_LOCAL_USE_ADDR  | 2) 
-NO-NAME-SERVERS      | A01_NO_NAME_SERVERS_FOUND                                                    | 2)
+| Scenario name       | Mandatory message tag                                                                                       | Forbidden message tags |
+|:--------------------|:------------------------------------------------------------------------------------------------------------|:-----------------------|
+| GOOD-1              | A01_GLOBALLY_REACHABLE_ADDR                                                                                 | 2)                     |
+| MIXED-LOCAL-DOC-1   | A01_LOCAL_USE_ADDR, A01_DOCUMENTATION_ADDR, A01_GLOBALLY_REACHABLE_ADDR                                     | 2)                     |
+| MIXED-LOCAL-DOC-2   | A01_LOCAL_USE_ADDR, A01_DOCUMENTATION_ADDR, A01_GLOBALLY_REACHABLE_ADDR                                     | 2)                     |
+| MIXED-LOCAL-OTHER-1 | A01_LOCAL_USE_ADDR, A01_ADDR_NOT_GLOBALLY_REACHABLE, A01_GLOBALLY_REACHABLE_ADDR                            | 2)                     |
+| MIXED-LOCAL-OTHER-2 | A01_LOCAL_USE_ADDR, A01_ADDR_NOT_GLOBALLY_REACHABLE, A01_GLOBALLY_REACHABLE_ADDR                            | 2)                     |
+| MIXED-DOC-OTHER-1   | A01_DOCUMENTATION_ADDR, A01_ADDR_NOT_GLOBALLY_REACHABLE, A01_GLOBALLY_REACHABLE_ADDR                        | 2)                     |
+| MIXED-DOC-OTHER-2   | A01_DOCUMENTATION_ADDR, A01_ADDR_NOT_GLOBALLY_REACHABLE, A01_GLOBALLY_REACHABLE_ADDR                        | 2)                     |
+| MIXED-ALL-1         | A01_ADDR_NOT_GLOBALLY_REACHABLE, A01_DOCUMENTATION_ADDR, A01_LOCAL_USE_ADDR, A01_GLOBALLY_REACHABLE_ADDR    | 2)                     |
+| MIXED-ALL-2         | A01_ADDR_NOT_GLOBALLY_REACHABLE, A01_DOCUMENTATION_ADDR, A01_LOCAL_USE_ADDR, A01_GLOBALLY_REACHABLE_ADDR    | 2)                     |
+| ALL-NON-REACHABLE   | A01_ADDR_NOT_GLOBALLY_REACHABLE, A01_LOCAL_USE_ADDR, A01_DOCUMENTATION_ADDR, A01_NO_GLOBALLY_REACHABLE_ADDR | 2)                     |
+| NO_NAME_SERVERS     | A01_NO_NAME_SERVERS_FOUND                                                                                   | 2)                     |
+
+
+
 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
 * (2) All tags except for those specified as "Mandatory message tags"
