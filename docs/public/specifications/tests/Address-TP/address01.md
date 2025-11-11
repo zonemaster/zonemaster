@@ -93,6 +93,8 @@ message. The argument names are defined in the [Argument list].
       3. Else, if it falls within any other range that is not registered as
          *Globally Reachable*, add the name server name and IP address to
          the *Not Globally Reachable* set.
+      4. Else, add the name server name and IP address to the
+         *Globally Reachable* set.
    2. Go to the next server.
 6. If the sets *Documentation Address*, *Local Use Adddress* and
    *Not Globally Reachable* are all empty, then output
