@@ -95,23 +95,20 @@ message. The argument names are defined in the [Argument list].
       4. Else, add the name server name and IP address to the
          *Globally Reachable* set.
    2. Go to the next server.
-5. If the sets *Documentation Address*, *Local Use Adddress* and
-   *Not Globally Reachable* are all empty, then output
-   *[A01_GLOBALLY_REACHABLE_ADDR]*
-6. If the *Documentation Address* set is non-empty, then output
+5. If the *Documentation Address* set is non-empty, then output
    *[A01_DOCUMENTATION_ADDR]* with a list of name server names and IP addresses
    from the set.
-7. If the *Local Use Address* set is non-empty, then output
+6. If the *Local Use Address* set is non-empty, then output
    *[A01_LOCAL_USE_ADDR]* with a list of name server names and IP addresses
    from the set.
-8. If the *Not Globally Reachable* set is non-empty, then output
+7. If the *Not Globally Reachable* set is non-empty, then output
    *[A01_ADDR_NOT_GLOBALLY_REACHABLE]* with a list of name server names and
    IP addresses from the set.
-9. If the *Globally Reachable* set is non-empty, then output
+8. If the *Globally Reachable* set is non-empty, then output
    *[A01_GLOBALLY_REACHABLE_ADDR]* with a list of name server names and
    IP addresses from the set.
-10. If the *Globally Reachable* set is empty,
-    then output *[A01_NO_GLOBALLY_REACHABLE_ADDR]*
+9. If the *Globally Reachable* set is empty, then output
+   *[A01_NO_GLOBALLY_REACHABLE_ADDR]*
 
 
 ## Outcome(s)
