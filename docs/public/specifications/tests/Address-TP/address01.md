@@ -44,7 +44,7 @@ Message Tag                       | Level    | Arguments | Message ID for messag
 :-------------------------------- |:---------|:----------|:--------------------------
 A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns_list   | IP address not listed as globally reachable: "{ns_list}".
 A01_DOCUMENTATION_ADDR            | ERROR    | ns_list   | IP address intended for documentation purposes: "{ns_list}".
-A01_GLOBALLY_REACHABLE_ADDR       | INFO     |           | All IP addresses of all name servers are listed as in the globally reachable address space.
+A01_GLOBALLY_REACHABLE_ADDR       | INFO     |   ns_list | Globally reachable IP address: "{ns_list}".
 A01_LOCAL_USE_ADDR                | ERROR    | ns_list   | IP address intended for local use on network or service provider level: "{ns_list}".
 A01_NO_GLOBALLY_REACHABLE_ADDR    | ERROR    |           | None of the name servers IP addresses are listed as globally reachable.
 A01_NO_NAME_SERVERS_FOUND         | CRITICAL |           | No name servers found.
