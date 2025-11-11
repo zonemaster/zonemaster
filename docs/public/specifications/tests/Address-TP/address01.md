@@ -106,8 +106,10 @@ message. The argument names are defined in the [Argument list].
 10. If the *Not Globally Reachable* set is non-empty, then output
     *[A01_ADDR_NOT_GLOBALLY_REACHABLE]* with a list of name server names and
     IP addresses from the set.
-11. If the union of the *Documentation Address*, *Local Use Address* and
-    *Not Globally Reachable* sets is equal to the *Name Server IP* set,
+11. If the *Globally Reachable* set is non-empty, then output
+     *[A01_GLOBALLY_REACHABLE_ADDR]* with a list of name server names and
+    IP addresses from the set.
+12. If the *Globally Reachable* set is empty,
     then output *[A01_NO_GLOBALLY_REACHABLE_ADDR]*
 
 
