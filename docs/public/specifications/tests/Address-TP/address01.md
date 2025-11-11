@@ -40,14 +40,14 @@ This test case does not do any actual connectivity test, which is done by other 
 
 ## Summary
 
-Message Tag                       | Level    | Arguments | Message ID for message tag
-:-------------------------------- |:---------|:----------|:--------------------------
-A01_ADDR_NOT_GLOBALLY_REACHABLE   | ERROR    | ns_list   | IP address not listed as globally reachable: "{ns_list}".
-A01_DOCUMENTATION_ADDR            | ERROR    | ns_list   | IP address intended for documentation purposes: "{ns_list}".
-A01_GLOBALLY_REACHABLE_ADDR       | INFO     |   ns_list | Globally reachable IP address: "{ns_list}".
-A01_LOCAL_USE_ADDR                | ERROR    | ns_list   | IP address intended for local use on network or service provider level: "{ns_list}".
-A01_NO_GLOBALLY_REACHABLE_ADDR    | ERROR    |           | None of the name servers IP addresses are listed as globally reachable.
-A01_NO_NAME_SERVERS_FOUND         | CRITICAL |           | No name servers found.
+| Message Tag                     | Level    | Arguments | Message ID for message tag                                                           |
+|:--------------------------------|:---------|:----------|:-------------------------------------------------------------------------------------|
+| A01_ADDR_NOT_GLOBALLY_REACHABLE | ERROR    | ns_list   | IP address not listed as globally reachable: "{ns_list}".                            |
+| A01_DOCUMENTATION_ADDR          | ERROR    | ns_list   | IP address intended for documentation purposes: "{ns_list}".                         |
+| A01_GLOBALLY_REACHABLE_ADDR     | INFO     | ns_list   | Globally reachable IP address: "{ns_list}".                                          |
+| A01_LOCAL_USE_ADDR              | ERROR    | ns_list   | IP address intended for local use on network or service provider level: "{ns_list}". |
+| A01_NO_GLOBALLY_REACHABLE_ADDR  | ERROR    |           | None of the name servers IP addresses are listed as globally reachable.              |
+| A01_NO_NAME_SERVERS_FOUND       | CRITICAL |           | No name servers found.                                                               |
 
 
 The value in the Level column is the default severity level of the message. The
@@ -70,12 +70,10 @@ message. The argument names are defined in the [Argument list].
    methods [Get-Del-NS-Names-and-IPs] and [Get-Zone-NS-Names-and-IPs],
    and add them to the *Name Server IP* set.
 
-
-
-4. If the *Name Server IP* set is empty, output *[A01_NO_NAME_SERVERS_FOUND]*
+3. If the *Name Server IP* set is empty, output *[A01_NO_NAME_SERVERS_FOUND]*
    and exit the test.
 
-5. For each name server in *Name Server IP* do:
+4. For each name server in *Name Server IP* do:
    1. Match the IP address against the IP ranges specified in
       [Special purpose IPv4 addresses] and [Special purpose IPv6 addresses]
       1. If the IP address falls within any of the address ranges reserved for
@@ -97,22 +95,22 @@ message. The argument names are defined in the [Argument list].
       4. Else, add the name server name and IP address to the
          *Globally Reachable* set.
    2. Go to the next server.
-6. If the sets *Documentation Address*, *Local Use Adddress* and
+5. If the sets *Documentation Address*, *Local Use Adddress* and
    *Not Globally Reachable* are all empty, then output
    *[A01_GLOBALLY_REACHABLE_ADDR]*
-7. If the *Documentation Address* set is non-empty, then output
+6. If the *Documentation Address* set is non-empty, then output
    *[A01_DOCUMENTATION_ADDR]* with a list of name server names and IP addresses
    from the set.
-9. If the *Local Use Address* set is non-empty, then output
+7. If the *Local Use Address* set is non-empty, then output
    *[A01_LOCAL_USE_ADDR]* with a list of name server names and IP addresses
    from the set.
-10. If the *Not Globally Reachable* set is non-empty, then output
-    *[A01_ADDR_NOT_GLOBALLY_REACHABLE]* with a list of name server names and
-    IP addresses from the set.
-11. If the *Globally Reachable* set is non-empty, then output
-     *[A01_GLOBALLY_REACHABLE_ADDR]* with a list of name server names and
-    IP addresses from the set.
-12. If the *Globally Reachable* set is empty,
+8. If the *Not Globally Reachable* set is non-empty, then output
+   *[A01_ADDR_NOT_GLOBALLY_REACHABLE]* with a list of name server names and
+   IP addresses from the set.
+9. If the *Globally Reachable* set is non-empty, then output
+   *[A01_GLOBALLY_REACHABLE_ADDR]* with a list of name server names and
+   IP addresses from the set.
+10. If the *Globally Reachable* set is empty,
     then output *[A01_NO_GLOBALLY_REACHABLE_ADDR]*
 
 
