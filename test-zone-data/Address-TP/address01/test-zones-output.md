@@ -56,26 +56,25 @@ this file is in.
 * (2) All tags except for those specified as “Mandatory message tags”
 
 ```
-$ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COMMON/hintfile --raw good-1.address01.xa
+$ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COMMON/hintfile --raw good-1.address01.xa 
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-   0.03 CRITICAL Address01      A01_NO_NAME_SERVERS_FOUND  
-   0.03 INFO     Address01      A01_GLOBALLY_REACHABLE_ADDR  
+  10.09 INFO     Address01      A01_GLOBALLY_REACHABLE_ADDR  ns_list=ns1.good-1.address01.xa/192.36.148.17;ns1.good-1.address01.xa/2001:7fe::53;ns2.good-1.address01.xa/192.175.48.1;ns2.good-1.address01.xa/64:ff9b::1
 ```
---> Not OK, *A01_NO_NAME_SERVERS_FOUND* unexpected.
+--> OK
 
 | Scenario name     | Mandatory message tag                                                   | Forbidden message tags |
 |:------------------|:------------------------------------------------------------------------|:-----------------------|
 | MIXED-LOCAL-DOC-1 | A01_LOCAL_USE_ADDR, A01_DOCUMENTATION_ADDR, A01_GLOBALLY_REACHABLE_ADDR | 2)                     |
 
 * (2) All tags except for those specified as “Mandatory message tags”
-
 ```
 $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COMMON/hintfile --raw mixed-local-doc-1.address01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
+  20.08 INFO     Address01      A01_GLOBALLY_REACHABLE_ADDR  ns_list=ns1.mixed-local-doc-1.address01.xa/2001:7fe::53;ns2.mixed-local-doc-1.address01.xa/192.36.148.17
   20.08 ERROR    Address01      A01_DOCUMENTATION_ADDR  ns_list=ns2.mixed-local-doc-1.address01.xa/2001:db8::127:11:1:32
   20.08 ERROR    Address01      A01_LOCAL_USE_ADDR  ns_list=ns1.mixed-local-doc-1.address01.xa/192.168.11.31
 ```
---> ??
+--> OK
 
 | Scenario name     | Mandatory message tag                                                   | Forbidden message tags |
 |:------------------|:------------------------------------------------------------------------|:-----------------------|
@@ -86,10 +85,11 @@ $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COM
 ```
 $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COMMON/hintfile --raw mixed-local-doc-2.address01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-  20.08 ERROR    Address01      A01_DOCUMENTATION_ADDR  ns_list=ns1.mixed-local-doc-2.address01.xa/192.0.2.31
-  20.08 ERROR    Address01      A01_LOCAL_USE_ADDR  ns_list=ns2.mixed-local-doc-2.address01.xa/fc00::127:11:1:32
+  20.07 INFO     Address01      A01_GLOBALLY_REACHABLE_ADDR  ns_list=ns1.mixed-local-doc-2.address01.xa/2001:7fe::53;ns2.mixed-local-doc-2.address01.xa/192.58.128.30
+  20.07 ERROR    Address01      A01_DOCUMENTATION_ADDR  ns_list=ns1.mixed-local-doc-2.address01.xa/192.0.2.31
+  20.07 ERROR    Address01      A01_LOCAL_USE_ADDR  ns_list=ns2.mixed-local-doc-2.address01.xa/fc00::127:11:1:32
 ```
---> ??
+--> OK
 
 | Scenario name       | Mandatory message tag                                                            | Forbidden message tags |
 |:--------------------|:---------------------------------------------------------------------------------|:-----------------------|
@@ -100,10 +100,11 @@ $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COM
 ```
 $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COMMON/hintfile --raw mixed-local-other-1.address01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-  20.07 ERROR    Address01      A01_LOCAL_USE_ADDR  ns_list=ns1.mixed-local-other-1.address01.xa/169.254.0.31
-  20.07 ERROR    Address01      A01_ADDR_NOT_GLOBALLY_REACHABLE  ns_list=ns2.mixed-local-other-1.address01.xa/2001:2::127:11:1:32
+  20.08 INFO     Address01      A01_GLOBALLY_REACHABLE_ADDR  ns_list=ns1.mixed-local-other-1.address01.xa/2001:7fe::53;ns2.mixed-local-other-1.address01.xa/192.58.128.30
+  20.08 ERROR    Address01      A01_LOCAL_USE_ADDR  ns_list=ns1.mixed-local-other-1.address01.xa/169.254.0.31
+  20.08 ERROR    Address01      A01_ADDR_NOT_GLOBALLY_REACHABLE  ns_list=ns2.mixed-local-other-1.address01.xa/2001:2::127:11:1:32
 ```
---> ??
+--> OK
 
 | Scenario name       | Mandatory message tag                                                            | Forbidden message tags |
 |:--------------------|:---------------------------------------------------------------------------------|:-----------------------|
@@ -114,10 +115,11 @@ $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COM
 ```
 $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COMMON/hintfile --raw mixed-local-other-2.address01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-  20.07 ERROR    Address01      A01_LOCAL_USE_ADDR  ns_list=ns2.mixed-local-other-2.address01.xa/fc00::127:11:1:32
-  20.07 ERROR    Address01      A01_ADDR_NOT_GLOBALLY_REACHABLE  ns_list=ns1.mixed-local-other-2.address01.xa/198.18.0.31
+  20.08 INFO     Address01      A01_GLOBALLY_REACHABLE_ADDR  ns_list=ns1.mixed-local-other-2.address01.xa/2001:7fe::53;ns2.mixed-local-other-2.address01.xa/192.58.128.30
+  20.08 ERROR    Address01      A01_LOCAL_USE_ADDR  ns_list=ns2.mixed-local-other-2.address01.xa/fc00::127:11:1:32
+  20.08 ERROR    Address01      A01_ADDR_NOT_GLOBALLY_REACHABLE  ns_list=ns1.mixed-local-other-2.address01.xa/198.18.0.31
 ```
---> ??
+--> OK
 
 | Scenario name     | Mandatory message tag                                                                | Forbidden message tags |
 |:------------------|:-------------------------------------------------------------------------------------|:-----------------------|
@@ -126,12 +128,13 @@ $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COM
 * (2) All tags except for those specified as “Mandatory message tags”
 
 ```
-$ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COMMON/hintfile --raw mixed-doc-other-1.address01.xa
+$ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COMMON/hintfile --raw mixed-doc-other-1.address01.xa 
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
+  20.08 INFO     Address01      A01_GLOBALLY_REACHABLE_ADDR  ns_list=ns1.mixed-doc-other-1.address01.xa/2001:7fe::53;ns2.mixed-doc-other-1.address01.xa/192.58.128.30
   20.08 ERROR    Address01      A01_DOCUMENTATION_ADDR  ns_list=ns1.mixed-doc-other-1.address01.xa/198.51.100.31
   20.08 ERROR    Address01      A01_ADDR_NOT_GLOBALLY_REACHABLE  ns_list=ns2.mixed-doc-other-1.address01.xa/64:ff9b:1:0:127:11:1:32
 ```
---> ??
+--> OK
 
 | Scenario name     | Mandatory message tag                                                                | Forbidden message tags |
 |:------------------|:-------------------------------------------------------------------------------------|:-----------------------|
@@ -142,11 +145,11 @@ $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COM
 ```
 $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COMMON/hintfile --raw mixed-doc-other-2.address01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-  20.07 ERROR    Address01      A01_DOCUMENTATION_ADDR  ns_list=ns2.mixed-doc-other-2.address01.xa/3fff::127:11:1:32
-  20.07 ERROR    Address01      A01_ADDR_NOT_GLOBALLY_REACHABLE  ns_list=ns1.mixed-doc-other-2.address01.xa/240.0.0.31
+  20.08 INFO     Address01      A01_GLOBALLY_REACHABLE_ADDR  ns_list=ns1.mixed-doc-other-2.address01.xa/2001:7fe::53;ns2.mixed-doc-other-2.address01.xa/192.58.128.30
+  20.08 ERROR    Address01      A01_DOCUMENTATION_ADDR  ns_list=ns2.mixed-doc-other-2.address01.xa/3fff::127:11:1:32
+  20.08 ERROR    Address01      A01_ADDR_NOT_GLOBALLY_REACHABLE  ns_list=ns1.mixed-doc-other-2.address01.xa/240.0.0.31
 ```
---> ??
-
+--> OK
 
 | Scenario name | Mandatory message tag                                                                                    | Forbidden message tags |
 |:--------------|:---------------------------------------------------------------------------------------------------------|:-----------------------|
@@ -157,11 +160,12 @@ $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COM
 ```
 $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COMMON/hintfile --raw mixed-all-1.address01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
+  30.08 INFO     Address01      A01_GLOBALLY_REACHABLE_ADDR  ns_list=ns1.mixed-all-1.address01.xa/2001:7fe::53
   30.08 ERROR    Address01      A01_DOCUMENTATION_ADDR  ns_list=ns2.mixed-all-1.address01.xa/203.0.113.32
   30.08 ERROR    Address01      A01_LOCAL_USE_ADDR  ns_list=ns1.mixed-all-1.address01.xa/172.16.0.31
   30.08 ERROR    Address01      A01_ADDR_NOT_GLOBALLY_REACHABLE  ns_list=ns2.mixed-all-1.address01.xa/2002::127:11:1:32
 ```
---> ??
+--> OK
 
 
 | Scenario name | Mandatory message tag                                                                                    | Forbidden message tags |
@@ -173,11 +177,12 @@ $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COM
 ```
 $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COMMON/hintfile --raw mixed-all-2.address01.xa 
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-  30.08 ERROR    Address01      A01_DOCUMENTATION_ADDR  ns_list=ns2.mixed-all-2.address01.xa/2001:db8::127:11:1:32
-  30.08 ERROR    Address01      A01_LOCAL_USE_ADDR  ns_list=ns1.mixed-all-2.address01.xa/fe80::127:11:1:31
-  30.08 ERROR    Address01      A01_ADDR_NOT_GLOBALLY_REACHABLE  ns_list=ns1.mixed-all-2.address01.xa/198.18.0.31
+  30.09 INFO     Address01      A01_GLOBALLY_REACHABLE_ADDR  ns_list=ns2.mixed-all-2.address01.xa/192.58.128.30
+  30.09 ERROR    Address01      A01_DOCUMENTATION_ADDR  ns_list=ns2.mixed-all-2.address01.xa/2001:db8::127:11:1:32
+  30.09 ERROR    Address01      A01_LOCAL_USE_ADDR  ns_list=ns1.mixed-all-2.address01.xa/fe80::127:11:1:31
+  30.09 ERROR    Address01      A01_ADDR_NOT_GLOBALLY_REACHABLE  ns_list=ns1.mixed-all-2.address01.xa/198.18.0.31
 ```
---> ??
+--> OK
 
 | Scenario name     | Mandatory message tag                                                                                       | Forbidden message tags |
 |:------------------|:------------------------------------------------------------------------------------------------------------|:-----------------------|
@@ -188,11 +193,12 @@ $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COM
 ```
 $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COMMON/hintfile --raw all-non-reachable.address01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-  60.12 ERROR    Address01      A01_DOCUMENTATION_ADDR  ns_list=ns2.all-non-reachable.address01.xa/203.0.113.32;ns3.all-non-reachable.address01.xa/3fff::127:11:1:33
-  60.12 ERROR    Address01      A01_LOCAL_USE_ADDR  ns_list=ns1.all-non-reachable.address01.xa/10.0.0.31;ns2.all-non-reachable.address01.xa/fc00::127:11:1:32
-  60.12 ERROR    Address01      A01_ADDR_NOT_GLOBALLY_REACHABLE  ns_list=ns1.all-non-reachable.address01.xa/2001:2::127:11:1:31;ns3.all-non-reachable.address01.xa/192.0.0.33
+  60.11 ERROR    Address01      A01_NO_GLOBALLY_REACHABLE_ADDR  
+  60.11 ERROR    Address01      A01_DOCUMENTATION_ADDR  ns_list=ns2.all-non-reachable.address01.xa/203.0.113.32;ns3.all-non-reachable.address01.xa/3fff::127:11:1:33
+  60.11 ERROR    Address01      A01_LOCAL_USE_ADDR  ns_list=ns1.all-non-reachable.address01.xa/10.0.0.31;ns2.all-non-reachable.address01.xa/fc00::127:11:1:32
+  60.11 ERROR    Address01      A01_ADDR_NOT_GLOBALLY_REACHABLE  ns_list=ns1.all-non-reachable.address01.xa/2001:2::127:11:1:31;ns3.all-non-reachable.address01.xa/192.0.0.33
 ```
---> ??
+--> OK
 
 
 | Scenario name   | Mandatory message tag     | Forbidden message tags |
@@ -205,6 +211,5 @@ $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COM
 $ zonemaster-cli --show-testcase --level INFO --test address01 --hints ../../COMMON/hintfile --raw no-name-servers.address01.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
    0.04 CRITICAL Address01      A01_NO_NAME_SERVERS_FOUND  
-   0.04 INFO     Address01      A01_GLOBALLY_REACHABLE_ADDR  
 ```
---> Not OK, *A01_GLOBALLY_REACHABLE_ADDR* unexpected.
+--> OK
