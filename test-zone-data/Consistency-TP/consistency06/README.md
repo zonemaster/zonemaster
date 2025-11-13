@@ -147,20 +147,20 @@ MULT-SOA-MNAMES-NO-DEL-UNDEL-2 | MULTIPLE_SOA_MNAMES                  | NO_RESPO
 
 * Undelegated data:
   * ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
-  * ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
+  * ns4.mult-soa-mnames-no-del-undel-2.consistency06.xb
 ```
-$ zonemaster-cli MULT-SOA-MNAMES-NO-DEL-UNDEL-2.consistency06.xa --raw  --test consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json --ns ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb --ns ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
+$ zonemaster-cli MULT-SOA-MNAMES-NO-DEL-UNDEL-2.consistency06.xa --raw  --test consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json --ns ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb --ns ns4.mult-soa-mnames-no-del-undel-2.consistency06.xb
 Loading profile from COMMON/custom-profile.json.
-   0.43 ERROR    Unspecified    FAKE_DELEGATION_NO_IP  domain=mult-soa-mnames-no-del-undel-2.consistency06.xa; nsname=ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
-   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v5.0.0
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
    0.00 INFO     Consistency06  TEST_CASE_START  testcase=Consistency06
-   0.06 INFO     Consistency06  TEST_CASE_END  testcase=Consistency06
+   0.03 NOTICE   Consistency06  MULTIPLE_SOA_MNAMES  count=2
+   0.03 INFO     Consistency06  TEST_CASE_END  testcase=Consistency06
 ```
---> Not OK. FAKE_DELEGATION_NO_IP is not expected here.
+--> OK
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
-NO-RESPONSE           | NO-RESPONSE                                       | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES, ONE_SOA_MNAME
+NO-RESPONSE           | NO_RESPONSE                                       | NO_RESPONSE_SOA_QUERY, MULTIPLE_SOA_MNAMES, ONE_SOA_MNAME
 ```
 $ zonemaster-cli NO-RESPONSE.consistency06.xa --raw  --test Consistency/consistency06 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json
 Loading profile from COMMON/custom-profile.json.
