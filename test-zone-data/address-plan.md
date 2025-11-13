@@ -327,6 +327,13 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.15.7.0/24   | DNSSEC07 scenarios                                     |
 | 127.15.7.21     | ns1.dnssec07.xa                                        |
 | 127.15.7.22     | ns2.dnssec07.xa                                        |
+| 127.15.7.27     | ns1 of root                                            |
+| 127.15.7.28     | ns2 of root                                            |
+| 127.15.7.31     | ns1 of parent in some scenarios                        |
+| 127.15.7.32     | ns2 of parent in some scenarios                        |
+| 127.15.7.41     | ns1 of child zone                                      |
+| 127.15.7.42     | ns2 of child zone                                      |
+| 127.15.7.53     | resolver with test case local hint                     |
 | 127.15.8.0/24   | DNSSEC08 scenarios                                     |
 | 127.15.8.21     | ns1.dnssec08.xa                                        |
 | 127.15.8.22     | ns2.dnssec08.xa                                        |

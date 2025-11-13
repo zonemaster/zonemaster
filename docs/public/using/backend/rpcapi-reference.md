@@ -43,7 +43,6 @@
     * [Undelegated and delegated](#undelegated-and-delegated)
   * [API method: add_api_user](#api-method-add_api_user)
   * [API method: add_batch_job](#api-method-add_batch_job)
-  * [API method: get_batch_job_result](#api-method-get_batch_job_result)
   * [API method: batch_status](#api-method-batch_status)
 * [Experimental API methods](#experimental-api-methods)
 
@@ -1365,87 +1364,7 @@ Trying to add a batch when the method has been disabled.
 }
 ```
 
-
-### API method: `get_batch_job_result`
-
-*Deprecated. To be removed with release v2025.2* Replaced by
-[API method: batch_status](#api-method-batch_status).
-
-Return all [*test id*][Test id] objects of a *batch test*, with the number of finished *test*.
-
-Example request:
-
-*Valid syntax:*
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 147559211994909,
-    "method": "get_batch_job_result",
-    "params": {
-        "batch_id": "8"
-    }
-}
-```
-
-Example response:
-```json
-{
-   "jsonrpc": "2.0",
-   "id": 147559211994909,
-   "result": {
-      "nb_finished": 5,
-      "finished_test_ids": [
-         "43b408794155324b",
-         "be9cbb44fff0b2a8",
-         "62f487731116fd87",
-         "692f8ffc32d647ca",
-         "6441a83fcee8d28d"
-      ],
-      "nb_running": 195
-   }
-}
-```
-
-
-#### `"params"`
-
-An object with the property:
-
-* `"batch_id"`: A [*batch id*][Batch id], required.
-
-
-#### `"result"`
-
-An object with the following properties:
-
-* `"nb_finished"`: a [*non-negative integer*][Non-negative integer]. The number of finished tests.
-* `"nb_running"`: a [*non-negative integer*][Non-negative integer]. The number of running tests.
-* `"finished_test_ids"`: a list of [*test ids*][Test id]. The set of finished *tests* in this *batch*.
-
-
-#### `"error"`
-
-If the `batch_id` is undefined the following error is returned:
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "error": {
-    "data": {
-      "batch_id": "10"
-    },
-    "message": "Unknown batch",
-    "code": -32603
-  }
-}
-```
-
-
 ### API method: `batch_status`
-
-This method replaces deprecated method
-[API method: get_batch_job_result](#api-method-get_batch_job_result).
 
 Returns the number of waiting, running and finished *tests*. Optionally it also
 returns the [*test ids*][Test id] of the *batch test*, in three different lists
