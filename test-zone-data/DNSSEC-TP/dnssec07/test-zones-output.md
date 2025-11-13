@@ -152,8 +152,8 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testc
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec07 --level=info --show-testcase --raw UNSIGNED-NO-DS-1.dnssec07.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
-   0.03 NOTICE   DNSSEC07       NEITHER_DNSKEY_NOR_DS  child=127.15.7.41; parent=127.15.7.21
-   0.03 NOTICE   Unspecified    NOT_SIGNED  zone=unsigned-no-ds-1.dnssec07.xa
+   0.08 WARNING  DNSSEC07       DS07_NOT_SIGNED_ON_SERVER  ns_list=ns1.unsigned-no-ds-1.dnssec07.xa/127.15.7.41;ns1.unsigned-no-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:41;ns2.unsigned-no-ds-1.dnssec07.xa/127.15.7.42;ns2.unsigned-no-ds-1.dnssec07.xa/fda1:b2:c3:0:127:15:7:42
+   0.08 WARNING  DNSSEC07       DS07_NOT_SIGNED
 ```
 --> OK
 
