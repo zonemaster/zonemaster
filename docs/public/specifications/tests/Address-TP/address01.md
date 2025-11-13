@@ -40,14 +40,14 @@ This test case does not do any actual connectivity test, which is done by other 
 
 ## Summary
 
-| Message Tag                     | Level    | Arguments | Message ID for message tag                                                           |
-|:--------------------------------|:---------|:----------|:-------------------------------------------------------------------------------------|
-| A01_ADDR_NOT_GLOBALLY_REACHABLE | ERROR    | ns_list   | IP address not listed as globally reachable: "{ns_list}".                            |
-| A01_DOCUMENTATION_ADDR          | ERROR    | ns_list   | IP address intended for documentation purposes: "{ns_list}".                         |
-| A01_GLOBALLY_REACHABLE_ADDR     | INFO     | ns_list   | Globally reachable IP address: "{ns_list}".                                          |
-| A01_LOCAL_USE_ADDR              | ERROR    | ns_list   | IP address intended for local use on network or service provider level: "{ns_list}". |
-| A01_NO_GLOBALLY_REACHABLE_ADDR  | ERROR    |           | None of the name servers IP addresses are listed as globally reachable.              |
-| A01_NO_NAME_SERVERS_FOUND       | CRITICAL |           | No name servers found.                                                               |
+| Message Tag                     | Level    | Arguments | Message ID for message tag                                                               |
+|:--------------------------------|:---------|:----------|:-----------------------------------------------------------------------------------------|
+| A01_ADDR_NOT_GLOBALLY_REACHABLE | ERROR    | ns_list   | IP address(es) not listed as globally reachable: "{ns_list}".                            |
+| A01_DOCUMENTATION_ADDR          | ERROR    | ns_list   | IP address(es) intended for documentation purposes: "{ns_list}".                         |
+| A01_GLOBALLY_REACHABLE_ADDR     | INFO     | ns_list   | Globally reachable IP address(es): "{ns_list}".                                          |
+| A01_LOCAL_USE_ADDR              | ERROR    | ns_list   | IP address(es) intended for local use on network or service provider level: "{ns_list}". |
+| A01_NO_GLOBALLY_REACHABLE_ADDR  | ERROR    |           | None of the name servers IP addresses are listed as globally reachable.                  |
+| A01_NO_NAME_SERVERS_FOUND       | CRITICAL |           | No name servers found.                                                                   |
 
 
 The value in the Level column is the default severity level of the message. The
