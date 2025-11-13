@@ -2,7 +2,7 @@ $ORIGIN address01.xa.                              ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024052020      ; serial
+                2025111300      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -21,8 +21,8 @@ $ORIGIN good-1.address01.xa.
 @		NS	ns2
 ns1		A	192.36.148.17              ; i.root-servers.net.
 ns1		AAAA	2001:7fe::53               ; i.root-servers.net.
-ns2		A	192.58.128.30              ; j.root-servers.net.
-ns2		AAAA	2001:503:c27::2:30         ; j.root-servers.net.
+ns2		A	192.175.48.1               ; Direct Delegation AS112 Service (192.175.48.0/24)
+ns2		AAAA	64:ff9b::1                 ; IPv4-IPv6 Translat. (64:ff9b::/96)
 
 $ORIGIN mixed-local-doc-1.address01.xa.            
 @		NS	ns1
