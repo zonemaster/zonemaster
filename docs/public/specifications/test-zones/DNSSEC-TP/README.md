@@ -3,6 +3,7 @@
 
 Test scenario specifications are available for:
 
+* [DNSSEC01](dnssec01.md)
 * [DNSSEC03](dnssec03.md)
 * [DNSSEC07](dnssec07.md)
 * [DNSSEC10](dnssec10.md)
