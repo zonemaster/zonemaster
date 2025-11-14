@@ -1,0 +1,7 @@
+.       3600000   NS    ns1.null-spf.root-servers.zone11.xa.
+ns1.null-spf.root-servers.zone11.xa. 3600000 A    127.19.11.43
+ns1.null-spf.root-servers.zone11.xa. 3600000 AAAA fda1:b2:c3::127:19:11:43
+;
+.       3600000   NS    ns2.null-spf.root-servers.zone11.xa.
+ns2.null-spf.root-servers.zone11.xa. 3600000 A    127.19.11.44
+ns2.null-spf.root-servers.zone11.xa. 3600000 AAAA fda1:b2:c3::127:19:11:44

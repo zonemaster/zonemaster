@@ -1,0 +1,21 @@
+;; This file factors out common boilerplate in zone files for
+;; {SCENARIO}.zone11.xa zones having three authoritative name servers.
+;;
+;; Do not use $ORIGIN here!
+
+$TTL 3600
+
+@                         SOA    ns1.child.zone11.xa. admin.zone11.xa. (
+                                 2025080400      ; serial
+                                 6h              ; refresh
+                                 1h              ; retry
+                                 1w              ; expire
+                                 1d )            ; minimum
+
+                          NS     ns1.child.zone11.xa.
+                          NS     ns2.child.zone11.xa.
+                          NS     ns3.child.zone11.xa.
+
+;; Local Variables:
+;; mode: dns
+;; End:

@@ -1,0 +1,6 @@
+$ORIGIN no-txt.zone11.xa.
+$TTL 3600
+
+$INCLUDE COMMON-SCENARIO-INCLUDE
+
+; The remainder of this zone file intentionally left blank

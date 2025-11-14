@@ -1,0 +1,22 @@
+$ORIGIN invalid-syntax-2.zone11.xa.
+$TTL 3600
+
+@                         SOA    ns1a admin.zone11.xa. (
+                                 2025080400      ; serial
+                                 6h              ; refresh
+                                 1h              ; retry
+                                 1w              ; expire
+                                 1d )            ; minimum
+
+                          NS     ns1a
+                          NS     ns1b
+                          NS     ns2
+
+ns1a                      A      127.19.11.31
+                          AAAA   fda1:b2:c3::127:19:11:31
+ns1b                      A      127.19.11.31
+                          AAAA   fda1:b2:c3::127:19:11:31
+ns2                       A      127.19.11.32
+                          AAAA   fda1:b2:c3::127:19:11:32
+
+@                         TXT    "v=spf1 amx-all"

@@ -574,7 +574,19 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.19.10.0/24  | Zone10 scenarios                                            |
 | 127.19.10.21    | ns1.zone10.xa                                               |
 | 127.19.10.22    | ns2.zone10.xa                                               |
-| 127.19.11.0/24  | (not in use)                                                |
+| 127.19.11.0/24  | Zone11 scenarios                                            |
+| 127.19.11.21    | ns1.zone11.xa                                               |
+| 127.19.11.22    | ns2.zone11.xa                                               |
+| 127.19.11.31    | ns1.child.zone11.xa                                         |
+| 127.19.11.32    | ns2.child.zone11.xa                                         |
+| 127.19.11.33    | ns3.child.zone11.xa                                         |
+| 127.19.11.41    | ns1.no-spf.root-servers.zone11.xa                           |
+| 127.19.11.42    | ns2.no-spf.root-servers.zone11.xa                           |
+| 127.19.11.43    | ns1.null-spf.root-servers.zone11.xa                         |
+| 127.19.11.44    | ns2.null-spf.root-servers.zone11.xa                         |
+| 127.19.11.45    | ns1.non-null-spf.root-servers.zone11.xa                     |
+| 127.19.11.46    | ns2.non-null-spf.root-servers.zone11.xa                     |
+| 127.19.12.0/24  | (not in use)                                                |
 | (...)           |                                                             |
 | 127.19.255.0/24 | (not in use)                                                |
 
