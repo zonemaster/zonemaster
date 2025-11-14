@@ -42,6 +42,7 @@
         - [Undelegated Test](specifications/test-types/undelegated-test.md)
     - [Test Zones](specifications/test-zones/README.md)
         - [Address-TP](specifications/test-zones/Address-TP/README.md)
+          - [Address01](specifications/test-zones/Address-TP/address01.md)
           - [Address03](specifications/test-zones/Address-TP/address03.md)
         - [Basic-TP](specifications/test-zones/Basic-TP/README.md)
           - [BASIC01](specifications/test-zones/Basic-TP/basic01.md)
