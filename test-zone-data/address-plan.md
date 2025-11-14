@@ -322,6 +322,12 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.15.5.0/24   | DNSSEC05 scenarios                                     |
 | 127.15.5.21     | ns1.dnssec05.xa                                        |
 | 127.15.5.22     | ns2.dnssec05.xa                                        |
+| 127.15.5.23     | OOB n1 server for scenarios                            |
+| 127.15.5.24     | OOB n2 server for scenarios                            |
+| 127.15.5.27     | root-ns1.xa                                            |
+| 127.15.5.28     | root-ns1.xa                                            |
+| 127.15.5.31     | IB n1 server for scenarios                             |
+| 127.15.5.32     | IB n2 server for scenarios                             |
 | 127.15.6.0/24   | DNSSEC06 scenarios                                     |
 | 127.15.6.21     | ns1.dnssec06.xa                                        |
 | 127.15.6.22     | ns2.dnssec06.xa                                        |
