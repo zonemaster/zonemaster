@@ -71,6 +71,7 @@ sudo systemctl restart docker
 git clone https://github.com/zonemaster/zonemaster-ldns
 git clone https://github.com/zonemaster/zonemaster-engine
 git clone https://github.com/zonemaster/zonemaster-cli
+git clone https://github.com/zonemaster/zonemaster-backend
 ```
 
 ### Check out right branch depending on the use case
@@ -81,6 +82,7 @@ git clone https://github.com/zonemaster/zonemaster-cli
 git -C zonemaster-ldns checkout origin/develop
 git -C zonemaster-engine checkout origin/develop
 git -C zonemaster-cli checkout origin/develop
+git -C zonemaster-backend checkout origin/develop
 ```
 
 * Check out `master` branch when creating an image for Docker Hub at release, or
@@ -90,6 +92,7 @@ when creating an image based on release version:
 git -C zonemaster-ldns checkout origin/master
 git -C zonemaster-engine checkout origin/master
 git -C zonemaster-cli checkout origin/master
+git -C zonemaster-backend checkout origin/master
 ```
 
 ### Make sure repositories are clean and create `Makefile` in all three repositories
@@ -103,6 +106,10 @@ git -C zonemaster-cli checkout origin/master
 ```sh
 (cd zonemaster-cli; git clean -dfx; git reset --hard; perl Makefile.PL)
 ```
+```sh
+(cd zonemaster-backend; git clean -dfx; git reset --hard; perl Makefile.PL)
+```
+
 
 ### Create images
 
@@ -118,6 +125,10 @@ make -C zonemaster-engine all dist docker-build
 ```sh
 make -C zonemaster-cli all dist docker-build
 ```
+```sh
+make -C zonemaster-backend all dist docker-build
+```
+
 
 ### Determine version of Zonemaster-CLI image
 
@@ -230,6 +241,16 @@ Zonemaster-CLI:
 ```sh
 docker run --rm zonemaster/cli:local zonemaster.net
 ```
+
+Zonemaster-Backend
+
+```sh
+docker run --rm -p 5000:5000 --name zm -d zonemaster/backend:local full
+docker run -ti --rm --net host zonemaster/backend:local zmtest zonemaster.net
+docker stop zm
+```
+
+
 
 ## 6. Handy Docker commands
 
