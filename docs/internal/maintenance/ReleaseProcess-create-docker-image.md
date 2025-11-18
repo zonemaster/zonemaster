@@ -167,6 +167,10 @@ will have version v6.0.1-1.*
 *Example: version on Docker Hub is v6.0.1-1, local version is v6.0.1, new image
 will have version v6.0.1-2.*
 
+### Determine version of Zonemaster-Backend image
+
+The version of Zonemaster-Backend follow the same rules as Zonemaster-CLI.
+
 
 ### Tag the Zonemaster-CLI image
 
@@ -199,6 +203,39 @@ further use. List images:
 docker images
 ```
 
+
+### Tag the Zonemaster-Backend image
+
+For the Zonemaster-Backend image, add a version tag and a tag "latest".
+
+* Add version tag:
+```sh
+make -C zonemaster-backend docker-tag-version
+```
+
+* Add tag "latest":
+```sh
+make -C zonemaster-backend docker-tag-latest
+```
+
+* If "dash version" is to be used, set tag with that version and remove tag with
+plain version where "v0.0.0" should be the local version and "v0.0.0-N" should be
+the "dash version" determined above:
+```
+cd zonemaster-backend
+docker tag zonemaster/backend:local zonemaster/backend:v0.0.0-N 
+docker rmi zonemaster/backend:v0.0.0
+```
+
+All the created images can now be listed. Also consider doing [sanity checks] to
+verify that all images work. Images without tag are temporary images without
+further use. List images:
+
+```sh
+docker images
+```
+
+
 ## 4. Upload images to Docker Hub
 
 To upload an image to the Zonemaster Docker Hub organization you have to have
@@ -214,12 +251,14 @@ above that they have the same ID.
 * Push latest.
 ```sh
 docker push zonemaster/cli:latest
+docker push zonemaster/backend:latest
 ```
 
 * Set correct version (see listing above) and push image with version tag. If
   "dash version" is used, use "v0.0.0-N" set to correct version instead.
 ```sh
 docker push zonemaster/cli:v0.0.0
+docker push zonemaster/backend:v0.0.0
 ```
 
 ## 5. Image sanity checks
