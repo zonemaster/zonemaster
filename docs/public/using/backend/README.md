@@ -4,6 +4,7 @@
 * [Using Zonemaster-Backend for batch testing](Using-Zonemaster-Backend-for-batch-testing.md)
 * [RPCAPI reference]
 * [Collecting metrics][Telemetry]
+* [Using Zonemaster-Backend docker container](Using-Zonemaster-Backend-Docker.md)
 
 [RPCAPI reference]: rpcapi-reference.md
 [Telemetry]:        telemetry.md
