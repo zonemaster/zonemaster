@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Before installing Zonemaster Web GUI, you should [install Zonemaster::Engine
+Before installing Zonemaster-GUI, you should [install Zonemaster::Engine
 ][Zonemaster::Engine installation] and [Zonemaster::Backend][Zonemaster::Backend
 installation].
 
@@ -10,6 +10,26 @@ Prerequisite for FreeBSD is that the package system is updated and activated,
 see FreeBSD section of [install Zonemaster::Engine][Zonemaster::Engine
 installation].
 
+## Upgrading or installation of custom built Zonemaster-GUI
+
+### Upgrading
+
+If this installation is an upgrade or reinstallation of Zonemaster-GUI and has
+done some configuration or customization, make sure to save updated file, e.g.
+`/var/www/html/zonemaster-web-gui/dist/config.json` and the `zonemaster.conf`
+Apache configuration file, before removing the old version. 
+
+You should also consider saving the old version under a new path instead of
+just removing it.
+
+Else upgrading is as simple as removing the old version and installing the new
+version in the same way as a new installation.
+
+### Installing a custom built Zonemaster-GUI
+
+If you have done a custom build of Zonemaster-GUI following the instructions in
+[building GUI] you will have a zip file that you will use instead of downloading
+it from Github. Else you can follow the instructions below.
 
 ## Installation
 
@@ -29,14 +49,21 @@ sudo dnf update
 sudo dnf -y install httpd unzip
 ```
 
-#### Install Zonemaster Web GUI
+#### Remove old Zonemaster-GUI
+
+If an old version is installed, remove it first:
+```sh
+sudo rm -r /var/www/html/zonemaster-web-gui
+```
+
+#### Install Zonemaster-GUI
 
 ```sh
-curl -L -O https://github.com/zonemaster/zonemaster-gui/releases/download/v4.4.0/zonemaster_web_gui.zip
+curl -L -O https://github.com/zonemaster/zonemaster-gui/releases/download/v5.0.0/zonemaster_web_gui_v5.0.0.zip
 sudo install -vd /var/www/html/zonemaster-web-gui
 sudo install -vd /var/log/zonemaster
-sudo unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui.zip
-rm -f zonemaster_web_gui.zip
+sudo unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui_v5.0.0.zip
+rm -f zonemaster_web_gui_v5.0.0.zip
 ```
 
 #### Configure Apache site
@@ -84,17 +111,24 @@ sudo systemctl enable apache2
 sudo systemctl restart apache2
 ```
 
-#### Install Zonemaster Web GUI
+#### Remove old Zonemaster-GUI
 
+If an old version is installed, remove it first:
 ```sh
-wget https://github.com/zonemaster/zonemaster-gui/releases/download/v4.4.0/zonemaster_web_gui.zip -O zonemaster_web_gui.zip
-sudo unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui.zip
-sudo install -vd /var/log/zonemaster
-sudo install -v /var/www/html/zonemaster-web-gui/zonemaster.conf-example /etc/apache2/sites-available/zonemaster.conf
-rm -f zonemaster_web_gui.zip
+sudo rm -r /var/www/html/zonemaster-web-gui
 ```
 
-#### Configure Zonemaster Web GUI
+#### Install Zonemaster-GUI
+
+```sh
+wget https://github.com/zonemaster/zonemaster-gui/releases/download/v5.0.0/zonemaster_web_gui_v5.0.0.zip -O zonemaster_web_gui_v5.0.0.zip
+sudo unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui_v5.0.0.zip
+sudo install -vd /var/log/zonemaster
+sudo install -v /var/www/html/zonemaster-web-gui/zonemaster.conf-example /etc/apache2/sites-available/zonemaster.conf
+rm -f zonemaster_web_gui_v5.0.0.zip
+```
+
+#### Configure Zonemaster-GUI
 
 ```sh
 sudo a2ensite zonemaster #Activate the website
@@ -174,14 +208,21 @@ listens to localhost (127.0.0.1/::1) then you have to set `ServerName` in
 `/usr/local/etc/apache24/httpd.conf`, e.g. `ServerName 192.0.2.246:80`, and
 restart Apache.
 
-#### Install Zonemaster Web GUI
+#### Remove old Zonemaster-GUI
+
+If an old version is installed, remove it first:
+```sh
+rm -r /var/www/html/zonemaster-web-gui
+```
+
+#### Install Zonemaster-GUI
 
 ```sh
-fetch https://github.com/zonemaster/zonemaster-gui/releases/download/v4.4.0/zonemaster_web_gui.zip
+fetch https://github.com/zonemaster/zonemaster-gui/releases/download/v5.0.0/zonemaster_web_gui_v5.0.0.zip
 mkdir -p /var/www/html/zonemaster-web-gui
 mkdir -p /var/log/zonemaster
-unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui.zip
-rm zonemaster_web_gui.zip
+unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui_v5.0.0.zip
+rm zonemaster_web_gui_v5.0.0.zip
 ```
 
 #### Basic Apache configuration
@@ -206,9 +247,9 @@ service apache24 restart
 Make sure Zonemaster-GUI is properly installed.
 
 1. Point your browser at `http://localhost/` (or the address of the server where
-   you installed Zonemaster Web GUI).
+   you installed Zonemaster-GUI).
 
-2. Verify that the Zonemaster Web GUI is shown with the text "Program versions" in
+2. Verify that the Zonemaster-GUI is shown with the text "Program versions" in
    its page footer.
 
 3. Verify that when you mouse over this text the versions of the following
@@ -220,66 +261,12 @@ Make sure Zonemaster-GUI is properly installed.
  * For a JSON-RPC API, see the Zonemaster::Backend [JSON-RPC API] documentation.
  * For a command line interface, follow the [Zonemaster::CLI installation] instruction.
  * For a Perl API, see the [Zonemaster::Engine API] documentation.
- * For HTTPS, see [Let's Encrypt / Certbot].
+ * For HTTPS, see [Let's Encrypt / Certbot] or providers of public certificates.
 
-## Serving the GUI and API from a custom base url
+## Configuring and customizing GUI
 
-In some cases you may want to customize the application to change the base URL
-from wich the GUI is served.
-
-1. In the `index.html` files, (`/var/www/html/zonemaster-web-gui/dist/*/index.html`
-   if you followed this installation guide), locate the line `<base href="/">`
-   and replace the `href` value with the path you want to server the GUI from.
-   You can use the following command to update the base URL in all files:
-   ```
-   export BASE_URL=/zonemaster; find /var/www/html/zonemaster-web-gui/dist -name index.html | xargs sed -r "s%<base href=\"[^\"]*/([a-z]{2})/\">%<base href=\"$BASE_URL/\1/\">%" -i
-   ```
-   You can change the `BASE_URL` variable to the path (without trailing slash)
-   that you want.
-
-2. When serving the application from a different base, you will also need to
-   change the Web server configuration in `zonemaster.conf` (location is found
-   in the installation instructions above) by updating the `BASE_URL` variable
-   and adding an `Alias` directive as in the following example:
-
-   ```apache
-   Define BASE_URL "/zonemaster/"
-
-   Alias "/zonemaster" "/var/www/html/zonemaster-web-gui/dist"
-   ```
-3. Update or create `app.config.json` (
-   `/var/www/html/zonemaster-web-gui/dist/assets/app.config.json` in a default
-   installation) by setting `apiEndpoint` to `/zonemaster/api` as below. See
-   [Configuration.md] and the example configuration `app.config.sample.json`.
-
-   ```json
-   {
-      "apiEndpoint": "/zonemaster/api"
-   }
-   ```
-
-4. Reload Apache.
-5. Point you browser to the new base URL.
-
-
-**NOTE:** Don't forget to apply the changes to the `index.html` and Web
-server configuration after each update as those files will be overwritten.
-
-
-## Change default language
-
-To change the default language update the Apache configuration in `zonemaster.conf`
-that was installed in a previous section. Locate the last `RewriteRule`:
-```apache
-# Default locale
-RewriteRule ^$ /en/ [R,L]
-```
-and change it to
-```apache
-# Default locale
-RewriteRule ^$ /<LANG>/ [R,L]
-```
-where `<LANG>` is the language code of you choice.
+It is possible to change the behavior and visual aspects of GUI. See
+section [configuring GUI] for how to customize the GUI.
 
 
 [JSON-RPC API]:                     ../using/backend/rpcapi-reference.md
@@ -293,4 +280,4 @@ where `<LANG>` is the language code of you choice.
 [Zonemaster::Engine installation]:  zonemaster-engine.md
 [Zonemaster::Engine]:               https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
 [Zonemaster::LDNS]:                 https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
-[Configuration.md]:                 ../configuration
+[Configuring GUI]:                 ../configuration/gui
