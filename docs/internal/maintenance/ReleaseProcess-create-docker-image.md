@@ -65,12 +65,13 @@ sudo systemctl restart docker
 
 ## 3. Create Docker images
 
-### Clone the three repositories
+### Clone the four repositories
 
 ```sh
 git clone https://github.com/zonemaster/zonemaster-ldns
 git clone https://github.com/zonemaster/zonemaster-engine
 git clone https://github.com/zonemaster/zonemaster-cli
+git clone https://github.com/zonemaster/zonemaster-backend
 ```
 
 ### Check out right branch depending on the use case
@@ -81,6 +82,7 @@ git clone https://github.com/zonemaster/zonemaster-cli
 git -C zonemaster-ldns checkout origin/develop
 git -C zonemaster-engine checkout origin/develop
 git -C zonemaster-cli checkout origin/develop
+git -C zonemaster-backend checkout origin/develop
 ```
 
 * Check out `master` branch when creating an image for Docker Hub at release, or
@@ -90,6 +92,7 @@ when creating an image based on release version:
 git -C zonemaster-ldns checkout origin/master
 git -C zonemaster-engine checkout origin/master
 git -C zonemaster-cli checkout origin/master
+git -C zonemaster-backend checkout origin/master
 ```
 
 ### Make sure repositories are clean and create `Makefile` in all three repositories
@@ -102,6 +105,9 @@ git -C zonemaster-cli checkout origin/master
 ```
 ```sh
 (cd zonemaster-cli; git clean -dfx; git reset --hard; perl Makefile.PL)
+```
+```sh
+(cd zonemaster-backend; git clean -dfx; git reset --hard; perl Makefile.PL)
 ```
 
 ### Create images
@@ -117,6 +123,9 @@ make -C zonemaster-engine all dist docker-build
 ```
 ```sh
 make -C zonemaster-cli all dist docker-build
+```
+```sh
+make -C zonemaster-backend all dist docker-build
 ```
 
 ### Determine version of Zonemaster-CLI image
@@ -213,23 +222,62 @@ docker push zonemaster/cli:v0.0.0
 
 ## 5. Image sanity checks
 
-Zonemaster-LDNS:
+### Zonemaster-LDNS
 
 ```sh
 docker run --rm zonemaster/ldns:local perl -MZonemaster::LDNS -E 'say Zonemaster::LDNS->new("9.9.9.9")->query("zonemaster.net")->string'
 ```
 
-Zonemaster-Engine:
+The output should contain a DNS response in a presentation format similar to that of `dig`.
+
+### Zonemaster-Engine
 
 ```sh
 docker run --rm zonemaster/engine:local perl -MZonemaster::Engine -E 'say join "\n", Zonemaster::Engine->test_module("BASIC", "zonemaster.net")'
 ```
 
-Zonemaster-CLI:
+The output should contain a list of message tags in raw format, one per line.
+
+### Zonemaster-CLI
 
 ```sh
 docker run --rm zonemaster/cli:local zonemaster.net
 ```
+
+The output should be equivalent to that of running `zonemaster-cli zonemaster.net` on a host that has Zonemaster-CLI installed.
+
+### Zonemaster-Backend
+
+Start the backend in the background:
+
+```sh
+docker run --rm -p 5000:5000 --name zm -d zonemaster/backend:local full
+```
+
+Run `docker ps -a`. The container named `zm` should be running.
+
+Run a test through the backend:
+```sh
+docker run -ti --rm --net host zonemaster/backend:local zmtest zonemaster.net
+```
+
+The output should be a JSON object containing, among other things, a list of message tags in JSON format.
+
+Test the correct operation of the `zmb` tool by running a test:
+```sh
+docker run -ti --rm --net host zonemaster/backend:local zmb start_domain_test --domain zonemaster.net
+docker run -ti --rm --net host zonemaster/backend:local zmb get_test_results --test-id be98f37d3b137ce0 --lang en
+```
+
+The output should be a JSON object, similar to the previous one.
+
+Finally, stop the backend:
+```sh
+docker stop zm
+```
+
+And run `docker ps -a` to ensure that the backend is no longer running.
+
 
 ## 6. Handy Docker commands
 
