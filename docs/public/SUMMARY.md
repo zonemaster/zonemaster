@@ -33,6 +33,7 @@
         - [Configuring using "config.json"](configuration/gui/configuring-using-config-json.md)
         - [Configuring using "config.ts"](configuration/gui/configuring-using-config-ts.md)
         - [Configuring using "tsconfig.json"](configuration/gui/configuring-using-tsconfig-json.md)
+        - [Configuring using Theming](configuring-using-theming.md)
 - [Using](using/README.md)
     - [CLI](using/cli.md)
     - [Backend](using/backend/README.md)

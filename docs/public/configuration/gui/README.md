@@ -10,6 +10,8 @@ This section contains information about configuration of the GUI component.
 * [Configuring Zonemaster GUI using "tsconfig.json"] is about advanced
   *build-time configurations* that can change the look-and-feel of
   Zonemaster-GUI.
+* [Configuring Zonemaster GUI using Theming] gives further instructions for how
+  to customize Zonemaster-GUI.
 * [Building a custom Zonemaster-GUI] has instructions for building a customized
   GUI.
 
@@ -18,3 +20,4 @@ This section contains information about configuration of the GUI component.
 [Configuring Zonemaster GUI using "config.json"]:                        configuring-using-config-json.md
 [Configuring Zonemaster GUI using "config.ts"]:                          configuring-using-config-ts.md
 [Configuring Zonemaster GUI using "tsconfig.json"]:                      configuring-using-tsconfig-json.md
+[Configuring Zonemaster GUI using Theming]:                              configuring-using-theming.md
