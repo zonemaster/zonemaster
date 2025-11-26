@@ -23,7 +23,7 @@ of the application.
 ```typescript
 const config: Config = {
     defaultLanguage: 'en',
-    enabledLanguages: ['da', 'en', 'es', 'fi', 'fr', 'nb', 'sv'],
+    enabledLanguages: ['da', 'en', 'es', 'fi', 'fr', 'nb', 'sl', 'sv'],
     apiBaseUrl: import.meta.env.PUBLIC_API_URL || '/api',
     pollingInterval: import.meta.env.PUBLIC_POLLING_INTERVAL || 5000,
     clientInfo: {
@@ -40,11 +40,15 @@ const config: Config = {
 ## Configuration Options
 
 * **defaultLanguage**: The default language to use when no language is specified.
-  * The default language should one of the enabled languages.
+  * The default language must be one of the enabled languages.
 * **enabledLanguages**: An array of language codes that are supported by the
   application.
-  * That array should match the list of languages in the [Locale setting] in the
-    Backend configuration.
+  * The array should match the list of language codesin the [Locale setting] in
+    the Backend configuration.
+  * The array must only include language codes also included in
+    `project.inlang/settings.json`, but it may be fewer. To add new languages,
+    see the [Translating GUI]. `project.inlang/settings.json` must only be
+    updated in that process.
 * **apiBaseUrl**: The base URL for API requests. This is taken from the
   `PUBLIC_API_URL` environment variable (default empty) or defaults to '/api'.
   * If this value is changed, then [zonemaster.conf-example] must also be
@@ -85,4 +89,5 @@ before building the GUI.
 
 [Building GUI]:                                  building-custom-gui.md
 [Locale setting]:                                ../backend.md#locale
+[Translating GUI]:                               ../../translation/Translating-GUI.md
 [Zonemaster.conf-example]:                       https://github.com/zonemaster/zonemaster-gui/blob/master/zonemaster.conf-example
