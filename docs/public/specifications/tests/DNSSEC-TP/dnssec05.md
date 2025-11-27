@@ -261,6 +261,7 @@ No special terminology for this Test Case.
 [Get-Zone-NS-Names-and-IPs]:                      ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
 [IANA DNSSEC algo num]:                           https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xml
 [IANA RR Type List]:                              https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
+[RCODE Name]:                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 8624#3.1]:                                   https://www.rfc-editor.org/rfc/rfc8624.html#section-3.1
 [RFC 9157#upd-8624]:                              https://www.rfc-editor.org/rfc/rfc9157#name-update-to-rfc-8624
 [Severity Level Definitions]:                     ../SeverityLevelDefinitions.md

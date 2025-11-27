@@ -76,7 +76,7 @@ Assumptions for the scenario specifications unless otherwise specified for
 the specific scenario:
 * The child zone is `SCENARIO.address01.xa`.
 * There is no zone file or zone data for the child zone.
-* For each scenario zone there are two NS records (ns[1-2]).
+* For each scenario zone there are two NS records (ns\[1-2]).
   * All NS are in-bailiwick
   * All NS have both IPv4 and IPv6 addresses
   * All required glue are present in the delegation.
