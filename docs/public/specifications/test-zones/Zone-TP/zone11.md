@@ -9,7 +9,7 @@
 * [Test zone names](#test-zone-names)
 * [All message tags](#all-message-tags)
 * [Test scenarios and message tags](#test-scenarios-and-message-tags)
-* [Zone setup for test scenarios]
+* [Test scenarios and setup of test zones]
 
 
 ## Background
@@ -337,4 +337,4 @@ A zone whose TXT RRset at the apex contains more than one SPF record.
 [RFC 7208]:                               https://www.rfc-editor.org/rfc/rfc7208
 [RFC 7208#4.5]:                           https://www.rfc-editor.org/rfc/rfc7208#section-4.5
 [Test scenario README file]:              ../README.md
-[Test scenarios and setup of test zones]: #zone-setup-for-test-scenarios
+[Test scenarios and setup of test zones]:  #test-scenarios-and-setup-of-test-zones
