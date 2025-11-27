@@ -26,8 +26,11 @@
 2) Enable SHA-1 in the crypto policy:
 
    ```sh
-   # Only on Rocky Linux 9:
-   sudo update-crypto-policies --set DEFAULT:SHA1
+   sudo tee /etc/crypto-policies/policies/modules/DNSSEC.pmod <<'EOF'
+   hash@openssl = SHA1+
+   sign@openssl = RSA-SHA1+
+   EOF
+   sudo update-crypto-policies --set DEFAULT:DNSSEC
    ```
 
 3) Install locales:
