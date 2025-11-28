@@ -633,8 +633,8 @@ password. To be safe run the commands one by one.
 
 ```sh
 sudo systemctl start postgresql
-sudo -u postgres psql -c "CREATE USER zonemaster WITH PASSWORD 'zonemaster';"
-sudo -u postgres psql -c "CREATE DATABASE zonemaster WITH OWNER 'zonemaster' ENCODING 'UTF8';"
+sudo --login --user=postgres psql -c "CREATE USER zonemaster WITH PASSWORD 'zonemaster';"
+sudo --login --user=postgres psql -c "CREATE DATABASE zonemaster WITH OWNER 'zonemaster' ENCODING 'UTF8';"
 ```
 
 > **Note:** You may get error messages from these commands about lack of
