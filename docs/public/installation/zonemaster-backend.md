@@ -106,7 +106,7 @@ sudo cpanm --notest Zonemaster::Backend
 Add Zonemaster user (unless it already exists):
 
 ```sh
-sudo useradd -r -c "Zonemaster daemon user" zonemaster
+sudo useradd --system --home-dir=/nonexistent --shell=/usr/sbin/nologin --comment="Zonemaster daemon user" zonemaster
 ```
 
 Install files to their proper locations:
@@ -155,7 +155,7 @@ See sections for [MariaDB][MariaDB instructions Rocky Linux] and
 Create the database tables:
 
 ```sh
-sudo -u zonemaster $(perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")')/create_db.pl
+(cd / && sudo --user=zonemaster $(perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")')/create_db.pl)
 ```
 
 
