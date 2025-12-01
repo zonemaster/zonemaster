@@ -1,30 +1,61 @@
 # API
 
-The Zonemaster GUI provides an API to access specific resource and perform
-specific tasks.
 
-A path is added to the Zonemaster GUI base URL, e.g.
-<https://zonemaster.net/>.
+The Zonemaster GUI provides an API to access specific resource and perform
+specific tasks by adding a path to the Zonemaster GUI base URL, e.g.
+`https://zonemaster.net/`.
+
+For the paths the following keys are used:
+
+* `<lang>`: A [Language Code][Language Codes]
+* `result`: The exact string
+* `<test-id>`: A string of 16 characters in `0-9a-f` (hexadecimal)
+* `faq`: The exact string
+* `api`: The exact string
+* `run-test`: The exact string (temporarily not supported)
+* `<domain>`: A domain name to be tested (temporarily not supported)
+
 
 The supported paths are the following:
 
-* `<lang>/run-test`: the default path, access the input form.
-* `<lang>/domain_check`: same as `run-test`, but *deprecated*.
-* `<lang>/run-test/<domain>`: populate the input form with `<domain>`, which is
-  expected to be a name of a DNS zone, and launch the test. Currently
-  undelegated tests cannot be performed via the API.
-* `<lang>/result/<test-id>`: access the result page with results for the test
-  with `<test-id>`.
-* `<lang>/test/<test-id>`: same as `<lang>/result/<test-id>`, but *deprecated*.
-* `<lang>/faq`: access the FAQ.
+* `/<lang>/result/<test-id>`: access the result page with results for the test
+  with `<test-id>` in the selected language, e.g.
+  `https://zonemaster.net/en/result/7e363fb606343397`.
+* `/<lang>/faq`: access the FAQ in the selected language, e.g.
+  `https://zonemaster.net/en/faq`.
+* `/api`: With JSON RPC call access the Zonemaster [Backend RPC-API], e.g.
+  `https://zonemaster.net/en/api`.
 
-The GUI will rewrite `<lang>/domain_check` to `<lang>/run-test` before the page
-is displayed. Note that `<lang>/domain_check/<domain>` is **not** rewritten and
-hence is an invalid path.
-
-The GUI will rewrite `<lang>/test/<test-id>` to `<lang>/result/<test-id>`
-before the result is displayed.
-
-The GUI will redirect from `<path>` to `<lang>/<path>` automatically using the
+The GUI will redirect from `<path>` (e.g. `https://zonemaster.net/`) to
+`<lang>/<path>` (`https://zonemaster.net/en/`) automatically using the
 user browser language, if supported and configured by the installation.
-Else it uses the default language defined in the reverse proxy configuration.
+Else it uses the default language defined in Zonemaster-GUI.
+
+The following paths are temporarily not supported:
+
+* `<lang>/run-test`: access the input form.
+* `<lang>/run-test/<domain>`: populate the input form with `<domain>`, which is
+  expected to be a name of a DNS zone, and launch the test.
+
+## Language Codes
+
+Zonemaster uses [ISO 639-1] two-letter language codes, in lower case. A defult
+installation of Zonemaster-GUI currently has support for the following language
+codes and languages:
+
+* `da` for Danish language
+* `en` for English language, the default language in a default installation
+* `es` for Spanish language
+* `fi` for Finnish language
+* `fr` for French language
+* `nb` for Norwegian language
+* `sl` for Slovenian language
+* `sv` for Swedish language
+
+A non-default installation may have support for only some of the languages or
+maybe other languages.
+
+
+[ISO 639-1]:                                   https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+[Language Codes]:                              #language-codes
+[Backend RPC-API]:                             ../backend/rpcapi-reference.md
