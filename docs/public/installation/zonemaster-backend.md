@@ -188,8 +188,8 @@ sudo systemctl restart zm-testagent
 To check if the daemons are running, do:
 
 ```sh
-sudo systemctl status zm-rpcapi
-sudo systemctl status zm-testagent
+sudo systemctl status --no-pager zm-rpcapi
+sudo systemctl status --no-pager zm-testagent
 ```
 
 See the [post-installation] section for post-installation matters.
