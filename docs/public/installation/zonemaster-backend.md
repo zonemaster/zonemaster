@@ -117,8 +117,8 @@ sudo install -v -m 755 -d /etc/zonemaster
 sudo install -v -m 640 -g zonemaster ./backend_config.ini /etc/zonemaster/
 sudo install -v -m 775 -g zonemaster -d /var/log/zonemaster
 sudo install -v -m 644 ./tmpfiles.conf /usr/lib/tmpfiles.d/zonemaster.conf
-sudo install -v -m 644 ./zm-rpcapi.service /etc/systemd/system/
-sudo install -v -m 644 ./zm-testagent.service /etc/systemd/system/
+sudo install -v -m 644 -Z ./zm-rpcapi.service /etc/systemd/system/
+sudo install -v -m 644 -Z ./zm-testagent.service /etc/systemd/system/
 ```
 
 ### 3.2 Database engine installation (Rocky Linux)
