@@ -41,6 +41,8 @@
         - [Using Zonemaster-Backend for batch testing](using/backend/Using-Zonemaster-Backend-for-batch-testing.md)
         - [RPCAPI Reference](using/backend/rpcapi-reference.md)
         - [Telemetry](using/backend/telemetry.md)
+    - [GUI](using/gui/README.md)
+        - [API](using/gui/api.md)
 - [Specifications](specifications/README.md)
     - [Test Types](specifications/test-types/README.md)
         - [Undelegated Test](specifications/test-types/undelegated-test.md)
