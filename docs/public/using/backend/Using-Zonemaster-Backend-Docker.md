@@ -31,20 +31,10 @@ docker run --rm -p 5000:5000 --name zm -d zonemaster/backend full
 ```
 You can stop the docker with `docker stop zm`.
 
-
 Once zonemaster/backend container started you can interact with it on `localhost:5000`
 usign JSON RPCAPI.
-If `zmtest` is installed on your system you can use it directly.
 
-```
-zmtest zonemaster.net
-```
-Alternatively you can set the server address with the ip of the container if you do not want to expose the port 5000 on your localhost.
-```
-zmtest -s http://[ip_of_the_backend_container]:5000 zonemaster.net
-```
-
-Otherwise you can use `zmtest` embedded inside the backend image by using this command:
+You can use `zmtest` embedded inside the backend image by using this command:
 ```
 docker run -ti --rm --net host zonemaster/backend zmtest zonemaster.net
 ```
