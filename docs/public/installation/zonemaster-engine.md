@@ -26,8 +26,11 @@
 2) Enable SHA-1 in the crypto policy:
 
    ```sh
-   # Only on Rocky Linux 9:
-   sudo update-crypto-policies --set DEFAULT:SHA1
+   sudo tee /etc/crypto-policies/policies/modules/DNSSEC.pmod <<'EOF'
+   hash@openssl = SHA1+
+   sign@openssl = RSA-SHA1+
+   EOF
+   sudo update-crypto-policies --set DEFAULT:DNSSEC
    ```
 
 3) Install locales:
@@ -39,13 +42,13 @@
 4) Install binary packages:
 
    ```sh
-   sudo dnf install --assumeyes cpanminus gcc libidn2-devel openssl-devel perl-Class-Accessor perl-Clone perl-core perl-Devel-CheckLib perl-Email-Valid perl-ExtUtils-PkgConfig perl-File-ShareDir perl-File-Slurp perl-libintl perl-IO-Socket-INET6 perl-List-Compare perl-List-MoreUtils perl-Mail-SPF perl-Module-Find perl-Module-Install perl-Net-DNS perl-Pod-Coverage perl-Readonly perl-Sub-Override perl-Test-Differences perl-Test-Exception perl-Test-Fatal perl-Test-NoWarnings perl-Test-Pod perl-Text-CSV perl-Test-Simple
+   sudo dnf install --assumeyes cpanminus gcc libidn2-devel openssl-devel perl-Class-Accessor perl-Clone perl-core perl-Devel-CheckLib perl-ExtUtils-PkgConfig perl-File-ShareDir perl-File-Slurp perl-libintl perl-IO-Socket-INET6 perl-List-Compare perl-List-MoreUtils perl-Mail-SPF perl-Module-Find perl-Module-Install perl-Net-DNS perl-Pod-Coverage perl-Readonly perl-Sub-Override perl-Test-Differences perl-Test-Exception perl-Test-Fatal perl-Test-NoWarnings perl-Test-Pod perl-Text-CSV perl-Test-Simple
    ```
 
 5) Install packages from CPAN:
 
    ```sh
-   sudo cpanm --notest Locale::PO Log::Any MIME::Base32 Module::Install::XSUtil Net::IP::XS YAML::XS
+   sudo cpanm --notest Email::Valid Locale::PO Log::Any MIME::Base32 Module::Install::XSUtil Net::IP::XS YAML::XS
    ```
 
 6) Install Zonemaster::LDNS and Zonemaster::Engine:
