@@ -54,7 +54,7 @@ The most basic use of the `zonemaster-cli` command is to just test a domain, e.g
 There are two usable Docker images to run `zonemaster-cli`:
 `zonemaster/cli` and `zonemaster/backend`.
 For more information how to use `zonemaster/backend` image to invoke
-the cli go (here)[#../backend/Using-Zonemaster-Backend-Docker.md].
+the cli go to [Docker Zonemaster-Backend] documentation.
 
 
 ```sh
@@ -345,3 +345,4 @@ Also see the official Docker documentation "[Enable IPv6 support]".
 [Severity Level Definitions]:      ../specifications/tests/SeverityLevelDefinitions.md
 [Translation]:                     #translation
 [Enable IPv6 support]:             https://docs.docker.com/config/daemon/ipv6/
+[Docker Zonemaster-Backend]:       backend/Using-Zonemaster-Backend-Docker.md#invoking-the-command-line-tool-using-docker
