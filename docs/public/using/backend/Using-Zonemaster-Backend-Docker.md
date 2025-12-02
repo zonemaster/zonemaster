@@ -12,7 +12,7 @@
 ## Introduction:
 
 This docker image allows you to start a working backend of zonemaster.
-The container is configured to use an SQLite database and run all needed processus (rpcapi et testagent).
+The container is configured to use an SQLite database and run all needed processes (rpcapi and testagent).
 Thereforce this image is designed to be used by one single user and not suitable for production.
 
 There is a limitation in Docker regarding IPv6. Unless IPv6 has been enabled in the Docker daemon, there is no support for IPv6. To avoid meaningless errors, use `--no-ipv6` if there is no IPv6 support. Also see section "IPv6 support".
