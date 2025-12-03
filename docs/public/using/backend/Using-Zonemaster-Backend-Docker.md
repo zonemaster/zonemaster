@@ -77,6 +77,15 @@ you should pipe `docker run`’s output into `tr -d '^M'` before piping it into 
 ```
 docker run -ti --rm --net host zonemaster/backend zmb get_test_results (...) |tr -d '^M' | jq
 ```
+Run
+```sh
+docker run -ti --rm --net host zonemaster/backend zmb
+```
+or 
+```
+docker run -ti --rm --net host zonemaster/backend zmb man
+```
+to get usage and man page, respectively, for `zmb`.
 
 ## Invoking the command line tool using Docker
 
