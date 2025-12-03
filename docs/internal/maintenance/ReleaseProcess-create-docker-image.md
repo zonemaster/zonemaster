@@ -65,7 +65,7 @@ sudo systemctl restart docker
 
 ## 3. Create Docker images
 
-### Clone the three repositories
+### Clone the four repositories
 
 ```sh
 git clone https://github.com/zonemaster/zonemaster-ldns
@@ -95,7 +95,7 @@ git -C zonemaster-cli checkout origin/master
 git -C zonemaster-backend checkout origin/master
 ```
 
-### Make sure repositories are clean and create `Makefile` in all three repositories
+### Make sure repositories are clean and create `Makefile` in all four repositories
 
 ```sh
 (cd zonemaster-ldns; git submodule deinit -f ldns; git clean -dfx; git reset --hard; perl Makefile.PL)
