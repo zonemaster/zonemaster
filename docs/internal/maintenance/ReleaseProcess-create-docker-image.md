@@ -149,7 +149,7 @@ Docker Hub. There are three valid possibilities:
    set the tags of the image with the simple steps below ignoring "dash
    versions".
 
-*Example: version on Docker Hub is v6.0.0 of v6.0.0-1, local version is v6.0.1,
+*Example: version on Docker Hub is v6.0.0 or v6.0.0-1, local version is v6.0.1,
 new image will have version v6.0.1.*
 
 2. The version on Docker Hub has the same version as the local version. Set the
