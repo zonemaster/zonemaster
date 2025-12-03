@@ -24,7 +24,7 @@ The supported paths are the following:
 * `/<lang>/faq`: access the FAQ in the selected language, e.g.
   `https://zonemaster.net/en/faq`.
 * `/api`: With JSON RPC call access the Zonemaster [Backend RPC-API], e.g.
-  `https://zonemaster.net/en/api`.
+  `https://zonemaster.net/api`.
 
 The GUI will redirect from `<path>` (e.g. `https://zonemaster.net/`) to
 `<lang>/<path>` (`https://zonemaster.net/en/`) automatically using the

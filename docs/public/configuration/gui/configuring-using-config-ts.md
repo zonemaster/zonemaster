@@ -56,8 +56,9 @@ const config: Config = {
 * **pollingInterval**: The interval (in milliseconds) for polling the API. This
   is taken from the `PUBLIC_POLLING_INTERVAL` environment variable (default
   empty) or defaults to 5000 ms.
-* **clientInfo**: Information about the client application. Both are best left
-  as default.
+* **clientInfo**: Information about the client application. These details are
+  included in every API request to start tests as (spoofable) indications of
+  origin. Both are best left as default.
   * **version**: The version of the application, taken from package.json.
   * **id**: The identifier for the client application.
 * **siteInfo**: Information about the site.

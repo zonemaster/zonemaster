@@ -2,25 +2,25 @@
 
 ## Background
 
-If you follow the [GUI-installation instructions] you can install a pre-built
+If you follow the [GUI-installation instructions] you can install an official
 package, and skipping the instructions in this document. However, if you have
 created a custom [config.ts] or done theme settings in [tsconfig.json] then
-you must create a custome Zonemaster-GUI package for your custom installation.
-Just follow the simple steps below.
+you must create a custom installation package for your custom installation.
+This can be done by following the steps below.
 
 It is also important to state that even though the installation package is
 created on Ubuntu 22.04 below, the installation package can be installed on at
 least all OSs supported in the [GUI-installation instructions].
 
-## Preparation
+## Prepare build environment
 
 Start by creating a build environment. Here we assume and base it on
 [Ubuntu] version 22.04. The instructions will probably work with other versions
-of Ubuntu, or with other Linux distributions or other OSs, but then you will do
-your own adaptions of the instructions. It is important that the system fully
-supports [npm].
+of Ubuntu, or with other Linux distributions or other OSs, but then you might need
+to adapt some of the commands. Note however that it is important that the 
+system fully supports [npm].
 
-### Software preparation
+### Install toolchain
 
 1. Make a clean installation of Ubuntu 22.04.
 
@@ -55,11 +55,11 @@ nvm install 24
 nvm use 24
 ```
 
-### Clone Zonemaster-GUI repository
+## Check out source code
 
-You need to check out the source code of Zonemaster-GUI. In the normal case
-you will start with the `master` branch (Zonemaster-GUI of the the latest
-Zonemaster release) as here. In your case you might start with another branch.
+You need to checkout the source code of Zonemaster-GUI. In the usual case
+you will start with the `master` branch (Zonemaster-GUI of the latest
+Zonemaster release) as shown below.
 
 Then you enter the directory where Zonemaster-GUI is checked out.
 
@@ -68,7 +68,7 @@ git clone -b master https://github.com/zonemaster/zonemaster-gui.git
 cd zonemaster-GUI
 ```
 
-If you already have a clone, make sure that you start from an update `master`
+If you already have a clone, make sure that you start from an up-to-date `master`
 branch.
 
 ```
@@ -77,19 +77,20 @@ git fetch --all
 git pull
 ```
 
-### Add your customization
+## Add customization
 
-Now it is time to do your customization. In the simple case, update [config.ts].
-To simplify the following steps, you should probably do
-`git checkout -b MY-BRANCH`, `git add FILE` and `git commit -m 'What did I do?'`
+From there, you can start to do your own customization. The simplest case only
+requires an update to [config.ts]. See [README] for more details.
+
+You should then save any changed file by doing
+`git checkout -b MY-BRANCH`, `git add FILE(S)` and `git commit -m 'What did I do?'`
 (see [Git tutorial]).
 
 
-### Build Zonemaster-GUI package
+## Build installation package
 
 When building you should have a clean repository. Clean means that all temporary
-files are removed. When cleaning added changes not added to a Git branch also
-risk of being removed, which is probably intentional.
+(i.e. non-versioned) files are removed.
 
 
 1. List all files and changes that will be removed with next step.
@@ -106,13 +107,13 @@ git clean -dfx
 git reset --hard
 ```
 
-3. Install [npm] libraries in the repository
+3. Install [npm] libraries in the repository.
 
 ```
 npm install
 ```
 
-4. Build the Zonemaster-GUI
+4. Build the Zonemaster-GUI.
 
 ```
 npm run build
@@ -124,8 +125,8 @@ npm run build
 npm run release
 ```
 
-If all steps worked well, the will be a zip file in the repository that can be
-used for installation, replacing the standard zip with your zip file in the
+If all steps worked well, there will be a zip file in the current repository that can be
+used for installation, i.e. by replacing the standard zip file with this new zip file in the
 [GUI-installation instructions].
 
 If the build step above fails, go back to a safe branch and add your updates one
@@ -135,8 +136,8 @@ by one, and repeating steps 1-5.
 ## Testing the Build Locally
 
 To test the static build locally, it must be served from the root path (/). You
-can use any simple static server. Here are two common options, and note that
-additiona software has to be installed for those.
+can use any static server. Here are two common options, and note that
+additional software has to be installed for those:
 
 ```bash
 python3 -m http.server 8000 --directory ./public
@@ -158,3 +159,4 @@ the root for all assets and routing to work correctly.
 [Node.js]:                                                        https://nodejs.org/en
 [NVM]:                                                            https://github.com/nvm-sh/nvm
 [Git tutorial]:                                                   https://git-scm.com/docs/gittutorial
+[README]:                                                         README.md

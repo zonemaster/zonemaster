@@ -112,7 +112,7 @@ These interactive components contain important functionality that needs to be
 carefully considered when modifying.
 
 You might be better off creating a new component from scratch and integrate it
-with the TestAgent yourself.
+with the RPCAPI yourself.
 
 ## Headless mode
 

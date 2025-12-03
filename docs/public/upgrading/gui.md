@@ -6,16 +6,15 @@ This document documents manual steps needed to keep customizations, if any, from
 one version of Zonemaster-GUI to a later version. If no such customizations exist
 nothing special has to be done.
 
-| Current Zonemaster-GUI version | Comments                                                 |
-|--------------------------------|----------------------------------------------------------|
-| version < v5.0.0               | Any `assets/app.config.json` could be migrated to v5.0.0 |
+Migrations:
+ * [pre-v5.0.0 to v5.0.0](#migrating-pre-v5.0.0-to-v5.0.0)
 
 ## Find version of GUI
 
 Go to the start web page of Zonemaster. In the lower left corner you can find the
 the Zonemaster-GUI version.
 
-## Migrating pre-v5.0.0 to v5.0.0
+## Migrating pre-v5 to v5
 
 If `assets/app.config.json` is found in installed Zonemaster-GUI go to the
 following documents to migrates its content:
