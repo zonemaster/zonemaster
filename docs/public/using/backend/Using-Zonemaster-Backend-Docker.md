@@ -49,10 +49,7 @@ docker run -ti --rm --net host zonemaster/backend zmb start_domain_test --domain
 docker run -ti --rm --net host zonemaster/backend zmb get_test_results --test-id ed38765834e45b6e --lang en
 ```
 
-If you try to pipe `docker run` output directly into `jq` you can have some display problemes.
-The following commande can help if you encounter such things.
-When you pipe the output of docker run directly into jq, you might encounter display issues due to the way Docker handles output.
-To mitigate these problems, you can use the `tr -d '^M'`  to mitigate display problems caused by carriage return characters (^M)
+When piping the output of `docker run` directly into `jq`, you might encounter display issues due to the way Docker handles output. These issues are caused by carriage return characters (^M) in the output. To filter out these characters, you should pipe `docker run`’s output into `tr -d '^M'` before piping it into `jq`.
 
 ```
 docker run -ti --rm --net host zonemaster/backend zmb get_test_results (...) |tr -d '^M' | jq
