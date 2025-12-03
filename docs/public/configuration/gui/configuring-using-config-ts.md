@@ -1,7 +1,7 @@
 # Simple build-time configuring Zonemaster-GUI using "config.ts"
 
 The `config.ts` configuration file can be used for *build-time* settings of the
-Zonemaster-GUI, i.e. the GUI has to be rebuilt.
+Zonemaster-GUI, i.e. the installation package has to be rebuilt.
 
 ## Finding "config.ts"
 

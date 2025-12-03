@@ -3,14 +3,17 @@
 ## Background
 
 If you follow the [Zonemaster-GUI installation instructions] you can install an
-official package, and skipping the instructions in this document. However, if you
-havecreated a custom [config.ts] or done theme settings in [tsconfig.json] then
-you must create a custom installation package for your custom installation.
-This can be done by following the steps below.
+official package, and skip the instructions in this document.
+
+However, if you have created a custom [config.ts], done theme settings in
+[tsconfig.json] or done some [theme updates] then you must create a custom
+installation package for your custom installation. That can be acheived by
+following the steps below.
 
 It is also important to state that even though the installation package is
-created on Ubuntu 22.04 below, the installation package can be installed on at
-least all OSs supported in the [Zonemaster-GUI installation instructions].
+created on Ubuntu 22.04 below, the resulting installation package can be
+installed on at least all OSs supported in the
+[Zonemaster-GUI installation instructions].
 
 ## Prepare build environment
 
@@ -58,10 +61,10 @@ nvm use 24
 ## Check out source code
 
 You need to checkout the source code of Zonemaster-GUI. In the usual case
-you will start with the `master` branch (Zonemaster-GUI of the latest
-Zonemaster release) as shown below.
+you will start with the `master` branch latest Zonemaster-GUI release as
+shown below.
 
-```
+```sh
 git clone -b master https://github.com/zonemaster/zonemaster-gui.git
 cd zonemaster-gui
 ```
@@ -69,7 +72,7 @@ cd zonemaster-gui
 If you already have a clone, make sure that you start from an up-to-date `master`
 branch.
 
-```
+```sh
 git checkout master
 git fetch --all
 git pull
@@ -80,10 +83,14 @@ git pull
 From there, you can start to do your own customization. The simplest case only
 requires an update to [config.ts]. See [README] for more details.
 
-You should then save any changed file by doing
-`git checkout -b MY-BRANCH`, `git add FILE(S)` and `git commit -m 'What did I do?'`
-(see [Git tutorial]).
+You should then save any changed file by doing the following steps (see
+[Git tutorial]).
 
+```sh
+git checkout -b MY-BRANCH
+git add FILE
+git commit -m 'What did I do?'
+```
 
 ## Build installation package
 
@@ -93,33 +100,33 @@ When building you should have a clean repository. Clean means that all temporary
 
 1. List all files and changes that will be removed with next step.
 
-```
+```sh
 git status --ignored
 ```
 
 2. Remove all files and changes not included in a Git branch (listed in
    previous step).
 
-```
+```sh
 git clean -dfx
 git reset --hard
 ```
 
 3. Install [npm] libraries in the repository.
 
-```
+```sh
 npm install
 ```
 
 4. Build the Zonemaster-GUI.
 
-```
+```sh
 npm run build
 ```
 
 5. Build a Zonemaster-GUI installation package (a zip file).
 
-```
+```sh
 npm run release
 ```
 
@@ -137,11 +144,11 @@ To test the static build locally, it must be served from the root path (/). You
 can use any static server. Here are two common options, and note that
 additional software has to be installed for those:
 
-```bash
+```sh
 python3 -m http.server 8000 --directory ./public
 ```
 
-```bash
+```sh
 php -S localhost:8000 -t ./public
 ```
 
@@ -149,12 +156,15 @@ Ensure you're serving the ./public directory (or your build output folder) as
 the root for all assets and routing to work correctly.
 
 
-[config.ts]:                                                      configuring-using-config-ts.md
-[Zonemaster-GUI installation instructions]:                       ../../installation/zonemaster-gui.md
-[npm]:                                                            https://www.npmjs.com/
-[Ubuntu]:                                                         https://ubuntu.com/
-[known issue]:                                                    https://github.com/nvm-sh/nvm#troubleshooting-on-linux
-[Node.js]:                                                        https://nodejs.org/en
-[NVM]:                                                            https://github.com/nvm-sh/nvm
 [Git tutorial]:                                                   https://git-scm.com/docs/gittutorial
+[Known issue]:                                                    https://github.com/nvm-sh/nvm#troubleshooting-on-linux
+[NPM]:                                                            https://www.npmjs.com/
+[NVM]:                                                            https://github.com/nvm-sh/nvm
+[Node.js]:                                                        https://nodejs.org/en
 [README]:                                                         README.md
+[Ubuntu]:                                                         https://ubuntu.com/
+[Zonemaster-GUI installation instructions]:                       ../../installation/zonemaster-gui.md
+[config.ts]:                                                      configuring-using-config-ts.md
+[tsconfig.json]:                                                  configuring-using-tsconfig-json.md
+[theme updates]:                                                  configuring-using-theming.md
+

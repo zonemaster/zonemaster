@@ -3,9 +3,9 @@
 The `config.json` configuration file can be used for *run-time* settings of the
 Zonemaster-GUI, i.e. no rebuild of the installation package is needed.
 
-Currently only setting message banner is supported. Other types of configuration
-requires rebuilt of the GUI, and is covered in sibbling documents of this
-document.
+Currently, the only supported setting is creating, updating or removing message
+banner. Other types of configuration requires rebuilt of the GUI, and is covered
+in sibbling documents of this document.
 
 ## Finding "config.json"
 
