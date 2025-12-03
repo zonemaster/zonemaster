@@ -33,7 +33,7 @@
         - [Run-time configuration using "config.json"](configuration/gui/configuring-using-config-json.md)
         - [Simple build-time configuration using "config.ts"](configuration/gui/configuring-using-config-ts.md)
         - [Advanced build-time configuration using "tsconfig.json"](configuration/gui/configuring-using-tsconfig-json.md)
-        - [Configuring using Theming](configuring-using-theming.md)
+        - [Configuring using Theming](configuration/gui/configuring-using-theming.md)
 - [Using](using/README.md)
     - [CLI](using/cli.md)
     - [Backend](using/backend/README.md)
