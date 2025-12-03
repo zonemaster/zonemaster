@@ -18,9 +18,15 @@ how to use this version of cli is described at (the end of this document)[#invok
 The container is configured to use an SQLite database and run all needed processes (rpcapi and testagent).
 This image is designed to be used by one single user and is therefore not suitable for production.
 
-There is a limitation in Docker regarding IPv6. Unless IPv6 has been enabled in the Docker daemon, there is no support for IPv6. To avoid meaningless errors, use `--no-ipv6` if there is no IPv6 support. Also see section "IPv6 support".
+There is a limitation in Docker regarding IPv6. Unless IPv6 has been enabled in the Docker daemon, there is no support for IPv6.
+To avoid unnecessary errors, use the corresponding option below if IPv6 support is not available. See also the "IPv6 Support" section.
+
+- zonemaster-cli: `--no-ipv6`
+- zmtest: `--noipv6`
+- zmb: `--ipv6 false`
 
 ## Invoking `zmtest` using Docker
+
 
 The most basic use of the `zonemaster-backend` command is to just test a domain, e.g.
 "zonemaster.net". To do so you first need to start `zonemaster/backend` container and expose the port 5000
