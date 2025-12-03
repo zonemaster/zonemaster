@@ -16,7 +16,7 @@ It also contains a working version of zonemaster-cli which can be used as a subs
 how to use this version of cli is described at (the end of this document)[#invoking-the-command-line-tool-using-docker].
 
 The container is configured to use an SQLite database and run all needed processes (rpcapi and testagent).
-Thereforce this image is designed to be used by one single user and not suitable for production.
+This image is designed to be used by one single user and is therefore not suitable for production.
 
 There is a limitation in Docker regarding IPv6. Unless IPv6 has been enabled in the Docker daemon, there is no support for IPv6. To avoid meaningless errors, use `--no-ipv6` if there is no IPv6 support. Also see section "IPv6 support".
 
