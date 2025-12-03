@@ -281,14 +281,37 @@ Zonemaster-CLI:
 docker run --rm zonemaster/cli:local zonemaster.net
 ```
 
-Zonemaster-Backend
+Zonemaster-Backend:
+
+Start the backend in the background:
 
 ```sh
 docker run --rm -p 5000:5000 --name zm -d zonemaster/backend:local full
+```
+
+Run `docker ps -a`. The container named `zm` should be running.
+
+Run a test through the backend:
+```sh
 docker run -ti --rm --net host zonemaster/backend:local zmtest zonemaster.net
+```
+
+The output should be a JSON object containing, among other things, a list of message tags in JSON format.
+
+Test the correct operation of the `zmb` tool by running a test:
+```sh
+docker run -ti --rm --net host zonemaster/backend:local zmb start_domain_test --domain zonemaster.net
+docker run -ti --rm --net host zonemaster/backend:local zmb get_test_results --test-id be98f37d3b137ce0 --lang en
+```
+
+The output should be a JSON object, similar to the previous one.
+
+Finally, stop the backend:
+```sh
 docker stop zm
 ```
 
+And run `docker ps -a` to ensure that the backend is no longer running.
 
 
 ## 6. Handy Docker commands
