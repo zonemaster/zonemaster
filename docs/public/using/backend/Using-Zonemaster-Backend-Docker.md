@@ -57,8 +57,8 @@ docker run -ti --rm --net host zonemaster/backend zmb get_test_results (...) |tr
 
 ## Invoking the command line tool using Docker
 
-`zonemaster/backend` offer the same possibility as [zonemaster-cli] container image.
-You can invoke zonemaster-cli :
+`zonemaster/backend` also contains the CLI tool shipped in the [zonemaster-cli] container image.
+You can invoke zonemaster-cli in the Zonemaster-Backend Docker image by running the following command:
 
 ```
 docker run -ti --rm zonemaster/backend:local cli zonemaster.net
