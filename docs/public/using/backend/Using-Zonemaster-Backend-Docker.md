@@ -24,7 +24,7 @@ There is a limitation in Docker regarding IPv6. Unless IPv6 has been enabled in 
 
 The most basic use of the `zonemaster-backend` command is to just test a domain, e.g.
 "zonemaster.net". To do so you first need to start `zonemaster/backend` container and expose the port 5000
-to be able to acces the JSON RPC API.
+to be able to access the JSON RPC API.
 
 ```
 docker run --rm -p 5000:5000 --name zm -d zonemaster/backend full
