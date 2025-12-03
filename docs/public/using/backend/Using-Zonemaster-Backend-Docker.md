@@ -42,7 +42,7 @@ docker run -ti --rm --net host zonemaster/backend zmtest zonemaster.net
 ## Invoking `zmb` using Docker
 
 
-It's also possible to interract with `zonemaster/backend` container with `zmb`
+You can also use the `zmb` command to interact with the `zonemaster/backend` container.
 
 ```
 docker run -ti --rm --net host zonemaster/backend zmb start_domain_test --domain zonemaster.net
