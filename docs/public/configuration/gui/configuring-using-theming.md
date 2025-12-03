@@ -1,8 +1,8 @@
-# Configuring Zonemaster GUI using Theming
+# Configuring Zonemaster-GUI using Theming
 
 ## Background
 
-The Zonemaster GUI is built to be cloned and customized. You have full control
+The Zonemaster-GUI is built to be cloned and customized. You have full control
 over the styling and layout. That said, to avoid headaches when syncing with
 the original repository, we recommend following a few simple guidelines:
 
@@ -15,12 +15,13 @@ the original repository, we recommend following a few simple guidelines:
 ## Related documents
 
 For how to use `tsconfig.json` in connection to theming, see
-[Configuring Zonemaster GUI using "tsconfig.json"]. Theming requires rebuilding
-the GUI, see [Building a custom Zonemaster-GUI].
+[Advanced build-time configuring Zonemaster-GUI using "tsconfig.json"]. Theming
+requires rebuilding Zonemater-GUI, see
+[Build a custom Zonemaster-GUI installation package].
 
 ## Basic customization
 
-The Zonemaster GUI is built around a global theme based on CSS variables
+The Zonemaster-GUI is built around a global theme based on CSS variables
 (`./src/themes/default/styles/theme.css`). The easiest way to make your own theme
 is to override theme variables in the `./src/themes/default/styles/custom.css` file.
 You can tweak colors, fonts, spacing, and more. You'll get surprisingly far by
@@ -159,10 +160,10 @@ For a smoother development experience:
 4. Use browser developer tools to inspect elements and test different values
 
 
-[Astro]:                                                     https://astro.build/
-[Building a custom Zonemaster-GUI]:                          building-custom-gui.md
-[Configuration of GUI]:                                      https://doc.zonemaster.net/latest/configuration/gui/README.html
-[Configuring Zonemaster GUI using "tsconfig.json"]:          configuring-using-tsconfig-json.md
-[Svelte]:                                                    https://svelte.dev/
-[UI.md]:                                                     https://github.com/zonemaster/zonemaster-gui/blob/master/docs/UI.md#headless-mode
+[Advanced build-time configuring Zonemaster-GUI using "tsconfig.json"]:  configuring-using-tsconfig-json.md
+[Build a custom Zonemaster-GUI installation package]:                    building-custom-gui.md
+[Astro]:                                                                 https://astro.build/
+[Configuration of GUI]:                                                  https://doc.zonemaster.net/latest/configuration/gui/README.html
+[Svelte]:                                                                https://svelte.dev/
+[UI.md]:                                                                 https://github.com/zonemaster/zonemaster-gui/blob/master/docs/UI.md#headless-mode
 

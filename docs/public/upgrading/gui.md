@@ -7,7 +7,7 @@ one version of Zonemaster-GUI to a later version. If no such customizations exis
 nothing special has to be done.
 
 Migrations:
- * [pre-v5.0.0 to v5.0.0](#migrating-pre-v5.0.0-to-v5.0.0)
+ * [pre-v5.0.0 to v5.0.0](#migrating-pre-v5-to-v5)
 
 ## Find version of GUI
 

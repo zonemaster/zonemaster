@@ -8,11 +8,7 @@ specific tasks by adding a path to the Zonemaster GUI base URL, e.g.
 For the paths the following keys are used:
 
 * `<lang>`: A [Language Code][Language Codes]
-* `result`: The exact string
 * `<test-id>`: A string of 16 characters in `0-9a-f` (hexadecimal)
-* `faq`: The exact string
-* `api`: The exact string
-* `run-test`: The exact string (temporarily not supported)
 * `<domain>`: A domain name to be tested (temporarily not supported)
 
 
@@ -34,8 +30,7 @@ Else it uses the default language defined in Zonemaster-GUI.
 The following paths are temporarily not supported:
 
 * `<lang>/run-test`: access the input form.
-* `<lang>/run-test/<domain>`: populate the input form with `<domain>`, which is
-  expected to be a name of a DNS zone, and launch the test.
+* `<lang>/run-test/<domain>`: populate the input form with `<domain>`.
 
 ## Language Codes
 

@@ -1,18 +1,19 @@
-# Configuring Zonemaster GUI using "tsconfig.json"
+# Advanced build-time configuring Zonemaster-GUI using "tsconfig.json"
 
 The `tsconfig.json` configuration file can be used for *build-time* settings of
-the Zonemaster GUI, i.e. the GUI has to be rebuilt.
+Zonemaster-GUI, i.e. Zonemaster-GUI has to be rebuilt.
 
 ## Finding "tsconfig.json"
 
-In the source tree the file is found as `tsconfig.json` relative to the root of the
-Git tree. It does not exist in the installed GUI, as the values have been built
-in
+In the source tree the file is found as `tsconfig.json` relative to the root of
+the Git tree. It does not exist in the installed Zonemaster-GUI, as the values
+have been built-in.
 
-## Rebuilding GUI after update
+## Rebuilding Zonemaster-GUI after update
 
-When `tsconfig.json` has been updated, GUI has to be rebuilt. See [building GUI]
-for how to get the source tree and building a new installation zip file.
+When `tsconfig.json` has been updated, Zonemaster-GUI has to be rebuilt. See
+[building installation package] for how to get the source tree and building a new
+installation package.
 
 ## Default "tsconfig`.json"
 
@@ -75,5 +76,5 @@ In the [Theming Zonemaster-GUI] document you will find instructions how to add
 custom theming to Zonemaster-GUI.
 
 
-[Building GUI]:                                  building-custom-gui.md
+[Building installation package]:                 building-custom-gui.md
 [Theming Zonemaster-GUI]:                        https://github.com/zonemaster/zonemaster-gui/blob/master/docs/theming-zonemaster-gui.md

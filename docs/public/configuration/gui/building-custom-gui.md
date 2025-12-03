@@ -1,23 +1,23 @@
-# Building a custom Zonemaster-GUI
+# Build a custom Zonemaster-GUI installation package
 
 ## Background
 
-If you follow the [GUI-installation instructions] you can install an official
-package, and skipping the instructions in this document. However, if you have
-created a custom [config.ts] or done theme settings in [tsconfig.json] then
+If you follow the [Zonemaster-GUI installation instructions] you can install an
+official package, and skipping the instructions in this document. However, if you
+havecreated a custom [config.ts] or done theme settings in [tsconfig.json] then
 you must create a custom installation package for your custom installation.
 This can be done by following the steps below.
 
 It is also important to state that even though the installation package is
 created on Ubuntu 22.04 below, the installation package can be installed on at
-least all OSs supported in the [GUI-installation instructions].
+least all OSs supported in the [Zonemaster-GUI installation instructions].
 
 ## Prepare build environment
 
 Start by creating a build environment. Here we assume and base it on
 [Ubuntu] version 22.04. The instructions will probably work with other versions
-of Ubuntu, or with other Linux distributions or other OSs, but then you might need
-to adapt some of the commands. Note however that it is important that the 
+of Ubuntu, or with other Linux distributions or other OSs, but then you might
+need to adapt some of the commands. Note however that it is important that the
 system fully supports [npm].
 
 ### Install toolchain
@@ -61,11 +61,9 @@ You need to checkout the source code of Zonemaster-GUI. In the usual case
 you will start with the `master` branch (Zonemaster-GUI of the latest
 Zonemaster release) as shown below.
 
-Then you enter the directory where Zonemaster-GUI is checked out.
-
 ```
 git clone -b master https://github.com/zonemaster/zonemaster-gui.git
-cd zonemaster-GUI
+cd zonemaster-gui
 ```
 
 If you already have a clone, make sure that you start from an up-to-date `master`
@@ -101,7 +99,7 @@ git status --ignored
 
 2. Remove all files and changes not included in a Git branch (listed in
    previous step).
-   
+
 ```
 git clean -dfx
 git reset --hard
@@ -125,9 +123,9 @@ npm run build
 npm run release
 ```
 
-If all steps worked well, there will be a zip file in the current repository that can be
-used for installation, i.e. by replacing the standard zip file with this new zip file in the
-[GUI-installation instructions].
+If all steps worked well, there will be a zip file in the current repository that
+can be used for installation, i.e. by replacing the official installation package
+(zip file) with this new zip file in the [Zonemaster-GUI installation instructions].
 
 If the build step above fails, go back to a safe branch and add your updates one
 by one, and repeating steps 1-5.
@@ -152,7 +150,7 @@ the root for all assets and routing to work correctly.
 
 
 [config.ts]:                                                      configuring-using-config-ts.md
-[GUI-installation instructions]:                                  ../../installation/zonemaster-gui.md
+[Zonemaster-GUI installation instructions]:                       ../../installation/zonemaster-gui.md
 [npm]:                                                            https://www.npmjs.com/
 [Ubuntu]:                                                         https://ubuntu.com/
 [known issue]:                                                    https://github.com/nvm-sh/nvm#troubleshooting-on-linux

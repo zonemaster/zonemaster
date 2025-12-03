@@ -1,7 +1,7 @@
-# Configuring Zonemaster GUI using "config.ts"
+# Simple build-time configuring Zonemaster-GUI using "config.ts"
 
 The `config.ts` configuration file can be used for *build-time* settings of the
-Zonemaster GUI, i.e. the GUI has to be rebuilt.
+Zonemaster-GUI, i.e. the GUI has to be rebuilt.
 
 ## Finding "config.ts"
 
@@ -9,14 +9,15 @@ In the source tree the file is found as `config.ts` relative to the root of the
 Git tree. It does not exist in the installed GUI, as the values have been built
 in
 
-## Rebuilding GUI after update
+## Rebuilding Zonemaster-GUI after update
 
-When `config.ts` has been updated, GUI has to be rebuilt. See [building GUI] for
-how to get the source tree and building a new installation zip file.
+When `config.ts` has been updated, Zonemaster-GUI has to be rebuilt. See
+[Build a custom Zonemaster-GUI installation package] for how to get the source
+tree and building a custom installation package.
 
 ## Default "config.ts" file
 
-The `config.ts` file is the central configuration file for the Zonemaster GUI
+The `config.ts` file is the central configuration file for the Zonemaster-GUI
 application. It defines various settings that control the behavior and appearance
 of the application.
 
@@ -47,7 +48,7 @@ const config: Config = {
     the Backend configuration.
   * The array must only include language codes also included in
     `project.inlang/settings.json`, but it may be fewer. To add new languages,
-    see the [Translating GUI]. `project.inlang/settings.json` must only be
+    see [Translating Zonemaster-GUI]. `project.inlang/settings.json` must only be
     updated in that process.
 * **apiBaseUrl**: The base URL for API requests. This is taken from the
   `PUBLIC_API_URL` environment variable (default empty) or defaults to '/api'.
@@ -83,12 +84,12 @@ For this to work, the Apache configuration must be updated too. More below.
 
 If `apiBaseUrl` has been updated, then [zonemaster.conf-example] (installed as
 `zonemaster.conf` in a default installation) must also be updated, preferably
-before building the GUI.
+before building the installation package.
 
 > Incomplete information
 
 
-[Building GUI]:                                  building-custom-gui.md
-[Locale setting]:                                ../backend.md#locale
-[Translating GUI]:                               ../../translation/Translating-GUI.md
-[Zonemaster.conf-example]:                       https://github.com/zonemaster/zonemaster-gui/blob/master/zonemaster.conf-example
+[Build a custom Zonemaster-GUI installation package]:                    building-custom-gui.md
+[Locale setting]:                                                        ../backend.md#locale
+[Translating Zonemaster-GUI]:                                            ../../translation/Translating-GUI.md
+[Zonemaster.conf-example]:                                               https://github.com/zonemaster/zonemaster-gui/blob/master/zonemaster.conf-example
