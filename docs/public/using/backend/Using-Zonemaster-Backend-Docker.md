@@ -11,7 +11,7 @@
 
 ## Introduction:
 
-This docker image allows you to start a working backend of zonemaster.
+This Docker image lets you run a working instance of Zonemaster-Backend.
 It also contains a working version of zonemaster-cli which can be used as a substitute for [zonemaster-cli],
 how to use this version of cli is described at (the end of this document)[#invoking-the-command-line-tool-using-docker].
 
