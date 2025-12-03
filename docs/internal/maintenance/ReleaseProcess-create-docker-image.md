@@ -296,7 +296,8 @@ Run a test through the backend:
 docker run -ti --rm --net host zonemaster/backend:local zmtest zonemaster.net
 ```
 
-The output should be a JSON object containing, among other things, a list of message tags in JSON format.
+The output should be a JSON object containing, among other things,
+a list of message tags in JSON format.
 
 Test the correct operation of the `zmb` tool by running a test:
 ```sh
