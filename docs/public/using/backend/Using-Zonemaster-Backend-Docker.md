@@ -52,7 +52,12 @@ You can use `zmtest` embedded inside the backend image by using this command:
 ```
 docker run -ti --rm --net host zonemaster/backend zmtest zonemaster.net
 ```
-
+Run 
+```sh
+docker run -ti --rm --net host zonemaster/backend zmtest zonemaster.net
+```
+to get usage for `zmtest`.
+```
 ## Invoking `zmb` using Docker
 
 
