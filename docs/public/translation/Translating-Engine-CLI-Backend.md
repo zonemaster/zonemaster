@@ -7,6 +7,7 @@
 * [GitHub preparation]
 * [Tools]
 * [Clone preparation]
+* [Language Codes]
 * [Translation steps]
 * [Updates to msgids]
 * [Adding a new language]
@@ -168,6 +169,26 @@ repeated for all clones.
   ```
 
 Now you should have updated local clones of all three repositories.
+
+
+## Language Codes
+
+Zonemaster uses [ISO 639-1] two-letter language codes, in lower case.
+Zonemaster-GUI is currently available in the following languages:
+
+* `da` for Danish language
+* `en` for English language
+* `es` for Spanish language
+* `fi` for Finnish language
+* `fr` for French language
+* `nb` for Norwegian language
+* `sl` for Slovenian language
+* `sv` for Swedish language
+
+If a language is added the correct two-letter code must be used.
+
+In the steps below `xx` represent the language code that you should work with.
+Replace that with the correct code.
 
 
 ## Translation steps
@@ -365,9 +386,8 @@ there are updated or added messages to be translated.
 There is no PO file for new language, and it has to be created. The easiest way
 is to make a copy of an existing file.
 
-* Determine what language code to use for the new language. It should be the
-  correct [ISO 639-1] two-character code. By looking up the language on
-  [Wikipedia] the correct code can be determined.
+* Determine what language code to use for the new language (also see section
+  "[Language Codes]").
 
 * It must be a code that is available in the *locale* system in the OSs that
   Zonemaster supports. Try the following commands to see if it is available.
@@ -401,8 +421,7 @@ If you do want to generate it, the command is `make extract-pot`.
 
 The translated strings are maintained in files named "<LANG-CODE>.po". You will
 find the current PO files in the "share" directories listed in the "[Overview]"
-section. Translation and the languages are also presented in the main [README]
-document.
+section (also see section "[Language Codes]").
 
 The command `./update-po` will update the PO file with new message ids (*msgid*)
 from the source code. Execute `./update-po xx.po` to update the PO file for
@@ -437,20 +456,19 @@ make update-po MSGMERGE_OPTS=--no-fuzzy-matching
 [GitHub signup]:                               https://github.com/signup
 [GitHub]:                                      https://github.com/
 [ISO 639-1]:                                   https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+[Language Codes]:                              #language-codes
 [New issue zonemaster-backend]:                https://github.com/zonemaster/zonemaster-backend/issues/new
 [New issue zonemaster-cli]:                    https://github.com/zonemaster/zonemaster-cli/issues/new
 [New issue zonemaster-engine]:                 https://github.com/zonemaster/zonemaster-engine/issues/new
 [Overview]:                                    #overview
 [PO files]:                                    https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html
 [POEDIT]:                                      https://poedit.net/
-[README]:                                      ../../../README.md
 [Software preparation]:                        #software-preparation
 [Technical details]:                           #technical-details
 [Tools]:                                       #tools
 [Translation steps]:                           #translation-steps
 [Translation]:                                 https://github.com/zonemaster/zonemaster-engine/blob/develop/docs/Translation.pod
 [Updates to msgids]:                           #updates-to-msgids
-[Wikipedia]:                                   https://www.wikipedia.org/
 [Zonemaster GUI translation guide]:            https://github.com/zonemaster/zonemaster-gui/blob/develop/docs/TranslationGuide.md
 [Zonemaster-Backend repository]:               https://github.com/zonemaster/zonemaster-backend
 [Zonemaster-CLI repository]:                   https://github.com/zonemaster/zonemaster-cli

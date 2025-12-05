@@ -158,10 +158,10 @@ Zonemaster-GUI is currently available in the following languages:
 * `sl` for Slovenian language
 * `sv` for Swedish language
 
-If languages are added the correct two-letter code should be used.
+If languages are added the correct two-letter code must be used.
 
 In the steps below `xx` represent the language code that you should work with.
-Replace that with the correct code
+Replace that with the correct code.
 
 
 ## Translation steps
@@ -341,7 +341,7 @@ translators and includes features like translation memory and suggestions.
 
 ### Setting Up PoEdit for JSON Files
 
-1. Download and install PoEdit from [poedit.net]
+1. Download and install [PoEdit]
 2. PoEdit works with various file formats, including JSON. To work with
    Zonemaster's JSON files:
    - Open PoEdit
@@ -506,7 +506,7 @@ application to compile the translations. See
 <!-- Zonemaster links point on purpose on the develop branch. -->
 [ASCII format]:                                https://en.wikipedia.org/wiki/ASCII
 [Adding a new SSH key to your Github account]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
-[Building a custom Zonemaster-GUI]:            ../../configuration/gui/building-custom-gui.md
+[Building a custom Zonemaster-GUI]:            ../configuration/gui/building-custom-gui.md
 [Clone preparation]:                           #clone-preparation
 [Cloning a repository]:                        https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository
 [English FAQ directory]:                       https://github.com/zonemaster/zonemaster-gui/tree/develop/src/content/faq/en

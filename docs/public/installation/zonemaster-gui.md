@@ -269,6 +269,7 @@ It is possible to change the behavior and visual aspects of GUI. See
 section [configuring GUI] for how to customize the GUI.
 
 
+[building GUI]:                     ../configuration/gui/building-custom-gui.md
 [JSON-RPC API]:                     ../using/backend/rpcapi-reference.md
 [Let's Encrypt / Certbot]:          https://certbot.eff.org/instructions
 [Main Zonemaster repository]:       https://github.com/zonemaster/zonemaster/blob/master/README.md
@@ -280,4 +281,4 @@ section [configuring GUI] for how to customize the GUI.
 [Zonemaster::Engine installation]:  zonemaster-engine.md
 [Zonemaster::Engine]:               https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
 [Zonemaster::LDNS]:                 https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
-[Configuring GUI]:                 ../configuration/gui
+[Configuring GUI]:                  ../configuration/gui/README.md
