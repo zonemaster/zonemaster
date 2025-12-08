@@ -53,8 +53,8 @@ The most basic use of the `zonemaster-cli` command is to just test a domain, e.g
 
 There are two usable Docker images to run `zonemaster-cli`:
 `zonemaster/cli` and `zonemaster/backend`.
-For more information how to use `zonemaster/backend` image to invoke
-the cli go to [Docker Zonemaster-Backend] documentation.
+For more information on how to use `zonemaster/backend` image to invoke
+the cli, see the [Docker Zonemaster-Backend] documentation.
 
 
 ```sh
