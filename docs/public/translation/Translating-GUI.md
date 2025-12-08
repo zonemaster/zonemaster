@@ -339,22 +339,24 @@ The steps in this section will cover most translation work.
 translating Zonemaster's JSON files. It provides a user-friendly interface for
 translators and includes features like translation memory and suggestions.
 
-### Setting Up PoEdit for JSON Files
+### Setting Up PoEdit
 
 1. Download and install [PoEdit]
-2. PoEdit works with various file formats, including JSON. To work with
-   Zonemaster's JSON files:
-   - Open PoEdit
-   - Go to File > Preferences > Parsers
-   - Make sure the JSON parser is enabled
+2. PoEdit works with various file formats, including JSON.
 
 ### Creating a Translation Project
 
-1. In PoEdit, go to File > New
-2. Select "Create from existing file" and choose the English JSON file
-   (`messages/en.json`) as your source
-3. Select the JSON format when prompted
-4. Save the project file (.po) in a convenient location
+1. If there is no file for language code `xx` you have to create that.
+2. Create a copy of `en.json`:
+   ```sh
+   cp messages/en.json messages/xx.json
+   ```
+
+### Open the language file with PoEdit
+
+1. Select "open file" and find `message/xx.json`.
+2. PoEdit will suggest to "use English for source text" and you should click on
+   "load English".
 
 ### Translating with PoEdit
 
@@ -365,10 +367,8 @@ translators and includes features like translation memory and suggestions.
 
 ### Exporting Translations
 
-1. After completing your translations, go to File > Save as
-2. Select JSON format
+1. After completing your translations, save the file.
 3. Save the file with the appropriate language code in the `/messages` directory
-   (e.g., `messages/de.json` for German)
 4. Verify that the exported JSON file maintains the same structure as the
    original English file
 
