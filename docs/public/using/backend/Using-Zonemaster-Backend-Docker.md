@@ -119,7 +119,7 @@ sudo systemctl restart docker
 
 Also see the official Docker documentation "[Enable IPv6 support]".
 
-[Docker Image Creation]:               https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
+[Docker Image Creation]:           https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
 [Get started]:                     https://www.docker.com/get-started/
 [IPv6 support]:                    #ipv6-support
 [Enable IPv6 support]:             https://docs.docker.com/config/daemon/ipv6/
