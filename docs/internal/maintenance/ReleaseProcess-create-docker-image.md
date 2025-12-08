@@ -65,7 +65,7 @@ sudo systemctl restart docker
 
 ## 3. Create Docker images
 
-### Clone the four repositories
+### Clone the repositories
 
 ```sh
 git clone https://github.com/zonemaster/zonemaster-ldns
