@@ -9,14 +9,16 @@ and processor architecture listed below.
 
 ## Supported operating system versions
 
-* [Debian] 13
-* [Docker]
-* [FreeBSD] 14
-* [Rocky Linux] 8
-* [Rocky Linux] 9
-* [Rocky Linux] 10
-* [Ubuntu] 22.04
-* [Ubuntu] 24.04
+| Operating System | Version |
+|:-----------------|:-------:|
+| [Debian]         | 13      |
+| [Docker]         | n/a     |
+| [FreeBSD]        | 14      |
+| [Rocky Linux]    | 8       |
+| [Rocky Linux]    | 9       |
+| [Rocky Linux]    | 10      |
+| [Ubuntu]         | 22.04   |
+| [Ubuntu]         | 24.04   |
 
 Only the latest long-term supported version of Debian and FreeBSD, respectively,
 is supported. All long-term supported versions of Rocky Linux and Ubuntu are
@@ -34,10 +36,10 @@ can run on any of the [Docker] supported OSs (Linux, macOS and Windows).
 | Debian 13        | 11.8    | 17         |
 | Docker           | n/a     | n/a        |
 | FreeBSD 14       | 8.0 (*) | 17         |
-| Rocky Linux 8    | 10.3    | 10        |
+| Rocky Linux 8    | 10.3    | 10         |
 | Rocky Linux 9    | 10.5    | 13         |
 | Rocky Linux 10   | 10.11   | 16         |
-| Ubuntu 22.04     | 10.6?   | 14?        |
+| Ubuntu 22.04     | 10.6    | 14         |
 | Ubuntu 24.04     | 10.11   | 16         |
 
 * (*) FreeBSD uses MySQL, not MariaDB.
@@ -59,7 +61,7 @@ can run on any of the [Docker] supported OSs (Linux, macOS and Windows).
 | Rocky Linux 8    | 5.26  |
 | Rocky Linux 9    | 5.32  |
 | Rocky Linux 10   | 5.40  |
-| Ubuntu 22.04     | 5.34? |
+| Ubuntu 22.04     | 5.34  |
 | Ubuntu 24.04     | 5.38  |
 
 
