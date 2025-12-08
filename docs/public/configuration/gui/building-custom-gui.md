@@ -35,27 +35,27 @@ system fully supports [npm].
 
 3. Install Node.js by using [NVM], a node version manager.
 
-```sh
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
-```
+   ```sh
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+   ```
 
 4. After installation, log out and log in again to handle [known issue], or just:
 
-```sh
-source ~/.bashrc
-```
+   ```sh
+   source ~/.bashrc
+   ```
 
 5. Install the supported Node.js version
 
-```sh
-nvm install 24
-```
+   ```sh
+   nvm install 24
+   ```
 
 6. Switch to the previously installed version
 
-```sh
-nvm use 24
-```
+   ```sh
+   nvm use 24
+   ```
 
 ## Check out source code
 
@@ -80,7 +80,8 @@ git pull
 ## Add customization
 
 From there, you can start to do your own customization. The simplest case only
-requires an update to [config.ts]. See the [GUI Configuration] overview for more details.
+requires an update to [config.ts]. See the [GUI Configuration][README] overview
+for more details.
 
 You should then save any changed file by doing the following steps (see
 [Git tutorial]).
@@ -99,35 +100,35 @@ When building you should have a clean repository. Clean means that all temporary
 
 1. List all files and changes that will be removed with next step.
 
-```sh
-git status --ignored
-```
+   ```sh
+   git status --ignored
+   ```
 
 2. Remove all files and changes not included in a Git branch (listed in
    previous step).
 
-```sh
-git clean -dfx
-git reset --hard
-```
+   ```sh
+   git clean -dfx
+   git reset --hard
+   ```
 
 3. Install [npm] libraries in the repository.
 
-```sh
-npm install
-```
+   ```sh
+   npm install
+   ```
 
 4. Build the Zonemaster-GUI.
 
-```sh
-npm run build
-```
+   ```sh
+   npm run build
+   ```
 
 5. Build a Zonemaster-GUI installation package (a zip file).
 
-```sh
-npm run release
-```
+   ```sh
+   npm run release
+   ```
 
 If all steps worked well, there will be a zip file in the current repository that
 can be used for installation, i.e. by replacing the official installation package
