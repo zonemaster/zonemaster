@@ -169,7 +169,7 @@ will have version v6.0.1-2.*
 
 ### Determine version of Zonemaster-Backend image
 
-The version of Zonemaster-Backend follow the same rules as Zonemaster-CLI.
+The version of Zonemaster-Backend follows the same rules as Zonemaster-CLI.
 
 
 ### Tag the Zonemaster-CLI image
