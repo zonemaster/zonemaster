@@ -100,7 +100,7 @@ docker run -ti --rm zonemaster/backend:local cli zonemaster.net
 
 
 
-### IPv6 support
+## IPv6 support
 
 On a Linux system IPv6 support can be enabled by creating or updating
 `/etc/docker/daemon.json`. This is a minimal file that enables IPv6 support:
