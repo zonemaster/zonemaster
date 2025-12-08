@@ -217,14 +217,18 @@ for more details
 Build the distribution zip file:
 ```
 npm install
+npm run build
 npm run release
 ```
 
+> If you get building errors, repeat the `nvm` commands in
+> [build environment for Node.js] first.
+>
 > You can ignore warnings and security fixes at this stage, and do not run 
 > any `npm audit fix`.
 
 The distribution zip file is in the root level of the zonemaster-gui folder. 
-Its name is `zonemaster_web_gui.zip`.
+Its name is `zonemaster_web_gui_v0.0.0.zip` with correct version.
 
 [(Top)](#table-of-contents)
 

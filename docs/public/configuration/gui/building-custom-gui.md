@@ -124,7 +124,10 @@ When building you should have a clean repository. Clean means that all temporary
    npm run build
    ```
 
-5. Build a Zonemaster-GUI installation package (a zip file).
+5. If building fails, go back to the "[Install toolchain]" section and repeat the
+   two `nvm` commands and restart building.
+
+6. Build a Zonemaster-GUI installation package (a zip file).
 
    ```sh
    npm run release
@@ -167,4 +170,4 @@ the root for all assets and routing to work correctly.
 [config.ts]:                                                      configuring-using-config-ts.md
 [tsconfig.json]:                                                  configuring-using-tsconfig-json.md
 [theme updates]:                                                  configuring-using-theming.md
-
+[Install toolchain]:                                              #install-toolchain
