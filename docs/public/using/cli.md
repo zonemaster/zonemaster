@@ -318,7 +318,7 @@ automatically include the `--platform linux/amd64` option every time you run
 `docker run`.
 
 
-### IPv6 support
+## IPv6 support
 
 On a Linux system IPv6 support can be enabled by creating or updating
 `/etc/docker/daemon.json`. This is a minimal file that enables IPv6 support:
