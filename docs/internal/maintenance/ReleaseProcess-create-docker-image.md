@@ -95,7 +95,7 @@ git -C zonemaster-cli checkout origin/master
 git -C zonemaster-backend checkout origin/master
 ```
 
-### Make sure repositories are clean and create `Makefile` in all four repositories
+### Make sure repositories are clean and create `Makefile` in all repositories
 
 ```sh
 (cd zonemaster-ldns; git submodule deinit -f ldns; git clean -dfx; git reset --hard; perl Makefile.PL)
