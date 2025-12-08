@@ -33,7 +33,7 @@
     - [Backend](using/backend/README.md)
         - [Using Zonemaster-Backend JSON-RPC API](using/backend/Using-Zonemaster-Backend-JSON-RPC-API.md)
         - [Using Zonemaster-Backend for batch testing](using/backend/Using-Zonemaster-Backend-for-batch-testing.md)
-        - [Using Zonemaster-Backend Docker container](Using-Zonemaster-Backend-Docker.md)
+        - [Using Zonemaster-Backend Docker container](using/backend/Using-Zonemaster-Backend-Docker.md)
         - [RPCAPI Reference](using/backend/rpcapi-reference.md)
         - [Telemetry](using/backend/telemetry.md)
     - [GUI](using/gui/README.md)
