@@ -9,7 +9,7 @@
 * [IPv6 support](#ipv6-support)
 
 
-## Introduction:
+## Introduction
 
 This Docker image lets you run a working instance of Zonemaster-Backend.
 It also contains a working version of zonemaster-cli which can be used
