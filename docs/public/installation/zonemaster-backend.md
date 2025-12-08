@@ -53,6 +53,7 @@ Zonemaster::Backend instead, and want to keep the database, then see the
 [Upgrade document]. Otherwise [remove the database][Removing database] and
 continue with this installation document.
 
+An alternative to installing Zonemaster-Backend is to run it under [Docker]. See [Using the Backend] for run it under Docker.
 
 ## 2. Prerequisites
 
@@ -837,3 +838,5 @@ performance. See [Global cache in Zonemaster-Engine].
 [Zonemaster::Engine]:                           https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
 [Zonemaster::GUI installation]:                 zonemaster-gui.md
 [Zonemaster::LDNS]:                             https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
+[Docker]:                                       https://en.wikipedia.org/wiki/Docker_(software)
+[Using the Backend]:                            ../using/backend/ 
