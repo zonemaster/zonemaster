@@ -80,7 +80,7 @@ in the example URL above.
 
 For this to work, the Apache configuration must be updated too. More below.
 
-### Updating Apache configuration
+## Updating Apache configuration
 
 If `apiBaseUrl` has been updated, then [zonemaster.conf-example] (installed as
 `zonemaster.conf` in a default installation) must also be updated, preferably

@@ -29,10 +29,9 @@ system fully supports [npm].
 
 2. Update the package database and install Curl and Git.
 
-```sh
-sudo apt-get update
-sudo apt-get install curl git
-```
+   ```sh
+   sudo apt-get update
+   sudo apt-get install curl git
 
 3. Install Node.js by using [NVM], a node version manager.
 
@@ -81,7 +80,7 @@ git pull
 ## Add customization
 
 From there, you can start to do your own customization. The simplest case only
-requires an update to [config.ts]. See [README] for more details.
+requires an update to [config.ts]. See the [GUI Configuration] overview for more details.
 
 You should then save any changed file by doing the following steps (see
 [Git tutorial]).

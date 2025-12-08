@@ -4,7 +4,7 @@ This section contains information about configuration of the different component
 of Zonemaster:
 
 * Setting up or modifying the [profile] in Zonemaster-Engine.
-* Enabling the [global cache] feature.
+* Enabling the Zonemaster-Engine [global cache] feature.
 * Configuring Zonemaster-Backend in the [Backend configuration file].
 * Using [environment variables] for Zonemaster-Backend.
 * Configuring Zonemaster-GUI is described in the [GUI configuration section].

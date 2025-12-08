@@ -58,8 +58,8 @@ language key. E.g.:
 ```json
 {
     "msgBanner": {
-        "en": "System maintenance scheduled for tomorrow at 10:00 UTC",
-        "sv": "Systemunderhåll planerat till imorgon kl 10:00 UTC"
+        "en": "Scheduled system maintenance on 2025-12-09 from 10:00 to 12:00 UTC.",
+        "sv": "Planerat systemunderhåll den 9 december 2025 kl. 10.00–12.00 UTC."
     }
 }
 ```
