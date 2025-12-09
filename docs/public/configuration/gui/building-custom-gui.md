@@ -32,6 +32,7 @@ system fully supports [npm].
    ```sh
    sudo apt-get update
    sudo apt-get install curl git
+   ```
 
 3. Install Node.js by using [NVM], a node version manager.
 
