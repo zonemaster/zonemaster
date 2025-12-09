@@ -59,21 +59,21 @@ if DS records are absent for a signed zone.
 * If no DNSKEY records are found, then further investigation will not be done
   and no messages will be outputted.
 
-| Message Tag outputted         | Level   | Arguments      | Message ID for message tag                                                                                                                 |
-|:------------------------------|:--------|:---------------|:-------------------------------------------------------------------------------------------------------------------------------------------|
-| DS07_DS_FOR_SIGNED_ZONE       | INFO    |                | The parent zone has DS record or records for the signed child zone.                                                                        |
-| DS07_DS_ON_PARENT_SERVER      | INFO    | ns_list        | The following parent name servers responds with DS record or records for the child zone. Name servers: {ns_list}                           |
-| DS07_INCONSISTENT_DS          | ERROR   |                | Inconsistent responses from parent name servers. Some include DS, others do not.                                                           |
-| DS07_INCONSISTENT_SIGNED      | ERROR   |                | Inconsistent responses from name servers. Some include signed responses, others do not.                                                    |
-| DS07_NON_AUTH_RESPONSE_DNSKEY | WARNING | ns_list        | The following name servers give a non authoritative response on DNSKEY query with DO bit set. Name servers: {ns_list}                      |
-| DS07_NOT_SIGNED               | WARNING |                | The zone is not signed.                                                                                                                    |
-| DS07_NOT_SIGNED_ON_SERVER     | WARNING | ns_list        | The following name servers responds with no DNSKEY (unsigned child zone). Name servers: {ns_list}.                                         |
-| DS07_NO_DS_ON_PARENT_SERVER   | WARNING | ns_list        | The following parent name servers responds without DS record for the child zone. Name servers: {ns_list}.                                   |
-| DS07_NO_DS_FOR_SIGNED_ZONE    | WARNING |                | The parent zone has no DS record for the signed child zone.                                                                                |
-| DS07_NO_RESPONSE_DNSKEY       | WARNING | ns_list        | The following name servers do not respond on DNSKEY query with DO bit set. Name servers: {ns_list}                                         |
-| DS07_SIGNED                   | INFO    |                | The zone is signed.                                                                                                                        |
-| DS07_SIGNED_ON_SERVER         | INFO    | ns_list        | The following name servers responds with DNSKEY (signed child zone). Name servers: {ns_list}.                                              |
-| DS07_UNEXP_RCODE_RESP_DNSKEY  | WARNING | ns_list, rcode | The following name servers responded with RCODE "{rcode}" instead of expected "NOERROR" on DNSKEY query with DO bit set. Name servers: {ns_list} |
+| Message Tag outputted         | Level   | Arguments      | Message ID for message tag                                                                                                                        |
+|:------------------------------|:--------|:---------------|:--------------------------------------------------------------------------------------------------------------------------------------------------|
+| DS07_DS_FOR_SIGNED_ZONE       | INFO    |                | The parent zone has DS record or records for the signed child zone.                                                                               |
+| DS07_DS_ON_PARENT_SERVER      | INFO    | ns_list        | The following parent name servers respond with DS record or records for the child zone. Name servers: "{ns_list}".                                |
+| DS07_INCONSISTENT_DS          | ERROR   |                | Inconsistent responses from parent name servers. Some include DS, others do not.                                                                  |
+| DS07_INCONSISTENT_SIGNED      | ERROR   |                | Inconsistent responses from name servers. Some include signed responses, others do not.                                                           |
+| DS07_NON_AUTH_RESPONSE_DNSKEY | WARNING | ns_list        | The following name servers give a non authoritative response on DNSKEY query with DO bit set. Name servers: "{ns_list}".                          |
+| DS07_NOT_SIGNED               | WARNING |                | The zone is not signed.                                                                                                                           |
+| DS07_NOT_SIGNED_ON_SERVER     | WARNING | ns_list        | The following name servers respond with no DNSKEY (unsigned child zone). Name servers: "{ns_list}".                                               |
+| DS07_NO_DS_ON_PARENT_SERVER   | WARNING | ns_list        | The following parent name servers respond without DS record for the child zone. Name servers: "{ns_list}".                                        |
+| DS07_NO_DS_FOR_SIGNED_ZONE    | WARNING |                | The parent zone has no DS record for the signed child zone.                                                                                       |
+| DS07_NO_RESPONSE_DNSKEY       | WARNING | ns_list        | The following name servers do not respond on DNSKEY query with DO bit set. Name servers: "{ns_list}".                                             |
+| DS07_SIGNED                   | INFO    |                | The zone is signed.                                                                                                                               |
+| DS07_SIGNED_ON_SERVER         | INFO    | ns_list        | The following name servers respond with DNSKEY (signed child zone). Name servers: "{ns_list}".                                                    |
+| DS07_UNEXP_RCODE_RESP_DNSKEY  | WARNING | ns_list, rcode | The following name servers respond with RCODE "{rcode}" instead of expected "NOERROR" on DNSKEY query with DO bit set. Name servers: "{ns_list}". |
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
