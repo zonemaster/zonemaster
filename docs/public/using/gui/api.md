@@ -34,7 +34,7 @@ The following paths are temporarily not supported:
 
 ## Language Codes
 
-Zonemaster uses [ISO 639-1] two-letter language codes, in lower case. A defult
+Zonemaster uses [ISO 639-1] two-letter language codes, in lower case. A default
 installation of Zonemaster-GUI currently has support for the following language
 codes and languages:
 

@@ -7,7 +7,7 @@ official package, and skip the instructions in this document.
 
 However, if you have created a custom [config.ts], done theme settings in
 [tsconfig.json] or done some [theme updates] then you must create a custom
-installation package for your custom installation. That can be acheived by
+installation package for your custom installation. That can be achieved by
 following the steps below.
 
 It is also important to state that even though the installation package is
@@ -96,7 +96,6 @@ git commit -m 'What did I do?'
 
 When building you should have a clean repository. Clean means that all temporary
 (i.e. non-versioned) files are removed.
-
 
 1. List all files and changes that will be removed with next step.
 

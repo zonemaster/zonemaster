@@ -3,7 +3,7 @@
 ## Background
 
 The Zonemaster-GUI is built to be cloned and customized. You have full control
-over the styling and layout. That said, to avoid headaches when syncing with
+over the styling and layout. That said, to avoid troubles when syncing with
 the original repository, we recommend following a few simple guidelines:
 
 - Start by customizing the **theme variables** — this is enough for most use cases.

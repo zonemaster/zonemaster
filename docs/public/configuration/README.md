@@ -7,7 +7,7 @@ of Zonemaster:
 * Enabling the Zonemaster-Engine [global cache] feature.
 * Configuring Zonemaster-Backend in the [Backend configuration file].
 * Using [environment variables] for Zonemaster-Backend.
-* Configuring Zonemaster-GUI is described in the [GUI configuration section].
+* Configuring Zonemaster-GUI in the [GUI configuration section].
 
 
 [profile]:                      profiles.md

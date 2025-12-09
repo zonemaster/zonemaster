@@ -123,7 +123,7 @@ Build the distribution zip file:
 
 1. `npm install` 
 2. `npm run build`
-2. `npm run release`
+3. `npm run release`
 
 > If you get building errors, repeat the `nvm` commands in
 > [build environment for Node.js] first.

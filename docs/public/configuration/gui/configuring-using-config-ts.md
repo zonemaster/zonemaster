@@ -67,7 +67,7 @@ const config: Config = {
     URL, if non-empty.
   - **siteName**: The name of the site. To be set in the header if non-empty.
 
-### Setting "apiBaseUrl"
+## Setting "apiBaseUrl"
 
 If Zonemaster is served by domain, say, `domaintest.xa` then it is by default
 served directly on that domain, i.e. `http://domaintest.xa/` (or 
