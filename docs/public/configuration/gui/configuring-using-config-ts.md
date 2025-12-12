@@ -22,9 +22,13 @@ application. It defines various settings that control the behavior and appearanc
 of the application.
 
 ```typescript
+import type { Config } from '@/types.ts';
+import packageJson from './package.json';
+
 const config: Config = {
     defaultLanguage: 'en',
-    enabledLanguages: ['da', 'en', 'es', 'fi', 'fr', 'nb', 'sl', 'sv'],
+    enabledLanguages: ['da', 'en', 'es', 'fi', 'fr', 'nb', 'sv', 'sl'],
+    baseUrl: import.meta.env.PUBLIC_BASE_URL || '/',
     apiBaseUrl: import.meta.env.PUBLIC_API_URL || '/api',
     pollingInterval: import.meta.env.PUBLIC_POLLING_INTERVAL || 5000,
     clientInfo: {
@@ -35,25 +39,40 @@ const config: Config = {
         email: 'contact@zonemaster.net',
         siteName: '',
     },
+    setTitle(title: string) {
+        return `${title} – Zonemaster`;
+    }
 };
+
+export default config;
 ```
 
-## Configuration Options
+## "config.ts" configuration options
 
 * **defaultLanguage**: The default language to use when no language is specified.
   * The default language must be one of the enabled languages.
+  * The default value is "en".
+  * If this option is updated see [Updating Apache configuration] for required
+    matching update of the Apache configuration.
 * **enabledLanguages**: An array of language codes that are supported by the
   application.
-  * The array should match the list of language codesin the [Locale setting] in
+  * The array should match the list of language codes in the [Locale setting] in
     the Backend configuration.
   * The array must only include language codes also included in
     `project.inlang/settings.json`, but it may be fewer. To add new languages,
     see [Translating Zonemaster-GUI]. `project.inlang/settings.json` must only be
     updated in that process.
-* **apiBaseUrl**: The base URL for API requests. This is taken from the
-  `PUBLIC_API_URL` environment variable (default empty) or defaults to '/api'.
-  * If this value is changed, then [zonemaster.conf-example] must also be
-  updated. More information below.
+* **baseUrl**: The base path Zonemaster-GUI is served on. By default it is "/".
+  * If Zonemaster-GUI should be served on e.g. `http:/domaintest.xa/zonemaster`
+    instead of just `http://domaintest.xa/` then this option to be set to
+    "/zonemaster".
+  * If this option is updated see [Updating Apache configuration] for required
+    matching update of the Apache configuration.
+* **apiBaseUrl**: The base URL for API requests. The defaults value is '/api'
+  and must be kept so if `baseUrl` has its default value.
+  * If `baseUrl` is updated, then this option must also be updated so that this
+    option is equal to `baseUrl` + '/api', i.e. '/zonemaster/api' in the
+    example above.
 * **pollingInterval**: The interval (in milliseconds) for polling the API. This
   is taken from the `PUBLIC_POLLING_INTERVAL` environment variable (default
   empty) or defaults to 5000 ms.
@@ -67,29 +86,32 @@ const config: Config = {
     URL, if non-empty.
   - **siteName**: The name of the site. To be set in the header if non-empty.
 
-## Setting "apiBaseUrl"
-
-If Zonemaster is served by domain, say, `domaintest.xa` then it is by default
-served directly on that domain, i.e. `http://domaintest.xa/` (or 
-`https://domaintest.xa/`). The `/api` part is only used under the hood. If
-requested that Zonemaster is served under, say, 
-`http://domaintest.xa/zonemaster/`, `apiBaseURL` can be used to acheive that.
-
-Set `apiBaseUrl: '/zonemaster/api',` to serve Zonemaster under `/zonemaster/` as
-in the example URL above.
-
-For this to work, the Apache configuration must be updated too. More below.
-
 ## Updating Apache configuration
 
-If `apiBaseUrl` has been updated, then [zonemaster.conf-example] (installed as
-`zonemaster.conf` in a default installation) must also be updated, preferably
-before building the installation package.
+Perferably do the updates to the `zonemaster.conf-example` file before building
+the installation package. If done so the normal installation instruction can be
+followed using the custom installation package.
 
-> Incomplete information
+### Finding "zonemaster.conf-example"
+
+In the source tree the file is found as `zonemaster.conf-example` relative to the
+root of the Git tree. It is included in the installation package and is installed
+as installed as `/usr/local/etc/apache24/Includes/zonemaster.conf` in a default
+installation.
+
+### defaultLanguage
+If `defaultLanguage` has been updated in `config.ts` the "DEFAULT_LANGUAGE"
+variable must be updated in `zonemaster.conf-example`. The same language code
+must be used.
+
+### baseUrl
+
+If `baseUrl` has been set to a non-default value in `config.ts` the "BASE_URL"
+variable must be defined with the same value. By default the variable is
+undefined (`baseUrl` equal to "/").
 
 
 [Build a custom Zonemaster-GUI installation package]:                    building-custom-gui.md
 [Locale setting]:                                                        ../backend.md#locale
 [Translating Zonemaster-GUI]:                                            ../../translation/Translating-GUI.md
-[Zonemaster.conf-example]:                                               https://github.com/zonemaster/zonemaster-gui/blob/master/zonemaster.conf-example
+[Updating Apache configuration]:                                         #updating-apache-configuration
