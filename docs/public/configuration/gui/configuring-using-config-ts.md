@@ -96,7 +96,7 @@ followed using the custom installation package.
 
 In the source tree the file is found as `zonemaster.conf-example` relative to the
 root of the Git tree. It is included in the installation package and is installed
-as installed as `/usr/local/etc/apache24/Includes/zonemaster.conf` in a default
+as `/usr/local/etc/apache24/Includes/zonemaster.conf` in a default
 installation.
 
 ### defaultLanguage
