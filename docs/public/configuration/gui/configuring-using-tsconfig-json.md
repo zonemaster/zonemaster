@@ -1,7 +1,8 @@
 # Advanced build-time configuring Zonemaster-GUI using "tsconfig.json"
 
 The `tsconfig.json` configuration file can be used for *build-time* settings of
-Zonemaster-GUI, i.e. Zonemaster-GUI has to be rebuilt.
+Zonemaster-GUI. Any changes to this file require a rebuild of the installation
+package.
 
 ## Finding "tsconfig.json"
 

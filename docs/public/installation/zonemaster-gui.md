@@ -14,10 +14,10 @@ installation].
 
 ### Upgrading
 
-If this installation is an upgrade or reinstallation of Zonemaster-GUI and has
-done some configuration or customization, make sure to save updated file, e.g.
-`/var/www/html/zonemaster-web-gui/dist/config.json` and the `zonemaster.conf`
-Apache configuration file, before removing the old version. 
+If this installation is an upgrade or reinstallation of Zonemaster-GUI and if
+changes were made to the shipped configuration files
+(`/var/www/html/zonemaster-web-gui/dist/config.json` and the `zonemaster.conf`
+Apache configuration file), make sure to back up these files beforehand.
 
 You should also consider saving the old version under a new path instead of
 just removing it.
@@ -29,7 +29,7 @@ version in the same way as a new installation.
 
 If you have done a custom build of Zonemaster-GUI following the instructions in
 [building GUI] you will have a zip file that you will use instead of downloading
-it from Github. Else you can follow the instructions below.
+it from GitHub. Else you can follow the instructions below.
 
 ## Installation
 

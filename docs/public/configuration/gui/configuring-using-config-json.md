@@ -3,9 +3,9 @@
 The `config.json` configuration file can be used for *run-time* settings of the
 Zonemaster-GUI, i.e. no rebuild of the installation package is needed.
 
-Currently, the only supported setting is creating, updating or removing message
-banner. Other types of configuration requires rebuilt of the GUI, and is covered
-in sibbling documents of this document.
+Currently, the only supported setting is creating, updating or removing a message
+banner. Other types of configuration require a rebuild of the GUI, and are covered
+in sibling documents of this document.
 
 ## Finding "config.json"
 
@@ -17,8 +17,8 @@ In a default installation, the file is found as
 
 ## Reloading GUI after update
 
-When web browser reloads the GUI, e.g. after running a new test, the changes
-are displayed by the GUI.
+When the Web browser reloads the GUI, e.g. after running a new test, the
+changes are displayed by the GUI.
 
 ## Default "config.json" file
 
@@ -49,7 +49,7 @@ languages:
 The message banner is shown just below the top menu on all pages.
   
 The string is set for each language, and may contain HTML code such as `<br>` or
-even `<a href>` if requested. Take note not to break quoting as JSON requires
+even `<a href>` if necessary. Take note not to break quoting as JSON requires
 quoting with `""` around the string.
 
 To display a message banner, simply add the message text to the corresponding

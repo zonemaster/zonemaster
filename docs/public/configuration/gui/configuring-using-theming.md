@@ -16,7 +16,7 @@ the original repository, we recommend following a few simple guidelines:
 
 For how to use `tsconfig.json` in connection to theming, see
 [Advanced build-time configuring Zonemaster-GUI using "tsconfig.json"]. Theming
-requires rebuilding Zonemater-GUI, see
+requires rebuilding Zonemaster-GUI, see
 [Build a custom Zonemaster-GUI installation package].
 
 ## Basic customization
@@ -75,13 +75,13 @@ There are two layers of the GUI.
 
 The framework is the foundation of the GUI and is built with [Astro]. These
 files are located under `./src/themes/default`. ' The starting point for these
-imports are pages. Pages are simple, they consist of a single component wrapped
+imports are pages. Pages are simple: they consist of a single component wrapped
 inside a layout. *We suggest not modifying the page files*. Instead, create your
 own theme, for example `./src/themes/my-theme`. You can still reuse components
 from the original theme in your new theme and mix and match the imports from your
 custom theme.
 
-Then update tsconfig.json
+Then update tsconfig.json:
 
 ```diff
 {
@@ -102,15 +102,15 @@ Then update tsconfig.json
 ### Interactive components
 
 All interactive components are built with [Svelte]. These files are located under
-`./src/lib/components`. These are referenced from Astro components. We have tried
-to make the components as self-contained as possible, but some components may
-have dependencies on other components. In most cases you won't need to modify
-these files. A better approach is to modify the CSS.
+`./src/lib/components`. These are referenced from Astro components. Although care
+was taken to make the components as self-contained as possible, some
+components may depend on others. In most cases you won't need to modify these
+files. A better approach is to modify the CSS.
 
-If you absolutely need to modify these. We suggest creating new components in
-`./src/lib/components/my-theme` and reference them from the Astro components.
-These interactive components contain important functionality that needs to be
-carefully considered when modifying.
+If you absolutely need to modify these, the suggested method is to create new
+components in `./src/lib/components/my-theme` and reference them from the
+Astro components. These interactive components contain important functionality
+that needs to be carefully considered when modifying.
 
 You might be better off creating a new component from scratch and integrate it
 with the RPCAPI yourself.

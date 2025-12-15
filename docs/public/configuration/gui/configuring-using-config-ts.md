@@ -1,17 +1,18 @@
 # Simple build-time configuring Zonemaster-GUI using "config.ts"
 
-The `config.ts` configuration file can be used for *build-time* settings of the
-Zonemaster-GUI, i.e. the installation package has to be rebuilt.
+The `config.ts` configuration file can be used for *build-time* settings of
+the Zonemaster-GUI. Any changes to this file require a rebuild of the
+installation package.
 
 ## Finding "config.ts"
 
-In the source tree the file is found as `config.ts` relative to the root of the
-Git tree. It does not exist in the installed GUI, as the values have been built
-in
+In the source tree the file is found as `config.ts` relative to the root of
+the Git tree. The installed GUI does not ship with this file, because the
+values defined in this file are baked in the GUI’s HTML and JavaScript files.
 
 ## Rebuilding Zonemaster-GUI after update
 
-When `config.ts` has been updated, Zonemaster-GUI has to be rebuilt. See
+When `config.ts` is updated, Zonemaster-GUI has to be rebuilt. See
 [Build a custom Zonemaster-GUI installation package] for how to get the source
 tree and building a custom installation package.
 
@@ -68,7 +69,7 @@ export default config;
     "/zonemaster".
   * If this option is updated see [Updating Apache configuration] for required
     matching update of the Apache configuration.
-* **apiBaseUrl**: The base URL for API requests. The defaults value is '/api'
+* **apiBaseUrl**: The base URL for API requests. The default value is `/api`
   and must be kept so if `baseUrl` has its default value.
   * If `baseUrl` is updated, then this option must also be updated so that this
     option is equal to `baseUrl` + '/api', i.e. '/zonemaster/api' in the
@@ -88,7 +89,7 @@ export default config;
 
 ## Updating Apache configuration
 
-Perferably do the updates to the `zonemaster.conf-example` file before building
+Preferably do the updates to the `zonemaster.conf-example` file before building
 the installation package. If done so the normal installation instruction can be
 followed using the custom installation package.
 
