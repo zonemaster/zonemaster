@@ -64,9 +64,9 @@ export default config;
     see [Translating Zonemaster-GUI]. `project.inlang/settings.json` must only be
     updated in that process.
 * **baseUrl**: The base path Zonemaster-GUI is served on. By default it is "/".
-  * If Zonemaster-GUI should be served on e.g. `http:/domaintest.xa/zonemaster`
-    instead of just `http://domaintest.xa/` then this option to be set to
-    "/zonemaster".
+    * For example, if Zonemaster-GUI is served at
+    `http://domaintest.xa/zonemaster`, instead of just
+    `http://domaintest.xa/`, then this option must be set to `/zonemaster`.
   * If this option is updated see [Updating Apache configuration] for required
     matching update of the Apache configuration.
 * **apiBaseUrl**: The base URL for API requests. The default value is `/api`
@@ -97,8 +97,7 @@ followed using the custom installation package.
 
 In the source tree the file is found as `zonemaster.conf-example` relative to the
 root of the Git tree. It is included in the installation package and is installed
-as `/usr/local/etc/apache24/Includes/zonemaster.conf` in a default
-installation.
+as `zonemaster.conf` in a default installation.
 
 ### defaultLanguage
 If `defaultLanguage` has been updated in `config.ts` the "DEFAULT_LANGUAGE"
