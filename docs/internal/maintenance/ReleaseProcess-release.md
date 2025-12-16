@@ -115,14 +115,12 @@ Update the following files in the *develop branch* of **Zonemaster-GUI**:
  * [package.json][package.json GUI]
    - In the top of the file, the version is given after "version".
    - The file `package-lock.json` is ignored
- * [src/environments/version.ts][Version.ts GUI]
-   - "version" should point at the version number.
 
 Update the following file in the *develop branch* of **Zonemaster/Zonemaster**:
 
  * [public/installation/zonemaster-gui.md][Installation.md GUI]
-   - The version is part of the download path (a directory). It is repeated
-     several times, once per OS.
+   - The version is both part of the filename (zip file) and part of the download
+     path (a directory). Both are repeated several times, once per OS.
 
 > The update of the installation document can preferably be done in the same
 > pull request as the update of the `Changes` file for Zonemaster/Zonemaster
