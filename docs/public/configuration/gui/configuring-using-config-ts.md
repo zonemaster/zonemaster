@@ -64,7 +64,7 @@ export default config;
     see [Translating Zonemaster-GUI]. `project.inlang/settings.json` must only be
     updated in that process.
 * **baseUrl**: The base path Zonemaster-GUI is served on. By default it is "/".
-    * For example, if Zonemaster-GUI is served at
+  * For example, if Zonemaster-GUI is served at
     `http://domaintest.xa/zonemaster`, instead of just
     `http://domaintest.xa/`, then this option must be set to `/zonemaster`.
   * If this option is updated see [Updating Apache configuration] for required
