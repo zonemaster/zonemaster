@@ -122,14 +122,18 @@ If you already have the repository:
 Build the distribution zip file:
 
 1. `npm install` 
-2. `npm run release`
+2. `npm run build`
+3. `npm run release`
 
+> If you get building errors, repeat the `nvm` commands in
+> [build environment for Node.js] first.
+>
 > Usually you can ignore warnings and security fixes, and usually you
 > do not run any `npm audit fix`. Check for open issues in Zonemaster-GUI
 > and ask the others in the work group.
 
 The distribution zip file is in the root level of the zonemaster-gui folder. 
-Its name is `zonemaster_web_gui.zip`.
+Its name is `zonemaster_web_gui_v0.0.0.zip` with correct version.
 
 
 ## 8. Produce Docker image
