@@ -4,16 +4,16 @@ v2025.2 2025-12-17
 
  [Release information]
 - The GUI in this release has been completely rewritten. Customization has
-  been simplified. See Zonemaster-GUI.
+  been greatly extended. See Zonemaster-GUI.
 - Translations have not been fully updated in this release. They will be
   updated in an upcoming extra release.
-- A zone (domain name) without DNSSEC will from this release create a
-  WARNING message, not just a message on NOTICE level (#1425)
+- A zone (domain name) without DNSSEC will now raise a
+  WARNING message, rather than NOTICE (#1425)
 
  [Breaking changes]
  - Removes deprecated API method get_batch_job_result. See #1433 and
    Zonemaster-Backend.
- - Customization in GUI of previous version requires migration for this
+ - Customization of GUI from previous versions requires a migration for this
    version. See Zonemaster-GUI.
  - The Zonemaster URL API has changed. See "using GUI" documentation.
 
