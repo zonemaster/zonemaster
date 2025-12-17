@@ -4,7 +4,7 @@ v2025.2 2025-12-17
 
  [Release information]
 - The GUI in this release has been completely rewritten. Customization has
-   been simplified. See Zonemaster-GUI.
+  been simplified. See Zonemaster-GUI.
 - Translations have not been fully updated in this release. They will be
   updated in an upcoming extra release.
 - A zone (domain name) without DNSSEC will from this release create a
@@ -25,8 +25,8 @@ v2025.2 2025-12-17
  [Features]
  - Adds Dockerfile and Docker image for Backend. See Zonemaster-Backend and
    "using Backend" documentation (#1441)
- - Updates several test case specifications - DNSSEC07, DNSSEC05, Zone11,
-   ADDRESS01 and DNSSEC01 (#1448, #1449, #1415, #1284, #1412, #1409, #1425)
+ - Updates several test case specifications: Address01, DNSSEC01, DNSSEC05,
+   DNSSEC07 and Zone11 (#1284, #1409, #1412, #1415, #1425, #1448, #1449)
    and also updates test case implementations in Zonemaster-Engine.
  - MethodsV2: adds Get-Parent-NS-Names-and-IPs method (#1418)
 

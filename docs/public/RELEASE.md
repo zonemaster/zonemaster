@@ -16,7 +16,7 @@
 
 ### \[Features\]
 - Adds Dockerfile and Docker image for Backend. See [Zonemaster-Backend] and "using Backend" documentation ([#1441])
-- Updates several test case specifications - DNSSEC07, DNSSEC05, Zone11, ADDRESS01 and DNSSEC01 ([#1448], [#1449], [#1415], [#1284], [#1412], [#1409], [#1425]) and also updates test case implementations in [Zonemaster-Engine].
+- Updates several test case specifications: Address01, DNSSEC01, DNSSEC05, DNSSEC07 and Zone11 ([#1284], [#1409], [#1412], [#1415], [#1425], [#1448], [#1449]) and also updates test case implementations in [Zonemaster-Engine].
 - MethodsV2: adds Get-Parent-NS-Names-and-IPs method ([#1418])
 
 ### \[Fixes\]
