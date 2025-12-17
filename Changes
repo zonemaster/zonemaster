@@ -6,8 +6,8 @@ v2025.2 2025-12-17
  - The GUI in this release has been completely rewritten. Customization has
    been greatly extended. See Zonemaster-GUI and
    https://doc.zonemaster.net/v2025.2/configuration/gui/README.md.
- - Translations have not been fully updated in this release. They will be
-   updated in an upcoming extra release.
+ - Translations, besides French, have not been fully updated in this release.
+   They will be updated in an upcoming extra release.
  - A zone (domain name) without DNSSEC will now raise a
    WARNING message, rather than NOTICE (#1425)
 
