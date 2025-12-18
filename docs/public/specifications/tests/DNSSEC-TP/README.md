@@ -45,7 +45,7 @@ system, the test system should emit a notice about this.
 |[DNSSEC04](dnssec04.md)|Check for too short or too long RRSIG lifetimes|
 |[DNSSEC05](dnssec05.md)|Check for invalid DNSKEY algorithms|
 |[DNSSEC06](dnssec06.md)|Verify DNSSEC additional processing|
-|[DNSSEC07](dnssec07.md)|If DNSKEY at child, parent should have DS|
+|[DNSSEC07](dnssec07.md)|DNSSEC signed zone and DS in parent for signed zone|
 |[DNSSEC08](dnssec08.md)|Valid RRSIG for DNSKEY|
 |[DNSSEC09](dnssec09.md)|RRSIG(SOA) must be valid and created by a valid DNSKEY|
 |[DNSSEC10](dnssec10.md)|Zone contains NSEC or NSEC3 records|
