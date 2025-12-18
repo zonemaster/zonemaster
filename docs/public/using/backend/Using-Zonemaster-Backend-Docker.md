@@ -5,7 +5,7 @@
 * [Introduction](#introduction)
 * [Invoking `zmtest` using Docker](#invoking-zmtest-using-docker)
 * [Invoking `zmb` using Docker](#invoking-zmb-using-docker)
-* [Invoking the command line tool using Docker](#invoking-the-command-line-tool-using-docker)
+* [Invoking the command line tool using Docker]
 * [IPv6 support](#ipv6-support)
 
 
@@ -14,8 +14,8 @@
 This Docker image lets you run a working instance of Zonemaster-Backend.
 It also contains a working version of zonemaster-cli which can be used
 as a substitute for [zonemaster-cli],
-how to use this version of cli is described at 
-(the end of this document)[#invoking-the-command-line-tool-using-docker].
+how to use this version of cli is described at
+[the end of this document][Invoking the command line tool using Docker].
 
 The container is configured to use an SQLite database and run 
 all needed processes (rpcapi and testagent).
@@ -32,8 +32,8 @@ See also the "IPv6 Support" section.
 - zmtest: `--noipv6`
 - zmb: `--ipv6 false`
 
-## Invoking `zmtest` using Docker
 
+## Invoking `zmtest` using Docker
 
 The most basic use of the `zonemaster-backend` command is to just test a domain, e.g.
 "zonemaster.net". To do so you first need to start `zonemaster/backend`
@@ -58,8 +58,8 @@ docker run -ti --rm --net host zonemaster/backend zmtest zonemaster.net
 ```
 to get usage for `zmtest`.
 
-## Invoking `zmb` using Docker
 
+## Invoking `zmb` using Docker
 
 You can also use the `zmb` command to interact with the `zonemaster/backend` container.
 
@@ -99,7 +99,6 @@ docker run -ti --rm zonemaster/backend:local cli zonemaster.net
 ```
 
 
-
 ## IPv6 support
 
 On a Linux system IPv6 support can be enabled by creating or updating
@@ -119,8 +118,10 @@ sudo systemctl restart docker
 
 Also see the official Docker documentation "[Enable IPv6 support]".
 
-[Docker Image Creation]:           https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
-[Get started]:                     https://www.docker.com/get-started/
-[IPv6 support]:                    #ipv6-support
-[Enable IPv6 support]:             https://docs.docker.com/config/daemon/ipv6/
-[zonemaster-cli]:                  ../cli.md
+
+[Docker Image Creation]:                         https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
+[Enable IPv6 support]:                           https://docs.docker.com/config/daemon/ipv6/
+[Get started]:                                   https://www.docker.com/get-started/
+[IPv6 support]:                                  #ipv6-support
+[Invoking the command line tool using Docker]:   #invoking-the-command-line-tool-using-docker
+[Zonemaster-cli]:                                ../cli.md
