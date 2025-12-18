@@ -1,13 +1,13 @@
 # Release v2025.2 (2025-12-17)
 
 ### \[Release information\]
-- The GUI in this release has been completely rewritten. Customization has been greatly extended. See Zonemaster-GUI and <https://doc.zonemaster.net/v2025.2/configuration/gui/README.md>.
+- The GUI in this release has been completely rewritten. Customization has been greatly extended. See Zonemaster-GUI and <https://doc.zonemaster.net/v2025.2/configuration/gui/README.html>.
 - Translations, besides French,  have not been fully updated in this release. They will be updated in an upcoming extra release.
 - A zone (domain name) without DNSSEC will now raise a [WARNING] message, rather than [NOTICE] (#1425)
 
 ### \[Breaking changes\]
 - Removes deprecated API method get_batch_job_result. See [#1433] and [Zonemaster-Backend].
-- Customization of GUI from previous versions requires a migration for this version. See Zonemaster-GUI and <https://doc.zonemaster.net/v2025.2/configuration/gui/README.md>.
+- Customization of GUI from previous versions requires a migration for this version. See Zonemaster-GUI and <https://doc.zonemaster.net/v2025.2/configuration/gui/README.html>.
 - The Zonemaster URL API has changed. See <https://doc.zonemaster.net/v2025.2/using/gui/api.html>.
 
 ### \[Deprecations\]
@@ -15,7 +15,7 @@
 - Deprecate yes/no boolean values ([#1438])
 
 ### \[Features\]
-- Adds Dockerfile and Docker image for Backend. See Zonemaster-Backend and <https://doc.zonemaster.net/v2025.2/using/backend/Using-Zonemaster-Backend-Docker.md> (#1441)
+- Adds Dockerfile and Docker image for Backend. See Zonemaster-Backend and <https://doc.zonemaster.net/v2025.2/using/backend/Using-Zonemaster-Backend-Docker.html> (#1441)
 - Updates several test case specifications: Address01, DNSSEC01, DNSSEC05, DNSSEC07 and Zone11 ([#1284], [#1409], [#1412], [#1415], [#1425], [#1448], [#1449]) and also updates test case implementations in [Zonemaster-Engine].
 - MethodsV2: adds Get-Parent-NS-Names-and-IPs method ([#1418])
 
