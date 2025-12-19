@@ -17,8 +17,9 @@ This document covers two stages in the release processes:
 1. Creating Docker images for testing.
 2. Creating Docker image for publishing on Docker Hub
 
-Presently only Zonemaster-CLI is published, and therefore only Zonemaster-LDNS,
-Zonemaster-Engine and Zonemaster-CLI are covered here.
+Presently Zonemaster-CLI and Zonemaster-Backend are published. Creating images
+for Zonemaster-LDNS, Zonemaster-Engine, Zonemaster-CLI and Zonemaster-Backend
+is covered here.
 
 
 ## 2. Prerequisite
@@ -206,7 +207,9 @@ docker images
 
 ### Tag the Zonemaster-Backend image
 
-For the Zonemaster-Backend image, add a version tag and a tag "latest".
+For the Zonemaster-Backend image, add a version tag and a tag "latest". Note that
+from source the version tag of Backend is without "v". We add "v" here to the
+Docker image to have consistent versioning at Docker Hub.
 
 * Add version tag:
 ```sh
@@ -223,8 +226,18 @@ plain version where "v0.0.0" should be the local version and "v0.0.0-N" should b
 the "dash version" determined above:
 ```
 cd zonemaster-backend
-docker tag zonemaster/backend:local zonemaster/backend:v0.0.0-N 
-docker rmi zonemaster/backend:v0.0.0
+docker tag zonemaster/backend:local zonemaster/backend:v0.0.0-N
+docker rmi zonemaster/backend:0.0.0
+cd ..
+```
+
+* If "dash  version" was not created, change the version number to include "v":
+
+```
+cd zonemaster-backend
+docker tag zonemaster/backend:local zonemaster/backend:v0.0.0
+docker rmi zonemaster/backend:0.0.0
+cd ..
 ```
 
 All the created images can now be listed. Also consider doing [sanity checks] to
