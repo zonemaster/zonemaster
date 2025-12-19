@@ -1,0 +1,6 @@
+$ORIGIN good-spf-1.zone11.xa.
+$TTL 3600
+
+$INCLUDE COMMON-SCENARIO-INCLUDE
+
+@               IN  TXT  "v=spf1"

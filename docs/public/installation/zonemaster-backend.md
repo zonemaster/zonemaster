@@ -53,6 +53,7 @@ Zonemaster::Backend instead, and want to keep the database, then see the
 [Upgrade document]. Otherwise [remove the database][Removing database] and
 continue with this installation document.
 
+An alternative to installing Zonemaster-Backend is to run it under [Docker]. See [Using the Backend] for run it under Docker.
 
 ## 2. Prerequisites
 
@@ -82,13 +83,13 @@ for Zonemaster::Backend, see the [declaration of prerequisites].
 Install dependencies available from binary packages:
 
 ```sh
-sudo dnf install --assumeyes jq perl-Class-Method-Modifiers perl-Config-IniFiles perl-DBD-SQLite perl-DBI perl-File-ShareDir perl-File-Slurp perl-HTML-Parser perl-JSON-PP perl-libwww-perl perl-Log-Dispatch perl-Mojolicious perl-Moose perl-Parallel-ForkManager perl-Plack perl-Plack-Middleware-ReverseProxy perl-Plack-Test perl-Role-Tiny perl-Test-Differences perl-Test-Exception perl-Test-Mojo perl-Test-NoWarnings perl-Try-Tiny perl-libintl perl-LWP-Protocol-https
+sudo dnf install --assumeyes jq perl-Class-Method-Modifiers perl-Config-IniFiles perl-DBD-SQLite perl-DBI perl-File-ShareDir perl-File-Slurp perl-HTML-Parser perl-JSON-PP perl-libwww-perl perl-Log-Dispatch perl-Mojolicious perl-Moose perl-Net-Server perl-Parallel-ForkManager perl-Plack perl-Plack-Test perl-Role-Tiny perl-Test-Differences perl-Test-Exception perl-Test-Mojo perl-Test-NoWarnings perl-Try-Tiny perl-libintl perl-LWP-Protocol-https
 ```
 
 Install dependencies not available from binary packages:
 
 ```sh
-sudo cpanm --notest Daemon::Control JSON::RPC JSON::Validator Log::Any Log::Any::Adapter::Dispatch Net::IP::XS Router::Simple Starman
+sudo cpanm --notest Daemon::Control JSON::RPC JSON::Validator Log::Any Log::Any::Adapter::Dispatch Net::IP::XS Plack::Middleware::ReverseProxy Router::Simple Starman
 ```
 
 For Rocky Linux 8 only, install DBD::SQLite from CPAN as the one in the system packages repository is too old:
@@ -106,7 +107,7 @@ sudo cpanm --notest Zonemaster::Backend
 Add Zonemaster user (unless it already exists):
 
 ```sh
-sudo useradd -r -c "Zonemaster daemon user" zonemaster
+sudo useradd --system --home-dir=/nonexistent --shell=/usr/sbin/nologin --comment="Zonemaster daemon user" zonemaster
 ```
 
 Install files to their proper locations:
@@ -117,8 +118,8 @@ sudo install -v -m 755 -d /etc/zonemaster
 sudo install -v -m 640 -g zonemaster ./backend_config.ini /etc/zonemaster/
 sudo install -v -m 775 -g zonemaster -d /var/log/zonemaster
 sudo install -v -m 644 ./tmpfiles.conf /usr/lib/tmpfiles.d/zonemaster.conf
-sudo install -v -m 644 ./zm-rpcapi.service /etc/systemd/system/
-sudo install -v -m 644 ./zm-testagent.service /etc/systemd/system/
+sudo install -v -m 644 -Z ./zm-rpcapi.service /etc/systemd/system/
+sudo install -v -m 644 -Z ./zm-testagent.service /etc/systemd/system/
 ```
 
 ### 3.2 Database engine installation (Rocky Linux)
@@ -155,7 +156,7 @@ See sections for [MariaDB][MariaDB instructions Rocky Linux] and
 Create the database tables:
 
 ```sh
-sudo -u zonemaster $(perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")')/create_db.pl
+(cd / && sudo --user=zonemaster $(perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")')/create_db.pl)
 ```
 
 
@@ -188,8 +189,8 @@ sudo systemctl restart zm-testagent
 To check if the daemons are running, do:
 
 ```sh
-sudo systemctl status zm-rpcapi
-sudo systemctl status zm-testagent
+sudo systemctl status --no-pager zm-rpcapi
+sudo systemctl status --no-pager zm-testagent
 ```
 
 See the [post-installation] section for post-installation matters.
@@ -633,8 +634,8 @@ password. To be safe run the commands one by one.
 
 ```sh
 sudo systemctl start postgresql
-sudo -u postgres psql -c "CREATE USER zonemaster WITH PASSWORD 'zonemaster';"
-sudo -u postgres psql -c "CREATE DATABASE zonemaster WITH OWNER 'zonemaster' ENCODING 'UTF8';"
+sudo --login --user=postgres psql -c "CREATE USER zonemaster WITH PASSWORD 'zonemaster';"
+sudo --login --user=postgres psql -c "CREATE DATABASE zonemaster WITH OWNER 'zonemaster' ENCODING 'UTF8';"
 ```
 
 > **Note:** You may get error messages from these commands about lack of
@@ -837,3 +838,5 @@ performance. See [Global cache in Zonemaster-Engine].
 [Zonemaster::Engine]:                           https://github.com/zonemaster/zonemaster-engine/blob/master/README.md
 [Zonemaster::GUI installation]:                 zonemaster-gui.md
 [Zonemaster::LDNS]:                             https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
+[Docker]:                                       https://en.wikipedia.org/wiki/Docker_(software)
+[Using the Backend]:                            ../using/backend/ 

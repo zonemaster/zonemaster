@@ -1,0 +1,78 @@
+$ORIGIN zone11.xa.
+$TTL 3600
+
+@                       SOA   ns1 admin.zone11.xa. (
+                              2025080400      ; serial
+                              6h              ; refresh
+                              1h              ; retry
+                              1w              ; expire
+                              1d )            ; minimum
+
+                        NS    ns1
+                        NS    ns2
+
+ns1                     A     127.19.11.21
+                        AAAA  fda1:b2:c3:0:127:19:11:21
+ns2                     A     127.19.11.22
+                        AAAA  fda1:b2:c3:0:127:19:11:22
+
+ns1.child               A     127.19.11.31
+                        AAAA  fda1:b2:c3::127:19:11:31
+ns2.child               A     127.19.11.32
+                        AAAA  fda1:b2:c3::127:19:11:32
+ns3.child               A     127.19.11.33
+                        AAAA  fda1:b2:c3::127:19:11:33
+
+good-spf-1              NS    ns1.child
+                        NS    ns2.child
+
+good-spf-2              NS    ns1.child
+                        NS    ns2.child
+
+same-spf-different-txt  NS    ns1.child
+                        NS    ns2.child
+
+no-txt                  NS    ns1.child
+                        NS    ns2.child
+
+no-spf-txt              NS    ns1.child
+                        NS    ns2.child
+
+invalid-syntax-1        NS    ns1.child
+                        NS    ns2.child
+
+invalid-syntax-2        NS    ns1a.invalid-syntax-2
+                        NS    ns1b.invalid-syntax-2
+                        NS    ns2.invalid-syntax-2
+
+;; NOTE: ns1a.invalid-syntax-2 deliberately has the same IPv4 and IPv6
+;; addresses as ns1b.invalid-syntax-2. This is not a typo.
+ns1a.invalid-syntax-2   A     127.19.11.31
+                        AAAA  fda1:b2:c3::127:19:11:31
+ns1b.invalid-syntax-2   A     127.19.11.31
+                        AAAA  fda1:b2:c3::127:19:11:31
+ns2.invalid-syntax-2    A     127.19.11.32
+                        AAAA  fda1:b2:c3::127:19:11:32
+
+invalid-syntax-3        NS    ns1.child
+                        NS    ns2.child
+
+non-auth-txt            NS    ns1.child
+                        NS    ns2.child
+
+servfail                NS    ns1.child
+                        NS    ns2.child
+
+inconsistent-spf        NS    ns1.child
+                        NS    ns2.child
+
+spf-missing-on-one      NS    ns1.child
+                        NS    ns2.child
+                        NS    ns3.child
+
+all-different-spf       NS    ns1.child
+                        NS    ns2.child
+                        NS    ns3.child
+
+multiple-spf-records    NS    ns1.child
+                        NS    ns2.child

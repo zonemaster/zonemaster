@@ -1,0 +1,8 @@
+; For ns3.child.zone11.xa
+
+$ORIGIN all-different-spf.zone11.xa.
+$TTL 3600
+
+$INCLUDE COMMON-SCENARIO-INCLUDE-THREE-NS
+
+@               IN  TXT  "v=spf1 ?all"

@@ -1,0 +1,21 @@
+$ORIGIN zone11.arpa.
+$TTL 3600
+
+@                          SOA    ns1.zone11.xa. admin.zone11.xa. (
+                                  2025080400      ; serial
+                                  6h              ; refresh
+                                  1h              ; retry
+                                  1w              ; expire
+                                  1d )            ; minimum
+
+                           NS     ns1.zone11.xa.
+                           NS     ns2.zone11.xa.
+
+no-spf-arpa-zone           NS     ns1.child.zone11.xa.
+                           NS     ns2.child.zone11.xa.
+
+null-spf-arpa-zone         NS     ns1.child.zone11.xa.
+                           NS     ns2.child.zone11.xa.
+
+non-null-spf-arpa-zone     NS     ns1.child.zone11.xa.
+                           NS     ns2.child.zone11.xa.

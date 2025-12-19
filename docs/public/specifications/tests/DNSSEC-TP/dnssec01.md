@@ -9,8 +9,9 @@
 
 * [Objective](#objective)
 * [Scope](#scope)
+* [Classification of algorithms]
 * [Inputs](#inputs)
-* [Summary](#summary)
+* [Summary]
 * [Test procedure](#test-procedure)
 * [Outcome(s)](#outcomes)
 * [Special procedural requirements](#special-procedural-requirements)
@@ -20,80 +21,96 @@
 
 ## Objective
 
-The list of allowed Digest Algorithms in a DS record published by the parent is
-specified by [RFC 8624][RFC 8624#3.3], section 3.3, and is published in the
-[IANA registry][IANA registry on DS Digest Algorithm] of
-*DS RR Type Digest Algorithms*. No DS Digest Algorithm values, other than those
-specified in the RFC and allocated by IANA, should be used in public DNS.
+A parent zone should only use digest algorithms for DS records that are
+specified by specified by [RFC 8624][RFC 8624#3.3], section 3.3 (including the
+update in [RFC 9157][RFC 9157#upd-8624]), and is published in the [IANA
+registry][IANA registry on DS Digest Algorithm] of *DS RR Type Digest
+Algorithms*. No DS Digest Algorithm values, other than those specified in the
+RFC and allocated by IANA, should be used in public DNS.
 
-If [RFC 8624][RFC 8624#3.3] and the
-[IANA registry][IANA registry on DS Digest Algorithm] disagree on the same DS
-digest algorithm, the RFC takes precedence until the registry has a been updated
-with a reference to the RFC.
+A DS record for a public domain name (zone) should not use private digestet
+algorithms.
 
-The table of algorithms below is for reference only and is copied from
-[IANA registry][IANA registry on DS Digest Algorithm]. It is here to make it
-easier to read the steps when symbolic names are given. This is only an excerpt
-from the table. The full table is available at the IANA registry.
-
-Algorithm number | Algorithm (or description)
-:----------------|:-----------------------------------
-0                | (Reserved)
-1                | SHA-1
-2                | SHA-256
-3                | GOST R 34.11-94
-4                | SHA-384
-5-255            | (Unassigned)
-
-This test case will verify that the Zonemaster implementation has support for the
-DS digest algorithm of the DS record found, and if not output a message tag. If
-the support is missing other test cases will not be able to verify that DS
-record.
+Both [RFC 8624][RFC 8624#3.3] and [IANA registry][IANA registry on DS Digest
+Algorithm] recommends digest algorithm 2 (SHA-256) to be used, and if there is a
+DS record for a DNSKEY, but no DS record based on that digest algorithm, a
+message is outputted as a NOTICE.
 
 
 ## Scope
 
 This test case will query the name servers of the parent zone, and will just
 ignore non-responsive name servers or name servers not giving a correct DNS
-response for an authoritative name server.
+response for an authoritative name server, unless all such names servers fail in
+which case a message is outputted.
 
-If no DS record is found in the parent zone then this test case will be
-terminated without outputting any message tag.
+The RDATA of a DS record consists of four fields. The third field specifies the
+digest algorithm number of the data in the fourth field. This test case will
+only check what the algorithm is used by checking the third field. It will not
+verify that the key is matching the algorithm.
 
-This test case does not report if the parent servers give inconsistent responses.
+This test case does not report if the parent servers give inconsistent
+responses.
 
 If the *Child Zone* is the root zone, then it has no parent zone, and no DS
-records can be fetch.
+records can be fetch, but DS can be provided as *Undelegated DS*.
+
+If *Undelegated DS* or *Undelegated NS* has been submitted, parent zone is not
+queried for DS. *Undelegated DS*, if any, is used instead.
+
+
+## Classification of algorithms
+
+In the table below, the first two columns are copied from the [IANA
+registry][IANA registry on DS Digest Algorithm], where the complete IANA table
+can be found. The third column is for Zonemaster classification and it holds the
+the relevant message tags listed in the "[Summary]" section below.
+
+The "Zonemaster classification" is based on the "Use for DNSSEC delegation" in
+the [IANA registry][IANA registry on DS Digest Algorithm] of *DS Digest
+Algorithms*.
+
+| Algorithm number | Algorithm (or description) | Zonemaster classification |
+|:-----------------|:---------------------------|:--------------------------|
+| 0                | Reserved                   | DS01_DS_ALGO_NOT_DS       |
+| 1                | SHA-1                      | DS01_DS_ALGO_DEPRECATED   |
+| 2                | SHA-256                    | DS01_DS_ALGO_OK           |
+| 3                | GOST R 34.11-94            | DS01_DS_ALGO_DEPRECATED   |
+| 4                | SHA-384                    | DS01_DS_ALGO_OK           |
+| 5                | GOST R 34.11-2012          | DS01_DS_ALGO_OK           |
+| 6                | SM3                        | DS01_DS_ALGO_OK           |
+| 7-127            | Unassigned                 | DS01_DS_ALGO_UNASSIGNED   |
+| 128-252          | Reserved                   | DS01_DS_ALGO_RESERVED     |
+| 253-254          | Reserved for Private Use   | DS01_DS_ALGO_PRIVATE      |
+| 255              | Unassigned                 | DS01_DS_ALGO_UNASSIGNED   |
 
 
 ## Inputs
 
 * "Child Zone" - The domain name to be tested.
-* "Algorithm Status" - The status of all DS digest algorithms from
-  [RFC 8624][RFC 8624#3.3] and the
-  [IANA registry][IANA registry on DS Digest Algorithm].
-* "Test Type" - The test type with value "undelegated" or "normal".
-* "Undelegated DS" - The DS record or records submitted, undefined unless
-  *Test Type* is undelegated and empty if no DS record has been submitted.
-
+* The table in section "[Classification of algorithms]" above.
+* "Undelegated DS" - The DS record or records submitted. Empty unless submitted.
+* "Undelegated Test" - TRUE if undelegated NS has been provided for the test.
 
 ## Summary
 
-* At least one DS record must be found, or no further investigation will be done
-  and no messages will be outputted.
-* No messages will be outputted due to errors in the responses from the parent
-  name servers.
-
-Message Tag outputted          | Level   | Arguments                                | Description of when message tag is outputted
-:------------------------------|:--------|:-----------------------------------------|:--------------------------------------------
-DS01_DIGEST_NOT_SUPPORTED_BY_ZM| NOTICE  | ns_ip_list, algo_mnemo, algo_num, keytag | DS Digest cannot be validated by this installation of Zonemaster.
-DS01_DS_ALGO_DEPRECATED        | ERROR   | ns_ip_list, algo_mnemo, algo_num, keytag | The DS digest algorithm is deprecated.
-DS01_DS_ALGO_2_MISSING         | NOTICE  |                                          | DS created with algo 2 (SHA-256) is missing.
-DS01_DS_ALGO_NOT_DS            | ERROR   | ns_ip_list, algo_mnemo, algo_num, keytag | The DS digest algorithm is not for DS.
-DS01_DS_ALGO_RESERVED          | ERROR   | ns_ip_list, algo_mnemo, algo_num, keytag | No DS digest algorithm defined for the digest code.
+| Message Tag              | Level   | Arguments                                   | Message ID for message tag                                                                                                                                         |
+|:-------------------------|:--------|:--------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| DS01_DS_ALGO_2_MISSING   | NOTICE  | ns_list, keytag                             | There is a DS record with keytag {keytag}. A DS record using digest algorithm 2 (SHA-256) is missing. Fetched from parent name servers "{ns_list}".                |
+| DS01_DS_ALGO_DEPRECATED  | ERROR   | ns_list, keytag, ds_algo_num, ds_algo_descr | The DS record with keytag {keytag} uses a deprecated digest algorithm {ds_algo_num} ({ds_algo_descr}). Fetched from parent name servers "{ns_list}".               |
+| DS01_DS_ALGO_NOT_DS      | ERROR   | ns_list, keytag, ds_algo_num, ds_algo_descr | The DS record with keytag {keytag} uses a digest algorithm {ds_algo_num} ({ds_algo_descr}) not meant for DS records. Fetched from parent name servers "{ns_list}". |
+| DS01_DS_ALGO_OK          | INFO    | ns_list, keytag, ds_algo_num, ds_algo_descr | The DS record with keytag {keytag} uses digest algorithm {ds_algo_num} ({ds_algo_descr}), which is OK. Fetch from parent name servers "{ns_list}".                 |
+| DS01_DS_ALGO_PRIVATE     | ERROR   | ns_list, keytag, ds_algo_num                | The DS record with keytag {keytag} uses a digest algorithm {ds_algo_num} for private use. Fetched from parent name servers "{ns_list}".                            |
+| DS01_DS_ALGO_RESERVED    | ERROR   | ns_list, keytag, ds_algo_num                | The DS record with keytag {keytag} uses a reserved digest algorithm {ds_algo_num} on name servers "{ns_list}".                                                     |
+| DS01_DS_ALGO_UNASSIGNED  | ERROR   | ns_list, keytag, ds_algo_num                | The DS record with keytag {keytag} uses an unassigned digest algorithm {ds_algo_num} on parent name servers "{ns_list}".                                           |
+| DS01_NO_RESPONSE         | WARNING | ns_list                                     | No response or error in response from all parent name servers on the DS query. Name servers are "{ns_list}".                                                       |
+| DS01_PARENT_SERVER_NO_DS | ERROR   | ns_list                                     | The following name servers do not provide DS record or have not been properly configured. Fetched from parent name servers "{ns_list}".                            |
+| DS01_PARENT_ZONE_NO_DS   | NOTICE  | ns_list                                     | The parent zone provides no DS records for the child zone. Fetched from parent name servers "{ns_list}".                                                           |
+| DS01_ROOT_N_NO_UNDEL_DS  | INFO    |                                             | Tested zone is the root zone, but no undelegated DS has been provided. DS is not tested.                                                                           |
+| DS01_UNDEL_N_NO_UNDEL_DS | INFO    |                                             | Tested zone is undelegated, but no undelegated DS has been provided. DS is not tested.                                                                             |
 
 The value in the Level column is the default severity level of the message. The
-severity level can be overridden in the [Zonemaster-Engine profile]. Also see the
+severity level can be changed in the [Zonemaster-Engine profile]. Also see the
 [Severity Level Definitions] document.
 
 The argument names in the Arguments column lists the arguments used in the
@@ -108,81 +125,127 @@ follows the specification for DNS queries as specified in
 queries follow, unless otherwise specified below, what is specified for
 [DNSSEC Response] in the same specification.
 
-1.  If the *Test Type* is "[undelegated]" do:
+1. Create a [DNSSEC Query] with query type DS and query name *Child Zone*
+   ("DS Query").
 
-    1. If *Undelegated DS* is empty then do terminate the test procedure.
+2.  Retrieve all name server names and IP addresses for the parent zone of
+    *Child Zone* using method [Get-Parent-NS-Names-and-IPs]
+    ("Parent Name and IP"). If the method returns an empty list, then create
+    *Parent Name and IP* as an empty set.
 
-    2. Else, for each DS record in *Undelegated DS* do:
+3. The name server names are assumed to be available at the time when a `msgid`
+   listed above in [Summary] is created. If the argument name is "ns" or
+   "ns_list" the name server name is extracted from *Parent Name and IP* even
+   though it is only referred to the IP address of the name servers in the steps
+   below. Furthermore, if there are more than one name server names for the same
+   IP address, one entry is created for each name.
 
-       1. Extract the digest algorithm code and key tag from the DS record
-          ("Digest Code" and "Key Tag", respectively).
+4. If the IP address below is represented as "-" it means that there is no IP
+   address for that instance, and when a `msgid` listed above in [Summary] is
+   created with an argument name "ns" or "ns_list" then that name server is
+   entried as just "-".
 
-       2. If *Digest Code* is 0 then output *[DS01_DS_ALGO_NOT_DS]* with
-          *Digest Code* and *Key Tag*. Set IP address as "-".
+5.  Create the following empty sets:
 
-       3. If *Digest Code* is 1 or 3 then output *[DS01_DS_ALGO_DEPRECATED]* with
-          *Digest Code* and *Key Tag*. Set IP address as "-".
+    1.  Name server IP address ("Ignored Parent NS IP")
+    2.  Name server IP address ("Responds Without Valid DS")
+    3.  Name server IP address ("Responds With DS")
+    4.  Name server IP address and key tag ("Non-Algo 2 DS")
+    5.  Name server IP address and key tag ("Algo 2 DS")
+    6.  Name server IP address, key tag and digest algorithm code ("DS01_DS_ALGO_DEPRECATED")
+    7.  Name server IP address, key tag and digest algorithm code ("DS01_DS_ALGO_RESERVED")
+    8.  Name server IP address, key tag and digest algorithm code ("DS01_DS_ALGO_UNASSIGNED")
+    9.  Name server IP address, key tag and digest algorithm code ("DS01_DS_ALGO_PRIVATE")
+    10. Name server IP address, key tag and digest algorithm code ("DS01_DS_ALGO_NOT_DS")
+    11. Name server IP address, key tag and digest algorithm code ("DS01_DS_ALGO_OK")
 
-       4. If *Digest Code* is 5-255 then output *[DS01_DS_ALGO_RESERVED]* with
-          *Digest Code* and *Key tag*. Set IP address as "-".
+6.  If *Undelegated DS* is non-empty then do:
 
-       5. Verify if the Zonemaster implementation can create a digest of any
-          valid DNSKEY record using *Digest Code*. If the verification fails
-          output *[DS01_DIGEST_NOT_SUPPORTED_BY_ZM]* with *Digest Code* and
-          *Key tag*. Set IP address as "-".
+    1. For each DS record in *Undelegated DS* do:
+       1. Extract the digest algorithm code and key tag from the DS record.
+       2. From section "[Classification of algorithms]" retrieve the table and
+          extract the row matching the algorithm number.
+       3. From the row extract the message tag from column "Zonemaster
+          classification"
+       4. Add name server IP as "-", key tag and the algorithm code to the set
+          with the same name as the extracted message tag.
+       5. If the digest algorithm code is 2 add IP address as "-" and the key tag
+          to the *Algo 2 DS* set, else add IP address as "-" and the key tag to
+          the *Non-Algo 2 DS* set.
+    2. Add name server IP as "-" to the *Responds With DS* set.
+    3. Make *Parent Name and IP* an empty set.
 
-    3. If none of the DS records has digest algorithm value 2 output
-       *[DS01_DS_ALGO_2_MISSING]*.
+>   Note: The *Parent Name and IP* set will be empty if *Undelegated test* is
+>   TRUE, if *Undelegated DS* is non-empty or if *Child Zone* is ".", i.e. root
+>   zone.
 
-    4. Terminate the test procedure.
-
-2.  From here the test procedure is for normal test, not undelegated.
-
-3.  If *Child Zone* is the root zone (".") then terminate the test procedure.
-
-4.  Create the following empty set:
-    1. Name server IP, key tag from DS record and digest algorithm code ("DS Records").
-
-5.  Create a [DNSSEC Query] with query type DS and query name *Child Zone*
-    ("DS Query").
-
-6.  Retrieve all name server IP addresses for the parent zone of
-    *Child Zone* using [Method1] (store as "Parent NS IP").
-
-7.  For each parent name server in *Parent NS IP* do:
+7.  For each unique name server IP in the *Parent Name and IP* set do:
     1. Send *DS Query* to the name server IP.
-    2. If at least one of the following criteria is met, then go to next
-       parent name server:
+    2. If at least one of the following criteria is met, then add name server IP
+       to *Ignored Parent NS IP* and go to next parent name server:
        1. There is no [DNSSEC Response].
        2. The RCODE in the [DNSSEC Response] is not "NoError"
           ([IANA RCODE List]).
        3. The OPT record is absent in the [DNSSEC Response].
        4. The DO flag is unset in the [DNSSEC Response].
        5. The AA flag is not set in the [DNSSEC Response].
-       6. There is no DS record with matching owner name in the answer
-          section of the [DNSSEC Response].
-    3. Retrieve the DS records from the [DNSSEC Response] and add name sever IP,
-       key tag from the DS record and the digest algorithm code from the DS
-       record to the *DS Records* set.
+    3. If there is no valid DS record with matching owner name in the answer
+       section of the [DNSSEC Response], then do:
+       1. Add name server IP to *Responds Without Valid DS*.
+       2. Go to next parent name server.
+    4. Add name server IP to the *Responds With DS* set.
+    5. For each DS record in the answer section of the [DNSSEC Response] do:
+       1. Extract the digest algorithm code and key tag from the DS record.
+       2. From section "[Classification of algorithms]" retrieve the table and
+          extract the row matching the algorithm number.
+       3. From the row extract the message tag from column "Zonemaster
+          classification"
+       4. Add name server IP, key tag and the algorithm code to the set
+          with the same name as the extracted message tag.
+       5. If the digest algorithm code is 2 add IP address and the key tag to
+          the *Algo 2 DS* set.
+       6. Else, add IP address and the key tag to the *Non-Algo 2 DS* set.
 
-8.  If the *DS Records* set is empty terminate the test procedure.
+8.  For each of the sets matching each of the following message tags do if the set
+    is non-empty:
+    * For each combination of key tag and digest algorithm code do:
+      * Output the message tag matching the set name with the list of name
+        servers IP from the subset (key tag and code) plus the key tag, the
+        algorithm number and algorithm description from the table in section
+        "[Classification of algorithms]". Exclude the algorithm description if
+        not listed for the tag in [Summary].
+    * Sets:
+      * *[DS01_DS_ALGO_DEPRECATED]*
+      * *[DS01_DS_ALGO_RESERVED]*
+      * *[DS01_DS_ALGO_UNASSIGNED]*
+      * *[DS01_DS_ALGO_PRIVATE]*
+      * *[DS01_DS_ALGO_NOT_DS]*
+      * *[DS01_DS_ALGO_OK]*
 
-9.  For each subset in *DS Records* where both DS digest code ("Digest Code") and
-    key tag ("Key Tag") are identical for all subset elements do:
+9.  If the *Non-Algo 2 DS* set is non-empty do:
+    1. For each pair of IP address and key tag in the *Algo 2 DS* set remove the
+       same pair from the *Non-Algo 2 DS* set.
+    2. For each key tag from the *Non-Algo 2 DS* set extract all IP addresses for
+       the key tag and output [DS01_DS_ALGO_2_MISSING] with key tag and the
+       extracted list of IP addresses.
 
-    1. If *Digest Code* is 0 then output *[DS01_DS_ALGO_NOT_DS]* with
-      *Digest Code*, *Key Tag* and list of name server IP addresses.
-    2. If *Digest Code* is 1 or 3 then output *[DS01_DS_ALGO_DEPRECATED]* with
-       *Digest Code*, *Key Tag* and list of name server IP addresses.
-    3. If *Digest Code* is 5-255 then output *[DS01_DS_ALGO_RESERVED]* with
-       *Digest Code*, *Key Tag* and list of name server IP addresses.
-    4. Verify that the Zonemaster implementation can create a digest of any valid
-       DNSKEY record using *Digest Code*. If the verification fails output
-       *[DS01_DIGEST_NOT_SUPPORTED_BY_ZM]* with *Digest Code*, *Key Tag* and list
-       of name server IP addresses.
+10. If the *Responds Without Valid DS* is empty, the *Responds With DS* set is
+    empty and the *Ignored Parent NS IP* set is non-empty, then output
+    *[DS01_NO_RESPONSE]* with the name server IP from the *Ignored Parent NS IP*
+    set.
 
-10. If none of the elements in *DS Records* has digest algorithm value 2 output
-   *[DS01_DS_ALGO_2_MISSING]*.
+11. If *Child Zone* is "." (i.e. root zone) and *Undelegated DS* is empty then
+    output *[DS01_ROOT_N_NO_UNDEL_DS]*.
+
+12. If *Child Zone* is not ".", *Undelegated Test* is TRUE and *Undelegated DS*
+    is empty then output *[DS01_UNDEL_N_NO_UNDEL_DS]*.
+
+13. If the *Responds Without Valid DS* is non-empty then do:
+    1. If the *Responds With DS* set is empty then output
+       *[DS01_PARENT_ZONE_NO_DS]* with name server IP from the *Responds Without
+       Valid DS* set.
+    2. Else, output *[DS01_PARENT_SERVER_NO_DS]* with name server IP from the
+       *Responds Without Valid DS* set.
 
 
 ## Outcome(s)
@@ -219,23 +282,33 @@ No special terminology for this test case.
 
 [Argument list]:                                      ../ArgumentsForTestCaseMessages.md
 [CRITICAL]:                                           ../SeverityLevelDefinitions.md#critical
+[Classification of algorithms]:                       #classification-of-algorithms
 [DNS Query and Response Defaults]:                    ../DNSQueryAndResponseDefaults.md
 [DNSSEC Query]:                                       ../DNSQueryAndResponseDefaults.md#default-setting-in-dnssec-query
 [DNSSEC README]:                                      README.md
 [DNSSEC Response]:                                    ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
-[DS01_DIGEST_NOT_SUPPORTED_BY_ZM]:                    #summary
 [DS01_DS_ALGO_2_MISSING]:                             #summary
 [DS01_DS_ALGO_DEPRECATED]:                            #summary
 [DS01_DS_ALGO_NOT_DS]:                                #summary
+[DS01_DS_ALGO_OK]:                                    #summary
+[DS01_DS_ALGO_PRIVATE]:                               #summary
 [DS01_DS_ALGO_RESERVED]:                              #summary
+[DS01_DS_ALGO_UNASSIGNED]:                            #summary
+[DS01_NO_RESPONSE]:                                   #summary
+[DS01_PARENT_SERVER_NO_DS]:                           #summary
+[DS01_PARENT_ZONE_NO_DS]:                             #summary
+[DS01_ROOT_N_NO_UNDEL_DS]:                            #summary
+[DS01_UNDEL_N_NO_UNDEL_DS]:                           #summary
 [ERROR]:                                              ../SeverityLevelDefinitions.md#error
+[Get-Parent-NS-Names-and-IPs]:                        ../MethodsV2.md#method-get-parent-ns-names-and-ip-addresses
 [IANA RCODE List]:                                    https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [IANA registry on DS Digest Algorithm]:               https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xml
 [INFO]:                                               ../SeverityLevelDefinitions.md#info
-[Method1]:                                            ../Methods.md#method-1-obtain-the-parent-domain
 [NOTICE]:                                             ../SeverityLevelDefinitions.md#notice
 [RFC 8624#3.3]:                                       https://datatracker.ietf.org/doc/html/rfc8624#section-3.3
+[RFC 9157#upd-8624]:                                  https://www.rfc-editor.org/rfc/rfc9157#name-update-to-rfc-8624
 [Severity Level Definitions]:                         ../SeverityLevelDefinitions.md
+[Summary]:                                            #summary
 [Undelegated]:                                        ../../test-types/undelegated-test.md
 [WARNING]:                                            ../SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:                          ../../../configuration/profiles.md
