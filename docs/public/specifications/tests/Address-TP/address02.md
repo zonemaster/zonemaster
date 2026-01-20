@@ -1,46 +1,112 @@
-## ADDRESS02: Reverse DNS entry exists for name server IP address
+# ADDRESS02: PTR exists for name server IP
 
-### Test case identifier
-**ADDRESS02** Reverse DNS entry should exist for name server IP address
+## Test case identifier
+**ADDRESS02** 
 
-### Objective
+## Table of contents
 
-Some anti-spam techniques use reverse DNS lookup to allow incoming traffic.
-In order to prevent name servers to be blocked or blacklisted, DNS 
-administrators should publish PTR records associated to name server
-addresses.
+* [Objective](#objective)
+* [Scope](#scope)
+* [Inputs](#inputs)
+* [Summary](#summary)
+* [Test procedure](#test-procedure)
+* [Outcome(s)](#outcomes)
+* [Special procedural requirements](#special-procedural-requirements)
+* [Intercase dependencies](#intercase-dependencies)
 
-TODO: Technical reference to be found
+## Objective
 
-### Inputs
+Best curent practices dictates that internet reachable hosts should have a
+reverse DNS entry, as various services on the Internet, for instance spam 
+filters, may consider this when determining the trustworthiness of the host.
+See [RFC1912] section 2.1 and [RFC1033] page 11 for additional information.
 
-The domain name to be tested.
+This test checks for the existence of PTR records for the corresponding reverse
+domains of the name servers IP address.
 
-### Ordered description of steps to be taken to execute the test case
+## Scope
+Only the existence of a PTR record, or a record that resolves to a PTR record, 
+is checked. Not the validity of said record. That is handled by other tests.
 
-1. Obtain the glue address records  of the domain checked
-   using [Method4](../Methods.md)
+## Inputs
 
-2. Obtain the IP addresses of each name server of the domain checked
-   using [Method5](../Methods.md)
+* "Child zone" -- the domain name to be tested.
 
-3. For each IP address, a recursive PTR query must be performed.
+## Summary
 
-4. If any answer of the queries performed in step 3 contains an RCODE
-   other than NOERROR or if the answer does not include a PTR record,
-   this test case fails.
+Message Tag                   | Level    | Arguments | Message ID for message tag
+:---------------------------- |:---------|:----------|:--------------------------
+A02_PTR_PRESENT               | INFO     |            | PTR record present for each nameserver IP address
+A02_PTR_MISSING               | NOTICE   | ns_ip_list | PTR missing for the following name server IP addresses: "{ns_ip_list}"
 
-### Outcome(s)
 
-If the test case succeeds, its result is a list of addresses with corresponding
-hostnames which are the result of the PTR queries performed.
-The result could be represented as a hash table where the keys are the IP
-addresses and the values their corresponding hostnames.
+The value in the Level column is the default severity level of the message. The
+severity level can be changed in the [Zonemaster-Engine profile]. Also see the
+[Severity Level Definitions] document.
 
-### Special procedural requirements
+
+The argument names in the Arguments column lists the arguments used in the
+message. The argument names are defined in the [argument list].
+
+
+## Test procedure 
+
+1. Create the empty set: Name server name and IP address ("Name Server IP").
+
+2. Obtain the address records of each name server for the *Child Zone* from the
+   parent using the method [Get-Del-NS-Names-and-IPs] and add them to the 
+   *Name Server IP* set. 
+
+3. Obtain the IP addresses of each name server for the domain using the method 
+   [Get-Zone-NS-Names-and-IPs] and add any non-duplicate results to 
+   *Name Server IP* set. 
+
+4. Create the following empty set: IP address ("PTR Missing")
+
+5. For each name server in *Name Server IP* do:
+   1. Make a recursive PTR query.
+   2. If the response fails to match the following criteria, add the IP address
+      to the *PTR Missing* set.
+        - RCODE must be NOERROR
+        - answer section must contain at least one PTR record
+  
+6. If the set *PTR Missing* is empty, then output *[A02_PTR_PRESENT]*
+
+7. Else, output *[A02_PTR_MISSING]* with a list of the IP addresses in the 
+   *PTR Missing* set.
+
+
+## Outcome(s)
+
+The outcome of this Test Case is "fail" if there is at least one message
+with the severity level *[ERROR]* or *[CRITICAL]*.
+
+The outcome of this Test Case is "warning" if there is at least one message
+with the severity level *[WARNING]*, but no message with severity level 
+*[ERROR]* or *[CRITICAL]*.
+
+In other cases, no message or only messages with severity level
+*[INFO]* or *[NOTICE]* the outcome of this Test Case is "pass".
+
+## Special procedural requirements
 
 None.
 
-### Intercase dependencies
+## Intercase dependencies
 
-The outcomes of this test is used as the input of [ADDRESS03](address03.md) test case.
+None.
+
+[A02_PTR_PRESENT]:                  #Summary
+[A02_PTR_MISSING]:                  #Summary
+[Argument list]:                    ../ArgumentsForTestCaseMessages.md
+[CRITICAL]:                         ../SeverityLevelDefinitions.md#critical
+[ERROR]:                             ../SeverityLevelDefinitions.md#error
+[Get-Del-NS-Names-and-IPs]:         ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
+[Get-Zone-NS-Names-and-IPs]:        ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
+[INFO]:                             ../SeverityLevelDefinitions.md#info
+[NOTICE]:                             ../SeverityLevelDefinitions.md#notice
+[RFC1912]:                          https://www.rfc-editor.org/rfc/rfc1912
+[RFC1033]:                          https://www.rfc-editor.org/rfc/rfc1033
+[Severity Level Definitions]:       ../SeverityLevelDefinitions.md
+[WARNING]:                          ../SeverityLevelDefinitions.md#warning
+[Zonemaster-Engine profile]:        ../../../configuration/profiles.md
