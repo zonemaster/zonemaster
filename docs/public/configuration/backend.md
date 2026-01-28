@@ -1,4 +1,4 @@
-# Configuration
+# Backend configuration
 
 ## Table of contents
 
@@ -31,6 +31,11 @@
   * [statsd_host](#statsd_host)
   * [statsd_port](#statsd_port)
 * [PUBLIC PROFILES and PRIVATE PROFILES sections](#public-profiles-and-private-profiles-sections)
+* [TLD URL SETTINGS section](#tld-url-settings-section)
+  * [enable_tld_url](#enable_tld_url)
+  * [lookup_timeout](#lookup_timeout)
+  * [include_source](#include_source)
+* [TLD URL OVERRIDE section](#tld-url-override-section)
 * [ZONEMASTER section](#zonemaster-section)
   * [max_zonemaster_execution_time](#max_zonemaster_execution_time)
   * [number_of_processes_for_frontend_testing](#number_of_processes_for_frontend_testing)
@@ -327,6 +332,68 @@ Specifying a profile JSON file that contains no profile data is equivalent
 to specifying a profile JSON file containing the entire
 *Zonemaster Engine default profile*.
 
+
+## TLD URL SETTINGS section
+
+For the context of this section, see [TLD URL Specification].
+
+The TLD URL section has several keys:
+* enable_tld_url
+* lookup_timeout
+* include_source
+
+### enable_tld_url
+
+Boolean value to enable the function described in document
+[TLD URL Specification]. Disabling the function is the same as setting a global
+policy to block the function as described in the document. If set to `false`
+the value of other keys in this section are irrelevant.
+
+Accepted values: `true` or `false`. Default to `true` (enabled).
+
+### lookup_timeout
+
+The number of seconds each of the two lookups, DNS and RDAP, respectively, may
+maximally take. If the maximum time is reached, a timeout is executed. The
+total maximum time will be double that value.
+
+Accepted values: a positive integer. Default to 3.
+
+### include_source
+
+Boolean value to include information about the source of the returned URL value
+in the API response to a [`get_tld_url` method query][API method get_tld_url].
+
+Accepted values: `true` or `false`. Default to `true` (include the source
+information).
+
+## TLD URL OVERRIDE section
+
+If `enable_tld_url` is `true` an override value for one or more TLDs may be set
+in this section. If `enable_tld_url` is `false` any override in this section
+is irrelevant.
+
+This section can contain zero, one or several keys, where a key has the form
+of a TLD and each key is for a single TLD. An IDN TLD must be as an A-label. Only
+lower case can be used in the keys. The key must match one of the following patterns:
+  * `[a-z][a-z]+`
+  * `xn--[a-z0-9-][a-z0-9-]+`
+
+The value is a string that must match one of the following patterns:
+  * `[BLOCK]` (that literal string) to block URL for that TLD
+  * A URL string as defined in section "TXT record" in
+    [TLD URL Specification][TLD URL Spec#txt-record].
+
+Example of possible configuration where `xa` and `åäö` (`xn--4cab6c`) are
+blocked, and `xb` and `example` are given URL strings:
+
+```
+xa         = [BLOCK]
+xn--4cab6c = [BLOCK]
+xb         = http://nic.xb/domain
+example    = https://whoisweb.noc.example/domain/[DOMAIN]
+```
+
 ## ZONEMASTER section
 
 The ZONEMASTER section has several keys :
@@ -387,6 +454,7 @@ Otherwise a new test request is enqueued.
 
 
 [API documentation]:                  ../using/backend/api.md
+[API method get_tld_url]:             ../using/backend/rpcapi-reference.md#api-method-get_tld_url
 [DBD::mysql documentation]:           https://metacpan.org/pod/DBD::mysql#host
 [Default JSON profile file]:          https://github.com/zonemaster/zonemaster-engine/blob/master/share/profile.json
 [Environment Variables]:              backend-environment-variables.md
@@ -409,6 +477,8 @@ Otherwise a new test request is enqueued.
 [RPCAPI.enable_batch_create]:         #enable_batch_create
 [RPCAPI.enable_user_create]:          #enable_user_create
 [SQLITE.database_file]:               #database_file
+[TLD URL Specification]:              tld-url-specification.md
+[TLD URL Spec#txt-record]:            tld-url-specification.md#txt-record
 [US ASCII printable characters]:      https://en.wikipedia.org/wiki/ASCII#Printable_characters
 [Zonemaster-Engine share directory]:  https://github.com/zonemaster/zonemaster-engine/tree/master/share
 [Zonemaster::Engine::Profile]:        https://metacpan.org/pod/Zonemaster::Engine::Profile#PROFILE-PROPERTIES

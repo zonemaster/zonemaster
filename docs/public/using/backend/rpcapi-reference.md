@@ -33,6 +33,7 @@
   * [API method: version_info](#api-method-version_info)
   * [API method: profile_names](#api-method-profile_names)
   * [API method: get_language_tags](#api-method-get_language_tags)
+  * [API method: get_tld_url](#api-method-get_tld_url)
   * [API method: get_host_by_name](#api-method-get_host_by_name)
   * [API method: get_data_from_parent_zone](#api-method-get_data_from_parent_zone)
   * [API method: start_domain_test](#api-method-start_domain_test)
@@ -488,6 +489,187 @@ An array of [*language tags*][Language tag]. It is never empty.
 > file while running.
 >
 
+
+### API method: `get_tld_url`
+
+Returns a URL for the closest TLD to the domain name in the request, or return
+empty. For context see [TLD URL Specification].
+
+Example 1 request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "zonemaster.net"}
+}
+```
+Example 1 response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "url": "http://www.verisigninc.com",
+    "source":
+        [
+            "IANA RDAP"
+        ]
+  }
+}
+```
+
+Example 2 request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "zonemaster.se"}
+}
+```
+Example 2 response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "url": "http://www.verisigninc.com",
+    "source":
+        [
+            "TXT RECORD"
+        ]
+  }
+}
+```
+
+Example 3 request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "zonemaster.fr"}
+}
+```
+Example 3 response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "url": "http://www.verisigninc.com",
+    "source":
+        [
+            "BACKEND CONF"
+        ]
+  }
+}
+```
+
+Example 4 request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "zonemaster.xa"}
+}
+```
+Example 2 response
+
+(No URL found, blocked by backend configuration or blocked by TLD policy in TXT
+record)
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1
+  "result": {
+  }
+}
+```
+#### `"result"`
+
+An empty object or an object with the following properties:
+
+* "`url`": A http or https URL. May be absent.
+* "`source`": A string from a fixed set of strings. It may exist if "`url`" is
+  present, else it must be absent.
+
+##### `"source"`
+
+"`source`" contains one of the following strings, if present:
+
+* "IANA RDAP": The URL is fetched from the IANA RDAP database.
+* "TXT RECORD": The URL is fetched from the TLD TXT record.
+* "BACKEND CONF": The URL is configured in the `backend_config.ini`
+  configuration file.
+
+If [`TLD URL SETTINGS section.include_source`][TLD URL SETTINGS section.include_source]
+is set to `false` (default `true`) "`source`" will not be included.
+
+#### `"error"`
+
+If the domain parameter is missing or there are validation errors, an error
+code of -32602 is returned. The `data` property contains an array of all errors,
+see [Validation error data].
+
+Example 1 request with error:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": { "something": "nothing" }
+}
+```
+Example 1 of response:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1624630143271,
+  "error": {
+    "data": [
+      {
+        "message": "The domain name is missing",
+        "path": "/domain"
+      }
+    ],
+    "code": "-32602",
+    "message": "Invalid method parameter(s)."
+  }
+}
+```
+
+Example 2 request with error:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "-%zonemaster.se"}
+}
+```
+Example 2 of response:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1624630143271,
+  "error": {
+    "data": [
+      {
+        "path": "/domain",
+        "message": "The domain name character(s) are not supported"
+      }
+    ],
+    "code": "-32602",
+    "message": "Invalid method parameter(s)."
+  }
+}
+```
 
 ### API method: `get_host_by_name`
 
@@ -1521,61 +1703,63 @@ There are also some experimental API methods documented only by name:
 * batch_create
 
 
-[API add_api_user]:                   #api-method-add_api_user
-[API add_batch_job]:                  #api-method-add_batch_job
-[API batch_create]:                   #api-method-batch_create
-[API batch_status]:                   #api-method-batch_status
-[API conf_languages]:                 #api-method-conf_languages
-[API conf_profiles]:                  #api-method-conf_profiles
-[API domain_history]:                 #api-method-domain_history
-[API job_create]:                     #api-method-job_create
-[API job_params]:                     #api-method-job_params
-[API job_results]:                    #api-method-job_results
-[API job_status]:                     #api-method-job_status
-[API key]:                            #api-key
-[API lookup_address_records]:         #api-method-lookup_address_records
-[API lookup_delegation_data]:         #api-method-lookup_delegation_data
-[API start_domain_test]:              #api-method-start_domain_test
-[API system_versions]:                #api-method-system_versions
-[API user_create]:                    #api-method-user_create
-[API v10.0.0]:                        https://github.com/zonemaster/zonemaster-backend/blob/v10.0.0/docs/API.md
-[Architecture documentation]:         https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md
-[Batch id]:                           #batch-id
-[Client id]:                          #client-id
-[Client version]:                     #client-version
-[Delegation Signer]:                  https://datatracker.ietf.org/doc/html/rfc4034#section-5
-[Domain name]:                        #domain-name
-[Dot-decimal notation]:               https://en.wikipedia.org/wiki/Dot-decimal_notation
-[DS info]:                            #ds-info
-[IP address]:                         #ip-address
-[ISO 3166-1 alpha-2]:                 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-[ISO 639-1]:                          https://en.wikipedia.org/wiki/ISO_639-1
-[JSON Pointer]:                       https://datatracker.ietf.org/doc/html/rfc6901
-[JSON-RPC 2.0]:                       https://www.jsonrpc.org/specification
-[Language tag]:                       #language-tag
-[LANGUAGE.locale]:                    ../../configuration/backend.md#locale
-[Name server]:                        #name-server
-[net.ipv4]:                           https://metacpan.org/pod/Zonemaster::Engine::Profile#net.ipv4
-[net.ipv6]:                           https://metacpan.org/pod/Zonemaster::Engine::Profile#net.ipv6
-[Non-negative integer]:               #non-negative-integer
-[Priority]:                           #priority
-[Privilege levels]:                   #privilege-levels
-[Profile]:                            https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md#profile
-[Profile name]:                       #profile-name
-[Profile sections]:                   ../../configuration/backend.md#public-profiles-and-private-profiles-sections
-[Progress percentage]:                #progress-percentage
-[Queue]:                              #queue
-[RFC 5952]:                           https://datatracker.ietf.org/doc/html/rfc5952
-[RPCAPI.enable_add_api_user]:         ../../configuration/backend.md#enable_add_api_user
-[RPCAPI.enable_add_batch_job]:        ../../configuration/backend.md#enable_add_batch_job
-[Severity Level Definitions]:         ../../specifications/tests/SeverityLevelDefinitions.md
-[Severity level]:                     #severity-level
-[Test Cases]:                         ../../specifications/tests#list-of-defined-test-cases
-[Test Case Identifiers]:              https://github.com/zonemaster/zonemaster/blob/master/docs/internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
-[Test id]:                            #test-id
-[Test result]:                        #test-result
-[Timestamp]:                          #timestamp
-[Username]:                           #username
-[Validation error data]:              #validation-error-data
-[ZONEMASTER.age_reuse_previous_test]: ../../configuration/backend.md#age_reuse_previous_test
-[ZONEMASTER.lock_on_queue]:           ../../configuration/backend.md#lock_on_queue
+[API add_api_user]:                        #api-method-add_api_user
+[API add_batch_job]:                       #api-method-add_batch_job
+[API batch_create]:                        #api-method-batch_create
+[API batch_status]:                        #api-method-batch_status
+[API conf_languages]:                      #api-method-conf_languages
+[API conf_profiles]:                       #api-method-conf_profiles
+[API domain_history]:                      #api-method-domain_history
+[API job_create]:                          #api-method-job_create
+[API job_params]:                          #api-method-job_params
+[API job_results]:                         #api-method-job_results
+[API job_status]:                          #api-method-job_status
+[API key]:                                 #api-key
+[API lookup_address_records]:              #api-method-lookup_address_records
+[API lookup_delegation_data]:              #api-method-lookup_delegation_data
+[API start_domain_test]:                   #api-method-start_domain_test
+[API system_versions]:                     #api-method-system_versions
+[API user_create]:                         #api-method-user_create
+[API v10.0.0]:                             https://github.com/zonemaster/zonemaster-backend/blob/v10.0.0/docs/API.md
+[Architecture documentation]:              https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md
+[Batch id]:                                #batch-id
+[Client id]:                               #client-id
+[Client version]:                          #client-version
+[Delegation Signer]:                       https://datatracker.ietf.org/doc/html/rfc4034#section-5
+[Domain name]:                             #domain-name
+[Dot-decimal notation]:                    https://en.wikipedia.org/wiki/Dot-decimal_notation
+[DS info]:                                 #ds-info
+[IP address]:                              #ip-address
+[ISO 3166-1 alpha-2]:                      https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+[ISO 639-1]:                               https://en.wikipedia.org/wiki/ISO_639-1
+[JSON Pointer]:                            https://datatracker.ietf.org/doc/html/rfc6901
+[JSON-RPC 2.0]:                            https://www.jsonrpc.org/specification
+[Language tag]:                            #language-tag
+[LANGUAGE.locale]:                         ../../configuration/backend.md#locale
+[Name server]:                             #name-server
+[net.ipv4]:                                https://metacpan.org/pod/Zonemaster::Engine::Profile#net.ipv4
+[net.ipv6]:                                https://metacpan.org/pod/Zonemaster::Engine::Profile#net.ipv6
+[Non-negative integer]:                    #non-negative-integer
+[Priority]:                                #priority
+[Privilege levels]:                        #privilege-levels
+[Profile]:                                 https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md#profile
+[Profile name]:                            #profile-name
+[Profile sections]:                        ../../configuration/backend.md#public-profiles-and-private-profiles-sections
+[Progress percentage]:                     #progress-percentage
+[Queue]:                                   #queue
+[RFC 5952]:                                https://datatracker.ietf.org/doc/html/rfc5952
+[RPCAPI.enable_add_api_user]:              ../../configuration/backend.md#enable_add_api_user
+[RPCAPI.enable_add_batch_job]:             ../../configuration/backend.md#enable_add_batch_job
+[Severity Level Definitions]:              ../../specifications/tests/SeverityLevelDefinitions.md
+[Severity level]:                          #severity-level
+[Test Cases]:                              ../../specifications/tests#list-of-defined-test-cases
+[Test Case Identifiers]:                   https://github.com/zonemaster/zonemaster/blob/master/docs/internal/templates/specifications/tests/TestCaseIdentifierSpecification.md
+[Test id]:                                 #test-id
+[Test result]:                             #test-result
+[Timestamp]:                               #timestamp
+[TLD URL Specification]:                   ../../configuration/tld-url-specification.md
+[TLD URL SETTINGS section.include_source]: ../../configuration/backend.md#include_source
+[Username]:                                #username
+[Validation error data]:                   #validation-error-data
+[ZONEMASTER.age_reuse_previous_test]:      ../../configuration/backend.md#age_reuse_previous_test
+[ZONEMASTER.lock_on_queue]:                ../../configuration/backend.md#lock_on_queue
