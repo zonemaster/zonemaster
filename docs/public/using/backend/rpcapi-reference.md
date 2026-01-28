@@ -514,9 +514,7 @@ Example 1 response:
     "url": "http://www.verisigninc.com",
     "source":
         [
-            "Info: no URL override in backend configuration",
-            "Info: no TLD TXT record found",
-            "Source: URL from IANA RDAP"
+            "IANA RDAP"
         ]
   }
 }
@@ -528,21 +526,19 @@ Example 2 request:
   "jsonrpc": "2.0",
   "id": 1,
   "method": "get_tld_url",
-  "params": {"domain": "zonemaster.xa"}
+  "params": {"domain": "zonemaster.se"}
 }
 ```
 Example 2 response:
 ```json
 {
   "jsonrpc": "2.0",
-  "id": 1
+  "id": 1,
   "result": {
+    "url": "http://www.verisigninc.com",
     "source":
         [
-            "Info: no URL override in backend configuration",
-            "Info: no TLD TXT record found",
-            "Info: no URL in the IANA RDAP",
-            "Info: no URL found for the TLD"
+            "TXT RECORD"
         ]
   }
 }
@@ -554,18 +550,19 @@ Example 3 request:
   "jsonrpc": "2.0",
   "id": 1,
   "method": "get_tld_url",
-  "params": {"domain": "zonemaster.se"}
+  "params": {"domain": "zonemaster.fr"}
 }
 ```
 Example 3 response:
 ```json
 {
   "jsonrpc": "2.0",
-  "id": 1
+  "id": 1,
   "result": {
+    "url": "http://www.verisigninc.com",
     "source":
         [
-            "Block: global block policy in backend configuration"
+            "BACKEND CONF"
         ]
   }
 }
@@ -577,64 +574,45 @@ Example 4 request:
   "jsonrpc": "2.0",
   "id": 1,
   "method": "get_tld_url",
-  "params": {"domain": "zonemaster.nu"}
+  "params": {"domain": "zonemaster.xa"}
 }
 ```
-Example 4 response:
+Example 2 response
+
+(No URL found, blocked by backend configuration or blocked by TLD policy in TXT
+record)
+
 ```json
 {
   "jsonrpc": "2.0",
   "id": 1
   "result": {
-    "source":
-        [
-            "Info: no URL override in backend configuration",
-            "Block: policy block in TLD TXT record"
-        ]
   }
 }
 ```
-
 #### `"result"`
 
 An empty object or an object with the following properties:
 
 * "`url`": A http or https URL. May be absent.
-* "`source`": An array of free text string describing the source of the URL,
-  errors found or found blocking policy. May be absent by backend configuration.
+* "`source`": A string from a fixed set of strings. It may exist if "`url`" is
+  present, else it must be absent.
 
 ##### `"source"`
 
-"`source`" is for troubleshooting needs and should be ignored by all applications
-calling this method. If
-[`TLD URL SETTINGS section.include_source`][TLD URL SETTINGS section.include_source]
-is set to `false` (default `true`) no source messages are included. The free text
-strings are human-readable strings and must not be automatically parsed since
-they may be sligtly varied. The following tables gives source messages for
-different situations.
+"`source`" contains one of the following strings, if present:
 
-| source message                                          | Description                                                       |
-|---------------------------------------------------------|-------------------------------------------------------------------|
-| "Info: URL is not provided for the root zone"           | Root zone is the tested domain                                    |
-| "Info: URL is not provided for a TLD.                   | The tested domain is a TLD                                        |
-| "Block: global block policy in backend configuration"   |                                                                   |
-| "Source: URL override in backend configuration"         |                                                                   |
-| "Info: no URL override in backend configuration"        |                                                                   |
-| "Error: error in URL override in backend configuration" | The URL in backend configuration is incorrect                     |
-| "Info: no TLD TXT record found"                         |                                                                   |
-| "Error: multiple TLD TXT records found"                 | There are more than one dedicated DNS TXT records in the TLD zone |
-| "Error: error in URL in TLD TXT record"                 | The format of the dedicated DNS TXT record is incorrect           |
-| "Error: lookup error for TLD TXT record"                | Failing lookup of the dedicated DNS TXT record in the TLD zone    |
-| "Source: DNS TXT record in TLD zone"                    |                                                                   |
-| "Block: policy block in TLD TXT record"                 | The dedicated DNS TXT record contains a block string              |
-| "Error: lookup error for IANA RDAP"                     | Failing getting data from IANA RDAP data                          |
-| "Source: URL from IANA RDAP"                            |                                                                   |
-| "Info: no URL in the IANA RDAP"                         |                                                                   |
-| "Info: no URL found for the TLD"                        | No valid URL was found for the TLD                                |
+* "IANA RDAP": The URL is fetched from the IANA RDAP database.
+* "TXT RECORD": The URL is fetched from the TLD TXT record.
+* "BACKEND CONF": The URL is configured in the `backend_config.ini`
+  configuration file.
+
+If [`TLD URL SETTINGS section.include_source`][TLD URL SETTINGS section.include_source]
+is set to `false` (default `true`) "`source`" will not be included.
 
 #### `"error"`
 
-* If the domain parameter is missing or there are validation errors, an error
+If the domain parameter is missing or there are validation errors, an error
 code of -32602 is returned. The `data` property contains an array of all errors,
 see [Validation error data].
 
