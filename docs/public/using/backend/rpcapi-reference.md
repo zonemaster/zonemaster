@@ -585,30 +585,23 @@ record)
 ```json
 {
   "jsonrpc": "2.0",
-  "id": 1
+  "id": 1,
   "result": {
   }
 }
 ```
 #### `"result"`
 
-An empty object or an object with the following properties:
+An object with the following properties:
 
-* "`url`": A http or https URL. May be absent.
-* "`source`": A string from a fixed set of strings. It may exist if "`url`" is
-  present, else it must be absent.
+* `"url"`: An http or https URL. Present if and only if [`TLD URL SETTINGS.enable_tld_url`] is true and a URL was determined.
+* `"source"`: A string from the following set. Present if and only if both "`url`" is
+  present and [`TLD URL SETTINGS.include_source`][TLD URL SETTINGS section.include_source] is true.
 
-##### `"source"`
-
-"`source`" contains one of the following strings, if present:
-
-* "IANA RDAP": The URL is fetched from the IANA RDAP database.
-* "TXT RECORD": The URL is fetched from the TLD TXT record.
-* "BACKEND CONF": The URL is configured in the `backend_config.ini`
+  * `"IANA RDAP"`: The URL is fetched from the IANA RDAP database.
+  * `"TXT RECORD"`: The URL is fetched from the TLD TXT record.
+  * `"BACKEND CONF"`: The URL is configured in the `backend_config.ini`
   configuration file.
-
-If [`TLD URL SETTINGS section.include_source`][TLD URL SETTINGS section.include_source]
-is set to `false` (default `true`) "`source`" will not be included.
 
 #### `"error"`
 

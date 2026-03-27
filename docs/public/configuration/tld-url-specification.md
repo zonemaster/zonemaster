@@ -16,15 +16,20 @@
 
 ## Introduction
 
-To facilitate redirection of a GUI user to the responsible party for the operation
-of a tested domain name, an URL to the relevant TLD is presented with the test
-result. This document defines how the URL is set based on public information, and
-where in Zonemaster that URL can be changed to another value on a specific
-Zonemaster installation.
+The TLD URL feature provides a way to determine a URL to the TLD closest to a given
+domain name. Zonemaster GUI makes use of this feature on its test result pages.
 
 How the GUI gets the URL is defined in [Backend RPC API].
 
 How Backend can override public values is defined in [Backend configuration].
+
+This document specifies how the URL or its absence is determined.
+The URL is determined based on based on one or more of:
+
+* a given domain name,
+* Backend configuration,
+* DNS data published by the relevant TLD, and
+* RDAP data published by IANA.
 
 In this document the only types of [URLs][URL] that are considered are `http`
 and `https`, i.e. URLs where the scheme is `http` or `https`. There are also
@@ -56,7 +61,7 @@ be run. This includes the TLD label.
 
 ## Source of URL
 
-The URL is specifically set on a per TLD basis.
+The URL (or its absence) is determined based on public information, configuration and the given TLD.
 
 The following priority applies for determining the source of the URL:
 * Highest priority is [Backend configuration] if it is configured with
@@ -162,9 +167,9 @@ Valid domain name strings:
 
 Valid path strings:
 
-* `/domain\&search=true`
+* `/domain/&search=true`
 * `/domain/[DOMAIN]`
-* `/registry\&domain=[DOMAIN]`
+* `/registry/&domain=[DOMAIN]`
 
 URL from URL string in a TXT record:
 
