@@ -3,11 +3,13 @@
 ## Table of contents
 
 * [Introduction](#introduction)
+* [Given Domain Name]
 * [Limitations](#limitations)
-* [IDN names](#idn-names)
-* [Source of URL](#source-of-url)
+* [Preconditions](#preconditions)
+* [Determination of URL](#determination-of-url)
 * [Blocking policy](#blocking-policy)
 * [URL string or blocking policy]
+  * [Terminology](#terminology)
   * [Backend configuration](#backend-configuration)
   * [TXT record]
   * [Examples](#examples)
@@ -26,50 +28,66 @@ How Backend can override public values is defined in [Backend configuration].
 This document specifies how the URL or its absence is determined.
 The URL is determined based on based on one or more of:
 
-* a given domain name,
+* The given domain name,
 * Backend configuration,
 * DNS data published by the relevant TLD, and
 * RDAP data published by IANA.
 
-In this document the only types of [URLs][URL] that are considered are `http`
-and `https`, i.e. URLs where the scheme is `http` or `https`. There are also
-restrictions on allowed characters in that URL in section
-[URL string or blocking policy]. In the same section the term
-`URL string` is used, and it is defined at the start of that section.
+
+## Given Domain Name
+
+In this document it is referred to the `given domain name`. The given domain name
+is usually the domain name tested by Zonemaster, but the mechanisms specified
+here can be executed on any domain name whether or not a Zonemaster test is
+executed on the domain name.
+
+
+## Preconditions
+
+If the [given domain name][#given-domain-name] has one or more IDN labels
+submitted in U-label format, then those must be converted to
+[A-label][RFC 5890#2.3.2.1] format before the steps below can be run. This also
+applies to the TLD label.
+
+The given domain name must be submitted in lower case, i.e. `A-Z` must be
+downcased to `a-z` before submission.
 
 
 ## Limitations
 
-The URL used is based on the tested domain name. If the tested domain name
-matches one of the following conditions then no URL will be provided, and that can
-not be overridden by Backend configuration.
+The only types of [URLs][URL] that the mechanisms specified in this document can
+result in are `http` and `https`, i.e. URLs where the scheme is `http` or
+`https`. There are also restrictions on allowed characters in that URL in section
+[URL string or blocking policy]. In the same section the term `URL string` is
+used, and it is defined at the start of that section.
 
-* The tested domain name is illegal, i.e. it contains illegal character(s) that
-  prevents it from being tested by Zonemaster.
-* The tested domain name is the root zone (`.`).
-* The tested domain name is a TLD, e.g. `se` or `fr`.
+The URL used is based on the [given domain name][#given-domain-name]. If the
+given domain name matches one of the following conditions then no URL will be
+provided, and that can not be overridden by Backend configuration.
 
-In all other cases, a URL will be provided, if available and permitted by policy configuration.
+* The given domain name is illegal, i.e. it contains illegal character(s) that
+  [prevents it from being tested by Zonemaster][Requirements]
+* The given domain name is the root zone (`.`).
+* The given domain name is a TLD, e.g. `se` or `fr`.
 
-
-## IDN names
-
-If the tested domain name has one or more IDN labels submitted in U-label
-format, then those must be converted to A-label format before the steps below can
-be run. This includes the TLD label.
+In all other cases, a URL will be provided, if available and permitted by policy
+configuration.
 
 
-## Source of URL
+## Determination of URL
 
-The URL (or its absence) is determined based on public information, configuration and the given TLD.
+The URL is determined based on public information, configuration and the TLD of
+the given domain name. The determination order is as follows:
 
-The following priority applies for determining the source of the URL:
-* Highest priority is [Backend configuration] if it is configured with
-  a specific URL for that TLD. See [Backend configuration] for how to
-  configure the TLD specific URL.
-* Second priority is a specific DNS record as specified below in section [TXT record].
-* The fallback is to fetch the URL for registration services found in the IANA
-  RDAP database as specified below in section [URL from IANA RDAP database].
+1. [Backend configuration] may set a specific URL for the given TLD.
+2. A specific DNS record may be published by the given TLD, as specified below in
+   section [TXT record], with the URL to be used.
+3. The URL for registration services found in the IANA RDAP database as specified
+   below in section [URL from IANA RDAP database].
+5. The fallback is to return the absense of a URL.
+
+Both in the [Backend configuration] and the [TXT record] there may be blocking
+policy to prevent any URL to returned. See details in the sections below.
 
 
 ## Blocking policy
@@ -98,7 +116,7 @@ The following priority applies for blocking policies:
 
 The term `URL string` in used in this section for a string from which a URL can
 be derived using the steps in [TXT record]. Specifically a `URL string` may
-contain the literal string `[DOMAIN]` which is replaced by the tested domain name
+contain the literal string `[DOMAIN]` which is replaced by the given domain name
 when the URL is derived. A `URL` derived from a `URL string` is also a valid
 `URL string`.
 
@@ -138,7 +156,7 @@ The following procedure is defined for parsing the TXT record:
       * The path string may also contain the literal string `[DOMAIN]` somewhere
         after the first solidus `/`.
       * If the literal string `[DOMAIN]` is found in the path string it will be
-        replaced by the tested domain name. If the tested domain name contains
+        replaced by the given domain name. If the given domain name contains
         solidus (slash) `/` then that will be encoded as `%2F`.
       * An empty path string will be replaced by the string `/`.
 * If the text string is neither a blocking policy (literal string `[BLOCK]`) or a
@@ -174,21 +192,21 @@ Valid path strings:
 URL from URL string in a TXT record:
 
 ```
-Tested domain: green.xa
+Given domain: green.xa
 TLD: xa
 URL string: https://domain.nic.xa/search/[DOMAIN]
 URL: https://domain.nic.xa/search/green.xa
 ```
 
 ```
-Tested domain: green.xb
+Given domain: green.xb
 TLD: xb
 URL string: https://domain.nic.xa/search/
 URL: https://domain.nic.xa/search/
 ```
 
 ```
-Tested domain: green.xc
+Given domain: green.xc
 TLD: xc
 URL string: https://domain.nic.xa
 URL: https://domain.nic.xa/
@@ -197,20 +215,16 @@ URL: https://domain.nic.xa/
 
 ## URL from IANA RDAP database
 
-If the following conditions are true, then a lookup of the URL for the TLD will be done from the
-IANA RDAP database:
+If the publication of the URL was not blocked in the steps above and no URL
+was not determined from the steps above, then a lookup of the URL for the TLD
+will be done from the IANA RDAP database.
 
-* [Backend configuration] has no global blocking policy.
-* [Backend configuration] has no TLD blocking policy.
-* [Backend configuration] does not configure a TLD specific URL.
-* There is no valid TLD specific TXT record with blocking policy (see
-  [URL string or blocking policy]).
-* There is no valid TLD specific TXT record that configures a URL (see
-  [URL string or blocking policy]).
+The base URL for the IANA RDAP database is `https://rdap.iana.org/domain/`.
+Append the the given TLD to the base URL. From a lookup of the resulting RDAP
+URL, the URL for the registration service for the given TLD can be found, if
+defined.
 
-The base URL for the IANA RDAP database is `https://rdap.iana.org/domain/` to
-which the TLD in question is appended, and from which the relevant string can be
-extracted using the command below (both `curl` and `jq` must be installed) where
+E.g use the following the command (both `curl` and `jq` must be installed) where
 `na` is used as an example TLD:
 
 ```sh
@@ -230,15 +244,22 @@ curl -s https://rdap.iana.org/domain/na | jq -r '.links[] | select(.rel=="relate
       may contain characters `a-zA-Z0-9/=?%_.&-`.
       * An empty path string will be replaced by the string `/`.
 
-This process will extract the same URL as the one for 
-"URL for registration services" found in the [IANA Root Zone Database] after
-selecting the relevant TLD.
+This process will extract the same URL as the one for "URL for registration
+services" found in the [IANA Root Zone Database] after selecting the relevant
+TLD.
+
+If the no URL was found or no URL matching the requirements, then no URL is
+returned (empty URL).
 
 
-[Backend RPC API]:                                  ../using/backend/rpcapi-reference.md
-[Backend configuration]:                            backend.md
-[IANA Root Zone Database]:                          https://www.iana.org/domains/root/db
-[TXT record]:                                       #txt-record
-[URL]:                                              https://en.wikipedia.org/wiki/URL
-[URL from IANA RDAP database]:                      #url-from-iana-rdap-database
-[URL string or blocking policy]:                    #url-string-or-blocking-policy
+
+[Backend RPC API]:                                          ../using/backend/rpcapi-reference.md
+[Backend configuration]:                                    backend.md
+[IANA Root Zone Database]:                                  https://www.iana.org/domains/root/db
+[Given Domain Name]:                                        #given-domain-name
+[Requirements]:                                             ../specifications/tests/RequirementsAndNormalizationOfDomainNames.md
+[TXT record]:                                               #txt-record
+[URL]:                                                      https://en.wikipedia.org/wiki/URL
+[URL from IANA RDAP database]:                              #url-from-iana-rdap-database
+[URL string or blocking policy]:                            #url-string-or-blocking-policy
+[RFC 5890#2.3.2.1]:                                         https://datatracker.ietf.org/doc/html/rfc5890#section-2.3.2.1

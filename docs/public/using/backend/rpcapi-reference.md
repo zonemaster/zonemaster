@@ -493,8 +493,8 @@ An array of [*language tags*][Language tag]. It is never empty.
 
 ### API method: `get_tld_url`
 
-Returns a URL for the closest TLD to the domain name in the request, or return
-empty. For context see [TLD URL Specification].
+Returns a URL for the closest TLD to the domain name in the request, or returns
+en empty response. For context see [TLD URL Specification].
 
 Example 1 request:
 ```json
@@ -512,10 +512,7 @@ Example 1 response:
   "id": 1,
   "result": {
     "url": "http://www.verisigninc.com",
-    "source":
-        [
-            "IANA RDAP"
-        ]
+    "source": "IANA RDAP"
   }
 }
 ```
@@ -536,10 +533,7 @@ Example 2 response:
   "id": 1,
   "result": {
     "url": "http://www.verisigninc.com",
-    "source":
-        [
-            "TXT RECORD"
-        ]
+    "source": "TXT RECORD"
   }
 }
 ```
@@ -560,10 +554,7 @@ Example 3 response:
   "id": 1,
   "result": {
     "url": "http://www.verisigninc.com",
-    "source":
-        [
-            "BACKEND CONF"
-        ]
+    "source": "BACKEND CONF"
   }
 }
 ```
@@ -590,18 +581,30 @@ record)
   }
 }
 ```
+
+#### `"params"`
+
+An object with the property:
+
+* `"domain"`: A [*domain name*][Domain name], required. The domain name, for
+  which a URL will be optionally determined.
+
+
 #### `"result"`
 
 An object with the following properties:
 
-* `"url"`: An http or https URL. Present if and only if [`TLD URL SETTINGS.enable_tld_url`] is true and a URL was determined.
-* `"source"`: A string from the following set. Present if and only if both "`url`" is
-  present and [`TLD URL SETTINGS.include_source`][TLD URL SETTINGS section.include_source] is true.
+* `"url"`: An http or https URL. Present if and only if
+  [`TLD URL SETTINGS.enable_tld_url`] is true and a URL was determined.
+* `"source"`: A string from the following set. Present if and only if both
+  "`url`" is present and
+  [`TLD URL SETTINGS.include_source`][TLD URL SETTINGS section.include_source]
+  is true.
 
-  * `"IANA RDAP"`: The URL is fetched from the IANA RDAP database.
-  * `"TXT RECORD"`: The URL is fetched from the TLD TXT record.
   * `"BACKEND CONF"`: The URL is configured in the `backend_config.ini`
   configuration file.
+  * `"TXT RECORD"`: The URL is fetched from the TLD TXT record.
+  * `"IANA RDAP"`: The URL is fetched from the IANA RDAP database.
 
 #### `"error"`
 
@@ -631,7 +634,7 @@ Example 1 of response:
         "path": "/domain"
       }
     ],
-    "code": "-32602",
+    "code": -32602,
     "message": "Invalid method parameter(s)."
   }
 }
@@ -659,7 +662,7 @@ Example 2 of response:
         "message": "The domain name character(s) are not supported"
       }
     ],
-    "code": "-32602",
+    "code": -32602,
     "message": "Invalid method parameter(s)."
   }
 }

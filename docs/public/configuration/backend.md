@@ -327,12 +327,8 @@ to specifying a profile JSON file containing the entire
 
 ## TLD URL SETTINGS section
 
-For the context of this section, see [TLD URL Specification].
-
-The TLD URL section has several keys:
-* enable_tld_url
-* lookup_timeout
-* include_source
+For the context of this section, see [TLD URL Specification]. Available keys:
+* `enable_tld_url`, `lookup_timeout`, `include_source`
 
 ### enable_tld_url
 
@@ -346,8 +342,8 @@ Accepted values: `true` or `false`. Default to `true` (enabled).
 ### lookup_timeout
 
 The number of seconds each of the two lookups, DNS and RDAP, respectively, may
-maximally take. If the maximum time is reached, a timeout is executed. The
-total maximum time will be double that value.
+maximally take. If the maximum time is reached for any of the two lookups, a
+timeout is executed.
 
 Accepted values: a positive integer. Default to 3.
 
