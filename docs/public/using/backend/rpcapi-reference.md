@@ -568,11 +568,7 @@ Example 4 request:
   "params": {"domain": "zonemaster.xa"}
 }
 ```
-Example 2 response
-
-(No URL found, blocked by backend configuration or blocked by TLD policy in TXT
-record)
-
+Example 4 response:
 ```json
 {
   "jsonrpc": "2.0",
@@ -581,7 +577,7 @@ record)
   }
 }
 ```
-
+(No URL found; blocked by either backend configuration or TLD policy in TXT record)
 #### `"params"`
 
 An object with the property:
@@ -626,7 +622,7 @@ Example 1 of response:
 ```json
 {
   "jsonrpc": "2.0",
-  "id": 1624630143271,
+  "id": 1,
   "error": {
     "data": [
       {
@@ -654,7 +650,7 @@ Example 2 of response:
 ```json
 {
   "jsonrpc": "2.0",
-  "id": 1624630143271,
+  "id": 1,
   "error": {
     "data": [
       {

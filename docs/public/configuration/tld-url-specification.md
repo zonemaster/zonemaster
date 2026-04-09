@@ -4,8 +4,8 @@
 
 * [Introduction](#introduction)
 * [Given Domain Name]
-* [Limitations](#limitations)
 * [Preconditions](#preconditions)
+* [Limitations](#limitations)
 * [Determination of URL](#determination-of-url)
 * [Blocking policy](#blocking-policy)
 * [URL string or blocking policy]
@@ -26,7 +26,7 @@ How the GUI gets the URL is defined in [Backend RPC API].
 How Backend can override public values is defined in [Backend configuration].
 
 This document specifies how the URL or its absence is determined.
-The URL is determined based on based on one or more of:
+The URL is determined based on one or more of:
 
 * The given domain name,
 * Backend configuration,
@@ -39,6 +39,9 @@ The URL is determined based on based on one or more of:
 In this document it is referred to the `given domain name`. The given domain name
 is usually the domain name tested by Zonemaster, but the mechanisms specified
 here can be executed on any domain name whether or not a Zonemaster test is
+In this document the term `given domain name` is used. The given domain name
+is usually the domain name tested by Zonemaster, but the mechanisms specified
+here can be used on any domain name whether or not a Zonemaster test is
 executed on the domain name.
 
 
@@ -86,8 +89,8 @@ the given domain name. The determination order is as follows:
    below in section [URL from IANA RDAP database].
 5. The fallback is to return the absense of a URL.
 
-Both in the [Backend configuration] and the [TXT record] there may be blocking
-policy to prevent any URL to returned. See details in the sections below.
+Both in the [Backend configuration] and the [TXT record] there may be a blocking
+policy to prevent any URL from being returned. See details in the sections below.
 
 
 ## Blocking policy
@@ -114,10 +117,10 @@ The following priority applies for blocking policies:
 
 ### Terminology
 
-The term `URL string` in used in this section for a string from which a URL can
-be derived using the steps in [TXT record]. Specifically a `URL string` may
-contain the literal string `[DOMAIN]` which is replaced by the given domain name
-when the URL is derived. A `URL` derived from a `URL string` is also a valid
+The term `URL string` used in this section stands for a string from which a URL can
+be derived using the steps in [TXT record]. Specifically, a `URL string` may
+contain the literal string `[DOMAIN]` which is to be replaced by the given domain name
+when the URL is derived. A URL derived from a `URL string` is also a valid
 `URL string`.
 
 ### Backend configuration
@@ -216,22 +219,24 @@ URL: https://domain.nic.xa/
 ## URL from IANA RDAP database
 
 If the publication of the URL was not blocked in the steps above and no URL
-was not determined from the steps above, then a lookup of the URL for the TLD
+was determined from the steps above, then a lookup of the URL for the TLD
 will be done from the IANA RDAP database.
 
-The base URL for the IANA RDAP database is `https://rdap.iana.org/domain/`.
-Append the the given TLD to the base URL. From a lookup of the resulting RDAP
+The base URL for the IANA RDAP database is `https://rdap.iana.org/domain/`,
+to which the appropriate TLD is appended. From a lookup of the resulting RDAP
 URL, the URL for the registration service for the given TLD can be found, if
 defined.
 
-E.g use the following the command (both `curl` and `jq` must be installed) where
-`na` is used as an example TLD:
+For example, use the following command where `na` is used as an example TLD:
+
+> [!NOTE]
+> Both `curl` and `jq` must be installed
 
 ```sh
 curl -s https://rdap.iana.org/domain/na | jq -r '.links[] | select(.rel=="related") | .href'
 ```
 
-* The URL fetched must consist of the following parts in that order:
+* The fetched URL must consist of the following parts, in that order:
   * a literal `https://` or `http://`,
   * a domain name,
   * a path string.
@@ -248,7 +253,7 @@ This process will extract the same URL as the one for "URL for registration
 services" found in the [IANA Root Zone Database] after selecting the relevant
 TLD.
 
-If the no URL was found or no URL matching the requirements, then no URL is
+If no URL was found or no URL matched the requirements, then no URL is
 returned (empty URL).
 
 
