@@ -32,45 +32,46 @@ Set up build system to be used for the test distribution creation. See
 
 Make sure that you have checked out the correct git branch, normally
 the `develop` branch and that your clone is up-to-date.
+```
+git fetch --all
+git branch
+```
+For Zonemaster-LDNS only - empty the submodule area (LDNS):
 
-       git fetch --all
-       git branch
-
-For Zonemaster-LDNS only - check out submodule to the right commit (LDNS):
-
-       git submodule update
-
+```
+git submodule deinit -f ldns
+```
 Make sure your working directory is clean.
-
-       git status --ignored
-
+```
+git status --ignored
+```
 To clean (throw away untracked changes or files):
-
-       git clean -dfx
-       git reset --hard
-
+```
+git clean -dfx
+git reset --hard
+```
 You should usually work in the *develop branch*, and that should be up-to-date
 with the remote *develop branch*. Your working branch:
-
-    git branch -av | grep "^*"
-
+```
+git branch -av | grep "^*"
+```
 All branches called "develop":
-
-    git branch -av --list "*develop"
-
+```
+git branch -av --list "*develop"
+```
 
 ## 4. Generate Makefile, META.yml and others
 
 > This section is not relevant for Zonemaster-GUI.
 
  * For Zonemaster-LDNS:
-
-       perl Makefile.PL --no-ed25519
-
+```
+perl Makefile.PL --no-ed25519
+```
  * For all components except Zonemaster-LDNS:
-
-       perl Makefile.PL
-
+```
+perl Makefile.PL
+```
 > **Note: You can ignore the following warnings:**
 > * Missing META.yml (created by the very same command).
 > * Zonemaster-LDNS: Missing ldns source files (fetched by the very same command).
@@ -84,21 +85,21 @@ All branches called "develop":
 
 Build generated files (if any) and verify that a distribution tarball can be 
 successfully built for each component that is to be updated in this release.
-
-    make all
-
+```
+make all
+```
 For all components, make sure that all files are covered by MANIFEST and/or 
 MANIFEST.SKIP, i.e. no missing or extra files:
-
-    make distcheck
-
+```
+make distcheck
+```
 
 ## 6. Produce distribution tarballs
 
 > This section is not relevant for Zonemaster-GUI.
-
-    make dist
-
+```
+make dist
+```
 
 ## 7. Produce distribution zip file
 
@@ -121,14 +122,18 @@ If you already have the repository:
 Build the distribution zip file:
 
 1. `npm install` 
-2. `npm run release`
+2. `npm run build`
+3. `npm run release`
 
+> If you get building errors, repeat the `nvm` commands in
+> [build environment for Node.js] first.
+>
 > Usually you can ignore warnings and security fixes, and usually you
 > do not run any `npm audit fix`. Check for open issues in Zonemaster-GUI
 > and ask the others in the work group.
 
 The distribution zip file is in the root level of the zonemaster-gui folder. 
-Its name is `zonemaster_web_gui.zip`.
+Its name is `zonemaster_web_gui_v0.0.0.zip` with correct version.
 
 
 ## 8. Produce Docker image

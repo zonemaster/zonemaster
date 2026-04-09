@@ -6,7 +6,8 @@
 * [Scope](#scope)
 * [Internal Methods](#internal-methods)
 * [Methods Inputs]
-* [Method: Get parent NS IP addresses][Get-Parent-NS-IP]
+* [Method: Get parent NS names and IP addresses][Get-Parent-NS-Names-and-IPs]
+* [Method: Get parent NS IP addresses][Get-Parent-NS-IPs]
 * [Method: Get delegation NS names and IP addresses][Get-Del-NS-Names-and-IPs]
 * [Method: Get delegation NS names][Get-Del-NS-Names]
 * [Method: Get delegation NS IP addresses][Get-Del-NS-IPs]
@@ -83,15 +84,16 @@ specific Method.
 [To top]
 
 
-## Method: Get parent NS IP addresses
+## Method: Get parent NS names and IP addresses
 
 ### Method identifier
-**Get-Parent-NS-IP**
+**Get-Parent-NS-Names-and-IPs**
 
 ### Objective
 
-This Method will obtain the name servers that serves the parent zone, i.e. the
-zone from which the *Child Zone* is delegated from.
+This Method will obtain the names and IP addresses of the name servers that
+serve the parent zone, i.e. the zone from which the *Child Zone* is delegated
+from.
 
 This is done by finding the parent zone and then the name servers that serve the
 parent zone. In case there is an inconsistency of which is the parent zone, the
@@ -106,10 +108,10 @@ If the test type is undelegated, then the information that the parent name
 servers are supposed to provide included in the input data. In that case a list
 of parent name servers has no meaning.
 
-The Method will output a list of parent name server IP addresses. If the zone is
-the root zone or if the test is an undelegated test, the list is defined but
-empty. If the parent zone cannot be determined, then an undefined list is
-returned.
+The Method will output a list of parent name server names and IP addresses. If
+the zone is the root zone or if the test is an undelegated test, the list is
+defined but empty. If the parent zone cannot be determined, then an undefined
+list is returned.
 
 Addresses for name servers (RDATA of NS records) are extracted even if the
 resolution goes through CNAME. It is, however, not permitted for a NS record
@@ -137,55 +139,67 @@ This Method uses the following input units defined in section [Methods Inputs]:
    these procedures.
 
 3. Create the following empty sets:
-   1.  Name server IP and zone name ("Remaining Servers").
-   2.  Name server IP and query name ("Handled Servers").
-   3.  Parent name server IP addresses ("Parent NS IP").
+   1.  Name server name, name server IP and zone name tuples ("Remaining
+       Servers").
+   2.  Name server name, name server IP and zone name tuples ("Handled
+       Servers").
+   3.  Parent name server name and IP address pairs ("Parent Name Servers").
 
-4. Insert all addresses from *Root Name Servers* and the root zone name into the
-   *Remaining Servers* set.
+4. Insert all names and addresses from *Root Name Servers* and the root zone
+   name into the *Remaining Servers* set.
 
 > In the loop below, the steps tries to capture the name of the parent zone of
 > **Child Zone** and the IP addresses of the name servers for that parent zone.
 > This is done using a modified version of the "QNAME minimization" technique
 > [RFC 9156]. SOA is the query type used for traversing the tree.
 
-5. While the *Remaining Servers* is non-empty pick next name server IP address
-   and zone name from the set ("Server Address" and "Zone Name") and do:
+5. While the *Remaining Servers* is non-empty pick next name server name, IP
+   address and zone name tuple from the set ("Server Name", "Server Address"
+   and "Zone Name") and do:
 
-   1.  Extract and remove *Server Address* including its *Zone Name* from
-       *Remaining Servers*.
-   2.  Insert *Server Address* and *Zone Name* into *Handled Servers*.
-   3.  Create [DNS queries][DNS Query]:
+   1.  Extract and remove the *Server Name*, *Server Address* and *Zone Name*
+       tuple from *Remaining Servers*.
+   2.  Insert the *Server Name*, *Server Address* and *Zone Name* tuple into
+       *Handled Servers*.
+   3.  If *Handled Servers* contains two or more tuples with the same
+       *Server Address* and *Zone Name* (but not necessarily the same *Server
+       Name*), then:
+       1. If an item exists in *Parent Name Servers* whose IP address equals
+          *Server Address*, then add the *Server Name* and *Server Address*
+          pair to the *Parent Name Servers* set.
+       2. Go to next server in *Remaining Servers*.
+   4.  Create [DNS queries][DNS Query]:
        1. Query type SOA and query name *Zone Name* ("Zone Name SOA Query").
        2. Query type NS and query name *Zone Name* ("Zone Name NS Query").
-   4.  [Send] *Zone Name SOA Query* to *Server Address*.
-   5.  Go to next server in *Remaining Servers* if one or more of the following
+   5.  [Send] *Zone Name SOA Query* to *Server Address*.
+   6.  Go to next server in *Remaining Servers* if one or more of the following
        matches:
           * No DNS response.
           * [RCODE Name] different from NoError in response.
           * AA bit not set in response.
           * Not exactly one SOA record in answer section
           * Owner name of SOA record is not *Zone Name*.
-   6.  [Send] *Zone Name NS Query* to *Server Address*.
-   7.  Go to next server in *Remaining Servers* if one or more of the following
+   7.  [Send] *Zone Name NS Query* to *Server Address*.
+   8.  Go to next server in *Remaining Servers* if one or more of the following
        matches:
           * No DNS response.
           * [RCODE Name] different from NoError in response.
           * AA bit not set in response.
           * No NS records in answer section
           * Owner name of any of the NS records is not *Zone Name*.
-   8.  Extract the name server names from the NS records and any address records
+   9.  Extract the name server names from the NS records and any address records
        in the additional section.
-
-   9.  Do [DNS Lookup] of name server names (A and AAAA) not already listed in the
-       additional section of the response. Follow CNAME if provided.
-       1. For each IP address add the IP address and *Zone Name* to the
-          *Remaining Servers* set unless the IP address is already listed in
-          *Handled Servers* together with *Zone Name*.
+   10. Do [DNS Lookup] of name server names (A and AAAA) not already listed in
+       the additional section of the response. If a CNAME is encountered,
+       follow the chain of CNAME records but use the original name as obtained
+       from the NS record RDATA when storing the data in the next substep.
+       1. For each IP address add the name server name, IP address and *Zone
+          Name* tuple to the *Remaining Servers* set, unless such a tuple
+          already exists in *Handled Servers*.
        2. Ignore any failing lookups or lookups resulting in NODATA or NXDOMAIN.
-   10. Create "Intermediate Query Name" by copying *Zone name* as start value.
-   11. Run a loop processing *Server Address* (jumps back here from the steps
-       below).
+   11. Create "Intermediate Query Name" by copying *Zone Name* as start value.
+   12. Run a loop processing *Server Name* and *Server Address* (jumps back
+       here from the steps below).
        1. Extend *Intermediate Query Name* by adding one more label to the left
           by copying the equivalent label from *Child Zone*. (See "Example 1"
           below.)
@@ -199,7 +213,8 @@ This Method uses the following input units defined in section [Methods Inputs]:
           *Intermediate Query Name* in the answer section, with the AA bit
           set and [RCODE Name] NoError then do:
           1. If *Intermediate Query Name* is equal to *Child Zone* then
-             1. Save *Server Address* to the *Parent NS IP* set.
+             1. Save the *Server Name* and *Server Address* pair to the
+                *Parent Name Servers* set.
              2. Go to next server in *Remaining Servers*.
           2. Else do:
              1. Create a [DNS query][DNS Query] with query name
@@ -216,36 +231,35 @@ This Method uses the following input units defined in section [Methods Inputs]:
              4. Extract the name server names from the NS records and any address
                 records in the additional section.
              5. Do [DNS Lookup] of name server names (A and AAAA) not already
-                listed in the additional section of the response. Follow CNAME if
-                provided.
-             6. For each IP address add the IP address and *Intermediate Query Name*
-                to the *Remaining Servers* set unless the IP address is already
-                listed in *Handled Servers* together with *Intermediate Query Name*.
+                listed in the additional section of the response. If a CNAME
+                is encountered, follow the chain of CNAME records but use the
+                original name as obtained from the NS record RDATA when storing
+                the data in the next step.
+             6. For each name and IP address add the name, IP address and
+                *Intermediate Query Name* tuple to the *Remaining Servers* set,
+                unless such a tuple already exists in *Handled Servers*.
              7. Set *Zone Name* to *Intermediate Query Name*.
              8. Go back to the start of the loop.
        6. Else, if the response contains a [Referral] of *Intermediate Query Name*
           then do:
           1. If *Intermediate Query Name* is equal to *Child Zone* then do:
-             1. Save *Server Address* to the *Parent NS IP* set.
+             1. Save the *Server Name* and *Server Address* pair to the
+                *Parent Name Servers* set.
           2. Else do:
              1. Extract the name server names from the NS records and any glue
                 records.
              2. Do [DNS Lookup] of name server names (A and AAAA) not already
                 listed as glue record or records. Follow CNAME if provided.
-             3. For each IP address add *Server Address* and
-                *Intermediate Query Name* to the *Remaining Servers* set unless
-                *Server Address* is already listed in *Handled Servers* together
-                with *Intermediate Query Name*.
+             3. For each name and IP address add the *Server Name*, *Server
+                Address* and *Intermediate Query Name* tuple to the *Remaining
+                Servers* set, unless such a tuple already exists in *Handled
+                Servers*.
           3. Go to next server in *Remaining Servers*.
        7. Else, if the [RCODE Name] is NoError and the AA is set then do:
           1. If *Intermediate Query Name* is not equal to *Child Zone* then
              go back to the start of the loop.
           2. Else go to next server in *Remaining Servers*.
        8. Else, go to next server in *Remaining Servers*.
-
-
-
-
 
 > Examples referred to from the steps.
 >
@@ -255,13 +269,14 @@ This Method uses the following input units defined in section [Methods Inputs]:
 >
 > Example 2: An "bar.xa SOA" query to a name server for "xa".
 
-6. If the *Parent NS IP* set is non-empty then do:
-   1. Extract the list of name server IP addresses.
+6. If the *Parent Name Servers* set is non-empty then do:
+   1. Extract the list of name server names and IP addresses.
    2. Return the following from the Method:
-      1. The extracted list of name server IP addresses (parent zone name servers).
+      1. The extracted list of name server names and IP addresses (parent zone
+         name servers).
    3. Exit these procedures.
 
-7. If the *Parent NS IP* set is empty then do:
+7. If the *Parent Name Servers* set is empty then do:
    1. Return the following from the Method:
       1. Undefined value. (Parent name severs cannot be determined.)
    2. Exit these procedures.
@@ -278,6 +293,60 @@ This Method uses the following input units defined in section [Methods Inputs]:
 ### Dependencies
 
 None.
+
+[To top]
+
+
+
+## Method: Get parent NS IP addresses
+
+### Method identifier
+**Get-Parent-NS-IPs**
+
+### Objective
+
+This Method will obtain the IP addresses of the name servers that serve the
+parent zone, i.e. the zone from which the *Child Zone* is delegated from.
+
+The procedure is identical to the one used by
+[Get-Parent-NS-Names-and-IPs], except that this Method only collects and
+outputs IP addresses instead of name-IP address pairs.
+
+### Inputs
+
+This Method uses the following input units defined in section [Methods Inputs]:
+
+* "Child Zone" - The name of the child zone to be tested.
+* "Root Name Servers"
+* "Test Type" - "[undelegated test]" or "normal test".
+
+### Procedures
+
+1. Get the set of parent name servers by using [Get-Parent-NS-Names-and-IPs]
+   ("Parent Name Servers").
+
+2. If the *Parent Name Servers* set is undefined, then output an undefined set and
+   exit these procedures.
+
+3. If the *Parent Name Servers* set is empty, then output an empty set and exit these
+   procedures.
+
+4. Extract the IP addresses from *Parent Name Servers* and create a set of
+   unique addresses ("Parent NS IPs").
+
+5. Output the *Parent NS IPs* set.
+
+### Outputs
+
+* A set of name server IP address for the parent zone:
+  * Non-empty set: The name servers have been identified.
+  * Empty set: Root zone or undelegated test.
+  * Undefined set: The name servers cannot be determined due to errors in the
+    delegation.
+
+### Dependencies
+
+This Method depends on [Get-Parent-NS-Names-and-IPs].
 
 [To top]
 
@@ -318,12 +387,12 @@ This Method uses the following input units defined in section [Methods Inputs]:
 4. Extract the set of [Out-Of-Bailiwick] name server names from *Name Servers*
    ("OOB Names").
 
-3. Get the IP addresses for name server names in *OOB Names* by using Method
+5. Get the IP addresses for name server names in *OOB Names* by using Method
    [Get-OOB-IPs] with *OOB Names* as input.
 
-4. Merge the set returned from [Get-OOB-IPs] with *Name Servers*.
+6. Merge the set returned from [Get-OOB-IPs] with *Name Servers*.
 
-5. Output the *Name Servers* set.
+7. Output the *Name Servers* set.
 
 ### Outputs
 
@@ -371,12 +440,12 @@ This Method uses the following input units defined in section [Methods Inputs]:
 3. If the *Name Servers* set is empty, then output an empty set and exit these
    procedures.
 
-3. If the set is empty, then output an empty set and exit these test
+4. If the set is empty, then output an empty set and exit these test
    procedures.
 
-4. Extract the set of name server names from *Name Servers*.
+5. Extract the set of name server names from *Name Servers*.
 
-5. Output the set of name server names.
+6. Output the set of name server names.
 
 ### Outputs
 
@@ -675,7 +744,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
 2. If *Child Zone* is the root zone ".", then output the set of name server names
    and IP addresses from *Root Name Servers* and exit these procedures.
 
-3. Using Method [Get-Parent-NS-IP] extract the name server IP addresses for
+3. Using Method [Get-Parent-NS-IPs] extract the name server IP addresses for
    the parent zone ("Parent NS").
 
 4. If *Parent NS* is empty, then output the undefined set and exit these test
@@ -687,7 +756,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
 6. Create empty sets:
    1. Unique name server names where each name can be linked to a possibly empty
       set of IP addresses ("Delegation Name Servers").
-   1. Unique name server names where each name can be linked to a possibly empty
+   2. Unique name server names where each name can be linked to a possibly empty
       set of IP addresses ("AA Name Servers").
 
 7. For each parent name server in *Parent NS* do:
@@ -744,12 +813,12 @@ This Method uses the following input units defined in section [Methods Inputs]:
   links to a possibly empty set of its IP addresses:
   * Non-empty set: The normal case.
   * Empty set: No delegation was found.
-  * Undefined set: [Get-Parent-NS-IP] returned undefined set of parent
+  * Undefined set: [Get-Parent-NS-IPs] returned undefined set of parent
     name server IPs.
 
 ### Dependencies
 
-This Method depends on the output from [Get-Parent-NS-IP] if test type is a
+This Method depends on the output from [Get-Parent-NS-IPs] if test type is a
 "normal test".
 
 [To top]
@@ -791,16 +860,16 @@ This Method uses the following input units defined in section [Methods Inputs]:
    empty or undefined, then output an undefined set and exit these test
    procedures.
 
-3. If no name in *Child Zone Name Server Names* is an [In-Bailiwick]
+4. If no name in *Child Zone Name Server Names* is an [In-Bailiwick]
    name server name:
    1. Output an empty set.
    2. Exit these procedures.
 
-4. Create an empty set the [In-Bailiwick] name server names from the
+5. Create an empty set the [In-Bailiwick] name server names from the
    *Child Zone Name Server Names* set, where each name is linked to an empty set
    of IP addresses ("Name Servers").
 
-5. For name in *Name Servers* do:
+6. For name in *Name Servers* do:
    1. Create the following two [DNS queries][DNS Query]:
       1. Query type A and the [In-Bailiwick] name as the query name ("A Query").
       2. Query type AAAA and the [In-Bailiwick] name as the query name
@@ -812,12 +881,12 @@ This Method uses the following input units defined in section [Methods Inputs]:
       *A Query* and *AAAA Query*.
    4. If a CNAME is returned, follow that, possibly in several
       steps, to resolve the name to IP addresses, if possible.
-   5. Ignore non-referral responses [see [Referral] unless AA flag is set (cached
+   5. Ignore non-referral responses (see [Referral]) unless AA flag is set (cached
       data is not accepted) and ignore response with any other [RCODE Name] than
       NoError.
    6. Add found IP addresses for the name server names in *Name Servers*.
 
-6. Output the possibly empty *Name Servers* set.
+7. Output the possibly empty *Name Servers* set.
 
 ### Outputs
 
@@ -896,7 +965,7 @@ This Method also used the following input unit from the calling Method:
    5. Collect all IP addresses for the *Name* and add the address or addresses to
       *Name Servers* for that *Name* and go to next *Name*.
 
-5. Output the *Name Servers* set.
+4. Output the *Name Servers* set.
 
 ### Outputs
 
@@ -914,22 +983,23 @@ None.
 
 ## Method inter-dependencies
 
-| Method                      | Level | Dependent on Method        | Level
-|-----------------------------|-------|----------------------------|-------------
-| [Get-Parent-NS-IP]          | 1     | -                          |
-| [Get-OOB-IPs]               | 1     | -                          |
-| [Get-Delegation]            | 2     | [Get-Parent-NS-IP]         | 1
-| [Get-Del-NS-Names-and-IPs]  | 3     | [Get-Delegation]           | 2
-|                             |       | [Get-OOB-IPs]              | 1
-| [Get-Del-NS-Names]          | 4     | [Get-Del-NS-Names-and-IPs] | 3
-| [Get-Del-NS-IPs]            | 4     | [Get-Del-NS-Names-and-IPs] | 3
-| [Get-Zone-NS-Names]         | 5     | [Get-Del-NS-IPs]           | 4
-| [Get-IB-Addr-in-Zone]       | 6     | [Get-Del-NS-IPs]           | 4
-|                             |       | [Get-Zone-NS-Names]        | 5
-| [Get-Zone-NS-Names-and-IPs] | 7     | [Get-Zone-NS-Names]        | 5
-|                             |       | [Get-IB-Addr-in-Zone]      | 6
-|                             |       | [Get-OOB-IPs]              | 1
-| [Get-Zone-NS-IPs]           | 8     | [Get-Zone-NS-Names-and-IPs]| 7
+| Method                        | Level | Dependent on Method           | Level |
+|-------------------------------|-------|-------------------------------|-------|
+| [Get-Parent-NS-Names-and-IPs] | 1     | -                             |       |
+| [Get-Parent-NS-IPs]           | 2     | [Get-Parent-NS-Names-and-IPs] | 1     |
+| [Get-OOB-IPs]                 | 1     | -                             |       |
+| [Get-Delegation]              | 3     | [Get-Parent-NS-IPs]           | 2     |
+| [Get-Del-NS-Names-and-IPs]    | 4     | [Get-Delegation]              | 3     |
+|                               |       | [Get-OOB-IPs]                 | 1     |
+| [Get-Del-NS-Names]            | 5     | [Get-Del-NS-Names-and-IPs]    | 4     |
+| [Get-Del-NS-IPs]              | 5     | [Get-Del-NS-Names-and-IPs]    | 4     |
+| [Get-Zone-NS-Names]           | 6     | [Get-Del-NS-IPs]              | 5     |
+| [Get-IB-Addr-in-Zone]         | 7     | [Get-Del-NS-IPs]              | 5     |
+|                               |       | [Get-Zone-NS-Names]           | 6     |
+| [Get-Zone-NS-Names-and-IPs]   | 8     | [Get-Zone-NS-Names]           | 6     |
+|                               |       | [Get-IB-Addr-in-Zone]         | 7     |
+|                               |       | [Get-OOB-IPs]                 | 1     |
+| [Get-Zone-NS-IPs]             | 9     | [Get-Zone-NS-Names-and-IPs]   | 8     |
 
 [To top]
 
@@ -996,7 +1066,8 @@ None.
 [Get-Delegation]:                                    #method-get-delegation-internal
 [Get-IB-Addr-in-Zone]:                               #method-get-in-bailiwick-address-records-in-zone-internal
 [Get-OOB-IPs]:                                       #method-get-out-of-bailiwick-ip-addresses-internal
-[Get-Parent-NS-IP]:                                  #method-get-parent-ns-ip-addresses
+[Get-Parent-NS-IPs]:                                 #method-get-parent-ns-ip-addresses
+[Get-Parent-NS-Names-and-IPs]:                       #method-get-parent-ns-names-and-ip-addresses
 [Get-Zone-NS-IPs]:                                   #method-get-zone-ns-ip-addresses
 [Get-Zone-NS-Names-and-IPs]:                         #method-get-zone-ns-names-and-ip-addresses
 [Get-Zone-NS-Names]:                                 #method-get-zone-ns-names

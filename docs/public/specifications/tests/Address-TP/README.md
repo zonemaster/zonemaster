@@ -14,6 +14,6 @@ This document uses the terminology defined in the [Master Test Plan].
 
 |Test Case |Test Case Description|
 |:---------|:--------------------|
-|[ADDRESS01](address01.md)|Name server address must be globally routable|
+|[ADDRESS01](address01.md)|Name server address must be globally reachable|
 |[ADDRESS02](address02.md)|Reverse DNS entry exists for name server IP address|
 |[ADDRESS03](address03.md)|Reverse DNS entry matches name server name|

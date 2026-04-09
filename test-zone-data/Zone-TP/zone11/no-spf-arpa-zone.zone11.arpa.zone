@@ -1,0 +1,5 @@
+$ORIGIN no-spf-arpa-zone.zone11.arpa.
+
+$INCLUDE COMMON-SCENARIO-INCLUDE
+
+; This zone file intentionally left blank

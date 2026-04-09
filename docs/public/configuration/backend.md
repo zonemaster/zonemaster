@@ -82,8 +82,12 @@ configuration file with the "Batch API Key" as value.
 Boolean value to enable the `add_batch_job` and `batch_create` methods of the
 API. Must not co-exist with [RPCAPI.enable_batch_create].
 
-Accepted values: `yes` (or `true`) or `no` (or `false`),
-default to `yes` (enabled).
+Accepted values: `true` or `false` (or `yes` or `no`),
+default to `true` (enabled).
+
+**Deprecated:** The `yes`/`no` values are deprecated and will be rejected in
+v2026.2.
+Use `true`/`false` instead.
 
 ### enable_add_api_user
 
@@ -91,8 +95,12 @@ default to `yes` (enabled).
 
 Boolean value to enable the `add_api_user` method of the API.
 
-Accepted values: `yes` (or `true`) or `no` (or `false`),
-default to `no` (disabled).
+Accepted values: `true` or `false` (or `yes` or `no`),
+default to `false` (disabled).
+
+**Deprecated:** The `yes`/`no` values are deprecated and will be rejected in
+v2026.2.
+Use `true`/`false` instead.
 
 ### enable_batch_create
 

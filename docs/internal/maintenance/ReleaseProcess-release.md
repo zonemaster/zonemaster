@@ -22,6 +22,8 @@ Release process - Release
 * [17. Tag the release with git](#17-tag-the-release-with-git)
 * [18. Announce the release](#18-announce-the-release)
 * [19. Merge master into develop](#19-merge-master-into-develop)
+* [20. Clean-up on discussion forum](#20-clean-up-on-discussion-forum)
+* [21. Clean-up on GitHub related to the release](#21-clean-up-on-github-related-to-the-release)
 * [Appendix A on version number in Makefile.PL](#appendix-a-on-version-number-in-makefilepl)
 * [Appendix B on reverting commits](#appendix-b-on-reverting-commits)
 
@@ -113,14 +115,12 @@ Update the following files in the *develop branch* of **Zonemaster-GUI**:
  * [package.json][package.json GUI]
    - In the top of the file, the version is given after "version".
    - The file `package-lock.json` is ignored
- * [src/environments/version.ts][Version.ts GUI]
-   - "version" should point at the version number.
 
 Update the following file in the *develop branch* of **Zonemaster/Zonemaster**:
 
  * [public/installation/zonemaster-gui.md][Installation.md GUI]
-   - The version is part of the download path (a directory). It is repeated
-     several times, once per OS.
+   - The version is both part of the filename (zip file) and part of the download
+     path (a directory). Both are repeated several times, once per OS.
 
 > The update of the installation document can preferably be done in the same
 > pull request as the update of the `Changes` file for Zonemaster/Zonemaster
@@ -169,9 +169,9 @@ up-to-date.
 git fetch --all
 git branch
 ```
-Check out the right commit of the submodule (LDNS). Zonemaster-LDNS only.
+Empty the submodule area (LDNS). Zonemaster-LDNS only.
 ```
-git submodule update
+git submodule deinit -f ldns
 ```
 Make sure your working directory is clean.
 ```
@@ -215,14 +215,18 @@ for more details
 Build the distribution zip file:
 ```
 npm install
+npm run build
 npm run release
 ```
 
+> If you get building errors, repeat the `nvm` commands in
+> [build environment for Node.js] first.
+>
 > You can ignore warnings and security fixes at this stage, and do not run 
 > any `npm audit fix`.
 
 The distribution zip file is in the root level of the zonemaster-gui folder. 
-Its name is `zonemaster_web_gui.zip`.
+Its name is `zonemaster_web_gui_v0.0.0.zip` with correct version.
 
 [(Top)](#table-of-contents)
 
@@ -354,7 +358,16 @@ The releases pages:
 
 ## 18. Announce the release
 
-Send emails to the mailing lists `zonemaster-users` and `zonemaster-announce`.
+1. Send emails to the mailing lists `zonemaster-users` and `zonemaster-announce`
+   (the same email content will usually work fine). Always refer to the
+   [Github release page], but the URL with the version.
+2. Forward the `zonemaster-users` email to the mailing list `zonemaster-group`.
+3. Create an announcement on the [Zonemaster discussion forum] on GitHub.
+   1. Choose "New discussion"
+   2. Select "Announcements"
+   3. Use Zonemaster version as title
+   4. Use the body of the [Github release page] for the version as the body of
+      the announcement.
 
 [(Top)](#table-of-contents)
 
@@ -364,6 +377,41 @@ Create a pull request from `master` on github back into `develop` and merge
 it. No review or approval is required for this update.
 
 [(Top)](#table-of-contents)
+
+## 20. Clean-up on discussion forum
+
+On the [Zonemaster discussion forum] on GitHub, close the announcement of the
+previous version. Also close discussions that are not relevant to keep open,
+i.e. resolved issues and other questions that have been answered and some time
+has passed with no further follow-up questions.
+
+[(Top)](#table-of-contents)
+
+## 21. Clean-up on Github related to the release
+
+For each repository:
+ * Zonemaster/Zonemaster
+ * zonemaster-ldns
+ * zonemaster-engine
+ * zonemaster-cli
+ * zonemaster-backend
+ * zonemaster-gui
+
+Do the following steps related to the release:
+1. Check the issues with the release as milestone.
+   1. Close if completed or irrelevant.
+   2. Else move to a new milestone.
+2. Verify that the milestone of the release is 100% complete.
+   1. Close if completed.
+   2. Else make it complete and then close it.
+3. Verify that there are milestones for at least two of the next standard releases.
+   1. If not, create the appropriate vYYYY.x milestones (e.g v2025.1)
+   2. Also, if no due date has been chosen, set YYYY-06-15 for the .1 release and 
+      YYYY-12-15 for the .2 release.
+
+[(Top)](#table-of-contents)
+
+
 
 ## Appendix A on version number in Makefile.PL
 
@@ -473,6 +521,7 @@ parent number is `1`.
 [Zonemaster-Backend Releases]:                   https://github.com/zonemaster/zonemaster-backend/releases
 [Zonemaster-CLI Makefile.PL]:                    https://github.com/zonemaster/zonemaster-cli/blob/develop/Makefile.PL
 [Zonemaster-CLI Releases]:                       https://github.com/zonemaster/zonemaster-cli/releases
+[Zonemaster discussion forum]:                   https://github.com/orgs/zonemaster/discussions
 [Zonemaster-Engine Makefile.PL]:                 https://github.com/zonemaster/zonemaster-engine/blob/develop/Makefile.PL
 [Zonemaster-Engine Releases]:                    https://github.com/zonemaster/zonemaster-engine/releases
 [Zonemaster-GUI Releases]:                       https://github.com/zonemaster/zonemaster-gui/releases

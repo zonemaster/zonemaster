@@ -58,6 +58,19 @@ ns1                             AAAA   fda1:b2:c3::127:19:9:41
 ns2                             A      127.19.9.42
 ns2                             AAAA   fda1:b2:c3::127:19:9:42
 
+; ZONE11
+$ORIGIN no-spf-zone11.
+@                               NS     ns1.zone11.xa.
+@                               NS     ns2.zone11.xa.
+
+$ORIGIN null-spf-zone11.
+@                               NS     ns1.zone11.xa.
+@                               NS     ns2.zone11.xa.
+
+$ORIGIN non-null-spf-zone11.
+@                               NS     ns1.zone11.xa.
+@                               NS     ns2.zone11.xa.
+
 ; DNSSEC03
 $ORIGIN nsec3-opt-out-enabled-tld-dnssec03.
 @                               NS     ns1

@@ -1,0 +1,7 @@
+$ORIGIN multiple-spf-records.zone11.xa.
+$TTL 3600
+
+$INCLUDE COMMON-SCENARIO-INCLUDE
+
+@               IN  TXT  "v=spf1 -all"
+                IN  TXT  "v=spf1 a mx ~all"

@@ -48,7 +48,6 @@
   * [API method: add_api_user](#api-method-add_api_user) *(deprecated)*
   * [API method: add_batch_job](#api-method-add_batch_job) *(deprecated)*
   * [API method: batch_create](#api-method-batch_create)
-  * [API method: get_batch_job_result](#api-method-get_batch_job_result) *(deprecated)*
   * [API method: batch_status](#api-method-batch_status)
 * [Experimental API methods](#experimental-api-methods)
 
@@ -1444,7 +1443,6 @@ Trying to add a batch when the method has been disabled.
 ```
 
 
-
 ### API method: `batch_create`
 
 This method replaces deprecated method
@@ -1692,9 +1690,6 @@ If the `batch_id` is undefined the following error is returned:
 
 
 ### API method: `batch_status`
-
-This method replaces deprecated method
-[API method: get_batch_job_result](#api-method-get_batch_job_result).
 
 Returns the number of waiting, running and finished *tests*. Optionally it also
 returns the [*test ids*][Test id] of the *batch test*, in three different lists

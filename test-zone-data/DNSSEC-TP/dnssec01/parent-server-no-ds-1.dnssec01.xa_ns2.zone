@@ -1,0 +1,31 @@
+$ORIGIN parent-server-no-ds-1.dnssec01.xa. ; ns2
+
+$TTL 3600
+
+@           SOA     ns1 admin. (
+                    2025090106      ; serial
+                    6h              ; refresh
+                    1h              ; retry
+                    1w              ; expire
+                    1d )            ; minimum
+
+@           NS       ns1
+@           NS       ns2
+dns1        A        127.15.1.31
+dns1        AAAA     fda1:b2:c3:0:127:15:1:31
+dns2        A        127.15.1.32
+dns2        AAAA     fda1:b2:c3:0:127:15:1:32
+
+$ORIGIN child.parent-server-no-ds-1.dnssec01.xa.
+@           NS       ns1
+@           NS       ns2
+@           DS       42581 13 2 F28391C1ED4DC0F151EDD251A3103DCE0B9A5A251ACF6E24073771D71F3C40F9 ; 2
+ns1         A        127.15.1.41
+ns1         AAAA     fda1:b2:c3:0:127:15:1:41
+ns2         A        127.15.1.42
+ns2         AAAA     fda1:b2:c3:0:127:15:1:42
+
+
+; EOF
+
+
