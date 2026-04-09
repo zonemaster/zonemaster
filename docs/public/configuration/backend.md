@@ -139,8 +139,8 @@ SQLite            | `SQLite`
 
 ### polling_interval
 
-A strictly positive integer. Max 5 and 3 digits in the integer and fraction
-components respectively.
+A strictly positive decimal number. Max 5 and 3 digits in the integer and
+fraction components respectively.
 
 Time in seconds between database lookups by Test Agent.
 Default value: `0.5`.
