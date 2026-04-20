@@ -343,7 +343,9 @@ Accepted values: `true` or `false`. Default to `true` (enabled).
 
 The number of seconds each of the two lookups, DNS and RDAP, respectively, may
 maximally take. If the maximum time is reached for any of the two lookups, a
-timeout is executed.
+timeout is executed. The DNS lookup would then be treated as if there was no
+relevant TXT record, and the RDAP lookup would be treated as if there was no URL
+for that TLD.
 
 Accepted values: a positive integer. Default to 3.
 

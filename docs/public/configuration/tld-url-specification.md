@@ -4,7 +4,7 @@
 
 * [Introduction](#introduction)
 * [Given Domain Name]
-* [Preconditions](#preconditions)
+* [Preconditions]
 * [Limitations](#limitations)
 * [Determination of URL](#determination-of-url)
 * [Blocking policy](#blocking-policy)
@@ -47,13 +47,21 @@ executed on the domain name.
 
 ## Preconditions
 
-If the [given domain name][#given-domain-name] has one or more IDN labels
-submitted in U-label format, then those must be converted to
-[A-label][RFC 5890#2.3.2.1] format before the steps below can be run. This also
-applies to the TLD label.
+If the [given domain name] has one or more IDN labels submitted in U-label
+format, then those must be converted to [A-label][RFC 5890#2.3.2.1] format before
+the steps below can be run. This also applies to the TLD label.
 
 The given domain name must be submitted in lower case, i.e. `A-Z` must be
 downcased to `a-z` before submission.
+
+The URL used is based on the [given domain name]. If the given domain name
+matches one of the following conditions then no URL will be provided, and that
+can not be overridden by Backend configuration.
+
+* The given domain name is illegal, i.e. it contains illegal character(s) that
+  [prevents it from being tested by Zonemaster][Requirements]
+* The given domain name is the root zone (`.`).
+* The given domain name is a TLD, e.g. `se` or `fr`.
 
 
 ## Limitations
@@ -68,13 +76,8 @@ The URL used is based on the [given domain name][#given-domain-name]. If the
 given domain name matches one of the following conditions then no URL will be
 provided, and that can not be overridden by Backend configuration.
 
-* The given domain name is illegal, i.e. it contains illegal character(s) that
-  [prevents it from being tested by Zonemaster][Requirements]
-* The given domain name is the root zone (`.`).
-* The given domain name is a TLD, e.g. `se` or `fr`.
-
-In all other cases, a URL will be provided, if available and permitted by policy
-configuration.
+In all other cases a URL will be provided, if available and permitted by policy
+configuration and the restrictions in [Preconditions] are met.
 
 
 ## Determination of URL
@@ -87,7 +90,7 @@ the given domain name. The determination order is as follows:
    section [TXT record], with the URL to be used.
 3. The URL for registration services found in the IANA RDAP database as specified
    below in section [URL from IANA RDAP database].
-5. The fallback is to return the absense of a URL.
+4. The fallback is to return the absense of a URL.
 
 Both in the [Backend configuration] and the [TXT record] there may be a blocking
 policy to prevent any URL from being returned. See details in the sections below.
@@ -262,6 +265,7 @@ returned (empty URL).
 [Backend configuration]:                                    backend.md
 [IANA Root Zone Database]:                                  https://www.iana.org/domains/root/db
 [Given Domain Name]:                                        #given-domain-name
+[Preconditions]:                                            #preconditions
 [Requirements]:                                             ../specifications/tests/RequirementsAndNormalizationOfDomainNames.md
 [TXT record]:                                               #txt-record
 [URL]:                                                      https://en.wikipedia.org/wiki/URL
