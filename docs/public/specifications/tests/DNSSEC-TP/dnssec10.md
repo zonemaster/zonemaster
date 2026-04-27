@@ -109,7 +109,7 @@ This test case is only relevant if the zone has been DNSSEC signed.
 | DS10_NSEC_RRSIG_NOT_YET_VALID      | ERROR   | ns_list, keytag                       | The RRSIG (signature) with tag {keytag} for the NSEC record it not yet valid. Fetched from name servers "{ns_list}".                                                                        |
 | DS10_NSEC_RRSIG_NO_DNSKEY          | WARNING | ns_list, keytag                       | There is no DNSKEY record matching the RRSIG (signature) with tag {keytag} for the NSEC record. Fetched from name servers "{ns_list}".                                                      |
 | DS10_NSEC_RRSIG_VERIFY_ERROR       | ERROR   | ns_list, keytag                       | The RRSIG (signature) with tag {keytag} for the NSEC record cannot be verified. Fetched from name servers "{ns_list}".                                                                      |
-| DS10_NONSTANDARD_NSEC_RESPONSE     | NOTICE  | ns_list                               | The following name servers give a non-standard response to the NSEC query (unexpected NODATA response). Fetched from name servers "{ns_list}".                                              |
+| DS10_NONSTANDARD_NSEC_RESPONSE     | NOTICE  | ns_list                               | The following name servers give a non-standard response to the NSEC query (NSEC RR in authority section instead of answer section). Fetched from name servers "{ns_list}".       |
 | DS10_SERVER_NO_DNSSEC              | ERROR   | ns_list                               | The following name servers do not support DNSSEC or have not been properly configured. Testing for NSEC and NSEC3 has been skipped on these servers. Fetched from name servers "{ns_list}". |
 | DS10_ZONE_NO_DNSSEC                | NOTICE  | ns_list                               | The zone is not DNSSEC signed or not properly DNSSEC signed. Testing for NSEC and NSEC3 has been skipped. Fetched from name servers "{ns_list}".                                            |
 
@@ -251,7 +251,7 @@ A complete list of all DNS Resource Record types can be found in the
              set.
           4. If the authority section contains more than one NSEC record then
              add name server IP to the *Erroneous Multiple NSEC* set.
-          5. Else do: #
+          5. Else do:
              1. If the owner name of the NSEC record is not *Child Zone* then
                 add name server IP to the *NSEC Mismatches Apex* set.
              2. Else if the type list in the NSEC record matches at least one
