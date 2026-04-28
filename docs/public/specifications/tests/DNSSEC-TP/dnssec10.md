@@ -39,12 +39,11 @@ The use of the NSEC RR type is described in [RFC 4035][RFC 4035#section-3.1.3],
 section 3.1.3, and the description of the NSEC RR itself is in
 [RFC 4034][RFC 4034#section-4], section 4.
 
-The specification of NSEC has been updated in [RFC 4470] and [RFC 9824], though
-neither of those updates are directly relevant for this test case, some
-implementations of [RFC 4470] produces an incorrect response of NSEC queries. The
+Note that the specification of NSEC has been updated in [RFC 4470] and [RFC 9824], and
+although neither of those updates are directly relevant for this test case, some
+implementations of [RFC 4470] produce an incorrect response to NSEC queries. The
 response is a NODATA response with the NSEC record in the authority section
-instead give a response with the NSEC record in the answer section. That
-deviation is handled in the test precedure.
+rather than in the answer section. That deviation is handled in the test precedure.
 
 The description of the NSEC3 and NSEC3PARAM RRs are found in
 [RFC 5155][RFC 5155#section-3], section 3, and [RFC 5155][RFC 5155#section-4],
