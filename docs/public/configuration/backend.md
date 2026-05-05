@@ -72,7 +72,16 @@ at least 22 characters.
 
 Multiple `batch_api_key` is supported. All configured keys will be equal in
 authorization. For each key `batch_api_key` is repeated on a new line in the
-configuration file with the "Batch API Key" as value.
+configuration file with the "Batch API Key" as value. As an example, the
+following configuration in `backend_config.ini` would give three valid (but maybe
+not optimal) Batch API Keys:
+
+```
+[RPCAPI]
+batch_api_key = "NotSoSecret"
+batch_api_key = "NotSoSecretEither"
+batch_api_key = "LikewiseNotASecret"
+```
 
 ### enable_add_batch_job
 
