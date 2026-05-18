@@ -45,7 +45,6 @@ combination. See [DNSSEC10] for the specification of the tags.
 * DS10_ALGO_NOT_SUPPORTED_BY_ZM
 * DS10_ERR_MULT_NSEC
 * DS10_ERR_MULT_NSEC3
-* DS10_ERR_MULT_NSEC3PARAM
 * DS10_EXPECTED_NSEC_NSEC3_MISSING
 * DS10_HAS_NSEC
 * DS10_HAS_NSEC3
@@ -78,6 +77,7 @@ combination. See [DNSSEC10] for the specification of the tags.
 * DS10_NSEC_RRSIG_NOT_YET_VALID
 * DS10_NSEC_RRSIG_NO_DNSKEY
 * DS10_NSEC_RRSIG_VERIFY_ERROR
+* DS10_NONSTANDARD_NSEC_RESPONSE
 * DS10_SERVER_NO_DNSSEC
 * DS10_ZONE_NO_DNSSEC
 
@@ -101,7 +101,6 @@ irrelevant to the test scenario and must be ignored.
 | ERR-MULT-NSEC-1               | DS10_ERR_MULT_NSEC, DS10_HAS_NSEC                                                                           | 2)                     |
 | ERR-MULT-NSEC-2               | DS10_ERR_MULT_NSEC, DS10_HAS_NSEC                                                                           | 2)                     |
 | ERR-MULT-NSEC3-1              | DS10_ERR_MULT_NSEC3, DS10_HAS_NSEC3                                                                         | 2)                     |
-| ERR-MULT-NSEC3PARAM-1         | DS10_ERR_MULT_NSEC3PARAM, DS10_HAS_NSEC3                                                                    | 2)                     |
 | EXP-NSEC-NSEC3-MISS-1         | DS10_EXPECTED_NSEC_NSEC3_MISSING                                                                            | 2)                     |
 | INCONSISTENT-NSEC-1           | DS10_INCONSISTENT_NSEC, DS10_HAS_NSEC                                                                       | 2)                     |
 | INCONSISTENT-NSEC3-1          | DS10_INCONSISTENT_NSEC3, DS10_HAS_NSEC3                                                                     | 2)                     |
@@ -109,6 +108,7 @@ irrelevant to the test scenario and must be ignored.
 | INCONSIST-NSEC-NSEC3-2        | DS10_INCONSISTENT_NSEC_NSEC3, DS10_INCONSISTENT_NSEC, DS10_INCONSISTENT_NSEC3                               | 2)                     |
 | MIXED-NSEC-NSEC3-1            | DS10_MIXED_NSEC_NSEC3                                                                                       | 2)                     |
 | MIXED-NSEC-NSEC3-2            | DS10_MIXED_NSEC_NSEC3                                                                                       | 2)                     |
+| MULT-NSEC3PARAM-1             | DS10_HAS_NSEC3                                                                                              | 2)                     |
 | NSEC3PARAM-GIVES-ERR-ANSWER-1 | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_HAS_NSEC3, DS10_INCONSISTENT_NSEC3                                   | 2)                     |
 | NSEC3PARAM-GIVES-ERR-ANSWER-2 | DS10_NSEC3PARAM_GIVES_ERR_ANSWER, DS10_EXPECTED_NSEC_NSEC3_MISSING, DS10_INCONSISTENT_NSEC3, DS10_HAS_NSEC3 | 2)                     |
 | NSEC3PARAM-MISMATCHES-APEX-1  | DS10_NSEC3PARAM_MISMATCHES_APEX, DS10_HAS_NSEC3                                                             | 2)                     |
@@ -141,13 +141,21 @@ irrelevant to the test scenario and must be ignored.
 | NSEC-QUERY-RESPONSE-ERR-1     | DS10_NSEC_QUERY_RESPONSE_ERR, DS10_HAS_NSEC, DS10_INCONSISTENT_NSEC                                         | 2)                     |
 | NSEC-QUERY-RESPONSE-ERR-2     | DS10_NSEC_QUERY_RESPONSE_ERR, DS10_HAS_NSEC, DS10_INCONSISTENT_NSEC                                         | 2)                     |
 | NSEC-QUERY-RESPONSE-ERR-3     | DS10_NSEC_QUERY_RESPONSE_ERR, DS10_EXPECTED_NSEC_NSEC3_MISSING, DS10_INCONSISTENT_NSEC                      | 2)                     |
+| NS-NSEC-RESP-1                | DS10_HAS_NSEC, DS10_NONSTANDARD_NSEC_RESPONSE                                                               | 2)                     |
+| NS-NSEC-RESP-MISS-SOA-1       | DS10_HAS_NSEC, DS10_NONSTANDARD_NSEC_RESPONSE, DS10_NSEC_NODATA_MISSING_SOA                                 | 2)                     |
+| NS-NSEC-RESP-WRONG-SOA-1      | DS10_HAS_NSEC, DS10_NONSTANDARD_NSEC_RESPONSE, DS10_NSEC_NODATA_WRONG_SOA                                   | 2)                     |
+| NS-NSEC-RESP-MULT-NSEC-1      | DS10_HAS_NSEC, DS10_NONSTANDARD_NSEC_RESPONSE, DS10_ERR_MULT_NSEC                                           | 2)                     |
+| NS-NSEC-RESP-NSEC-MM-APEX-1   | DS10_HAS_NSEC, DS10_NONSTANDARD_NSEC_RESPONSE, DS10_NSEC_MISMATCHES_APEX                                    | 2)                     |
+| NS-NSEC-RESP-ERR-TP-1         | DS10_HAS_NSEC, DS10_NONSTANDARD_NSEC_RESPONSE, DS10_NSEC_ERR_TYPE_LIST                                      | 2)                     |
+| NS-NSEC-RESP-ERR-TP-2         | DS10_HAS_NSEC, DS10_NONSTANDARD_NSEC_RESPONSE, DS10_NSEC_ERR_TYPE_LIST                                      | 2)                     |
+| NS-NSEC-RESP-ERR-TP-3         | DS10_HAS_NSEC, DS10_NONSTANDARD_NSEC_RESPONSE, DS10_NSEC_ERR_TYPE_LIST                                      | 2)                     |
+| NS-NSEC-RESP-ERR-TP-4         | DS10_HAS_NSEC, DS10_NONSTANDARD_NSEC_RESPONSE, DS10_NSEC_ERR_TYPE_LIST                                      | 2)                     |
 | SERVER-NO-DNSSEC-1            | DS10_SERVER_NO_DNSSEC, DS10_HAS_NSEC                                                                        | 2)                     |
 | SERVER-NO-DNSSEC-2            | DS10_SERVER_NO_DNSSEC, DS10_HAS_NSEC3                                                                       | 2)                     |
 | ZONE-NO-DNSSEC-1              | DS10_ZONE_NO_DNSSEC                                                                                         | 2)                     |
 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
 * (2) All tags except for those specified as "Mandatory message tags"
-
 
 ## Test scenarios and setup of test zones
 
@@ -290,11 +298,12 @@ An NSEC3 zone. An extra NSEC3 record is returned.
       "Next Hashed Owner Name" field.
   * The NSEC3 RRset has been signed with a valid RRSIG.
 
-### ERR-MULT-NSEC3PARAM-1
-An NSEC3 zone. An extra NSEC3PARAM record is returned.
+### MULT-NSEC3PARAM-1
+An NSEC3 zone. An extra NSEC3PARAM record is returned (not an error).
 
-* Zone: err-mult-nsec3param-1.dnssec10.xa
-  * An extra NSEC3PARAM record is returned in the response to the NSEC query.
+* Zone: mult-nsec3param-1.dnssec10.xa
+  * An extra NSEC3PARAM record is returned in the response to the NSEC3PARAM
+    query.
     * The extra NSEC3PARAM record has the same owner name, but different number
       of iterations.
   * The NSEC3PARAM RRset has been signed with a valid RRSIG.
@@ -597,6 +606,93 @@ responses from ns2.
   * The response from ns1 on the NSEC query has the AA flag unset.
   * On ns2, the zone gives NODATA responses without NSEC or NSEC3 record for both
     the NSEC3PARAM query and the NSEC query.
+
+### NS-NSEC-RESP-1
+An NSEC zone. NSEC in authority section instead of answer section in response to
+NSEC query (non-standard NODATA).
+
+* Zone: ns-nsec-resp-1.dnssec10.xa
+  * The answer section is empty in response to NSEC query.
+  * The authority section holds NSEC, SOA and RRSIG records.
+
+### NS-NSEC-RESP-MISS-SOA-1
+An NSEC zone. NSEC in authority section instead of answer section in response to
+NSEC query (non-standard NODATA). SOA is missing.
+
+* Zone: ns-nsec-resp-miss-soa-1.dnssec10.xa
+  * The answer section is empty in response to NSEC query.
+  * The authority section holds NSEC and RRSIG records.
+    * SOA is missing.
+
+### NS-NSEC-RESP-WRONG-SOA-1
+An NSEC zone. NSEC in authority section instead of answer section in response to
+NSEC query (non-standard NODATA). SOA has wrong owner name.
+
+* Zone: ns-nsec-resp-wrong-soa-1.dnssec10.xa
+  * The answer section is empty in response to NSEC query.
+  * The authority section holds NSEC, SOA and RRSIG records.
+    * The owner name of the SOA record in the NODATA response to the NSEC query
+      is `sub.ns-nsec-resp-wrong-soa-1.dnssec10.xa` instead of expected
+      `ns-nsec-resp-wrong-soa-1.dnssec10.xa`.
+
+### NS-NSEC-RESP-MULT-NSEC-1
+An NSEC zone. NSEC in authority section instead of answer section in response to
+NSEC query (non-standard NODATA). Errouneously multiple NSEC.
+
+* Zone: ns-nsec-resp-mult-nsec-1.dnssec10.xa
+  * The answer section is empty in response to NSEC query.
+  * The authority section holds NSEC, SOA and RRSIG records.
+    * There is more than one NSEC record.
+
+### NS-NSEC-RESP-NSEC-MM-APEX-1
+An NSEC zone. NSEC in authority section instead of answer section in response to
+NSEC query (non-standard NODATA). The owner name of the NSEC record does not
+match apex as expected.
+
+* Zone: ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa
+  * The answer section is empty in response to NSEC query.
+  * The authority section holds NSEC, SOA and RRSIG records.
+    * The owner name of the NSEC record does not match apex.
+
+### NS-NSEC-RESP-ERR-TP-1
+An NSEC zone. NSEC in authority section instead of answer section in response to
+NSEC query (non-standard NODATA). The type list of the NSEC record lacks some
+expected types.
+
+* Zone: ns-nsec-resp-err-tp-1.dnssec10.xa
+  * The answer section is empty in response to NSEC query.
+  * The authority section holds NSEC, SOA and RRSIG records.
+    * The NSEC type list does not include "NSEC".
+
+### NS-NSEC-RESP-ERR-TP-2
+An NSEC zone. NSEC in authority section instead of answer section in response to
+NSEC query (non-standard NODATA). The type list of the NSEC record lacks some
+expected types.
+
+* Zone: ns-nsec-resp-err-tp-2.dnssec10.xa
+  * The answer section is empty in response to NSEC query.
+  * The authority section holds NSEC, SOA and RRSIG records.
+    * The NSEC type list does not include "RRSIG".
+
+### NS-NSEC-RESP-ERR-TP-3
+An NSEC zone. NSEC in authority section instead of answer section in response to
+NSEC query (non-standard NODATA). The type list of the NSEC record includes some
+unexpected types.
+
+* Zone: ns-nsec-resp-err-tp-3.dnssec10.xa
+  * The answer section is empty in response to NSEC query.
+  * The authority section holds NSEC, SOA and RRSIG records.
+    * The NSEC type list includes "NSEC3PARAM".
+
+### NS-NSEC-RESP-ERR-TP-4
+An NSEC zone. NSEC in authority section instead of answer section in response to
+NSEC query (non-standard NODATA). The type list of the NSEC record includes some
+unexpected types.
+
+* Zone: ns-nsec-resp-err-tp-4.dnssec10.xa
+  * The answer section is empty in response to NSEC query.
+  * The authority section holds NSEC, SOA and RRSIG records.
+    * The NSEC type list includes "NSEC3".
 
 ### SERVER-NO-DNSSEC-1
 An NSEC zone. No DNSKEY in response from ns1. Normal response from ns2.

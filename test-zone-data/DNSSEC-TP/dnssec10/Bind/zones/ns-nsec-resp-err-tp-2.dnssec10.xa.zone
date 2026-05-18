@@ -1,8 +1,8 @@
-$ORIGIN err-mult-nsec3param-1.dnssec10.xa.
+$ORIGIN ns-nsec-resp-err-tp-2.dnssec10.xa.
 ;
 $TTL   86400
 @   IN   SOA   localhost. root.localhost. (
-               14          ; Serial
+               15          ; Serial
                3600       ; Refresh
                1200       ; Retry
                2419200    ; Expire
