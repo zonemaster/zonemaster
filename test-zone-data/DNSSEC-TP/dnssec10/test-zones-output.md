@@ -156,10 +156,10 @@ GOOD-NSEC-2                    | DS10_HAS_NSEC                                  
 
 ```
 $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw GOOD-NSEC-2.dnssec10.xa
-   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v7.1.0
-   0.07 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1a.good-nsec-2.dnssec10.xa/127.15.10.31;ns1a.good-nsec-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.1.1
+   0.05 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1a.good-nsec-2.dnssec10.xa/127.15.10.31;ns1a.good-nsec-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns1b.good-nsec-2.dnssec10.xa/127.15.10.31;ns1b.good-nsec-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns1c.good-nsec-2.dnssec10.xa/127.15.10.31;ns1c.good-nsec-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31
 ```
---> OK, but missing names in *ns_list* in DS10_HAS_NSEC.
+--> OK
 
 Scenario name                  | Mandatory message tag                                                        | Forbidden message tags
 :------------------------------|:-----------------------------------------------------------------------------|:--------------------
@@ -167,10 +167,10 @@ GOOD-NSEC-3                    | DS10_HAS_NSEC                                  
 
 ```
 $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw GOOD-NSEC-3.dnssec10.xa
-   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v7.1.0
-   0.12 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.good-nsec-3.dnssec10.xa/127.15.10.31;ns1.good-nsec-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.good-nsec-3.dnssec10.xa/127.15.10.32;ns2.good-nsec-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.1.1
+   0.07 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=dns1.good-nsec-3.dnssec10.xa/127.15.10.31;dns1.good-nsec-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;dns2.good-nsec-3.dnssec10.xa/127.15.10.32;dns2.good-nsec-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:32;ns1.good-nsec-3.dnssec10.xa/127.15.10.31;ns1.good-nsec-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.good-nsec-3.dnssec10.xa/127.15.10.32;ns2.good-nsec-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
 ```
---> OK, but missing names in *ns_list* in DS10_HAS_NSEC.
+--> OK
 
 Scenario name                  | Mandatory message tag                                                        | Forbidden message tags
 :------------------------------|:-----------------------------------------------------------------------------|:--------------------
@@ -200,10 +200,10 @@ GOOD-NSEC3-3                   | DS10_HAS_NSEC3                                 
 
 ```
 $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw GOOD-NSEC3-3.dnssec10.xa
-   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v7.1.0
-   0.12 INFO     DNSSEC10       DS10_HAS_NSEC3  ns_list=ns1.good-nsec3-3.dnssec10.xa/127.15.10.31;ns1.good-nsec3-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.good-nsec3-3.dnssec10.xa/127.15.10.32;ns2.good-nsec3-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.1.1
+   0.07 INFO     DNSSEC10       DS10_HAS_NSEC3  ns_list=dns1.good-nsec3-3.dnssec10.xa/127.15.10.31;dns1.good-nsec3-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;dns2.good-nsec3-3.dnssec10.xa/127.15.10.32;dns2.good-nsec3-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:32;ns1.good-nsec3-3.dnssec10.xa/127.15.10.31;ns1.good-nsec3-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.good-nsec3-3.dnssec10.xa/127.15.10.32;ns2.good-nsec3-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
 ```
---> OK, but missing names in *ns_list* in DS10_HAS_NSEC.
+--> OK
 
 Scenario name                  | Mandatory message tag                                                        | Forbidden message tags
 :------------------------------|:-----------------------------------------------------------------------------|:--------------------
@@ -351,10 +351,9 @@ MULT-NSEC3PARAM-1              | DS10_HAS_NSEC3                                 
 ```
 $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw MULT-NSEC3PARAM-1.dnssec10.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.1.1
-   0.06 ERROR    DNSSEC10       DS10_ERR_MULT_NSEC3PARAM  ns_list=ns1.mult-nsec3param-1.dnssec10.xa/127.15.10.31;ns1.mult-nsec3param-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.mult-nsec3param-1.dnssec10.xa/127.15.10.32;ns2.mult-nsec3param-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
    0.06 INFO     DNSSEC10       DS10_HAS_NSEC3  ns_list=ns1.mult-nsec3param-1.dnssec10.xa/127.15.10.31;ns1.mult-nsec3param-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.mult-nsec3param-1.dnssec10.xa/127.15.10.32;ns2.mult-nsec3param-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
 ```
---> Not OK, must be retested after update of implementation.
+--> OK
 
 Scenario name                  | Mandatory message tag                                                        | Forbidden message tags
 :------------------------------|:-----------------------------------------------------------------------------|:--------------------
@@ -733,10 +732,10 @@ $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMM
 ```
 $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw ns-nsec-resp-1.dnssec10.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.1.1
-   0.06 ERROR    DNSSEC10       DS10_INCONSISTENT_NSEC  ns_list=ns1.ns-nsec-resp-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
-   0.06 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.06 NOTICE   DNSSEC10       DS10_NONSTANDARD_NSEC_RESPONSE  ns_list=ns1.ns-nsec-resp-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.07 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
 ```
---> Not OK, must be retested after update of implementation.
+--> OK
 
 
 | Scenario name           | Mandatory message tag                                                       | Forbidden message tags |
@@ -744,12 +743,12 @@ $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMM
 | NS-NSEC-RESP-MISS-SOA-1 | DS10_HAS_NSEC, DS10_NONSTANDARD_NSEC_RESPONSE, DS10_NSEC_NODATA_MISSING_SOA | 2)                     |
 
 ```
-$ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw ns-nsec-resp-miss-soa-1.dnssec10.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.1.1
-   0.07 ERROR    DNSSEC10       DS10_INCONSISTENT_NSEC  ns_list=ns1.ns-nsec-resp-miss-soa-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-miss-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-miss-soa-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-miss-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
-   0.07 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-miss-soa-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-miss-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-miss-soa-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-miss-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.06 NOTICE   DNSSEC10       DS10_NONSTANDARD_NSEC_RESPONSE  ns_list=ns1.ns-nsec-resp-miss-soa-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-miss-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-miss-soa-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-miss-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.06 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-miss-soa-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-miss-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-miss-soa-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-miss-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.06 ERROR    DNSSEC10       DS10_NSEC_NODATA_MISSING_SOA  ns_list=ns1.ns-nsec-resp-miss-soa-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-miss-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-miss-soa-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-miss-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
 ```
---> Not OK, must be retested after update of implementation.
+--> OK
 
 
 | Scenario name            | Mandatory message tag                                                     | Forbidden message tags |
@@ -759,10 +758,11 @@ $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMM
 ```
 $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw ns-nsec-resp-wrong-soa-1.dnssec10.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.1.1
-   0.06 ERROR    DNSSEC10       DS10_INCONSISTENT_NSEC  ns_list=ns1.ns-nsec-resp-wrong-soa-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-wrong-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-wrong-soa-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-wrong-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
-   0.06 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-wrong-soa-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-wrong-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-wrong-soa-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-wrong-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.07 NOTICE   DNSSEC10       DS10_NONSTANDARD_NSEC_RESPONSE  ns_list=ns1.ns-nsec-resp-wrong-soa-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-wrong-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-wrong-soa-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-wrong-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.07 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-wrong-soa-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-wrong-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-wrong-soa-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-wrong-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.07 ERROR    DNSSEC10       DS10_NSEC_NODATA_WRONG_SOA  domain=ns-nsec-resp-wrong-soa-1.dnssec10.xa; ns_list=ns1.ns-nsec-resp-wrong-soa-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-wrong-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-wrong-soa-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-wrong-soa-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
 ```
---> Not OK, must be retested after update of implementation.
+--> OK
 
 
 | Scenario name            | Mandatory message tag                                             | Forbidden message tags |
@@ -770,12 +770,12 @@ $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMM
 | NS-NSEC-RESP-MULT-NSEC-1 | DS10_HAS_NSEC, DS10_NONSTANDARD_NSEC_RESPONSE, DS10_ERR_MULT_NSEC | 2)                     |
 
 ```
-$ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw ns-nsec-resp-mult-nsec-1.dnssec10.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.1.1
-   0.07 ERROR    DNSSEC10       DS10_INCONSISTENT_NSEC  ns_list=ns1.ns-nsec-resp-mult-nsec-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-mult-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-mult-nsec-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-mult-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.07 ERROR    DNSSEC10       DS10_ERR_MULT_NSEC  ns_list=ns1.ns-nsec-resp-mult-nsec-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-mult-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-mult-nsec-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-mult-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.07 NOTICE   DNSSEC10       DS10_NONSTANDARD_NSEC_RESPONSE  ns_list=ns1.ns-nsec-resp-mult-nsec-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-mult-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-mult-nsec-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-mult-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
    0.07 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-mult-nsec-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-mult-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-mult-nsec-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-mult-nsec-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
 ```
---> Not OK, must be retested after update of implementation.
+--> OK
 
 
 | Scenario name               | Mandatory message tag                                                    | Forbidden message tags |
@@ -783,12 +783,12 @@ $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMM
 | NS-NSEC-RESP-NSEC-MM-APEX-1 | DS10_HAS_NSEC, DS10_NONSTANDARD_NSEC_RESPONSE, DS10_NSEC_MISMATCHES_APEX | 2)                     |
 
 ```
-$ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.1.1
-   0.06 ERROR    DNSSEC10       DS10_INCONSISTENT_NSEC  ns_list=ns1.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.06 NOTICE   DNSSEC10       DS10_NONSTANDARD_NSEC_RESPONSE  ns_list=ns1.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
    0.06 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.06 ERROR    DNSSEC10       DS10_NSEC_MISMATCHES_APEX  ns_list=ns1.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-nsec-mm-apex-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
 ```
---> Not OK, must be retested after update of implementation.
+--> OK
 
 
 | Scenario name         | Mandatory message tag                                                  | Forbidden message tags |
@@ -798,10 +798,11 @@ $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMM
 ```
 $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw ns-nsec-resp-err-tp-1.dnssec10.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.1.1
-   0.06 ERROR    DNSSEC10       DS10_INCONSISTENT_NSEC  ns_list=ns1.ns-nsec-resp-err-tp-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
-   0.06 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-err-tp-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.18 NOTICE   DNSSEC10       DS10_NONSTANDARD_NSEC_RESPONSE  ns_list=ns1.ns-nsec-resp-err-tp-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.19 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-err-tp-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.19 NOTICE   DNSSEC10       DS10_NSEC_ERR_TYPE_LIST  ns_list=ns1.ns-nsec-resp-err-tp-1.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-1.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-1.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
 ```
---> Not OK, must be retested after update of implementation.
+--> OK
 
 
 | Scenario name         | Mandatory message tag                                                  | Forbidden message tags |
@@ -811,10 +812,11 @@ $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMM
 ```
 $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw ns-nsec-resp-err-tp-2.dnssec10.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.1.1
-   0.07 ERROR    DNSSEC10       DS10_INCONSISTENT_NSEC  ns_list=ns1.ns-nsec-resp-err-tp-2.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-2.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
-   0.07 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-err-tp-2.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-2.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.06 NOTICE   DNSSEC10       DS10_NONSTANDARD_NSEC_RESPONSE  ns_list=ns1.ns-nsec-resp-err-tp-2.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-2.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.06 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-err-tp-2.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-2.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.06 NOTICE   DNSSEC10       DS10_NSEC_ERR_TYPE_LIST  ns_list=ns1.ns-nsec-resp-err-tp-2.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-2.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-2.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
 ```
---> Not OK, must be retested after update of implementation.
+--> OK
 
 
 | Scenario name         | Mandatory message tag                                                  | Forbidden message tags |
@@ -824,10 +826,11 @@ $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMM
 ```
 $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw ns-nsec-resp-err-tp-3.dnssec10.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.1.1
-   0.06 ERROR    DNSSEC10       DS10_INCONSISTENT_NSEC  ns_list=ns1.ns-nsec-resp-err-tp-3.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-3.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.06 NOTICE   DNSSEC10       DS10_NONSTANDARD_NSEC_RESPONSE  ns_list=ns1.ns-nsec-resp-err-tp-3.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-3.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
    0.06 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-err-tp-3.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-3.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.06 NOTICE   DNSSEC10       DS10_NSEC_ERR_TYPE_LIST  ns_list=ns1.ns-nsec-resp-err-tp-3.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-3.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-3.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
 ```
---> Not OK, must be retested after update of implementation.
+--> OK
 
 
 | Scenario name         | Mandatory message tag                                                  | Forbidden message tags |
@@ -837,10 +840,11 @@ $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMM
 ```
 $ zonemaster-cli --show-testcase --level INFO --test dnssec10 --hints ../../COMMON/hintfile --raw ns-nsec-resp-err-tp-4.dnssec10.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.1.1
-   0.06 ERROR    DNSSEC10       DS10_INCONSISTENT_NSEC  ns_list=ns1.ns-nsec-resp-err-tp-4.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-4.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-4.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-4.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
-   0.06 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-err-tp-4.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-4.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-4.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-4.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.22 NOTICE   DNSSEC10       DS10_NONSTANDARD_NSEC_RESPONSE  ns_list=ns1.ns-nsec-resp-err-tp-4.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-4.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-4.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-4.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.22 INFO     DNSSEC10       DS10_HAS_NSEC  ns_list=ns1.ns-nsec-resp-err-tp-4.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-4.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-4.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-4.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
+   0.23 NOTICE   DNSSEC10       DS10_NSEC_ERR_TYPE_LIST  ns_list=ns1.ns-nsec-resp-err-tp-4.dnssec10.xa/127.15.10.31;ns1.ns-nsec-resp-err-tp-4.dnssec10.xa/fda1:b2:c3:0:127:15:10:31;ns2.ns-nsec-resp-err-tp-4.dnssec10.xa/127.15.10.32;ns2.ns-nsec-resp-err-tp-4.dnssec10.xa/fda1:b2:c3:0:127:15:10:32
 ```
---> Not OK, must be retested after update of implementation.
+--> OK
 
 
 Scenario name                  | Mandatory message tag                                                        | Forbidden message tags
