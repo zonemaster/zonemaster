@@ -364,8 +364,9 @@ in this section. If `enable_tld_url` is `false` any override in this section
 is irrelevant.
 
 This section can contain zero, one or several keys, where a key has the form
-of a TLD and each key is for a single TLD. An IDN TLD must be as an A-label. Only
-lower case can be used in the keys. The key must match one of the following patterns:
+of a TLD and each key is for a single TLD without the trailing dot. An IDN TLD
+must be in the form of an A-label, not a U-label. Only lower case can be used in
+the keys. The key must match one of the following patterns:
   * `[a-z][a-z]+`
   * `xn--[a-z0-9-][a-z0-9-]+`
 
