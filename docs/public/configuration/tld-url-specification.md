@@ -36,9 +36,6 @@ The URL is determined based on one or more of:
 
 ## Given Domain Name
 
-In this document it is referred to the `given domain name`. The given domain name
-is usually the domain name tested by Zonemaster, but the mechanisms specified
-here can be executed on any domain name whether or not a Zonemaster test is
 In this document the term `given domain name` is used. The given domain name
 is usually the domain name tested by Zonemaster, but the mechanisms specified
 here can be used on any domain name whether or not a Zonemaster test is
