@@ -595,7 +595,7 @@ An object with the following properties:
 * `"url"`: An http or https URL. Present if and only if
   [`TLD URL SETTINGS.enable_tld_url`][TLD URL SETTINGS section.enable_tld_url]
   is true and a URL was determined (see
-  ["Determination of URL"][TLD URL Specification#det-of-url].
+  ["Determination of URL"][TLD URL Specification#det-of-url]).
 * `"source"`: A string from the following set. Present if and only if both
   "`url`" is present and
   [`TLD URL SETTINGS.include_source`][TLD URL SETTINGS section.include_source]
