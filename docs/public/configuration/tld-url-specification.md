@@ -77,7 +77,7 @@ the given domain name. The determination order is as follows:
    section [TXT record], with the URL to be used.
 3. The URL for registration services found in the IANA RDAP database as specified
    below in section [URL from IANA RDAP database].
-4. The fallback is to return the absense of a URL.
+4. The fallback is to return the absence of a URL.
 
 Both in the [Backend configuration] and the [TXT record] there may be a blocking
 policy to prevent any URL from being returned. See details in the sections below.
@@ -99,7 +99,7 @@ The following priority applies for blocking policies:
   string can be provided. The format and requirements are specified below in
   section [TXT record].
   * If a blocking policy is found then no URL is fetched from the IANA RDAP
-    database. However, this blocking policy has no affect on a TLD string
+    database. However, this blocking policy has no effect on a TLD string
     specified in [Backend configuration].
 
 
