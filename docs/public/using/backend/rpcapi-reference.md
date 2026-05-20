@@ -1466,9 +1466,9 @@ Example request:
 {
   "jsonrpc": "2.0",
   "id": 147559211348450,
-  "method": "add_batch_job",
+  "method": "batch_create",
   "params" : {
-    "batch_api_key": "123abcABC",
+    "batch_api_key": "12341337abcdefgABCDEFG",
     "test_params": {},
     "domains": [
       "zonemaster.net",
