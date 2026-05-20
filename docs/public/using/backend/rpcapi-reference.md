@@ -495,7 +495,8 @@ An array of [*language tags*][Language tag]. It is never empty.
 
 Returns a URL for the closest TLD to the domain name in the request, if availble
 and matching policy of backend and policy of the TLD. The response can also be
-without URL of different reasons. For context see [TLD URL Specification].
+without URL of different reasons. For context and details see
+[TLD URL Specification].
 
 Example 1 request:
 ```json
@@ -592,12 +593,13 @@ An object with the property:
 An object with the following properties:
 
 * `"url"`: An http or https URL. Present if and only if
-  [`TLD URL SETTINGS.enable_tld_url`] is true and a URL was determined.
+  [`TLD URL SETTINGS.enable_tld_url`][TLD URL SETTINGS section.enable_tld_url]
+  is true and a URL was determined (see
+  ["Determination of URL"][TLD URL Specification#det-of-url].
 * `"source"`: A string from the following set. Present if and only if both
   "`url`" is present and
   [`TLD URL SETTINGS.include_source`][TLD URL SETTINGS section.include_source]
   is true.
-
   * `"BACKEND CONF"`: The URL is configured in the `backend_config.ini`
   configuration file.
   * `"TXT RECORD"`: The URL is fetched from the TLD TXT record.
@@ -1832,7 +1834,9 @@ There are also some experimental API methods documented only by name:
 [Test result]:                             #test-result
 [Timestamp]:                               #timestamp
 [TLD URL Specification]:                   ../../configuration/tld-url-specification.md
+[TLD URL Specification#det-of-url]:        ../../configuration/tld-url-specification.md#determination-of-url
 [TLD URL SETTINGS section.include_source]: ../../configuration/backend.md#include_source
+[TLD URL SETTINGS section.enable_tld_url]: ../../configuration/backend.md#enable_tld_url
 [Username]:                                #username
 [Validation error data]:                   #validation-error-data
 [ZONEMASTER.age_reuse_previous_test]:      ../../configuration/backend.md#age_reuse_previous_test

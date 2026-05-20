@@ -44,19 +44,16 @@ executed on the domain name.
 
 ## Preconditions
 
-If the [given domain name] has one or more IDN labels submitted in U-label
-format, then those must be converted to [A-label][RFC 5890#2.3.2.1] format before
-the steps below can be run. This also applies to the TLD label.
-
-The given domain name must be submitted in lower case, i.e. `A-Z` must be
-downcased to `a-z` before submission.
+The [given domain name] must be a normalized as described in
+[Requirements and normalization of domain names in input][Requirements], and that
+includes that all names must be in lower case and that all IDN labels must be in
+A-label format.
 
 The URL used is based on the [given domain name]. If the given domain name
 matches one of the following conditions then no URL will be provided, and that
 can not be overridden by Backend configuration.
 
-* The given domain name is illegal, i.e. it contains illegal character(s) that
-  [prevents it from being tested by Zonemaster][Requirements]
+* The given domain name is not normalized.
 * The given domain name is the root zone (`.`).
 * The given domain name is a TLD, e.g. `se` or `fr`.
 
@@ -68,13 +65,6 @@ result in are `http` and `https`, i.e. URLs where the scheme is `http` or
 `https`. There are also restrictions on allowed characters in that URL in section
 [URL string or blocking policy]. In the same section the term `URL string` is
 used, and it is defined at the start of that section.
-
-The URL used is based on the [given domain name][#given-domain-name]. If the
-given domain name matches one of the following conditions then no URL will be
-provided, and that can not be overridden by Backend configuration.
-
-In all other cases a URL will be provided, if available and permitted by policy
-configuration and the restrictions in [Preconditions] are met.
 
 
 ## Determination of URL
@@ -255,7 +245,6 @@ TLD.
 
 If no URL was found or no URL matched the requirements, then no URL is
 returned (empty URL).
-
 
 
 [Backend RPC API]:                                          ../using/backend/rpcapi-reference.md
