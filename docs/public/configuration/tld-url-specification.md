@@ -219,8 +219,7 @@ defined.
 
 For example, use the following command where `na` is used as an example TLD:
 
-> [!NOTE]
-> Both `curl` and `jq` must be installed
+> Note that the code example requires that both `curl` and `jq` are installed.
 
 ```sh
 curl -s https://rdap.iana.org/domain/na | jq -r '.links[] | select(.rel=="related") | .href'
