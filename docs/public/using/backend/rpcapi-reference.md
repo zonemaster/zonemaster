@@ -153,8 +153,8 @@ Note that [*Batch API key*][Batch API Key] is another data type.
 
 Basic data type: string
 
-A string of alphanumerics of at least 1 and at most 80 characters. I.e. a string
-matching `/^[a-zA-Z0-9]{1,80}$/`.
+A string of alphanumerics of at least 10 and at most 64 characters. I.e. a string
+matching `/^[a-zA-Z0-9]{10,64}$/`.
 
 Used for authenticated access (see *[Privilege levels]*).
 
@@ -1519,9 +1519,7 @@ The value of `"test_params"` is an object with the following properties:
 
 #### `"result"`
 
-An object with the following properties:
-
-* `"batch_id"`: A [*hash batch id*][Hash batch id].
+A [*hash batch id*][Hash batch id].
 
 
 #### `"error"`
