@@ -179,10 +179,13 @@ Basic data type: string
 
 1. If the string is a single character, that character must be `.`.
 
-2. The length of the string must not be greater than 254 characters.
+2. When the string is split at the `.` characters each component part (`label`)
+   must be 1 to 63 characters long. For any `IDN label` the length restriction is
+   for the [A-label][RFC 5890#2.3.2.1] shape of the label.
 
-3. When the string is split at `.` characters (after IDNA conversion,
-   if needed), each component part must be at most 63 characters long.
+3. The length of the string must not be greater than 254 characters
+   when the string ends with a trailing `.` character. The length restriction is
+   counted when any `IDN label` has been converted to its A-label shape.
 
 > Note: Currently there are no restrictions on what characters that are allowed.
 
@@ -1824,6 +1827,7 @@ There are also some experimental API methods documented only by name:
 [Progress percentage]:                     #progress-percentage
 [Queue]:                                   #queue
 [RFC 5952]:                                https://datatracker.ietf.org/doc/html/rfc5952
+[RFC 5890#2.3.2.1]:                        https://datatracker.ietf.org/doc/html/rfc5890#section-2.3.2.1
 [RPCAPI.enable_add_api_user]:              ../../configuration/backend.md#enable_add_api_user
 [RPCAPI.enable_add_batch_job]:             ../../configuration/backend.md#enable_add_batch_job
 [Severity Level Definitions]:              ../../specifications/tests/SeverityLevelDefinitions.md
