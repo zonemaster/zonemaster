@@ -7,6 +7,7 @@ be run on Linux, MacOS and Windows.
 - Zonemaster-CLI: see [Using Zonemaster-CLI Docker] for how to run Zonemaster-CLI on [Docker].
 - Zonemaster-Backend: see [Using Zonemaster-Backend Docker] for how to run Zonemaster-Backend
 and Zonemaster-CLI on [Docker].
+- Zonemaster-All-In-One: see [Using Zonemaster-All-In-One Docker] for how to run Zonemaster-All-In-One image
 
 To build your own Docker image, see the [Docker Image Creation] documentation.
 
@@ -15,3 +16,4 @@ To build your own Docker image, see the [Docker Image Creation] documentation.
 [Docker Image Creation]:               https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
 [Using Zonemaster-Backend Docker]:     ../using/backend/Using-Zonemaster-Backend-Docker.md
 [Using Zonemaster-CLI Docker]:         ../using/cli.md
+[Using Zonemaster-All-In-One Docker]:         ../using/all-in-one.md

@@ -17,8 +17,8 @@ This document covers two stages in the release processes:
 1. Creating Docker images for testing.
 2. Creating Docker image for publishing on Docker Hub
 
-Presently Zonemaster-CLI, Zonemaster-Backend and Zonemaster-AIO (All In One) are published. Creating images
-for Zonemaster-LDNS, Zonemaster-Engine, Zonemaster-CLI, Zonemaster-Backend and Zonemaster-AIO
+Presently Zonemaster-CLI, Zonemaster-Backend and Zonemaster-All-In-One are published. Creating images
+for Zonemaster-LDNS, Zonemaster-Engine, Zonemaster-CLI, Zonemaster-Backend and Zonemaster-All-in-One
 is covered here.
 
 
@@ -85,7 +85,7 @@ git -C zonemaster-ldns checkout origin/develop
 git -C zonemaster-engine checkout origin/develop
 git -C zonemaster-cli checkout origin/develop
 git -C zonemaster-backend checkout origin/develop
-git -C zonemsater-gui checkout origin/develop
+git -C zonemaster-gui checkout origin/develop
 ```
 
 * Check out `master` branch when creating an image for Docker Hub at release, or
@@ -180,9 +180,9 @@ will have version v6.0.1-2.*
 
 The version of Zonemaster-Backend follows the same rules as Zonemaster-CLI.
 
-### Determine version of Zonemaster-AIO image
+### Determine version of Zonemaster-All-In-One image
 
-The version of Zonemaster-AIO follows the same rules as Zonemaster-CLI.
+The version of Zonemaster-All-In-One follows the same rules as Zonemaster-CLI.
 
 ### Tag the Zonemaster-CLI image
 
@@ -259,9 +259,9 @@ further use. List images:
 docker images
 ```
 
-### Tag the Zonemaster-AIO image
+### Tag the Zonemaster-All-In-One image
 
-For the Zonemaster-AIO image, add a version tag and a tag "latest".
+For the Zonemaster-All-In-One image, add a version tag and a tag "latest".
 
 * Add version tag:
 ```sh
@@ -278,8 +278,8 @@ plain version where "v0.0.0" should be the local version and "v0.0.0-N" should b
 the "dash version" determined above:
 ```
 cd zonemaster-gui
-docker tag zonemaster/aio:local zonemaster/aio:v0.0.0-N
-docker rmi zonemaster/aio:0.0.0
+docker tag zonemaster/all-in-one:local zonemaster/all-in-one:v0.0.0-N
+docker rmi zonemaster/all-in-one:0.0.0
 cd ..
 ```
 
@@ -308,7 +308,7 @@ above that they have the same ID.
 ```sh
 docker push zonemaster/cli:latest
 docker push zonemaster/backend:latest
-docker push zonemaster/aio:latest
+docker push zonemaster/all-in-one:latest
 ```
 
 * Set correct version (see listing above) and push image with version tag. If
@@ -316,7 +316,7 @@ docker push zonemaster/aio:latest
 ```sh
 docker push zonemaster/cli:v0.0.0
 docker push zonemaster/backend:v0.0.0
-docker push zonemaster/aio:v0.0.0
+docker push zonemaster/all-in-one:v0.0.0
 ```
 
 ## 5. Image sanity checks
@@ -372,12 +372,12 @@ docker stop zm
 
 And run `docker ps -a` to ensure that the backend is no longer running.
 
-### Zonemaster-AIO
+### Zonemaster-All-In-One
 
 Start the GUI in the background:
 
 ```
-docker run --rm -d --name zmaio -p 8080:80 zonemaster/aio:local gui
+docker run --rm -d --name zmaio -p 8080:80 zonemaster/all-in-one:local gui
 ```
 
 Run `docker ps -a`. The container named `zmaio` should be running.
