@@ -516,6 +516,7 @@ Example 1 response:
   "jsonrpc": "2.0",
   "id": 1,
   "result": {
+    "tld": "net",
     "url": "http://www.verisigninc.com",
     "source": "IANA RDAP"
   }
@@ -537,6 +538,7 @@ Example 2 response:
   "jsonrpc": "2.0",
   "id": 1,
   "result": {
+    "tld": "se",
     "url": "http://www.verisigninc.com",
     "source": "TXT RECORD"
   }
@@ -558,6 +560,7 @@ Example 3 response:
   "jsonrpc": "2.0",
   "id": 1,
   "result": {
+    "tld": "fr",
     "url": "http://www.verisigninc.com",
     "source": "BACKEND CONF"
   }
@@ -579,6 +582,7 @@ Example 4 response:
   "jsonrpc": "2.0",
   "id": 1,
   "result": {
+    "tld": "xa"
   }
 }
 ```
@@ -595,6 +599,10 @@ An object with the property:
 
 An object with the following properties:
 
+* `"tld"`: The identified TLD from the domain name in the query. Absent if the
+  domain name is the root node ".". In [A-label][RFC 5890#2.3.2.1] shape if the
+  TLD is an `IDN label`.
+  identified TLD.
 * `"url"`: An http or https URL. Present if and only if
   [`TLD URL SETTINGS.enable_tld_url`][TLD URL SETTINGS section.enable_tld_url]
   is true and a URL was determined (see
