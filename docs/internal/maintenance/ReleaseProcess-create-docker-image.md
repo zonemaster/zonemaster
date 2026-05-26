@@ -17,8 +17,8 @@ This document covers two stages in the release processes:
 1. Creating Docker images for testing.
 2. Creating Docker image for publishing on Docker Hub
 
-Presently Zonemaster-CLI and Zonemaster-Backend are published. Creating images
-for Zonemaster-LDNS, Zonemaster-Engine, Zonemaster-CLI and Zonemaster-Backend
+Presently Zonemaster-CLI, Zonemaster-Backend and Zonemaster-AIO (All In One) are published. Creating images
+for Zonemaster-LDNS, Zonemaster-Engine, Zonemaster-CLI, Zonemaster-Backend and Zonemaster-AIO
 is covered here.
 
 
@@ -73,6 +73,7 @@ git clone https://github.com/zonemaster/zonemaster-ldns
 git clone https://github.com/zonemaster/zonemaster-engine
 git clone https://github.com/zonemaster/zonemaster-cli
 git clone https://github.com/zonemaster/zonemaster-backend
+git clone https://github.com/zonemaster/zonemaster-gui
 ```
 
 ### Check out right branch depending on the use case
@@ -84,6 +85,7 @@ git -C zonemaster-ldns checkout origin/develop
 git -C zonemaster-engine checkout origin/develop
 git -C zonemaster-cli checkout origin/develop
 git -C zonemaster-backend checkout origin/develop
+git -C zonemsater-gui checkout origin/develop
 ```
 
 * Check out `master` branch when creating an image for Docker Hub at release, or
@@ -94,6 +96,7 @@ git -C zonemaster-ldns checkout origin/master
 git -C zonemaster-engine checkout origin/master
 git -C zonemaster-cli checkout origin/master
 git -C zonemaster-backend checkout origin/master
+git -C zonemaster-gui checkout origin/master
 ```
 
 ### Make sure repositories are clean and create `Makefile` in all repositories
@@ -110,7 +113,9 @@ git -C zonemaster-backend checkout origin/master
 ```sh
 (cd zonemaster-backend; git clean -dfx; git reset --hard; perl Makefile.PL)
 ```
-
+```sh
+(cd zonemaster-gui; git clean -dfx; git reset --hard)
+```
 
 ### Create images
 
@@ -128,6 +133,9 @@ make -C zonemaster-cli all dist docker-build
 ```
 ```sh
 make -C zonemaster-backend all dist docker-build
+```
+```sh
+cd zonemaster-gui; npm install; npm run release; make docker-build; cd ..
 ```
 
 
@@ -172,6 +180,9 @@ will have version v6.0.1-2.*
 
 The version of Zonemaster-Backend follows the same rules as Zonemaster-CLI.
 
+### Determine version of Zonemaster-AIO image
+
+The version of Zonemaster-AIO follows the same rules as Zonemaster-CLI.
 
 ### Tag the Zonemaster-CLI image
 
@@ -248,6 +259,38 @@ further use. List images:
 docker images
 ```
 
+### Tag the Zonemaster-AIO image
+
+For the Zonemaster-AIO image, add a version tag and a tag "latest".
+
+* Add version tag:
+```sh
+make -C zonemaster-gui docker-tag-version
+```
+
+* Add tag "latest":
+```sh
+make -C zonemaster-gui docker-tag-latest
+```
+
+* If "dash version" is to be used, set tag with that version and remove tag with
+plain version where "v0.0.0" should be the local version and "v0.0.0-N" should be
+the "dash version" determined above:
+```
+cd zonemaster-gui
+docker tag zonemaster/aio:local zonemaster/aio:v0.0.0-N
+docker rmi zonemaster/aio:0.0.0
+cd ..
+```
+
+
+All the created images can now be listed. Also consider doing [sanity checks] to
+verify that all images work. Images without tag are temporary images without
+further use. List images:
+
+```sh
+docker images
+```
 
 ## 4. Upload images to Docker Hub
 
@@ -265,6 +308,7 @@ above that they have the same ID.
 ```sh
 docker push zonemaster/cli:latest
 docker push zonemaster/backend:latest
+docker push zonemaster/aio:latest
 ```
 
 * Set correct version (see listing above) and push image with version tag. If
@@ -272,29 +316,30 @@ docker push zonemaster/backend:latest
 ```sh
 docker push zonemaster/cli:v0.0.0
 docker push zonemaster/backend:v0.0.0
+docker push zonemaster/aio:v0.0.0
 ```
 
 ## 5. Image sanity checks
 
-Zonemaster-LDNS:
+### Zonemaster-LDNS:
 
 ```sh
 docker run --rm zonemaster/ldns:local perl -MZonemaster::LDNS -E 'say Zonemaster::LDNS->new("9.9.9.9")->query("zonemaster.net")->string'
 ```
 
-Zonemaster-Engine:
+### Zonemaster-Engine:
 
 ```sh
 docker run --rm zonemaster/engine:local perl -MZonemaster::Engine -E 'say join "\n", Zonemaster::Engine->test_module("BASIC", "zonemaster.net")'
 ```
 
-Zonemaster-CLI:
+### Zonemaster-CLI:
 
 ```sh
 docker run --rm zonemaster/cli:local zonemaster.net
 ```
 
-Zonemaster-Backend:
+### Zonemaster-Backend:
 
 Start the backend in the background:
 
@@ -327,6 +372,22 @@ docker stop zm
 
 And run `docker ps -a` to ensure that the backend is no longer running.
 
+### Zonemaster-AIO
+
+Start the GUI in the background:
+
+```
+docker run --rm -d --name zmaio -p 8080:80 zonemaster/aio:local gui
+```
+
+Run `docker ps -a`. The container named `zmaio` should be running.
+
+Check if the GUI is accessible from your browser at `http://localhost:8080/` and run a test.
+
+Finally, stop the GUI:
+```sh
+docker stop zmaio
+```
 
 ## 6. Handy Docker commands
 
