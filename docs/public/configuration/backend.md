@@ -337,7 +337,7 @@ Boolean value to enable the function described in document
 policy to block the function as described in the document. If set to `false`
 the value of other keys in this section are irrelevant.
 
-Accepted values: `true` or `false`. Default to `true` (enabled).
+Accepted values: `true` or `false`. Defaults to `true` (enabled).
 
 ### lookup_timeout
 
@@ -347,14 +347,14 @@ timeout is executed. The DNS lookup would then be treated as if there was no
 relevant TXT record, and the RDAP lookup would be treated as if there was no URL
 for that TLD.
 
-Accepted values: a positive integer. Default to 3.
+Accepted values: a positive integer. Defaults to 3.
 
 ### include_source
 
 Boolean value to include information about the source of the returned URL value
 in the API response to a [`get_tld_url` method query][API method get_tld_url].
 
-Accepted values: `true` or `false`. Default to `true` (include the source
+Accepted values: `true` or `false`. Defaults to `true` (include the source
 information).
 
 ## TLD URL OVERRIDE section
