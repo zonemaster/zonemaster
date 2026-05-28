@@ -16,4 +16,4 @@ To build your own Docker image, see the [Docker Image Creation] documentation.
 [Docker Image Creation]:               https://github.com/zonemaster/zonemaster/blob/master/docs/internal/maintenance/ReleaseProcess-create-docker-image.md
 [Using Zonemaster-Backend Docker]:     ../using/backend/Using-Zonemaster-Backend-Docker.md
 [Using Zonemaster-CLI Docker]:         ../using/cli.md
-[Using Zonemaster-All-In-One Docker]:         ../using/all-in-one.md
+[Using Zonemaster-All-In-One Docker]:  ../using/gui/all-in-one.md
