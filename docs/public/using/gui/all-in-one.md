@@ -10,8 +10,7 @@
 
 The `zonemaster-all-in-one` docker image provides an All-In-One solution containing Zonemaster-Backend, Zonemaster-CLI, and Zonemaster-GUI.
 
-The `zonemaster-all-in-one` image can be run from computer that
-has Docker is installed.
+The `zonemaster-all-in-one` image can be run from computer that has Docker is installed.
 
 
 ### Using Docker
@@ -30,6 +29,19 @@ the Docker daemon, there is no support for IPv6. To avoid meaningless errors,
 use `--no-ipv6` if there is no IPv6 support. Also see section "[IPv6 support]".
 
 
+## Using the All-In-One image
+
+Start the All-In-One image with this command:
+```sh
+docker run --rm -d --name zmaio -p 8080:80 zonemaster/all-in-one gui
+```
+
+The Zonemaster GUI is now accessible via your browser at `http://localhost:8080/`.
+
+To stop the container
+```sh
+docker stop zmaio
+```
 
 ## Invoking the command line tool using All-In-One image
 
