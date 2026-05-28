@@ -539,7 +539,7 @@ Example 2 response:
   "id": 1,
   "result": {
     "tld": "se",
-    "url": "http://www.verisigninc.com",
+    "url": "http://www.internetstiftelsen.se",
     "source": "TXT RECORD"
   }
 }
@@ -561,7 +561,7 @@ Example 3 response:
   "id": 1,
   "result": {
     "tld": "fr",
-    "url": "http://www.verisigninc.com",
+    "url": "http://www.afnic.fr",
     "source": "BACKEND CONF"
   }
 }
