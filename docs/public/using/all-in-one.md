@@ -10,11 +10,8 @@
 
 The `zonemaster-all-in-one` docker image provides an All-In-One solution containing Zonemaster-Backend, Zonemaster-CLI, and Zonemaster-GUI.
 
-The `zonemaster-cli` tool can be run from the command line of any computer that
-meets one of the following requirements:
-
-* Docker is installed on the computer, or
-* Zonemaster-CLI has been installed on the computer.
+The `zonemaster-all-in-one` image can be run from computer that
+has Docker is installed.
 
 
 ### Using Docker
