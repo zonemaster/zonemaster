@@ -602,7 +602,6 @@ An object with the following properties:
 * `"tld"`: The identified TLD from the domain name in the query. Absent if the
   domain name is the root node ".". In [A-label][RFC 5890#2.3.2.1] shape if the
   TLD is an `IDN label`.
-  identified TLD.
 * `"url"`: An http or https URL. Present if and only if
   [`TLD URL SETTINGS.enable_tld_url`][TLD URL SETTINGS section.enable_tld_url]
   is true and a URL was determined (see
