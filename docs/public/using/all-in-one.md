@@ -37,7 +37,7 @@ use `--no-ipv6` if there is no IPv6 support. Also see section "[IPv6 support]".
 The zonemaster cli tool `zonemaster-cli` can also be invoked from the `zonemaster-all-in-one` image like 
 `zonemaster-cli` docker image, by adding `cli` argument.
 
-There are two usable Docker images to run `zonemaster-cli`:
+There are two more usable Docker images to run `zonemaster-cli`:
 `zonemaster/cli` and `zonemaster/backend`.
 For more information on how to use `zonemaster/backend` image to invoke
 the cli, see the [Docker Zonemaster-Backend] documentation.
