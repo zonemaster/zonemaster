@@ -1,0 +1,22 @@
+; Shared, $ORIGIN must implicit.
+
+$TTL 3600
+
+@       SOA     ns1 admin. (
+                 2025103000      ; serial
+                 6h              ; refresh
+                 1h              ; retry
+                 1w              ; expire
+                 1d )            ; minimum
+
+@       NS       ns1
+@       NS       ns2
+
+@       TXT      "Placeholder"
+
+ns1     A        127.15.1.41
+ns1     AAAA     fda1:b2:c3:0:127:15:1:41
+ns2     A        127.15.1.42
+ns2     AAAA     fda1:b2:c3:0:127:15:1:42
+
+; EOF

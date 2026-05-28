@@ -3,4 +3,5 @@
 
 Test zone specifications are available for:
 
-* [ZONE09](zone09.md)
+* [Zone09](zone09.md)
+* [Zone11](zone11.md)

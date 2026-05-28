@@ -51,6 +51,12 @@ Use `--no-ipv6` to avoid meaningless errors if there is no IPv6 support.
 The most basic use of the `zonemaster-cli` command is to just test a domain, e.g.
 "zonemaster.net".
 
+There are two usable Docker images to run `zonemaster-cli`:
+`zonemaster/cli` and `zonemaster/backend`.
+For more information on how to use `zonemaster/backend` image to invoke
+the cli, see the [Docker Zonemaster-Backend] documentation.
+
+
 ```sh
 docker run -t --rm zonemaster/cli zonemaster.net --no-ipv6
 ```
@@ -312,7 +318,7 @@ automatically include the `--platform linux/amd64` option every time you run
 `docker run`.
 
 
-### IPv6 support
+## IPv6 support
 
 On a Linux system IPv6 support can be enabled by creating or updating
 `/etc/docker/daemon.json`. This is a minimal file that enables IPv6 support:
@@ -339,3 +345,4 @@ Also see the official Docker documentation "[Enable IPv6 support]".
 [Severity Level Definitions]:      ../specifications/tests/SeverityLevelDefinitions.md
 [Translation]:                     #translation
 [Enable IPv6 support]:             https://docs.docker.com/config/daemon/ipv6/
+[Docker Zonemaster-Backend]:       backend/Using-Zonemaster-Backend-Docker.md#invoking-the-command-line-tool-using-docker

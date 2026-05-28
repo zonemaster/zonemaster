@@ -1,0 +1,5 @@
+$ORIGIN no-spf-zone11.
+
+$INCLUDE COMMON-TLD-INCLUDE
+
+; This zone file intentionally left blank

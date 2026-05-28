@@ -1,0 +1,6 @@
+$ORIGIN good-spf-2.zone11.xa.
+$TTL 3600
+
+$INCLUDE COMMON-SCENARIO-INCLUDE
+
+@               IN  TXT  "v=spf1 a mx ip4:192.0.2.50 ip6:2001:db8:0:8::50 -all"

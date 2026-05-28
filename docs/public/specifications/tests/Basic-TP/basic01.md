@@ -367,7 +367,7 @@ a specific name server. Compare with "[DNS Lookup]".
 [DNS Query]:                                                      ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
 [DNS Response]:                                                   ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
 [ERROR]:                                                          ../SeverityLevelDefinitions.md#error
-[Get parent zone]:                                                ../MethodsV2.md#method-get-parent-ns-ip-addresses
+[Get parent zone]:                                                ../MethodsV2.md#method-get-parent-ns-names-and-ip-addresses
 [INFO]:                                                           ../SeverityLevelDefinitions.md#info
 [List of Root Servers]:                                           https://www.iana.org/domains/root/servers
 [NOTICE]:                                                         ../SeverityLevelDefinitions.md#notice

@@ -1,0 +1,17 @@
+$ORIGIN .
+$TTL 3600
+
+@       SOA     ns1.no-spf.root-servers.zone11.xa. admin.zone11.xa. (
+                2025080400      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+        NS      ns1.no-spf.root-servers.zone11.xa.
+        NS      ns2.no-spf.root-servers.zone11.xa.
+
+ns1.no-spf.root-servers.zone11.xa.  A      127.19.11.41
+                                    AAAA   fda1:b2:c3::127:19:11:41
+ns2.no-spf.root-servers.zone11.xa.  A      127.19.11.42
+                                    AAAA   fda1:b2:c3::127:19:11:42

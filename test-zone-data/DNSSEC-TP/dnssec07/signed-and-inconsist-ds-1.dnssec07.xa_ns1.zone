@@ -1,0 +1,33 @@
+$ORIGIN signed-and-inconsist-ds-1.dnssec07.xa. ; parent (ns1)
+
+$TTL 3600
+
+@            SOA     ns1 admin. (
+                     2025100104      ; serial
+                     6h              ; refresh
+                     1h              ; retry
+                     1w              ; expire
+                     1d )            ; minimum
+
+@            NS      ns1
+@            NS      ns2
+ns1          A       127.15.7.31             
+ns1          AAAA    fda1:b2:c3:0:127:15:7:31
+ns2          A       127.15.7.32             
+ns2          AAAA    fda1:b2:c3:0:127:15:7:32
+
+@            TXT     "Placeholder"
+
+$ORIGIN child.signed-and-inconsist-ds-1.dnssec07.xa.
+@            NS      ns1
+@            NS      ns2
+ns1          A       127.15.7.41             
+ns1          AAAA    fda1:b2:c3:0:127:15:7:41
+ns2          A       127.15.7.42             
+ns2          AAAA    fda1:b2:c3:0:127:15:7:42
+@            DS      51298 13 2 60A48DB6C1F4B993E3D7C0869C0C535A70C9A6D1899DE86563D485B5 15EE1918
+@            RRSIG  DS 8 2 3600 20351012164605 20250928151605 54394 signed-and-inconsist-ds-1.dnssec07.xa. ewSq03Pu8mWZWKNCsuJZ5MzO3PCqtqfR/MbslNbRtRHyynj+yZqbdhCS5dwTEgmDMkpIuAranFbwqnJ6nkncuffpQu/oEOjRHQQslf2JB4RtQlqtjNjX9N+YRjCdgm9oY4k9h4268YlP92oYXnfX5Cj5h6v5aMjdbY4X38fvXO/DruNB9mLHsOkdSLld2f/TOJ4IeXqr2MGubgeUqybsNX4c9XkypTMLazqBeg1mK8GNX1n+msOaln8zCiCMPDep/ShHuZuBtmayUSCFwb5oOd80deEyphf7HBl6/vgXRmPpvqVjBSChtxjrkSjP+DKMn1fkr7jPLS4Bv3jEznFlGw==
+
+
+
+; EOF

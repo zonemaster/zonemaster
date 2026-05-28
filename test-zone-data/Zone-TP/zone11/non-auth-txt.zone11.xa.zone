@@ -1,0 +1,6 @@
+$ORIGIN non-auth-txt.zone11.xa.
+$TTL 3600
+
+$INCLUDE COMMON-SCENARIO-INCLUDE
+
+@               IN  TXT  "Look ma, no AA bit!"

@@ -1,0 +1,8 @@
+; For ns{2,3}.child.zone11.xa
+
+$ORIGIN spf-missing-on-one.zone11.xa.
+$TTL 3600
+
+$INCLUDE COMMON-SCENARIO-INCLUDE-THREE-NS
+
+@               IN  TXT  "v=spf1 ip4:192.0.2.50 ip6:2001:db8:0:8::50 -all"

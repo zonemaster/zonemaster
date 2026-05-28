@@ -141,11 +141,11 @@ the servers. NS are out-of-bailiwick.
 * Zone: mult-soa-mnames-no-del-undel-2.consistency06.xa.
   * NS are out-of-bailiwick, "ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb"
     and "ns4.mult-soa-mnames-no-del-undel-2.consistency06.xb".
-  * MNAME in SOA on ns1 equal to ns1
-  * MNAME in SOA on ns2 equal to ns2
+  * MNAME in SOA on ns3 equal to ns3
+  * MNAME in SOA on ns4 equal to ns4
   * Undelegated data:
     * ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
-    * ns3.mult-soa-mnames-no-del-undel-2.consistency06.xb
+    * ns4.mult-soa-mnames-no-del-undel-2.consistency06.xb
 
 ### NO-RESPONSE
 No name server responds.

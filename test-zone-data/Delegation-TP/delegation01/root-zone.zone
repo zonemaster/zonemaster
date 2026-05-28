@@ -2,7 +2,7 @@ $ORIGIN .
 $TTL 3600
 
 @       SOA     ns1. admin.xa. (
-                2024110100      ; serial
+                2025071600      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -13,10 +13,10 @@ $TTL 3600
 
 
 root-ns1.xa.     A      127.16.1.27
-root-ns1.xa.     AAAA   fda1:b2:c3::127:16:1:23
+root-ns1.xa.     AAAA   fda1:b2:c3::127:16:1:27
 
 root-ns2.xa.     A      127.16.1.28
-root-ns2.xa.     AAAA   fda1:b2:c3::127:16:1:24
+root-ns2.xa.     AAAA   fda1:b2:c3::127:16:1:28
 
 $ORIGIN delegation01.xa.
 @                NS     ns1

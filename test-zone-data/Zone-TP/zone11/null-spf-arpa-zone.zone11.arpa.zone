@@ -1,0 +1,5 @@
+$ORIGIN null-spf-arpa-zone.zone11.arpa.
+
+$INCLUDE COMMON-SCENARIO-INCLUDE
+
+@               IN  TXT  "v=spf1 -all"
