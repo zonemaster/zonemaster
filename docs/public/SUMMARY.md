@@ -28,6 +28,7 @@
     - [Backend](configuration/backend.md)
         - [Environment Variables](configuration/backend-environment-variables.md)
     - [GUI](configuration/gui.md)
+    - [TLD URL Specification](configuration/tld-url-specification.md)
 - [Using](using/README.md)
     - [CLI](using/cli.md)
     - [Backend](using/backend/README.md)
