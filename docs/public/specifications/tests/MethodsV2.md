@@ -157,8 +157,8 @@ This Method uses the following input units defined in section [Methods Inputs]:
    address and zone name tuple from the set ("Server Name", "Server Address"
    and "Zone Name") and do:
 
-   1.  Extract and remove the *Server Name*, *Server Address* and *Zone Name*
-       tuple from *Remaining Servers*.
+   1.  Remove the *Server Name*, *Server Address* and *Zone Name* tuple from
+       *Remaining Servers*.
    2.  Insert the *Server Name*, *Server Address* and *Zone Name* tuple into
        *Handled Servers*.
    3.  If *Handled Servers* contains two or more tuples with the same
@@ -187,8 +187,11 @@ This Method uses the following input units defined in section [Methods Inputs]:
           * AA bit not set in response.
           * No NS records in answer section
           * Owner name of any of the NS records is not *Zone Name*.
-   9.  Extract the name server names from the NS records and any address records
-       in the additional section.
+   9.  Extract the name server names from the NS records in the answer section
+       and any matching address records in the additional section.
+       1. For each IP address add the name server name, IP address and *Zone
+          Name* tuple to the *Remaining Servers* set, unless such a tuple
+          already exists in *Handled Servers*.
    10. Do [DNS Lookup] of name server names (A and AAAA) not already listed in
        the additional section of the response. If a CNAME is encountered,
        follow the chain of CNAME records but use the original name as obtained
@@ -196,7 +199,8 @@ This Method uses the following input units defined in section [Methods Inputs]:
        1. For each IP address add the name server name, IP address and *Zone
           Name* tuple to the *Remaining Servers* set, unless such a tuple
           already exists in *Handled Servers*.
-       2. Ignore any failing lookups or lookups resulting in NODATA or NXDOMAIN.
+       2. Ignore any failing lookups or lookups, such as NODATA, NXDOMAIN, non-AA
+          response or no response at all.
    11. Create "Intermediate Query Name" by copying *Zone Name* as start value.
    12. Run a loop processing *Server Name* and *Server Address* (jumps back
        here from the steps below).
@@ -227,9 +231,11 @@ This Method uses the following input units defined in section [Methods Inputs]:
                    * [RCODE Name] different from NoError in response.
                    * AA bit not set in response.
                    * No NS records in answer section.
-                   * Owner name of any of the NS records is not *Intermediate Query Name*.
-             4. Extract the name server names from the NS records and any address
-                records in the additional section.
+                   * Owner name of any of the NS records is not
+                     *Intermediate Query Name*.
+             4. Extract the name server names from the NS records in the answer
+                section and any matching address records in the additional
+                section.
              5. Do [DNS Lookup] of name server names (A and AAAA) not already
                 listed in the additional section of the response. If a CNAME
                 is encountered, follow the chain of CNAME records but use the
@@ -255,7 +261,8 @@ This Method uses the following input units defined in section [Methods Inputs]:
                 Servers* set, unless such a tuple already exists in *Handled
                 Servers*.
           3. Go to next server in *Remaining Servers*.
-       7. Else, if the [RCODE Name] is NoError and the AA is set then do:
+       7. Else, if the [RCODE Name] is NoError or NXDomain, and the AA is set
+          then do:
           1. If *Intermediate Query Name* is not equal to *Child Zone* then
              go back to the start of the loop.
           2. Else go to next server in *Remaining Servers*.
