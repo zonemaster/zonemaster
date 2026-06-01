@@ -91,7 +91,7 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 2) Install dependencies from binary packages:
 
    ```sh
-   sudo apt install autoconf automake build-essential cpanminus libclass-accessor-perl libclone-perl libdevel-checklib-perl libemail-valid-perl libextutils-pkgconfig-perl libfile-sharedir-perl libfile-slurp-perl libidn2-dev libintl-perl libio-socket-inet6-perl liblist-compare-perl liblist-moreutils-perl liblocale-po-perl liblog-any-perl libmail-spf-perl libmime-base32-perl libmodule-find-perl libmodule-install-perl libmodule-install-xsutil-perl libnet-dns-perl libnet-ip-xs-perl libpod-coverage-perl libreadonly-perl libssl-dev libsub-override-perl libtest-differences-perl libtest-exception-perl libtest-fatal-perl libtest-nowarnings-perl libtest-pod-perl libtext-csv-perl libyaml-libyaml-perl libtool m4
+   sudo apt install autoconf automake build-essential cpanminus libclass-accessor-perl libclone-perl libcrypt-dev libdevel-checklib-perl libemail-valid-perl libextutils-pkgconfig-perl libfile-sharedir-perl libfile-slurp-perl libidn2-dev libintl-perl libio-socket-inet6-perl liblist-compare-perl liblist-moreutils-perl liblocale-po-perl liblog-any-perl libmail-spf-perl libmime-base32-perl libmodule-find-perl libmodule-install-perl libmodule-install-xsutil-perl libnet-dns-perl libnet-ip-xs-perl libpod-coverage-perl libreadonly-perl libssl-dev libsub-override-perl libtest-differences-perl libtest-exception-perl libtest-fatal-perl libtest-nowarnings-perl libtest-pod-perl libtext-csv-perl libyaml-libyaml-perl libtool m4
    ```
 
 3) Install Zonemaster::LDNS and Zonemaster::Engine.
