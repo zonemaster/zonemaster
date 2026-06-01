@@ -154,8 +154,8 @@ DNS queries follow, unless otherwise specified below, what is specified for
           * AA bit not set in response.
           * No NS records in answer section
           * Owner name of any of the NS records is not *Zone Name*.
-   8.  Extract the name server names from the NS records and any address records
-       in the additional section.
+   8.  Extract the name server names from the NS records in the answer section
+       and any matching address records in the additional section.
        1. For each IP address add the IP address and *Zone Name* to the
           *Remaining Servers* set, unless the IP address is already listed in
           *Handled Servers*, together with *Zone Name*.
@@ -165,7 +165,8 @@ DNS queries follow, unless otherwise specified below, what is specified for
        1. For each IP address add the IP address and *Zone Name* to the
           *Remaining Servers* set, unless the IP address is already listed in
           *Handled Servers*, together with *Zone Name*.
-       2. Ignore any failing lookups or lookups, such as NODATA, NXDOMAIN, non-AA
+       2. Ignore any lookup that goes through a CNAME.
+       3. Ignore any failing lookups or lookups, such as NODATA, NXDOMAIN, non-AA
           response or no response at all.
    10. Create "Intermediate Query Name" by copying *Zone name* as start value.
    11. Run a loop processing the same *Server Address* (jumps back here from the steps
@@ -201,11 +202,15 @@ DNS queries follow, unless otherwise specified below, what is specified for
                    * [RCODE Name] different from NoError in response.
                    * AA bit not set in response.
                    * No NS records in answer section.
-                   * Owner name of any of the NS records is not *Intermediate Query Name*.
-             4. Extract the name server names from the NS records and any address
-                records in the additional section.
+                   * Owner name of any of the NS records is not
+                     *Intermediate Query Name*.
+             4. Extract the name server names from the NS records in the answer
+                section and any matching address records in the additional
+                section.
              5. Do [DNS Lookup] of name server names (A and AAAA) not already
                 listed in the additional section of the response.
+                    1. Ignore any lookup that goes through a CNAME.
+                    2. Ignore any failing lookups or lookups, such as NODATA, NXDOMAIN, non-AA
              6. For each IP address add the IP address and *Intermediate Query Name*
                 to the *Remaining Servers* set unless the IP address is already
                 listed in *Handled Servers* together with *Intermediate Query Name*.
