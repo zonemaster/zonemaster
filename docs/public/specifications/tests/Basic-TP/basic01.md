@@ -270,39 +270,39 @@ DNS queries follow, unless otherwise specified below, what is specified for
           *Server Address* and go to next server in *Remaining Servers*.
 
 
-2. If the *Parent Found* set is non-empty, then
+7. If the *Parent Found* set is non-empty, then
    1. For each parent zone name output *[B01_PARENT_FOUND]*, parent zone name
       and the set of name server IP addresses for that name.
    2. If not all members of the set have the same parent zone then output
       *[B01_PARENT_UNDETERMINED]* and the whole set of name server IP addresses.
 
-7. If the *Parent Found* set is empty, then output *[B01_PARENT_NOT_FOUND]*.
+8. If the *Parent Found* set is empty, then output *[B01_PARENT_NOT_FOUND]*.
 
-8. If one or both of the *Delegation Found* and the *AA SOA Found* sets are
-    non-empty, then do:
-    1. Output *[B01_CHILD_FOUND]* with *Child Zone*.
-    2. If one or more of the following five sets are also non-empty then output
-       *[B01_INCONSISTENT_DELEGATION]* with *Child Zone*, parent zone name and
-       the combined set of name server IP addresses from all five sets.
-          * *AA NXDomain Found*
-          * *AA CNAME Found*
-          * *CNAME with Referral Found*
-          * *AA DNAME Found*
-          * *AA NODATA Found*
+9. If one or both of the *Delegation Found* and the *AA SOA Found* sets are
+   non-empty, then do:
+   1. Output *[B01_CHILD_FOUND]* with *Child Zone*.
+   2. If one or more of the following five sets are also non-empty then output
+      *[B01_INCONSISTENT_DELEGATION]* with *Child Zone*, parent zone name and
+      the combined set of name server IP addresses from all five sets.
+         * *AA NXDomain Found*
+         * *AA CNAME Found*
+         * *CNAME with Referral Found*
+         * *AA DNAME Found*
+         * *AA NODATA Found*
 
-9. If *[B01_CHILD_FOUND]* has been outputted, but not
+10. If *[B01_CHILD_FOUND]* has been outputted, but not
     *[B01_INCONSISTENT_DELEGATION]*, and the *AA NXDomain Response* set is
     non-empty then for each domain name in that set output
     *B01_UNEXPECTED_NXDOMAIN* with the domain name from the set, the list of IP
     addresses for that domain name, and the *Child Zone*.
 
-10. If both of the *Delegation Found* and the *AA SOA Found* sets are empty, then
+11. If both of the *Delegation Found* and the *AA SOA Found* sets are empty, then
     do:
        1. Create "Superdomain" as a copy of *Child Zone* with the first label
           removed.
        2. Output *[B01_NO_CHILD]* with *Child Zone* and *Superdomain*.
 
-11. If the *AA DNAME Found* set is non-empty then do:
+12. If the *AA DNAME Found* set is non-empty then do:
     1. For each DNAME target in the set output *[B01_CHILD_IS_ALIAS]* with name
        server IP list, *Child Zone* and the DNAME target.
     2. If not all members of the set have the same DNAME target, output
