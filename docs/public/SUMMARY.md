@@ -28,6 +28,7 @@
     - [Global Cache](configuration/global-cache.md)
     - [Backend configuration in "backend_config.ini"](configuration/backend.md)
     - [Backend environment variables](configuration/backend-environment-variables.md)
+    - [URL to TLD of tested domain](configuration/tld-url-specification.md)
     - [GUI](configuration/gui/README.md)
         - [Building a custom Zonemaster-GUI](configuration/gui/building-custom-gui.md)
         - [Run-time configuration using "config.json"](configuration/gui/configuring-using-config-json.md)
