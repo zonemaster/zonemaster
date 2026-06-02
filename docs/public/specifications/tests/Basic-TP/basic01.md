@@ -67,7 +67,7 @@ Input for this Test Case:
 | B01_PARENT_NOT_FOUND        | WARNING |                                      | The parent zone cannot be found.                                                                                                                                                               |
 | B01_PARENT_UNDETERMINED     | WARNING | ns_list                              | The parent zone cannot be determined on name servers "{ns_list}".                                                                                                                              |
 | B01_ROOT_HAS_NO_PARENT      | INFO    |                                      | This is a test of the root zone which has no parent zone.                                                                                                                                      |
-| B01_UNEXPECTED_NXDOMAIN     | ERROR   | query_name, domain, ns_list          | Unexpected NXDOMAIN on intermediate name "{query_name}" between apex and delegation point. The {domain} might not be resolvable on some DNS resolvers. Returned from name servers "{ns_list}". |
+| B01_UNEXPECTED_NXDOMAIN     | ERROR   | query_name, domain, ns_list          | Unexpected NXDOMAIN on intermediate name "{query_name}" between apex and delegation point. Because of that, the zone "{domain}" might not be resolvable on some DNS resolvers. Returned from name servers "{ns_list}". |
 | B01_SERVER_ZONE_ERROR       | DEBUG   | query_name, rrtype, ns               | Unexpected response on query for "{query_name}" with query type "{rrtype}" to "{ns}".                                                                                                          |
 
 The value in the Level column is the default severity level of the message. The
@@ -167,7 +167,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
           *Handled Servers*, together with *Zone Name*.
        2. Ignore any lookup that goes through a CNAME.
        3. Ignore any failing lookups or negative responses, such as NODATA,
-          NXDOMAIN, non-AA response or no response at all.
+          NXDOMAIN, non-AA responses or no response at all.
    10. Create "Intermediate Query Name" by copying *Zone name* as start value.
    11. Run a loop processing the same *Server Address* (jumps back here from the steps
        below).
@@ -209,8 +209,8 @@ DNS queries follow, unless otherwise specified below, what is specified for
                 section.
              5. Do [DNS Lookup] of name server names (A and AAAA) not already
                 listed in the additional section of the response.
-                    1. Ignore any lookup that goes through a CNAME.
-                    2. Ignore any failing lookups or lookups, such as NODATA, NXDOMAIN, non-AA
+                   1. Ignore any lookup that goes through a CNAME.
+                   2. Ignore any failing lookups or negative responses, such as NODATA, NXDOMAIN, non-AA responses or no response at all.
              6. For each IP address add the IP address and *Intermediate Query Name*
                 to the *Remaining Servers* set unless the IP address is already
                 listed in *Handled Servers* together with *Intermediate Query Name*.

@@ -200,7 +200,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
           Name* tuple to the *Remaining Servers* set, unless such a tuple
           already exists in *Handled Servers*.
        2. Ignore any failing lookups or lookups, such as NODATA, NXDOMAIN, non-AA
-          response or no response at all.
+          responses or no response at all.
    11. Create "Intermediate Query Name" by copying *Zone Name* as start value.
    12. Run a loop processing *Server Name* and *Server Address* (jumps back
        here from the steps below).
@@ -261,7 +261,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
                 Servers* set, unless such a tuple already exists in *Handled
                 Servers*.
           3. Go to next server in *Remaining Servers*.
-       7. Else, if the [RCODE Name] is NoError or NXDomain, and the AA is set
+       7. Else, if the [RCODE Name] is NoError or NXDomain, and the AA bit is set
           then do:
           1. If *Intermediate Query Name* is not equal to *Child Zone* then
              go back to the start of the loop.
