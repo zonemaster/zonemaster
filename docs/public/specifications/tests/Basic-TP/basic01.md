@@ -36,7 +36,7 @@ If no parent can be determined, there cannot be any delegation.
 ## Scope
 
 The algorithm in this test case should match the algorithm in method
-[Get parent zone].
+[Get parent NS names and IP addresses] in [MethodsV2].
 
 If the child zone does not exist (is not delegated), the only
 test case to be run after this test case is [BASIC03]. However,
@@ -389,9 +389,10 @@ a specific name server. Compare with "[DNS Lookup]".
 [DNS Query]:                                                      ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
 [DNS Response]:                                                   ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
 [ERROR]:                                                          ../SeverityLevelDefinitions.md#error
-[Get parent zone]:                                                ../MethodsV2.md#method-get-parent-ns-names-and-ip-addresses
+[Get parent NS names and IP addresses]:                           ../MethodsV2.md#method-get-parent-ns-names-and-ip-addresses
 [INFO]:                                                           ../SeverityLevelDefinitions.md#info
 [List of Root Servers]:                                           https://www.iana.org/domains/root/servers
+[MethodsV2]:                                                      ../MethodsV2.md
 [NOTICE]:                                                         ../SeverityLevelDefinitions.md#notice
 [Non-referral]:                                                   #terminology
 [Query type]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
