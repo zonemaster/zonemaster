@@ -58,42 +58,42 @@ The test case can output any of these message tags, but not necessarily in any c
 If a message tag is not listed for the scenario, its presence or non-presence is
 irrelevant to the test scenario and must be ignored.
 
-Scenario name             | Mandatory message tag                                                             | Forbidden message tags
-:-------------------------|:----------------------------------------------------------------------------------|:----------------------
-GOOD-1                    | B01_CHILD_FOUND, B01_PARENT_FOUND                                                 | 2)
-GOOD-MIXED-1              | B01_CHILD_FOUND, B01_PARENT_FOUND                                                 | 2)
-GOOD-MIXED-2              | B01_CHILD_FOUND, B01_PARENT_FOUND                                                 | 2)
-GOOD-PARENT-HOST-1        | B01_CHILD_FOUND, B01_PARENT_FOUND                                                 | 2)
-GOOD-GRANDPARENT-HOST-1   | B01_CHILD_FOUND, B01_PARENT_FOUND                                                 | 2)
-GOOD-UNDEL-1              | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                           | 2)
-GOOD-MIXED-UNDEL-1        | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                           | 2)
-GOOD-MIXED-UNDEL-2        | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                           | 2)
-NO-DEL-UNDEL-1            | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                           | 2)
-NO-DEL-MIXED-UNDEL-1      | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                           | 2)
-NO-DEL-MIXED-UNDEL-2      | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                           | 2)
-NO-CHILD-1                | B01_NO_CHILD, B01_PARENT_FOUND                                                    | 2)
-NO-CHILD-2                | B01_NO_CHILD, B01_PARENT_FOUND                                                    | 2)
-NO-CHLD-PAR-UNDETER-1     | B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED                           | 2)
-CHLD-FOUND-PAR-UNDET-1    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED                        | 2)
-CHLD-FOUND-INCONSIST-1    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
-CHLD-FOUND-INCONSIST-2    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
-CHLD-FOUND-INCONSIST-3    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
-CHLD-FOUND-INCONSIST-4    | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND| 2)
-CHLD-FOUND-INCONSIST-5    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
-CHLD-FOUND-INCONSIST-6    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
-CHLD-FOUND-INCONSIST-7    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
-CHLD-FOUND-INCONSIST-8    | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
-CHLD-FOUND-INCONSIST-9    | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND| 2)
-CHLD-FOUND-INCONSIST-10   | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                    | 2)
-NO-DEL-UNDEL-NO-PAR-1     | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                           | 2)
-NO-DEL-UNDEL-PAR-UND-1    | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                           | 2)
-NO-CHLD-NO-PAR-1          | B01_NO_CHILD, B01_PARENT_NOT_FOUND, B01_SERVER_ZONE_ERROR                         | 2)
-CHILD-ALIAS-1             | B01_CHILD_IS_ALIAS, B01_NO_CHILD, B01_PARENT_FOUND                                | 2)
-CHILD-ALIAS-2             | B01_CHILD_IS_ALIAS, B01_NO_CHILD, B01_INCONSISTENT_ALIAS, B01_PARENT_FOUND        | 2)
-ZONE-ERR-GRANDPARENT-1    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)
-ZONE-ERR-GRANDPARENT-2    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)
-ZONE-ERR-GRANDPARENT-3    | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)
-ROOT-ZONE                 | B01_CHILD_FOUND, B01_ROOT_HAS_NO_PARENT                                           | 2)
+| Scenario name           | Mandatory message tag                                                              | Forbidden message tags |
+|:------------------------|:-----------------------------------------------------------------------------------|:-----------------------|
+| GOOD-1                  | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
+| GOOD-MIXED-1            | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
+| GOOD-MIXED-2            | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
+| GOOD-PARENT-HOST-1      | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
+| GOOD-GRANDPARENT-HOST-1 | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
+| GOOD-UNDEL-1            | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| GOOD-MIXED-UNDEL-1      | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| GOOD-MIXED-UNDEL-2      | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| NO-DEL-UNDEL-1          | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| NO-DEL-MIXED-UNDEL-1    | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| NO-DEL-MIXED-UNDEL-2    | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| NO-CHILD-1              | B01_NO_CHILD, B01_PARENT_FOUND                                                     | 2)                     |
+| NO-CHILD-2              | B01_NO_CHILD, B01_PARENT_FOUND                                                     | 2)                     |
+| NO-CHLD-PAR-UNDETER-1   | B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED                            | 2)                     |
+| CHLD-FOUND-PAR-UNDET-1  | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED                         | 2)                     |
+| CHLD-FOUND-INCONSIST-1  | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| CHLD-FOUND-INCONSIST-2  | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| CHLD-FOUND-INCONSIST-3  | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| CHLD-FOUND-INCONSIST-4  | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND | 2)                     |
+| CHLD-FOUND-INCONSIST-5  | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| CHLD-FOUND-INCONSIST-6  | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| CHLD-FOUND-INCONSIST-7  | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| CHLD-FOUND-INCONSIST-8  | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| CHLD-FOUND-INCONSIST-9  | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND | 2)                     |
+| CHLD-FOUND-INCONSIST-10 | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| NO-DEL-UNDEL-NO-PAR-1   | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| NO-DEL-UNDEL-PAR-UND-1  | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| NO-CHLD-NO-PAR-1        | B01_NO_CHILD, B01_PARENT_NOT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)                     |
+| CHILD-ALIAS-1           | B01_CHILD_IS_ALIAS, B01_NO_CHILD, B01_PARENT_FOUND                                 | 2)                     |
+| CHILD-ALIAS-2           | B01_CHILD_IS_ALIAS, B01_NO_CHILD, B01_INCONSISTENT_ALIAS, B01_PARENT_FOUND         | 2)                     |
+| ZONE-ERR-GRANDPARENT-1  | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                           | 2)                     |
+| ZONE-ERR-GRANDPARENT-2  | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                           | 2)                     |
+| ZONE-ERR-GRANDPARENT-3  | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                           | 2)                     |
+| ROOT-ZONE               | B01_CHILD_FOUND, B01_ROOT_HAS_NO_PARENT                                            | 2)                     |
 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
 * (2) All tags except for those specified as "Mandatory message tags"
