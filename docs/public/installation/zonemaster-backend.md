@@ -24,7 +24,7 @@
   * [5.5 Post-installation (FreeBSD)](#55-post-installation-freebsd)
 * [6. Post-installation][Post-installation]
   * [6.1 Smoke test](#61-smoke-test)
-  * [6.2 Troubleshooting installation](#62-troubleshooting-installation)
+  * [6.2 Troubleshooting](#62-troubleshooting)
   * [6.3 What to do next?](#63-what-to-do-next)
 * [7. Installation with MariaDB](#7-installation-with-mariadb)
   * [7.1 MariaDB (Rocky Linux)][MariaDB instructions Rocky Linux]
@@ -116,10 +116,11 @@ Install files to their proper locations:
 cd `perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Backend")'`
 sudo install -v -m 755 -d /etc/zonemaster
 sudo install -v -m 640 -g zonemaster ./backend_config.ini /etc/zonemaster/
-sudo install -v -m 775 -g zonemaster -d /var/log/zonemaster
 sudo install -v -m 644 ./tmpfiles.conf /usr/lib/tmpfiles.d/zonemaster.conf
 sudo install -v -m 644 -Z ./zm-rpcapi.service /etc/systemd/system/
+sudo install -v -m 644 -Z ./zm-rpcapi.service.conf /etc/sysconfig/zm-rpcapi
 sudo install -v -m 644 -Z ./zm-testagent.service /etc/systemd/system/
+sudo install -v -m 644 -Z ./zm-testagent.service.conf /etc/sysconfig/zm-testagent
 ```
 
 ### 3.2 Database engine installation (Rocky Linux)
@@ -470,11 +471,21 @@ The command is expected to immediately print out a testid,
 followed by a percentage ticking up from 0% to 100%.
 Once the number reaches 100% a JSON object is printed and zmtest terminates.
 
-### 6.2 Troubleshooting installation
+### 6.2 Troubleshooting
 
-If you have any issue with installation, and installed with `cpanm`, redo the
-installation above but without the `--notest` and with the `--verbose` option.
-Installation will take longer time.
+* If you have any issue while installing using `cpanm`, redo the installation
+  above but without the `--notest` and with the `--verbose` option. Installation
+  will take longer time.
+
+* If you have any issue with zm-rpcapi or zm-testagent not starting on Rocky
+  Linux, check the service status and logs.
+
+  ```sh
+  systemctl status zm-rpcapi
+  systemctl status zm-testagent
+  journalctl -xe -u zm-rpcapi
+  journalctl -xe -u zm-testagent
+  ```
 
 ### 6.3. What to do next?
 
