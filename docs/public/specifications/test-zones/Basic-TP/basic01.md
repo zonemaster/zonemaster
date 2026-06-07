@@ -50,6 +50,7 @@ The test case can output any of these message tags, but not necessarily in any c
 * B01_PARENT_NOT_FOUND
 * B01_PARENT_UNDETERMINED
 * B01_ROOT_HAS_NO_PARENT
+* B01_UNEXPECTED_NXDOMAIN
 * B01_SERVER_ZONE_ERROR
 
 
@@ -58,42 +59,52 @@ The test case can output any of these message tags, but not necessarily in any c
 If a message tag is not listed for the scenario, its presence or non-presence is
 irrelevant to the test scenario and must be ignored.
 
-| Scenario name           | Mandatory message tag                                                              | Forbidden message tags |
-|:------------------------|:-----------------------------------------------------------------------------------|:-----------------------|
-| GOOD-1                  | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
-| GOOD-MIXED-1            | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
-| GOOD-MIXED-2            | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
-| GOOD-PARENT-HOST-1      | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
-| GOOD-GRANDPARENT-HOST-1 | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
-| GOOD-UNDEL-1            | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
-| GOOD-MIXED-UNDEL-1      | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
-| GOOD-MIXED-UNDEL-2      | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
-| NO-DEL-UNDEL-1          | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
-| NO-DEL-MIXED-UNDEL-1    | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
-| NO-DEL-MIXED-UNDEL-2    | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
-| NO-CHILD-1              | B01_NO_CHILD, B01_PARENT_FOUND                                                     | 2)                     |
-| NO-CHILD-2              | B01_NO_CHILD, B01_PARENT_FOUND                                                     | 2)                     |
-| NO-CHLD-PAR-UNDETER-1   | B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED                            | 2)                     |
-| CHLD-FOUND-PAR-UNDET-1  | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED                         | 2)                     |
-| CHLD-FOUND-INCONSIST-1  | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
-| CHLD-FOUND-INCONSIST-2  | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
-| CHLD-FOUND-INCONSIST-3  | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
-| CHLD-FOUND-INCONSIST-4  | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND | 2)                     |
-| CHLD-FOUND-INCONSIST-5  | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
-| CHLD-FOUND-INCONSIST-6  | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
-| CHLD-FOUND-INCONSIST-7  | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
-| CHLD-FOUND-INCONSIST-8  | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
-| CHLD-FOUND-INCONSIST-9  | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND | 2)                     |
-| CHLD-FOUND-INCONSIST-10 | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
-| NO-DEL-UNDEL-NO-PAR-1   | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
-| NO-DEL-UNDEL-PAR-UND-1  | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
-| NO-CHLD-NO-PAR-1        | B01_NO_CHILD, B01_PARENT_NOT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)                     |
-| CHILD-ALIAS-1           | B01_CHILD_IS_ALIAS, B01_NO_CHILD, B01_PARENT_FOUND                                 | 2)                     |
-| CHILD-ALIAS-2           | B01_CHILD_IS_ALIAS, B01_NO_CHILD, B01_INCONSISTENT_ALIAS, B01_PARENT_FOUND         | 2)                     |
-| ZONE-ERR-GRANDPARENT-1  | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                           | 2)                     |
-| ZONE-ERR-GRANDPARENT-2  | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                           | 2)                     |
-| ZONE-ERR-GRANDPARENT-3  | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                           | 2)                     |
-| ROOT-ZONE               | B01_CHILD_FOUND, B01_ROOT_HAS_NO_PARENT                                            | 2)                     |
+| Scenario name                   | Mandatory message tag                                                              | Forbidden message tags |
+|:--------------------------------|:-----------------------------------------------------------------------------------|:-----------------------|
+| GOOD-1                          | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
+| GOOD-MIXED-1                    | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
+| GOOD-MIXED-2                    | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
+| GOOD-PARENT-HOST-1              | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
+| GOOD-GRANDPARENT-HOST-1         | B01_CHILD_FOUND, B01_PARENT_FOUND                                                  | 2)                     |
+| GOOD-UNDEL-1                    | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| GOOD-MIXED-UNDEL-1              | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| GOOD-MIXED-UNDEL-2              | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| NO-DEL-UNDEL-1                  | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| NO-DEL-MIXED-UNDEL-1            | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| NO-DEL-MIXED-UNDEL-2            | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| NO-CHILD-1                      | B01_NO_CHILD, B01_PARENT_FOUND                                                     | 2)                     |
+| NO-CHILD-2                      | B01_NO_CHILD, B01_PARENT_FOUND                                                     | 2)                     |
+| NO-CHLD-PAR-UNDETER-1           | B01_NO_CHILD, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED                            | 2)                     |
+| CHLD-FOUND-PAR-UNDET-1          | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_PARENT_UNDETERMINED                         | 2)                     |
+| CHLD-FOUND-INCONSIST-1          | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| CHLD-FOUND-INCONSIST-2          | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| CHLD-FOUND-INCONSIST-3          | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| CHLD-FOUND-INCONSIST-4          | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND | 2)                     |
+| CHLD-FOUND-INCONSIST-5          | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| CHLD-FOUND-INCONSIST-6          | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| CHLD-FOUND-INCONSIST-7          | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| CHLD-FOUND-INCONSIST-8          | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| CHLD-FOUND-INCONSIST-9          | B01_CHILD_IS_ALIAS, B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND | 2)                     |
+| CHLD-FOUND-INCONSIST-10         | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| NO-DEL-UNDEL-NO-PAR-1           | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| NO-DEL-UNDEL-PAR-UND-1          | B01_CHILD_FOUND, B01_PARENT_DISREGARDED                                            | 2)                     |
+| NO-CHLD-NO-PAR-1                | B01_NO_CHILD, B01_PARENT_NOT_FOUND, B01_SERVER_ZONE_ERROR                          | 2)                     |
+| CHILD-ALIAS-1                   | B01_CHILD_IS_ALIAS, B01_NO_CHILD, B01_PARENT_FOUND                                 | 2)                     |
+| CHILD-ALIAS-2                   | B01_CHILD_IS_ALIAS, B01_NO_CHILD, B01_INCONSISTENT_ALIAS, B01_PARENT_FOUND         | 2)                     |
+| ZONE-ERR-GRANDPARENT-1          | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                           | 2)                     |
+| ZONE-ERR-GRANDPARENT-2          | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                           | 2)                     |
+| ZONE-ERR-GRANDPARENT-3          | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                           | 2)                     |
+| ROOT-ZONE                       | B01_CHILD_FOUND, B01_ROOT_HAS_NO_PARENT                                            | 2)                     |
+| INC-DEL-N-NXDOMAIN-ON-IM-NAME-1 | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+| NXDOMAIN-ON-IM-NAME-1           | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_UNEXPECTED_NXDOMAIN                         | 2)                     |
+| NXDOMAIN-ON-IM-NAME-2           | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_UNEXPECTED_NXDOMAIN                         | 2)                     |
+| NXDOMAIN-ON-IM-NAME-3           | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_UNEXPECTED_NXDOMAIN                         | 2)                     |
+| NXDOMAIN-N-NON-AA-ON-IM-NAME-1  | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
+| NXDOMAIN-N-NON-AA-ON-IM-NAME-2  | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
+| SERVFAIL-ON-IM-NAME-1           | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
+| REFUSED-ON-IM-NAME-1            | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
+| NON-AA-ON-IM-NAME-1             | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
+|                                 |                                                                                    | 2)                     |
 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
 * (2) All tags except for those specified as "Mandatory message tags"
@@ -493,6 +504,116 @@ Test on the standard root zone.
 * Zone: .
   * No special zone files are to be created.
 
+### INC-DEL-N-NXDOMAIN-ON-IM-NAME-1
+Inconsistent delegation of child zone, of which one parent replies with NXDOMAIN
+on an intermediate name between parent apex and child delegation node.
+
+* Zone: child.im.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa
+  * `inc-del-n-nxdomain-on-im-name-1.basic01.xa` is grandparent zone.
+  * `parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa` is parent zone.
+  * `child.im.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa` is child zone.
+  * Parent `ns1` has normal delegation of child.
+  * In parent `ns2` the delegation of child is missing (NODATA).
+  * Parent `ns3` has normal delegation of child, but returns NXDOMAIN on
+    `im.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa`.
+
+### NXDOMAIN-ON-IM-NAME-1
+Between grandparent apex and parent delegation node there is an empty
+non-terminal node, for which grandparent NS responds with NXDOMAIN.
+
+* Zone: child.parent.im.nxdomain-on-im-name-1.basic01.xa
+  * `nxdomain-on-im-name-1.basic01.xa` is grandparent zone.
+  * `parent.im.nxdomain-on-im-name-1.basic01.xa` is parent zone.
+  * `child.parent.im.nxdomain-on-im-name-1.basic01.xa` is child zone.
+  * Grandparent has normal delegation of parent, but it returns NXDOMAIN on
+    the intermediate node `im.nxdomain-on-im-name-1.basic01.xa`.
+
+### NXDOMAIN-ON-IM-NAME-2
+Between parent apex and child delegation node there is an empty
+non-terminal node, for which parent NS responds with NXDOMAIN.
+
+* Zone: child.im.parent.nxdomain-on-im-name-2.basic01.xa
+  * `nxdomain-on-im-name-2.basic01.xa` is grandparent zone.
+  * `parent.nxdomain-on-im-name-2.basic01.xa` is parent zone.
+  * `child.im.parent.nxdomain-on-im-name-2.basic01.xa` is child zone.
+  * Parent has normal delegation of child, but it returns NXDOMAIN on
+    the intermediate node `im.parent.nxdomain-on-im-name-2.basic01.xa`.
+
+### NXDOMAIN-ON-IM-NAME-3
+Between grandparent apex and parent delegation node and between parent apex and
+child delegation node, respectively, there are empty non-terminal nodes, for
+which grandparent NS and parent NS, respectively, responds with NXDOMAIN.
+
+* Zone: child.im.parent.im.nxdomain-on-im-name-3.basic01.xa
+  * `nxdomain-on-im-name-3.basic01.xa` is grandparent zone.
+  * `parent.im.nxdomain-on-im-name-3.basic01.xa` is parent zone.
+  * `child.im.parent.im.nxdomain-on-im-name-3.basic01.xa` is child zone.
+  * Grandparent has normal delegation of parent, but it returns NXDOMAIN on
+    the intermediate node `im.nxdomain-on-im-name-3.basic01.xa`.
+  * Parent has normal delegation of child, but it returns NXDOMAIN on
+    the intermediate node `im.parent.im.nxdomain-on-im-name-3.basic01.xa`.
+
+### NXDOMAIN-N-NON-AA-ON-IM-NAME-1
+Between grandparent apex and parent delegation node there is an empty
+non-terminal node, for which grand parent NS responds with NXDOMAIN and
+the AA flag bit unset.
+
+* Zone: child.parent.im.nxdomain-n-non-aa-on-im-name-1.basic01.xa
+  * `nxdomain-n-non-aa-on-im-name-1.basic01.xa` is grandparent zone.
+  * `parent.im.nxdomain-n-non-aa-on-im-name-1.basic01.xa` is parent zone.
+  * `child.parent.im.nxdomain-n-non-aa-on-im-name-1.basic01.xa` is child zone.
+  * Grandparent has normal delegation of parent, but it returns NXDOMAIN with AA
+    bit unset on the intermediate node
+    `im.nxdomain-n-non-aa-on-im-name-1.basic01.xa`.
+
+### NXDOMAIN-N-NON-AA-ON-IM-NAME-2
+Between parent apex and child delegation node there is an empty
+non-terminal node, for which parent NS responds with NXDOMAIN and
+unsets the AA flag bit.
+
+* Zone: child.im.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa
+  * `nxdomain-n-non-aa-on-im-name-2.basic01.xa` is grandparent zone.
+  * `parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa` is parent zone.
+  * `child.im.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa` is child zone.
+  * Parent has normal delegation of child, but it returns NXDOMAIN with AA bit
+    unset on the intermediate node
+    `im.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa`.
+
+### SERVFAIL-ON-IM-NAME-1
+Between parent apex and child delegation node there is an empty
+non-terminal node, for which parent NS responds with SERVFAIL.
+
+* Zone: child.im.parent.servfail-on-im-name-1.basic01.xa
+  * `servfail-on-im-name-1.basic01.xa` is grandparent zone.
+  * `parent.servfail-on-im-name-1.basic01.xa` is parent zone.
+  * `child.im.parent.servfail-on-im-name-1.basic01.xa` is child zone.
+  * Parent has normal delegation of child, but it returns SERVFAIL
+    on the intermediate node
+    `im.parent.servfail-on-im-name-1.basic01.xa`.
+
+### REFUSED-ON-IM-NAME-1
+Between parent apex and child delegation node there is an empty
+non-terminal node, for which parent NS responds with REFUSED.
+
+* Zone: child.im.parent.refused-on-im-name-1.basic01.xa
+  * `refused-on-im-name-1.basic01.xa` is grandparent zone.
+  * `parent.refused-on-im-name-1.basic01.xa` is parent zone.
+  * `child.im.parent.refused-on-im-name-1.basic01.xa` is child zone.
+  * Parent has normal delegation of child, but it returns REFUSED
+    on the intermediate node
+    `im.parent.refused-on-im-name-1.basic01.xa`.
+
+### NON-AA-ON-IM-NAME-1
+Between parent apex and child delegation node there is an empty
+non-terminal node, for which parent NS responds with the AA flag bit unset.
+
+* Zone: child.im.parent.non-aa-on-im-name-1.basic01.xa
+  * `non-aa-on-im-name-1.basic01.xa` is grandparent zone.
+  * `parent.non-aa-on-im-name-1.basic01.xa` is parent zone.
+  * `child.im.parent.non-aa-on-im-name-1.basic01.xa` is child zone.
+  * Parent has normal delegation of child, but it returns NXDOMAIN with AA bit
+    unset on the intermediate node
+    `im.parent.non-aa-on-im-name-1.basic01.xa`.
 
 
 [Basic01]:                                                        ../../tests/Basic-TP/basic01.md
