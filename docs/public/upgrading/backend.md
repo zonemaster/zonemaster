@@ -53,7 +53,8 @@ Current Zonemaster::Backend version | Link to instructions | Comments
  8.0.0 ≤ version < 9.0.0            | [Upgrade to 9.0.0]   |
  9.0.0 ≤ version < 11.1.0           | [Upgrade to 11.1.0]  |
  11.1.0 ≤ version < 11.2.0          | [Upgrade to 11.2.0]  |
- 11.2.0 ≤ version                   | -                    | No special steps needed for upgrade
+ 11.2.0 ≤ version < 12.0.0          | [Upgrade to 12.0.0]  |
+ 12.0.0 ≤ version                   | -                    | No special steps needed for upgrade
 
 ## 4. Find current version
 
@@ -75,4 +76,5 @@ perl -E 'use Zonemaster::Backend; say $Zonemaster::Backend::VERSION;'
 [Upgrade to 9.0.0]:          backend/upgrade_zonemaster_backend_ver_9.0.0.md
 [Upgrade to 11.1.0]:         backend/upgrade_zonemaster_backend_ver_11.1.0.md
 [Upgrade to 11.2.0]:         backend/upgrade_zonemaster_backend_ver_11.2.0.md
+[Upgrade to 12.0.0]:         backend/upgrade_zonemaster_backend_ver_12.0.0.md
 [Zonemaster::Engine installation]: ../installation/zonemaster-engine.md
