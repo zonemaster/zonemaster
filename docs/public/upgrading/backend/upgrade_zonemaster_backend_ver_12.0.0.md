@@ -10,6 +10,5 @@ than v12.0.0, and not upgraded, use the following instructions.
 ### Migration script
 
 ```sh
-cd `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")'`
-perl patch/patch_db_schema_version_1.pl
+perl `perl -MFile::ShareDir -le 'print File::ShareDir::dist_dir("Zonemaster-Backend")'`/patch/patch_db_schema_version_1.pl
 ```
