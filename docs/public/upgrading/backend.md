@@ -58,8 +58,8 @@ Current Zonemaster::Backend version | Link to instructions | Comments
 ## 4. Find current version
 
 The following command will report the version of Zonemaster-Backend currently
-installed. If an error is report Zonemaster-Backend is not installed or not
-available for the user. If so, consider tunning the command as root or with
+installed. If an error is reported, Zonemaster-Backend is not installed or not
+available for the user. If so, consider running the command as root or with
 `sudo`.
 
 ```sh

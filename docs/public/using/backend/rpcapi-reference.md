@@ -495,7 +495,7 @@ An array of [*language tags*][Language tag]. It is never empty.
 
 ### API method: `get_tld_url`
 
-Returns a URL for the closest TLD to the domain name in the request, if availble
+Returns a URL for the closest TLD to the domain name in the request, if available
 and matching policy of backend and policy of the TLD. The response can also be
 without URL of different reasons. For context and details see
 [TLD URL Specification].

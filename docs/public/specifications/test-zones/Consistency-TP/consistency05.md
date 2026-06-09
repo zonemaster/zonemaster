@@ -77,7 +77,7 @@ the specific scenario:
   * All glue exactly matches the authoritative address records in correct
     zone (not more and not less records).
   * All NS IP addresses respond with identical zone content.
-* Responds with a A record for the zone on query for A.
+* Responds with an A record for the zone on query for A.
 * Responds with a AAAA record for the zone on query for AAAA.
 * All responses are authoritative with [RCODE Name] "NoError"
 * EDNS, version 0, is included in all responses on queries with EDNS.
@@ -156,7 +156,7 @@ Also the "happy path". But there is an undelegated zone to be tested.
   * Delegated zone has neither ns1, ns2, ns3 nor ns4 as address records.
   * Undelegated zone has neither ns1 nor ns2 as an address record, but it
     has both ns3 and ns4 as address records.
-  * Undelgated data:
+  * Undelegated data:
     * ns3.addr-match-del-undel-1.consistency05.xa/IPv4
     * ns3.addr-match-del-undel-1.consistency05.xa/IPv6
     * ns4.addr-match-del-undel-1.consistency05.xa/IPv4

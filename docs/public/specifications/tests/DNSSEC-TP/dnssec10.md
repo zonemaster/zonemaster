@@ -44,7 +44,7 @@ Note that the specification of NSEC has been updated in [RFC 4470] and [RFC 9824
 although neither of those updates are directly relevant for this test case, some
 implementations of [RFC 4470] produce an incorrect response to NSEC queries. The
 response is a NODATA response with the NSEC record in the authority section
-rather than in the answer section. That deviation is handled in the test precedure.
+rather than in the answer section. That deviation is handled in the test procedure.
 
 The description of the NSEC3 and NSEC3PARAM RRs are found in
 [RFC 5155][RFC 5155#section-3], section 3, and [RFC 5155][RFC 5155#section-4],

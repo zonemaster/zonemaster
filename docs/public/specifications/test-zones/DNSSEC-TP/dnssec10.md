@@ -331,7 +331,7 @@ An NSEC3 zone. Some errors in NSEC3 handling.
     NSEC3PARAM query.
 
 ### INCONSIST-NSEC-NSEC3-1
-Mixing beteen NSEC and NSEC3.
+Mixing between NSEC and NSEC3.
 
 * Zone: inconsist-nsec-nsec3-1.dnssec10.xa
   * ns1 holds an NSEC version of the zone.
@@ -514,20 +514,20 @@ An NSEC zone. Error in response to NSEC query on ns1. No NSEC or NSEC3 on ns2.
     the NSEC3PARAM query and the NSEC query.
 
 ### NSEC-MISMATCHES-APEX-1
-An NSEC zone. The owner name of the NSEC record is errouneous.
+An NSEC zone. The owner name of the NSEC record is erroneous.
 
 * Zone: nsec-mismatches-apex-1.dnssec10.xa
   * The owner name of the NSEC record in response to the NSEC3PARAM query is
-    errouneous and does not match apex.
+    erroneous and does not match apex.
     * The owner name is `sub.nsec-mismatches-apex-1.dnssec10.xa` instead of
       expected `nsec-mismatches-apex-1.dnssec10.xa`.
 
 ### NSEC-MISMATCHES-APEX-2
-An NSEC zone. The owner name of the NSEC record is errouneous.
+An NSEC zone. The owner name of the NSEC record is erroneous.
 
 * Zone: nsec-mismatches-apex-2.dnssec10.xa
   * The owner name of the NSEC record in response to the NSEC query is
-    errouneous and does not match apex.
+    erroneous and does not match apex.
     * The owner name is `sub.nsec-mismatches-apex-2.dnssec10.xa` instead of
       expected `nsec-mismatches-apex-2.dnssec10.xa`.
 
@@ -637,7 +637,7 @@ NSEC query (non-standard NODATA). SOA has wrong owner name.
 
 ### NS-NSEC-RESP-MULT-NSEC-1
 An NSEC zone. NSEC in authority section instead of answer section in response to
-NSEC query (non-standard NODATA). Errouneously multiple NSEC.
+NSEC query (non-standard NODATA). Erroneously multiple NSEC.
 
 * Zone: ns-nsec-resp-mult-nsec-1.dnssec10.xa
   * The answer section is empty in response to NSEC query.

@@ -23,14 +23,14 @@
 This document has instructions for the translation of strings and FAQ for
 Zonemaster-GUI. For the translation of messages and strings used by
 Zonemaster-CLI and Zonemaster-Backend, see a
-[sibbling document][Translating Engine, CLI and Backend].
+[sibling document][Translating Engine, CLI and Backend].
 
 All translations start with the English version. English is the default
 language of Zonemaster. There are two different document structures that
 potentially need translation -- or updated translation -- from English:
 
 * FAQ files: English source files found in [English FAQ directory]
-* Various strings, such as those in menus and bottons, in one JSON file:
+* Various strings, such as those in menus and buttons, in one JSON file:
   English strings are found in [English JSON file].
 
 At the end of the document there are also instructions for how to add or
@@ -40,16 +40,16 @@ to consider that part.
 ## Main target group of this document
 
 The translators of Zonemaster that contribute to the open source project and the
-public releases of Zonemaster belong to the main target group of this documents.
-It can, however, also be used by other users, e.g. users that creates their own
+public releases of Zonemaster belong to the main target group of this document.
+It can, however, also be used by other users, e.g. users that create their own
 customized version of the Zonemaster-GUI with modified translations or additional
-languages not part of the public Zonemaster repositories. (New langagues are
+languages not part of the public Zonemaster repositories. (New languages are
 always welcome to the public repositories.)
 
 ## Software preparation
 
 For the steps below you need to work on a computer with Git and a text editor.
-For the JSON file [PoEdit] is a better choise than the text editor. It is open
+For the JSON file [PoEdit] is a better choice than the text editor. It is open
 source and can be downloaded and installed for free.
 
 We assume that you will do the work from your laptop, and assume MacOS, Windows
@@ -73,7 +73,7 @@ sudo apt install git
 [Install Git on MacOS]
 
 ### Install Git on Windows
-The recommended alternativ is to install use WSL to 
+The recommended alternative is to use WSL to
 [install Ubuntu Linux on Windows][How to install Linux on Windows with WSL].
 Activate WSL and then install Ubuntu Linux. When that is done, install Git in
 that Ubuntu
@@ -82,7 +82,7 @@ sudo apt install git
 ```
 
 Another alternative is to [Install Git on Windows], but beware that all commands
-below assums Unix or Unix like environment.
+below assumes Unix or Unix like environment.
 
 
 ## Github preparation
@@ -197,13 +197,13 @@ The steps in this section will cover most translation work.
   ls -1 src/content/faq/en/
   ```
 
-* There should the same file, in terms of file names, for your langugage.
+* There should be the same files, in terms of file names, for your language.
   Compare with above (replace `xx` with your language code):
   ```sh
   ls -1 src/content/faq/xx/
   ```
 
-* It the direcory does not exist, create it and copy all English files into
+* If the directory does not exist, create it and copy all English files into
   the new directory.
   ```sh
   mkdir src/content/faq/xx/
@@ -214,7 +214,7 @@ The steps in this section will cover most translation work.
   ```sh
   cp -vn src/content/faq/en/*.md src/content/faq/xx/
   ```
-  
+
 * Now the translation work starts. Open every file in `src/content/faq/xx/`:
   * If already in the `xx` language, check if equivalent `en` file has been
     updated later the the equivalent `xx` file or not (`difference.md` as an
@@ -272,7 +272,7 @@ The steps in this section will cover most translation work.
 
 * Now it is time to translate the messages. The English original are found in
   `messages/en.json`. The translated messages are to be saved into
-  `messages/xx.json`. If it does not exist, it will bae created in next step
+  `messages/xx.json`. If it does not exist, it will be created in next step
 
 * Go to section "[Using PoEdit for Translations]" and follow the instructions
   for translation. When done, come back here.
