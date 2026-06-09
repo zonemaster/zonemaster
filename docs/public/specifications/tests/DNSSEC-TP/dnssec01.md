@@ -28,7 +28,7 @@ registry][IANA registry on DS Digest Algorithm] of *DS RR Type Digest
 Algorithms*. No DS Digest Algorithm values, other than those specified in the
 RFC and allocated by IANA, should be used in public DNS.
 
-A DS record for a public domain name (zone) should not use private digestet
+A DS record for a public domain name (zone) should not use private digest
 algorithms.
 
 Both [RFC 8624][RFC 8624#3.3] and [IANA registry][IANA registry on DS Digest
@@ -143,7 +143,7 @@ queries follow, unless otherwise specified below, what is specified for
 4. If the IP address below is represented as "-" it means that there is no IP
    address for that instance, and when a `msgid` listed above in [Summary] is
    created with an argument name "ns" or "ns_list" then that name server is
-   entried as just "-".
+   entered as just "-".
 
 5.  Create the following empty sets:
 

@@ -81,7 +81,7 @@ message. The argument names are defined in the [Argument list].
         *Documentation Address* set,
       2. Else, if it falls within an address range belonging to any of the
          following categories, add the name server name and IP address to the
-         *Local Use Adddress* set:
+         *Local Use Address* set:
          - *Private-Use (IPv4)*
          - *Loopback (IPv4)*
          - *Loopback Address (IPv6)*

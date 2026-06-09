@@ -801,7 +801,7 @@ sudo cpanm --notest Net::Statsd
 sudo apt install libnet-statsd-perl
 ```
 
-### 10.1.3 Installation on Freebsd
+### 10.1.3 Installation on FreeBSD
 
 ```sh
 cpanm --notest Net::Statsd

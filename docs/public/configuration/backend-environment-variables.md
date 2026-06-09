@@ -18,7 +18,7 @@
   * `critical` (also accepted: `crit`, `fatal`)
   * `alert`
   * `emergency`
-* `ZM_BACKEND_RPCAPI_LOGJSON`: Setting it to any thruthy value (non-empty
+* `ZM_BACKEND_RPCAPI_LOGJSON`: Setting it to any truthy value (non-empty
   string or non-zero number) will configure the logger to log in JSON format,
   undefined by default.
 
@@ -30,6 +30,6 @@
   * `PostgreSQL`
   * `MySQL`
 
-* `ZONEMASTER_RECORD`: Setting it to any thruthy value (non-empty string or
+* `ZONEMASTER_RECORD`: Setting it to any truthy value (non-empty string or
   non-zero number) will record the data from the test to a file. Otherwise the
   data is loaded from a file.

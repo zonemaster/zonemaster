@@ -228,7 +228,7 @@ Three DS with different algorithms.
     * 253
 
 ### SHARED-IP-1
-Two parent name servers resolv to the same IP address.
+Two parent name servers resolve to the same IP address.
 
 * Zone: child.shared-ip-1.dnssec01.xa.
   * The parent zone is "shared-ip-1.dnssec01.xa" and the grandparent zone is

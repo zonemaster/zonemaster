@@ -30,7 +30,7 @@ an explicit reference to this document.
 A *DNS Query* has the following default setting. A test case specification can
 refer to a *DNS Query* with one or several changes to the *Parameters*
 overriding the default values. If a *Parameter* is specified as "fixed" (with an
-"X" in that column) then the default value cannot be overidden.
+"X" in that column) then the default value cannot be overridden.
 
 |Parameter    |Default value |Fixed |Comment                       |
 |:------------|:-------------|:-----|:-----------------------------|
@@ -54,7 +54,7 @@ overriding the default values. If a *Parameter* is specified as "fixed" (with an
 
 An *EDNS Query* inherit the default setting from a *DNS Query* except for the
 parameters specified below. If a *Parameter* is specified as "fixed" (with an
-"X" in that column) then the default value cannot be overidden.
+"X" in that column) then the default value cannot be overridden.
 
 A test case specification can refer to an *EDNS Query* with one or several
 changes to the *Parameters*.
@@ -74,7 +74,7 @@ changes to the *Parameters*.
 
 A *DNSSEC Query* inherits the default setting from an *EDNS Query* except for the
 parameter specified below. If a *Parameter* is specified as "fixed" (with an
-"X" in that column) then the default value cannot be overidden.
+"X" in that column) then the default value cannot be overridden.
 
 A test case specification can refer to a *DNSSEC Query* with one or several
 changes to the Parameters.
