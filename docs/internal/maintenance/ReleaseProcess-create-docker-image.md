@@ -291,7 +291,7 @@ cd ..
 
 All the created images can now be listed. Also consider doing [sanity checks] to
 verify that all images work. Images without tag are temporary images without
-further use. List images:
+further use. To list images:
 
 ```sh
 docker images
@@ -382,16 +382,16 @@ And run `docker ps -a` to ensure that the backend is no longer running.
 Start the GUI in the background:
 
 ```
-docker run --rm -d --name zmaio -p 8080:80 zonemaster/all-in-one:local gui
+docker run --rm -d --name zm-aio -p 8080:80 zonemaster/all-in-one:local gui
 ```
 
-Run `docker ps -a`. The container named `zmaio` should be running.
+Run `docker ps -a`. The container named `zm-aio` should be running.
 
 Check if the GUI is accessible from your browser at `http://localhost:8080/` and run a test.
 
 Finally, stop the GUI:
 ```sh
-docker stop zmaio
+docker stop zm-aio
 ```
 
 ## 6. Handy Docker commands
