@@ -83,7 +83,7 @@ for Zonemaster::Backend, see the [declaration of prerequisites].
 Install dependencies available from binary packages:
 
 ```sh
-sudo dnf install --assumeyes jq perl-Class-Method-Modifiers perl-Config-IniFiles perl-DBD-SQLite perl-DBI perl-File-ShareDir perl-File-Slurp perl-HTML-Parser perl-JSON-PP perl-libwww-perl perl-Log-Dispatch perl-Mojolicious perl-Moose perl-Net-Server perl-Parallel-ForkManager perl-Plack perl-Plack-Test perl-Role-Tiny perl-Test-Differences perl-Test-Exception perl-Test-Mojo perl-Test-NoWarnings perl-Try-Tiny perl-libintl perl-LWP-Protocol-https
+sudo dnf install --assumeyes jq perl-Capture-Tiny perl-Class-Method-Modifiers perl-Config-IniFiles perl-DBD-SQLite perl-DBI perl-File-ShareDir perl-File-Slurp perl-HTML-Parser perl-JSON-PP perl-libwww-perl perl-Log-Dispatch perl-Mojolicious perl-Moose perl-Net-Server perl-Parallel-ForkManager perl-Plack perl-Plack-Test perl-Role-Tiny perl-Test-Differences perl-Test-Exception perl-Test-Mojo perl-Test-NoWarnings perl-Try-Tiny perl-libintl perl-LWP-Protocol-https
 ```
 
 Install dependencies not available from binary packages:
@@ -225,7 +225,7 @@ sv_SE.utf8
 Install dependencies available from binary packages:
 
 ```sh
-sudo apt install jq libclass-method-modifiers-perl libconfig-inifiles-perl libdbd-sqlite3-perl libdaemon-control-perl libdbi-perl libfile-sharedir-perl libfile-slurp-perl libhtml-parser-perl libmojolicious-perl libio-stringy-perl libjson-pp-perl libjson-rpc-perl libjson-validator-perl liblog-any-adapter-dispatch-perl liblog-any-perl liblog-dispatch-perl libmoose-perl libparallel-forkmanager-perl libplack-perl libplack-middleware-debug-perl libplack-middleware-reverseproxy-perl librole-tiny-perl librouter-simple-perl libtest-nowarnings-perl libtest-differences-perl libtest-exception-perl libtry-tiny-perl libintl-perl perl-doc starman
+sudo apt install jq libcapture-tiny-perl libclass-method-modifiers-perl libconfig-inifiles-perl libdbd-sqlite3-perl libdaemon-control-perl libdbi-perl libfile-sharedir-perl libfile-slurp-perl libhtml-parser-perl libmojolicious-perl libio-stringy-perl libjson-pp-perl libjson-rpc-perl libjson-validator-perl liblog-any-adapter-dispatch-perl liblog-any-perl liblog-dispatch-perl libmoose-perl libparallel-forkmanager-perl libplack-perl libplack-middleware-debug-perl libplack-middleware-reverseproxy-perl librole-tiny-perl librouter-simple-perl libtest-nowarnings-perl libtest-differences-perl libtest-exception-perl libtry-tiny-perl libintl-perl perl-doc starman
 ```
 > **Note**: libio-stringy-perl is listed here even though it's not a direct
 > dependency. It's an undeclared dependency of libconfig-inifiles-perl.
@@ -354,7 +354,7 @@ su -l
 Install dependencies available from binary packages:
 
 ```sh
-pkg install jq p5-Class-Method-Modifiers p5-Config-IniFiles p5-Daemon-Control p5-DBI p5-File-ShareDir p5-File-Slurp p5-HTML-Parser p5-JSON-PP p5-JSON-RPC p5-Mojolicious p5-Moose p5-Parallel-ForkManager p5-Plack p5-Plack-Middleware-ReverseProxy p5-Role-Tiny p5-Router-Simple p5-Starman p5-DBD-SQLite p5-Log-Dispatch p5-Log-Any p5-Log-Any-Adapter-Dispatch p5-JSON-Validator p5-YAML-LibYAML p5-Test-NoWarnings p5-Test-Differences p5-Test-Exception p5-Locale-libintl gmake
+pkg install jq p5-Capture-Tiny p5-Class-Method-Modifiers p5-Config-IniFiles p5-Daemon-Control p5-DBI p5-File-ShareDir p5-File-Slurp p5-HTML-Parser p5-JSON-PP p5-JSON-RPC p5-Mojolicious p5-Moose p5-Parallel-ForkManager p5-Plack p5-Plack-Middleware-ReverseProxy p5-Role-Tiny p5-Router-Simple p5-Starman p5-DBD-SQLite p5-Log-Dispatch p5-Log-Any p5-Log-Any-Adapter-Dispatch p5-JSON-Validator p5-YAML-LibYAML p5-Test-NoWarnings p5-Test-Differences p5-Test-Exception p5-Locale-libintl gmake
 ```
 <!-- JSON::Validator requires YAML::PP, but p5-JSON-Validator currently lacks a dependency on p5-YAML-LibYAML -->
 
