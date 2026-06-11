@@ -135,8 +135,7 @@ make -C zonemaster-cli all dist docker-build
 make -C zonemaster-backend all dist docker-build
 ```
 
-Node 24 is required to build the GUI. If you are using `nvm` you can set it with `nvm install 24`.
-You will find more information on Node.js 
+Node.js version 24 is required to build the GUI. If you are using `nvm` you can set it with `nvm install 24`.
 If you get building errors, repeat the `nvm` commands in [build environment for Node.js] first.
 
 ```sh
