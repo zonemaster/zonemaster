@@ -44,7 +44,7 @@
         - [Telemetry](using/backend/telemetry.md)
     - [GUI](using/gui/README.md)
         - [API](using/gui/api.md)
-    - [All-In-One Docker images](using/gui/all-in-one.md)
+    - [All-In-One Docker](using/gui/all-in-one.md)
 - [Specifications](specifications/README.md)
     - [Test Cases](specifications/tests/README.md)
         - [Master Test Plan](specifications/tests/MasterTestPlan.md)
