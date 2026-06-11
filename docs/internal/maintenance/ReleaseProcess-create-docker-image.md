@@ -134,6 +134,11 @@ make -C zonemaster-cli all dist docker-build
 ```sh
 make -C zonemaster-backend all dist docker-build
 ```
+
+Node 24 is required to build the GUI. If you are using `nvm` you can set it with `nvm install 24`.
+You will find more information on Node.js 
+If you get building errors, repeat the `nvm` commands in [build environment for Node.js] first.
+
 ```sh
 cd zonemaster-gui; npm install; npm run release; make docker-build; cd ..
 ```
@@ -436,3 +441,4 @@ docker load -i docker-zonemaster-cli.tar
 [Ubuntu Build Environment]:               ../distrib-testing/Ubuntu-build-environment.md
 [Sanity checks]:                          #5-image-sanity-checks
 [Handy Docker commands]:                  #6-handy-docker-commands
+[Build environment for Node.js]:          ../distrib-testing/Ubuntu-Node.js-build-environment.md
