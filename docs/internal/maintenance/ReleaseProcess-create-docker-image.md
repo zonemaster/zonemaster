@@ -139,7 +139,7 @@ Node.js version 24 is required to build the GUI. If you are using `nvm` you can 
 If you get building errors, repeat the `nvm` commands in [build environment for Node.js] first.
 
 ```sh
-cd zonemaster-gui; npm install; npm run release; make docker-build; cd ..
+(cd zonemaster-gui; npm install && npm run release && make docker-build)
 ```
 
 
