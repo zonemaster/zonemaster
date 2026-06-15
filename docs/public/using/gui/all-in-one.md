@@ -26,7 +26,8 @@ When Docker has been correctly installed, no more installation is needed to run
 
 There is a limitation in Docker regarding IPv6. Unless IPv6 has been enabled in
 the Docker daemon, there is no support for IPv6. To avoid meaningless errors,
-use `--no-ipv6` if there is no IPv6 support. Also see section "[IPv6 support]".
+use `--no-ipv6` if there is no IPv6 support. Also see "[Using the CLI][CLI#ipv6-support]" for
+how IPv6 can be enabled under Linux.
 
 
 ## Using the All-In-One image
@@ -37,6 +38,8 @@ docker run --rm -d --name zm-aio -p 8080:80 zonemaster/all-in-one gui
 ```
 
 The Zonemaster GUI is now accessible via your browser at `http://localhost:8080/`.
+
+When running on Docker on Windows IPv6 is not supported. Preferably select "IPv4 only" in GUI before starting a test.
 
 To stop the container:
 ```sh
@@ -74,8 +77,8 @@ latest version is used, and then to exclude it to improve performance.
 
 ## Docker tips
 
-If you run Docker on Mac computer with the M1 chip or if you want to have IPv6 inside
-Docker, see [Docker cli].
+If you run Docker on Mac computer with the M1 chip "[Using the CLI][CLI#ipv6-support]"
+for more information.
 
 [Get started]:                     https://www.docker.com/get-started/
 [Docker Zonemaster-Backend]:       ../backend/Using-Zonemaster-Backend-Docker.md#invoking-the-command-line-tool-using-docker
