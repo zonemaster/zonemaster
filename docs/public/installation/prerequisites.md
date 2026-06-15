@@ -40,7 +40,7 @@ macOS and Windows).
 | Rocky Linux 8    | 10.3    | 10         |
 | Rocky Linux 9    | 10.5?   | 13?        |
 | Rocky Linux 10   | 10.11?  | 16?        |
-| Ubuntu 22.04     | 10.6?   | 14?        |
+| Ubuntu 22.04     | 10.6    | 14         |
 | Ubuntu 24.04     | 10.11?  | 16?        |
 | Ubuntu 26.04     | ?       | ?          |
 
@@ -63,7 +63,7 @@ macOS and Windows).
 | Rocky Linux 8    | 5.26? |
 | Rocky Linux 9    | 5.32? |
 | Rocky Linux 10   | 5.40? |
-| Ubuntu 22.04     | 5.34? |
+| Ubuntu 22.04     | 5.34  |
 | Ubuntu 24.04     | 5.38? |
 | Ubuntu 26.04     | ?     |
 
