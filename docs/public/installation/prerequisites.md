@@ -37,7 +37,7 @@ macOS and Windows).
 | Debian 13        | 11.8?   | 17?        |
 | Docker           | n/a     | n/a        |
 | FreeBSD 15       | 8.4 (*) | 18         |
-| Rocky Linux 8    | 10.3?   | 10?        |
+| Rocky Linux 8    | 10.3   | 10        |
 | Rocky Linux 9    | 10.5?   | 13?        |
 | Rocky Linux 10   | 10.11?  | 16?        |
 | Ubuntu 22.04     | 10.6?   | 14?        |
