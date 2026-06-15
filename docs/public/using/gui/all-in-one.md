@@ -79,4 +79,5 @@ Docker, see [Docker cli].
 
 [Get started]:                     https://www.docker.com/get-started/
 [Docker Zonemaster-Backend]:       ../backend/Using-Zonemaster-Backend-Docker.md#invoking-the-command-line-tool-using-docker
-[Docker cli]:                      ../cli.md#docker-on-mac-with-m1-chip
+[CLI#docker-on-mac-with-m1-chip]:  ../cli.md#docker-on-mac-with-m1-chip
+[CLI#ipv6-support]:                ../cli.md#ipv6-support
