@@ -34,7 +34,7 @@ macOS and Windows).
 
 | Operating System | MariaDB | PostgreSQL |
 |------------------|---------|------------|
-| Debian 13        | 11.8?   | 17?        |
+| Debian 13        | 11.8    | 17         |
 | Docker           | n/a     | n/a        |
 | FreeBSD 15       | 8.4 (*) | 18         |
 | Rocky Linux 8    | 10.3    | 10         |
@@ -57,7 +57,7 @@ macOS and Windows).
 
 | Operating System | Perl  |
 |------------------|-------|
-| Debian 13        | 5.40? |
+| Debian 13        | 5.40  |
 | Docker           | (*)   |
 | FreeBSD 15       | 5.42  |
 | Rocky Linux 8    | 5.26  |
