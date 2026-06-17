@@ -76,8 +76,8 @@ latest version is used, and then to exclude it to improve performance.
 
 ## Docker tips
 
-If you run Docker on Mac computer with the M1 chip "[Using the CLI][CLI#ipv6-support]"
-for more information.
+If you run Docker on Mac computer with the M1 chip see 
+"[Using the CLI][CLI#docker-on-mac-with-m1-chip]" for more information.
 
 [Get started]:                     https://www.docker.com/get-started/
 [Docker Zonemaster-Backend]:       ../backend/Using-Zonemaster-Backend-Docker.md#invoking-the-command-line-tool-using-docker
