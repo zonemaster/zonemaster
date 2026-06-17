@@ -24,10 +24,11 @@ and running.
 When Docker has been correctly installed, no more installation is needed to run
 `zonemaster-cli`. Just follow the examples below.
 
-There is a limitation in Docker regarding IPv6. Unless IPv6 has been enabled in
-the Docker daemon, there is no support for IPv6. To avoid meaningless errors,
-use `--no-ipv6` if there is no IPv6 support. Also see "[Using the CLI][CLI#ipv6-support]" for
-how IPv6 can be enabled under Linux.
+Out of the box, Docker Desktop does not have support for IPv6 on neither Windows nor MacOS. We
+have no clear information how IPv6 can be enabled. If you have not enabled IPv6 we suggest that
+you run `zonemaster-cli` with `--no-ipv6` and in GUI select `IPv4 only` before starting a test
+to avoid meaningless error.
+Also see "[Using the CLI][CLI#ipv6-support]" for how IPv6 can be enabled under Linux.
 
 
 ## Using the All-In-One image
@@ -38,8 +39,6 @@ docker run --rm -d --name zm-aio -p 8080:80 zonemaster/all-in-one gui
 ```
 
 The Zonemaster GUI is now accessible via your browser at `http://localhost:8080/`.
-
-When running on Docker on Windows IPv6 is not supported. Preferably select "IPv4 only" in GUI before starting a test.
 
 To stop the container:
 ```sh
