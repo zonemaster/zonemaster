@@ -24,7 +24,7 @@ and running.
 When Docker has been correctly installed, no more installation is needed to run
 `zonemaster-cli`. Just follow the examples below.
 
-Out of the box, Docker Desktop does not have official support for IPv6 on neither Windows nor MacOS. While it appears possible to enable it, to the best of our knowledge there is no official documentation for that. If you have not enabled IPv6 we suggest that you run `zonemaster-cli` with `--no-ipv6` and in GUI select `IPv4 only` before starting a test to avoid meaningless errors.
+Out of the box, Docker Desktop does not have official support for IPv6 on neither Windows nor MacOS. While it appears possible [to enable it][Docker ipv6], to the best of our knowledge there is no official documentation for that. If you have not enabled IPv6 we suggest that you run `zonemaster-cli` with `--no-ipv6` and in GUI select `IPv4 only` before starting a test to avoid meaningless errors.
 Also see "[Using the CLI][CLI#ipv6-support]" for how IPv6 can be enabled under Linux.
 
 
@@ -80,3 +80,4 @@ If you run Docker on Mac computer with the M1 chip see
 [Docker Zonemaster-Backend]:       ../backend/Using-Zonemaster-Backend-Docker.md#invoking-the-command-line-tool-using-docker
 [CLI#docker-on-mac-with-m1-chip]:  ../cli.md#docker-on-mac-with-m1-chip
 [CLI#ipv6-support]:                ../cli.md#ipv6-support
+[Docker ipv6]:                     https://docs.docker.com/engine/daemon/ipv6/
