@@ -88,6 +88,12 @@ sudo dnf install --assumeyes jq perl-Capture-Tiny perl-Class-Method-Modifiers pe
 
 Install dependencies not available from binary packages:
 
+> Note: **For Rocky Linux 10 only**, it is required to install a patch version of one of JSON::Validator
+> dependency (Net::IDN::Encode) so that it can build properly:
+> ```sh
+> sudo cpanm https://cpan.metacpan.org/authors/id/E/ET/ETHER/Net-IDN-Encode-2.501-TRIAL.tar.gz
+> ```
+
 ```sh
 sudo cpanm --notest Daemon::Control JSON::RPC JSON::Validator Log::Any Log::Any::Adapter::Dispatch Net::IP::XS Plack::Middleware::ReverseProxy Router::Simple Starman
 ```
@@ -595,7 +601,7 @@ sysrc mysql_enable="YES"
 service mysql-server start
 ```
 
-By default the MySQL root password is empty. Just press ENTER if prompted for 
+By default the MySQL root password is empty. Just press ENTER if prompted for
 password. The advice is to set a password.
 
 To create the database and the database user (unless you keep an old database).

@@ -50,12 +50,18 @@ Zonemaster::CLI, see the [declaration of prerequisites].
    sudo dnf install --assumeyes perl-JSON-XS perl-Try-Tiny perl-Test-Deep perl-Mojolicious
    ```
 
+   > Note: Test::Deep and Mojolicious are indirect dependencies. They are dependencies
+   > of JSON::Validator.
+
+   > Note: **For Rocky Linux 10 only**, it is required to install a patch version of one of JSON::Validator
+   > dependency (Net::IDN::Encode) so that it can build properly:
+   > ```sh
+   > sudo cpanm https://cpan.metacpan.org/authors/id/E/ET/ETHER/Net-IDN-Encode-2.501-TRIAL.tar.gz
+   > ```
+
    ```sh
    sudo cpanm --notest JSON::Validator
    ```
-
-> Note: Test::Deep and Mojolicious are indirect dependencies. They are dependencies
-> of JSON::Validator.
 
 2) Install Zonemaster::CLI
 
