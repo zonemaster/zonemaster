@@ -149,19 +149,13 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 5) Install dependencies from binary packages:
 
    ```sh
-   pkg install devel/gmake dns/ldns libidn2 p5-App-cpanminus p5-CBOR-XS p5-Class-Accessor p5-Clone p5-Devel-CheckLib p5-Email-Valid p5-ExtUtils-PkgConfig p5-File-ShareDir p5-File-Slurp p5-IO-Socket-INET6 p5-List-Compare p5-List-MoreUtils p5-Locale-libintl p5-Locale-PO p5-Log-Any p5-Mail-SPF p5-MIME-Base32 p5-Module-Find p5-Module-Install p5-Module-Install-XSUtil p5-Net-DNS p5-Net-IP-XS p5-Pod-Coverage p5-Readonly p5-Sub-Override p5-Test-Differences p5-Test-Exception p5-Test-Fatal p5-Test-NoWarnings p5-Test-Pod p5-Text-CSV p5-YAML-LibYAML
+   pkg install devel/gmake libidn2 p5-App-cpanminus p5-CBOR-XS p5-Class-Accessor p5-Clone p5-Devel-CheckLib p5-Email-Valid p5-ExtUtils-PkgConfig p5-File-ShareDir p5-File-Slurp p5-IO-Socket-INET6 p5-List-Compare p5-List-MoreUtils p5-Locale-libintl p5-Locale-PO p5-Log-Any p5-Mail-SPF p5-MIME-Base32 p5-Module-Find p5-Module-Install p5-Module-Install-XSUtil p5-Net-DNS p5-Net-IP-XS p5-Pod-Coverage p5-Readonly p5-Sub-Override p5-Test-Differences p5-Test-Exception p5-Test-Fatal p5-Test-NoWarnings p5-Test-Pod p5-Text-CSV p5-YAML-LibYAML
    ```
 
 6) Install Zonemaster::LDNS:
 
    ```sh
-   cpanm --notest --configure-args="--no-internal-ldns" Zonemaster::LDNS
-   ```
-
-7) Install Zonemaster::Engine:
-
-   ```sh
-   cpanm --notest Zonemaster::Engine
+   cpanm --notest Zonemaster::LDNS Zonemaster::Engine
    ```
 
 ## Post-installation sanity check
