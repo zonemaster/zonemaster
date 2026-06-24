@@ -168,7 +168,7 @@ be found in the [LICENSE] specification included in this repository.
 [Docker]:                              https://www.docker.com/get-started
 [Document site]:                       https://doc.zonemaster.net/latest
 [Documentation tree]:                  ./docs/README.md
-[Installation]:                        https://doc.zonemaster.net/latest/installation/index.html
+[Installation]:                        https://doc.zonemaster.net/latest/installation/README.html
 [Issues in Zonemaster/Zonemaster]:     https://github.com/zonemaster/zonemaster/issues
 [Issues in Zonemaster::Backend]:       https://github.com/zonemaster/zonemaster-backend/issues
 [Issues in Zonemaster::CLI]:           https://github.com/zonemaster/zonemaster-cli/issues
