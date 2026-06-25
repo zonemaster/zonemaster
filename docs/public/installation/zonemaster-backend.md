@@ -587,7 +587,7 @@ sed -i '' '/[[:<:]]engine[[:>:]]/ s/=.*/= MySQL/' /usr/local/etc/zonemaster/back
 Install, configure and start database engine (and Perl bindings):
 
 ```sh
-pkg install mysql80-server p5-DBD-mysql
+pkg install mysql84-server p5-DBD-mysql
 ```
 
 ```sh
