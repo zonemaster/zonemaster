@@ -82,6 +82,11 @@ for Zonemaster::Backend, see the [declaration of prerequisites].
 
 Install dependencies available from binary packages:
 
+> Note: **For Rocky Linux 8 only**, install DBD::SQLite from CPAN as the one in the system packages repository is too old:
+> ```sh
+> sudo cpanm --notest DBD::SQLite
+> ```
+
 ```sh
 sudo dnf install --assumeyes jq perl-Capture-Tiny perl-Class-Method-Modifiers perl-Config-IniFiles perl-DBD-SQLite perl-DBI perl-File-ShareDir perl-File-Slurp perl-HTML-Parser perl-JSON-PP perl-libwww-perl perl-Log-Dispatch perl-Mojolicious perl-Moose perl-Net-Server perl-Parallel-ForkManager perl-Plack perl-Plack-Test perl-Role-Tiny perl-Test-Differences perl-Test-Exception perl-Test-Mojo perl-Test-NoWarnings perl-Try-Tiny perl-libintl perl-LWP-Protocol-https
 ```
@@ -96,12 +101,6 @@ Install dependencies not available from binary packages:
 
 ```sh
 sudo cpanm --notest Daemon::Control JSON::RPC JSON::Validator Log::Any Log::Any::Adapter::Dispatch Net::IP::XS Plack::Middleware::ReverseProxy Router::Simple Starman
-```
-
-For Rocky Linux 8 only, install DBD::SQLite from CPAN as the one in the system packages repository is too old:
-
-```sh
-sudo cpanm --notest DBD::SQLite
 ```
 
 Install Zonemaster::Backend:
