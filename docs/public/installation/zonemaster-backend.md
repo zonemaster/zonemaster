@@ -229,12 +229,6 @@ sudo apt install jq libcapture-tiny-perl libclass-method-modifiers-perl libconfi
 > **Note**: libio-stringy-perl is listed here even though it's not a direct
 > dependency. It's an undeclared dependency of libconfig-inifiles-perl.
 
-For Ubuntu 20.04 only, install JSON::Validator from CPAN as the one in the system packages repository is too old:
-
-```sh
-sudo cpanm --notest JSON::Validator
-```
-
 Install Zonemaster::Backend:
 
 ```sh
