@@ -42,7 +42,7 @@ macOS and Windows).
 | Rocky Linux 10   | 11.8    | 18         |
 | Ubuntu 22.04     | 10.6    | 14         |
 | Ubuntu 24.04     | 10.11?  | 16?        |
-| Ubuntu 26.04     | ?       | ?          |
+| Ubuntu 26.04     | 10.6      | 14          |
 
 * (*) FreeBSD uses MySQL, not MariaDB.
 * SQLite is bundled in Perl DBD::SQLite and loaded as a dependency to
@@ -65,7 +65,7 @@ macOS and Windows).
 | Rocky Linux 10   | 5.40  |
 | Ubuntu 22.04     | 5.34  |
 | Ubuntu 24.04     | 5.38? |
-| Ubuntu 26.04     | ?     |
+| Ubuntu 26.04     | 5.34    |
 
 * Zonemaster technically requires Perl version 5.26 or higher, but has only been tested with the versions in the table above.
 * Zonemaster has been tested with the default version of Perl in the OSs as
