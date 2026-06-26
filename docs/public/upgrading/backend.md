@@ -43,18 +43,18 @@ document.
 *When upgrading from an older version than the previous release, apply each
 upgrade instructions one after another.*
 
-Current Zonemaster::Backend version | Link to instructions | Comments
-------------------------------------|----------------------|-----------------------
- version < 1.0.3                    | [Upgrade to 1.0.3]   |
- 1.0.3 ≤ version < 1.1.0            | [Upgrade to 1.1.0]   |
- 1.1.0 ≤ version < 5.0.0            | [Upgrade to 5.0.0]   |
- 5.0.0 ≤ version < 5.0.2            | [Upgrade to 5.0.2]   | For MySQL/MariaDB only
- 5.0.2 ≤ version < 8.0.0            | [Upgrade to 8.0.0]   |
- 8.0.0 ≤ version < 9.0.0            | [Upgrade to 9.0.0]   |
- 9.0.0 ≤ version < 11.1.0           | [Upgrade to 11.1.0]  |
- 11.1.0 ≤ version < 11.2.0          | [Upgrade to 11.2.0]  |
- 11.2.0 ≤ version < 12.0.0          | [Upgrade to 12.0.0]  |
- 12.0.0 ≤ version                   | -                    | No special steps needed for upgrade
+| Current Zonemaster::Backend version (before upgrade) | Link to instructions | Comments                            |
+|------------------------------------------------------|----------------------|-------------------------------------|
+| version < 1.0.3                                      | [Upgrade to 1.0.3]   |                                     |
+| 1.0.3 ≤ version < 1.1.0                              | [Upgrade to 1.1.0]   |                                     |
+| 1.1.0 ≤ version < 5.0.0                              | [Upgrade to 5.0.0]   |                                     |
+| 5.0.0 ≤ version < 5.0.2                              | [Upgrade to 5.0.2]   | For MySQL/MariaDB only              |
+| 5.0.2 ≤ version < 8.0.0                              | [Upgrade to 8.0.0]   |                                     |
+| 8.0.0 ≤ version < 9.0.0                              | [Upgrade to 9.0.0]   |                                     |
+| 9.0.0 ≤ version < 11.1.0                             | [Upgrade to 11.1.0]  |                                     |
+| 11.1.0 ≤ version < 11.2.0                            | [Upgrade to 11.2.0]  |                                     |
+| 11.2.0 ≤ version < 12.1.0                            | [Upgrade to 12.1.0]  |                                     |
+| 12.1.0 ≤ version                                     | -                    | No special steps needed for upgrade |
 
 ## 4. Find current version
 
@@ -67,14 +67,14 @@ available for the user. If so, consider running the command as root or with
 perl -E 'use Zonemaster::Backend; say $Zonemaster::Backend::VERSION;'
 ```
 
-[Installation instructions]: ../installation/zonemaster-backend.md
-[Upgrade to 1.0.3]:          backend/upgrade_zonemaster_backend_ver_1.0.3.md
-[Upgrade to 1.1.0]:          backend/upgrade_zonemaster_backend_ver_1.1.0.md
-[Upgrade to 5.0.0]:          backend/upgrade_zonemaster_backend_ver_5.0.0.md
-[Upgrade to 5.0.2]:          backend/upgrade_zonemaster_backend_ver_5.0.2.md
-[Upgrade to 8.0.0]:          backend/upgrade_zonemaster_backend_ver_8.0.0.md
-[Upgrade to 9.0.0]:          backend/upgrade_zonemaster_backend_ver_9.0.0.md
-[Upgrade to 11.1.0]:         backend/upgrade_zonemaster_backend_ver_11.1.0.md
-[Upgrade to 11.2.0]:         backend/upgrade_zonemaster_backend_ver_11.2.0.md
-[Upgrade to 12.0.0]:         backend/upgrade_zonemaster_backend_ver_12.0.0.md
+[Installation instructions]:       ../installation/zonemaster-backend.md
+[Upgrade to 1.0.3]:                backend/upgrade_zonemaster_backend_ver_1.0.3.md
+[Upgrade to 1.1.0]:                backend/upgrade_zonemaster_backend_ver_1.1.0.md
+[Upgrade to 5.0.0]:                backend/upgrade_zonemaster_backend_ver_5.0.0.md
+[Upgrade to 5.0.2]:                backend/upgrade_zonemaster_backend_ver_5.0.2.md
+[Upgrade to 8.0.0]:                backend/upgrade_zonemaster_backend_ver_8.0.0.md
+[Upgrade to 9.0.0]:                backend/upgrade_zonemaster_backend_ver_9.0.0.md
+[Upgrade to 11.1.0]:               backend/upgrade_zonemaster_backend_ver_11.1.0.md
+[Upgrade to 11.2.0]:               backend/upgrade_zonemaster_backend_ver_11.2.0.md
+[Upgrade to 12.1.0]:               backend/upgrade_zonemaster_backend_ver_12.1.0.md
 [Zonemaster::Engine installation]: ../installation/zonemaster-engine.md

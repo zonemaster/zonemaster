@@ -23,7 +23,7 @@
         - [v9.0.0](upgrading/backend/upgrade_zonemaster_backend_ver_9.0.0.md)
         - [v11.1.0](upgrading/backend/upgrade_zonemaster_backend_ver_11.1.0.md)
         - [v11.2.0](upgrading/backend/upgrade_zonemaster_backend_ver_11.2.0.md)
-        - [v12.0.0](upgrading/backend/upgrade_zonemaster_backend_ver_12.0.0.md)
+        - [v12.1.0](upgrading/backend/upgrade_zonemaster_backend_ver_12.1.0.md)
 - [Configuration](configuration/README.md)
     - [Profiles](configuration/profiles.md)
     - [Global Cache](configuration/global-cache.md)
