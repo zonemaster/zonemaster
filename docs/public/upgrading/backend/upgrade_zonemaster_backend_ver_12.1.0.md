@@ -1,9 +1,9 @@
-# Upgrade to 12.0.0
+# Upgrade to 12.1.0
 
 ## Upgrading the database
 
 If your Zonemaster database was created by a Zonemaster-Backend version lower
-than v12.0.0, and not upgraded, use the following instructions.
+than v12.1.0, and not upgraded, use the following instructions.
 
 > You may need to run these command with root privileges.
 
