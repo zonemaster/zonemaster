@@ -128,7 +128,7 @@ the specific scenario:
   * ns1 and ns2 have both IPv4 and IPv6 glue.
   * The records matching glue in the zone are complete.
   * The delegation from the SCENARIO zone has the same NS with complete glue.
-* Responds with a A record for the zone on query for A.
+* Responds with an A record for the zone on query for A.
 * Responds with a AAAA record for the zone on query for AAAA.
 * All responses are authoritative with [RCODE Name] "NoError"
 * EDNS, version 0, is included in all responses on queries with EDNS.
@@ -410,7 +410,7 @@ grandparent NS return SERVFAIL.
   * Grandparent `ns1` and `ns2` both return SERVFAIL.
   * No need of parent zone.
   * Child zone is not delegated, but there is an undelegated version.
-  * Undelgated data:
+  * Undelegated data:
     * ns3-undelegated-child.basic01.xa
     * ns4-undelegated-child.basic01.xa
 

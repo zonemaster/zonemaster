@@ -120,8 +120,8 @@ the specific scenario:
   * ns1 and ns2 have the same zone content.
   * ns1 and ns2 have both IPv4 and IPv6 glue.
   * The records matching glue in the zone are complete.
-  * The delegation from the SCENARIO zoen has the same NS with complete glue.
-* Responds with a A record for the zone on query for A.
+  * The delegation from the SCENARIO zone has the same NS with complete glue.
+* Responds with an A record for the zone on query for A.
 * Responds with a AAAA record for the zone on query for AAAA.
 * All responses are authoritative with [RCODE Name] "NoError".
 * EDNS, version 0, is included in all responses on queries with EDNS.
@@ -229,7 +229,7 @@ undelegated.
       * ns3.parent.good-undel-1.methodsv2.xa (not shared with parent zone)
       * ns5.good-undel-1.methodsv2.xa (not shared with grandparent zone)
     * Glue:
-      * Adress records (A and AAAA) for
+      * Address records (A and AAAA) for
         * ns1-2.child.parent.good-undel-1.methodsv2.xa
         * ns3.parent.good-undel-1.methodsv2.xa (optional)
   * There is an undelegated version of the zone matching undelegated data.

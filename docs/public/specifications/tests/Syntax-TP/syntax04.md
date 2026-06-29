@@ -14,7 +14,7 @@ Newer RFCs may override some rules defined in earlier documents.
 
 ### Inputs
 
-The hostname to be tested. The hostnames comes from all the nameservers
+The hostname to be tested. The hostnames come from all the nameservers
 used, from both the parent and the zone itself.
 
 ### Ordered description of steps to be taken to execute the test case

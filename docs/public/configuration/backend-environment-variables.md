@@ -7,7 +7,9 @@
 
 ## Variables used by RPCAPI daemon only
 
-* `ZM_BACKEND_RPCAPI_LOGLEVEL`: Configure the log level, `trace` by default.
+* `ZM_BACKEND_RPCAPI_LOGLEVEL`: The threshold for emitting log entries. Default:
+  info.
+
   Accepted values are:
   * `trace`
   * `debug`
@@ -18,9 +20,15 @@
   * `critical` (also accepted: `crit`, `fatal`)
   * `alert`
   * `emergency`
-* `ZM_BACKEND_RPCAPI_LOGJSON`: Setting it to any thruthy value (non-empty
-  string or non-zero number) will configure the logger to log in JSON format,
-  undefined by default.
+
+* `ZM_BACKEND_RPCAPI_LOGJSON`: A [boolean]. When true, logs are written in JSON
+  format.
+
+* `ZM_BACKEND_RPCAPI_NO_LOGPID`: A [boolean]. Controls the inclusion of PID in
+  log entries.
+
+* `ZM_BACKEND_RPCAPI_NO_LOGTIMESTAMP`: A [boolean]. Controls the inclusion of
+  timestamp log entries.
 
 ## Variables used by unit test scripts
 
@@ -30,6 +38,16 @@
   * `PostgreSQL`
   * `MySQL`
 
-* `ZONEMASTER_RECORD`: Setting it to any thruthy value (non-empty string or
-  non-zero number) will record the data from the test to a file. Otherwise the
-  data is loaded from a file.
+* `ZONEMASTER_RECORD`: A [boolean]. When true, data is retrieved over the
+  network and persisted to a data file. When false, data is retrieved from a
+  data file.
+
+## Boolean variables
+
+For boolean environment variables two values are falsy: the empty string, and
+the string `0`. Every other value is truthy. An unset boolean environment
+variable is false by default.
+
+
+
+[Boolean]: #boolean-variables

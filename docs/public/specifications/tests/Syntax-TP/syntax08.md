@@ -17,7 +17,7 @@ records use of "Domain Names" is described in section 2.3.5  of
 
 ### Inputs
 
-The hostnames to be tested. The hostnames comes from looking up the MX record
+The hostnames to be tested. The hostnames come from looking up the MX record
 for the domain being tested.
 
 ### Ordered description of steps to be taken to execute the test case

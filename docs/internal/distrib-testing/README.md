@@ -2,18 +2,17 @@
 
 ## Overview
 
-The build environment is used for several purposes, but the purpose
-is not for the actual installation of Zonemaster. For the installation
-the normal installation instructions for users should be used. In most
-cases, if you create a build environment you usually do not install
-Zonemaster on that.
+The build environment is used for several purposes, but not for the purpose
+of installing Zonemaster. There is the standard user installation instructions
+for that. If you create a build environment, in most cases you do not
+install Zonemaster there too.
 
 * When testing the installation instructions for users you should avoid
-  to do that from a build environment.
+  doing that from a build environment.
 * For the use cases below, your should in most cases make sure that
-  you use the develop branch.
-* You should probably read this file
-  [from the develop branch][BuildEnvironmentPreparation], not master
+  you use the `develop` branch.
+* Similarly, you should probably read this file
+  [from the develop branch][BuildEnvironmentPreparation], not `master`
   branch to get the latest changes.
 
 ## Use cases
@@ -29,10 +28,9 @@ Zonemaster on that.
 7. Check for broken, internal links in mdBook as part of release.
 8. Development work.
 
-There could be more use cases.
+Note: there could be more use cases.
 
 1\) Zonemaster-LDNS, Zonemaster-Engine, Zonemaster-CLI and Zonemaster-Backend.
-
 
 ### Building Perl CPAN packages
 
@@ -44,7 +42,7 @@ Build environments:
 * [Debian build environment]
 * [FreeBSD build environment]
 * [Ubuntu build environment]
-* Rocky-Linux environment (TBD)
+* [Rocky Linux build environment]
 
 ### GUI zip distribution
 
@@ -79,6 +77,7 @@ For use case 8, install an environment as for use cases
 [BuildEnvironmentPreparation]:        https://github.com/zonemaster/zonemaster/blob/develop/docs/internal/distrib-testing/README.md
 [Debian build environment]:           Debian-build-environment.md
 [FreeBSD build environment]:          FreeBSD-build-environment.md
+[Rocky Linux build environment]:      RockyLinux-build-environment.md
 [Ubuntu build environment]:           Ubuntu-build-environment.md
 [Ubuntu Node.js environment]:         Ubuntu-Node.js-build-environment.md
 [Create Test Distribution]:           ../maintenance/ReleaseProcess-create-test-distribution.md

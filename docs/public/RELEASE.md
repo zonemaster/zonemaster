@@ -1,27 +1,43 @@
-# Release v2025.2.1 (2026-03-04)
+# Release v2026.1 (2026-06-29)
 
 ### \[Release information\]
-- Fixes in [Zonemaster-LDNS], [Zonemaster-Engine] and [Zonemaster-GUI].
+ - Please note that some of the links to documents at doc.zonemaster.net might not work the first days after the release.
+ - Migration of the database is required by this release to add correct schema version. See [Zonemaster-Backend] upgrade guide, <https://doc.zonemaster.net/v2026.1/upgrading/backend.html>
 
 ### \[Breaking changes\]
-- None for this release
+ - Removes deprecated profile properties. See [Zonemaster-Engine]
+ - Changes saved packets’ serialization format. Data files saved with previous versions will not load. See [Zonemaster-Engine]
 
 ### \[Deprecations\]
 - None for this release
 
+### \[Features\]
+ - Adds All-In-One Docker image including CLI, Backend and GUI components. Documentation added by [#1487]. Also see <https://doc.zonemaster.net/v2026.1/using/gui/all-in-one.html>
+ - Adds migration guide for [Zonemaster-Backend] 12.1.0 ([#1491], [#1509])
+ - Specifies URL to TLD feature for GUI in RPCAPI ([#1429])
+ - Update specification of DNSSEC10 to handle nonstandard NSEC responses ([#1478])
+
 ### \[Fixes\]
-- Adds documentation on running Zonemaster-Backend through Docker, and update documentation on Zonemaster-GUI translation ([#1464])
+ - Updates installation instructions to match FreeBSD 15 and changes from external LDNS to internal LDNS for FreeBSD ([#1504])
+ - Drops unused log directory on Rocky Linux ([#1489], [#1502])
+ - Updates installation instruction with Capture::Tiny as dependency ([#1497])
+ - Documents dependency on CBOR::XS ([#1494])
+ - Corrects spelling in several documents ([#1496])
+ - Fixes a link error in README file ([#1492])
+ - Fixes link in the public [documentation site] ([#1475])
+ - Resolves issue in Ubuntu 26.04 by having Debian/Ubuntu users install libcrypt-dev explicitly ([#1479])
+ - Other fixes are found in the [Zonemaster-LDNS], [Zonemaster-Engine], [Zonemaster-CLI], [Zonemaster-Backend] and [Zonemaster-GUI] release notes.
 
 ### \[Zonemaster product\]
 This version of Zonemaster also consists of the following components. For each component, see its Changes file or Github release notes for complete release information.
 
 Component            | Github release notes   | Changes file               | Updated in this release
 ---------------------|:----------------------:|----------------------------|:----------------------:
-[Zonemaster-LDNS]    | [v5.0.2][ldns-tag]     | [Changes][ldns-Changes]    | Yes
-[Zonemaster-Engine]  | [v8.1.1][engine-tag]   | [Changes][engine-Changes]  | Yes
-[Zonemaster-CLI]     | [v8.0.1][cli-tag]      | [Changes][cli-Changes]     | No
-[Zonemaster-Backend] | [v12.0.0][backend-tag] | [Changes][backend-Changes] | No
-[Zonemaster-GUI]     | [v5.0.1][gui-tag]      | [Changes][gui-Changes]     | Yes
+[Zonemaster-LDNS]    | [v5.1.0][ldns-tag]     | [Changes][ldns-Changes]    | Yes
+[Zonemaster-Engine]  | [v9.0.0][engine-tag]   | [Changes][engine-Changes]  | Yes
+[Zonemaster-CLI]     | [v8.0.2][cli-tag]      | [Changes][cli-Changes]     | Yes
+[Zonemaster-Backend] | [v12.1.0][backend-tag] | [Changes][backend-Changes] | Yes
+[Zonemaster-GUI]     | [v5.1.0][gui-tag]      | [Changes][gui-Changes]     | Yes
 
 For more information on previous versions of the Zonemaster product see the [Changes][zonemaster-Changes] file or the [releases] page on Github. For general information see the [README] file.
 
@@ -32,11 +48,11 @@ The public documentation is also found in a nicer format on the [documentation s
 [documentation site]:     https://doc.zonemaster.net/
 [reference installation]: https://zonemaster.net/
 
-[ldns-tag]:    https://github.com/zonemaster/zonemaster-ldns/releases/tag/v5.0.2
-[engine-tag]:  https://github.com/zonemaster/zonemaster-engine/releases/tag/v8.1.1
-[cli-tag]:     https://github.com/zonemaster/zonemaster-cli/releases/tag/v8.0.1
-[backend-tag]: https://github.com/zonemaster/zonemaster-backend/releases/tag/v12.0.0
-[gui-tag]:     https://github.com/zonemaster/zonemaster-gui/releases/tag/v5.0.1
+[ldns-tag]:    https://github.com/zonemaster/zonemaster-ldns/releases/tag/v5.1.0
+[engine-tag]:  https://github.com/zonemaster/zonemaster-engine/releases/tag/v9.0.0
+[cli-tag]:     https://github.com/zonemaster/zonemaster-cli/releases/tag/v8.0.2
+[backend-tag]: https://github.com/zonemaster/zonemaster-backend/releases/tag/v12.1.0
+[gui-tag]:     https://github.com/zonemaster/zonemaster-gui/releases/tag/v5.1.0
 
 [zonemaster-Changes]: https://github.com/zonemaster/zonemaster/blob/master/Changes
 [ldns-Changes]:       https://github.com/zonemaster/zonemaster-ldns/blob/master/Changes
@@ -54,7 +70,17 @@ The public documentation is also found in a nicer format on the [documentation s
 [NOTICE]:     https://github.com/zonemaster/zonemaster/blob/master/docs/public/specifications/tests/SeverityLevelDefinitions.md#notice
 [WARNING]:    https://github.com/zonemaster/zonemaster/blob/master/docs/public/specifications/tests/SeverityLevelDefinitions.md#warning
 
-[#1464]:      https://github.com/zonemaster/zonemaster/pull/1464
-
-
-
+[#1429]:     https://github.com/zonemaster/zonemaster/pull/1429
+[#1475]:     https://github.com/zonemaster/zonemaster/pull/1475
+[#1478]:     https://github.com/zonemaster/zonemaster/pull/1478
+[#1479]:     https://github.com/zonemaster/zonemaster/pull/1479
+[#1487]:     https://github.com/zonemaster/zonemaster/pull/1487
+[#1489]:     https://github.com/zonemaster/zonemaster/pull/1489
+[#1491]:     https://github.com/zonemaster/zonemaster/pull/1491
+[#1492]:     https://github.com/zonemaster/zonemaster/pull/1492
+[#1494]:     https://github.com/zonemaster/zonemaster/pull/1494
+[#1496]:     https://github.com/zonemaster/zonemaster/pull/1496
+[#1497]:     https://github.com/zonemaster/zonemaster/pull/1497
+[#1502]:     https://github.com/zonemaster/zonemaster/pull/1502
+[#1504]:     https://github.com/zonemaster/zonemaster/pull/1504
+[#1509]:     https://github.com/zonemaster/zonemaster/pull/1509
