@@ -12,7 +12,8 @@ v2026.1 2026-06-29
 
  [Breaking changes]
  - Removes deprecated profile properties. See Zonemaster-Engine
- - Changes saved packets’ serialization format. See Zonemaster-Engine
+ - Changes saved packets’ serialization format. Data files saved
+   with previous versions will not load. See Zonemaster-Engine
 
  [Deprecations]
  - None for this release
