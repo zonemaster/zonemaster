@@ -4,7 +4,7 @@ v2026.1 2026-06-29
 
  [Release information]
  - Please note that some of the links to documents at
-   doc.zonemster.net might not work the first days after the
+   doc.zonemaster.net might not work the first days after the
    release.
  - Migration of the database is required by this release to add
    correct schema version. See Zonemaster-Backend upgrade guide,
