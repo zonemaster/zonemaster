@@ -314,7 +314,6 @@ Index of Text Cases are found in [README](README.md).
 | DS10_ALGO_NOT_SUPPORTED_BY_ZM            | [DNSSEC](DNSSEC-TP/README.md) | [dnssec10](DNSSEC-TP/dnssec10.md) |
 | DS10_ERR_MULT_NSEC                       | [DNSSEC](DNSSEC-TP/README.md) | [dnssec10](DNSSEC-TP/dnssec10.md) |
 | DS10_ERR_MULT_NSEC3                      | [DNSSEC](DNSSEC-TP/README.md) | [dnssec10](DNSSEC-TP/dnssec10.md) |
-| DS10_ERR_MULT_NSEC3PARAM                 | [DNSSEC](DNSSEC-TP/README.md) | [dnssec10](DNSSEC-TP/dnssec10.md) |
 | DS10_EXPECTED_NSEC_NSEC3_MISSING         | [DNSSEC](DNSSEC-TP/README.md) | [dnssec10](DNSSEC-TP/dnssec10.md) |
 | DS10_HAS_NSEC                            | [DNSSEC](DNSSEC-TP/README.md) | [dnssec10](DNSSEC-TP/dnssec10.md) |
 | DS10_HAS_NSEC3                           | [DNSSEC](DNSSEC-TP/README.md) | [dnssec10](DNSSEC-TP/dnssec10.md) |
@@ -322,6 +321,7 @@ Index of Text Cases are found in [README](README.md).
 | DS10_INCONSISTENT_NSEC3                  | [DNSSEC](DNSSEC-TP/README.md) | [dnssec10](DNSSEC-TP/dnssec10.md) |
 | DS10_INCONSISTENT_NSEC_NSEC3             | [DNSSEC](DNSSEC-TP/README.md) | [dnssec10](DNSSEC-TP/dnssec10.md) |
 | DS10_MIXED_NSEC_NSEC3                    | [DNSSEC](DNSSEC-TP/README.md) | [dnssec10](DNSSEC-TP/dnssec10.md) |
+| DS10_NONSTANDARD_NSEC_RESPONSE           | [DNSSEC](DNSSEC-TP/README.md) | [dnssec10](DNSSEC-TP/dnssec10.md) |
 | DS10_NSEC3PARAM_GIVES_ERR_ANSWER         | [DNSSEC](DNSSEC-TP/README.md) | [dnssec10](DNSSEC-TP/dnssec10.md) |
 | DS10_NSEC3PARAM_MISMATCHES_APEX          | [DNSSEC](DNSSEC-TP/README.md) | [dnssec10](DNSSEC-TP/dnssec10.md) |
 | DS10_NSEC3PARAM_QUERY_RESPONSE_ERR       | [DNSSEC](DNSSEC-TP/README.md) | [dnssec10](DNSSEC-TP/dnssec10.md) |
