@@ -59,11 +59,11 @@ sudo rm -r /var/www/html/zonemaster-web-gui
 #### Install Zonemaster-GUI
 
 ```sh
-curl -L -O https://github.com/zonemaster/zonemaster-gui/releases/download/v5.0.1/zonemaster_web_gui_v5.0.1.zip
+curl -L -O https://github.com/zonemaster/zonemaster-gui/releases/download/v5.1.0/zonemaster_web_gui_v5.1.0.zip
 sudo install -vd /var/www/html/zonemaster-web-gui
 sudo install -vd /var/log/zonemaster
-sudo unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui_v5.0.1.zip
-rm -f zonemaster_web_gui_v5.0.1.zip
+sudo unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui_v5.1.0.zip
+rm -f zonemaster_web_gui_v5.1.0.zip
 ```
 
 #### Configure Apache site
@@ -121,11 +121,11 @@ sudo rm -r /var/www/html/zonemaster-web-gui
 #### Install Zonemaster-GUI
 
 ```sh
-wget https://github.com/zonemaster/zonemaster-gui/releases/download/v5.0.1/zonemaster_web_gui_v5.0.1.zip -O zonemaster_web_gui_v5.0.1.zip
-sudo unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui_v5.0.1.zip
+wget https://github.com/zonemaster/zonemaster-gui/releases/download/v5.1.0/zonemaster_web_gui_v5.1.0.zip -O zonemaster_web_gui_v5.1.0.zip
+sudo unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui_v5.1.0.zip
 sudo install -vd /var/log/zonemaster
 sudo install -v /var/www/html/zonemaster-web-gui/zonemaster.conf-example /etc/apache2/sites-available/zonemaster.conf
-rm -f zonemaster_web_gui_v5.0.1.zip
+rm -f zonemaster_web_gui_v5.1.0.zip
 ```
 
 #### Configure Zonemaster-GUI
@@ -218,11 +218,11 @@ rm -r /var/www/html/zonemaster-web-gui
 #### Install Zonemaster-GUI
 
 ```sh
-fetch https://github.com/zonemaster/zonemaster-gui/releases/download/v5.0.1/zonemaster_web_gui_v5.0.1.zip
+fetch https://github.com/zonemaster/zonemaster-gui/releases/download/v5.1.0/zonemaster_web_gui_v5.1.0.zip
 mkdir -p /var/www/html/zonemaster-web-gui
 mkdir -p /var/log/zonemaster
-unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui_v5.0.1.zip
-rm zonemaster_web_gui_v5.0.1.zip
+unzip -d /var/www/html/zonemaster-web-gui zonemaster_web_gui_v5.1.0.zip
+rm zonemaster_web_gui_v5.1.0.zip
 ```
 
 #### Basic Apache configuration
