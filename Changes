@@ -19,10 +19,10 @@ v2026.1 2026-06-29
  - None for this release
 
  [Features]
- - Adds All-In-One Docker image including CLI, Backend and GUI.
-   Documentation added by #1487. Also see
+ - Adds All-In-One Docker image including CLI, Backend and GUI
+   components. Documentation added by #1487. Also see
    https://doc.zonemaster.net/v2026.1/using/gui/all-in-one.html
- - Adds migration guide for Backend 12.1.0 (#1491, #1509)
+ - Adds migration guide for Zonemaster-Backend 12.1.0 (#1491, #1509)
  - Specifies URL to TLD feature for GUI in RPCAPI (#1429)
  - Update specification of DNSSEC10 to handle nonstandard NSEC
    responses (#1478)
