@@ -293,7 +293,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
 10. If *[B01_CHILD_FOUND]* has been outputted, but not
     *[B01_INCONSISTENT_DELEGATION]*, and the *AA NXDomain Response* set is
     non-empty then for each domain name in that set output
-    *B01_UNEXPECTED_NXDOMAIN* with the domain name from the set, the list of IP
+    *[B01_UNEXPECTED_NXDOMAIN]* with the domain name from the set, the list of IP
     addresses for that domain name, and the *Child Zone*.
 
 11. If both of the *Delegation Found* and the *AA SOA Found* sets are empty, then
