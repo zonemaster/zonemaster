@@ -10,6 +10,8 @@ zonefiles and `coredns` configuration files for scenarios for test case CONSISTE
 * ADDRESSES-MATCH-5
 * ADDRESSES-MATCH-6
 * ADDRESSES-MATCH-7
+* ADDRESSES-MATCH-8
+* ADDRESSES-MATCH-9
 * ADDR-MATCH-DEL-UNDEL-1
 * ADDR-MATCH-DEL-UNDEL-2
 * ADDR-MATCH-NO-DEL-UNDEL-1
@@ -59,7 +61,7 @@ Loading profile from COMMON/custom-profile.json.
    0.25 INFO     Consistency05  ADDRESSES_MATCH
    0.25 INFO     Consistency05  TEST_CASE_END  testcase=Consistency05
 ```
--->OK
+--> OK
 
 Scenario name         | Mandatory message tags                            | Forbidden message tags
 :---------------------|:--------------------------------------------------|:-------------------------------------------
@@ -156,6 +158,34 @@ Loading profile from COMMON/custom-profile.json.
    0.23 INFO     Consistency05  TEST_CASE_END  testcase=Consistency05
 ```
 --> OK
+
+Scenario name         | Mandatory message tags                            | Forbidden message tags
+:---------------------|:--------------------------------------------------|:-------------------------------------------
+ADDRESSES-MATCH-8     | ADDRESSES_MATCH                                   | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
+```
+$ zonemaster-cli child.a.b.ADDRESSES-MATCH-8.consistency05.xa --raw  --test consistency05 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json
+Loading profile from COMMON/custom-profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v9.0.0
+   0.00 INFO     Consistency05  TEST_CASE_START  testcase=Consistency05
+   0.17 ERROR    Consistency05  OUT_OF_BAILIWICK_ADDR_MISMATCH  parent_addresses=ns41.child.a.b.addresses-match-8.consistency05.xb./127.0.0.1;ns41.child.a.b.addresses-match-8.consistency05.xb./::1; zone_addresses=ns41.child.a.b.addresses-match-8.consistency05.xb./127.14.5.41;ns41.child.a.b.addresses-match-8.consistency05.xb./fda1:b2:c3:0:127:14:5:41
+   0.17 ERROR    Consistency05  OUT_OF_BAILIWICK_ADDR_MISMATCH  parent_addresses=ns42.child.a.b.addresses-match-8.consistency05.xb./127.0.0.1;ns42.child.a.b.addresses-match-8.consistency05.xb./::1; zone_addresses=ns42.child.a.b.addresses-match-8.consistency05.xb./127.14.5.42;ns42.child.a.b.addresses-match-8.consistency05.xb./fda1:b2:c3:0:127:14:5:42
+   0.17 INFO     Consistency05  TEST_CASE_END  testcase=Consistency05
+```
+--> Not OK
+
+Scenario name         | Mandatory message tags                            | Forbidden message tags
+:---------------------|:--------------------------------------------------|:-------------------------------------------
+ADDRESSES-MATCH-9     | ADDRESSES_MATCH                                   | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
+```
+$ zonemaster-cli child.ADDRESSES-MATCH-9.consistency05.xa --raw  --test consistency05 --hints COMMON/hintfile --show-testcase  --level info --profile COMMON/custom-profile.json
+Loading profile from COMMON/custom-profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v9.0.0
+   0.00 INFO     Consistency05  TEST_CASE_START  testcase=Consistency05
+   0.16 ERROR    Consistency05  OUT_OF_BAILIWICK_ADDR_MISMATCH  parent_addresses=ns41.child.addresses-match-9.consistency05.xb./127.0.0.1;ns41.child.addresses-match-9.consistency05.xb./::1; zone_addresses=ns41.child.addresses-match-9.consistency05.xb./127.14.5.41;ns41.child.addresses-match-9.consistency05.xb./fda1:b2:c3:0:127:14:5:41
+   0.17 ERROR    Consistency05  OUT_OF_BAILIWICK_ADDR_MISMATCH  parent_addresses=ns42.child.addresses-match-9.consistency05.xb./127.0.0.1;ns42.child.addresses-match-9.consistency05.xb./::1; zone_addresses=ns42.child.addresses-match-9.consistency05.xb./127.14.5.42;ns42.child.addresses-match-9.consistency05.xb./fda1:b2:c3:0:127:14:5:42
+   0.17 INFO     Consistency05  TEST_CASE_END  testcase=Consistency05
+```
+--> Not OK
 
 Scenario name                 | Mandatory message tags         | Forbidden message tags
 :-----------------------------|:-------------------------------|:-------------------------------------------

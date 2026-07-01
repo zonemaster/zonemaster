@@ -32,9 +32,10 @@ The test scenarios are structured as stated in the [test zone README file].
 ## Test zone names
 
 The test zone for each test scenario in this document is a subdomain delegated
-from the base name (`consistency05.xa`) and that subdomain having the same name as the
-scenario. The names of those zones are given in section
-"[Zone setup for test scenarios]" below.
+from the base name (`consistency05.xa`) and that subdomain having the same name
+as the scenario. For some scenarios the test zone is a child zone to that zone.
+The names of those zones are given in section "[Zone setup for test scenarios]"
+below.
 
 
 ## Test scenarios and message tags
@@ -42,27 +43,29 @@ scenario. The names of those zones are given in section
 If a message tag is not listed for the scenario, its presence or non-presence is
 irrelevant to the test scenario and must be ignored.
 
-Scenario name             | Mandatory message tag            | Forbidden message tags
-:-------------------------|:---------------------------------|:-------------------------------------------
-ADDRESSES-MATCH-1         | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
-ADDRESSES-MATCH-2         | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
-ADDRESSES-MATCH-3         | ADDRESSES_MATCH, CHILD_NS_FAILED | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, NO_RESPONSE
-ADDRESSES-MATCH-4         | ADDRESSES_MATCH, CHILD_NS_FAILED | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, NO_RESPONSE
-ADDRESSES-MATCH-5         | ADDRESSES_MATCH, NO_RESPONSE     | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED
-ADDRESSES-MATCH-6         | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
-ADDRESSES-MATCH-7         | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
-ADDR-MATCH-DEL-UNDEL-1    | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
-ADDR-MATCH-DEL-UNDEL-2    | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
-ADDR-MATCH-NO-DEL-UNDEL-1 | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
-ADDR-MATCH-NO-DEL-UNDEL-2 | ADDRESSES_MATCH                  | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE
-CHILD-ZONE-LAME-1         | CHILD_ZONE_LAME, NO_RESPONSE     | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_NS_FAILED, ADDRESSES_MATCH
-CHILD-ZONE-LAME-2         | CHILD_ZONE_LAME, CHILD_NS_FAILED | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, ADDRESSES_MATCH, NO_RESPONSE
-IB-ADDR-MISMATCH-1        | IN_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD | OUT_OF_BAILIWICK_ADDR_MISMATCH, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
-IB-ADDR-MISMATCH-2        | IN_BAILIWICK_ADDR_MISMATCH       | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
-IB-ADDR-MISMATCH-3        | IN_BAILIWICK_ADDR_MISMATCH, NO_RESPONSE | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
-IB-ADDR-MISMATCH-4        | IN_BAILIWICK_ADDR_MISMATCH       | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
-EXTRA-ADDRESS-CHILD       | EXTRA_ADDRESS_CHILD              | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
-OOB-ADDR-MISMATCH         | OUT_OF_BAILIWICK_ADDR_MISMATCH   | IN_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH
+| Scenario name             | Mandatory message tag                           | Forbidden message tags                                                                                                         |
+|:--------------------------|:------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------|
+| ADDRESSES-MATCH-1         | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
+| ADDRESSES-MATCH-2         | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
+| ADDRESSES-MATCH-3         | ADDRESSES_MATCH, CHILD_NS_FAILED                | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, NO_RESPONSE                  |
+| ADDRESSES-MATCH-4         | ADDRESSES_MATCH, CHILD_NS_FAILED                | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, NO_RESPONSE                  |
+| ADDRESSES-MATCH-5         | ADDRESSES_MATCH, NO_RESPONSE                    | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED              |
+| ADDRESSES-MATCH-6         | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
+| ADDRESSES-MATCH-7         | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
+| ADDRESSES-MATCH-8         | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
+| ADDRESSES-MATCH-9         | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
+| ADDR-MATCH-DEL-UNDEL-1    | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
+| ADDR-MATCH-DEL-UNDEL-2    | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
+| ADDR-MATCH-NO-DEL-UNDEL-1 | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
+| ADDR-MATCH-NO-DEL-UNDEL-2 | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
+| CHILD-ZONE-LAME-1         | CHILD_ZONE_LAME, NO_RESPONSE                    | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_NS_FAILED, ADDRESSES_MATCH              |
+| CHILD-ZONE-LAME-2         | CHILD_ZONE_LAME, CHILD_NS_FAILED                | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, ADDRESSES_MATCH, NO_RESPONSE                  |
+| IB-ADDR-MISMATCH-1        | IN_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD | OUT_OF_BAILIWICK_ADDR_MISMATCH, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH                                 |
+| IB-ADDR-MISMATCH-2        | IN_BAILIWICK_ADDR_MISMATCH                      | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH            |
+| IB-ADDR-MISMATCH-3        | IN_BAILIWICK_ADDR_MISMATCH, NO_RESPONSE         | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH            |
+| IB-ADDR-MISMATCH-4        | IN_BAILIWICK_ADDR_MISMATCH                      | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH            |
+| EXTRA-ADDRESS-CHILD       | EXTRA_ADDRESS_CHILD                             | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH     |
+| OOB-ADDR-MISMATCH         | OUT_OF_BAILIWICK_ADDR_MISMATCH                  | IN_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH                |
 
 
 ## Zone setup for test scenarios
@@ -99,13 +102,13 @@ The "happy path". Everything is fine.
 Also the "happy path". Out-of-bailiwick NS this time. And no glue.
 
 * Zone: addresses-match-2.consistency05.xa
-  * Both ns1 and ns2 are out-of-bailiwick under the xb tree.
-  * ns1 is "ns1.addresses-match-2.consistency05.xb"
-  * ns2 is "ns2.addresses-match-2.consistency05.xb"
+  * Both ns3 and ns4 are out-of-bailiwick under the xb tree.
+  * ns3 is "ns3.addresses-match-2.consistency05.xb"
+  * ns4 is "ns4.addresses-match-2.consistency05.xb"
   * Delegation is without glue.
   * The zone has no address records for the NS names
-  * The "addresses-match-2.consistency05.xb" zone has a full set of the
-    address records for ns1 and ns2.
+  * The "consistency05.xb" zone has a full set of the address records for ns3
+    and ns4.
 
 ### ADDRESSES-MATCH-3
 One NS does not give AA answer, but else fine.
@@ -146,6 +149,48 @@ Also "happy path". NS in subdomain.
   * "subdomain.addresses-match-7.consistency05.xa" is delegated to the same
     ns1 and ns2.
   * ns1 and ns2 are defined with address records in the "subdomain" zone.
+
+### ADDRESSES-MATCH-8
+It is much like ADDRESSES-MATCH-2, a "happy path". All NS are out-of-bailiwick.
+The child is a few steps below and one of the servers of the parent zone also
+host a root zone with wildcard address records, but that should be irrelevant.
+
+* Zone: child.a.b.addresses-match-8.consistency05.xa
+  * "addresses-match-8.consistency05.xa" is the parent zone.
+    * ns3, ns4 and ns39 are out-of-bailiwick under the xb tree.
+    * ns3 is "ns3.addresses-match-8.consistency05.xb"
+    * ns4 is "ns4.addresses-match-8.consistency05.xb"
+    * ns39 is "ns39.addresses-match-8.consistency05.xb"
+  * Delegation is without glue.
+  * The child zone has no address records for the NS names
+  * The child zone is on different servers:
+    * ns41 and ns42 are out-of-bailiwick under the xb tree.
+    * ns41 is "ns41.child.a.b.addresses-match-8.consistency05.xb"
+    * ns42 is "ns42.child.a.b.addresses-match-8.consistency05.xb"
+  * The "consistency05.xb" zone has a full set of the address records for all NS
+  * ns39 happens to also host a root zone with wildcard records for "*.xa" and
+    "*.xb"
+    * The root zone should be irrelevant to Zonemaster.
+
+### ADDRESSES-MATCH-9
+It is very much like ADDRESSES-MATCH-8. Child is directly under parent.
+
+* Zone: child.addresses-match-9.consistency05.xa
+  * "addresses-match-9.consistency05.xa" is the parent zone.
+    * ns3, ns4 and ns39 are out-of-bailiwick under the xb tree.
+    * ns3 is "ns3.addresses-match-9.consistency05.xb"
+    * ns4 is "ns4.addresses-match-9.consistency05.xb"
+    * ns39 is "ns39.addresses-match-9.consistency05.xb"
+  * Delegation is without glue.
+  * The child zone has no address records for the NS names
+  * The child zone is on different servers:
+    * ns41 and ns42 are out-of-bailiwick under the xb tree.
+    * ns41 is "ns41.child.addresses-match-9.consistency05.xb"
+    * ns42 is "ns42.child.addresses-match-9.consistency05.xb"
+  * The "consistency05.xb" zone has a full set of the address records for all NS
+  * ns39 happens to also host a root zone with wildcard records for "*.xa" and
+    "*.xb"
+    * The root zone should be irrelevant to Zonemaster.
 
 ### ADDR-MATCH-DEL-UNDEL-1
 Also the "happy path". But there is an undelegated zone to be tested.

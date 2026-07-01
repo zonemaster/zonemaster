@@ -1,0 +1,30 @@
+$ORIGIN .
+$TTL 3600
+
+@       SOA     ns39.xb. admin.mail.xa. (
+                2026070110      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS      ns39.xb.
+@       TXT     "Text"
+
+ns39.xb.     A       127.14.5.39
+ns39.xb.     AAAA    fda1:b2:c3:0:127:14:5:39
+
+; CoreDNS does not recognize a wildcard label at the second level. In this case
+; we control what TLDs are used, or else we have to expand the list of records
+; to cover all possible TLDs.
+
+*.xa       A       127.0.0.1
+*.xa       AAAA    ::1
+*.xa       TXT     "Localhost"
+
+*.xb       A       127.0.0.1
+*.xb       AAAA    ::1
+*.xb       TXT     "Localhost"
+
+
+;EOF
