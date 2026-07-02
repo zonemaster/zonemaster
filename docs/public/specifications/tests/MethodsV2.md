@@ -199,8 +199,8 @@ This Method uses the following input units defined in section [Methods Inputs]:
        1. For each IP address add the name server name, IP address and *Zone
           Name* tuple to the *Remaining Servers* set, unless such a tuple
           already exists in *Handled Servers*.
-       2. Ignore any failing lookups or lookups, such as NODATA, NXDOMAIN, non-AA
-          responses or no response at all.
+       2. Ignore any failing lookups (such as response with SERVFAIL or no
+          response) or lookups giving response with NODATA or NXDOMAIN.
    11. Create "Intermediate Query Name" by copying *Zone Name* as start value.
    12. Run a loop processing *Server Name* and *Server Address* (jumps back
        here from the steps below).
