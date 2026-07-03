@@ -260,6 +260,50 @@ undelegated.
       * ns3.parent.good-undel-2.methodsv2.xa/IPv6
       * ns6.good-undel-2.methodsv2.xa
 
+### CHILD-BELOW-NXDOMAIN-1
+The parent NS returns NXDOMAIN for the domain above the zone cut, but then
+correct delegation at the zone cut.
+
+* Zone: child.im.parent.child-below-nxdomain-1.methodsv2.xa
+  * Parent NS returns NXDOMAIN for "im.parent.child-below-nxdomain-1.methodsv2.xa"
+  * Parent NS returns normal delegation at the zone cut.
+
+### CHILD-BELOW-NXDOMAIN-2
+The parent NS returns NXDOMAIN for the domain above the zone cut, but then
+correct delegation at the zone cut. Child has out-of-bailiwick name servers only.
+
+* Zone: child.im.parent.child-below-nxdomain-2.methodsv2.xa
+  * Parent NS returns NXDOMAIN for "im.parent.child-below-nxdomain-2.methodsv2.xa"
+  * Parent NS returns normal delegation at the zone cut.
+  * Child NS are out-of-bailiwick but not shared with grandparent zone.
+    * ns5.child-below-nxdomain-2.methodsv2.xa
+    * ns6.child-below-nxdomain-2.methodsv2.xa
+  * No glue
+
+### CHILD-BELOW-NXDOMAIN-3
+One parent NS returns NXDOMAIN for the domain above the zone cut, but then
+correct delegation at the zone cut. The other NS has no delegation, NODATA only
+at expected zone cut.
+
+* Zone: child.im.parent.child-below-nxdomain-3.methodsv2.xa
+  * Parent ns1 returns NXDOMAIN for "im.parent.child-below-nxdomain-3.methodsv2.xa"
+  * Parent ns1 returns normal delegation at the zone cut.
+  * Parent ns2 returns NODATA at both names (no delegation).
+
+### CHILD-BELOW-NXDOMAIN-4
+One he parent NS returns NXDOMAIN for the domain above the zone cut, but then
+correct delegation at the zone cut. The other NS has no delegation, NODATA only
+at expected zone cut. Child has out-of-bailiwick name servers only.
+
+* Zone: child.im.parent.child-below-nxdomain-4.methodsv2.xa
+  * Parent ns1 returns NXDOMAIN for "im.parent.child-below-nxdomain-4.methodsv2.xa"
+  * Parent ns1 returns normal delegation at the zone cut.
+  * Parent ns2 returns NODATA at both names (no delegation).
+  * Child NS are out-of-bailiwick but not shared with grandparent zone.
+    * ns5.child-below-nxdomain-4.methodsv2.xa
+    * ns6.child-below-nxdomain-4.methodsv2.xa
+  * No glue
+
 ### DIFF-NS-1
 No match in name server names between delegation and zone. Same name server IP.
 
