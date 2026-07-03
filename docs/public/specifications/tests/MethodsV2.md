@@ -151,7 +151,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
 > In the loop below, the steps tries to capture the name of the parent zone of
 > **Child Zone** and the IP addresses of the name servers for that parent zone.
 > This is done using a modified version of the "QNAME minimization" technique
-> [RFC 9156]. SOA is the query type used for traversing the tree.
+> ([RFC 9156]). SOA is the query type used for traversing the tree.
 
 5. While the *Remaining Servers* is non-empty pick next name server name, IP
    address and zone name tuple from the set ("Server Name", "Server Address"
@@ -1027,10 +1027,10 @@ None.
   defined in
   [DNS Query and Response Defaults][DNS Query and Response Defaults#Response].
 
-* "Glue Record" - The term is used as defined in [RFC 9499#secion7][RFC 9499],
+* "Glue Record" - The term is used as defined in [RFC 9499][RFC 9499#secion7],
   section 7.
 
-* "In-Domain" - The term is used as defined in [RFC 9499#secion7][RFC 9499],
+* "In-Domain" - The term is used as defined in [RFC 9499][RFC 9499#secion7],
   section 7, in the subsection on "Glue Records", for name server names in the
   referral of a zone. The name server name is on or below the zone cut of the
   zone for which it is name server for. Previously the term "In-Bailiwick" was
@@ -1038,7 +1038,7 @@ None.
 
 * "Not In-Domain" - The term refer to a name server names that is not
   "In-Domain". It is either "sibling domain" or "unrelated" as defined in
-  [RFC 9499#secion7][RFC 9499], section 7, in the subsection on "Glue Records",
+  [RFC 9499][RFC 9499#secion7], section 7, in the subsection on "Glue Records",
   for name server names in the referral of a zone. The name server name is
   neither on or below the zone cut of the zone for which it is name server for.
   It is above or at aside. Previously the term "Out-Of-Bailiwick" was
