@@ -1027,22 +1027,22 @@ None.
   defined in
   [DNS Query and Response Defaults][DNS Query and Response Defaults#Response].
 
-* "Glue Record" - The term is used as defined in [RFC 9499][RFC 9499#secion7],
+* "Glue Record" - The term is used as defined in [RFC 9499][RFC 9499#section7],
   section 7.
 
-* "In-Domain" - The term is used as defined in [RFC 9499][RFC 9499#secion7],
+* "In-Domain" - The term is used as defined in [RFC 9499][RFC 9499#section7],
   section 7, in the subsection on "Glue Records", for name server names in the
   referral of a zone. The name server name is on or below the zone cut of the
   zone for which it is name server for. Previously the term "In-Bailiwick" was
   used.
 
-* "Not In-Domain" - The term refer to a name server names that is not
+* "Not In-Domain" - The term refers to a name server name that is not
   "In-Domain". It is either "sibling domain" or "unrelated" as defined in
-  [RFC 9499][RFC 9499#secion7], section 7, in the subsection on "Glue Records",
+  [RFC 9499][RFC 9499#section7], section 7, in the subsection on "Glue Records",
   for name server names in the referral of a zone. The name server name is
-  neither on or below the zone cut of the zone for which it is name server for.
-  It is above or at aside. Previously the term "Out-Of-Bailiwick" was
-  used.
+  neither on or below the zone cut of the zone for for which it is name server.
+  The name server name belongs to another zone. It is above or at aside the
+  delegated zone. Previously the term "Out-Of-Bailiwick" was used.
 
 * "Referral" - The term means a DNS response with [RCODE Name] NoError, AA flag
   unset and NS records in the authority section.
