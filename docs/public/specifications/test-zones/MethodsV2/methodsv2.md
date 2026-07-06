@@ -269,7 +269,7 @@ undelegated.
       * ns6.good-undel-2.methodsv2.xa
 
 ### CHILD-BELOW-NXDOMAIN-1
-The parent NS returns NXDOMAIN for the domain above the zone cut, but then
+The parent NS returns NXDOMAIN for the domain above the zone cut, but the
 correct delegation at the zone cut.
 
 * Zone: child.im.parent.child-below-nxdomain-1.methodsv2.xa
@@ -277,7 +277,7 @@ correct delegation at the zone cut.
   * Parent NS returns normal delegation at the zone cut.
 
 ### CHILD-BELOW-NXDOMAIN-2
-The parent NS returns NXDOMAIN for the domain above the zone cut, but then
+The parent NS returns NXDOMAIN for the domain above the zone cut, but the
 correct delegation at the zone cut. Child has no in-domain name servers.
 
 * Zone: child.im.parent.child-below-nxdomain-2.methodsv2.xa
@@ -289,7 +289,7 @@ correct delegation at the zone cut. Child has no in-domain name servers.
   * No glue
 
 ### CHILD-BELOW-NXDOMAIN-3
-One parent NS returns NXDOMAIN for the domain above the zone cut, but then
+One parent NS returns NXDOMAIN for the domain above the zone cut, but the
 correct delegation at the zone cut. The other NS has no delegation, NODATA only
 at expected zone cut.
 
@@ -299,7 +299,7 @@ at expected zone cut.
   * Parent ns2 returns NODATA at both names (no delegation).
 
 ### CHILD-BELOW-NXDOMAIN-4
-One he parent NS returns NXDOMAIN for the domain above the zone cut, but then
+One parent NS returns NXDOMAIN for the domain above the zone cut, but the
 correct delegation at the zone cut. The other NS has no delegation, NODATA only
 at expected zone cut. Child has no in-domain name servers.
 
