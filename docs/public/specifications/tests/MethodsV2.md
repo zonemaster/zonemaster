@@ -16,7 +16,7 @@
 * [Method: Get zone NS IP addresses][Get-Zone-NS-IPs]
 * [Method: Get delegation (Internal)][Get-Delegation]
 * [Method: Get In-Domain address records in zone (Internal)][Get-ID-Addr-in-Zone]
-* [Method: Get Not In-Domain ip addresses (Internal)][Get-NID-IPs]
+* [Method: Get Not In-Domain IP addresses (Internal)][Get-NID-IPs]
 * [Method inter-dependencies](#method-inter-dependencies)
 * [Terminology](#terminology)
 
@@ -910,7 +910,7 @@ This Method depends on [Get-Zone-NS-Names] and [Get-Del-NS-IPs].
 [To top]
 
 
-## Method: Get Not In-Domain ip addresses (Internal)
+## Method: Get Not In-Domain IP addresses (Internal)
 
 ### Method identifier
 **Get-NID-IPs**
@@ -1106,7 +1106,7 @@ None.
 [Query type]:                                        https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 [RCODE Name]:                                        https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 9156]:                                          https://www.rfc-editor.org/rfc/rfc9156.html
-[RFC 9499#secion7]:                                  https://datatracker.ietf.org/doc/html/rfc9499#section-7
+[RFC 9499#section7]:                                 https://datatracker.ietf.org/doc/html/rfc9499#section-7
 [Referral]:                                          #terminology
 [Requirements and normalization]:                    RequirementsAndNormalizationOfDomainNames.md
 [Send]:                                              #terminology
