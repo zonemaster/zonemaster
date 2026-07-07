@@ -16,7 +16,7 @@
 * [Method: Get zone NS IP addresses][Get-Zone-NS-IPs]
 * [Method: Get delegation (Internal)][Get-Delegation]
 * [Method: Get In-Domain address records in zone (Internal)][Get-ID-Addr-in-Zone]
-* [Method: Get Not In-Domain IP addresses (Internal)][Get-NID-IPs]
+* [Method: Get Out-Of-Domain IP addresses (Internal)][Get-OOD-IPs]
 * [Method inter-dependencies](#method-inter-dependencies)
 * [Terminology](#terminology)
 
@@ -368,9 +368,9 @@ This Method depends on [Get-Parent-NS-Names-and-IPs].
 Obtain the name server names (from the NS records) and the IP addresses (from
 Glue Records) from the delegation of the given zone (child zone) from
 the parent zone. [Glue Records], if any, are address records for name
-server names. Also obtain the IP addresses for the [Not In-Domain] name
+server names. Also obtain the IP addresses for the [Out-Of-Domain] name
 server names, if any. If the [Glue Records] include address records for
-[Not In-Domain] name servers they will be included twice, unless identical.
+[Out-Of-Domain] name servers they will be included twice, unless identical.
 
 ### Inputs
 
@@ -391,13 +391,13 @@ This Method uses the following input units defined in section [Methods Inputs]:
 3. If the *Name Servers* set is empty, then output an empty set and exit these
    procedures.
 
-4. Extract the set of [Not In-Domain] name server names from *Name Servers*
-   ("NID Names").
+4. Extract the set of [Out-Of-Domain] name server names from *Name Servers*
+   ("OOD Names").
 
-5. Get the IP addresses for name server names in *NID Names* by using Method
-   [Get-NID-IPs] with *NID Names* as input.
+5. Get the IP addresses for name server names in *OOD Names* by using Method
+   [Get-OOD-IPs] with *OOD Names* as input.
 
-6. Merge the set returned from [Get-NID-IPs] with *Name Servers*.
+6. Merge the set returned from [Get-OOD-IPs] with *Name Servers*.
 
 7. Output the *Name Servers* set.
 
@@ -411,7 +411,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
 
 ### Dependencies
 
-This Method depends on [Get-Delegation] and [Get-NID-IPs].
+This Method depends on [Get-Delegation] and [Get-OOD-IPs].
 
 [To top]
 
@@ -481,7 +481,7 @@ In general, this Method replaces [Method4] in [Methods], version 1.
 Obtain the IP addresses (from [Glue Records]) from the delegation of
 the given zone (child zone) from the parent zone. [Glue Records] are address
 records for [In-Domain] name server names, if any. Obtain the IP addresses
-for the [Not In-Domain] name server names, if any.
+for the [Out-Of-Domain] name server names, if any.
 
 ### Inputs
 
@@ -593,7 +593,7 @@ This Method depends on [Get-Del-NS-IPs].
 
 Obtain the name server names (extracted from the NS records) from the apex of the
 child zone. For [In-Domain] name server names obtain the IP addresses from the
-child zone. For the [Not In-Domain] name server names obtain the IP addresses
+child zone. For the [Out-Of-Domain] name server names obtain the IP addresses
 from resolver lookup.
 
 ### Inputs
@@ -623,13 +623,13 @@ This Method uses the following input units defined in section [Methods Inputs]:
 6. Add each fetched IP address, if any, to *Name Servers* to the name
    server name it belongs to.
 
-7. Extract the set of [Not In-Domain] name server names from *Names*
-   ("NID Names").
+7. Extract the set of [Out-Of-Domain] name server names from *Names*
+   ("OOD Names").
 
-8. Get the IP addresses for name server names in *NID Names* by using Method
-   [Get-NID-IPs] with *NID Names* as input.
+8. Get the IP addresses for name server names in *OOD Names* by using Method
+   [Get-OOD-IPs] with *OOD Names* as input.
 
-9. Merge the set returned from [Get-NID-IPs] with *Name Servers*.
+9. Merge the set returned from [Get-OOD-IPs] with *Name Servers*.
 
 10. Output the *Name Servers* set.
 
@@ -644,7 +644,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
 ### Dependencies
 
 This Method depends on Methods [Get-Zone-NS-Names], [Get-ID-Addr-in-Zone]
-and [Get-NID-IPs].
+and [Get-OOD-IPs].
 
 [To top]
 
@@ -714,7 +714,7 @@ server names, if any. Extract addresses even if the resolution goes through
 CNAME. It is, however, not permitted for a NS record to point at a name
 that has a CNAME, but that test is covered by Test Case [Delegation05].
 
-IP addresses for [Not In-Domain] name server names are not extracted
+IP addresses for [Out-Of-Domain] name server names are not extracted
 with this Method. To get those use Method [Get-Del-NS-IPs] or
 Method [Get-Del-NS-Names-and-IPs].
 
@@ -743,7 +743,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
    4. For each [In-Domain] name server name collect any
       IP addresses from *Undelegated Data* and add that to the
       *Name Servers* set under the name server name.
-   5. For any [Not In-Domain] name server name the IP address should be
+   5. For any [Out-Of-Domain] name server name the IP address should be
       ignored.
    6. Output the *Name Servers* set.
    7. Exit these procedures.
@@ -910,14 +910,14 @@ This Method depends on [Get-Zone-NS-Names] and [Get-Del-NS-IPs].
 [To top]
 
 
-## Method: Get Not In-Domain IP addresses (Internal)
+## Method: Get Out-Of-Domain IP addresses (Internal)
 
 ### Method identifier
-**Get-NID-IPs**
+**Get-OOD-IPs**
 
 ### Objective
 
-Obtain the IP addresses of the [Not In-Domain] name servers for the
+Obtain the IP addresses of the [Out-Of-Domain] name servers for the
 given zone (child zone) and a given set of name server names.
 
 Extract addresses even if the resolution goes through CNAME, here ignoring that
@@ -994,10 +994,10 @@ None.
 |-------------------------------|-------|-------------------------------|-------|
 | [Get-Parent-NS-Names-and-IPs] | 1     | -                             |       |
 | [Get-Parent-NS-IPs]           | 2     | [Get-Parent-NS-Names-and-IPs] | 1     |
-| [Get-NID-IPs]                 | 1     | -                             |       |
+| [Get-OOD-IPs]                 | 1     | -                             |       |
 | [Get-Delegation]              | 3     | [Get-Parent-NS-IPs]           | 2     |
 | [Get-Del-NS-Names-and-IPs]    | 4     | [Get-Delegation]              | 3     |
-|                               |       | [Get-NID-IPs]                 | 1     |
+|                               |       | [Get-OOD-IPs]                 | 1     |
 | [Get-Del-NS-Names]            | 5     | [Get-Del-NS-Names-and-IPs]    | 4     |
 | [Get-Del-NS-IPs]              | 5     | [Get-Del-NS-Names-and-IPs]    | 4     |
 | [Get-Zone-NS-Names]           | 6     | [Get-Del-NS-IPs]              | 5     |
@@ -1005,7 +1005,7 @@ None.
 |                               |       | [Get-Zone-NS-Names]           | 6     |
 | [Get-Zone-NS-Names-and-IPs]   | 8     | [Get-Zone-NS-Names]           | 6     |
 |                               |       | [Get-ID-Addr-in-Zone]         | 7     |
-|                               |       | [Get-NID-IPs]                 | 1     |
+|                               |       | [Get-OOD-IPs]                 | 1     |
 | [Get-Zone-NS-IPs]             | 9     | [Get-Zone-NS-Names-and-IPs]   | 8     |
 
 [To top]
@@ -1036,7 +1036,7 @@ None.
   zone for which it is name server for. Previously the term "In-Bailiwick" was
   used.
 
-* "Not In-Domain" - The term refers to a name server name that is not
+* "Out-Of-Domain" - The term refers to a name server name that is not
   "In-Domain". It is either "sibling domain" or "unrelated" as defined in
   [RFC 9499][RFC 9499#section7], section 7, in the subsection on "Glue Records",
   for name server names in the referral of a zone. The name server name is
@@ -1083,7 +1083,7 @@ None.
 [Get-Del-NS-Names]:                                  #method-get-delegation-ns-names
 [Get-Delegation]:                                    #method-get-delegation-internal
 [Get-ID-Addr-in-Zone]:                               #method-get-in-domain-address-records-in-zone-internal
-[Get-NID-IPs]:                                       #method-get-not-in-domain-ip-addresses-internal
+[Get-OOD-IPs]:                                       #method-get-not-in-domain-ip-addresses-internal
 [Get-Parent-NS-IPs]:                                 #method-get-parent-ns-ip-addresses
 [Get-Parent-NS-Names-and-IPs]:                       #method-get-parent-ns-names-and-ip-addresses
 [Get-Zone-NS-IPs]:                                   #method-get-zone-ns-ip-addresses
@@ -1102,7 +1102,7 @@ None.
 [Method5]:                                           Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [Methods]:                                           Methods.md
 [Methods Inputs]:                                    #methods-inputs
-[Not In-Domain]:                                     #terminology
+[Out-Of-Domain]:                                     #terminology
 [Query type]:                                        https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 [RCODE Name]:                                        https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 9156]:                                          https://www.rfc-editor.org/rfc/rfc9156.html
