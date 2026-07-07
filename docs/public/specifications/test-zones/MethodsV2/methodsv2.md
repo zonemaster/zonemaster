@@ -19,11 +19,11 @@ applicable.
 The term "in-bailiwick" has been replaced with "in-domain" in this version of the
 document. That is to match an update of the MethodsV2 specification ([MethodsV2])
 and more details and the definition of the new term "in-domain" can be found
-there. The previous term "out-of-bailiwick" was used as the negation of
-"in-bailiwick".
+there. The previous term "out-of-bailiwick" has been replaced by the term
+"out-of-domain" and was used as the negation of "in-bailiwick".
 
 Some scenario names still contain the string "OOB" or "IB", which are
-abbreviations of the old terms. They are just part of names.
+abbreviations of the old terms. They are just parts of names.
 
 ## Test scenarios
 
@@ -148,17 +148,17 @@ A "happy path". Everything is fine.
   * Just defaults
 
 ### GOOD-2
-A "happy path". Everything is fine. Child has no in-domain name servers.
+A "happy path". Everything is fine. Child has only out-of-domain name servers.
 
 * Zone: child.parent.good-2.methodsv2.xa
-  * Child NS are not in-domain, and are not shared with grandparent zone.
+  * Child NS are out-of-domain, and are not shared with grandparent zone.
     * ns5.good-2.methodsv2.xa
     * ns6.good-2.methodsv2.xa
   * No glue
 
 ### GOOD-3
 A "happy path". Everything is fine. Child has both in-domain name servers and
-name servers that are not in-domain.
+name servers that are out-of-domain.
 
 * Zone: child.parent.good-3.methodsv2.xa
   * Child NS:
@@ -227,7 +227,7 @@ servers.
 
 ### GOOD-UNDEL-1
 A "happy path". Everything is fine. Child has both in-domain name server and
-name servers that are not in-domain. Child is delegated but is tested
+name servers that are out-of-domain. Child is delegated but is tested
 undelegated.
 
 * Zone: child.parent.good-undel-1.methodsv2.xa
@@ -254,7 +254,7 @@ undelegated.
 
 ### GOOD-UNDEL-2
 A "happy path". Everything is fine. Child has both in-domain name server and
-name servers that are not in-domain. Child is not delegated but is tested
+name servers that are out-of-domain. Child is not delegated but is tested
 undelegated.
 
 * Zone: child.parent.good-undel-2.methodsv2.xa
@@ -278,12 +278,12 @@ correct delegation at the zone cut.
 
 ### CHILD-BELOW-NXDOMAIN-2
 The parent NS returns NXDOMAIN for the domain above the zone cut, but the
-correct delegation at the zone cut. Child has no in-domain name servers.
+correct delegation at the zone cut. Child has only out-of-domain name servers.
 
 * Zone: child.im.parent.child-below-nxdomain-2.methodsv2.xa
   * Parent NS returns NXDOMAIN for "im.parent.child-below-nxdomain-2.methodsv2.xa"
   * Parent NS returns normal delegation at the zone cut.
-  * Child NS are not in-domain, and are not shared with grandparent zone.
+  * Child NS are out-of-domain, and are not shared with grandparent zone.
     * ns5.child-below-nxdomain-2.methodsv2.xa
     * ns6.child-below-nxdomain-2.methodsv2.xa
   * No glue
@@ -301,13 +301,13 @@ at expected zone cut.
 ### CHILD-BELOW-NXDOMAIN-4
 One parent NS returns NXDOMAIN for the domain above the zone cut, but the
 correct delegation at the zone cut. The other NS has no delegation, NODATA only
-at expected zone cut. Child has no in-domain name servers.
+at expected zone cut. Child has only out-of-domain name servers.
 
 * Zone: child.im.parent.child-below-nxdomain-4.methodsv2.xa
   * Parent ns1 returns NXDOMAIN for "im.parent.child-below-nxdomain-4.methodsv2.xa"
   * Parent ns1 returns normal delegation at the zone cut.
   * Parent ns2 returns NODATA at both names (no delegation).
-  * Child NS are not in-domain, and are not shared with grandparent zone.
+  * Child NS are out-of-domain, and are not shared with grandparent zone.
     * ns5.child-below-nxdomain-4.methodsv2.xa
     * ns6.child-below-nxdomain-4.methodsv2.xa
   * No glue
@@ -617,7 +617,7 @@ on query for grandparent zone NS.
       * Owner name `oncle.zone-err-grandparent-3.methodsv2.xa` instead.
 
 ### DELEG-OOB-W-ERROR-1
-Zone is delegated to two NS that are not in-domain, of which one has no IP
+Zone is delegated to two NS that are out-of-domain, of which one has no IP
 (NODATA).
 
 * Zone: child.parent.deleg-oob-w-error-1.methodsv2.xa
@@ -628,7 +628,7 @@ Zone is delegated to two NS that are not in-domain, of which one has no IP
   * `ns4-nodata` cannot be resolved (NODATA).
 
 ### DELEG-OOB-W-ERROR-2
-Zone is delegated to two NS that are not in-domain, of which one has no IP
+Zone is delegated to two NS that are out-of-domain, of which one has no IP
 (NXDOMAIN).
 
 * Zone: child.parent.deleg-oob-w-error-2.methodsv2.xa
@@ -639,7 +639,7 @@ Zone is delegated to two NS that are not in-domain, of which one has no IP
   * `ns4-nxdomain` cannot be resolved (NXDOMAIN).
 
 ### DELEG-OOB-W-ERROR-3
-Zone is delegated to two NS that are not in-domain, where both have no IP
+Zone is delegated to two NS that are out-of-domain, where both have no IP
 (NODATA).
 
 * Zone: child.parent.deleg-oob-w-error-3.methodsv2.xa
@@ -649,7 +649,7 @@ Zone is delegated to two NS that are not in-domain, where both have no IP
   * There is no child zone.
 
 ### DELEG-OOB-W-ERROR-4
-Zone is delegated to two NS that are not in-domain, where both have no IP
+Zone is delegated to two NS that are out-of-domain, where both have no IP
 (NXDOMAIN).
 
 * Zone: child.parent.deleg-oob-w-error-4.methodsv2.xa
@@ -678,7 +678,7 @@ to other names out of zone.
   * Both names can be resolved to A and AAAA via CNAME and give correct IP.
 
 ### CHILD-NS-CNAME-3
-Zone is delegated to two NS that are not in-domain, where both NS names are
+Zone is delegated to two NS that are out-of-domain, where both NS names are
 aliases (CNAME) to other names out of zone.
 
 * Zone: child.parent.child-ns-cname-3.methodsv2.xa
