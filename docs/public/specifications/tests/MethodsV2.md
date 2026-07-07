@@ -1040,7 +1040,7 @@ None.
   "In-Domain". It is either "sibling domain" or "unrelated" as defined in
   [RFC 9499][RFC 9499#section7], section 7, in the subsection on "Glue Records",
   for name server names in the referral of a zone. The name server name is
-  neither on or below the zone cut of the zone for for which it is name server.
+  neither on or below the zone cut of the zone for which it is name server.
   The name server name belongs to another zone. It is above or at aside the
   delegated zone. Previously the term "Out-Of-Bailiwick" was used.
 
