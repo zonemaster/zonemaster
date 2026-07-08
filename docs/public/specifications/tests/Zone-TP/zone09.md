@@ -38,7 +38,7 @@ possibility is not in common use. This test case only checks for MX record and
 ignores the possibility to use address records for email.
 
 Even if not mentioned in [RFC 2142], there are some exceptions to the
-rule to include MX and mail target for a domain.
+rule to include MX and a mail exchange for a domain.
 
 The purpose of a zone in the .ARPA tree is to hold infrastructural identifiers,
 and it is not expected that such a zone name is used as [Email Domain]
@@ -98,21 +98,21 @@ correct DNS response for an authoritative name server.
   or a [TLD].
 * A warning is issued if a [TLD] *has* a [non-Null MX][Null MX].
 
-| Message Tag               | Level   | Arguments                   | Message ID for message tag                                                                            |
-|:--------------------------|:--------|:----------------------------|:------------------------------------------------------------------------------------------------------|
-| Z09_INCONSISTENT_MX       | WARNING |                             | Some name servers return an MX RRset while others return none.                                        |
-| Z09_INCONSISTENT_MX_DATA  | WARNING |                             | The MX RRset data is inconsistent between the name servers.                                           |
-| Z09_MISSING_MAIL_TARGET   | NOTICE  |                             | The child zone has no mail target (no MX).                                                            |
-| Z09_MX_DATA               | INFO    | ns_ip_list, mailtarget_list | The mail targets in the MX RRset, "{mailtarget_list}", as returned by name servers "{ns_ip_list}".    |
-| Z09_MX_FOUND              | INFO    | ns_ip_list                  | MX RRset was returned by name servers "{ns_ip_list}".                                                 |
-| Z09_NON_AUTH_MX_RESPONSE  | WARNING | ns_ip_list                  | Non-authoritative response on MX query from name servers "{ns_ip_list}".                              |
-| Z09_NO_MX_FOUND           | INFO    | ns_ip_list                  | No MX RRset was returned by name servers "{ns_ip_list}".                                              |
-| Z09_NO_RESPONSE_MX_QUERY  | WARNING | ns_ip_list                  | No response on MX query from name servers "{ns_ip_list}".                                             |
-| Z09_NULL_MX_NON_ZERO_PREF | NOTICE  |                             | The zone has a Null MX with non-zero preference.                                                      |
-| Z09_NULL_MX_WITH_OTHER_MX | WARNING |                             | The zone has a Null MX mixed with other MX records.                                                   |
-| Z09_ROOT_EMAIL_DOMAIN     | NOTICE  |                             | Root zone with an unexpected MX RRset (non-Null MX).                                                  |
-| Z09_TLD_EMAIL_DOMAIN      | WARNING |                             | The zone is a TLD and has an unexpected MX RRset (non-Null MX).                                       |
-| Z09_UNEXPECTED_RCODE_MX   | WARNING | ns_ip_list, rcode           | Unexpected RCODE value ({rcode}) in response to MX query. Responses from name servers "{ns_ip_list}". |
+| Message Tag               | Level   | Arguments             | Message ID for message tag                                                                         |
+|:--------------------------|:--------|:----------------------|:---------------------------------------------------------------------------------------------------|
+| Z09_INCONSISTENT_MX       | WARNING |                       | Some name servers return an MX RRset while others return none.                                     |
+| Z09_INCONSISTENT_MX_DATA  | WARNING |                       | The MX RRset data is inconsistent between the name servers.                                        |
+| Z09_MISSING_MAIL_EXCHANGE | NOTICE  |                       | The child zone has no mail exchange (no MX).                                                       |
+| Z09_MX_DATA               | INFO    | ns_list, mxrdata_list | The MX RDATA in the MX RRset, "{mxrdata_list}", as returned by name servers "{ns_list}".           |
+| Z09_MX_FOUND              | INFO    | ns_list               | MX RRset was returned by name servers "{ns_list}".                                                 |
+| Z09_NON_AUTH_MX_RESPONSE  | WARNING | ns_list               | Non-authoritative response on MX query from name servers "{ns_list}".                              |
+| Z09_NO_MX_FOUND           | INFO    | ns_list               | No MX RRset was returned by name servers "{ns_list}".                                              |
+| Z09_NO_RESPONSE_MX_QUERY  | WARNING | ns_list               | No response on MX query from name servers "{ns_list}".                                             |
+| Z09_NULL_MX_NON_ZERO_PREF | NOTICE  |                       | The zone has a Null MX with non-zero preference.                                                   |
+| Z09_NULL_MX_WITH_OTHER_MX | NOTICE | mxdata_list           | The zone has a Null MX mixed with other MX records "{mxrdata_list}".                               |
+| Z09_ROOT_EMAIL_DOMAIN     | NOTICE  |                       | Root zone with an unexpected MX RRset (non-Null MX).                                               |
+| Z09_TLD_EMAIL_DOMAIN      | NOTICE |                       | The zone is a TLD and has an unexpected MX RRset (non-Null MX).                                    |
+| Z09_UNEXPECTED_RCODE_MX   | WARNING | ns_list, rcode        | Unexpected RCODE value ({rcode}) in response to MX query. Responses from name servers "{ns_list}". |
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -121,6 +121,10 @@ severity level can be changed in the [Zonemaster-Engine profile]. Also see the
 The argument names in the Arguments column lists the arguments used in the
 message. The argument names are defined in the [argument list].
 
+The name server names are assumed to be available at the time when the msgid
+is created, if the argument name is "ns" or "ns_list" even when in the
+"[Test procedure]" below it is only referred to the IP address of the name
+servers.
 
 ## Test procedure
 
@@ -146,7 +150,8 @@ queries follow, unless otherwise specified below, what is specified for
         ("Unexpected RCODE MX Response").
     3.  Name server IP address ("Non-authoritative MX").
     4.  Name server IP address ("No MX RRset").
-    5.  Name server IP address and associated MX RRset ("MX RRset").
+    5.  Name server IP address and associated ordered list of MX RDATA
+        ("MX RDATA Lists").
 
 5.  For each name server IP in *Name Server IP* do:
 
@@ -172,8 +177,16 @@ queries follow, unless otherwise specified below, what is specified for
        5. Else, if there is no MX record with matching owner name in the answer
           section, then add the name server (IP) to the *No MX RRset* set.
        6. Else do:
-          1. Extract the MX RRset from the response.
-          2. Add the name server IP and the MX RRset to the *MX RRset* set.
+          1. Extract the MX records from the response.
+          2. For each MX record down case the (mail) exchange (domain name).
+          2. For each MX record extract the RDATA as a text string of space
+             separated preference (integer) and exchange, i.e. in the same format
+             as MX RDATA is shown in presentation format.
+          2. Create a sorted list of the RDATA text strings where primary sort
+             key is the preference (ascending order) and the secondary sort key
+             is the exchange (ascending order).
+          3. Add the name server IP and the sorted list to the *MX RDATA Lists*
+             set.
 
 6.  If the set *No Response MX Query* is non-empty, then output
     *[Z09_NO_RESPONSE_MX_QUERY]* with the name server IP addresses from the set.
@@ -187,37 +200,37 @@ queries follow, unless otherwise specified below, what is specified for
     *[Z09_NON_AUTH_MX_RESPONSE]* with the name server IP addresses from
     the set.
 
-9.  If both *No MX RRset* set and *MX RRset* set are non-empty then:
+9.  If both *No MX RRset* set and *MX RDATA Lists* set are non-empty then:
     1. Output *[Z09_INCONSISTENT_MX]*.
     2. Output *[Z09_NO_MX_FOUND]* with the name server IP addresses from the
        *No MX RRset* set.
     3. Output *[Z09_MX_FOUND]* with the name server IP addresses from the
-       *MX RRset* set.
+       *MX RDATA Lists* set.
 
-10. If the *MX RRset* set is non-empty (the *No MX RRset* set is empty or
+10. If the *MX RDATA Lists* set is non-empty (the *No MX RRset* set is empty or
     non-empty), then do:
-    1. If the RRsets in *MX RRset* are not equal for all name servers then do:
+    1. If the lists in *MX RDATA Lists* are not equal for all name servers then
+       do:
        1. Output *[Z09_INCONSISTENT_MX_DATA]*.
-       2. For each RRset in *MX RRset*, output *[Z09_MX_DATA]* with the mail
-          targets from the RDATA and the associated name server IP addresses in
-          the set.
+       2. For each unique list in *MX RDATA Lists*, output *[Z09_MX_DATA]* with
+          the list and the associated name server IP addresses in the set.
     2. Else do:
-       1. If the mailtarget of any of the MX records in the RRset in *MX RRset*
-          is a [Null MX] then do:
-          1. If there are more than one record in the MX RRset, then output
-             *[Z09_NULL_MX_WITH_OTHER_MX]* with the mail targets from the RDATA
-             of MX records.
-          2. If the preference of the [Null MX] is non-zero then output
-             *[Z09_NULL_MX_NON_ZERO_PREF]*.
-       2. Else, if *Child Zone* is a [TLD] with a [non-Null MX][Null MX] then
-          output *[Z09_TLD_EMAIL_DOMAIN]*.
-       3. Else, if *Child Zone* is the root zone with a [non-Null MX][Null MX] then
-          output *[Z09_ROOT_EMAIL_DOMAIN]*.
-       4. Else, output *[Z09_MX_DATA]* with the mail targets from the RDATA and
-          the associated name server IP addresses in the set.
+       1. Extract the unique list of RDATA from *MX RDATA Lists*.
+       2. If any of the (mail) exchanges in the list is a [Null MX] RDATA then
+          do:
+          1. If there are more than one item in the list, then output
+             *[Z09_NULL_MX_WITH_OTHER_MX]* with the list.
+          2. If the preference of the [Null MX] RDATA in the list is non-zero
+             then output *[Z09_NULL_MX_NON_ZERO_PREF]*.
+       2. Else, if *Child Zone* is a [TLD] with a [non-Null MX][Null MX] RDATA
+          in the list then output *[Z09_TLD_EMAIL_DOMAIN]*.
+       3. Else, if *Child Zone* is the root zone with a [non-Null MX][Null MX]
+          RDATA in the list then output *[Z09_ROOT_EMAIL_DOMAIN]*.
+       4. Else, output *[Z09_MX_DATA]* with the list of the RDATA and the
+          associated name server IP addresses in the set.
 
-11. If the *No MX RRset* set is non-empty and the *MX RRset* set is empty, then
-    output *[Z09_MISSING_MAIL_TARGET]* unless
+11. If the *No MX RRset* set is non-empty and the *MX RDATA Lists* set is empty,
+    then output *[Z09_MISSING_MAIL_EXCHANGE]* unless
       1. *Child Zone* is the root zone ("."), or
       2. *Child Zone* is a [TLD], or
       3. *Child Zone* is a zone in the .ARPA tree.
@@ -250,7 +263,7 @@ None.
 
 ## Terminology
 
-The term "Null MX" is used for an MX record where the mail target is "." as
+The term "Null MX" is used for an MX record where the (mail) exchange is "." as
 defined in [RFC 7505] with the specific restrictions given in
 [section 3][RFC 7505#section-3] of that RFC.
 
@@ -288,7 +301,7 @@ in an email address.
 [WARNING]:                                    ../SeverityLevelDefinitions.md#warning
 [Z09_INCONSISTENT_MX]:                        #summary
 [Z09_INCONSISTENT_MX_DATA]:                   #summary
-[Z09_MISSING_MAIL_TARGET]:                    #summary
+[Z09_MISSING_MAIL_EXCHANGE]:                  #summary
 [Z09_MX_DATA]:                                #summary
 [Z09_MX_FOUND]:                               #summary
 [Z09_NON_AUTH_MX_RESPONSE]:                   #summary
