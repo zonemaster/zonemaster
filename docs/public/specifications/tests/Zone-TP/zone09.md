@@ -98,21 +98,22 @@ correct DNS response for an authoritative name server.
   or a [TLD].
 * A warning is issued if a [TLD] *has* a [non-Null MX][Null MX].
 
-| Message Tag               | Level   | Arguments             | Message ID for message tag                                                                         |
-|:--------------------------|:--------|:----------------------|:---------------------------------------------------------------------------------------------------|
-| Z09_INCONSISTENT_MX       | WARNING |                       | Some name servers return an MX RRset while others return none.                                     |
-| Z09_INCONSISTENT_MX_DATA  | WARNING |                       | The MX RRset data is inconsistent between the name servers.                                        |
-| Z09_MISSING_MAIL_EXCHANGE | NOTICE  |                       | The child zone has no mail exchange (no MX).                                                       |
-| Z09_MX_DATA               | INFO    | ns_list, mxrdata_list | The MX RDATA in the MX RRset, "{mxrdata_list}", as returned by name servers "{ns_list}".           |
-| Z09_MX_FOUND              | INFO    | ns_list               | MX RRset was returned by name servers "{ns_list}".                                                 |
-| Z09_NON_AUTH_MX_RESPONSE  | WARNING | ns_list               | Non-authoritative response on MX query from name servers "{ns_list}".                              |
-| Z09_NO_MX_FOUND           | INFO    | ns_list               | No MX RRset was returned by name servers "{ns_list}".                                              |
-| Z09_NO_RESPONSE_MX_QUERY  | WARNING | ns_list               | No response on MX query from name servers "{ns_list}".                                             |
-| Z09_NULL_MX_NON_ZERO_PREF | NOTICE  |                       | The zone has a Null MX with non-zero preference.                                                   |
-| Z09_NULL_MX_WITH_OTHER_MX | NOTICE | mxdata_list           | The zone has a Null MX mixed with other MX records "{mxrdata_list}".                               |
-| Z09_ROOT_EMAIL_DOMAIN     | NOTICE  |                       | Root zone with an unexpected MX RRset (non-Null MX).                                               |
-| Z09_TLD_EMAIL_DOMAIN      | NOTICE |                       | The zone is a TLD and has an unexpected MX RRset (non-Null MX).                                    |
-| Z09_UNEXPECTED_RCODE_MX   | WARNING | ns_list, rcode        | Unexpected RCODE value ({rcode}) in response to MX query. Responses from name servers "{ns_list}". |
+| Message Tag                | Level   | Arguments             | Message ID for message tag                                                                         |
+|:---------------------------|:--------|:----------------------|:---------------------------------------------------------------------------------------------------|
+| Z09_INCONSISTENT_MX        | WARNING |                       | Some name servers return an MX RRset while others return none.                                     |
+| Z09_INCONSISTENT_MX_DATA   | WARNING |                       | The MX RRset data is inconsistent between the name servers.                                        |
+| Z09_MISSING_MAIL_EXCHANGE  | NOTICE  |                       | The child zone has no mail exchange (no MX).                                                       |
+| Z09_MX_DATA                | INFO    | ns_list, mxrdata_list | The MX RDATA in the MX RRset, "{mxrdata_list}", as returned by name servers "{ns_list}".           |
+| Z09_MX_FOUND               | INFO    | ns_list               | MX RRset was returned by name servers "{ns_list}".                                                 |
+| Z09_NON_AUTH_MX_RESPONSE   | WARNING | ns_list               | Non-authoritative response on MX query from name servers "{ns_list}".                              |
+| Z09_NO_MX_FOUND            | INFO    | ns_list               | No MX RRset was returned by name servers "{ns_list}".                                              |
+| Z09_NO_SERVERS_MX_RESPONSE | WARNING |                       | No server responds to MX query.                                                                    |
+| Z09_NO_RESPONSE_MX_QUERY   | WARNING | ns_list               | No response on MX query from name servers "{ns_list}".                                             |
+| Z09_NULL_MX_NON_ZERO_PREF  | NOTICE  |                       | The zone has a Null MX with non-zero preference.                                                   |
+| Z09_NULL_MX_WITH_OTHER_MX  | WARNING | mxdata_list           | The zone has a Null MX mixed with other MX records "{mxrdata_list}".                               |
+| Z09_ROOT_EMAIL_DOMAIN      | NOTICE  |                       | Root zone with an unexpected MX RRset (non-Null MX).                                               |
+| Z09_TLD_EMAIL_DOMAIN       | NOTICE  |                       | The zone is a TLD and has an unexpected MX RRset (non-Null MX).                                    |
+| Z09_UNEXPECTED_RCODE_MX    | WARNING | ns_list, rcode        | Unexpected RCODE value ({rcode}) in response to MX query. Responses from name servers "{ns_list}". |
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -235,6 +236,9 @@ queries follow, unless otherwise specified below, what is specified for
       2. *Child Zone* is a [TLD], or
       3. *Child Zone* is a zone in the .ARPA tree.
 
+12. If both the *No MX RRset* set and the *MX RDATA Lists* set are empty, then
+    output *[Z09_NO_SERVERS_MX_RESPONSE]*.
+
 
 ## Outcome(s)
 
@@ -263,9 +267,9 @@ None.
 
 ## Terminology
 
-The term "Null MX" is used for an MX record where the (mail) exchange is "." as
-defined in [RFC 7505] with the specific restrictions given in
-[section 3][RFC 7505#section-3] of that RFC.
+The term "Null MX" is used for an MX record where the preference is 0 and the
+(mail) exchange is "." as defined in [RFC 7505] with the specific restrictions
+given in [section 3][RFC 7505#section-3] of that RFC.
 
 The term "TLD" is used for "Top Level Domain", i.e. a zone whose name consists
 of a single label (ignoring the empty label after the final dot).
@@ -307,6 +311,7 @@ in an email address.
 [Z09_NON_AUTH_MX_RESPONSE]:                   #summary
 [Z09_NO_MX_FOUND]:                            #summary
 [Z09_NO_RESPONSE_MX_QUERY]:                   #summary
+[Z09_NO_SERVERS_MX_RESPONSE]:                 #summary
 [Z09_NULL_MX_NON_ZERO_PREF]:                  #summary
 [Z09_NULL_MX_WITH_OTHER_MX]:                  #summary
 [Z09_ROOT_EMAIL_DOMAIN]:                      #summary
