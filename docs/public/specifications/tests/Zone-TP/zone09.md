@@ -98,7 +98,7 @@ correct DNS response for an authoritative name server.
 |:---------------------------|:--------|:----------------------|:---------------------------------------------------------------------------------------------------|
 | Z09_INCONSISTENT_MX        | WARNING |                       | Some name servers return an MX RRset while others return none.                                     |
 | Z09_INCONSISTENT_MX_DATA   | WARNING |                       | The MX RRset data is inconsistent between the name servers.                                        |
-| Z09_MISSING_MAIL_EXCHANGE  | NOTICE  |                       | The child zone has no mail exchange (no MX).                                                       |
+| Z09_MISSING_MAIL_EXCHANGE  | NOTICE  | ns_list               | The child zone has no mail exchange (no MX), as returned by name servers "{ns_list}".              |
 | Z09_MX_DATA                | INFO    | ns_list, mxrdata_list | The MX RDATA in the MX RRset, "{mxrdata_list}", as returned by name servers "{ns_list}".           |
 | Z09_MX_FOUND               | INFO    | ns_list               | MX RRset was returned by name servers "{ns_list}".                                                 |
 | Z09_NON_AUTH_MX_RESPONSE   | WARNING | ns_list               | Non-authoritative response on MX query from name servers "{ns_list}".                              |
@@ -229,11 +229,13 @@ queries follow, unless otherwise specified below, what is specified for
        4. If *Child Zone* is the root zone with [non-Null MX][Null MX] RDATA in
           the list then output *[Z09_ROOT_EMAIL_DOMAIN]*.
 
-12. If the *No MX RRset* set is non-empty and the *MX RDATA Lists* set is empty,
-    then output *[Z09_MISSING_MAIL_EXCHANGE]* unless
-      1. *Child Zone* is the root zone ("."), or
-      2. *Child Zone* is a [TLD], or
-      3. *Child Zone* is a zone in the .ARPA tree.
+12. If the *No MX RRset* set is non-empty and the *MX RDATA Lists* set is empty
+    then:
+    1. If *Child Zone* is the root zone ("."), a [TLD] or a zone in the .ARPA
+       tree then output *[Z09_NO_MX_FOUND]* with the name server IP addresses
+       from the *No MX RRset* set.
+    2. Else, Output *[Z09_MISSING_MAIL_EXCHANGE]* with the name server IP
+       addresses from the *No MX RRset* set.
 
 13. If both the *No MX RRset* set and the *MX RDATA Lists* set are empty, then
     output *[Z09_NO_SERVERS_MX_RESPONSE]*.
