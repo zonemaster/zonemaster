@@ -94,10 +94,6 @@ correct DNS response for an authoritative name server.
 
 ## Summary
 
-* A notify is issued if MX is missing, except for root, a zone in the ARPA tree
-  or a [TLD].
-* A warning is issued if a [TLD] *has* a [non-Null MX][Null MX].
-
 | Message Tag                | Level   | Arguments             | Message ID for message tag                                                                         |
 |:---------------------------|:--------|:----------------------|:---------------------------------------------------------------------------------------------------|
 | Z09_INCONSISTENT_MX        | WARNING |                       | Some name servers return an MX RRset while others return none.                                     |
@@ -110,10 +106,11 @@ correct DNS response for an authoritative name server.
 | Z09_NO_SERVERS_MX_RESPONSE | WARNING |                       | No server responds to MX query.                                                                    |
 | Z09_NO_RESPONSE_MX_QUERY   | WARNING | ns_list               | No response on MX query from name servers "{ns_list}".                                             |
 | Z09_NULL_MX_NON_ZERO_PREF  | NOTICE  |                       | The zone has a Null MX with non-zero preference.                                                   |
-| Z09_NULL_MX_WITH_OTHER_MX  | WARNING | mxdata_list           | The zone has a Null MX mixed with other MX records "{mxrdata_list}".                               |
+| Z09_NULL_MX_WITH_OTHER_MX  | WARNING |                       | The zone has a Null MX record mixed with other MX records.                                         |
 | Z09_ROOT_EMAIL_DOMAIN      | NOTICE  |                       | Root zone with an unexpected MX RRset (non-Null MX).                                               |
 | Z09_TLD_EMAIL_DOMAIN       | NOTICE  |                       | The zone is a TLD and has an unexpected MX RRset (non-Null MX).                                    |
 | Z09_UNEXPECTED_RCODE_MX    | WARNING | ns_list, rcode        | Unexpected RCODE value ({rcode}) in response to MX query. Responses from name servers "{ns_list}". |
+| Z09_VALID_NULL_MX          | INFO    |                       | The zone has a valid Null MX record as the only MX record.                                         |
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -201,42 +198,44 @@ queries follow, unless otherwise specified below, what is specified for
     *[Z09_NON_AUTH_MX_RESPONSE]* with the name server IP addresses from
     the set.
 
-9.  If both *No MX RRset* set and *MX RDATA Lists* set are non-empty then:
+9.  If the *MX RDATA Lists* set is non-empty then for each unique list in
+    *MX RDATA Lists*, output *[Z09_MX_DATA]* with the list and the associated
+    name server IP addresses in the set.
+
+10. If both *No MX RRset* set and *MX RDATA Lists* set are non-empty then:
     1. Output *[Z09_INCONSISTENT_MX]*.
     2. Output *[Z09_NO_MX_FOUND]* with the name server IP addresses from the
        *No MX RRset* set.
     3. Output *[Z09_MX_FOUND]* with the name server IP addresses from the
        *MX RDATA Lists* set.
 
-10. If the *MX RDATA Lists* set is non-empty (the *No MX RRset* set is empty or
-    non-empty), then do:
+11. If the *MX RDATA Lists* set is non-empty then do:
     1. If the lists in *MX RDATA Lists* are not equal for all name servers then
        do:
        1. Output *[Z09_INCONSISTENT_MX_DATA]*.
-       2. For each unique list in *MX RDATA Lists*, output *[Z09_MX_DATA]* with
-          the list and the associated name server IP addresses in the set.
     2. Else do:
        1. Extract the unique list of RDATA from *MX RDATA Lists*.
        2. If any of the (mail) exchanges in the list is a [Null MX] RDATA then
           do:
           1. If there are more than one item in the list, then output
-             *[Z09_NULL_MX_WITH_OTHER_MX]* with the list.
+             *[Z09_NULL_MX_WITH_OTHER_MX]*.
           2. If the preference of the [Null MX] RDATA in the list is non-zero
              then output *[Z09_NULL_MX_NON_ZERO_PREF]*.
-       2. Else, if *Child Zone* is a [TLD] with a [non-Null MX][Null MX] RDATA
-          in the list then output *[Z09_TLD_EMAIL_DOMAIN]*.
-       3. Else, if *Child Zone* is the root zone with a [non-Null MX][Null MX]
-          RDATA in the list then output *[Z09_ROOT_EMAIL_DOMAIN]*.
-       4. Else, output *[Z09_MX_DATA]* with the list of the RDATA and the
-          associated name server IP addresses in the set.
+          3. Output *[Z09_VALID_NULL_MX]* unless at least one of
+             *[Z09_NULL_MX_WITH_OTHER_MX]* and *[Z09_NULL_MX_NON_ZERO_PREF]* was
+             outputted.
+       3. If *Child Zone* is a [TLD] with [non-Null MX][Null MX] RDATA in the
+          list then output *[Z09_TLD_EMAIL_DOMAIN]*.
+       4. If *Child Zone* is the root zone with [non-Null MX][Null MX] RDATA in
+          the list then output *[Z09_ROOT_EMAIL_DOMAIN]*.
 
-11. If the *No MX RRset* set is non-empty and the *MX RDATA Lists* set is empty,
+12. If the *No MX RRset* set is non-empty and the *MX RDATA Lists* set is empty,
     then output *[Z09_MISSING_MAIL_EXCHANGE]* unless
       1. *Child Zone* is the root zone ("."), or
       2. *Child Zone* is a [TLD], or
       3. *Child Zone* is a zone in the .ARPA tree.
 
-12. If both the *No MX RRset* set and the *MX RDATA Lists* set are empty, then
+13. If both the *No MX RRset* set and the *MX RDATA Lists* set are empty, then
     output *[Z09_NO_SERVERS_MX_RESPONSE]*.
 
 
@@ -317,4 +316,5 @@ in an email address.
 [Z09_ROOT_EMAIL_DOMAIN]:                      #summary
 [Z09_TLD_EMAIL_DOMAIN]:                       #summary
 [Z09_UNEXPECTED_RCODE_MX]:                    #summary
+[Z09_VALID_NULL_MX]:                          #summary
 [Zonemaster-Engine profile]:                  ../../../configuration/profiles.md
