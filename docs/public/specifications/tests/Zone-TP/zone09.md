@@ -138,10 +138,13 @@ queries follow, unless otherwise specified below, what is specified for
 2.  Create a [DNS Query] with query type  MX and query name *Child Zone*
     ("MX Query").
 
-3.  Obtain the set of name server IP addresses using [Method4] and [Method5]
-    ("Name Server IP").
+3.  Obtain the set of name server names and IP addresses using methods
+    [Get-Del-NS-Names-and-IPs] and [Get-Zone-NS-Names-and-IPs] ("Name Servers").
 
-4. Create the following empty sets
+4.  Extract the unique set of name server IP addresses from *Name Servers*
+    ("Name Server IPs").
+
+5. Create the following empty sets
 
     1.  Name server IP address ("No Response MX Query").
     2.  Name server IP address and associated RCODE value
@@ -151,7 +154,7 @@ queries follow, unless otherwise specified below, what is specified for
     5.  Name server IP address and associated ordered list of MX RDATA
         ("MX RDATA Lists").
 
-5.  For each name server IP in *Name Server IP* do:
+6.  For each name server IP in *Name Server IPs* do:
 
     1. Send *SOA Query* over UDP to the name server.
     2. Go to next name server IP if at least one of the following criteria is
@@ -186,30 +189,30 @@ queries follow, unless otherwise specified below, what is specified for
           3. Add the name server IP and the sorted list to the *MX RDATA Lists*
              set.
 
-6.  If the set *No Response MX Query* is non-empty, then output
+7.  If the set *No Response MX Query* is non-empty, then output
     *[Z09_NO_RESPONSE_MX_QUERY]* with the name server IP addresses from the set.
 
-7.  If the set *Unexpected RCODE MX Response* is non-empty, then for each RCODE
+8.  If the set *Unexpected RCODE MX Response* is non-empty, then for each RCODE
     in the set, do:
     * Output *[Z09_UNEXPECTED_RCODE_MX]* with the RCODE value
       ([IANA RCODE List]) and the name server IP addresses from the set.
 
-8.  If the set *Non-authoritative MX* is non-empty, then output
+9.  If the set *Non-authoritative MX* is non-empty, then output
     *[Z09_NON_AUTH_MX_RESPONSE]* with the name server IP addresses from
     the set.
 
-9.  If the *MX RDATA Lists* set is non-empty then for each unique list in
+10. If the *MX RDATA Lists* set is non-empty then for each unique list in
     *MX RDATA Lists*, output *[Z09_MX_DATA]* with the list and the associated
     name server IP addresses in the set.
 
-10. If both *No MX RRset* set and *MX RDATA Lists* set are non-empty then:
+11. If both *No MX RRset* set and *MX RDATA Lists* set are non-empty then:
     1. Output *[Z09_INCONSISTENT_MX]*.
     2. Output *[Z09_NO_MX_FOUND]* with the name server IP addresses from the
        *No MX RRset* set.
     3. Output *[Z09_MX_FOUND]* with the name server IP addresses from the
        *MX RDATA Lists* set.
 
-11. If the *MX RDATA Lists* set is non-empty then do:
+12. If the *MX RDATA Lists* set is non-empty then do:
     1. If the lists in *MX RDATA Lists* are not equal for all name servers then
        do:
        1. Output *[Z09_INCONSISTENT_MX_DATA]*.
@@ -229,7 +232,7 @@ queries follow, unless otherwise specified below, what is specified for
        4. If *Child Zone* is the root zone with [non-Null MX][Null MX] RDATA in
           the list then output *[Z09_ROOT_EMAIL_DOMAIN]*.
 
-12. If the *No MX RRset* set is non-empty and the *MX RDATA Lists* set is empty
+13. If the *No MX RRset* set is non-empty and the *MX RDATA Lists* set is empty
     then:
     1. If *Child Zone* is the root zone ("."), a [TLD] or a zone in the .ARPA
        tree then output *[Z09_NO_MX_FOUND]* with the name server IP addresses
@@ -237,7 +240,7 @@ queries follow, unless otherwise specified below, what is specified for
     2. Else, Output *[Z09_MISSING_MAIL_EXCHANGE]* with the name server IP
        addresses from the *No MX RRset* set.
 
-13. If both the *No MX RRset* set and the *MX RDATA Lists* set are empty, then
+14. If both the *No MX RRset* set and the *MX RDATA Lists* set are empty, then
     output *[Z09_NO_SERVERS_MX_RESPONSE]*.
 
 
@@ -286,12 +289,12 @@ in an email address.
 [DNS Response]:                               ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
 [ERROR]:                                      ../SeverityLevelDefinitions.md#error
 [Email Domain]:                               #terminology
+[Get-Del-NS-Names-and-IPs]:                   ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
+[Get-Zone-NS-Names-and-IPs]:                  ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
 [IAB Statement]:                              https://www.iab.org/documents/correspondence-reports-documents/2013-2/iab-statement-dotless-domains-considered-harmful/
 [IANA RCODE List]:                            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [INFO]:                                       ../SeverityLevelDefinitions.md#info
 [Internet Architecture Board]:                https://en.wikipedia.org/wiki/Internet_Architecture_Board
-[Method4]:                                    ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]:                                    ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [NOTICE]:                                     ../SeverityLevelDefinitions.md#notice
 [Null MX]:                                    #terminology
 [RFC 2142#section-7]:                         https://datatracker.ietf.org/doc/html/rfc2142#section-7
