@@ -68,17 +68,14 @@ for the domain. A "[Null MX]" is accepted for any type of domain.
 must be the sole MX record and its preference must be zero.
 
 In this test case, the following zone types are excluded from the requirement of
-MX:
+MX, and in such zones it is not expected to find any MX (in apex).
 
 * Root zone
 * [TLD] zone
 * Zone in the .ARPA tree
 
-The following zone type is expected not to have any MX (considered harmful,
-see [IAB Statement]):
-
-* [TLD] zone
-
+For a [TLD] zone it is considered to be harmful to include MX in apex
+([IAB Statement]).
 
 ## Scope
 
@@ -96,6 +93,7 @@ correct DNS response for an authoritative name server.
 
 | Message Tag                | Level   | Arguments             | Message ID for message tag                                                                         |
 |:---------------------------|:--------|:----------------------|:---------------------------------------------------------------------------------------------------|
+| Z09_ARPA_EMAIL_DOMAIN      | NOTICE  |                       | The zone is in the ARPA tree and has an unexpected MX RRset (non-Null MX).                         |
 | Z09_INCONSISTENT_MX        | WARNING |                       | Some name servers return an MX RRset while others return none.                                     |
 | Z09_INCONSISTENT_MX_DATA   | WARNING |                       | The MX RRset data is inconsistent between the name servers.                                        |
 | Z09_MISSING_MAIL_EXCHANGE  | NOTICE  | ns_list               | The child zone has no mail exchange (no MX), as returned by name servers "{ns_list}".              |
@@ -231,6 +229,9 @@ queries follow, unless otherwise specified below, what is specified for
           list then output *[Z09_TLD_EMAIL_DOMAIN]*.
        4. If *Child Zone* is the root zone with [non-Null MX][Null MX] RDATA in
           the list then output *[Z09_ROOT_EMAIL_DOMAIN]*.
+       5. If *Child Zone* is a zone in the ARPA tree, not .ARPA itself, with
+          [non-Null MX][Null MX] RDATA in the list then output
+          *[Z09_ARPA_EMAIL_DOMAIN]*.
 
 13. If the *No MX RRset* set is non-empty and the *MX RDATA Lists* set is empty
     then:
@@ -307,6 +308,7 @@ in an email address.
 [Severity Level Definitions]:                 ../SeverityLevelDefinitions.md
 [TLD]:                                        #terminology
 [WARNING]:                                    ../SeverityLevelDefinitions.md#warning
+[Z09_ARPA_EMAIL_DOMAIN]:                      #summary
 [Z09_INCONSISTENT_MX]:                        #summary
 [Z09_INCONSISTENT_MX_DATA]:                   #summary
 [Z09_MISSING_MAIL_EXCHANGE]:                  #summary
