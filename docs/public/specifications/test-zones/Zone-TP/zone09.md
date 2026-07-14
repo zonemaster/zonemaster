@@ -75,7 +75,11 @@ irrelevant to the test scenario and must be ignored.
 | UNEXPECTED-RCODE-MX    | Z09_UNEXPECTED_RCODE_MX, Z09_MISSING_MAIL_EXCHANGE                  | 2)                     |
 | NON-AUTH-MX-RESPONSE   | Z09_NON_AUTH_MX_RESPONSE, Z09_MX_DATA                               | 2)                     |
 | INCONSISTENT-MX        | Z09_INCONSISTENT_MX, Z09_MX_FOUND Z09, Z09_NO_MX_FOUND, Z09_MX_DATA | 2)                     |
-| INCONSISTENT-MX-DATA   | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
+| INCONSISTENT-MX-DATA-1 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
+| INCONSISTENT-MX-DATA-1 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
+| INCONSISTENT-MX-DATA-1 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
+| MIXED-TTL-1            | Z09_MX_DATA                                                         | 2)                     |
+| MIXED-TTL-2            | Z09_MX_DATA                                                         | 2)                     |
 | NULL-MX-WITH-OTHER-MX  | Z09_NULL_MX_WITH_OTHER_MX, Z09_MX_DATA                              | 2)                     |
 | NULL-MX-NON-ZERO-PREF  | Z09_NULL_MX_NON_ZERO_PREF, Z09_MX_DATA                              | 2)                     |
 | TLD-EMAIL-DOMAIN       | Z09_TLD_EMAIL_DOMAIN, Z09_MX_DATA                                   | 2)                     |
@@ -130,9 +134,27 @@ Assumptions for the zone setup for the test scenarios:
 * Zone: "inconsistent-mx.zone09.xa."
   * One name server responds without MX RRset (NODATA).
 
-### INCONSISTENT-MX-DATA
-* Zone: "inconsistent-mx-data.zone09.xa."
+### INCONSISTENT-MX-DATA-1
+* Zone: "inconsistent-mx-data-1.zone09.xa."
   * The name servers repond with MX RRsets that are not equal.
+
+### INCONSISTENT-MX-DATA-2
+* Zone: "inconsistent-mx-data-2.zone09.xa."
+  * The name servers repond with the same mail exchange names, but with
+    different preferences.
+
+### INCONSISTENT-MX-DATA-3
+* Zone: "inconsistent-mx-data-3.zone09.xa."
+  * The name servers repond with the same mail exchange names, but with
+    different preferences.
+
+### MIXED-TTL-1
+* Zone: "mixed-ttl-1.zone09.xa."
+  * The TTL of the MX RRset are different on the two NS.
+
+### MIXED-TTL-2
+* Zone: "mixed-ttl-1.zone09.xa."
+  * The TTL of the records in the MX RRset are different.
 
 ### NULL-MX-WITH-OTHER-MX
 * Zone: "null-mx-with-other-mx.zone09.xa."
@@ -150,7 +172,7 @@ Assumptions for the zone setup for the test scenarios:
 * Zone: "." (root zone)
   * The test zone is the root zone.
 
-## ARPA-EMAIL-DOMAIN
+### ARPA-EMAIL-DOMAIN
 * Zone: "arpa-email-domain.zone09.arpa."
   * The test zone is under .ARPA.
 
