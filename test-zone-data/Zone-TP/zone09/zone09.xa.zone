@@ -86,13 +86,22 @@ ns1.non-auth-mx-response     A       127.19.9.31
 ns1.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:31
 ns2.non-auth-mx-response     A       127.19.9.32
 ns2.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:32
+ns4.non-auth-mx-response     A       127.19.9.34
+ns4.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:34
 
-no-response-mx-query         NS      ns1.no-response-mx-query
-no-response-mx-query         NS      ns2.no-response-mx-query
-ns1.no-response-mx-query     A       127.19.9.31
-ns1.no-response-mx-query     AAAA    fda1:b2:c3::127:19:9:31
-ns2.no-response-mx-query     A       127.19.9.32
-ns2.no-response-mx-query     AAAA    fda1:b2:c3::127:19:9:32
+no-response-mx-query-1       NS      ns1.no-response-mx-query-1
+no-response-mx-query-1       NS      ns2.no-response-mx-query-1
+ns1.no-response-mx-query-1   A       127.19.9.31
+ns1.no-response-mx-query-1   AAAA    fda1:b2:c3::127:19:9:31
+ns2.no-response-mx-query-1   A       127.19.9.32
+ns2.no-response-mx-query-1   AAAA    fda1:b2:c3::127:19:9:32
+
+no-response-mx-query-2       NS      ns1.no-response-mx-query-2
+no-response-mx-query-2       NS      ns2.no-response-mx-query-2
+ns1.no-response-mx-query-2   A       127.19.9.31
+ns1.no-response-mx-query-2   AAAA    fda1:b2:c3::127:19:9:31
+ns2.no-response-mx-query-2   A       127.19.9.32
+ns2.no-response-mx-query-2   AAAA    fda1:b2:c3::127:19:9:32
 
 null-mx-non-zero-pref         NS      ns1.null-mx-non-zero-pref
 null-mx-non-zero-pref         NS      ns2.null-mx-non-zero-pref

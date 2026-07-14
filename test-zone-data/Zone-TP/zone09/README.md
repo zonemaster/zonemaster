@@ -3,7 +3,8 @@
 [This directory](.), i.e. the same directory as this README file, holds
 zonefiles and `coredns` configuration files for scenarios for test case ZONE09:
 
-* NO-RESPONSE-MX-QUERY
+* NO-RESPONSE-MX-QUERY-1 (**renamed**)
+* NO-RESPONSE-MX-QUERY-2 (**new**)
 * UNEXPECTED-RCODE-MX
 * NON-AUTH-MX-RESPONSE
 * INCONSISTENT-MX
@@ -12,13 +13,22 @@ zonefiles and `coredns` configuration files for scenarios for test case ZONE09:
 * NULL-MX-NON-ZERO-PREF
 * TLD-EMAIL-DOMAIN
 * ROOT-EMAIL-DOMAIN
+* ARPA-EMAIL-DOMAIN (**new**)
 * MX-DATA
-* NULL-MX
+* NULL-MX-TLD (**new**)
+* NULL-MX-ROOT (**new**)
+* NULL-MX-ARPA (**new**)
+* NULL-MX-SLD (**renamed**)
 * NO-MX-SLD
 * NO-MX-TLD
+* NO-MX-ROOT (**new**)
 * NO-MX-ARPA
 
+
 ## zonemaster-cli commands and their output for each test scenario
+
+> **All scenarios must be checked for updated expected and forbidden message tags.
+> Some scenarios listed above are not present below.**
 
 The level (`--level`) must be set to the lowest level of the message tags. For
 this test case `INFO` is the lowest level.
