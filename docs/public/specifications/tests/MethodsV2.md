@@ -1049,7 +1049,7 @@ None.
   * The answer section is empty or with CNAME record or records. If the query
     type is CNAME, then the answer section must be empty.
   * The additional section may contain address (glue) records (A and AAAA) for
-    the name server names from the RCODE of the NS records.
+    the name server names from the RDATA of the NS records.
   * The referral refers the zone identical to the owner name of the NS records
     to the name servers specified by the RDATA in the NS records.
 
