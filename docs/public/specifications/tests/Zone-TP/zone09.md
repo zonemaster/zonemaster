@@ -108,7 +108,7 @@ correct DNS response for an authoritative name server.
 | Z09_NULL_MX_WITH_OTHER_MX   | WARNING |                       | The zone has a Null MX record mixed with other MX records.                                         |
 | Z09_ROOT_EMAIL_DOMAIN       | NOTICE  |                       | Root zone with an unexpected MX RRset (non-Null MX).                                               |
 | Z09_TLD_EMAIL_DOMAIN        | NOTICE  |                       | The zone is a TLD and has an unexpected MX RRset (non-Null MX).                                    |
-| Z09_UNEXPECTED_RCODE_MX     | WARNING | ns_list, rcode        | Unexpected RCODE value ({rcode}) in response to MX query. Responses from name servers "{ns_list}". |
+| Z09_UNEXPECTED_RCODE_MX     | WARNING | ns_list, rcode        | Unexpected RCODE name ({rcode}) in response to MX query. Responses from name servers "{ns_list}". |
 | Z09_VALID_NULL_MX           | INFO    |                       | The zone has a valid Null MX record as the only MX record.                                         |
 
 The value in the Level column is the default severity level of the message. The
@@ -146,7 +146,7 @@ queries follow, unless otherwise specified below, what is specified for
 5.  Create the following empty sets:
 
     1.  Name server IP address ("No Response MX Query").
-    2.  Name server IP address and associated RCODE value
+    2.  Name server IP address and associated [RCODE Name]
         ("Unexpected RCODE MX Response").
     3.  Name server IP address ("Non-authoritative MX").
     4.  Name server IP address ("No MX RRset").
@@ -159,24 +159,22 @@ queries follow, unless otherwise specified below, what is specified for
     2. Go to next name server IP if at least one of the following criteria is
        met:
        1. There is no DNS response.
-       2. The RCODE of the response is not "NoError" ([IANA RCODE List]).
+       2. The [RCODE Name] of the response is not "NoError".
        3. The AA flag is not set in the response.
        4. There is no SOA record with owner name matching the query.
 
-    2. Send *MX Query* over UDP to the name server and collect the
-       response, and:
-       1. If the response has the TC flag set, re-query over TCP and use that
-          response instead.
-       2. If there is no DNS response, then add the name server IP to the
+    2. Send *MX Query* over UDP to the name server. Collect the [DNS response]
+       and:
+       1. If there is no DNS response, then add the name server IP to the
           *No Response MX Query* set.
-       3. Else, if the RCODE of response is not "NoError" ([IANA RCODE List]),
-          then add the name server IP and the RCODE to the
+       2. Else, if the [RCODE Name] of response is not "NoError", then add the
+          name server IP and the [RCODE Name] to the
           *Unexpected RCODE MX Response* set.
-       4. Else, if the AA flag is not set in the response, then add the name
+       3. Else, if the AA flag is not set in the response, then add the name
           server IP to the *Non-authoritative MX* set.
-       5. Else, if there is no MX record with matching owner name in the answer
+       4. Else, if there is no MX record with matching owner name in the answer
           section, then add the name server (IP) to the *No MX RRset* set.
-       6. Else do:
+       5. Else do:
           1. Extract the MX records from the response.
           2. For each MX record down case the (mail) exchange (domain name).
           2. For each MX record extract the RDATA as a text string of space
@@ -191,10 +189,9 @@ queries follow, unless otherwise specified below, what is specified for
 7.  If the *No Response MX Query* set is non-empty, then output
     *[Z09_NO_RESPONSE_MX_QUERY]* with the name server IP addresses from the set.
 
-8.  If the set *Unexpected RCODE MX Response* is non-empty, then for each RCODE
-    in the set, do:
-    * Output *[Z09_UNEXPECTED_RCODE_MX]* with the RCODE value
-      ([IANA RCODE List]) and the name server IP addresses from the set.
+8.  If the *Unexpected RCODE MX Response* set is non-empty, then for each
+    [RCODE Name] in the set output *[Z09_UNEXPECTED_RCODE_MX]* with the
+    [RCODE Name] and the name server IP addresses from the set.
 
 9.  If the *Non-authoritative MX* set is non-empty, then output
     *[Z09_NON_AUTH_MX_RESPONSE]* with the name server IP addresses from
@@ -293,11 +290,11 @@ in an email address.
 [Get-Del-NS-Names-and-IPs]:                   ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
 [Get-Zone-NS-Names-and-IPs]:                  ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
 [IAB Statement]:                              https://www.iab.org/documents/correspondence-reports-documents/2013-2/iab-statement-dotless-domains-considered-harmful/
-[IANA RCODE List]:                            https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [INFO]:                                       ../SeverityLevelDefinitions.md#info
 [Internet Architecture Board]:                https://en.wikipedia.org/wiki/Internet_Architecture_Board
 [NOTICE]:                                     ../SeverityLevelDefinitions.md#notice
 [Null MX]:                                    #terminology
+[RCODE Name]:                                 https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 2142#section-7]:                         https://datatracker.ietf.org/doc/html/rfc2142#section-7
 [RFC 2142]:                                   https://datatracker.ietf.org/doc/html/rfc2142
 [RFC 3172]:                                   https://datatracker.ietf.org/doc/html/rfc3172
