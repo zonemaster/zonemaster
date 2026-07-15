@@ -52,7 +52,7 @@ nothing left of the trailing dot. The root zone is excluded by this test case fr
 the requirement of MX in the apex.
 
 Top-level domains ([TLDs][TLD]) can technically function as
-[Email Domains][Email Domain] ([RCF 5321][RFC 5321#section-2.3.5], section 2.3.5)
+[Email Domains][Email Domain] ([RFC 5321][RFC 5321#section-2.3.5], section 2.3.5)
 but they rarely have that function and are probably not meant to be included in
 the specification in [RFC 2142]. [Internet Architecture Board]
 concludes in a report "[Dotless Domains Considered Harmful][IAB Statement]" that
@@ -134,7 +134,7 @@ queries follow, unless otherwise specified below, what is specified for
 1.  Create a [DNS Query] with query type  SOA and query name *Child Zone*
     ("SOA Query").
 
-2.  Create a [DNS Query] with query type  MX and query name *Child Zone*
+2.  Create a [DNS Query] with query type MX and query name *Child Zone*
     ("MX Query").
 
 3.  Obtain the set of name server names and IP addresses using methods
@@ -143,7 +143,7 @@ queries follow, unless otherwise specified below, what is specified for
 4.  Extract the unique set of name server IP addresses from *Name Servers*
     ("Name Server IPs").
 
-5. Create the following empty sets
+5.  Create the following empty sets:
 
     1.  Name server IP address ("No Response MX Query").
     2.  Name server IP address and associated RCODE value
@@ -188,7 +188,7 @@ queries follow, unless otherwise specified below, what is specified for
           3. Add the name server IP and the sorted list to the *MX RDATA Lists*
              set.
 
-7.  If the set *No Response MX Query* is non-empty, then output
+7.  If the *No Response MX Query* set is non-empty, then output
     *[Z09_NO_RESPONSE_MX_QUERY]* with the name server IP addresses from the set.
 
 8.  If the set *Unexpected RCODE MX Response* is non-empty, then for each RCODE
@@ -196,7 +196,7 @@ queries follow, unless otherwise specified below, what is specified for
     * Output *[Z09_UNEXPECTED_RCODE_MX]* with the RCODE value
       ([IANA RCODE List]) and the name server IP addresses from the set.
 
-9.  If the set *Non-authoritative MX* is non-empty, then output
+9.  If the *Non-authoritative MX* set is non-empty, then output
     *[Z09_NON_AUTH_MX_RESPONSE]* with the name server IP addresses from
     the set.
 
@@ -238,7 +238,7 @@ queries follow, unless otherwise specified below, what is specified for
     then:
     1. If *Child Zone* is the root zone ("."), a [TLD] or a zone in the .ARPA
        tree then output *[Z09_NO_MX_FOUND_OR_EXPECTED]*.
-    2. Else, Output *[Z09_MISSING_MAIL_EXCHANGE]* with the name server IP
+    2. Else, output *[Z09_MISSING_MAIL_EXCHANGE]* with the name server IP
        addresses from the *No MX RRset* set.
 
 14. If both the *No MX RRset* set and the *MX RDATA Lists* set are empty, then
