@@ -108,9 +108,9 @@ Assumptions for the zone setup for the test scenarios:
   without) MX records on MX queries.
 * Unless otherwise stated, all responses are authoritative and with [RCODE Name]
   "NoError".
-* Unless otherwise stated all name servers for the zone responds with an
+* Unless otherwise stated all name servers for the zone respond with an
   identical, non-empty, non-Null MX RRset on MX query.
-* Unless otherwise stated all zones are served by two name severs whose name are
+* Unless otherwise stated all zones are served by two name servers whose name are
   in-domain.
 
 ### NO-RESPONSE-MX-QUERY-1
@@ -136,19 +136,22 @@ Assumptions for the zone setup for the test scenarios:
 
 ### INCONSISTENT-MX-DATA-1
 * Zone: "inconsistent-mx-data-1.zone09.xa."
-  * The name servers respond with MX RRsets that are not equal, two MX records
-    from one server, and just one of the two MX records from the other.
+  * The name servers respond with MX RRsets that are not equal: one server gives
+    two MX records, while the other one gives just one of the two MX records.
 
 ### INCONSISTENT-MX-DATA-2
 * Zone: "inconsistent-mx-data-2.zone09.xa."
-  * Both name servers respond with one MX record which has the same mail exchange
-    names from both servers, but the preferences different.
+  * Both name servers respond with MX RRsets that are not equal: one server gives
+    one MX record, while the other one gives an MX record with the same mail
+    exchange name but a different preference value.
 
 ### INCONSISTENT-MX-DATA-3
 * Zone: "inconsistent-mx-data-3.zone09.xa."
-  * Both name servers respond with two MX records and the same two mail exchange
-    names are used, but the orders between the the two records, as defined by
-    the preference, are different between the two servers.
+  * Both name servers respond with MX RRsets that are not equal: one server
+    gives two MX records, while the other one gives two MX records that list the
+    same mail exchange names but with different preference values, such that
+    when sorting by preference value, the mail exchanges are in a different order
+    than the first server’s MX RRset.
 
 ### MIXED-TTL-1
 * Zone: "mixed-ttl-1.zone09.xa."
