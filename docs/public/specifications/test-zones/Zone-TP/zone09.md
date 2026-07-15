@@ -136,22 +136,20 @@ Assumptions for the zone setup for the test scenarios:
 
 ### INCONSISTENT-MX-DATA-1
 * Zone: "inconsistent-mx-data-1.zone09.xa."
-  * The name servers respond with MX RRsets that are not equal: one server gives
+  * The name servers respond with MX RRsets that are not equal. One server gives
     two MX records, while the other one gives just one of the two MX records.
 
 ### INCONSISTENT-MX-DATA-2
 * Zone: "inconsistent-mx-data-2.zone09.xa."
-  * Both name servers respond with MX RRsets that are not equal: one server gives
+  * Both name servers respond with MX RRsets that are not equal. One server gives
     one MX record, while the other one gives an MX record with the same mail
     exchange name but a different preference value.
 
 ### INCONSISTENT-MX-DATA-3
 * Zone: "inconsistent-mx-data-3.zone09.xa."
-  * Both name servers respond with MX RRsets that are not equal: one server
+  * Both name servers respond with MX RRsets that are not equal. One server
     gives two MX records, while the other one gives two MX records that list the
-    same mail exchange names but with different preference values, such that
-    when sorting by preference value, the mail exchanges are in a different order
-    than the first server’s MX RRset.
+    same mail exchange names but with different preference values.
 
 ### MIXED-TTL-1
 * Zone: "mixed-ttl-1.zone09.xa."
