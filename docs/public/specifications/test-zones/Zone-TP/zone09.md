@@ -1,4 +1,4 @@
-# Specification of Test Scenariso for ZONE09
+# Specification of Test Scenarios for ZONE09
 
 ## Table of contents
 
@@ -136,7 +136,7 @@ Assumptions for the zone setup for the test scenarios:
 
 ### INCONSISTENT-MX-DATA-1
 * Zone: "inconsistent-mx-data-1.zone09.xa."
-  * The name servers repond with MX RRsets that are not equal.
+  * The name servers respond with MX RRsets that are not equal.
 
 ### INCONSISTENT-MX-DATA-2
 * Zone: "inconsistent-mx-data-2.zone09.xa."
@@ -153,7 +153,7 @@ Assumptions for the zone setup for the test scenarios:
   * The TTL of the MX RRset are different on the two NS.
 
 ### MIXED-TTL-2
-* Zone: "mixed-ttl-1.zone09.xa."
+* Zone: "mixed-ttl-2.zone09.xa."
   * The TTL of the records in the MX RRset are different.
 
 ### NULL-MX-WITH-OTHER-MX
