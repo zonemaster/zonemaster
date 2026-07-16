@@ -128,7 +128,8 @@ Assumptions for the zone setup for the test scenarios:
 
 ### NON-AUTH-MX-RESPONSE
 * Zone: "non-auth-mx-response.zone09.xa."
-  * One name server returns with [RCODE Name] "NoError" and non-AA on MX query.
+  * The zone is served by three NS: ns1, ns2 and ns4.
+  * Server ns4 returns with [RCODE Name] "NoError" and non-AA on MX query.
 
 ### INCONSISTENT-MX
 * Zone: "inconsistent-mx.zone09.xa."

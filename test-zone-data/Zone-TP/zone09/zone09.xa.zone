@@ -2,7 +2,7 @@ $ORIGIN zone09.xa.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2026071400      ; serial
+                2026071601      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -80,12 +80,12 @@ ns1.tld-email-domain    AAAA    fda1:b2:c3::127:19:9:31
 ns2.tld-email-domain    A       127.19.9.32
 ns2.tld-email-domain    AAAA    fda1:b2:c3::127:19:9:32
 
-null-mx                 NS    ns1.null-mx
-null-mx                 NS    ns2.null-mx
-ns1.null-mx             A       127.19.9.31
-ns1.null-mx             AAAA    fda1:b2:c3::127:19:9:31
-ns2.null-mx             A       127.19.9.32
-ns2.null-mx             AAAA    fda1:b2:c3::127:19:9:32
+null-mx-sld                 NS    ns1.null-mx-sld
+null-mx-sld                 NS    ns2.null-mx-sld
+ns1.null-mx-sld             A       127.19.9.31
+ns1.null-mx-sld             AAAA    fda1:b2:c3::127:19:9:31
+ns2.null-mx-sld             A       127.19.9.32
+ns2.null-mx-sld             AAAA    fda1:b2:c3::127:19:9:32
 
 no-mx-sld               NS      ns1.no-mx-sld
 no-mx-sld               NS      ns2.no-mx-sld
@@ -110,6 +110,7 @@ ns2.no-mx-arpa   AAAA    fda1:b2:c3::127:19:9:32
 
 non-auth-mx-response         NS      ns1.non-auth-mx-response
 non-auth-mx-response         NS      ns2.non-auth-mx-response
+non-auth-mx-response         NS      ns4.non-auth-mx-response
 ns1.non-auth-mx-response     A       127.19.9.31
 ns1.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:31
 ns2.non-auth-mx-response     A       127.19.9.32
