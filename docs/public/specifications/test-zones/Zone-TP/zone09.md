@@ -74,10 +74,10 @@ irrelevant to the test scenario and must be ignored.
 | NO-RESPONSE-MX-QUERY-2 | Z09_NO_RESPONSE_MX_QUERY, Z09_NO_SERVERS_MX_RESPONSE                | 2)                     |
 | UNEXPECTED-RCODE-MX    | Z09_UNEXPECTED_RCODE_MX, Z09_MISSING_MAIL_EXCHANGE                  | 2)                     |
 | NON-AUTH-MX-RESPONSE   | Z09_NON_AUTH_MX_RESPONSE, Z09_MX_DATA                               | 2)                     |
-| INCONSISTENT-MX        | Z09_INCONSISTENT_MX, Z09_MX_FOUND Z09, Z09_NO_MX_FOUND, Z09_MX_DATA | 2)                     |
+| INCONSISTENT-MX        | Z09_INCONSISTENT_MX, Z09_MX_FOUND, Z09_NO_MX_FOUND, Z09_MX_DATA    | 2)                     |
 | INCONSISTENT-MX-DATA-1 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
-| INCONSISTENT-MX-DATA-1 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
-| INCONSISTENT-MX-DATA-1 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
+| INCONSISTENT-MX-DATA-2 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
+| INCONSISTENT-MX-DATA-3 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
 | MIXED-TTL-1            | Z09_MX_DATA                                                         | 2)                     |
 | MIXED-TTL-2            | Z09_MX_DATA                                                         | 2)                     |
 | NULL-MX-WITH-OTHER-MX  | Z09_NULL_MX_WITH_OTHER_MX, Z09_MX_DATA                              | 2)                     |
