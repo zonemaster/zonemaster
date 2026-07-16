@@ -1083,7 +1083,7 @@ None.
 [Get-Del-NS-Names]:                                  #method-get-delegation-ns-names
 [Get-Delegation]:                                    #method-get-delegation-internal
 [Get-ID-Addr-in-Zone]:                               #method-get-in-domain-address-records-in-zone-internal
-[Get-OOD-IPs]:                                       #method-get-not-in-domain-ip-addresses-internal
+[Get-OOD-IPs]:                                       #method-get-out-of-domain-ip-addresses-internal
 [Get-Parent-NS-IPs]:                                 #method-get-parent-ns-ip-addresses
 [Get-Parent-NS-Names-and-IPs]:                       #method-get-parent-ns-names-and-ip-addresses
 [Get-Zone-NS-IPs]:                                   #method-get-zone-ns-ip-addresses
