@@ -1,162 +1,327 @@
-# CONSISTENCY05: Consistency between glue and authoritative data
+# CONSISTENCY05: Consistency between delegation and zone data
+
 
 ## Test case identifier
-
 **CONSISTENCY05**
+
+
+## Table of contents
+
+* [Objective](#objective)
+* [Scope](#scope)
+* [Inputs](#inputs)
+* [Summary](#summary)
+* [Test procedure](#test-procedure)
+* [Outcome(s)](#outcomes)
+* [Special procedural requirements](#special-procedural-requirements)
+* [Intercase dependencies](#intercase-dependencies)
+* [Terminology](#terminology)
+
 
 ## Objective
 
-For name servers that have IP addresses listed as glue, the IP addresses must
-match the authoritative A and AAAA records for that host. This is an IANA 
-[name server requirement].
+The delegation of the *Child Zone* may contain so called
+[glue records][glue record]. On the wire, any [glue records][glue record] are
+found in the [referral] sent from the name servers of the parent zone. 
 
-The objective of this test is to verify that the [glue records][terminology] 
-in the delegation are consistent with authoritative data.
+If the name server name in the NS record is [in-domain] there must be at least
+one [glue record] in the delegation and in the [referral]. For each such glue
+record the equivalent [address record] must exist as an athoritative record in
+the child zone, or below, and the the two (glue record and authoritative record)
+must have the same IP address.
+
+The other alternative is that the name server name is [Out-Of-Domain], and in
+that case there can be a [glue record], and it must also match an address
+record with the same IP address in the authoritative zone. In this case that
+authoritative zone is not the *Child Zone* since the name is [Out-Of-Domain].
+
+It is an IANA [name server requirement] that [glue records][glue record] matches
+authoritative data.
+
+This test case will test the following:
+
+* The the [referral] (delegation) is identical on all parent name servers.
+* That the [referral] (delegation) contains at least one [glue record] for each
+  [in-domain] name server name.
+* That each [glue record] matches an authoritative [address record] with the
+  same IP address:
+  * In the *Child Zone* if the [glue record] is [in-domain].
+  * In another zone if the [glue record] is [out-of-zone].
+* If the *Child Zone* contains additional [address records][address record]
+  with the same name as the glue record, but different IP address.
+
 
 ## Scope
 
-It is assumed that *Child Zone* is also tested by [Connectivity01]. This test
-case will set DEBUG level on messages for non-responsive name servers.
+It is assumed that *Child Zone* is tested and reported by [Connectivity01]. This
+test case will just ignore non-responsive name servers or name servers not giving
+a correct DNS response for an authoritative name server. However, if there is no
+working name sever for *Child Zone* then this test case will report that.
+
 
 ## Inputs
 
-* "Child Zone" - The domain name to be tested.
+* "Child Zone" - The name of the zone to be tested. It must be a [valid domain name].
+* "Undelegated Data" - Optional data. If included it must consist of a set of
+  at least one [valid name server name] and for each name server name an optional
+  set of at least one [valid IP address].
 
-## Ordered description of steps to be taken to execute the test case
-1. Obtain the set of name server names from the NS records in the 
-   delegation of *Child Zone* using [Method2] and any glue IP addresses
-   from the same delegation using [Method4].
 
-   1. Extract the [in-bailiwick][terminology] name server names and create the set
-      "Delegation Strict Glue", where each name server name 
-      is matched with its IP address or addresses, if available. (The 
-      set may be empty.)
+## Summary
 
-   2. Extract the [out-of-bailiwick][terminology] name server names and create the 
-      set "Delegation Extended Glue", where each name server name 
-      is matched with its IP address or addresses, if available. (The 
-      set may be empty.)
+| Message Tag                    | Level    | Arguments                                 | Message ID for message tag                                                                                                                             |
+|:-------------------------------|:---------|:------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CS05_CHILD_ZONE_LAME           | CRITICAL | ns_list                                   | There is no working name server for the child zone. Tested name servers are "{ns_list}".                                                               |
+| CS05_DELEGATION                | INFO     | ns_deleg_list, ns_list                    | Delegation of the child zone as provided by the parent name servers listed: "{ns_deleg_list}". Parent name servers: "{ns_list}".                       |
+| CS05_EXTRA_ADDR_CHILD          | NOTICE   | ns_list                                   | There is one or more extra address records found in the child zone that are not present as glue in the delegation: "{ns_list}".                        |
+| CS05_NO_MISMATCH_GLUE_ZONE     | INFO     |                                           | There is no mismatch between delegation from parent and authoritative data in the child zone.                                                          |
+| CS05_ID_ADDR_MISMATCH          | ERROR    | nsname, ns_ip_list_glue, ns_ip_list_zone  | For name server {nsname} the glue record in the delegation "{ns_ip_list_glue}" mismatches the address record in the child zone "{ns_ip_list_zone}".    |
+| CS05_ID_ADDR_MISSING           | NOTICE   | nsname                                    | Address record for {nsname}, used as glue record in delegation, is missing in the child zone.                                                          |
+| CS05_INCONSISTENT_DELEGATION   | WARNING  |                                           | The delegation is inconsistent between the parent nameservers.                                                                                         |
+| CS05_MISSING_GLUE_FOR_NS       | WARNING  | nsname, ns_list                           | Expected glue record for {nsname} is missing in the delegation. Found in the parent name servers "{ns_list}".                                          |
+| CS05_MISSING_GLUE_FOR_NS_UNDEL | WARNING  | nsname                                    | IP address (glue record) is expected but missing for {nsname} in the undelegated data.                                                                 |
+| CS05_NO_NS_ADDR_CHILD          | CRITICAL |                                           | Child zone cannot be tested since there are no name server IP addresses for that zone.                                                                 |
+| CS05_OOD_ADDR_MISMATCH         | WARNING  | nsname, ns_ip_list_ref, ns_ip_list_lookup | For name server {nsname} the glue record in the delegation "{ns_ip_list_glue}" mismatches the address record in authoritativ zone "{ns_ip_list_zone}". |
 
-2. Obtain the set of name server names for the *Child Zone* using
-   [Method2] and [Method3] and extract the [in-bailiwick][terminology] name 
-   server names, "IB NS Name Set". (The set may be empty.)
+The value in the Level column is the default severity level of the message. The
+severity level can be changed in the [Zonemaster-Engine profile]. Also see the
+[Severity Level Definitions] document.
 
-3. Create an empty set of name server name with associated IP address
-   or addresses, "Address Records From Child".
+The argument names in the Arguments column lists the arguments used in the
+message. The argument names are defined in the [argument list].
 
-4. If *IB NS Name Set* is non-empty, obtain the set of name server IP 
-   addresses, "NS IP", for *Child Zone* using [Method4] and [Method5].
+The name server names are assumed to be available at the time when the msgid
+is created, if the argument name is "ns" or "ns_list" even when in the
+"[Test procedure]" below it is only referred to the IP address of the name
+servers.
 
-5. If *IB NS Name Set* is non-empty, then for each name server name in
-   that set do:
 
-   1. Create one A query and one AAAA query with the RD flag unset
-      and name server name as owner name.
+## Test procedure
 
-   2. For each name server in *NS IP* and for each record 
-      types (A, AAAA):
-      1. Send the address query to the name server.
-      2. If there is no DNS response from the server, then
-         output *[NO_RESPONSE]*.
-      3. Or, if the response is a delegation (referral) to a 
-         sub-zone of *Child Zone*, then:
-         1. Copy the address query (A, AAAA) that gave the referral
-            response.
-         2. Set the RD flag in the copied query (from unset to set).
-         3. Do a [DNS Lookup][terminology] of the query.
-         4. If the lookup returns the relevant address record or records,
-            A for A record query and AAAA for AAAA record query, and 
-            with the same owner name as in the query (i.e. CNAME should
-            not be followed), then extract those and add to 
-            *Address Records From Child* with name and IP 
-            address or addresses.
-      4. Or, if the response has the AA flag unset, then
-         output *[CHILD_NS_FAILED]*. 
-      5. Or, if the RCODE of the response is neither NOERROR nor 
-         NXDOMAIN, then output *[CHILD_NS_FAILED]*.
-      6. Or, if the RCODE is NOERROR (with the AA flag set), then
-         extract any address records (A, AAAA) from the answer
-         section whose owner name matches the owner name 
-         of the query (i.e. CNAME should not be followed) and add 
-         that or those to *Address Records From Child* with name and IP. 
-      7. Else, there is nothing to do (i.e. RCODE is NXDOMAIN).
+In this section and unless otherwise specified below, the terms "[DNS Query]"
+follow the specification for DNS queries as specified in
+[DNS Query and Response Defaults]. The handling of the DNS responses on the DNS
+queries follow, unless otherwise specified below, what is specified for
+[DNS Response] in the same specification.
 
-   3. If all servers outputted *[NO_RESPONSE]* or *[CHILD_NS_FAILED]*, 
-      then output *[CHILD_ZONE_LAME]* and completely stop processing 
-      this test case.
+1.  Create the following sets from fetched or derived data:
 
-6. Compare the IP address for the name servers from 
-   *Delegation Strict Glue* with *Address Records From Child*
-   (i.e. [in-bailiwick][terminology] only).
+    1. Fetch the parent name servers with IP addresses using method
+       [Get-Parent-NS-Names-and-IPs] ("Parent NS").
+    2. Fetch the parent name server IPs using method [Get-Parent-NS-IPs]
+       ("Parent NS IPs").
+    3. Fetch the child name server IPs using methods [Get-Del-NS-IPs] and
+       [Get-Zone-NS-IPs] and create a unique set ("Child NS IPs").
 
-   1. If an IP from *Delegation Strict Glue* is not listed in 
-      *Address Records From Child* with that same name server name, 
-      then output *[IN_BAILIWICK_ADDR_MISMATCH]*.
+2.  If the *Undelegated Data* set (from input) is non-empty then the
+    *Parent NS* and *Parent NS IPs* sets are empty.
+   
+3.  Create [DNS Queries][DNS Query]:
 
-   2. If an IP from *Address Records From Child* is not listed in
-      *Delegation Strict Glue* with that same name server name, then 
-      output *[EXTRA_ADDRESS_CHILD]*.
+    1. Query type SOA and query name *Child Zone* ("SOA Query").
+    2. Query type NS and query name *Child Zone* ("NS Query").
 
-7. For each name server name in *Delegation Extended Glue* 
-   (i.e. [out-of-bailiwick][terminology] only) ("DEG Name Server Name") do: 
+4.  Create the following empty sets:
 
-   1. Do two [DNS Lookups][terminology], one record type A and one record type 
-      AAAA, for *DEG Name Server Name* on public DNS and create a
-      set of the IP addresses from the A and AAAA records, respectively,
-      from the answer sections of the responses and that matches
-      the owner name of the query (i.e. CNAME should not be followed). 
-      (The set will be empty if there are no relevant records in the
-      answer sections or if there is no response, e.g. SERVFAIL.)
+    1.  IP address (parent) and a sorted list of name server name or name/IP
+        pairs ("Delegation").
+    2.  IP address (child) and set of name server names ("Child Zone NS").
+    3.  NS name and IP address(es) ("Delegation ID NS").
+    4.  NS name and IP address(es) ("Delegation OOD NS").
+    5.  IP address (parent) and NS name ("Missing Glue").
+    6.  IP address (child), name server name and list of IP addresses (if any)
+        ("Auth Addr Records In Child").
 
-   2. For each IP address for *DEG Name Server Name* in
-      *Delegation Extended Glue* do:
-      1. If the address is not member of the IP address set created
-         in the previous DNS lookups, output 
-         *[OUT_OF_BAILIWICK_ADDR_MISMATCH]*.
+5.  If the *Parent NS IPs* is non-empty, then for each name server IP in the set
+    do:
 
-8. If none of *[IN_BAILIWICK_ADDR_MISMATCH]*, *[EXTRA_ADDRESS_CHILD]* 
-   or *[OUT_OF_BAILIWICK_ADDR_MISMATCH]* has been outputted, output 
-   *[ADDRESSES_MATCH]*.
+    1. [Send] *SOA Query* over UDP to the name server IP and fetch the response
+       (if any).
+    3. If the response (if any) contains a [Referral] of *Child Zone* then do:
+       1. Extract the name server names from delegation NS records in authority
+          section.
+       2. Downcase any uppcase letters in the names.
+       3. Create an sorted list of unique name server names (sorted ascendingly
+          on the name).
+       4. For each [glue record] in the additional section (if any) do:
+          1. Extract IP address from the [glue record] and attach it to the
+             correct name server name in the name server list to form a
+             name/IP pair.
+          2. If the name already has an IP address attached to it, then copy the
+             name and create a new name/IP pair.
+          3. Only unique name/IP pairs are created.
+          4. Sort the name/IP pair with IPv4 first and then sorted ascendingly on
+             the IP address.
+       5. Add the name server IP and the created name server list to the
+          *Delegation* set.
+
+6.  If the *Undelegated Data* set is non-empty then the *Delegation* set is
+    empty.
+
+7.  If the *Delegation* set is non-empty, then for each parent name server IP in
+    the set do:
+    1. For each element (name or name/IP pair) in the set do:
+       1. If the name in the element is [In-Domain] then do:
+          1. If element is a name and not a name/IP pair then add the name server
+             IP address and the name to the *Missing Glue* set.
+          2. Add the element (name or name/IP pair) to the *Delegation ID NS*
+             set. 
+             1. Do not create duplicates in the set.
+             2. Elements just consiting of a name is not added if there already
+                is a name/IP pair with the same name.
+             3. A name/IP pair will overwrite an element consisting just of of
+                the same name.
+       2. If name in the element (name or name/IP pair) is [Out-Of-Domain] then
+          add the element (name or name/IP pair) to the *Delegation OOD NS* set. 
+          1. Do not create duplicates in the set.
+          2. Elements just consiting of a name is not added if there already is a
+             name/IP pair with the same name.
+          3. A name/IP pair will overwrite an element consisting just of of the
+             same name.
+
+8. If the *Delegation* set is non-empty, do:
+   1. Compare the name server lists (of names or name/IP pairs) between all
+      parent name server IPs.
+   2. If not all name server lists are equal then do:
+      1. For each found name server list output *[CS05_DELEGATION]* with the name
+      server list and the list of parent name server IPs from which the list
+      came.
+      2. Output *[CS05_INCONSISTENT_DELEGATION]*.
+
+9.  If the *Undelegated Data* set is non-empty then do for each name server name
+    in the set do:
+    1. If the name server name is [In-Domain] then do:
+       1. If no glue (address) data is present for the name server name, then
+          output *[CS05_MISSING_GLUE_FOR_NS_UNDEL]* with the name server name.
+       2. Else, add the name server name with IP addresses as one or several
+          name/IP pairs to *Delegation ID NS* set.
+    2. Else (the name server name is [Out-Of-Domain]) then do:
+       1. If there is no IP address for that name, add the name to the 
+          *Delegation OOD NS* set.
+       2. Else, add the name and IP address or addresses as name/IP pairs to the
+          *Delegation OOD NS* set.
+
+10. If the *Missing Glue* set is non-empty, then for each name server name output
+    *[CS05_MISSING_GLUE_FOR_NS]* with the name server name and the list of parent
+    IP addresses.
+
+11. If *Child NS IP* is empty then output *[CS05_NO_NS_ADDR_CHILD]* and exit
+    these test procedures.
+
+12. For each name server IP in *Child NS IPs* do:
+
+    1. [Send] *NS Query* over UDP to the name server IP and fetch the response
+       (if any).
+    2. If the response (if any) contains the following add the name server
+       IP and the name server names extracted from the NS RRset to the
+       *Child Zone NS* set:
+       * An NS RRset of *Child Zone* in the answer section.
+       * An [RCODE Name] of "NoError".
+       * The AA flag is set.
+    3. Else, go to the next name server IP.
+    4. Extract the [In-Domain] NS name server namns from the NS RRset extracted
+       above and extract the name server names from *Delegation ID NS*.
+    5. Create a unique set and for each [In-Domain] name server name do:
+       1.  Create a [DNS Query] with query type A and query name the NS name
+           server name ("A Query").
+       2.  [Send] *A Query* over UDP to the name server IP and fetch the
+           response (if any).
+       3.  If the response (if any) contains a [Referral] covering the NS name
+           server name then repeat *A Query* (recursively, if needed) to the
+           name servers in the referral until an A RRset is returned or the
+           querying is stopped by e.g. NXDOMAIN or no response.
+           1. If an A RRset is return, then use it in next step as if was a
+              response on the first query.
+       4.  If any query was not responded to or returned an [RCODE Name] not
+           being "NoError" then go to next NS name server name.
+       5.  If the response (if any) contains the following then for each
+           unique A record add one name/IP pair to the
+           *Auth Addr Records In Child* set.
+           * An A RRset with the NS name server name as owner name in the
+             answer section.
+           * An [RCODE Name] of "NoError".
+           * The AA flag is set.
+       6.  Create a [DNS Query] with query type AAAA and query name the NS
+           name server name ("AAAA Query").
+       7.  [Send] *A Query* over UDP to the name server IP and fetch the
+           response (if any).
+       8.  If the response (if any) contains a [Referral] covering the NS name
+           server name then repeat *AAAA Query* as was done with the *A Query*
+           above.
+       9.  If the response (if any) contains the following then update the
+           *Auth Addr Records In Child* set with the IP address(es) for the NS
+           name server name.
+           * An AAAA RRset with the NS name server name as owner name in the
+             answer section.
+           * An [RCODE Name] of "NoError".
+           * The AA flag is set.
+       10. If the *Auth Addr Records In Child* set does not contain any name/IP
+           pairs with name server name as name, then add name server name to
+           the set, unless it already exists.
+       11. If the *Auth Addr Records In Child* set both contains name server
+           name as name only and as part of name/IP pairs, then remove the single
+           name.
+
+13. If the *Child Zone NS* set is empty then output *[CS05_CHILD_ZONE_LAME]* with
+    the IP addresses from the *Child NS IPs* set and exit these procedures.
+
+14. If the *Delegation ID NS* set is non-empty then for each name server name in
+    the set do:
+    1. Extract all name/IP pairs in the set with that name server name
+       ("Parent Glue").
+    2. If no name/IP pairs were extracted, then go to next name server name in
+       the set.
+    3. Extract all name/IP pairs in the *Auth Addr Records In Child* set
+       ("Child Auth").
+    4. If *Child Auth* is empty, then output *[CS05_ID_ADDR_MISSING]* with the
+       the name server name.
+    5. Else, if any of the name/IP pairs in *Parent Glue* set are missing in the
+       *Child Auth* set then output *[CS05_ID_ADDR_MISMATCH]* with the name
+       server name, the IP addresses extracted from *Parent Glue* and the IP
+       addresses extracted from *Child Auth*.
+    6. Else, if the *Parent Glue* set is not equal to the *Child Auth* set then
+       output *[CS05_EXTRA_ADDR_CHILD]* with the list of name/IP pairs from
+       the *Child Auth* set not present in the *Parent Glue* set.
+
+15. If the the *Delegation OOD NS* set is non-empty then for each name server
+    name in the set do:
+    1. Extract all name/IP pairs with that name server name.
+    2. Go to next name server name if there are no name/IP pairs for the name.
+    3. Do [Address Records Lookup] of the name server name. Ignore any failing
+       lookups (such as response with SERVFAIL or no response) or lookups giving
+       response with NODATA or NXDOMAIN.
+    4. If any IP address is returned from the lookup, then do:
+       1. Compare the IP address(es) with the address(es) in the extracted
+          name/IP pairs.
+       2. If the comparison did not give an exact match, then output
+          *[CS05_OOD_ADDR_MISMATCH]* with the name server name, the address(es)
+          from the extracted name/IP pairs and the the addresses from the
+          lookup.
+
+16. If this test procedure has not outputted any message tag then output
+    *[CS05_NO_MISMATCH_GLUE_ZONE]*.
+
 
 
 ## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
-with the severity level *ERROR* or *CRITICAL*.
+with the severity level *[ERROR]* or *[CRITICAL]*.
 
 The outcome of this Test Case is "warning" if there is at least one message
-with the severity level *WARNING*, but no message with severity level
+with the severity level *[WARNING]*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
-The outcome of this Test case is "pass" in all other cases.
+In other cases, no message or only messages with severity level
+*[INFO]* or *[NOTICE]*, the outcome of this Test Case is "pass".
 
-Message                           | Default severity level (when message is outputted)
-:---------------------------------|:-----------------------------------
-CHILD_NS_FAILED                   | DEBUG
-NO_RESPONSE                       | DEBUG
-CHILD_ZONE_LAME                   | ERROR
-IN_BAILIWICK_ADDR_MISMATCH        | ERROR
-OUT_OF_BAILIWICK_ADDR_MISMATCH    | ERROR
-EXTRA_ADDRESS_CHILD               | NOTICE
-ADDRESSES_MATCH                   | INFO
 
-## Special procedural requirements	
+## Special procedural requirements
 
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol and log a message reporting
 the ignored result.
 
-If the test is an [undelegated test] then [Method2] and [Method4] will 
-include the provided input data instead of data from any real delegation
-and authoritative data.
-
-For an [undelegated test] it is possible to intentionally insert data
-for [out-of-bailiwick][terminology] name servers that do not match what is found in
-public DNS. This Test Case will then report this as an ERROR which
-may not match the users expectation.
-
-It is assumed that the name servers of the parent zone behave the same way 
-for the parent zone as when [BASIC01] was run.
 
 ## Intercase dependencies
 
@@ -165,41 +330,106 @@ None
 
 ## Terminology
 
-The terms "in-bailiwick" and "out-of-bailiwick" are used as defined
-in [RFC 7719], section 6, page 15.
+* "Address Record" - The term is used for a DNS record of type A or AAAA. The
+  term is used as defined in [RFC 9499][[RFC 9499#section5]], section 5.
 
-The term "glue records" is defined in [RFC 7719], section 6, page 15.
-Here we use "glue" in the wider sense.
+* "Address Records Lookup" - The term is used when two [DNS Lookups][DNS Lookup]
+  are done and the query types are A and AAAA, respectively.
 
-When the term "using Method" is used, names and IP addresses are fetched
-using the defined [Methods].
+* "DNS Lookup" - The term is used when a recursive lookup is used, though any
+  changes to the DNS tree introduced by an [undelegated test] must be respected.
 
-The term "send" (to an IP address) is used when a DNS query is sent to
-a specific name server.
+* "DNS Response" - The term is used when the DNS response is to be handled as
+  defined in [DNS Query and Response Defaults][DNS Response].
 
-The term "DNS Lookup" is used when a recursive lookup is used, though
-any changes to the DNS tree introduced by an [undelegated test] must be
-respected.
+* "DNS Query" - The term is used for a DNS query that is to follow the
+  specification for DNS queries in [DNS Query and Response Defaults][DNS Query].
+
+* "Glue Record" - [Address records][address record] in the [Referral]
+  whose owner name is equal to the RDATA in one of the NS record in the same
+  referral. The term is used as defined in [RFC 9499][RFC 9499#section7],
+  section 7.
+
+* "In-Domain" - The term is used as defined in [RFC 9499][RFC 9499#section7],
+  section 7, in the subsection on "Glue Records", for name server names in the
+  referral of a zone. The name server name is on or below the zone cut of the
+  zone for which it is name server for. Previously the term "In-Bailiwick" was
+  used.
+
+* "Out-Of-Domain" - The term refers to a name server name that is not
+  "In-Domain". It is either "sibling domain" or "unrelated" as defined in
+  [RFC 9499][RFC 9499#section7], section 7, in the subsection on "Glue Records",
+  for name server names in the referral of a zone. The name server name is
+  neither on or below the zone cut of the zone for which it is name server.
+  The name server name belongs to another zone. It is above or at aside the
+  delegated zone. Previously the term "Out-Of-Bailiwick" was used.
+
+* "Referral" - The term means a DNS response with [RCODE Name] NoError, AA flag
+  unset and NS records in the authority section. It is used to signal a
+  delegation.
+  * The answer section is empty or with CNAME record or records. If the query
+    type is CNAME, then the answer section must be empty.
+  * The additional section may contain address (glue) records (A and AAAA) for
+    the name server names from the RDATA of the NS records.
+  * The referral refers the zone identical to the owner name of the NS records
+    to the name servers specified by the RDATA in the NS records.
+
+* "Send" - The terms are used when a DNS query is sent to a specific name server
+  (name server IP address).
+
+* "Valid Domain Name" -- The term stands for a non-empty domain name string that
+  has successfully passed the tests and normalizations in the
+  [Requirements and normalization] specification.
+
+* "Valid IP Address" -- The term stands for either an [IPv4] address or an [IPv6]
+  address in any address range.
+
+* "Valid Name Server Name" -- The term stands for a [Valid Domain Name] that
+  functions as the name of a name server.
 
 
-[ADDRESSES_MATCH]:                #outcomes
-[BASIC01]:                        ../Basic-TP/basic01.md
-[Connectivity01]:                 ../Connectivity-TP/connectivity01.md
-[CHILD_NS_FAILED]:                #outcomes
-[CHILD_ZONE_LAME]:                #outcomes
-[DELEGATION05]:                   ../Delegation-TP/delegation05.md
-[EXTRA_ADDRESS_CHILD]:            #outcomes
-[IN_BAILIWICK_ADDR_MISMATCH]:     #outcomes
-[Method2]:                        ../Methods.md#method-2-obtain-glue-name-records-from-parent
-[Method3]:                        ../Methods.md#method-3-obtain-name-servers-from-child
-[Method4]:                        ../Methods.md#method-4-obtain-glue-address-records-from-parent
-[Method5]:                        ../Methods.md#method-5-obtain-the-name-server-address-records-from-child
-[Methods]:                        ../Methods.md
-[NO_RESPONSE]:                    #outcomes
-[OUT_OF_BAILIWICK_ADDR_MISMATCH]: #outcomes
-[RFC 7719]:                       https://datatracker.ietf.org/doc/html/rfc7719
-[UNDEL_OOB_ADDR_MISMATCH]:        #outcomes
-[name server requirement]:        https://www.iana.org/help/nameserver-requirements
-[terminology]:                    #terminology
-[undelegated test]:               ../../test-types/undelegated-test.md
-
+[Address Record]:                          #terminology
+[Argument list]:                           ../ArgumentsForTestCaseMessages.md
+[CRITICAL]:                                ../SeverityLevelDefinitions.md#critical
+[CS05_CHILD_ZONE_LAME]:                    #summary
+[CS05_DELEGATION]:                         #summary
+[CS05_EXTRA_ADDR_CHILD]:                   #summary
+[CS05_ID_ADDR_MISMATCH]:                   #summary
+[CS05_ID_ADDR_MISSING]:                    #summary
+[CS05_INCONSISTENT_DELEGATION]:            #summary
+[CS05_MISSING_GLUE_FOR_NS]:                #summary
+[CS05_MISSING_GLUE_FOR_NS_UNDEL]:          #summary
+[CS05_NO_MISMATCH_GLUE_ZONE]:              #summary
+[CS05_NO_NS_ADDR_CHILD]:                   #summary
+[CS05_OOD_ADDR_MISMATCH]:                  #summary
+[Connectivity01]:                          ../Connectivity-TP/connectivity01.md
+[DNS Query and Response Defaults]:         ../DNSQueryAndResponseDefaults.md
+[DNS Query]:                               ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
+[DNS Response]:                            ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
+[ERROR]:                                   ../SeverityLevelDefinitions.md#error
+[Get-Del-NS-IPs]:                          ../MethodsV2.md#method-get-delegation-ns-ip-addresses
+[Get-Del-NS-Names-and-IPs]:                ../MethodsV2.md#method-get-delegation-ns-names-and-ip-addresses
+[Get-Parent-NS-IPs]:                       ../MethodsV2.md#method-get-parent-ns-ip-addresses
+[Get-Parent-NS-Names-and-IPs]:             ../MethodsV2.md#method-get-parent-ns-names-and-ip-addresses
+[Get-Zone-NS-IPs]:                         ../MethodsV2.md#method-get-zone-ns-ip-addresses
+[Get-Zone-NS-Names-and-IPs]:               ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
+[Glue Record]:                             #terminology
+[In-Domain]:                               #terminology
+[INFO]:                                    ../SeverityLevelDefinitions.md#info
+[NOTICE]:                                  ../SeverityLevelDefinitions.md#notice
+[Out-Of-Domain]:                           #terminology
+[RCODE Name]:                              https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[RFC 9499#section5]:                       https://datatracker.ietf.org/doc/html/rfc9499#section-5
+[RFC 9499#section7]:                       https://datatracker.ietf.org/doc/html/rfc9499#section-7
+[Referral]:                                #terminology
+[Requirements and normalization]:          ../RequirementsAndNormalizationOfDomainNames.md
+[Send]:                                    #terminology
+[Severity Level Definitions]:              ../SeverityLevelDefinitions.md
+[Test procedure]:                          #test-procedure
+[Valid Domain Name]:                       #terminology
+[Valid IP Address]:                        #terminology
+[Valid Name Server Name]:                  #terminology
+[WARNING]:                                 ../SeverityLevelDefinitions.md#warning
+[Zonemaster-Engine profile]:               ../../../configuration/profiles.md
+[name server requirement]:                 https://www.iana.org/help/nameserver-requirements
+[undelegated test]:                        ../../test-types/undelegated-test.md
