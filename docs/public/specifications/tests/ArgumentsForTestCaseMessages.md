@@ -68,9 +68,11 @@ and updated messages (*msgids* and *msgstr*).
 | module          | A Zonemaster test module, or `all`       | The name of a Zonemaster test module.                                                                                        |
 | module_list     | List of Zonemaster test modules          | A list of Zonemaster test modules, separated by ":".                                                                         |
 | ns              | Domain name and IP address pair          | The name and IP address of a name server, separated by "/".                                                                  |
+| ns_list         | List of domain name and IP address pairs | A list of name servers, as specified by "ns", separated by ";".                                                              |
+| ns_deleg        | "nsname" or "ns"                         | Same as either "nsname" or "ns"                                                                                              |
+| ns_deleg_list   | List of "ns_deleg" elements              | List of "nsname" or "ns", or mix of both, separated by ";".                                                                  |
 | ns_ip           | IP address                               | The IP address of a name server.                                                                                             |
 | ns_ip_list      | List of IP addresses                     | A list of name servers, as specified by "ns_ip", separated by ";".                                                           |
-| ns_list         | List of domain name and IP address pairs | A list of name servers, as specified by "ns", separated by ";".                                                              |
 | nsname          | Domain name                              | The domain name of a name server.                                                                                            |
 | nsname_list     | List of domain names                     | A list of name servers, as specified by "nsname", separated by ";".                                                          |
 | query_name      | Domain name                              | A query domain name (QNAME), as defined in [RFC1035, section 4.1.2].                                                         |
