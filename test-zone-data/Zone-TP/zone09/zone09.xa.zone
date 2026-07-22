@@ -2,7 +2,7 @@ $ORIGIN zone09.xa.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2022112300      ; serial
+                2026071601      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -24,12 +24,40 @@ ns1.inconsistent-mx    AAAA    fda1:b2:c3::127:19:9:31
 ns2.inconsistent-mx    A       127.19.9.32
 ns2.inconsistent-mx    AAAA    fda1:b2:c3::127:19:9:32
 
-inconsistent-mx-data        NS      ns1.inconsistent-mx-data
-inconsistent-mx-data        NS      ns2.inconsistent-mx-data
-ns1.inconsistent-mx-data    A       127.19.9.31
-ns1.inconsistent-mx-data    AAAA    fda1:b2:c3::127:19:9:31
-ns2.inconsistent-mx-data    A       127.19.9.32
-ns2.inconsistent-mx-data    AAAA    fda1:b2:c3::127:19:9:32
+inconsistent-mx-data-1        NS      ns1.inconsistent-mx-data-1
+inconsistent-mx-data-1        NS      ns2.inconsistent-mx-data-1
+ns1.inconsistent-mx-data-1    A       127.19.9.31
+ns1.inconsistent-mx-data-1    AAAA    fda1:b2:c3::127:19:9:31
+ns2.inconsistent-mx-data-1    A       127.19.9.32
+ns2.inconsistent-mx-data-1    AAAA    fda1:b2:c3::127:19:9:32
+
+inconsistent-mx-data-2        NS      ns1.inconsistent-mx-data-2
+inconsistent-mx-data-2        NS      ns2.inconsistent-mx-data-2
+ns1.inconsistent-mx-data-2    A       127.19.9.31
+ns1.inconsistent-mx-data-2    AAAA    fda1:b2:c3::127:19:9:31
+ns2.inconsistent-mx-data-2    A       127.19.9.32
+ns2.inconsistent-mx-data-2    AAAA    fda1:b2:c3::127:19:9:32
+
+inconsistent-mx-data-3        NS      ns1.inconsistent-mx-data-3
+inconsistent-mx-data-3        NS      ns2.inconsistent-mx-data-3
+ns1.inconsistent-mx-data-3    A       127.19.9.31
+ns1.inconsistent-mx-data-3    AAAA    fda1:b2:c3::127:19:9:31
+ns2.inconsistent-mx-data-3    A       127.19.9.32
+ns2.inconsistent-mx-data-3    AAAA    fda1:b2:c3::127:19:9:32
+
+mixed-ttl-1         NS      ns1.mixed-ttl-1
+mixed-ttl-1         NS      ns2.mixed-ttl-1
+ns1.mixed-ttl-1     A       127.19.9.31
+ns1.mixed-ttl-1     AAAA    fda1:b2:c3::127:19:9:31
+ns2.mixed-ttl-1     A       127.19.9.32
+ns2.mixed-ttl-1     AAAA    fda1:b2:c3::127:19:9:32
+
+mixed-ttl-2         NS      ns1.mixed-ttl-2
+mixed-ttl-2         NS      ns2.mixed-ttl-2
+ns1.mixed-ttl-2     A       127.19.9.31
+ns1.mixed-ttl-2     AAAA    fda1:b2:c3::127:19:9:31
+ns2.mixed-ttl-2     A       127.19.9.32
+ns2.mixed-ttl-2     AAAA    fda1:b2:c3::127:19:9:32
 
 mx-data         NS      ns1.mx-data
 mx-data         NS      ns2.mx-data
@@ -52,12 +80,12 @@ ns1.tld-email-domain    AAAA    fda1:b2:c3::127:19:9:31
 ns2.tld-email-domain    A       127.19.9.32
 ns2.tld-email-domain    AAAA    fda1:b2:c3::127:19:9:32
 
-null-mx                 NS    ns1.null-mx
-null-mx                 NS    ns2.null-mx
-ns1.null-mx             A       127.19.9.31
-ns1.null-mx             AAAA    fda1:b2:c3::127:19:9:31
-ns2.null-mx             A       127.19.9.32
-ns2.null-mx             AAAA    fda1:b2:c3::127:19:9:32
+null-mx-sld                 NS    ns1.null-mx-sld
+null-mx-sld                 NS    ns2.null-mx-sld
+ns1.null-mx-sld             A       127.19.9.31
+ns1.null-mx-sld             AAAA    fda1:b2:c3::127:19:9:31
+ns2.null-mx-sld             A       127.19.9.32
+ns2.null-mx-sld             AAAA    fda1:b2:c3::127:19:9:32
 
 no-mx-sld               NS      ns1.no-mx-sld
 no-mx-sld               NS      ns2.no-mx-sld
@@ -82,17 +110,27 @@ ns2.no-mx-arpa   AAAA    fda1:b2:c3::127:19:9:32
 
 non-auth-mx-response         NS      ns1.non-auth-mx-response
 non-auth-mx-response         NS      ns2.non-auth-mx-response
+non-auth-mx-response         NS      ns4.non-auth-mx-response
 ns1.non-auth-mx-response     A       127.19.9.31
 ns1.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:31
 ns2.non-auth-mx-response     A       127.19.9.32
 ns2.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:32
+ns4.non-auth-mx-response     A       127.19.9.34
+ns4.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:34
 
-no-response-mx-query         NS      ns1.no-response-mx-query
-no-response-mx-query         NS      ns2.no-response-mx-query
-ns1.no-response-mx-query     A       127.19.9.31
-ns1.no-response-mx-query     AAAA    fda1:b2:c3::127:19:9:31
-ns2.no-response-mx-query     A       127.19.9.32
-ns2.no-response-mx-query     AAAA    fda1:b2:c3::127:19:9:32
+no-response-mx-query-1       NS      ns1.no-response-mx-query-1
+no-response-mx-query-1       NS      ns2.no-response-mx-query-1
+ns1.no-response-mx-query-1   A       127.19.9.31
+ns1.no-response-mx-query-1   AAAA    fda1:b2:c3::127:19:9:31
+ns2.no-response-mx-query-1   A       127.19.9.32
+ns2.no-response-mx-query-1   AAAA    fda1:b2:c3::127:19:9:32
+
+no-response-mx-query-2       NS      ns1.no-response-mx-query-2
+no-response-mx-query-2       NS      ns2.no-response-mx-query-2
+ns1.no-response-mx-query-2   A       127.19.9.31
+ns1.no-response-mx-query-2   AAAA    fda1:b2:c3::127:19:9:31
+ns2.no-response-mx-query-2   A       127.19.9.32
+ns2.no-response-mx-query-2   AAAA    fda1:b2:c3::127:19:9:32
 
 null-mx-non-zero-pref         NS      ns1.null-mx-non-zero-pref
 null-mx-non-zero-pref         NS      ns2.null-mx-non-zero-pref

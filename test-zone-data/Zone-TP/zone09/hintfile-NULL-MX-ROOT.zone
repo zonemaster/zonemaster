@@ -1,0 +1,11 @@
+; Hintfile for scenario NULL-NX-ROOT
+
+.       3600000    NS    ns1.
+ns1.    3600000    A     127.19.9.65
+ns1.    3600000    AAAA  fda1:b2:c3::127:19:9:65
+;
+.       3600000    NS    ns2.
+ns2.    3600000    A     127.19.9.66
+ns2.    3600000    AAAA  fda1:b2:c3::127:19:9:66
+
+;EOF

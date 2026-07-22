@@ -547,61 +547,66 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 
 ### Zone test level address plan
 
-| Address (range) | Used for -- range for test case or specific NS address      |
-|-----------------|-------------------------------------------------------------|
-| 127.19.0.0/24   | (not in use)                                                |
-| 127.19.1.0/24   | Zone01 scenarios                                            |
-| 127.19.1.21     | ns1.zone01.xa                                               |
-| 127.19.1.22     | ns2.zone01.xa                                               |
-| 127.19.2.0/24   | Zone02 scenarios                                            |
-| 127.19.2.21     | ns1.zone02.xa                                               |
-| 127.19.2.22     | ns2.zone02.xa                                               |
-| 127.19.3.0/24   | Zone03 scenarios                                            |
-| 127.19.3.21     | ns1.zone03.xa                                               |
-| 127.19.3.22     | ns2.zone03.xa                                               |
-| 127.19.4.0/24   | Zone04 scenarios                                            |
-| 127.19.4.21     | ns1.zone04.xa                                               |
-| 127.19.4.22     | ns2.zone04.xa                                               |
-| 127.19.5.0/24   | Zone05 scenarios                                            |
-| 127.19.5.21     | ns1.zone05.xa                                               |
-| 127.19.5.22     | ns2.zone05.xa                                               |
-| 127.19.6.0/24   | Zone06 scenarios                                            |
-| 127.19.6.21     | ns1.zone06.xa                                               |
-| 127.19.6.22     | ns2.zone06.xa                                               |
-| 127.19.7.0/24   | Zone07 scenarios                                            |
-| 127.19.7.21     | ns1.zone07.xa                                               |
-| 127.19.7.22     | ns2.zone07.xa                                               |
-| 127.19.8.0/24   | Zone08 scenarios                                            |
-| 127.19.8.21     | ns1.zone08.xa                                               |
-| 127.19.8.22     | ns2.zone08.xa                                               |
-| 127.19.9.0/24   | Zone09 scenarios                                            |
-| 127.19.9.21     | ns1.zone09.xa                                               |
-| 127.19.9.22     | ns2.zone09.xa                                               |
-| 127.19.9.31     | for scenarios                                               |
-| 127.19.9.32     | for scenarios                                               |
-| 127.19.9.34     | testzone NS that answers without authoritative answer       |
-| 127.19.9.41     | ns1.tld-email-domain-zone09.                                |
-| 127.19.9.42     | for scenarios                                               |
-| 127.19.9.43     | ns2.tld-email-domain-zone09.                                |
-| 127.19.9.44     | for scenarios                                               |
-| 127.19.10.0/24  | Zone10 scenarios                                            |
-| 127.19.10.21    | ns1.zone10.xa                                               |
-| 127.19.10.22    | ns2.zone10.xa                                               |
-| 127.19.11.0/24  | Zone11 scenarios                                            |
-| 127.19.11.21    | ns1.zone11.xa                                               |
-| 127.19.11.22    | ns2.zone11.xa                                               |
-| 127.19.11.31    | ns1.child.zone11.xa                                         |
-| 127.19.11.32    | ns2.child.zone11.xa                                         |
-| 127.19.11.33    | ns3.child.zone11.xa                                         |
-| 127.19.11.41    | ns1.no-spf.root-servers.zone11.xa                           |
-| 127.19.11.42    | ns2.no-spf.root-servers.zone11.xa                           |
-| 127.19.11.43    | ns1.null-spf.root-servers.zone11.xa                         |
-| 127.19.11.44    | ns2.null-spf.root-servers.zone11.xa                         |
-| 127.19.11.45    | ns1.non-null-spf.root-servers.zone11.xa                     |
-| 127.19.11.46    | ns2.non-null-spf.root-servers.zone11.xa                     |
-| 127.19.12.0/24  | (not in use)                                                |
-| (...)           |                                                             |
-| 127.19.255.0/24 | (not in use)                                                |
+| Address (range) | Used for -- range for test case or specific NS address |
+|-----------------|--------------------------------------------------------|
+| 127.19.0.0/24   | (not in use)                                           |
+| 127.19.1.0/24   | Zone01 scenarios                                       |
+| 127.19.1.21     | ns1.zone01.xa                                          |
+| 127.19.1.22     | ns2.zone01.xa                                          |
+| 127.19.2.0/24   | Zone02 scenarios                                       |
+| 127.19.2.21     | ns1.zone02.xa                                          |
+| 127.19.2.22     | ns2.zone02.xa                                          |
+| 127.19.3.0/24   | Zone03 scenarios                                       |
+| 127.19.3.21     | ns1.zone03.xa                                          |
+| 127.19.3.22     | ns2.zone03.xa                                          |
+| 127.19.4.0/24   | Zone04 scenarios                                       |
+| 127.19.4.21     | ns1.zone04.xa                                          |
+| 127.19.4.22     | ns2.zone04.xa                                          |
+| 127.19.5.0/24   | Zone05 scenarios                                       |
+| 127.19.5.21     | ns1.zone05.xa                                          |
+| 127.19.5.22     | ns2.zone05.xa                                          |
+| 127.19.6.0/24   | Zone06 scenarios                                       |
+| 127.19.6.21     | ns1.zone06.xa                                          |
+| 127.19.6.22     | ns2.zone06.xa                                          |
+| 127.19.7.0/24   | Zone07 scenarios                                       |
+| 127.19.7.21     | ns1.zone07.xa                                          |
+| 127.19.7.22     | ns2.zone07.xa                                          |
+| 127.19.8.0/24   | Zone08 scenarios                                       |
+| 127.19.8.21     | ns1.zone08.xa                                          |
+| 127.19.8.22     | ns2.zone08.xa                                          |
+| 127.19.9.0/24   | Zone09 scenarios                                       |
+| 127.19.9.21     | ns1.zone09.xa                                          |
+| 127.19.9.22     | ns2.zone09.xa                                          |
+| 127.19.9.31     | for scenarios                                          |
+| 127.19.9.32     | for scenarios                                          |
+| 127.19.9.34     | testzone NS that answers without authoritative answer  |
+| 127.19.9.41     | ns1 scenario specific TLD                              |
+| 127.19.9.42     | ns2 scenario specific TLD                              |
+| 127.19.9.53     | resolver with test case local hint file                |
+| 127.19.9.61     | ns1 general Zone09 root                                |
+| 127.19.9.62     | ns2 general Zone09 root                                |
+| 127.19.9.63     | ns1 root with MX                                       |
+| 127.19.9.64     | ns2 root with MX                                       |
+| 127.19.9.65     | ns1 root with Null MX                                  |
+| 127.19.9.66     | ns1 root with Null MX                                  |
+| 127.19.10.0/24  | Zone10 scenarios                                       |
+| 127.19.10.21    | ns1.zone10.xa                                          |
+| 127.19.10.22    | ns2.zone10.xa                                          |
+| 127.19.11.0/24  | Zone11 scenarios                                       |
+| 127.19.11.21    | ns1.zone11.xa                                          |
+| 127.19.11.22    | ns2.zone11.xa                                          |
+| 127.19.11.31    | ns1.child.zone11.xa                                    |
+| 127.19.11.32    | ns2.child.zone11.xa                                    |
+| 127.19.11.33    | ns3.child.zone11.xa                                    |
+| 127.19.11.41    | ns1.no-spf.root-servers.zone11.xa                      |
+| 127.19.11.42    | ns2.no-spf.root-servers.zone11.xa                      |
+| 127.19.11.43    | ns1.null-spf.root-servers.zone11.xa                    |
+| 127.19.11.44    | ns2.null-spf.root-servers.zone11.xa                    |
+| 127.19.11.45    | ns1.non-null-spf.root-servers.zone11.xa                |
+| 127.19.11.46    | ns2.non-null-spf.root-servers.zone11.xa                |
+| 127.19.12.0/24  | (not in use)                                           |
+| (...)           |                                                        |
+| 127.19.255.0/24 | (not in use)                                           |
 
 
 ### Engine non-test case address plan
