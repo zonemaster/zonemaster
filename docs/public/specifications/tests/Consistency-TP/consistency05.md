@@ -374,6 +374,9 @@ None
   zone for which it is name server for. Previously the term "In-Bailiwick" was
   used.
 
+* "IP Address" -- In this document the term stands for either an [IPv4] address or
+  an [IPv6] address in any address range.
+
 * "Out-Of-Domain" - The term refers to a name server name that is not
   "In-Domain". It is either "sibling domain" or "unrelated" as defined in
   [RFC 9499][RFC 9499#section7], section 7, in the subsection on "Glue Records",
@@ -401,9 +404,6 @@ None
 * "Valid Domain Name" -- The term stands for a non-empty domain name string that
   has successfully passed the tests and normalizations in the
   [Requirements and normalization] specification.
-
-* "IP Address" -- In this document the term stands for either an [IPv4] address or
-  an [IPv6] address in any address range.
 
 * "Valid Name Server Name" -- The term stands for a [Valid Domain Name] that
   functions as the name of a name server.
