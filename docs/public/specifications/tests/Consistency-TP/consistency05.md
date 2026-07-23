@@ -437,6 +437,7 @@ None
 [Glue Record]:                             #terminology
 [In-Domain]:                               #terminology
 [INFO]:                                    ../SeverityLevelDefinitions.md#info
+[IP Address]:                              #terminology
 [NOTICE]:                                  ../SeverityLevelDefinitions.md#notice
 [Out-Of-Domain]:                           #terminology
 [RCODE Name]:                              https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
@@ -450,7 +451,6 @@ None
 [Severity Level Definitions]:              ../SeverityLevelDefinitions.md
 [Test procedure]:                          #test-procedure
 [Valid Domain Name]:                       #terminology
-[Valid IP Address]:                        #terminology
 [Valid Name Server Name]:                  #terminology
 [WARNING]:                                 ../SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:               ../../../configuration/profiles.md
