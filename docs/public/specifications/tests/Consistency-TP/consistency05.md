@@ -22,7 +22,7 @@
 
 The delegation of the *Child Zone* may contain so called
 [glue records][glue record]. On the wire, any [glue records][glue record] are
-found in the [referral] sent from the name servers of the parent zone. 
+found in the [referral] sent from the name servers of the parent zone.
 
 If the name server name in the NS record is [in-domain] there must be at least
 one [glue record] in the delegation and in the [referral]. For each such glue
@@ -115,7 +115,7 @@ queries follow, unless otherwise specified below, what is specified for
 
 2.  If the *Undelegated Data* set (from input) is non-empty then the
     *Parent NS* and *Parent NS IPs* sets are empty.
-   
+
 3.  Create [DNS Queries][DNS Query]:
 
     1. Query type SOA and query name *Child Zone* ("SOA Query").
@@ -165,14 +165,14 @@ queries follow, unless otherwise specified below, what is specified for
           1. If element is a name and not a name/IP pair then add the name server
              IP address and the name to the *Missing Glue* set.
           2. Add the element (name or name/IP pair) to the *Delegation ID NS*
-             set. 
+             set.
              1. Do not create duplicates in the set.
              2. Elements just consiting of a name is not added if there already
                 is a name/IP pair with the same name.
              3. A name/IP pair will overwrite an element consisting just of of
                 the same name.
        2. If name in the element (name or name/IP pair) is [Out-Of-Domain] then
-          add the element (name or name/IP pair) to the *Delegation OOD NS* set. 
+          add the element (name or name/IP pair) to the *Delegation OOD NS* set.
           1. Do not create duplicates in the set.
           2. Elements just consiting of a name is not added if there already is a
              name/IP pair with the same name.
@@ -196,19 +196,37 @@ queries follow, unless otherwise specified below, what is specified for
        2. Else, add the name server name with IP addresses as one or several
           name/IP pairs to *Delegation ID NS* set.
     2. Else (the name server name is [Out-Of-Domain]) then do:
-       1. If there is no IP address for that name, add the name to the 
+       1. If there is no IP address for that name, add the name to the
           *Delegation OOD NS* set.
        2. Else, add the name and IP address or addresses as name/IP pairs to the
           *Delegation OOD NS* set.
 
-10. If the *Missing Glue* set is non-empty, then for each name server name output
+10. If *Child Zone* is the root zone (".") and the *Undelegated Data* set is
+    empty, then do:
+
+    1. Fetch the root hint information using method [Get-Del-NS-Names-and-IPs]
+       ("Hint NS").
+    2. The information in *Hint NS* is assumed to be as single name server names
+       ("name") or as name/IP pairs.
+    3. The hint information is always [In-Domain] by definition.
+    4. For each element (name or name/IP pair) in the *Hint NS* set do:
+       1. If element is a name and not a name/IP pair then add the name server
+          IP address and the name to the *Missing Glue* set.
+       2. Add the element (name or name/IP pair) to the *Delegation ID NS* set.
+          1. Do not create duplicates in the set.
+          2. Elements just consiting of a name is not added if there already is a
+             name/IP pair with the same name.
+          3. A name/IP pair will overwrite an element consisting just of of the
+             same name.
+
+11. If the *Missing Glue* set is non-empty, then for each name server name output
     *[CS05_MISSING_GLUE_FOR_NS]* with the name server name and the list of parent
     IP addresses.
 
-11. If *Child NS IP* is empty then output *[CS05_NO_NS_ADDR_CHILD]* and exit
+12. If *Child NS IP* is empty then output *[CS05_NO_NS_ADDR_CHILD]* and exit
     these test procedures.
 
-12. For each name server IP in *Child NS IPs* do:
+13. For each name server IP in *Child NS IPs* do:
 
     1. [Send] *NS Query* over UDP to the name server IP and fetch the response
        (if any).
@@ -262,10 +280,10 @@ queries follow, unless otherwise specified below, what is specified for
            name as name only and as part of name/IP pairs, then remove the single
            name.
 
-13. If the *Child Zone NS* set is empty then output *[CS05_CHILD_ZONE_LAME]* with
+14. If the *Child Zone NS* set is empty then output *[CS05_CHILD_ZONE_LAME]* with
     the IP addresses from the *Child NS IPs* set and exit these procedures.
 
-14. If the *Delegation ID NS* set is non-empty then for each name server name in
+15. If the *Delegation ID NS* set is non-empty then for each name server name in
     the set do:
     1. Extract all name/IP pairs in the set with that name server name
        ("Parent Glue").
@@ -283,7 +301,7 @@ queries follow, unless otherwise specified below, what is specified for
        output *[CS05_EXTRA_ADDR_CHILD]* with the list of name/IP pairs from
        the *Child Auth* set not present in the *Parent Glue* set.
 
-15. If the the *Delegation OOD NS* set is non-empty then for each name server
+16. If the the *Delegation OOD NS* set is non-empty then for each name server
     name in the set do:
     1. Extract all name/IP pairs with that name server name.
     2. Go to next name server name if there are no name/IP pairs for the name.
@@ -298,7 +316,7 @@ queries follow, unless otherwise specified below, what is specified for
           from the extracted name/IP pairs and the the addresses from the
           lookup.
 
-16. If this test procedure has not outputted any message tag then output
+17. If this test procedure has not outputted any message tag then output
     *[CS05_NO_MISMATCH_GLUE_ZONE]*.
 
 
