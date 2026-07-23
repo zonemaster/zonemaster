@@ -46,7 +46,7 @@ This test case will test the following:
 * That each [glue record] matches an authoritative [address record] with the
   same IP address:
   * In the *Child Zone* if the [glue record] is [in-domain].
-  * In another zone if the [glue record] is [out-of-zone].
+  * In another zone if the [glue record] is [out-of-domain].
 * If the *Child Zone* contains additional [address records][address record]
   with the same name as the glue record, but different IP addresses.
 
