@@ -15,8 +15,8 @@
 * [Method: Get zone NS names and IP addresses][Get-Zone-NS-Names-and-IPs]
 * [Method: Get zone NS IP addresses][Get-Zone-NS-IPs]
 * [Method: Get delegation (Internal)][Get-Delegation]
-* [Method: Get in-bailiwick address records in zone (Internal)][Get-IB-Addr-in-Zone]
-* [Method: Get out-of-bailiwick ip addresses (Internal)][Get-OOB-IPs]
+* [Method: Get In-Domain address records in zone (Internal)][Get-ID-Addr-in-Zone]
+* [Method: Get Out-Of-Domain IP addresses (Internal)][Get-OOD-IPs]
 * [Method inter-dependencies](#method-inter-dependencies)
 * [Terminology](#terminology)
 
@@ -151,14 +151,14 @@ This Method uses the following input units defined in section [Methods Inputs]:
 > In the loop below, the steps tries to capture the name of the parent zone of
 > **Child Zone** and the IP addresses of the name servers for that parent zone.
 > This is done using a modified version of the "QNAME minimization" technique
-> [RFC 9156]. SOA is the query type used for traversing the tree.
+> ([RFC 9156]). SOA is the query type used for traversing the tree.
 
 5. While the *Remaining Servers* is non-empty pick next name server name, IP
    address and zone name tuple from the set ("Server Name", "Server Address"
    and "Zone Name") and do:
 
-   1.  Extract and remove the *Server Name*, *Server Address* and *Zone Name*
-       tuple from *Remaining Servers*.
+   1.  Remove the *Server Name*, *Server Address* and *Zone Name* tuple from
+       *Remaining Servers*.
    2.  Insert the *Server Name*, *Server Address* and *Zone Name* tuple into
        *Handled Servers*.
    3.  If *Handled Servers* contains two or more tuples with the same
@@ -187,16 +187,20 @@ This Method uses the following input units defined in section [Methods Inputs]:
           * AA bit not set in response.
           * No NS records in answer section
           * Owner name of any of the NS records is not *Zone Name*.
-   9.  Extract the name server names from the NS records and any address records
-       in the additional section.
-   10. Do [DNS Lookup] of name server names (A and AAAA) not already listed in
+   9.  Extract the name server names from the NS records in the answer section
+       and any matching address records in the additional section.
+       1. For each IP address add the name server name, IP address and *Zone
+          Name* tuple to the *Remaining Servers* set, unless such a tuple
+          already exists in *Handled Servers*.
+   10. Do [Address Records Lookup] of name server names not already listed in
        the additional section of the response. If a CNAME is encountered,
        follow the chain of CNAME records but use the original name as obtained
        from the NS record RDATA when storing the data in the next substep.
        1. For each IP address add the name server name, IP address and *Zone
           Name* tuple to the *Remaining Servers* set, unless such a tuple
           already exists in *Handled Servers*.
-       2. Ignore any failing lookups or lookups resulting in NODATA or NXDOMAIN.
+       2. Ignore any failing lookups (such as response with SERVFAIL or no
+          response) or lookups giving response with NODATA or NXDOMAIN.
    11. Create "Intermediate Query Name" by copying *Zone Name* as start value.
    12. Run a loop processing *Server Name* and *Server Address* (jumps back
        here from the steps below).
@@ -227,10 +231,12 @@ This Method uses the following input units defined in section [Methods Inputs]:
                    * [RCODE Name] different from NoError in response.
                    * AA bit not set in response.
                    * No NS records in answer section.
-                   * Owner name of any of the NS records is not *Intermediate Query Name*.
-             4. Extract the name server names from the NS records and any address
-                records in the additional section.
-             5. Do [DNS Lookup] of name server names (A and AAAA) not already
+                   * Owner name of any of the NS records is not
+                     *Intermediate Query Name*.
+             4. Extract the name server names from the NS records in the answer
+                section and any matching address records in the additional
+                section.
+             5. Do [Address Records Lookup] of name server names not already
                 listed in the additional section of the response. If a CNAME
                 is encountered, follow the chain of CNAME records but use the
                 original name as obtained from the NS record RDATA when storing
@@ -248,14 +254,15 @@ This Method uses the following input units defined in section [Methods Inputs]:
           2. Else do:
              1. Extract the name server names from the NS records and any glue
                 records.
-             2. Do [DNS Lookup] of name server names (A and AAAA) not already
+             2. Do [Address Records Lookup] of name server names not already
                 listed as glue record or records. Follow CNAME if provided.
              3. For each name and IP address add the *Server Name*, *Server
                 Address* and *Intermediate Query Name* tuple to the *Remaining
                 Servers* set, unless such a tuple already exists in *Handled
                 Servers*.
           3. Go to next server in *Remaining Servers*.
-       7. Else, if the [RCODE Name] is NoError and the AA is set then do:
+       7. Else, if the [RCODE Name] is NoError or NXDomain, and the AA bit is set
+          then do:
           1. If *Intermediate Query Name* is not equal to *Child Zone* then
              go back to the start of the loop.
           2. Else go to next server in *Remaining Servers*.
@@ -361,9 +368,9 @@ This Method depends on [Get-Parent-NS-Names-and-IPs].
 Obtain the name server names (from the NS records) and the IP addresses (from
 Glue Records) from the delegation of the given zone (child zone) from
 the parent zone. [Glue Records], if any, are address records for name
-server names. Also obtain the IP addresses for the [Out-Of-Bailiwick] name
+server names. Also obtain the IP addresses for the [Out-Of-Domain] name
 server names, if any. If the [Glue Records] include address records for
-[Out-Of-Bailiwick] name servers they will be included twice, unless identical.
+[Out-Of-Domain] name servers they will be included twice, unless identical.
 
 ### Inputs
 
@@ -384,13 +391,13 @@ This Method uses the following input units defined in section [Methods Inputs]:
 3. If the *Name Servers* set is empty, then output an empty set and exit these
    procedures.
 
-4. Extract the set of [Out-Of-Bailiwick] name server names from *Name Servers*
-   ("OOB Names").
+4. Extract the set of [Out-Of-Domain] name server names from *Name Servers*
+   ("OOD Names").
 
-5. Get the IP addresses for name server names in *OOB Names* by using Method
-   [Get-OOB-IPs] with *OOB Names* as input.
+5. Get the IP addresses for name server names in *OOD Names* by using Method
+   [Get-OOD-IPs] with *OOD Names* as input.
 
-6. Merge the set returned from [Get-OOB-IPs] with *Name Servers*.
+6. Merge the set returned from [Get-OOD-IPs] with *Name Servers*.
 
 7. Output the *Name Servers* set.
 
@@ -404,7 +411,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
 
 ### Dependencies
 
-This Method depends on [Get-Delegation] and [Get-OOB-IPs].
+This Method depends on [Get-Delegation] and [Get-OOD-IPs].
 
 [To top]
 
@@ -473,8 +480,8 @@ In general, this Method replaces [Method4] in [Methods], version 1.
 
 Obtain the IP addresses (from [Glue Records]) from the delegation of
 the given zone (child zone) from the parent zone. [Glue Records] are address
-records for [In-Bailiwick] name server names, if any. Obtain the IP addresses
-for the [Out-Of-Bailiwick] name server names, if any.
+records for [In-Domain] name server names, if any. Obtain the IP addresses
+for the [Out-Of-Domain] name server names, if any.
 
 ### Inputs
 
@@ -585,8 +592,8 @@ This Method depends on [Get-Del-NS-IPs].
 ### Objective
 
 Obtain the name server names (extracted from the NS records) from the apex of the
-child zone. For [In-Bailiwick] name server names obtain the IP addresses from the
-child zone. For the [Out-Of-Bailiwick] name server names obtain the IP addresses
+child zone. For [In-Domain] name server names obtain the IP addresses from the
+child zone. For the [Out-Of-Domain] name server names obtain the IP addresses
 from resolver lookup.
 
 ### Inputs
@@ -610,19 +617,19 @@ This Method uses the following input units defined in section [Methods Inputs]:
 4. Create a set of name servers where each unique name server name in *Names*
    is linked to an empty set of IP addresses ("Name Servers").
 
-5. Fetch the IP addresses for any [In-Bailiwick] name server
-   names in *Names* by using Method [Get-IB-Addr-in-Zone].
+5. Fetch the IP addresses for any [In-Domain] name server
+   names in *Names* by using Method [Get-ID-Addr-in-Zone].
 
 6. Add each fetched IP address, if any, to *Name Servers* to the name
    server name it belongs to.
 
-7. Extract the set of [Out-Of-Bailiwick] name server names from *Names*
-   ("OOB Names").
+7. Extract the set of [Out-Of-Domain] name server names from *Names*
+   ("OOD Names").
 
-8. Get the IP addresses for name server names in *OOB Names* by using Method
-   [Get-OOB-IPs] with *OOB Names* as input.
+8. Get the IP addresses for name server names in *OOD Names* by using Method
+   [Get-OOD-IPs] with *OOD Names* as input.
 
-9. Merge the set returned from [Get-OOB-IPs] with *Name Servers*.
+9. Merge the set returned from [Get-OOD-IPs] with *Name Servers*.
 
 10. Output the *Name Servers* set.
 
@@ -636,8 +643,8 @@ This Method uses the following input units defined in section [Methods Inputs]:
 
 ### Dependencies
 
-This Method depends on Methods [Get-Zone-NS-Names], [Get-IB-Addr-in-Zone]
-and [Get-OOB-IPs].
+This Method depends on Methods [Get-Zone-NS-Names], [Get-ID-Addr-in-Zone]
+and [Get-OOD-IPs].
 
 [To top]
 
@@ -702,12 +709,12 @@ This Method depends on Method [Get-Zone-NS-Names-and-IPs].
 
 Obtain the name server names (from the NS records) and the IP addresses (from
 [Glue Records]) from the delegation of the given zone (child zone) from
-the parent zone. [Glue Records] are address records for [In-Bailiwick] name
+the parent zone. [Glue Records] are address records for [In-Domain] name
 server names, if any. Extract addresses even if the resolution goes through
 CNAME. It is, however, not permitted for a NS record to point at a name
 that has a CNAME, but that test is covered by Test Case [Delegation05].
 
-IP addresses for [Out-Of-Bailiwick] name server names are not extracted
+IP addresses for [Out-Of-Domain] name server names are not extracted
 with this Method. To get those use Method [Get-Del-NS-IPs] or
 Method [Get-Del-NS-Names-and-IPs].
 
@@ -733,10 +740,10 @@ This Method uses the following input units defined in section [Methods Inputs]:
       linked to an empty set of IP addresses ("Name Servers").
    3. Extract all name server names from the *Undelegated Data* set and add to
       the *Name Servers* set.
-   4. For each [In-Bailiwick] name server name collect any
+   4. For each [In-Domain] name server name collect any
       IP addresses from *Undelegated Data* and add that to the
       *Name Servers* set under the name server name.
-   5. For any [Out-Of-Bailiwick] name server name the IP address should be
+   5. For any [Out-Of-Domain] name server name the IP address should be
       ignored.
    6. Output the *Name Servers* set.
    7. Exit these procedures.
@@ -770,7 +777,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
       1. Extract the name server names from the RDATA of the NS records in
          the authority section.
       2. Extract any A or AAAA record from the additional section if the owner
-         name is an [In-Bailiwick] name server name matching an NS record
+         name is an [In-Domain] name server name matching an NS record
          from the same response.
       3. Update *Delegation Name Servers* with unique name server names and with
          a possibly empty set of IP addresses.
@@ -780,13 +787,13 @@ This Method uses the following input units defined in section [Methods Inputs]:
       the NS record of the Child Zone do:
       1. Extract the name server names from the RDATA of the NS records.
       2. Extract any A or AAAA record from the additional section if the owner
-         name is an [In-Bailiwick] name server name matching an NS record
+         name is an [In-Domain] name server name matching an NS record
          from the same response.
       3. Update *AA Name Servers* with unique name server names and with
          a possibly empty set of IP addresses.
          1. If the name already exists in the set and additional IP addresses
             exists, add those to the name in the set.
-      4. If any [In-Bailiwick] name server name from the NS records lacks IP
+      4. If any [In-Domain] name server name from the NS records lacks IP
          address, then:
          1. [Send] two [DNS Queries][DNS Query] with that name server name as
             query name to the parent name server, query type A and AAAA,
@@ -824,15 +831,15 @@ This Method depends on the output from [Get-Parent-NS-IPs] if test type is a
 [To top]
 
 
-## Method: Get in-bailiwick address records in zone (Internal)
+## Method: Get In-Domain address records in zone (Internal)
 
 ### Method identifier
-**Get-IB-Addr-in-Zone**
+**Get-ID-Addr-in-Zone**
 
 ### Objective
 
 From the child zone, obtain the address records matching the
-[In-Bailiwick] name server names found in the zone itself.
+[In-Domain] name server names found in the zone itself.
 Extract addresses even if the resolution goes through CNAME.
 It is, however, not permitted for a NS record
 to point at a name that has a CNAME, but that test is
@@ -860,19 +867,19 @@ This Method uses the following input units defined in section [Methods Inputs]:
    empty or undefined, then output an undefined set and exit these test
    procedures.
 
-4. If no name in *Child Zone Name Server Names* is an [In-Bailiwick]
+4. If no name in *Child Zone Name Server Names* is an [In-Domain]
    name server name:
    1. Output an empty set.
    2. Exit these procedures.
 
-5. Create an empty set the [In-Bailiwick] name server names from the
+5. Create an empty set the [In-Domain] name server names from the
    *Child Zone Name Server Names* set, where each name is linked to an empty set
    of IP addresses ("Name Servers").
 
 6. For name in *Name Servers* do:
    1. Create the following two [DNS queries][DNS Query]:
-      1. Query type A and the [In-Bailiwick] name as the query name ("A Query").
-      2. Query type AAAA and the [In-Bailiwick] name as the query name
+      1. Query type A and the [In-Domain] name as the query name ("A Query").
+      2. Query type AAAA and the [In-Domain] name as the query name
          ("AAAA Query").
    2. [Send] *A Query* and *AAAA Query* to all servers in *Name Server IPs*
       and process the [DNS Responses][DNS Response] from each of them.
@@ -892,7 +899,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
 
 * A set of name server names pointing at possibly empty sets of IP addresses:
   * Non-empty set: The normal case.
-  * Empty set: There are no [In-Bailiwick] names or those are not defined in
+  * Empty set: There are no [In-Domain] names or those are not defined in
     *Child Zone*, also a normal case.
   * Undefined set: [Get-Del-NS-IPs] returned an empty or undefined set.
 
@@ -903,14 +910,14 @@ This Method depends on [Get-Zone-NS-Names] and [Get-Del-NS-IPs].
 [To top]
 
 
-## Method: Get out-of-bailiwick ip addresses (Internal)
+## Method: Get Out-Of-Domain IP addresses (Internal)
 
 ### Method identifier
-**Get-OOB-IPs**
+**Get-OOD-IPs**
 
 ### Objective
 
-Obtain the IP addresses of the [Out-Of-Bailiwick] name servers for the
+Obtain the IP addresses of the [Out-Of-Domain] name servers for the
 given zone (child zone) and a given set of name server names.
 
 Extract addresses even if the resolution goes through CNAME, here ignoring that
@@ -987,18 +994,18 @@ None.
 |-------------------------------|-------|-------------------------------|-------|
 | [Get-Parent-NS-Names-and-IPs] | 1     | -                             |       |
 | [Get-Parent-NS-IPs]           | 2     | [Get-Parent-NS-Names-and-IPs] | 1     |
-| [Get-OOB-IPs]                 | 1     | -                             |       |
+| [Get-OOD-IPs]                 | 1     | -                             |       |
 | [Get-Delegation]              | 3     | [Get-Parent-NS-IPs]           | 2     |
 | [Get-Del-NS-Names-and-IPs]    | 4     | [Get-Delegation]              | 3     |
-|                               |       | [Get-OOB-IPs]                 | 1     |
+|                               |       | [Get-OOD-IPs]                 | 1     |
 | [Get-Del-NS-Names]            | 5     | [Get-Del-NS-Names-and-IPs]    | 4     |
 | [Get-Del-NS-IPs]              | 5     | [Get-Del-NS-Names-and-IPs]    | 4     |
 | [Get-Zone-NS-Names]           | 6     | [Get-Del-NS-IPs]              | 5     |
-| [Get-IB-Addr-in-Zone]         | 7     | [Get-Del-NS-IPs]              | 5     |
+| [Get-ID-Addr-in-Zone]         | 7     | [Get-Del-NS-IPs]              | 5     |
 |                               |       | [Get-Zone-NS-Names]           | 6     |
 | [Get-Zone-NS-Names-and-IPs]   | 8     | [Get-Zone-NS-Names]           | 6     |
-|                               |       | [Get-IB-Addr-in-Zone]         | 7     |
-|                               |       | [Get-OOB-IPs]                 | 1     |
+|                               |       | [Get-ID-Addr-in-Zone]         | 7     |
+|                               |       | [Get-OOD-IPs]                 | 1     |
 | [Get-Zone-NS-IPs]             | 9     | [Get-Zone-NS-Names-and-IPs]   | 8     |
 
 [To top]
@@ -1006,8 +1013,8 @@ None.
 
 ## Terminology
 
-* "Glue Record" - The term is used as defined in [RFC 8499], section 7, pages
-  24-25.
+* "Address Records Lookup" - The term is used when two "DNS Lookup" are done and
+  the query types are A and AAAA, respectively.
 
 * "DNS Lookup" - The term is used when a recursive lookup is used, though any
   changes to the DNS tree introduced by an [undelegated test] must be respected.
@@ -1020,19 +1027,29 @@ None.
   defined in
   [DNS Query and Response Defaults][DNS Query and Response Defaults#Response].
 
-* "In-Bailiwick" - The term is used as defined in [RFC 8499], section 7,
-  pages 24-25. In this document it is limited to the meaning "in domain" in the
-  RFC.
+* "Glue Record" - The term is used as defined in [RFC 9499][RFC 9499#section7],
+  section 7.
 
-* "Out-Of-Bailiwick" - The terms means, in this document, what is not
-  "In-Bailiwick, in domain". [RFC 8499], section 7,  pages 24-25.
+* "In-Domain" - The term is used as defined in [RFC 9499][RFC 9499#section7],
+  section 7, in the subsection on "Glue Records", for name server names in the
+  referral of a zone. The name server name is on or below the zone cut of the
+  zone for which it is name server for. Previously the term "In-Bailiwick" was
+  used.
+
+* "Out-Of-Domain" - The term refers to a name server name that is not
+  "In-Domain". It is either "sibling domain" or "unrelated" as defined in
+  [RFC 9499][RFC 9499#section7], section 7, in the subsection on "Glue Records",
+  for name server names in the referral of a zone. The name server name is
+  neither on or below the zone cut of the zone for which it is name server.
+  The name server name belongs to another zone. It is above or at aside the
+  delegated zone. Previously the term "Out-Of-Bailiwick" was used.
 
 * "Referral" - The term means a DNS response with [RCODE Name] NoError, AA flag
   unset and NS records in the authority section.
   * The answer section is empty or with CNAME record or records. If the query
     type is CNAME, then the answer section must be empty.
   * The additional section may contain address (glue) records (A and AAAA) for
-    the name server names from the RCODE of the NS records.
+    the name server names from the RDATA of the NS records.
   * The referral refers the zone identical to the owner name of the NS records
     to the name servers specified by the RDATA in the NS records.
 
@@ -1052,6 +1069,7 @@ None.
 [To top]
 
 
+[Address Records Lookup]:                            #terminology
 [Basic01]:                                           Basic-TP/basic01.md
 [Delegation05]:                                      Delegation-TP/delegation05.md
 [DNS Lookup]:                                        #terminology
@@ -1064,15 +1082,15 @@ None.
 [Get-Del-NS-Names-and-IPs]:                          #method-get-delegation-ns-names-and-ip-addresses
 [Get-Del-NS-Names]:                                  #method-get-delegation-ns-names
 [Get-Delegation]:                                    #method-get-delegation-internal
-[Get-IB-Addr-in-Zone]:                               #method-get-in-bailiwick-address-records-in-zone-internal
-[Get-OOB-IPs]:                                       #method-get-out-of-bailiwick-ip-addresses-internal
+[Get-ID-Addr-in-Zone]:                               #method-get-in-domain-address-records-in-zone-internal
+[Get-OOD-IPs]:                                       #method-get-out-of-domain-ip-addresses-internal
 [Get-Parent-NS-IPs]:                                 #method-get-parent-ns-ip-addresses
 [Get-Parent-NS-Names-and-IPs]:                       #method-get-parent-ns-names-and-ip-addresses
 [Get-Zone-NS-IPs]:                                   #method-get-zone-ns-ip-addresses
 [Get-Zone-NS-Names-and-IPs]:                         #method-get-zone-ns-names-and-ip-addresses
 [Get-Zone-NS-Names]:                                 #method-get-zone-ns-names
 [Glue Records]:                                      #terminology
-[In-Bailiwick]:                                      #terminology
+[In-Domain]:                                         #terminology
 [Internal Methods]:                                  #internal-methods
 [IPv4]:                                              https://en.wikipedia.org/wiki/IPv4
 [IPv6]:                                              https://en.wikipedia.org/wiki/IPv6
@@ -1084,11 +1102,11 @@ None.
 [Method5]:                                           Methods.md#method-5-obtain-the-name-server-address-records-from-child
 [Methods]:                                           Methods.md
 [Methods Inputs]:                                    #methods-inputs
-[Out-Of-Bailiwick]:                                  #terminology
+[Out-Of-Domain]:                                     #terminology
 [Query type]:                                        https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 [RCODE Name]:                                        https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[RFC 8499]:                                          https://www.rfc-editor.org/rfc/rfc8499.html#section-7
 [RFC 9156]:                                          https://www.rfc-editor.org/rfc/rfc9156.html
+[RFC 9499#section7]:                                 https://datatracker.ietf.org/doc/html/rfc9499#section-7
 [Referral]:                                          #terminology
 [Requirements and normalization]:                    RequirementsAndNormalizationOfDomainNames.md
 [Send]:                                              #terminology
