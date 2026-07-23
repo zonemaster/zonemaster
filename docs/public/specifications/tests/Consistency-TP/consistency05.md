@@ -438,6 +438,8 @@ None
 [In-Domain]:                               #terminology
 [INFO]:                                    ../SeverityLevelDefinitions.md#info
 [IP Address]:                              #terminology
+[IPv4]:                                    https://en.wikipedia.org/wiki/IPv4
+[IPv6]:                                    https://en.wikipedia.org/wiki/IPv6
 [NOTICE]:                                  ../SeverityLevelDefinitions.md#notice
 [Out-Of-Domain]:                           #terminology
 [RCODE Name]:                              https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
