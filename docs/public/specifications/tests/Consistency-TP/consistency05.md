@@ -63,8 +63,8 @@ working name sever for *Child Zone* then this test case will report that.
 
 * "Child Zone" - The name of the zone to be tested. It must be a [valid domain name].
 * "Undelegated Data" - Optional data. If included it must consist of a set of
-  at least one [valid name server name] and for each name server name an optional
-  set of at least one [valid IP address].
+  at least one [valid name server name] and for each name server name a set of zero or
+  more [valid IP addresses][valid IP address].
 
 
 ## Summary
@@ -75,13 +75,13 @@ working name sever for *Child Zone* then this test case will report that.
 | CS05_DELEGATION                | INFO     | ns_deleg_list, ns_list                    | Delegation of the child zone as provided by the parent name servers listed: "{ns_deleg_list}". Parent name servers: "{ns_list}".                       |
 | CS05_EXTRA_ADDR_CHILD          | NOTICE   | ns_list                                   | There is one or more extra address records found in the child zone that are not present as glue in the delegation: "{ns_list}".                        |
 | CS05_NO_MISMATCH_GLUE_ZONE     | INFO     |                                           | There is no mismatch between delegation from parent and authoritative data in the child zone.                                                          |
-| CS05_ID_ADDR_MISMATCH          | ERROR    | nsname, ns_ip_list_glue, ns_ip_list_zone  | For name server {nsname} the glue record in the delegation "{ns_ip_list_glue}" mismatches the address record in the child zone "{ns_ip_list_zone}".    |
+| CS05_ID_ADDR_MISMATCH          | ERROR    | nsname, ns_ip_list_glue, ns_ip_list_zone  | For name server {nsname} the glue record in the delegation "{ns_ip_list_glue}" is different from the address record in the child zone "{ns_ip_list_zone}".    |
 | CS05_ID_ADDR_MISSING           | NOTICE   | nsname                                    | Address record for {nsname}, used as glue record in delegation, is missing in the child zone.                                                          |
 | CS05_INCONSISTENT_DELEGATION   | WARNING  |                                           | The delegation is inconsistent between the parent nameservers.                                                                                         |
 | CS05_MISSING_GLUE_FOR_NS       | WARNING  | nsname, ns_list                           | Expected glue record for {nsname} is missing in the delegation. Found in the parent name servers "{ns_list}".                                          |
 | CS05_MISSING_GLUE_FOR_NS_UNDEL | WARNING  | nsname                                    | IP address (glue record) is expected but missing for {nsname} in the undelegated data.                                                                 |
 | CS05_NO_NS_ADDR_CHILD          | CRITICAL |                                           | Child zone cannot be tested since there are no name server IP addresses for that zone.                                                                 |
-| CS05_OOD_ADDR_MISMATCH         | WARNING  | nsname, ns_ip_list_ref, ns_ip_list_lookup | For name server {nsname} the glue record in the delegation "{ns_ip_list_glue}" mismatches the address record in authoritativ zone "{ns_ip_list_zone}". |
+| CS05_OOD_ADDR_MISMATCH         | WARNING  | nsname, ns_ip_list_ref, ns_ip_list_lookup | For name server {nsname} the glue record in the delegation "{ns_ip_list_glue}" is different from the address record in the child zone "{ns_ip_list_zone}". |
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -140,8 +140,8 @@ queries follow, unless otherwise specified below, what is specified for
     3. If the response (if any) contains a [Referral] of *Child Zone* then do:
        1. Extract the name server names from delegation NS records in authority
           section.
-       2. Downcase any uppcase letters in the names.
-       3. Create an sorted list of unique name server names (sorted ascendingly
+       2. Downcase any uppercase letters in the names.
+       3. Create a sorted list of unique name server names (sorted in ascending order
           on the name).
        4. For each [glue record] in the additional section (if any) do:
           1. Extract IP address from the [glue record] and attach it to the
@@ -150,8 +150,8 @@ queries follow, unless otherwise specified below, what is specified for
           2. If the name already has an IP address attached to it, then copy the
              name and create a new name/IP pair.
           3. Only unique name/IP pairs are created.
-          4. Sort the name/IP pair with IPv4 first and then sorted ascendingly on
-             the IP address.
+          4. Sort the name/IP pair by IP address, in ascending order, with IPv4
+             addresses sorted before IPv6 addresses.
        5. Add the name server IP and the created name server list to the
           *Delegation* set.
 
@@ -169,14 +169,14 @@ queries follow, unless otherwise specified below, what is specified for
              1. Do not create duplicates in the set.
              2. Elements just consiting of a name is not added if there already
                 is a name/IP pair with the same name.
-             3. A name/IP pair will overwrite an element consisting just of of
+             3. A name/IP pair will overwrite an element consisting just of
                 the same name.
        2. If name in the element (name or name/IP pair) is [Out-Of-Domain] then
           add the element (name or name/IP pair) to the *Delegation OOD NS* set.
           1. Do not create duplicates in the set.
           2. Elements just consiting of a name is not added if there already is a
              name/IP pair with the same name.
-          3. A name/IP pair will overwrite an element consisting just of of the
+          3. A name/IP pair will overwrite an element consisting just of the
              same name.
 
 8. If the *Delegation* set is non-empty, do:
@@ -188,7 +188,7 @@ queries follow, unless otherwise specified below, what is specified for
       came.
       2. Output *[CS05_INCONSISTENT_DELEGATION]*.
 
-9.  If the *Undelegated Data* set is non-empty then do for each name server name
+9.  If the *Undelegated Data* set is non-empty then for each name server name
     in the set do:
     1. If the name server name is [In-Domain] then do:
        1. If no glue (address) data is present for the name server name, then
