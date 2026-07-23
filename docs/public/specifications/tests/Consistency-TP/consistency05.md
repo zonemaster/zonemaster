@@ -410,6 +410,7 @@ None
 
 
 [Address Record]:                          #terminology
+[Address Records Lookup]:                  #terminology
 [Argument list]:                           ../ArgumentsForTestCaseMessages.md
 [CRITICAL]:                                ../SeverityLevelDefinitions.md#critical
 [CS05_CHILD_ZONE_LAME]:                    #summary
