@@ -349,7 +349,7 @@ None
 ## Terminology
 
 * "Address Record" - The term is used for a DNS record of type A or AAAA. The
-  term is used as defined in [RFC 9499][[RFC 9499#section5]], section 5.
+  term is used as defined in [RFC 9499][RFC 9499#section5], section 5.
 
 * "Address Records Lookup" - The term is used when two [DNS Lookups][DNS Lookup]
   are done and the query types are A and AAAA, respectively.
@@ -424,6 +424,7 @@ None
 [CS05_NO_NS_ADDR_CHILD]:                   #summary
 [CS05_OOD_ADDR_MISMATCH]:                  #summary
 [Connectivity01]:                          ../Connectivity-TP/connectivity01.md
+[DNS Lookup]:                              #terminology
 [DNS Query and Response Defaults]:         ../DNSQueryAndResponseDefaults.md
 [DNS Query]:                               ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
 [DNS Response]:                            ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
