@@ -28,7 +28,7 @@ If the name server name in the NS record is [in-domain] there must be at least
 one [glue record] in the delegation and in the [referral]. For each such glue
 record the equivalent [address record] must exist as an athoritative record in
 the child zone, or below, and the the two (glue record and authoritative record)
-must have the same IP address.
+must have the same [IP address].
 
 The other alternative is that the name server name is [Out-Of-Domain], and in
 that case there can be a [glue record], and it must also match an address
@@ -48,7 +48,7 @@ This test case will test the following:
   * In the *Child Zone* if the [glue record] is [in-domain].
   * In another zone if the [glue record] is [out-of-zone].
 * If the *Child Zone* contains additional [address records][address record]
-  with the same name as the glue record, but different IP address.
+  with the same name as the glue record, but different IP addresses.
 
 
 ## Scope
@@ -64,23 +64,23 @@ working name sever for *Child Zone* then this test case will report that.
 * "Child Zone" - The name of the zone to be tested. It must be a [valid domain name].
 * "Undelegated Data" - Optional data. If included it must consist of a set of
   at least one [valid name server name] and for each name server name a set of zero or
-  more [valid IP addresses][valid IP address].
+  more [IP addresses][IP address].
 
 
 ## Summary
 
-| Message Tag                    | Level    | Arguments                                 | Message ID for message tag                                                                                                                             |
-|:-------------------------------|:---------|:------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CS05_CHILD_ZONE_LAME           | CRITICAL | ns_list                                   | There is no working name server for the child zone. Tested name servers are "{ns_list}".                                                               |
-| CS05_DELEGATION                | INFO     | ns_deleg_list, ns_list                    | Delegation of the child zone as provided by the parent name servers listed: "{ns_deleg_list}". Parent name servers: "{ns_list}".                       |
-| CS05_EXTRA_ADDR_CHILD          | NOTICE   | ns_list                                   | There is one or more extra address records found in the child zone that are not present as glue in the delegation: "{ns_list}".                        |
-| CS05_NO_MISMATCH_GLUE_ZONE     | INFO     |                                           | There is no mismatch between delegation from parent and authoritative data in the child zone.                                                          |
-| CS05_ID_ADDR_MISMATCH          | ERROR    | nsname, ns_ip_list_glue, ns_ip_list_zone  | For name server {nsname} the glue record in the delegation "{ns_ip_list_glue}" is different from the address record in the child zone "{ns_ip_list_zone}".    |
-| CS05_ID_ADDR_MISSING           | NOTICE   | nsname                                    | Address record for {nsname}, used as glue record in delegation, is missing in the child zone.                                                          |
-| CS05_INCONSISTENT_DELEGATION   | WARNING  |                                           | The delegation is inconsistent between the parent nameservers.                                                                                         |
-| CS05_MISSING_GLUE_FOR_NS       | WARNING  | nsname, ns_list                           | Expected glue record for {nsname} is missing in the delegation. Found in the parent name servers "{ns_list}".                                          |
-| CS05_MISSING_GLUE_FOR_NS_UNDEL | WARNING  | nsname                                    | IP address (glue record) is expected but missing for {nsname} in the undelegated data.                                                                 |
-| CS05_NO_NS_ADDR_CHILD          | CRITICAL |                                           | Child zone cannot be tested since there are no name server IP addresses for that zone.                                                                 |
+| Message Tag                    | Level    | Arguments                                 | Message ID for message tag                                                                                                                                 |
+|:-------------------------------|:---------|:------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CS05_CHILD_ZONE_LAME           | CRITICAL | ns_list                                   | There is no working name server for the child zone. Tested name servers are "{ns_list}".                                                                   |
+| CS05_DELEGATION                | INFO     | ns_deleg_list, ns_list                    | Delegation of the child zone as provided by the parent name servers listed: "{ns_deleg_list}". Parent name servers: "{ns_list}".                           |
+| CS05_EXTRA_ADDR_CHILD          | NOTICE   | ns_list                                   | There is one or more extra address records found in the child zone that are not present as glue in the delegation: "{ns_list}".                            |
+| CS05_NO_MISMATCH_GLUE_ZONE     | INFO     |                                           | There is no mismatch between delegation from parent and authoritative data in the child zone.                                                              |
+| CS05_ID_ADDR_MISMATCH          | ERROR    | nsname, ns_ip_list_glue, ns_ip_list_zone  | For name server {nsname} the glue record in the delegation "{ns_ip_list_glue}" is different from the address record in the child zone "{ns_ip_list_zone}". |
+| CS05_ID_ADDR_MISSING           | NOTICE   | nsname                                    | Address record for {nsname}, used as glue record in delegation, is missing in the child zone.                                                              |
+| CS05_INCONSISTENT_DELEGATION   | WARNING  |                                           | The delegation is inconsistent between the parent nameservers.                                                                                             |
+| CS05_MISSING_GLUE_FOR_NS       | WARNING  | nsname, ns_list                           | Expected glue record for {nsname} is missing in the delegation. Found in the parent name servers "{ns_list}".                                              |
+| CS05_MISSING_GLUE_FOR_NS_UNDEL | WARNING  | nsname                                    | IP address (glue record) is expected but missing for {nsname} in the undelegated data.                                                                     |
+| CS05_NO_NS_ADDR_CHILD          | CRITICAL |                                           | Child zone cannot be tested since there are no name server IP addresses for that zone.                                                                     |
 | CS05_OOD_ADDR_MISMATCH         | WARNING  | nsname, ns_ip_list_ref, ns_ip_list_lookup | For name server {nsname} the glue record in the delegation "{ns_ip_list_glue}" is different from the address record in the child zone "{ns_ip_list_zone}". |
 
 The value in the Level column is the default severity level of the message. The
@@ -113,8 +113,8 @@ queries follow, unless otherwise specified below, what is specified for
     3. Fetch the child name server IPs using methods [Get-Del-NS-IPs] and
        [Get-Zone-NS-IPs] and create a unique set ("Child NS IPs").
 
-2.  If the *Undelegated Data* set (from input) is non-empty then the
-    *Parent NS* and *Parent NS IPs* sets are empty.
+2.  Informational: If the *Undelegated Data* set (from input) is non-empty then
+    the *Parent NS* and *Parent NS IPs* sets were created as empty sets.
 
 3.  Create [DNS Queries][DNS Query]:
 
@@ -144,19 +144,19 @@ queries follow, unless otherwise specified below, what is specified for
        3. Create a sorted list of unique name server names (sorted in ascending order
           on the name).
        4. For each [glue record] in the additional section (if any) do:
-          1. Extract IP address from the [glue record] and attach it to the
-             correct name server name in the name server list to form a
-             name/IP pair.
-          2. If the name already has an IP address attached to it, then copy the
-             name and create a new name/IP pair.
-          3. Only unique name/IP pairs are created.
+          1. Form an name/IP pair from the owner named and the IP address in
+             [RDATA].
+          2. Only unique name/IP pairs are created.
+          3. Add the pair to sorted list of name server names.
           4. Sort the name/IP pair by IP address, in ascending order, with IPv4
              addresses sorted before IPv6 addresses.
-       5. Add the name server IP and the created name server list to the
-          *Delegation* set.
+          5. The name/IP pair will replace any "name" where the name server name
+             is the same.
+       5. Add the name server IP (to which the *SOA Query* was sent) and the name
+          server list created above to the *Delegation* set.
 
-6.  If the *Undelegated Data* set is non-empty then the *Delegation* set is
-    empty.
+6.  Informational: If the *Undelegated Data* set is non-empty then the
+    *Delegation* set is empty.
 
 7.  If the *Delegation* set is non-empty, then for each parent name server IP in
     the set do:
@@ -364,7 +364,7 @@ None
   specification for DNS queries in [DNS Query and Response Defaults][DNS Query].
 
 * "Glue Record" - [Address records][address record] in the [Referral]
-  whose owner name is equal to the RDATA in one of the NS record in the same
+  whose owner name is equal to the [RDATA] in one of the NS record in the same
   referral. The term is used as defined in [RFC 9499][RFC 9499#section7],
   section 7.
 
@@ -382,15 +382,18 @@ None
   The name server name belongs to another zone. It is above or at aside the
   delegated zone. Previously the term "Out-Of-Bailiwick" was used.
 
+* "RDATA" - "Resource record data as defined in [RFC 1034][RFC 1034#section3.6],
+  section 3.6.
+
 * "Referral" - The term means a DNS response with [RCODE Name] NoError, AA flag
   unset and NS records in the authority section. It is used to signal a
   delegation.
   * The answer section is empty or with CNAME record or records. If the query
     type is CNAME, then the answer section must be empty.
   * The additional section may contain address (glue) records (A and AAAA) for
-    the name server names from the RDATA of the NS records.
+    the name server names from the [RDATA] of the NS records.
   * The referral refers the zone identical to the owner name of the NS records
-    to the name servers specified by the RDATA in the NS records.
+    to the name servers specified by the [RDATA] in the NS records.
 
 * "Send" - The terms are used when a DNS query is sent to a specific name server
   (name server IP address).
@@ -399,8 +402,8 @@ None
   has successfully passed the tests and normalizations in the
   [Requirements and normalization] specification.
 
-* "Valid IP Address" -- The term stands for either an [IPv4] address or an [IPv6]
-  address in any address range.
+* "IP Address" -- In this document the term stands for either an [IPv4] address or
+  an [IPv6] address in any address range.
 
 * "Valid Name Server Name" -- The term stands for a [Valid Domain Name] that
   functions as the name of a name server.
@@ -437,6 +440,8 @@ None
 [NOTICE]:                                  ../SeverityLevelDefinitions.md#notice
 [Out-Of-Domain]:                           #terminology
 [RCODE Name]:                              https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+[RDATA]:                                   #terminology
+[RFC 1034#section3.6]:                     https://datatracker.ietf.org/doc/html/rfc1034#section-3.6
 [RFC 9499#section5]:                       https://datatracker.ietf.org/doc/html/rfc9499#section-5
 [RFC 9499#section7]:                       https://datatracker.ietf.org/doc/html/rfc9499#section-7
 [Referral]:                                #terminology
