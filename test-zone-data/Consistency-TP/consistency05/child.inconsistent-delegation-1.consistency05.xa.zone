@@ -1,0 +1,27 @@
+$ORIGIN child.inconsistent-delegation-1.consistency05.xa
+
+
+$TTL 3600
+
+@       SOA     ns1 admin.mail.xa. (
+                2026072401      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS      ns41
+@       NS      ns42
+@       NS      ns43
+
+@       TXT     "Text"
+
+ns41     A       127.14.5.41
+ns41     AAAA    fda1:b2:c3::127:14:5:41
+ns42     A       127.14.5.42
+ns42     AAAA    fda1:b2:c3::127:14:5:42
+ns43     A       127.14.5.43
+ns43     AAAA    fda1:b2:c3::127:14:5:43
+
+
+;EOF
