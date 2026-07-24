@@ -1,4 +1,4 @@
-# Specification of test zones for CONSISTENCY05
+# Specification of Test Scenarios for CONSISTENCY05
 
 
 ## Table of contents
@@ -7,27 +7,34 @@
 * [Test Case](#test-case)
 * [Test scenarios](#test-scenarios)
 * [Test zone names](#test-zone-names)
+* [All message tags](#all-message-tags)
 * [Test scenarios and message tags](#test-scenarios-and-message-tags)
 * [Zone setup for test scenarios]
 
 
 ## Background
 
-See the [test zone README file].
+See the [test scenario README file].
+
+The term "in-bailiwick" has been replaced with "in-domain" in this version of the
+document. That is to match an update of the Consistency05 specification
+([Consistency05]) and more details and the definition of the new term "in-domain"
+can be found there. The previous term "out-of-bailiwick" has been replaced by the
+term "out-of-domain" and was used as the negation of "in-bailiwick".
 
 
 ## Test Case
-This document specifies defined test zones for test case [CONSISTENCY05].
+This document specifies defined test zones for test case [Consistency05].
 
 
 ## Test scenarios
 
 The purpose of the test scenarios is to cover all reasonable contexts where
-different message tags are outputted when [CONSISTENCY05] is run on a test zone.
-The message tags are defined in the test case ([CONSISTENCY05]) and the scenarios
+different message tags are outputted when [Consistency05] is run on a test zone.
+The message tags are defined in the test case ([Consistency05]) and the scenarios
 are defined below.
 
-The test scenarios are structured as stated in the [test zone README file].
+The test scenarios are structured as stated in the [test scenario README file].
 
 ## Test zone names
 
@@ -38,34 +45,50 @@ The names of those zones are given in section "[Zone setup for test scenarios]"
 below.
 
 
+## All message tags
+The test case can output any of these message tags, but not necessarily in any
+combination. See [Consistency05] for the specification of the tags.
+
+* CS05_CHILD_ZONE_LAME
+* CS05_DELEGATION
+* CS05_EXTRA_ADDR_CHILD
+* CS05_NO_MISMATCH_GLUE_ZONE
+* CS05_ID_ADDR_MISMATCH
+* CS05_ID_ADDR_MISSING
+* CS05_INCONSISTENT_DELEGATION
+* CS05_MISSING_GLUE_FOR_NS
+* CS05_MISSING_GLUE_FOR_NS_UNDEL
+* CS05_NO_NS_ADDR_CHILD
+* CS05_OOD_ADDR_MISMATCH
+
 ## Test scenarios and message tags
 
 If a message tag is not listed for the scenario, its presence or non-presence is
 irrelevant to the test scenario and must be ignored.
 
-| Scenario name             | Mandatory message tag                           | Forbidden message tags                                                                                                         |
-|:--------------------------|:------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------|
-| ADDRESSES-MATCH-1         | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
-| ADDRESSES-MATCH-2         | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
-| ADDRESSES-MATCH-3         | ADDRESSES_MATCH, CHILD_NS_FAILED                | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, NO_RESPONSE                  |
-| ADDRESSES-MATCH-4         | ADDRESSES_MATCH, CHILD_NS_FAILED                | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, NO_RESPONSE                  |
-| ADDRESSES-MATCH-5         | ADDRESSES_MATCH, NO_RESPONSE                    | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED              |
-| ADDRESSES-MATCH-6         | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
-| ADDRESSES-MATCH-7         | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
-| ADDRESSES-MATCH-8         | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
-| ADDRESSES-MATCH-9         | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
-| ADDR-MATCH-DEL-UNDEL-1    | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
-| ADDR-MATCH-DEL-UNDEL-2    | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
-| ADDR-MATCH-NO-DEL-UNDEL-1 | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
-| ADDR-MATCH-NO-DEL-UNDEL-2 | ADDRESSES_MATCH                                 | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE |
-| CHILD-ZONE-LAME-1         | CHILD_ZONE_LAME, NO_RESPONSE                    | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_NS_FAILED, ADDRESSES_MATCH              |
-| CHILD-ZONE-LAME-2         | CHILD_ZONE_LAME, CHILD_NS_FAILED                | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, ADDRESSES_MATCH, NO_RESPONSE                  |
-| IB-ADDR-MISMATCH-1        | IN_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD | OUT_OF_BAILIWICK_ADDR_MISMATCH, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH                                 |
-| IB-ADDR-MISMATCH-2        | IN_BAILIWICK_ADDR_MISMATCH                      | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH            |
-| IB-ADDR-MISMATCH-3        | IN_BAILIWICK_ADDR_MISMATCH, NO_RESPONSE         | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH            |
-| IB-ADDR-MISMATCH-4        | IN_BAILIWICK_ADDR_MISMATCH                      | OUT_OF_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH            |
-| EXTRA-ADDRESS-CHILD       | EXTRA_ADDRESS_CHILD                             | IN_BAILIWICK_ADDR_MISMATCH, OUT_OF_BAILIWICK_ADDR_MISMATCH, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH     |
-| OOB-ADDR-MISMATCH         | OUT_OF_BAILIWICK_ADDR_MISMATCH                  | IN_BAILIWICK_ADDR_MISMATCH, EXTRA_ADDRESS_CHILD, CHILD_ZONE_LAME, CHILD_NS_FAILED, NO_RESPONSE, ADDRESSES_MATCH                |
+| Scenario name             | Mandatory message tag          | Forbidden message tags |
+|:--------------------------|:-------------------------------|:-----------------------|
+| ADDRESSES-MATCH-1         | CS05_NO_MISMATCH_GLUE_ZONE     | 2)                     |
+| ADDRESSES-MATCH-2         | CS05_NO_MISMATCH_GLUE_ZONE     | 2)                     |
+| ADDRESSES-MATCH-3         | CS05_NO_MISMATCH_GLUE_ZONE     | 2)                     |
+| ADDRESSES-MATCH-4         | CS05_NO_MISMATCH_GLUE_ZONE     | 2)                     |
+| ADDRESSES-MATCH-5         | CS05_NO_MISMATCH_GLUE_ZONE     | 2)                     |
+| ADDRESSES-MATCH-6         | CS05_NO_MISMATCH_GLUE_ZONE     | 2)                     |
+| ADDRESSES-MATCH-7         | CS05_NO_MISMATCH_GLUE_ZONE     | 2)                     |
+| ADDRESSES-MATCH-8         | CS05_NO_MISMATCH_GLUE_ZONE     | 2)                     |
+| ADDRESSES-MATCH-9         | CS05_NO_MISMATCH_GLUE_ZONE     | 2)                     |
+| ADDR-MATCH-DEL-UNDEL-1    | CS05_NO_MISMATCH_GLUE_ZONE     | 2)                     |
+| ADDR-MATCH-DEL-UNDEL-2    | CS05_NO_MISMATCH_GLUE_ZONE     | 2)                     |
+| ADDR-MATCH-NO-DEL-UNDEL-1 | CS05_NO_MISMATCH_GLUE_ZONE     | 2)                     |
+| ADDR-MATCH-NO-DEL-UNDEL-2 | CS05_NO_MISMATCH_GLUE_ZONE     | 2)                     |
+| CHILD-ZONE-LAME-1         | CS05_CHILD_ZONE_LAME           | 2)                     |
+| CHILD-ZONE-LAME-2         | CS05_CHILD_ZONE_LAME           | 2)                     |
+| ID-ADDR-MISMATCH-1        | CS05_ID_ADDR_MISMATCH          | 2)                     |
+| ID-ADDR-MISMATCH-2        | CS05_ID_ADDR_MISSING           | 2)                     |
+| ID-ADDR-MISMATCH-3        | CS05_ID_ADDR_MISSING           | 2)                     |
+| ID-ADDR-MISMATCH-4        | CS05_ID_ADDR_MISSING           | 2)                     |
+| EXTRA-ADDRESS-CHILD       | CS05_EXTRA_ADDR_CHILD          | 2)                     |
+| OOD-ADDR-MISMATCH         | CS05_OOD_ADDR_MISMATCH | 2)                     |
 
 
 ## Zone setup for test scenarios
@@ -74,7 +97,7 @@ Assumptions for the scenario specifications unless otherwise specified for
 the specific scenario:
 * For each scenario zone there are two name servers configured.
   * Both NS (ns1 and ns2) are equal in delegation and in zone.
-  * Both NS are in-bailiwick
+  * Both NS are in-domain
   * Both NS have both IPv4 and IPv6 addresses
   * All required glue are present in the delegation.
   * All glue exactly matches the authoritative address records in correct
@@ -99,10 +122,10 @@ The "happy path". Everything is fine.
 * Zone: addresses-match-1.consistency05.xa
 
 ### ADDRESSES-MATCH-2
-Also the "happy path". Out-of-bailiwick NS this time. And no glue.
+Also the "happy path". Out-of-domain NS this time. And no glue.
 
 * Zone: addresses-match-2.consistency05.xa
-  * Both ns3 and ns4 are out-of-bailiwick under the xb tree.
+  * Both ns3 and ns4 are out-of-domain under the xb tree.
   * ns3 is "ns3.addresses-match-2.consistency05.xb"
   * ns4 is "ns4.addresses-match-2.consistency05.xb"
   * Delegation is without glue.
@@ -129,10 +152,10 @@ One NS does not respond, but else fine.
   * ns1 gives no response at all.
 
 ### ADDRESSES-MATCH-6
-Also "happy path". Out-of-bailiwick NS, but with glue.
+Also "happy path". Out-of-domain NS, but with glue.
 
 * Zone: child.addresses-match-6.consistency05.xa
-  * Both ns1 and ns2 are out-of-bailiwick
+  * Both ns1 and ns2 are out-of-domain
   * ns1 is "ns1.sibbling.addresses-match-6.consistency05.xa"
   * ns2 is "ns2.sibbling.addresses-match-6.consistency05.xa"
   * Delegation is with glue.
@@ -151,20 +174,20 @@ Also "happy path". NS in subdomain.
   * ns1 and ns2 are defined with address records in the "subdomain" zone.
 
 ### ADDRESSES-MATCH-8
-It is much like ADDRESSES-MATCH-2, a "happy path". All NS are out-of-bailiwick.
+It is much like ADDRESSES-MATCH-2, a "happy path". All NS are out-of-domain.
 The child is a few steps below and one of the servers of the parent zone also
 host a root zone with wildcard address records, but that should be irrelevant.
 
 * Zone: child.a.b.addresses-match-8.consistency05.xa
   * "addresses-match-8.consistency05.xa" is the parent zone.
-    * ns3, ns4 and ns39 are out-of-bailiwick under the xb tree.
+    * ns3, ns4 and ns39 are out-of-domain under the xb tree.
     * ns3 is "ns3.addresses-match-8.consistency05.xb"
     * ns4 is "ns4.addresses-match-8.consistency05.xb"
     * ns39 is "ns39.addresses-match-8.consistency05.xb"
   * Delegation is without glue.
   * The child zone has no address records for the NS names
   * The child zone is on different servers:
-    * ns41 and ns42 are out-of-bailiwick under the xb tree.
+    * ns41 and ns42 are out-of-domain under the xb tree.
     * ns41 is "ns41.child.a.b.addresses-match-8.consistency05.xb"
     * ns42 is "ns42.child.a.b.addresses-match-8.consistency05.xb"
   * The "consistency05.xb" zone has a full set of the address records for all NS
@@ -177,14 +200,14 @@ It is very much like ADDRESSES-MATCH-8. Child is directly under parent.
 
 * Zone: child.addresses-match-9.consistency05.xa
   * "addresses-match-9.consistency05.xa" is the parent zone.
-    * ns3, ns4 and ns39 are out-of-bailiwick under the xb tree.
+    * ns3, ns4 and ns39 are out-of-domain under the xb tree.
     * ns3 is "ns3.addresses-match-9.consistency05.xb"
     * ns4 is "ns4.addresses-match-9.consistency05.xb"
     * ns39 is "ns39.addresses-match-9.consistency05.xb"
   * Delegation is without glue.
   * The child zone has no address records for the NS names
   * The child zone is on different servers:
-    * ns41 and ns42 are out-of-bailiwick under the xb tree.
+    * ns41 and ns42 are out-of-domain under the xb tree.
     * ns41 is "ns41.child.addresses-match-9.consistency05.xb"
     * ns42 is "ns42.child.addresses-match-9.consistency05.xb"
   * The "consistency05.xb" zone has a full set of the address records for all NS
@@ -209,7 +232,7 @@ Also the "happy path". But there is an undelegated zone to be tested.
 
 ### ADDR-MATCH-DEL-UNDEL-2
 Also the "happy path". But there is an undelegated zone to be tested, and its
-NS are out-of-bailiwick.
+NS are out-of-domain.
 
 * Zone: addr-match-del-undel-2.consistency05.xa
   * Delegated zone on ns1 and ns2.
@@ -236,7 +259,7 @@ tested.
 
 ### ADDR-MATCH-NO-DEL-UNDEL-2
 Also the "happy path". No delegation but there is an undelegated zone to be
-tested. NS are out-of-bailiwick.
+tested. NS are out-of-domain.
 
 * Zone: addr-match-no-del-undel-2.consistency05.xa
   * No delegated zone.
@@ -259,39 +282,39 @@ Lame. One NS non-AA and one NS SERVFAIL.
   * ns1 responses with AA bit unset.
   * ns2 responds with [RCODE Name] "ServFail".
 
-### IB-ADDR-MISMATCH-1
-For one NS (in-bailiwick), the addresses in the glue do not match those in the
+### ID-ADDR-MISMATCH-1
+For one NS (in-domain), the addresses in the glue do not match those in the
 authoritative data from the zone.
 
-* Zone: ib-addr-mismatch-1.consistency05.xa
+* Zone: id-addr-mismatch-1.consistency05.xa
   * ns2 is defined in the zone, but with different addresses (IPv4 and IPv6),
     i.e. not the same as in glue.
   * Both ns2 servers (IP address sets from glue and child, respectively) must
     give identical DNS responses.
 
-### IB-ADDR-MISMATCH-2
-For one NS (in-bailiwick), address records exist in the glue, but not in the
+### ID-ADDR-MISMATCH-2
+For one NS (in-domain), address records exist in the glue, but not in the
 authoritative data for the zone.
 
-* Zone: ib-addr-mismatch-2.consistency05.xa
+* Zone: id-addr-mismatch-2.consistency05.xa
   * ns2 is not defined in the zone, i.e. there are no address records for ns2
     (IPv4 or IPv6) in the zone.
 
-### IB-ADDR-MISMATCH-3
-For ns2 (in-bailiwick), there is no NS for ns2 and the glue does not match any
+### ID-ADDR-MISMATCH-3
+For ns2 (in-domain), there is no NS for ns2 and the glue does not match any
 address records in the zone. Furthermore, ns2 does not respond.
 
-* Zone: ib-addr-mismatch-3.consistency05.xa
-  * There is no NS record with ns2 in RDATA.
-  * ns2 is not defined in the zone, i.e. there are no address records for ns2
-    (IPv4 or IPv6) in the zone.
-  * ns2 does not respond (but it is in the delegation)
+* Zone: id-addr-mismatch-3.consistency05.xa
+  * Normal delegation to ns1 and ns2.
+  * There is no NS record for ns2 in the zone.
+  * No address records for ns2 (IPv4 or IPv6) in the zone.
+  * ns2 does not respond.
 
-### IB-ADDR-MISMATCH-4
-Both NS are in-bailiwick and exist with correct glue in the delegation, but there
+### ID-ADDR-MISMATCH-4
+Both NS are in-domain and exist with correct glue in the delegation, but there
 are no address records in the zone matching the glue records.
 
-* Zone: ib-addr-mismatch-4.consistency05.xa
+* Zone: id-addr-mismatch-4.consistency05.xa
   * Neither ns1 nor ns2 are defined in the zone as address records.
   * The correct NS records are in the zone.
 
@@ -304,24 +327,23 @@ Child zone has one extra address record on the NS name.
   * Both ns2 servers (both sets of IP addresses from child) must give identical
     DNS responses.
 
-### OOB-ADDR-MISMATCH
-For one NS (out-of-bailiwick, but with glue) glue does not match AA address
+### OOD-ADDR-MISMATCH
+For one NS (out-of-domain, but with glue) glue does not match AA address
 response.
 
-* Zone: child.oob-addr-mismatch.consistency05.xa
-  * Both ns1 and ns2 are out-of-bailiwick
-  * ns1 is "ns1.sibbling.oob-addr-mismatch.consistency05.xa"
-  * ns2 is "ns2.sibbling.oob-addr-mismatch.consistency05.xa"
+* Zone: child.ood-addr-mismatch.consistency05.xa
+  * Both ns1 and ns2 are out-of-domain
+  * ns1 is "ns1.sibbling.ood-addr-mismatch.consistency05.xa"
+  * ns2 is "ns2.sibbling.ood-addr-mismatch.consistency05.xa"
   * Delegation is with glue.
-  * The test zone ("child") has no address records for the NS names.
   * The "sibling" zone has full set of address records
   * ns1 in the "sibling" zone matches the addresses of glue.
   * ns2 in the "sibling" zone does not match the addresses of glue.
   * All IP addresses of ns1 and ns2 must serve identical versions of the zone.
 
 
-[CONSISTENCY05]:                                                  ../../tests/Consistency-TP/consistency05.md
+[Consistency05]:                                                  ../../tests/Consistency-TP/consistency05.md
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[Test zone README file]:                                          ../README.md
+[Test scenario README file]:                                          ../README.md
 [Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios
 
