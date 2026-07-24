@@ -237,9 +237,11 @@ queries follow, unless otherwise specified below, what is specified for
        * An [RCODE Name] of "NoError".
        * The AA flag is set.
     3. Else, go to the next name server IP.
-    4. Extract the [In-Domain] NS name server namns from the NS RRset extracted
-       above and extract the name server names from *Delegation ID NS*.
-    5. Create a unique set and for each [In-Domain] name server name do:
+    4. Create a unique set of [In-Domain] name server names:
+       1. Extract the [In-Domain] NS name server namns from the NS RRset
+          extracted above.
+       2. Extract the name server names from *Delegation ID NS*.
+    5. For each [In-Domain] name server name do:
        1.  Create a [DNS Query] with query type A and query name the NS name
            server name ("A Query").
        2.  [Send] *A Query* over UDP to the name server IP and fetch the
