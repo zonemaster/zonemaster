@@ -129,7 +129,7 @@ queries follow, unless otherwise specified below, what is specified for
     3.  NS name and IP address(es) ("Delegation ID NS").
     4.  NS name and IP address(es) ("Delegation OOD NS").
     5.  IP address (parent) and NS name ("Missing Glue").
-    6.  IP address (child), name server name and list of IP addresses (if any)
+    6.  IP address (child), NS name and IP address(es)
         ("Auth Addr Records In Child").
     7.  NS name and IP address(es) ("Extra Address Child")
 
@@ -277,12 +277,6 @@ queries follow, unless otherwise specified below, what is specified for
              original query name.
            * An [RCODE Name] of "NoError".
            * The AA flag is set.
-       10. If the *Auth Addr Records In Child* set does not contain any name/IP
-           pairs with name server name as name, then add name server name to
-           the set, unless it already exists.
-       11. If the *Auth Addr Records In Child* set both contains name server
-           name as name only and as part of name/IP pairs, then remove the single
-           name.
 
 12. If the *Child Zone NS* set is empty then output *[CS05_CHILD_ZONE_LAME]* with
     the IP addresses from the *Child NS IPs* set and exit these procedures.
