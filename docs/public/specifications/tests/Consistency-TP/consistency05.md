@@ -131,6 +131,7 @@ queries follow, unless otherwise specified below, what is specified for
     5.  IP address (parent) and NS name ("Missing Glue").
     6.  IP address (child), name server name and list of IP addresses (if any)
         ("Auth Addr Records In Child").
+    7.  NS name and IP address(es) ("Extra Address Child")
 
 4.  If the *Parent NS IPs* is non-empty, then for each name server IP in the set
     do:
@@ -255,10 +256,10 @@ queries follow, unless otherwise specified below, what is specified for
        4.  If any query was not responded to or returned an [RCODE Name] not
            being "NoError" then go to next NS name server name.
        5.  If the response (if any) contains the following then for each
-           unique A record add one name/IP pair to the
-           *Auth Addr Records In Child* set.
-           * An A RRset with the NS name server name as owner name in the
-             answer section.
+           unique A record extract owner name and IP address in [RDATA], create
+           a name/IP pair and add that to the *Auth Addr Records In Child* set.
+           * An A RRset in the answer section where owner name matches the
+             original query name.
            * An [RCODE Name] of "NoError".
            * The AA flag is set.
        6.  Create a [DNS Query] with query type AAAA and query name the NS
@@ -268,11 +269,12 @@ queries follow, unless otherwise specified below, what is specified for
        8.  If the response (if any) contains a [Referral] covering the NS name
            server name then repeat *AAAA Query* as was done with the *A Query*
            above.
-       9.  If the response (if any) contains the following then update the
-           *Auth Addr Records In Child* set with the IP address(es) for the NS
-           name server name.
-           * An AAAA RRset with the NS name server name as owner name in the
-             answer section.
+       9.  If the response (if any) contains the following then for each
+           unique AAAA record extract owner name and IP address in [RDATA],
+           create a name/IP pair and add that to the *Auth Addr Records In Child*
+           set.
+           * An AAAA RRset in the answer section where owner name matches the
+             original query name.
            * An [RCODE Name] of "NoError".
            * The AA flag is set.
        10. If the *Auth Addr Records In Child* set does not contain any name/IP
@@ -285,25 +287,26 @@ queries follow, unless otherwise specified below, what is specified for
 12. If the *Child Zone NS* set is empty then output *[CS05_CHILD_ZONE_LAME]* with
     the IP addresses from the *Child NS IPs* set and exit these procedures.
 
-13. If the *Delegation ID NS* set is non-empty then for each name server name in
-    the set do:
-    1. Extract all name/IP pairs in the set with that name server name
-       ("Parent Glue").
-    2. If no name/IP pairs were extracted, then go to next name server name in
-       the set.
-    3. Extract all name/IP pairs in the *Auth Addr Records In Child* set
-       ("Child Auth").
-    4. If *Child Auth* is empty, then output *[CS05_ID_ADDR_MISSING]* with the
-       the name server name.
+13. If the *Delegation ID NS* set is non-empty then for each name server name
+    ("NS Name") in the set do:
+    1. Extract all name/IP pairs in the set with name *NS Name* ("Parent Glue").
+    2. If no name/IP pairs were extracted, then go to next *NS Name* in the set.
+    3. Extract all name/IP pairs with name *NS Name* in the
+       *Auth Addr Records In Child* ("Child Auth").
+    4. If *Child Auth* is empty, then output *[CS05_ID_ADDR_MISSING]* with
+       *NS Name*.
     5. Else, if any of the name/IP pairs in *Parent Glue* set are missing in the
-       *Child Auth* set then output *[CS05_ID_ADDR_MISMATCH]* with the name
-       server name, the IP addresses extracted from *Parent Glue* and the IP
-       addresses extracted from *Child Auth*.
+       *Child Auth* set then output *[CS05_ID_ADDR_MISMATCH]* with *NS Name*,
+       the IP addresses extracted from *Parent Glue* for *NS Name* and the IP
+       addresses extracted from *Child Auth* for *NS Name*.
     6. Else, if the *Parent Glue* set is not equal to the *Child Auth* set then
-       output *[CS05_EXTRA_ADDR_CHILD]* with the list of name/IP pairs from
-       the *Child Auth* set not present in the *Parent Glue* set.
+       add name/IP pairs from the *Child Auth* set not present in the
+       *Parent Glue* set to the *Extra Address Child* set.
 
-14. If the the *Delegation OOD NS* set is non-empty then for each name server
+14. If the *Extra Address Child* set is non-empty, then output
+    *[CS05_EXTRA_ADDR_CHILD]* with the list of name/IP pairs from the set.
+
+15. If the the *Delegation OOD NS* set is non-empty then for each name server
     name in the set do:
     1. Extract all name/IP pairs with that name server name.
     2. Go to next name server name if there are no name/IP pairs for the name.
@@ -318,7 +321,7 @@ queries follow, unless otherwise specified below, what is specified for
           from the extracted name/IP pairs and the the addresses from the
           lookup.
 
-15. If this test procedure has not outputted any message tag then output
+16. If this test procedure has not outputted any message tag then output
     *[CS05_NO_MISMATCH_GLUE_ZONE]*.
 
 
