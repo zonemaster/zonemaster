@@ -2,7 +2,7 @@ $ORIGIN consistency05.xa.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2026070102      ; serial
+                2026072400      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -114,7 +114,7 @@ ns1     AAAA    fda1:b2:c3:0:127:14:5:31
 ns2     A       127.14.5.32
 ns2     AAAA    fda1:b2:c3:0:127:14:5:32
 
-$ORIGIN ib-addr-mismatch-1.consistency05.xa.
+$ORIGIN id-addr-mismatch-1.consistency05.xa.
 @	NS	ns1
 @       NS      ns2
 ns1	A	127.14.5.39
@@ -122,7 +122,7 @@ ns1	AAAA	fda1:b2:c3:0:127:14:5:39
 ns2     A       127.14.5.32
 ns2     AAAA    fda1:b2:c3:0:127:14:5:32
 
-$ORIGIN ib-addr-mismatch-2.consistency05.xa.
+$ORIGIN id-addr-mismatch-2.consistency05.xa.
 @      NS      ns1
 @      NS      ns2
 ns1    A       127.14.5.31
@@ -130,7 +130,7 @@ ns1    AAAA    fda1:b2:c3:0:127:14:5:31
 ns2    A       127.14.5.32
 ns2    AAAA    fda1:b2:c3:0:127:14:5:32
 
-$ORIGIN ib-addr-mismatch-3.consistency05.xa.
+$ORIGIN id-addr-mismatch-3.consistency05.xa.
 @                       NS      ns1
 @                       NS      ns2
 ns1                     A       127.14.5.31
@@ -138,7 +138,7 @@ ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
 ns2                     A       127.14.5.32
 ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
 
-$ORIGIN ib-addr-mismatch-4.consistency05.xa.
+$ORIGIN id-addr-mismatch-4.consistency05.xa.
 @                       NS      ns1
 @                       NS      ns2
 ns1                     A       127.14.5.31
@@ -154,7 +154,7 @@ ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
 ns2                     A       127.14.5.32
 ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
 
-$ORIGIN oob-addr-mismatch.consistency05.xa.
+$ORIGIN ood-addr-mismatch.consistency05.xa.
 @                       NS      ns1
 @                       NS      ns2
 ns1                     A       127.14.5.31

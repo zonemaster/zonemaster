@@ -282,6 +282,9 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.14.5.39     | dedicated for addresses-match-8.consistency05.xa (parent) |
 | 127.14.5.41     | for child under parent                                    |
 | 127.14.5.42     | for child under parent                                    |
+| 127.14.5.53     | resolver with test case local hint file                   |
+| 127.14.5.61     | consistency05 dedicated root ns1                          |
+| 127.14.5.62     | consistency05 dedicated root ns2                          |
 | 127.14.6.0/24   | Consistency06 scenarios                                   |
 | 127.14.6.21     | ns1.consistency06.xa                                      |
 | 127.14.6.22     | ns2.consistency06.xa                                      |
