@@ -2,7 +2,7 @@ $ORIGIN addresses-match-9.consistency05.xa.
 $TTL 3600
 
 @       SOA     ns3.addresses-match-9.consistency05.xb. admin.mail.xa. (
-                2026070106      ; serial
+                2026072600      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -10,7 +10,7 @@ $TTL 3600
 
 @       NS      ns3.addresses-match-9.consistency05.xb.
 @       NS      ns4.addresses-match-9.consistency05.xb.
-@       NS      ns39.addresses-match-9.consistency05.xb.
+@       NS      ns89.addresses-match-9.consistency05.xb.
 
 @       TXT     "Text"
 

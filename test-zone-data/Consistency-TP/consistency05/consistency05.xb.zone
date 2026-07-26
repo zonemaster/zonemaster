@@ -2,7 +2,7 @@ $ORIGIN consistency05.xb.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2026072401      ; serial
+                2026072500      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -43,8 +43,8 @@ ns3      A       127.14.5.33
 ns3      AAAA    fda1:b2:c3:0:127:14:5:33
 ns4      A       127.14.5.34
 ns4      AAAA    fda1:b2:c3:0:127:14:5:34
-ns39     A       127.14.5.39
-ns39     AAAA    fda1:b2:c3:0:127:14:5:39
+ns89     A       127.14.5.89
+ns89     AAAA    fda1:b2:c3:0:127:14:5:89
 
 ns41.child.a.b      A       127.14.5.41
 ns41.child.a.b      AAAA    fda1:b2:c3:0:127:14:5:41
@@ -57,8 +57,8 @@ ns3      A       127.14.5.33
 ns3      AAAA    fda1:b2:c3:0:127:14:5:33
 ns4      A       127.14.5.34
 ns4      AAAA    fda1:b2:c3:0:127:14:5:34
-ns39     A       127.14.5.39
-ns39     AAAA    fda1:b2:c3:0:127:14:5:39
+ns89     A       127.14.5.89
+ns89     AAAA    fda1:b2:c3:0:127:14:5:89
 
 ns41.child      A       127.14.5.41
 ns41.child      AAAA    fda1:b2:c3:0:127:14:5:41

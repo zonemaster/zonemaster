@@ -2,7 +2,7 @@ $ORIGIN .
 $TTL 3600
 
 @       SOA     ns39.xb. admin.mail.xa. (
-                2026070110      ; serial
+                2026072500      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -11,8 +11,8 @@ $TTL 3600
 @       NS      ns39.xb.
 @       TXT     "Text"
 
-ns39.xb.     A       127.14.5.39
-ns39.xb.     AAAA    fda1:b2:c3:0:127:14:5:39
+ns89.xb.     A       127.14.5.89
+ns89.xb.     AAAA    fda1:b2:c3:0:127:14:5:89
 
 ; CoreDNS does not recognize a wildcard label at the second level. In this case
 ; we control what TLDs are used, or else we have to expand the list of records

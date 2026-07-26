@@ -279,7 +279,7 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.14.5.33     | for scenarios                                             |
 | 127.14.5.34     | for scenarios                                             |
 | 127.14.5.35     | for scenarios                                             |
-| 127.14.5.39     | dedicated for addresses-match-8.consistency05.xa (parent) |
+| 127.14.5.39     | for scenarios                                             |
 | 127.14.5.41     | for child under parent                                    |
 | 127.14.5.42     | for child under parent                                    |
 | 127.14.5.43     | for child under parent                                    |
@@ -290,6 +290,7 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.14.5.64     | test case broken root ns2 (BROKEN-ROOT)                   |
 | 127.14.5.65     | test case root ns2 (ROOT-MISSING-GLUE-UNDEL-1)            |
 | 127.14.5.66     | test case root ns2 (ROOT-MISSING-GLUE-UNDEL-1)            |
+| 127.14.5.89     | dedicated for addresses-match-8.consistency05.xa (parent) |
 | 127.14.6.0/24   | Consistency06 scenarios                                   |
 | 127.14.6.21     | ns1.consistency06.xa                                      |
 | 127.14.6.22     | ns2.consistency06.xa                                      |

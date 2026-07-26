@@ -1,10 +1,10 @@
-$ORIGIN child.inconsistent-delegation-2.consistency05.xa
+$ORIGIN child.inconsistent-delegation-2.consistency05.xa.
 
 
 $TTL 3600
 
 @       SOA     ns1 admin.mail.xa. (
-                2026072403      ; serial
+                2026072600      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire

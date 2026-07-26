@@ -2,7 +2,7 @@ $ORIGIN consistency05.xa.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2026072404      ; serial
+                2026072600      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -93,12 +93,12 @@ ns2     AAAA    fda1:b2:c3:0:127:14:5:32
 $ORIGIN addresses-match-8.consistency05.xa.
 @       NS      ns3.addresses-match-8.consistency05.xb.
 @       NS      ns4.addresses-match-8.consistency05.xb.
-@       NS      ns39.addresses-match-8.consistency05.xb.
+@       NS      ns89.addresses-match-8.consistency05.xb.
 
 $ORIGIN addresses-match-9.consistency05.xa.
 @       NS      ns3.addresses-match-9.consistency05.xb.
 @       NS      ns4.addresses-match-9.consistency05.xb.
-@       NS      ns39.addresses-match-9.consistency05.xb.
+@       NS      ns89.addresses-match-9.consistency05.xb.
 
 $ORIGIN child-zone-lame-1.consistency05.xa.
 @	NS	ns1
@@ -135,10 +135,10 @@ ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
 $ORIGIN id-addr-mismatch-1.consistency05.xa.
 @	NS	ns1
 @       NS      ns2
-ns1	A	127.14.5.39
-ns1	AAAA	fda1:b2:c3:0:127:14:5:39
-ns2     A       127.14.5.32
-ns2     AAAA    fda1:b2:c3:0:127:14:5:32
+ns1	A	127.14.5.31
+ns1	AAAA	fda1:b2:c3:0:127:14:5:31
+ns2     A       127.14.5.39               ; 127.14.5.32 in the zone
+ns2     AAAA    fda1:b2:c3:0:127:14:5:39  ; Matching IPv4
 
 $ORIGIN id-addr-mismatch-2.consistency05.xa.
 @      NS      ns1
