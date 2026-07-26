@@ -367,7 +367,7 @@ Delegation from parent zone is inconsistent.
     * ns1, ns2 and n3
     * Child is consistent
 
-### MISSING-GLUE-FOR-NS-1 !!NEW!!
+### MISSING-GLUE-FOR-NS-1
 Delegation lacks mandatory glue for ns41.
 
 * Zone: child.missing-glue-for-ns-1.consistency05.xa
@@ -376,7 +376,7 @@ Delegation lacks mandatory glue for ns41.
   * Delegation lacks glue for ns41.
 
 
-### MISSING-GLUE-FOR-NS-2 !!NEW!!
+### MISSING-GLUE-FOR-NS-2
 The child zone is undelegated with undelegated data. Undelegated data lacks
 mandatory glue for ns1.
 
@@ -390,14 +390,14 @@ mandatory glue for ns1.
     * ns2.missing-glue-for-ns-2.consistency05.xa/IPv4
     * ns2.missing-glue-for-ns-2.consistency05.xa/IPv6
 
-### NO-NS-ADDR-CHILD-1 !!NEW!!
+### NO-NS-ADDR-CHILD-1
 Lame. There are no IP addresses to the child zone
 
 * Zone: child.no-ns-addr-child-1.consistency05.xa
   * Delegation is missing glue.
   * Child zone does not have to be created.
 
-### NO-NS-ADDR-CHILD-2 !!NEW!!
+### NO-NS-ADDR-CHILD-2
 Lame. There are no IP addresses to the child zone
 
 * Zone: child.no-ns-addr-child-2.consistency05.xa
@@ -462,10 +462,8 @@ Incomplete hintfile (missing address records) but the default root zone.
   * Hint file misses the address records for ns1.
 
 
-
-
 [Consistency05]:                                                  ../../tests/Consistency-TP/consistency05.md
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
-[Test scenario README file]:                                          ../README.md
+[Test scenario README file]:                                      ../README.md
 [Zone setup for test scenarios]:                                  #zone-setup-for-test-scenarios
 
