@@ -177,13 +177,13 @@ queries follow, unless otherwise specified below, what is specified for
        5. Else do:
           1. Extract the MX records from the response.
           2. For each MX record down case the (mail) exchange (domain name).
-          2. For each MX record extract the RDATA as a text string of space
+          3. For each MX record extract the RDATA as a text string of space
              separated preference (integer) and exchange, i.e. in the same format
              as MX RDATA is shown in presentation format.
-          2. Create a sorted list of the RDATA text strings where primary sort
+          4. Create a sorted list of the RDATA text strings where primary sort
              key is the preference (ascending order) and the secondary sort key
              is the exchange (ascending order).
-          3. Add the name server IP and the sorted list to the *MX RDATA Lists*
+          5. Add the name server IP and the sorted list to the *MX RDATA Lists*
              set.
 
 7.  If the *No Response MX Query* set is non-empty, then output
