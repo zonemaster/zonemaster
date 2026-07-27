@@ -91,25 +91,25 @@ correct DNS response for an authoritative name server.
 
 ## Summary
 
-| Message Tag                 | Level   | Arguments             | Message ID for message tag                                                                         |
-|:----------------------------|:--------|:----------------------|:---------------------------------------------------------------------------------------------------|
-| Z09_ARPA_EMAIL_DOMAIN       | NOTICE  |                       | The zone is in the ARPA tree and has an unexpected MX RRset (non-Null MX).                         |
-| Z09_INCONSISTENT_MX         | WARNING |                       | Some name servers return an MX RRset while others return none.                                     |
-| Z09_INCONSISTENT_MX_DATA    | WARNING |                       | The MX RRset data is inconsistent between the name servers.                                        |
-| Z09_MISSING_MAIL_EXCHANGE   | NOTICE  | ns_list               | The child zone has no mail exchange (no MX), as returned by name servers "{ns_list}".              |
-| Z09_MX_DATA                 | INFO    | ns_list, mxrdata_list | The MX RDATA in the MX RRset, "{mxrdata_list}", as returned by name servers "{ns_list}".           |
-| Z09_MX_FOUND                | INFO    | ns_list               | MX RRset was returned by name servers "{ns_list}".                                                 |
-| Z09_NON_AUTH_MX_RESPONSE    | WARNING | ns_list               | Non-authoritative response on MX query from name servers "{ns_list}".                              |
-| Z09_NO_MX_FOUND             | INFO    | ns_list               | No MX RRset was returned by name servers "{ns_list}".                                              |
-| Z09_NO_MX_FOUND_OR_EXPECTED | INFO    |                       | MX RRset was neither found nor expected for the zone.                                              |
-| Z09_NO_SERVERS_MX_RESPONSE  | WARNING |                       | No server responds to MX query.                                                                    |
-| Z09_NO_RESPONSE_MX_QUERY    | WARNING | ns_list               | No response on MX query from name servers "{ns_list}".                                             |
-| Z09_NULL_MX_NON_ZERO_PREF   | NOTICE  |                       | The zone has a Null MX with non-zero preference.                                                   |
-| Z09_NULL_MX_WITH_OTHER_MX   | WARNING |                       | The zone has a Null MX record mixed with other MX records.                                         |
-| Z09_ROOT_EMAIL_DOMAIN       | NOTICE  |                       | Root zone with an unexpected MX RRset (non-Null MX).                                               |
-| Z09_TLD_EMAIL_DOMAIN        | NOTICE  |                       | The zone is a TLD and has an unexpected MX RRset (non-Null MX).                                    |
+| Message Tag                 | Level   | Arguments             | Message ID for message tag                                                                        |
+|:----------------------------|:--------|:----------------------|:--------------------------------------------------------------------------------------------------|
+| Z09_ARPA_EMAIL_DOMAIN       | NOTICE  |                       | The zone is in the ARPA tree and has an unexpected MX RRset (non-Null MX).                        |
+| Z09_INCONSISTENT_MX         | WARNING |                       | Some name servers return an MX RRset while others return none.                                    |
+| Z09_INCONSISTENT_MX_DATA    | WARNING |                       | The MX RRset data is inconsistent between the name servers.                                       |
+| Z09_MISSING_MAIL_EXCHANGE   | NOTICE  | ns_list               | The child zone has no mail exchange (no MX), as returned by name servers "{ns_list}".             |
+| Z09_MX_DATA                 | INFO    | ns_list, mxrdata_list | The MX RDATA in the MX RRset, "{mxrdata_list}", as returned by name servers "{ns_list}".          |
+| Z09_MX_FOUND                | INFO    | ns_list               | MX RRset was returned by name servers "{ns_list}".                                                |
+| Z09_NON_AUTH_MX_RESPONSE    | WARNING | ns_list               | Non-authoritative response on MX query from name servers "{ns_list}".                             |
+| Z09_NO_MX_FOUND             | INFO    | ns_list               | No MX RRset was returned by name servers "{ns_list}".                                             |
+| Z09_NO_MX_FOUND_OR_EXPECTED | INFO    |                       | MX RRset was neither found nor expected for the zone.                                             |
+| Z09_NO_SERVERS_MX_RESPONSE  | WARNING |                       | No server responds to MX query.                                                                   |
+| Z09_NO_RESPONSE_MX_QUERY    | WARNING | ns_list               | No response on MX query from name servers "{ns_list}".                                            |
+| Z09_NULL_MX_NON_ZERO_PREF   | NOTICE  |                       | The zone has a Null-Type MX record with non-zero preference.                                      |
+| Z09_NULL_MX_WITH_OTHER_MX   | WARNING |                       | The zone has a Null MX or a Null-Type MX record mixed with other MX records.                      |
+| Z09_ROOT_EMAIL_DOMAIN       | NOTICE  |                       | Root zone with an unexpected MX RRset (non-Null MX).                                              |
+| Z09_TLD_EMAIL_DOMAIN        | NOTICE  |                       | The zone is a TLD and has an unexpected MX RRset (non-Null MX).                                   |
 | Z09_UNEXPECTED_RCODE_MX     | WARNING | ns_list, rcode        | Unexpected RCODE name ({rcode}) in response to MX query. Responses from name servers "{ns_list}". |
-| Z09_VALID_NULL_MX           | INFO    |                       | The zone has a valid Null MX record as the only MX record.                                         |
+| Z09_VALID_NULL_MX           | INFO    |                       | The zone has a valid Null MX record as the only MX record.                                        |
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -214,22 +214,20 @@ queries follow, unless otherwise specified below, what is specified for
        1. Output *[Z09_INCONSISTENT_MX_DATA]*.
     2. Else do:
        1. Extract the unique list of RDATA from *MX RDATA Lists*.
-       2. If any of the (mail) exchanges in the list is a [Null MX] RDATA then
+       2. If any of the MX in the list is a [Null MX] or a [Null-Type MX], then
           do:
           1. If there are more than one item in the list, then output
              *[Z09_NULL_MX_WITH_OTHER_MX]*.
-          2. If the preference of the [Null MX] RDATA in the list is non-zero
-             then output *[Z09_NULL_MX_NON_ZERO_PREF]*.
-          3. Output *[Z09_VALID_NULL_MX]* unless at least one of
-             *[Z09_NULL_MX_WITH_OTHER_MX]* and *[Z09_NULL_MX_NON_ZERO_PREF]* was
-             outputted.
-       3. If *Child Zone* is a [TLD] with [non-Null MX][Null MX] RDATA in the
-          list then output *[Z09_TLD_EMAIL_DOMAIN]*.
-       4. If *Child Zone* is the root zone with [non-Null MX][Null MX] RDATA in
-          the list then output *[Z09_ROOT_EMAIL_DOMAIN]*.
-       5. If *Child Zone* is a zone in the ARPA tree, not .ARPA itself, with
-          [non-Null MX][Null MX] RDATA in the list then output
-          *[Z09_ARPA_EMAIL_DOMAIN]*.
+          2. Else, if the preference in the MX RDATA in the list is non-zero
+             ([Null-Type MX]) then output *[Z09_NULL_MX_NON_ZERO_PREF]*.
+          3. Else, Output *[Z09_VALID_NULL_MX]*.
+       3. If at least one MX record in the list is neither a [Null MX] nor a
+          [Null-Type MX] then do:
+          1. If *Child Zone* is a [TLD] then output *[Z09_TLD_EMAIL_DOMAIN]*.
+          2. If *Child Zone* is the root zone then output
+             *[Z09_ROOT_EMAIL_DOMAIN]*.
+          3. If *Child Zone* is a zone in the ARPA tree, not .ARPA itself, then
+             output *[Z09_ARPA_EMAIL_DOMAIN]*.
 
 13. If the *No MX RRset* set is non-empty and the *MX RDATA Lists* set is empty
     then:
@@ -269,15 +267,18 @@ None.
 
 ## Terminology
 
-The term "Null MX" is used for an MX record where the preference is 0 and the
-(mail) exchange is "." as defined in [RFC 7505] with the specific restrictions
-given in [section 3][RFC 7505#section-3] of that RFC.
+* "Null MX" - The term is used for an MX record where the preference is 0 and the
+  (mail) exchange is "." as defined in [RFC 7505] with the specific restrictions
+  given in [section 3][RFC 7505#section-3] of that RFC.
 
-The term "TLD" is used for "Top Level Domain", i.e. a zone whose name consists
-of a single label (ignoring the empty label after the final dot).
+* "Null-Type MX" - The term is used for an invalid Null MX where the mail
+  exchange is "." as in Null MX but the preference is non-zero. See [Null MX].
 
-The term "Email Domain" is used for the domain name at right of the at-sign ("@")
-in an email address.
+* "TLD" - The term is used for "Top Level Domain", i.e. a zone whose name
+  consists of a single label (ignoring the empty label after the final dot).
+
+* "Email Domain" - The term is used for the domain name at right of the at-sign
+  ("@") in an email address.
 
 [Argument list]:                              ../ArgumentsForTestCaseMessages.md
 [Connectivity01]:                             ../Connectivity-TP/connectivity01.md
