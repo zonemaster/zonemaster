@@ -78,6 +78,7 @@ working name server for *Child Zone* then this test case will report that.
 | CS05_INCONSISTENT_DELEGATION   | WARNING  |                                           | The delegation is inconsistent between the parent nameservers.                                                                                             |
 | CS05_MISSING_GLUE_FOR_NS       | WARNING  | nsname, ns_list                           | Expected glue record for {nsname} is missing in the delegation. Found in the parent name servers "{ns_list}".                                              |
 | CS05_MISSING_GLUE_FOR_NS_UNDEL | WARNING  | nsname                                    | IP address (glue record) is expected but missing for {nsname} in the undelegated data.                                                                     |
+| CS05_MISSING_GLUE_FOR_ROOT_NS  | WARNING  | nsname                                    | IP address (glue record) is expected but missing for {nsname} in the undelegated data or hint data for root.                                               |
 | CS05_NO_MISMATCH_GLUE_ZONE     | INFO     |                                           | There is no mismatch between glue in delegation and authoritative data in the child zone.                                                                  |
 | CS05_NO_NS_ADDR_CHILD          | CRITICAL |                                           | Child zone cannot be tested since there are no name server IP addresses for that zone.                                                                     |
 | CS05_OOD_ADDR_MISMATCH         | WARNING  | nsname, ns_ip_list_ref, ns_ip_list_lookup | For name server {nsname} the glue record in the delegation "{ns_ip_list_glue}" is different from the address record in the child zone "{ns_ip_list_zone}". |
@@ -188,8 +189,8 @@ queries follow, unless otherwise specified below, what is specified for
       came.
       2. Output *[CS05_INCONSISTENT_DELEGATION]*.
 
-7.  If the *Undelegated Data* set is non-empty then for each name server name
-    in the set do:
+7.  If *Child Zone* is not the root zone (".") and the *Undelegated Data* set is
+    non-empty then for each name server name in the set do:
     1. If the name server name is [In-Domain] then do:
        1. If no glue (address) data is present for the name server name, then
           output *[CS05_MISSING_GLUE_FOR_NS_UNDEL]* with the name server name.
@@ -201,23 +202,23 @@ queries follow, unless otherwise specified below, what is specified for
        2. Else, add the name and IP address or addresses as name/IP pairs to the
           *Delegation OOD NS* set.
 
-8. If *Child Zone* is the root zone (".") and the *Undelegated Data* set is
-    empty, then do:
+8. If *Child Zone* is the root zone (".") then do:
+
+    *Note:* For the root zone all NS are [in-domain] by definition.
 
     1. Fetch the root hint information using method [Get-Del-NS-Names-and-IPs]
        ("Hint NS").
+
+    *Note:* If *Undelegated Data* is true, then *Hint NS* will be identical to
+    that data, else it will be identical to the root hint data.
+
     2. The information in *Hint NS* is assumed to be as single name server names
        ("name") or as name/IP pairs.
-    3. The hint information is always [In-Domain] by definition.
     4. For each element (name or name/IP pair) in the *Hint NS* set do:
-       1. If element is a name and not a name/IP pair then add the name server
-          IP address and the name to the *Missing Glue* set.
-       2. Add the element (name or name/IP pair) to the *Delegation ID NS* set.
+       1. If element is a name and not a name/IP pair then output
+          *[CS05_MISSING_GLUE_FOR_ROOT_NS]* with the name server name.
+       2. Else, add the element (name/IP pair) to the *Delegation ID NS* set.
           1. Do not create duplicates in the set.
-          2. Elements just consiting of a name is not added if there already is a
-             name/IP pair with the same name.
-          3. A name/IP pair will overwrite an element consisting just of of the
-             same name.
 
 9. If the *Missing Glue* set is non-empty, then for each name server name output
     *[CS05_MISSING_GLUE_FOR_NS]* with the name server name and the list of parent
@@ -419,6 +420,7 @@ None
 [CS05_INCONSISTENT_DELEGATION]:            #summary
 [CS05_MISSING_GLUE_FOR_NS]:                #summary
 [CS05_MISSING_GLUE_FOR_NS_UNDEL]:          #summary
+[CS05_MISSING_GLUE_FOR_ROOT_NS]:           #summary
 [CS05_NO_MISMATCH_GLUE_ZONE]:              #summary
 [CS05_NO_NS_ADDR_CHILD]:                   #summary
 [CS05_OOD_ADDR_MISMATCH]:                  #summary
