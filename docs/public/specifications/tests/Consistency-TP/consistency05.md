@@ -26,9 +26,8 @@ found in the [referral] sent from the name servers of the parent zone.
 
 If the name server name in the NS record is [in-domain] there must be at least
 one [glue record] in the delegation and in the [referral]. For each such glue
-record the equivalent [address record] must exist as an athoritative record in
-the child zone, or below, and the the two (glue record and authoritative record)
-must have the same [IP address].
+record the equivalent [address record] must exist as an authoritative record in
+the child zone, or below, and both records must have the same [IP address].
 
 The other alternative is that the name server name is [Out-Of-Domain], and in
 that case there can be a [glue record], and it must also match an address
@@ -40,7 +39,7 @@ authoritative data.
 
 This test case will test the following:
 
-* The the [referral] (delegation) is identical on all parent name servers.
+* The [referral] (delegation) is identical on all parent name servers.
 * That the [referral] (delegation) contains at least one [glue record] for each
   [in-domain] name server name.
 * That each [glue record] matches an authoritative [address record] with the
@@ -56,7 +55,7 @@ This test case will test the following:
 It is assumed that *Child Zone* is tested and reported by [Connectivity01]. This
 test case will just ignore non-responsive name servers or name servers not giving
 a correct DNS response for an authoritative name server. However, if there is no
-working name sever for *Child Zone* then this test case will report that.
+working name server for *Child Zone* then this test case will report that.
 
 
 ## Inputs
@@ -163,8 +162,8 @@ queries follow, unless otherwise specified below, what is specified for
     the set do:
     1. For each element (name or name/IP pair) in the set do:
        1. If the name in the element is [In-Domain] then do:
-          1. If element is a name and not a name/IP pair then add the name server
-             IP address and the name to the *Missing Glue* set.
+          1. If element is a name and not a name/IP pair then add the parent name
+             server IP address and the name to the *Missing Glue* set.
           2. Add the element (name or name/IP pair) to the *Delegation ID NS*
              set.
              1. Do not create duplicates in the set.
@@ -231,7 +230,7 @@ queries follow, unless otherwise specified below, what is specified for
 
     1. [Send] *NS Query* over UDP to the name server IP and fetch the response
        (if any).
-    2. If the response (if any) contains the following add the name server
+    2. If the response (if any) meets all of the following criteria, add the name server
        IP and the name server names extracted from the NS RRset to the
        *Child Zone NS* set:
        * An NS RRset of *Child Zone* in the answer section.
@@ -239,7 +238,7 @@ queries follow, unless otherwise specified below, what is specified for
        * The AA flag is set.
     3. Else, go to the next name server IP.
     4. Create a unique set of [In-Domain] name server names:
-       1. Extract the [In-Domain] NS name server namns from the NS RRset
+       1. Extract the [In-Domain] NS name server names from the NS RRset
           extracted above.
        2. Extract the name server names from *Delegation ID NS*.
     5. For each [In-Domain] name server name do:
@@ -251,11 +250,11 @@ queries follow, unless otherwise specified below, what is specified for
            server name then repeat *A Query* (recursively, if needed) to the
            name servers in the referral until an A RRset is returned or the
            querying is stopped by e.g. NXDOMAIN or no response.
-           1. If an A RRset is return, then use it in next step as if was a
+           1. If an A RRset is returned, then use it in the next step as if was a
               response on the first query.
        4.  If any query was not responded to or returned an [RCODE Name] not
            being "NoError" then go to next NS name server name.
-       5.  If the response (if any) contains the following then for each
+       5.  If the response (if any) meets all of the the following criteria, then for each
            unique A record extract owner name and IP address in [RDATA], create
            a name/IP pair and add that to the *Auth Addr Records In Child* set.
            * An A RRset in the answer section where owner name matches the
@@ -269,7 +268,7 @@ queries follow, unless otherwise specified below, what is specified for
        8.  If the response (if any) contains a [Referral] covering the NS name
            server name then repeat *AAAA Query* as was done with the *A Query*
            above.
-       9.  If the response (if any) contains the following then for each
+       9.  If the response (if any) meets all of the the following criteria, then for each
            unique AAAA record extract owner name and IP address in [RDATA],
            create a name/IP pair and add that to the *Auth Addr Records In Child*
            set.
@@ -363,7 +362,7 @@ None
   specification for DNS queries in [DNS Query and Response Defaults][DNS Query].
 
 * "Glue Record" - [Address records][address record] in the [Referral]
-  whose owner name is equal to the [RDATA] in one of the NS record in the same
+  whose owner name is equal to the [RDATA] in one of the NS records in the same
   referral. The term is used as defined in [RFC 9499][RFC 9499#section7],
   section 7.
 
