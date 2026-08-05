@@ -255,7 +255,7 @@ queries follow, unless otherwise specified below, what is specified for
               response on the first query.
        4.  If any query was not responded to or returned an [RCODE Name] not
            being "NoError" then go to next NS name server name.
-       5.  If the response (if any) meets all of the the following criteria, then for each
+       5.  If the response (if any) meets all of the following criteria, then for each
            unique A record extract owner name and IP address in [RDATA], create
            a name/IP pair and add that to the *Auth Addr Records In Child* set.
            * An A RRset in the answer section where owner name matches the
@@ -269,7 +269,7 @@ queries follow, unless otherwise specified below, what is specified for
        8.  If the response (if any) contains a [Referral] covering the NS name
            server name then repeat *AAAA Query* as was done with the *A Query*
            above.
-       9.  If the response (if any) meets all of the the following criteria, then for each
+       9.  If the response (if any) meets all of the following criteria, then for each
            unique AAAA record extract owner name and IP address in [RDATA],
            create a name/IP pair and add that to the *Auth Addr Records In Child*
            set.
@@ -300,7 +300,7 @@ queries follow, unless otherwise specified below, what is specified for
 14. If the *Extra Address Child* set is non-empty, then output
     *[CS05_EXTRA_ADDR_CHILD]* with the list of name/IP pairs from the set.
 
-15. If the the *Delegation OOD NS* set is non-empty then for each name server
+15. If the *Delegation OOD NS* set is non-empty then for each name server
     name in the set do:
     1. Extract all name/IP pairs with that name server name.
     2. Go to next name server name if there are no name/IP pairs for the name.
@@ -312,7 +312,7 @@ queries follow, unless otherwise specified below, what is specified for
           name/IP pairs.
        2. If the comparison did not give an exact match, then output
           *[CS05_OOD_ADDR_MISMATCH]* with the name server name, the address(es)
-          from the extracted name/IP pairs and the the addresses from the
+          from the extracted name/IP pairs and the addresses from the
           lookup.
 
 16. If this test procedure has not outputted any message tag then output
