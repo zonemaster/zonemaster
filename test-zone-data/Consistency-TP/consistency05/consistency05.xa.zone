@@ -2,7 +2,7 @@ $ORIGIN consistency05.xa.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2026080501      ; serial
+                2026080503      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -182,13 +182,21 @@ ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
 
 ; missing-glue-for-ns-2.consistency05.xa. ; not delegated
 
+$ORIGIN no-ns-addr-child-1.consistency05.xa.
+@                       NS      ns1
+@                       NS      ns2
+ns1                     A       127.14.5.31
+ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2                     A       127.14.5.32
+ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
 
-;  NO-NS-ADDR-CHILD-1 TBD
-
-
-;  NO-NS-ADDR-CHILD-2 TBD
-
-
+$ORIGIN no-ns-addr-child-2.consistency05.xa.
+@                       NS      ns1
+@                       NS      ns2
+ns1                     A       127.14.5.31
+ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2                     A       127.14.5.32
+ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
 
 $ORIGIN ood-addr-mismatch.consistency05.xa.
 @                       NS      ns1
@@ -197,16 +205,4 @@ ns1                     A       127.14.5.31
 ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
 ns2                     A       127.14.5.32
 ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
-
-
-; ROOT-MATCH-1  TBD
-
-
-; ROOT-MATCH-2  TBD
-
-
-; ROOT-MISSING-GLUE-UNDEL-1  TBD
-
-
-; Z-ROOT-INCOMPLETE-HINT  TBD
 

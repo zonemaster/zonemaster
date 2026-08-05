@@ -95,6 +95,12 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.04 INFO     ADDRESSES_MATCH  
 ```
+* Undelegated data:
+  * ns3.addr-match-del-undel-1.consistency05.xa/127.14.5.33
+  * ns3.addr-match-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:33
+  * ns4.addr-match-del-undel-1.consistency05.xa/127.14.5.34
+  * ns4.addr-match-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:34
+
 --> Not OK
 
 | Scenario name             | Mandatory message tag                           | Forbidden message tags |
@@ -105,6 +111,10 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.04 INFO     ADDRESSES_MATCH  
 ```
+* Undelegated data:
+  * ns3.addr-match-del-undel-2.consistency05.xb
+  * ns4.addr-match-del-undel-2.consistency05.xb
+
 --> Not OK
 
 | Scenario name             | Mandatory message tag                           | Forbidden message tags |
@@ -115,6 +125,12 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.04 INFO     ADDRESSES_MATCH  
 ```
+* Undelegated data:
+  * ns1.addr-match-no-del-undel-1.consistency05.xa/127.14.5.31
+  * ns1.addr-match-no-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:31
+  * ns2.addr-match-no-del-undel-1.consistency05.xa/127.14.5.32
+  * ns2.addr-match-no-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:32
+
 --> Not OK
 
 | Scenario name             | Mandatory message tag                           | Forbidden message tags |
@@ -125,6 +141,10 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.05 INFO     ADDRESSES_MATCH  
 ```
+* Undelegated data:
+  * ns3.addr-match-no-del-undel-2.consistency05.xb
+  * ns4.addr-match-no-del-undel-2.consistency05.xb
+
 --> Not OK
 
 | Scenario name             | Mandatory message tag                           | Forbidden message tags |
@@ -329,6 +349,12 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.05 NOTICE   EXTRA_ADDRESS_CHILD  ns_ip_list=ns1.missing-glue-for-ns-2.consistency05.xa./127.14.5.31;ns1.missing-glue-for-ns-2.consistency05.xa./fda1:b2:c3:0:127:14:5:31
 ```
+* Undelegated data:
+  * ns1.missing-glue-for-ns-2.consistency05.xa
+  * ns1.missing-glue-for-ns-2.consistency05.xa
+  * ns2.missing-glue-for-ns-2.consistency05.xa/127.14.5.32
+  * ns2.missing-glue-for-ns-2.consistency05.xa/fda1:b2:c3:0:127:14:5:32
+
 --> Not OK
 
 | Scenario name             | Mandatory message tag                           | Forbidden message tags |
@@ -381,6 +407,11 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.02 INFO     ADDRESSES_MATCH  
 ```
+* Undelegated data:
+  * ns1
+  * ns2/127.14.5.66
+  * ns2/fda1:b2:c3:0:127:14:5:66
+
 --> Not OK
 
 | Scenario name             | Mandatory message tag                           | Forbidden message tags |
@@ -391,6 +422,12 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.03 INFO     ADDRESSES_MATCH  
 ```
+* Undelegated data:
+  * ns1/127.14.5.63
+  * ns1/fda1:b2:c3:0:127:14:5:63
+  * ns2/127.14.5.64
+  * ns2/fda1:b2:c3:0:127:14:5:64
+
 --> Not OK
 
 | Scenario name             | Mandatory message tag                           | Forbidden message tags |

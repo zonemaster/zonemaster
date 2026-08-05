@@ -4,7 +4,7 @@ $ORIGIN .
 $TTL 3600
 
 @       SOA     ns1. admin.xa. (
-                2026072401      ; serial
+                2026080500      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -15,8 +15,8 @@ $TTL 3600
 
 ns1.      A      127.14.5.61
 ns1.      AAAA   fda1:b2:c3:0:127:14:5:61
-ns1.      A      127.14.5.62
-ns1.      AAAA   fda1:b2:c3:0:127:14:5:62
+ns2.      A      127.14.5.62
+ns3.      AAAA   fda1:b2:c3:0:127:14:5:62
 
 
 $ORIGIN consistency05.xa.                              ; Must end with "."
