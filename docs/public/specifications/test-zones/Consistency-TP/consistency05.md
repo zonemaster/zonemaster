@@ -57,6 +57,7 @@ combination. See [Consistency05] for the specification of the tags.
 * CS05_INCONSISTENT_DELEGATION
 * CS05_MISSING_GLUE_FOR_NS
 * CS05_MISSING_GLUE_FOR_NS_UNDEL
+* CS05_MISSING_GLUE_FOR_ROOT_NS
 * CS05_NO_MISMATCH_GLUE_ZONE
 * CS05_NO_NS_ADDR_CHILD
 * CS05_OOD_ADDR_MISMATCH
@@ -86,9 +87,8 @@ irrelevant to the test scenario and must be ignored.
 | CHILD-ZONE-LAME-3         | CS05_CHILD_ZONE_LAME                            | 2)                     |
 | EXTRA-ADDRESS-CHILD       | CS05_EXTRA_ADDR_CHILD                           | 2)                     |
 | ID-ADDR-MISMATCH-1        | CS05_ID_ADDR_MISMATCH                           | 2)                     |
-| ID-ADDR-MISMATCH-2        | CS05_ID_ADDR_MISMATCH                           | 2)                     |
-| ID-ADDR-MISMATCH-3        | CS05_ID_ADDR_MISMATCH                           | 2)                     |
 | ID-ADDR-MISSING-1         | CS05_ID_ADDR_MISSING                            | 2)                     |
+| ID-ADDR-MISSING-2         | CS05_ID_ADDR_MISSING                            | 2)                     |
 | INCONSISTENT-DELEGATION-1 | CS05_INCONSISTENT_DELEGATION, CS05_DELEGATION   | 2)                     |
 | INCONSISTENT-DELEGATION-2 | CS05_INCONSISTENT_DELEGATION, CS05_DELEGATION   | 2)                     |
 | MISSING-GLUE-FOR-NS-1     | CS05_MISSING_GLUE_FOR_NS                        | 2)                     |
@@ -97,9 +97,9 @@ irrelevant to the test scenario and must be ignored.
 | NO-NS-ADDR-CHILD-2        | CS05_NO_NS_ADDR_CHILD                           | 2)                     |
 | OOD-ADDR-MISMATCH         | CS05_OOD_ADDR_MISMATCH                          | 2)                     |
 | ROOT-MATCH-1              | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
-| ROOT-MISSING-GLUE-UNDEL-1 | CS05_MISSING_GLUE_FOR_NS_UNDEL                  | 2)                     |
+| ROOT-MISSING-GLUE-UNDEL-1 | CS05_MISSING_GLUE_FOR_ROOT_NS                   | 2)                     |
 | Z-ROOT-MATCH-1            | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
-| Z-ROOT-INCOMPLETE-HINT    | CS05_MISSING_GLUE_FOR_NS                        | 2)                     |
+| Z-ROOT-INCOMPLETE-HINT    | CS05_MISSING_GLUE_FOR_ROOT_NS                   | 2)                     |
 
 
 ## Zone setup for test scenarios
@@ -128,7 +128,7 @@ the specific scenario:
     (after `--ns`).
 
 ### ADDR-MATCH-DEL-UNDEL-1
-Also the "happy path". But there is an undelegated zone to be tested.
+This is a "happy path". But there is an undelegated zone to be tested.
 
 * Zone: addr-match-del-undel-1.consistency05.xa
   * Delegated zone on ns1 and ns2.
@@ -143,7 +143,7 @@ Also the "happy path". But there is an undelegated zone to be tested.
     * ns4.addr-match-del-undel-1.consistency05.xa/IPv6
 
 ### ADDR-MATCH-DEL-UNDEL-2
-Also the "happy path". But there is an undelegated zone to be tested, and its
+This is a "happy path". But there is an undelegated zone to be tested, and its
 NS are out-of-domain.
 
 * Zone: addr-match-del-undel-2.consistency05.xa
@@ -157,7 +157,7 @@ NS are out-of-domain.
     * ns4.addr-match-del-undel-2.consistency05.xb
 
 ### ADDR-MATCH-NO-DEL-UNDEL-1
-Also the "happy path". No delegation but there is an undelegated zone to be
+This is a "happy path". No delegation but there is an undelegated zone to be
 tested.
 
 * Zone: addr-match-no-del-undel-1.consistency05.xa
@@ -170,7 +170,7 @@ tested.
     * ns2.addr-match-no-del-undel-1.consistency05.xa/IPv6
 
 ### ADDR-MATCH-NO-DEL-UNDEL-2
-Also the "happy path". No delegation but there is an undelegated zone to be
+This is a "happy path". No delegation but there is an undelegated zone to be
 tested. NS are out-of-domain.
 
 * Zone: addr-match-no-del-undel-2.consistency05.xa
@@ -187,7 +187,7 @@ The "happy path". Everything is fine.
 * Zone: addresses-match-1.consistency05.xa
 
 ### ADDRESSES-MATCH-2
-Also the "happy path". Out-of-domain NS this time. And no glue.
+This is a "happy path". Out-of-domain NS this time. And no glue.
 
 * Zone: addresses-match-2.consistency05.xa
   * Both ns3 and ns4 are out-of-domain under the xb tree.
@@ -319,24 +319,6 @@ authoritative data from the zone.
   * Both ns2 servers (IP address sets from glue and child, respectively) must
     give identical DNS responses.
 
-### ID-ADDR-MISMATCH-2
-For one NS (in-domain), address records exist in the glue, but not in the
-authoritative data for the zone.
-
-* Zone: id-addr-mismatch-2.consistency05.xa
-  * ns2 is not defined in the zone, i.e. there are no address records for ns2
-    (IPv4 or IPv6) in the zone.
-
-### ID-ADDR-MISMATCH-3
-For ns2 (in-domain), there is no NS for ns2 and the glue does not match any
-address records in the zone. Furthermore, ns2 does not respond.
-
-* Zone: id-addr-mismatch-3.consistency05.xa
-  * Normal delegation to ns1 and ns2.
-  * There is no NS record for ns2 in the zone.
-  * No address records for ns2 (IPv4 or IPv6) in the zone.
-  * ns2 does not respond.
-
 ### ID-ADDR-MISSING-1
 Both NS are in-domain and exist with correct glue in the delegation, but there
 are no address records in the zone matching the name server names.
@@ -344,6 +326,16 @@ are no address records in the zone matching the name server names.
 * Zone: id-addr-missing-1.consistency05.xa
   * Neither ns1 nor ns2 are defined in the zone as address records.
   * The correct NS records are in the zone.
+
+### ID-ADDR-MISSING-2
+For ns2 (in-domain), there is no NS for ns2 and the glue does not match any
+address records in the zone. Furthermore, ns2 does not respond.
+
+* Zone: id-addr-missing-2.consistency05.xa
+  * Normal delegation to ns1 and ns2.
+  * There is no NS record for ns2 in the zone.
+  * No address records for ns2 (IPv4 or IPv6) in the zone.
+  * ns2 does not respond.
 
 ### INCONSISTENT-DELEGATION-1
 Delegation from parent zone is inconsistent.

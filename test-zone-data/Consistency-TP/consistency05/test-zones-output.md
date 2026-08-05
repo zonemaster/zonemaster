@@ -54,9 +54,8 @@ scenarios for other test cases.
 | CHILD-ZONE-LAME-3         | child-zone-lame-3.consistency05.xa               |           |             |
 | EXTRA-ADDRESS-CHILD       | extra-address-child.consistency05.xa             |           |             |
 | ID-ADDR-MISMATCH-1        | id-addr-mismatch-1.consistency05.xa              |           |             |
-| ID-ADDR-MISMATCH-2        | id-addr-mismatch-2.consistency05.xa              |           |             |
-| ID-ADDR-MISMATCH-3        | id-addr-mismatch-3.consistency05.xa              |           |             |
 | ID-ADDR-MISSING-1         | id-addr-missing-1.consistency05.xa               |           |             |
+| ID-ADDR-MISSING-2         | id-addr-mismatch-3.consistency05.xa              |           |             |
 | INCONSISTENT-DELEGATION-1 | child.inconsistent-delegation-1.consistency05.xa |           |             |
 | INCONSISTENT-DELEGATION-2 | child.inconsistent-delegation-2.consistency05.xa |           |             |
 | MISSING-GLUE-FOR-NS-1     | child.missing-glue-for-ns-1.consistency05.xa     |           |             |
@@ -273,31 +272,21 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 
 | Scenario name             | Mandatory message tag                           | Forbidden message tags |
 |:--------------------------|:------------------------------------------------|:-----------------------|
-| ID-ADDR-MISMATCH-2        | CS05_ID_ADDR_MISMATCH                           | 2)                     |
-```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info id-addr-mismatch-2.consistency05.xa
-   0.00 INFO     GLOBAL_VERSION  version=v9.0.0
-   0.21 ERROR    IN_BAILIWICK_ADDR_MISMATCH  parent_addresses=ns1.id-addr-mismatch-2.consistency05.xa./127.14.5.31;ns1.id-addr-mismatch-2.consistency05.xa./fda1:b2:c3:0:127:14:5:31;ns2.id-addr-mismatch-2.consistency05.xa./127.14.5.32;ns2.id-addr-mismatch-2.consistency05.xa./fda1:b2:c3:0:127:14:5:32; zone_addresses=ns1.id-addr-mismatch-2.consistency05.xa./127.14.5.31;ns1.id-addr-mismatch-2.consistency05.xa./fda1:b2:c3:0:127:14:5:31
-```
---> Not OK
-
-| Scenario name             | Mandatory message tag                           | Forbidden message tags |
-|:--------------------------|:------------------------------------------------|:-----------------------|
-| ID-ADDR-MISMATCH-3        | CS05_ID_ADDR_MISMATCH                           | 2)                     |
-```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info id-addr-mismatch-3.consistency05.xa
-   0.00 INFO     GLOBAL_VERSION  version=v9.0.0
-  20.10 ERROR    IN_BAILIWICK_ADDR_MISMATCH  parent_addresses=ns1.id-addr-mismatch-3.consistency05.xa./127.14.5.31;ns1.id-addr-mismatch-3.consistency05.xa./fda1:b2:c3:0:127:14:5:31;ns2.id-addr-mismatch-3.consistency05.xa./127.14.5.32;ns2.id-addr-mismatch-3.consistency05.xa./fda1:b2:c3:0:127:14:5:32; zone_addresses=ns1.id-addr-mismatch-3.consistency05.xa./127.14.5.31;ns1.id-addr-mismatch-3.consistency05.xa./fda1:b2:c3:0:127:14:5:31
-```
---> Not OK
-
-| Scenario name             | Mandatory message tag                           | Forbidden message tags |
-|:--------------------------|:------------------------------------------------|:-----------------------|
 | ID-ADDR-MISSING-1         | CS05_ID_ADDR_MISSING                            | 2)                     |
 ```
 $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info id-addr-missing-1.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.05 ERROR    CHILD_ZONE_LAME  
+```
+--> Not OK
+
+| Scenario name     | Mandatory message tag | Forbidden message tags |
+|:------------------|:----------------------|:-----------------------|
+| ID-ADDR-MISSING-2 | CS05_ID_ADDR_MISSING  | 2)                     |
+```
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info id-addr-missing-2.consistency05.xa
+   0.00 INFO     GLOBAL_VERSION  version=v9.0.0
+  20.10 ERROR    IN_BAILIWICK_ADDR_MISMATCH  parent_addresses=ns1.id-addr-missing-2.consistency05.xa./127.14.5.31;ns1.id-addr-missing-2.consistency05.xa./fda1:b2:c3:0:127:14:5:31;ns2.id-addr-missing-2.consistency05.xa./127.14.5.32;ns2.id-addr-missing-2.consistency05.xa./fda1:b2:c3:0:127:14:5:32; zone_addresses=ns1.id-addr-missing-2.consistency05.xa./127.14.5.31;ns1.id-addr-missing-2.consistency05.xa./fda1:b2:c3:0:127:14:5:31
 ```
 --> Not OK
 
