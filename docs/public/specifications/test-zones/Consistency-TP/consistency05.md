@@ -353,10 +353,10 @@ Delegation from parent zone is inconsistent.
 
 * Zone: child.inconsistent-delegation-2.consistency05.xa
   * Parent zone is inconsistent-delegation-2.consistency05.xa
-    * Parent ns1 delegates to child ns1 and ns2
-    * Parent ns2 delegates to child ns1 and ns3
+    * Parent ns1 delegates to child ns41 and ns42
+    * Parent ns2 delegates to child ns41 and ns43
   * Child ns are out-of-domain
-    * ns1, ns2 and n3
+    * ns41, ns42 and n43
     * Child is consistent
 
 ### MISSING-GLUE-FOR-NS-1
@@ -377,7 +377,6 @@ mandatory glue for ns1.
   * Undelegated zone on ns1 and ns2.
   * Glue is missing for ns1 in undelegated data.
   * Undelegated data:
-    * ns1.missing-glue-for-ns-2.consistency05.xa
     * ns1.missing-glue-for-ns-2.consistency05.xa
     * ns2.missing-glue-for-ns-2.consistency05.xa/IPv4
     * ns2.missing-glue-for-ns-2.consistency05.xa/IPv6
@@ -427,7 +426,6 @@ is missing.
 * Zone: . (root)
   * Dedicated hintfile not needed.
   * Undelegated data:
-    * ns1
     * ns1
     * ns2/IPv4
     * ns2/IPv6
