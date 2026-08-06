@@ -432,8 +432,9 @@ is missing.
 
 
 ### Z-ROOT-MATCH-1
-The hintfile loads a broken root zone. The tested root zone is the dedicated root
-zone via undelegated data, and all matches.
+The scenario specific hintfile loads a broken root zone (scenario specific). The
+tested root zone is the test case standard root zone via undelegated data, and
+all matches.
 
 * Zone: . (root)
   * Dedicated hintfile.
@@ -445,11 +446,13 @@ zone via undelegated data, and all matches.
 
 
 ### Z-ROOT-INCOMPLETE-HINT
-Incomplete hintfile (missing address records) but the default root zone.
+Incomplete scenario specific hintfile (missing address records) that loads the
+test case standard root zone.
 
 * Zone: . (root)
   * Dedicated hintfile.
-  * Hint file misses the address records for ns1.
+  * Hint file lacks the address records for ns1.
+  * Correct ns2 in the hintfile.
 
 
 [Consistency05]:                                                  ../../tests/Consistency-TP/consistency05.md

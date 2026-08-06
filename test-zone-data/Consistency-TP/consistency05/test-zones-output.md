@@ -418,15 +418,15 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | Z-ROOT-MATCH-1            | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info . --ns ns1/127.14.5.63 --ns ns1/fda1:b2:c3:0:127:14:5:63 --ns ns2/127.14.5.64 --ns ns2/fda1:b2:c3:0:127:14:5:64
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info . --ns ns1/127.14.5.61 --ns ns1/fda1:b2:c3:0:127:14:5:61 --ns ns2/127.14.5.62 --ns ns2/fda1:b2:c3:0:127:14:5:62
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.03 INFO     ADDRESSES_MATCH  
 ```
 * Undelegated data:
-  * ns1/127.14.5.63
-  * ns1/fda1:b2:c3:0:127:14:5:63
-  * ns2/127.14.5.64
-  * ns2/fda1:b2:c3:0:127:14:5:64
+  * ns1/127.14.5.61
+  * ns1/fda1:b2:c3:0:127:14:5:61
+  * ns2/127.14.5.62
+  * ns2/fda1:b2:c3:0:127:14:5:62
 
 --> Not OK
 
