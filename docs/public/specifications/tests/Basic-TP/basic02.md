@@ -51,7 +51,7 @@ B02_NO_WORKING_NS    | CRITICAL | domain        | There is no working name serve
 B02_NS_BROKEN        | ERROR    | ns            | Broken response from name server "{ns}" on an SOA query.
 B02_NS_NOT_AUTH      | ERROR    | ns            | Name server "{ns}" does not give an authoritative answer on an SOA query.
 B02_NS_NO_IP_ADDR    | ERROR    | nsname        | Name server "{nsname}" cannot be resolved into an IP address.
-B02_NS_NO_RESPONSE   | WARNING  | ns            | Name server "{ns}" does not respond to an SOA query.
+B02_NS_NO_RESPONSE   | WARNING  | ns            | No response received from name server "{ns}" to SOA query.
 B02_UNEXPECTED_RCODE | ERROR    | ns, rcode     | Name server "{ns}" responds with an unexpected RCODE name ("{rcode}") on an SOA query.
 
 The value in the Level column is the default severity level of the message. The
