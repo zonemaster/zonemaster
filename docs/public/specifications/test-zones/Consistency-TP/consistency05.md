@@ -356,7 +356,7 @@ Delegation from parent zone is inconsistent.
     * Parent ns1 delegates to child ns41 and ns42
     * Parent ns2 delegates to child ns41 and ns43
   * Child ns are out-of-domain
-    * ns41, ns42 and n43
+    * ns41, ns42 and ns43
     * Child is consistent
 
 ### MISSING-GLUE-FOR-NS-1
