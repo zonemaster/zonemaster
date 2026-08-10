@@ -55,7 +55,7 @@ scenarios for other test cases.
 | EXTRA-ADDRESS-CHILD       | extra-address-child.consistency05.xa             |           |             |
 | ID-ADDR-MISMATCH-1        | id-addr-mismatch-1.consistency05.xa              |           |             |
 | ID-ADDR-MISSING-1         | id-addr-missing-1.consistency05.xa               |           |             |
-| ID-ADDR-MISSING-2         | id-addr-mismatch-3.consistency05.xa              |           |             |
+| ID-ADDR-MISSING-2         | id-addr-missing-2.consistency05.xa               |           |             |
 | INCONSISTENT-DELEGATION-1 | child.inconsistent-delegation-1.consistency05.xa |           |             |
 | INCONSISTENT-DELEGATION-2 | child.inconsistent-delegation-2.consistency05.xa |           |             |
 | MISSING-GLUE-FOR-NS-1     | child.missing-glue-for-ns-1.consistency05.xa     |           |             |
