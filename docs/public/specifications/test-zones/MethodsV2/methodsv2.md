@@ -684,6 +684,24 @@ different from the in-zone NS record’s, but the sets of IP addresses are equal
   * Both `ns1a` and `ns1b` have A and AAAA records pointing to the same IPv4
     and IPv6 address respectively.
 
+### UNDEL-MISSING-GLUE-1
+Child is delegated to two in-domain name servers but is tested undelegated.
+The undelegated data is consistent with the delegation, except that for one
+name server, the address records are missing.
+
+* Zone: child.undel-missing-glue-1.methodsv2.xa
+  * Delegation:
+    * Child NS:
+      * ns1-2.child.parent.undel-missing-glue-1.methodsv2.xa
+    * Glue:
+      * Address records (A and AAAA) for
+        * ns1-2.child.parent.undel-missing-glue-1.methodsv2.xa
+  * There is an undelegated version of the zone matching undelegated data.
+  * Undelegated data:
+    * ns1.child.parent.good-undel-1.methodsv2.xa
+    * ns2.child.parent.good-undel-1.methodsv2.xa/IPv4
+    * ns2.child.parent.good-undel-1.methodsv2.xa/IPv6
+
 <!-- Links to documents in this repository but outside the public tree must be
 absolute -->
 
