@@ -91,7 +91,7 @@ as this file resides in.
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ADDR-MATCH-DEL-UNDEL-1    | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addr-match-del-undel-1.consistency05.xa --ns ns3.addr-match-del-undel-1.consistency05.xa/127.14.5.33 --ns ns3.addr-match-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:33 --ns ns4.addr-match-del-undel-1.consistency05.xa/127.14.5.34 --ns ns4.addr-match-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:34 zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info addr-match-del-undel-1.consistency05.xa --ns ns3.addr-match-del-undel-1.consistency05.xa/127.14.5.33 --ns ns3.addr-match-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:33 --ns ns4.addr-match-del-undel-1.consistency05.xa/127.14.5.34 --ns ns4.addr-match-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:34
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addr-match-del-undel-1.consistency05.xa --ns ns3.addr-match-del-undel-1.consistency05.xa/127.14.5.33 --ns ns3.addr-match-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:33 --ns ns4.addr-match-del-undel-1.consistency05.xa/127.14.5.34 --ns ns4.addr-match-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:34
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.04 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
@@ -107,7 +107,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ADDR-MATCH-DEL-UNDEL-2    | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addr-match-del-undel-2.consistency05.xa --ns ns3.addr-match-del-undel-2.consistency05.xb --ns ns4.addr-match-del-undel-2.consistency05.xb zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info addr-match-del-undel-2.consistency05.xa --ns ns3.addr-match-del-undel-2.consistency05.xb --ns ns4.addr-match-del-undel-2.consistency05.xb
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addr-match-del-undel-2.consistency05.xa --ns ns3.addr-match-del-undel-2.consistency05.xb --ns ns4.addr-match-del-undel-2.consistency05.xb
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.01 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
@@ -121,7 +121,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ADDR-MATCH-NO-DEL-UNDEL-1 | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addr-match-no-del-undel-1.consistency05.xa --ns ns1.addr-match-no-del-undel-1.consistency05.xa/127.14.5.31 --ns ns1.addr-match-no-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:31 --ns ns2.addr-match-no-del-undel-1.consistency05.xa/127.14.5.32 --ns ns2.addr-match-no-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:32 zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info addr-match-no-del-undel-1.consistency05.xa --ns ns1.addr-match-no-del-undel-1.consistency05.xa/127.14.5.31 --ns ns1.addr-match-no-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:31 --ns ns2.addr-match-no-del-undel-1.consistency05.xa/127.14.5.32 --ns ns2.addr-match-no-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:32
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addr-match-no-del-undel-1.consistency05.xa --ns ns1.addr-match-no-del-undel-1.consistency05.xa/127.14.5.31 --ns ns1.addr-match-no-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:31 --ns ns2.addr-match-no-del-undel-1.consistency05.xa/127.14.5.32 --ns ns2.addr-match-no-del-undel-1.consistency05.xa/fda1:b2:c3:0:127:14:5:32
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.04 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
@@ -137,7 +137,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ADDR-MATCH-NO-DEL-UNDEL-2 | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addr-match-no-del-undel-2.consistency05.xa --ns ns3.addr-match-no-del-undel-2.consistency05.xb --ns ns4.addr-match-no-del-undel-2.consistency05.xb zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info addr-match-no-del-undel-2.consistency05.xa --ns ns3.addr-match-no-del-undel-2.consistency05.xb --ns ns4.addr-match-no-del-undel-2.consistency05.xb
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addr-match-no-del-undel-2.consistency05.xa --ns ns3.addr-match-no-del-undel-2.consistency05.xb --ns ns4.addr-match-no-del-undel-2.consistency05.xb
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.01 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
@@ -151,7 +151,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ADDRESSES-MATCH-1         | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addresses-match-1.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info addresses-match-1.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addresses-match-1.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.11 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
@@ -161,7 +161,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ADDRESSES-MATCH-2         | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addresses-match-2.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info addresses-match-2.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addresses-match-2.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.07 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
@@ -171,7 +171,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ADDRESSES-MATCH-3         | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addresses-match-3.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info addresses-match-3.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addresses-match-3.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.08 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
@@ -181,7 +181,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ADDRESSES-MATCH-4         | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addresses-match-4.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info addresses-match-4.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addresses-match-4.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.09 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
@@ -191,7 +191,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ADDRESSES-MATCH-5         | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addresses-match-5.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info addresses-match-5.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addresses-match-5.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
  100.24 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
@@ -201,7 +201,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ADDRESSES-MATCH-6         | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.addresses-match-6.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info child.addresses-match-6.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.addresses-match-6.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.09 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
@@ -211,7 +211,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ADDRESSES-MATCH-7         | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addresses-match-7.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info addresses-match-7.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info addresses-match-7.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.12 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
@@ -221,7 +221,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ADDRESSES-MATCH-8         | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.a.b.addresses-match-8.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info child.a.b.addresses-match-8.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.a.b.addresses-match-8.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.16 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
@@ -231,7 +231,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ADDRESSES-MATCH-9         | CS05_NO_MISMATCH_GLUE_ZONE                      | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.addresses-match-9.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info child.addresses-match-9.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.addresses-match-9.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.15 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
@@ -241,7 +241,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | CHILD-ZONE-LAME-1         | CS05_CHILD_ZONE_LAME                            | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child-zone-lame-1.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info child-zone-lame-1.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child-zone-lame-1.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
   40.08 CRITICAL CS05_CHILD_ZONE_LAME  ns_list=ns1.child-zone-lame-1.consistency05.xa/127.14.5.31;ns1.child-zone-lame-1.consistency05.xa/fda1:b2:c3:0:127:14:5:31;ns2.child-zone-lame-1.consistency05.xa/127.14.5.32;ns2.child-zone-lame-1.consistency05.xa/fda1:b2:c3:0:127:14:5:32
 ```
@@ -251,7 +251,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | CHILD-ZONE-LAME-2         | CS05_CHILD_ZONE_LAME                            | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child-zone-lame-2.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info child-zone-lame-2.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child-zone-lame-2.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.04 CRITICAL CS05_CHILD_ZONE_LAME  ns_list=ns1.child-zone-lame-2.consistency05.xa/127.14.5.31;ns1.child-zone-lame-2.consistency05.xa/fda1:b2:c3:0:127:14:5:31;ns2.child-zone-lame-2.consistency05.xa/127.14.5.32;ns2.child-zone-lame-2.consistency05.xa/fda1:b2:c3:0:127:14:5:32
 ```
@@ -261,7 +261,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | CHILD-ZONE-LAME-3         | CS05_CHILD_ZONE_LAME                            | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child-zone-lame-3.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info child-zone-lame-3.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child-zone-lame-3.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.06 CRITICAL CS05_CHILD_ZONE_LAME  ns_list=ns1.child-zone-lame-3.consistency05.xa/127.14.5.31;ns1.child-zone-lame-3.consistency05.xa/fda1:b2:c3:0:127:14:5:31;ns2.child-zone-lame-3.consistency05.xa/127.14.5.32;ns2.child-zone-lame-3.consistency05.xa/fda1:b2:c3:0:127:14:5:32
 ```
@@ -271,7 +271,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | EXTRA-ADDRESS-CHILD       | CS05_EXTRA_ADDR_CHILD                           | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info extra-address-child.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info extra-address-child.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info extra-address-child.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.09 NOTICE   CS05_EXTRA_ADDR_CHILD  ns_list=127.14.5.35;fda1:b2:c3:0:127:14:5:35
 ```
@@ -281,7 +281,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ID-ADDR-MISMATCH-1        | CS05_ID_ADDR_MISMATCH                           | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info id-addr-mismatch-1.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info id-addr-mismatch-1.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info id-addr-mismatch-1.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.08 ERROR    CS05_ID_ADDR_MISMATCH  ns_ip_list_glue=127.14.5.39;fda1:b2:c3:0:127:14:5:39; ns_ip_list_zone=127.14.5.32;fda1:b2:c3:0:127:14:5:32; nsname="ns2.id-addr-mismatch-1.consistency05.xa"
 ```
@@ -291,7 +291,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | ID-ADDR-MISSING-1         | CS05_ID_ADDR_MISSING                            | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info id-addr-missing-1.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info id-addr-missing-1.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info id-addr-missing-1.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.09 NOTICE   CS05_ID_ADDR_MISSING  nsname="ns1.id-addr-missing-1.consistency05.xa"
    0.09 NOTICE   CS05_ID_ADDR_MISSING  nsname="ns2.id-addr-missing-1.consistency05.xa"
@@ -302,7 +302,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:------------------|:----------------------|:-----------------------|
 | ID-ADDR-MISSING-2 | CS05_ID_ADDR_MISSING  | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info id-addr-missing-2.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info id-addr-missing-2.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info id-addr-missing-2.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
  100.20 NOTICE   CS05_ID_ADDR_MISSING  nsname="ns2.id-addr-missing-2.consistency05.xa"
 ```
@@ -312,7 +312,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | INCONSISTENT-DELEGATION-1 | CS05_INCONSISTENT_DELEGATION, CS05_DELEGATION   | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.inconsistent-delegation-1.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info child.inconsistent-delegation-1.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.inconsistent-delegation-1.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.11 WARNING  CS05_INCONSISTENT_DELEGATION  
    0.11 INFO     CS05_DELEGATION  ns_deleg_list=ns41.child.inconsistent-delegation-1.consistency05.xa/127.14.5.41;ns41.child.inconsistent-delegation-1.consistency05.xa/fda1:b2:c3:0:127:14:5:41;ns42.child.inconsistent-delegation-1.consistency05.xa/127.14.5.42;ns42.child.inconsistent-delegation-1.consistency05.xa/fda1:b2:c3:0:127:14:5:42; ns_list=ns1.inconsistent-delegation-1.consistency05.xa/127.14.5.31;ns1.inconsistent-delegation-1.consistency05.xa/fda1:b2:c3:0:127:14:5:31
@@ -324,7 +324,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | INCONSISTENT-DELEGATION-2 | CS05_INCONSISTENT_DELEGATION, CS05_DELEGATION   | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.inconsistent-delegation-2.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info child.inconsistent-delegation-2.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.inconsistent-delegation-2.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.08 WARNING  CS05_INCONSISTENT_DELEGATION  
    0.08 INFO     CS05_DELEGATION  ns_deleg_list=ns41.inconsistent-delegation-2.consistency05.xb;ns42.inconsistent-delegation-2.consistency05.xb; ns_list=ns1.inconsistent-delegation-2.consistency05.xa/fda1:b2:c3:0:127:14:5:31;ns1.inconsistent-delegation-2.consistency05.xa/127.14.5.31
@@ -336,7 +336,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | MISSING-GLUE-FOR-NS-1     | CS05_MISSING_GLUE_FOR_NS                        | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.missing-glue-for-ns-1.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info child.missing-glue-for-ns-1.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.missing-glue-for-ns-1.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.09 WARNING  CS05_MISSING_GLUE_FOR_NS  ns_list=ns1.missing-glue-for-ns-1.consistency05.xa/127.14.5.31;ns1.missing-glue-for-ns-1.consistency05.xa/fda1:b2:c3:0:127:14:5:31;ns2.missing-glue-for-ns-1.consistency05.xa/127.14.5.32;ns2.missing-glue-for-ns-1.consistency05.xa/fda1:b2:c3:0:127:14:5:32; nsname=ns41.child.missing-glue-for-ns-1.consistency05.xa
 ```
@@ -346,7 +346,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | MISSING-GLUE-FOR-NS-2     | CS05_MISSING_GLUE_FOR_NS_UNDEL                  | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info missing-glue-for-ns-2.consistency05.xa --ns ns1.missing-glue-for-ns-2.consistency05.xa --ns ns1.missing-glue-for-ns-2.consistency05.xa --ns ns2.missing-glue-for-ns-2.consistency05.xa/127.14.5.32 --ns ns2.missing-glue-for-ns-2.consistency05.xa/fda1:b2:c3:0:127:14:5:32 zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info missing-glue-for-ns-2.consistency05.xa --ns ns1.missing-glue-for-ns-2.consistency05.xa --ns ns1.missing-glue-for-ns-2.consistency05.xa --ns ns2.missing-glue-for-ns-2.consistency05.xa/127.14.5.32 --ns ns2.missing-glue-for-ns-2.consistency05.xa/fda1:b2:c3:0:127:14:5:32
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info missing-glue-for-ns-2.consistency05.xa --ns ns1.missing-glue-for-ns-2.consistency05.xa --ns ns1.missing-glue-for-ns-2.consistency05.xa --ns ns2.missing-glue-for-ns-2.consistency05.xa/127.14.5.32 --ns ns2.missing-glue-for-ns-2.consistency05.xa/fda1:b2:c3:0:127:14:5:32
    0.21 ERROR    FAKE_DELEGATION_NO_IP  domain=missing-glue-for-ns-2.consistency05.xa; nsname=ns1.missing-glue-for-ns-2.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.03 WARNING  CS05_MISSING_GLUE_FOR_NS_UNDEL  nsname="ns1.missing-glue-for-ns-2.consistency05.xa"
@@ -363,7 +363,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | NO-NS-ADDR-CHILD-1        | CS05_NO_NS_ADDR_CHILD, CS05_MISSING_GLUE_FOR_NS | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.no-ns-addr-child-1.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info child.no-ns-addr-child-1.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.no-ns-addr-child-1.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.05 WARNING  CS05_MISSING_GLUE_FOR_NS  ns_list=ns1.no-ns-addr-child-1.consistency05.xa/127.14.5.31;ns1.no-ns-addr-child-1.consistency05.xa/fda1:b2:c3:0:127:14:5:31;ns2.no-ns-addr-child-1.consistency05.xa/127.14.5.32;ns2.no-ns-addr-child-1.consistency05.xa/fda1:b2:c3:0:127:14:5:32; nsname=ns1.child.no-ns-addr-child-1.consistency05.xa
    0.05 WARNING  CS05_MISSING_GLUE_FOR_NS  ns_list=ns1.no-ns-addr-child-1.consistency05.xa/127.14.5.31;ns1.no-ns-addr-child-1.consistency05.xa/fda1:b2:c3:0:127:14:5:31;ns2.no-ns-addr-child-1.consistency05.xa/127.14.5.32;ns2.no-ns-addr-child-1.consistency05.xa/fda1:b2:c3:0:127:14:5:32; nsname=ns2.child.no-ns-addr-child-1.consistency05.xa
@@ -375,7 +375,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | NO-NS-ADDR-CHILD-2        | CS05_NO_NS_ADDR_CHILD                           | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.no-ns-addr-child-2.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info child.no-ns-addr-child-2.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.no-ns-addr-child-2.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.06 CRITICAL CS05_NO_NS_ADDR_CHILD  
 ```
@@ -385,7 +385,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | OOD-ADDR-MISMATCH         | CS05_OOD_ADDR_MISMATCH                          | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.ood-addr-mismatch.consistency05.xa zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info child.ood-addr-mismatch.consistency05.xa
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info child.ood-addr-mismatch.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.09 WARNING  CS05_OOD_ADDR_MISMATCH  ns_ip_list_lookup=3;3; ns_ip_list_ref=3;3; nsname="ns1.sibbling.ood-addr-mismatch.consistency05.xa"
 ```
@@ -437,7 +437,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints Z-ROOT-MATCH-1-hintfile.zon
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | Z-ROOT-INCOMPLETE-HINT    | CS05_MISSING_GLUE_FOR_NS                        | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints Z-ROOT-INCOMPLETE-HINT-hintfile.zone --level info . zonemaster-cli --raw --test consistency05 --hints hintfile.zone --level info .
+$ zonemaster-cli --raw  --test consistency05 --hints Z-ROOT-INCOMPLETE-HINT-hintfile.zone --level info .
 
 Error loading hints file: No address record found for NS ns1
 ```
