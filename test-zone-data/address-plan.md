@@ -254,43 +254,55 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 
 ### Consistency test level address plan
 
-| Address (range) | Used for -- range for test case or specific NS address |
-|-----------------|--------------------------------------------------------|
-| 127.14.0.0/24   | (not in use)                                           |
-| 127.14.1.0/24   | Consistency01 scenarios                                |
-| 127.14.1.21     | ns1.consistency01.xa                                   |
-| 127.14.1.22     | ns2.consistency01.xa                                   |
-| 127.14.2.0/24   | Consistency02 scenarios                                |
-| 127.14.2.21     | ns1.consistency02.xa                                   |
-| 127.14.2.22     | ns2.consistency02.xa                                   |
-| 127.14.3.0/24   | Consistency03 scenarios                                |
-| 127.14.3.21     | ns1.consistency03.xa                                   |
-| 127.14.3.22     | ns2.consistency03.xa                                   |
-| 127.14.4.0/24   | Consistency04 scenarios                                |
-| 127.14.4.21     | ns1.consistency04.xa                                   |
-| 127.14.4.22     | ns2.consistency05.xa                                   |
-| 127.14.5.0/24   | Consistency05 scenarios                                |
-| 127.14.5.21     | ns1.consistency05.xa                                   |
-| 127.14.5.22     | ns2.consistency05.xa                                   |
-| 127.14.5.23     | ns1.consistency05.xb                                   |
-| 127.14.5.24     | ns2.consistency05.xb                                   |
-| 127.14.5.31     | for scenarios                                          |
-| 127.14.5.32     | for scenarios                                          |
-| 127.14.5.33     | for scenarios                                          |
-| 127.14.5.34     | for scenarios                                          |
-| 127.14.5.35     | for scenarios                                          |
-| 127.14.6.0/24   | Consistency06 scenarios                                |
-| 127.14.6.21     | ns1.consistency06.xa                                   |
-| 127.14.6.22     | ns2.consistency06.xa                                   |
-| 127.14.6.23     | ns1.consistency06.xb                                   |
-| 127.14.6.24     | ns2.consistency06.xb                                   |
-| 127.14.6.31     | for scenarios                                          |
-| 127.14.6.32     | for scenarios                                          |
-| 127.14.6.33     | for scenarios                                          |
-| 127.14.6.34     | for scenarios                                          |
-| 127.14.7.0/24   | (not in use)                                           |
-| (...)           |                                                        |
-| 127.14.255.0/24 | (not in use)                                           |
+| Address (range) | Used for -- range for test case or specific NS address    |
+|-----------------|-----------------------------------------------------------|
+| 127.14.0.0/24   | (not in use)                                              |
+| 127.14.1.0/24   | Consistency01 scenarios                                   |
+| 127.14.1.21     | ns1.consistency01.xa                                      |
+| 127.14.1.22     | ns2.consistency01.xa                                      |
+| 127.14.2.0/24   | Consistency02 scenarios                                   |
+| 127.14.2.21     | ns1.consistency02.xa                                      |
+| 127.14.2.22     | ns2.consistency02.xa                                      |
+| 127.14.3.0/24   | Consistency03 scenarios                                   |
+| 127.14.3.21     | ns1.consistency03.xa                                      |
+| 127.14.3.22     | ns2.consistency03.xa                                      |
+| 127.14.4.0/24   | Consistency04 scenarios                                   |
+| 127.14.4.21     | ns1.consistency04.xa                                      |
+| 127.14.4.22     | ns2.consistency05.xa                                      |
+| 127.14.5.0/24   | Consistency05 scenarios                                   |
+| 127.14.5.21     | ns1.consistency05.xa                                      |
+| 127.14.5.22     | ns2.consistency05.xa                                      |
+| 127.14.5.23     | ns1.consistency05.xb                                      |
+| 127.14.5.24     | ns2.consistency05.xb                                      |
+| 127.14.5.31     | for scenarios                                             |
+| 127.14.5.32     | for scenarios                                             |
+| 127.14.5.33     | for scenarios                                             |
+| 127.14.5.34     | for scenarios                                             |
+| 127.14.5.35     | for scenarios                                             |
+| 127.14.5.39     | for scenarios                                             |
+| 127.14.5.41     | for child under parent                                    |
+| 127.14.5.42     | for child under parent                                    |
+| 127.14.5.43     | for child under parent                                    |
+| 127.14.5.53     | resolver with test case local hint file                   |
+| 127.14.5.61     | test case default root ns1                                |
+| 127.14.5.62     | test case default root ns2                                |
+| 127.14.5.63     | test case broken root ns1 (BROKEN-ROOT)                   |
+| 127.14.5.64     | test case broken root ns2 (BROKEN-ROOT)                   |
+| 127.14.5.65     | test case root ns2 (ROOT-MISSING-GLUE-UNDEL-1)            |
+| 127.14.5.66     | test case root ns2 (ROOT-MISSING-GLUE-UNDEL-1)            |
+| 127.14.5.89     | dedicated for addresses-match-8.consistency05.xa (parent) |
+| 127.14.6.0/24   | Consistency06 scenarios                                   |
+| 127.14.6.21     | ns1.consistency06.xa                                      |
+| 127.14.6.22     | ns2.consistency06.xa                                      |
+| 127.14.6.23     | ns1.consistency06.xb                                      |
+| 127.14.6.24     | ns2.consistency06.xb                                      |
+| 127.14.6.31     | for scenarios                                             |
+| 127.14.6.32     | for scenarios                                             |
+| 127.14.6.33     | for scenarios                                             |
+| 127.14.6.34     | for scenarios                                             |
+| 127.14.7.0/24   | (not in use)                                              |
+| (...)           |                                                           |
+| 127.14.255.0/24 | (not in use)                                              |
 
 
 ### DNSSEC test level address plan
