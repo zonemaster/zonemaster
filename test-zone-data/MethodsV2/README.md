@@ -1260,6 +1260,7 @@ child.parent.child-ns-cname-4.methodsv2.xa
   * ns2.parent.child-ns-cname-4.methodsv2.xa/fda1:b2:c3:0:127:40:1:42
 * Get delegation NS names and IP addresses
   * ns1-cname.child.parent.child-ns-cname-4.methodsv2.xa/127.40.1.51
+  * ns2-cname.child.parent.child-ns-cname-4.methodsv2.xa
 * Get zone NS names and IP addresses
   * ns1-cname.child.parent.child-ns-cname-4.methodsv2.xa/127.40.1.51
   * ns2-cname.child.parent.child-ns-cname-4.methodsv2.xa/127.40.1.52
