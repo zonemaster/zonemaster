@@ -1,4 +1,4 @@
-# DELEGATION01: Minimum number of name servers   
+# DELEGATION01: Minimum number of name servers
 
 ## Test case identifier
 
@@ -6,17 +6,12 @@
 
 ## Objective
 
-Section 4.1 of [RFC 1034] specifies that there must be a minimum of two name servers 
-for a domain. This test is done to verify this condition.
+This test case checks whether a zone is available over both IPv4 and IPv6.
 
-The RFC ([RFC 1034]) predates IPv6. Since IPv4 and IPv6 work as separate networks, this
-test case has been extended to test for two name servers that resolve into IPv4 addresses
-and IPv6 addresses respectively.
-
-Both [RFC 3901] (section 3) and [RFC 4472] (section 1.3) states that a domain 
-(zone) should be available over IPv4 for the time being. Therefore, it is by the 
-default level in this test case considered to be more problematic not being available 
-over IPv4 than not being available over IPv6.
+[RFC 10001, Section 4.1] states that “[t]o prevent DNS name space
+partitioning, at least two IPv4-reachable and two IPv6-reachable name servers
+MUST be configured for a zone. A single name server that is reachable over
+both IPv4 and IPv6 counts once per address family.”.
 
 ## Inputs
 
@@ -24,45 +19,45 @@ over IPv4 than not being available over IPv6.
 
 ## Ordered description of steps to be taken to execute the test case
 
- 1. Using [Method2], obtain the complete set of names of the name servers 
+ 1. Using [Method2], obtain the complete set of names of the name servers
     from the delegation of the *Child Zone*.
 
  2. Count the name server names:
     1. If zero or one, emit *[NOT_ENOUGH_NS_DEL]*.
     2. If two or more, emit *[ENOUGH_NS_DEL]*.
 
- 3. Using [Method4], obtain the IP addresses for the name servers of the 
+ 3. Using [Method4], obtain the IP addresses for the name servers of the
     delegation of the *Child Zone*.
 
- 4. Count the number of name server names that resolve into at least one IPv4 
+ 4. Count the number of name server names that resolve into at least one IPv4
     address:
     1. If zero, emit *[NO_IPV4_NS_DEL]*.
     2. If one, emit *[NOT_ENOUGH_IPV4_NS_DEL]*.
     3. If two or more, emit *[ENOUGH_IPV4_NS_DEL]*.
 
- 5. Count the number of name server names that resolve into at least one IPv6 
+ 5. Count the number of name server names that resolve into at least one IPv6
     address:
     1. If zero, emit *[NO_IPV6_NS_DEL]*.
     2. If one, emit *[NOT_ENOUGH_IPV6_NS_DEL]*.
     3. If two or more, emit *[ENOUGH_IPV6_NS_DEL]*.
 
  6. Using [Method3], obtain the complete set of names of the name servers
-    from the *Child Zone* for the *Child Zone*. 
+    from the *Child Zone* for the *Child Zone*.
 
  7. Count the name server names:
     1. If zero or one, emit *[NOT_ENOUGH_NS_CHILD]*.
     2. If two or more, emit *[ENOUGH_NS_CHILD]*.
 
- 8. Using [Method5], obtain the IP addresses for the name servers from 
+ 8. Using [Method5], obtain the IP addresses for the name servers from
     the *Child Zone* for the *Child Zone*.
 
- 9. Count the number of name server names that resolve into at least one IPv4 
+ 9. Count the number of name server names that resolve into at least one IPv4
     address:
     1. If zero, emit *[NO_IPV4_NS_CHILD]*.
     2. If one, emit *[NOT_ENOUGH_IPV4_NS_CHILD]*.
     3. If two or more, emit *[ENOUGH_IPV4_NS_CHILD]*.
 
-10. Count the number of name server names that resolve into at least one IPv6 
+10. Count the number of name server names that resolve into at least one IPv6
     address:
     1. If zero, emit *[NO_IPV6_NS_CHILD]*.
     2. If one, emit *[NOT_ENOUGH_IPV6_NS_CHILD]*.
@@ -95,21 +90,19 @@ NOT_ENOUGH_NS_CHILD           | ERROR
 NOT_ENOUGH_NS_DEL             | ERROR
 NO_IPV4_NS_CHILD              | WARNING
 NO_IPV4_NS_DEL                | WARNING
-NO_IPV6_NS_CHILD              | NOTICE
-NO_IPV6_NS_DEL                | NOTICE
+NO_IPV6_NS_CHILD              | WARNING
+NO_IPV6_NS_DEL                | WARNING
 
 
 ## Special procedural requirements
 
-None 
+None
 
 ## Intercase dependencies
 
 None
 
-[RFC 1034]: https://datatracker.ietf.org/doc/html/rfc1034
-[RFC 3901]: https://datatracker.ietf.org/doc/html/rfc3901
-[RFC 4472]: https://datatracker.ietf.org/doc/html/rfc4472
+[RFC 10001, Section 4.1]: https://datatracker.ietf.org/doc/html/rfc10001#section-4.1
 
 [Method2]:  ../Methods.md#method-2-obtain-glue-name-records-from-parent
 [Method3]:  ../Methods.md#method-3-obtain-name-servers-from-child
@@ -132,4 +125,3 @@ None
 [NO_IPV4_NS_DEL]: #outcomes
 [NO_IPV6_NS_CHILD]: #outcomes
 [NO_IPV6_NS_DEL]: #outcomes
-
