@@ -37,6 +37,7 @@
   * [API method: conf_max_batch_size_anonymous_mode](#api-method-conf_max_batch_size_anonymous_mode)
   * [API method: profile_names](#api-method-profile_names)
   * [API method: get_language_tags](#api-method-get_language_tags)
+  * [API method: get_tld_url](#api-method-get_tld_url)
   * [API method: get_host_by_name](#api-method-get_host_by_name)
   * [API method: get_data_from_parent_zone](#api-method-get_data_from_parent_zone)
   * [API method: start_domain_test](#api-method-start_domain_test)
@@ -215,10 +216,13 @@ Basic data type: string
 
 1. If the string is a single character, that character must be `.`.
 
-2. The length of the string must not be greater than 254 characters.
+2. When the string is split at the `.` characters each component part (`label`)
+   must be 1 to 63 characters long. For any `IDN label` the length restriction is
+   for the [A-label][RFC 5890#2.3.2.1] shape of the label.
 
-3. When the string is split at `.` characters (after IDNA conversion,
-   if needed), each component part must be at most 63 characters long.
+3. The length of the string must not be greater than 254 characters
+   when the string ends with a trailing `.` character. The length restriction is
+   counted when any `IDN label` has been converted to its A-label shape.
 
 > Note: Currently there are no restrictions on what characters that are allowed.
 
@@ -564,6 +568,190 @@ An array of [*language tags*][Language tag]. It is never empty.
 > clients to know how react to them.
 >
 
+
+### API method: `get_tld_url`
+
+Returns a URL for the closest TLD to the domain name in the request, if available
+and matching policy of backend and policy of the TLD. The response can also be
+without URL of different reasons. For context and details see
+[TLD URL Specification].
+
+Example 1 request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "zonemaster.net"}
+}
+```
+Example 1 response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "tld": "net",
+    "url": "http://www.verisigninc.com",
+    "source": "IANA RDAP"
+  }
+}
+```
+
+Example 2 request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "zonemaster.se"}
+}
+```
+Example 2 response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "tld": "se",
+    "url": "http://www.internetstiftelsen.se",
+    "source": "TXT RECORD"
+  }
+}
+```
+
+Example 3 request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "zonemaster.fr"}
+}
+```
+Example 3 response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "tld": "fr",
+    "url": "http://www.afnic.fr",
+    "source": "BACKEND CONF"
+  }
+}
+```
+
+Example 4 request:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "zonemaster.xa"}
+}
+```
+Example 4 response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "tld": "xa"
+  }
+}
+```
+(No URL found; blocked by either backend configuration or TLD policy in TXT record)
+
+#### `"params"`
+
+An object with the property:
+
+* `"domain"`: A [*domain name*][Domain name], required. The domain name, for
+  which a URL will be optionally determined.
+
+
+#### `"result"`
+
+An object with the following properties:
+
+* `"tld"`: The identified TLD from the domain name in the query. Absent if the
+  domain name is the root node ".". In [A-label][RFC 5890#2.3.2.1] shape if the
+  TLD is an `IDN label`.
+* `"url"`: An http or https URL. Present if and only if
+  [`TLD URL SETTINGS.enable_tld_url`][TLD URL SETTINGS section.enable_tld_url]
+  is true and a URL was determined (see
+  ["Determination of URL"][TLD URL Specification#det-of-url]).
+* `"source"`: A string from the following set. Present if and only if both
+  "`url`" is present and
+  [`TLD URL SETTINGS.include_source`][TLD URL SETTINGS section.include_source]
+  is true.
+  * `"BACKEND CONF"`: The URL is configured in the `backend_config.ini`
+  configuration file.
+  * `"TXT RECORD"`: The URL is fetched from the TLD TXT record.
+  * `"IANA RDAP"`: The URL is fetched from the IANA RDAP database.
+
+#### `"error"`
+
+If the domain parameter is missing or there are validation errors, an error
+code of -32602 is returned. The `data` property contains an array of all errors,
+see [Validation error data].
+
+Example 1 request with error:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": { "something": "nothing" }
+}
+```
+Example 1 of response:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "error": {
+    "data": [
+      {
+        "message": "The domain name is missing",
+        "path": "/domain"
+      }
+    ],
+    "code": -32602,
+    "message": "Invalid method parameter(s)."
+  }
+}
+```
+
+Example 2 request with error:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "get_tld_url",
+  "params": {"domain": "-%zonemaster.se"}
+}
+```
+Example 2 of response:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "error": {
+    "data": [
+      {
+        "path": "/domain",
+        "message": "The domain name character(s) are not supported"
+      }
+    ],
+    "code": -32602,
+    "message": "Invalid method parameter(s)."
+  }
+}
+```
 
 ### API method: `get_host_by_name`
 
@@ -1765,7 +1953,6 @@ There are also some experimental API methods documented only by name:
 * job_params
 * domain_history
 
-
 [API add_api_user]:                           #api-method-add_api_user
 [API add_batch_job]:                          #api-method-add_batch_job
 [API batch_create]:                           #api-method-batch_create
@@ -1782,10 +1969,10 @@ There are also some experimental API methods documented only by name:
 [API lookup_delegation_data]:                 #api-method-lookup_delegation_data
 [API start_domain_test]:                      #api-method-start_domain_test
 [API system_versions]:                        #api-method-system_versions
+[API user_create]:                            #api-method-user_create
 [API v10.0.0]:                                https://github.com/zonemaster/zonemaster-backend/blob/v10.0.0/docs/API.md
 [Architecture documentation]:                 https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md
 [Batch id]:                                   #batch-id
-[Hash batch id]:                              #hash-batch-id
 [Client id]:                                  #client-id
 [Client version]:                             #client-version
 [Configuration]:                              ../../configuration/backend.md
@@ -1794,6 +1981,7 @@ There are also some experimental API methods documented only by name:
 [Domain name]:                                #domain-name
 [Dot-decimal notation]:                       https://en.wikipedia.org/wiki/Dot-decimal_notation
 [DS info]:                                    #ds-info
+[Hash batch id]:                              #hash-batch-id
 [IP address]:                                 #ip-address
 [ISO 3166-1 alpha-2]:                         https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 [ISO 639-1]:                                  https://en.wikipedia.org/wiki/ISO_639-1
@@ -1813,6 +2001,7 @@ There are also some experimental API methods documented only by name:
 [Progress percentage]:                        #progress-percentage
 [Queue]:                                      #queue
 [RFC 5952]:                                   https://datatracker.ietf.org/doc/html/rfc5952
+[RFC 5890#2.3.2.1]:                           https://datatracker.ietf.org/doc/html/rfc5890#section-2.3.2.1
 [RPCAPI.max_batch_size_anonymous_mode]:       ../../configuration/backend.md#max_batch_size_anonymous_mode
 [RPCAPI.batch_api_key]:                       ../../configuration/backend.md#batch_api_key
 [RPCAPI.enable_add_api_user]:                 ../../configuration/backend.md#enable_add_api_user
@@ -1825,6 +2014,10 @@ There are also some experimental API methods documented only by name:
 [Test id]:                                    #test-id
 [Test result]:                                #test-result
 [Timestamp]:                                  #timestamp
+[TLD URL Specification]:                      ../../configuration/tld-url-specification.md
+[TLD URL Specification#det-of-url]:           ../../configuration/tld-url-specification.md#determination-of-url
+[TLD URL SETTINGS section.include_source]:    ../../configuration/backend.md#include_source
+[TLD URL SETTINGS section.enable_tld_url]:    ../../configuration/backend.md#enable_tld_url
 [Batch API key]:                              #batch-api-key
 [Username]:                                   #username
 [Validation error data]:                      #validation-error-data

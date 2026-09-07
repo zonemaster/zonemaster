@@ -42,7 +42,7 @@
 4) Install binary packages:
 
    ```sh
-   sudo dnf install --assumeyes cpanminus gcc libidn2-devel openssl-devel perl-Class-Accessor perl-Clone perl-core perl-Devel-CheckLib perl-ExtUtils-PkgConfig perl-File-ShareDir perl-File-Slurp perl-libintl perl-IO-Socket-INET6 perl-List-Compare perl-List-MoreUtils perl-Mail-SPF perl-Module-Find perl-Module-Install perl-Net-DNS perl-Pod-Coverage perl-Readonly perl-Sub-Override perl-Test-Differences perl-Test-Exception perl-Test-Fatal perl-Test-NoWarnings perl-Test-Pod perl-Text-CSV perl-Test-Simple
+   sudo dnf install --assumeyes cpanminus gcc libidn2-devel openssl-devel perl-CBOR-XS perl-Class-Accessor perl-Clone perl-core perl-Devel-CheckLib perl-ExtUtils-PkgConfig perl-File-ShareDir perl-File-Slurp perl-libintl perl-IO-Socket-INET6 perl-List-Compare perl-List-MoreUtils perl-Mail-SPF perl-Module-Find perl-Module-Install perl-Net-DNS perl-Pod-Coverage perl-Readonly perl-Sub-Override perl-Test-Differences perl-Test-Exception perl-Test-Fatal perl-Test-NoWarnings perl-Test-Pod perl-Text-CSV perl-Test-Simple
    ```
 
 5) Install packages from CPAN:
@@ -91,7 +91,7 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 2) Install dependencies from binary packages:
 
    ```sh
-   sudo apt install autoconf automake build-essential cpanminus libclass-accessor-perl libclone-perl libdevel-checklib-perl libemail-valid-perl libextutils-pkgconfig-perl libfile-sharedir-perl libfile-slurp-perl libidn2-dev libintl-perl libio-socket-inet6-perl liblist-compare-perl liblist-moreutils-perl liblocale-po-perl liblog-any-perl libmail-spf-perl libmime-base32-perl libmodule-find-perl libmodule-install-perl libmodule-install-xsutil-perl libnet-dns-perl libnet-ip-xs-perl libpod-coverage-perl libreadonly-perl libssl-dev libsub-override-perl libtest-differences-perl libtest-exception-perl libtest-fatal-perl libtest-nowarnings-perl libtest-pod-perl libtext-csv-perl libyaml-libyaml-perl libtool m4
+   sudo apt install autoconf automake build-essential cpanminus libcbor-xs-perl libclass-accessor-perl libclone-perl libcrypt-dev libdevel-checklib-perl libemail-valid-perl libextutils-pkgconfig-perl libfile-sharedir-perl libfile-slurp-perl libidn2-dev libintl-perl libio-socket-inet6-perl liblist-compare-perl liblist-moreutils-perl liblocale-po-perl liblog-any-perl libmail-spf-perl libmime-base32-perl libmodule-find-perl libmodule-install-perl libmodule-install-xsutil-perl libnet-dns-perl libnet-ip-xs-perl libpod-coverage-perl libreadonly-perl libssl-dev libsub-override-perl libtest-differences-perl libtest-exception-perl libtest-fatal-perl libtest-nowarnings-perl libtest-pod-perl libtext-csv-perl libyaml-libyaml-perl libtool m4
    ```
 
 3) Install Zonemaster::LDNS and Zonemaster::Engine.
@@ -110,12 +110,24 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 
 2) Update list of package repositories:
 
-   Create the file `/usr/local/etc/pkg/repos/FreeBSD.conf` with the
-   following content, unless it is already updated:
+   Create the file `/usr/local/etc/pkg/repos/FreeBSD.conf` with the following
+   content, unless it is already updated, to ensure latest updates:
+
+   FreeBSD 14:
 
    ```
    FreeBSD: {
-   url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest",
+     url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest",
+   }
+   ```
+
+   FreeBSD 15:
+   ```
+   FreeBSD-ports: {
+     url: "pkg+https://pkg.FreeBSD.org/${ABI}/latest"
+   }
+   FreeBSD-ports-kmods: {
+     url: "pkg+https://pkg.FreeBSD.org/${ABI}/kmods_latest_${VERSION_MINOR}"
    }
    ```
 
@@ -137,19 +149,13 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 5) Install dependencies from binary packages:
 
    ```sh
-   pkg install devel/gmake dns/ldns libidn2 p5-App-cpanminus p5-Class-Accessor p5-Clone p5-Devel-CheckLib p5-Email-Valid p5-ExtUtils-PkgConfig p5-File-ShareDir p5-File-Slurp p5-IO-Socket-INET6 p5-List-Compare p5-List-MoreUtils p5-Locale-libintl p5-Locale-PO p5-Log-Any p5-Mail-SPF p5-MIME-Base32 p5-Module-Find p5-Module-Install p5-Module-Install-XSUtil p5-Net-DNS p5-Net-IP-XS p5-Pod-Coverage p5-Readonly p5-Sub-Override p5-Test-Differences p5-Test-Exception p5-Test-Fatal p5-Test-NoWarnings p5-Test-Pod p5-Text-CSV p5-YAML-LibYAML
+   pkg install devel/gmake libidn2 p5-App-cpanminus p5-CBOR-XS p5-Class-Accessor p5-Clone p5-Devel-CheckLib p5-Email-Valid p5-ExtUtils-PkgConfig p5-File-ShareDir p5-File-Slurp p5-IO-Socket-INET6 p5-List-Compare p5-List-MoreUtils p5-Locale-libintl p5-Locale-PO p5-Log-Any p5-Mail-SPF p5-MIME-Base32 p5-Module-Find p5-Module-Install p5-Module-Install-XSUtil p5-Net-DNS p5-Net-IP-XS p5-Pod-Coverage p5-Readonly p5-Sub-Override p5-Test-Differences p5-Test-Exception p5-Test-Fatal p5-Test-NoWarnings p5-Test-Pod p5-Text-CSV p5-YAML-LibYAML
    ```
 
 6) Install Zonemaster::LDNS:
 
    ```sh
-   cpanm --notest --configure-args="--no-internal-ldns" Zonemaster::LDNS
-   ```
-
-7) Install Zonemaster::Engine:
-
-   ```sh
-   cpanm --notest Zonemaster::Engine
+   cpanm --notest Zonemaster::LDNS Zonemaster::Engine
    ```
 
 ## Post-installation sanity check

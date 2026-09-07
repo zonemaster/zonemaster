@@ -77,7 +77,7 @@ specific Method.
   at least one [valid name server name] and for each name server name an optional
   set of at least one [valid IP address]. The name servers and IP addresses
   represent a possible delegation of *Child Zone* from its parent zone (may be
-  indetermined).
+  undetermined).
 * "Test Type" - Derived data. It is set to "normal test" if *Undelegated Data* is
   absent (empty) and to "undelegated test" if it is non-empty.
 

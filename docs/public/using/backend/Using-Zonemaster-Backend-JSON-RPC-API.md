@@ -36,7 +36,7 @@ what parameters they expect, run `zmb -h` and `zmtest -h`.
 
 With `zmtest` you can start a domain test and get the result directly. With `zmb`
 you can also do that, but in several steps, but on the other hand, `zmb` offers
-many more possibilities. Actually, `zmtest` uses `zmb` behind the scen.
+many more possibilities. Actually, `zmtest` uses `zmb` behind the scenes.
 
 The `zmb` tool uses the JSON-RPC API to interact with Zonemaster-Backend.
 Zonemaster-GUI also uses the same JSON-RPC API to start tests and fetch the
@@ -125,7 +125,7 @@ You will find the meaning of all fields in the outputs in
 ## Run a test of the zonemaster.net zone using zmb
 
 If we instead use `zmb` then this will be done in three steps (that happen
-behind the scen when using `zmtest`):
+behind the scenes when using `zmtest`):
 
 1. Enqueue test.
 2. Check if testing has completed (progress) - maybe several times.
@@ -271,7 +271,7 @@ Now you can get the results of any of the listed tests by running
 
 ## Other APIs
 
-There are a few other APIs that can be used throught `zmb`, and can be found by
+There are a few other APIs that can be used through `zmb`, and can be found by
 `zmb -h` and in [Zonemaster-Backend JSON-RPC API reference][JSON-RPC API]. The APIs for batch
 testing are covered in [Using Zonemaster Backend for batch testing].
 

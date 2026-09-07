@@ -373,7 +373,7 @@ as it is now and a suggestion for new wording.
 
 If you want to add a new language, then follow steps in section
 "[Translation steps]" above with some modifications. Before you add a language
-contact the Zonemaster project to discuss timeplan and other aspects of the new
+contact the Zonemaster project to discuss timeline and other aspects of the new
 language. Every language should be updated at every new release of Zonemaster if
 there are updated or added messages to be translated.
 
