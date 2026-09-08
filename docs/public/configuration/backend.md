@@ -479,16 +479,13 @@ shelf life of a previous test result, that test result is reused.
 Otherwise a new test request is enqueued.
 
 
-[API documentation]:                                ../using/backend/api.md
 [API method get_tld_url]:                           ../using/backend/rpcapi-reference.md#api-method-get_tld_url
 [DBD::mysql documentation]:                         https://metacpan.org/pod/DBD::mysql#host
-[Default JSON profile file]:                        https://github.com/zonemaster/zonemaster-engine/blob/master/share/profile.json
 [Environment Variables]:                            backend-environment-variables.md
 [File format]:                                      https://metacpan.org/pod/Config::IniFiles#FILE-FORMAT
 [ISO 3166-1 alpha-2]:                               https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 [ISO 639-1]:                                        https://en.wikipedia.org/wiki/ISO_639-1
 [Installation instructions]:                        ../installation/zonemaster-backend.md
-[Language tag]:                                     ../using/backend/api.md#language-tag
 [LDH domain name]:                                  https://datatracker.ietf.org/doc/html/rfc3696#section-2
 [MariaDB identifier max lengths]:                   https://mariadb.com/kb/en/identifier-names/#maximum-length
 [MariaDB unquoted identifier]:                      https://mariadb.com/kb/en/identifier-names/#unquoted
@@ -498,15 +495,10 @@ Otherwise a new test request is enqueued.
 [Profile JSON files]:                               profiles.md
 [Profile name section]:                             ../using/backend/rpcapi-reference.md#profile-name
 [Profiles]:                                         https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md#profile
-[RPCAPI.enable_add_api_user]:                       #enable_add_api_user
-[RPCAPI.batch_api_key]:                             #batch_api_key
 [RPCAPI.enable_add_batch_job]:                      #enable_add_batch_job
 [RPCAPI.enable_batch_create]:                       #enable_batch_create
-[RPCAPI.enable_user_create]:                        #enable_user_create
-[SQLITE.database_file]:                             #database_file
 [TLD URL Specification]:                            tld-url-specification.md
 [TLD URL Spec#txt-record]:                          tld-url-specification.md#txt-record
 [US ASCII printable characters]:                    https://en.wikipedia.org/wiki/ASCII#Printable_characters
 [Zonemaster-Engine share directory]:                https://github.com/zonemaster/zonemaster-engine/tree/master/share
-[Zonemaster::Engine::Profile]:                      https://metacpan.org/pod/Zonemaster::Engine::Profile#PROFILE-PROPERTIES
 [Zonemaster Engine default profile]:                profiles.md#default-profile

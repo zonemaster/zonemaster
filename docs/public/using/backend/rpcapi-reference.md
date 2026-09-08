@@ -1955,22 +1955,8 @@ There are also some experimental API methods documented only by name:
 
 [API add_api_user]:                           #api-method-add_api_user
 [API add_batch_job]:                          #api-method-add_batch_job
-[API batch_create]:                           #api-method-batch_create
-[API batch_status]:                           #api-method-batch_status
-[API conf_languages]:                         #api-method-conf_languages
-[API conf_profiles]:                          #api-method-conf_profiles
-[API domain_history]:                         #api-method-domain_history
-[API job_create]:                             #api-method-job_create
-[API job_params]:                             #api-method-job_params
-[API job_results]:                            #api-method-job_results
-[API job_status]:                             #api-method-job_status
 [API key]:                                    #api-key
-[API lookup_address_records]:                 #api-method-lookup_address_records
-[API lookup_delegation_data]:                 #api-method-lookup_delegation_data
 [API start_domain_test]:                      #api-method-start_domain_test
-[API system_versions]:                        #api-method-system_versions
-[API user_create]:                            #api-method-user_create
-[API v10.0.0]:                                https://github.com/zonemaster/zonemaster-backend/blob/v10.0.0/docs/API.md
 [Architecture documentation]:                 https://github.com/zonemaster/zonemaster-backend/blob/master/docs/Architecture.md
 [Batch id]:                                   #batch-id
 [Client id]:                                  #client-id
@@ -1983,7 +1969,6 @@ There are also some experimental API methods documented only by name:
 [DS info]:                                    #ds-info
 [Hash batch id]:                              #hash-batch-id
 [IP address]:                                 #ip-address
-[ISO 3166-1 alpha-2]:                         https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 [ISO 639-1]:                                  https://en.wikipedia.org/wiki/ISO_639-1
 [JSON Pointer]:                               https://datatracker.ietf.org/doc/html/rfc6901
 [JSON-RPC 2.0]:                               https://www.jsonrpc.org/specification
