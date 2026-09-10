@@ -48,6 +48,7 @@ severity level can be changed in the [Zonemaster-Engine profile]. Also see the
 The argument names in the Arguments column lists the arguments used in the
 message. The argument names are defined in the [argument list].
 
+The name server names are assumed to be available at the time when the msgid is created, if the argument name is "ns" or "ns_list" even when in the [Test procedure] below it is only referred to the IP address of the name servers.
 
 ## Test procedure 
 
