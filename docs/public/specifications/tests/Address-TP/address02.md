@@ -61,7 +61,7 @@ message. The argument names are defined in the [argument list].
    [Get-Zone-NS-Names-and-IPs] and add any non-duplicate results to 
    *Name Server IP* set. 
 
-4. Create the following empty set: IP address ("PTR Missing")
+2. Create the following empty set: name server IP address ("PTR Missing")
 
 5. For each name server in *Name Server IP* do:
    1. Make a recursive PTR query.
