@@ -108,5 +108,7 @@ None.
 [RFC1912]:                          https://www.rfc-editor.org/rfc/rfc1912
 [RFC1033]:                          https://www.rfc-editor.org/rfc/rfc1033
 [Severity Level Definitions]:       ../SeverityLevelDefinitions.md
+[Test procedure]:                   #test-procedure
+[Undelegated test]:                 ../../test-types/undelegated-test.md
 [WARNING]:                          ../SeverityLevelDefinitions.md#warning
 [Zonemaster-Engine profile]:        ../../../configuration/profiles.md
