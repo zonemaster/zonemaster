@@ -52,33 +52,26 @@ The name server names are assumed to be available at the time when the msgid is 
 
 ## Test procedure 
 
-1. Create the empty set: Name server name and IP address ("Name Server IP").
-
-2. Obtain the address records of each name server for the *Child Zone* from the
-   parent using the method [Get-Del-NS-Names-and-IPs] and add them to the 
-   *Name Server IP* set. 
-
-3. Obtain the IP addresses of each name server for the domain using the method 
-   [Get-Zone-NS-Names-and-IPs] and add any non-duplicate results to 
-   *Name Server IP* set. 
+1. Retrieve all name server names and IP addresses for *Child Zone* using
+   methods [Get-Del-NS-Names-and-IPs] and [Get-Zone-NS-Names-and-IPs] (Name Server IP).
 
 2. Create the following empty set: name server IP address ("PTR Missing")
 
-5. For each name server in *Name Server IP* do:
+3. For each name server in *Name Server IP* do:
    1. Make a recursive PTR query.
    2. If the response fails to match the following criteria, add the IP address
       to the *PTR Missing* set.
         - RCODE must be NOERROR
-3. For each name server IP address in *Name Server IP* do:
+4. For each name server IP address in *Name Server IP* do:
    1. Do a reverse *DNS Lookup* (PTR) of name server IP address.
    2. If the response fails to match the following criteria, then
       add name server IP address to the *PTR Missing* set:
         - [RCODE Name] is "NOERROR"
         - Answer section contains at least one PTR record
   
-6. If the set *PTR Missing* is empty, then output *[A02_PTR_PRESENT]*.
+5. If the set *PTR Missing* is empty, then output *[A02_PTR_PRESENT]*.
 
-7. Else, output *[A02_PTR_MISSING]* with a list of the IP addresses in the 
+6. Else, output *[A02_PTR_MISSING]* with a list of the IP addresses in the 
    *PTR Missing* set.
 
 
