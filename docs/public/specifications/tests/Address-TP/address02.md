@@ -68,7 +68,12 @@ message. The argument names are defined in the [argument list].
    2. If the response fails to match the following criteria, add the IP address
       to the *PTR Missing* set.
         - RCODE must be NOERROR
-        - answer section must contain at least one PTR record
+3. For each name server IP address in *Name Server IP* do:
+   1. Do a reverse *DNS Lookup* (PTR) of name server IP address.
+   2. If the response fails to match the following criteria, then
+      add name server IP address to the *PTR Missing* set:
+        - [RCODE Name] is "NOERROR"
+        - Answer section contains at least one PTR record
   
 6. If the set *PTR Missing* is empty, then output *[A02_PTR_PRESENT]*.
 
