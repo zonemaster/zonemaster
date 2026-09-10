@@ -116,6 +116,7 @@ respected.
 [Get-Zone-NS-Names-and-IPs]:        ../MethodsV2.md#method-get-zone-ns-names-and-ip-addresses
 [INFO]:                             ../SeverityLevelDefinitions.md#info
 [NOTICE]:                             ../SeverityLevelDefinitions.md#notice
+[RCODE Name]:                       https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC1912]:                          https://www.rfc-editor.org/rfc/rfc1912
 [RFC1033]:                          https://www.rfc-editor.org/rfc/rfc1033
 [Severity Level Definitions]:       ../SeverityLevelDefinitions.md
