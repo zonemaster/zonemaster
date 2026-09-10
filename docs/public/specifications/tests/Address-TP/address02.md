@@ -17,8 +17,8 @@
 ## Objective
 
 Best curent practices dictates that internet reachable hosts should have a
-reverse DNS entry, as various services on the Internet, for instance spam 
-filters, may consider this when determining the trustworthiness of the host.
+reverse DNS entry, as various services on the Internet (e.g. spam 
+filters) may consider this when determining the trustworthiness of the host.
 See [RFC1912] section 2.1 and [RFC1033] page 11 for additional information.
 
 This test checks for the existence of PTR records for the corresponding reverse
