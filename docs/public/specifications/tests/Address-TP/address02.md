@@ -96,6 +96,12 @@ None.
 
 None.
 
+## Terminology
+
+* "DNS Lookup" - The term is used when a recursive lookup is used, though
+any changes to the DNS tree introduced by an [undelegated test] must be
+respected.
+
 [A02_PTR_PRESENT]:                  #Summary
 [A02_PTR_MISSING]:                  #Summary
 [Argument list]:                    ../ArgumentsForTestCaseMessages.md
