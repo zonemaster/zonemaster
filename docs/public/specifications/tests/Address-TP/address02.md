@@ -1,4 +1,4 @@
-# ADDRESS02: PTR exists for name server IP
+# ADDRESS02: Reverse entry (PTR) exists for name server IP address
 
 ## Test case identifier
 **ADDRESS02** 
