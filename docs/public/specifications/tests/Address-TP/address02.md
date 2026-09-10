@@ -26,7 +26,7 @@ domains of the name servers IP address.
 
 ## Scope
 Only the existence of a PTR record, or a record that resolves to a PTR record, 
-is checked. Not the validity of said record. That is handled by other tests.
+is checked. Not the validity of said record, which is handled by other tests.
 
 ## Inputs
 
