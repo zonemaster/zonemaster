@@ -70,7 +70,7 @@ message. The argument names are defined in the [argument list].
         - RCODE must be NOERROR
         - answer section must contain at least one PTR record
   
-6. If the set *PTR Missing* is empty, then output *[A02_PTR_PRESENT]*
+6. If the set *PTR Missing* is empty, then output *[A02_PTR_PRESENT]*.
 
 7. Else, output *[A02_PTR_MISSING]* with a list of the IP addresses in the 
    *PTR Missing* set.
