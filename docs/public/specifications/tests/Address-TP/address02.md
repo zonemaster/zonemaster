@@ -34,10 +34,10 @@ is checked. Not the validity of said record. That is handled by other tests.
 
 ## Summary
 
-Message Tag                   | Level    | Arguments | Message ID for message tag
-:---------------------------- |:---------|:----------|:--------------------------
-A02_PTR_PRESENT               | INFO     |            | PTR record present for each nameserver IP address
-A02_PTR_MISSING               | NOTICE   | ns_ip_list | PTR missing for the following name server IP addresses: "{ns_ip_list}"
+Message Tag                   | Level    | Arguments  | Message ID for message tag
+:---------------------------- |:---------|:-----------|:--------------------------
+A02_PTR_PRESENT               | INFO     |            | PTR record present for all name server IP addresses
+A02_PTR_MISSING               | NOTICE   | ns_ip_list | PTR record missing for the following name server IP addresses: "{ns_ip_list}"
 
 
 The value in the Level column is the default severity level of the message. The
