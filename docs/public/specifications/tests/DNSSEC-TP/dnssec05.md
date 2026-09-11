@@ -62,18 +62,19 @@ The "Zonemaster classification" is based on the "Use for DNSSEC signing" in the
 | 5            | RSA/SHA-1                        | RSASHA1            | DS05_ALGO_DEPRECATED      |      |
 | 6            | DSA-NSEC3-SHA1                   | DSA-NSEC3-SHA1     | DS05_ALGO_DEPRECATED      |      |
 | 7            | RSASHA1-NSEC3-SHA1               | RSASHA1-NSEC3-SHA1 | DS05_ALGO_DEPRECATED      |      |
-| 8            | RSA/SHA-256                      | RSASHA256          | DS05_ALGO_OK              |      |
+| 8            | RSA/SHA-256                      | RSASHA256          | DS05_ALGO_RECOMMENDED     |      |
 | 9            | Reserved                         | RESERVED           | DS05_ALGO_RESERVED        | (1)  |
 | 10           | RSA/SHA-512                      | RSASHA512          | DS05_ALGO_NOT_RECOMMENDED |      |
 | 11           | Reserved                         | RESERVED           | DS05_ALGO_RESERVED        | (1)  |
 | 12           | GOST R 34.10-2001                | ECC-GOST           | DS05_ALGO_DEPRECATED      |      |
-| 13           | ECDSA Curve P-256 with SHA-256   | ECDSAP256SHA256    | DS05_ALGO_OK              |      |
-| 14           | ECDSA Curve P-384 with SHA-384   | ECDSAP384SHA384    | DS05_ALGO_OK              |      |
-| 15           | Ed25519                          | ED25519            | DS05_ALGO_OK              |      |
-| 16           | Ed448                            | ED448              | DS05_ALGO_OK              |      |
-| 17           | SM2 signing algo w SM3 hash algo | SM2SM3             | DS05_ALGO_OK              |      |
-| 18-22        | Unassigned                       | UNASSIGNED         | DS05_ALGO_UNASSIGNED      | (1)  |
-| 23           | GOST R 34.10-2012                | ECC-GOST12         | DS05_ALGO_OK              |      |
+| 13           | ECDSA Curve P-256 with SHA-256   | ECDSAP256SHA256    | DS05_ALGO_RECOMMENDED     |      |
+| 14           | ECDSA Curve P-384 with SHA-384   | ECDSAP384SHA384    | DS05_ALGO_MAY             |      |
+| 15           | Ed25519                          | ED25519            | DS05_ALGO_RECOMMENDED     |      |
+| 16           | Ed448                            | ED448              | DS05_ALGO_MAY             |      |
+| 17           | SM2 signing algo w SM3 hash algo | SM2SM3             | DS05_ALGO_MAY             |      |
+| 18           | ML-DSA-44                        | MLDSA44            | DS05_ALGO_MAY             |      |
+| 19-22        | Unassigned                       | UNASSIGNED         | DS05_ALGO_UNASSIGNED      | (1)  |
+| 23           | GOST R 34.10-2012                | ECC-GOST12         | DS05_ALGO_MAY             |      |
 | 24-122       | Unassigned                       | UNASSIGNED         | DS05_ALGO_UNASSIGNED      | (1)  |
 | 123-251      | Reserved                         | RESERVED           | DS05_ALGO_RESERVED        | (1)  |
 | 252          | Reserved for Indirect Keys       | INDIRECT           | DS05_ALGO_NOT_ZONE_SIGN   |      |
@@ -92,18 +93,19 @@ The "Zonemaster classification" is based on the "Use for DNSSEC signing" in the
 
 ## Summary
 
-| Message Tag               | Level   | Arguments                                         | Message ID for message tag                                                                                                                                                  |
-|:--------------------------|:--------|:--------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| DS05_ALGO_DEPRECATED      | ERROR   | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses deprecated algorithm number {algo_num} ("{algo_descr}", {algo_mnemo}). Fetched from name servers "{ns_list}".                             |
-| DS05_ALGO_NOT_RECOMMENDED | WARNING | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses unrecommended algorithm number {algo_num} ("{algo_descr}", {algo_mnemo}). Fetched from name servers "{ns_list}".                          |
-| DS05_ALGO_NOT_ZONE_SIGN   | ERROR   | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses algorithm number {algo_num} ("{algo_descr}", {algo_mnemo}) which is not meant for zone signing. Fetched from name servers "{ns_list}".    |
-| DS05_ALGO_OK              | INFO    | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses algorithm number {algo_num} ("{algo_descr}", {algo_mnemo}). Fetched from name servers "{ns_list}".                                        |
-| DS05_ALGO_PRIVATE         | ERROR   | ns_list, keytag, algo_num                         | The DNSKEY with tag {keytag} uses algorithm number {algo_num} which is reserved for private use. Fetched from name servers "{ns_list}".                                     |
-| DS05_ALGO_RESERVED        | ERROR   | ns_list, keytag, algo_num                         | The DNSKEY with tag {keytag} uses reserved algorithm number {algo_num}. Fetched from name servers "{ns_list}".                                                              |
-| DS05_ALGO_UNASSIGNED      | ERROR   | ns_list, keytag, algo_num                         | The DNSKEY with tag {keytag} uses unassigned algorithm number {algo_num}. Fetched from name servers "{ns_list}".                                                            |
-| DS05_NO_RESPONSE          | WARNING | ns_list                                           | No response or error in response from all name servers on the DNSKEY query. Failing name servers: "{ns_list}".                                                              |
-| DS05_SERVER_NO_DNSSEC     | ERROR   | ns_list                                           | Some name servers do not support DNSSEC or have not been properly configured. DNSKEY cannot be tested on those servers. Fetched from name servers "{ns_list}".              |
-| DS05_ZONE_NO_DNSSEC       | NOTICE  | ns_list                                           | The zone is not DNSSEC signed or not properly DNSSEC signed. DNSKEY cannot be tested. Fetched from name servers "{ns_list}".                                                |
+| Message Tag               | Level   | Arguments                                         | Message ID for message tag                                                                                                                                                                              |
+|:--------------------------|:--------|:--------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| DS05_ALGO_DEPRECATED      | ERROR   | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses deprecated algorithm number {algo_num} ("{algo_descr}", {algo_mnemo}). Fetched from name servers "{ns_list}".                                                         |
+| DS05_ALGO_MAY             | NOTICE  | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses algorithm number {algo_num} ("{algo_descr}", {algo_mnemo}), which may be used but it is not one of the recommended algortihms. Fetched from name servers "{ns_list}". |
+| DS05_ALGO_NOT_RECOMMENDED | WARNING | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses an algorithm number {algo_num} ("{algo_descr}", {algo_mnemo}), recommended not to be used. Fetched from name servers "{ns_list}".                                     |
+| DS05_ALGO_NOT_ZONE_SIGN   | ERROR   | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses algorithm number {algo_num} ("{algo_descr}", {algo_mnemo}) which is not meant for zone signing. Fetched from name servers "{ns_list}".                                |
+| DS05_ALGO_PRIVATE         | ERROR   | ns_list, keytag, algo_num                         | The DNSKEY with tag {keytag} uses algorithm number {algo_num} which is reserved for private use. Fetched from name servers "{ns_list}".                                                                 |
+| DS05_ALGO_RECOMMENDED     | INFO    | ns_list, keytag, algo_num, algo_descr, algo_mnemo | The DNSKEY with tag {keytag} uses algorithm number {algo_num} ("{algo_descr}", {algo_mnemo}), which is one of the recommended algorithms to be used. Fetched from name servers "{ns_list}".             |
+| DS05_ALGO_RESERVED        | ERROR   | ns_list, keytag, algo_num                         | The DNSKEY with tag {keytag} uses reserved algorithm number {algo_num}. Fetched from name servers "{ns_list}".                                                                                          |
+| DS05_ALGO_UNASSIGNED      | ERROR   | ns_list, keytag, algo_num                         | The DNSKEY with tag {keytag} uses unassigned algorithm number {algo_num}. Fetched from name servers "{ns_list}".                                                                                        |
+| DS05_NO_RESPONSE          | WARNING | ns_list                                           | No response or error in response from all name servers on the DNSKEY query. Failing name servers: "{ns_list}".                                                                                          |
+| DS05_SERVER_NO_DNSSEC     | ERROR   | ns_list                                           | Some name servers do not respond with any DNSKEY or have not been properly configured. DNSKEY cannot be tested on those servers. Fetched from name servers "{ns_list}".                                 |
+| DS05_ZONE_NO_DNSSEC       | NOTICE  | ns_list                                           | The zone has no DNSKEY records or is not properly configured. DNSKEY cannot be tested. Fetched from name servers "{ns_list}".                                                                           |
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -149,12 +151,13 @@ A complete list of all DNS Resource Record types can be found in the
     2.  Name server IP address ("Responds without valid DNSKEY")
     3.  Name server IP address ("Responds with DNSKEY")
     4.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_DEPRECATED")
-    5.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_RESERVED")
-    6.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_UNASSIGNED")
-    7.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_RECOMMENDED")
+    5.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_MAY")
+    6.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_RECOMMENDED")
+    7.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_ZONE_SIGN")
     8.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_PRIVATE")
-    9.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_ZONE_SIGN")
-    10. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_OK")
+    9.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_RECOMMENDED")
+    10. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_RESERVED")
+    11. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_UNASSIGNED")
 
 5.  For each unique name server IP address in *NS Name and IP* do:
 
@@ -190,12 +193,13 @@ A complete list of all DNS Resource Record types can be found in the
        and algorithm mnemonic if not listed for the tag in [Summary].
    * Sets:
      * *[DS05_ALGO_DEPRECATED]*
+     * *[DS05_ALGO_MAY]*
+     * *[DS05_ALGO_NOT_RECOMMENDED]*
+     * *[DS05_ALGO_NOT_ZONE_SIGN]*
+     * *[DS05_ALGO_PRIVATE]*
+     * *[DS05_ALGO_RECOMMENDED]*
      * *[DS05_ALGO_RESERVED]*
      * *[DS05_ALGO_UNASSIGNED]*
-     * *[DS05_ALGO_NOT_RECOMMENDED]*
-     * *[DS05_ALGO_PRIVATE]*
-     * *[DS05_ALGO_NOT_ZONE_SIGN]*
-     * *[DS05_ALGO_OK]*
 
 7. If the *Responds without valid DNSKEY* and *Responds with DNSKEY* sets are empty
    then output *[DS05_NO_RESPONSE]* with the list of name server IP addresses from
@@ -248,11 +252,12 @@ No special terminology for this Test Case.
 [DNSSEC README]:                                  ./README.md
 [DNSSEC Response]:                                ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
 [DS05_ALGO_DEPRECATED]:                           #outcomes
+[DS05_ALGO_MAY]:                                  #outcomes
 [DS05_ALGO_NOT_RECOMMENDED]:                      #outcomes
 [DS05_ALGO_NOT_ZONE_SIGN]:                        #outcomes
-[DS05_ALGO_OK]:                                   #outcomes
 [DS05_ALGO_PRIVATE]:                              #outcomes
 [DS05_ALGO_RESERVED]:                             #outcomes
+[DS05_ALGO_RECOMMENDED]:                          #outcomes
 [DS05_ALGO_UNASSIGNED]:                           #outcomes
 [DS05_NO_RESPONSE]:                               #outcomes
 [DS05_SERVER_NO_DNSSEC]:                          #outcomes
