@@ -193,12 +193,13 @@ A complete list of all DNS Resource Record types can be found in the
        and algorithm mnemonic if not listed for the tag in [Summary].
    * Sets:
      * *[DS05_ALGO_DEPRECATED]*
+     * *[DS05_ALGO_MAY]*
+     * *[DS05_ALGO_NOT_RECOMMENDED]*
+     * *[DS05_ALGO_NOT_ZONE_SIGN]*
+     * *[DS05_ALGO_PRIVATE]*
+     * *[DS05_ALGO_RECOMMENDED]*
      * *[DS05_ALGO_RESERVED]*
      * *[DS05_ALGO_UNASSIGNED]*
-     * *[DS05_ALGO_NOT_RECOMMENDED]*
-     * *[DS05_ALGO_PRIVATE]*
-     * *[DS05_ALGO_NOT_ZONE_SIGN]*
-     * *[DS05_ALGO_OK]*
 
 7. If the *Responds without valid DNSKEY* and *Responds with DNSKEY* sets are empty
    then output *[DS05_NO_RESPONSE]* with the list of name server IP addresses from
