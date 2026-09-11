@@ -156,7 +156,8 @@ A complete list of all DNS Resource Record types can be found in the
     7.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_RECOMMENDED")
     8.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_PRIVATE")
     9.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_ZONE_SIGN")
-    10. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_OK")
+    11. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_MAY")
+    12. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_RECOMMENDED")
 
 5.  For each unique name server IP address in *NS Name and IP* do:
 
