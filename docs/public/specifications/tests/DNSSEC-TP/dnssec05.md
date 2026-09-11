@@ -252,11 +252,12 @@ No special terminology for this Test Case.
 [DNSSEC README]:                                  ./README.md
 [DNSSEC Response]:                                ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dnssec-response
 [DS05_ALGO_DEPRECATED]:                           #outcomes
+[DS05_ALGO_MAY]:                                  #outcomes
 [DS05_ALGO_NOT_RECOMMENDED]:                      #outcomes
 [DS05_ALGO_NOT_ZONE_SIGN]:                        #outcomes
-[DS05_ALGO_OK]:                                   #outcomes
 [DS05_ALGO_PRIVATE]:                              #outcomes
 [DS05_ALGO_RESERVED]:                             #outcomes
+[DS05_ALGO_RECOMMENDED]:                          #outcomes
 [DS05_ALGO_UNASSIGNED]:                           #outcomes
 [DS05_NO_RESPONSE]:                               #outcomes
 [DS05_SERVER_NO_DNSSEC]:                          #outcomes
