@@ -62,18 +62,19 @@ The "Zonemaster classification" is based on the "Use for DNSSEC signing" in the
 | 5            | RSA/SHA-1                        | RSASHA1            | DS05_ALGO_DEPRECATED      |      |
 | 6            | DSA-NSEC3-SHA1                   | DSA-NSEC3-SHA1     | DS05_ALGO_DEPRECATED      |      |
 | 7            | RSASHA1-NSEC3-SHA1               | RSASHA1-NSEC3-SHA1 | DS05_ALGO_DEPRECATED      |      |
-| 8            | RSA/SHA-256                      | RSASHA256          | DS05_ALGO_OK              |      |
+| 8            | RSA/SHA-256                      | RSASHA256          | DS05_ALGO_RECOMMENDED     |      |
 | 9            | Reserved                         | RESERVED           | DS05_ALGO_RESERVED        | (1)  |
 | 10           | RSA/SHA-512                      | RSASHA512          | DS05_ALGO_NOT_RECOMMENDED |      |
 | 11           | Reserved                         | RESERVED           | DS05_ALGO_RESERVED        | (1)  |
 | 12           | GOST R 34.10-2001                | ECC-GOST           | DS05_ALGO_DEPRECATED      |      |
-| 13           | ECDSA Curve P-256 with SHA-256   | ECDSAP256SHA256    | DS05_ALGO_OK              |      |
-| 14           | ECDSA Curve P-384 with SHA-384   | ECDSAP384SHA384    | DS05_ALGO_OK              |      |
-| 15           | Ed25519                          | ED25519            | DS05_ALGO_OK              |      |
-| 16           | Ed448                            | ED448              | DS05_ALGO_OK              |      |
-| 17           | SM2 signing algo w SM3 hash algo | SM2SM3             | DS05_ALGO_OK              |      |
-| 18-22        | Unassigned                       | UNASSIGNED         | DS05_ALGO_UNASSIGNED      | (1)  |
-| 23           | GOST R 34.10-2012                | ECC-GOST12         | DS05_ALGO_OK              |      |
+| 13           | ECDSA Curve P-256 with SHA-256   | ECDSAP256SHA256    | DS05_ALGO_RECOMMENDED     |      |
+| 14           | ECDSA Curve P-384 with SHA-384   | ECDSAP384SHA384    | DS05_ALGO_MAY             |      |
+| 15           | Ed25519                          | ED25519            | DS05_ALGO_RECOMMENDED     |      |
+| 16           | Ed448                            | ED448              | DS05_ALGO_MAY             |      |
+| 17           | SM2 signing algo w SM3 hash algo | SM2SM3             | DS05_ALGO_MAY             |      |
+| 18           | ML-DSA-44                        | MLDSA44            | DS05_ALGO_MAY             |      |
+| 19-22        | Unassigned                       | UNASSIGNED         | DS05_ALGO_UNASSIGNED      | (1)  |
+| 23           | GOST R 34.10-2012                | ECC-GOST12         | DS05_ALGO_MAY             |      |
 | 24-122       | Unassigned                       | UNASSIGNED         | DS05_ALGO_UNASSIGNED      | (1)  |
 | 123-251      | Reserved                         | RESERVED           | DS05_ALGO_RESERVED        | (1)  |
 | 252          | Reserved for Indirect Keys       | INDIRECT           | DS05_ALGO_NOT_ZONE_SIGN   |      |
