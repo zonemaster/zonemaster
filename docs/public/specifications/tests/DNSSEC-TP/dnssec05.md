@@ -151,13 +151,13 @@ A complete list of all DNS Resource Record types can be found in the
     2.  Name server IP address ("Responds without valid DNSKEY")
     3.  Name server IP address ("Responds with DNSKEY")
     4.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_DEPRECATED")
-    5.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_RESERVED")
-    6.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_UNASSIGNED")
-    7.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_RECOMMENDED")
+    5.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_MAY")
+    6.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_RECOMMENDED")
+    7.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_ZONE_SIGN")
     8.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_PRIVATE")
-    9.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_NOT_ZONE_SIGN")
-    11. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_MAY")
-    12. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_RECOMMENDED")
+    9.  Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_RECOMMENDED")
+    10. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_RESERVED")
+    11. Name server IP address, key tag and DNSKEY algorithm code ("DS05_ALGO_UNASSIGNED")
 
 5.  For each unique name server IP address in *NS Name and IP* do:
 
