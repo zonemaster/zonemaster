@@ -81,6 +81,7 @@ irrelevant to the test scenario and must be ignored.
 | ALGO-RECOMMENDED-15     | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
 | ALGO-MAY-16             | DS05_ALGO_MAY                                                          | 2)                     |
 | ALGO-MAY-17             | DS05_ALGO_MAY                                                          | 2)                     |
+| ALGO-MAY-18             | DS05_ALGO_MAY                                                          | 2)                     |
 | ALGO-MAY-23             | DS05_ALGO_MAY                                                          | 2)                     |
 | ALGO-PRIVATE-253        | DS05_ALGO_PRIVATE                                                      | 2)                     |
 | ALGO-PRIVATE-254        | DS05_ALGO_PRIVATE                                                      | 2)                     |
@@ -291,6 +292,12 @@ The DNSKEY algo is 17
 
 * Zone: "algo-may-17.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 17.
+
+### ALGO-MAY-18
+The DNSKEY algo is 18.
+
+* Zone: "algo-may-18.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 18.
 
 ### ALGO-MAY-23
 The DNSKEY algo is 23
