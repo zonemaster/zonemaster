@@ -46,10 +46,11 @@ The test case can output any of these message tags, but not necessarily in any
 combination. See [DNSSEC05] for the specification of the tags.
 
 * DS05_ALGO_DEPRECATED
+* DS05_ALGO_MAY
 * DS05_ALGO_NOT_RECOMMENDED
 * DS05_ALGO_NOT_ZONE_SIGN
-* DS05_ALGO_OK
 * DS05_ALGO_PRIVATE
+* DS05_ALGO_RECOMMENDED
 * DS05_ALGO_RESERVED
 * DS05_ALGO_UNASSIGNED
 * DS05_NO_RESPONSE
@@ -74,13 +75,13 @@ irrelevant to the test scenario and must be ignored.
 | ALGO-NOT-ZONE-SIGN-0    | DS05_ALGO_NOT_ZONE_SIGN                                       | 2)                     |
 | ALGO-NOT-ZONE-SIGN-2    | DS05_ALGO_NOT_ZONE_SIGN                                       | 2)                     |
 | ALGO-NOT-ZONE-SIGN-252  | DS05_ALGO_NOT_ZONE_SIGN                                       | 2)                     |
-| ALGO-OK-8               | DS05_ALGO_OK                                                  | 2)                     |
-| ALGO-OK-13              | DS05_ALGO_OK                                                  | 2)                     |
-| ALGO-OK-14              | DS05_ALGO_OK                                                  | 2)                     |
-| ALGO-OK-15              | DS05_ALGO_OK                                                  | 2)                     |
-| ALGO-OK-16              | DS05_ALGO_OK                                                  | 2)                     |
-| ALGO-OK-17              | DS05_ALGO_OK                                                  | 2)                     |
-| ALGO-OK-23              | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-RECOMMENDED-8               | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
+| ALGO-RECOMMENDED-13              | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
+| ALGO-MAY-14              | DS05_ALGO_MAY                                                  | 2)                     |
+| ALGO-RECOMMENDED-15              | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
+| ALGO-MAY-16              | DS05_ALGO_MAY                                                  | 2)                     |
+| ALGO-MAY-17              | DS05_ALGO_MAY                                                  | 2)                     |
+| ALGO-MAY-23              | DS05_ALGO_MAY                                                  | 2)                     |
 | ALGO-PRIVATE-253        | DS05_ALGO_PRIVATE                                             | 2)                     |
 | ALGO-PRIVATE-254        | DS05_ALGO_PRIVATE                                             | 2)                     |
 | ALGO-RESERVED-4         | DS05_ALGO_RESERVED                                            | 2)                     |
@@ -91,11 +92,11 @@ irrelevant to the test scenario and must be ignored.
 | ALGO-RESERVED-255       | DS05_ALGO_RESERVED                                            | 2)                     |
 | ALGO-UNASSIGNED-20      | DS05_ALGO_UNASSIGNED                                          | 2)                     |
 | ALGO-UNASSIGNED-122     | DS05_ALGO_UNASSIGNED                                          | 2)                     |
-| MIXED-ALGO-1            | DS05_ALGO_DEPRECATED, DS05_ALGO_NOT_RECOMMENDED, DS05_ALGO_OK | 2)                     |
+| MIXED-ALGO-1            | DS05_ALGO_DEPRECATED, DS05_ALGO_NOT_RECOMMENDED, DS05_ALGO_RECOMMENDED | 2)                     |
 | NO-RESPONSE-1           | DS05_NO_RESPONSE                                              | 2)                     |
 | NO-RESPONSE-2           | DS05_NO_RESPONSE                                              | 2)                     |
-| SERVER-NO-DNSSEC-1      | DS05_SERVER_NO_DNSSEC, DS05_ALGO_OK                           | 2)                     |
-| SHARED-IP-1             | DS05_ALGO_OK                                                  | 2)                     |
+| SERVER-NO-DNSSEC-1      | DS05_SERVER_NO_DNSSEC, DS05_ALGO_RECOMMENDED                           | 2)                     |
+| SHARED-IP-1             | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
 | ZONE-NO-DNSSEC-1        | DS05_ZONE_NO_DNSSEC                                           | 2)                     |
 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
@@ -255,46 +256,46 @@ The DNSKEY algo is 10
 * Zone: "algo-not-recommended-10.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 10.
 
-### ALGO-OK-8
+### ALGO-RECOMMENDED-8
 The DNSKEY algo is 8
 
-* Zone: "algo-ok-8.dnssec05.xa."
+* Zone: "algo-recommended-8.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 8.
 
-### ALGO-OK-13
+### ALGO-RECOMMENDED-13
 The DNSKEY algo is 13
 
-* Zone: "algo-ok-13.dnssec05.xa."
+* Zone: "algo-recommended-13.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 13.
 
-### ALGO-OK-14
+### ALGO-MAY-14
 The DNSKEY algo is 14
 
-* Zone: "algo-ok-14.dnssec05.xa."
+* Zone: "algo-may-14.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 14.
 
-### ALGO-OK-15
+### ALGO-RECOMMENDED-15
 The DNSKEY algo is 15
 
-* Zone: "algo-ok-15.dnssec05.xa."
+* Zone: "algo-recommended-15.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 15.
 
-### ALGO-OK-16
+### ALGO-MAY-16
 The DNSKEY algo is 16
 
-* Zone: "algo-ok-16.dnssec05.xa."
+* Zone: "algo-may-16.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 16.
 
-### ALGO-OK-17
+### ALGO-MAY-17
 The DNSKEY algo is 17
 
-* Zone: "algorithm-ok-17.dnssec05.xa."
+* Zone: "algo-may-17.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 17.
 
-### ALGO-OK-23
+### ALGO-MAY-23
 The DNSKEY algo is 23
 
-* Zone: "algorithm-ok-23.dnssec05.xa."
+* Zone: "algo-may-23.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 23.
 
 ## MIXED-ALGO-1
