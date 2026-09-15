@@ -118,8 +118,11 @@ queries follow, unless otherwise specified below, what is specified for
 
 2.  Create [DNS Queries][DNS Query]:
 
-    1. Query type SOA and query name *Child Zone* ("SOA Query").
-    2. Query type NS and query name *Child Zone* ("NS Query").
+    1. Query type SOA, query name *Child Zone* and transport over UDP
+       ("SOA Query Over UDP").
+    2. Query type SOA, query name *Child Zone* and transport over TCP
+       ("SOA Query Over TCP").
+    3. Query type NS and query name *Child Zone* ("NS Query").
 
 3.  Create the following empty sets:
 
@@ -136,9 +139,11 @@ queries follow, unless otherwise specified below, what is specified for
 4.  If the *Parent NS IPs* is non-empty, then for each name server IP in the set
     do:
 
-    1. [Send] *SOA Query* over UDP to the name server IP and fetch the response
-       (if any).
-    2. If the response (if any) contains a [Referral] of *Child Zone* then do:
+    1. [Send] *SOA Query Over TCP* to the name server IP and fetch the response.
+    2. If no response was received, [send] *SOA Query Over UDP* to the same name
+       server IP and fetch the response.
+    3. If a response was received and it contains a [Referral] to *Child Zone*
+       then do:
        1. Extract the name server names from delegation NS records in authority
           section.
        2. Downcase any uppercase letters in the names.
@@ -153,7 +158,7 @@ queries follow, unless otherwise specified below, what is specified for
              addresses sorted before IPv6 addresses.
           5. The name/IP pair will replace any "name" where the name server name
              is the same.
-       5. Add the name server IP (to which the *SOA Query* was sent) and the name
+       5. Add the name server IP (to which the SOA query was sent) and the name
           server list created above to the *Delegation* set.
 
     *Note:* If the *Undelegated Data* set is non-empty then the
@@ -229,8 +234,7 @@ queries follow, unless otherwise specified below, what is specified for
 
 11. For each name server IP in *Child NS IPs* do:
 
-    1. [Send] *NS Query* over UDP to the name server IP and fetch the response
-       (if any).
+    1. [Send] *NS Query* to the name server IP and fetch the response (if any).
     2. If the response (if any) meets all of the following criteria, add the name server
        IP and the name server names extracted from the NS RRset to the
        *Child Zone NS* set:
@@ -245,8 +249,8 @@ queries follow, unless otherwise specified below, what is specified for
     5. For each [In-Domain] name server name do:
        1.  Create a [DNS Query] with query type A and query name the NS name
            server name ("A Query").
-       2.  [Send] *A Query* over UDP to the name server IP and fetch the
-           response (if any).
+       2.  [Send] *A Query* to the name server IP and fetch the response (if
+           any).
        3.  If the response (if any) contains a [Referral] covering the NS name
            server name then repeat *A Query* (recursively, if needed) to the
            name servers in the referral until an A RRset is returned or the
@@ -264,7 +268,7 @@ queries follow, unless otherwise specified below, what is specified for
            * The AA flag is set.
        6.  Create a [DNS Query] with query type AAAA and query name the NS
            name server name ("AAAA Query").
-       7.  [Send] *A Query* over UDP to the name server IP and fetch the
+       7.  [Send] *AAAA Query* to the name server IP and fetch the
            response (if any).
        8.  If the response (if any) contains a [Referral] covering the NS name
            server name then repeat *AAAA Query* as was done with the *A Query*
