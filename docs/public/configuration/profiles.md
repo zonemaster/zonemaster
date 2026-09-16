@@ -27,14 +27,20 @@ that it should override.
 
 ## Preset profiles
 
-This section describes publicly available "preset" profiles, included in the Zonemaster installation by default.
-These reside in the [share/profiles][profiles] directory of Zonemaster-Engine.
+This section describes publicly available "preset" profiles, included in the Zonemaster
+installation by default. These reside in the [share/profiles][profiles] directory of
+Zonemaster-Engine, whose path can be found with the following command on a default
+installation:
+
+```
+echo "$(perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Engine")')/profiles/"
+```
 
 ### KINDNS
 
-[Knowledge-Sharing and Instantiating Norms for DNS and Naming Security (KINDNS)][KINDNS] is a program supported by
-ICANN to develop and promote a framework that focuses on the most important operational best practices
-or concrete instances of DNS security best practices.
+[Knowledge-Sharing and Instantiating Norms for DNS and Naming Security (KINDNS)][KINDNS] is
+a program supported by ICANN to develop and promote a framework that focuses on the most
+important operational best practices or concrete instances of DNS security best practices.
 
 The following table maps KINDNS practices to the corresponding Zonemaster test cases included in this profile:
 
