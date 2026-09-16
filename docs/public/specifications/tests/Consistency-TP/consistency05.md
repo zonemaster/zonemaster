@@ -323,7 +323,6 @@ queries follow, unless otherwise specified below, what is specified for
     *[CS05_NO_MISMATCH_GLUE_ZONE]*.
 
 
-
 ## Outcome(s)
 
 The outcome of this Test Case is "fail" if there is at least one message
@@ -342,6 +341,14 @@ In other cases, no message or only messages with severity level
 If either IPv4 or IPv6 transport is disabled, ignore the evaluation of the
 result of any test using this transport protocol and log a message reporting
 the ignored result.
+
+[RFC 9471][RFC 9471#section3.1], section 3.1, requires that a parent name server
+include all available [in-domain] glue records in a [referral] of a child zone or
+set the [TC bit][RFC 1035#section4.1.1]. Some name servers fail to set the TC bit
+correctly in this case, and to make sure all glue records are provided for this
+test case, the parent name servers are queried over TCP with a fallback to UDP,
+as specified in the test procedures. Detecting a failing to set the TC bit is not
+part of the objective for this test case.
 
 
 ## Intercase dependencies
@@ -451,6 +458,8 @@ None
 [RCODE Name]:                              https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RDATA]:                                   #terminology
 [RFC 1034#section3.6]:                     https://datatracker.ietf.org/doc/html/rfc1034#section-3.6
+[RFC 1035#section4.1.1]:                   https://datatracker.ietf.org/doc/html/rfc1035#section-4.1.1
+[RFC 9471#section3.1]:                     https://datatracker.ietf.org/doc/html/rfc9471#section-3.1
 [RFC 9499#section5]:                       https://datatracker.ietf.org/doc/html/rfc9499#section-5
 [RFC 9499#section7]:                       https://datatracker.ietf.org/doc/html/rfc9499#section-7
 [Referral]:                                #terminology
