@@ -347,7 +347,7 @@ include all available [in-domain] glue records in a [referral] of a child zone o
 set the [TC bit][RFC 1035#section4.1.1]. Some name servers fail to set the TC bit
 correctly in this case, and to make sure all glue records are provided for this
 test case, the parent name servers are queried over TCP with a fallback to UDP,
-as specified in the test procedures. Detecting a failing to set the TC bit is not
+as specified in the test procedures. Detecting a failure to set the TC bit is not
 part of the objective for this test case.
 
 
