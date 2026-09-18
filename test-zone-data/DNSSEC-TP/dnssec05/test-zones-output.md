@@ -180,7 +180,7 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testc
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-MAY-18.dnssec05.xa
 ```
---> OK
+--> Not OK
 
 | Scenario name | Mandatory message tags | Forbidden message tags |
 |:--------------|:-----------------------|:-----------------------|
