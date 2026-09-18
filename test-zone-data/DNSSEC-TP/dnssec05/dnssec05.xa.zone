@@ -2,7 +2,7 @@ $ORIGIN dnssec05.xa.                              ; Must end with "."
 $TTL 3600
 
 @           SOA     ns1 admin. (
-                    2026091800      ; serial
+                    2026091801      ; serial
                     6h              ; refresh
                     1h              ; retry
                     1w              ; expire
@@ -27,6 +27,10 @@ $ORIGIN algo-deprecated-1.dnssec05.xa.
 @       NS       ns1.child.dnssec05.xa.
 @       NS       ns2.child.dnssec05.xa.
 
+$ORIGIN algo-deprecated-12.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
+
 $ORIGIN algo-deprecated-3.dnssec05.xa.
 @       NS       ns1.child.dnssec05.xa.
 @       NS       ns2.child.dnssec05.xa.
@@ -43,15 +47,59 @@ $ORIGIN algo-deprecated-7.dnssec05.xa.
 @       NS       ns1.child.dnssec05.xa.
 @       NS       ns2.child.dnssec05.xa.
 
-$ORIGIN algo-deprecated-12.dnssec05.xa.
+$ORIGIN algo-may-14.dnssec05.xa.
 @       NS       ns1.child.dnssec05.xa.
 @       NS       ns2.child.dnssec05.xa.
 
-$ORIGIN algo-reserved-4.dnssec05.xa.
+$ORIGIN algo-may-16.dnssec05.xa.
 @       NS       ns1.child.dnssec05.xa.
 @       NS       ns2.child.dnssec05.xa.
 
-$ORIGIN algo-reserved-9.dnssec05.xa.
+$ORIGIN algo-may-17.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
+
+$ORIGIN algo-may-18.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
+
+$ORIGIN algo-may-23.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
+
+$ORIGIN algo-not-recommended-10.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
+
+$ORIGIN algo-not-zone-sign-0.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
+
+$ORIGIN algo-not-zone-sign-2.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
+
+$ORIGIN algo-not-zone-sign-252.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
+
+$ORIGIN algo-private-253.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
+
+$ORIGIN algo-private-254.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
+
+$ORIGIN algo-recommended-13.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
+
+$ORIGIN algo-recommended-15.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
+
+$ORIGIN algo-recommended-8.dnssec05.xa.
 @       NS       ns1.child.dnssec05.xa.
 @       NS       ns2.child.dnssec05.xa.
 
@@ -71,7 +119,11 @@ $ORIGIN algo-reserved-255.dnssec05.xa.
 @       NS       ns1.child.dnssec05.xa.
 @       NS       ns2.child.dnssec05.xa.
 
-$ORIGIN algo-unassigned-20.dnssec05.xa.
+$ORIGIN algo-reserved-4.dnssec05.xa.
+@       NS       ns1.child.dnssec05.xa.
+@       NS       ns2.child.dnssec05.xa.
+
+$ORIGIN algo-reserved-9.dnssec05.xa.
 @       NS       ns1.child.dnssec05.xa.
 @       NS       ns2.child.dnssec05.xa.
 
@@ -79,59 +131,7 @@ $ORIGIN algo-unassigned-122.dnssec05.xa.
 @       NS       ns1.child.dnssec05.xa.
 @       NS       ns2.child.dnssec05.xa.
 
-$ORIGIN algo-private-253.dnssec05.xa.
-@       NS       ns1.child.dnssec05.xa.
-@       NS       ns2.child.dnssec05.xa.
-
-$ORIGIN algo-private-254.dnssec05.xa.
-@       NS       ns1.child.dnssec05.xa.
-@       NS       ns2.child.dnssec05.xa.
-
-$ORIGIN algo-not-zone-sign-0.dnssec05.xa.
-@       NS       ns1.child.dnssec05.xa.
-@       NS       ns2.child.dnssec05.xa.
-
-$ORIGIN algo-not-zone-sign-2.dnssec05.xa.
-@       NS       ns1.child.dnssec05.xa.
-@       NS       ns2.child.dnssec05.xa.
-
-$ORIGIN algo-not-zone-sign-252.dnssec05.xa.
-@       NS       ns1.child.dnssec05.xa.
-@       NS       ns2.child.dnssec05.xa.
-
-$ORIGIN algo-not-recommended-10.dnssec05.xa.
-@       NS       ns1.child.dnssec05.xa.
-@       NS       ns2.child.dnssec05.xa.
-
-$ORIGIN algo-recommended-8.dnssec05.xa.
-@       NS       ns1.child.dnssec05.xa.
-@       NS       ns2.child.dnssec05.xa.
-
-$ORIGIN algo-recommended-13.dnssec05.xa.
-@       NS       ns1.child.dnssec05.xa.
-@       NS       ns2.child.dnssec05.xa.
-
-$ORIGIN algo-may-14.dnssec05.xa.
-@       NS       ns1.child.dnssec05.xa.
-@       NS       ns2.child.dnssec05.xa.
-
-$ORIGIN algo-recommended-15.dnssec05.xa.
-@       NS       ns1.child.dnssec05.xa.
-@       NS       ns2.child.dnssec05.xa.
-
-$ORIGIN algo-may-16.dnssec05.xa.
-@       NS       ns1.child.dnssec05.xa.
-@       NS       ns2.child.dnssec05.xa.
-
-$ORIGIN algo-may-17.dnssec05.xa.
-@       NS       ns1.child.dnssec05.xa.
-@       NS       ns2.child.dnssec05.xa.
-
-$ORIGIN algo-may-18.dnssec05.xa.
-@       NS       ns1.child.dnssec05.xa.
-@       NS       ns2.child.dnssec05.xa.
-
-$ORIGIN algo-may-23.dnssec05.xa.
+$ORIGIN algo-unassigned-20.dnssec05.xa.
 @       NS       ns1.child.dnssec05.xa.
 @       NS       ns2.child.dnssec05.xa.
 
