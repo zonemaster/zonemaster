@@ -66,33 +66,33 @@ irrelevant to the test scenario and must be ignored.
 | Scenario name           | Mandatory message tags                                                 | Forbidden message tags |
 |:------------------------|:-----------------------------------------------------------------------|:-----------------------|
 | ALGO-DEPRECATED-1       | DS05_ALGO_DEPRECATED                                                   | 2)                     |
+| ALGO-DEPRECATED-12      | DS05_ALGO_DEPRECATED                                                   | 2)                     |
 | ALGO-DEPRECATED-3       | DS05_ALGO_DEPRECATED                                                   | 2)                     |
 | ALGO-DEPRECATED-5       | DS05_ALGO_DEPRECATED                                                   | 2)                     |
 | ALGO-DEPRECATED-6       | DS05_ALGO_DEPRECATED                                                   | 2)                     |
 | ALGO-DEPRECATED-7       | DS05_ALGO_DEPRECATED                                                   | 2)                     |
-| ALGO-DEPRECATED-12      | DS05_ALGO_DEPRECATED                                                   | 2)                     |
-| ALGO-NOT-RECOMMENDED-10 | DS05_ALGO_NOT_RECOMMENDED                                              | 2)                     |
-| ALGO-NOT-ZONE-SIGN-0    | DS05_ALGO_NOT_ZONE_SIGN                                                | 2)                     |
-| ALGO-NOT-ZONE-SIGN-2    | DS05_ALGO_NOT_ZONE_SIGN                                                | 2)                     |
-| ALGO-NOT-ZONE-SIGN-252  | DS05_ALGO_NOT_ZONE_SIGN                                                | 2)                     |
-| ALGO-RECOMMENDED-8      | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
-| ALGO-RECOMMENDED-13     | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
 | ALGO-MAY-14             | DS05_ALGO_MAY                                                          | 2)                     |
-| ALGO-RECOMMENDED-15     | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
 | ALGO-MAY-16             | DS05_ALGO_MAY                                                          | 2)                     |
 | ALGO-MAY-17             | DS05_ALGO_MAY                                                          | 2)                     |
 | ALGO-MAY-18             | DS05_ALGO_MAY                                                          | 2)                     |
 | ALGO-MAY-23             | DS05_ALGO_MAY                                                          | 2)                     |
+| ALGO-NOT-RECOMMENDED-10 | DS05_ALGO_NOT_RECOMMENDED                                              | 2)                     |
+| ALGO-NOT-ZONE-SIGN-0    | DS05_ALGO_NOT_ZONE_SIGN                                                | 2)                     |
+| ALGO-NOT-ZONE-SIGN-2    | DS05_ALGO_NOT_ZONE_SIGN                                                | 2)                     |
+| ALGO-NOT-ZONE-SIGN-252  | DS05_ALGO_NOT_ZONE_SIGN                                                | 2)                     |
 | ALGO-PRIVATE-253        | DS05_ALGO_PRIVATE                                                      | 2)                     |
 | ALGO-PRIVATE-254        | DS05_ALGO_PRIVATE                                                      | 2)                     |
-| ALGO-RESERVED-4         | DS05_ALGO_RESERVED                                                     | 2)                     |
-| ALGO-RESERVED-9         | DS05_ALGO_RESERVED                                                     | 2)                     |
+| ALGO-RECOMMENDED-13     | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
+| ALGO-RECOMMENDED-15     | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
+| ALGO-RECOMMENDED-8      | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
 | ALGO-RESERVED-11        | DS05_ALGO_RESERVED                                                     | 2)                     |
 | ALGO-RESERVED-123       | DS05_ALGO_RESERVED                                                     | 2)                     |
 | ALGO-RESERVED-251       | DS05_ALGO_RESERVED                                                     | 2)                     |
 | ALGO-RESERVED-255       | DS05_ALGO_RESERVED                                                     | 2)                     |
-| ALGO-UNASSIGNED-20      | DS05_ALGO_UNASSIGNED                                                   | 2)                     |
+| ALGO-RESERVED-4         | DS05_ALGO_RESERVED                                                     | 2)                     |
+| ALGO-RESERVED-9         | DS05_ALGO_RESERVED                                                     | 2)                     |
 | ALGO-UNASSIGNED-122     | DS05_ALGO_UNASSIGNED                                                   | 2)                     |
+| ALGO-UNASSIGNED-20      | DS05_ALGO_UNASSIGNED                                                   | 2)                     |
 | MIXED-ALGO-1            | DS05_ALGO_DEPRECATED, DS05_ALGO_NOT_RECOMMENDED, DS05_ALGO_RECOMMENDED | 2)                     |
 | NO-RESPONSE-1           | DS05_NO_RESPONSE                                                       | 2)                     |
 | NO-RESPONSE-2           | DS05_NO_RESPONSE                                                       | 2)                     |
@@ -143,6 +143,12 @@ The DNSKEY algo is 1
 * Zone: "algo-deprecated-1.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 1.
 
+### ALGO-DEPRECATED-12
+The DNSKEY algo is 12
+
+* Zone: "algo-deprecated-12.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 12.
+
 ### ALGO-DEPRECATED-3
 The DNSKEY algo is 3
 
@@ -167,23 +173,89 @@ The DNSKEY algo is 7
 * Zone: "algo-deprecated-7.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 7.
 
-### ALGO-DEPRECATED-12
-The DNSKEY algo is 12
+### ALGO-MAY-14
+The DNSKEY algo is 14
 
-* Zone: "algo-deprecated-12.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 12.
+* Zone: "algo-may-14.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 14.
 
-### ALGO-RESERVED-4
-The DNSKEY algo is 4
+### ALGO-MAY-16
+The DNSKEY algo is 16
 
-* Zone: "algo-reserved-4.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 4.
+* Zone: "algo-may-16.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 16.
 
-### ALGO-RESERVED-9
-The DNSKEY algo is 9
+### ALGO-MAY-17
+The DNSKEY algo is 17
 
-* Zone: "algo-reserved-9.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 9.
+* Zone: "algo-may-17.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 17.
+
+### ALGO-MAY-18
+The DNSKEY algo is 18.
+
+* Zone: "algo-may-18.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 18.
+
+### ALGO-MAY-23
+The DNSKEY algo is 23
+
+* Zone: "algo-may-23.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 23.
+
+### ALGO-NOT-RECOMMENDED-10
+The DNSKEY algo is 10
+
+* Zone: "algo-not-recommended-10.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 10.
+
+### ALGO-NOT-ZONE-SIGN-0
+The DNSKEY algo is 0
+
+* Zone: "algo-not-zone-sign-0.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 0.
+
+### ALGO-NOT-ZONE-SIGN-2
+The DNSKEY algo is 2
+
+* Zone: "algo-not-zone-sign-2.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 2.
+
+### ALGO-NOT-ZONE-SIGN-252
+The DNSKEY algo is 252
+
+* Zone: "algo-not-zone-sign-252.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 252.
+
+### ALGO-PRIVATE-253
+The DNSKEY algo is 253
+
+* Zone: "algo-private-253.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 253.
+
+### ALGO-PRIVATE-254
+The DNSKEY algo is 254
+
+* Zone: "algo-private-254.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 254.
+
+### ALGO-RECOMMENDED-13
+The DNSKEY algo is 13
+
+* Zone: "algo-recommended-13.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 13.
+
+### ALGO-RECOMMENDED-15
+The DNSKEY algo is 15
+
+* Zone: "algo-recommended-15.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 15.
+
+### ALGO-RECOMMENDED-8
+The DNSKEY algo is 8
+
+* Zone: "algo-recommended-8.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 8.
 
 ### ALGO-RESERVED-11
 The DNSKEY algo is 11
@@ -209,11 +281,17 @@ The DNSKEY algo is 255
 * Zone: "algo-reserved-255.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 255.
 
-### ALGO-UNASSIGNED-20
-The DNSKEY algo is 20
+### ALGO-RESERVED-4
+The DNSKEY algo is 4
 
-* Zone: "algo-unassigned-17.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 17.
+* Zone: "algo-reserved-4.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 4.
+
+### ALGO-RESERVED-9
+The DNSKEY algo is 9
+
+* Zone: "algo-reserved-9.dnssec05.xa."
+  * The algorithm of the DNSKEY in the response is 9.
 
 ### ALGO-UNASSIGNED-122
 The DNSKEY algo is 122
@@ -221,89 +299,11 @@ The DNSKEY algo is 122
 * Zone: "algo-unassigned-122.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 122.
 
-### ALGO-PRIVATE-253
-The DNSKEY algo is 253
+### ALGO-UNASSIGNED-20
+The DNSKEY algo is 20
 
-* Zone: "algo-private-253.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 253.
-
-### ALGO-PRIVATE-254
-The DNSKEY algo is 254
-
-* Zone: "algo-private-254.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 254.
-
-### ALGO-NOT-ZONE-SIGN-0
-The DNSKEY algo is 0
-
-* Zone: "algo-not-zone-sign-0.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 0.
-
-### ALGO-NOT-ZONE-SIGN-2
-The DNSKEY algo is 2
-
-* Zone: "algo-not-zone-sign-2.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 2.
-
-### ALGO-NOT-ZONE-SIGN-252
-The DNSKEY algo is 252
-
-* Zone: "algo-not-zone-sign-252.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 252.
-
-### ALGO-NOT-RECOMMENDED-10
-The DNSKEY algo is 10
-
-* Zone: "algo-not-recommended-10.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 10.
-
-### ALGO-RECOMMENDED-8
-The DNSKEY algo is 8
-
-* Zone: "algo-recommended-8.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 8.
-
-### ALGO-RECOMMENDED-13
-The DNSKEY algo is 13
-
-* Zone: "algo-recommended-13.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 13.
-
-### ALGO-MAY-14
-The DNSKEY algo is 14
-
-* Zone: "algo-may-14.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 14.
-
-### ALGO-RECOMMENDED-15
-The DNSKEY algo is 15
-
-* Zone: "algo-recommended-15.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 15.
-
-### ALGO-MAY-16
-The DNSKEY algo is 16
-
-* Zone: "algo-may-16.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 16.
-
-### ALGO-MAY-17
-The DNSKEY algo is 17
-
-* Zone: "algo-may-17.dnssec05.xa."
+* Zone: "algo-unassigned-17.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 17.
-
-### ALGO-MAY-18
-The DNSKEY algo is 18.
-
-* Zone: "algo-may-18.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 18.
-
-### ALGO-MAY-23
-The DNSKEY algo is 23
-
-* Zone: "algo-may-23.dnssec05.xa."
-  * The algorithm of the DNSKEY in the response is 23.
 
 ## MIXED-ALGO-1
 Three DNSKEY with different algorithms.
