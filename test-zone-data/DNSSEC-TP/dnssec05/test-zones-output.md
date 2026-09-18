@@ -21,10 +21,11 @@ scenarios for other test cases.
 ## All message tags
 
 * DS05_ALGO_DEPRECATED
+* DS05_ALGO_MAY
 * DS05_ALGO_NOT_RECOMMENDED
 * DS05_ALGO_NOT_ZONE_SIGN
-* DS05_ALGO_OK
 * DS05_ALGO_PRIVATE
+* DS05_ALGO_RECOMMENDED
 * DS05_ALGO_RESERVED
 * DS05_ALGO_UNASSIGNED
 * DS05_NO_RESPONSE
@@ -34,40 +35,42 @@ scenarios for other test cases.
 
 ## All scenarios
 
-| Scenario name           | Zone name                                              |
-|:------------------------|:-------------------------------------------------------|
-| ALGO-DEPRECATED-1       | algo-deprecated-1.dnssec05.xa.                         |
-| ALGO-DEPRECATED-3       | algo-deprecated-3.dnssec05.xa.                         |
-| ALGO-DEPRECATED-5       | algo-deprecated-5.dnssec05.xa.                         |
-| ALGO-DEPRECATED-6       | algo-deprecated-6.dnssec05.xa.                         |
-| ALGO-DEPRECATED-7       | algo-deprecated-7.dnssec05.xa.                         |
-| ALGO-DEPRECATED-12      | algo-deprecated-12.dnssec05.xa.                        |
-| ALGO-RESERVED-4         | algo-reserved-4.dnssec05.xa.                           |
-| ALGO-RESERVED-9         | algo-reserved-9.dnssec05.xa.                           |
-| ALGO-RESERVED-11        | algo-reserved-11.dnssec05.xa.                          |
-| ALGO-RESERVED-123       | algo-reserved-123.dnssec05.xa.                         |
-| ALGO-RESERVED-251       | algo-reserved-251.dnssec05.xa.                         |
-| ALGO-RESERVED-255       | algo-reserved-255.dnssec05.xa.                         |
-| ALGO-UNASSIGNED-20      | algo-unassigned-17.dnssec05.xa.                        |
-| ALGO-UNASSIGNED-122     | algo-unassigned-122.dnssec05.xa.                       |
-| ALGO-PRIVATE-253        | algo-private-253.dnssec05.xa.                          |
-| ALGO-PRIVATE-254        | algo-private-254.dnssec05.xa.                          |
-| ALGO-NOT-ZONE-SIGN-0    | algo-not-zone-sign-0.dnssec05.xa.                      |
-| ALGO-NOT-ZONE-SIGN-2    | algo-not-zone-sign-2.dnssec05.xa.                      |
-| ALGO-NOT-ZONE-SIGN-252  | algo-not-zone-sign-252.dnssec05.xa.                    |
-| ALGO-NOT-RECOMMENDED-10 | algo-not-recommended-10.dnssec05.xa.                   |
-| ALGO-OK-8               | algo-ok-8.dnssec05.xa.                                 |
-| ALGO-OK-13              | algo-ok-13.dnssec05.xa.                                |
-| ALGO-OK-14              | algo-ok-14.dnssec05.xa.                                |
-| ALGO-OK-15              | algo-ok-15.dnssec05.xa.                                |
-| ALGO-OK-16              | algo-ok-16.dnssec05.xa.                                |
-| ALGO-OK-17              | algorithm-ok-17.dnssec05.xa.                           |
-| ALGO-OK-23              | algorithm-ok-23.dnssec05.xa."mixed-algo-1.dnssec05.xa. |
-| NO-RESPONSE-1           | no-response-1.dnssec05.xa.                             |
-| NO-RESPONSE-2           | no-response-2.dnssec05.xa.                             |
-| SERVER-NO-DNSSEC-1      | server-no-dnssec-1.dnssec05.xa.                        |
-| SHARED-IP-1             | shared-ip-1.dnssec05.xa.                               |
-| ZONE-NO-DNSSEC-1        | zone-no-dnssec-1.dnssec05.xa.                          |
+| Scenario name           | Zone name                            |
+|:------------------------|:-------------------------------------|
+| ALGO-DEPRECATED-1       | algo-deprecated-1.dnssec05.xa.       |
+| ALGO-DEPRECATED-3       | algo-deprecated-3.dnssec05.xa.       |
+| ALGO-DEPRECATED-5       | algo-deprecated-5.dnssec05.xa.       |
+| ALGO-DEPRECATED-6       | algo-deprecated-6.dnssec05.xa.       |
+| ALGO-DEPRECATED-7       | algo-deprecated-7.dnssec05.xa.       |
+| ALGO-DEPRECATED-12      | algo-deprecated-12.dnssec05.xa.      |
+| ALGO-RESERVED-4         | algo-reserved-4.dnssec05.xa.         |
+| ALGO-RESERVED-9         | algo-reserved-9.dnssec05.xa.         |
+| ALGO-RESERVED-11        | algo-reserved-11.dnssec05.xa.        |
+| ALGO-RESERVED-123       | algo-reserved-123.dnssec05.xa.       |
+| ALGO-RESERVED-251       | algo-reserved-251.dnssec05.xa.       |
+| ALGO-RESERVED-255       | algo-reserved-255.dnssec05.xa.       |
+| ALGO-UNASSIGNED-20      | algo-unassigned-17.dnssec05.xa.      |
+| ALGO-UNASSIGNED-122     | algo-unassigned-122.dnssec05.xa.     |
+| ALGO-PRIVATE-253        | algo-private-253.dnssec05.xa.        |
+| ALGO-PRIVATE-254        | algo-private-254.dnssec05.xa.        |
+| ALGO-NOT-ZONE-SIGN-0    | algo-not-zone-sign-0.dnssec05.xa.    |
+| ALGO-NOT-ZONE-SIGN-2    | algo-not-zone-sign-2.dnssec05.xa.    |
+| ALGO-NOT-ZONE-SIGN-252  | algo-not-zone-sign-252.dnssec05.xa.  |
+| ALGO-NOT-RECOMMENDED-10 | algo-not-recommended-10.dnssec05.xa. |
+| ALGO-RECOMMENDED-8               | algo-recommended-8.dnssec05.xa.               |
+| ALGO-RECOMMENDED-13              | algo-recommended-13.dnssec05.xa.              |
+| ALGO-MAY-14              | algo-may-14.dnssec05.xa.              |
+| ALGO-RECOMMENDED-15              | algo-recommended-15.dnssec05.xa.              |
+| ALGO-MAY-16              | algo-may-16.dnssec05.xa.              |
+| ALGO-MAY-17              | algo-may-17.dnssec05.xa.              |
+| ALGO-MAY-18              | algo-may-18.dnssec05.xa.              |
+| ALGO-MAY-23              | algo-may-23.dnssec05.xa.              |
+| MIXED-ALGO-1            | mixed-algo-1.dnssec05.xa.            |
+| NO-RESPONSE-1           | no-response-1.dnssec05.xa.           |
+| NO-RESPONSE-2           | no-response-2.dnssec05.xa.           |
+| SERVER-NO-DNSSEC-1      | server-no-dnssec-1.dnssec05.xa.      |
+| SHARED-IP-1             | shared-ip-1.dnssec05.xa.             |
+| ZONE-NO-DNSSEC-1        | zone-no-dnssec-1.dnssec05.xa.        |
 
 
 ## zonemaster-cli commands and their output for each test scenario
@@ -183,75 +186,83 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testc
 
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
-| ALGO-OK-13              | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-RECOMMENDED-13              | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
 ```
-$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-OK-13.dnssec05.xa
+$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-RECOMMENDED-13.dnssec05.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
    0.06 INFO     DNSSEC05       DS05_ALGO_OK  algo_descr=ECDSA Curve P-256 with SHA-256; algo_mnemo=ECDSAP256SHA256; algo_num=13; keytag=51298; ns_list=ns1.child.dnssec05.xa/127.15.5.23;ns1.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:23;ns2.child.dnssec05.xa/127.15.5.24;ns2.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:24
 ```
---> OK
+--> Not OK
 
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
-| ALGO-OK-14              | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-MAY-14              | DS05_ALGO_MAY                                                  | 2)                     |
 
 ```
-$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-OK-14.dnssec05.xa
+$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-MAY-14.dnssec05.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
    0.05 INFO     DNSSEC05       DS05_ALGO_OK  algo_descr=ECDSA Curve P-384 with SHA-384; algo_mnemo=ECDSAP384SHA384; algo_num=14; keytag=51299; ns_list=ns1.child.dnssec05.xa/127.15.5.23;ns1.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:23;ns2.child.dnssec05.xa/127.15.5.24;ns2.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:24
 ```
---> OK
+--> Not OK
 
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
-| ALGO-OK-15              | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-RECOMMENDED-15              | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
 ```
-$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-OK-15.dnssec05.xa
+$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-RECOMMENDED-15.dnssec05.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
    0.05 INFO     DNSSEC05       DS05_ALGO_OK  algo_descr=Ed25519; algo_mnemo=ED25519; algo_num=15; keytag=51300; ns_list=ns1.child.dnssec05.xa/127.15.5.23;ns1.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:23;ns2.child.dnssec05.xa/127.15.5.24;ns2.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:24
 ```
---> OK
+--> Not OK
 
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
-| ALGO-OK-16              | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-MAY-16              | DS05_ALGO_MAY                                                  | 2)                     |
 ```
-$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-OK-16.dnssec05.xa
+$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-MAY-16.dnssec05.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
    0.05 INFO     DNSSEC05       DS05_ALGO_OK  algo_descr=Ed448; algo_mnemo=ED448; algo_num=16; keytag=51301; ns_list=ns1.child.dnssec05.xa/127.15.5.23;ns1.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:23;ns2.child.dnssec05.xa/127.15.5.24;ns2.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:24
 ```
---> 80
+--> Not OK
 
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
-| ALGO-OK-17              | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-MAY-17              | DS05_ALGO_MAY                                                  | 2)                     |
 ```
-$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-OK-17.dnssec05.xa
+$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-MAY-17.dnssec05.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
    0.05 INFO     DNSSEC05       DS05_ALGO_OK  algo_descr=SM2 signing algo w SM3 hash algo; algo_mnemo=SM2SM3; algo_num=17; keytag=51302; ns_list=ns1.child.dnssec05.xa/127.15.5.23;ns1.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:23;ns2.child.dnssec05.xa/127.15.5.24;ns2.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:24
 ```
+--> Not OK
+
+| Scenario name           | Mandatory message tags                                        | Forbidden message tags |
+|:------------------------|:--------------------------------------------------------------|:-----------------------|
+| ALGO-MAY-18              | DS05_ALGO_MAY                                                  | 2)                     |
+```
+$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-MAY-18.dnssec05.xa
+```
 --> OK
 
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
-| ALGO-OK-23              | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-MAY-23              | DS05_ALGO_MAY                                                  | 2)                     |
 ```
-$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-OK-23.dnssec05.xa
+$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-MAY-23.dnssec05.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
    0.05 INFO     DNSSEC05       DS05_ALGO_OK  algo_descr=GOST R 34.10-2012; algo_mnemo=ECC-GOST12; algo_num=23; keytag=51308; ns_list=ns1.child.dnssec05.xa/127.15.5.23;ns1.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:23;ns2.child.dnssec05.xa/127.15.5.24;ns2.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:24
 ```
---> OK
+--> Not OK
 
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
-| ALGO-OK-8               | DS05_ALGO_OK                                                  | 2)                     |
+| ALGO-RECOMMENDED-8               | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
 
 ```
-$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-OK-8.dnssec05.xa
+$ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw ALGO-RECOMMENDED-8.dnssec05.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
    0.06 INFO     DNSSEC05       DS05_ALGO_OK  algo_descr=RSA/SHA-256; algo_mnemo=RSASHA256; algo_num=8; keytag=51293; ns_list=ns1.child.dnssec05.xa/127.15.5.23;ns1.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:23;ns2.child.dnssec05.xa/127.15.5.24;ns2.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:24
 ```
---> OK
+--> Not OK
 
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
@@ -355,7 +366,7 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testc
 
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
-| MIXED-ALGO-1            | DS05_ALGO_DEPRECATED, DS05_ALGO_NOT_RECOMMENDED, DS05_ALGO_OK | 2)                     |
+| MIXED-ALGO-1            | DS05_ALGO_DEPRECATED, DS05_ALGO_NOT_RECOMMENDED, DS05_ALGO_RECOMMENDED | 2)                     |
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw MIXED-ALGO-1.dnssec05.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
@@ -363,7 +374,7 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testc
    0.05 ERROR    DNSSEC05       DS05_ALGO_DEPRECATED  algo_descr=RSASHA1-NSEC3-SHA1; algo_mnemo=RSASHA1-NSEC3-SHA1; algo_num=7; keytag=51292; ns_list=ns1.child.dnssec05.xa/127.15.5.23;ns1.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:23;ns2.child.dnssec05.xa/127.15.5.24;ns2.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:24
    0.06 INFO     DNSSEC05       DS05_ALGO_OK  algo_descr=ECDSA Curve P-256 with SHA-256; algo_mnemo=ECDSAP256SHA256; algo_num=13; keytag=51298; ns_list=ns1.child.dnssec05.xa/127.15.5.23;ns1.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:23;ns2.child.dnssec05.xa/127.15.5.24;ns2.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:24
 ```
---> OK
+--> Not OK
 
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
@@ -387,24 +398,24 @@ $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testc
 
 | Scenario name      | Mandatory message tags              | Forbidden message tags |
 |:-------------------|:------------------------------------|:-----------------------|
-| SERVER-NO-DNSSEC-1 | DS05_SERVER_NO_DNSSEC, DS05_ALGO_OK | 2)                     |
+| SERVER-NO-DNSSEC-1 | DS05_SERVER_NO_DNSSEC, DS05_ALGO_RECOMMENDED | 2)                     |
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw SERVER-NO-DNSSEC-1.dnssec05.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
    0.06 INFO     DNSSEC05       DS05_ALGO_OK  algo_descr=ECDSA Curve P-256 with SHA-256; algo_mnemo=ECDSAP256SHA256; algo_num=13; keytag=51298; ns_list=ns2.child.dnssec05.xa/127.15.5.24;ns2.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:24
    0.06 ERROR    DNSSEC05       DS05_SERVER_NO_DNSSEC  ns_list=ns1.child.dnssec05.xa/127.15.5.23;ns1.child.dnssec05.xa/fda1:b2:c3:0:127:15:5:23
 ```
---> OK
+--> Not OK
 
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
-| SHARED-IP-1             | DS05_ALGO_OK                                                  | 2)                     |
+| SHARED-IP-1             | DS05_ALGO_RECOMMENDED                                                  | 2)                     |
 ```
 $ zonemaster-cli --hints=hintfile.zone --test=dnssec05 --level=info --show-testcase --raw SHARED-IP-1.dnssec05.xa
    0.00 INFO     Unspecified    GLOBAL_VERSION  version=v8.0.0
    0.05 INFO     DNSSEC05       DS05_ALGO_OK  algo_descr=ECDSA Curve P-256 with SHA-256; algo_mnemo=ECDSAP256SHA256; algo_num=13; keytag=51298; ns_list=ns1a.shared-ip-1.dnssec05.xa/127.15.5.31;ns1b.shared-ip-1.dnssec05.xa/127.15.5.31
 ```
---> OK
+--> Not OK
 
 | Scenario name           | Mandatory message tags                                        | Forbidden message tags |
 |:------------------------|:--------------------------------------------------------------|:-----------------------|
