@@ -454,6 +454,10 @@ test case standard root zone.
   * Hint file lacks the address records for ns1.
   * Correct ns2 in the hintfile.
 
+NB! This scenario is not possible to implement since the current Zonemaster
+implementation for parsing hints file (Zonemaster::Engine::Util::parse_hints())
+requires all an address record for every name server name (NS RDATA).
+
 
 [Consistency05]:                                                  ../../tests/Consistency-TP/consistency05.md
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6

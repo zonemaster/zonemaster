@@ -397,9 +397,9 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 ```
 $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info .
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
-   0.03 ERROR    CS05_ID_ADDR_MISMATCH  ns_ip_list_glue=fda1:b2:c3:0:127:14:5:62; ns_ip_list_zone=127.14.5.62; nsname="ns2"
+   0.03 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
---> Not OK
+--> OK
 
 | Scenario name             | Mandatory message tag         | Forbidden message tags |
 |:--------------------------|:------------------------------|:-----------------------|
@@ -423,7 +423,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 ```
 $ zonemaster-cli --raw  --test consistency05 --hints Z-ROOT-MATCH-1-hintfile.zone --level info . --ns ns1/127.14.5.61 --ns ns1/fda1:b2:c3:0:127:14:5:61 --ns ns2/127.14.5.62 --ns ns2/fda1:b2:c3:0:127:14:5:62
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
-   0.03 ERROR    CS05_ID_ADDR_MISMATCH  ns_ip_list_glue=fda1:b2:c3:0:127:14:5:62; ns_ip_list_zone=127.14.5.62; nsname="ns2"
+   0.03 INFO     CS05_NO_MISMATCH_GLUE_ZONE  
 ```
 * Undelegated data:
   * ns1/127.14.5.61
@@ -431,14 +431,10 @@ $ zonemaster-cli --raw  --test consistency05 --hints Z-ROOT-MATCH-1-hintfile.zon
   * ns2/127.14.5.62
   * ns2/fda1:b2:c3:0:127:14:5:62
 
---> Not OK
+--> OK
 
 | Scenario name             | Mandatory message tag                           | Forbidden message tags |
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | Z-ROOT-INCOMPLETE-HINT    | CS05_MISSING_GLUE_FOR_NS                        | 2)                     |
-```
-$ zonemaster-cli --raw  --test consistency05 --hints Z-ROOT-INCOMPLETE-HINT-hintfile.zone --level info .
 
-Error loading hints file: No address record found for NS ns1
-```
---> Not OK
+--> N/A (see scenario specification)
