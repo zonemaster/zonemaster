@@ -102,8 +102,8 @@ correct DNS response for an authoritative name server.
 | Z09_NON_AUTH_MX_RESPONSE    | WARNING | ns_list               | Non-authoritative response on MX query from name servers "{ns_list}".                             |
 | Z09_NO_MX_FOUND             | INFO    | ns_list               | No MX RRset was returned by name servers "{ns_list}".                                             |
 | Z09_NO_MX_FOUND_OR_EXPECTED | INFO    |                       | MX RRset was neither found nor expected for the zone.                                             |
-| Z09_NO_SERVERS_MX_RESPONSE  | WARNING |                       | No server responds to MX query.                                                                   |
 | Z09_NO_RESPONSE_MX_QUERY    | WARNING | ns_list               | No response on MX query from name servers "{ns_list}".                                            |
+| Z09_NO_SERVERS_MX_RESPONSE  | WARNING |                       | No server responds to MX query.                                                                   |
 | Z09_NULL_MX_NON_ZERO_PREF   | NOTICE  |                       | The zone has a Null-Type MX record with non-zero preference.                                      |
 | Z09_NULL_MX_WITH_OTHER_MX   | WARNING |                       | The zone has a Null MX or a Null-Type MX record mixed with other MX records.                      |
 | Z09_ROOT_EMAIL_DOMAIN       | NOTICE  |                       | Root zone with an unexpected MX RRset (non-Null MX).                                              |
