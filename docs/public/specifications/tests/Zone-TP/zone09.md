@@ -220,7 +220,7 @@ queries follow, unless otherwise specified below, what is specified for
              *[Z09_NULL_MX_WITH_OTHER_MX]*.
           2. Else, if the preference in the MX RDATA in the list is non-zero
              ([Null-Type MX]) then output *[Z09_NULL_MX_NON_ZERO_PREF]*.
-          3. Else, Output *[Z09_VALID_NULL_MX]*.
+          3. Else, output *[Z09_VALID_NULL_MX]*.
        3. If at least one MX record in the list is neither a [Null MX] nor a
           [Null-Type MX] then do:
           1. If *Child Zone* is a [TLD] then output *[Z09_TLD_EMAIL_DOMAIN]*.
