@@ -2,7 +2,7 @@ $ORIGIN zone09.xa.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2026092201      ; serial
+                2026092202      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -44,6 +44,27 @@ ns1.inconsistent-mx-data-3    A       127.19.9.31
 ns1.inconsistent-mx-data-3    AAAA    fda1:b2:c3::127:19:9:31
 ns2.inconsistent-mx-data-3    A       127.19.9.32
 ns2.inconsistent-mx-data-3    AAAA    fda1:b2:c3::127:19:9:32
+
+inconsistent-mx-data-4        NS      ns1.inconsistent-mx-data-4
+inconsistent-mx-data-4        NS      ns2.inconsistent-mx-data-4
+ns1.inconsistent-mx-data-4    A       127.19.9.31
+ns1.inconsistent-mx-data-4    AAAA    fda1:b2:c3::127:19:9:31
+ns2.inconsistent-mx-data-4    A       127.19.9.32
+ns2.inconsistent-mx-data-4    AAAA    fda1:b2:c3::127:19:9:32
+
+mixed-case-rdata-1         NS      ns1.mixed-case-rdata-1
+mixed-case-rdata-1         NS      ns2.mixed-case-rdata-1
+ns1.mixed-case-rdata-1     A       127.19.9.31
+ns1.mixed-case-rdata-1     AAAA    fda1:b2:c3::127:19:9:31
+ns2.mixed-case-rdata-1     A       127.19.9.32
+ns2.mixed-case-rdata-1     AAAA    fda1:b2:c3::127:19:9:32
+
+mixed-case-rdata-2         NS      ns1.mixed-case-rdata-2
+mixed-case-rdata-2         NS      ns2.mixed-case-rdata-2
+ns1.mixed-case-rdata-2     A       127.19.9.31
+ns1.mixed-case-rdata-2     AAAA    fda1:b2:c3::127:19:9:31
+ns2.mixed-case-rdata-2     A       127.19.9.32
+ns2.mixed-case-rdata-2     AAAA    fda1:b2:c3::127:19:9:32
 
 mixed-ttl-1         NS      ns1.mixed-ttl-1
 mixed-ttl-1         NS      ns2.mixed-ttl-1
