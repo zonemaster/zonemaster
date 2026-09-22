@@ -68,32 +68,32 @@ combination. See [Zone09] for the specification of the tags.
 If a message tag is not listed for the scenario, its presence or non-presence is
 irrelevant to the test scenario and must be ignored.
 
-| Scenario name          | Mandatory message tags                                              | Forbidden message tags |
-|:-----------------------|:--------------------------------------------------------------------|:-----------------------|
-| ARPA-EMAIL-DOMAIN      | Z09_ARPA_EMAIL_DOMAIN, Z09_MX_DATA                                  | 2)                     |
-| INCONSISTENT-MX        | Z09_INCONSISTENT_MX, Z09_MX_FOUND, Z09_NO_MX_FOUND, Z09_MX_DATA    | 2)                     |
-| INCONSISTENT-MX-DATA-1 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
-| INCONSISTENT-MX-DATA-2 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
-| INCONSISTENT-MX-DATA-3 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
-| MIXED-TTL-1            | Z09_MX_DATA                                                         | 2)                     |
-| MIXED-TTL-2            | Z09_MX_DATA                                                         | 2)                     |
-| MX-DATA                | Z09_MX_DATA                                                         | 2)                     |
-| NO-MX-ARPA             | Z09_NO_MX_FOUND_OR_EXPECTED                                         | 2)                     |
-| NO-MX-ROOT             | Z09_NO_MX_FOUND_OR_EXPECTED                                         | 2)                     |
-| NO-MX-SLD              | Z09_MISSING_MAIL_EXCHANGE                                           | 2)                     |
-| NO-MX-TLD              | Z09_NO_MX_FOUND_OR_EXPECTED                                         | 2)                     |
-| NO-RESPONSE-MX-QUERY-1 | Z09_NO_RESPONSE_MX_QUERY, Z09_MX_DATA                               | 2)                     |
-| NO-RESPONSE-MX-QUERY-2 | Z09_NO_RESPONSE_MX_QUERY, Z09_NO_SERVERS_MX_RESPONSE                | 2)                     |
-| NON-AUTH-MX-RESPONSE   | Z09_NON_AUTH_MX_RESPONSE, Z09_MX_DATA                               | 2)                     |
-| NULL-MX-ARPA           | Z09_MX_DATA, Z09_VALID_NULL_MX                                      | 2)                     |
-| NULL-MX-NON-ZERO-PREF  | Z09_NULL_MX_NON_ZERO_PREF, Z09_MX_DATA                              | 2)                     |
-| NULL-MX-ROOT           | Z09_MX_DATA, Z09_VALID_NULL_MX                                      | 2)                     |
-| NULL-MX-SLD            | Z09_MX_DATA, Z09_VALID_NULL_MX                                      | 2)                     |
-| NULL-MX-TLD            | Z09_MX_DATA, Z09_VALID_NULL_MX                                      | 2)                     |
-| NULL-MX-WITH-OTHER-MX  | Z09_NULL_MX_WITH_OTHER_MX, Z09_MX_DATA                              | 2)                     |
-| ROOT-EMAIL-DOMAIN      | Z09_ROOT_EMAIL_DOMAIN, Z09_MX_DATA                                  | 2)                     |
-| TLD-EMAIL-DOMAIN       | Z09_TLD_EMAIL_DOMAIN, Z09_MX_DATA                                   | 2)                     |
-| UNEXPECTED-RCODE-MX    | Z09_UNEXPECTED_RCODE_MX, Z09_MISSING_MAIL_EXCHANGE                  | 2)                     |
+| Scenario name          | Mandatory message tags                                          | Forbidden message tags |
+|:-----------------------|:----------------------------------------------------------------|:-----------------------|
+| ARPA-EMAIL-DOMAIN      | Z09_ARPA_EMAIL_DOMAIN, Z09_MX_DATA                              | 2)                     |
+| INCONSISTENT-MX        | Z09_INCONSISTENT_MX, Z09_MX_FOUND, Z09_NO_MX_FOUND, Z09_MX_DATA | 2)                     |
+| INCONSISTENT-MX-DATA-1 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                           | 2)                     |
+| INCONSISTENT-MX-DATA-2 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                           | 2)                     |
+| INCONSISTENT-MX-DATA-3 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                           | 2)                     |
+| MIXED-TTL-1            | Z09_MX_DATA                                                     | 2)                     |
+| MIXED-TTL-2            | Z09_MX_DATA                                                     | 2)                     |
+| MX-DATA                | Z09_MX_DATA                                                     | 2)                     |
+| NO-MX-ARPA             | Z09_NO_MX_FOUND_OR_EXPECTED                                     | 2)                     |
+| NO-MX-ROOT             | Z09_NO_MX_FOUND_OR_EXPECTED                                     | 2)                     |
+| NO-MX-SLD              | Z09_MISSING_MAIL_EXCHANGE                                       | 2)                     |
+| NO-MX-TLD              | Z09_NO_MX_FOUND_OR_EXPECTED                                     | 2)                     |
+| NO-RESPONSE-MX-QUERY-1 | Z09_NO_RESPONSE_MX_QUERY, Z09_MX_DATA                           | 2)                     |
+| NO-RESPONSE-MX-QUERY-2 | Z09_NO_RESPONSE_MX_QUERY, Z09_NO_SERVERS_MX_RESPONSE            | 2)                     |
+| NON-AUTH-MX-RESPONSE   | Z09_NON_AUTH_MX_RESPONSE, Z09_MX_DATA                           | 2)                     |
+| NULL-MX-ARPA           | Z09_MX_DATA, Z09_VALID_NULL_MX                                  | 2)                     |
+| NULL-MX-NON-ZERO-PREF  | Z09_NULL_MX_NON_ZERO_PREF, Z09_MX_DATA                          | 2)                     |
+| NULL-MX-ROOT           | Z09_MX_DATA, Z09_VALID_NULL_MX                                  | 2)                     |
+| NULL-MX-SLD            | Z09_MX_DATA, Z09_VALID_NULL_MX                                  | 2)                     |
+| NULL-MX-TLD            | Z09_MX_DATA, Z09_VALID_NULL_MX                                  | 2)                     |
+| NULL-MX-WITH-OTHER-MX  | Z09_NULL_MX_WITH_OTHER_MX, Z09_MX_DATA                          | 2)                     |
+| ROOT-EMAIL-DOMAIN      | Z09_ROOT_EMAIL_DOMAIN, Z09_MX_DATA                              | 2)                     |
+| TLD-EMAIL-DOMAIN       | Z09_TLD_EMAIL_DOMAIN, Z09_MX_DATA                               | 2)                     |
+| UNEXPECTED-RCODE-MX    | Z09_UNEXPECTED_RCODE_MX, Z09_MISSING_MAIL_EXCHANGE              | 2)                     |
 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
 * (2) All tags except for those specified as "Mandatory message tags"
