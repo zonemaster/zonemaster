@@ -2,7 +2,7 @@ $ORIGIN zone09.xa.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2026071601      ; serial
+                2026092200      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -66,26 +66,13 @@ ns1.mx-data     AAAA    fda1:b2:c3::127:19:9:31
 ns2.mx-data     A       127.19.9.32
 ns2.mx-data     AAAA    fda1:b2:c3::127:19:9:32
 
-unexpected-rcode-mx        NS      ns1.unexpected-rcode-mx
-unexpected-rcode-mx        NS      ns2.unexpected-rcode-mx
-ns1.unexpected-rcode-mx    A       127.19.9.31
-ns1.unexpected-rcode-mx    AAAA    fda1:b2:c3::127:19:9:31
-ns2.unexpected-rcode-mx    A       127.19.9.32
-ns2.unexpected-rcode-mx    AAAA    fda1:b2:c3::127:19:9:32
-
-tld-email-domain        NS      ns1.tld-email-domain
-tld-email-domain        NS      ns2.tld-email-domain
-ns1.tld-email-domain    A       127.19.9.31
-ns1.tld-email-domain    AAAA    fda1:b2:c3::127:19:9:31
-ns2.tld-email-domain    A       127.19.9.32
-ns2.tld-email-domain    AAAA    fda1:b2:c3::127:19:9:32
-
-null-mx-sld                 NS    ns1.null-mx-sld
-null-mx-sld                 NS    ns2.null-mx-sld
-ns1.null-mx-sld             A       127.19.9.31
-ns1.null-mx-sld             AAAA    fda1:b2:c3::127:19:9:31
-ns2.null-mx-sld             A       127.19.9.32
-ns2.null-mx-sld             AAAA    fda1:b2:c3::127:19:9:32
+;; Should not be here
+no-mx-arpa       NS      ns1.no-mx-arpa
+no-mx-arpa       NS      ns2.no-mx-arpa
+ns1.no-mx-arpa   A       127.19.9.31
+ns1.no-mx-arpa   AAAA    fda1:b2:c3::127:19:9:31
+ns2.no-mx-arpa   A       127.19.9.32
+ns2.no-mx-arpa   AAAA    fda1:b2:c3::127:19:9:32
 
 no-mx-sld               NS      ns1.no-mx-sld
 no-mx-sld               NS      ns2.no-mx-sld
@@ -94,29 +81,13 @@ ns1.no-mx-sld           AAAA    fda1:b2:c3::127:19:9:31
 ns2.no-mx-sld           A       127.19.9.32
 ns2.no-mx-sld           AAAA    fda1:b2:c3::127:19:9:32
 
+;; Should not be here
 no-mx-tld        NS      ns1.no-mx-tld
 no-mx-tld        NS      ns2.no-mx-tld
 ns1.no-mx-tld    A       127.19.9.31
 ns1.no-mx-tld    AAAA    fda1:b2:c3::127:19:9:31
 ns2.no-mx-tld    A       127.19.9.32
 ns2.no-mx-tld    AAAA    fda1:b2:c3::127:19:9:32
-
-no-mx-arpa       NS      ns1.no-mx-arpa
-no-mx-arpa       NS      ns2.no-mx-arpa
-ns1.no-mx-arpa   A       127.19.9.31
-ns1.no-mx-arpa   AAAA    fda1:b2:c3::127:19:9:31
-ns2.no-mx-arpa   A       127.19.9.32
-ns2.no-mx-arpa   AAAA    fda1:b2:c3::127:19:9:32
-
-non-auth-mx-response         NS      ns1.non-auth-mx-response
-non-auth-mx-response         NS      ns2.non-auth-mx-response
-non-auth-mx-response         NS      ns4.non-auth-mx-response
-ns1.non-auth-mx-response     A       127.19.9.31
-ns1.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:31
-ns2.non-auth-mx-response     A       127.19.9.32
-ns2.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:32
-ns4.non-auth-mx-response     A       127.19.9.34
-ns4.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:34
 
 no-response-mx-query-1       NS      ns1.no-response-mx-query-1
 no-response-mx-query-1       NS      ns2.no-response-mx-query-1
@@ -132,12 +103,29 @@ ns1.no-response-mx-query-2   AAAA    fda1:b2:c3::127:19:9:31
 ns2.no-response-mx-query-2   A       127.19.9.32
 ns2.no-response-mx-query-2   AAAA    fda1:b2:c3::127:19:9:32
 
+non-auth-mx-response         NS      ns1.non-auth-mx-response
+non-auth-mx-response         NS      ns2.non-auth-mx-response
+non-auth-mx-response         NS      ns4.non-auth-mx-response
+ns1.non-auth-mx-response     A       127.19.9.31
+ns1.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:31
+ns2.non-auth-mx-response     A       127.19.9.32
+ns2.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:32
+ns4.non-auth-mx-response     A       127.19.9.34
+ns4.non-auth-mx-response     AAAA    fda1:b2:c3::127:19:9:34
+
 null-mx-non-zero-pref         NS      ns1.null-mx-non-zero-pref
 null-mx-non-zero-pref         NS      ns2.null-mx-non-zero-pref
 ns1.null-mx-non-zero-pref     A       127.19.9.31
 ns1.null-mx-non-zero-pref     AAAA    fda1:b2:c3::127:19:9:31
 ns2.null-mx-non-zero-pref     A       127.19.9.32
 ns2.null-mx-non-zero-pref     AAAA    fda1:b2:c3::127:19:9:32
+
+null-mx-sld                 NS    ns1.null-mx-sld
+null-mx-sld                 NS    ns2.null-mx-sld
+ns1.null-mx-sld             A       127.19.9.31
+ns1.null-mx-sld             AAAA    fda1:b2:c3::127:19:9:31
+ns2.null-mx-sld             A       127.19.9.32
+ns2.null-mx-sld             AAAA    fda1:b2:c3::127:19:9:32
 
 null-mx-with-other-mx         NS      ns1.null-mx-with-other-mx
 null-mx-with-other-mx         NS      ns2.null-mx-with-other-mx
@@ -146,6 +134,15 @@ ns1.null-mx-with-other-mx     AAAA    fda1:b2:c3::127:19:9:31
 ns2.null-mx-with-other-mx     A       127.19.9.32
 ns2.null-mx-with-other-mx     AAAA    fda1:b2:c3::127:19:9:32
 
+;; Should not be here
+tld-email-domain        NS      ns1.tld-email-domain
+tld-email-domain        NS      ns2.tld-email-domain
+ns1.tld-email-domain    A       127.19.9.31
+ns1.tld-email-domain    AAAA    fda1:b2:c3::127:19:9:31
+ns2.tld-email-domain    A       127.19.9.32
+ns2.tld-email-domain    AAAA    fda1:b2:c3::127:19:9:32
+
+;; Should not be here
 root-email-domain             NS      ns1.root-email-domain
 root-email-domain             NS      ns2.root-email-domain
 ns1.root-email-domain         A       127.19.9.31
@@ -153,5 +150,11 @@ ns1.root-email-domain         AAAA    fda1:b2:c3::127:19:9:31
 ns2.root-email-domain         A       127.19.9.32
 ns2.root-email-domain         AAAA    fda1:b2:c3::127:19:9:32
 
+unexpected-rcode-mx        NS      ns1.unexpected-rcode-mx
+unexpected-rcode-mx        NS      ns2.unexpected-rcode-mx
+ns1.unexpected-rcode-mx    A       127.19.9.31
+ns1.unexpected-rcode-mx    AAAA    fda1:b2:c3::127:19:9:31
+ns2.unexpected-rcode-mx    A       127.19.9.32
+ns2.unexpected-rcode-mx    AAAA    fda1:b2:c3::127:19:9:32
 
 ; EOF
