@@ -53,8 +53,8 @@ combination. See [Zone09] for the specification of the tags.
 * Z09_NON_AUTH_MX_RESPONSE
 * Z09_NO_MX_FOUND
 * Z09_NO_MX_FOUND_OR_EXPECTED
-* Z09_NO_SERVERS_MX_RESPONSE
 * Z09_NO_RESPONSE_MX_QUERY
+* Z09_NO_SERVERS_MX_RESPONSE
 * Z09_NULL_MX_NON_ZERO_PREF
 * Z09_NULL_MX_WITH_OTHER_MX
 * Z09_ROOT_EMAIL_DOMAIN
@@ -70,30 +70,30 @@ irrelevant to the test scenario and must be ignored.
 
 | Scenario name          | Mandatory message tags                                              | Forbidden message tags |
 |:-----------------------|:--------------------------------------------------------------------|:-----------------------|
-| NO-RESPONSE-MX-QUERY-1 | Z09_NO_RESPONSE_MX_QUERY, Z09_MX_DATA                               | 2)                     |
-| NO-RESPONSE-MX-QUERY-2 | Z09_NO_RESPONSE_MX_QUERY, Z09_NO_SERVERS_MX_RESPONSE                | 2)                     |
-| UNEXPECTED-RCODE-MX    | Z09_UNEXPECTED_RCODE_MX, Z09_MISSING_MAIL_EXCHANGE                  | 2)                     |
-| NON-AUTH-MX-RESPONSE   | Z09_NON_AUTH_MX_RESPONSE, Z09_MX_DATA                               | 2)                     |
+| ARPA-EMAIL-DOMAIN      | Z09_ARPA_EMAIL_DOMAIN, Z09_MX_DATA                                  | 2)                     |
 | INCONSISTENT-MX        | Z09_INCONSISTENT_MX, Z09_MX_FOUND, Z09_NO_MX_FOUND, Z09_MX_DATA    | 2)                     |
 | INCONSISTENT-MX-DATA-1 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
 | INCONSISTENT-MX-DATA-2 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
 | INCONSISTENT-MX-DATA-3 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                               | 2)                     |
 | MIXED-TTL-1            | Z09_MX_DATA                                                         | 2)                     |
 | MIXED-TTL-2            | Z09_MX_DATA                                                         | 2)                     |
-| NULL-MX-WITH-OTHER-MX  | Z09_NULL_MX_WITH_OTHER_MX, Z09_MX_DATA                              | 2)                     |
-| NULL-MX-NON-ZERO-PREF  | Z09_NULL_MX_NON_ZERO_PREF, Z09_MX_DATA                              | 2)                     |
-| TLD-EMAIL-DOMAIN       | Z09_TLD_EMAIL_DOMAIN, Z09_MX_DATA                                   | 2)                     |
-| ROOT-EMAIL-DOMAIN      | Z09_ROOT_EMAIL_DOMAIN, Z09_MX_DATA                                  | 2)                     |
-| ARPA-EMAIL-DOMAIN      | Z09_ARPA_EMAIL_DOMAIN, Z09_MX_DATA                                  | 2)                     |
 | MX-DATA                | Z09_MX_DATA                                                         | 2)                     |
-| NULL-MX-TLD            | Z09_MX_DATA, Z09_VALID_NULL_MX                                      | 2)                     |
-| NULL-MX-ROOT           | Z09_MX_DATA, Z09_VALID_NULL_MX                                      | 2)                     |
-| NULL-MX-ARPA           | Z09_MX_DATA, Z09_VALID_NULL_MX                                      | 2)                     |
-| NULL-MX-SLD            | Z09_MX_DATA, Z09_VALID_NULL_MX                                      | 2)                     |
+| NO-MX-ARPA             | Z09_NO_MX_FOUND_OR_EXPECTED                                         | 2)                     |
+| NO-MX-ROOT             | Z09_NO_MX_FOUND_OR_EXPECTED                                         | 2)                     |
 | NO-MX-SLD              | Z09_MISSING_MAIL_EXCHANGE                                           | 2)                     |
 | NO-MX-TLD              | Z09_NO_MX_FOUND_OR_EXPECTED                                         | 2)                     |
-| NO-MX-ROOT             | Z09_NO_MX_FOUND_OR_EXPECTED                                         | 2)                     |
-| NO-MX-ARPA             | Z09_NO_MX_FOUND_OR_EXPECTED                                         | 2)                     |
+| NO-RESPONSE-MX-QUERY-1 | Z09_NO_RESPONSE_MX_QUERY, Z09_MX_DATA                               | 2)                     |
+| NO-RESPONSE-MX-QUERY-2 | Z09_NO_RESPONSE_MX_QUERY, Z09_NO_SERVERS_MX_RESPONSE                | 2)                     |
+| NON-AUTH-MX-RESPONSE   | Z09_NON_AUTH_MX_RESPONSE, Z09_MX_DATA                               | 2)                     |
+| NULL-MX-ARPA           | Z09_MX_DATA, Z09_VALID_NULL_MX                                      | 2)                     |
+| NULL-MX-NON-ZERO-PREF  | Z09_NULL_MX_NON_ZERO_PREF, Z09_MX_DATA                              | 2)                     |
+| NULL-MX-ROOT           | Z09_MX_DATA, Z09_VALID_NULL_MX                                      | 2)                     |
+| NULL-MX-SLD            | Z09_MX_DATA, Z09_VALID_NULL_MX                                      | 2)                     |
+| NULL-MX-TLD            | Z09_MX_DATA, Z09_VALID_NULL_MX                                      | 2)                     |
+| NULL-MX-WITH-OTHER-MX  | Z09_NULL_MX_WITH_OTHER_MX, Z09_MX_DATA                              | 2)                     |
+| ROOT-EMAIL-DOMAIN      | Z09_ROOT_EMAIL_DOMAIN, Z09_MX_DATA                                  | 2)                     |
+| TLD-EMAIL-DOMAIN       | Z09_TLD_EMAIL_DOMAIN, Z09_MX_DATA                                   | 2)                     |
+| UNEXPECTED-RCODE-MX    | Z09_UNEXPECTED_RCODE_MX, Z09_MISSING_MAIL_EXCHANGE                  | 2)                     |
 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
 * (2) All tags except for those specified as "Mandatory message tags"
@@ -113,23 +113,9 @@ Assumptions for the zone setup for the test scenarios:
 * Unless otherwise stated all zones are served by two name servers whose name are
   in-domain.
 
-### NO-RESPONSE-MX-QUERY-1
-* Zone: "no-response-mx-query-1.zone09.xa."
-  * One name server does not respond on MX query.
-
-### NO-RESPONSE-MX-QUERY-2
-* Zone: "no-response-mx-query-2.zone09.xa."
-  * No name server responds on MX query.
-
-### UNEXPECTED-RCODE-MX
-* Zone: "unexpected-rcode-mx.zone09.xa."
-  * One name server returns with any [RCODE Name] except "NoError".
-  * The other returns no MX.
-
-### NON-AUTH-MX-RESPONSE
-* Zone: "non-auth-mx-response.zone09.xa."
-  * The zone is served by three NS: ns1, ns2 and ns4.
-  * Server ns4 returns with [RCODE Name] "NoError" and non-AA on MX query.
+### ARPA-EMAIL-DOMAIN
+* Zone: "arpa-email-domain.zone09.arpa."
+  * The test zone is under .ARPA.
 
 ### INCONSISTENT-MX
 * Zone: "inconsistent-mx.zone09.xa."
@@ -160,47 +146,18 @@ Assumptions for the zone setup for the test scenarios:
 * Zone: "mixed-ttl-2.zone09.xa."
   * The TTL of the records in the MX RRset are different.
 
-### NULL-MX-WITH-OTHER-MX
-* Zone: "null-mx-with-other-mx.zone09.xa."
-  * The MX RRset is a mix of Null MX and non-Null MX.
-
-### NULL-MX-NON-ZERO-PREF
-* Zone: "null-mx-non-zero-pref.zone09.xa."
-  * The MX RRset has a single Null MX record with a non-zero preference.
-
-### TLD-EMAIL-DOMAIN
-* Zone: "tld-email-domain-zone09." (TLD, dash "-", not dot ".")
-  * The test zone is a TLD zone.
-
-### ROOT-EMAIL-DOMAIN
-* Zone: "." (root zone)
-  * The test zone is the root zone.
-
-### ARPA-EMAIL-DOMAIN
-* Zone: "arpa-email-domain.zone09.arpa."
-  * The test zone is under .ARPA.
-
 ### MX-DATA
 * Zone: "mx-data.zone09.xa."
 
-### NULL-MX-TLD
-* Zone: "null-mx-tld-zone09." (TLD, dash "-", not dot ".")
-  * The test zone is a TLD.
-  * The MX RRset has a single, valid NULL MX.
+### NO-MX-ARPA
+* Zone: "no-mx-arpa.zone09.arpa."
+  * The test zone is under .ARPA.
+  * All name servers respond with no MX RRset (NODATA).
 
-### NULL-MX-ROOT
+### NO-MX-ROOT
 * Zone: "." (root zone)
   * The test zone is the root zone.
-  * The MX RRset has a single, valid NULL MX.
-
-### NULL-MX-ARPA
-* Zone: "null-mx-arpa.zone09.arpa."
-  * The test zone is under .ARPA.
-  * The MX RRset has a single, valid NULL MX.
-
-### NULL-MX-SLD
-* Zone: "null-mx-sld.zone09.xa."
-  * The MX RRset has a single, valid NULL MX.
+  * All name servers respond with no MX RRset (NODATA).
 
 ### NO-MX-SLD
 * Zone: "no-mx-sld.zone09.xa."
@@ -212,15 +169,58 @@ Assumptions for the zone setup for the test scenarios:
   * The test zone is a TLD.
   * All name servers respond with no MX RRset (NODATA).
 
-### NO-MX-ROOT
+### NO-RESPONSE-MX-QUERY-1
+* Zone: "no-response-mx-query-1.zone09.xa."
+  * One name server does not respond on MX query.
+
+### NO-RESPONSE-MX-QUERY-2
+* Zone: "no-response-mx-query-2.zone09.xa."
+  * No name server responds on MX query.
+
+### NON-AUTH-MX-RESPONSE
+* Zone: "non-auth-mx-response.zone09.xa."
+  * The zone is served by three NS: ns1, ns2 and ns4.
+  * Server ns4 returns with [RCODE Name] "NoError" and non-AA on MX query.
+
+### NULL-MX-ARPA
+* Zone: "null-mx-arpa.zone09.arpa."
+  * The test zone is under .ARPA.
+  * The MX RRset has a single, valid NULL MX.
+
+### NULL-MX-NON-ZERO-PREF
+* Zone: "null-mx-non-zero-pref.zone09.xa."
+  * The MX RRset has a single Null MX record with a non-zero preference.
+
+### NULL-MX-ROOT
 * Zone: "." (root zone)
   * The test zone is the root zone.
-  * All name servers respond with no MX RRset (NODATA).
+  * The MX RRset has a single, valid NULL MX.
 
-### NO-MX-ARPA
-* Zone: "no-mx-arpa.zone09.arpa."
-  * The test zone is under .ARPA.
-  * All name servers respond with no MX RRset (NODATA).
+### NULL-MX-SLD
+* Zone: "null-mx-sld.zone09.xa."
+  * The MX RRset has a single, valid NULL MX.
+
+### NULL-MX-TLD
+* Zone: "null-mx-tld-zone09." (TLD, dash "-", not dot ".")
+  * The test zone is a TLD.
+  * The MX RRset has a single, valid NULL MX.
+
+### NULL-MX-WITH-OTHER-MX
+* Zone: "null-mx-with-other-mx.zone09.xa."
+  * The MX RRset is a mix of Null MX and non-Null MX.
+
+### ROOT-EMAIL-DOMAIN
+* Zone: "." (root zone)
+  * The test zone is the root zone.
+
+### TLD-EMAIL-DOMAIN
+* Zone: "tld-email-domain-zone09." (TLD, dash "-", not dot ".")
+  * The test zone is a TLD zone.
+
+### UNEXPECTED-RCODE-MX
+* Zone: "unexpected-rcode-mx.zone09.xa."
+  * One name server returns with any [RCODE Name] except "NoError".
+  * The other returns no MX.
 
 
 [RCODE Name]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
