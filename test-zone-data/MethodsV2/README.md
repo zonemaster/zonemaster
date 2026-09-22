@@ -56,6 +56,7 @@
   * [CHILD-NS-CNAME-4](#child-ns-cname-4)
   * [PARENT-NS-CNAME-1](#parent-ns-cname-1)
   * [PARENT-NS-CNAME-2](#parent-ns-cname-2)
+  * [UNDEL-MISSING-GLUE-1](#undel-missing-glue-1)
 
 
 ## Background
@@ -1380,6 +1381,30 @@ child.parent.parent-ns-same-ip-2.methodsv2.xa
 #### Undelegated data
   * (empty)
 
+
+### UNDEL-MISSING-GLUE-1
+
+#### Zone
+
+child.parent.undel-missing-glue-1.methodsv2.xa
+
+#### Methods and expected output
+* Get parent NS names and IP addresses
+  * (empty)
+* Get delegation NS names and IP addresses
+  * ns1.child.parent.undel-missing-glue-1.methodsv2.xa
+  * ns2.child.parent.undel-missing-glue-1.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.undel-missing-glue-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+* Get zone NS names and IP addresses
+  * ns1.child.parent.undel-missing-glue-1.methodsv2.xa/127.40.1.51
+  * ns1.child.parent.undel-missing-glue-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:51
+  * ns2.child.parent.undel-missing-glue-1.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.undel-missing-glue-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
+
+#### Undelegated data
+  * ns1.child.parent.undel-missing-glue-1.methodsv2.xa
+  * ns2.child.parent.undel-missing-glue-1.methodsv2.xa/127.40.1.52
+  * ns2.child.parent.undel-missing-glue-1.methodsv2.xa/fda1:b2:c3:0:127:40:1:52
 
 
 <!--
