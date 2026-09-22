@@ -327,18 +327,18 @@ besides the `A` record matching query name.
 ### CNAME-CHAIN-TO-NODATA
 There is a NODATA response for an in-bailiwick CNAME target name.
 
-* Query name: "unresolvable-cname.cname.recursor.engine.xa"
+* Query name: "cname-chain-to-nodata.cname.recursor.engine.xa"
   * To be found in the answer section:
 ```
 cname-chain-to-nodata            CNAME target.cname-chain-to-nodata
 ```
-  * The CNAME target "target.cname-chain-to-nodata..cname.recursor.engine.xa"
+  * The CNAME target "target.cname-chain-to-nodata.cname.recursor.engine.xa"
     gives a NODATA response
 
 ### UNRESOLVABLE-CNAME
 The target in the CNAME record can not be resolved due to a resolution failure
 with the name servers of the zone.
-This scenario involves a FORMERR response to a query for the target of a CNAME
+This scenario involves a FORMERR response to a "A" query for the target of a CNAME
 resource record when the target is a subdomain of the resource record’s owner name.
 It purposefully considers a FORMERR response (as opposed to e.g. SERVFAIL) as this is
 required to trigger the behavior in Zonemaster's recursive lookup implementation.
