@@ -42,30 +42,30 @@ scenarios for other test cases.
 
 | Scenario name          | Zone name                        | Hint file |
 |:-----------------------|:---------------------------------|:----------|
-| NO-RESPONSE-MX-QUERY-1 | no-response-mx-query-1.zone09.xa |           |
-| NO-RESPONSE-MX-QUERY-2 | no-response-mx-query-2.zone09.xa |           |
-| UNEXPECTED-RCODE-MX    | unexpected-rcode-mx.zone09.xa    |           |
-| NON-AUTH-MX-RESPONSE   | non-auth-mx-response.zone09.xa   |           |
+| ARPA-EMAIL-DOMAIN      | arpa-email-domain.zone09.arpa    |           |
 | INCONSISTENT-MX        | inconsistent-mx.zone09.xa        |           |
 | INCONSISTENT-MX-DATA-1 | inconsistent-mx-data-1.zone09.xa |           |
 | INCONSISTENT-MX-DATA-2 | inconsistent-mx-data-2.zone09.xa |           |
 | INCONSISTENT-MX-DATA-3 | inconsistent-mx-data-3.zone09.xa |           |
 | MIXED-TTL-1            | mixed-ttl-1.zone09.xa            |           |
 | MIXED-TTL-2            | mixed-ttl-2.zone09.xa            |           |
-| NULL-MX-WITH-OTHER-MX  | null-mx-with-other-mx.zone09.xa  |           |
-| NULL-MX-NON-ZERO-PREF  | null-mx-non-zero-pref.zone09.xa  |           |
-| TLD-EMAIL-DOMAIN       | tld-email-domain-zone09          |           |
-| ROOT-EMAIL-DOMAIN      | .                                | 1)        |
-| ARPA-EMAIL-DOMAIN      | arpa-email-domain.zone09.arpa    |           |
 | MX-DATA                | mx-data.zone09.xa                |           |
-| NULL-MX-TLD            | null-mx-tld-zone09               |           |
-| NULL-MX-ROOT           | .                                | 2)        |
-| NULL-MX-ARPA           | null-mx-arpa.zone09.arpa         |           |
-| NULL-MX-SLD            | null-mx-sld.zone09.xa            |           |
+| NO-MX-ARPA             | no-mx-arpa.zone09.arpa           |           |
+| NO-MX-ROOT             | .                                |           |
 | NO-MX-SLD              | no-mx-sld.zone09.xa              |           |
 | NO-MX-TLD              | no-mx-tld-zone09                 |           |
-| NO-MX-ROOT             | .                                |           |
-| NO-MX-ARPA             | no-mx-arpa.zone09.arpa           |           |
+| NO-RESPONSE-MX-QUERY-1 | no-response-mx-query-1.zone09.xa |           |
+| NO-RESPONSE-MX-QUERY-2 | no-response-mx-query-2.zone09.xa |           |
+| NON-AUTH-MX-RESPONSE   | non-auth-mx-response.zone09.xa   |           |
+| NULL-MX-ARPA           | null-mx-arpa.zone09.arpa         |           |
+| NULL-MX-NON-ZERO-PREF  | null-mx-non-zero-pref.zone09.xa  |           |
+| NULL-MX-ROOT           | .                                | 2)        |
+| NULL-MX-SLD            | null-mx-sld.zone09.xa            |           |
+| NULL-MX-TLD            | null-mx-tld-zone09               |           |
+| NULL-MX-WITH-OTHER-MX  | null-mx-with-other-mx.zone09.xa  |           |
+| ROOT-EMAIL-DOMAIN      | .                                | 1)        |
+| TLD-EMAIL-DOMAIN       | tld-email-domain-zone09          |           |
+| UNEXPECTED-RCODE-MX    | unexpected-rcode-mx.zone09.xa    |           |
 
 Default hintfile, `Zone-TP/zone09/hintfile.zone`, is used for all scenarios
 unless another hintfile is specified:
