@@ -75,6 +75,9 @@ irrelevant to the test scenario and must be ignored.
 | INCONSISTENT-MX-DATA-1 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                           | 2)                     |
 | INCONSISTENT-MX-DATA-2 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                           | 2)                     |
 | INCONSISTENT-MX-DATA-3 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                           | 2)                     |
+| INCONSISTENT-MX-DATA-4 | Z09_INCONSISTENT_MX_DATA, Z09_MX_DATA                           | 2)                     |
+| MIXED-CASE-RDATA-1     | Z09_MX_DATA                                                     | 2)                     |
+| MIXED-CASE-RDATA-2     | Z09_MX_DATA                                                     | 2)                     |
 | MIXED-TTL-1            | Z09_MX_DATA                                                     | 2)                     |
 | MIXED-TTL-2            | Z09_MX_DATA                                                     | 2)                     |
 | MX-DATA                | Z09_MX_DATA                                                     | 2)                     |
@@ -134,9 +137,28 @@ Assumptions for the zone setup for the test scenarios:
 
 ### INCONSISTENT-MX-DATA-3
 * Zone: "inconsistent-mx-data-3.zone09.xa."
-  * Both name servers respond with MX RRsets that are not equal. One server
-    gives two MX records, while the other one gives two MX records that list the
-    same mail exchange names but with different preference values.
+  * Both name servers respond with MX RRsets that are not equal. Both servers
+    give two MX records with the same two exchange names, but the preference
+    values are different on the records between the two servers.
+
+### INCONSISTENT-MX-DATA-4
+* Zone: "inconsistent-mx-data-4.zone09.xa."
+  * Both name servers respond with MX RRsets that are not equal.
+  * ns1 gives two MX records with different preferences but the same exchange
+    name.
+  * ns2 gives one MX record equal to one of the MX records of ns1
+
+### MIXED-CASE-RDATA-1
+* Zone: "mixed-case-rdata-1.zone09.xa."
+  * The zone responds with two MX record.
+  * In ns1 the first MX is in upper case and the second in lower case.
+  * In ns1 the first MX is in lower case and the second in upper case.
+
+### MIXED-CASE-RDATA-2
+* Zone: "mixed-case-rdata-2.zone09.xa."
+  * The zone responds with one MX record.
+  * In ns1 the MX record comes twice, once in lower case and once in upper case.
+  * In ns2 the MX record comes once, in mixed lower and upper case.
 
 ### MIXED-TTL-1
 * Zone: "mixed-ttl-1.zone09.xa."
