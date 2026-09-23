@@ -83,8 +83,7 @@ The level (`--level`) must be set to the lowest level of the message tags. For
 this test case `INFO` is the lowest level. It is only meaningful to test the
 test zones with `--test Zone09`.
 
-> **All scenarios must be checked for updated expected and forbidden message tags.
-> Some scenarios listed above are not present below.**
+> *All scenarios must be checked for updated expected and forbidden message tags.*
 
 | Scenario name          | Mandatory message tags                                              | Forbidden message tags |
 |:-----------------------|:--------------------------------------------------------------------|:-----------------------|
@@ -170,7 +169,7 @@ $ zonemaster-cli --raw  --test zone09 --hints hintfile.zone --level info mixed-c
    0.07 INFO     Z09_MX_DATA  mxrdata_list=10 mail.mixed-case-rdata-1.zone09.xa;20 MAIL2.MIXED-CASE-RDATA-1.ZONE09.XA; ns_list=ns2.mixed-case-rdata-1.zone09.xa/127.19.9.32;ns2.mixed-case-rdata-1.zone09.xa/fda1:b2:c3:0:127:19:9:32
    0.07 WARNING  Z09_INCONSISTENT_MX_DATA  
 ```
---> Not OK
+--> Not OK (To be updated when the implementation has been updated. See https://github.com/zonemaster/zonemaster-engine/pull/1543)
 
 | Scenario name          | Mandatory message tags                                          | Forbidden message tags |
 |:-----------------------|:----------------------------------------------------------------|:-----------------------|
@@ -182,7 +181,7 @@ $ zonemaster-cli --raw  --test zone09 --hints hintfile.zone --level info mixed-c
    0.07 INFO     Z09_MX_DATA  mxrdata_list=20 mail2.mixed-case-rdata-2.zone09.xa;20 MAIL2.MIXED-CASE-RDATA-2.ZONE09.XA; ns_list=ns1.mixed-case-rdata-2.zone09.xa/127.19.9.31;ns1.mixed-case-rdata-2.zone09.xa/fda1:b2:c3:0:127:19:9:31
    0.07 WARNING  Z09_INCONSISTENT_MX_DATA  
 ```
---> Not OK
+--> Not OK (To be updated when the implementation has been updated. See https://github.com/zonemaster/zonemaster-engine/pull/1543)
 
 | Scenario name | Mandatory message tags | Forbidden message tags |
 |:--------------|:-----------------------|:-----------------------|
