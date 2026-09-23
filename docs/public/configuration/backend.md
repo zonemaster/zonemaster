@@ -90,7 +90,7 @@ batch_api_key = "LikewiseNotASecret"
 
 ### enable_add_batch_job
 
-*Deprecated. To be removed by Zonemaster version v2026.2. Use
+*Deprecated. To be removed by Zonemaster version v2027.1. Use
 `enable_batch_create` instead.*
 
 Boolean value to enable the `add_batch_job` and `batch_create` methods of the
@@ -100,12 +100,12 @@ Accepted values: `true` or `false` (or `yes` or `no`),
 default to `true` (enabled).
 
 **Deprecated:** The `yes`/`no` values are deprecated and will be rejected in
-v2026.2.
+v2027.1.
 Use `true`/`false` instead.
 
 ### enable_add_api_user
 
-*Deprecated. To be removed by Zonemaster version v2026.2.*
+*Deprecated. To be removed by Zonemaster version v2027.1.*
 
 Boolean value to enable the `add_api_user` method of the API.
 
@@ -113,7 +113,7 @@ Accepted values: `true` or `false` (or `yes` or `no`),
 default to `false` (disabled).
 
 **Deprecated:** The `yes`/`no` values are deprecated and will be rejected in
-v2026.2.
+v2027.1.
 Use `true`/`false` instead.
 
 ### enable_batch_create
