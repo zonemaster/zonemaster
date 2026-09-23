@@ -20,7 +20,7 @@
 
 ## Objective
 
-The delegation of the *Child Zone* may contain so called
+The delegation of the *Child Zone* may contain so-called
 [glue records][glue record]. On the wire, any [glue records][glue record] are
 found in the [referral] sent from the name servers of the parent zone.
 
@@ -29,12 +29,12 @@ one [glue record] in the delegation and in the [referral]. For each such glue
 record the equivalent [address record] must exist as an authoritative record in
 the child zone, or below, and both records must have the same [IP address].
 
-The other alternative is that the name server name is [Out-Of-Domain], and in
+Alternatively the name server name is [Out-Of-Domain], and in
 that case there can be a [glue record], and it must also match an address
 record with the same IP address in the authoritative zone. In this case that
 authoritative zone is not the *Child Zone* since the name is [Out-Of-Domain].
 
-It is an IANA [name server requirement] that [glue records][glue record] matches
+It is an IANA [name server requirement] that [glue records][glue record] match
 authoritative data.
 
 This test case will test the following:
@@ -75,7 +75,7 @@ working name server for *Child Zone* then this test case will report that.
 | CS05_EXTRA_ADDR_CHILD          | NOTICE   | ns_list                                   | There is one or more extra address records found in the child zone that are not present as glue in the delegation: "{ns_list}".                            |
 | CS05_ID_ADDR_MISMATCH          | ERROR    | nsname, ns_ip_list_glue, ns_ip_list_zone  | For name server {nsname} the glue record in the delegation "{ns_ip_list_glue}" is different from the address record in the child zone "{ns_ip_list_zone}". |
 | CS05_ID_ADDR_MISSING           | NOTICE   | nsname                                    | Address record for {nsname}, used as glue record in delegation, is missing in the child zone.                                                              |
-| CS05_INCONSISTENT_DELEGATION   | WARNING  |                                           | The delegation is inconsistent between the parent nameservers.                                                                                             |
+| CS05_INCONSISTENT_DELEGATION   | WARNING  |                                           | The delegation is inconsistent between the parent name servers.                                                                                            |
 | CS05_MISSING_GLUE_FOR_NS       | WARNING  | nsname, ns_list                           | Expected glue record for {nsname} is missing in the delegation. Found in the parent name servers "{ns_list}".                                              |
 | CS05_MISSING_GLUE_FOR_NS_UNDEL | WARNING  | nsname                                    | IP address (glue record) is expected but missing for {nsname} in the undelegated data.                                                                     |
 | CS05_MISSING_GLUE_FOR_ROOT_NS  | WARNING  | nsname                                    | IP address (glue record) is expected but missing for {nsname} in the undelegated data or hint data for root.                                               |
@@ -87,7 +87,7 @@ The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
 [Severity Level Definitions] document.
 
-The argument names in the Arguments column lists the arguments used in the
+The argument names in the Arguments column list the arguments used in the
 message. The argument names are defined in the [argument list].
 
 The name server names are assumed to be available at the time when the msgid
@@ -150,10 +150,10 @@ queries follow, unless otherwise specified below, what is specified for
        3. Create a sorted list of unique name server names (sorted in ascending order
           on the name).
        4. For each [glue record] in the additional section (if any) do:
-          1. Form an name/IP pair from the owner named and the IP address in
+          1. Form a name/IP pair from the owner name and the IP address in
              [RDATA].
           2. Only unique name/IP pairs are created.
-          3. Add the pair to sorted list of name server names.
+          3. Add the pair to the sorted list of name server names.
           4. Sort the name/IP pair by IP address, in ascending order, with IPv4
              addresses sorted before IPv6 addresses.
           5. The name/IP pair will replace any "name" where the name server name
@@ -173,14 +173,14 @@ queries follow, unless otherwise specified below, what is specified for
           2. Add the element (name or name/IP pair) to the *Delegation ID NS*
              set.
              1. Do not create duplicates in the set.
-             2. Elements just consiting of a name is not added if there already
+             2. Elements just consisting of a name is not added if there already
                 is a name/IP pair with the same name.
              3. A name/IP pair will overwrite an element consisting just of
                 the same name.
        2. If name in the element (name or name/IP pair) is [Out-Of-Domain] then
           add the element (name or name/IP pair) to the *Delegation OOD NS* set.
           1. Do not create duplicates in the set.
-          2. Elements just consiting of a name is not added if there already is a
+          2. Elements just consisting of a name is not added if there already is a
              name/IP pair with the same name.
           3. A name/IP pair will overwrite an element consisting just of the
              same name.
@@ -229,7 +229,7 @@ queries follow, unless otherwise specified below, what is specified for
     *[CS05_MISSING_GLUE_FOR_NS]* with the name server name and the list of parent
     IP addresses.
 
-10. If *Child NS IP* is empty then output *[CS05_NO_NS_ADDR_CHILD]* and exit
+10. If *Child NS IPs* is empty then output *[CS05_NO_NS_ADDR_CHILD]* and exit
     these test procedures.
 
 11. For each name server IP in *Child NS IPs* do:
@@ -255,7 +255,7 @@ queries follow, unless otherwise specified below, what is specified for
            server name then repeat *A Query* (recursively, if needed) to the
            name servers in the referral until an A RRset is returned or the
            querying is stopped by e.g. NXDOMAIN or no response.
-           1. If an A RRset is returned, then use it in the next step as if was a
+           1. If an A RRset is returned, then use it in the next step as if it were a
               response on the first query.
        4.  If any query was not responded to or returned an [RCODE Name] not
            being "NoError" then go to next NS name server name.
@@ -332,8 +332,8 @@ The outcome of this Test Case is "warning" if there is at least one message
 with the severity level *[WARNING]*, but no message with severity level
 *ERROR* or *CRITICAL*.
 
-In other cases, no message or only messages with severity level
-*[INFO]* or *[NOTICE]*, the outcome of this Test Case is "pass".
+In other cases, where there is no message or only messages with severity
+level *[INFO]* or *[NOTICE]*, the outcome of this Test Case is "pass".
 
 
 ## Special procedural requirements
@@ -391,8 +391,8 @@ None
   "In-Domain". It is either "sibling domain" or "unrelated" as defined in
   [RFC 9499][RFC 9499#section7], section 7, in the subsection on "Glue Records",
   for name server names in the referral of a zone. The name server name is
-  neither on or below the zone cut of the zone for which it is name server.
-  The name server name belongs to another zone. It is above or at aside the
+  neither on nor below the zone cut of the zone for which it is name server.
+  The name server name belongs to another zone. It is above or outside the
   delegated zone. Previously the term "Out-Of-Bailiwick" was used.
 
 * "RDATA" - "Resource record data as defined in [RFC 1034][RFC 1034#section3.6],
