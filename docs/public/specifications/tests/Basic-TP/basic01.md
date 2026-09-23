@@ -36,7 +36,7 @@ If no parent can be determined, there cannot be any delegation.
 ## Scope
 
 The algorithm in this test case should match the algorithm in method
-[Get parent zone].
+[Get parent NS names and IP addresses] in [MethodsV2].
 
 If the child zone does not exist (is not delegated), the only
 test case to be run after this test case is [BASIC03]. However,
@@ -55,20 +55,20 @@ Input for this Test Case:
 
 ## Summary
 
-Message Tag                | Level | Arguments                          | Message ID for message tag
-:--------------------------|:------|:-----------------------------------|:--------------------------
-B01_CHILD_FOUND            |INFO   | domain                             | The zone "{domain}" is found.
-B01_CHILD_IS_ALIAS         |NOTICE |domain_child, domain_target, ns_list| "{domain_child}" is not a zone. It is an alias for "{domain_target}". Run a test for "{domain_target}" instead. Returned from name servers "{ns_list}".
-B01_INCONSISTENT_ALIAS     |ERROR  | domain                             | The alias for "{domain}" is inconsistent between name servers.
-B01_INCONSISTENT_DELEGATION|ERROR  |domain_child, domain_parent, ns_list| The name servers for parent zone "{domain_parent}" give inconsistent delegation of "{domain_child}". Returned from name servers "{ns_list}".
-B01_NO_CHILD               |ERROR  | domain_child, domain_super         | "{domain_child}" does not exist as a DNS zone. Try to test "{domain_super}" instead.
-B01_PARENT_DISREGARDED     |INFO   |                                    | This is a test of an undelegated domain so finding the parent zone is disregarded.
-B01_PARENT_FOUND           |INFO   | domain, ns_list                    | The parent zone is "{domain}" as returned from name servers "{ns_list}".
-B01_PARENT_NOT_FOUND       |WARNING|                                    | The parent zone cannot be found.
-B01_PARENT_UNDETERMINED    |WARNING| ns_list                            | The parent zone cannot be determined on name servers "{ns_list}".
-B01_ROOT_HAS_NO_PARENT     |INFO   |                                    | This is a test of the root zone which has no parent zone.
-B01_SERVER_ZONE_ERROR      |DEBUG  | query_name, rrtype, ns             | Unexpected response on query for "{query_name}" with query type "{rrtype}" to "{ns}".
-
+| Message Tag                 | Level   | Arguments                            | Message ID for message tag                                                                                                                                                                                             |
+|:----------------------------|:--------|:-------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| B01_CHILD_FOUND             | INFO    | domain                               | The zone "{domain}" is found.                                                                                                                                                                                          |
+| B01_CHILD_IS_ALIAS          | NOTICE  | domain_child, domain_target, ns_list | "{domain_child}" is not a zone. It is an alias for "{domain_target}". Run a test for "{domain_target}" instead. Returned from name servers "{ns_list}".                                                                |
+| B01_INCONSISTENT_ALIAS      | ERROR   | domain                               | The alias for "{domain}" is inconsistent between name servers.                                                                                                                                                         |
+| B01_INCONSISTENT_DELEGATION | ERROR   | domain_child, domain_parent, ns_list | The name servers for parent zone "{domain_parent}" give inconsistent delegation of "{domain_child}". Returned from name servers "{ns_list}".                                                                           |
+| B01_NO_CHILD                | ERROR   | domain_child, domain_super           | "{domain_child}" does not exist as a DNS zone. Try to test "{domain_super}" instead.                                                                                                                                   |
+| B01_PARENT_DISREGARDED      | INFO    |                                      | This is a test of an undelegated domain so finding the parent zone is disregarded.                                                                                                                                     |
+| B01_PARENT_FOUND            | INFO    | domain, ns_list                      | The parent zone is "{domain}" as returned from name servers "{ns_list}".                                                                                                                                               |
+| B01_PARENT_NOT_FOUND        | WARNING |                                      | The parent zone cannot be found.                                                                                                                                                                                       |
+| B01_PARENT_UNDETERMINED     | WARNING | ns_list                              | The parent zone cannot be determined on name servers "{ns_list}".                                                                                                                                                      |
+| B01_ROOT_HAS_NO_PARENT      | INFO    |                                      | This is a test of the root zone which has no parent zone.                                                                                                                                                              |
+| B01_UNEXPECTED_NXDOMAIN     | ERROR   | query_name, domain, ns_list          | Unexpected NXDOMAIN on intermediate name "{query_name}" between apex and delegation point. Because of that, the zone "{domain}" might not be resolvable on some DNS resolvers. Returned from name servers "{ns_list}". |
+| B01_SERVER_ZONE_ERROR       | DEBUG   | query_name, rrtype, ns               | Unexpected response on query for "{query_name}" with query type "{rrtype}" to "{ns}".                                                                                                                                  |
 
 The value in the Level column is the default severity level of the message. The
 severity level can be changed in the [Zonemaster-Engine profile]. Also see the
@@ -107,18 +107,19 @@ DNS queries follow, unless otherwise specified below, what is specified for
 4. Create the following empty sets:
    1.  Name server IP and zone name ("Remaining Servers").
    2.  Name server IP and query name ("Handled Servers").
-   3.  Parent name server IP and parent zone name ("Parent Found").
-   4.  Parent name server IP and parent zone name ("Delegation Found").
-   5.  Parent name server IP and parent zone name ("AA NXDomain Found").
-   6.  Parent name server IP and parent zone name ("AA SOA Found").
-   7.  Parent name server IP and parent zone name ("AA CNAME Found").
-   8.  Parent name server IP and parent zone name ("CNAME with Referral Found").
-   9.  Parent name server IP, parent zone name and DNAME target
+   3.  Name server IP and query name ("AA NXDomain Response")
+   4.  Parent name server IP and parent zone name ("Parent Found").
+   5.  Parent name server IP and parent zone name ("Delegation Found").
+   6.  Parent name server IP and parent zone name ("AA NXDomain Found").
+   7.  Parent name server IP and parent zone name ("AA SOA Found").
+   8.  Parent name server IP and parent zone name ("AA CNAME Found").
+   9.  Parent name server IP and parent zone name ("CNAME with Referral Found").
+   10.  Parent name server IP, parent zone name and DNAME target
        ("AA DNAME Found").
-   10. Parent name server IP and parent zone name ("AA NODATA Found").
+   11. Parent name server IP and parent zone name ("AA NODATA Found").
 
-5. Insert all addresses from *Root Name Servers* and the root zone name into the
-   *Remaining Servers* set.
+5. Insert each address from *Root Name Servers* and the root zone name (".")
+   into the *Remaining Servers* set.
 
 > In the loop below, the steps tries to capture the name of the parent zone of
 > **Child Zone** and the IP addresses of the name servers for that parent zone.
@@ -126,9 +127,10 @@ DNS queries follow, unless otherwise specified below, what is specified for
 > [RFC 9156]. SOA is the query type used for traversing the tree.
 
 6. While the *Remaining Servers* is non-empty pick next name server IP address
-   and zone name from the set ("Server Address" and "Zone Name") and do:
+   and zone name from the set (refer as "Server Address" and "Zone Name",
+   respectively) and do:
 
-   1.  Extract and remove *Server Address* including its *Zone Name* from
+   1.  Remove *Server Address* including its *Zone Name* from
        *Remaining Servers*.
    2.  Insert *Server Address* and *Zone Name* into *Handled Servers*.
    3.  Create [DNS queries][DNS Query]:
@@ -152,16 +154,22 @@ DNS queries follow, unless otherwise specified below, what is specified for
           * AA bit not set in response.
           * No NS records in answer section
           * Owner name of any of the NS records is not *Zone Name*.
-   8.  Extract the name server names from the NS records and any address records
-       in the additional section.
-   9.  Do [DNS Lookup] of name server names (A and AAAA) not already listed in the
-       additional section of the response.
+   8.  Extract the name server names from the NS records in the answer section
+       and any matching address records in the additional section.
        1. For each IP address add the IP address and *Zone Name* to the
-          *Remaining Servers* set unless the IP address is already listed in
-          *Handled Servers* together with *Zone Name*.
-       2. Ignore any failing lookups or lookups resulting in NODATA or NXDOMAIN.
+          *Remaining Servers* set, unless the IP address is already listed in
+          *Handled Servers*, together with *Zone Name*.
+   9.  Do a [DNS Lookup] of name server names (A and AAAA) not already listed in
+       the additional section of the response, and extract IP addresses (A and
+       AAAA records) from responses.
+       1. For each IP address add the IP address and *Zone Name* to the
+          *Remaining Servers* set, unless the IP address is already listed in
+          *Handled Servers*, together with *Zone Name*.
+       2. Ignore any lookup that goes through a CNAME.
+       3. Ignore any failing lookups or negative responses, such as NODATA,
+          NXDOMAIN, non-AA responses or no response at all.
    10. Create "Intermediate Query Name" by copying *Zone name* as start value.
-   11. Run a loop processing *Server Address* (jumps back here from the steps
+   11. Run a loop processing the same *Server Address* (jumps back here from the steps
        below).
        1. Extend *Intermediate Query Name* by adding one more label to the left
           by copying the equivalent label from *Child Zone*. (See "Example 1"
@@ -194,11 +202,15 @@ DNS queries follow, unless otherwise specified below, what is specified for
                    * [RCODE Name] different from NoError in response.
                    * AA bit not set in response.
                    * No NS records in answer section.
-                   * Owner name of any of the NS records is not *Intermediate Query Name*.
-             4. Extract the name server names from the NS records and any address
-                records in the additional section.
+                   * Owner name of any of the NS records is not
+                     *Intermediate Query Name*.
+             4. Extract the name server names from the NS records in the answer
+                section and any matching address records in the additional
+                section.
              5. Do [DNS Lookup] of name server names (A and AAAA) not already
                 listed in the additional section of the response.
+                   1. Ignore any lookup that goes through a CNAME.
+                   2. Ignore any failing lookups or negative responses, such as NODATA, NXDOMAIN, non-AA responses or no response at all.
              6. For each IP address add the IP address and *Intermediate Query Name*
                 to the *Remaining Servers* set unless the IP address is already
                 listed in *Handled Servers* together with *Intermediate Query Name*.
@@ -206,8 +218,11 @@ DNS queries follow, unless otherwise specified below, what is specified for
              8. Go back to the start of the loop.
        6. Else, if the [RCODE Name] is NXDomain and the AA is set then do:
           1. Save *Server Address* and *Zone Name* to the *AA NXDomain Found* set
-             and the *Parent Found* set.
-          2. Go to next server in *Remaining Servers*.
+             and the *Parent Found* set, unless already saved.
+          2. If *Intermediate Query Name* is equal to *Child Zone* then go to
+             next server in *Remaining Servers*.
+          3. Else save *Server Address* and *Intermediate Query Name* to the
+             *AA NXDomain Response* set.
        7. Else, if the response contains a [Referral] of *Intermediate Query Name*
           then do:
           1. If *Intermediate Query Name* is equal to *Child Zone* then do:
@@ -264,24 +279,30 @@ DNS queries follow, unless otherwise specified below, what is specified for
 8. If the *Parent Found* set is empty, then output *[B01_PARENT_NOT_FOUND]*.
 
 9. If one or both of the *Delegation Found* and the *AA SOA Found* sets are
-    non-empty, then do:
-    1. Output *[B01_CHILD_FOUND]* with *Child Zone*.
-    2. If one or more of the following five sets are also non-empty then output
-       *[B01_INCONSISTENT_DELEGATION]* with *Child Zone*, parent zone name and
-       the combined set of name server IP addresses from all five sets.
-          * *AA NXDomain Found*
-          * *AA CNAME Found*
-          * *CNAME with Referral Found*
-          * *AA DNAME Found*
-          * *AA NODATA Found*
+   non-empty, then do:
+   1. Output *[B01_CHILD_FOUND]* with *Child Zone*.
+   2. If one or more of the following five sets are also non-empty then output
+      *[B01_INCONSISTENT_DELEGATION]* with *Child Zone*, parent zone name and
+      the combined set of name server IP addresses from all five sets.
+         * *AA NXDomain Found*
+         * *AA CNAME Found*
+         * *CNAME with Referral Found*
+         * *AA DNAME Found*
+         * *AA NODATA Found*
 
-10. If both of the *Delegation Found* and the *AA SOA Found* sets are empty, then
+10. If *[B01_CHILD_FOUND]* has been outputted, but not
+    *[B01_INCONSISTENT_DELEGATION]*, and the *AA NXDomain Response* set is
+    non-empty then for each domain name in that set output
+    *[B01_UNEXPECTED_NXDOMAIN]* with the domain name from the set, the list of IP
+    addresses for that domain name, and the *Child Zone*.
+
+11. If both of the *Delegation Found* and the *AA SOA Found* sets are empty, then
     do:
        1. Create "Superdomain" as a copy of *Child Zone* with the first label
           removed.
-       2. Output *[B01_NO_CHILD]* with *Child zone* and *Superdomain*.
+       2. Output *[B01_NO_CHILD]* with *Child Zone* and *Superdomain*.
 
-11. If the *AA DNAME Found* set is non-empty then do:
+12. If the *AA DNAME Found* set is non-empty then do:
     1. For each DNAME target in the set output *[B01_CHILD_IS_ALIAS]* with name
        server IP list, *Child Zone* and the DNAME target.
     2. If not all members of the set have the same DNAME target, output
@@ -359,6 +380,7 @@ a specific name server. Compare with "[DNS Lookup]".
 [B01_PARENT_UNDETERMINED]:                                        #Summary
 [B01_ROOT_HAS_NO_PARENT]:                                         #Summary
 [B01_SERVER_ZONE_ERROR]:                                          #Summary
+[B01_UNEXPECTED_NXDOMAIN]:                                        #Summary
 [Basic03]:                                                        basic03.md
 [CRITICAL]:                                                       ../SeverityLevelDefinitions.md#critical
 [Direct Subdomain]:                                               #terminology
@@ -367,9 +389,10 @@ a specific name server. Compare with "[DNS Lookup]".
 [DNS Query]:                                                      ../DNSQueryAndResponseDefaults.md#default-setting-in-dns-query
 [DNS Response]:                                                   ../DNSQueryAndResponseDefaults.md#default-handling-of-a-dns-response
 [ERROR]:                                                          ../SeverityLevelDefinitions.md#error
-[Get parent zone]:                                                ../MethodsV2.md#method-get-parent-ns-names-and-ip-addresses
+[Get parent NS names and IP addresses]:                           ../MethodsV2.md#method-get-parent-ns-names-and-ip-addresses
 [INFO]:                                                           ../SeverityLevelDefinitions.md#info
 [List of Root Servers]:                                           https://www.iana.org/domains/root/servers
+[MethodsV2]:                                                      ../MethodsV2.md
 [NOTICE]:                                                         ../SeverityLevelDefinitions.md#notice
 [Non-referral]:                                                   #terminology
 [Query type]:                                                     https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
