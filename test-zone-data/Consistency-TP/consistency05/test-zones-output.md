@@ -27,6 +27,7 @@ scenarios for other test cases.
 * CS05_INCONSISTENT_DELEGATION
 * CS05_MISSING_GLUE_FOR_NS
 * CS05_MISSING_GLUE_FOR_NS_UNDEL
+* CS05_MISSING_GLUE_FOR_ROOT_NS
 * CS05_NO_MISMATCH_GLUE_ZONE
 * CS05_NO_NS_ADDR_CHILD
 * CS05_OOD_ADDR_MISMATCH
@@ -72,7 +73,6 @@ Default hintfile, `Consistency-TP/consistency05/hintfile.zone`, is used for all 
 unless another hintfile is specified:
 
 1. `Consistency-TP/consistency05/Z-ROOT-MATCH-1-hintfile.zone`
-2. `Consistency-TP/consistency05/Z-ROOT-INCOMPLETE-HINT-hintfile.zone`
 
 If `yes` in column `Undelegated` the undelegated data is used for the scenario.
 
@@ -346,7 +346,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------------------------|:-----------------------|
 | MISSING-GLUE-FOR-NS-2     | CS05_MISSING_GLUE_FOR_NS_UNDEL                  | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info missing-glue-for-ns-2.consistency05.xa --ns ns1.missing-glue-for-ns-2.consistency05.xa --ns ns1.missing-glue-for-ns-2.consistency05.xa --ns ns2.missing-glue-for-ns-2.consistency05.xa/127.14.5.32 --ns ns2.missing-glue-for-ns-2.consistency05.xa/fda1:b2:c3:0:127:14:5:32
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info missing-glue-for-ns-2.consistency05.xa --ns ns1.missing-glue-for-ns-2.consistency05.xa --ns ns2.missing-glue-for-ns-2.consistency05.xa/127.14.5.32 --ns ns2.missing-glue-for-ns-2.consistency05.xa/fda1:b2:c3:0:127:14:5:32
    0.21 ERROR    FAKE_DELEGATION_NO_IP  domain=missing-glue-for-ns-2.consistency05.xa; nsname=ns1.missing-glue-for-ns-2.consistency05.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.03 WARNING  CS05_MISSING_GLUE_FOR_NS_UNDEL  nsname="ns1.missing-glue-for-ns-2.consistency05.xa"
@@ -405,7 +405,7 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
 |:--------------------------|:------------------------------|:-----------------------|
 | ROOT-MISSING-GLUE-UNDEL-1 | CS05_MISSING_GLUE_FOR_ROOT_NS | 2)                     |
 ```
-$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info . --ns ns1 --ns ns1 --ns ns2/127.14.5.66 --ns ns2/fda1:b2:c3:0:127:14:5:66
+$ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info . --ns ns1 --ns ns2/127.14.5.66 --ns ns2/fda1:b2:c3:0:127:14:5:66
    0.21 ERROR    FAKE_DELEGATION_NO_IP  domain=.; nsname=ns1
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
    0.02 WARNING  CS05_MISSING_GLUE_FOR_ROOT_NS  nsname="ns1"
@@ -435,6 +435,6 @@ $ zonemaster-cli --raw  --test consistency05 --hints Z-ROOT-MATCH-1-hintfile.zon
 
 | Scenario name             | Mandatory message tag                           | Forbidden message tags |
 |:--------------------------|:------------------------------------------------|:-----------------------|
-| Z-ROOT-INCOMPLETE-HINT    | CS05_MISSING_GLUE_FOR_NS                        | 2)                     |
+| Z-ROOT-INCOMPLETE-HINT    | CS05_MISSING_GLUE_FOR_ROOT_NS                   | 2)                     |
 
 --> N/A (see scenario specification)
