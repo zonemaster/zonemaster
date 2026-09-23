@@ -152,7 +152,7 @@ Assumptions for the zone setup for the test scenarios:
 * Zone: "mixed-case-rdata-1.zone09.xa."
   * The zone responds with two MX record.
   * In ns1 the first MX is in upper case and the second in lower case.
-  * In ns1 the first MX is in lower case and the second in upper case.
+  * In ns2 the first MX is in lower case and the second in upper case.
 
 ### MIXED-CASE-RDATA-2
 * Zone: "mixed-case-rdata-2.zone09.xa."

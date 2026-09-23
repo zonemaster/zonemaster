@@ -47,9 +47,9 @@ scenarios for other test cases.
 | INCONSISTENT-MX-DATA-1 | inconsistent-mx-data-1.zone09.xa |           |
 | INCONSISTENT-MX-DATA-2 | inconsistent-mx-data-2.zone09.xa |           |
 | INCONSISTENT-MX-DATA-3 | inconsistent-mx-data-3.zone09.xa |           |
-| INCONSISTENT-MX-DATA-4 | inconsistent-mx-data-3.zone09.xa |           |
-| MIXED-CASE-RDATA-1     | mx-data.zone09.xa                |           |
-| MIXED-CASE-RDATA-2     | mx-data.zone09.xa                |           |
+| INCONSISTENT-MX-DATA-4 | inconsistent-mx-data-4.zone09.xa |           |
+| MIXED-CASE-RDATA-1     | mixed-case-rdata-1.zone09.xa     |           |
+| MIXED-CASE-RDATA-2     | mixed-case-rdata-2.zone09.xa     |           |
 | MIXED-TTL-1            | mixed-ttl-1.zone09.xa            |           |
 | MIXED-TTL-2            | mixed-ttl-2.zone09.xa            |           |
 | MX-DATA                | mx-data.zone09.xa                |           |
