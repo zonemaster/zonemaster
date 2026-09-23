@@ -73,6 +73,7 @@ Default hintfile, `Consistency-TP/consistency05/hintfile.zone`, is used for all 
 unless another hintfile is specified:
 
 1. `Consistency-TP/consistency05/Z-ROOT-MATCH-1-hintfile.zone`
+2. Would require a dedicated hintfile, but the scenario is N/A.
 
 If `yes` in column `Undelegated` the undelegated data is used for the scenario.
 
@@ -352,7 +353,6 @@ $ zonemaster-cli --raw  --test consistency05 --hints hintfile.zone --level info 
    0.03 WARNING  CS05_MISSING_GLUE_FOR_NS_UNDEL  nsname="ns1.missing-glue-for-ns-2.consistency05.xa"
 ```
 * Undelegated data:
-  * ns1.missing-glue-for-ns-2.consistency05.xa
   * ns1.missing-glue-for-ns-2.consistency05.xa
   * ns2.missing-glue-for-ns-2.consistency05.xa/127.14.5.32
   * ns2.missing-glue-for-ns-2.consistency05.xa/fda1:b2:c3:0:127:14:5:32
