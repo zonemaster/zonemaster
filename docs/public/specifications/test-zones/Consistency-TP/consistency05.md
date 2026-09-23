@@ -290,14 +290,14 @@ Lame. No NS responds.
 Lame. One NS non-AA and one NS SERVFAIL.
 
 * Zone: child-zone-lame-2.consistency05.xa
-  * ns1 responses with AA bit unset.
+  * ns1 responds with AA bit unset.
   * ns2 responds with [RCODE Name] "ServFail".
 
 ### CHILD-ZONE-LAME-3
 Lame. No NS in response.
 
 * Zone: child-zone-lame-3.consistency05.xa
-  * Both ns1 and ns2 responds with NODATA on NS query
+  * Both ns1 and ns2 respond with NODATA on NS query
   * Else normal zone
 
 ### EXTRA-ADDRESS-CHILD
@@ -345,7 +345,7 @@ Delegation from parent zone is inconsistent.
     * Parent ns1 delegates to child ns41 and ns42
     * Parent ns2 delegates to child ns41 and ns43
   * Child ns are in-domain
-    * ns41, ns42 and n43
+    * ns41, ns42 and ns43
     * Child is consistent
 
 ### INCONSISTENT-DELEGATION-2
@@ -394,7 +394,7 @@ Lame. There are no IP addresses to the child zone
 * Zone: child.no-ns-addr-child-2.consistency05.xa
   * ns1 and ns2 are out-of-domain.
   * No glue in delegation.
-  * Authoriative records of ns1 and ns2 do not exist.
+  * Authoritative records of ns1 and ns2 do not exist.
   * Child zone does not have to be created.
 
 ### OOD-ADDR-MISMATCH
@@ -456,7 +456,7 @@ test case standard root zone.
 
 NB! This scenario is not possible to implement since the current Zonemaster
 implementation for parsing hints file (Zonemaster::Engine::Util::parse_hints())
-requires all an address record for every name server name (NS RDATA).
+requires an address record for every name server name (NS RDATA).
 
 
 [Consistency05]:                                                  ../../tests/Consistency-TP/consistency05.md
