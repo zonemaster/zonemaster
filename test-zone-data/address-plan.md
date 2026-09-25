@@ -616,6 +616,15 @@ Follow the same pattern as in use by adding the address without prefix, e.g. as
 | 127.30.1.32     | ns1.sub2.cname.recursor.engine.xa                           |
 | 127.30.1.33     | ns1.sub3.cname.recursor.engine.xa                           |
 | 127.30.1.34     | ns1.goodsub.cname.recursor.engine.xa                        |
+| 127.30.1.35     | ns1.sub4.cname.recursor.engine.xa                           |
+| 127.30.1.36     | ns1.sub5.cname.recursor.engine.xa                           |
+| 127.30.1.37     | ns1.sub6.cname.recursor.engine.xa                           |
+| 127.30.1.38     | ns1.sub7.cname.recursor.engine.xa                           |
+| 127.30.1.39     | ns1.sub8.cname.recursor.engine.xa                           |
+| 127.30.1.40     | ns1.sub9.cname.recursor.engine.xa                           |
+| 127.30.1.41     | ns1.sub10.cname.recursor.engine.xa                          |
+| 127.30.1.42     | ns1.sub11.cname.recursor.engine.xa                          |
+| 127.30.1.43     | ns1.sub12.cname.recursor.engine.xa                          |
 | 127.30.2.0/24   | (not in use)                                                |
 | (...)           |                                                             |
 | 127.30.255.0/24 | (not in use)                                                |
