@@ -2,7 +2,7 @@ $ORIGIN consistency05.xa.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024051701      ; serial
+                2026080503      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -15,6 +15,28 @@ ns1     A     127.14.5.21
 ns1     AAAA  fda1:b2:c3:0:127:14:5:21
 ns2     A     127.14.5.22
 ns2     AAAA  fda1:b2:c3:0:127:14:5:22
+
+$ORIGIN addr-match-del-undel-1.consistency05.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.14.5.31
+ns1     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2     A       127.14.5.32
+ns2     AAAA    fda1:b2:c3:0:127:14:5:32
+
+$ORIGIN addr-match-del-undel-2.consistency05.xa.
+@       NS      ns1
+@       NS      ns2
+ns1     A       127.14.5.31
+ns1     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2     A       127.14.5.32
+ns2     AAAA    fda1:b2:c3:0:127:14:5:32
+
+
+; addr-match-no-del-undel-1.consistency05.xa ; Not delegated:
+
+; addr-match-no-del-undel-1.consistency05.xa ; Not delegated:
+
 
 $ORIGIN addresses-match-1.consistency05.xa.
 @	NS	ns1
@@ -68,25 +90,15 @@ ns1     AAAA    fda1:b2:c3:0:127:14:5:31
 ns2     A       127.14.5.32
 ns2     AAAA    fda1:b2:c3:0:127:14:5:32
 
-$ORIGIN addr-match-del-undel-1.consistency05.xa.
-@       NS      ns1
-@       NS      ns2
-ns1     A       127.14.5.31
-ns1     AAAA    fda1:b2:c3:0:127:14:5:31
-ns2     A       127.14.5.32
-ns2     AAAA    fda1:b2:c3:0:127:14:5:32
+$ORIGIN addresses-match-8.consistency05.xa.
+@       NS      ns3.addresses-match-8.consistency05.xb.
+@       NS      ns4.addresses-match-8.consistency05.xb.
+@       NS      ns89.addresses-match-8.consistency05.xb.
 
-$ORIGIN addr-match-del-undel-2.consistency05.xa.
-@       NS      ns1
-@       NS      ns2
-ns1     A       127.14.5.31
-ns1     AAAA    fda1:b2:c3:0:127:14:5:31
-ns2     A       127.14.5.32
-ns2     AAAA    fda1:b2:c3:0:127:14:5:32
-
-; Not delegated:
-; addr-match-no-del-undel-1.consistency05.xa
-; addr-match-no-del-undel-1.consistency05.xa
+$ORIGIN addresses-match-9.consistency05.xa.
+@       NS      ns3.addresses-match-9.consistency05.xb.
+@       NS      ns4.addresses-match-9.consistency05.xb.
+@       NS      ns89.addresses-match-9.consistency05.xb.
 
 $ORIGIN child-zone-lame-1.consistency05.xa.
 @	NS	ns1
@@ -104,37 +116,13 @@ ns1     AAAA    fda1:b2:c3:0:127:14:5:31
 ns2     A       127.14.5.32
 ns2     AAAA    fda1:b2:c3:0:127:14:5:32
 
-$ORIGIN ib-addr-mismatch-1.consistency05.xa.
-@	NS	ns1
+$ORIGIN child-zone-lame-3.consistency05.xa.
+@       NS      ns1
 @       NS      ns2
-ns1	A	127.14.5.39
-ns1	AAAA	fda1:b2:c3:0:127:14:5:39
+ns1     A       127.14.5.31
+ns1     AAAA    fda1:b2:c3:0:127:14:5:31
 ns2     A       127.14.5.32
 ns2     AAAA    fda1:b2:c3:0:127:14:5:32
-
-$ORIGIN ib-addr-mismatch-2.consistency05.xa.
-@      NS      ns1
-@      NS      ns2
-ns1    A       127.14.5.31
-ns1    AAAA    fda1:b2:c3:0:127:14:5:31
-ns2    A       127.14.5.32
-ns2    AAAA    fda1:b2:c3:0:127:14:5:32
-
-$ORIGIN ib-addr-mismatch-3.consistency05.xa.
-@                       NS      ns1
-@                       NS      ns2
-ns1                     A       127.14.5.31
-ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
-ns2                     A       127.14.5.32
-ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
-
-$ORIGIN ib-addr-mismatch-4.consistency05.xa.
-@                       NS      ns1
-@                       NS      ns2
-ns1                     A       127.14.5.31
-ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
-ns2                     A       127.14.5.32
-ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
 
 $ORIGIN extra-address-child.consistency05.xa.
 @                       NS      ns1
@@ -144,10 +132,77 @@ ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
 ns2                     A       127.14.5.32
 ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
 
-$ORIGIN oob-addr-mismatch.consistency05.xa.
+$ORIGIN id-addr-mismatch-1.consistency05.xa.
+@	NS	ns1
+@       NS      ns2
+ns1	A	127.14.5.31
+ns1	AAAA	fda1:b2:c3:0:127:14:5:31
+ns2     A       127.14.5.39               ; 127.14.5.32 in the zone
+ns2     AAAA    fda1:b2:c3:0:127:14:5:39  ; Matching IPv4
+
+$ORIGIN id-addr-missing-1.consistency05.xa.
 @                       NS      ns1
 @                       NS      ns2
 ns1                     A       127.14.5.31
 ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
 ns2                     A       127.14.5.32
 ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
+
+$ORIGIN id-addr-missing-2.consistency05.xa.
+@                       NS      ns1
+@                       NS      ns2
+ns1                     A       127.14.5.31
+ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2                     A       127.14.5.32
+ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
+
+$ORIGIN inconsistent-delegation-1.consistency05.xa.
+@                       NS      ns1
+@                       NS      ns2
+ns1                     A       127.14.5.31
+ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2                     A       127.14.5.32
+ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
+
+$ORIGIN inconsistent-delegation-2.consistency05.xa.
+@                       NS      ns1
+@                       NS      ns2
+ns1                     A       127.14.5.31
+ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2                     A       127.14.5.32
+ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
+
+$ORIGIN missing-glue-for-ns-1.consistency05.xa.
+@                       NS      ns1
+@                       NS      ns2
+ns1                     A       127.14.5.31
+ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2                     A       127.14.5.32
+ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
+
+; missing-glue-for-ns-2.consistency05.xa. ; not delegated
+
+$ORIGIN no-ns-addr-child-1.consistency05.xa.
+@                       NS      ns1
+@                       NS      ns2
+ns1                     A       127.14.5.31
+ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2                     A       127.14.5.32
+ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
+
+$ORIGIN no-ns-addr-child-2.consistency05.xa.
+@                       NS      ns1
+@                       NS      ns2
+ns1                     A       127.14.5.31
+ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2                     A       127.14.5.32
+ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
+
+$ORIGIN ood-addr-mismatch.consistency05.xa.
+@                       NS      ns1
+@                       NS      ns2
+ns1                     A       127.14.5.31
+ns1                     AAAA    fda1:b2:c3:0:127:14:5:31
+ns2                     A       127.14.5.32
+ns2                     AAAA    fda1:b2:c3:0:127:14:5:32
+

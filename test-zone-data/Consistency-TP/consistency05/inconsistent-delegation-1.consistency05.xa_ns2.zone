@@ -1,0 +1,36 @@
+; A parent zone
+
+; The variant run on ns2
+
+$ORIGIN inconsistent-delegation-1.consistency05.xa.
+$TTL 3600
+
+@       SOA     ns1 admin.mail.xa. (
+                2026072403      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS      ns1
+@       NS      ns2
+
+@       TXT     "Text"
+
+ns1     A       127.14.5.31
+ns1     AAAA    fda1:b2:c3::127:14:5:31
+ns2     A       127.14.5.32
+ns2     AAAA    fda1:b2:c3::127:14:5:32
+
+
+
+$ORIGIN child
+@        NS      ns41
+@        NS      ns43
+ns41     A       127.14.5.41
+ns41     AAAA    fda1:b2:c3::127:14:5:41
+ns43     A       127.14.5.43
+ns43     AAAA    fda1:b2:c3::127:14:5:43
+
+
+;EOF
