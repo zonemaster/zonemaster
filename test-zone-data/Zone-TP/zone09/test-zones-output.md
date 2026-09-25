@@ -165,11 +165,9 @@ $ zonemaster-cli --raw  --test zone09 --hints hintfile.zone --level info inconsi
 ```
 $ zonemaster-cli --raw  --test zone09 --hints hintfile.zone --level info mixed-case-rdata-1.zone09.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
-   0.07 INFO     Z09_MX_DATA  mxrdata_list=10 MAIL.MIXED-CASE-RDATA-1.ZONE09.XA;20 mail2.mixed-case-rdata-1.zone09.xa; ns_list=ns1.mixed-case-rdata-1.zone09.xa/127.19.9.31;ns1.mixed-case-rdata-1.zone09.xa/fda1:b2:c3:0:127:19:9:31
-   0.07 INFO     Z09_MX_DATA  mxrdata_list=10 mail.mixed-case-rdata-1.zone09.xa;20 MAIL2.MIXED-CASE-RDATA-1.ZONE09.XA; ns_list=ns2.mixed-case-rdata-1.zone09.xa/127.19.9.32;ns2.mixed-case-rdata-1.zone09.xa/fda1:b2:c3:0:127:19:9:32
-   0.07 WARNING  Z09_INCONSISTENT_MX_DATA  
+   0.07 INFO     Z09_MX_DATA  mxrdata_list=10 mail.mixed-case-rdata-1.zone09.xa;20 mail2.mixed-case-rdata-1.zone09.xa; ns_list=ns1.mixed-case-rdata-1.zone09.xa/127.19.9.31;ns1.mixed-case-rdata-1.zone09.xa/fda1:b2:c3:0:127:19:9:31;ns2.mixed-case-rdata-1.zone09.xa/127.19.9.32;ns2.mixed-case-rdata-1.zone09.xa/fda1:b2:c3:0:127:19:9:32
 ```
---> Not OK (To be updated when the implementation has been updated. See https://github.com/zonemaster/zonemaster-engine/pull/1543)
+--> OK
 
 | Scenario name          | Mandatory message tags                                          | Forbidden message tags |
 |:-----------------------|:----------------------------------------------------------------|:-----------------------|
@@ -177,11 +175,9 @@ $ zonemaster-cli --raw  --test zone09 --hints hintfile.zone --level info mixed-c
 ```
 $ zonemaster-cli --raw  --test zone09 --hints hintfile.zone --level info mixed-case-rdata-2.zone09.xa
    0.00 INFO     GLOBAL_VERSION  version=v9.0.0
-   0.07 INFO     Z09_MX_DATA  mxrdata_list=20 Mail2.Mixed-Case-Rdata-2.Zone09.Xa; ns_list=ns2.mixed-case-rdata-2.zone09.xa/127.19.9.32;ns2.mixed-case-rdata-2.zone09.xa/fda1:b2:c3:0:127:19:9:32
-   0.07 INFO     Z09_MX_DATA  mxrdata_list=20 mail2.mixed-case-rdata-2.zone09.xa;20 MAIL2.MIXED-CASE-RDATA-2.ZONE09.XA; ns_list=ns1.mixed-case-rdata-2.zone09.xa/127.19.9.31;ns1.mixed-case-rdata-2.zone09.xa/fda1:b2:c3:0:127:19:9:31
-   0.07 WARNING  Z09_INCONSISTENT_MX_DATA  
+   0.07 INFO     Z09_MX_DATA  mxrdata_list=20 mail2.mixed-case-rdata-2.zone09.xa; ns_list=ns1.mixed-case-rdata-2.zone09.xa/127.19.9.31;ns1.mixed-case-rdata-2.zone09.xa/fda1:b2:c3:0:127:19:9:31;ns2.mixed-case-rdata-2.zone09.xa/127.19.9.32;ns2.mixed-case-rdata-2.zone09.xa/fda1:b2:c3:0:127:19:9:32
 ```
---> Not OK (To be updated when the implementation has been updated. See https://github.com/zonemaster/zonemaster-engine/pull/1543)
+--> OK
 
 | Scenario name | Mandatory message tags | Forbidden message tags |
 |:--------------|:-----------------------|:-----------------------|
