@@ -2,7 +2,7 @@
 
 ### \[Release information\]
 - This release mainly contains bug fixes in the test cases.
-- Updates th implementation of test cases Consistency05, Zone09 and DNSSEC02 and the shared methods in MethodsV2 in [Zonemaster-Engine].
+- Updates the implementation of test cases Consistency05, Zone09 and DNSSEC02 and the shared methods in MethodsV2 in [Zonemaster-Engine].
 
 ### \[Breaking changes\]
 - None for this release
@@ -14,7 +14,7 @@
 - Updates test case Consistency05 specification to resolve a bug, but the message tags have also been updated and some of the logic has changed (#1523)
 
 ### \[Fixes\]
-- Updates test case Zone09 specification to resolved a bug ([#1516])
+- Updates test case Zone09 specification to resolve a bug ([#1516])
 
 ### \[Zonemaster product\]
 This version of Zonemaster also consists of the following components. For each component, see its Changes file or Github release notes for complete release information.

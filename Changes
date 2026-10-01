@@ -5,7 +5,7 @@ v2026.1.2 2026-09-30
 
  [Release information]
  - This release mainly contains bug fixes in the test cases.
- - Updates th implementation of test cases Consistency05, Zone09 and
+ - Updates the implementation of test cases Consistency05, Zone09 and
    DNSSEC02 and the shared methods in MethodsV2 in Zonemaster-Engine.
 
  [Breaking changes]
@@ -19,7 +19,7 @@ v2026.1.2 2026-09-30
    message tags have also been updated and some of the logic has changed (#1523)
 
  [Fixes]
- - Updates test case Zone09 specification to resolved a bug (#1516)
+ - Updates test case Zone09 specification to resolve a bug (#1516)
 
  [Zonemaster product]
  - This version of Zonemaster also consists of the following components. For
