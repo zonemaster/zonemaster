@@ -1,0 +1,16 @@
+$ORIGIN child.addresses-match-6.consistency05.xa.
+$TTL 3600
+
+@       SOA     ns1 admin.mail.xa. (
+                2026072501      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS      ns1.sibbling.addresses-match-6.consistency05.xa.
+@       NS      ns2.sibbling.addresses-match-6.consistency05.xa.
+
+@       TXT     "Text"
+
+;EOF

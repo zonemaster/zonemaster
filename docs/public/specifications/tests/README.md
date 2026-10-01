@@ -117,7 +117,7 @@ Test Case specifications:
 |[CONSISTENCY02](Consistency-TP/consistency02.md)|SOA RNAME consistency|
 |[CONSISTENCY03](Consistency-TP/consistency03.md)|SOA timers consistency|
 |[CONSISTENCY04](Consistency-TP/consistency04.md)|Name server NS consistency|
-|[CONSISTENCY05](Consistency-TP/consistency05.md)|Consistency between glue and authoritative data|
+|[CONSISTENCY05](Consistency-TP/consistency05.md)|Consistency between delegation and zone data|
 |[CONSISTENCY06](Consistency-TP/consistency06.md)|SOA MNAME consistency|
 |**DNSSEC-TP**| |
 |[DNSSEC01](DNSSEC-TP/dnssec01.md)|Legal values for the DS hash digest algorithm|

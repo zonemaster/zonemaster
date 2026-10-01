@@ -18,3 +18,5 @@ ns1                        AAAA  fda1:b2:c3:0:127:30:1:32
 ; For scenario LOOPED-CNAME-OUT-OF-ZONE
 looped-cname-out-of-zone   CNAME   looped-cname-out-of-zone.sub3.cname.recursor.engine.xa.
 
+; For scenario TOO-LONG-CNAME-CHAIN
+too-long-cname-chain   CNAME   too-long-cname-chain.sub3.cname.recursor.engine.xa.

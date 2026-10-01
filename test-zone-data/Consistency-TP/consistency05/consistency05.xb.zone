@@ -2,7 +2,7 @@ $ORIGIN consistency05.xb.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024051703      ; serial
+                2026072500      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -15,13 +15,6 @@ ns1     A     127.14.5.23
 ns1     AAAA  fda1:b2:c3:0:127:14:5:23
 ns2     A     127.14.5.24
 ns2     AAAA  fda1:b2:c3:0:127:14:5:24
-
-$ORIGIN addresses-match-2.consistency05.xb.
-; No delegation
-ns3	A	127.14.5.33
-ns3	AAAA	fda1:b2:c3:0:127:14:5:33
-ns4     A       127.14.5.34
-ns4     AAAA    fda1:b2:c3:0:127:14:5:34
 
 $ORIGIN addr-match-del-undel-2.consistency05.xb.
 ; No delegation
@@ -36,3 +29,51 @@ ns3	A	127.14.5.33
 ns3	AAAA	fda1:b2:c3:0:127:14:5:33
 ns4     A       127.14.5.34
 ns4     AAAA    fda1:b2:c3:0:127:14:5:34
+
+$ORIGIN addresses-match-2.consistency05.xb.
+; No delegation
+ns3	A	127.14.5.33
+ns3	AAAA	fda1:b2:c3:0:127:14:5:33
+ns4     A       127.14.5.34
+ns4     AAAA    fda1:b2:c3:0:127:14:5:34
+
+$ORIGIN addresses-match-8.consistency05.xb.
+; No delegation
+ns3      A       127.14.5.33
+ns3      AAAA    fda1:b2:c3:0:127:14:5:33
+ns4      A       127.14.5.34
+ns4      AAAA    fda1:b2:c3:0:127:14:5:34
+ns89     A       127.14.5.89
+ns89     AAAA    fda1:b2:c3:0:127:14:5:89
+
+ns41.child.a.b      A       127.14.5.41
+ns41.child.a.b      AAAA    fda1:b2:c3:0:127:14:5:41
+ns42.child.a.b      A       127.14.5.42
+ns42.child.a.b      AAAA    fda1:b2:c3:0:127:14:5:42
+
+$ORIGIN addresses-match-9.consistency05.xb.
+; No delegation
+ns3      A       127.14.5.33
+ns3      AAAA    fda1:b2:c3:0:127:14:5:33
+ns4      A       127.14.5.34
+ns4      AAAA    fda1:b2:c3:0:127:14:5:34
+ns89     A       127.14.5.89
+ns89     AAAA    fda1:b2:c3:0:127:14:5:89
+
+ns41.child      A       127.14.5.41
+ns41.child      AAAA    fda1:b2:c3:0:127:14:5:41
+ns42.child      A       127.14.5.42
+ns42.child      AAAA    fda1:b2:c3:0:127:14:5:42
+
+$ORIGIN inconsistent-delegation-2.consistency05.xb.
+; No delegation
+ns41     A       127.14.5.41
+ns41     AAAA    fda1:b2:c3::127:14:5:41
+ns42     A       127.14.5.42
+ns42     AAAA    fda1:b2:c3::127:14:5:42
+ns43     A       127.14.5.43
+ns43     AAAA    fda1:b2:c3::127:14:5:43
+
+
+; no-ns-addr-child-2.consistency05.xb does not exist on purpose
+

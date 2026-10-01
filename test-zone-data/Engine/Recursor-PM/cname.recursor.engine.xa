@@ -62,7 +62,7 @@ looped-cname-in-zone-1        CNAME looped-cname-in-zone-1
 looped-cname-in-zone-3        CNAME looped-cname-in-zone-3-next
 looped-cname-in-zone-3-next   CNAME looped-cname-in-zone-3
 
-; For scenario LOOPED-CNAME-OUT-OF-ZONE
+; For scenarios LOOPED-CNAME-OUT-OF-ZONE and TOO-LONG-CNAME-CHAIN
 sub2                          NS    ns1.sub2
 ns1.sub2                      A     127.30.1.32
 ns1.sub2                      AAAA  fda1:b2:c3:0:127:30:1:32
@@ -72,18 +72,55 @@ ns1.sub3                      A     127.30.1.33
 ns1.sub3                      AAAA  fda1:b2:c3:0:127:30:1:33
 
 ; For scenario TOO-LONG-CNAME-CHAIN
+sub4                          NS    ns1.sub4
+ns1.sub4                      A     127.30.1.35
+ns1.sub4                      AAAA  fda1:b2:c3:0:127:30:1:35
+
+sub5                          NS    ns1.sub5
+ns1.sub5                      A     127.30.1.36
+ns1.sub5                      AAAA  fda1:b2:c3:0:127:30:1:36
+
+sub6                          NS    ns1.sub6
+ns1.sub6                      A     127.30.1.37
+ns1.sub6                      AAAA  fda1:b2:c3:0:127:30:1:37
+
+sub7                          NS    ns1.sub7
+ns1.sub7                      A     127.30.1.38
+ns1.sub7                      AAAA  fda1:b2:c3:0:127:30:1:38
+
+sub8                          NS    ns1.sub8
+ns1.sub8                      A     127.30.1.39
+ns1.sub8                      AAAA  fda1:b2:c3:0:127:30:1:39
+
+sub9                          NS    ns1.sub9
+ns1.sub9                      A     127.30.1.40
+ns1.sub9                      AAAA  fda1:b2:c3:0:127:30:1:40
+
+sub10                         NS    ns1.sub10
+ns1.sub10                     A     127.30.1.41
+ns1.sub10                     AAAA  fda1:b2:c3:0:127:30:1:41
+
+sub11                         NS    ns1.sub11
+ns1.sub11                     A     127.30.1.42
+ns1.sub11                     AAAA  fda1:b2:c3:0:127:30:1:42
+
+sub12                         NS    ns1.sub12
+ns1.sub12                     A     127.30.1.43
+ns1.sub12                     AAAA  fda1:b2:c3:0:127:30:1:43
+
+; For scenario TOO-MANY-CNAME
 ; Defined in the cfg file
-; too-long-cname-chain              CNAME too-long-cname-chain-two
-; too-long-cname-chain-two          CNAME too-long-cname-chain-three
-; too-long-cname-chain-three        CNAME too-long-cname-chain-four
-; too-long-cname-chain-four         CNAME too-long-cname-chain-five
-; too-long-cname-chain-five         CNAME too-long-cname-chain-six
-; too-long-cname-chain-six          CNAME too-long-cname-chain-seven
-; too-long-cname-chain-seven        CNAME too-long-cname-chain-eight
-; too-long-cname-chain-eight        CNAME too-long-cname-chain-nine
-; too-long-cname-chain-nine         CNAME too-long-cname-chain-ten
-; too-long-cname-chain-ten          CNAME too-long-cname-chain-target
-; too-long-cname-chain-target       A     127.0.0.1
+; too-many-cname              CNAME too-many-cname-two
+; too-many-cname-two          CNAME too-many-cname-three
+; too-many-cname-three        CNAME too-many-cname-four
+; too-many-cname-four         CNAME too-many-cname-five
+; too-many-cname-five         CNAME too-many-cname-six
+; too-many-cname-six          CNAME too-many-cname-seven
+; too-many-cname-seven        CNAME too-many-cname-eight
+; too-many-cname-eight        CNAME too-many-cname-nine
+; too-many-cname-nine         CNAME too-many-cname-ten
+; too-many-cname-ten          CNAME too-many-cname-target
+; too-many-cname-target       A     127.0.0.1
 
 
 ; For scenario TARGET-NO-MATCH-CNAME
@@ -109,3 +146,14 @@ wrong-cname-owner-name-target  A     127.0.0.1
 ; Also defined in the cfg file
 extra-cname-in-answer         A     127.0.0.1
 extra-cname-in-answer-1       CNAME extra-cname-in-answer-2
+
+
+; For scenario CNAME-CHAIN-TO-NODATA
+cname-chain-to-nodata            CNAME target.cname-chain-to-nodata
+target.cname-chain-to-nodata     TXT   "NODATA response"
+
+
+; For scenario UNRESOLVABLE-CNAME
+unresolvable-cname           CNAME target.unresolvable-cname
+target.unresolvable-cname    TXT   "Unresolvable"
+

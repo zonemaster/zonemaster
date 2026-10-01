@@ -1,0 +1,28 @@
+; Parent zone
+
+$ORIGIN no-ns-addr-child-2.consistency05.xa.
+
+$TTL 3600
+
+@       SOA     ns1 admin.mail.xa. (
+                2026072403      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@       NS      ns1
+@       NS      ns2
+
+@       TXT     "Text"
+
+ns1     A       127.14.5.31
+ns1     AAAA    fda1:b2:c3::127:14:5:31
+ns2     A       127.14.5.32
+ns2     AAAA    fda1:b2:c3::127:14:5:32
+
+$ORIGIN child.no-ns-addr-child-2.consistency05.xa.
+@       NS      ns1.no-ns-addr-child-2.consistency05.xb.
+@       NS      ns2.no-ns-addr-child-2.consistency05.xb.
+
+;EOF

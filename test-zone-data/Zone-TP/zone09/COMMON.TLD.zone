@@ -1,8 +1,8 @@
-$ORIGIN tld-email-domain-zone09.
+; $ORIGIN 
 $TTL 3600
 
-@       SOA     ns1 admin.tld-email-domain-zone09. (
-                2022112300      ; serial
+@       SOA     ns1 admin.zone09.xa. (
+                2026071400      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -10,7 +10,6 @@ $TTL 3600
 
         NS    ns1
         NS    ns2
-        MX    10  mail
 
 mail    A     127.3.0.25
 

@@ -1,0 +1,11 @@
+; Broken root hintfile for some Consistency05 scenarios
+
+.     3600     NS     ns1.
+.     3600     NS     ns2.
+ns1.  3600     A      127.14.5.63
+ns1.  3600     AAAA   fda1:b2:c3:0:127:14:5:63
+ns2.  3600     A      127.14.5.64
+ns2.  3600     AAAA   fda1:b2:c3:0:127:14:5:64
+
+
+;EOF
