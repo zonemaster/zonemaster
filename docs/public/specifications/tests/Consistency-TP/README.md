@@ -16,5 +16,5 @@ This document uses the terminology defined in the [Master Test Plan].
 |[CONSISTENCY02](consistency02.md)|SOA RNAME consistency|
 |[CONSISTENCY03](consistency03.md)|SOA timers consistency|
 |[CONSISTENCY04](consistency04.md)|Name server NS consistency|
-|[CONSISTENCY05](consistency05.md)|Consistency between glue and authoritative data|
+|[CONSISTENCY05](consistency05.md)|Consistency between delegation and zone data|
 |[CONSISTENCY06](consistency06.md)|SOA MNAME consistency|

@@ -11,7 +11,7 @@
 * [Scope](#scope)
 * [Inputs](#inputs)
 * [Summary](#summary)
-* [Test procedure](#test-procedure)
+* [Test procedure]
 * [Outcome(s)](#outcomes)
 * [Special procedural requirements](#special-procedural-requirements)
 * [Intercase dependencies](#intercase-dependencies)
@@ -296,6 +296,7 @@ None.
 [Internet Architecture Board]:                https://en.wikipedia.org/wiki/Internet_Architecture_Board
 [NOTICE]:                                     ../SeverityLevelDefinitions.md#notice
 [Null MX]:                                    #terminology
+[Null-Type MX]:                               #terminology
 [RCODE Name]:                                 https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
 [RFC 2142#section-7]:                         https://datatracker.ietf.org/doc/html/rfc2142#section-7
 [RFC 2142]:                                   https://datatracker.ietf.org/doc/html/rfc2142
@@ -305,6 +306,7 @@ None.
 [RFC 7505#section-3]:                         https://datatracker.ietf.org/doc/html/rfc7505#section-3
 [RFC 7505]:                                   https://datatracker.ietf.org/doc/html/rfc7505
 [Severity Level Definitions]:                 ../SeverityLevelDefinitions.md
+[Test procedure]:                             #test-procedure
 [TLD]:                                        #terminology
 [WARNING]:                                    ../SeverityLevelDefinitions.md#warning
 [Z09_ARPA_EMAIL_DOMAIN]:                      #summary
