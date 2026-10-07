@@ -121,11 +121,11 @@ Use `true`/`false` instead.
 *Replaces deprecated `enable_add_batch_job`.*
 
 Boolean value to enable the `add_batch_job` and `batch_create` methods of the
-API. May not co-exist with [RPCAPI.enable_add_batch_job].
+API. Must not co-exist with [RPCAPI.enable_add_batch_job].
 
 Accepted values: `true` or `false`, default to `true` (enabled).
 
-### max_batch_size_anonymous_mode
+### max_anonymous_batch_size
 
 Maximal number of domain names in a batch created without batch_api_key. If set
 to 0, batches can only be created with valid batch_api_key included.
