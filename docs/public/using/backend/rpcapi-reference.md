@@ -9,7 +9,7 @@
 * [Request handling](#request-handling)
 * [Error reporting](#error-reporting)
 * [Privilege levels](#privilege-levels)
-* [Configuration file](#configuration-file)
+* [Configuration file]
 * [Data types](#data-types)
   * [API key](#api-key)
   * [Batch API Key]
@@ -34,7 +34,7 @@
   * [Username](#username)
 * [API methods](#api-methods)
   * [API method: version_info](#api-method-version_info)
-  * [API method: conf_max_batch_size_anonymous_mode](#api-method-conf_max_batch_size_anonymous_mode)
+  * [API method: conf_max_anonymous_batch_size](#api-method-conf_max_anonymous_batch_size)
   * [API method: profile_names](#api-method-profile_names)
   * [API method: get_language_tags](#api-method-get_language_tags)
   * [API method: get_tld_url](#api-method-get_tld_url)
@@ -68,8 +68,7 @@ The HTTP request must contain the header `Content-Type: application/json`.
 
 All JSON-RPC request objects have the keys `"jsonrpc"`, `"id"` and `"method"`.
 The response object have the same keys `"jsonrpc"` and `"id"`. For details on
-these, refer to the [JSON-RPC 2.0] specification. The `"jsonrpc"` and `"id"` keys
-are assumed in the specification of the methods below.
+these, refer to the [JSON-RPC 2.0] specification.
 
 
 ### Deviations from JSON-RPC 2.0
@@ -451,7 +450,7 @@ An object with the following properties:
 > TODO: List all possible error codes and describe what they mean enough for clients to know how react to them.
 >
 
-### API method: `conf_max_batch_size_anonymous_mode`
+### API method: `conf_max_anonymous_batch_size`
 
 Returns the maximum number of elements that the `"domains"` key may contain when
 method `batch_create` is requested without `batch_api_key`.
@@ -462,20 +461,20 @@ Key `"value"` is set to zero (0) in the response if any of the following is
 true:
 * [RPCAPI.enable_add_batch_job] is set to false,
 * [RPCAPI.enable_batch_create] is set to false,
-* [RPCAPI.max_batch_size_anonymous_mode] is set to 0.
+* [RPCAPI.max_anonymous_batch_size] is set to 0.
 
 Else, `"value"` is set to the value of
-[RPCAPI.max_batch_size_anonymous_mode], if that is set.
+[RPCAPI.max_anonymous_batch_size], if that is set.
 
 Else, `"result"` is set to the default value, see
-[RPCAPI.max_batch_size_anonymous_mode].
+[RPCAPI.max_anonymous_batch_size].
 
 Example request:
 ```json
 {
   "jsonrpc": "2.0",
   "id": 1,
-  "method": "conf_max_batch_size_anonymous_mode"
+  "method": "conf_max_anonymous_batch_size"
 }
 ```
 
@@ -1687,7 +1686,7 @@ An object with the following properties:
   must be absent or empty (`{}`) unless `"batch_api_key"` is present.
 
 A `"batch_api_key"` is required if the number of domain names in `"domains"` is greater
-than the value for [RPCAPI.max_batch_size_anonymous_mode] as specified in
+than the value for [RPCAPI.max_anonymous_batch_size] as specified in
 the [configuration file], else it is optional. If included, `"batch_api_key"` must be
 a valid [Batch API key] equal to the batch api key in the [configuration file].
 
@@ -1732,7 +1731,7 @@ Trying to add a batch with wrong [*batch API key*][Batch API key]:
 ```
 
 Trying to add a batch with absent [*batch_api_key*][Batch API key] when the number of elements
-in "`domains`" is greater than [RPCAPI.max_batch_size_anonymous_mode]:
+in "`domains`" is greater than [RPCAPI.max_anonymous_batch_size]:
 
 ```json
 {
@@ -1987,7 +1986,7 @@ There are also some experimental API methods documented only by name:
 [Queue]:                                      #queue
 [RFC 5952]:                                   https://datatracker.ietf.org/doc/html/rfc5952
 [RFC 5890#2.3.2.1]:                           https://datatracker.ietf.org/doc/html/rfc5890#section-2.3.2.1
-[RPCAPI.max_batch_size_anonymous_mode]:       ../../configuration/backend.md#max_batch_size_anonymous_mode
+[RPCAPI.max_anonymous_batch_size]:            ../../configuration/backend.md#max_anonymous_batch_size
 [RPCAPI.batch_api_key]:                       ../../configuration/backend.md#batch_api_key
 [RPCAPI.enable_add_api_user]:                 ../../configuration/backend.md#enable_add_api_user
 [RPCAPI.enable_add_batch_job]:                ../../configuration/backend.md#enable_add_batch_job

@@ -8,7 +8,7 @@
   * [enable_add_batch_job](#enable_add_batch_job)  *(deprecated)*
   * [enable_add_api_user](#enable_add_api_user)  *(deprecated)*
   * [enable_batch_create](#enable_batch_create)
-  * [max_batch_size_anonymous_mode](#max_batch_size_anonymous_mode)
+  * [max_anonymous_batch_size](#max_anonymous_batch_size)
 * [DB section](#db-section)
   * [engine](#engine)
   * [polling_interval](#polling_interval)
