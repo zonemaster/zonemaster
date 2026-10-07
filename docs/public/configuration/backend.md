@@ -144,12 +144,12 @@ The value must be one of the following, case-insensitively: `MySQL`,
 
 This table declares what value to use for each supported database engine.
 
-Database Engine   | Value
-------------------|------
-MariaDB           | `MySQL`
-MySQL             | `MySQL`
-PostgreSQL        | `PostgreSQL`
-SQLite            | `SQLite`
+| Database Engine | Value        |
+|-----------------|--------------|
+| MariaDB         | `MySQL`      |
+| MySQL           | `MySQL`      |
+| PostgreSQL      | `PostgreSQL` |
+| SQLite          | `SQLite`     |
 
 ### polling_interval
 
@@ -279,16 +279,16 @@ configuration, but none starting with language code for English ("en").
 The default installation and configuration supports the
 following languages.
 
-Language | Locale tag value | Language code | Locale value used
----------|------------------|---------------|------------------
-Danish   | da_DK            | da            | da_DK.UTF-8
-English  | en_US            | en            | en_US.UTF-8
-Spanish  | es_ES            | es            | es_ES.UTF-8
-Finnish  | fi_FI            | fi            | fi_FI.UTF-8
-French   | fr_FR            | fr            | fr_FR.UTF-8
-Norwegian| nb_NO            | nb            | nb_NO.UTF-8
-Slovenian| sl_SI            | sl            | sl_SI.UTF-8
-Swedish  | sv_SE            | sv            | sv_SE.UTF-8
+| Language  | Locale tag value | Language code | Locale value used |
+|-----------|------------------|---------------|-------------------|
+| Danish    | da_DK            | da            | da_DK.UTF-8       |
+| English   | en_US            | en            | en_US.UTF-8       |
+| Spanish   | es_ES            | es            | es_ES.UTF-8       |
+| Finnish   | fi_FI            | fi            | fi_FI.UTF-8       |
+| French    | fr_FR            | fr            | fr_FR.UTF-8       |
+| Norwegian | nb_NO            | nb            | nb_NO.UTF-8       |
+| Slovenian | sl_SI            | sl            | sl_SI.UTF-8       |
+| Swedish   | sv_SE            | sv            | sv_SE.UTF-8       |
 
 Setting in the default configuration file:
 

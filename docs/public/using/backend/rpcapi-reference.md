@@ -104,12 +104,12 @@ see the [architecture documentation].
 
 ## Error reporting
 
-Error code | Description
-:----------|:-------------------------------------------------------------------
--32700     | The request object is invalid JSON.
--32601     | No method is specified or an invalid method is specified.
--32602     | No `params` object is specified when required, or the `params` object is invalid. For more information on the validation error data format see [Validation error data].
--32603     | All error states that occur after the RPC method has been identified are reported as internal errors.
+| Error code | Description                                                                                                                                                             |
+|:-----------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -32700     | The request object is invalid JSON.                                                                                                                                     |
+| -32601     | No method is specified or an invalid method is specified.                                                                                                               |
+| -32602     | No `params` object is specified when required, or the `params` object is invalid. For more information on the validation error data format see [Validation error data]. |
+| -32603     | All error states that occur after the RPC method has been identified are reported as internal errors.                                                                   |
 
 
 ## Privilege levels
@@ -267,16 +267,16 @@ codes.
 
 A default installation will accept the following *language tags*:
 
-Language | Language tag
----------|-------------
-Danish   | da
-English  | en
-Spanish  | es
-Finnish  | fi
-French   | fr
-Norwegian| nb
-Slovenian| sl
-Swedish  | sv
+| Language  | Language tag |
+|-----------|--------------|
+| Danish    | da           |
+| English   | en           |
+| Spanish   | es           |
+| Finnish   | fi           |
+| French    | fr           |
+| Norwegian | nb           |
+| Slovenian | sl           |
+| Swedish   | sv           |
 
 
 ### Name server
