@@ -127,7 +127,7 @@ Accepted values: `true` or `false`, default to `true` (enabled).
 
 ### max_anonymous_batch_size
 
-Maximal number of domain names in a batch created without batch_api_key. If set
+Maximum number of domain names in a batch created without `batch_api_key`. If set
 to 0, batches can only be created with valid batch_api_key included.
 
 * Acceptable value: Non-negative integer

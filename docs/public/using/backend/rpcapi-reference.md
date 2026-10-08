@@ -1635,7 +1635,7 @@ Trying to add a batch when the method has been disabled.
 This method replaces deprecated method
 [API method: add_batch_job](#api-method-add_batch_job)
 
-Add a new *batch test* composed by a set of [*domain name*][Domain name] and a *params* object.
+Add a new *batch test* composed by a set of [*domain names*][Domain name] and a *params* object.
 All the domains will be tested using identical parameters.
 
 This method is not available if either
