@@ -180,7 +180,7 @@ To replace *[batch id]*.
 Basic data type: string
 
 The literal string "B-" appended with a string of exactly 16 lower-case
-hex-digits matching `/^[0-9a-f]{16}$/`.
+hex-digits matching `/^B-[0-9a-f]{16}$/`.
 
 Each *batch* has a unique *Hash batch id*.
 
@@ -1702,19 +1702,16 @@ The value of `"test_params"` is an object with the following properties:
 * `"ipv6"`: A boolean, optional. (default: [`net.ipv6`][net.ipv6] profile value).
 * `"priority"`: A [*priority*][Priority], optional. (default: `5`)
 * `"queue"`: A [*queue*][Queue], optional. (default: `0`).
-
-
 #### `"result"`
 
-A [*hash batch id*][Hash batch id].
-
+A [*hash batch id*][Hash batch id] as a string.
 
 #### `"error"`
 
 If the given `profile` is not among the [available profiles][Profile sections], a
-user error is returned, see the [profile name section][profile name].
+user error is returned (see the [profile name section][profile name]).
 
-Trying to add a batch with wrong [*batch API key*][Batch API key]:
+Trying to add a batch with a wrong [*batch API key*][Batch API key]:
 ```json
 {
   "jsonrpc": "2.0",
@@ -1730,7 +1727,7 @@ Trying to add a batch with wrong [*batch API key*][Batch API key]:
 }
 ```
 
-Trying to add a batch with absent [*batch_api_key*][Batch API key] when the number of elements
+Trying to add a batch without a [*batch_api_key*][Batch API key] when the number of elements
 in "`domains`" is greater than [RPCAPI.max_anonymous_batch_size]:
 
 ```json
