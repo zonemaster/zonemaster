@@ -2,7 +2,7 @@ $ORIGIN basic01.xa.                              ; Must end with "."
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024052020      ; serial
+                2026060705      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
@@ -284,7 +284,6 @@ ns1		AAAA	fda1:b2:c3:0:127:12:1:31
 ns2		A	127.12.1.32
 ns2		AAAA	fda1:b2:c3:0:127:12:1:32
 
-
 $ORIGIN zone-err-grandparent-3.basic01.xa.              ; Must end with "."
 @		NS	ns1
 @		NS	ns2
@@ -292,3 +291,77 @@ ns1		A	127.12.1.31
 ns1		AAAA	fda1:b2:c3:0:127:12:1:31
 ns2		A	127.12.1.32
 ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN inc-del-n-nxdomain-on-im-name-1.basic01.xa.      ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN nxdomain-on-im-name-1.basic01.xa.      ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN nxdomain-on-im-name-2.basic01.xa.      ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN nxdomain-on-im-name-3.basic01.xa.      ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN nxdomain-n-non-aa-on-im-name-1.basic01.xa.      ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN nxdomain-n-non-aa-on-im-name-2.basic01.xa.      ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN servfail-on-im-name-1.basic01.xa.      ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN refused-on-im-name-1.basic01.xa.      ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+$ORIGIN non-aa-on-im-name-1.basic01.xa.      ; Must end with "."
+@		NS	ns1
+@		NS	ns2
+ns1		A	127.12.1.31
+ns1		AAAA	fda1:b2:c3:0:127:12:1:31
+ns2		A	127.12.1.32
+ns2		AAAA	fda1:b2:c3:0:127:12:1:32
+
+;EOF

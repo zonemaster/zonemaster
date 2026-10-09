@@ -15,45 +15,55 @@ zone files and `coredns` configuration files for scenarios for test case Basic01
 * B01_PARENT_NOT_FOUND
 * B01_PARENT_UNDETERMINED
 * B01_ROOT_HAS_NO_PARENT
+* B01_UNEXPECTED_NXDOMAIN
 * B01_SERVER_ZONE_ERROR
 
 ## All scenarios
 
-Scenario name             | Zone name
-:-------------------------|:---------------------------------------------
-GOOD-1                    | child.parent.good-1.basic01.xa
-GOOD-MIXED-1              | child.parent.good-mixed-1.basic01.xa
-GOOD-MIXED-2              | child.parent.good-mixed-2.basic01.xa
-GOOD-PARENT-HOST-1        | child.parent.good-parent-host-1.basic01.xa
-GOOD-GRANDPARENT-HOST-1   | child.parent.good-grandparent-host-1.basic01.xa
-GOOD-UNDEL-1              | child.parent.good-undel-1.basic01.xa
-GOOD-MIXED-UNDEL-1        | child.parent.good-mixed-undel-1.basic01.xa
-GOOD-MIXED-UNDEL-2        | child.parent.good-mixed-undel-2.basic01.xa
-NO-DEL-UNDEL-1            | child.parent.no-del-undel-1.basic01.xa
-NO-DEL-MIXED-UNDEL-1      | child.parent.no-del-mixed-undel-1.basic01.xa
-NO-DEL-MIXED-UNDEL-2      | child.w.x.parent.y.z.no-del-mixed-undel-2.basic01.xa
-NO-CHILD-1                | child.parent.no-child-1.basic01.xa
-NO-CHILD-2                | child.parent.no-child-2.basic01.xa
-NO-CHLD-PAR-UNDETER-1     | child.parent.no-chld-par-undeter-1.basic01.xa
-CHLD-FOUND-PAR-UNDET-1    | child.parent.chld-found-par-undet-1.basic01.xa
-CHLD-FOUND-INCONSIST-1    | child.parent.chld-found-inconsist-1.basic01.xa
-CHLD-FOUND-INCONSIST-2    | child.parent.chld-found-inconsist-2.basic01.xa
-CHLD-FOUND-INCONSIST-3    | child.parent.chld-found-inconsist-3.basic01.xa
-CHLD-FOUND-INCONSIST-4    | child.parent.chld-found-inconsist-4.basic01.xa
-CHLD-FOUND-INCONSIST-5    | child.parent.chld-found-inconsist-5.basic01.xa
-CHLD-FOUND-INCONSIST-6    | child.parent.chld-found-inconsist-6.basic01.xa
-CHLD-FOUND-INCONSIST-7    | child.parent.chld-found-inconsist-7.basic01.xa
-CHLD-FOUND-INCONSIST-8    | child.parent.chld-found-inconsist-8.basic01.xa
-CHLD-FOUND-INCONSIST-9    | child.parent.chld-found-inconsist-9.basic01.xa
-CHLD-FOUND-INCONSIST-10   | child.parent.chld-found-inconsist-10.basic01.xa
-NO-DEL-UNDEL-NO-PAR-1     | child.parent.no-del-undel-no-par-1.basic01.xa
-NO-DEL-UNDEL-PAR-UND-1    | child.parent.no-del-undel-par-und-1.basic01.xa
-NO-CHLD-NO-PAR-1          | child.parent.no-chld-no-par-1.basic01.xa
-CHILD-ALIAS-1             | child.parent.child-alias-1.basic01.xa
-CHILD-ALIAS-2             | child.parent.child-alias-2.basic01.xa
-ZONE-ERR-GRANDPARENT-1    | child.parent.zone-err-grandparent-1.basic01.xa
-ZONE-ERR-GRANDPARENT-2    | child.parent.zone-err-grandparent-2.basic01.xa
-ZONE-ERR-GRANDPARENT-3    | child.parent.zone-err-grandparent-3.basic01.xa
+| Scenario name                   | Zone name                                                  |
+|:--------------------------------|:-----------------------------------------------------------|
+| GOOD-1                          | child.parent.good-1.basic01.xa                             |
+| GOOD-MIXED-1                    | child.parent.good-mixed-1.basic01.xa                       |
+| GOOD-MIXED-2                    | child.parent.good-mixed-2.basic01.xa                       |
+| GOOD-PARENT-HOST-1              | child.parent.good-parent-host-1.basic01.xa                 |
+| GOOD-GRANDPARENT-HOST-1         | child.parent.good-grandparent-host-1.basic01.xa            |
+| GOOD-UNDEL-1                    | child.parent.good-undel-1.basic01.xa                       |
+| GOOD-MIXED-UNDEL-1              | child.parent.good-mixed-undel-1.basic01.xa                 |
+| GOOD-MIXED-UNDEL-2              | child.parent.good-mixed-undel-2.basic01.xa                 |
+| NO-DEL-UNDEL-1                  | child.parent.no-del-undel-1.basic01.xa                     |
+| NO-DEL-MIXED-UNDEL-1            | child.parent.no-del-mixed-undel-1.basic01.xa               |
+| NO-DEL-MIXED-UNDEL-2            | child.w.x.parent.y.z.no-del-mixed-undel-2.basic01.xa       |
+| NO-CHILD-1                      | child.parent.no-child-1.basic01.xa                         |
+| NO-CHILD-2                      | child.parent.no-child-2.basic01.xa                         |
+| NO-CHLD-PAR-UNDETER-1           | child.parent.no-chld-par-undeter-1.basic01.xa              |
+| CHLD-FOUND-PAR-UNDET-1          | child.parent.chld-found-par-undet-1.basic01.xa             |
+| CHLD-FOUND-INCONSIST-1          | child.parent.chld-found-inconsist-1.basic01.xa             |
+| CHLD-FOUND-INCONSIST-2          | child.parent.chld-found-inconsist-2.basic01.xa             |
+| CHLD-FOUND-INCONSIST-3          | child.parent.chld-found-inconsist-3.basic01.xa             |
+| CHLD-FOUND-INCONSIST-4          | child.parent.chld-found-inconsist-4.basic01.xa             |
+| CHLD-FOUND-INCONSIST-5          | child.parent.chld-found-inconsist-5.basic01.xa             |
+| CHLD-FOUND-INCONSIST-6          | child.parent.chld-found-inconsist-6.basic01.xa             |
+| CHLD-FOUND-INCONSIST-7          | child.parent.chld-found-inconsist-7.basic01.xa             |
+| CHLD-FOUND-INCONSIST-8          | child.parent.chld-found-inconsist-8.basic01.xa             |
+| CHLD-FOUND-INCONSIST-9          | child.parent.chld-found-inconsist-9.basic01.xa             |
+| CHLD-FOUND-INCONSIST-10         | child.parent.chld-found-inconsist-10.basic01.xa            |
+| NO-DEL-UNDEL-NO-PAR-1           | child.parent.no-del-undel-no-par-1.basic01.xa              |
+| NO-DEL-UNDEL-PAR-UND-1          | child.parent.no-del-undel-par-und-1.basic01.xa             |
+| NO-CHLD-NO-PAR-1                | child.parent.no-chld-no-par-1.basic01.xa                   |
+| CHILD-ALIAS-1                   | child.parent.child-alias-1.basic01.xa                      |
+| CHILD-ALIAS-2                   | child.parent.child-alias-2.basic01.xa                      |
+| ZONE-ERR-GRANDPARENT-1          | child.parent.zone-err-grandparent-1.basic01.xa             |
+| ZONE-ERR-GRANDPARENT-2          | child.parent.zone-err-grandparent-2.basic01.xa             |
+| ZONE-ERR-GRANDPARENT-3          | child.parent.zone-err-grandparent-3.basic01.xa             |
+| INC-DEL-N-NXDOMAIN-ON-IM-NAME-1 | child.im.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa |
+| NXDOMAIN-ON-IM-NAME-1           | child.parent.im.nxdomain-on-im-name-1.basic01.xa           |
+| NXDOMAIN-ON-IM-NAME-2           | child.im.parent.nxdomain-on-im-name-2.basic01.xa           |
+| NXDOMAIN-ON-IM-NAME-3           | child.im.parent.im.nxdomain-on-im-name-3.basic01.xa        |
+| NXDOMAIN-N-NON-AA-ON-IM-NAME-1  | child.parent.im.nxdomain-n-non-aa-on-im-name-1.basic01.xa  |
+| NXDOMAIN-N-NON-AA-ON-IM-NAME-2  | child.im.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa  |
+| SERVFAIL-ON-IM-NAME-1           | child.im.parent.servfail-on-im-name-1.basic01.xa           |
+| REFUSED-ON-IM-NAME-1            | child.im.parent.refused-on-im-name-1.basic01.xa            |
+| NON-AA-ON-IM-NAME-1             | child.im.parent.non-aa-on-im-name-1.basic01.xa             |
 
 
 ## zonemaster-cli commands and their output for each test scenario
@@ -608,3 +618,163 @@ Loading profile from Basic-TP/basic01/profile.json.
    0.00 INFO     Basic01        TEST_CASE_END  testcase=Basic01
 ```
 --> OK
+
+
+| Scenario name                   | Mandatory message tag                                                              | Forbidden message tags |
+|:--------------------------------|:-----------------------------------------------------------------------------------|:-----------------------|
+| INC-DEL-N-NXDOMAIN-ON-IM-NAME-1 | B01_CHILD_FOUND, B01_INCONSISTENT_DELEGATION, B01_PARENT_FOUND                     | 2)                     |
+
+```
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json child.im.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v9.0.0
+   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
+   0.11 INFO     Basic01        B01_PARENT_FOUND  domain=parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa; ns_list=ns1.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa/127.12.1.41;ns1.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa/127.12.1.42;ns2.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa/127.12.1.43;ns2.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:42;ns2.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:43
+   0.11 INFO     Basic01        B01_CHILD_FOUND  domain=child.im.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa
+   0.11 ERROR    Basic01        B01_INCONSISTENT_DELEGATION  domain_child=child.im.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa; domain_parent=parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa; ns_list=ns2.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa/127.12.1.42;ns2.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa/127.12.1.43;ns2.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:42;ns2.parent.inc-del-n-nxdomain-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:43
+   0.11 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+
+```
+--> OK
+
+
+| Scenario name                   | Mandatory message tag                                                              | Forbidden message tags |
+|:--------------------------------|:-----------------------------------------------------------------------------------|:-----------------------|
+| NXDOMAIN-ON-IM-NAME-1           | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_UNEXPECTED_NXDOMAIN                         | 2)                     |
+
+```
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json   child.parent.im.nxdomain-on-im-name-1.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v9.0.0
+   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
+   0.06 INFO     Basic01        B01_PARENT_FOUND  domain=nxdomain-on-im-name-1.basic01.xa; ns_list=ns1.nxdomain-on-im-name-1.basic01.xa/127.12.1.31;ns1.nxdomain-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:31;ns2.nxdomain-on-im-name-1.basic01.xa/127.12.1.32;ns2.nxdomain-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:32
+   0.06 ERROR    Basic01        B01_NO_CHILD  domain_child=child.parent.im.nxdomain-on-im-name-1.basic01.xa; domain_super="parent.im.nxdomain-on-im-name-1.basic01.xa"
+   0.06 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+```
+--> Not OK
+
+| Scenario name                   | Mandatory message tag                                                              | Forbidden message tags |
+|:--------------------------------|:-----------------------------------------------------------------------------------|:-----------------------|
+| NXDOMAIN-ON-IM-NAME-2           | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_UNEXPECTED_NXDOMAIN                         | 2)                     |
+
+```
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json       child.im.parent.nxdomain-on-im-name-2.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v9.0.0
+   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
+   0.08 INFO     Basic01        B01_PARENT_FOUND  domain=parent.nxdomain-on-im-name-2.basic01.xa; ns_list=ns1.parent.nxdomain-on-im-name-2.basic01.xa/127.12.1.41;ns1.parent.nxdomain-on-im-name-2.basic01.xa/fda1:b2:c3:0:127:12:1:41;ns2.parent.nxdomain-on-im-name-2.basic01.xa/127.12.1.42;ns2.parent.nxdomain-on-im-name-2.basic01.xa/fda1:b2:c3:0:127:12:1:42
+   0.08 ERROR    Basic01        B01_NO_CHILD  domain_child=child.im.parent.nxdomain-on-im-name-2.basic01.xa; domain_super="im.parent.nxdomain-on-im-name-2.basic01.xa"
+   0.08 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+```
+--> Not OK
+
+| Scenario name                   | Mandatory message tag                                                              | Forbidden message tags |
+|:--------------------------------|:-----------------------------------------------------------------------------------|:-----------------------|
+| NXDOMAIN-ON-IM-NAME-3           | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_UNEXPECTED_NXDOMAIN                         | 2)                     |
+
+```
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json    child.im.parent.im.nxdomain-on-im-name-3.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v9.0.0
+   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
+   0.06 INFO     Basic01        B01_PARENT_FOUND  domain=nxdomain-on-im-name-3.basic01.xa; ns_list=ns1.nxdomain-on-im-name-3.basic01.xa/127.12.1.31;ns1.nxdomain-on-im-name-3.basic01.xa/fda1:b2:c3:0:127:12:1:31;ns2.nxdomain-on-im-name-3.basic01.xa/127.12.1.32;ns2.nxdomain-on-im-name-3.basic01.xa/fda1:b2:c3:0:127:12:1:32
+   0.06 ERROR    Basic01        B01_NO_CHILD  domain_child=child.im.parent.im.nxdomain-on-im-name-3.basic01.xa; domain_super="im.parent.im.nxdomain-on-im-name-3.basic01.xa"
+   0.06 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+
+```
+--> Not OK
+
+| Scenario name                   | Mandatory message tag                                                              | Forbidden message tags |
+|:--------------------------------|:-----------------------------------------------------------------------------------|:-----------------------|
+| NXDOMAIN-N-NON-AA-ON-IM-NAME-1  | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
+
+```
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json    child.parent.im.nxdomain-n-non-aa-on-im-name-1.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v9.0.0
+   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
+   0.04 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns1.nxdomain-n-non-aa-on-im-name-1.basic01.xa/127.12.1.31; query_name="im.nxdomain-n-non-aa-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.04 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns1.nxdomain-n-non-aa-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:31; query_name="im.nxdomain-n-non-aa-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.05 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.nxdomain-n-non-aa-on-im-name-1.basic01.xa/127.12.1.32; query_name="im.nxdomain-n-non-aa-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.05 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.nxdomain-n-non-aa-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:32; query_name="im.nxdomain-n-non-aa-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.05 WARNING  Basic01        B01_PARENT_NOT_FOUND  
+   0.05 ERROR    Basic01        B01_NO_CHILD  domain_child=child.parent.im.nxdomain-n-non-aa-on-im-name-1.basic01.xa; domain_super="parent.im.nxdomain-n-non-aa-on-im-name-1.basic01.xa"
+   0.05 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+```
+--> Not OK
+
+| Scenario name                   | Mandatory message tag                                                              | Forbidden message tags |
+|:--------------------------------|:-----------------------------------------------------------------------------------|:-----------------------|
+| NXDOMAIN-N-NON-AA-ON-IM-NAME-2  | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
+
+```
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json   child.im.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v9.0.0
+   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
+   0.06 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns1.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa/127.12.1.41; query_name="im.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa"; rrtype=SOA
+   0.06 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns1.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa/fda1:b2:c3:0:127:12:1:41; query_name="im.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa"; rrtype=SOA
+   0.06 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa/127.12.1.42; query_name="im.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa"; rrtype=SOA
+   0.07 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa/fda1:b2:c3:0:127:12:1:42; query_name="im.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa"; rrtype=SOA
+   0.07 WARNING  Basic01        B01_PARENT_NOT_FOUND  
+   0.07 ERROR    Basic01        B01_NO_CHILD  domain_child=child.im.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa; domain_super="im.parent.nxdomain-n-non-aa-on-im-name-2.basic01.xa"
+   0.07 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+```
+--> Not OK
+
+| Scenario name                   | Mandatory message tag                                                              | Forbidden message tags |
+|:--------------------------------|:-----------------------------------------------------------------------------------|:-----------------------|
+| SERVFAIL-ON-IM-NAME-1           | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
+
+```
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json   child.im.parent.servfail-on-im-name-1.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v9.0.0
+   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
+   0.06 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.parent.servfail-on-im-name-1.basic01.xa/127.12.1.42; query_name="im.parent.servfail-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.06 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.parent.servfail-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:42; query_name="im.parent.servfail-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.06 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns1.parent.servfail-on-im-name-1.basic01.xa/127.12.1.41; query_name="im.parent.servfail-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.07 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns1.parent.servfail-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:41; query_name="im.parent.servfail-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.07 WARNING  Basic01        B01_PARENT_NOT_FOUND  
+   0.07 ERROR    Basic01        B01_NO_CHILD  domain_child=child.im.parent.servfail-on-im-name-1.basic01.xa; domain_super="im.parent.servfail-on-im-name-1.basic01.xa"
+   0.07 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+```
+--> Not OK
+
+| Scenario name                   | Mandatory message tag                                                              | Forbidden message tags |
+|:--------------------------------|:-----------------------------------------------------------------------------------|:-----------------------|
+| REFUSED-ON-IM-NAME-1            | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
+
+```
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json   child.im.parent.refused-on-im-name-1.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v9.0.0
+   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
+   0.06 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.parent.refused-on-im-name-1.basic01.xa/127.12.1.42; query_name="im.parent.refused-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.07 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.parent.refused-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:42; query_name="im.parent.refused-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.07 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns1.parent.refused-on-im-name-1.basic01.xa/127.12.1.41; query_name="im.parent.refused-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.08 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns1.parent.refused-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:41; query_name="im.parent.refused-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.08 WARNING  Basic01        B01_PARENT_NOT_FOUND  
+   0.08 ERROR    Basic01        B01_NO_CHILD  domain_child=child.im.parent.refused-on-im-name-1.basic01.xa; domain_super="im.parent.refused-on-im-name-1.basic01.xa"
+   0.08 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+```
+--> Not OK
+
+| Scenario name                   | Mandatory message tag                                                              | Forbidden message tags |
+|:--------------------------------|:-----------------------------------------------------------------------------------|:-----------------------|
+| NON-AA-ON-IM-NAME-1             | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
+
+```
+$ zonemaster-cli --raw  --show-testcase --test basic01 --hints COMMON/hintfile --level info --profile Basic-TP/basic01/profile.json  child.im.parent.non-aa-on-im-name-1.basic01.xa
+Loading profile from Basic-TP/basic01/profile.json.
+   0.00 INFO     Unspecified    GLOBAL_VERSION  version=v9.0.0
+   0.00 INFO     Basic01        TEST_CASE_START  testcase=Basic01
+   0.08 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns1.parent.non-aa-on-im-name-1.basic01.xa/127.12.1.41; query_name="im.parent.non-aa-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.09 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns1.parent.non-aa-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:41; query_name="im.parent.non-aa-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.10 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.parent.non-aa-on-im-name-1.basic01.xa/127.12.1.42; query_name="im.parent.non-aa-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.10 INFO     Basic01        B01_SERVER_ZONE_ERROR  ns=ns2.parent.non-aa-on-im-name-1.basic01.xa/fda1:b2:c3:0:127:12:1:42; query_name="im.parent.non-aa-on-im-name-1.basic01.xa"; rrtype=SOA
+   0.11 WARNING  Basic01        B01_PARENT_NOT_FOUND  
+   0.11 ERROR    Basic01        B01_NO_CHILD  domain_child=child.im.parent.non-aa-on-im-name-1.basic01.xa; domain_super="im.parent.non-aa-on-im-name-1.basic01.xa"
+   0.11 INFO     Basic01        TEST_CASE_END  testcase=Basic01
+```
+--> Not OK
