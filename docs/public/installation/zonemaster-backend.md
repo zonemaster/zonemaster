@@ -126,6 +126,14 @@ sudo install -v -m 644 -Z ./zm-rpcapi.service /etc/systemd/system/
 sudo install -v -m 644 -Z ./zm-testagent.service /etc/systemd/system/
 ```
 
+Install [preset profiles]:
+
+> This step is optional. It installs [preset profiles] to be publicly usable by Zonemaster-GUI.
+
+```sh
+sudo env PROFILE_DIR="$(perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Engine")')/profiles" ./script/configure-preset-profiles.sh /etc/zonemaster
+```
+
 ### 3.2 Database engine installation (Rocky Linux)
 
 Check the [declaration of prerequisites] to make sure your preferred combination
@@ -261,6 +269,13 @@ sudo install -v -m 644 ./tmpfiles.conf /usr/lib/tmpfiles.d/zonemaster.conf
 > If this is an update of Zonemaster-Backend, you should remove any
 > `/etc/init.d/zm-backend.sh` (script from previous version of Zonemaster-Backend).
 
+Install [preset profiles]:
+
+> This step is optional. It installs [preset profiles] to be publicly usable by Zonemaster-GUI.
+
+```sh
+sudo env PROFILE_DIR="$(perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Engine")')/profiles" ./script/configure-preset-profiles.sh /etc/zonemaster
+```
 
 ### 4.2 Database engine installation (Debian/Ubuntu)
 
@@ -379,6 +394,14 @@ install -v -m 775 -g zonemaster -d /var/log/zonemaster
 install -v -m 775 -g zonemaster -d /var/run/zonemaster
 install -v -m 755 ./zm_rpcapi-bsd /usr/local/etc/rc.d/zm_rpcapi
 install -v -m 755 ./zm_testagent-bsd /usr/local/etc/rc.d/zm_testagent
+```
+
+Install [preset profiles]:
+
+> This step is optional. It installs [preset profiles] to be publicly usable by Zonemaster-GUI.
+
+```sh
+sudo env PROFILE_DIR="$(perl -MFile::ShareDir=dist_dir -E 'say dist_dir("Zonemaster-Engine")')/profiles" ./script/configure-preset-profiles.sh /usr/local/etc/zonemaster
 ```
 
 ### 5.2 Database engine installation (FreeBSD)
@@ -836,6 +859,7 @@ performance. See [Global cache in Zonemaster-Engine].
 [PostgreSQL instructions FreeBSD]:              #83-postgresql-freebsd
 [PostgreSQL instructions Rocky Linux]:          #81-postgresql-rocky-linux
 [Prerequisites section]:                        #2-prerequisites
+[preset profiles]:                              ../configuration/profiles.md#preset-profiles
 [Profiles]:                                     ../configuration/profiles.md
 [Removing database]:                            #9-cleaning-up-the-database
 [Upgrade document]:                             ../upgrading/backend.md
