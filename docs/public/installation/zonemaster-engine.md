@@ -110,8 +110,13 @@ Using pre-built packages is the preferred method for Debian and Ubuntu.
 
 2) Update list of package repositories:
 
-   Create the file `/usr/local/etc/pkg/repos/FreeBSD.conf` with the following
-   content, unless it is already updated, to ensure latest updates:
+   Create or update the file `FreeBSD.conf` and add the following content to
+   ensure latest updates.
+
+   File:
+   ```
+   /usr/local/etc/pkg/repos/FreeBSD.conf
+   ```
 
    FreeBSD 14:
 
