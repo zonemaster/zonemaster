@@ -28,48 +28,70 @@ for the test zone scenarios.
 
 ## Installing mandatory parts
 
-1. Only Ubuntu 22.04 is supported.
+1. Ubuntu 26.04 is assumed.
 2. Install Zonemaster-CLI on the computer. Install current develop branch or the
    latest version of Zonemaster (it will not work with older version than v2022.2,
    first version with support for `--hint`).
-3. Clone this repository or copy its contents to the computer.
-4. Install `go` (here version 1.20 is assumed):
+3. Clone this repository to the computer.
+4. Install `go` (version 1.26 is assumed):
    ```
    sudo apt install golang-go 
    ```
-5. Install `unbound`
+5. Install `unbound` (version 1.24.2 is assumed)
    ```
    sudo apt install libunbound-dev
    ```
-6. Install `coredns`:
+6. Prepare `coredns`:
    1. Reference https://github.com/coredns/coredns
    2. Clone `coredns`:
    ```
    git clone https://github.com/coredns/coredns
    cd coredns
    ```
-   3. Add the line "unbound:github.com/coredns/unbound" to the plugin.cfg file
+   3. Checkout latest release (v1.15.0 is assumed)
+   ````
+   git checkout v1.15.0
+   ```
+   4. Add the line "unbound:github.com/coredns/unbound" to the plugin.cfg file
       found in the top of the repository, e.g.
    ```
    echo "unbound:github.com/coredns/unbound" >> plugin.cfg
    ```
-   4. Add support for CHAOS class in more plugins. In
+   5. Add support for CHAOS class in more plugins. In
       `coredns/core/dnsserver/server.go` find `EnableChaos` at the end of the
       file. Add "template" and "acl" to the plugins that accepts CHAOS class. For
-      reference see https://github.com/coredns/coredns/discussions/6373
-   5. Generate and compile
+      reference see https://github.com/coredns/coredns/discussions/6373. This how
+      it could look like after adding `template` and `acl`:
+      ```go
+      var EnableChaos = map[string]struct{}{
+        "chaos":   {},
+        "forward": {},
+        "proxy":   {},
+        "template":   {},
+        "acl":   {},
+      }
+      ```
+7. Generate and compile
+   1. Optionally get more `tmp`
+   Compilation can require more `tmp` space than available in `tmpfs`. If needed
+   run the following two commands just before the compilation commands.
+   ```
+   mkdir -p "$HOME/tmp"
+   export TMPDIR="$HOME/tmp"
+   ```
+   2. Run from the `coredns` repository:
    ```
    go get github.com/coredns/unbound
    go generate
    CGO_ENABLED=1 make
    ```
-   6. `coredns` is now in top of repository. Add it to PATH and repeat this step
+   2. `coredns` is now in top of repository. Add it to PATH and repeat this step
       every time `coredns` is recompiled (or create a symlink instead).
    ```
    sudo cp coredns  /usr/local/bin/
    ```
 
-## Installing Bind
+## Installing and configuring Bind
 
    This step can be skipped unless you will create or update DNS record with
    the help of Bind, e.g. for test zones for scenarios for DNSSEC10.
@@ -111,30 +133,30 @@ Two terminal windows to the computer are needed.
    updated.
 3. Create all virtual interfaces. This step has to be done once for each session
    or again if additional interfaces have been added. (Reboot the computer to
-   remove the interfaces, if needed.)
+   remove the interfaces, if needed.) The script will get the addresses from
+   [address-plan.md].
    ```
    sudo ./set-ip.sh
    ```
-4. Start `coredns`. It will use `main.cfg` and be running in the foreground
-   until terminated. Only one instance can run at a time.
+4. Start `coredns` (RECOMMENDED). It will run in the foreground until terminated.
+   Only one instance can run at a time. If there is a stand-alone cfg file for
+   the scenarios, point at that when starting CoreDNS (faster and takes less
+   resources). You can point at several such stand-alone cfg file in the command.
+   Replace the example (dnssec05.cfg) with the correct cfg.
+   ```
+   sudo ./start-coredns.sh DNSSEC-TP/dnssec05/dnssec05.cfg
+   ```
+5. Start `coredns` (LEGACY). As above, but all scenarios will be started (takes
+   more resources).
    ```
    sudo ./start-coredns.sh
    ```
 
 ### Run zonemaster-cli in terminal 2
 
-1. Change directory to where this README file is.
-2. Use `zonemaster-cli` with `--hint` and the appropriate name.root hint file.
-   Example:
-   ```
-   zonemaster-cli UNEXPECTED-RCODE-MX.zone09.xa --raw  --test Zone/zone09 --hints COMMON/hintfile --level info
-   ```
-   with output
-   ```
-   0.00 INFO      GLOBAL_VERSION   version=v4.5.1
-   0.07 WARNING   Z09_UNEXPECTED_RCODE_MX   ns_ip_list=ARRAY(0x5638fec55130); rcode=NOTIMPL
-   0.07 NOTICE    Z09_MISSING_MAIL_TARGET
-   ```
+1. Normally change directory to where the scenario cfg file is.
+2. Use `zonemaster-cli` options needed for the scenarios to test. E.g. see
+   [dnssec05 test zones output].
 
 For more examples and information on how to interpret the example above, go to
 section “[Directories](#directories)” below, find the test module, then the test
@@ -160,7 +182,7 @@ this README file.
     IP plan in a markdown table.
 * [main.cfg]
   * The default main `coredns` configuration file that includes all
-    other data files.
+    other data files (LEGACY)
 * [README-Bind.md]
   * Instructions for running `Bind`.
 * [set-ip.sh]
@@ -196,7 +218,7 @@ data.
   * Directory structure for scenarios for test cases in the Address-TP test module.
 * [Basic-TP/]
   * Directory structure for scenarios for test cases in the Basic-TP test module.
-* Connectivity-TP/ (*not yet available*)
+* Connectivity-TP/
   * Directory structure for scenarios for test cases in the Connectivity-TP test
     module.
 * [Consistency-TP/]
@@ -205,7 +227,7 @@ data.
 * [DNSSEC-TP/]
   * Directory structure for scenarios for test cases in the DNSSEC-TP test
     module.
-* Delegation-TP/ (*not yet available*)
+* Delegation-TP/
   * Directory structure for scenarios for test cases in the Delegation-TP test
     module.
 * [Nameserver-TP/]
@@ -244,3 +266,4 @@ data.
 [utils/]:                                              utils/
 [Zone-TP/]:                                            Zone-TP/
 [Zonemaster-Engine]:                                   https://github.com/zonemaster/zonemaster-engine/
+[dnssec05 test zones output]:                          DNSSEC-TP/dnssec05/test-zones-output.md
