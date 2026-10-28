@@ -1,9 +1,9 @@
-$ORIGIN child.parent.good-mixed-undel-1.methodsv2.xa.
+$ORIGIN child.parent.good-mixed-undel-2.methodsv2.xa.
 $TTL 3600
 ; Delegated
 
 @       SOA     ns1 admin. (
-                2024060301      ; serial
+                2026102800      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
