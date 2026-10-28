@@ -18,3 +18,6 @@ docs/public/book
 **/Bind/*/*.jnl
 **/Bind/key-dir/*
 **/Bind/key-dir-var1/*
+
+# Ignore file for starting CoreDNS for scenarios
+.temp-coredns-main-scenario.cfg
