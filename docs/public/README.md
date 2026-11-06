@@ -51,7 +51,7 @@ mdbook serve
   that directory and open `book/index.html`.
 
 
-[doc.zonemaster.net]: https://doc.zonemaster.net
+[doc.zonemaster.net]: https://doc.zonemaster.net/
 [localhost:3000]: http://localhost:3000
 [releases]: https://github.com/zonemaster/zonemaster/releases
 [repository]: https://github.com/zonemaster/zonemaster

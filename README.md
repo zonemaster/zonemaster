@@ -186,6 +186,5 @@ be found in the [LICENSE] specification included in this repository.
 [Zonemaster-CLI]:                      https://github.com/zonemaster/zonemaster-cli
 [Zonemaster-Engine]:                   https://github.com/zonemaster/zonemaster-engine
 [Zonemaster-GUI]:                      https://github.com/zonemaster/zonemaster-gui
-[Zonemaster-LDNS-README]:              https://github.com/zonemaster/zonemaster-ldns/blob/master/README.md
 [Zonemaster-LDNS]:                     https://github.com/zonemaster/zonemaster-ldns
 [Zonemaster/Zonemaster]:               https://github.com/zonemaster/zonemaster
