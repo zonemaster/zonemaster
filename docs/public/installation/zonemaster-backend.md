@@ -46,7 +46,7 @@
 ## 1. Overview
 
 This document contains all steps needed to install Zonemaster::Backend. For an overview of the
-Zonemaster product, please see the [main Zonemaster Repository].
+Zonemaster product, please see the [public documentation].
 
 If you upgrade your Zonemaster installation with a newer version of
 Zonemaster::Backend instead, and want to keep the database, then see the
@@ -826,7 +826,6 @@ performance. See [Global cache in Zonemaster-Engine].
 [Declaration of prerequisites]:                 prerequisites.md
 [Global cache in Zonemaster-Engine]:            ../configuration/global-cache.md
 [JSON-RPC API]:                                 ../using/backend/rpcapi-reference.md
-[Main Zonemaster repository]:                   https://github.com/zonemaster/zonemaster/blob/master/README.md
 [MariaDB instructions Debian]:                  #72-mariadb-debianubuntu
 [MariaDB instructions Rocky Linux]:             #71-mariadb-rocky-linux
 [Metrics]:                                      ../using/backend/telemetry.md#metrics
@@ -837,6 +836,7 @@ performance. See [Global cache in Zonemaster-Engine].
 [PostgreSQL instructions Rocky Linux]:          #81-postgresql-rocky-linux
 [Prerequisites section]:                        #2-prerequisites
 [Profiles]:                                     ../configuration/profiles.md
+[Public documentation]:                         https://doc.zonemaster.net/
 [Removing database]:                            #9-cleaning-up-the-database
 [Upgrade document]:                             ../upgrading/backend.md
 [Using Zonemaster-Backend for batch testing]:   ../using/backend/Using-Zonemaster-Backend-for-batch-testing.md

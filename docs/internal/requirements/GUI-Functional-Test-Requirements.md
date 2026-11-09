@@ -10,8 +10,6 @@ Scope
 The scope of the testing will limited to the functional testing (End-to-End testing) of the GUI. 
 Security and Performance testing are not included.
 
-[![Build Status](https://travis-ci.org/zonemaster/zonemaster-gui.svg?branch=master)](https://app.travis-ci.com/github/zonemaster/zonemaster-gui)
-
 |Req| Test requirement                           |How Verified|
 |:--|:-------------------------------------------|------------|
 |FR01|A Home button that sends the user to the default simple view |[Script](https://github.com/zonemaster/zonemaster-gui/blob/master/e2e/FR01.e2e-spec.ts)|
