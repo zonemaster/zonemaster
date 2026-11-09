@@ -77,7 +77,7 @@ not published on [CPAN] ([Zonemaster-GUI] is never published at [CPAN]).
 
 ## Publication of releases
 
-Releases of the Zonemaster Components and the [main repository][Zonemaster] are published to several places.
+Releases of the Zonemaster Product (including its components and the [main repository][Zonemaster]) are published to several places.
 
  * The repository contents are published on GitHub as a version tag, a release note, and source code archives. The
    changes are also merged to the "master" branch.
