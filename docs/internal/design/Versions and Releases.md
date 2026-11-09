@@ -83,7 +83,7 @@ Releases of the Zonemaster Product (including its components and the [main repos
    changes are also merged to the "master" branch.
  * The public documentation is also published on [doc.zonemaster.net].
  * The Perl-based components are published on [CPAN] under the [Zonemaster Project][CPAN Zonemaster Project].
- * The reference installation of the latest release of Zonemaster is published on [zonemaster.net].
+ * The latest release of Zonemaster is installed on [zonemaster.net] as a reference installation.
  * `.deb` packages for Debian and Ubuntu are published in the Zonemaster package repositories for [Debian][Zonemaster
    Debian package repository] and [Ubuntu][Zonemaster Ubuntu package repository].
 
