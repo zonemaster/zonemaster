@@ -1,0 +1,16 @@
+$ORIGIN child.im.parent.child-below-nxdomain-2.methodsv2.xa.            ; Must end with "."
+$TTL 3600
+
+@       SOA     ns5.good-2.methodsv2.xa. admin. (
+                2026070300      ; serial
+                6h              ; refresh
+                1h              ; retry
+                1w              ; expire
+                1d )            ; minimum
+
+@		NS	ns5.child-below-nxdomain-2.methodsv2.xa.
+@		NS	ns6.child-below-nxdomain-2.methodsv2.xa.
+
+@               TXT     "Text"
+; EOF
+
