@@ -987,6 +987,9 @@ Example of error response:
 
 ### API method: `test_progress`
 
+This method is deprecated and is scheduled for removal in version 2027.2.
+Use [`job_status`](#api-method-job_status) instead.
+
 Reports on the progress of a *test*.
 
 Example request:
