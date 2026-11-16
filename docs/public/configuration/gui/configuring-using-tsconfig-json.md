@@ -73,9 +73,9 @@ themes by changing the alias path.
 
 ## Theming
 
-In the [Theming Zonemaster-GUI] document you will find instructions how to add
+In [Configuring Zonemaster-GUI using Theming] you will find instructions how to add
 custom theming to Zonemaster-GUI.
 
 
 [Building installation package]:                 building-custom-gui.md
-[Theming Zonemaster-GUI]:                        https://github.com/zonemaster/zonemaster-gui/blob/master/docs/theming-zonemaster-gui.md
+[Configuring Zonemaster-GUI using Theming]:      configuring-using-theming.md
