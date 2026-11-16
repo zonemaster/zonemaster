@@ -346,13 +346,15 @@ This key is added when the module name is `"NAMESERVER"`.
 
 Basic data type: string
 
-One of the strings :
+One of the strings:
 
 * `"waiting"`
 * `"running"`
 * `"completed"`
 * `"cancelled"`
 * `"crashed"`
+
+Each state is documented here [Formal state documentation].
 
 ### Timestamp
 
@@ -1854,6 +1856,7 @@ There are also some experimental API methods documented only by name:
 [Domain name]:                             #domain-name
 [Dot-decimal notation]:                    https://en.wikipedia.org/wiki/Dot-decimal_notation
 [DS info]:                                 #ds-info
+[Formal state documentation]:              https://github.com/zonemaster/zonemaster-backend/blob/master/docs/formal-test-states.md
 [IP address]:                              #ip-address
 [ISO 3166-1 alpha-2]:                      https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 [ISO 639-1]:                               https://en.wikipedia.org/wiki/ISO_639-1
