@@ -1755,6 +1755,20 @@ Example response for a test that is running:
 }
 ```
 
+
+Example response for a test that is waiting:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "progress": 0,
+    "state": "waiting",
+    "created_at": "2026-11-16T14:23:00Z"
+  }
+}
+```
+
 #### `"params"`
 
 An object with the property:
