@@ -1770,6 +1770,47 @@ An object with the following properties:
   * `"started_at"`: The time in UTC at which the *test* was started.
   * `"ended_at"`: The time in UTC at which the *test* was finished.
 
+
+#### `"error"`
+
+>
+> TODO: List all possible error codes and describe what they mean enough for clients to know how react to them.
+>
+
+If the `job_id` parameter is unrecognized the following error is returned:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "error": {
+    "data": {
+      "test_id": "a74c1311f678dbcb"
+    },
+    "message": "Test not found",
+    "code": -32603
+  }
+}
+```
+
+If the `job_id` parameter is omitted, the following error is returned:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "error": {
+    "code": "-32602",
+    "message": "Invalid method parameter(s).",
+    "data": [
+      {
+        "message": "Expected string - got null.",
+        "path": "/job_id"
+      }
+    ]
+  }
+}
+```
+
 ## Experimental API methods
 
 There are also some experimental API methods documented only by name:
