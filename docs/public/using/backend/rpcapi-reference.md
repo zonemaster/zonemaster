@@ -1705,6 +1705,7 @@ If the `batch_id` is unrecognized the following error is returned:
 ```
 ### API method: `job_status`
 
+The `job_status` methode is intended to replace the deprecated [`test_progress`](#api-method-test_progress) methode.
 
 Reports on the progress of a *test* created by [*start_domain_test*][API start_domain_test].
 
