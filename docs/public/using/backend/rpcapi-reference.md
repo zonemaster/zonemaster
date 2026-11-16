@@ -1726,7 +1726,7 @@ Example request:
 }
 ```
 
-Example response:
+Example response for a test that has completed:
 ```json
 {
   "jsonrpc": "2.0",
@@ -1741,6 +1741,7 @@ Example response:
 }
 ```
 
+Example response for a test that is running:
 ```json
 {
   "jsonrpc": "2.0",
