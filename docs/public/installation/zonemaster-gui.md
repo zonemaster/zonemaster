@@ -153,12 +153,29 @@ su -l
 ```
 
 #### Update list of package repositories
-Create the file `/usr/local/etc/pkg/repos/FreeBSD.conf` with the following
-content, unless it is already updated:
+Create or update the file `FreeBSD.conf` and add the following content to
+ensure latest updates.
+
+File:
+```
+/usr/local/etc/pkg/repos/FreeBSD.conf
+```
+
+FreeBSD 14:
 
 ```
 FreeBSD: {
-url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest",
+  url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest",
+}
+```
+
+FreeBSD 15:
+```
+FreeBSD-ports: {
+  url: "pkg+https://pkg.FreeBSD.org/${ABI}/latest"
+}
+FreeBSD-ports-kmods: {
+  url: "pkg+https://pkg.FreeBSD.org/${ABI}/kmods_latest_${VERSION_MINOR}"
 }
 ```
 
