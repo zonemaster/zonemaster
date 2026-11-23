@@ -305,7 +305,7 @@ The DNSKEY algo is 20
 * Zone: "algo-unassigned-20.dnssec05.xa."
   * The algorithm of the DNSKEY in the response is 20.
 
-## MIXED-ALGO-1
+### MIXED-ALGO-1
 Three DNSKEY with different algorithms.
 
 * Zone: "mixed-algo-1.dnssec05.xa."
