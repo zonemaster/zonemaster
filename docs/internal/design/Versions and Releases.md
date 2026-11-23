@@ -35,7 +35,7 @@ been updated on major or minor version. If any component has been updated on maj
 A specific version of the Zonemaster Product includes, besides specifications and other documents, a specific
 version of each of the Zonemaster components. The specifications and other documents are stored in the main
 repository, and the version is defined in Git by a tag on the last commit. The included versions of the components is
-defined by the [Changes][Zonemaster-Changes] file.
+declared in the [Zonemaster Product release notes].
 
 ## Version Number Syntax for Zonemaster components
 
@@ -77,12 +77,15 @@ not published on [CPAN] ([Zonemaster-GUI] is never published at [CPAN]).
 
 ## Publication of releases
 
-Major, minor and patch releases of the Zonemaster Components, including the mail repository, are published in the GitHub
-repositories by merging the code to the "master" branch in Git and by creating a release note in GitHub. In the normal
-case the Perl based components are also published at [CPAN]. The rest of the Zonemaster Product 
-([Zonemaster-GUI], specifications and documentation) is only available in the "master" branch in each repository.
+Releases of the Zonemaster Product (including its components and the [main repository][Zonemaster]) are published to several places.
 
-All components have clear installation instructions for installing the latest version.
+ * The repository contents are published on GitHub as a version tag, a release note, and source code archives. The
+   changes are also merged to the "master" branch.
+ * The public documentation is also published on [doc.zonemaster.net].
+ * The Perl-based components are published on [CPAN] under the [Zonemaster Project][CPAN Zonemaster Project].
+ * The latest release of Zonemaster is installed on [zonemaster.net] as a reference installation.
+ * `.deb` packages for Debian and Ubuntu are published in the Zonemaster package repositories for [Debian][Zonemaster
+   Debian package repository] and [Ubuntu][Zonemaster Ubuntu package repository].
 
 ## Release Handling
 
@@ -108,13 +111,17 @@ When this happens, it must be clearly documented and all parts of Zonemaster mus
 functionality must be created before release, and integration testing between components must be performed.
 
 
-[CPAN]:                       https://www.cpan.org/
-[Semantic Versioning]:        https://semver.org/
-[Zonemaster-Backend]:         https://github.com/zonemaster/zonemaster-backend
-[Zonemaster-CLI]:             https://github.com/zonemaster/zonemaster-cli
-[Zonemaster-Changes]:         https://github.com/zonemaster/zonemaster/blob/master/Changes
-[Zonemaster-Engine]:          https://github.com/zonemaster/zonemaster-engine
-[Zonemaster-GUI package file]:https://github.com/zonemaster/zonemaster-gui/blob/master/package.json
-[Zonemaster-GUI]:             https://github.com/zonemaster/zonemaster-gui
-[Zonemaster-LDNS]:            https://github.com/zonemaster/zonemaster-ldns
-[Zonemaster]:                 https://github.com/zonemaster/zonemaster
+[CPAN]:                                 https://www.cpan.org/
+[CPAN Zonemaster Project]:              https://metacpan.org/author/ZNMSTR
+[doc.zonemaster.net]:                   https://doc.zonemaster.net/
+[Semantic Versioning]:                  https://semver.org/
+[Zonemaster-Backend]:                   https://github.com/zonemaster/zonemaster-backend
+[Zonemaster-CLI]:                       https://github.com/zonemaster/zonemaster-cli
+[Zonemaster-Engine]:                    https://github.com/zonemaster/zonemaster-engine
+[Zonemaster-GUI]:                       https://github.com/zonemaster/zonemaster-gui
+[Zonemaster-LDNS]:                      https://github.com/zonemaster/zonemaster-ldns
+[Zonemaster]:                           https://github.com/zonemaster/zonemaster
+[zonemaster.net]:                       https://zonemaster.net/
+[Zonemaster Debian package repository]: https://package.zonemaster.net/debian/
+[Zonemaster Product release notes]:     https://github.com/zonemaster/zonemaster/releases
+[Zonemaster Ubuntu package repository]: https://package.zonemaster.net/ubuntu/
