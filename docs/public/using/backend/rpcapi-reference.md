@@ -354,7 +354,7 @@ One of the strings:
 * `"cancelled"`
 * `"crashed"`
 
-Each state is documented here [Formal state documentation].
+Each state is described in more detail in Zonemaster-Backend’s [Formal test states] document.
 
 ### Timestamp
 
@@ -1867,7 +1867,7 @@ There are also some experimental API methods documented only by name:
 [Domain name]:                             #domain-name
 [Dot-decimal notation]:                    https://en.wikipedia.org/wiki/Dot-decimal_notation
 [DS info]:                                 #ds-info
-[Formal state documentation]:              formal-test-states.md
+[Formal test states]:                      formal-test-states.md
 [IP address]:                              #ip-address
 [ISO 3166-1 alpha-2]:                      https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 [ISO 639-1]:                               https://en.wikipedia.org/wiki/ISO_639-1
