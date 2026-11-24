@@ -1790,10 +1790,6 @@ An object with the following properties:
 
 #### `"error"`
 
->
-> TODO: List all possible error codes and describe what they mean enough for clients to know how react to them.
->
-
 If the `job_id` parameter is unrecognized the following error is returned:
 
 ```json
@@ -1871,7 +1867,7 @@ There are also some experimental API methods documented only by name:
 [Domain name]:                             #domain-name
 [Dot-decimal notation]:                    https://en.wikipedia.org/wiki/Dot-decimal_notation
 [DS info]:                                 #ds-info
-[Formal state documentation]:              https://github.com/zonemaster/zonemaster-backend/blob/master/docs/formal-test-states.md
+[Formal state documentation]:              formal-test-states.md
 [IP address]:                              #ip-address
 [ISO 3166-1 alpha-2]:                      https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 [ISO 639-1]:                               https://en.wikipedia.org/wiki/ISO_639-1

@@ -5,6 +5,7 @@
 * [RPCAPI reference]
 * [Collecting metrics][Telemetry]
 * [Using Zonemaster-Backend Docker container](Using-Zonemaster-Backend-Docker.md)
+* [Formal State](formal-test-states.md)
 
 [RPCAPI reference]: rpcapi-reference.md
 [Telemetry]:        telemetry.md

@@ -44,6 +44,7 @@
         - [Using Zonemaster-Backend Docker container](using/backend/Using-Zonemaster-Backend-Docker.md)
         - [RPCAPI Reference](using/backend/rpcapi-reference.md)
         - [Telemetry](using/backend/telemetry.md)
+        - [Formal State](using/backend/formal-test-states.md)
     - [GUI](using/gui/README.md)
         - [API](using/gui/api.md)
     - [All-In-One Docker](using/gui/all-in-one.md)
