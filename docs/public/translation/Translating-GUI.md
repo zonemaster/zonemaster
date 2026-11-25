@@ -157,6 +157,7 @@ Zonemaster-GUI is currently available in the following languages:
 * `nb` for Norwegian language
 * `sl` for Slovenian language
 * `sv` for Swedish language
+* `uk` for Ukrainian language
 
 If languages are added the correct two-letter code must be used.
 
@@ -448,7 +449,7 @@ This file contains the default language and the list of enabled languages:
 ```typescript
 const config: Config = {
     defaultLanguage: 'en',
-    enabledLanguages: ['da', 'en', 'es', 'fi', 'fr', 'nb', 'sl', 'sv'],
+    enabledLanguages: ['da', 'en', 'es', 'fi', 'fr', 'nb', 'sl', 'sv', 'uk'],
     // other configuration options...
 };
 ```
@@ -467,6 +468,7 @@ const languageLabels = {
     nb: 'Norsk Bokmål',
     fi: 'Suomi',
     sl: 'Slovenščina',
+    uk: 'Українська',
 };
 ```
 

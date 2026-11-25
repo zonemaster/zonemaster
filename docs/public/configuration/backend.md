@@ -289,11 +289,12 @@ following languages.
 | Norwegian | nb_NO            | nb            | nb_NO.UTF-8       |
 | Slovenian | sl_SI            | sl            | sl_SI.UTF-8       |
 | Swedish   | sv_SE            | sv            | sv_SE.UTF-8       |
+| Ukrainian | uk_UA            | uk            | uk_UA.UTF-8       |
 
 Setting in the default configuration file:
 
 ```
-locale = da_DK en_US es_ES fi_FI fr_FR nb_NO sl_SI sv_SE
+locale = da_DK en_US es_ES fi_FI fr_FR nb_NO sl_SI sv_SE uk_UA
 ```
 
 #### Installation considerations

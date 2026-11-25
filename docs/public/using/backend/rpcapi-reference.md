@@ -277,6 +277,7 @@ A default installation will accept the following *language tags*:
 | Norwegian | nb           |
 | Slovenian | sl           |
 | Swedish   | sv           |
+| Ukrainian | uk           |
 
 
 ### Name server
@@ -549,7 +550,8 @@ Example response:
     "fr",
     "nb",
     "sl",
-    "sv"
+    "sv",
+    "uk"
   ]
 }
 ```
