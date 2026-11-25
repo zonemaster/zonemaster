@@ -217,12 +217,14 @@ DNS queries follow, unless otherwise specified below, what is specified for
              7. Set *Zone Name* to *Intermediate Query Name*.
              8. Go back to the start of the loop.
        6. Else, if the [RCODE Name] is NXDomain and the AA is set then do:
-          1. Save *Server Address* and *Zone Name* to the *AA NXDomain Found* set
-             and the *Parent Found* set, unless already saved.
-          2. If *Intermediate Query Name* is equal to *Child Zone* then go to
-             next server in *Remaining Servers*.
-          3. Else, save *Server Address* and *Intermediate Query Name* to the
-             *AA NXDomain Response* set.
+          1. If *Intermediate Query Name* is equal to *Child Zone* then do:
+             1. Save *Server Address* and *Zone Name* to the *AA NXDomain Found*
+                set and the *Parent Found* set.
+             2. Go to next server in *Remaining Servers*.
+          2. Else do:
+             1. Save *Server Address* and *Intermediate Query Name* to the
+                *AA NXDomain Response* set.
+             2. Go back to the start of the loop (same *Server Address*)
        7. Else, if the response contains a [Referral] of *Intermediate Query Name*
           then do:
           1. If *Intermediate Query Name* is equal to *Child Zone* then do:
