@@ -1,4 +1,4 @@
-$ORIGIN consistency06.xa.
+$ORIGIN consistency06.xb.
 $TTL 3600
 
 @       SOA     ns1 admin. (
