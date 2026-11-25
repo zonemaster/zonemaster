@@ -112,17 +112,12 @@ or zones for the scenario will follow the default setup as stated below. The
 `child zone` is the zone to be tested for the scenario.
 
 * The child zone is `SCENARIO.dnssec05.xa`.
-  * It is delegated to two name servers, `ns1.SCENARIO.dnssec05.xa`
-    and `ns2.SCENARIO.dnssec05.xa`.
+  * It is delegated to two name servers, `ns1.child.dnssec05.xa`
+    and `ns2.child.dnssec05.xa`.
     * The name server names have A and AAAA records to avoid non-relevant error
       messages.
     * The delegation of the child zone is to an OOB NS.
-* It is delegated to two name servers, `ns1.child.dnssec05.xa`
-and `ns2.child.dnssec05.xa`.
-* The name server names have A and AAAA records to avoid non-relevant error
-messages.
-* The delegation of the child zone is to an OOB NS.
-* NS can be resolved through the `dnssec05.xa` zone.
+  * NS can be resolved through the `dnssec05.xa` zone.
   * There is a zone file for the child zone.
   * All child zone servers give the same response.
   * The only responses that can be assumed are queries for
