@@ -117,7 +117,12 @@ or zones for the scenario will follow the default setup as stated below. The
     * The name server names have A and AAAA records to avoid non-relevant error
       messages.
     * The delegation of the child zone is to an OOB NS.
-      * NS can be resolved through the `dnssec05.xa` zone.
+* It is delegated to two name servers, `ns1.child.dnssec05.xa`
+and `ns2.child.dnssec05.xa`.
+* The name server names have A and AAAA records to avoid non-relevant error
+messages.
+* The delegation of the child zone is to an OOB NS.
+* NS can be resolved through the `dnssec05.xa` zone.
   * There is a zone file for the child zone.
   * All child zone servers give the same response.
   * The only responses that can be assumed are queries for

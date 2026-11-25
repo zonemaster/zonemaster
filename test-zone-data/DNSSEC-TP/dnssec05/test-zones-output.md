@@ -64,7 +64,7 @@ scenarios for other test cases.
 | ALGO-RESERVED-4         | algo-reserved-4.dnssec05.xa.         |
 | ALGO-RESERVED-9         | algo-reserved-9.dnssec05.xa.         |
 | ALGO-UNASSIGNED-122     | algo-unassigned-122.dnssec05.xa.     |
-| ALGO-UNASSIGNED-20      | algo-unassigned-17.dnssec05.xa.      |
+| ALGO-UNASSIGNED-20      | algo-unassigned-20.dnssec05.xa.      |
 | MIXED-ALGO-1            | mixed-algo-1.dnssec05.xa.            |
 | NO-RESPONSE-1           | no-response-1.dnssec05.xa.           |
 | NO-RESPONSE-2           | no-response-2.dnssec05.xa.           |
