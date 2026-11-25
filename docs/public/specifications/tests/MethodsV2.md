@@ -148,12 +148,12 @@ This Method uses the following input units defined in section [Methods Inputs]:
 4. Insert all names and addresses from *Root Name Servers* and the root zone
    name into the *Remaining Servers* set.
 
-> In the loop below, the steps tries to capture the name of the parent zone of
+> In the loop below, the steps try to capture the name of the parent zone of
 > **Child Zone** and the IP addresses of the name servers for that parent zone.
 > This is done using a modified version of the "QNAME minimization" technique
 > ([RFC 9156]). SOA is the query type used for traversing the tree.
 
-5. While the *Remaining Servers* is non-empty pick next name server name, IP
+5. While the *Remaining Servers* is non-empty, pick next name server name, IP
    address and zone name tuple from the set ("Server Name", "Server Address"
    and "Zone Name") and do:
 
@@ -189,14 +189,14 @@ This Method uses the following input units defined in section [Methods Inputs]:
           * Owner name of any of the NS records is not *Zone Name*.
    9.  Extract the name server names from the NS records in the answer section
        and any matching address records in the additional section.
-       1. For each IP address add the name server name, IP address and *Zone
+       1. For each IP address, add the name server name, IP address and *Zone
           Name* tuple to the *Remaining Servers* set, unless such a tuple
           already exists in *Handled Servers*.
    10. Do [Address Records Lookup] of name server names not already listed in
        the additional section of the response. If a CNAME is encountered,
        follow the chain of CNAME records but use the original name as obtained
        from the NS record RDATA when storing the data in the next substep.
-       1. For each IP address add the name server name, IP address and *Zone
+       1. For each IP address, add the name server name, IP address and *Zone
           Name* tuple to the *Remaining Servers* set, unless such a tuple
           already exists in *Handled Servers*.
        2. Ignore any failing lookups (such as response with SERVFAIL or no
@@ -241,7 +241,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
                 is encountered, follow the chain of CNAME records but use the
                 original name as obtained from the NS record RDATA when storing
                 the data in the next step.
-             6. For each name and IP address add the name, IP address and
+             6. For each name and IP address, add the name, IP address and
                 *Intermediate Query Name* tuple to the *Remaining Servers* set,
                 unless such a tuple already exists in *Handled Servers*.
              7. Set *Zone Name* to *Intermediate Query Name*.
@@ -256,7 +256,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
                 records.
              2. Do [Address Records Lookup] of name server names not already
                 listed as glue record or records. Follow CNAME if provided.
-             3. For each name and IP address add the *Server Name*, *Server
+             3. For each name and IP address, add the *Server Name*, *Server
                 Address* and *Intermediate Query Name* tuple to the *Remaining
                 Servers* set, unless such a tuple already exists in *Handled
                 Servers*.
@@ -740,7 +740,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
       linked to an empty set of IP addresses ("Name Servers").
    3. Extract all name server names from the *Undelegated Data* set and add to
       the *Name Servers* set.
-   4. For each [In-Domain] name server name collect any
+   4. For each [In-Domain] name server name, collect any
       IP addresses from *Undelegated Data* and add that to the
       *Name Servers* set under the name server name.
    5. For any [Out-Of-Domain] name server name the IP address should be
@@ -766,7 +766,7 @@ This Method uses the following input units defined in section [Methods Inputs]:
    2. Unique name server names where each name can be linked to a possibly empty
       set of IP addresses ("AA Name Servers").
 
-7. For each parent name server in *Parent NS* do:
+7. For each parent name server in *Parent NS*, do:
 
    1. [Send] *NS query* to to the parent name server.
    2. Go to next parent name server if:
@@ -949,7 +949,7 @@ This Method also used the following input unit from the calling Method:
 2. Create a set of name servers where each unique name server name in *NS Set*
    is linked to an empty set of IP addresses ("Name Servers").
 
-3. For each name server name ("Name") in *NS Set* do:
+3. For each name server name ("Name") in *NS Set*, do:
 
    1. If *Test Type* is "undelegated test" and if the *Name*
       has IP address specification (IPv4 or IPv6) in *Undelegated Data*,

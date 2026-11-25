@@ -127,7 +127,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
 > [RFC 9156]. SOA is the query type used for traversing the tree.
 
 6. While the *Remaining Servers* is non-empty pick next name server IP address
-   and zone name from the set (refer as "Server Address" and "Zone Name",
+   and zone name from the set (referred to as "Server Address" and "Zone Name",
    respectively) and do:
 
    1.  Remove *Server Address* including its *Zone Name* from
@@ -156,13 +156,13 @@ DNS queries follow, unless otherwise specified below, what is specified for
           * Owner name of any of the NS records is not *Zone Name*.
    8.  Extract the name server names from the NS records in the answer section
        and any matching address records in the additional section.
-       1. For each IP address add the IP address and *Zone Name* to the
+       1. For each IP address, add the IP address and *Zone Name* to the
           *Remaining Servers* set, unless the IP address is already listed in
           *Handled Servers*, together with *Zone Name*.
    9.  Do a [DNS Lookup] of name server names (A and AAAA) not already listed in
        the additional section of the response, and extract IP addresses (A and
        AAAA records) from responses.
-       1. For each IP address add the IP address and *Zone Name* to the
+       1. For each IP address, add the IP address and *Zone Name* to the
           *Remaining Servers* set, unless the IP address is already listed in
           *Handled Servers*, together with *Zone Name*.
        2. Ignore any lookup that goes through a CNAME.
@@ -211,7 +211,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
                 listed in the additional section of the response.
                    1. Ignore any lookup that goes through a CNAME.
                    2. Ignore any failing lookups or negative responses, such as NODATA, NXDOMAIN, non-AA responses or no response at all.
-             6. For each IP address add the IP address and *Intermediate Query Name*
+             6. For each IP address, add the IP address and *Intermediate Query Name*
                 to the *Remaining Servers* set unless the IP address is already
                 listed in *Handled Servers* together with *Intermediate Query Name*.
              7. Set *Zone Name* to *Intermediate Query Name*.
@@ -221,7 +221,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
              and the *Parent Found* set, unless already saved.
           2. If *Intermediate Query Name* is equal to *Child Zone* then go to
              next server in *Remaining Servers*.
-          3. Else save *Server Address* and *Intermediate Query Name* to the
+          3. Else, save *Server Address* and *Intermediate Query Name* to the
              *AA NXDomain Response* set.
        7. Else, if the response contains a [Referral] of *Intermediate Query Name*
           then do:
@@ -233,7 +233,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
                 records.
              2. Do [DNS Lookup] of name server names (A and AAAA) not already
                 listed as glue record or records.
-             3. For each IP address add *Server Address* and
+             3. For each IP address, add *Server Address* and
                 *Intermediate Query Name* to the *Remaining Servers* set unless
                 *Server Address* is already listed in *Handled Servers* together
                 with *Intermediate Query Name*.
@@ -271,7 +271,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
 
 
 7. If the *Parent Found* set is non-empty, then
-   1. For each parent zone name output *[B01_PARENT_FOUND]*, parent zone name
+   1. For each parent zone name, output *[B01_PARENT_FOUND]*, parent zone name
       and the set of name server IP addresses for that name.
    2. If not all members of the set have the same parent zone then output
       *[B01_PARENT_UNDETERMINED]* and the whole set of name server IP addresses.
@@ -303,7 +303,7 @@ DNS queries follow, unless otherwise specified below, what is specified for
        2. Output *[B01_NO_CHILD]* with *Child Zone* and *Superdomain*.
 
 12. If the *AA DNAME Found* set is non-empty then do:
-    1. For each DNAME target in the set output *[B01_CHILD_IS_ALIAS]* with name
+    1. For each DNAME target in the set, output *[B01_CHILD_IS_ALIAS]* with name
        server IP list, *Child Zone* and the DNAME target.
     2. If not all members of the set have the same DNAME target, output
        *[B01_INCONSISTENT_ALIAS]* with *Child Zone*.
