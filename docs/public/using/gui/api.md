@@ -46,6 +46,7 @@ codes and languages:
 * `nb` for Norwegian language
 * `sl` for Slovenian language
 * `sv` for Swedish language
+* `uk` for Ukrainian language
 
 A non-default installation may have support for only some of the languages or
 maybe other languages.

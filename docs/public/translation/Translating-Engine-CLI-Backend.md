@@ -174,7 +174,7 @@ Now you should have updated local clones of all three repositories.
 ## Language Codes
 
 Zonemaster uses [ISO 639-1] two-letter language codes, in lower case.
-Zonemaster-GUI is currently available in the following languages:
+Zonemaster is currently available in the following languages:
 
 * `da` for Danish language
 * `en` for English language
@@ -184,6 +184,7 @@ Zonemaster-GUI is currently available in the following languages:
 * `nb` for Norwegian language
 * `sl` for Slovenian language
 * `sv` for Swedish language
+* `uk` for Ukrainian language
 
 If a language is added the correct two-letter code must be used.
 

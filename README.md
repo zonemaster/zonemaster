@@ -84,6 +84,7 @@ to `RPCAPI`.
 * Slovenian (sl, sl_SI.UTF-8)
 * Spanish (es, es_ES.UTF-8)
 * Swedish (sv, sv_SE.UTF-8)
+* Ukrainian (uk, uk_UA.UTF-8)
 
 ## Zonemaster and its components
 

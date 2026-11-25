@@ -176,6 +176,7 @@ nb   | Norwegian
 es   | Spanish
 sl   | Slovenian
 sv   | Swedish
+uk   | Ukrainian
 
 E.g.:
 ```sh
@@ -217,6 +218,7 @@ nb_NO.UTF-8 | Norwegian
 es_ES.UTF-8 | Spanish
 sv_SE.UTF-8 | Swedish
 sl_SI.UTF-8 | Slovenian
+uk_UA.UTF-8 | Ukrainian
 
 E.g.:
 ```sh

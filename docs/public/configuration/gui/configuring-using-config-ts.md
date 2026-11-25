@@ -28,7 +28,7 @@ import packageJson from './package.json';
 
 const config: Config = {
     defaultLanguage: 'en',
-    enabledLanguages: ['da', 'en', 'es', 'fi', 'fr', 'nb', 'sv', 'sl'],
+    enabledLanguages: ['da', 'en', 'es', 'fi', 'fr', 'nb', 'sv', 'sl', 'uk'],
     baseUrl: import.meta.env.PUBLIC_BASE_URL || '/',
     apiBaseUrl: import.meta.env.PUBLIC_API_URL || '/api',
     pollingInterval: import.meta.env.PUBLIC_POLLING_INTERVAL || 5000,
