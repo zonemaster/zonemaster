@@ -99,12 +99,11 @@ irrelevant to the test scenario and must be ignored.
 | NXDOMAIN-ON-IM-NAME-1           | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_UNEXPECTED_NXDOMAIN                         | 2)                     |
 | NXDOMAIN-ON-IM-NAME-2           | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_UNEXPECTED_NXDOMAIN                         | 2)                     |
 | NXDOMAIN-ON-IM-NAME-3           | B01_CHILD_FOUND, B01_PARENT_FOUND, B01_UNEXPECTED_NXDOMAIN                         | 2)                     |
-| NXDOMAIN-N-NON-AA-ON-IM-NAME-1  | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
+| NXDOMAIN-N-NON-AA-ON-IM-NAME-1  | B01_NO_CHILD, B01_PARENT_NOT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
 | NXDOMAIN-N-NON-AA-ON-IM-NAME-2  | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
 | SERVFAIL-ON-IM-NAME-1           | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
 | REFUSED-ON-IM-NAME-1            | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
 | NON-AA-ON-IM-NAME-1             | B01_NO_CHILD, B01_PARENT_FOUND, B01_SERVER_ZONE_ERROR                              | 2)                     |
-|                                 |                                                                                    | 2)                     |
 
 * (1) All tags except for those specified as "Forbidden message tags" (no instances for these test scenarios)
 * (2) All tags except for those specified as "Mandatory message tags"
@@ -555,7 +554,7 @@ which grandparent NS and parent NS, respectively, responds with NXDOMAIN.
 
 ### NXDOMAIN-N-NON-AA-ON-IM-NAME-1
 Between grandparent apex and parent delegation node there is an empty
-non-terminal node, for which grand parent NS responds with NXDOMAIN and
+non-terminal node, for which grandparent NS responds with NXDOMAIN and
 the AA flag bit unset.
 
 * Zone: child.parent.im.nxdomain-n-non-aa-on-im-name-1.basic01.xa
