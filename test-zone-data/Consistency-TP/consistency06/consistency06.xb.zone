@@ -1,8 +1,8 @@
-$ORIGIN consistency06.xa.
+$ORIGIN consistency06.xb.
 $TTL 3600
 
 @       SOA     ns1 admin. (
-                2024051803      ; serial
+                2026102800      ; serial
                 6h              ; refresh
                 1h              ; retry
                 1w              ; expire
